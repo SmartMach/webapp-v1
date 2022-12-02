@@ -1,0 +1,19 @@
+.contentContainer{
+	margin-top: 4.5rem;
+}
+.textAlignCenter{
+	text-align: center;
+}
+.saveBtnStyle{
+	color: var(--save_btn_font_color);
+	background: var(--save_btn_background_color);
+}
+.cancelBtnStyle{
+	color: var(--cancel_btn_font_color);
+	background: var(--cancel_btn_background_color);
+}
+.saveBtnStyle:hover{
+	color: var(--save_btn_font_color);
+	background: var(--save_btn_background_color);
+	opacity: 0.8;
+}

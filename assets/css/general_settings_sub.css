@@ -1,0 +1,48 @@
+.dotHover{
+	margin-left:65%;
+	background: #f2f2f2;
+	height:2rem;
+	width:2rem;
+	border-radius: 50%;
+	top:-18px;
+	position:absolute;
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+}
+.dotHover1{
+	margin-left:80%;
+	background: #f2f2f2;
+	height:2rem;
+	width:2rem;
+	border-radius: 50%;
+	top:-18px;
+	position:absolute;
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+}
+.reason-box:hover .dotHover{
+	opacity: 1;
+}
+.reason-box:hover .dotHover1{
+	opacity: 1;
+}
+hr{
+	color: black;
+}
+.reason-pen{
+	color: #727272;
+	font-size:20px;
+	cursor:pointer;
+}
+
+#range{
+	margin-left: 2px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: bold;
+}

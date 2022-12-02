@@ -1,0 +1,31 @@
+.graphCard{
+	margin: 10px;
+	height: 9rem;
+	border-radius: 10px;
+	border:0.5px solid #d9d9d9;
+	padding: 10px;
+}
+.graphCardFLayer{
+	height: 4rem;
+	background: rgb(242,242,242);
+	position: relative;
+}
+.graphCardSLayer{
+	height: 4rem;
+	background:rgb(179,215,255);
+	position: relative;
+}
+.graphCardTLayer{
+	height: 3rem;
+	background: rgb(0,74,155);
+	position: absolute;
+	margin-top: -3.5rem;
+}
+.values{
+	font-family: 'Roboto', sans-serif;
+	font-weight: bold;
+	font-size: 2rem;
+	color: #fff;
+}
+
+
