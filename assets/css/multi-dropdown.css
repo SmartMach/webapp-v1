@@ -1,0 +1,97 @@
+	.cust-drop {
+  width: 200px;
+  z-index: 1000;
+}
+
+.selectOpp {
+  position: relative;
+}
+
+.selectOpp select {
+  width: 100%;
+  font-weight: normal;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+  z-index: 1500;
+  position: absolute;
+  background: white;
+  border-radius: 0.25rem;
+}
+
+/*  temporary remove for strategy
+.option_multi{
+  /* max-width: 12.4rem; *
+  width:10rem;
+}
+*/
+/*
+@media only screen and (max-width:min-width: 657px) {
+  .option{
+    width:10rem;
+  }
+}
+*/
+.multi-check{
+  float: left;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+}
+.option_multi:hover .multi-lable{
+  background-color: #E7F2FF;
+  cursor: default;
+}
+.option_multi:hover .multi-check{
+  background-color: #E7F2FF;
+  cursor: default;
+}
+
+.multi-lable{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  /* height: max-content; */
+  max-height:3rem;
+  min-height: 2rem;
+  font-size: 0.7rem;
+  float: left;
+  width: 80%;
+}
+
+.checkboxIn{
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+/* temporary remove
+@media all and  (max-width:1024px) {
+  .option_multi{
+    /* max-width: 12rem; *
+    min-width:9.9rem;
+
+    /* min-width: 9rem; *
+    color:blue;
+  }
+}
+@media all and (min-width:657px) and (max-width:898px){
+  .option_multi{
+    width:9rem;
+    color:red;
+  }
+}
+
+*/
+

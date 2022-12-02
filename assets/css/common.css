@@ -1,0 +1,31 @@
+.fieldStyle{
+  height: 4.2rem;
+}
+.fieldStyleSub{
+	margin-left: 1rem;
+	margin-top: 1rem;
+}
+.dotAccess {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.dotAccess1 {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.dotAccess i{
+  font-size: 12px;
+}
+.dotAccess1 i{
+  font-size: 12px;
+}

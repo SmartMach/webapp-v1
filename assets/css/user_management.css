@@ -1,0 +1,51 @@
+
+.accessControlPadding{
+	border-radius:5px 5px 5px 5px;
+    color:black;
+    margin-top:5px;
+    border:0.5px solid #d9d9d9;
+    font-family: 'Roboto', sans-serif;
+    
+}
+.accessControlPadding .row div{
+	height: 1.5rem;
+}
+.accessControlPaddinghead{
+    color:black;
+    margin-top:5px;    
+}
+.accessControlPaddinghead .row div{
+	height: 1.5rem;
+}
+.fn{
+	font-family: 'Roboto', sans-serif;
+    font-size:0.8rem;
+    /*color: #b5b8bc; */
+    color: black;
+}
+.textCenter{
+	display: flex;
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+
+}
+.fn p{
+	padding: 0;
+	margin: 0;
+}
+.textCenterTitle{
+	display: flex;
+	align-items: center;
+	text-align: center;
+	/*justify-content: center;*/
+}
+
+#AccessControlModal{
+	z-index: 1060;
+}
+
+.fntTitle{
+	font-weight: bold;
+	margin-left: 5px;
+}

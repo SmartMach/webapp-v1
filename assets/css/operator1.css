@@ -1,0 +1,309 @@
+.client-logo{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    height: 3rem;
+    border-radius: 0.4rem;
+    border:2px solid grey;
+    font-family: 'Robot' , sans-serif;
+    font-size: 1.2rem;
+    float:left;
+    width:15%;
+    margin-left:1rem;
+    margin-right:1rem;
+}
+.ptext{
+    font-family: 'Robot' , sans-serif;
+    float:left;
+    width:5%;
+    margin-top:1.5rem;
+}
+.ptext-inline{
+    float:right; 
+    font-size:0.7rem;
+}
+.tonav{
+    border-bottom:1px solid #d9d9d9;
+    box-shadow: 3px 2px 0px 0px #4a944e;
+    background: white;
+    height: 4em;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    
+   
+}
+.parallax{
+    background-color: rgb(1,171,78);
+}
+.margin{
+    display: flex;
+    align-items: center;
+     
+}
+#smartlogo1{
+    height:2.5rem;
+    margin-top: 0.6rem;
+}
+.text{
+    font-family: 'Robot' , sans-serif;
+    color: black;
+}
+.text-g{
+    font-family: 'Robot' , sans-serif;
+    color: lightgray;
+}
+/* .align-text{
+    /* display: flex; *
+    align-items: center;
+
+} */
+
+.img-align{
+    float:left;
+    width:10%;
+}
+.drp-align{
+    float:left;
+    width:10%; 
+    margin-left:1rem;
+}
+.sftext{
+    float:left;
+    width:10%;
+    margin-left:1rem;
+}
+.img-inline{
+    float:right;
+}
+.img-info{
+    float:left;
+    width:15%;
+    margin-left:1rem;
+}
+.info-inline{
+    float:right; 
+    margin-right:1rem;
+}
+
+/* second header */
+.grid-header{
+    display: flex;
+    align-items: center;
+    height: 4rem;
+   
+}
+.mid{
+    float: left;
+    width: 50%; 
+
+}
+.mid1{
+   
+    float: right;
+    width: 50%;
+}
+.part-text{
+    font-family: 'Robot' , sans-serif;
+    font-weight: bold;
+    color:white;
+    padding-bottom: 0;
+    font-size: 1rem;
+    /* margin-top: 0; */
+}
+.textid{
+    font-size: 1.5rem;
+    color: white;
+    font-family: 'Roboto' , sans-serif;
+}
+.textp{
+    font-size: 1.4rem;
+    font-family: 'Roboto' , sans-serif;
+    color: white;
+    font-weight: bold;
+}
+
+  
+.text_margin{
+    font-family: 'Roboto' , sans-serif;
+    font-weight: lighter;
+    font-size: 1.5rem;
+    font-weight: lighter;
+    color:white;
+  
+} 
+.left_margin{
+    margin-left:1rem;
+}
+.right_margin{
+    margin-right:1rem;
+    float:right;
+    text-align:right;
+}  
+.fa-size{
+    font-size:0.4rem;
+    margin:auto auto;
+
+    
+}
+.group-btn{
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    
+    /* float: right; */
+}
+.sarrow{
+    width: 5%;
+   
+}
+.btng{
+    width: max-content;
+    height: 2.6rem;
+    border-radius: 0.5rem;
+    border:1.9px solid black;
+    margin: 1rem;
+    align-items: center;
+    justify-content:center ;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color:black;
+    padding: 0.6rem;
+    box-shadow: 1px 1px 0px 0px  black;
+    float: right;
+
+    
+}
+/* .btng:hover{
+    background-color: black;
+} */
+
+.active{
+    background-color: black;
+    color: white;
+}
+.field_set{
+    /* margin-left: 1rem; */
+   display:grid;
+    border: 2px solid black;
+    border-radius: 0.5rem;
+    height: max-content;
+    width: 100%;
+    margin-left: 2rem;
+}
+
+.field_lbl{
+    margin-top: -0.9rem;
+    padding-left: 1.3rem;
+    font-size: 1.3rem;
+    width:fit-content;
+    background-color: rgb(1,171,78);
+    font-family: 'Roboto' , sans-serif;
+}
+
+/* circular progress */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins',sans-serif;
+}
+
+.skill{
+    /*background: #0774e0;*/
+    height: 15rem;
+    width:100%;
+    position: relative;
+    /* padding: 18px; */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    
+}
+.inner{
+    width: 9.5rem;
+    height: 9.7rem;
+    border: 0.2rem solid rgb(197, 195, 195);
+    border-radius: 50%;
+    background-color: transparent; 
+
+}
+circle{
+    fill: none;
+    stroke: url(#GradientColor);
+    stroke-width: 15px;
+    stroke-dasharray: 200;
+    stroke-dashoffset: 100;
+    animation: anim 2s linear forwards;
+}
+svg{
+    position: absolute;
+    top: 17px;
+    left: 9px;
+
+}
+@keyframes anim{
+  
+    100%{
+        stroke-dashoffset: 200;
+    }
+}
+#number{
+    font-weight: 600;
+    color: rgb(250, 248, 248);
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+}
+
+/* progress bar target bar */
+.target_bar{
+    width: 50%;
+    top:2px;
+    height: 15rem;
+    float: right;
+    color: white;
+    margin-right:1.5rem; 
+       
+}
+.target_outline{
+   bottom: 0;
+    background: rgb(2, 194, 88);
+    width: 8rem;
+    height: 12rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    top: auto;
+    border-radius: 2px 2px 2px 2px;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    position: relative;
+}
+
+.target_inline{
+    bottom: 0;
+    background: rgb(183, 228, 21);
+    width: 5rem;
+    height: 7rem;
+    padding: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px 2px 2px 2px;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    position: absolute;
+}
+
+
+

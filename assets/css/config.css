@@ -1,0 +1,10 @@
+:root {
+	/*Properties for save button*/
+  	--save_btn_background_color: #005abc;
+  	--save_btn_font_color: #FFFFFF;
+
+
+  	/*Properties for cancel button*/
+  	--cancel_btn_background_color: #d9d9d9;
+  	--cancel_btn_font_color: #989fac;
+}

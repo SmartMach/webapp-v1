@@ -1,0 +1,87 @@
+.side-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      border-radius: 2px;
+      -moz-border-radius: 2px;
+      -webkit-border-radius: 2px;
+    }
+    .side-menu li {
+      position: relative;
+      z-index: 1040;
+    }
+    .side-menu li a {
+      display: block;
+      text-decoration: none;
+      position: relative;
+      color: #595959;
+    }
+    .side-menu li a i {
+      float: left;
+    }
+    .side-menu li:hover > a {
+      /*color: #005abc;*/
+    }
+
+    .side-menu li ul,
+    .side-menu li ul li ul {
+          list-style: none;
+          position: absolute;
+          height: auto;
+          min-width: 200px;
+          padding: 0;
+          margin: 0;
+          background: #FFF;
+          opacity: 0;
+          visibility: hidden;
+          border-radius: 10px 10px 10px 10px;
+          border:1px solid #d9d9d9;
+          font-family: 'Roboto', sans-serif;
+          font-size: 13px;
+          transition: all 300ms linear;
+          -o-transition: all 300ms linear;
+          -ms-transition: all 300ms linear;
+          -moz-transition: all 300ms linear;
+          -webkit-transition: all 300ms linear;
+          z-index: 1040;
+          left:4rem;
+          top: 0px;
+    }
+    .side-menu li:hover > ul,
+    .side-menu li ul li:hover > ul {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+      left:4.8rem;
+      box-shadow: 3px 3px 4px 0px #d9d9d9;
+      color: #9d9d9d;
+      z-index: 1040;
+    }
+    .side-menu li ul li :hover{
+      background: #eff7ff;
+    }
+    .side-menu li ul li{
+      border-bottom: 1px solid #EEE;
+    }
+    .side-menu li ul .nav-menu-title{
+      font-family: 'Roboto', sans-serif;
+      font-size: 13px;
+      font-weight: bold;
+      color: #595959;
+      margin-left: 10px;
+      margin-bottom: 6px; 
+      margin-top: 8px;
+    }
+
+    .side-menu li ul li div a{
+      padding: 8px;
+      text-align: left;
+      border: 0;
+      height: auto;
+    }
+    .side-menu li ul li a i {
+      margin-top: 0px;
+      font-size: 16px;
+      display: inline-block;
+      margin: 0 10px 0 0;
+    }
