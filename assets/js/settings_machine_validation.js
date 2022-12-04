@@ -90,7 +90,6 @@ function inputMachineBrand(data){
 	}
 	else{
 		val = val.trim();
-		val = val.toLowerCase();
 		if (val.length > 50) {
 			$(".Add_Machine_Data").attr("disabled", true);
 			$("#inputMachineBrandCunt").css("display","none");
@@ -203,7 +202,6 @@ function inputMachineSerialid(data){
 	}
 	else{
 		val = val.trim();
-		val = val.toLowerCase();
 		if (val.length > 50) {
 			$(".Add_Machine_Data").attr("disabled", true);
 			//This condition will not occur
@@ -470,7 +468,6 @@ function editMachineName(data){
 	}
 	else{
 		val = val.trim();
-		// val = val.toLowerCase();
 		if (val.length > 50) {
 			$(".EditMachine").attr("disabled", true);
 			//This condition will not occur
@@ -502,7 +499,6 @@ function editMachineBrand(data){
 	}
 	else{
 		val = val.trim();
-		// val = val.toLowerCase();
 	
 		if (val.length > 50) {
 			$(".EditMachine").attr("disabled", true);
@@ -619,7 +615,6 @@ function editMachineSerialNumber(data){
 	}
 	else{
 		val = val.trim();
-		val = val.toLowerCase();
 		if (val.length > 50) {
 			$(".EditMachine").attr("disabled", true);
 			//This condition will not occur
