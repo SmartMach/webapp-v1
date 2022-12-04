@@ -709,8 +709,11 @@ $(document).on('change','#Production_shift_date',function(){
         $('#RejectShift').empty();
         $('#RejectShift').append('<option value="" selected="true" disabled>Select</option>');
         production_shift['shift'].forEach(function(item){
-          var temp = item.shifts.split("");
-          elements = elements.add('<option value="'+item.shifts+'">Shift '+temp[0]+'</option>');
+          var c_date = new Date(y+"-"+(m > 9 ? m: "0" + m)+"-"+(d > 9 ? d: "0" + d)+" "+item.start_time);
+          if (new Date() > c_date) {
+            var temp = item.shifts.split("");
+            elements = elements.add('<option value="'+item.shifts+'">Shift '+temp[0]+'</option>');
+          }
         });
         $('#RejectShift').append(elements);
         $("#RejectShift").removeAttr("readonly");
@@ -870,8 +873,7 @@ $(document).on("click", ".deleteRec", function(){
         }
     // alert("Start ="+startTime+"Duration ="+duration+" End ="+endTime);
     // alert(refValSPlit);
-    const tmp_arr = [machineEventIdRef,endTime,duration,refValSPlit,startTime];
-    console.log(tmp_arr);        
+    const tmp_arr = [machineEventIdRef,endTime,duration,refValSPlit,startTime];        
     // Update after Delete......
       $.ajax({
         url: "<?php echo base_url('PDM_controller/deleteSPlit'); ?>",
@@ -1303,7 +1305,18 @@ function getDownTimeGraph(){
                           noDataArray.push('slantedLines');
                         }
                         else{
-                          noDataArray.push(undefined);
+                          if (key == 0) {
+                            st = new Date(model.calendar_date+" "+shift_stime);
+                            et = new Date(model.calendar_date+" "+model.start_time);
+                            if (st != et) {
+                              noDataArray.push('slantedLines');
+                            }
+                            else{
+                              noDataArray.push(undefined);
+                            }
+                          }else{
+                            noDataArray.push(undefined);
+                          }
                         }
                         down_notes.push(model.notes);
                         data_duration.push(model.start_time);
@@ -1321,10 +1334,24 @@ function getDownTimeGraph(){
                         event_ref.push(model.machine_event_id);
 
                         colordemo = color_bar(model.event,model.reason_mapped);
-                        if (key == (response['machineData'].length -1)) {
+
+                        if (key == 0) {
+                          st = new Date(model.calendar_date+" "+shift_stime);
+                          et = new Date(model.calendar_date+" "+model.start_time);
+                          if (st != et) {
+                            // graph_Data.push({name:model.event,data:[model.duration],color:colordemo,start:model.start_time,end:model.end_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:part_name_arr_pass,duration:model.duration});
+
+                            var res = Math.abs(et - st) / 1000;
+                            duration=(Math.floor(res / 60))+"."+(Math.floor(res % 60));
+
+                            // noDataArray.push('slantedLines');
+                            colordemo = color_bar("No Data",model.reason_mapped);
+                            graph_Data.push({name:"No Data",data:[duration],color:colordemo,start:shift_stime,end:model.start_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:"No Part",duration:duration});
+                          }
+                        }
+                        else if (key == (response['machineData'].length -1)) {
                           st = new Date(model.calendar_date+" "+model.end_time);
                           et = new Date(model.calendar_date+" "+shift_etime);
-
                           if (st != et) {
                             graph_Data.push({name:model.event,data:[model.duration],color:colordemo,start:model.start_time,end:model.end_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:part_name_arr_pass,duration:model.duration});
 
@@ -1352,7 +1379,7 @@ function getDownTimeGraph(){
                   colordemo = color_bar("No Data",0);
 
                   graph_Data.push({name:"No Data",data:[(d).toFixed(2)],color:colordemo,start:shift_stime,end:shift_etime,machineEvent:"No Event",down_notes:"No Notes",machine_Name:machine_Name,part_Name:"No Part",duration:d});
-                } 
+                }
                 var options = {
 
                     series: graph_Data,
@@ -1423,7 +1450,7 @@ function getDownTimeGraph(){
 
                                   // if ((sname == "Inactive")) {
                                     $('.downtimeHeader').css("display","block");
-                                    shiftStartTime = start ; 
+                                    shiftStartTime = start ;
 
                                     data_time.push(item.start_time);
                                     data_time.push(item.end_time);
