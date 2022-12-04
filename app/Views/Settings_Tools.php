@@ -703,7 +703,7 @@
         var inputPartWeight = $('#inputPartWeight').val();
         var inputMaterialPrice = $('#inputMaterialPrice').val();
         var inputMaterialName = $('#inputMaterialName').val();
-
+        
         $.ajax({
             url : "<?php echo base_url('Settings_controller/add_part_new_code'); ?>",
             method : "POST",

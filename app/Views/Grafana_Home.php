@@ -473,7 +473,10 @@
                                 <?php } ?>
                             </ul>
                         </li>
-                        <li class="side-menu-li d-flex ">
+
+                        <!-- temporary hide this condition -->
+
+                        <!-- <li class="side-menu-li d-flex ">
                             <a href="<?= base_url('Home/load_option/Current_Shift_Performance')?>">
                                 <i class="fa fa-clock-o nav-icon nav-icon-hover " style="font-size: 30px;" dvalue="Current" alt="Current Shift"></i>
                             </a>
@@ -483,7 +486,8 @@
                                     <p class="nav-menu-title">CURRENT SHIFT PERFORMANCE</p> 
                                 </nav>
                             </ul>
-                        </li>
+                        </li> -->
+
                         <li class="side-menu-li d-flex ">
                             <a href="#">
                                 <i class="fa fa-gear nav-icon  nav-icon-hover" dvalue="Settings" style="font-size: 29px;" alt="Settings"></i>

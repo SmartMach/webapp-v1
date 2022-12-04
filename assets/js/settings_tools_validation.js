@@ -161,6 +161,7 @@ function inputPartWeight(){
 		return required;
 	}
 	else{
+		/*
 		var num = /^[0-9]*$/;
 		if ((val)>0) {
 			if (num.test(val)) {
@@ -183,6 +184,39 @@ function inputPartWeight(){
 		else{
 			if (num.test(val)) {
 				$(".Add_Tool_Data").removeAttr("disabled");
+				return success;
+			}
+			else{
+				$(".Add_Tool_Data").attr("disabled", true);
+				return numerical;
+			}
+		}
+		*/
+		var num = /^[+-]?\d+(\.\d+)?$/;
+		if (parseInt(val) > 0) {
+			if (num.test(val)) {
+				$(".Add_Tool_Data").removeAttr("disabled");
+				$("#inputPartWeight").val(parseFloat($("#inputPartWeight").val()).toFixed(3));
+				return success;
+			}
+			else{
+				$(".Add_Tool_Data").attr("disabled", true);
+				return numerical;
+			}	
+		}
+		else if((val) < 0){
+				$(".Add_Tool_Data").attr("disabled", true);
+				return positive;
+		}
+		else if ((val) == 0) {
+			$(".Add_Tool_Data").attr("disabled", true);
+			return greaterZero;
+		}
+
+		else{
+			if (num.test(val)) {
+				$(".Add_Tool_Data").removeAttr("disabled");
+				$("#inputPartWeight").val(parseFloat($("#inputPartWeight").val()).toFixed(2));
 				return success;
 			}
 			else{
@@ -552,6 +586,7 @@ function EditPartWeight(){
 		return required;
 	}
 	else{
+		/*
 		var num = /^[0-9]*$/;
 		if ((val)>0) {
 			if (num.test(val)) {
@@ -574,6 +609,40 @@ function EditPartWeight(){
 		else{
 			if (num.test(val)) {
 				$(".EditTool").removeAttr("disabled");
+				return success;
+			}
+			else{
+				$(".EditTool").attr("disabled", true);
+				return numerical;
+			}
+		}
+		*/
+		var num = /^[+-]?\d+(\.\d+)?$/;
+		
+		if (parseInt(val) > 0) {
+			if (num.test(val)) {
+				$(".EditTool").removeAttr("disabled");
+				$("#EditPartWeight").val(parseFloat($("#EditPartWeight").val()).toFixed(3));
+				return success;
+			}
+			else{
+				$(".EditTool").attr("disabled", true);
+				return numerical;
+			}	
+		}
+		else if((val) < 0){
+				$(".EditTool").attr("disabled", true);
+				return positive;
+		}
+		else if ((val) == 0) {
+			$(".EditTool").attr("disabled", true);
+			return greaterZero;
+		}
+
+		else{
+			if (num.test(val)) {
+				$(".EditTool").removeAttr("disabled");
+				$("#EditPartWeight").val(parseFloat($("#EditPartWeight").val()).toFixed(3));
 				return success;
 			}
 			else{
