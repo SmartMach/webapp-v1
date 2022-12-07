@@ -1306,8 +1306,8 @@ class Financial_Metrics extends BaseController
         // $res = json_decode($result);
         // echo json_encode($res);
 
-        // $fromTime = "2022-11-21T15:00:00";
-        // $toTime = "2022-11-27T14:00:00";
+        // $fromTime = "2022-11-29T19:00:00";
+        // $toTime = "2022-12-05T18:00:00";
 
         $downtime = $this->getDataRaw($ref,$fromTime,$toTime);
         $partDetails = $this->Financial->PartDetails();
@@ -2059,12 +2059,12 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days)
         // $res = json_decode($result);
         // echo json_encode($res);
 
-        // $fromTime = "2022-11-03T09:00:00";
-        // $toTime = "2022-11-03T21:00:00";
+        // $fromTime = "2022-12-05T09:00:00";
+        // $toTime = "2022-12-07T18:00:00";
 
         $dstart = explode("T", $fromTime);
         $dend= explode("T", $toTime);
-        $start_date = $dstart[0];
+        $start_date = $dstart[0];   
         $end_date = $dend[0];
 
         $days=[];
@@ -2205,7 +2205,6 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days)
                     $ov = floatval($ov) + floatval($ooe);
                 }
             }
-            // $ov = floatval($pv*$qv*$av);
             $ov = floatval($pv*$qv*$av);
 
             $timestamp = strtotime($d['date']);
