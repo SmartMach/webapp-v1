@@ -216,7 +216,7 @@ class Login extends BaseController
         $img_name2 = base_url()."/assets/img/email_smartories_logo.png";
         $message = "<div style='font-family:'Helvetica',sans-serif;src:('https://fonts.cdnfonts.com/css/helvetica-255');display: flex; flex-direction: column; margin: 50px; align-items: center;>
             <div style='display:flex; width: 500px; height: 150px; background-color: #004591; padding: 20px; vertical-align: middle; align-items: center;margin:auto;'>
-                <img src='".$imgname."' alt='SmartMach Logo' style='width: 40%; vertical-align: middle; margin-left: auto; margin-right: auto;'>
+                <img src='".$imgname."' alt='SmartMach Logo' style='width: 40%; vertical-align: middle; margin-left: auto; margin-right: auto;height:fit-content;margin:auto;'>
             </div>
             <div style=''>
                 <div style='margin-top: 20px; margin-bottom: 20px; margin-block-end:auto;text-align:center; font-size: 1.4rem; font-weight: bold; color: #434C5D; align-items: center;'>
