@@ -690,10 +690,15 @@ class PDM_Model extends Model{
                 $que['part_id']=$part_arr_pdm[0];
                 $que['tool_id']= $response[0]['tool_id'];
                 if (sizeof($k)<1) {
-                    $partsProduced="Null";
+                    $partsProduced=null;
+                }
+                if ($partsProduced > 0) {
+                    $tmpc = '-'.$partsProduced;
+                }else{
+                    $tmpc = $partsProduced;
                 }
                 $que['production']=$partsProduced;
-                $que['correction_min_counts']= "-".$partsProduced;
+                $que['correction_min_counts']= $tmpc;
                 $que['corrections']=0;
                 $que['rejection_max_counts']= $partsProduced;
                 $que['rejections']= 0;
@@ -718,19 +723,24 @@ class PDM_Model extends Model{
                                 $tmp_part_id = $part_arr_pdm[$sscp+1];
                                 $child_tppc = $part_based_ppc[$tmp_part_id];
                                 $parts_production = (int)$get_child_arr[$sscp]['actual_shot_count'] * (int)$child_tppc;
-                                if (($get_child_arr[$sscp]['production']) == "Null") {
-                                    $tmpparts_production = "Null";
+                                if (($get_child_arr[$sscp]['production']) == null) {
+                                    $tmpparts_production = null;
                                     $tmpcorrection_min_count= $parts_production;
                                 }
                                 else{
                                     $tmpparts_production = $parts_production;
-                                    $tmpcorrection_min_count= "-".$parts_production;
+                                    if ($parts_production > 0) {
+                                        $tmpcorrection_min_count= "-".$parts_production;
+                                    }else{
+                                        $tmpcorrection_min_count= $parts_production;
+                                    }
+                                  
                                 }
                                 $sss_up = [
                                     "part_id" => $part_arr_pdm[$sscp+1],
                                     "tool_id" => $response[0]['tool_id'],
                                     "production" => $tmpparts_production,
-                                    "correction_min_counts" => "-".$tmpcorrection_min_count,
+                                    "correction_min_counts" => $tmpcorrection_min_count,
                                     "corrections" => 0,
                                     "rejection_max_counts" => $tmpparts_production,
                                     "rejections" => 0,
@@ -761,19 +771,26 @@ class PDM_Model extends Model{
                                 $gtpid = $part_arr_pdm[$sgu+1];
                                 $ch_up_ppc = $part_based_ppc[$gtpid];
                                 $cgparts_production = (int)$get_child_arr[$sgu]['actual_shot_count'] * (int)$ch_up_ppc;
-                                if (($get_child_arr[$sgu]['production']) == "Null") {
-                                    $tmpparts_production = "Null";
+                                if (($get_child_arr[$sgu]['production']) == null) {
+                                    $tmpparts_production = null;
                                     $tmpcorrection_min_count= '-'.$cgparts_production;
                                 }
                                 else{
                                     $tmpparts_production = $cgparts_production;
-                                    $tmpcorrection_min_count= "-".$cgparts_production;
+                                    if ($cgparts_production>0) {
+                                        $tmpcorrection_min_count= "-".$cgparts_production;
+
+                                    }else{
+                                        $tmpcorrection_min_count= $cgparts_production;
+
+                                    }
+                                   
                                 }
                                 $c_gup = [
                                     "part_id" => $gtpid,
                                     "tool_id" => $response[0]['tool_id'],
                                     "production" => $tmpparts_production,
-                                    "correction_min_counts" => "-".$tmpcorrection_min_count,
+                                    "correction_min_counts" => $tmpcorrection_min_count,
                                     "corrections" => 0,
                                     "rejection_max_counts" => $tmpparts_production,
                                     "rejections" => 0,
@@ -809,6 +826,11 @@ class PDM_Model extends Model{
                                 $exgproduction_count = (int)$value->actual_shot_count * (int)$cu_ppc;
                                 $tmp_production_event_id = $this->get_infoid();
                                 $hierarchy = $response_info_end[0]['production_event_id'];
+                                if ($exgproduction_count > 0) {
+                                    $exgcorrectioncount = '-'.$exgproduction_count;
+                                }else{
+                                    $exgcorrectioncount = $exgproduction_count;
+                                }
                                 $exgins = [
                                     "production_event_id" => "PE".$tmp_production_event_id,
                                     "machine_id" => $response_info_end[0]['machine_id'],
@@ -821,7 +843,7 @@ class PDM_Model extends Model{
                                     "tool_id" => $response[0]['tool_id'],
                                     "actual_shot_count" => $response_info_end[0]['actual_shot_count'],
                                     "production" => $exgproduction_count,
-                                    "correction_min_counts" => '-'.$exgproduction_count,
+                                    "correction_min_counts" => $exgcorrectioncount,
                                     "corrections" => '0',
                                     "rejection_max_counts" => $exgproduction_count,
                                     "rejections" => '0',
@@ -863,13 +885,18 @@ class PDM_Model extends Model{
                                 }
                                 else{
                                     $tmpparts_production = $exlparts_production;
-                                    $tmpcorrection_min_count= "-".$exlparts_production;
+                                    if ($exlparts_production > 0) {
+                                        $tmpcorrection_min_count= "-".$exlparts_production;
+                                    }else{
+                                        $tmpcorrection_min_count= $exlparts_production;
+                                    }
+                                   
                                 }
                                 $exlup_rec = [
                                    "part_id" => $exlpartid,
                                     "tool_id" => $response[0]['tool_id'],
                                     "production" => $tmpparts_production,
-                                    "correction_min_counts" => "-".$tmpcorrection_min_count,
+                                    "correction_min_counts" => $tmpcorrection_min_count,
                                     "corrections" => 0,
                                     "rejection_max_counts" => $tmpparts_production,
                                     "rejections" => 0,
@@ -921,6 +948,13 @@ class PDM_Model extends Model{
                                 $exnproduction_count = (int)$value->actual_shot_count * (int)$exnppc;
                                 $tmp_production_event_id = $this->get_infoid();
                                 $hierarchy = $response_info_end[0]['production_event_id'] ;
+
+                                if($exnproduction_count > 0){
+                                    $excorrectionmincount = '-'.$exnproduction_count;
+                                }else{
+                                    $excorrectionmincount = $exnproduction_count;
+                                }
+
                                 $exnins_rec = [
                                     "production_event_id" => "PE".$tmp_production_event_id,
                                     "machine_id" => $response_info_end[0]['machine_id'],
@@ -933,7 +967,7 @@ class PDM_Model extends Model{
                                     "tool_id" => $response[0]['tool_id'],
                                     "actual_shot_count" => $response_info_end[0]['actual_shot_count'],
                                     "production" => $exnproduction_count,
-                                    "correction_min_counts" => '-'.$exnproduction_count,
+                                    "correction_min_counts" => $excorrectionmincount,
                                     "corrections" => '0',
                                     "rejection_max_counts" => $exnproduction_count,
                                     "rejections" => '0',
@@ -962,10 +996,15 @@ class PDM_Model extends Model{
                 $que['part_id']=$part_arr_pdm[0];
                 $que['tool_id']= $response[0]['tool_id'];
                 if (sizeof($k)<1) {
-                    $partsProduced="Null";
+                    $partsProduced=null;
                 }
                 $que['production']=$partsProduced;
-                $que['correction_min_counts']= "-".$partsProduced;
+                if ($partsProduced > 0) {
+                    $que['correction_min_counts']= "-".$partsProduced;
+                }else{
+                    $que['correction_min_counts']= $partsProduced;
+                }
+              
                 $que['corrections']=0;
                 $que['rejection_max_counts']= $partsProduced;
                 $que['rejections']= 0;
@@ -989,10 +1028,15 @@ class PDM_Model extends Model{
                             $child_part_produced = $actual_shot_count * $part_based_ppc[$tmp_child_part_id];
                             $db->transBegin();
                             if (sizeof($k)<1) {
-                                $child_part_produced="Null";
+                                $child_part_produced=null;
+                            }
+                            if ($child_part_produced>0) {
+                                $child_up['correction_min_counts']= "-".$child_part_produced;
+                            }else{
+                                $child_up['correction_min_counts']= $child_part_produced;
                             }
                             $child_up['production']=$child_part_produced;
-                            $child_up['correction_min_counts']= "-".$child_part_produced;
+                           
                             $child_up['corrections']=0;
                             $child_up['rejection_max_counts']= $child_part_produced;
                             $child_up['rejections']= 0;
@@ -1105,13 +1149,18 @@ class PDM_Model extends Model{
                 // if ($value->production != "") {
                     $q['part_id']=$part_arr_pdm[0];
                     $q['tool_id']= $response[0]['tool_id'];
-                    if (($value->production) == "Null") {
-                        $q['production'] = "Null";
+                    if (($value->production) == null) {
+                        $q['production'] = null;
                     }
                     else{
                         $q['production']=$partsProduced;
                     }
-                    $q['correction_min_counts']= "-".$partsProduced;
+                    if ($partsProduced > 0) {
+                        $q['correction_min_counts']= "-".$partsProduced;  
+                    }else{
+                        $q['correction_min_counts']= $partsProduced;
+                    }
+                   
                     $q['corrections']=0;
                     $q['rejection_max_counts']= $partsProduced;
                     $q['rejections']= 0;
@@ -1135,19 +1184,24 @@ class PDM_Model extends Model{
                                         $tmp_part_id = $part_arr_pdm[$p+1];
                                         $child_tppc = $part_based_ppc[$tmp_part_id];
                                         $parts_production = (int)$get_childs[$p]['actual_shot_count'] * (int)$child_tppc;
-                                        if (($get_childs[$p]['production']) == "Null") {
-                                            $tmpparts_production = "Null";
+                                        if (($get_childs[$p]['production']) == null) {
+                                            $tmpparts_production = null;
                                             $tmpcorrection_min_count= $parts_production;
                                         }
                                         else{
                                             $tmpparts_production = $parts_production;
-                                            $tmpcorrection_min_count= "-".$parts_production;
+                                            if($parts_production > 0){
+                                                $tmpcorrection_min_count= "-".$parts_production;
+                                            }else{
+                                                $tmpcorrection_min_count= $parts_production;
+                                            }
+                                           
                                         }
                                         $child_updation = [
                                             "part_id" => $part_arr_pdm[$p+1],
                                             "tool_id" => $response[0]['tool_id'],
                                             "production" => $tmpparts_production,
-                                            "correction_min_counts" => "-".$tmpcorrection_min_count,
+                                            "correction_min_counts" => $tmpcorrection_min_count,
                                             "corrections" => 0,
                                             "rejection_max_counts" => $tmpparts_production,
                                             "rejections" => 0,
@@ -1191,13 +1245,18 @@ class PDM_Model extends Model{
                                         }
                                         else{
                                             $tmpparts_production = $parts_production;
-                                            $tmpcorrection_min_count= "-".$parts_production;
+                                            if($parts_production > 0){
+                                                $tmpcorrection_min_count= "-".$parts_production;
+                                            }else{
+                                                $tmpcorrection_min_count= $parts_production;
+                                            }
+                                          
                                         }
                                         $ex_gup = [
                                             "part_id" => $tpid,
                                             "tool_id" => $response[0]['tool_id'],
                                             "production" => $tmpparts_production,
-                                            "correction_min_counts" => "-".$tmpcorrection_min_count,
+                                            "correction_min_counts" => $tmpcorrection_min_count,
                                             "corrections" => 0,
                                             "rejection_max_counts" => $tmpparts_production,
                                             "rejections" => 0,
@@ -1239,6 +1298,11 @@ class PDM_Model extends Model{
                                         $production_count = (int)$value->actual_shot_count * (int)$cu_ppc;
                                         $tmp_production_event_id = $this->get_infoid();
                                         $hierarchy = $value->production_event_id ;
+                                        if ($production_count > 0) {
+                                            $tmpcor = '-'.$production_count;
+                                        }else{
+                                            $tmpcor = $production_count;
+                                        }
                                         $tins_rec = [
                                             "production_event_id" => "PE".$tmp_production_event_id,
                                             "machine_id" => $value->machine_id,
@@ -1251,7 +1315,7 @@ class PDM_Model extends Model{
                                             "tool_id" => $response[0]['tool_id'],
                                             "actual_shot_count" => $value->actual_shot_count,
                                             "production" => $production_count,
-                                            "correction_min_counts" => '-'.$production_count,
+                                            "correction_min_counts" => $tmpcor,
                                             "corrections" => '0',
                                             "rejection_max_counts" => $production_count,
                                             "rejections" => '0',
@@ -1288,19 +1352,24 @@ class PDM_Model extends Model{
                                         $parts_production = (int)$get_childs[$u]['actual_shot_count'] * (int)$child_up_ppc;
                                         // return $parts_production;
                                         // break;
-                                        if (($get_childs[$u]['production']) == "Null") {
-                                            $tmpparts_production = "Null";
+                                        if (($get_childs[$u]['production']) == null) {
+                                            $tmpparts_production = null;
                                             $tmpcorrection_min_count= $parts_production;
                                         }
                                         else{
                                             $tmpparts_production = $parts_production;
-                                            $tmpcorrection_min_count= "-".$parts_production;
+                                            if ($parts_production>0) {
+                                                $tmpcorrection_min_count= "-".$parts_production;
+                                            }else{
+                                                $tmpcorrection_min_count= $parts_production;
+                                            }
+                                           
                                         }
                                         $ex_le = [
                                             "part_id" => $tpid,
                                             "tool_id" => $response[0]['tool_id'],
                                             "production" => $tmpparts_production,
-                                            "correction_min_counts" => "-".$tmpcorrection_min_count,
+                                            "correction_min_counts" => $tmpcorrection_min_count,
                                             "corrections" => 0,
                                             "rejection_max_counts" => $tmpparts_production,
                                             "rejections" => 0,
@@ -1370,6 +1439,11 @@ class PDM_Model extends Model{
                                         $production_count = (int)$value->actual_shot_count * (int)$cu_ppc;
                                         $tmp_production_event_id = $this->get_infoid();
                                         $hierarchy = $value->production_event_id ;
+                                        if ($production_count >0) {
+                                            $tmpcorrectionmin = '-'.$production_count;
+                                        }else{
+                                            $tmpcorrectionmin = $production_count;
+                                        }
                                         $tins_rec = [
                                             "production_event_id" => "PE".$tmp_production_event_id,
                                             "machine_id" => $value->machine_id,
@@ -1382,7 +1456,7 @@ class PDM_Model extends Model{
                                             "tool_id" => $response[0]['tool_id'],
                                             "actual_shot_count" => $value->actual_shot_count,
                                             "production" => $production_count,
-                                            "correction_min_counts" => '-'.$production_count,
+                                            "correction_min_counts" => $tmpcorrectionmin,
                                             "corrections" => '0',
                                             "rejection_max_counts" => $production_count,
                                             "rejections" => '0',
@@ -1563,7 +1637,12 @@ class PDM_Model extends Model{
 
         //  $this->session->get('user_name');
         $start_up['production']=$production_count;
-        $start_up['correction_min_counts']= "-".$production_count;
+        if ($production_count > 0) {
+            $start_up['correction_min_counts']= "-".$production_count;
+        }else{
+            $start_up['correction_min_counts']= $production_count;
+        }
+      
         $start_up['corrections']=0;
         $start_up['rejection_max_counts']= $production_count;
         $start_up['rejections']= 0;
@@ -1590,8 +1669,14 @@ class PDM_Model extends Model{
 
         //  $this->session->get('user_name');
         $que['production']=$production_count;
-        $que['correction_min_counts']= "-".$production_count;
+      
         $que['corrections']=0;
+        if ($production_count > 0) {
+            $tmppro = '-'.$production_count; 
+        }else{
+            $tmppro = $production_count;
+        }
+        $que['correction_min_counts']= $tmppro;
         $que['rejection_max_counts']= $production_count;
         $que['rejections']= 0;
         $que['last_updated_by'] = $last_updated_by;
@@ -1958,6 +2043,11 @@ class PDM_Model extends Model{
                                     $csproduction_count = (int)$actual_shot_count * (int)$scppc;
                                     $tmp_production_event_id = $this->get_infoid();
                                     $hierarchy = $pupdateData[0]['production_event_id'];
+                                    if ($csproduction_count > 0) {
+                                        $tcmin = '-'.$csproduction_count;
+                                    }else{
+                                        $tcmin = $csproduction_count;
+                                    }
                                     $csins_con = [
                                         "production_event_id" => "PE".$tmp_production_event_id,
                                         "machine_id" => $pupdateData[0]['machine_id'],
@@ -1970,7 +2060,7 @@ class PDM_Model extends Model{
                                         "tool_id" => $tool_id,
                                         "actual_shot_count" => $actual_shot_count,
                                         "production" => $csproduction_count,
-                                        "correction_min_counts" => '-'.$csproduction_count,
+                                        "correction_min_counts" => $tcmin,
                                         "corrections" => '0',
                                         "rejection_max_counts" => $csproduction_count,
                                         "rejections" => '0',
@@ -2015,6 +2105,11 @@ class PDM_Model extends Model{
                                     $csproduction_count = (int)$actual_shot_count * (int)$cppcnins;
                                     $tmp_production_event_id = $this->get_infoid();
                                     $hierarchy = $pupdateData[0]['production_event_id'];
+                                    if ($csproduction_count > 0) {
+                                        $tmpcmin = '-'.$csproduction_count;
+                                    }else{
+                                        $tmpcmin = $csproduction_count;
+                                    }
                                     $scins_Rec = [
                                         "production_event_id" => "PE".$tmp_production_event_id,
                                         "machine_id" => $pupdateData[0]['machine_id'],
@@ -2027,7 +2122,7 @@ class PDM_Model extends Model{
                                         "tool_id" => $tool_id,
                                         "actual_shot_count" => $actual_shot_count,
                                         "production" => $csproduction_count,
-                                        "correction_min_counts" => '-'.$csproduction_count,
+                                        "correction_min_counts" => $tmpcmin,
                                         "corrections" => '0',
                                         "rejection_max_counts" => $csproduction_count,
                                         "rejections" => '0',
@@ -2086,6 +2181,12 @@ class PDM_Model extends Model{
                     }else{
                         $hierarchy = "PE".$ptmp_id;
                     }
+                    // production check for correction mincount
+                    if ($production_count > 0) {
+                        $tmp_prod = '-'.$production_count;
+                    }else{
+                        $tmp_prod = $production_count;
+                    }
                     $tmp_id = $tool_id;
                     $tmp_insert_arr = [
                         "production_event_id" => "PE".$tmp_production_event_id,
@@ -2099,7 +2200,7 @@ class PDM_Model extends Model{
                         "tool_id" => $tmp_id,
                         "actual_shot_count" => $actual_shot_count,
                         "production" => $production_count,
-                        "correction_min_counts" => '-'.$production_count,
+                        "correction_min_counts" => $tmp_prod,
                         "corrections" => '0',
                         "rejection_max_counts" => $production_count,
                         "rejections" => '0',
@@ -2158,13 +2259,18 @@ class PDM_Model extends Model{
         $q['tool_id']= $tool_id;
         $tppc = $this->getpppc($parts_ar[0]);
         $partsProduced = (int)$asc * (int)$tppc;
-        if (($val->production) == "Null") {
-            $q['production'] = "Null";
+        if (($val->production) == null) {
+            $q['production'] = null;
             $q['correction_min_counts']= $partsProduced;
         }
         else{
             $q['production']=$partsProduced;
-            $q['correction_min_counts']= "-".$partsProduced;
+            if ($partsProduced>0) {
+                $q['correction_min_counts']= "-".$partsProduced;
+            }else{
+                $q['correction_min_counts']= $partsProduced;
+            }
+           
         }
         $q['corrections']=0;
         $q['rejection_max_counts']= $partsProduced;
@@ -2191,19 +2297,24 @@ class PDM_Model extends Model{
                             $db->transBegin();
                             $child_tppc = $this->getpppc($parts_ar[$p+1]);
                             $parts_production = (int)$getchild_arr[$p]['actual_shot_count'] * (int)$child_tppc;
-                            if (($getchild_arr[$p]['production']) == "Null") {
-                                $tmpparts_production = "Null";
+                            if (($getchild_arr[$p]['production']) == null) {
+                                $tmpparts_production = null;
                                 $tmpcorrection_min_count= $parts_production;
                             }
                             else{
                                 $tmpparts_production = $parts_production;
-                                $tmpcorrection_min_count= "-".$parts_production;
+                                if ($parts_production > 0) {
+                                    $tmpcorrection_min_count= "-".$parts_production;
+                                }else{
+                                    $tmpcorrection_min_count= $parts_production;
+                                }
+                              
                             }
                             $child_updation = [
                                 "part_id" => $parts_ar[$p+1],
                                 "tool_id" => $tool_id,
                                 "production" => $tmpparts_production,
-                                "correction_min_counts" => "-".$tmpcorrection_min_count,
+                                "correction_min_counts" => $tmpcorrection_min_count,
                                 "corrections" => 0,
                                 "rejection_max_counts" => $tmpparts_production,
                                 "rejections" => 0,
@@ -2239,19 +2350,24 @@ class PDM_Model extends Model{
                             $db->transBegin();
                             $child_up_ppc = $this->getpppc($parts_ar[$u+1]);
                             $parts_production = (int)$getchild_arr[$u]['actual_shot_count'] * (int)$child_up_ppc;
-                            if (($getchild_arr[$u-1]['production']) == "Null") {
-                                $tmpparts_production = "Null";
+                            if (($getchild_arr[$u-1]['production']) == null) {
+                                $tmpparts_production = null;
                                 $tmpcorrection_min_count= $parts_production;
                             }
                             else{
                                 $tmpparts_production = $parts_production;
-                                $tmpcorrection_min_count= "-".$parts_production;
+                                if ($parts_production >0) {
+                                    $tmpcorrection_min_count= "-".$parts_production;
+                                }else{
+                                    $tmpcorrection_min_count= $parts_production;
+                                }
+                                
                             }
                             $ex_gup = [
                                 "part_id" => $parts_ar[$u+1],
                                 "tool_id" => $tool_id,
                                 "production" => $tmpparts_production,
-                                "correction_min_counts" => "-".$tmpcorrection_min_count,
+                                "correction_min_counts" => $tmpcorrection_min_count,
                                 "corrections" => 0,
                                 "rejection_max_counts" => $tmpparts_production,
                                 "rejections" => 0,
@@ -2306,6 +2422,13 @@ class PDM_Model extends Model{
                         $production_count = (int)$asc * (int)$cu_ppc;
                         $tmp_production_event_id = $this->get_infoid();
                         $hierarchy = "PE".$pid;
+                      
+                            if ($production_count >0) {
+                                $tmpcorrectionmincount = '-'.$tmp_productioncount;
+                            }else{
+                                $tmpcorrectionmincount = $tmp_productioncount;
+                            }
+                        
                         $tins_rec = [
                             "production_event_id" => "PE".$tmp_production_event_id,
                             "machine_id" => $val->machine_id,
@@ -2318,7 +2441,7 @@ class PDM_Model extends Model{
                             "tool_id" => $tool_id,
                             "actual_shot_count" => $asc,
                             "production" => $production_count,
-                            "correction_min_counts" => '-'.$production_count,
+                            "correction_min_counts" => $tmpcorrectionmincount,
                             "corrections" => '0',
                             "rejection_max_counts" => $production_count,
                             "rejections" => '0',
@@ -2338,19 +2461,24 @@ class PDM_Model extends Model{
                         $ins_index = $gu + $ins_count;
                         $child_tppc = $this->getpppc($parts_ar[$ins_index+1]);
                         $parts_production = (int)$getchild_arr[$gu]['actual_shot_count'] * (int)$child_tppc;
-                        if (($getchild_arr[$gu]['production']) == "Null") {
-                            $tmpparts_production = "Null";
+                        if (($getchild_arr[$gu]['production']) == null) {
+                            $tmpparts_production = null;
                             $tmpcorrection_min_count= $parts_production;
                         }
                         else{
                             $tmpparts_production = $parts_production;
-                            $tmpcorrection_min_count= "-".$parts_production;
+                            if ($parts_production > 0) {
+                                $tmpcorrection_min_count= "-".$parts_production;
+                            }else{
+                                $tmpcorrection_min_count= $parts_production;
+                            }
+                           
                         }
                         $greater_update = [
                             "part_id" => $parts_ar[$ins_index+1],
                             "tool_id" => $tool_id,
                             "production" => $tmpparts_production,
-                            "correction_min_counts" => "-".$tmpcorrection_min_count,
+                            "correction_min_counts" => $tmpcorrection_min_count,
                             "corrections" => 0,
                             "rejection_max_counts" => $tmpparts_production,
                             "rejections" => 0,
@@ -2381,6 +2509,13 @@ class PDM_Model extends Model{
                         $production_count = (int)$val->actual_shot_count * (int)$cu_ppc;
                         $tmp_production_event_id = $this->get_infoid();
                         $hierarchy = $val->production_event_id ;
+
+                        if ($production_count>0) {
+                            $incorrectionmincount = '-'.$production_count;
+                        }else{
+                            $incorrectionmincount = $production_count;
+                        }
+
                         $tins_rec = [
                             "production_event_id" => "PE".$tmp_production_event_id,
                             "machine_id" => $val->machine_id,
@@ -2393,7 +2528,7 @@ class PDM_Model extends Model{
                             "tool_id" => $tool_id,
                             "actual_shot_count" => $val->actual_shot_count,
                             "production" => $production_count,
-                            "correction_min_counts" => '-'.$production_count,
+                            "correction_min_counts" => $incorrectionmincount,
                             "corrections" => '0',
                             "rejection_max_counts" => $production_count,
                             "rejections" => '0',

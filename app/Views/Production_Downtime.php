@@ -1962,7 +1962,6 @@ $(document).on('click','.doneEdit',function(){
     dataArray.push(category,reason,toolname,part_arr,machineEventRef,splitRef,machineID_ref,shift_date_ref,shift_Ref,notes);
 
     //Ajax function for update particular splitted value in database
-   
     $.ajax({
       url: "<?php echo base_url('PDM_controller/updateDownGraph'); ?>",
       type: "POST",

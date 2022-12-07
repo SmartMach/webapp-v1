@@ -265,6 +265,21 @@ a{
     </div>
   </div>
 </div>
+
+
+
+
+<!-- preloader -->
+<!-- preloader -->
+<div id="overlay">
+      <div class="cv-spinner">
+        <span class="spinner"></span>
+        <span class="loading">Awaiting Completion...</span>
+      </div>
+</div>
+<!-- preloader end -->
+
+
 <!-- link for calendar date  -->
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -800,8 +815,10 @@ $(document).ready(function(){
     });
 
     // edit rejection count reasons submission function
-    $(document).on('click','.EditReject_submit',function(){
+    $(document).on('click','.EditReject_submit',function(event){
         // after edit modal submit the function working
+        event.preventDefault();
+        $("#overlay").fadeIn(300);
         var condition = $('.EditReject_submit').attr("disabled");
         if (condition != "disabled") {
         
@@ -840,7 +857,7 @@ $(document).ready(function(){
             // console.log("machine id"+machine_id);
             // console.log("array sum count"+array_sum_rcount);
             // console.log("valid_count"+validate_count_max);
-            
+       
             if (parseInt(array_sum_rcount) <= parseInt(validate_count_max) ) {
                 $.ajax({
                     url: "<?php echo base_url('PDM_controller/reject_form_func'); ?>",
@@ -860,7 +877,8 @@ $(document).ready(function(){
                        selection_data();
                     }                
                 });  
-                $('#EditQualityModal').modal('hide');           
+                $('#EditQualityModal').modal('hide');      
+                $("#overlay").fadeOut(300);     
             }else{
                 for(var i=0;i<reason;i++){
                     var reason_err = document.getElementsByClassName('RejectCount')[i].value;
@@ -868,9 +886,11 @@ $(document).ready(function(){
                         document.getElementsByClassName('reject_count_err')[i].textContent = '*Required field';
                     }
                 }
+                $("#overlay").fadeOut(300);   
             }
         }else{
             $('.EditReject_submit').attr("disabled",true);
+            $("#overlay").fadeOut(300);   
         }
     });
 
