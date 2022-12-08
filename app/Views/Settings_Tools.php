@@ -617,6 +617,17 @@
   </div>
 </div>
 
+
+<!-- preloader -->
+<!-- preloader -->
+<div id="overlay">
+      <div class="cv-spinner">
+        <span class="spinner"></span>
+        <span class="loading">Awaiting Completion...</span>
+      </div>
+</div>
+<!-- preloader end -->
+
 <script src="<?php echo base_url()?>/assets/js/settings_tools_validation.js?version=<?php echo rand() ; ?>"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>/assets/js/custom_date_format.js?version=<?php echo rand() ; ?>"></script>
 <script type="text/javascript">
@@ -644,7 +655,7 @@
 
     // Add Part Validations ............
     $('.Add_Tool_Data').on('click',function(event){
-
+        $("#overlay").fadeIn(300);
         event.preventDefault();
         var a = inputPartName();
         var b =inputNICT();
@@ -669,7 +680,8 @@
                     $("#inputPartWeightErr").html(e);   
                     $("#inputMaterialPriceErr").html(f);  
                     $("#inputMaterialNameErr").html(g);
-                    $("#inputNewToolNameErr").html(h);              
+                    $("#inputNewToolNameErr").html(h);
+                    $("#overlay").fadeOut(300);              
                 }
                 else{
                     ajax_part_insert();
@@ -684,6 +696,7 @@
                     $("#inputPartWeightErr").html(e); 
                     $("#inputMaterialPriceErr").html(f); 
                     $("#inputMaterialNameErr").html(g);    
+                    $("#overlay").fadeOut(300);
                 }
                 else{
                     ajax_part_insert();
@@ -708,6 +721,7 @@
             url : "<?php echo base_url('Settings_controller/add_part_new_code'); ?>",
             method : "POST",
             cache: false,
+            async:false,
             data:{
                 part_name : part_name,
                 tool_select : tool_select,
@@ -729,10 +743,12 @@
                     get_count_data();   
                     // Close the Model ............
                     $('#AddPartModal').modal('hide');
+                    $("#overlay").fadeOut(300);
                 }
             },
             error:function(err){
                 alert(err);
+                $("#overlay").fadeOut(300);
             }
         });
 
@@ -797,6 +813,7 @@
         // Deactivate Part .........
         $('.Status-deactivate').click(function(event){
                 event.preventDefault();
+                $("#overlay").fadeIn(300);
                 var id = $(this).attr('lvalue');
                 var status = $(this).attr('status_data');
                 status_find(id,status);
@@ -806,6 +823,7 @@
         // Activate Part Acknowledge ..........
         $(document).on("click", ".activate-tool", function(event){ 
             event.preventDefault();
+          
             var id = $(this).attr("lvalue");
             var status = $(this).attr("svalue");
             $('.Status-activate').attr('lvalue',id);
@@ -817,6 +835,7 @@
         $('.Status-activate').click(function(event){
 
             event.preventDefault();
+            $("#overlay").fadeIn(300);
             var id = $(this).attr('lvalue');
             var status = $(this).attr('status_data');
             status_find(id,status);
@@ -872,6 +891,7 @@
                     type: "POST",
                     dataType: "json",
                     cache: false,
+                    async:false,
                     data: {
                         TId : this.value
                     },
@@ -895,6 +915,7 @@
                 url: "<?php echo base_url('Settings_controller/getToolData'); ?>",
                 type: "POST",
                 cache: false,
+                async:false,
                 data: {
                     Pid : id
                 },
@@ -961,6 +982,7 @@
                 url: "<?php echo base_url('Settings_controller/getToolData'); ?>",
                 type: "POST",
                 cache: false,
+                async:false,
                 data: {
                     Pid : id
                 },
@@ -1029,6 +1051,7 @@
                 url: "<?php echo base_url('Settings_controller/getToolData'); ?>",
                 type: "POST",
                 cache: false,
+                async:false,
                 data: {
                     Pid : id
                 },
@@ -1071,6 +1094,7 @@
                         type: "POST",
                         dataType: "json",
                         cache: false,
+                        async:false,
                         success:function(res_Tool){
                             var elements = $('<option value="new">Add New</option>');
                             res_Tool.forEach(function(item){
@@ -1106,6 +1130,7 @@
         // Edit Part ..........
         $(document).on("click", ".EditTool", function(event){
             event.preventDefault();
+                $("#overlay").fadeIn(300);
                 var id = $('#partid').text();
                 var a = EditPartName();
                 var b =EditNICT();
@@ -1130,6 +1155,7 @@
                         $('#edit_tool_name_err').html(i);
                         
                         $('#EditToolModal').modal('show');
+                        $("#overlay").fadeOut(300);
                     }
                     else{
                         var  VEditPartName = $('#EditPartName').val();
@@ -1145,6 +1171,7 @@
                             url: "<?php echo base_url('Settings_controller/editToolData'); ?>",
                             type: "POST",
                             cache: false,
+                            async:false,
                             data: {
                                 Part_Id : id,
                                 EditPartName: VEditPartName,
@@ -1162,9 +1189,11 @@
                                 get_part_data();
                                 get_count_data();
                                 $('#EditToolModal').modal('hide');
+                                $("#overlay").fadeOut(300);
                             },
                             error:function(res){
                                 alert("Sorry!Try Agian!!");
+                                $("#overlay").fadeOut(300);
                             }
                         });
                     }    
@@ -1180,6 +1209,7 @@
                         $("#EditMaterialNameErr").html(g);
                         $("#inputNewToolNameEditErr").html(h);
                         $('#EditToolModal').modal('show');
+                        $("#overlay").fadeOut(300);
                     }
                     else{
                         var  VEditPartName = $('#EditPartName').val();
@@ -1201,6 +1231,7 @@
                                 url: "<?php echo base_url('Settings_controller/add_tool_edit_part'); ?>",
                                 type: "POST",
                                 cache: false,
+                                async:false,
                                 data: {
                                     Part_Id : id,
                                     EditPartName: VEditPartName,
@@ -1220,9 +1251,11 @@
                                     // Retrive all the Part Records Count ...........
                                     get_count_data();
                                     $('#EditToolModal').modal('hide');
+                                    $("#overlay").fadeOut(300);
                                 },
                                 error:function(res){
                                     alert("Sorry! Try again");
+                                    $("#overlay").fadeOut(300);
                                 }
                             });
                         }
@@ -1265,6 +1298,7 @@
             type: "POST",
             dataType: "json",
             cache: false,
+            async:false,
             data: {
                 TId : tool_id
             },
@@ -1309,6 +1343,7 @@ function get_part_data(){
         type:"POST",
         dataType:'json',
         cache: false,
+        async:false,
         success:function(res){
             $('.contentTool').empty();
             if( res != ""){  
@@ -1414,6 +1449,7 @@ function status_find(id,status){
         url: "<?php echo base_url('Settings_controller/deactivateTool'); ?>",
         type: "POST",
         cache: false,
+        async:false,
         data: {
             Part_Id : id,
             Status_Tool: status,
@@ -1425,9 +1461,11 @@ function status_find(id,status){
             get_count_data();
             $('#ActiveToolModal').modal('hide');
             $('#DeactiveToolModal').modal('hide');
+            $("#overlay").fadeOut(300);
         },
         error:function(res){
             alert("Sorry!Try Agian!!");
+            $("#overlay").fadeOut(300);
         }
     });
 }
@@ -1439,6 +1477,7 @@ function get_count_data(){
             type: "POST",
             dataType: "json",
             cache: false,
+            async:false,
             success:function(res){
                 var len = res.InActive.toString().length;
                 var len1 = res.Active.toString().length;
@@ -1554,6 +1593,7 @@ function tool_dropdown_retrive(){
         type: "POST",
         dataType: "json",
         cache: false,
+        async:false,
         success:function(res_Site){  
             $('#inputToolName').empty();
             // $('#inputToolNameEdit').empty();
