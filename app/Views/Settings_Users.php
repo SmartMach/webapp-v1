@@ -1785,6 +1785,7 @@ $(document).ready(function(){
     // deactivate submit function
     $('.Status-deactivate').click(function(event){
         event.preventDefault();
+        $("#overlay").fadeIn(300);
         var UserNameRef = "<?php echo($this->data['user_details'][0]['user_id'])?>";
         var id = $(this).attr('lvalue');
         var status = $(this).attr('svalue');
@@ -1808,10 +1809,12 @@ $(document).ready(function(){
                     get_all_user();
                     // after deactivate the user close the modal
                     $('#DeactiveToolModal').modal('hide');
+                    $("#overlay").fadeOut(300);
                 }
             },
             error:function(res){
                 alert("Sorry!Try Agian!!");
+                $("#overlay").fadeOut(300);
             }
         });
     }); 
@@ -1842,6 +1845,7 @@ $(document).ready(function(){
 // active user function
     $('.Status-activate').click(function(event){
         event.preventDefault();
+        $("#overlay").fadeIn(300);
         var id = $(this).attr('lvalue');
         var status = $(this).attr('svalue');
         var role = $(this).attr('rvalue');
@@ -1864,10 +1868,12 @@ $(document).ready(function(){
                     get_all_user();
                     // after activate the user close the modal
                     $('#ActiveToolModal').modal('hide');
+                    $("#overlay").fadeOut(300);
                 }
             },
             error:function(res){
                 alert("Sorry!Try Agian!!");
+                $("#overlay").fadeOut(300);
             }
         });
     });
@@ -2309,6 +2315,7 @@ $(document).ready(function(){
     $(document).on("click", ".EditUserData", function(event){
         event.preventDefault();
         event.stopPropagation();
+       
         var UserNameRef = "<?php echo($this->data['user_details'][0]['user_id'])?>";     
         var condition = $('.EditUserData').attr("disabled");
         if (condition == "disabled") {
@@ -2329,6 +2336,7 @@ $(document).ready(function(){
                 $('.EditUserData').attr("disabled",true);
             }
             else{
+                $("#overlay").fadeIn(300);
                 $("#site_error_edit").css("display","none");
                 $("#EditUserSiteName").css("display","none");
                 var user_id = $('.EditUserData').attr('data_val');
@@ -2387,10 +2395,12 @@ $(document).ready(function(){
                                     get_all_user();
                                     // after updation close the modal 
                                     $('#EditUserModal').modal('hide');
+                                    $("#overlay").fadeOut(300);
                                 }
                             },
                             error:function(res){
                                 alert("Sorry!Try Agian!!");
+                                $("#overlay").fadeOut(300);
                             }
                         });
                     }else{
@@ -2426,10 +2436,12 @@ $(document).ready(function(){
                                     get_all_user();
                                     // after updation close the modal
                                     $('#EditUserModal').modal('hide');
+                                    $("#overlay").fadeOut(300);
                                 }
                             },
                             error:function(res){
                                 alert("Sorry!Try Agian!!");
+                                $("#overlay").fadeOut(300);
                             }
                         });
                     }

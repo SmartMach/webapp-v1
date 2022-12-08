@@ -513,11 +513,26 @@ $session = \Config\Services::session();
   </div>
 </div>
 
+
+<!-- preloader -->
+<!-- preloader -->
+<div id="overlay">
+      <div class="cv-spinner">
+        <span class="spinner"></span>
+        <span class="loading">Awaiting Completion...</span>
+      </div>
+</div>
+<!-- preloader end -->
+
+
+
+
 <script src="<?php echo base_url()?>/assets/js/settings_machine_validation.js?version=<?php echo rand(); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>/assets/js/custom_date_format.js?version=<?php echo rand() ; ?>"></script>
 
 <script type="text/javascript">
     $(document).on('click','#add_machine_button',function(event){
+        event.preventDefault();
         var data = "addmachine";
         error_show_remove(data);
  
@@ -532,7 +547,9 @@ $session = \Config\Services::session();
         $('.Add_Machine_Data').removeAttr("disabled");
         $('#AddMachineModal').modal('show');
     });
-    $(".Add_Machine_Data").click(function(){
+    $(".Add_Machine_Data").click(function(event){
+       event.preventDefault();
+       $("#overlay").fadeIn(300);
         var f = inputMachineSerialid($('#inputMachineSerialId').val());
         check_machine_serial_id($('#inputMachineSerialId').val().trim());
         var a = inputMachineOffRateHour($("#inputMachineOffRateHour").val());
@@ -546,10 +563,11 @@ $session = \Config\Services::session();
             $("#inputMachineNameErr").html(c);
             $("#inputTonnageErr").html(d);        
             $("#inputMachineBrandErr").html(e);    
-            $('#inputMachineSerialId_err').html(f);       
+            $('#inputMachineSerialId_err').html(f);   
+            $("#overlay").fadeOut(300);    
         }
         else{
-            // $("#overlay").fadeIn(300);
+            
             var machine_off_rate_hour = $('#inputMachineOffRateHour').val();
             var machine_rate_hour = $('#inputMachineRateHour').val();
             var tonnage = $('#inputTonnage').val();
@@ -563,6 +581,7 @@ $session = \Config\Services::session();
                     url:"<?php echo base_url('Settings_controller/add_machine_new_Code') ?>",
                     method:"POST",
                     cache: false,
+                    async:false,
                     data:{
                         machine_off_rate_hour : machine_off_rate_hour,
                         machine_rate_hour : machine_rate_hour,
@@ -581,12 +600,12 @@ $session = \Config\Services::session();
                             // get count data
                             get_count();
                             $('#AddMachineModal').modal('hide');
-                            // $("#overlay").fadeOut(300);
+                            $("#overlay").fadeOut(300);
                         }
                     },
                     error:function(err){
                         alert("Something went wrong!");
-                        // $("#overlay").fadeOut(300);
+                        $("#overlay").fadeOut(300);
                     }
             });
         }
@@ -645,6 +664,7 @@ $session = \Config\Services::session();
 
         // Deactivate Machine Submit .............
         $('.Status-deactive').click(function(event){
+                $("#overlay").fadeIn(300);
                 event.preventDefault();
                 event.stopPropagation();
                 var id = $(this).attr('lvalue');
@@ -653,6 +673,7 @@ $session = \Config\Services::session();
                     url: "<?php echo base_url('Settings_controller/deactivateMachine'); ?>",
                     type: "POST",
                     cache: false,
+                    async:false,
                     data: {
                         MachineId : id,
                         Status_Machine: status,
@@ -665,9 +686,12 @@ $session = \Config\Services::session();
                         get_count();
                         // Close the Acknowledge ................
                         $('#DeactiveMachineModal').modal('hide');
+                        $("#overlay").fadeOut(300);
+                
                     },
                     error:function(res){
                         alert("Sorry! Try Agian!!");
+                        $("#overlay").fadeOut(300);
                     }
                 });
         }); 
@@ -685,6 +709,7 @@ $session = \Config\Services::session();
         });
         // Activate Machine Acknowledge ...............
         $('.Status-active').click(function(event){
+                $("#overlay").fadeIn(300);
                 event.preventDefault();
                 event.stopPropagation();
                 var status = $(this).attr('status_data');
@@ -693,6 +718,7 @@ $session = \Config\Services::session();
                     url: "<?php echo base_url('Settings_controller/deactivateMachine'); ?>",
                     type: "POST",
                     cache: false,
+                    async:false,
                     data: {
                         MachineId : id,
                         Status_Machine: status,
@@ -705,9 +731,11 @@ $session = \Config\Services::session();
                         get_count();
                         // Close the Acknowledge ................
                         $('#ActiveMachineModal').modal('hide');
+                        $("#overlay").fadeOut(300);
                     },
                     error:function(res){
                         alert("Sorry! Try Agian!!");
+                        $("#overlay").fadeOut(300);
                     }
                 });
             }); 
@@ -722,6 +750,7 @@ $session = \Config\Services::session();
                 url: "<?php echo base_url('Settings_controller/getMachineData'); ?>",
                 type: "POST",
                 cache: false,
+                async:false,
                 data: {
                     MachineId : id
                 },
@@ -779,6 +808,7 @@ $session = \Config\Services::session();
                 url: "<?php echo base_url('Settings_controller/getMachineData'); ?>",
                 type: "POST",
                 cache: false,
+                async:false,
                 data: {
                     MachineId : id
                 },
@@ -840,6 +870,7 @@ $session = \Config\Services::session();
                 url: "<?php echo base_url('Settings_controller/getMachineData'); ?>",
                 type: "POST",
                 cache: false,
+                async:false,
                 data: {
                     MachineId : id
                 },
@@ -888,6 +919,7 @@ $session = \Config\Services::session();
         
         // Machine Record Updations ........... 
         $(document).on("click", ".EditMachine", function(event){
+            event.preventDefault();
             check_machine_serial_id_edit($("#editMachineSerialNumber").val().trim());
             var e = editMachineOffRateHour($("#editMachineOffRateHour").val());
             var f = editMachineRateHour($("#editMachineRateHour").val());
@@ -904,6 +936,7 @@ $session = \Config\Services::session();
                 $("#editMachineSerialNumberErr").html(h);            
             }
             else{
+                $("#overlay").fadeIn(300);
                 var  veditMachineName = $('#editMachineName').val();
                 var  veditMachineRateHour = $('#editMachineRateHour').val();
                 var  veditMachineOffRateHour = $('#editMachineOffRateHour').val();
@@ -915,6 +948,7 @@ $session = \Config\Services::session();
                     url: "<?php echo base_url('Settings_controller/editMachineData'); ?>",
                     type: "POST",
                     cache: false,
+                    async:false,
                     data: {
                         MachineId : machine_id,
                         MachineName: veditMachineName,
@@ -930,11 +964,14 @@ $session = \Config\Services::session();
                             get_machine_data();
                             // get count data
                             get_count();
+                          
                             $('#EditMachineModal').modal('hide');
+                            $("#overlay").fadeOut(300);
                         }
                     },
                     error:function(res){
                         alert("Sorry!Try Agian!!");
+                        $("#overlay").fadeOut(300);
                     }
                 });
             } 
@@ -980,6 +1017,7 @@ $session = \Config\Services::session();
                 data:{serial_id:serial_id},
                 dataType:"json",
                 cache: false,
+                async:false,
                 success:function(data){
                     if(data == true){
                         $('#inputMachineSerialId_err').html('*Machine serial id already exists');
@@ -1014,6 +1052,7 @@ $session = \Config\Services::session();
                     data:{serial_id:serial_id},
                     dataType:"json",
                     cache: false,
+                    async:false,
                     success:function(data){
                         if(data==true){
                             $('#editMachineSerialNumber').val(old_val);
@@ -1033,6 +1072,7 @@ $session = \Config\Services::session();
 
     // Machine Serial ID Back-End Validation .......... 
     $(document).on('change','#inputMachineSerialId',function(event){
+        event.preventDefault();
         var serial_id = $('#inputMachineSerialId').val();
         serial_id = serial_id.trim();
         if (serial_id == "") {
@@ -1046,7 +1086,7 @@ $session = \Config\Services::session();
     // Machine Serial ID Back-End Validation for Edit Functions ............. 
     $(document).on('change','#editMachineSerialNumber',function(event){
         // event.stopPropagation();
-        // event.preventDefault();
+        event.preventDefault();
         $('.EditMachine').attr("disabled",true);
         var serial_id = $('#editMachineSerialNumber').val();
         serial_id = serial_id.trim();
@@ -1201,6 +1241,7 @@ function get_count(){
         type: "POST",
         dataType: "json",
         cache: false,
+        async:false,
         success:function(res){
             var len = res.InActive.toString().length;
             var len1 = res.Active.toString().length;

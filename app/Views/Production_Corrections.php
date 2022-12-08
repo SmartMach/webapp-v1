@@ -251,6 +251,20 @@ a{
     </div>
   </div>
 </div>
+
+
+
+<!-- preloader -->
+<!-- preloader -->
+<div id="overlay">
+      <div class="cv-spinner">
+        <span class="spinner"></span>
+        <span class="loading">Awaiting Completion...</span>
+      </div>
+</div>
+<!-- preloader end -->
+
+
 <!-- link for calendar date  -->
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -287,6 +301,7 @@ function  gedt_correction_data(){
             var i=0;
             $('.contentCorrection').empty();
             res.forEach(function(item){
+              //  console.log(item);
                 if (item.corrections != null) {
                     count = parseInt(count)+parseInt(item.corrections);
                 }
@@ -557,6 +572,7 @@ function datePick(date_shift){
                 machine_id:machine_id,
             },
             success:function(res){
+               // console.log(res);
                 var datetime = getdate_time(res['correction'][0].last_updated_on);
                 $('#QPID').html(res['part_name']);
                 $('#QPID').attr("part_data",res['correction'][0].part_id);
@@ -606,7 +622,8 @@ function datePick(date_shift){
     });
 
     // AFTER edit submit the corrections function
-    $(document).on("click", ".EditCorrection", function(){
+    $(document).on("click", ".EditCorrection", function(event){
+        event.preventDefault();
         var x = correctionCount();
         var y = correctionNotes();
         if (x!='' || y!='') {
@@ -616,6 +633,8 @@ function datePick(date_shift){
             $('.correction_count_err').html(x);
             $('.correction_reason_err').html(y);
 
+
+            $("#overlay").fadeIn(300);
             var note = $('#Notes').val();
             var start_time = $('#QFromTime').text();
             var shift_date = $('#QShiftDate').text();
@@ -645,10 +664,12 @@ function datePick(date_shift){
                 },
                 success:function(res){
                     gedt_correction_data();
-                    $('#EditCorrectModal').modal('hide');                      
+                    $('#EditCorrectModal').modal('hide');
+                    $("#overlay").fadeOut(300);                      
                 },
                 error:function(res){
                     alert("Sorry!Try Agian!!");
+                    $("#overlay").fadeOut(300);
                 }
             });
         }
