@@ -1036,8 +1036,10 @@ $(document).on("click", ".deleteRec", function(){
       $('.checkboxes:eq('+index_value+')').empty();
       part_collection.forEach(function(item){
         // console.log("indexing part :\t"+index);
+        // console.log("parts collection");
+        // console.log(part_collection);
         if (index == item[2]) {
-          elements = elements.add('<div class="option_multi"><div class="multi-check "><input type="checkbox" id="one" value="'+item[0]+'" name="multi_part[]" class="checkboxIn"></div><div class="multi-lable check_dis "><span>'+item[1]+'-'+item[0]+'</span></div></div>');
+          elements = elements.add('<div class="option_multi"><div class="multi-check "><input type="checkbox" id="one" value="'+item[0]+'" name="multi_part[]" class="checkboxIn" checked="true"></div><div class="multi-lable check_dis "><span>'+item[1]+'-'+item[0]+'</span></div></div>');
 
           // elements = elements.add('<option class="DownPartVal" pval="'+item[1]+'.'+item[0]+'" tvalue="'+item[2]+'" value="'+item[0]+'">'+item[1]+' -'+item[0]+'</option>');
         }
