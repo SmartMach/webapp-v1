@@ -409,7 +409,7 @@
                                  <nav style="border-bottom:1px solid #d9d9d9;">
                                     <p class="nav-menu-title">FINANCIAL METRICS</p> 
                                 </nav>
-                                <?php if($this->data['access'][0]['oee_drill_down'] >=1){ ?>
+                                <?php if($this->data['access'][0]['oee_financial_drill_down'] >=1){ ?>
                                 <li class="flex-container sidenave-hover">
                                     <div style="width: 10%;justify-content: center; " class="icon-align ">
                                         <i class="fa  fa-angle-double-down paddingm icon-sub " style="font-style: 15px;"></i>
