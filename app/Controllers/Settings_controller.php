@@ -681,6 +681,38 @@ class Settings_controller extends BaseController{
 
         }
     }
+
+    public function add_downtime_reason_noimg(){
+        if ($this->request->isAJAX()) {
+            $category = $this->request->getVar('reason_category');
+            $reason_name = $this->request->getVar('reason_name');
+            $img = $this->request->getVar('img');
+
+            //$directory = "./public/uploads/".$this->session->get('active_site');
+            $tmpIdCount = $this->DownImgRecordCount();
+            $update['image_id'] = "DI".($tmpIdCount);
+            $update['original_file_name']= "no_image";
+            $update['original_file_extension']= "no_image";
+            $update['original_file_size_kb']= 0;
+            $update['uploaded_file_name'] = "no_image";
+            $update['uploaded_file_extension'] = "no_image";
+            $reason['status'] = 1;
+
+
+            $reason['downtime_reason']= $reason_name;
+            $reason['downtime_category']= $category;
+            $reason['last_updated_by'] = $this->session->get('user_name');
+            $img_location_add = "/public/uploads/".$this->session->get('active_site');
+            $update['uploaded_file_location'] = base_url().$img_location_add.'/'."Downtime_Reason/";
+            if ($output = $this->datas->uploadReasons($update,$reason)) {
+                //Redirect to Dahsboard
+                echo true;
+            }else{
+                echo false;
+            }
+
+        }
+    }
     // edit downtime reasons 
     public function edit_downtime_reasons(){
         if ($this->request->isAJAX()) {
@@ -774,6 +806,37 @@ class Settings_controller extends BaseController{
 
         }
     }
+
+    // add quality reasons image not found add this function
+    public function add_quality_reasons_noimg(){
+        if ($this->request->isAJAX()) {
+            $reason_name = $this->request->getVar('reason_name');
+            $reasons['quality_reason']= $reason_name;
+            $tmpIdCount = $this->QualityImgRecordCount();
+            
+            $update['image_id'] = "QI".($tmpIdCount);
+            $reasons['image_id'] = $update['image_id'];
+            $update['original_file_name']= "no_img";
+            $update['original_file_extension']= "no_img";
+            $update['original_file_size_kb']= 0;
+
+            $img_add_location = "/public/uploads/".$this->session->get('active_site');
+            $update['Uploaded_File_Location'] = base_url().$img_add_location."/"."Quality_Reason/";
+
+            $update['uploaded_file_name'] = "no_img";
+            $update['uploaded_file_extension'] = "no_img";
+            $reasons['last_updated_by'] = $this->session->get("user_name");
+
+            if($output = $this->datas->uploadReasonsQuality($update,$reasons)){
+                echo true;
+            } 
+
+        }
+    }
+
+
+
+
     // edit quality reasons image for ajax function
     public function edit_quality_reasons_fun(){
         if ($this->request->isAJAX()) {
