@@ -853,7 +853,8 @@ function plopportunity(){
                     color: "#BFBFBF ",
                     formatter: function (w) {
                       return w.globals.seriesTotals.reduce((a, b) => {
-                        return parseInt(a + b).toLocaleString("en-IN")
+                        var x = parseInt(a) + parseInt(b);
+                        return (parseInt(x)).toLocaleString("en-IN")
                       }, 0)
                     },
                   },
