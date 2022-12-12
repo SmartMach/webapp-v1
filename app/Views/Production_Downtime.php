@@ -1301,16 +1301,15 @@ function getDownTimeGraph(){
                 if (response['machineData'].length >0)
                 {
                   $.each(response['machineData'],function(key,model){
-
                   if(model.duration >= 0){ 
                         if (model.event== "No Data") {
                           noDataArray.push('slantedLines');
                         }
                         else{
                           if (key == 0) {
-                            st = new Date(model.calendar_date+" "+shift_stime);
-                            et = new Date(model.calendar_date+" "+model.start_time);
-                            if (st != et) {
+                            st = new Date(model.shift_date+" "+shift_stime);
+                            et = new Date(model.shift_date+" "+model.start_time);
+                            if (st.getTime() !== et.getTime()) {
                               noDataArray.push('slantedLines');
                             }
                             else{
@@ -1341,12 +1340,12 @@ function getDownTimeGraph(){
                           st = new Date(model.calendar_date+" "+shift_stime);
                           et = new Date(model.calendar_date+" "+model.start_time);
                           if (st != et) {
-                            // graph_Data.push({name:model.event,data:[model.duration],color:colordemo,start:model.start_time,end:model.end_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:part_name_arr_pass,duration:model.duration});
+                            graph_Data.push({name:model.event,data:[model.duration],color:colordemo,start:model.start_time,end:model.end_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:part_name_arr_pass,duration:model.duration});
 
                             var res = Math.abs(et - st) / 1000;
                             duration=(Math.floor(res / 60))+"."+(Math.floor(res % 60));
 
-                            // noDataArray.push('slantedLines');
+                            noDataArray.push('slantedLines');
                             colordemo = color_bar("No Data",model.reason_mapped);
                             graph_Data.push({name:"No Data",data:[duration],color:colordemo,start:shift_stime,end:model.start_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:"No Part",duration:duration});
                           }
