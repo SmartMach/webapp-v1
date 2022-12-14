@@ -1026,6 +1026,19 @@
 </div>
 <!-- current_shift_performance end -->
 
+
+<!-- preloader -->
+<!-- preloader -->
+<div id="overlay">
+      <div class="cv-spinner">
+        <span class="spinner"></span>
+        <span class="loading">Awaiting Completion...</span>
+      </div>
+</div>
+<!-- preloader end -->
+
+
+
 <!-----add of operator user interface script function-----> 
 <script src="<?php echo base_url(); ?>/assets/js/Settings_Goals_Others_Validation.js?version=<?php echo rand() ; ?>"></script>
 <script type="text/javascript">
@@ -1193,14 +1206,15 @@ $('#submit_downtime_reason').on('click',function(event){
     var formData = new FormData();
     formData.append('reason_name', sname);
     formData.append('reason_category',category);
-
+    $("#overlay").fadeIn(300);    
     var a = DTName();
     var b = DTCategoryErrFun();
-    var c = downtime_img_fun();
-    if (a !="" || b!="" || c!="") {
+    //var c = downtime_img_fun();
+    if (a !="" || b!="" ) {
         $("#DTNameErr").html(a);
         $("#DTCategoryErr").html(b);
-        $('.add_img_err').html(c);
+        $("#overlay").fadeOut(300);    
+       // $('.add_img_err').html(c);
 
     }
     else{
@@ -1218,6 +1232,7 @@ $('#submit_downtime_reason').on('click',function(event){
         else{
             if (document.getElementById("attach_file").files[0]) {
                 formData.append('file', document.getElementById("attach_file").files[0]);
+                // formData.append("file_check","true");
                 $.ajax({
                     url : "<?php echo base_url('Settings_controller/add_downtime_reasons') ?>",
                     method: "POST",
@@ -1226,15 +1241,46 @@ $('#submit_downtime_reason').on('click',function(event){
                     cache: false,  
                     processData:false,
                     success:function(data){
+                        // console.log(data);
+                        // alert(data);
+                        if (data == true) {
+                            // close the modal 
+                            $('#attach_file').val('');
+                            $('#EditDRModal').modal('hide');
+                             // retrive all downtime reasons data
+                            get_downtime_data();
+                            $("#overlay").fadeOut(300);    
+                        }
+                    },
+                    error:function(er){
+                        alert("Something went wrong");
+                        $("#overlay").fadeOut(300);    
+                    }
+                });   
+            }else{
+                //alert("image not found");
+                //formData.append('file_check',"false");
+                $.ajax({
+                    url : "<?php echo base_url('Settings_controller/add_downtime_reason_noimg') ?>",
+                    method: "POST",
+                    data: formData,  
+                    contentType: false,  
+                    cache: false,  
+                    processData:false,
+                    success:function(data){
+                        // console.log(data);
+                        // alert(data);
                         if (data == true) {
                             // close the modal 
                             $('#EditDRModal').modal('hide');
                              // retrive all downtime reasons data
                             get_downtime_data();
+                            $("#overlay").fadeOut(300);    
                         }
                     },
                     error:function(er){
                         alert("Something went wrong");
+                        $("#overlay").fadeOut(300);    
                     }
                 });   
             } 
@@ -1258,6 +1304,7 @@ $('#Update_Downtime_Reason').on('click',function(event){
     formData.append('edit_reason_category',category);
     formData.append('edit_record_no',record_no);
     formData.append('edit_file', file_data);
+    $("#overlay").fadeIn(300);    
 
     var a = UDTName();
     $.ajax({
@@ -1274,10 +1321,12 @@ $('#Update_Downtime_Reason').on('click',function(event){
                 $('#updateDRModal').modal('hide');
                  // retrive all downtime reasons data
                 get_downtime_data();
+                $("#overlay").fadeOut(300);    
             }
         },
         error:function(er){
             alert("er");
+            $("#overlay").fadeOut(300);    
         }
     }); 
 });
@@ -1287,12 +1336,13 @@ $(document).on('click','#submit_quality_reasons',function(event){
     event.preventDefault();
     $("#EditQRModalForm").submit(false);
     var a = QReasonName();
-    var b = Qimg_func();
-    if (a != "" || b!=""){
+    // var b = Qimg_func();
+    if (a != "" ){
         $("#QReasonNameErr").html(a);
-        $('.qr_img_err').html(b);
+        // $('.qr_img_err').html(b);
     }
     else{
+        $("#overlay").fadeIn(300);    
         event.preventDefault();
         var sname = $('#QReasonName').val();
         var formData = new FormData();
@@ -1311,13 +1361,41 @@ $(document).on('click','#submit_quality_reasons',function(event){
                 success:function(data){
                     if (data == true) {
                         // close the modal 
+                        $('#attach_file_Quality').val('');
                         $('#EditQRModal').modal('hide');
                         // Retrive all quality reasons data
                         get_quality_reasons();
+                        $("#overlay").fadeOut(300);    
                     }
                 },
                 error:function(er){
                     alert("Something went wrong!");
+                    $("#overlay").fadeOut(300);    
+                }
+            });
+        }else{
+            // alert("image not found");
+            $.ajax({
+                url : "<?php echo base_url('Settings_controller/add_quality_reasons_noimg') ?>",
+                method: "POST",
+                //data: {sname:sname},
+                data: formData,  
+                contentType: false,  
+                cache: false,  
+                processData:false,
+                success:function(data){
+                    if (data == true) {
+                        // close the modal 
+                        $('#attach_file_Quality').val('');
+                        $('#EditQRModal').modal('hide');
+                        // Retrive all quality reasons data
+                        get_quality_reasons();
+                        $("#overlay").fadeOut(300);    
+                    }
+                },
+                error:function(er){
+                    alert("Something went wrong!");
+                    $("#overlay").fadeOut(300);    
                 }
             });
         }
@@ -1333,6 +1411,7 @@ $(document).on('click','#edit_quality_reasons',function(event){
         $("#UQReasonNameErr").html(a);
     }
     else{
+        $("#overlay").fadeIn(300);    
         var sname = $('#UQReasonName').val();
         var record_no = $('#edit_quality_reasons').attr('record_id');
         var img_name = $('#edit_quality_reasons').attr('image_name');
@@ -1355,10 +1434,12 @@ $(document).on('click','#edit_quality_reasons',function(event){
                     $('#updateQRModal').modal('hide');
                     // Retrive all quality reasons data
                     get_quality_reasons();
+                    $("#overlay").fadeOut(300);    
                 }
             },
             error:function(er){
                 alert("Sorry Try again!");
+                $("#overlay").fadeOut(300);    
             }
         }); 
     }
@@ -1486,6 +1567,7 @@ $(document).on("click", ".updateSST", function(event){
     event.preventDefault();
     var hours = $('#set_hour_minute').val();
     var staringTime = $('#SSTime').val();
+    $("#overlay").fadeIn(300);    
     $.ajax({    
         url: "<?php echo base_url('Settings_controller/updateShift'); ?>",
         method: "POST",
@@ -1501,9 +1583,11 @@ $(document).on("click", ".updateSST", function(event){
             shift_management_data = [];
             get_shift_data();
             $('#EditWSM').modal('hide');    
+            $("#overlay").fadeOut(300);    
         },
         error:function(res){
             alert("Sorry!Try Agian!!");
+            $("#overlay").fadeOut(300);    
         }
     });
 });
@@ -1569,6 +1653,7 @@ function get_shift_data(){
         }
         else{
             calcoee();
+            $("#overlay").fadeIn(300);    
             var  VEOTEEP = $('#EOTEEP').val();
             var  VEOOOE = $('#EOOOE').val();
             var  VEOOEE = $('#EOOEE').val();
@@ -1594,9 +1679,11 @@ function get_shift_data(){
                     // Retrive Financial Metrics Records ..............
                     get_financial_metrics();
                     $('#EditFMModal').modal('hide');
+                    $("#overlay").fadeOut(300);    
                 },
                 error:function(res){
                     alert("Sorry!Try Agian!!");
+                    $("#overlay").fadeOut(300);    
                 }
             });
         }
@@ -1610,6 +1697,7 @@ function get_shift_data(){
         }
         else{
             var  DT = $('#Update_DThreshold').val();
+            $("#overlay").fadeIn(300);    
             $.ajax({
                 url: "<?php echo base_url('Settings_controller/editDTData'); ?>",
                 type: "POST",
@@ -1622,10 +1710,12 @@ function get_shift_data(){
                     if (res == true) {
                         get_downtime_thres_hold();
                         $('#EditDTModal').modal('hide'); 
+                        $("#overlay").fadeOut(300);    
                     }
                 },
                 error:function(res){
                     alert("Sorry!Try Agian!!");
+                    $("#overlay").fadeOut(300);    
                 }
             });
         }
@@ -1765,6 +1855,7 @@ function get_shift_data(){
     // Update Downtime Reason .............
     $(document).on("click", ".Update_RReason", function(){
         var rvalue = $(this).attr('rvalue');
+        $("#overlay").fadeIn(300);    
         $.ajax({
             url: "<?php echo base_url('Settings_controller/deleteDownReason'); ?>",
             type: "POST",
@@ -1777,15 +1868,18 @@ function get_shift_data(){
                 if (res == true) {
                     get_downtime_data();
                     $('#DeactiveReasonModal').modal('hide');
+                    $("#overlay").fadeOut(300);    
                 }
             },
             error:function(res){
                 alert("Sorry!Try Agian!!");
+                $("#overlay").fadeOut(300);    
             }
         });
     });
     // Retrive Downtime Reasons ...................
     $(document).on("click", ".dclick", function(){
+        // $("#overlay").fadeIn(300);    
         $('#UDTName').val(success);
         $('#UDTReason').val(success);
         $('#UDTNameErr').html(success);
@@ -1874,6 +1968,7 @@ function get_shift_data(){
     });
     $(document).on("click", ".Update_QReason", function(){
         var id = $(this).attr('rvalue');
+        $("#overlay").fadeIn(300);    
         $.ajax({
             url: "<?php echo base_url('Settings_controller/deleteQualityReason'); ?>",
             type: "POST",
@@ -1888,11 +1983,13 @@ function get_shift_data(){
                     get_quality_reasons();                    
                     // after updation close the modal
                     $('#DeactiveQReasonModal').modal('hide');
+                    $("#overlay").fadeOut(300);    
                 }
                 
             },
             error:function(res){
                 alert("Sorry!Try Agian!!");
+                $("#overlay").fadeOut(300);    
             }
         });
     });
@@ -1903,6 +2000,7 @@ $(document).on('click','#btn_current_shift',function(){
     if (condition == "disabled") {
         $('#btn_current_shift').css("border","none");
     }else{
+        $("#overlay").fadeIn(300);    
         var green = document.getElementById("green").value;
         var yellow = document.getElementById("yellow").value;
         var target = document.getElementById("targetvalue").value;
@@ -1919,10 +2017,12 @@ $(document).on('click','#btn_current_shift',function(){
                             if(data == true){
                                 get_current_shift_data();
                                 $('#current_shit_performance').modal('hide');
+                                $("#overlay").fadeOut(300);    
                             }
                         },
                         error:function(err){
                             alert("something went wrong");
+                            $("#overlay").fadeOut(300);    
                         }
                     });
                 }else{
@@ -2124,6 +2224,7 @@ function quality_imgError(urlToFile) {
 }
 
 // Downtime Image Validation ........
+/* downtime reasons image validation function temporary hide for this function
 function downtime_img_fun(){
     var required = "*Required field";
     var success = "";
@@ -2144,13 +2245,16 @@ function downtime_img_fun(){
 		}
 	}
 }
-
+*/
+/* temporary hide for this function
 $('#DTReasonVal').on('blur',function(){
 	var x = downtime_img_fun();
 	$('.add_img_err').html(x);
 });
+*/
 
 // Add Quality Reason ............
+/* temporary hide this function
 function Qimg_func(){
     var required = "*Required field";
     var success = "";
@@ -2170,11 +2274,13 @@ function Qimg_func(){
         }
     }
 }
-
+*/
+/*
 $('#Qreason').on('blur',function(){
     var x = Qimg_func();
     $('.qr_img_err').html(x);
 });
+*/
 
 // Work Shift Management UI ............
 function open_tooltip(){

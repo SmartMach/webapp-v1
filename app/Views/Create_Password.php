@@ -38,12 +38,18 @@
 
 </head>
 <style type="text/css">
-
+    #button_flex{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row-reverse;
+        justify-content: flex-start;
+        text-align: center;
+    }
 </style>
 <body>
 	<div class="container main-container">
 		<div class="img-div">
-			<img id="" src="<?php echo base_url()?>/assets/img/logo.png" alt="SmartTech Logo">
+			<img id="" src="<?php echo base_url()?>/assets/img/logo.png" alt="SmartTech Logo" style="width:9rem;">
 		</div>
 		<br>
 		<div class="innner-div">
@@ -66,8 +72,10 @@
                             <span class="paddingm float-start validate" id="confirm_pass_err" ></span> 
                         </div>
 		            </div>
-		            <button type="submit" name="submit" class="btn submit btn-primary savebtn float-end" id="submit_pass" style="">Save</button>
-				</form>
+                    <div id="button_flex">
+		                <button type="submit" name="submit" class="btn submit btn-primary savebtn float-end" id="submit_pass" style="width:30%;">Save</button>
+                    </div>
+                </form>
 			</div>
 		</div>
 	</div>

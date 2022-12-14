@@ -317,7 +317,7 @@
                 <p class="modal-title settings-machineAdd-model " id="AccessControlModal1" style="">ACCESS CONTROL</p>
             </div>
                 <div class="modal-body">
-                    <div class="dot dot-css" data-bs-dismiss="modal" aria-label="Close"><img src="<?php echo base_url('assets/img/back.png') ?>" class="img_font_wh dot-cont" style="width: max-content;height: 2rem;margin-left:0.6rem;"></div>
+                    <div class="dot dot-css back_btn_access" data-bs-dismiss="modal" aria-label="Close"><img src="<?php echo base_url('assets/img/back.png') ?>" class="img_font_wh dot-cont" style="width: max-content;height: 2rem;margin-left:0.6rem;"></div>
                     <div class="accessControlPaddinghead">
                             <div class="row paddingm textCenter fntTitle">
                                 <div class="col-sm-4 fn paddingm">
@@ -602,7 +602,7 @@
                 </div>
                 <div class="modal-footer" style="border:none;">
                     <a class="btn fo bn access-save saveBtnStyle" name="" data-bs-dismiss="modal" aria-label="Close" value="Save">Save</a>
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                    <a class="btn fo bn cancelBtnStyle cancel_access_control" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
                 </div>
     </div>
   </div>
@@ -620,7 +620,7 @@
         </div>
         <div class="modal-footer" style="border:none;">
             <a class="btn fo bn Status-deactivate saveBtnStyle" name="" value="Save">Save</a>
-            <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+            <a class="btn fo bn cancelBtnStyle " data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
         </div>
     </div>
   </div>
@@ -1322,7 +1322,10 @@
             $('.user_account_access').css("display","inline");
             // $('.create_del_visible').css("display","inline");
         }
-        get_edit_access_control(userid,user_role);
+        $('.cancel_access_control').attr("data_check","user_info");
+        $('.cancel_access_control').attr("info_id",userid);
+        $('.cancel_access_control').attr("can_data",user_role);
+        //get_edit_access_control(userid,user_role);
         $('#AccessControlModal').modal('show');
 
     });
@@ -1504,7 +1507,10 @@ $(document).ready(function(){
         if ((user !== "" && user == null)) {
             alert('please Select User Role');
         }else{
-            
+            $('.cancel_access_control').attr("can_adata",user);
+            $('.cancel_access_control').attr("data_check","add_user");
+            $('#AccessControlModal').modal('show');
+            /*
             $.ajax({
                 url: "<?php echo base_url('User_controller/getUserRole'); ?>",
                 type: "POST",
@@ -1530,10 +1536,45 @@ $(document).ready(function(){
                     alert("Sorry!Try Agian!0!");
                 }
             });
+            */
         }
-       
+    });
+    // cancel button reset access control
+    $(document).on("click",".cancel_access_control",function(event){
+        event.preventDefault();
+       var user = $('.cancel_access_control').attr("can_adata");
+       var check_data = $('.cancel_access_control').attr("data_check");
+        if (check_data ==="add_user") {
+            get_access_control(user);
+        }
+        else if(check_data ==="edit_user"){
+            var usrid = $('.cancel_access_control').attr("edit_id");
+            get_edit_access_control(usrid,user);
+        }
+        else if(check_data ==="info_user"){
+            var usrid = $('.cancel_access_control').attr("info_id");
+            get_edit_access_control(usrid,user);
+        }
         
+    });
 
+    // back button reset the access control
+    $(document).on("click",".back_btn_access",function(event){
+        event.preventDefault();
+       var user = $('.cancel_access_control').attr("can_adata");
+       var check_data = $('.cancel_access_control').attr("data_check");
+        if (check_data ==="add_user") {
+            get_access_control(user);
+        }
+        else if(check_data ==="edit_user"){
+            var usrid = $('.cancel_access_control').attr("edit_id");
+            get_edit_access_control(usrid,user);
+        }
+        else if(check_data ==="info_user"){
+            var usrid = $('.cancel_access_control').attr("info_id");
+            get_edit_access_control(usrid,user);
+        }
+        
     });
 
 
@@ -1563,7 +1604,10 @@ $(document).ready(function(){
 
             }
             var userid = $('.EditUserData').attr("data_val");
-            get_edit_access_control(userid,edituser);
+            $('.cancel_access_control').attr("can_data",edituser);
+            $('.cancel_access_control').attr("data_check","edit_user");
+            $('.cancel_access_control').attr("edit_id",userid);
+            // get_edit_access_control(userid,edituser);
             $("#AccessControlModal :input").removeAttr("disabled");
             $('#AccessControlModal').modal('show');
         }
@@ -1785,6 +1829,7 @@ $(document).ready(function(){
     // deactivate submit function
     $('.Status-deactivate').click(function(event){
         event.preventDefault();
+        $("#overlay").fadeIn(300);
         var UserNameRef = "<?php echo($this->data['user_details'][0]['user_id'])?>";
         var id = $(this).attr('lvalue');
         var status = $(this).attr('svalue');
@@ -1808,10 +1853,12 @@ $(document).ready(function(){
                     get_all_user();
                     // after deactivate the user close the modal
                     $('#DeactiveToolModal').modal('hide');
+                    $("#overlay").fadeOut(300);
                 }
             },
             error:function(res){
                 alert("Sorry!Try Agian!!");
+                $("#overlay").fadeOut(300);
             }
         });
     }); 
@@ -1842,6 +1889,7 @@ $(document).ready(function(){
 // active user function
     $('.Status-activate').click(function(event){
         event.preventDefault();
+        $("#overlay").fadeIn(300);
         var id = $(this).attr('lvalue');
         var status = $(this).attr('svalue');
         var role = $(this).attr('rvalue');
@@ -1864,10 +1912,12 @@ $(document).ready(function(){
                     get_all_user();
                     // after activate the user close the modal
                     $('#ActiveToolModal').modal('hide');
+                    $("#overlay").fadeOut(300);
                 }
             },
             error:function(res){
                 alert("Sorry!Try Agian!!");
+                $("#overlay").fadeOut(300);
             }
         });
     });
@@ -2008,6 +2058,7 @@ $(document).ready(function(){
             },
             dataType: "json",
             success:function(res_csp){
+                // console.log(res_csp);
                 // active inactive user s condition
                 if (res_csp['user_data'][0].status == 1) {
                     $('#EditUserStatus').html('<p style="color: #005CBC;"><i class="fa fa-circle" style="font-size:9px;margin-right:5px;"></i>Active</p>');
@@ -2063,9 +2114,9 @@ $(document).ready(function(){
                         cache: false,
                         success:function(res_Site){
                             var datetime = getdate_time(res_csp['user_data'][0].last_updated_on);
-                            var elements = $('<option value="" disabled selected>Select deparment</option>');
+                            var elements = $('<option value="" disabled>Select deparment</option>');
                             res_Site.forEach(function(item){
-                                if (res_csp['department'] == item.department) {        
+                                if (res_csp['user_data'][0].department===item.dept_id) {        
                                     elements = elements.add('<option value="'+item.dept_id+'" selected="true">'+item.department+'</option>');
                                 }
                                 else{
@@ -2125,8 +2176,13 @@ $(document).ready(function(){
                     
                 }
                 else if(res_csp['user_data'][0].role == "Site Users"){
+                    // alert('ok');
                     $('#EditUserDepartment').removeAttr("disabled");
+                    // document.getElementById("EditUserDepartment").value=res_csp['user_data'][0].department;
+                    //alert(res_csp['user_data'][0].department);
                     $('#EditUserDepartment').val(res_csp['user_data'][0].department);
+                    // $('#EditUserDepartment').text(res_csp['department']);
+
                     elements = elements.add('<option value="Site Users" selected>Site Users</option>');
                     elements = elements.add('<option value="Operator">Operator</option>');
                 }
@@ -2309,6 +2365,7 @@ $(document).ready(function(){
     $(document).on("click", ".EditUserData", function(event){
         event.preventDefault();
         event.stopPropagation();
+       
         var UserNameRef = "<?php echo($this->data['user_details'][0]['user_id'])?>";     
         var condition = $('.EditUserData').attr("disabled");
         if (condition == "disabled") {
@@ -2329,6 +2386,7 @@ $(document).ready(function(){
                 $('.EditUserData').attr("disabled",true);
             }
             else{
+                $("#overlay").fadeIn(300);
                 $("#site_error_edit").css("display","none");
                 $("#EditUserSiteName").css("display","none");
                 var user_id = $('.EditUserData').attr('data_val');
@@ -2387,10 +2445,12 @@ $(document).ready(function(){
                                     get_all_user();
                                     // after updation close the modal 
                                     $('#EditUserModal').modal('hide');
+                                    $("#overlay").fadeOut(300);
                                 }
                             },
                             error:function(res){
                                 alert("Sorry!Try Agian!!");
+                                $("#overlay").fadeOut(300);
                             }
                         });
                     }else{
@@ -2426,10 +2486,12 @@ $(document).ready(function(){
                                     get_all_user();
                                     // after updation close the modal
                                     $('#EditUserModal').modal('hide');
+                                    $("#overlay").fadeOut(300);
                                 }
                             },
                             error:function(res){
                                 alert("Sorry!Try Agian!!");
+                                $("#overlay").fadeOut(300);
                             }
                         });
                     }
@@ -3352,8 +3414,7 @@ $.ajax({
 
 // edit access control db configuration
 function get_edit_access_control(userid,user_role){
-    if (user_role == "Site Users") {   
-    }
+   
     $.ajax({
         url: "<?php echo base_url('User_controller/EditUserRoleMaster'); ?>",
         type: "POST",

@@ -382,7 +382,7 @@
         height:2.4rem;
         width:2.4rem;
         border-radius:50%;
-        background-color:red;
+        /* background-color:red; */
         color:white;
         display:flex;
         justify-content:center;
@@ -409,7 +409,7 @@
                                  <nav style="border-bottom:1px solid #d9d9d9;">
                                     <p class="nav-menu-title">FINANCIAL METRICS</p> 
                                 </nav>
-                                <?php if($this->data['access'][0]['oee_drill_down'] >=1){ ?>
+                                <?php if($this->data['access'][0]['oee_financial_drill_down'] >=1){ ?>
                                 <li class="flex-container sidenave-hover">
                                     <div style="width: 10%;justify-content: center; " class="icon-align ">
                                         <i class="fa  fa-angle-double-down paddingm icon-sub " style="font-style: 15px;"></i>
@@ -777,6 +777,11 @@ $(document).ready(function(){
     $('#full_name').html(char_leng);
     $('#full_name').css("text-overflow","ellipsis");
     $('#role_display').html(role);
+
+    // info circle random colors circle colors alignment
+    var info_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
+    var random_info_color = info_color[Math.floor(Math.random()*info_color.length)];
+    $('#info_circle_color').css("background-color",random_info_color);
     $('#get_text_info').html(first_letter+''+last_letter);
 
 /*

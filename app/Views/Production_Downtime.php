@@ -1036,8 +1036,10 @@ $(document).on("click", ".deleteRec", function(){
       $('.checkboxes:eq('+index_value+')').empty();
       part_collection.forEach(function(item){
         // console.log("indexing part :\t"+index);
+        // console.log("parts collection");
+        // console.log(part_collection);
         if (index == item[2]) {
-          elements = elements.add('<div class="option_multi"><div class="multi-check "><input type="checkbox" id="one" value="'+item[0]+'" name="multi_part[]" class="checkboxIn"></div><div class="multi-lable check_dis "><span>'+item[1]+'-'+item[0]+'</span></div></div>');
+          elements = elements.add('<div class="option_multi"><div class="multi-check "><input type="checkbox" id="one" value="'+item[0]+'" name="multi_part[]" class="checkboxIn" checked="true"></div><div class="multi-lable check_dis "><span>'+item[1]+'-'+item[0]+'</span></div></div>');
 
           // elements = elements.add('<option class="DownPartVal" pval="'+item[1]+'.'+item[0]+'" tvalue="'+item[2]+'" value="'+item[0]+'">'+item[1]+' -'+item[0]+'</option>');
         }
@@ -1299,7 +1301,6 @@ function getDownTimeGraph(){
                 if (response['machineData'].length >0)
                 {
                   $.each(response['machineData'],function(key,model){
-
                   if(model.duration >= 0){ 
                         if (model.event== "No Data") {
                           noDataArray.push('slantedLines');
@@ -1308,7 +1309,7 @@ function getDownTimeGraph(){
                           if (key == 0) {
                             st = new Date(model.calendar_date+" "+shift_stime);
                             et = new Date(model.calendar_date+" "+model.start_time);
-                            if (st != et) {
+                            if (st.getTime() !== et.getTime()) {
                               noDataArray.push('slantedLines');
                             }
                             else{
@@ -1336,31 +1337,49 @@ function getDownTimeGraph(){
                         colordemo = color_bar(model.event,model.reason_mapped);
 
                         if (key == 0) {
-                          st = new Date(model.calendar_date+" "+shift_stime);
-                          et = new Date(model.calendar_date+" "+model.start_time);
-                          if (st != et) {
-                            // graph_Data.push({name:model.event,data:[model.duration],color:colordemo,start:model.start_time,end:model.end_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:part_name_arr_pass,duration:model.duration});
+                            st = new Date(model.calendar_date+" "+shift_stime);
+                            et = new Date(model.calendar_date+" "+model.start_time);
+                            if (st.getTime() !== et.getTime()) {
+                              var res = Math.abs(et - st) / 1000;
+                              duration=(Math.floor(res / 60))+"."+(Math.floor(res % 60));
 
-                            var res = Math.abs(et - st) / 1000;
-                            duration=(Math.floor(res / 60))+"."+(Math.floor(res % 60));
+                              colordemo = color_bar("No Data",model.reason_mapped);
+                              graph_Data.push({name:"No Data",data:[duration],color:colordemo,start:shift_stime,end:model.start_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:"No Part",duration:duration});
+                            }
+                            else if (key == (response['machineData'].length -1)) {
+                              st = new Date(model.calendar_date+" "+shift_etime);
+                              et = new Date(model.calendar_date+" "+model.end_time);
+                              if (st.getTime() !== et.getTime()) {
+                                graph_Data.push({name:model.event,data:[model.duration],color:colordemo,start:model.start_time,end:model.end_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:part_name_arr_pass,duration:model.duration});
 
-                            // noDataArray.push('slantedLines');
-                            colordemo = color_bar("No Data",model.reason_mapped);
-                            graph_Data.push({name:"No Data",data:[duration],color:colordemo,start:shift_stime,end:model.start_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:"No Part",duration:duration});
-                          }
+                                noDataArray.push('slantedLines');
+                                var res = Math.abs(et - st) / 1000;
+                                duration=(Math.floor(res / 60))+"."+(Math.floor(res % 60));
+                                colordemo = color_bar("No Data",model.reason_mapped);
+                                graph_Data.push({name:"No Data",data:[duration],color:colordemo,start:model.end_time,end:shift_etime,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:part_name_arr_pass,duration:duration});
+                              }
+                              else{
+                                graph_Data.push({name:model.event,data:[model.duration],color:colordemo,start:model.start_time,end:model.end_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:part_name_arr_pass,duration:model.duration});
+                              }
+                            } 
+                            else{
+                              graph_Data.push({name:model.event,data:[model.duration],color:colordemo,start:model.start_time,end:model.end_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:part_name_arr_pass,duration:model.duration});
+                            }
                         }
                         else if (key == (response['machineData'].length -1)) {
-                          st = new Date(model.calendar_date+" "+model.end_time);
-                          et = new Date(model.calendar_date+" "+shift_etime);
-                          if (st != et) {
+                          st = new Date(model.calendar_date+" "+shift_etime);
+                          et = new Date(model.calendar_date+" "+model.end_time);
+                          if (st.getTime() !== et.getTime()) {
                             graph_Data.push({name:model.event,data:[model.duration],color:colordemo,start:model.start_time,end:model.end_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:part_name_arr_pass,duration:model.duration});
 
+                            noDataArray.push('slantedLines');
                             var res = Math.abs(et - st) / 1000;
                             duration=(Math.floor(res / 60))+"."+(Math.floor(res % 60));
-
-                            noDataArray.push('slantedLines');
                             colordemo = color_bar("No Data",model.reason_mapped);
                             graph_Data.push({name:"No Data",data:[duration],color:colordemo,start:model.end_time,end:shift_etime,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:part_name_arr_pass,duration:duration});
+                          }
+                          else{
+                            graph_Data.push({name:model.event,data:[model.duration],color:colordemo,start:model.start_time,end:model.end_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:part_name_arr_pass,duration:model.duration});
                           }
                         }  
                         else{
@@ -1962,7 +1981,6 @@ $(document).on('click','.doneEdit',function(){
     dataArray.push(category,reason,toolname,part_arr,machineEventRef,splitRef,machineID_ref,shift_date_ref,shift_Ref,notes);
 
     //Ajax function for update particular splitted value in database
-   
     $.ajax({
       url: "<?php echo base_url('PDM_controller/updateDownGraph'); ?>",
       type: "POST",
