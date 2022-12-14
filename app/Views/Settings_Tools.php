@@ -662,13 +662,14 @@
         var c =inputNoOfPartsPerCycle();
         var d = inputPartPrice();
         var e = inputPartWeight();
-        var f = inputMaterialPrice(); 
-        var g = inputMaterialName(); 
+        var f = inputMaterialPrice();
+        var g = inputMaterialName();
         var h = inputNewToolName();
         
         var tool = $("#inputToolName").val();
         if(tool == null){
             $('#tool_select_err').html(required);
+            $("#overlay").fadeOut(300);
         }else{
             var new_tool = $('#inputNewToolName').val();
             if ((tool == "new") && (new_tool != " ")) {
@@ -1225,6 +1226,7 @@
                         if (VinputNewToolNameEdit == "") {
                             $('.inputNewToolNameEditErr').html(required);
                             $('.EditTool').attr("disabled",true);
+                            $("#overlay").fadeOut(300);
                         }
                         else{
                             $.ajax({

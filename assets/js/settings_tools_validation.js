@@ -61,13 +61,14 @@ function inputNICT(){
 		return required;
 	}
 	else{
-		var num = /^[0-9]*$/;
+		var num = /^[+-]?\d+(\.\d+)?$/;
 		if ((val)==0) {
 			$(".Add_Tool_Data").attr("disabled", true);
 			return greaterZero;
 		}
 		else if (num.test(val)) {
 			$(".Add_Tool_Data").removeAttr("disabled");
+			$("#inputNICT").val(parseFloat($("#inputNICT").val()).toFixed(2));
 			return success;
 		}
 		else if ((val)<0) {
@@ -216,7 +217,7 @@ function inputPartWeight(){
 		else{
 			if (num.test(val)) {
 				$(".Add_Tool_Data").removeAttr("disabled");
-				$("#inputPartWeight").val(parseFloat($("#inputPartWeight").val()).toFixed(2));
+				$("#inputPartWeight").val(parseFloat($("#inputPartWeight").val()).toFixed(3));
 				return success;
 			}
 			else{
@@ -238,7 +239,7 @@ function inputMaterialPrice(){
 	else{
 
 		var num = /^[+-]?\d+(\.\d+)?$/;
-		if (parseInt(val) > 0) {
+		if (parseInt(val) >= 0) {
 			if (num.test(val)) {
 				$(".Add_Tool_Data").removeAttr("disabled");
 				$("#inputMaterialPrice").val(parseFloat($("#inputMaterialPrice").val()).toFixed(2));
@@ -253,10 +254,10 @@ function inputMaterialPrice(){
 				$(".Add_Tool_Data").attr("disabled", true);
 				return positive;
 		}
-		else if ((val) == 0) {
-			$(".Add_Tool_Data").attr("disabled", true);
-			return greaterZero;
-		}
+		// else if ((val) == 0) {
+		// 	$(".Add_Tool_Data").attr("disabled", true);
+		// 	return greaterZero;
+		// }
 
 		else{
 			if (num.test(val)) {
@@ -487,13 +488,14 @@ function EditNICT(){
 	}
 	else{
 
-		var num = /^[0-9]*$/;
+		var num = /^[+-]?\d+(\.\d+)?$/;
 		if ((val)==0) {
 			$(".EditTool").attr("disabled", true);
 			return greaterZero;
 		}
 		else if (num.test(val)) {
 			$(".EditTool").removeAttr("disabled");
+			$("#EditNICT").val(parseFloat($("#EditNICT").val()).toFixed(2));
 			return success;
 		}
 		else if ((val)<0) {
@@ -665,7 +667,7 @@ function EditMaterialPrice(){
 		// var num = /^[0-9]*$/;
 		var num = /^[+-]?\d+(\.\d+)?$/;
 		
-		if (parseInt(val) > 0) {
+		if (parseInt(val) >= 0) {
 			if (num.test(val)) {
 				$(".EditTool").removeAttr("disabled");
 				$("#EditMaterialPrice").val(parseFloat($("#EditMaterialPrice").val()).toFixed(2));
@@ -680,10 +682,10 @@ function EditMaterialPrice(){
 				$(".EditTool").attr("disabled", true);
 				return positive;
 		}
-		else if ((val) == 0) {
-			$(".EditTool").attr("disabled", true);
-			return greaterZero;
-		}
+		// else if ((val) == 0) {
+		// 	$(".EditTool").attr("disabled", true);
+		// 	return greaterZero;
+		// }
 
 		else{
 			if (num.test(val)) {
