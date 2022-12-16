@@ -93,14 +93,14 @@ class Financial_Metrics extends BaseController
                     unset($output[$key]);
                 }
                 else{
-                    if ($value['shift_date'] == $FromDate  && strtotime($value['start_time']) < strtotime($FromTime)){
+                    if ($value['shift_date'] == $FromDate  && $value['start_time'] < $FromTime){
                         unset($output[$key]);
                     }
                     if ($value['shift_date'] == $FromDate  && $value['start_time'] >= $ToTime){
                         unset($output[$key]);
                     }
 
-                    if ($value['shift_date'] == $ToDate  && strtotime($value['start_time']) > strtotime($ToTime)) {
+                    if ($value['shift_date'] == $ToDate  && strtotime($value['end_time']) > strtotime($ToTime)) {
                         unset($output[$key]);
                     }
 
@@ -249,12 +249,7 @@ class Financial_Metrics extends BaseController
 
                                 foreach ($partsDetails as $partVal) {
                                     if ($p['part_id'] == $partVal->part_id) {
-                                        $mnict = explode(".", $partVal->NICT);
-                                        if (sizeof($mnict)>1) {
-                                            $NICT = (($mnict[0]/60)+($mnict[1]/1000));
-                                        }else{
-                                            $NICT = ($mnict[0]/60);
-                                        }
+                                        $NICT = number_format($partVal->NICT/60,2);
                                     }
                                 }
 
@@ -439,7 +434,7 @@ class Financial_Metrics extends BaseController
     }
 
     public function storeData($rawData,$machine,$part)
-    { 
+    {
         $MachineWiseDataRaw = [];
         foreach ($machine as $m) {
             //Temporary variable for machine wise data split.......
@@ -470,8 +465,8 @@ class Financial_Metrics extends BaseController
 
         $ref = "MachinewiseOEE";
 
-        // $fromTime = "2022-12-15T09:00:00";
-        // $toTime = "2022-12-15T10:00:00";
+        // $fromTime = "2022-11-21T15:00:00";
+        // $toTime = "2022-11-27T14:00:00";
 
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
@@ -1172,16 +1167,7 @@ class Financial_Metrics extends BaseController
                     foreach ($machineData['production'] as $val) {
                         if ($machine['Machine_ID']==$val['machine_id'] AND $part['part_id']==$val['part_id']) {
                             $corrected_tpp = (int)$val['production']+(int)($val['corrections']);
-
-                            $tnict=0;
-                            $mnict = explode(".", $part['NICT']);
-                            if (sizeof($mnict)>1) {
-                                $tnict = (($mnict[0]/60)+($mnict[1]/1000));
-                            }else{
-                                $tnict = ($mnict[0]/60);
-                            }
-
-                            $ctpNICT = ($tnict)*$corrected_tpp;
+                            $ctpNICT = ($part['NICT']/60)*$corrected_tpp;
                             $corrected_tppNICT = $corrected_tppNICT+$ctpNICT;
                         }
                     }
@@ -1376,14 +1362,7 @@ class Financial_Metrics extends BaseController
                         if ($machine['Machine_ID']==$val['machine_id'] AND $part['part_id']==$val['part_id']) {
                             $TCorrected = (int)$val['production']+((int)($val['corrections']));
                             $quality = $quality +($part['part_price']*$val['rejections']);
-
-                            $NICT=0;
-                            $mnict = explode(".", $part['NICT']);
-                            if (sizeof($mnict)>1) {
-                                $NICT = (($mnict[0]/60)+($mnict[1]/1000));
-                            }else{
-                                $NICT = ($mnict[0]/60);
-                            }
+                            $NICT = $part['NICT']/60;
                             $NICTCorrectTPP = (($TCorrected*$NICT)+$NICTCorrectTPP);
                             $QualityDuration=$QualityDuration+($NICT*$val['rejections']);
                         }
@@ -1513,14 +1492,7 @@ class Financial_Metrics extends BaseController
                         if ($machine['Machine_ID']==$val['machine_id'] and $part['part_id']==$val['part_id']) {
                             $TCorrected = (int)$val['production']+(int)($val['corrections']);
                             $qualityopportunity = $qualityopportunity +($part['part_price']*$val['rejections']);
-                            $NICT=0;
-                            $mnict = explode(".", $part['NICT']);
-                            if (sizeof($mnict)>1) {
-                                $NICT = (($mnict[0]/60)+($mnict[1]/1000));
-                            }else{
-                                $NICT = ($mnict[0]/60);
-                            }
-                            
+                            $NICT = $part['NICT']/60;
                             $NICTCorrectTPP = (($TCorrected*$NICT)+$NICTCorrectTPP);
                             $qualityDurationTmp=$qualityDurationTmp+($NICT*$val['rejections']);
 
@@ -1932,13 +1904,7 @@ class Financial_Metrics extends BaseController
                         if ($machine['Machine_ID']==$val['machine_id'] AND $part['part_id']==$val['part_id'] AND $val['shift_date']==$d['date']) {
                             $TCorrected = (int)$val['production']+(int)($val['corrections']);
                             $qualityopportunity = $qualityopportunity +($part['part_price']*$val['rejections']);
-                            $NICT=0;
-                            $mnict = explode(".", $part['NICT']);
-                            if (sizeof($mnict)>1) {
-                                $NICT = (($mnict[0]/60)+($mnict[1]/1000));
-                            }else{
-                                $NICT = ($mnict[0]/60);
-                            }
+                            $NICT = $part['NICT']/60;
                             $NICTCorrectTPP = (($TCorrected*$NICT)+$NICTCorrectTPP);
 
                             $MachinePLQDuration=$MachinePLQDuration+($NICT*$val['rejections']);
@@ -2168,13 +2134,8 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days)
                                 $NICT = 0;
                                 foreach ($partDetails as $partVal) {
                                     if ($p['part_id'] == $partVal['part_id']) {
-
-                                        $mnict = explode(".", $partVal['NICT']);
-                                        if (sizeof($mnict)>1) {
-                                            $NICT = (($mnict[0]/60)+($mnict[1]/1000));
-                                        }else{
-                                            $NICT = ($mnict[0]/60);
-                                        }
+                                        // $NICT = number_format($partVal['NICT']/60,2);
+                                        $NICT = number_format(($partVal['NICT']/60),2);
                                     }
                                 }
                                 $corrected_tpp = (int)$product['production']+(int)($product['corrections']);
@@ -2333,16 +2294,7 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days)
                     foreach ($machineData['production'] as $val) {
                         if ($machine['Machine_ID']==$val['machine_id'] AND $part['part_id']==$val['part_id']) {
                             $corrected_tpp = (int)$val['production']+(int)($val['corrections']);
-
-                            $NICT = 0;
-                            $mnict = explode(".", $part['NICT']);
-                            if (sizeof($mnict)>1) {
-                                $NICT = (($mnict[0]/60)+($mnict[1]/1000));
-                            }else{
-                                $NICT = ($mnict[0]/60);
-                            }
-
-                            $ctpNICT = ($NICT)*$corrected_tpp;
+                            $ctpNICT = ($part['NICT']/60)*$corrected_tpp;
                             $corrected_tppNICT = $corrected_tppNICT+$ctpNICT;
                         }
                     }
