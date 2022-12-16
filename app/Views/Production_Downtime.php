@@ -346,7 +346,7 @@ input[type=number] {
 
           <!--  -->
           <div class="tableContent downtimeHeader" style="display: none;top:20rem">
-            <div class="settings_machine_header sticky-top fixtabletitle" style="position:fixed;left:4.5rem;right:0;top:20rem;">
+            <div class="settings_machine_header sticky-top fixtabletitle" style="position:fixed;left:4.5rem;right:0;top:21rem;">
                 <div class="row paddingm">
                     <div class="col-sm-1 p3 paddingm">
                       <p class="basic_header">START TIME</p>
@@ -379,9 +379,9 @@ input[type=number] {
             </div>
 
           <!-- Graph split content will be displayed in this div -->
-        <div class="contentMachine paddingm " style="margin-top:13.3rem;">
+        <div class="contentMachine paddingm " style="margin-top:14.3rem;">
           <div class="split_input"></div>
-        </div> 
+        </div>
       </div> 
 
       <!-- preloader -->
@@ -522,7 +522,8 @@ const index_arr = new Array();
 var split_second=0;
 
 var check_count= 0;
-//alert(UserSiteRef);
+
+var overall_duration_value =0;
 
 // graph and records part id to change part name 
 function getpartnames_graph(tmp_part_id_arr){
@@ -873,7 +874,7 @@ $(document).on("click", ".deleteRec", function(){
         }
     // alert("Start ="+startTime+"Duration ="+duration+" End ="+endTime);
     // alert(refValSPlit);
-    const tmp_arr = [machineEventIdRef,endTime,duration,refValSPlit,startTime];        
+    const tmp_arr = [machineEventIdRef,endTime,duration,refValSPlit,startTime];    
     // Update after Delete......
       $.ajax({
         url: "<?php echo base_url('PDM_controller/deleteSPlit'); ?>",
@@ -888,16 +889,15 @@ $(document).on("click", ".deleteRec", function(){
           Start_time:startTime,
         },
         success:function(res){
-          console.log(res);
           alert("Record removed!!");
-          getSplittedData(machineEventIdRef,svalue);
+          getSplittedData(machineEventIdRef,overall_duration_value);
           getDownTimeGraph();
           getTotalCount();
           $("#overlay").fadeOut(300);
         },
         error:function(err){
           alert("Something went wrong!!");
-          getSplittedData(machineEventIdRef,svalue);
+          getSplittedData(machineEventIdRef,overall_duration_value);
           getDownTimeGraph();
           getTotalCount();
           $("#overlay").fadeOut(300);
@@ -1441,6 +1441,7 @@ function getDownTimeGraph(){
                         var part_name_tooltip = config.config.series[inval].part_Name;
                         machineEventIdRef = config.config.series[inval].machineEvent;
                         var durationVal = config.config.series[inval].duration;
+                        overall_duration_value = svalue;
 
                         if ((parseInt(durationVal) >= 0) && (parseInt(access_control)>1) ) {
                           $.ajax({
@@ -1646,7 +1647,6 @@ function getDownTimeGraph(){
   tmpArrEnd=[];
   $(document).on('click','.splitclick',function(){
     $("#overlay").fadeIn(300);
-
     //Total record(row) count....
     var count = $('.splitclick');
     //Index value of splitted row.....
@@ -1809,7 +1809,7 @@ function getDownTimeGraph(){
           data_array=[];
           split_ref =[];
           down_notes =[]; 
-          getSplittedData(machineEventIdRef,svalue);
+          getSplittedData(machineEventIdRef,overall_duration_value);
           getDownTimeGraph();
           getTotalCount();
         }
@@ -1818,7 +1818,7 @@ function getDownTimeGraph(){
           data_array=[];
           split_ref =[];    
           down_notes = []; 
-          getSplittedData(machineEventIdRef,svalue);
+          getSplittedData(machineEventIdRef,overall_duration_value);
           getDownTimeGraph();
           getTotalCount();
         }
@@ -1957,24 +1957,6 @@ $(document).on('click','.doneEdit',function(){
         });
 
     notes = data_notes[index];
-
-    //To identify the toolchangeover
-    // if ((parseInt(current_data.reason) == parseInt(reason)) && (parseInt(reason)==2 || parseInt(reason)==3)) {
-    //   partname =current_data.part;
-    //   toolname =current_data.tool;
-    // }
-    // else if ((parseInt(current_data.reason) != parseInt(reason)) && (parseInt(reason)!=2 || parseInt(reason)!=3)) {
-    //   partname =current_data.part;
-    //   toolname =current_data.tool;
-    // }
-    // else if ((parseInt(reason)!=2 || parseInt(reason)!=3)) {
-    //   partname =current_data.part;
-    //   toolname =current_data.tool;
-    // }
-    // just printing element
-    console.log("category downtime:\t"+category+"\n reason:\t"+reason+"\n tool name:\t"+toolname+"\n part Name:\t"+part_arr+"\n machine ref:\t"+machineEventRef+"\n split ref:\t"+splitRef+"\nmachine id:\t"+machineID_ref+"\n shift date ref:\t"+shift_date_ref+"\n shift ref:\t"+shift_Ref+"\n notes:\t"+notes);
-    console.log("Part Array:\n");
-    console.log(part_arr);
     if(parseInt(part_arr.length) === 0){
       part_arr = "empty";
     }
@@ -2005,7 +1987,7 @@ $(document).on('click','.doneEdit',function(){
         data_time=[];
         data_array=[];
         split_ref =[];     
-        getSplittedData(machineEventIdRef,svalue);
+        getSplittedData(machineEventIdRef,overall_duration_value);
         getDownTimeGraph();
         getTotalCount();
         $("#overlay").fadeOut(300);
@@ -2015,7 +1997,7 @@ $(document).on('click','.doneEdit',function(){
         data_time=[];
         data_array=[];
         split_ref =[];     
-        getSplittedData(machineEventIdRef,svalue);
+        getSplittedData(machineEventIdRef,overall_duration_value);
         getDownTimeGraph();
         getTotalCount();
         $("#overlay").fadeOut(300);
@@ -2034,7 +2016,7 @@ $(document).on('click','.doneEdit',function(){
           var remain_value;
           //len_split = parseInt(len_split) - 1;
           // overall_value = parseInt(overall_value) - parseInt(len_split);
-          var m =overall_value-(len_split-1);
+          var m =overall_duration_value-(len_split-1);
           //condition check whethere total duration for that particular value is less for new enterd total value
           if (vale > m) {
             alert('Maximum split reached!');
