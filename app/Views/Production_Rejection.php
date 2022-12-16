@@ -770,24 +770,26 @@ $(document).ready(function(){
         var pattern = $('.RejectCount')[index1].value;
         var msg = "";
         document.getElementsByClassName('reject_count_err').textContent = msg;
-        if (pattern > 0) {
-            var max_reject = $('.EditReject_submit').attr("max_val");
-            var rcount = $('.RejectCount').length;
-            const myarr = [];
-            var array_sum_rcount=0;
-            for (var i = 0; i < rcount; i++) {
-                var re_count =  document.getElementsByClassName('RejectCount')[i].value;
-                myarr.push(re_count);
-                if(re_count!="" && re_count >0){
-                    array_sum_rcount = (array_sum_rcount)+parseInt(re_count);
-                    re_count = Math.trunc(re_count);
-                    $('.RejectCount:eq('+i+')').val(re_count);
-                    document.getElementsByClassName('reject_count_err')[i].textContent ="";
-                }
-                else{
-                    $('.EditReject_submit').attr("disabled",true);
-                }
+
+        var max_reject = $('.EditReject_submit').attr("max_val");
+        var rcount = $('.RejectCount').length;
+        const myarr = [];
+        var array_sum_rcount=0;
+        for (var i = 0; i < rcount; i++) {
+            var re_count =  document.getElementsByClassName('RejectCount')[i].value;
+            myarr.push(re_count);
+            if(re_count!="" && re_count >0){
+                array_sum_rcount = (array_sum_rcount)+parseInt(re_count);
+                re_count = Math.trunc(re_count);
+                $('.RejectCount:eq('+i+')').val(re_count);
+                document.getElementsByClassName('reject_count_err')[i].textContent ="";
             }
+            else{
+                $('.EditReject_submit').attr("disabled",true);
+            }
+        }
+
+        if (pattern >= 0) {
             if (parseInt(array_sum_rcount) <= parseInt(max_reject)) {
                 $('#TotalRejets').text(array_sum_rcount);
                 msg = "";
@@ -803,7 +805,7 @@ $(document).ready(function(){
             msg = "*Required field";
             $('.EditReject_submit').attr("disabled",true);   
         }
-        else if (parseInt(pattern) <0) {
+        else if (parseInt(pattern) < 0) {
             msg = "*Positive value only allowed";
             $('.EditReject_submit').attr("disabled",true);
         }
@@ -812,6 +814,10 @@ $(document).ready(function(){
             $('.EditReject_submit').attr("disabled",true);
         }
         document.getElementsByClassName('reject_count_err')[index1].textContent = msg;
+    });
+
+    $(document).on('change','.RejectReason',function(event){
+        $('.EditReject_submit').removeAttr("disabled");
     });
 
     // edit rejection count reasons submission function
@@ -834,59 +840,74 @@ $(document).ready(function(){
             var array_sum_rcount = rcount.reduce(function(a, b){
                 return parseInt(a) + parseInt(b);
             }, 0);
-            var validate_count_max = $('#MaxReject').text();
-            var start_time = $('#FromTime').text();
-            var shift = $('#RejectShift').val();
-            var s = shift.split("");
-            shift = s[0];
-    
-            var shift_date = $('#RejectShiftDate').val();
-            const shift_arr = shift_date.split('/');
-            var shift_date_edit = shift_arr[2]+'-'+shift_arr[0]+'-'+shift_arr[1];
-            var partid = $('#PID').attr("part_data");
-            var note = $('#Notes').val();
-            // var note = ($('#Notes').val().trim() != "" ? $('#Notes').val():null);
-            var machine_id = $('#MName').attr("machine_data");
-            // console.log("notes:\t"+note);
-            // console.log("myarr:\t"+myarr);
-            // console.log("rcount:\t"+rcount);
-            // console.log("shift:\t"+shift);
-            // console.log("shift date:\t"+shift_date_edit);
-            // console.log("partid"+partid);
-            // console.log("start_time"+start_time);
-            // console.log("machine id"+machine_id);
-            // console.log("array sum count"+array_sum_rcount);
-            // console.log("valid_count"+validate_count_max);
-       
-            if (parseInt(array_sum_rcount) <= parseInt(validate_count_max) ) {
-                $.ajax({
-                    url: "<?php echo base_url('PDM_controller/reject_form_func'); ?>",
-                    method:"POST",
-                    dataType:'json',
-                    data:{
-                        note:note,
-                        reason:myarr,
-                        rcount:rcount,
-                        shift:shift,
-                        shift_date:shift_date_edit,
-                        partid:partid,
-                        start_time:start_time,
-                        machine_id:machine_id,
-                    },
-                    success:function(data){
-                       selection_data();
-                    }                
-                });  
-                $('#EditQualityModal').modal('hide');      
-                $("#overlay").fadeOut(300);     
-            }else{
-                for(var i=0;i<reason;i++){
-                    var reason_err = document.getElementsByClassName('RejectCount')[i].value;
-                    if (reason_err == "") {
-                        document.getElementsByClassName('reject_count_err')[i].textContent = '*Required field';
+
+            var flag=0;
+            for(var x=0;x<rcount.length;x++){
+                if (rcount[x] < 0) {
+                    flag=1;
+                    msg = "*Positive value only allowed";
+                    $('.EditReject_submit').attr("disabled",true);
+                    document.getElementsByClassName('reject_count_err')[x].textContent = msg;
+                }
+            }
+            if (rcount.length > 1) {
+                var al = rcount.length;
+                for(var x=0;x<al;x++){
+                    if (parseInt(rcount[x]) == 0) {
+                        rcount.splice(x, 1);
+                        myarr.splice(x, 1);
                     }
                 }
-                $("#overlay").fadeOut(300);   
+            }
+            if (rcount.length > 0 && flag==0) {
+                var validate_count_max = $('#MaxReject').text();
+                var start_time = $('#FromTime').text();
+                var shift = $('#RejectShift').val();
+                var s = shift.split("");
+                shift = s[0];
+        
+                var shift_date = $('#RejectShiftDate').val();
+                const shift_arr = shift_date.split('/');
+                var shift_date_edit = shift_arr[2]+'-'+shift_arr[0]+'-'+shift_arr[1];
+                var partid = $('#PID').attr("part_data");
+                var note = $('#Notes').val();
+                // var note = ($('#Notes').val().trim() != "" ? $('#Notes').val():null);
+                var machine_id = $('#MName').attr("machine_data");
+           
+                if (parseInt(array_sum_rcount) <= parseInt(validate_count_max) ) {
+                    $.ajax({
+                        url: "<?php echo base_url('PDM_controller/reject_form_func'); ?>",
+                        method:"POST",
+                        dataType:'json',
+                        data:{
+                            note:note,
+                            reason:myarr,
+                            rcount:rcount,
+                            shift:shift,
+                            shift_date:shift_date_edit,
+                            partid:partid,
+                            start_time:start_time,
+                            machine_id:machine_id,
+                        },
+                        success:function(data){
+                            selection_data();
+                        }                
+                    });  
+                    $('#EditQualityModal').modal('hide');      
+                    $("#overlay").fadeOut(300);     
+                }else{
+                    for(var i=0;i<reason;i++){
+                        var reason_err = document.getElementsByClassName('RejectCount')[i].value;
+                        if (reason_err == "") {
+                            document.getElementsByClassName('reject_count_err')[i].textContent = '*Required field';
+                        }
+                    }
+                    $("#overlay").fadeOut(300);   
+                }
+            }
+            else{
+                $('.EditReject_submit').attr("disabled",true);
+                $("#overlay").fadeOut(300);
             }
         }else{
             $('.EditReject_submit').attr("disabled",true);
