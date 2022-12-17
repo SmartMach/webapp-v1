@@ -342,7 +342,7 @@ function  gedt_correction_data(){
                         +'</div>'
                         +'</div>');
                 }
-                else if (item.corrections != null && item.corrections>=0) {
+                else if (item.corrections>=0) {
                     elements = elements.add('<div id="settings_div">'
                     +'<div class="row paddingm">'
                     +'<div class="col-sm-1 col marleft">'
@@ -698,15 +698,12 @@ function correctionCount(){
 
         var first_element = pattern.toString().charAt(0);
 
-        if (parseInt(cval) > 0) {
+        if (parseInt(cval) >= 0) {
             msg = "";
             cval = Math.trunc(cval);
             $('#CorrectionCount').val(cval);
             $("#TotalCorrection").html(cval);
             $('.EditCorrection').removeAttr("disabled");
-        }else if(parseInt(cval) === 0){
-            msg = "*Value should not be zero";
-            $('.EditCorrection').attr("disabled",true);
         }
         else if(parseInt(cval)>= parseInt(mincount)){
             msg = "";

@@ -2093,8 +2093,8 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days)
         // $res = json_decode($result);
         // echo json_encode($res);
 
-        // $fromTime = "2022-12-05T09:00:00";
-        // $toTime = "2022-12-07T18:00:00";
+        // $fromTime = "2022-12-16T09:00:00";
+        // $toTime = "2022-12-16T21:00:00";
 
         $dstart = explode("T", $fromTime);
         $dend= explode("T", $toTime);
@@ -2223,7 +2223,7 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days)
                         $availTEEP = floatval($All-($down['Planned']+$down['Unplanned']+$down['Machine_OFF']))/($All);
                     }
                     // Machine Wise Availability OOE.....
-                    if (floatval($All-$down['Machine_OFF']) < 0) {
+                    if (floatval($All-$down['Machine_OFF']) <= 0) {
                         $availOOE=0;
                     }else{
                         $availOOE = floatval(($All-($down['Planned']+$down['Unplanned']+$down['Machine_OFF']))/($All-$down['Machine_OFF']));
@@ -2244,7 +2244,8 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days)
                     $ov = floatval($ov) + floatval($ooe);
                 }
             }
-            $ov = floatval($pv*$qv*$av);
+
+            $ov = (($pv/sizeof($downtime[0]['data']))*($qv/sizeof($downtime[0]['data']))*($av/sizeof($downtime[0]['data'])))*100;
 
             $timestamp = strtotime($d['date']);
             $m = date('m', $timestamp);
@@ -2253,7 +2254,7 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days)
 
             $date = $dd."-".$m;
 
-            $t = array("date"=>$date,"availability"=>(($av*100)/sizeof($downtime[0]['data'])),"performance"=>(($pv*100)/sizeof($downtime[0]['data'])),"quality"=>(($qv*100)/sizeof($downtime[0]['data'])),"oee"=>(($ov*100)/sizeof($downtime[0]['data'])));
+            $t = array("date"=>$date,"availability"=>(($av*100)/sizeof($downtime[0]['data'])),"performance"=>(($pv*100)/sizeof($downtime[0]['data'])),"quality"=>(($qv*100)/sizeof($downtime[0]['data'])),"oee"=>($ov));
             array_push($data,$t);
         }
         $out = $data;
