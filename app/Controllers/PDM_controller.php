@@ -280,7 +280,11 @@ class PDM_controller extends BaseController{
                 $production_count = $data->production;
             }
             $correction_min = (int)$production_count - (int)$total_reject;
-            $update['correction_min'] = $correction_min;
+            if ($correction_min == 0) {
+                $update['correction_min'] = $correction_min;
+            }else{
+                $update['correction_min'] = -1 * $correction_min;
+            }
             $output = $this->data->updateRejectData($update,$where);
             echo json_encode($output);   
     	}
