@@ -792,7 +792,7 @@ function plopportunity(){
           dataLabels: {
             enabled: true,
             style: {
-              colors: ["#B3D7FF","#FFFFFF"],
+              colors: ["#004A9B","#FFFFFF"],
               fontSize: '15px',
               fontFamily: 'Roboto, Arial, sans-serif',
             },
@@ -850,12 +850,15 @@ function plopportunity(){
                     fontSize: "12px",
                     fontFamily: "Roboto, Arial, sans-serif",
                     fontWeight: "bold",
-                    color: "#BFBFBF ",
+                    color: "#BFBFBF",
                     formatter: function (w) {
-                      return w.globals.seriesTotals.reduce((a, b) => {
-                        var x = parseFloat(a) + parseFloat(b);
-                        return (parseInt(x)).toLocaleString("en-IN")
-                      }, 0)
+                      try {
+                        var a = parseFloat(w.globals.seriesTotals[0]) + w.globals.seriesTotals[1];
+                      }
+                      catch(err) {
+                        var a = parseFloat(w.globals.seriesTotals[0]);
+                      }
+                      return (parseInt(a)).toLocaleString("en-IN");
                     },
                   },
                 },
