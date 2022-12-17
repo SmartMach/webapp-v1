@@ -926,6 +926,8 @@ function plopportunity(){
         colors: [ "#005FC8", "#057CFF","#53A5FF", "#E7F2FF"],
         dataLabels: {
             enabled: true,
+            offsetX: 30,
+            minAngleToShowLabel: 1,
             style: {
               colors: ["#FFFFFF","#FFFFFF","#FFFFFF","#057CFF"],
               fontSize: '13px',
@@ -941,7 +943,7 @@ function plopportunity(){
               blur: 1,
               color: '#000',
               opacity: 0.45
-            }
+            },
           },
         labels: label_data,
         responsive: [{

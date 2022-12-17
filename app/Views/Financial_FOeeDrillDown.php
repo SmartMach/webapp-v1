@@ -1339,7 +1339,19 @@ function qualityOpportunity() {
 
       // res=res["QualityOpportunity"]
       $(".OppCostTotal").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
-      var color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
+      // color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
+      color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
+        "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
+        "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
+        "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
+        "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
+        "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
+        "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
+        "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
+        "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
+        "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
+        "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
+      ];
         
       // Find the Reason Names as Lables..........
       var reasonList =[];
@@ -1417,7 +1429,7 @@ function qualityOpportunity() {
           partWise.Reason.forEach(function(res){
             if (res.TotalCost == "") {
               arr.push(0);
-              a.push(0)
+              a.push(0);
             }
             else{
                 arr.push(res.TotalCost);
