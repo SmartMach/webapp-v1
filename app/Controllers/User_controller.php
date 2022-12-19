@@ -380,18 +380,16 @@ class User_controller extends BaseController
 
     // retrive all user function
     public function getSiteUser(){
-       if($this->request->isAJAX()){      
-
-        $user['user_id'] = $this->request->getVar("SiteUserRef");
-        $user['role'] = $this->request->getVar("role");
-        $user['site_id'] = $this->request->getVar('sitename');
-        // if ($user['site_id'] == "smartories") {
-              
-        //   }  
-        $res = $this->data->getSiteUser($user);
-
-        echo json_encode($res);
-       }
+        if($this->request->isAJAX()){      
+            $user['user_id'] = $this->request->getVar("SiteUserRef");
+            $user['role'] = $this->request->getVar("role");
+            $user['site_id'] = $this->request->getVar('sitename');
+            // $user['user_id'] = "UM1001";
+            // $user['role'] = "Smart Admin";
+            // $user['site_id'] = "smartories";
+            $res = $this->data->getSiteUser($user);
+            echo json_encode($res);
+        }
     }
 
     // retrive particular user details a for edit user and info user

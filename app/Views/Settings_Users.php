@@ -3243,7 +3243,6 @@ var role = "<?php echo($this->data['user_details'][0]['role']); ?>";
 var sitename = "<?php echo($this->data['user_details'][0]['site_id']);  ?>";
 
 //  this ajax function for document ready ajax function
-
 $.ajax({
     url: "<?php echo base_url('User_controller/getSiteUser'); ?>",
     type: 'post',
@@ -3254,7 +3253,7 @@ $.ajax({
         role:role,
         sitename:sitename,
     },
-    success:function(res_Site){     
+    success:function(res_Site){    
         $('.contentUser').empty();
             if (jQuery.isEmptyObject(res_Site)){
                 $('.contentUser').html("<p>No Records Found!</p>");
