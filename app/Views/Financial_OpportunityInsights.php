@@ -672,7 +672,7 @@ $('.fromDate').datetimepicker({
 });
 
 $('.toDate').datetimepicker({
-  format:'Y-m-d H:00:00',
+  format:'Y-m-d H:00',
   onChangeDateTime:checkPastTime,
   onShow:checkPastTime,
   maxDate: new Date()
@@ -681,11 +681,11 @@ $('.toDate').datetimepicker({
 
   var now = new Date();
 
-  var fdate = now.getFullYear()+"-"+("0" + (parseInt(now.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + now.getDate()).slice(-2)+" "+("0" + (now.getHours()-1)).slice(-2)+":00:00";
+  var fdate = now.getFullYear()+"-"+("0" + (parseInt(now.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + now.getDate()).slice(-2)+" "+("0" + (now.getHours()-1)).slice(-2)+":00";
 
   //One week back
   now.setDate(now.getDate() - 6);
-  var tdate = now.getFullYear()+"-"+("0" + (parseInt(now.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + now.getDate()).slice(-2)+" "+("0" + now.getHours()).slice(-2)+":00:00";
+  var tdate = now.getFullYear()+"-"+("0" + (parseInt(now.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + now.getDate()).slice(-2)+" "+("0" + now.getHours()).slice(-2)+":00";
   $('.toDate').val(fdate);
   $('.fromDate').val(tdate);
 
