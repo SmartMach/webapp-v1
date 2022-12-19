@@ -318,6 +318,12 @@
           margin:auto;
         }
 
+        .inr-img{
+          height:14px;
+          width:10px;
+          margin-right:3px
+        }
+
         /* graph height */
        /* #machineWiseInsights{
           max-height:22rem;
@@ -792,7 +798,7 @@ function plopportunity(){
           dataLabels: {
             enabled: true,
             style: {
-              colors: ["#B3D7FF","#FFFFFF"],
+              colors: ["#004A9B","#FFFFFF"],
               fontSize: '15px',
               fontFamily: 'Roboto, Arial, sans-serif',
             },
@@ -850,12 +856,15 @@ function plopportunity(){
                     fontSize: "12px",
                     fontFamily: "Roboto, Arial, sans-serif",
                     fontWeight: "bold",
-                    color: "#BFBFBF ",
+                    color: "#BFBFBF",
                     formatter: function (w) {
-                      return w.globals.seriesTotals.reduce((a, b) => {
-                        var x = parseFloat(a) + parseFloat(b);
-                        return (parseInt(x)).toLocaleString("en-IN")
-                      }, 0)
+                      try {
+                        var a = parseFloat(w.globals.seriesTotals[0]) + w.globals.seriesTotals[1];
+                      }
+                      catch(err) {
+                        var a = parseFloat(w.globals.seriesTotals[0]);
+                      }
+                      return (parseInt(a)).toLocaleString("en-IN");
                     },
                   },
                 },
@@ -890,7 +899,7 @@ function plopportunity(){
                     '<div class="title-bold"><span>'+l+'</span></div>'+
                     '<div class="grid-item title-bold"><span></span></div>'+
                     '<div class="grid-item content-text margin-top"><span>Opportunity Cost</span></div>'+
-                    '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="false"></i>'+parseInt(series[seriesIndex]).toLocaleString("en-IN")+'</span></div>'+
+                    '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<img src="<?php echo base_url()?>/assets/img/inr-logo.png?version=<?php echo rand() ; ?>" class="inr-img">'+parseInt(series[seriesIndex]).toLocaleString("en-IN")+'</span></div>'+
                     '<div class="grid-item content-text"><span>Duration</span></div>'+
                     '<div class="grid-item content-text-val"><span class="values-op">'+days+"d"+" "+hours+"h"+" "+min+"m"+'</span></div>'+
                   '</div>'+
@@ -923,6 +932,8 @@ function plopportunity(){
         colors: [ "#005FC8", "#057CFF","#53A5FF", "#E7F2FF"],
         dataLabels: {
             enabled: true,
+            offsetX: 30,
+            minAngleToShowLabel: 1,
             style: {
               colors: ["#FFFFFF","#FFFFFF","#FFFFFF","#057CFF"],
               fontSize: '13px',
@@ -938,7 +949,7 @@ function plopportunity(){
               blur: 1,
               color: '#000',
               opacity: 0.45
-            }
+            },
           },
         labels: label_data,
         responsive: [{
@@ -970,7 +981,7 @@ function plopportunity(){
                     '<div class="title-bold"><span>'+title+'</span></div>'+
                     '<div class="grid-item title-bold"><span></span></div>'+
                     '<div class="grid-item content-text margin-top"><span>Opportunity Cost</span></div>'+
-                    '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="true"></i>'+parseInt(cost).toLocaleString("en-IN")+'</span></div>'+
+                    '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<img src="<?php echo base_url()?>/assets/img/inr-logo.png?version=<?php echo rand() ; ?>" class="inr-img">'+parseInt(cost).toLocaleString("en-IN")+'</span></div>'+
                     '<div class="grid-item content-text"><span>Duration</span></div>'+
                     '<div class="grid-item content-text-val"><span class="values-op">'+days+"d"+" "+hours+"h"+" "+min+"m"+'</span></div>'+
                   '</div>'+
@@ -980,8 +991,6 @@ function plopportunity(){
         };
         var chart = new ApexCharts(document.getElementById("olichart"), options);
         chart.render();
-
-
     },
     error:function(res){
         // alert("Sorry!Try Agian!!");

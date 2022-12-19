@@ -255,8 +255,10 @@ class PDM_controller extends BaseController{
 	        $i = 0;
 	        $test_arr = array();
 	        foreach ($reject_reason as $reason) {
-                $test_arr[$i] = $reject_count[$i].'&'.$reason;
-                ++$i;
+                if ($reject_count[$i] != 0) {
+                    $test_arr[$i] = $reject_count[$i].'&'.$reason;
+                    ++$i;
+                }
 	        }
             $reject_r = implode('&&', $test_arr);
             $total_reject = array_sum($reject_count);
@@ -273,12 +275,16 @@ class PDM_controller extends BaseController{
             $where['machine_id'] = $machine_id;
 
             $db_rejection = $this->data->getRejection_count($where);
-           foreach($db_rejection as $data){
-               $rejection = $data->rejections;
-               $production_count = $data->production;
-           }
+            foreach($db_rejection as $data){
+                $rejection = $data->rejections;
+                $production_count = $data->production;
+            }
             $correction_min = (int)$production_count - (int)$total_reject;
-            $update['correction_min'] = $correction_min;
+            if ($correction_min == 0) {
+                $update['correction_min'] = $correction_min;
+            }else{
+                $update['correction_min'] = -1 * $correction_min;
+            }
             $output = $this->data->updateRejectData($update,$where);
             echo json_encode($output);   
     	}
