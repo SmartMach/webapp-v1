@@ -470,8 +470,8 @@ class Financial_Metrics extends BaseController
 
         $ref = "MachinewiseOEE";
 
-        // $fromTime = "2022-12-15T09:00:00";
-        // $toTime = "2022-12-15T10:00:00";
+        // $fromTime = "2022-12-16T09:00:00";
+        // $toTime = "2022-12-16T21:00:00";
 
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
@@ -574,8 +574,6 @@ class Financial_Metrics extends BaseController
             
         }
 
-        // echo "<pre>";
-        // print_r($arr['MachineName']);
         // $z=sizeof($arr['OEE'])+1;
         // array_splice($arr['Performance'], 0, 0, (int)$arr['PerformanceTarget'][0]);
         // array_splice($arr['Performance'], $z, 0, (int)$arr['PerformanceTarget'][0]);
@@ -686,7 +684,7 @@ class Financial_Metrics extends BaseController
                                 
                             }
 
-                            if (($DTR['downtime_category'] != 'Planned') and $DTR['downtime_reason'] != 'Machine OFF') {
+                            if ($DTR['downtime_reason'] != 'Machine OFF') {
                                 if (sizeof($st) > 1) {
                                     $PartInMachine = $PartInMachine + $st[0];
                                     $PartInMachineSec = $PartInMachineSec + $st[1];
@@ -1674,8 +1672,8 @@ class Financial_Metrics extends BaseController
         // $res = json_decode($result);
         // echo json_encode($res);
 
-        // $fromTime = "2022-11-21T15:00:00";
-        // $toTime = "2022-11-27T14:00:00";
+        // $fromTime = "2022-12-16T09:00:00";
+        // $toTime = "2022-12-16T21:00:00";
 
         $production = $this->getDataRaw($ref,$fromTime,$toTime);
         $partDetails = $this->Financial->PartDetailsOpportunity();
@@ -1684,6 +1682,9 @@ class Financial_Metrics extends BaseController
         //Difference between two dates......
         $diff = abs(strtotime($toTime) - strtotime($fromTime));
         $AllTime = (int)($diff/60);
+
+        // echo "<pre>";
+        // print_r($production['downtime']);
 
         //Performance Opportunity.........
         $PartWisePL =[];
@@ -1706,10 +1707,10 @@ class Financial_Metrics extends BaseController
                     $PartInMachine = 0;
                     foreach ($production['downtime'] as $down) {
                         if ($down['Machine_ID']==$product['machine_id']) {
-                            foreach ($down['Part_Wise'] as $key => $value) {
+                            foreach ($down['Part_Wise'] as $value) {
                                 $tmpPart = explode(",", $value['part_id']);
                                 // One-tool, multi-part
-                                foreach ($tmpPart as $key => $pt) {
+                                foreach ($tmpPart as $pt) {
                                     if ($part['part_id'] == $pt) {
                                         // $planned = $value['Planed'];
                                         // $unplanned = $value['Unplanned'];
@@ -1719,20 +1720,18 @@ class Financial_Metrics extends BaseController
                             }
                         } 
                     }
-                
-                    $TCorrected = (int)$product['production']+(int)($product['corrections']);
-                    $UMaterialCost  = $part['material_price']*$TCorrected*($part['part_weight']/1000);
-                    $UProductionCost  = ($PartInMachine/60)*$rateHour;
-                    $UTotalPartProducedCost = $UMaterialCost+$UProductionCost;
-                    $GoodRevenu = $part['part_price']*($TCorrected-$product['rejections']);
-                    $ProfitLoss = $GoodRevenu-$UTotalPartProducedCost;
-
-                    $tt=$UMaterialCost + $UProductionCost + $ProfitLoss;
-                    $PartWisePLTmp = array("Part_Id"=>$product['part_id'],"Material_Cost"=>$UMaterialCost,"Production_Cost"=>$UProductionCost,"Profit_Loss"=>$ProfitLoss,"Total"=>$tt);
-                    // $GrandTotal = $GrandTotal + $UMaterialCost + $UProductionCost + $ProfitLoss;
-                    $GrandTotal = $GrandTotal+$ProfitLoss;
 
                     if(count($PartWisePL)<1){
+                        $TCorrected = (int)$product['production']+(int)($product['corrections']);
+                        $UMaterialCost  = $part['material_price']*$TCorrected*($part['part_weight']/1000);
+                        $UProductionCost  = ($PartInMachine/60)*$rateHour;
+                        $UTotalPartProducedCost = $UMaterialCost+$UProductionCost;
+                        $GoodRevenu = $part['part_price']*($TCorrected-$product['rejections']);
+                        $ProfitLoss = $GoodRevenu-$UTotalPartProducedCost;
+                        
+                        $tt=$UMaterialCost + $UProductionCost + $ProfitLoss;
+                        $PartWisePLTmp = array("Part_Id"=>$product['part_id'],"Material_Cost"=>$UMaterialCost,"Production_Cost"=>$UProductionCost,"Profit_Loss"=>$ProfitLoss,"Total"=>$tt);
+                        $GrandTotal = $GrandTotal+$ProfitLoss;
                         array_push($PartWisePL, $PartWisePLTmp);
                     }
                     else{
@@ -1740,10 +1739,22 @@ class Financial_Metrics extends BaseController
                         foreach ($PartWisePL as $key => $value) {
                             if ($PartWisePL[$key]['Part_Id'] == $product['part_id']) {
 
+                                $TCorrected = (int)$product['production']+(int)($product['corrections']);
+                                $UMaterialCost  = $part['material_price']*$TCorrected*($part['part_weight']/1000);
+                                $UProductionCost  = 0;
+                                $UTotalPartProducedCost = $UMaterialCost+$UProductionCost;
+                                $GoodRevenu = $part['part_price']*($TCorrected-$product['rejections']);
+                                $ProfitLoss = $GoodRevenu-$UTotalPartProducedCost;
+                                
+                                $tt=$UMaterialCost + $UProductionCost + $ProfitLoss;
+                                $PartWisePLTmp = array("Part_Id"=>$product['part_id'],"Material_Cost"=>$UMaterialCost,"Production_Cost"=>$UProductionCost,"Profit_Loss"=>$ProfitLoss,"Total"=>$tt);
+                                $GrandTotal = $GrandTotal+$ProfitLoss;
+
+                                //Part-wise update.....
                                 $t = $PartWisePL[$key]['Material_Cost'] + $UMaterialCost ;
                                 $PartWisePL[$key]['Material_Cost'] =$t;
-                                $m = $PartWisePL[$key]['Production_Cost'] + $UProductionCost ;
-                                $PartWisePL[$key]['Production_Cost'] = (int)$m;
+                                // $m = $PartWisePL[$key]['Production_Cost'] + $UProductionCost ;
+                                // $PartWisePL[$key]['Production_Cost'] = (int)$m;
                                 $n = $PartWisePL[$key]['Profit_Loss'] + $ProfitLoss ;
                                 $PartWisePL[$key]['Profit_Loss'] = $n;
                                 $total = $PartWisePL[$key]['Total'] + $tt ;
@@ -1753,6 +1764,16 @@ class Financial_Metrics extends BaseController
                             }
                         }
                         if ($k == 0) {
+                            $TCorrected = (int)$product['production']+(int)($product['corrections']);
+                            $UMaterialCost  = $part['material_price']*$TCorrected*($part['part_weight']/1000);
+                            $UProductionCost  = ($PartInMachine/60)*$rateHour;
+                            $UTotalPartProducedCost = $UMaterialCost+$UProductionCost;
+                            $GoodRevenu = $part['part_price']*($TCorrected-$product['rejections']);
+                            $ProfitLoss = $GoodRevenu-$UTotalPartProducedCost;
+                            
+                            $tt=$UMaterialCost + $UProductionCost + $ProfitLoss;
+                            $PartWisePLTmp = array("Part_Id"=>$product['part_id'],"Material_Cost"=>$UMaterialCost,"Production_Cost"=>$UProductionCost,"Profit_Loss"=>$ProfitLoss,"Total"=>$tt);
+                            $GrandTotal = $GrandTotal+$ProfitLoss;
                             array_push($PartWisePL, $PartWisePLTmp);
                         }
                     }
