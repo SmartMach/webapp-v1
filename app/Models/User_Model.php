@@ -317,28 +317,7 @@ class User_Model extends Model{
         $su = "Smart Users";
         $site_admin = "Site Admin";
         if ($user['site_id'] == "smartories") {
-
-            // $query = $db->table('user');
-            // $query->select('*');
-            // $query->where('user_id',$user['user_id']);
-            // $res = $query->get()->getResultArray();
-
-        // foreach ($res as $row) {
-        //     $site_id = $row['site_id'];
-        // }
-
-        //return $site_id;
-
-
             if ($user['role'] == "Smart Admin") {
-
-                // $build = $db->table('user');
-                // $build->select('*');
-                // // $build->where('role',$su);
-                // $build->where('role !=',$sa);
-                // $build->where('site_id',$site_id);
-                // $output = $build->get()->getResultArray();
-
                 $build = $db->table('user as u');
                 $build->select('u.* , user_access.*');
                 $build->where('role !=',$sa);
@@ -350,9 +329,6 @@ class User_Model extends Model{
                     $output[$i]['site_name'] = $site_name;
                 }
                 return $output;
-
-
-               // return "Smart Admin";
             }else  {
                 $build1 = $db->table('user as u');
                 $build1->select('u.* , user_access.*');
