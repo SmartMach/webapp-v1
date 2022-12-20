@@ -402,7 +402,7 @@
                 <ul class="side-menu">
                         <li class="side-menu-li d-flex" style="margin-top:2rem;">
                             <a href="#">
-                                <i class="fa fa-line-chart nav-icon nav-icon-hover " style="font-size: 23px;" dvalue="Financial" alt="Financial"></i>
+                                <i class="fa fa-line-chart nav-icon nav-icon-hover " style="font-size: 23px;padding:9px" dvalue="Financial" alt="Financial"></i>
                             </a>
                             <i class="fa fa-ellipsis-v icons-menu icon-font_first icon-font-js"></i>
                             <ul>
@@ -433,7 +433,7 @@
                         </li>
                         <li class="side-menu-li d-flex">
                             <a href="#">
-                                <i class="fa fa-industry nav-icon after-industry nav-icon-hover" dvalue="Production" style="font-size: 25px;" alt="Production"></i>
+                                <i class="fa fa-industry nav-icon after-industry nav-icon-hover" dvalue="Production" style="font-size: 25px;padding:9px" alt="Production"></i>
                             </a>
                             <i class="fa fa-ellipsis-v icons-menu icon-font1 icon-font-js"></i>
                             <ul>
@@ -490,7 +490,7 @@
 
                         <li class="side-menu-li d-flex ">
                             <a href="#">
-                                <i class="fa fa-gear nav-icon  nav-icon-hover" dvalue="Settings" style="font-size: 29px;" alt="Settings"></i>
+                                <i class="fa fa-gear nav-icon nav-icon-hover" dvalue="Settings" style="font-size: 29px;padding:9px" alt="Settings"></i>
                             </a>
                             <i class="fa fa-ellipsis-v icons-menu icon-font_last icon-font-js" style=""></i>
                             <ul>
@@ -578,24 +578,20 @@
             var icon_name = listIcons[i].getAttribute("class");
 
             const split_nav = icon_name.split(" ");
-            // alert("navigation :\t"+split_nav[1]);
             if (split_nav[1] === "fa-line-chart") {
-                // alert('fixed');
-                listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:24px;padding:0px;";
-                actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 1px;font-weight:500;";
+                listIcons[i].style = "background-color:#005abc;color:white;font-size:23px;padding:9px;";
+                // actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 1px;font-weight:500;";
             }else if(split_nav[1] === "fa-gear"){
-                listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:30px;padding:0px;";
-                actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 1px;font-weight:500;";
+                listIcons[i].style = "background-color:#005abc;color:white;font-size:29px;padding:9px;";
+                // actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 1px;font-weight:500;";
             }else if(split_nav[1] === "fa-industry"){
-                listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:25px;padding:0px;";
-                actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 1px;font-weight:500;";
+                listIcons[i].style = "background-color:#005abc;color:white;font-size:25px;padding:9px;";
+                // actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 1px;font-weight:500;";
             }
             else{
-                listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:30px;padding:0px;";
-                actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 6px;font-weight:500;";
+                listIcons[i].style = "background-color:#005abc;color:white;font-size:29px;padding:9px;";
+                // actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 6px;font-weight:500;";
             }
-           
-          
         }
       }
         for (var i = 0; i < listSubMenu.length; i++) {

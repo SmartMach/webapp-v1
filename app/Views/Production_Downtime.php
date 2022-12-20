@@ -293,7 +293,7 @@ input[type=number] {
               </div>
           </div>
         </nav>
-        <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav">
+        <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav_downtime">
           <div class="container-fluid paddingm " style="margin-top:2.2rem;">
               <div>
                 <span class="float-start paddingm labelAlign center-align p4"><div class="labelGraph" style="background: #01bb55"></div><p class="paddingm p3">Active</p></span>
@@ -346,7 +346,7 @@ input[type=number] {
 
           <!--  -->
           <div class="tableContent downtimeHeader" style="display: none;top:20rem">
-            <div class="settings_machine_header sticky-top fixtabletitle" style="position:fixed;left:4.5rem;right:0;top:21rem;">
+            <div class="settings_machine_header sticky-top" style="position:fixed;left:4.5rem;right:0;top:19rem;margin-left: 0.5rem;margin-right: 0.5rem;">
                 <div class="row paddingm">
                     <div class="col-sm-1 p3 paddingm">
                       <p class="basic_header">START TIME</p>
@@ -379,7 +379,7 @@ input[type=number] {
             </div>
 
           <!-- Graph split content will be displayed in this div -->
-        <div class="contentMachine paddingm " style="margin-top:14.3rem;">
+        <div class="contentMachine paddingm " style="margin-top:12.3rem;">
           <div class="split_input"></div>
         </div>
       </div> 
@@ -1404,8 +1404,7 @@ function getDownTimeGraph(){
                     series: graph_Data,
                     chart: {
                     type: 'bar',
-                    //height: 80,
-                    height: 100,
+                    height: 70,
                     stacked: true,
                     stackType: '100%',
                     sparkline: {
@@ -1526,6 +1525,7 @@ function getDownTimeGraph(){
                   plotOptions: {
                     bar: {
                       horizontal: true,
+                       barHeight: '100%',
                     },
                   },
                   xaxis: {
