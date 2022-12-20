@@ -82,12 +82,12 @@ label{
 
 .nav-icon{
     color: #005abc;
-    /*padding: 6px;*/
-    font-size: 20px;
+    padding: 9px;
     border-radius: 5px 5px 5px 5px;
 }
 .nav-icon:hover{
-    background: #eff7ff;
+  padding: 9px;
+  background: #eff7ff;
 }
 .icons-menu{
     font-size: 1.3rem;
@@ -123,7 +123,12 @@ label{
 }
 .fixinnersubnav{
   top: 7.8rem;
-  /*overflow:hidden;*/
+  z-index: 1000;
+  white-space: nowrap;
+  background: #fff;
+}
+.fixinnersubnav_downtime{
+  top: 6.8rem;
   z-index: 1000;
   white-space: nowrap;
   background: #fff;
