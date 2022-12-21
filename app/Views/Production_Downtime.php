@@ -1416,110 +1416,112 @@ function getDownTimeGraph(){
                     },
                     events:{
                       click:function(event, chartContext, config){
-                        $('.split_input').empty();
-                        //function for find the split records
-                        $("#overlay").fadeIn(300);
-                        $('.split_input').empty();  
-                        var access_control = <?php  echo $this->data['access'][0]['production_data_management']; ?>;
-                        // alert(parseInt(access_control));
-                        count_click = 0;
-                        index_arr.length=0;
-                        data_notes.length=0;
-                        //Commented for checking...........
-                        // DownReason();
-                        // DownTool(); 
-                        // DownPart();
-                                
-                        //console.log(config);
-                        var inval = config.seriesIndex;
-                        var svalue = config.config.series[inval].data[config.dataPointIndex];
-                        var sname = config.config.series[inval].name;
-                        var start = config.config.series[inval].start;
-                        var end = config.config.series[inval].end;
-                        var machineEventRef = config.config.series[inval].machineEvent;
-                        var machine_Name_Tooltip = config.config.series[inval].machine_Name;
-                        var part_name_tooltip = config.config.series[inval].part_Name;
-                        machineEventIdRef = config.config.series[inval].machineEvent;
-                        var durationVal = config.config.series[inval].duration;
-                        overall_duration_value = svalue;
+                        if (config.seriesIndex >= 0) {
+                          $('.split_input').empty();
+                          //function for find the split records
+                          $("#overlay").fadeIn(300);
+                          $('.split_input').empty();  
+                          var access_control = <?php  echo $this->data['access'][0]['production_data_management']; ?>;
+                          // alert(parseInt(access_control));
+                          count_click = 0;
+                          index_arr.length=0;
+                          data_notes.length=0;
+                          //Commented for checking...........
+                          // DownReason();
+                          // DownTool(); 
+                          // DownPart();
+                                  
+                          //console.log(config);
+                          var inval = config.seriesIndex;
+                          var svalue = config.config.series[inval].data[config.dataPointIndex];
+                          var sname = config.config.series[inval].name;
+                          var start = config.config.series[inval].start;
+                          var end = config.config.series[inval].end;
+                          var machineEventRef = config.config.series[inval].machineEvent;
+                          var machine_Name_Tooltip = config.config.series[inval].machine_Name;
+                          var part_name_tooltip = config.config.series[inval].part_Name;
+                          machineEventIdRef = config.config.series[inval].machineEvent;
+                          var durationVal = config.config.series[inval].duration;
+                          overall_duration_value = svalue;
 
-                        if ((parseInt(durationVal) >= 0) && (parseInt(access_control)>1) ) {
-                          $.ajax({
-                            url: "<?php echo base_url('PDM_controller/findSplit'); ?>",
-                            type: "POST",
-                            dataType: "json",
-                            data:{
-                              ref:machineEventRef, 
-                            },
-                            success:function(res){
-                              data_time=[];
-                              data_array=[];
-                              split_ref =[];
-                              data_notes = [];
-                              machineOFFTotal=0;
-                              UnnamedTotal=0;
-                              calendar_array = [];
-                              if (((res['value'].length > 0) && (sname == "Inactive")) || ((res['value'].length > 0) && (sname == "Machine OFF"))) {
-                                
-                                var z = 0;
-                                res['value'].forEach(function(item){
-                                  calendar_array.push(item.calendar_date);
-                                  var notes = item.notes;
-                                  var downReason = item.downtime_reason_id;
-                                  // if ((sname != "Active")||(sname != "No Data")&&(item.split_duration >=1) ) {
+                          if ((parseInt(durationVal) >= 0) && (parseInt(access_control)>1) ) {
+                            $.ajax({
+                              url: "<?php echo base_url('PDM_controller/findSplit'); ?>",
+                              type: "POST",
+                              dataType: "json",
+                              data:{
+                                ref:machineEventRef, 
+                              },
+                              success:function(res){
+                                data_time=[];
+                                data_array=[];
+                                split_ref =[];
+                                data_notes = [];
+                                machineOFFTotal=0;
+                                UnnamedTotal=0;
+                                calendar_array = [];
+                                if (((res['value'].length > 0) && (sname == "Inactive")) || ((res['value'].length > 0) && (sname == "Machine OFF"))) {
+                                  
+                                  var z = 0;
+                                  res['value'].forEach(function(item){
+                                    calendar_array.push(item.calendar_date);
+                                    var notes = item.notes;
+                                    var downReason = item.downtime_reason_id;
+                                    // if ((sname != "Active")||(sname != "No Data")&&(item.split_duration >=1) ) {
 
-                                  // if ((sname == "Inactive")) {
-                                    $('.downtimeHeader').css("display","block");
-                                    shiftStartTime = start ;
+                                    // if ((sname == "Inactive")) {
+                                      $('.downtimeHeader').css("display","block");
+                                      shiftStartTime = start ;
 
-                                    data_time.push(item.start_time);
-                                    data_time.push(item.end_time);
-                                    data_array.push(item.split_duration);
-                                    split_ref.push(item.split_id);
-                                    data_notes.push(item.notes);
+                                      data_time.push(item.start_time);
+                                      data_time.push(item.end_time);
+                                      data_array.push(item.split_duration);
+                                      split_ref.push(item.split_id);
+                                      data_notes.push(item.notes);
+                                      
+                                      var reason = findDownReason(item.downtime_reason_id);
+                                      //Draw Graph
+                                      partid = item.part_id;
+                                      toolid = item.tool_id;
+                                      downtime_reason_id = item.downtime_reason_id;
+                                      // console.log("tool id:\t"+toolid);
+                                      //var last_updated_by = res[]
                                     
-                                    var reason = findDownReason(item.downtime_reason_id);
-                                    //Draw Graph
-                                    partid = item.part_id;
-                                    toolid = item.tool_id;
-                                    downtime_reason_id = item.downtime_reason_id;
-                                    // console.log("tool id:\t"+toolid);
-                                    //var last_updated_by = res[]
-                                  
-                                    // alert(downtime_reason_id);
-                                    drawGraph(item.start_time,item.split_duration,item.end_time,item.machine_event_id,item.notes,reason,partid,toolid,item.split_id,item.last_updated_by,item.last_updated_on);
+                                      // alert(downtime_reason_id);
+                                      drawGraph(item.start_time,item.split_duration,item.end_time,item.machine_event_id,item.notes,reason,partid,toolid,item.split_id,item.last_updated_by,item.last_updated_on);
 
-                                    $(".delete-split:eq(0)").css("display","none");
-                                    $(".circleMatch:eq(0)").css("display","block");
-                                  
-                                    machineEventIdRef = item.machine_event_id ;
-                                    overall_value = svalue;
-                                  // }
-                                  // else {
-                                  //   $('.downtimeHeader').css("display","none");
-                                  // }
+                                      $(".delete-split:eq(0)").css("display","none");
+                                      $(".circleMatch:eq(0)").css("display","block");
+                                    
+                                      machineEventIdRef = item.machine_event_id ;
+                                      overall_value = svalue;
+                                    // }
+                                    // else {
+                                    //   $('.downtimeHeader').css("display","none");
+                                    // }
 
-                                  //function for retrive data......
-                                  DownReasonUpdate(z,reason,downtime_reason_id);
-                                  DownToolUpdate(z,toolid);
-                                  DownPartUpdate(z,partid,toolid);
-                                  z=parseInt(z)+1;
-                                  
-                                });
+                                    //function for retrive data......
+                                    DownReasonUpdate(z,reason,downtime_reason_id);
+                                    DownToolUpdate(z,toolid);
+                                    DownPartUpdate(z,partid,toolid);
+                                    z=parseInt(z)+1;
+                                    
+                                  });
 
+                                }
+                                else {
+                                      $('.downtimeHeader').css("display","none");
+                                }
+                              },
+                              error:function(res){
+                                  alert("Sorry!Try Agian!!");
                               }
-                              else {
-                                    $('.downtimeHeader').css("display","none");
-                              }
-                            },
-                            error:function(res){
-                                alert("Sorry!Try Agian!!");
-                            }
-                          });
+                            });
+                          }
+                          
+                          $("#overlay").fadeOut(300);
                         }
-                        
-                        $("#overlay").fadeOut(300);
-                      }
+                      } 
                     }
                   },
                   plotOptions: {
