@@ -1,0 +1,262 @@
+<?php
+
+
+namespace App\Controllers;
+use App\Models\Daily_production_Model;
+
+
+class Daily_production_controller extends BaseController{
+    protected $session;
+	public function __construct(){
+       	//$data;
+        $this->datas = new Daily_production_Model();
+
+        //$session = \Config\Services::session();
+        $this->session = \Config\Services::session();
+        $this->session->start();
+    } 
+
+    public function index(){
+        echo "Hello strategy";
+    }
+
+    // get shift function
+    public function getshift($sdate){
+        // $selected_date = "2022-12-05";
+        $selected_date = $sdate;
+        $getshift_res = $this->datas->getcurrentshift_record($selected_date);
+        // echo "<pre>";
+        // print_r($getshift_res);
+        // echo "</pre>";
+        $tmp['shifts'] = $getshift_res['shift_ids'];
+        $tmp['shift_management'] = $getshift_res['shift_management'];
+        // print_r($tmp);
+        return $tmp;
+    }
+
+    // get shift wise start time getting
+    public function getshift_wise_time($sdate){
+        $selected_date = $sdate;
+        $getshift_res = $this->datas->getcurrentshift_record($selected_date);
+
+        $tmp_arr = [];
+        foreach ($getshift_res["shifts"] as $key => $value) {
+
+            // array_push($tmp_arr,$value);
+
+            $tmp_key = $getshift_res['shift_ids'][$key];
+            $tmp_value = $value['start_time'];
+
+            $tmp_arr[$tmp_key] = $tmp_value;
+        }
+        // return $tmp_arr;
+
+        return $tmp_arr;
+        // echo "<pre>";
+        // print_r($tmp_arr);
+        // echo "</pre>";
+    }
+
+    // get downtime reasons function 
+    public function getDowntimereason(){
+        $getreason = $this->datas->getDowntimereason();
+        // echo json_encode($getreason);
+        return $getreason;
+    }
+
+    // get Quality reasons function
+    public function getQualityreason(){
+        $getqualityreason = $this->datas->getQualityreason();
+        // echo  json_encode($getqualityreason);
+        return $getqualityreason;
+    }
+
+    // get planned downtime reasons
+    public function getplanneddowntime(){
+        $date = "2022-12-05";
+        $mid = "MC1001";
+        $shift_id = "B";
+        $res = $this->datas->getplanneddowntime($mid,$date,$shift_id);
+        echo "<pre>";
+        print_r($res);
+        echo "</pre>";
+    }
+    // machine id based machine details
+    public function machine_data_details($sdate){
+        // $date = "2022-12-05";
+        $date = $sdate;
+        $getmachine_data = $this->datas->getmachine_data($date);
+        $getmachine_details = $this->datas->getmachine_details($getmachine_data);
+
+        $tmp_machine_details = [];
+        foreach ($getmachine_details as $key => $value) {
+            $tmp_arr = [];
+            array_push($tmp_arr,$value['machine_name']);
+            array_push($tmp_arr,$value['machine_brand']);
+            array_push($tmp_arr,$value['tonnage']);
+            $tmp_machine_details[$value['machine_id']] = $tmp_arr;
+        }
+        // echo "<pre>";
+        // print_r($tmp_machine_details);
+        // echo "</pre>";
+        return $tmp_machine_details;
+    }
+
+    // get machine records
+    public function getMachine_data(){
+        if ($this->request->isAJAX()) {
+            //$date = "2022-12-07";
+             $date = $this->request->getVar('date');
+            $getmachine_data = $this->datas->getmachine_data($date);
+            // echo "get all machines array for the particular date production machines";
+            // echo "<pre>";
+            // print_r($getmachine_data);
+            // echo "</pre>";
+    
+            // get machine all details for example machine brand tonnage
+            $getmachine_details = $this->machine_data_details($date);
+    
+            // echo "get all machines details";
+            // echo "<pre>";
+            // print_r($getmachine_details);
+            // echo"</pre>";
+    
+            // machine based shift based tool changeover
+            $getshiftid = $this->getshift($date);
+            // echo json_encode($getshiftid);
+            $getsid = $getshiftid['shifts'];
+            $duration = $getshiftid['shift_management'][0]['duration'];
+            // echo  "get all shifts id in particular date";
+            // print_r($getsid);
+            // print_r(strtotime($duration));
+            $get_toolchangeover = $this->datas->get_tool_changeover($getmachine_data,$date,$getsid,$duration);
+    
+            // echo "machine wise and shift wise and part wise  array";
+            // echo "<pre>";
+            // print_r($get_toolchangeover);
+            // echo "</pre>";
+            
+            $getdowntime_graph = $this->datas->getdowntimegraph($getmachine_data,$date,$getsid);
+            // down time reasons based graph count
+            // echo "Downtime reasons based graph count";
+            // echo "<pre>";
+            // print_r($getdowntime_graph);
+            // echo "</pre>";
+    
+            // get downtime json value
+            // echo "get downtime value";
+            $getdowntime_val = $this->datas->getdowntimevalue($getmachine_data,$date,$getsid);
+            // echo "<pre>";
+            // print_r($getdowntime_val);
+            // echo "</pre>";
+    
+            // get quality rejection reason
+            // echo "get Quality rejection reason ";
+            $getquality_reject_reason = $this->datas->getquality_reject_reason($getmachine_data,$date,$getsid);
+            // echo "<pre>";
+            // print_r($getquality_reject_reason);
+            // echo "</pre>";
+    
+    
+            // part production details
+            // echo "Part Production Details:\t";
+            $get_part_production_details = $this->datas->getpart_production_details($getmachine_data,$date,$getsid,$duration);
+            // echo "<pre>";
+            // print_r($get_part_production_details);
+            // echo "</pre>";
+    
+            // machine array
+            $machine_array_tmp = [];
+            foreach($getmachine_data as $key => $value){
+                array_push($machine_array_tmp,$value['machine_id']);
+            }
+
+            // machine wise part count its ui purpose
+            $getpart_count = $this->macine_wise_part_count($get_toolchangeover);
+            // echo "part count";
+            // echo "<pre>";
+            // print_r($getpart_count);
+            // echo "</pre>";
+
+            // part full details
+            $getpart_arr = $this->partid_wise_details($get_toolchangeover);
+            
+            $getpart_names_arr = $this->datas->getpart_full_details($getpart_arr);
+
+
+            // shift wise start time ui because its control future shift id
+            $get_shift_wise_time_arr = $this->getshift_wise_time($date);
+    
+            // final records for single json
+            // echo "Final Json File:\t";
+            $data['Shifts'] = $getsid;
+            $data['Machines'] = $machine_array_tmp;
+            $data['quality_reasons'] = $this->getQualityreason();
+            $data['Downtime_reasons'] = $this->getDowntimereason();
+            $data['Part_details'] = $get_toolchangeover;
+
+            $data['Downtime_value'] = $getdowntime_val;
+            $data['Downtime_reasons_val'] = $getdowntime_graph;
+            $data['Part_production_details'] = $get_part_production_details;
+            $data['Quality_reject_reason'] = $getquality_reject_reason;
+            $data['machine_details'] = $getmachine_details;
+
+            // ui purpose
+            $data['part_count_machine_wise'] = $getpart_count;
+            $data['part_names'] = $getpart_names_arr;
+            
+            // ui purpose just remove future shift id records
+            $data['shift_wise_time'] = $get_shift_wise_time_arr;
+
+            
+            echo json_encode($data);
+            // echo "<pre>";
+            // print_r($data);
+            // echo "</pre>";
+        }
+      
+    }   
+    
+    // ui purpose machine wise part count
+    public function macine_wise_part_count($part_wise_arr){
+
+        $tmp_machine_wise_arr = [];
+
+        // machine wise
+        foreach ($part_wise_arr as $key => $value) {
+            // return $value;
+            $tmp = [];
+            // shift wise
+            foreach ($value as $k => $v) {
+                // part wise
+                foreach ($v as $k1 => $v1) {
+                    array_push($tmp,$k1);
+                }
+                
+            }
+            $tmp_machine_wise_arr[$key] = $tmp;
+        }
+        return $tmp_machine_wise_arr;
+    }
+
+    // ui purpose part array and tool array
+    public function partid_wise_details($part_production_arr){
+        $tmp_part_tool_arr = [];
+        // machine wise array
+        foreach($part_production_arr as $key => $value){
+            // shift wise
+            foreach ($value as $k => $v) {
+                // part wise
+                foreach($v as $k1 =>$v1){
+                    $tmp_part_tool_arr[$k1] = $v1[0];
+                }
+            }
+        }
+        return $tmp_part_tool_arr;
+    }
+    
+}
+
+
+
+?>
