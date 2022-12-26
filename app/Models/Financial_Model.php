@@ -44,16 +44,24 @@ class Financial_Model extends Model{
 	{
 	    $db = \Config\Database::connect($this->site_connection);
 	    $query = $db->table('pdm_downtime_reason_mapping as t');
-	    $query->select('t.machine_id,e.event,t.downtime_reason_id,t.tool_id,t.part_id,t.shift_date,t.start_time,t.end_time,t.split_duration,t.calendar_date,r.downtime_category,r.downtime_reason');
+	    $query->select('t.machine_event_id,t.machine_id,t.downtime_reason_id,t.tool_id,t.part_id,t.shift_date,t.start_time,t.end_time,t.split_duration,t.calendar_date,r.downtime_category,r.downtime_reason');
         $query->where('t.shift_date >=',$FromDate);
         $query->where('t.shift_date <=',$ToDate);
-        $query->where('e.event !=',"Offline");
-        $query->where('e.event !=',"No Data");
 	    $query->join('settings_downtime_reasons as r', 'r.downtime_reason_id = t.downtime_reason_id');
-        $query->join('pdm_events as e', 'e.machine_event_id = t.machine_event_id');
 	    $res= $query->get()->getResultArray();
 	    return $res;
 	}
+    public function getOfflineEventId($FromDate,$FromTime,$ToDate,$ToTime)
+    {
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('pdm_events as t');
+        $query->select('t.event,t.machine_id,t.machine_event_id');
+        $query->where('t.shift_date >=',$FromDate);
+        $query->where('t.shift_date <=',$ToDate);
+        $query->where("(t.event='Offline' OR t.event='No Data')", NULL, FALSE);
+        $res= $query->get()->getResultArray();
+        return $res;
+    }
     public function getDataRawAll($FromDate,$ToDate)
     {
         $db = \Config\Database::connect($this->site_connection);
@@ -61,6 +69,7 @@ class Financial_Model extends Model{
         $query->select('machine_id,tool_id,part_id,shift_date,start_time,end_time,duration,calendar_date,event');
         $query->where('shift_date >=',$FromDate);
         $query->where('shift_date <=',$ToDate);
+        $query->where("(event !='Offline' OR event != 'No Data')", NULL, FALSE);
         $res= $query->get()->getResultArray();
         return $res;
     }
