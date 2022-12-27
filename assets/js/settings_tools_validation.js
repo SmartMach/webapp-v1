@@ -453,7 +453,6 @@ function EditPartName(){
 		return required;
 	}
 	else{	
-		var letters = /^[a-z][a-z0-9\s]*$/;
 		val = val.trim();
 		val = val.toLowerCase();
 		if (val.length > 100) {
@@ -462,7 +461,7 @@ function EditPartName(){
 			//this condition will not occur
 			return "Invalid length*";
 		}
-		else if (letters.test(val) && val.length<=100) {
+		else if (val.length<=100) {
 			$(".EditTool").removeAttr("disabled");
 			$("#EditPartNameCunt").css("display","block");
 			var val_demo = $('#EditPartName').val();
