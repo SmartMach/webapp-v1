@@ -1757,6 +1757,8 @@ function performanceOpp(context) {
         let innerHtml = '<div>';
 
         var duration = parseInt(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].speedLoss[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
+        console.log("performance opportuntiy graph:\t");
+        console.log(duration);
         var days = parseInt(parseInt(duration/60)/24);
         var hours = parseInt(parseInt(duration-(days*1440))/60);
         var min = parseInt(parseInt(duration-(days*1440))%60);

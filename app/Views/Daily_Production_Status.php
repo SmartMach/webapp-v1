@@ -396,7 +396,7 @@ $('#changed_date').datetimepicker({
                             +'</div>');
 
 
-                            var downtime_val_split = parseFloat(res['Downtime_value'][k][k1]).toFixed(2);
+                            var downtime_val_split = parseInt(res['Downtime_value'][k][k1]);
                             var downtime_hour_minute = getdowntime_text(downtime_val_split);
                             downtime_ele = downtime_ele.add('<div class="machine_header_production_status machine_align downtime_'+k+'_'+k1+' " style="height:'+shift_percentage+'%;">'
                             //downtime_ele = downtime_ele.add('<div class="machine_header_production_status machine_align downtime_'+k+'_'+k1+' " style="">'
@@ -406,7 +406,7 @@ $('#changed_date').datetimepicker({
                                   +'<div style="width:100%; word-wrap: break-word;padding-left:0.4rem;" title="Total">Total</div>'
                                 +'</div>'
                                 +'<div id="background_drval_'+k+'_'+k1+'_1" style="width:100%;text-align:right; border: 1px solid #d9d9d9;padding:5px;">'
-                                  +'<p style="width:100%; word-wrap:break-word;color:#005abc;font-weight:800;margin-top:auto;margin-bottom:auto;" title="'+downtime_hour_minute+'"  data_duration="'+downtime_val_split+'" class="downtime_val_'+k+'_'+k1+'">'+downtime_hour_minute+'</p>'
+                                  +'<p style="width:100%; word-wrap:break-word;color:#005abc;font-weight:800;margin-top:auto;margin-bottom:auto;font-size:0.7rem;" title="'+downtime_hour_minute+'"  data_duration="'+downtime_val_split+'" class="downtime_val_'+k+'_'+k1+'">'+downtime_hour_minute+'</p>'
                                 +'</div>'
                                 +'</div>'
 
@@ -434,13 +434,13 @@ $('#changed_date').datetimepicker({
                               downtime_reason_label.push(res['Downtime_reasons'][rname]);
                               downtime_reason_val.push(rval);
                               dtid = parseInt(dtid) +1;
-                              var tmp_downtime_getfloat_val = parseFloat(rval).toFixed(2);
+                              var tmp_downtime_getfloat_val = parseInt(rval);
                               var tmp_downtime_hour_minute = getdowntime_val_text(tmp_downtime_getfloat_val);
                               dr = dr.add('<div class="" style="width:100%; border: 1px solid #d9d9d9; padding:5px;">'
                                   +'<div style="width:100%; word-wrap: break-word;padding-left:0.4rem;" title="'+res['Downtime_reasons'][rname]+'">'+res['Downtime_reasons'][rname]+'</div>'
                               +'</div>'
                               +'<div id="background_drval_'+k+'_'+k1+'_'+dtid+'" style="width:100%;text-align:right; border: 1px solid #d9d9d9;padding:5px;">'
-                                +'<p style="width:100%; word-wrap:break-word;color:#005abc;font-weight:800;margin-top:auto;margin-bottom:auto;" title="'+tmp_downtime_hour_minute+'" data_duration="'+rval+'" class="downtime_val_'+k+'_'+k1+'">'+tmp_downtime_hour_minute+'</p>'
+                                +'<p style="width:100%; word-wrap:break-word;color:#005abc;font-weight:800;margin-top:auto;margin-bottom:auto;font-size:0.7rem;" title="'+tmp_downtime_hour_minute+'" data_duration="'+rval+'" class="downtime_val_'+k+'_'+k1+'">'+tmp_downtime_hour_minute+'</p>'
                               +'</div>');
                               $('#graph2_'+k+'_'+k1).append(dr);
                             }
@@ -743,92 +743,100 @@ $('#changed_date').datetimepicker({
 
     // get downtime graph text for float to hour minute and seconds
     function getdowntime_text(downtime_val){
-      const  downtime_value = downtime_val.toString().split(".");
+      var hour = parseInt(parseInt(downtime_val)/3600);
+      var minute = parseInt(parseInt(downtime_val)/60);
+      var second = parseInt(parseInt(downtime_val)%60);
+      var tmp_hour = 0;
+      if (parseInt(hour)>0) {
+       tmp_hour = parseInt(hour);
+      }else{
+        tmp_hour = 0;
+      }
 
-      var downtime_text = " ";
-      if (parseInt(downtime_value[0])>60) {
-        var hour = parseInt(downtime_value[0])/60;
-        var hour_arr = hour.toFixed(2).toString().split('.');
-        // console.log("hours array");
-        // console.log(hour_arr);
-        var org_hour = parseInt(hour_arr[0]);
-        var min = parseInt(hour_arr[1]) + (parseInt(downtime_value[1])/60);
-        if (parseInt(min)>60) {
-          var hour_tmp = parseInt(parseInt(min)/60);
-          var min_tmp = parseInt(parseInt(min)%60);
-          min = parseInt(min)+parseInt(min_tmp);
-          org_hour = parseInt(hour_tmp) + parseInt(org_hour);
-          downtime_text = parseInt(org_hour)+"h "+min+"m";
+      // minute
+      var tmp_minute = 0;
+      if (parseInt(minute)>0) {
+        tminute = parseInt(downtime_val) -  parseInt(parseInt(hour)*3600);
+        tmin = parseInt(tminute)/60;
+        if (parseInt(tmin)>0) {
+          tmp_minute = parseInt(tmin);
         }else{
-          if (parseInt(min)>0) {
-            downtime_text = parseInt(org_hour)+"h "+parseInt(min)+"m";
-          }else{
-            downtime_text = parseInt(org_hour)+"h 0m";
-          }
+          tmp_minute = 0;
         }
       }else{
-        downtime_text = parseInt(parseInt(downtime_value[0]))+"m";
+        tmp_minute = 0;
       }
-     
 
+      // returning
+      var downtime_text = "";
+      if ((parseInt(tmp_hour)>0) && (parseInt(tmp_minute)>0) && (parseInt(second)>0)) {
+        downtime_text = tmp_hour+"h "+tmp_minute+"m "+second+"s";
+      }
+      else if ((parseInt(tmp_minute)>0) && (parseInt(second)>0)) {
+        downtime_text = tmp_minute+"m "+second+"s";
+      }
+      else if ((parseInt(tmp_hour)>0) && (parseInt(tmp_minute)>0)) {
+        downtime_text = tmp_hour+"h "+tmp_minute+"m ";
+      }
+      else if ((parseInt(tmp_hour)>0) && (parseInt(second)>0)) {
+        downtime_text = tmp_hour+"h 0m "+second+"s";
+      }else if(parseInt(second)>0){
+        downtime_text = second+"s";
+      }else if (parseInt(tmp_minute)>0) {
+        downtime_text = tmp_minute+"m";
+      }else{
+        downtime_text = tmp_hour+"h";
+      }
       return downtime_text;
     }
 
     //  get downtime text using seconds for each reason
     function getdowntime_val_text(downtime_val){
-      const  downtime_value = downtime_val.toString().split(".");
-
-      var downtime_text = " ";
-      if (parseInt(downtime_value[0])>60) {
-        var hour = parseInt(downtime_value[0])/60;
-        var hour_arr = hour.toFixed(2).toString().split('.');
-        // console.log("hours array");
-        // console.log(hour_arr);
-        var org_hour = parseInt(hour_arr[0]);
-        var min = parseInt(hour_arr[1]) + (parseInt(downtime_value[1])/60);
-        if (parseInt(min)>60) {
-          var hour_tmp = parseInt(parseInt(min)/60);
-          var min_tmp = parseInt(parseInt(min)%60);
-          var tmp_sec = parseInt(downtime_value[1]);
-          var second_tmp = 0;
-          if (parseInt(tmp_sec)>60) {
-            var tmpsplit = parseInt(tmp_sec) / 60;
-            const arrtmp = tmpsplit.toString().split(".");
-            min_tmp = parseInt(min_tmp) + arrtmp[0];
-            second_tmp = parseInt(second_tmp) + parseInt(arrtmp[1]);
-
-          }
-          second_tmp = parseInt(second_tmp) + parseInt(tmp_sec);
-          min = parseInt(min)+parseInt(min_tmp);
-          org_hour = parseInt(hour_tmp) + parseInt(org_hour);
-          downtime_text = parseInt(org_hour)+"h "+min+"m ";
-        }
-        else{
-          var ts = parseInt(downtime_value[1]) / 60;
-          const ta = ts.toString().split(".");
-          min = parseInt(min) + parseInt(ta[0]);
-          if (parseInt(min)>0) {
-            downtime_text = parseInt(org_hour)+"h "+parseInt(min)+"m";
-          }else{
-            downtime_text = parseInt(org_hour)+"h 0m";
-          }
-        }
+      var hour = parseInt(parseInt(downtime_val)/3600);
+      var minute = parseInt(parseInt(downtime_val)/60);
+      var second = parseInt(parseInt(downtime_val)%60);
+      var tmp_hour = 0;
+      if (parseInt(hour)>0) {
+       tmp_hour = parseInt(hour);
+      }else{
+        tmp_hour = 0;
       }
-      else{
-        var seconds = parseInt(downtime_value[1]);
-        var tmpminutes =  0;
-        var tmpsecond = 0;
-        if (parseInt(seconds)>60) {
-          const tmp_seconds = parseInt(seconds) / 60;
-          const tmp_arr = tmp_seconds.toString().split(".");
-          tmpminutes = parseInt(tmp_arr[0]) + parseInt(tmpminutes);
-          tmpsecond = parseInt(tmp_arr[1]) + parseInt(tmpsecond);
-        }
-        tmpsecond = parseInt(tmpsecond) + parseInt(seconds);
-        tmpminutes = parseInt(downtime_value[0]) + parseInt(tmpminutes);
 
-        downtime_text = parseInt(parseInt(tmpminutes))+"m "+parseInt(tmpsecond)+'s';
+      // minute
+      var tmp_minute = 0;
+      if (parseInt(minute)>0) {
+        tminute = parseInt(downtime_val) -  parseInt(parseInt(hour)*3600);
+        tmin = parseInt(tminute)/60;
+        if (parseInt(tmin)>0) {
+          tmp_minute = parseInt(tmin);
+        }else{
+          tmp_minute = 0;
+        }
+      }else{
+        tmp_minute = 0;
       }
+
+      // returning
+      var downtime_text = "";
+      if ((parseInt(tmp_hour)>0) && (parseInt(tmp_minute)>0) && (parseInt(second)>0)) {
+        downtime_text = tmp_hour+"h "+tmp_minute+"m "+second+"s";
+      }
+      else if ((parseInt(tmp_minute)>0) && (parseInt(second)>0)) {
+        downtime_text = tmp_minute+"m "+second+"s";
+      }
+      else if ((parseInt(tmp_hour)>0) && (parseInt(tmp_minute)>0)) {
+        downtime_text = tmp_hour+"h "+tmp_minute+"m ";
+      }
+      else if ((parseInt(tmp_hour)>0) && (parseInt(second)>0)) {
+        downtime_text = tmp_hour+"h 0m "+second+"s";
+      }else if(parseInt(second)>0){
+        downtime_text = second+"s";
+      }else if (parseInt(tmp_minute)>0) {
+        downtime_text = tmp_minute+"m";
+      }else{
+        downtime_text = tmp_hour+"h";
+      }
+       
       return downtime_text;
     }
 

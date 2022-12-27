@@ -462,7 +462,11 @@ class Daily_production_Model extends Model{
         //     $tmp_second = $total_seconds / 60;
         // }
 
-        $final_duration = $total_minutes.'.'.$total_seconds;
+        // $final_duration = $total_minutes.'.'.$total_seconds;
+        // minutes convert seconds
+        $stotal_minutes_cs = $total_minutes * 60;
+        $final_duration = $stotal_minutes_cs + $total_seconds;
+
         return $final_duration;
 
 
@@ -501,17 +505,24 @@ class Daily_production_Model extends Model{
 
         $duration_mtotal_count = 0;
         $duration_stotal_count = 0;
+        // 56.67
         foreach($res as $k1 => $v1){
             $split_duration = explode('.',$v1['split_duration']);
             $duration_mtotal_count = $split_duration[0]+$duration_mtotal_count;
             if ($split_duration[1]>0) {
+                // 67 = 67 + 0
                 $duration_stotal_count = $split_duration[1]+$duration_stotal_count;
             }
             // $duration_total_count = $v1['split_duration'] + $duration_total_count;
         }
         // duration second to convert minutes
-        $duration_stotal_count = $duration_stotal_count / 60;
-        $duration_total_count = $duration_mtotal_count + $duration_stotal_count;
+        // 1.1167 = 67/60
+        // $duration_stotal_count = $duration_stotal_count / 60;
+        // $duration_total_count = $duration_mtotal_count + $duration_stotal_count;
+
+        // duration minutes converd seconds
+        $duration_mtotal_countcs = $duration_mtotal_count * 60;
+        $duration_total_count = $duration_stotal_count + $duration_mtotal_countcs;
 
         return $duration_total_count;
        
