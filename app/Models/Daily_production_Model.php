@@ -695,7 +695,7 @@ class Daily_production_Model extends Model{
             if ($getnict[0]['NICT'] == 0) throw new Exception("Divide by zero");
             $target = $final_durations_seconds / $getnict[0]['NICT'];
             // $percentage = $tpp /  target is inprogress for mathan sir confirmation
-            $percentage = ($tpp / $target) * 100;
+            $percentage = ($good_parts / $target) * 100;
             array_push($tmpfinal_arr,$percentage);
         } catch (\Throwable $e) {
             $target =0;  
