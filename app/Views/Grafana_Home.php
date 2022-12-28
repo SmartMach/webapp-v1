@@ -325,8 +325,7 @@
         height:2.7rem;
         width:2.7rem;
         border-radius:50%;
-        background-color:#005abc;
-        
+        /* background-color:#005abc; */
         display:flex;
         justify-content:center;
         align-items:center;
@@ -543,14 +542,14 @@
                            <!-- daily production link -->
                         <li class="side-menu-li d-flex ">
                             <a href="<?= base_url('Home/load_option/Daily_Production_Status')?>">
-                                <i class="fa fa-bar-chart nav-icon nav-icon-hover prodcution_status_background" style="font-size: 26px;" dvalue="Status" alt="Production Status"></i>
+                                <i class="fa fa-bar-chart nav-icon nav-icon-hover prodcution_status_background" style="font-size: 26px;" dvalue="Daily" alt="Production Status"></i>
                             </a>
                             <!-- <i class="fa fa-ellipsis-v icons-menu icon-font_third icon-font-js" style=""></i> -->
-                            <ul>
-                                 <nav style="border-bottom:1px solid #d9d9d9;">
+                            <!-- <ul>
+                                <nav style="border-bottom:1px solid #d9d9d9;">
                                     <p class="nav-menu-title">Daily Production Data</p> 
-                                </nav>
-                            </ul>
+                                </nav> 
+                            </ul> -->
                         </li>
                         <!-- daily production link end -->
                 </ul>
@@ -585,6 +584,8 @@
     var listSubMenu = document.getElementsByClassName("nav-sub");
     var subicon = document.getElementsByClassName("icon-sub");
     var actionList = document.getElementsByClassName('icon-font-js');
+    console.log("nav icon");
+    console.log();
       for (var i = 0; i < listIcons.length; i++) {
         var x = listIcons[i].getAttribute("dvalue");
         
@@ -593,6 +594,7 @@
 
             const split_nav = icon_name.split(" ");
             // alert("navigation :\t"+split_nav[1]);
+           
             if (split_nav[1] === "fa-line-chart") {
                 // alert('fixed');
                 listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:24px;padding:0px;";
@@ -605,18 +607,22 @@
                 actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 1px;font-weight:500;";
             }
             // daily production status icon
-            else if(split_nav[1] === "fa-chart-bar"){
-                listIcons[i].style = "background-color:red;color:white;font-style:15px;font-size:25px;padding:0px;";
-                actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 1px;font-weight:500;";
+            else if(split_nav[1] === "fa-bar-chart"){
                 // alert('ok');
+                listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:27px;padding:5px;";
+                actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 1px;font-weight:500;";
+               
             }
             else{
+                
                 listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:30px;padding:0px;";
                 actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 6px;font-weight:500;";
             }
            
           
         }
+
+       
       }
         for (var i = 0; i < listSubMenu.length; i++) {
          var y = listSubMenu[i].getAttribute("dvalue");
@@ -802,6 +808,7 @@ $(document).ready(function(){
     var info_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
     var random_info_color = info_color[Math.floor(Math.random()*info_color.length)];
     $('#info_circle_color').css("background-color",random_info_color);
+    $('.circle_div').css("background-color",random_info_color);
     $('#get_text_info').html(first_letter+''+last_letter);
 
 /*

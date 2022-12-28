@@ -587,33 +587,22 @@ class Daily_production_Model extends Model{
                 if (($value['reject_reason'] !=null) && ($value['reject_reason'] !=" ")) {
                     // return $value['reject_reason'];
                     $tmpreasons_ar = explode("&&",$value['reject_reason']);
-                    // return $tmpreasons_ar;
-                    // if (count($tmpreasons_ar)>1) {
-                        foreach ($tmpreasons_ar as $k => $v) {
-                       
-                            $each_reason = explode("&",$v);
-                            // return $each_reason[0]." ".$k1;
-                            if (strcmp($each_reason[1],$k1) ===0) {
-                                // return $each_reason;
-                               array_push($tmp_arr,$each_reason[0]);
-                            }
+                    foreach ($tmpreasons_ar as $k => $v) {
+                    
+                        $each_reason = explode("&",$v);
+                        // return $each_reason[0]." ".$k1;
+                        if (strcmp($each_reason[1],$k1) ===0) {
+                            // return $each_reason;
+                            array_push($tmp_arr,$each_reason[0]);
                         }
-                    // }
-                    // else{
-                    //     $each_reason1 = explode("&",$tmpreasons_ar[0]);
-                    //     // return $each_reason[0]." ".$k1;
-                    //     if (strcmp($each_reason1[0],$k1) ===0) {
-                    //         // return $each_reason;
-                    //         array_push($tmp_arr,$each_reason1[1]);
-                    //     }
-                    // }
-                  
-
+                    }
                 }
             }
             // return $tmp_arr;
             $tmp_reason_arr[$k1] = array_sum($tmp_arr);
         }
+
+        // arsort($tmp_reason_arr);
         return $tmp_reason_arr;
         
     }

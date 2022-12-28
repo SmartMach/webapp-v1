@@ -153,6 +153,7 @@ class Daily_production_controller extends BaseController{
             // get quality rejection reason
             // echo "get Quality rejection reason ";
             $getquality_reject_reason = $this->datas->getquality_reject_reason($getmachine_data,$date,$getsid);
+
             // echo "<pre>";
             // print_r($getquality_reject_reason);
             // echo "</pre>";
@@ -196,9 +197,11 @@ class Daily_production_controller extends BaseController{
             $data['Part_details'] = $get_toolchangeover;
 
             $data['Downtime_value'] = $getdowntime_val;
-            $data['Downtime_reasons_val'] = $getdowntime_graph;
+            // $data['Downtime_reasons_val'] = $getdowntime_graph;
+            $data['Downtime_reasons_val'] = $this->getdowntime_valid_reason($getdowntime_graph);
             $data['Part_production_details'] = $get_part_production_details;
-            $data['Quality_reject_reason'] = $getquality_reject_reason;
+            // $data['Quality_reject_reason'] = $getquality_reject_reason;
+            $data['Quality_reject_reason'] = $this->check_quality_reason_valid($getquality_reject_reason);
             $data['machine_details'] = $getmachine_details;
 
             // ui purpose
@@ -253,6 +256,86 @@ class Daily_production_controller extends BaseController{
             }
         }
         return $tmp_part_tool_arr;
+    }
+
+
+    // this function for quality rejection reasno for descending order function
+    public function check_quality_reason_valid($getquality_reject_reason){
+        // $date = "2022-12-07";
+
+        // $getmachine_data = $this->datas->getmachine_data($date);
+        // $getshiftid = $this->getshift($date);
+        // // echo json_encode($getshiftid);
+        // $getsid = $getshiftid['shifts'];
+        // $tmp_arr = [];
+        // $getquality_reject_reason = $this->datas->getquality_reject_reason($getmachine_data,$date,$getsid);
+       
+
+        foreach ($getquality_reject_reason as $key => $value) {
+            $tmp1 = [];
+            foreach ($value as $k1 => $v1) {
+                $tmp2 = [];
+                foreach ($v1 as $k2 => $v2) {
+                    $tmp3 = [];
+                    foreach ($v2 as $k3 => $v3) {
+                        // $index = strval($k3);
+                        if ($v3 > 0) {
+                            $index = "qr".$k3;
+                            $tmp3[$index] = $v3;
+                        }
+                    }
+                    arsort($tmp3);
+                    $tmp2[$k2] = $tmp3;
+                }
+                $tmp1[$k1] = $tmp2;
+            }
+            $tmp_arr[$key] = $tmp1;
+        }
+
+
+        // echo "<pre>";
+        // print_r($tmp_arr);
+        // echo "</pre>";
+
+        return $tmp_arr;
+
+
+
+    }
+
+    // this function goes to downtime reasons seconds descending order and valid reasons passing function
+    public function getdowntime_valid_reason($getdowntime_arr){
+        // $date = "2022-12-07";
+        // $getmachine_data = $this->datas->getmachine_data($date);
+        // $getshiftid = $this->getshift($date);
+        // $getsid = $getshiftid['shifts'];
+        // $getdowntime_arr = $this->datas->getdowntimegraph($getmachine_data,$date,$getsid);
+
+
+        $tmparr = [];
+        foreach ($getdowntime_arr as $key => $value) {
+            $shift_arr = [];
+            // machine  base array
+            foreach ($value as $k1 => $v1) {
+
+                $tmp1 = [];
+                // shift base array
+                // return $v1;
+                foreach ($v1 as $k2 => $v2) {
+
+                    $index_downtime = "dr".$k2;
+                    $tmp1[$index_downtime] = $v2;
+                }
+            arsort($tmp1);
+            $shift_arr[$k1] = $tmp1;
+            }
+            $tmparr[$key] = $shift_arr;
+        }
+
+        // echo "<pre>";
+        // print_r($tmparr);
+        // echo "</pre>";
+        return $tmparr;
     }
     
 }

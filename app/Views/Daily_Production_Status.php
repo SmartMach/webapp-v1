@@ -17,7 +17,7 @@
   /* border-radius: 10px 10px 10px 10px; */
   border-radius:4px;
   color: black;
-  margin-top: 4px;
+  margin-top: 2px;
   border: 1px solid #d9d9d9;
   /* display:flex;
   flex-direction:column;
@@ -31,14 +31,15 @@
   align-items:center;
 }
 .mcname{
-  font-size:1rem;
+  font-size:0.8rem;
   font-family: 'Roboto', sans-serif;
   justify-content:center;
   margin-bottom:1px;
+  font-weight:550;
 
 }
 .brandname{
-  margin-top:0;
+  margin-top:4px;
   color:grey;
   font-size:0.7rem;
 }
@@ -145,7 +146,8 @@
         /* margin-left: 1rem; */
     }
     .small_text_time{
-        font-size:10px;
+        font-size:0.7rem;
+        /* font-size:10px; */
         color:grey;
     }
 
@@ -153,6 +155,7 @@
 .container-input{
     width: 80%; 
     padding: 12px 40px; 
+    padding-right:4px;
     margin: 2px 0; 
     display: inline-block; 
     border: 1px solid #ccc; 
@@ -162,7 +165,7 @@
 
 .fontuser i{
     position: absolute;
-    left: 35px;
+    left: 29px;
     top: 13px;
     color: gray;
 }
@@ -194,12 +197,12 @@
     
               <div class="d-flex" style="margin-top:0.5rem;">
                 <!-- calendar box -->
-                  <div class="float-end " >
+                  <div class="float-end " style="display:flex;flex-direction:row-reverse;">
                     <!-- <div class="" style="display:flex;flex:wrap;flex-direction:row;padding:5px 10px 5px;padding-left:1px;">
                       <i class="fa fa-calendar-alt date_selection_icon" style="color:#a6a6a6;align-self:center;padding-right:1rem;font-size:x-large;"></i> 
                       <span style="color:grey;font-size:14px;text-align:center;margin:auto;margin-bottom:unset;margin-right:1.4rem;" id="change_date">2022-12-05</span>
                     </div> -->
-                    <div class="fontuser" style="margin-right:1rem;">
+                    <div class="fontuser" style="width:83%;">
                         <input type="text" class="form-control container-input" id="changed_date">
                         <i class="fa fa-calendar click_font" ></i>
                     </div>
@@ -210,10 +213,10 @@
         <div class="tableContent paddingm" style="margin-top:4rem; padding-left:3px;padding-right:3px; ">
             <div class="settings_machine_header sticky-top fixtabletitle" style="top:7.8rem;margin-bottom:0.3rem;">
                 <div class="row paddingm">
-                    <div class="col-sm-1 p3 paddingm" style="width: 6.7%;">
+                    <div class="col-sm-1 p3 paddingm" style="width: 6.2%;">
                       <p class="basic_header">MACHINE </p>
                     </div>
-                    <div class="col-sm-1 p3 paddingm" style="width:6.4%;">
+                    <div class="col-sm-1 p3 paddingm" style="width:5.8%;">
                       <p class="basic_header">SHIFT</p>
                     </div>
                     <div class="col-sm-1 p3 paddingm " style="width:8.5%;">
@@ -341,24 +344,23 @@ $('#changed_date').datetimepicker({
                         // console.log(v);
                         // console.log(k);
 
-                        elements = elements.add('<div class="" style="padding:4px;display:flex;flex-wrap:wrap;flex-direction:row;margin-bottom:4px;">'
-                            +'<div class=" col paddingm" style="padding-right:3px; width:8%;">'
-                              +'<div class="machine_header_production_status machine_align" style="height:101%;">'
-                              // +'<div class="machine_header_production_status machine_align" id="height_'+k+'" style="">'
+                        elements = elements.add('<div class="" style="padding:2px;display:flex;flex-wrap:wrap;flex-direction:row;">'
+                            +'<div class=" col paddingm" style="padding-right:2px; width:10%;">'
+                              // +'<div class="machine_header_production_status machine_align" style="height:101%;">'
+                              +'<div class="machine_header_production_status machine_align" id="height_'+k+'" style="">'
                                   +'<p class="mcname" style="text-align:center;">'+res['machine_details'][k][0]+'</p>'
-                                  +'<span>('+res['machine_details'][k][2]+'T)</span>'
+                                  +'<span style="font-size:0.8rem;font-weight:550;">('+res['machine_details'][k][2]+'T)</span>'
                                   +'<span class="brandname">'+res['machine_details'][k][1]+'</span>'
                               +'</div>'
                             +'</div>'
-                            +'<div class=" col paddingm '+k+'"style="padding-right:3px; width:4%;" machine_data="'+k+'" >'
-
+                            +'<div class=" col paddingm '+k+'"style="padding-right:2px; width:2%;" machine_data="'+k+'" >'
                             +'</div>'
-                            +'<div class="col-sm-10 " style="padding:0;width:70%;padding-right:3px;">'
+                            +'<div class="col-sm-10 " style="padding:0;width:70%;padding-right:2px;">'
                               +'<div class="col_'+k+'" style="padding:0;height:100%;width:100%;"></div>'
-                              +'</div>'
-                              // downtime graph
-                              +'<div class="downtime_graph_'+k+'" style="width:17%;">'
-                              +'</div>'
+                            +'</div>'
+                            // downtime graph
+                            +'<div class="downtime_graph_'+k+'" style="width:18%;">'
+                            +'</div>'
                             +'</div>');
                             $('.contentProduction').append(elements);
                             // shift alignment
@@ -390,28 +392,34 @@ $('#changed_date').datetimepicker({
                           // console.log(c_date+"\tshift date:\t");
                           if ( new Date() > c_date) {
                             
-                            ele = ele.add('<div class="machine_header_production_status machine_align '+k+'_'+k1+'" style="height:'+shift_percentage+'%;">'
-                            // ele = ele.add('<div class="machine_header_production_status machine_align '+k+'_'+k1+'" style="">'
+                            // ele = ele.add('<div class="machine_header_production_status machine_align '+k+'_'+k1+'" style="height:'+shift_percentage+'%;">'
+                            ele = ele.add('<div class="machine_header_production_status machine_align '+k+'_'+k1+'" style="">'
                              +'<p class="shift_id_pds">'+k1+'</p>'
                             +'</div>');
 
 
                             var downtime_val_split = parseInt(res['Downtime_value'][k][k1]);
                             var downtime_hour_minute = getdowntime_text(downtime_val_split);
-                            downtime_ele = downtime_ele.add('<div class="machine_header_production_status machine_align downtime_'+k+'_'+k1+' " style="height:'+shift_percentage+'%;">'
-                            //downtime_ele = downtime_ele.add('<div class="machine_header_production_status machine_align downtime_'+k+'_'+k1+' " style="">'
-                              +'<div id="graph2_'+k+'_'+k1+'" style="margin:0;display: grid;grid-template-columns: 60% 40%;font-size:0.7rem;width:100%;margin-block-end:auto;overflow:auto;">'
-                                // first downtime graph
-                                +'<div class="" style="width:100%; border: 1px solid #d9d9d9; padding:5px;">'
-                                  +'<div style="width:100%; word-wrap: break-word;padding-left:0.4rem;" title="Total">Total</div>'
-                                +'</div>'
-                                +'<div id="background_drval_'+k+'_'+k1+'_1" style="width:100%;text-align:right; border: 1px solid #d9d9d9;padding:5px;">'
-                                  +'<p style="width:100%; word-wrap:break-word;color:#005abc;font-weight:800;margin-top:auto;margin-bottom:auto;font-size:0.7rem;" title="'+downtime_hour_minute+'"  data_duration="'+downtime_val_split+'" class="downtime_val_'+k+'_'+k1+'">'+downtime_hour_minute+'</p>'
-                                +'</div>'
-                                +'</div>'
+                            if (parseInt(downtime_val_split)>0) {
+                              // downtime_ele = downtime_ele.add('<div class="machine_header_production_status machine_align downtime_'+k+'_'+k1+' " style="height:'+shift_percentage+'%;">'
+                              downtime_ele = downtime_ele.add('<div class="machine_header_production_status machine_align downtime_'+k+'_'+k1+' " style="">'
+                                +'<div id="graph2_'+k+'_'+k1+'" style="margin:0;display: grid;grid-template-columns: 60% 40%;font-size:0.7rem;width:100%;margin-block-end:auto;overflow:auto;">'
+                                  // first downtime graph
+                                  +'<div class="" style="width:100%; border: 1px solid #E5E4E2; border-top:0;border-right:0; padding:5px;">'
+                                    +'<div style="width:100%; word-wrap: break-word;padding-left:0.4rem;font-weight:790;" title="Total">Total</div>'
+                                  +'</div>'
+                                  +'<div id="background_drval_'+k+'_'+k1+'_1" style="width:100%;text-align:right; border: 1px solid #E5E4E2; border-top:0; border-right:0; padding:5px;">'
+                                    +'<p style="width:100%; word-wrap:break-word;color:#005abc;font-weight:800;margin-top:auto;margin-bottom:auto;font-size:0.7rem;" title="'+downtime_hour_minute+'"  data_duration="'+downtime_val_split+'" class="downtime_val_'+k+'_'+k1+'">'+downtime_hour_minute+'</p>'
+                                  +'</div>'
+                                  +'</div>'
 
-                              +'</div>'
-                            +'</div>');
+                                +'</div>'
+                              +'</div>');
+                            }
+                            else{
+                              downtime_ele = downtime_ele.add('<div class="machine_header_production_status machine_align downtime_'+k+'_'+k1+' " style="">'
+                              +'</div>');
+                            }
 
                           }
                          
@@ -428,18 +436,21 @@ $('#changed_date').datetimepicker({
                           const downtime_reason_val = [];
                           var tmp_downtime_random_count = 1;
                           var dtid = 1;
+                          // console.log("Downtime reason");
+                          // console.log(res['Downtime_reasons_val'][k][k1]);
                           $.each(res['Downtime_reasons_val'][k][k1],function(rname,rval){
                             var dr = $();
+                            var tmpreason_id = rname.toString().split("r");
                             if (parseInt(rval)>0) {
                               downtime_reason_label.push(res['Downtime_reasons'][rname]);
                               downtime_reason_val.push(rval);
                               dtid = parseInt(dtid) +1;
                               var tmp_downtime_getfloat_val = parseInt(rval);
                               var tmp_downtime_hour_minute = getdowntime_val_text(tmp_downtime_getfloat_val);
-                              dr = dr.add('<div class="" style="width:100%; border: 1px solid #d9d9d9; padding:5px;">'
-                                  +'<div style="width:100%; word-wrap: break-word;padding-left:0.4rem;" title="'+res['Downtime_reasons'][rname]+'">'+res['Downtime_reasons'][rname]+'</div>'
+                              dr = dr.add('<div class="" style="width:100%; border: 1px solid #d9d9d9;border-top:0;border-right:0; padding:5px;">'
+                                  +'<div style="width:100%; word-wrap: break-word;padding-left:0.4rem;" title="'+res['Downtime_reasons'][tmpreason_id[1]]+'">'+res['Downtime_reasons'][tmpreason_id[1]]+'</div>'
                               +'</div>'
-                              +'<div id="background_drval_'+k+'_'+k1+'_'+dtid+'" style="width:100%;text-align:right; border: 1px solid #d9d9d9;padding:5px;">'
+                              +'<div id="background_drval_'+k+'_'+k1+'_'+dtid+'" style="width:100%;text-align:right; border: 1px solid #d9d9d9;border-top:0;border-right:0;padding:5px;">'
                                 +'<p style="width:100%; word-wrap:break-word;color:#005abc;font-weight:800;margin-top:auto;margin-bottom:auto;font-size:0.7rem;" title="'+tmp_downtime_hour_minute+'" data_duration="'+rval+'" class="downtime_val_'+k+'_'+k1+'">'+tmp_downtime_hour_minute+'</p>'
                               +'</div>');
                               $('#graph2_'+k+'_'+k1).append(dr);
@@ -466,28 +477,39 @@ $('#changed_date').datetimepicker({
                             }
 
                           }else{
-                            $('#graph2_'+k+'_'+k1).append("No Reasons Mapped");
+                            // temporary hide this condition for no downtime for mathan sir told
+                            // $('#graph2_'+k+'_'+k1).append("No Reasons Mapped");
                           }
                       
 
                           // part wise record alignment
                           $.each(res['Part_details'][k][k1],function(k2,v2){
                             var part_count_pershift = Object.keys(res['Part_details'][k][k1]).length;
-                            console.log("part count pershift:\t"+part_count_pershift);
-                            
+                            //console.log("part count pershift:\t"+part_count_pershift);
                             var el = $();
-
-                            
-                            // var downtime_hour_minute = (parseFloat(downtime_val_split) / 60).toFixed(2);
-                            // console.log("downtime array:\t");
-                            // console.log(downtime_hour_minute);
-                            // downtime_hour_minute = downtime_hour_minute.toString().split(".");
-                            
-                            // console.log("downtime time:\t"+downtime_hour_minute);
-                            // var container_width = 
                             var part_name = res['part_names'][k2][0];
                             var tool_name = res['part_names'][k2][1];
                             var rejection = res['Part_production_details'][k][k1][k2][0];
+                            // percentage conditions 
+                            var percentage = res['Part_production_details'][k][k1][k2][3].toFixed(1);
+                            var tmp_percentage = 0;
+                            if (parseFloat(percentage)>0) {
+                              tmp_percentage = percentage;
+                            }else{
+                              tmp_percentage = 0;
+                            }
+
+                            // from time and to time condition
+                            const from_time_arr = v2[4][0].toString().split(":");
+                            const to_time_arr = v2[4][1].toString().split(":");
+                            var from_time = from_time_arr[0]+':'+from_time_arr[1];
+                            var to_time = to_time_arr[0]+":"+to_time_arr[1];
+                            // console.log("from time"+from_time);
+                            // console.log("to time"+to_time);
+
+
+
+                            // rejection count condition
                             if (rejection === null) {
                               rejection = 0;
                             }
@@ -495,48 +517,12 @@ $('#changed_date').datetimepicker({
                             if (parseInt(part_count_pershift)>1) {
                               // multiple parts pershift
                               part_count_find = parseInt(part_count_find) +1;
-                              /* temporary hide for this code
-                              el = el.add('<div class="row_'+k+'_'+k1+'" style="display:grid;gap:3px;grid-template-columns:84% 15%;"><div class="machine_header_production_status" style="width:100%;gird-column:1;display:flex;">'
-                                +'<div class="mar_right" style="width:12%;margin-block:auto;display:flex;flex-direction:row-reverse;padding:0.3rem;">'
-                                  +'<p id="partname_pds" title="'+part_name+'">'+part_name +'<br> ('+tool_name+')<br>'
-                                  +'<small class="small_text_time">'+v2[4][0]+' to '+v2[4][1]+'</small></p>'
-                                +'</div>'
-                                +'<div class="mar_right" style="width:11.2%;margin-block:auto;">'
-                                  +'<p  class="marrpds" id="nict_pds">'+v2[2]+'</p>'
-                                +'</div>'
-                                +'<div class="mar_right" style="width:11.2%;margin-block:auto;">'
-                                  +'<p  class="marrpds" id="ppc_pds">'+v2[1]+'</p>'
-                                +'</div>'
-                                +'<div class="mar_right" style="width:10.89%;margin-block:auto;">'
-                                  +'<p  class="marrpds target_pds" id="target_pds">'+parseFloat(v2[3]).toFixed(2)+'</p>'
-                                +'</div>'
-                                +'<div class="mar_right" style="width:10.68%;margin-block:auto;">'
-                                  +'<p  class="marrpds"  id="good_pds">'+res['Part_production_details'][k][k1][k2][2]+'</p>'
-                                +'</div>'
-                                +'<div class="mar_right" style="width:11.2%;margin-block:auto;">'
-                                  +' <p  class="marrpds" id="reject_pds" >'+rejection+' <span id="per_reject_pds">('+parseFloat(res['Part_production_details'][k][k1][k2][3]).toFixed(2)+'%)</span></p>'
-                                +'</div>'
-                                +'<div class="mar_right" style="width:12.5%;margin-block:auto;margin-block:auto;">'
-                                  +' <p  class=" tpp_pds" style="margin:auto;" id="tpp_pds" >'+res['Part_production_details'][k][k1][k2][1]+'</p>'
-                                +'</div>'
-                                +'<div class="mar_right" style="width:20.4%;display:flex;flex-direction:column;">'
-                                    +'<div id="graph1_'+id+'" style="margin:0;display: grid;grid-template-columns: 60% 40%;font-size:0.7rem;height:6.3rem;">'
-                                       
-                                    +'</div>'
-                                +'</div>'
-                              +'</div>' 
-                              +'<div class="machine_header_production_status" style="width:100%;padding-left:3px; ">'
-                                +'<div id="graph2_'+id+'" style="margin:0;display:grid;grid-template-columns:60% 40%;font-size:0.7rem;height:6.3rem;">'
-
-                                +'</div>'
-                              +'</div>'
-                              +'</div>');
-                              */
-                              el = el.add('<div class="row_'+k+'_'+k1+'" style="display:grid;gap:3px;height:'+parseInt(container_height)+'.4%;"><div class="machine_header_production_status" style="width:100%;gird-column:1;display:flex;margin-bottom:2px;">'
+                             
+                              el = el.add('<div class="row_'+k+'_'+k1+'" style="display:grid;gap:3px;"><div class="machine_header_production_status" style="width:100%;gird-column:1;display:flex;min-height:7rem;">'
                                 +'<div class="mar_right" style="width:12%;margin-block:auto;display:flex;flex-direction:column;padding:0.3rem;">'
-                                  +'<p id="partname_pds" title="'+part_name+'" style="margin-bottom:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:100%;">'+part_name +'</p>'
-                                    +'<p title="'+tool_name+'" style="text-align:center;margin-bottom:0;font-size:0.8rem;color:black;font-weight:550;width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">('+tool_name+')</p>'
-                                  +'<p title="'+v2[4][0]+' to '+v2[4][1]+'" style="text-align:center;margin-bottom:0;"><small class="small_text_time">'+v2[4][0]+' to '+v2[4][1]+'</small></p>'
+                                  +'<p id="partname_pds" title="'+part_name+'" style="margin-bottom:0;">'+part_name +'</p>'
+                                    +'<p title="'+tool_name+'" style="text-align:center;margin-bottom:0;font-size:0.8rem;color:black;font-weight:550;width:100%;">('+tool_name+')</p>'
+                                  +'<p title="'+from_time+' to '+to_time+'" style="text-align:center;margin-bottom:0;font-size:0.7rem;margin-top:4px;"><small class="small_text_time">'+from_time+' to '+to_time+'</small></p>'
                                 +'</div>'
                                 +'<div class="mar_right" style="width:11.2%;margin-block:auto;">'
                                   +'<p  class="marrpds" id="nict_pds">'+v2[2]+'</p>'
@@ -545,50 +531,33 @@ $('#changed_date').datetimepicker({
                                   +'<p  class="marrpds" id="ppc_pds">'+v2[1]+'</p>'
                                 +'</div>'
                                 +'<div class="mar_right" style="width:10.89%;margin-block:auto;">'
-                                  +'<p  class="marrpds target_pds" id="target_pds">'+parseFloat(v2[3]).toFixed(2)+'</p>'
+                                  +'<p  class="marrpds target_pds" id="target_pds">'+Math.round(v2[3])+'</p>'
                                 +'</div>'
                                 +'<div class="mar_right" style="width:10.68%;margin-block:auto;">'
                                   +'<p  class="marrpds"  id="good_pds">'+res['Part_production_details'][k][k1][k2][2]+'</p>'
                                 +'</div>'
                                 +'<div class="mar_right" style="width:11.2%;margin-block:auto;">'
-                                  +' <p  class="marrpds" id="reject_pds" >'+rejection+' <span id="per_reject_pds">('+parseFloat(res['Part_production_details'][k][k1][k2][3]).toFixed(2)+'%)</span></p>'
+                                  +' <p  class="marrpds" id="reject_pds" >'+rejection+' <span id="per_reject_pds">('+tmp_percentage+'%)</span></p>'
                                 +'</div>'
                                 +'<div class="mar_right" style="width:12.5%;margin-block:auto;margin-block:auto;">'
                                   +' <p  class=" tpp_pds" style="margin:auto;" id="tpp_pds" >'+res['Part_production_details'][k][k1][k2][1]+'</p>'
                                 +'</div>'
-                                +'<div class="mar_right" style="width:20.4%;display:flex;flex-direction:column;height:7rem;">'
+                                +'<div class="mar_right" style="width:20.4%;display:flex;flex-direction:column;height:100%;">'
                                     +'<div id="graph1_'+id+'" style="margin:0;display: grid;grid-template-columns: 60% 40%;font-size:0.7rem;overflow:auto;">'
                                        
                                     +'</div>'
                                 +'</div>'
                               +'</div>' 
                               +'</div>');
-                              // +'<div class="machine_header_production_status" style="width:100%;">'
-                              //   +'<div id="graph2_'+id+'" style="margin:0;display:grid;grid-template-columns:60% 40%;font-size:0.7rem;height:100%;">'
-                              //   +'</div>'
-                              // +'</div>');
-
-                              // one time execution for each loop
-                              
-                              if (parseInt(part_count_find)===1) {
-
-                              //   ele = ele.add('<div class="machine_header_production_status" style="width:100%;padding-left:3px;row-template:1/3;">'
-                              //     +'<div id="graph2_'+id+'" style="margin:0;display:grid;grid-template-columns:60% 40%;font-size:0.7rem;height:6.3rem;">'
-                              //     +'<p>ok </p>'
-                              //     +'</div>'
-                              //   +'</div>'
-                              //   +'</div>');
-                              // console.log("check:\t"+k+"shift:\t"+k1);
-                              // console.log(part_count_find);
-                              }
+                             
                               
                             }else{
                               // single parts per shift
-                              el = el.add('<div class="machine_header_production_status row_'+k+'_'+k1+'" style="width:100%;display:flex;height:'+parseInt(container_height)+'.4%;margin-bottom:2px;">'
+                              el = el.add('<div class="machine_header_production_status row_'+k+'_'+k1+'" style="width:100%;display:flex;min-height:7rem;">'
                               +'<div class="mar_right" style="width:12%;margin-block:auto;display:flex;flex-direction:column;padding:0.3rem;">'
-                                  +'<p id="partname_pds" title="'+part_name+'" style="margin-bottom:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:100%;">'+part_name +'</p>'
-                                    +'<p title="'+tool_name+'" style="text-align:center;margin-bottom:0;font-size:0.8rem;color:black;font-weight:550;width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">('+tool_name+')</p>'
-                                  +'<p title="'+v2[4][0]+' to '+v2[4][1]+'" style="text-align:center;margin-bottom:0;"><small class="small_text_time">'+v2[4][0]+' to '+v2[4][1]+'</small></p>'
+                                  +'<p id="partname_pds" title="'+part_name+'" style="margin-bottom:0;">'+part_name +'</p>'
+                                    +'<p title="'+tool_name+'" style="text-align:center;margin-bottom:0;font-size:0.8rem;color:black;font-weight:550;width:100%;">('+tool_name+')</p>'
+                                    +'<p title="'+from_time+' to '+to_time+'" style="text-align:center;margin-bottom:0;font-size:0.7rem;margin-top:4px;"><small class="small_text_time">'+from_time+' to '+to_time+'</small></p>'
                                 +'</div>'
                                 +'<div class="mar_right" style="width:11.2%;margin-block:auto;">'
                                   +'<p  class="marrpds" id="nict_pds">'+v2[2]+'</p>'
@@ -597,35 +566,28 @@ $('#changed_date').datetimepicker({
                                   +'<p  class="marrpds" id="ppc_pds">'+v2[1]+'</p>'
                                 +'</div>'
                                 +'<div class="mar_right" style="width:11%;margin-block:auto;">'
-                                  +'<p  class="marrpds target_pds" id="target_pds">'+parseFloat(v2[3]).toFixed(2)+'</p>'
+                                  +'<p  class="marrpds target_pds" id="target_pds">'+Math.round(v2[3])+'</p>'
                                 +'</div>'
                                 +'<div class="mar_right" style="width:10.7%;margin-block:auto;">'
                                   +'<p  class="marrpds"  id="good_pds">'+res['Part_production_details'][k][k1][k2][2]+'</p>'
                                 +'</div>'
                                 +'<div class="mar_right" style="width:11.3%;margin-block:auto;">'
-                                  +' <p  class="marrpds" id="reject_pds" >'+rejection+' <span id="per_reject_pds">('+parseFloat(res['Part_production_details'][k][k1][k2][3]).toFixed(2)+'%)</span></p>'
+                                  +' <p  class="marrpds" id="reject_pds" >'+rejection+' <span id="per_reject_pds">('+tmp_percentage+'%)</span></p>'
                                 +'</div>'
                                 +'<div class="mar_right" style="width:12.8%;margin-block:auto;">'
                                   +' <p  class=" tpp_pds" style="margin:auto;" id="tpp_pds" >'+res['Part_production_details'][k][k1][k2][1]+'</p>'
                                 +'</div>'
                                 +'<div class="mar_right" style="width:20%;display:flex;flex-direction:column;">'
-                                    +'<div id="graph1_'+id+'" style="margin:0;display: grid;grid-template-columns: 60% 40%;font-size:0.7rem;height:6.3rem;">'
+                                    +'<div id="graph1_'+id+'" style="margin:0;display: grid;grid-template-columns: 60% 40%;font-size:0.7rem;height:100%;">'
 
                                     +'</div>'
                                 +'</div>'
                               +'</div>');
-                              // +'<div class="machine_header_production_status" style="width:100%;">'
-                              //   +'<div id="graph2_'+id+'" style="margin:0;display:grid;grid-template-columns:60% 40%;font-size:0.7rem;height:100%;">'
-                              //   +'</div>'
-                              // +'</div>');
                             }
                             $('.col_'+k).append(el);
 
                             
-                              // console.log("shift_wise");
-                              // console.log(k2);
-                              // console.log(v2[4][0]);
-
+                             
                               // graph 1 foreach
                               // reasons label
                               const reasons_label = [];
@@ -634,10 +596,18 @@ $('#changed_date').datetimepicker({
                               var random_count = 1;
                               var quality_reason_total_val = 0;
                               var tid = 0;
+                              const dummy_arr = res['Quality_reject_reason'][k][k1][k2];
+                              
+                              // console.log("dummy array");
+                              // dummy_arr.sort(function(a,b) {
+                              //     return a.val - b.val;
+                              // });
+                              // const arr_demo = descending_func(dummy_arr);
+                              // console.log(dummy_arr);
                               $.each(res['Quality_reject_reason'][k][k1][k2],function(reason,rval){
                               
                                 var qr = $();
-                                  var tmp_reason_id = parseInt(reason);
+                                  var tmp_reason_id = reason.toString().split("r");
                                   // console.log("quality reasons");
                                   //   console.log(tmp_reason_id);
                                   // reasons_label.push(res['quality_reasons'][tmp_reason_id]);
@@ -649,10 +619,10 @@ $('#changed_date').datetimepicker({
                                     reasons_value.push(rval);
                                     reasons_label.push('R'+random_count);
                                     random_count = parseInt(random_count)+1;
-                                    qr = qr.add('<div class="" style="width:100%; border: 1px solid #d9d9d9; padding:5px;">'
-                                     +'<div style="width:100%; word-wrap: break-word;padding-left:0.4rem;" title="'+res['quality_reasons'][tmp_reason_id]+'">'+res['quality_reasons'][tmp_reason_id]+'</div>'
+                                    qr = qr.add('<div class="" style="width:100%; border: 1px solid #E5E4E2;border-bottom:0;border-right:0; padding:5px;">'
+                                     +'<div style="width:100%; word-wrap: break-word;padding-left:0.4rem;" title="'+res['quality_reasons'][tmp_reason_id[1]]+'">'+res['quality_reasons'][tmp_reason_id[1]]+'</div>'
                                     +'</div>'
-                                    +'<div id="background_rval_'+k+'_'+k2+'_'+tid+'" style="width:100%;text-align:right; border: 1px solid #d9d9d9;padding:5px;">'
+                                    +'<div id="background_rval_'+k+'_'+k2+'_'+tid+'" style="width:100%;text-align:right; border: 1px solid #E5E4E2;border-bottom:0;border-right:0;padding:5px;">'
                                       +'<p style="width:100%; word-wrap:break-word;color:#005abc;font-weight:800;margin-top:auto;margin-bottom:auto;" title="'+rval+'"  class="'+k+'_'+k2+'">'+rval+'</p>'
                                     +'</div>');
                                     $('#graph1_'+id).append(qr);
@@ -660,7 +630,8 @@ $('#changed_date').datetimepicker({
                               });
 
                               if (parseInt(quality_reason_total_val)<=0) {
-                                $('#graph1_'+id).append("No Rejection");
+                                // temporary hide this no rejection mathan sir told
+                                // $('#graph1_'+id).append("No Rejection");
                               }else{
                                  // each rejection value width
                                 var rejection_leng = $('.'+k+'_'+k2).length;
@@ -691,21 +662,21 @@ $('#changed_date').datetimepicker({
                               
 
                               // shift id fixed height code
-                                // var shift_leng = $('.row_'+k+'_'+k1).length;
-                                // // console.log("shift height:"+shift_leng);
-                                // var shift_height = 0;
-                                // for(var j=0;j<parseInt(shift_leng);j++){
-                                //   var sheight = $('.row_'+k+'_'+k1+':eq('+j+')').height();
-                                //   shift_height = parseInt(shift_height) + parseInt(sheight);
-                                // }
-                                // // console.log("for loop end:\t"+shift_height);
-                                // var correct_height = parseInt(shift_height) -5;
-                                // var machine_height = $('.'+k).height();
-                                // machine_height = parseInt(machine_height)-5;
+                                var shift_leng = $('.row_'+k+'_'+k1).length;
+                                // console.log("shift height:"+shift_leng);
+                                var shift_height = 0;
+                                for(var j=0;j<parseInt(shift_leng);j++){
+                                  var sheight = $('.row_'+k+'_'+k1+':eq('+j+')').height();
+                                  shift_height = parseInt(shift_height) + parseInt(sheight);
+                                }
+                                // console.log("for loop end:\t"+shift_height);
+                                var correct_height = parseInt(shift_height)+1;
+                                var machine_height = $('.'+k).height();
+                                machine_height = parseInt(machine_height);
                                 // console.log("Machine Height"+machine_height);
-                                // $('.'+k+'_'+k1).css("height",correct_height+"px");
-                                // $('.downtime_'+k+'_'+k1).css("height",correct_height+"px");
-                                // $('#height_'+k).css("height",machine_height+"px");
+                                $('.'+k+'_'+k1).css("height",correct_height+"px");
+                                $('.downtime_'+k+'_'+k1).css("height",correct_height+"px");
+                                $('#height_'+k).css("height",machine_height+"px");
                               id = parseInt(id) +1;
                           });
                         });
@@ -867,6 +838,9 @@ $('#changed_date').datetimepicker({
 
     }
 
+   
+
+    // every one hour automatic run code function
 function current_date_auto_run() {
   //get the mins of the current time
   var mins = new Date().getMinutes();
