@@ -2050,6 +2050,7 @@ $(document).ready(function(){
             url: "<?php echo base_url('User_controller/getUserData'); ?>",
             type: "POST",
             cache: false,
+            async:false,
             data: {
                 UserId : id,
                 Role:role,
@@ -2099,19 +2100,20 @@ $(document).ready(function(){
 
                 // get deparment for update modal
                 $('#EditUserDepartment').empty();
-                if ((res_csp['user_data'][0].role == "Smart Users") || (res_csp['user_data'][0].role == "Site Admin")) {
-                    var elements = $('<option value="4" selected="true">General</option>');
-                    $('#EditUserDepartment').append(elements);
-                    $('#EditUserDepartment').attr("disabled",true);
-                }else if(res_csp['user_data'][0].role == "Operator"){
-                    var elements = $('<option value="1" selected="true">Production</option>');
-                    $('#EditUserDepartment').append(elements);
-                }else{
+                // if ((res_csp['user_data'][0].role == "Smart Users") || (res_csp['user_data'][0].role == "Site Admin")) {
+                //     var elements = $('<option value="4" selected="true">General</option>');
+                //     $('#EditUserDepartment').append(elements);
+                //     $('#EditUserDepartment').attr("disabled",true);
+                // }else if(res_csp['user_data'][0].role == "Operator"){
+                //     var elements = $('<option value="1" selected="true">Production</option>');
+                //     $('#EditUserDepartment').append(elements);
+                // }else{
                     $.ajax({
                         url: "<?php echo base_url('User_controller/getdept'); ?>",
                         type: "POST",
                         dataType: "json",
                         cache: false,
+                        async:false,
                         success:function(res_Site){
                             var datetime = getdate_time(res_csp['user_data'][0].last_updated_on);
                             var elements = $('<option value="" disabled>Select deparment</option>');
@@ -2122,15 +2124,15 @@ $(document).ready(function(){
                                 else{
                                     elements = elements.add('<option value="'+item.dept_id+'">'+item.department+'</option>');
                                 }
-                                    
-                                $('#EditUserDepartment').append(elements);
-                            });              
+                            }); 
+                            $('#EditUserDepartment').append(elements);
+                            // $('#EditUserDepartment option[value="'+res_csp['user_data'][0]+'"]').attr('selected',true)             
                         },
                         error:function(res){
                             alert("Sorry!Try Agian!!");
                         }
                     });
-                }
+                // }
                  
                 // after selection site dropdown then display site id and location
                 $('#EditUserSiteId').html(res_csp['user_data'][0].site_id);
@@ -2275,9 +2277,7 @@ $(document).ready(function(){
         var edit_data = "edit_user";
         error_show_remove(edit_data);
         $('#EditUserModal').modal('show');
-        
-        
-    }); 
+    });     
 
     // after click edit open the modal then load the site name dropdown
     function edit_user_site_name(role ,site_id){
