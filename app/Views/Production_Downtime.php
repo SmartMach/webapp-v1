@@ -347,42 +347,42 @@ input[type=number] {
           <!--  -->
           <div class="tableContent downtimeHeader" style="display: none;top:20rem">
             <div class="settings_machine_header sticky-top" style="position:fixed;left:4.5rem;right:0;top:19rem;margin-left: 0.5rem;margin-right: 0.5rem;">
-                <div class="row paddingm">
-                    <div class="col-sm-1 p3 paddingm">
-                      <p class="basic_header">START TIME</p>
-                    </div>
-                    <div class="col-sm-1 p3 paddingm" style="word-wrap: break-word;flex-wrap: wrap;">
-                      <p class=" basic_header">DURATION
-                        <br>
-                        (min)
-                      </p>
-                    </div>
-                    <div class="col-sm-1 p3 paddingm">
-                      <p class="basic_header">END TIME</p>
-                    </div>
-                    <div class="col-sm-1 p3 paddingm">
-                      <p class="basic_header">CATEGORY</p>
-                    </div>
-                    <div class="col-sm-2 p3 paddingm">
-                      <p class="basic_header">REASON</p>
-                    </div>
-                    <div class="col-sm-2 p3 paddingm">
-                      <p class="basic_header">TOOL NAME</p>
-                    </div>
-                    <div class="col-sm-2 p3 paddingm">
-                      <p class="basic_header">PART NAME</p>
-                    </div>
-                    <div class="col-sm-2 p3 paddingm" style="justify-content: center;">
-                      <p class="basic_header">ACTION</p>
-                    </div>
-                </div>
+              <div class="row paddingm">
+                  <div class="col-sm-1 p3 paddingm">
+                    <p class="basic_header">START TIME</p>
+                  </div>
+                  <div class="col-sm-1 p3 paddingm" style="word-wrap: break-word;flex-wrap: wrap;">
+                    <p class=" basic_header">DURATION
+                      <br>
+                      (min)
+                    </p>
+                  </div>
+                  <div class="col-sm-1 p3 paddingm">
+                    <p class="basic_header">END TIME</p>
+                  </div>
+                  <div class="col-sm-1 p3 paddingm">
+                    <p class="basic_header">CATEGORY</p>
+                  </div>
+                  <div class="col-sm-2 p3 paddingm">
+                    <p class="basic_header">REASON</p>
+                  </div>
+                  <div class="col-sm-2 p3 paddingm">
+                    <p class="basic_header">TOOL NAME</p>
+                  </div>
+                  <div class="col-sm-2 p3 paddingm">
+                    <p class="basic_header">PART NAME</p>
+                  </div>
+                  <div class="col-sm-2 p3 paddingm" style="justify-content: center;">
+                    <p class="basic_header">ACTION</p>
+                  </div>
+              </div>
             </div>
 
           <!-- Graph split content will be displayed in this div -->
-        <div class="contentMachine paddingm " style="margin-top:12.3rem;">
-          <div class="split_input"></div>
-        </div>
-      </div> 
+            <div class="contentMachine paddingm " style="margin-top:12.3rem;">
+              <div class="split_input"></div>
+            </div>
+          </div> 
 
       <!-- preloader -->
  <!-- preloader -->
@@ -1140,6 +1140,14 @@ $(document).on("click", ".deleteRec", function(){
       val_second = splitTmp[0];
     }
 
+    if (notes) {
+      var notes_mapped = "info_reason.png";
+    }
+    else{
+      var notes_mapped = "info.png";
+    }
+    
+
    var cal_count = 1;
     $( ".split_input" ).append('<div id="settings_div" class="rowData">'
             +'<div class="row paddingm">'
@@ -1216,7 +1224,7 @@ $(document).on("click", ".deleteRec", function(){
                     +'<span class="optionLeft doth addNotesReason dedit" value=""><img src="<?php echo base_url('assets/img/notes.png'); ?>" class="icon_img_wh ICON"></span>'
                     +'<span class="doth doneEdit dcheck" split="1" ><img src="<?php echo base_url('assets/img/tick.png'); ?>" class="icon_img_wh1 ICON" style="color:white;"></span>'
                     +'<span class="doth edit-split ninfo reasonInfo" >'
-                      +'<img src="<?php echo base_url('assets/img/info.png'); ?>" class="icon_img_wh ICON info_click"  data_val="'+last_updated_by+'">'
+                      +'<img src="<?php echo base_url()?>/assets/img/'+notes_mapped+'" class="icon_img_wh ICON info_click"  data_val="'+last_updated_by+'">'
                       +'<div class="edit-Subsplit" style="z-index:10;">'
                           +'<div style="display: flex;width: 100%;">'
                             +'<div style="width: 50%;float: left;height: 100%;">'

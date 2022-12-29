@@ -245,10 +245,10 @@ $('#inputMachineBrand').on('blur',function(){
 	$("#inputMachineBrandErr").html(x);
 });
 
-$('#inputMachineSerialId').on('blur',function(){
-	var x =inputMachineSerialid($("#inputMachineSerialId").val());
-	$("#inputMachineSerialId_err").html(x);
-});
+// $('#inputMachineSerialId').on('blur',function(){
+// 	var x =inputMachineSerialid($("#inputMachineSerialId").val());
+// 	$("#inputMachineSerialId_err").html(x);
+// });
 
 // // Onchange
 $('#inputMachineName').focus('type',function(){
@@ -656,11 +656,10 @@ $('#editMachineBrand').on('blur',function(){
 	$("#editMachineBrandErr").html(x);
 });
 
-$('#editMachineSerialNumber').on('blur',function(){
-	var x =editMachineSerialNumber($("#editMachineSerialNumber").val());
-	$("#editMachineSerialNumber_err").html(x);
-});
-
+// $('#editMachineSerialNumber').on('blur',function(){
+// 	var x =editMachineSerialNumber($("#editMachineSerialNumber").val());
+// 	$("#editMachineSerialNumber_err").html(x);
+// });
 
 // // Onchange
 $('#editMachineName').focus('type',function(){
