@@ -610,7 +610,7 @@
             else if(split_nav[1] === "fa-bar-chart"){
                 // alert('ok');
                 listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:27px;padding:5px;";
-                actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 1px;font-weight:500;";
+                // actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 1px;font-weight:500;";
                
             }
             else{

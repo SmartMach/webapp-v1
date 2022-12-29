@@ -213,7 +213,7 @@
         <div class="tableContent paddingm" style="margin-top:4rem; padding-left:3px;padding-right:3px; ">
             <div class="settings_machine_header sticky-top fixtabletitle" style="top:7.8rem;margin-bottom:0.3rem;">
                 <div class="row paddingm">
-                    <div class="col-sm-1 p3 paddingm" style="width: 6.2%;">
+                    <div class="col-sm-1 p3 paddingm" style="width: 6%;">
                       <p class="basic_header">MACHINE </p>
                     </div>
                     <div class="col-sm-1 p3 paddingm" style="width:5.8%;">
@@ -222,16 +222,16 @@
                     <div class="col-sm-1 p3 paddingm " style="width:8.5%;">
                       <p class="basic_header">PART</p>
                     </div>
-                    <div class="col-sm-1 p3 paddingm " style="width:7.7%;">
+                    <div class="col-sm-1 p3 paddingm " style="width:6.7%;">
                       <p class="basic_right">NICT  (s)</p>
                     </div>
-                    <div class="col-sm-1 p3 paddingm " style="width:7.8%;">
+                    <div class="col-sm-1 p3 paddingm " style="width:6.8%;">
                       <p class="basic_right">PPC</p>
                     </div>
-                    <div class="col-sm-1 p3 paddingm" style="width:7.6%;">
+                    <div class="col-sm-1 p3 paddingm" style="width:6.6%;">
                       <p class="basic_right">TARGET</p>
                     </div>
-                    <div class="col-sm-1 p3 paddingm" style="width:7.3%;">
+                    <div class="col-sm-1 p3 paddingm" style="width:6.3%;">
                       <p class="basic_right">GOOD</p>
                     </div>
                     <div class="col-sm-1 p3 paddingm" style="justify-content: center;width:7.8%;">
@@ -240,10 +240,10 @@
                     <div class="col-sm-1 p3 paddingm" style="width:8.5%;">
                       <p class="basic_header_center">TPP</p>
                     </div>
-                    <div class="col-sm-1 p3 paddingm" style="width:14.5%;">
+                    <div class="col-sm-1 p3 paddingm" style="width:18.5%;">
                       <p class="basic_header">REJECTION REASON</p>
                     </div>
-                    <div class="col-sm-1 p3 paddingm" style="width:13%;">
+                    <div class="col-sm-1 p3 paddingm" style="width:18.4%;">
                       <p class="basic_header">DOWNTIME  REASON</p>
                     </div>
                 </div>
@@ -353,13 +353,13 @@ $('#changed_date').datetimepicker({
                                   +'<span class="brandname">'+res['machine_details'][k][1]+'</span>'
                               +'</div>'
                             +'</div>'
-                            +'<div class=" col paddingm '+k+'"style="padding-right:2px; width:2%;" machine_data="'+k+'" >'
+                            +'<div class=" col paddingm '+k+'"style="padding-right:2px; width:3%;" machine_data="'+k+'" >'
                             +'</div>'
-                            +'<div class="col-sm-10 " style="padding:0;width:70%;padding-right:2px;">'
+                            +'<div class="col-sm-10 " style="padding:0;width:69.8%;padding-right:2px;">'
                               +'<div class="col_'+k+'" style="padding:0;height:100%;width:100%;"></div>'
                             +'</div>'
                             // downtime graph
-                            +'<div class="downtime_graph_'+k+'" style="width:18%;">'
+                            +'<div class="downtime_graph_'+k+'" style="width:18.3%;">'
                             +'</div>'
                             +'</div>');
                             $('.contentProduction').append(elements);
@@ -524,26 +524,26 @@ $('#changed_date').datetimepicker({
                                     +'<p title="'+tool_name+'" style="text-align:center;margin-bottom:0;font-size:0.8rem;color:black;font-weight:550;width:100%;">('+tool_name+')</p>'
                                   +'<p title="'+from_time+' to '+to_time+'" style="text-align:center;margin-bottom:0;font-size:0.7rem;margin-top:4px;"><small class="small_text_time">'+from_time+' to '+to_time+'</small></p>'
                                 +'</div>'
-                                +'<div class="mar_right" style="width:11.2%;margin-block:auto;">'
+                                +'<div class="mar_right" style="width:9.7%;margin-block:auto;">'
                                   +'<p  class="marrpds" id="nict_pds">'+v2[2]+'</p>'
                                 +'</div>'
-                                +'<div class="mar_right" style="width:11.2%;margin-block:auto;">'
+                                +'<div class="mar_right" style="width:10%;margin-block:auto;">'
                                   +'<p  class="marrpds" id="ppc_pds">'+v2[1]+'</p>'
                                 +'</div>'
-                                +'<div class="mar_right" style="width:10.89%;margin-block:auto;">'
+                                +'<div class="mar_right" style="width:9.6%;margin-block:auto;">'
                                   +'<p  class="marrpds target_pds" id="target_pds">'+Math.round(v2[3])+'</p>'
                                 +'</div>'
-                                +'<div class="mar_right" style="width:10.68%;margin-block:auto;">'
+                                +'<div class="mar_right" style="width:9.2%;margin-block:auto;">'
                                   +'<p  class="marrpds"  id="good_pds">'+res['Part_production_details'][k][k1][k2][2]+'</p>'
                                 +'</div>'
-                                +'<div class="mar_right" style="width:11.2%;margin-block:auto;">'
+                                +'<div class="mar_right" style="width:11.4%;margin-block:auto;">'
                                   +' <p  class="marrpds" id="reject_pds" >'+rejection+' <span id="per_reject_pds">('+tmp_percentage+'%)</span></p>'
                                 +'</div>'
-                                +'<div class="mar_right" style="width:12.5%;margin-block:auto;margin-block:auto;">'
+                                +'<div class="mar_right" style="width:12.4%;margin-block:auto;margin-block:auto;">'
                                   +' <p  class=" tpp_pds" style="margin:auto;" id="tpp_pds" >'+res['Part_production_details'][k][k1][k2][1]+'</p>'
                                 +'</div>'
-                                +'<div class="mar_right" style="width:20.4%;display:flex;flex-direction:column;height:100%;">'
-                                    +'<div id="graph1_'+id+'" style="margin:0;display: grid;grid-template-columns: 60% 40%;font-size:0.7rem;overflow:auto;">'
+                                +'<div class="mar_right" style="width:26.8%;display:flex;flex-direction:column;height:100%;">'
+                                    +'<div id="graph1_'+id+'" style="margin:0;display: grid;grid-template-columns: 60% 40%;font-size:0.7rem;overflow:auto;border-bottom: 1px solid #E5E4E2;border-left: 1px solid #E5E4E2;">'
                                        
                                     +'</div>'
                                 +'</div>'
@@ -554,31 +554,31 @@ $('#changed_date').datetimepicker({
                             }else{
                               // single parts per shift
                               el = el.add('<div class="machine_header_production_status row_'+k+'_'+k1+'" style="width:100%;display:flex;min-height:7rem;">'
-                              +'<div class="mar_right" style="width:12%;margin-block:auto;display:flex;flex-direction:column;padding:0.3rem;">'
+                              +'<div class="mar_right" style="width:11.89%;margin-block:auto;display:flex;flex-direction:column;padding:0.3rem;">'
                                   +'<p id="partname_pds" title="'+part_name+'" style="margin-bottom:0;">'+part_name +'</p>'
                                     +'<p title="'+tool_name+'" style="text-align:center;margin-bottom:0;font-size:0.8rem;color:black;font-weight:550;width:100%;">('+tool_name+')</p>'
                                     +'<p title="'+from_time+' to '+to_time+'" style="text-align:center;margin-bottom:0;font-size:0.7rem;margin-top:4px;"><small class="small_text_time">'+from_time+' to '+to_time+'</small></p>'
                                 +'</div>'
-                                +'<div class="mar_right" style="width:11.2%;margin-block:auto;">'
+                                +'<div class="mar_right" style="width:9.6%;margin-block:auto;">'
                                   +'<p  class="marrpds" id="nict_pds">'+v2[2]+'</p>'
                                 +'</div>'
-                                +'<div class="mar_right" style="width:11.2%;margin-block:auto;">'
+                                +'<div class="mar_right" style="width:9.90%;margin-block:auto;">'
                                   +'<p  class="marrpds" id="ppc_pds">'+v2[1]+'</p>'
                                 +'</div>'
-                                +'<div class="mar_right" style="width:11%;margin-block:auto;">'
+                                +'<div class="mar_right" style="width:9.6%;margin-block:auto;">'
                                   +'<p  class="marrpds target_pds" id="target_pds">'+Math.round(v2[3])+'</p>'
                                 +'</div>'
-                                +'<div class="mar_right" style="width:10.7%;margin-block:auto;">'
+                                +'<div class="mar_right" style="width:9%;margin-block:auto;">'
                                   +'<p  class="marrpds"  id="good_pds">'+res['Part_production_details'][k][k1][k2][2]+'</p>'
                                 +'</div>'
-                                +'<div class="mar_right" style="width:11.3%;margin-block:auto;">'
+                                +'<div class="mar_right" style="width:11.2%;margin-block:auto;">'
                                   +' <p  class="marrpds" id="reject_pds" >'+rejection+' <span id="per_reject_pds">('+tmp_percentage+'%)</span></p>'
                                 +'</div>'
-                                +'<div class="mar_right" style="width:12.8%;margin-block:auto;">'
+                                +'<div class="mar_right" style="width:12.4%;margin-block:auto;">'
                                   +' <p  class=" tpp_pds" style="margin:auto;" id="tpp_pds" >'+res['Part_production_details'][k][k1][k2][1]+'</p>'
                                 +'</div>'
-                                +'<div class="mar_right" style="width:20%;display:flex;flex-direction:column;">'
-                                    +'<div id="graph1_'+id+'" style="margin:0;display: grid;grid-template-columns: 60% 40%;font-size:0.7rem;height:100%;">'
+                                +'<div class="mar_right" style="width:26.6%;display:flex;flex-direction:column;">'
+                                    +'<div id="graph1_'+id+'" style="margin:0;display: grid;grid-template-columns: 60% 40%;font-size:0.7rem;border-bottom: 1px solid #E5E4E2;border-left: 1px solid #E5E4E2;">'
 
                                     +'</div>'
                                 +'</div>'
@@ -619,10 +619,10 @@ $('#changed_date').datetimepicker({
                                     reasons_value.push(rval);
                                     reasons_label.push('R'+random_count);
                                     random_count = parseInt(random_count)+1;
-                                    qr = qr.add('<div class="" style="width:100%; border: 1px solid #E5E4E2;border-bottom:0;border-right:0; padding:5px;">'
-                                     +'<div style="width:100%; word-wrap: break-word;padding-left:0.4rem;" title="'+res['quality_reasons'][tmp_reason_id[1]]+'">'+res['quality_reasons'][tmp_reason_id[1]]+'</div>'
+                                    qr = qr.add('<div class="" style="width:100%; border-right: 1px solid #E5E4E2; border-bottom: 1px solid #E5E4E2; padding:5px;">'
+                                      +'<div style="width:100%; word-wrap: break-word;padding-left:0.4rem;" title="'+res['quality_reasons'][tmp_reason_id[1]]+'">'+res['quality_reasons'][tmp_reason_id[1]]+'</div>'
                                     +'</div>'
-                                    +'<div id="background_rval_'+k+'_'+k2+'_'+tid+'" style="width:100%;text-align:right; border: 1px solid #E5E4E2;border-bottom:0;border-right:0;padding:5px;">'
+                                    +'<div id="background_rval_'+k+'_'+k2+'_'+tid+'" style="width:100%;text-align:right;border-bottom: 1px solid #E5E4E2; padding:5px;">'
                                       +'<p style="width:100%; word-wrap:break-word;color:#005abc;font-weight:800;margin-top:auto;margin-bottom:auto;" title="'+rval+'"  class="'+k+'_'+k2+'">'+rval+'</p>'
                                     +'</div>');
                                     $('#graph1_'+id).append(qr);
@@ -635,7 +635,7 @@ $('#changed_date').datetimepicker({
                               }else{
                                  // each rejection value width
                                 var rejection_leng = $('.'+k+'_'+k2).length;
-                                //console.log("total length:\t"+rejection_leng);
+                                console.log("total length:\t"+rejection_leng);
                                 for(var i=0;i<parseInt(rejection_leng);i++){
                                   //console.log("total quality:\t"+quality_reason_total_val);
                                   
@@ -646,15 +646,21 @@ $('#changed_date').datetimepicker({
                                   var color_deg = parseInt(percentage_background)/100*360;
                                   var tmp = parseInt(i) +1;
                                   var remaining_percent = 100 - parseInt(percentage_background);
-                                  $('#background_rval_'+k+'_'+k2+'_'+tmp).css("background","linear-gradient(to right, #87CEFA "+parseInt(percentage_background)+"% , white "+parseInt(percentage_background)+"%, white 100%)");
+                                    if (parseInt(rejection_leng)=== 1) {
+                                      // percentage_background = 99;
+                                      $('#background_rval_'+k+'_'+k2+'_'+tmp).css("background","#87CEFA");
+                                      console.log("single reason:\t"+rejection_leng);
+                                    }else{
+                                      $('#background_rval_'+k+'_'+k2+'_'+tmp).css("background","linear-gradient(to right, #87CEFA "+parseInt(percentage_background)+"% , white "+parseInt(percentage_background)+"%, white 100%)");
+                                    }
                                   // $('.background_rval_'+i).css("width",parseInt(percentage_background)+"%");
                                 }
                               }
 
                               // length of the graph
-                              if (parseInt(reasons_label.length)>4) {
-                                  $('#graph1_'+id).css("overflow","auto");
-                              }
+                              // if (parseInt(reasons_label.length)>4) {
+                              //     $('#graph1_'+id).css("overflow","auto");
+                              // }
                              
                              
 
