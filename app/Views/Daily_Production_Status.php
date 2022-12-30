@@ -211,12 +211,12 @@
           </div>
         </nav>
         <div class="tableContent paddingm" style="margin-top:4rem; padding-left:3px;padding-right:3px; ">
-            <div class="settings_machine_header sticky-top fixtabletitle" style="top:7.8rem;margin-bottom:0.3rem;">
+            <div class="settings_machine_header sticky-top fixtabletitle" style="top:7.9rem;margin-bottom:0.3rem;">
                 <div class="row paddingm">
-                    <div class="col-sm-1 p3 paddingm" style="width: 6%;">
-                      <p class="basic_header">MACHINE </p>
+                    <div class="col-sm-1 p3 paddingm" style="width:5.6%;">
+                      <p class="basic_header" style="margin-left:0.7rem;">MACHINE </p>
                     </div>
-                    <div class="col-sm-1 p3 paddingm" style="width:5.8%;">
+                    <div class="col-sm-1 p3 paddingm" style="width:5.6%;">
                       <p class="basic_header">SHIFT</p>
                     </div>
                     <div class="col-sm-1 p3 paddingm " style="width:8.5%;">
@@ -346,8 +346,8 @@ $('#changed_date').datetimepicker({
 
                         elements = elements.add('<div class="" style="padding:2px;display:flex;flex-wrap:wrap;flex-direction:row;">'
                             +'<div class=" col paddingm" style="padding-right:2px; width:10%;">'
-                              // +'<div class="machine_header_production_status machine_align" style="height:101%;">'
-                              +'<div class="machine_header_production_status machine_align" id="height_'+k+'" style="">'
+                              +'<div class="machine_header_production_status machine_align" style="height:100%;">'
+                              // +'<div class="machine_header_production_status machine_align" id="height_'+k+'" style="">'
                                   +'<p class="mcname" style="text-align:center;">'+res['machine_details'][k][0]+'</p>'
                                   +'<span style="font-size:0.8rem;font-weight:550;">('+res['machine_details'][k][2]+'T)</span>'
                                   +'<span class="brandname">'+res['machine_details'][k][1]+'</span>'
@@ -359,7 +359,7 @@ $('#changed_date').datetimepicker({
                               +'<div class="col_'+k+'" style="padding:0;height:100%;width:100%;"></div>'
                             +'</div>'
                             // downtime graph
-                            +'<div class="downtime_graph_'+k+'" style="width:18.3%;">'
+                            +'<div class="downtime_graph_'+k+'" style="width:19%;">'
                             +'</div>'
                             +'</div>');
                             $('.contentProduction').append(elements);
@@ -622,7 +622,7 @@ $('#changed_date').datetimepicker({
                                     qr = qr.add('<div class="" style="width:100%; border-right: 1px solid #E5E4E2; border-bottom: 1px solid #E5E4E2; padding:5px;">'
                                       +'<div style="width:100%; word-wrap: break-word;padding-left:0.4rem;" title="'+res['quality_reasons'][tmp_reason_id[1]]+'">'+res['quality_reasons'][tmp_reason_id[1]]+'</div>'
                                     +'</div>'
-                                    +'<div id="background_rval_'+k+'_'+k2+'_'+tid+'" style="width:100%;text-align:right;border-bottom: 1px solid #E5E4E2; padding:5px;">'
+                                    +'<div id="background_rval_'+k+'_'+k1+'_'+k2+'_'+tid+'" style="width:100%;text-align:right;border-bottom: 1px solid #E5E4E2; padding:5px;">'
                                       +'<p style="width:100%; word-wrap:break-word;color:#005abc;font-weight:800;margin-top:auto;margin-bottom:auto;" title="'+rval+'"  class="'+k+'_'+k2+'">'+rval+'</p>'
                                     +'</div>');
                                     $('#graph1_'+id).append(qr);
@@ -648,10 +648,10 @@ $('#changed_date').datetimepicker({
                                   var remaining_percent = 100 - parseInt(percentage_background);
                                     if (parseInt(rejection_leng)=== 1) {
                                       // percentage_background = 99;
-                                      $('#background_rval_'+k+'_'+k2+'_'+tmp).css("background","#87CEFA");
+                                      $('#background_rval_'+k+'_'+k1+'_'+k2+'_'+tmp).css("background","#87CEFA");
                                       console.log("single reason:\t"+rejection_leng);
                                     }else{
-                                      $('#background_rval_'+k+'_'+k2+'_'+tmp).css("background","linear-gradient(to right, #87CEFA "+parseInt(percentage_background)+"% , white "+parseInt(percentage_background)+"%, white 100%)");
+                                      $('#background_rval_'+k+'_'+k1+'_'+k2+'_'+tmp).css("background","linear-gradient(to right, #87CEFA "+parseInt(percentage_background)+"% , white "+parseInt(percentage_background)+"%, white 100%)");
                                     }
                                   // $('.background_rval_'+i).css("width",parseInt(percentage_background)+"%");
                                 }
@@ -662,27 +662,23 @@ $('#changed_date').datetimepicker({
                               //     $('#graph1_'+id).css("overflow","auto");
                               // }
                              
-                             
-
-                             
-                              
-
+                            
                               // shift id fixed height code
-                                var shift_leng = $('.row_'+k+'_'+k1).length;
-                                // console.log("shift height:"+shift_leng);
-                                var shift_height = 0;
-                                for(var j=0;j<parseInt(shift_leng);j++){
-                                  var sheight = $('.row_'+k+'_'+k1+':eq('+j+')').height();
-                                  shift_height = parseInt(shift_height) + parseInt(sheight);
-                                }
-                                // console.log("for loop end:\t"+shift_height);
-                                var correct_height = parseInt(shift_height)+1;
-                                var machine_height = $('.'+k).height();
-                                machine_height = parseInt(machine_height);
-                                // console.log("Machine Height"+machine_height);
-                                $('.'+k+'_'+k1).css("height",correct_height+"px");
-                                $('.downtime_'+k+'_'+k1).css("height",correct_height+"px");
-                                $('#height_'+k).css("height",machine_height+"px");
+                              var shift_leng = $('.row_'+k+'_'+k1).length;
+                              // console.log("shift height:"+shift_leng);
+                              var shift_height = 0;
+                              for(var j=0;j<parseInt(shift_leng);j++){
+                                var sheight = $('.row_'+k+'_'+k1+':eq('+j+')').height();
+                                shift_height = parseInt(shift_height) + parseInt(sheight);
+                              }
+                              // console.log("for loop end:\t"+shift_height);
+                              var correct_height = parseInt(shift_height)+1;
+                              var machine_height = $('.'+k).height();
+                              machine_height = parseInt(machine_height);
+                              // console.log("Machine Height"+machine_height);
+                              $('.'+k+'_'+k1).css("height",correct_height+"px");
+                              $('.downtime_'+k+'_'+k1).css("height",correct_height+"px");
+                              // $('#height_'+k).css("height",machine_height+"px");
                               id = parseInt(id) +1;
                           });
                         });
