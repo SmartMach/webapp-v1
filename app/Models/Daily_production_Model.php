@@ -304,7 +304,6 @@ class Daily_production_Model extends Model{
         $query->select('NICT,part_produced_cycle');
         $query->where('part_id',$part_id);
         $result = $query->get()->getResultArray();
-
         return $result;
     }
 
@@ -673,16 +672,18 @@ class Daily_production_Model extends Model{
         array_push($tmpfinal_arr,$good_parts);
         // percentage formula
         
+        // temporary hide for this code for percentage for rejections percetnage
         // first get shift hour to convert seconds
-        $tmp_shifthour = explode(":",$duration);
-        $shift_duration_seconds = 0;
-        $tmp_shift_second = $tmp_shifthour[0]*3600;
-        $tmp_shift_second = $tmp_shift_second + ($tmp_shifthour[1]*60); 
-        $tmp_shift_second = $tmp_shifthour[2] + $tmp_shift_second;
+        // $tmp_shifthour = explode(":",$duration);
+        // $shift_duration_seconds = 0;
+        // $tmp_shift_second = $tmp_shifthour[0]*3600;
+        // $tmp_shift_second = $tmp_shift_second + ($tmp_shifthour[1]*60); 
+        // $tmp_shift_second = $tmp_shifthour[2] + $tmp_shift_second;
 
-        $shift_duration_seconds = $tmp_shift_second;
+        // $shift_duration_seconds = $tmp_shift_second;
 
-
+        // temporary hide for this code for percentage for rejections percetnage
+/*
         // second get target value
         // first get the planned durations in seconds
         $getplanned_duration_seconds = $this->getalldowntime($mid,$sdate,$sid);
@@ -691,14 +692,24 @@ class Daily_production_Model extends Model{
         // $check_str = $shift_duration_seconds."-".$getplanned_duration_seconds."=".$final_durations_seconds;
         $getnict = $this->getpart_details($pid);
         // $target = $final_durations_seconds / $getnict[0]['NICT'];
+  
         try {
             if ($getnict[0]['NICT'] == 0) throw new Exception("Divide by zero");
             $target = $final_durations_seconds / $getnict[0]['NICT'];
             // $percentage = $tpp /  target is inprogress for mathan sir confirmation
-            $percentage = ($good_parts / $target) * 100;
+            $percentage = ($rejection / $tpp) * 100;
             array_push($tmpfinal_arr,$percentage);
         } catch (\Throwable $e) {
             $target =0;  
+            array_push($tmpfinal_arr,0);
+        }
+        */
+        // rejection percentage coditions code
+        try {
+            if(($tpp === null) or ($tpp == 0) ) throw new Exception("Divide By Zero");
+            $percentage = ($rejection / $tpp) * 100;
+            array_push($tmpfinal_arr,$percentage);
+        } catch (\Throwable $e) {
             array_push($tmpfinal_arr,0);
         }
        

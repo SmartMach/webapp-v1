@@ -472,7 +472,7 @@ $('#changed_date').datetimepicker({
                               // console.log("machine:\t"+k+"percentage"+percentage_background);
                               var tmp = parseInt(i) +1;
                               var remaining_percent = 100 - parseInt(percentage_background);
-                              $('#background_drval_'+k+'_'+k1+'_'+tmp).css("background","linear-gradient(to right, #87CEFA "+parseInt(percentage_background)+"% , white "+parseInt(percentage_background)+"%, white 100%)");
+                              $('#background_drval_'+k+'_'+k1+'_'+tmp).css("background","linear-gradient(to right,  #B4D7FF "+parseInt(percentage_background)+"% , white "+parseInt(percentage_background)+"%, white 100%)");
                               // $('.background_rval_'+i).css("width",parseInt(percentage_background)+"%");
                             }
 
@@ -628,7 +628,7 @@ $('#changed_date').datetimepicker({
                                     $('#graph1_'+id).append(qr);
                                   }
                               });
-
+                              
                               if (parseInt(quality_reason_total_val)<=0) {
                                 // temporary hide this no rejection mathan sir told
                                 // $('#graph1_'+id).append("No Rejection");
@@ -648,10 +648,10 @@ $('#changed_date').datetimepicker({
                                   var remaining_percent = 100 - parseInt(percentage_background);
                                     if (parseInt(rejection_leng)=== 1) {
                                       // percentage_background = 99;
-                                      $('#background_rval_'+k+'_'+k1+'_'+k2+'_'+tmp).css("background","#87CEFA");
+                                      $('#background_rval_'+k+'_'+k1+'_'+k2+'_'+tmp).css("background","#B4D7FF");
                                       console.log("single reason:\t"+rejection_leng);
                                     }else{
-                                      $('#background_rval_'+k+'_'+k1+'_'+k2+'_'+tmp).css("background","linear-gradient(to right, #87CEFA "+parseInt(percentage_background)+"% , white "+parseInt(percentage_background)+"%, white 100%)");
+                                      $('#background_rval_'+k+'_'+k1+'_'+k2+'_'+tmp).css("background","linear-gradient(to right,  #B4D7FF "+parseInt(percentage_background)+"% , white "+parseInt(percentage_background)+"%, white 100%)");
                                     }
                                   // $('.background_rval_'+i).css("width",parseInt(percentage_background)+"%");
                                 }

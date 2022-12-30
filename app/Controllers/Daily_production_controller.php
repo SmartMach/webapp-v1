@@ -11,23 +11,19 @@ class Daily_production_controller extends BaseController{
        	//$data;
         $this->datas = new Daily_production_Model();
 
-        //$session = \Config\Services::session();
         $this->session = \Config\Services::session();
         $this->session->start();
     } 
 
-    public function index(){
-        echo "Hello strategy";
-    }
+    // public function index(){
+    //     echo "Hello strategy";
+    // }
 
     // get shift function
     public function getshift($sdate){
         // $selected_date = "2022-12-05";
         $selected_date = $sdate;
         $getshift_res = $this->datas->getcurrentshift_record($selected_date);
-        // echo "<pre>";
-        // print_r($getshift_res);
-        // echo "</pre>";
         $tmp['shifts'] = $getshift_res['shift_ids'];
         $tmp['shift_management'] = $getshift_res['shift_management'];
         // print_r($tmp);
@@ -52,9 +48,7 @@ class Daily_production_controller extends BaseController{
         // return $tmp_arr;
 
         return $tmp_arr;
-        // echo "<pre>";
-        // print_r($tmp_arr);
-        // echo "</pre>";
+      
     }
 
     // get downtime reasons function 
@@ -108,18 +102,9 @@ class Daily_production_controller extends BaseController{
             //$date = "2022-12-07";
              $date = $this->request->getVar('date');
             $getmachine_data = $this->datas->getmachine_data($date);
-            // echo "get all machines array for the particular date production machines";
-            // echo "<pre>";
-            // print_r($getmachine_data);
-            // echo "</pre>";
-    
+           
             // get machine all details for example machine brand tonnage
             $getmachine_details = $this->machine_data_details($date);
-    
-            // echo "get all machines details";
-            // echo "<pre>";
-            // print_r($getmachine_details);
-            // echo"</pre>";
     
             // machine based shift based tool changeover
             $getshiftid = $this->getshift($date);
@@ -127,37 +112,22 @@ class Daily_production_controller extends BaseController{
             $getsid = $getshiftid['shifts'];
             $duration = $getshiftid['shift_management'][0]['duration'];
             // echo  "get all shifts id in particular date";
-            // print_r($getsid);
-            // print_r(strtotime($duration));
             $get_toolchangeover = $this->datas->get_tool_changeover($getmachine_data,$date,$getsid,$duration);
-    
-            // echo "machine wise and shift wise and part wise  array";
-            // echo "<pre>";
-            // print_r($get_toolchangeover);
-            // echo "</pre>";
-            
+            // echo "machine wise and shift wise and part wise  array";           
             $getdowntime_graph = $this->datas->getdowntimegraph($getmachine_data,$date,$getsid);
             // down time reasons based graph count
             // echo "Downtime reasons based graph count";
-            // echo "<pre>";
-            // print_r($getdowntime_graph);
-            // echo "</pre>";
-    
+            
             // get downtime json value
             // echo "get downtime value";
             $getdowntime_val = $this->datas->getdowntimevalue($getmachine_data,$date,$getsid);
-            // echo "<pre>";
-            // print_r($getdowntime_val);
-            // echo "</pre>";
+            
     
             // get quality rejection reason
             // echo "get Quality rejection reason ";
             $getquality_reject_reason = $this->datas->getquality_reject_reason($getmachine_data,$date,$getsid);
 
-            // echo "<pre>";
-            // print_r($getquality_reject_reason);
-            // echo "</pre>";
-    
+          
     
             // part production details
             // echo "Part Production Details:\t";
@@ -175,9 +145,6 @@ class Daily_production_controller extends BaseController{
             // machine wise part count its ui purpose
             $getpart_count = $this->macine_wise_part_count($get_toolchangeover);
             // echo "part count";
-            // echo "<pre>";
-            // print_r($getpart_count);
-            // echo "</pre>";
 
             // part full details
             $getpart_arr = $this->partid_wise_details($get_toolchangeover);
@@ -210,12 +177,7 @@ class Daily_production_controller extends BaseController{
             
             // ui purpose just remove future shift id records
             $data['shift_wise_time'] = $get_shift_wise_time_arr;
-
-            
             echo json_encode($data);
-            // echo "<pre>";
-            // print_r($data);
-            // echo "</pre>";
         }
       
     }   
@@ -261,16 +223,6 @@ class Daily_production_controller extends BaseController{
 
     // this function for quality rejection reasno for descending order function
     public function check_quality_reason_valid($getquality_reject_reason){
-        // $date = "2022-12-07";
-
-        // $getmachine_data = $this->datas->getmachine_data($date);
-        // $getshiftid = $this->getshift($date);
-        // // echo json_encode($getshiftid);
-        // $getsid = $getshiftid['shifts'];
-        // $tmp_arr = [];
-        // $getquality_reject_reason = $this->datas->getquality_reject_reason($getmachine_data,$date,$getsid);
-       
-
         foreach ($getquality_reject_reason as $key => $value) {
             $tmp1 = [];
             foreach ($value as $k1 => $v1) {
@@ -305,13 +257,6 @@ class Daily_production_controller extends BaseController{
 
     // this function goes to downtime reasons seconds descending order and valid reasons passing function
     public function getdowntime_valid_reason($getdowntime_arr){
-        // $date = "2022-12-07";
-        // $getmachine_data = $this->datas->getmachine_data($date);
-        // $getshiftid = $this->getshift($date);
-        // $getsid = $getshiftid['shifts'];
-        // $getdowntime_arr = $this->datas->getdowntimegraph($getmachine_data,$date,$getsid);
-
-
         $tmparr = [];
         foreach ($getdowntime_arr as $key => $value) {
             $shift_arr = [];
