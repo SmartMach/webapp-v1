@@ -836,10 +836,10 @@ $(document).on("click", ".deleteRec", function(){
         var duration="";
         // Remove the current deleted row........
         $('.rowData:eq('+indexRef+')').remove();
-        if (indexRef == 1) {  
-          var tmp = (parseFloat(data_array[0]).toFixed(2)).split(".");
+        if (indexRef == 1) {
+          var tmp = ((data_array[0]).toString()).split(".");
           var tmpVal = parseInt(tmp[0])+parseInt(data_array[1]);
-          data_array[0] = tmpVal+"."+tmp[1];
+          data_array[0] = tmpVal+"."+("0" + (tmp[1])).slice(-2);
           duration = data_array[0];
         }
         else{
@@ -1700,8 +1700,8 @@ function getDownTimeGraph(){
         //progress for graph data updation
         //Update the value in data_array(global variable)....
         if (index1 == 0) {
-          var fistSec = (parseFloat(data_array[0]).toFixed(2)).split(".");
-          data_array[index1] = parseFloat(mathv+"."+(parseInt(fistSec[1]))).toFixed(2);
+          var fistSec = ((data_array[0]).toString()).split(".");
+          data_array[index1] = (mathv+"."+("0" + (fistSec[1])).slice(-2));
         }
         else{
           data_array[index1] = mathv;
@@ -1726,7 +1726,7 @@ function getDownTimeGraph(){
         stime = datetext.split(' ')[0];
         calendar_date = s_date.getFullYear()+"-"+("0" + (parseInt(s_date.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + s_date.getDate()).slice(-2);
         //convert the values to seconds.....
-        var firstSecond = (parseFloat(data_array[0]).toFixed(2)).split(".");
+        var firstSecond = ((data_array[0]).toString()).split(".");
         for(let i=0;i<l;i++){
           calendar_date = s_date.getFullYear()+"-"+("0" + (parseInt(s_date.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + s_date.getDate()).slice(-2);
           calendar_date_array.push(calendar_date);
@@ -1748,7 +1748,7 @@ function getDownTimeGraph(){
           }
           if (i==0) {
             var tm = data_array[0].split(".");
-            data_array[0] = tm[0]+"."+firstSecond[1];
+            data_array[0] = tm[0]+"."+(("0" + (firstSecond[1])).slice(-2));
           }
 
           datetext = s_date.toTimeString();
@@ -2051,7 +2051,7 @@ $(document).on('click','.doneEdit',function(){
                         if (i==0) {
                           var tmp = data_array[0].split(".");
                           data_array[i] = parseInt(v);
-                          split_second = parseInt(tmp[1]);
+                          split_second = parseInt(("0" + (tmp[1])).slice(-2));
                         }
                         else{
                           data_array[i] = parseInt(v);
@@ -2074,7 +2074,7 @@ $(document).on('click','.doneEdit',function(){
                             if (i==0) {
                               var tmp = data_array[0].split(".");
                               data_array[i] = parseInt(v);
-                              split_second =parseInt(tmp[1]);
+                              split_second =parseInt(("0" + (tmp[1])).slice(-2));
                             }
                             else{
                               data_array[i] = parseInt(v);
@@ -2091,7 +2091,7 @@ $(document).on('click','.doneEdit',function(){
                         if (i==0) {
                           var tmp = data_array[0].split(".");
                           data_array[i] = parseInt(v);
-                          split_second = parseInt(tmp[1]);
+                          split_second = parseInt(("0" + (tmp[1])).slice(-2));
                         }
                         else{
                           data_array[i] = parseInt(v);
@@ -2111,11 +2111,11 @@ $(document).on('click','.doneEdit',function(){
                             var tmp = data_array[0].split(".");
                             if (tmp.length > 1) {
                               data_array[i] = parseInt(v);
-                              split_second = parseInt(tmp[1]);
+                              split_second = parseInt(("0" + (tmp[1])).slice(-2));
                             }
                             else{
                               data_array[i] = parseInt(v);
-                              split_second = parseInt(tmp[1]);
+                              split_second = parseInt(("0" + (tmp[1])).slice(-2));
                             }
                           }
                           else{
@@ -2163,7 +2163,7 @@ $(document).on('click','.doneEdit',function(){
                   var tmpsplit = data_array[0].split(".");
                   if (tmpsplit.length > 1) {
                     data_array[index3] = parseInt(vale);
-                    split_second = parseInt(tmpsplit[1]);
+                    split_second = parseInt(("0" + (tmpsplit[1])).slice(-2));
                   }
                   else{
                     data_array[index3] = parseInt(vale);
