@@ -809,8 +809,8 @@ class Financial_Metrics extends BaseController
     public function getAvailabilityReasonWise(){
         $ref = "AvailabilityReasonWise";
 
-        // $fromTime = "2022-11-03T09:00:00";
-        // $toTime = "2022-11-03T21:00:00";
+        // $fromTime = "2022-12-24T17:00:00";
+        // $toTime = "2022-12-30T16:00:00";
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
 
@@ -862,6 +862,13 @@ class Financial_Metrics extends BaseController
         // Machine Data.........
         // $ReasonwiseData = $this->Financial->ReasonwiseData($FromDate,$ToDate);
 
+        foreach ($DowntimeReason as $key => $reason) {
+            $reason_merge = $reason['downtime_reason']." (".strtoupper(str_split($reason['downtime_category'])[0]).")";
+            $DowntimeReason[$key]['downtime_reason'] = $reason_merge;
+        }
+        
+
+
         //Reason wise Availability for Logical Perspective..........
         $ReasonwiseAvailability =[];
         $AvailabilityTotal = [];
@@ -910,6 +917,7 @@ class Financial_Metrics extends BaseController
                         $split_duration=$split_duration+$dur;
                     }
                 }
+                
                 $t=array("machine_id"=>$machine['machine_id'],"reason_id"=>$reason['downtime_reason_id'],"reason"=>$reason['downtime_reason'],"machine_name"=>$machine['machine_name'],"oppCost"=>$reasonValue,"duration"=>$split_duration);
                 array_push($ar,$t);
                 $GrandTotal = $GrandTotal+$reasonValue;
@@ -2476,6 +2484,11 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days)
         $DowntimeReason = $this->Financial->downtimeReason();
         // Machine Data.........
         // $ReasonwiseData = $this->Financial->ReasonwiseData($FromDate,$ToDate);
+        foreach ($DowntimeReason as $key => $reason) {
+            $reason_merge = $reason['downtime_reason']." (".strtoupper(str_split($reason['downtime_category'])[0]).")";
+            $DowntimeReason[$key]['downtime_reason'] = $reason_merge;
+        }
+        
 
         //Reason wise Availability for Logical Perspective..........
         $ReasonwiseAvailability =[];
