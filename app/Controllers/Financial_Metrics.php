@@ -1175,8 +1175,8 @@ class Financial_Metrics extends BaseController
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
         
-        // $fromTime = "2022-11-21T15:00:00";
-        // $toTime = "2022-11-27T14:00:00";
+        // $fromTime = "2022-12-25T10:00:00";
+        // $toTime = "2022-12-31T09:00:00";
 
         // $url = "http://localhost:8080/graph/performanceOpportunity/".$fromTime."/".$toTime."/";
         // $ch = curl_init($url);
@@ -1244,11 +1244,10 @@ class Financial_Metrics extends BaseController
                     }
 
                     //For no production........
-                    $Opportunity = (floatval(($downtime-$corrected_tppNICT))/floatval(60*(int)$machineOFFRate));
+                    $Opportunity = (floatval(($partRunningTime-$corrected_tppNICT))/floatval(60*(int)$machineOFFRate));
 
                     $partRunningDurationAtIdeal=$corrected_tppNICT;
                     $speedLoss= $partRunningTime-$partRunningDurationAtIdeal;
-
                     if (floatval($Opportunity)<0) {
                         $Opportunity=0;
                         $speedLoss=0;
@@ -1265,6 +1264,9 @@ class Financial_Metrics extends BaseController
                 array_push($varDataMachine, $z);
             }
         }
+
+        // echo "<pre>";
+        // print_r($varDataMachine);
 
         $length = sizeof($varDataMachine);
         $l=sizeof($partDetails);
