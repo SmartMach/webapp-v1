@@ -81,7 +81,7 @@ class PDM_Model extends Model{
         $query->select('part_id');
         $query->select('part_name');
         $query->select('tool_id');
-        $query->Where('status',1);
+        $query->select('status');
         // temporary hide for this no part and no tool because reason name 
         // $query->Where('part_id !=',"PT1001");
 
