@@ -346,7 +346,7 @@ input[type=number] {
 
           <!--  -->
           <div class="tableContent downtimeHeader" style="display: none;top:20rem">
-            <div class="settings_machine_header sticky-top" style="position:fixed;left:4.5rem;right:0;top:19rem;margin-left: 0.5rem;margin-right: 0.5rem;z-index: 1500;background-color: white;">
+            <div class="settings_machine_header sticky-top" style="position:fixed;left:4.5rem;right:0;top:19rem;margin-left: 0.5rem;margin-right: 0.5rem;background-color: white;">
               <div class="row paddingm">
                   <div class="col-sm-1 p3 paddingm">
                     <p class="basic_header">START TIME</p>
@@ -1145,7 +1145,6 @@ $(document).on("click", ".deleteRec", function(){
       var notes_mapped = "info.png";
     }
     
-
    var cal_count = 1;
     $( ".split_input" ).append('<div id="settings_div" class="rowData">'
             +'<div class="row paddingm">'
@@ -1245,7 +1244,9 @@ $(document).on("click", ".deleteRec", function(){
                               +'<p class="marleft p1 pvalue">Notes</p>'
                             +'</div>'
                             +'<div style="width: 50%;float: left;height: 100%;">'
-                              +'<p class="marleft pvalue">'+notes+'</p>'
+                              +'<div style="word-wrap: break-word;flex-wrap: wrap;display:flex;overflow: hidden;height: 4.5rem;width:10rem;">'
+                                +'<p class="marleft pvalue" title="'+notes+'">'+notes+'</p>' 
+                                +'</div>'
                             +'</div>'
                           +'</div>'
                       +'</div>'
