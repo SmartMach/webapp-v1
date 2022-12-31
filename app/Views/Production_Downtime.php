@@ -346,7 +346,7 @@ input[type=number] {
 
           <!--  -->
           <div class="tableContent downtimeHeader" style="display: none;top:20rem">
-            <div class="settings_machine_header sticky-top" style="position:fixed;left:4.5rem;right:0;top:19rem;margin-left: 0.5rem;margin-right: 0.5rem;">
+            <div class="settings_machine_header sticky-top" style="position:fixed;left:4.5rem;right:0;top:19rem;margin-left: 0.5rem;margin-right: 0.5rem;z-index: 1500;background-color: white;">
               <div class="row paddingm">
                   <div class="col-sm-1 p3 paddingm">
                     <p class="basic_header">START TIME</p>
