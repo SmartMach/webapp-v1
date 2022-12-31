@@ -529,8 +529,6 @@ var overall_duration_value =0;
 function getpartnames_graph(tmp_part_id_arr){
   var part_id_a = tmp_part_id_arr.split(",");
   var part_len = parseInt(part_id_a.length);
-  // console.log("graph parts:\t"+part_id_a);
-  // console.log("overall array:\t"+down_part);
   var partname_arr = new Array();
   if (parseInt(part_len)>1) {
     for(var i=0;i<parseInt(part_len);i++){
@@ -1827,8 +1825,8 @@ function getDownTimeGraph(){
         else{
           data_time=[];
           data_array=[];
-          split_ref =[];    
-          down_notes = []; 
+          split_ref =[];  
+          down_notes = [];
           getSplittedData(machineEventIdRef,overall_duration_value);
           getDownTimeGraph();
           getTotalCount();
@@ -1854,7 +1852,7 @@ function getSplittedData(machineEventRef,svalue){
     dataType: "json",
     async:false,
     data:{
-      ref:machineEventRef, 
+      ref:machineEventRef,
     },
     success:function(res){
       $('.split_input').empty();
@@ -1989,7 +1987,6 @@ $(document).on('click','.doneEdit',function(){
           date_array:calendar_array
       },
       success:function(res_Site){
-        console.log(res_Site);
         if (res_Site) {
           alert("Updated Successfully!!");
         } 
@@ -2432,13 +2429,15 @@ function addDownPart(part,part_id){
             // if (item.part_id == "PT1001") {
               
             // }else{
-              if (tool == item.tool_id) {
-                if (item.part_id == part) {
-                  elements = elements.add('<div class="option_multi"><div class="multi-check "><input type="checkbox" id="one" value="'+item.part_id+'" name="multi_part[]" class="checkboxIn" checked="true"></div><div class="multi-lable check_dis"><span>'+item.part_id+'-'+item.part_name+'</span></div></div>');                 
-                }
-                else{
-                  // elements = elements.add('<option class="DownPartVal" pval="'+item.part_name+'.'+item.part_id+'" tvalue="'+item.tool_id+'" value="'+item.part_id+'">'+item.part_name+' -'+item.part_id+'</option>');
-                  elements = elements.add('<div class="option_multi"><div class="multi-check "><input type="checkbox" id="one" value="'+item.part_id+'" name="multi_part[]" class="checkboxIn"></div><div class="multi-lable check_dis"><span>'+item.part_id+'-'+item.part_name+'</span></div></div>');
+              if (item.status == 1) {
+                if (tool == item.tool_id) {
+                  if (item.part_id == part) {
+                    elements = elements.add('<div class="option_multi"><div class="multi-check "><input type="checkbox" id="one" value="'+item.part_id+'" name="multi_part[]" class="checkboxIn" checked="true"></div><div class="multi-lable check_dis"><span>'+item.part_id+'-'+item.part_name+'</span></div></div>');                 
+                  }
+                  else{
+                    // elements = elements.add('<option class="DownPartVal" pval="'+item.part_name+'.'+item.part_id+'" tvalue="'+item.tool_id+'" value="'+item.part_id+'">'+item.part_name+' -'+item.part_id+'</option>');
+                    elements = elements.add('<div class="option_multi"><div class="multi-check "><input type="checkbox" id="one" value="'+item.part_id+'" name="multi_part[]" class="checkboxIn"></div><div class="multi-lable check_dis"><span>'+item.part_id+'-'+item.part_name+'</span></div></div>');
+                  }
                 }
               }
             // }
@@ -2560,8 +2559,10 @@ function addDownPart(part,part_id){
               // if (item.part_id == "PT1001") {
                 
               // }else{
-                part_collection.push(Object.values(item));
-                elements = elements.add('<div class="option_multi"><div class="multi-check "><input type="checkbox" id="one" value="'+item.part_id+'" name="multi_part[]" class="checkboxIn"></div><div class="multi-lable check_dis"><span>'+item.part_id+'-'+item.part_name+'</span></div></div>');
+                if (item.status == 1) {
+                  part_collection.push(Object.values(item));
+                  elements = elements.add('<div class="option_multi"><div class="multi-check "><input type="checkbox" id="one" value="'+item.part_id+'" name="multi_part[]" class="checkboxIn"></div><div class="multi-lable check_dis"><span>'+item.part_id+'-'+item.part_name+'</span></div></div>');
+                }
 
                 // elements = elements.add('<option class="DownPartVal" pval="'+item.part_name+'.'+item.part_id+'" tvalue="'+item.tool_id+'" value="'+item.part_id+'">'+item.part_name+' -'+item.part_id+'</option>');
               // }
