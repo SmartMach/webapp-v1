@@ -382,12 +382,14 @@
         height:2.4rem;
         width:2.4rem;
         border-radius:50%;
-        /* background-color:red; */
         color:white;
         display:flex;
         justify-content:center;
         align-items:center;
-
+      }
+      #get_text_info{
+        padding: 0;
+        margin-top: 1.2rem;
       }
 
 </style>
