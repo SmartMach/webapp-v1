@@ -348,7 +348,9 @@ class Daily_production_Model extends Model{
                             if ($tmpcmp_time1[0] ===  $tmpcmp_time[0]) {
                                 array_push($tmp_time_arr,$getshift_time_tmp['shifts'][$key]['end_time']);
                             }else{
-                                array_push($tmp_time_arr,$tmpcmp_time1[0]);
+                                $last_record_time = $this->getlast_record_time($mid,$pid,$tid,$sdate,$sid);
+                                // array_push($tmp_time_arr,$tmpcmp_time1[0]);
+                                array_push($tmp_time_arr,$last_record_time);
                             }
                         }else{
                             array_push($tmp_tcho_time,$getshift_time_tmp['shifts'][$key]['end_time']);
@@ -384,7 +386,9 @@ class Daily_production_Model extends Model{
                             if ($tmp_cmp_time[0] ===  $tmp_cmp_time1[0]) {
                                 array_push($tmp_time_arr,$getshift_time['shifts'][$k]['end_time']);
                             }else{
-                                array_push($tmp_time_arr,$tmp_date_time_ar[1]);
+                                $last_updated_time = $this->getlast_record_time($mid,$pid,$tid,$sdate,$sid);
+                                // array_push($tmp_time_arr,$tmp_date_time_ar[1]);
+                                array_push($tmp_time_arr,$last_updated_time);
                             }
                             // array_push($tmp_time_arr,"smae date");
                         }else{
@@ -827,6 +831,33 @@ class Daily_production_Model extends Model{
 
 
 
+
+    }
+
+    // get record last updated time 
+    public function getlast_record_time($mid,$pid,$tid,$sdate,$sid){
+        $db =  \Config\Database::connect($this->site_connection);
+
+        $build = $db->table("pdm_production_info");
+        $build->select('*');
+        $build->where('shift_date',$sdate);
+        $build->where('machine_id',$mid);
+        $build->where('part_id',$pid);
+        $build->where('tool_id',$tid);
+        $build->where('shift_id',$sid);
+        $build->orderBy('start_time','DESC');
+        $build->limit(1);
+        $res = $build->get()->getResultArray();
+
+        $end_time = " ";
+        foreach ($res as $key => $value) {
+            $end_time = $value['end_time'];
+        }
+
+        $tmptimearr = explode(":",$end_time);
+
+        $tmp_str = $tmptimearr[0].":".$tmptimearr[1];
+        return $tmp_str;
 
     }
     
