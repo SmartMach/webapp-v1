@@ -62,9 +62,8 @@
             ?>
         <div class="d-flex" onfocusout="myFunction(event);">
             <div class="tooltip_logout">
-                <!-- <span><?php //echo $this->data['user_name'];?></span><img id="user-logo"     src="<?php echo base_url()?>/assets/img/logo1.png"     alt="User" > -->
                 <div id="info_circle_color">
-                    <span id="get_text_info"></span>
+                    <p id="get_text_info"></p>
                 </div>
                 <div class="tooltiptext">
                     <div class="" style="display:flex; height:max-content; margin-bottom:0.2rem;">

@@ -1319,6 +1319,11 @@
             $('.user_account_access').css("display","inline");
             $('.machine_add_del_check').css("display","none");
         }
+        else if (user_role == "Smart Users") {
+            $('.user_account_access').css("display","inline");
+            $('.machine_add_del_check').css("display","inline");
+            $('.machine_add_del_check').css("display","flex");
+        }
         else{
             $('.user_account_access').css("display","inline");
             // $('.create_del_visible').css("display","inline");
@@ -1597,6 +1602,8 @@ $(document).ready(function(){
             }
             else if(edituser == "Smart Users"){
                 $('.noAccess').css("display","block");
+                $('.machine_add_del_check').css("display","inline");
+                $('.machine_add_del_check').css("display","flex");
             }
             else{
                 // $('.user_account_access').css("display","inline");
@@ -1633,6 +1640,9 @@ $(document).ready(function(){
             // $('.create_del_visible').css("display","inline");
             $('#new_site_location').css('display','none');
             $('.noAccess').css("display","block");
+
+            $('.machine_add_del_check').css("display","inline");
+            $('.machine_add_del_check').css("display","flex");
             
             document.getElementsByClassName('opt_sitname')[0].style.display="inline";
             document.getElementsByClassName('opt_sitname')[0].selected="true";
