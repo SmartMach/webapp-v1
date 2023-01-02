@@ -99,8 +99,8 @@ class Daily_production_controller extends BaseController{
     // get machine records
     public function getMachine_data(){
         if ($this->request->isAJAX()) {
-            //$date = "2022-12-07";
-             $date = $this->request->getVar('date');
+            //$date = "2022-12-30";
+            $date = $this->request->getVar('date');
             $getmachine_data = $this->datas->getmachine_data($date);
            
             // get machine all details for example machine brand tonnage
@@ -113,6 +113,9 @@ class Daily_production_controller extends BaseController{
             $duration = $getshiftid['shift_management'][0]['duration'];
             // echo  "get all shifts id in particular date";
             $get_toolchangeover = $this->datas->get_tool_changeover($getmachine_data,$date,$getsid,$duration);
+            // echo "<pre>";
+            // print_r($get_toolchangeover);
+            // echo "</pre>";
             // echo "machine wise and shift wise and part wise  array";           
             $getdowntime_graph = $this->datas->getdowntimegraph($getmachine_data,$date,$getsid);
             // down time reasons based graph count
@@ -177,6 +180,11 @@ class Daily_production_controller extends BaseController{
             
             // ui purpose just remove future shift id records
             $data['shift_wise_time'] = $get_shift_wise_time_arr;
+            /*
+            echo "<pre>";
+            print_r($data);
+            echo "</pre>";
+            */
             echo json_encode($data);
         }
       
@@ -282,6 +290,35 @@ class Daily_production_controller extends BaseController{
         // echo "</pre>";
         return $tmparr;
     }
+
+
+    // check function
+    
+    public function check(){
+        $date = "2023-01-01";
+        $shift_id = "A";
+        $mid="MC1001";
+        $tid="TL1018";
+        $pid="PT1018";
+
+
+        $arr = $this->datas->getalldowntimeduration($mid,$date,$shift_id,$pid,$tid);
+        // echo "<pre>";
+        // print_r($arr);
+        // echo "</pre>";
+
+
+        $arr1 = $this->datas->get_time_seconds($mid,$shift_id,$date,$pid,$tid);
+        // echo "<pre>";
+        // print_r($arr1);
+        // echo "</pre>";
+
+        $demo_arr = $this->datas->get_tool_changeovertime($mid,$shift_id,$date,$pid,$tid);
+        echo "<pre>";
+        print_r($demo_arr);
+        echo "</pre>";
+    }
+    
     
 }
 

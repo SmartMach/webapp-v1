@@ -344,9 +344,9 @@ $('#changed_date').datetimepicker({
                         // console.log(v);
                         // console.log(k);
 
-                        elements = elements.add('<div class="" style="padding:2px;display:flex;flex-wrap:wrap;flex-direction:row;">'
+                        elements = elements.add('<div class="" style="display:flex;flex-wrap:wrap;flex-direction:row;">'
                             +'<div class=" col paddingm" style="padding-right:2px; width:10%;">'
-                              +'<div class="machine_header_production_status machine_align" style="height:100%;">'
+                              +'<div class="machine_header_production_status machine_align" style="height:98.9%;">'
                               // +'<div class="machine_header_production_status machine_align" id="height_'+k+'" style="">'
                                   +'<p class="mcname" style="text-align:center;">'+res['machine_details'][k][0]+'</p>'
                                   +'<span style="font-size:0.8rem;font-weight:550;">('+res['machine_details'][k][2]+'T)</span>'
@@ -394,7 +394,7 @@ $('#changed_date').datetimepicker({
                             
                             // ele = ele.add('<div class="machine_header_production_status machine_align '+k+'_'+k1+'" style="height:'+shift_percentage+'%;">'
                             ele = ele.add('<div class="machine_header_production_status machine_align '+k+'_'+k1+'" style="">'
-                             +'<p class="shift_id_pds">'+k1+'</p>'
+                             +'<p class="shift_id_pds" style="font-size:0.8rem;font-weight:550;">'+k1+'</p>'
                             +'</div>');
 
 
@@ -672,7 +672,7 @@ $('#changed_date').datetimepicker({
                                 shift_height = parseInt(shift_height) + parseInt(sheight);
                               }
                               // console.log("for loop end:\t"+shift_height);
-                              var correct_height = parseInt(shift_height)+1;
+                              var correct_height = parseInt(shift_height)+2;
                               var machine_height = $('.'+k).height();
                               machine_height = parseInt(machine_height);
                               // console.log("Machine Height"+machine_height);

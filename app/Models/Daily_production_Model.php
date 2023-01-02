@@ -41,9 +41,6 @@ class Daily_production_Model extends Model{
     }
 
 
-    public function index(){
-        echo "HELLO STRATEGY";
-    }
 
     // get downtime reasons function 
     public function getDowntimereason(){
@@ -92,56 +89,55 @@ class Daily_production_Model extends Model{
 
     // get particular day and shift downtime planned reasons duration for particular reason id based duration count
     // public function getplanneddowntimeduration($mid,$sdate,$sid,$rid){
-    public function getalldowntimeduration($mid,$sdate,$sid){
+    public function getalldowntimeduration($mid,$sdate,$sid,$pid,$tid){
         $db =  \Config\Database::connect($this->site_connection);
 
         $builder = $db->table('pdm_downtime_reason_mapping');
-        $builder->select('split_duration');
+        $builder->select('*');
         $builder->where('machine_id',$mid);
         $builder->where('shift_date',$sdate);
-        // $builder->where('downtime_reason_id',$rid);
         $builder->where('Shift_id',$sid);
+        $builder->where('tool_id',$tid);
         $result = $builder->get()->getResultArray();
 
-       
+        $tmp_arr_rec = [];
+        $tmp_data = [];
+        foreach ($result as $key => $value) {
+            $tmp_part_arr = explode(",",$value['part_id']);
+            // return $tmp_part_arr;
+            foreach ($tmp_part_arr as $k1 => $v1) {
+                
+                if ($v1 === $pid) {
+                    // array_push($tmp_data,$v1);
+                   array_push($tmp_arr_rec,$result[$key]); 
+                }
+            }
+        }
+        // return $tmp_arr;
         $duration_mtotal_count = 0;
         $duration_stotal_count = 0;
-        // $tmp = [];
-        foreach ($result as $key => $value) {
-            $split_duration = explode('.',$value['split_duration']);
-
-            $duration_mtotal_count = $split_duration[0]+$duration_mtotal_count;
+        foreach ($tmp_arr_rec as $ke => $val) {
+            $split_duration = explode(".",$val['split_duration']); 
+            // return $split_duration;
+            $duration_mtotal_count = $duration_mtotal_count + $split_duration[0];
             if ($split_duration[1]>0) {
                 $duration_stotal_count = $split_duration[1]+$duration_stotal_count;
-            }   
-            // array_push($tmp,$value['split_duration']); 
+            }
         }
         $duration_mtotal_count = $duration_mtotal_count * 60;
-        // $duration_stotal_count = $duration_stotal_count / 60;
         $duration_total_minute_count = $duration_mtotal_count + $duration_stotal_count;
-
+        // $tmp['machine_id'] = $mid;
+        // $tmp['part_id'] = $pid;
+        // $tmp['tool id'] = $tid;
+        // $tmp['sdate'] = $sdate;
+        // $tmp['shift id'] = $sid;
         return $duration_total_minute_count;
     }
 
     // get planned downtime reasons for all reason id  duration  
-    public function getalldowntime($machine_id,$sdate,$sid){
-        // $planneddowntimereasons = $this->getplanneddowntimereasons();
+    public function getalldowntime($machine_id,$sdate,$sid,$pid,$tid){
 
-        // return $planneddowntimereasons;
-        // $durationminute_total = 0;
-        // $durationsecond_total = 0;
-        // $tmp =[];
-        $durationsecond_total = $this->getalldowntimeduration($machine_id,$sdate,$sid);
-
-        /*
-        foreach ($planneddowntimereasons as $key => $value) {
-            $tmp_planned_duration = $this->getplanneddowntimeduration($machine_id,$sdate,$sid,$value['downtime_reason_id']); 
-            $durationsecond_total = $durationsecond_total + $tmp_planned_duration;
-         
-        }
-        */
-        // $durationsecond_total = $durationsecond_total / 60;
-        // $durationtotal_count = $durationminute_total + $durationsecond_total;
+        $durationsecond_total = $this->getalldowntimeduration($machine_id,$sdate,$sid,$pid,$tid);
 
         return $durationsecond_total;
     }
@@ -216,11 +212,8 @@ class Daily_production_Model extends Model{
 
     // get machine wise and shift wise tool changeover
     public function get_tool_changeover($machine_arr,$sdate,$shift_arr,$duration){
-
         $db =  \Config\Database::connect($this->site_connection);
-
         // machine array
-        // return $shift_arr;
         $machine_based_arr = [];
         foreach($machine_arr as $key => $val){
             $shift_based_array = [];
@@ -247,17 +240,15 @@ class Daily_production_Model extends Model{
         $query->where('shift_date',$shift_date);
         $query->where('shift_id',$shiftid);
         $res = $query->get()->getResultArray();
-    //    $tmp['machine_id'] = $machine_id;
-    //    $tmp['shift_id'] = $shiftid;
-    //    $tmp['shift_date'] = $shift_date;
-    //    $tmp['duration'] = $duration;
-    //     return $tmp;
+
+        // madhan sir instruction is full changed for formula in target  so its temporary hide
+        /*
         $duration_split = explode(":",$duration);
 
         $seconds_val = $duration_split[0] * 3600;
         $seconds_val = $seconds_val + ($duration_split[1]*60);
         $seconds_val = $seconds_val + $duration_split[2];
-
+      
         $getplanned_second = $this->getalldowntime($machine_id,$shift_date,$shiftid);
         // $getplanned_split = explode(".",$getplanned_downtime);
         // $getplanned_second = 0;
@@ -269,17 +260,26 @@ class Daily_production_Model extends Model{
         // $getplanned_second = (int)$getplanned_second + (int)$tmp_ps;
 
         $final_duration = $seconds_val - $getplanned_second;
+        */
         // return $seconds_val."-".$getplanned_second."=".$final_duration;
         // return $seconds_val;
         // return $getplanned_downtime;
         $part_based_array = [];
         foreach ($res as $key => $value) {
            $tmpass_arr = [];
-            
+            //    tool changeover time get function
+           $get_timestamp = $this->get_tool_changeovertime($machine_id,$shiftid,$shift_date,$value['part_id'],$value['tool_id']);
+            // get thats time durations    
+           $getpart_duration = $this->get_time_seconds($machine_id,$shiftid,$shift_date,$value['part_id'],$value['tool_id']);
+            // get downtime for that time durations    
+           $getpart_downtime_duration = $this->getalldowntime($machine_id,$shift_date,$shiftid,$value['part_id'],$value['tool_id']); 
+           $final_duration = $getpart_duration - $getpart_downtime_duration;
+
            array_push($tmpass_arr,$value['tool_id']);
            $getppc = $this->getpart_details($value['part_id']);
            array_push($tmpass_arr,$getppc[0]['part_produced_cycle']);
            array_push($tmpass_arr,$getppc[0]['NICT']);
+           
            try {
             if ($getppc[0]['NICT'] == 0) throw new Exception("Divide by zero");
             $target = $final_duration / $getppc[0]['NICT'];
@@ -287,15 +287,15 @@ class Daily_production_Model extends Model{
            } catch (\Throwable $e) {
                 array_push($tmpass_arr,0);
            }
-           $get_timestamp = $this->get_tool_changeovertime($machine_id,$shiftid,$shift_date,$value['part_id'],$value['tool_id']);
+           
+
            array_push($tmpass_arr,$get_timestamp);
-        //   return $get_timestamp;
-           //    array_push($tmpass_arr,$getppc[])
            $part_based_array[$value['part_id']] = $tmpass_arr;
-        //    $part_based_array['planned duration'] = $getplanned_downtime;
         }
         return $part_based_array;
     }
+
+    
 
 //  get part based array getting function
     public function getpart_details($part_id){
@@ -340,7 +340,19 @@ class Daily_production_Model extends Model{
                 foreach ($getshift_time_tmp['shift_ids'] as $key => $value) {
                     // return $value;
                     if (strcmp($value,$sid)==0) {
-                        array_push($tmp_tcho_time,$getshift_time_tmp['shifts'][$key]['end_time']);
+                        date_default_timezone_set("Asia/Kolkata");
+                        $tmpdate_time = explode(" ",date("Y-m-d h:i"));
+                        if (strcmp($tmpdate_time[0],$sdate)==0) {
+                            $tmpcmp_time = explode(":",$getshift_time['shifts'][$k]['end_time']);
+                            $tmpcmp_time1 = explode(":",$tmpdate_time[1]);
+                            if ($tmpcmp_time1[0] ===  $tmpcmp_time[0]) {
+                                array_push($tmp_time_arr,$getshift_time_tmp['shifts'][$key]['end_time']);
+                            }else{
+                                array_push($tmp_time_arr,$tmpcmp_time1[0]);
+                            }
+                        }else{
+                            array_push($tmp_tcho_time,$getshift_time_tmp['shifts'][$key]['end_time']);
+                        }
                     }
                 }
             }
@@ -363,7 +375,24 @@ class Daily_production_Model extends Model{
                         array_push($tmp_time_arr,$end_time);
  
                     }else{
-                        array_push($tmp_time_arr,$getshift_time['shifts'][$k]['end_time']);
+                        date_default_timezone_set("Asia/Kolkata");
+                        $tmp_date_time_ar = explode(" ",date("Y-m-d h:i"));
+
+                        if (strcmp($tmp_date_time_ar[0],$sdate)==0) {
+                            $tmp_cmp_time = explode(":",$getshift_time['shifts'][$k]['end_time']);
+                            $tmp_cmp_time1 = explode(":",$tmp_date_time_ar[1]);
+                            if ($tmp_cmp_time[0] ===  $tmp_cmp_time1[0]) {
+                                array_push($tmp_time_arr,$getshift_time['shifts'][$k]['end_time']);
+                            }else{
+                                array_push($tmp_time_arr,$tmp_date_time_ar[1]);
+                            }
+                            // array_push($tmp_time_arr,"smae date");
+                        }else{
+                            // array_push($tmp_time_arr,"not same date".$sdate." ".$tmp_date_time_ar[0]);
+                            array_push($tmp_time_arr,$getshift_time['shifts'][$k]['end_time']);
+                        }
+
+                        // array_push($tmp_time_arr,$getshift_time['shifts'][$k]['end_time']);
                     }
                 }
             }
@@ -750,7 +779,56 @@ class Daily_production_Model extends Model{
 
     }
 
-    
+    // this function for get the duration for particular part start time and end time duration
+    public function get_time_seconds($machineid,$shiftid,$shiftdate,$pid,$tid){
+        $db =  \Config\Database::connect($this->site_connection);
+        // $ftime = $get_time_arr[0];
+        // $t_time = $get_time_arr[1];
+
+        $build = $db->table("pdm_events");
+        $build->select('*');
+        $build->where('machine_id',$machineid);
+        $build->where('shift_date',$shiftdate);
+        $build->where('shift_id',$shiftid);
+        $build->where('tool_id',$tid);
+        $res = $build->get()->getResultArray();
+
+        
+        
+        // first get the part basis records
+        $tmp_arr = [];
+        foreach ($res as $key => $value) {
+            $tmp_part_array = explode(",",$value['part_id']);
+            foreach ($tmp_part_array as $ke => $val) {
+                if ($val === $pid) {
+                    array_push($tmp_arr,$res[$key]);
+                }
+            }
+        }
+      
+
+        // // next get the durations for that filtered record
+        $minute_total_count = 0;
+        $second_total_count = 0;
+        foreach ($tmp_arr as $k1 => $v1) {
+            $tmpsplit_arr = explode('.',$v1['duration']);
+        
+            $minute_total_count = $minute_total_count + $tmpsplit_arr[0];  
+            if ($tmpsplit_arr[1]>0) {
+                $second_total_count = $second_total_count + $tmpsplit_arr[1];
+            }
+        }
+
+
+        $duration_second = $minute_total_count * 60;
+        $duration_second = $duration_second + $second_total_count;
+
+        return $duration_second;
+
+
+
+
+    }
     
 
     
