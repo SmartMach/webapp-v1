@@ -1237,14 +1237,14 @@ class Financial_Metrics extends BaseController
                         $temp_split = explode(",", $value['part_id']);
                         foreach ($temp_split as $value_part) {
                             if ($part['part_id'] == $value_part) {
-                                $partRunningTime=($value['PartInMachine'])-($value['Planed']+$value['Unplanned']);
+                                $partRunningTime=floatval(($value['PartInMachine']))-floatval(($value['Planed']+$value['Unplanned']));
                                 $downtime=floatval($All)-floatval(floatval($machine['Planned'])+floatval($machine['Unplanned'])+floatval($machine['Machine_OFF']));
                             }
                         }
                     }
 
                     //For no production........
-                    $Opportunity = (floatval(($partRunningTime-$corrected_tppNICT))/floatval(60*(int)$machineOFFRate));
+                    $Opportunity = floatval((floatval(floatval($partRunningTime)-floatval($corrected_tppNICT))/(60))*(int)$machineOFFRate);
 
                     $partRunningDurationAtIdeal=$corrected_tppNICT;
                     $speedLoss= $partRunningTime-$partRunningDurationAtIdeal;

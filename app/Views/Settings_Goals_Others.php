@@ -165,6 +165,11 @@
     font-size: 1rem;
 }
 
+.ellipse{
+    white-space: initial;
+    line-height: 1rem;
+}
+
 
 </style>
 
@@ -578,7 +583,7 @@
                             <div class="row paddingm">
                             <div class="box float-start col-lg-6">
                                 <div class="input-box fieldStyle">
-                                <input type="text" class="form-control font_weight" id="DTReasonVal" name="" value="" class="DTReason" required="" autocomplete="off" onkeydown="return false" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" >
+                                <input type="text" class="form-control font_weight paddinginright" id="DTReasonVal" name="" value="" class="DTReason" required="" autocomplete="off" onkeydown="return false" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" >
                                     <label class="input-padding">Reason Image <span class="paddingm validate">*</span></label>
                                     <input type="file" style="display: none;" class="downtime_img form-control form-control-md" id="attach_file" name="DTReasonimg" required="true" >
                                     <span class="unit"><i class="fa fa-paperclip clip DTI " style="font-size: 20px;" aria-hidden="true"></i></span>
@@ -633,7 +638,7 @@
                         <div class="row">
                             <div class="box float-start col-lg-6">
                                 <div class="input-box fieldStyle">
-                                    <input type="text" class="form-control UDTReason font_weight" name="" value="" id="UDTReason" required="" autocomplete="off" onkeydown="return false" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" >
+                                    <input type="text" class="form-control UDTReason font_weight paddinginright" name="" value="" id="UDTReason" required="" autocomplete="off" onkeydown="return false" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" >
                                     <label class="input-padding">Reason Image <span class="paddingm validate">*</span></label>
                                     <input type="file" style="display: none;" id="update_attach_file" name="UDTReasonImg">
                                     <span class="unit"><i class="fa fa-paperclip clip UDTI " style="font-size: 20px;" aria-hidden="true"></i></span>
@@ -691,7 +696,7 @@
                             </div>
                             <div class="box float-start col-lg-6">
                                 <div class="input-box fieldStyle">
-                                    <input type="text" class="form-control font_weight" name="" id="Qreason" value="" required="" autocomplete="off" onkeydown="return false" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" >
+                                    <input type="text" class="form-control font_weight paddinginright" name="" id="Qreason" value="" required="" autocomplete="off" onkeydown="return false" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" >
                                     <label class="input-padding">Reason Image <span class="paddingm validate">*</span></label>
                                     <input type="file" style="display: none;" id="attach_file_Quality" name="QReasonImg">
                                     <span class="unit"><i class="fa fa-paperclip clip QRI" style="font-size: 20px;" aria-hidden="true"></i></span>
@@ -741,7 +746,7 @@
                             </div>
                             <div class="box float-start col-lg-6">
                                 <div class="input-box fieldStyle">
-                                    <input type="text" class="form-control font_weight" name="" id="UQReasonImg" value="" required="" autocomplete="off" onkeydown="return false" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" >
+                                    <input type="text" class="form-control font_weight paddinginright" name="" id="UQReasonImg" value="" required="" autocomplete="off" onkeydown="return false" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" >
                                     <label class="input-padding">Reason Image <span class="paddingm validate">*</span></label>
                                     <input type="file" style="display: none;" id="update_file_Quality" name="UQReasonImg">
                                     <span class="unit"><i class="fa fa-paperclip clip UQRI" style="font-size: 20px;" aria-hidden="true"></i></span>
@@ -1767,7 +1772,7 @@ function get_shift_data(){
                         if (item.downtime_category == "Planned") {
                             elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
                             +'<div class="dot col float-start" style="overflow:hidden"><img src="'+item.uploaded_file_location+item.uploaded_file_name+'.'+item.original_file_extension+'" alt="" width="100%" height="100%"></div>'
-                            +'<div class="col.float-start down d-flex fontheight fontbox"><p class="alignCenter font_weight">'+item.downtime_reason+'</p></div>'
+                            +'<div class="col.float-start down d-flex fontheight fontbox"><p class="alignCenter font_weight ellipse">'+item.downtime_reason+'</p></div>'
                             +'<div class="dotHover dclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh  reason-pen" style="color:grey; "></i></div>'
                             +'<div class="dotHover1 drclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/delete.png'); ?>" class="img_font_wh reason-pen" ></i></div>'
                             +'</div>');
@@ -1775,7 +1780,7 @@ function get_shift_data(){
                         else{
                             elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
                             +'<div class="dot col float-start" style="overflow:hidden"><img src="'+item.uploaded_file_location+item.uploaded_file_name+'.'+item.original_file_extension+'" alt="" width="100%" height="100%"></div>'
-                            +'<div class="col.float-start down d-flex fontheight fontbox"><p class="alignCenter font_weight">'+item.downtime_reason+'</p></div>'
+                            +'<div class="col.float-start down d-flex fontheight fontbox"><p class="alignCenter font_weight ellipse">'+item.downtime_reason+'</p></div>'
                             +'<div class="dotHover dclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh reason-pen" style="color:grey;"></div>'
                             +'<div class="dotHover1 drclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="img_font_wh reason-pen"></i></div>'
                             +'</div>');
@@ -1824,14 +1829,14 @@ function get_shift_data(){
                     if (quality_imgError(file_name) == true) {
                         elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
                         +'<div class="dot col float-start" style="overflow:hidden"><img src="'+item.uploaded_file_location+item.uploaded_file_name+'.'+item.uploaded_file_extension+'" alt="" width="100%" height="100%"></div>'
-                        +'<div class="col.float-start down d-flex fontheight fontbox"><p class="alignCenter font_weight">'+item.quality_reason_name+'</p></div>'
+                        +'<div class="col.float-start down d-flex fontheight fontbox"><p class="alignCenter font_weight ellipse">'+item.quality_reason_name+'</p></div>'
                         +'<div class="dotHover qclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_qreason+'"><img src="<?php echo base_url('assets/img/pencil.png') ?>" class="reason-pen img_font_wh"></i></div>'
                         +'<div class="dotHover1 qrclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_qreason+'"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="img_font_wh reason-pen"></i></div>'
                         +'</div>');   
                     }else{
                         elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
                         +'<div class="dot col float-start" style="overflow:hidden"><div class="no_img_circle" width="100%" height="100%"></div></div>'
-                        +'<div class="col.float-start down d-flex fontheight fontbox"><p class="alignCenter font_weight">'+item.quality_reason_name+'</p></div>'
+                        +'<div class="col.float-start down d-flex fontheight fontbox"><p class="alignCenter font_weight ellipse">'+item.quality_reason_name+'</p></div>'
                         +'<div class="dotHover qclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_qreason+'"><img src="<?php echo base_url('assets/img/pencil.png') ?>" class="reason-pen img_font_wh"></i></div>'
                         +'<div class="dotHover1 qrclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_qreason+'"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="img_font_wh reason-pen"></i></div>'
                         +'</div>');  
