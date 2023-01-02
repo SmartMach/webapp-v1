@@ -51,6 +51,7 @@
 .clip_reset{
     color:#d9d9d9;
 }
+
 </style>
 <div style="margin-left: 4.5rem;">
  <!---topbar navigation settings----->
@@ -138,7 +139,7 @@
                     <div class="row paddingm">
                         <div class="col-sm-6 box">
                             <div class="input-box fieldStyle">     
-                                <select class="form-select font_weight" name="inputRoleAdd" id="inputRoleAdd">
+                                <select class="form-select font_weight_modal" name="inputRoleAdd" id="inputRoleAdd">
                                     <option value=" " selected="true" disabled>Select Role</option>
                                 <?php if($this->data['user_details'][0]['role']=="Smart Admin") { ?>
                                     <option value="Smart Users">Smart Users</option>
@@ -155,7 +156,7 @@
                         </div>
                         <div class="col-sm-3 box">
                             <div class="input-box fieldStyle">
-                                <select class="inputSiteNameAdd form-select font_weight" name="inputUserSiteName" id="inputUserSiteName">
+                                <select class="inputSiteNameAdd form-select font_weight_modal" name="inputUserSiteName" id="inputUserSiteName">
                                 </select>
                                 <label for="input" class="input-padding">Site Name <span class="paddingm validate">*</span></label>
                                 <span class="paddingm float-start validate" style="display: none;" id="sitename_error"></span> 
@@ -164,7 +165,7 @@
                         <div class="col-sm-3 box">
                                 <div class="input-box fieldStyle font_weight">
                                     <label for="" class="col-form-label paddingm headTitle">Site ID</label>
-                                    <p class="fieldStyleSub" style="position: absolute;"><span id="SiteID"></span></p>
+                                    <p class="fieldStyleSub" style="position: absolute;"><span id="SiteID" class="font_weight_modal"></span></p>
                                 </div>
                         </div>
                     </div>
@@ -172,12 +173,12 @@
                         <div class="col-lg-6">
                             <div class="box">
                                 <div class="input-box fieldStyle" id="ExceptOp">
-                                    <input type="text" class="form-control input font_weight" id="inputUserEMail" name="inputUserEMail" oninput="this.value=this.value.trim();">
+                                    <input type="text" class="form-control input font_weight_modal" id="inputUserEMail" name="inputUserEMail" oninput="this.value=this.value.trim();">
                                     <label for="input" class="input-padding">User ID <span class="paddingm validate">*</span></label>
                                     <span class="paddingm float-start validate" id="inputUserEMailErr"></span> 
                                 </div>
                                 <div class="input-box fieldStyle" id="OperatorCredential" style="display: none;">
-                                    <input type="text" class="form-control input font_weight" id="inputOpUserID" name="inputOpUserID">
+                                    <input type="text" class="form-control input font_weight_modal" id="inputOpUserID" name="inputOpUserID">
                                     <label for="input" class="input-padding">User ID <span class="paddingm validate">*</span></label>
                                     <span class="paddingm float-start validate" id="inputOpUserIDErr"></span>
                                 </div>
@@ -187,14 +188,14 @@
                         <div class="col-lg-6 box">
                             <div class="input-box fieldStyle">
                                 <label for="" class="col-form-label paddingm headTitle ">Site Location</label>
-                                <p class="fieldStyleSub" style="position: absolute;"><span id="SiteLocation" class="font_weight"></span></p>
+                                <p class="fieldStyleSub" style="position: absolute;"><span id="SiteLocation" class="font_weight_modal"></span></p>
                             </div>  
                         </div>
                     </div>
                     <div class="row paddingm">
                         <div class="col-sm-3 box fieldStyle">
                             <div class="input-box">
-                                <input type="text" class="form-control font_weight" id="inputUserFirstName" name="inputUserFirstName">
+                                <input type="text" class="form-control font_weight_modal" id="inputUserFirstName" name="inputUserFirstName">
                                 <label for="inputMachineRateHour" class="input-padding">First Name <span class="paddingm validate">*</span></label>
                                 <span class="paddingm float-start validate" id="inputUserFirstNameErr"></span> 
                                 <span class="float-end charCount" id="inputUserFirstNameCunt"></span>
@@ -202,7 +203,7 @@
                         </div>
                         <div class="col-sm-3 box">
                             <div class="input-box fieldStyle">
-                                <input type="text" class="form-control input font_weight" id="inputUserLastName" name="inputUserLastName">
+                                <input type="text" class="form-control input font_weight_modal" id="inputUserLastName" name="inputUserLastName">
                                 <label for="inputMachineOffRateHour" class="input-padding">Last Name <span class="paddingm validate">*</span></label>
                                 <span class="paddingm float-start validate" id="inputUserLastNameErr"></span> 
                                 <span class="float-end charCount" id="inputUserLastNameCunt"></span>
@@ -213,7 +214,7 @@
                                 <div class="col-lg-6">
                                     <div class="box new_site_box">
                                         <div class="input-box fieldStyle">
-                                            <input type="text" class="form-control input font_weight" id="new_site_name" name="new_site_name">
+                                            <input type="text" class="form-control input font_weight_modal" id="new_site_name" name="new_site_name">
                                             <label for="input" class="input-padding">Site Name <span class="paddingm validate">*</span></label>
                                             <span class="paddingm float-start validate" id="inputUsernew_site_err"></span><span class="float-end charCount" id="inputUsernew_site_err_count"></span>
                                         </div>
@@ -222,7 +223,7 @@
                                 <div class="col-lg-6">
                                     <div class="box new_site_box">
                                         <div class="input-box fieldStyle">
-                                            <input type="text" class="form-control input font_weight" id="location_name" name="location_name">
+                                            <input type="text" class="form-control input font_weight_modal" id="location_name" name="location_name">
                                             <label for="input" class="input-padding">Location <span class="paddingm validate">*</span></label>
                                             <span class="paddingm float-start validate" id="location_name_err"></span><span class="float-end charCount" id="location_name_count"></span>
                                         </div>
@@ -236,7 +237,7 @@
                         <div class="col-lg-6">
                             <div class="box">
                                 <div class="input-box fieldStyle">
-                                    <input type="text" class="form-control input font_weight" id="inputUserPhone" name="inputUserPhone" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                    <input type="text" class="form-control input font_weight_modal" id="inputUserPhone" name="inputUserPhone" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                     <label for="input" class="input-padding">Phone <span class="paddingm validate">*</span></label>
                                     <span class="paddingm float-start validate" id="inputUserPhoneErr"></span>
                                 </div>
@@ -256,7 +257,7 @@
                                 <div class="col-lg-6">
                                     <div class="box">
                                         <div class="input-box fieldStyle">
-                                            <input type="password" class="form-control input font_weight" id="pass_op" name="pass_op" oninput="this.value=this.value.trimStart().trimEnd();" style="padding-right:2rem;">
+                                            <input type="password" class="form-control input font_weight_modal" id="pass_op" name="pass_op" oninput="this.value=this.value.trimStart().trimEnd();" style="padding-right:2rem;">
                                             <label for="pass_op" class="input-padding">Password <span class="paddingm validate">*</span></label>
                                             <span class="unit"><i id="eye_pass_op" class="fa fa-eye-slash clip showpass" style="font-size: 20px;" aria-hidden="true"></i></span>
                                             <span class="paddingm float-start validate" id="pass_op_err"></span><span class="float-end charCount" id="pass_op_count"></span>
@@ -266,7 +267,7 @@
                                 <div class="col-lg-6">
                                     <div class="box">
                                         <div class="input-box fieldStyle">
-                                            <input type="password" class="form-control input font_weight" id="re_pass_op" name="re_pass_op" oninput="this.value=this.value.trimStart().trimEnd();" style="padding-right:2rem;">
+                                            <input type="password" class="form-control input font_weight_modal" id="re_pass_op" name="re_pass_op" oninput="this.value=this.value.trimStart().trimEnd();" style="padding-right:2rem;">
                                             <label for="re_pass_op" class="input-padding">Re-Type Password <span class="paddingm validate">*</span></label>
                                             <span class="unit"><i id="eye_repass_op" class="fa fa-eye-slash clip showpass" style="font-size: 20px;" aria-hidden="true"></i></span>
                                             <span class="paddingm float-start validate" id="re_pass_op_err"></span><span class="float-end charCount" id="re_pass_op_count"></span>
@@ -281,7 +282,7 @@
                         <div class="col-lg-6">
                             <div class="box">
                                 <div class="input-box fieldStyle">
-                                    <input type="text" class="form-control input font_weight" id="inputUserDesignation" name="inputUserDesignation">
+                                    <input type="text" class="form-control input font_weight_modal" id="inputUserDesignation" name="inputUserDesignation">
                                     <label for="input" class="input-padding">Designation <span class="paddingm validate">*</span></label>
                                     <span class="paddingm float-start validate" id="inputUserDesignationErr"></span><span class="float-end charCount" id="inputUserDesignationCunt"></span>
                                 </div>
@@ -290,7 +291,7 @@
                         <div class="col-sm-6">
                             <div class="box">
                                     <div class="input-box fieldStyle">
-                                        <select class="inputDepartmentAdd form-select font_weight" name="inputUserSiteDepartment" id="inputUserSiteDepartment">
+                                        <select class="inputDepartmentAdd form-select font_weight_modal" name="inputUserSiteDepartment" id="inputUserSiteDepartment">
                                            
                                         </select>
                                         <label for="input" class="input-padding">Department <span class="paddingm validate">*</span></label>
@@ -311,7 +312,7 @@
 
 <!-- access control modal -->
 <div class="modal fade" id="AccessControlModal" tabindex="-1" aria-labelledby="AccessControlModal1" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered rounded">
+  <div class="modal-dialog modal-lg modal-dialog-centered rounded" style="margin: auto;">
     <div class="modal-content bodercss">
             <div class="modal-header" style="border:none;margin-bottom: none;">
                 <p class="modal-title settings-machineAdd-model " id="AccessControlModal1" style="">ACCESS CONTROL</p>
@@ -658,7 +659,7 @@
                     <div class="row">
                         <div class="col-sm-6 box">
                             <div class="input-box fieldStyle">     
-                                <select class="form-select font_weight" name="input" id="EditUserRole" disabled>
+                                <select class="form-select font_weight_modal" name="input" id="EditUserRole" disabled>
                                 </select>
                                 <label for="input" class="input-padding">Role<span class="paddingm validate">*</span></label> 
                                 <span class="paddingm float-start validate" id="site_error_edit"></span>
@@ -667,13 +668,13 @@
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
                                 <label for="" class="col-form-label paddingm headTitle">Status</label>
-                                <p class="fieldStyleSub p1" style="position: absolute;opacity:1;"><span id="EditUserStatus" ></span></p>
+                                <p class="fieldStyleSub p1" style="position: absolute;opacity:1;"><span id="EditUserStatus" class="font_weight_modal"></span></p>
                             </div>  
                         </div>
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
                                 <label for="" class="col-form-label paddingm headTitle">Registered on</label>
-                                <p class="fieldStyleSub" style="position: absolute;"><span id="EditUserRegisteredOn" class="font_weight"></span></p>
+                                <p class="fieldStyleSub" style="position: absolute;"><span id="EditUserRegisteredOn" class="font_weight_modal"></span></p>
                             </div>  
                         </div>
                     </div>
@@ -681,12 +682,12 @@
                         <div class="col-sm-6 fieldStyle">
                             <div class="box">
                                 <div class="input-box fieldStyle" id="ExceptOpEdit">
-                                    <input type="email" class="form-control input font_weight" id="EditUserEmail" name="EditUserEmail" disabled="disabled" >
+                                    <input type="email" class="form-control input font_weight_modal" id="EditUserEmail" name="EditUserEmail" disabled="disabled" >
                                     <label for="input" class="input-padding">User Email<span class="paddingm validate">*</span></label>
                                     <span class="paddingm float-start validate" id="email_err"></span> 
                                 </div>
                                 <div class="input-box fieldStyle" id="OperatorCredentialEdit" style="display: none;">
-                                    <input type="text" class="form-control input font_weight" id="EditOpUserID" name="EditOpUserID" disabled="disabled">
+                                    <input type="text" class="form-control input font_weight_modal" id="EditOpUserID" name="EditOpUserID" disabled="disabled">
                                     <label for="input" class="input-padding">User ID<span class="paddingm validate">*</span></label>
                                     <span class="paddingm float-start validate" id="email_err"></span> 
                                 </div>
@@ -694,7 +695,7 @@
                         </div>
                         <div class="col-sm-3 box">
                             <div class="input-box fieldStyle">
-                                <select class="inputSiteNameAdd form-select font_weight" name="EditUserSiteName" id="EditUserSiteName">
+                                <select class="inputSiteNameAdd form-select font_weight_modal" name="EditUserSiteName" id="EditUserSiteName">
                                 </select>
                                 <label for="input" class="input-padding">Site Name<span class="paddingm validate">*</span></label>
                                 <span class="paddingm float-start validate" id="sitename_error_edit"></span> 
@@ -703,14 +704,14 @@
                         <div class="col-sm-3 box">
                             <div class="input-box fieldStyle">
                                 <label for="" class="col-form-label paddingm headTitle">Site ID</label>
-                                <p class="fieldStyleSub" style="position: absolute;"><span id="EditUserSiteId" class="font_weight"></span></p>
+                                <p class="fieldStyleSub" style="position: absolute;"><span id="EditUserSiteId" class="font_weight_modal"></span></p>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-3 box">
                             <div class="input-box fieldStyle">
-                                <input type="text" class="form-control font_weight" id="EditUserFName" name="EditUserFName">
+                                <input type="text" class="form-control font_weight_modal" id="EditUserFName" name="EditUserFName">
                                 <label for="inputMachineRateHour" class="input-padding">First Name<span class="paddingm validate">*</span></label>
                                 <span class="paddingm float-start validate" id="EditUserFNameErr"></span> 
                                 <span class="float-end charCount" id="EditUserFNameCunt"></span>
@@ -718,7 +719,7 @@
                         </div>
                         <div class="col-sm-3 box">
                             <div class="input-box fieldStyle">
-                                <input type="text" class="form-control input font_weight" id="EditUserLName" name="EditUserLName">
+                                <input type="text" class="form-control input font_weight_modal" id="EditUserLName" name="EditUserLName">
                                 <label for="inputMachineOffRateHour" class="input-padding">Last Name<span class="paddingm validate">*</span></label>
                                 <span class="paddingm float-start validate" id="EditUserLNameErr"></span> 
                                 <span class="float-end charCount" id="EditUserLNameCunt"></span>
@@ -727,14 +728,14 @@
                         <div class="col-lg-6 box">
                             <div class="input-box fieldStyle">
                                 <label for="" class="col-form-label paddingm headTitle">Site Location</label>
-                                <p class="fieldStyleSub" style="position: absolute;"><span id="EditUserLocation" class="font_weight">Sample</span></p>
+                                <p class="fieldStyleSub" style="position: absolute;"><span id="EditUserLocation" class="font_weight_modal">Sample</span></p>
                             </div>  
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6 box">
                             <div class="input-box fieldStyle">
-                                <input type="text" class="form-control input font_weight" id="EditUserPhone" name="EditUserPhone" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                <input type="text" class="form-control input font_weight_modal" id="EditUserPhone" name="EditUserPhone" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                 <label for="inputMachineOffRateHour" class="input-padding">Phone<span class="paddingm validate">*</span></label>
                                 <span class="paddingm float-start validate" id="EditUserPhoneErr"></span> 
                                 <!-- <span class="float-end charCount">Character Count</span> -->
@@ -775,7 +776,7 @@
                         <div class="col-lg-6">
                             <div class="box">
                                 <div class="input-box fieldStyle">
-                                    <input type="text" class="form-control input font_weight" id="EditUserDesignation" name="EditUserDesignation">
+                                    <input type="text" class="form-control input font_weight_modal" id="EditUserDesignation" name="EditUserDesignation">
                                     <label for="input" class="input-padding">Designation<span class="paddingm validate">*</span></label>
                                     <span class="paddingm float-start validate" id="EditUserDesignationErr"></span>
                                     <span class="float-end charCount" id="EditUserDesignationCunt"></span>
@@ -797,13 +798,13 @@
                                 <div class="col-sm-6 box">
                                     <div class="input-box fieldStyle">
                                         <label for="" class="col-form-label paddingm headTitle">Last Updated By</label>
-                                        <p class="fieldStyleSub" style="position: absolute;word-wrap: break-word;"><span id="EditUserUpdatedBy" class="font_weight"></span></p>
+                                        <p class="fieldStyleSub" style="position: absolute;word-wrap: break-word;"><span id="EditUserUpdatedBy" class="font_weight_modal"></span></p>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 box">
                                     <div class="input-box fieldStyle">
                                         <label for="" class="col-form-label paddingm headTitle">Last Updated On</label>
-                                        <p class="fieldStyleSub" style="position: absolute;"><span id="EditUserUpdatedOn" class="font_weight"></span></p>
+                                        <p class="fieldStyleSub" style="position: absolute;"><span id="EditUserUpdatedOn" class="font_weight_modal"></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -811,7 +812,7 @@
                         <div class="col-lg-6">
                             <div class="box">
                                 <div class="input-box fieldStyle">
-                                    <select class="inputDepartmentAdd form-select font_weight" name="EditUserDepartment" id="EditUserDepartment">
+                                    <select class="inputDepartmentAdd form-select font_weight_modal" name="EditUserDepartment" id="EditUserDepartment">
                                     </select>
                                     <label for="input" class="input-padding">Department<span class="paddingm validate">*</span></label>
                                     <span class="paddingm float-start validate d-none" id="dept_err"></span> 
@@ -846,19 +847,19 @@
                         <div class="col-sm-6 box">
                             <div class="fieldStyleInfo">
                                 <label for="" class="col-form-label headTitle">Role</label>
-                                <p class="" ><span id="UserRole" class="font_weight "></span></p>
+                                <p class="" ><span id="UserRole" class="font_weight_modal "></span></p>
                             </div>
                         </div>
                         <div class="col-sm-3 box">
                             <div class="fieldStyleInfo">
                                 <label for="" class="col-form-label headTitle">Status</label>
-                                <p class="info-mar"><span id="UserStatus" class="font_weight "></span></p>
+                                <p class="info-mar"><span id="UserStatus" class="font_weight_modal "></span></p>
                             </div>
                         </div>
                         <div class="col-sm-3 box">
                             <div class="fieldStyleInfo">
                                 <label for="" class="col-form-label headTitle">Registered on</label>
-                                <p class=""><span id="UserRegisteredOn" class="font_weight "></span></p>
+                                <p class=""><span id="UserRegisteredOn" class="font_weight_modal "></span></p>
                             </div>
                         </div>
                     </div>
@@ -866,19 +867,19 @@
                         <div class="col-sm-6 box">
                             <div class="fieldStyleInfo">
                                 <label for="" class="col-form-label headTitle">User ID</label>
-                                <p class=""><span id="UserId" class="font_weight"></span></p>
+                                <p class=""><span id="UserId" class="font_weight_modal"></span></p>
                             </div>
                         </div>
                         <div class="col-sm-3 box">
                             <div class="fieldStyleInfo">
                                 <label for="" class="col-form-label headTitle">Site Name</label>
-                                <p class=""><span id="UserSiteName" class="font_weight "></span></p>
+                                <p class=""><span id="UserSiteName" class="font_weight_modal "></span></p>
                             </div>
                         </div>
                         <div class="col-sm-3 box">
                             <div class="fieldStyleInfo">
                                 <label for="" class="col-form-label headTitle">Site ID</label>
-                                <p class=""><span id="UserSiteId" class="font_weight "></span></p>
+                                <p class=""><span id="UserSiteId" class="font_weight_modal "></span></p>
                             </div>
                         </div>
                     </div>
@@ -886,19 +887,19 @@
                         <div class="col-sm-3 box">
                             <div class="fieldStyleInfo">
                                 <label for="" class="col-form-label headTitle">First Name</label>
-                                <p class=""><span id="UserFirstName" class="font_weight "></span></p>
+                                <p class=""><span id="UserFirstName" class="font_weight_modal "></span></p>
                             </div>
                         </div>
                         <div class="col-sm-3 box">
                             <div class="fieldStyleInfo">
                                 <label for="" class="col-form-label headTitle">Last Name</label>
-                                <p class=""><span id="UserLastName" class="font_weight "></span></p>
+                                <p class=""><span id="UserLastName" class="font_weight_modal "></span></p>
                             </div>
                         </div>
                         <div class="col-sm-6 box">
                             <div class="fieldStyleInfo">
                                 <label for="" class="col-form-label headTitle">Site Location</label>
-                                <p class=""><span id="UserSiteLocation" class="font_weight "></span></p>
+                                <p class=""><span id="UserSiteLocation" class="font_weight_modal "></span></p>
                             </div>
                         </div>
                     </div>   
@@ -906,13 +907,13 @@
                         <div class="col-sm-6 box">
                             <div class="fieldStyleInfo">
                                 <label for="" class="col-form-label headTitle">Phone</label>
-                                <p class=""><span id="UserPhone" class="font_weight "></span></p>
+                                <p class=""><span id="UserPhone" class="font_weight_modal "></span></p>
                             </div>
                         </div>
                         <div class="col-sm-6 box">
                             <div class="fieldStyleInfo">
                                 <label for="" class="col-form-label headTitle">Department</label>
-                                <p class=""><span id="UserDepartment" class="font_weight "></span></p>
+                                <p class=""><span id="UserDepartment" class="font_weight_modal "></span></p>
                             </div>
                         </div>
                     </div>
@@ -920,7 +921,7 @@
                         <div class="col-sm-6 box">
                             <div class="fieldStyleInfo">
                                 <label for="" class="col-form-label headTitle">Designation</label>
-                                <p class=""><span id="UserDesignation" class="font_weight "></span></p>
+                                <p class=""><span id="UserDesignation" class="font_weight_modal "></span></p>
                             </div>
                         </div>
                          <div class="col-sm-6 center-align">
@@ -934,13 +935,13 @@
                         <div class="col-lg-3 box">
                             <div class="fieldStyleInfo">
                                 <label for="" class="col-form-label headTitle">Last Updated By</label>
-                                <p class=""><span id="UserLastUpdatedBy" class="font_weight "></span></p>
+                                <p class=""><span id="UserLastUpdatedBy" class="font_weight_modal "></span></p>
                             </div>
                         </div>
                         <div class="col-lg-4 box">
                             <div class="fieldStyleInfo">
                                 <label for="" class="col-form-label headTitle">Last Updated On</label>
-                                <p class=""><span id="UserLastUpdatedOn" class="font_weight "></span></p>
+                                <p class=""><span id="UserLastUpdatedOn" class="font_weight_modal "></span></p>
                             </div>
                         </div>
                     </div>             
