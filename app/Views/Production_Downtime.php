@@ -346,7 +346,7 @@ input[type=number] {
 
           <!--  -->
           <div class="tableContent downtimeHeader" style="display: none;top:20rem">
-            <div class="settings_machine_header sticky-top" style="position:fixed;left:4.5rem;right:0;top:19rem;margin-left: 0.5rem;margin-right: 0.5rem;">
+            <div class="settings_machine_header sticky-top" style="position:fixed;left:4.5rem;right:0;top:19rem;margin-left: 0.5rem;margin-right: 0.5rem;background-color: white;">
               <div class="row paddingm">
                   <div class="col-sm-1 p3 paddingm">
                     <p class="basic_header">START TIME</p>
@@ -529,8 +529,6 @@ var overall_duration_value =0;
 function getpartnames_graph(tmp_part_id_arr){
   var part_id_a = tmp_part_id_arr.split(",");
   var part_len = parseInt(part_id_a.length);
-  // console.log("graph parts:\t"+part_id_a);
-  // console.log("overall array:\t"+down_part);
   var partname_arr = new Array();
   if (parseInt(part_len)>1) {
     for(var i=0;i<parseInt(part_len);i++){
@@ -836,10 +834,10 @@ $(document).on("click", ".deleteRec", function(){
         var duration="";
         // Remove the current deleted row........
         $('.rowData:eq('+indexRef+')').remove();
-        if (indexRef == 1) {  
-          var tmp = (parseFloat(data_array[0]).toFixed(2)).split(".");
+        if (indexRef == 1) {
+          var tmp = ((data_array[0]).toString()).split(".");
           var tmpVal = parseInt(tmp[0])+parseInt(data_array[1]);
-          data_array[0] = tmpVal+"."+tmp[1];
+          data_array[0] = tmpVal+"."+("0" + (tmp[1])).slice(-2);
           duration = data_array[0];
         }
         else{
@@ -1147,7 +1145,6 @@ $(document).on("click", ".deleteRec", function(){
       var notes_mapped = "info.png";
     }
     
-
    var cal_count = 1;
     $( ".split_input" ).append('<div id="settings_div" class="rowData">'
             +'<div class="row paddingm">'
@@ -1247,7 +1244,9 @@ $(document).on("click", ".deleteRec", function(){
                               +'<p class="marleft p1 pvalue">Notes</p>'
                             +'</div>'
                             +'<div style="width: 50%;float: left;height: 100%;">'
-                              +'<p class="marleft pvalue">'+notes+'</p>'
+                              +'<div style="word-wrap: break-word;flex-wrap: wrap;display:flex;overflow: hidden;height: 4.5rem;width:10rem;">'
+                                +'<p class="marleft pvalue" title="'+notes+'">'+notes+'</p>' 
+                                +'</div>'
                             +'</div>'
                           +'</div>'
                       +'</div>'
@@ -1700,8 +1699,8 @@ function getDownTimeGraph(){
         //progress for graph data updation
         //Update the value in data_array(global variable)....
         if (index1 == 0) {
-          var fistSec = (parseFloat(data_array[0]).toFixed(2)).split(".");
-          data_array[index1] = parseFloat(mathv+"."+(parseInt(fistSec[1]))).toFixed(2);
+          var fistSec = ((data_array[0]).toString()).split(".");
+          data_array[index1] = (mathv+"."+("0" + (fistSec[1])).slice(-2));
         }
         else{
           data_array[index1] = mathv;
@@ -1726,7 +1725,7 @@ function getDownTimeGraph(){
         stime = datetext.split(' ')[0];
         calendar_date = s_date.getFullYear()+"-"+("0" + (parseInt(s_date.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + s_date.getDate()).slice(-2);
         //convert the values to seconds.....
-        var firstSecond = (parseFloat(data_array[0]).toFixed(2)).split(".");
+        var firstSecond = ((data_array[0]).toString()).split(".");
         for(let i=0;i<l;i++){
           calendar_date = s_date.getFullYear()+"-"+("0" + (parseInt(s_date.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + s_date.getDate()).slice(-2);
           calendar_date_array.push(calendar_date);
@@ -1748,7 +1747,7 @@ function getDownTimeGraph(){
           }
           if (i==0) {
             var tm = data_array[0].split(".");
-            data_array[0] = tm[0]+"."+firstSecond[1];
+            data_array[0] = tm[0]+"."+(("0" + (firstSecond[1])).slice(-2));
           }
 
           datetext = s_date.toTimeString();
@@ -1827,8 +1826,8 @@ function getDownTimeGraph(){
         else{
           data_time=[];
           data_array=[];
-          split_ref =[];    
-          down_notes = []; 
+          split_ref =[];  
+          down_notes = [];
           getSplittedData(machineEventIdRef,overall_duration_value);
           getDownTimeGraph();
           getTotalCount();
@@ -1854,7 +1853,7 @@ function getSplittedData(machineEventRef,svalue){
     dataType: "json",
     async:false,
     data:{
-      ref:machineEventRef, 
+      ref:machineEventRef,
     },
     success:function(res){
       $('.split_input').empty();
@@ -1989,7 +1988,6 @@ $(document).on('click','.doneEdit',function(){
           date_array:calendar_array
       },
       success:function(res_Site){
-        console.log(res_Site);
         if (res_Site) {
           alert("Updated Successfully!!");
         } 
@@ -2051,7 +2049,7 @@ $(document).on('click','.doneEdit',function(){
                         if (i==0) {
                           var tmp = data_array[0].split(".");
                           data_array[i] = parseInt(v);
-                          split_second = parseInt(tmp[1]);
+                          split_second = parseInt(("0" + (tmp[1])).slice(-2));
                         }
                         else{
                           data_array[i] = parseInt(v);
@@ -2074,7 +2072,7 @@ $(document).on('click','.doneEdit',function(){
                             if (i==0) {
                               var tmp = data_array[0].split(".");
                               data_array[i] = parseInt(v);
-                              split_second =parseInt(tmp[1]);
+                              split_second =parseInt(("0" + (tmp[1])).slice(-2));
                             }
                             else{
                               data_array[i] = parseInt(v);
@@ -2091,7 +2089,7 @@ $(document).on('click','.doneEdit',function(){
                         if (i==0) {
                           var tmp = data_array[0].split(".");
                           data_array[i] = parseInt(v);
-                          split_second = parseInt(tmp[1]);
+                          split_second = parseInt(("0" + (tmp[1])).slice(-2));
                         }
                         else{
                           data_array[i] = parseInt(v);
@@ -2111,11 +2109,11 @@ $(document).on('click','.doneEdit',function(){
                             var tmp = data_array[0].split(".");
                             if (tmp.length > 1) {
                               data_array[i] = parseInt(v);
-                              split_second = parseInt(tmp[1]);
+                              split_second = parseInt(("0" + (tmp[1])).slice(-2));
                             }
                             else{
                               data_array[i] = parseInt(v);
-                              split_second = parseInt(tmp[1]);
+                              split_second = parseInt(("0" + (tmp[1])).slice(-2));
                             }
                           }
                           else{
@@ -2163,7 +2161,7 @@ $(document).on('click','.doneEdit',function(){
                   var tmpsplit = data_array[0].split(".");
                   if (tmpsplit.length > 1) {
                     data_array[index3] = parseInt(vale);
-                    split_second = parseInt(tmpsplit[1]);
+                    split_second = parseInt(("0" + (tmpsplit[1])).slice(-2));
                   }
                   else{
                     data_array[index3] = parseInt(vale);
@@ -2432,13 +2430,15 @@ function addDownPart(part,part_id){
             // if (item.part_id == "PT1001") {
               
             // }else{
-              if (tool == item.tool_id) {
-                if (item.part_id == part) {
-                  elements = elements.add('<div class="option_multi"><div class="multi-check "><input type="checkbox" id="one" value="'+item.part_id+'" name="multi_part[]" class="checkboxIn" checked="true"></div><div class="multi-lable check_dis"><span>'+item.part_id+'-'+item.part_name+'</span></div></div>');                 
-                }
-                else{
-                  // elements = elements.add('<option class="DownPartVal" pval="'+item.part_name+'.'+item.part_id+'" tvalue="'+item.tool_id+'" value="'+item.part_id+'">'+item.part_name+' -'+item.part_id+'</option>');
-                  elements = elements.add('<div class="option_multi"><div class="multi-check "><input type="checkbox" id="one" value="'+item.part_id+'" name="multi_part[]" class="checkboxIn"></div><div class="multi-lable check_dis"><span>'+item.part_id+'-'+item.part_name+'</span></div></div>');
+              if (item.status == 1) {
+                if (tool == item.tool_id) {
+                  if (item.part_id == part) {
+                    elements = elements.add('<div class="option_multi"><div class="multi-check "><input type="checkbox" id="one" value="'+item.part_id+'" name="multi_part[]" class="checkboxIn" checked="true"></div><div class="multi-lable check_dis"><span>'+item.part_id+'-'+item.part_name+'</span></div></div>');                 
+                  }
+                  else{
+                    // elements = elements.add('<option class="DownPartVal" pval="'+item.part_name+'.'+item.part_id+'" tvalue="'+item.tool_id+'" value="'+item.part_id+'">'+item.part_name+' -'+item.part_id+'</option>');
+                    elements = elements.add('<div class="option_multi"><div class="multi-check "><input type="checkbox" id="one" value="'+item.part_id+'" name="multi_part[]" class="checkboxIn"></div><div class="multi-lable check_dis"><span>'+item.part_id+'-'+item.part_name+'</span></div></div>');
+                  }
                 }
               }
             // }
@@ -2560,8 +2560,10 @@ function addDownPart(part,part_id){
               // if (item.part_id == "PT1001") {
                 
               // }else{
-                part_collection.push(Object.values(item));
-                elements = elements.add('<div class="option_multi"><div class="multi-check "><input type="checkbox" id="one" value="'+item.part_id+'" name="multi_part[]" class="checkboxIn"></div><div class="multi-lable check_dis"><span>'+item.part_id+'-'+item.part_name+'</span></div></div>');
+                if (item.status == 1) {
+                  part_collection.push(Object.values(item));
+                  elements = elements.add('<div class="option_multi"><div class="multi-check "><input type="checkbox" id="one" value="'+item.part_id+'" name="multi_part[]" class="checkboxIn"></div><div class="multi-lable check_dis"><span>'+item.part_id+'-'+item.part_name+'</span></div></div>');
+                }
 
                 // elements = elements.add('<option class="DownPartVal" pval="'+item.part_name+'.'+item.part_id+'" tvalue="'+item.tool_id+'" value="'+item.part_id+'">'+item.part_name+' -'+item.part_id+'</option>');
               // }
