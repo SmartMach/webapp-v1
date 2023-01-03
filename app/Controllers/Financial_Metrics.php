@@ -227,7 +227,12 @@ class Financial_Metrics extends BaseController
             
             //Downtime data has been calculated......
             // To find Planned Downtime, Unplanned Downtime, Machine OFF Downtime.........
-            $downtime = $this->oeeData($MachineWiseDataRaw,$getAllTimeValues);
+
+            if ($graphRef == "PLOpportunity") {
+                $downtime = $this->oeeData($MachineWiseDataRaw,$getAllTimeValues,true);
+            }else{
+                $downtime = $this->oeeData($MachineWiseDataRaw,$getAllTimeValues);
+            }
 
             if ($graphRef == "PartPLOpportunity") {
                 $res['production'] = $production;
@@ -630,7 +635,7 @@ class Financial_Metrics extends BaseController
         return $arr;
     }
 
-    public function oeeData($MachineWiseDataRaw,$getAllTimeValues)
+    public function oeeData($MachineWiseDataRaw,$getAllTimeValues,$noplan=false)
     {
         $DowntimeTimeData =[];
         foreach ($MachineWiseDataRaw as $Machine){
@@ -679,10 +684,18 @@ class Financial_Metrics extends BaseController
                                 $st[1]=$st[1]/sizeof($part_count);
                             }   
 
-                            // echo $DTR['downtime_category']."  ".$DTR['downtime_reason'];
-                            // echo "<br>";
-
-                            if($DTR['downtime_category'] == 'Unplanned'){
+                            $noplan = trim($DTR['downtime_reason']);
+                            $noplan = strtolower(str_replace(" ","",$noplan));
+                            if ($DTR['downtime_category'] == 'Planned' && $noplan == 'noplan' && $noplan == true) {
+                                if (sizeof($st) > 1) {
+                                    $tmpMachineOFFDown = $tmpMachineOFFDown + $st[0];
+                                    $tmpMachineOFFDownSec = $tmpMachineOFFDownSec + $st[1];
+                                }
+                                else{
+                                    $tmpMachineOFFDown = $tmpMachineOFFDown + $st[0];   
+                                }
+                            }
+                            else if($DTR['downtime_category'] == 'Unplanned'){
                                 // $st = explode(".", $DTR['split_duration']);
                                 if (sizeof($st) > 1) {
                                     $tmpUnplannedDown = $tmpUnplannedDown + $st[0];
@@ -718,7 +731,7 @@ class Financial_Metrics extends BaseController
                                 
                             }
 
-                            if ($DTR['downtime_reason'] != 'Machine OFF') {
+                            if ($DTR['downtime_reason'] != 'Machine OFF' || ($DTR['downtime_category'] == 'Planned' && $noplan == 'noplan' && $noplan == true)) {
                                 if (sizeof($st) > 1) {
                                     $PartInMachine = $PartInMachine + $st[0];
                                     $PartInMachineSec = $PartInMachineSec + $st[1];
@@ -1937,7 +1950,7 @@ class Financial_Metrics extends BaseController
 
         $rawData = $this->getDataRaw($ref,$fromTime,$toTime);
         
-        $downtime = $this->oeeDataTreand($rawData['raw'],$rawData['machine'],$rawData['part'],$days);
+        $downtime = $this->oeeDataTreand($rawData['raw'],$rawData['machine'],$rawData['part'],$days,true);
         $partDetails = $this->Financial->PartDetails();
         $machineDetails = $this->Financial->getMachineDetails();
 
@@ -2076,7 +2089,7 @@ class Financial_Metrics extends BaseController
     }
 
 
-public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days)
+public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days,$noplan=false)
 {
     $downData=[];
     foreach ($days as $d) {
@@ -2115,7 +2128,12 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days)
                                     $duration = ($st[0]);
                                 }
 
-                                if($DTR['downtime_category'] == 'Unplanned'){
+                                $noplan = trim($DTR['downtime_reason']);
+                                $noplan = strtolower(str_replace(" ","",$noplan));
+                                if ($DTR['downtime_category'] == 'Planned' && $noplan == 'noplan' && $noplan == true) {
+                                    $tmpMachineOFFDown = $tmpMachineOFFDown + $duration;
+                                }
+                                else if($DTR['downtime_category'] == 'Unplanned'){
                                     $tmpUnplannedDown = $tmpUnplannedDown + $duration;
                                 }
                                 else if(($DTR['downtime_category'] == 'Planned') && ($DTR['downtime_reason'] == 'Machine OFF')){
@@ -2174,7 +2192,7 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days)
         }
 
         $rawData = $this->getDataRaw($ref,$fromTime,$toTime);
-        $downtime = $this->oeeDataTreand($rawData['raw'],$rawData['machine'],$rawData['part'],$days);
+        $downtime = $this->oeeDataTreand($rawData['raw'],$rawData['machine'],$rawData['part'],$days,false);
         $partDetails = $this->Financial->PartDetails();
         $machineDetails = $this->Financial->getMachineDetails();
 
