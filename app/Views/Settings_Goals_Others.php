@@ -1807,6 +1807,16 @@ function get_shift_data(){
                         $('#DTReasonContent').append(elements);
                 });
             },
+            statusCode: {
+               
+               500: function(){
+                console.log("Record Issue 500 in based on images");
+               },
+               404:function(){
+                
+                 console.log("Data Passing Issue 404  image found the particular location ");
+               }
+            },
             error:function(res){
                 alert("Sorry!Try Agian!!");
             }
@@ -1843,6 +1853,16 @@ function get_shift_data(){
                     }
                     $('#QReasonContent').append(elements);
                 });
+            },
+            statusCode: {
+               
+               500: function(){
+                console.log("Record Issue 500 in based on images");
+               },
+               404:function(){
+                
+                 console.log("Data Passing Issue 404  image found the particular location ");
+               }
             },
             error:function(res){
                 alert("Sorry!Try Agian!!");
