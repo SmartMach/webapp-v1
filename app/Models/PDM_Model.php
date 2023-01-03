@@ -460,7 +460,6 @@ class PDM_Model extends Model{
                     $tool_change_tb = $db->table('pdm_tool_changeover');
                     $tool_child_tb = $db->table('tool_changeover');
                     $tool_changeover_cdate = $output[0]['calendar_date'];
-                    // return $tool_change_data;
                     if ($tool_change_tb->insert($tool_change_data)) {
                         $len = count($part_arr);
                         for($j=0;$j<$len;$j++){
@@ -669,17 +668,22 @@ class PDM_Model extends Model{
             $machineSerial = $machineg[0]['machine_serial_number'];
 
             $filter = array('data.gateway_time'=>array('$gte'=>$dst,'$lte'=>$det),'data.status'=>'Active');
+
+            $filter1 = array('data.gateway_time'=>array('$gte'=>$dst,'$lte'=>$det),'data.status'=>'Active','data.machine_id'=>$machineSerial);
             
             $query = new \MongoDB\Driver\Query($filter);
             $site = $this->session->get('active_site');
             $mid = $data['machine_id'];
             $url = "S1001".".".$machinegateway;
+            $url1 = "S1001"."."."/chennai/S1001/offline";
             $rows = $manager->executeQuery("".$url."" , $query);
+            $rows1 = $manager->executeQuery("".$url."" , $query);
             $k = $rows->toArray();
+            $k1 = $rows->toArray();
             $l=0;
             $shotstart=0;
             $shotend=0;
-            $actual_shot_count = sizeof($k);
+            $actual_shot_count = sizeof($k)+sizeof($k1);
            
             // tool changeover reason mapping for shift time and hour start time same condition 
             if ((strcmp($chec_start_time[0].":00:00",$previous_tool_start) == 0)) {
@@ -1595,14 +1599,18 @@ class PDM_Model extends Model{
            exit;
         }
     }
-    public function findProductionCount($start_time,$end_time,$gateway,$site){
+    public function findProductionCount($start_time,$end_time,$gateway,$site,$machineSerial){
         $manager = new \MongoDB\Driver\Manager("mongodb://admin:quantanics123@165.22.208.52:27017/");
         $filter = array('data.gateway_time'=>array('$gte'=>$start_time,'$lte'=>$end_time),'data.status'=>'Active');
         $query = new \MongoDB\Driver\Query($filter);
         $url = "S1001".".".$gateway;
         $rows = $manager->executeQuery("".$url."" , $query);
         $k = $rows->toArray();
-        return $k;
+        $filter1 = array('data.gateway_time'=>array('$gte'=>$start_time,'$lte'=>$end_time),'data.status'=>'Active','data.machine_id'=>$machineSerial);
+        $url1 = "S1001"."."."/chennai/S1001/offline";
+        $rows1 = $manager->executeQuery("".$url."" , $query);
+        $k1 = $rows->toArray();
+        return sizeof($k)+sizeof($k1);
     }
 
 
@@ -1857,7 +1865,6 @@ class PDM_Model extends Model{
         $exist_tool->limit(1);
         $ex_res_tool = $exist_tool->get()->getResultArray();
 
-        
         if (count($ex_res_tool)>0) {
             // existing tool changer over count
             $ex_tol = $db->table('tool_changeover');
@@ -1945,14 +1952,14 @@ class PDM_Model extends Model{
 
                 $site = $this->session->get('active_site');
                 $mid = $mid;
-                $k = $this->findProductionCount($dst,$det,$machinegateway,$site);
+                $k = $this->findProductionCount($dst,$det,$machinegateway,$site,$machineSerial);
                 $l=0;
             } 
             catch(MongoDB\Driver\Exception $e) {
                return false;
                exit;
             }
-            $actual_shot_count = sizeof($k);
+            $actual_shot_count = $k;
             // updation condition
             if ($j ==0 ) {
                 if (strcmp($pupdateData[0]['start_time'],$sstart) == 0) {
