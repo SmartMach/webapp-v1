@@ -346,7 +346,7 @@ $('#changed_date').datetimepicker({
 
                         elements = elements.add('<div class="" style="display:flex;flex-wrap:wrap;flex-direction:row;">'
                             +'<div class=" col paddingm" style="padding-right:2px; width:10%;">'
-                              +'<div class="machine_header_production_status machine_align" style="height:98.9%;">'
+                              +'<div class="machine_header_production_status machine_align" style="height:99.5%;">'
                               // +'<div class="machine_header_production_status machine_align" id="height_'+k+'" style="">'
                                   +'<p class="mcname" style="text-align:center;">'+res['machine_details'][k][0]+'</p>'
                                   +'<span style="font-size:0.8rem;font-weight:550;">('+res['machine_details'][k][2]+'T)</span>'
@@ -672,9 +672,26 @@ $('#changed_date').datetimepicker({
                                 shift_height = parseInt(shift_height) + parseInt(sheight);
                               }
                               // console.log("for loop end:\t"+shift_height);
-                              var correct_height = parseInt(shift_height)+2;
-                              var machine_height = $('.'+k).height();
-                              machine_height = parseInt(machine_height);
+                              var tmp_count = Object.keys(res['Part_details'][k][k1]).length;
+                              var correct_height = 0;
+                              if (parseInt(tmp_count)==1) {
+                                if (k1 === "A") {
+                                  correct_height = parseInt(shift_height)+2;  
+                                }else{
+                                  correct_height = parseInt(shift_height)+1.6;
+                                }
+                                
+                              }else if(parseInt(tmp_count)>1){
+                                if (k1 === "A") {
+                                  correct_height = parseInt(shift_height)-1;
+                                }else{
+                                  correct_height = parseInt(shift_height)-1.5;
+                                }
+                                
+                              }
+                              
+                              // var machine_height = $('.'+k).height();
+                              // machine_height = parseInt(machine_height);
                               // console.log("Machine Height"+machine_height);
                               $('.'+k+'_'+k1).css("height",correct_height+"px");
                               $('.downtime_'+k+'_'+k1).css("height",correct_height+"px");
@@ -690,6 +707,19 @@ $('#changed_date').datetimepicker({
 
                   color_change_value();
                   $("#overlay").fadeOut(300);
+                },
+                statusCode: {
+               
+                  500: function(){
+
+                    $('.contentProduction').html("<p>No Records Some Error In Data Passing!</p>");
+                    $("#overlay").fadeOut(300);
+                    console.log("Record Issue in controller or Model site Because the status code is 500");
+                  },
+                  404:function(){
+                    $('.contentProduction').html("<p>Data Getting File Not Found!</p>");
+                    console.log("Data Passing Issue in Controller [ or ] Controller Function[ example names] ");
+                  }
                 },
                 error:function(err){
                     // console.log("error"+err);
