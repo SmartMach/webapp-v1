@@ -1175,8 +1175,8 @@ class Financial_Metrics extends BaseController
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
         
-        // $fromTime = "2022-12-25T10:00:00";
-        // $toTime = "2022-12-31T09:00:00";
+        // $fromTime = "2022-12-28T17:00:00";
+        // $toTime = "2023-01-03T16:00:00";
 
         // $url = "http://localhost:8080/graph/performanceOpportunity/".$fromTime."/".$toTime."/";
         // $ch = curl_init($url);
@@ -1252,10 +1252,11 @@ class Financial_Metrics extends BaseController
                         $Opportunity=0;
                         $speedLoss=0;
                     }
-                    $Opportunity= array('Opportunity' => floatval(number_format($Opportunity, 2)),'SpeedLoss'=>$speedLoss);
-                    $temp = array("part_id"=>$part['part_id'],"data"=>$corrected_tppNICT,"OppCost"=>$Opportunity,"speedLoss"=>$speedLoss);
+                    $Opportunity_arr = array('Opportunity' => floatval($Opportunity),'SpeedLoss'=>$speedLoss);
+
+                    $temp = array("part_id"=>$part['part_id'],"data"=>$corrected_tppNICT,"OppCost"=>$Opportunity_arr,"speedLoss"=>$speedLoss);
                     array_push($tmpMachine, $temp);
-                    array_push($varData, $Opportunity);
+                    array_push($varData, $Opportunity_arr);
                 }
                 // $x = array("machine_id"=>$machine['Machine_ID'],"machineData"=>$tmpMachine);
                 // array_push($AvailabilityOpportunity, $x);
@@ -1264,9 +1265,6 @@ class Financial_Metrics extends BaseController
                 array_push($varDataMachine, $z);
             }
         }
-
-        // echo "<pre>";
-        // print_r($varDataMachine);
 
         $length = sizeof($varDataMachine);
         $l=sizeof($partDetails);
@@ -1279,7 +1277,7 @@ class Financial_Metrics extends BaseController
             for ($j=0; $j <$length ; $j++) { 
                 $tmpPartTotal=floatval($tmpPartTotal)+floatval($varDataMachine[$j]['machineData'][$i]['Opportunity']);
                 $tmpSpeedLoss=$tmpSpeedLoss+($varDataMachine[$j]['machineData'][$i]['SpeedLoss']);
-            }   
+            }
             $GrandTotal=floatval($GrandTotal)+floatval($tmpPartTotal);
             array_push($partTotal, $tmpPartTotal);
             array_push($speedTotal, $tmpSpeedLoss);
@@ -1289,7 +1287,7 @@ class Financial_Metrics extends BaseController
         $res['Part']=$partDetails;
         $res['Total']=$partTotal;
         $res['SpeedLossTotal']=$speedTotal;
-        $res['GrandTotal']=number_format($GrandTotal,0);
+        $res['GrandTotal']=($GrandTotal);
 
         //sorting in desending order......
         $out = $this->selectionSortQuality($res,sizeof($res['Total']));
@@ -1362,8 +1360,8 @@ class Financial_Metrics extends BaseController
         // $res = json_decode($result);
         // echo json_encode($res);
 
-        // $fromTime = "2022-11-29T19:00:00";
-        // $toTime = "2022-12-05T18:00:00";
+        // $fromTime = "2022-12-23T13:00:00";
+        // $toTime = "2022-12-28T12:00:00";
 
         $downtime = $this->getDataRaw($ref,$fromTime,$toTime);
         $partDetails = $this->Financial->PartDetails();
@@ -1380,6 +1378,9 @@ class Financial_Metrics extends BaseController
         $MachineOFFDuration=0;
         $QualityDuration=0;
         $PerformanceDuration=0;
+
+        // echo "<pre>";
+        // print_r($downtime);
 
         foreach ($machineDetails as $machine) {
             foreach ($downtime as $reason) {
