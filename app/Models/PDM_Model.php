@@ -672,14 +672,15 @@ class PDM_Model extends Model{
             $filter1 = array('data.gateway_time'=>array('$gte'=>$dst,'$lte'=>$det),'data.status'=>'Active','data.machine_id'=>$machineSerial);
             
             $query = new \MongoDB\Driver\Query($filter);
+            $query1 = new \MongoDB\Driver\Query($filter1);
             $site = $this->session->get('active_site');
             $mid = $data['machine_id'];
             $url = "S1001".".".$machinegateway;
             $url1 = "S1001"."."."/chennai/S1001/offline";
             $rows = $manager->executeQuery("".$url."" , $query);
-            $rows1 = $manager->executeQuery("".$url."" , $query);
+            $rows1 = $manager->executeQuery("".$url1."" , $query1);
             $k = $rows->toArray();
-            $k1 = $rows->toArray();
+            $k1 = $rows1->toArray();
             $l=0;
             $shotstart=0;
             $shotend=0;
@@ -1600,16 +1601,21 @@ class PDM_Model extends Model{
         }
     }
     public function findProductionCount($start_time,$end_time,$gateway,$site,$machineSerial){
+        // return "Yes";
         $manager = new \MongoDB\Driver\Manager("mongodb://admin:quantanics123@165.22.208.52:27017/");
         $filter = array('data.gateway_time'=>array('$gte'=>$start_time,'$lte'=>$end_time),'data.status'=>'Active');
         $query = new \MongoDB\Driver\Query($filter);
         $url = "S1001".".".$gateway;
         $rows = $manager->executeQuery("".$url."" , $query);
         $k = $rows->toArray();
+
+        // return sizeof($k);
+
         $filter1 = array('data.gateway_time'=>array('$gte'=>$start_time,'$lte'=>$end_time),'data.status'=>'Active','data.machine_id'=>$machineSerial);
+        $query2 = new \MongoDB\Driver\Query($filter1);
         $url1 = "S1001"."."."/chennai/S1001/offline";
-        $rows1 = $manager->executeQuery("".$url."" , $query);
-        $k1 = $rows->toArray();
+        $rows1 = $manager->executeQuery("".$url1."" , $query2);
+        $k1 = $rows1->toArray();
         return sizeof($k)+sizeof($k1);
     }
 
@@ -1787,6 +1793,7 @@ class PDM_Model extends Model{
     public function updatePDMGraph($machineRef,$tool_changeover_cdate,$tool,$part,$date,$startTime,$sstart,$send,$mid,$last_updated_by){
         $tool_id = $tool;
         $part_id = $part;
+        // return "Ky";
         //function for get part-produced-cyle for the particular part for production calculation
         $parts_ar =  explode(",",$part_id);
 

@@ -1972,7 +1972,14 @@ $(document).on('click','.doneEdit',function(){
       part_arr = "empty";
     }
     dataArray.push(category,reason,toolname,part_arr,machineEventRef,splitRef,machineID_ref,shift_date_ref,shift_Ref,notes);
-
+    console.log("data Array");
+    console.log(dataArray);
+    console.log(machineEventRef);
+    console.log(splitRef);
+    console.log(data_time);
+    console.log(data_array);
+    console.log(split_ref);
+    console.log(calendar_array);
     //Ajax function for update particular splitted value in database
     $.ajax({
       url: "<?php echo base_url('PDM_controller/updateDownGraph'); ?>",
@@ -1988,6 +1995,7 @@ $(document).on('click','.doneEdit',function(){
           date_array:calendar_array
       },
       success:function(res_Site){
+        console.log(res_Site);
         if (res_Site) {
           alert("Updated Successfully!!");
         } 
