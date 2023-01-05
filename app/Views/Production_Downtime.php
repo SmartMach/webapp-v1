@@ -826,6 +826,7 @@ $(document).on("click", ".delete-split", function(){
     svalue = document.getElementsByClassName('sval')[indexRef].value;
     $('#DeleteSPlit').modal('show');
 });
+
 $(document).on("click", ".deleteRec", function(){
       $('#DeleteSPlit').modal('hide');
       $("#overlay").fadeIn(300);

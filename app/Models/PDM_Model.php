@@ -2633,11 +2633,16 @@ class PDM_Model extends Model{
 
 
 public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_updated_by){
+    $db = \Config\Database::connect($this->site_creation);
+    $build_del = $db->table('pdm_downtime_reason_mapping');
+    $build_del->select('split_id');
+    $build_del->where('machine_event_id',$machineRef);
+    $result_del = $build_del->get()->getResultArray();
+
+    if(count($result_del) >= 2){
         $duration = $dataVal;
         $end = $end;
         $split_id = $splitRef;
-
-        $db = \Config\Database::connect($this->site_creation);
 
         $query = $db->table('pdm_downtime_reason_mapping');
 
@@ -2717,6 +2722,10 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
             return false;
         }
     }
+    else{
+        return false;
+    }
+}
 
 
     // dropdown shift for quality correction
