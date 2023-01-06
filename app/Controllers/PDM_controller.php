@@ -336,14 +336,20 @@ class PDM_controller extends BaseController{
             $last_updated_by = $this->session->get('user_name');
             $split_array = $this->request->getVar('split_arr');
             $date_array = $this->request->getVar('date_array');
-            
+            // $dataVal = array("Unplanned","3","TL1016",array("PT1017"),"ME14995","0","MC1004","2022-12-22","A","");
+            // $machineRef = "ME14995";
+            // $splitRef = 0;
+            // $timeArray = array("09:03:20","09:05:06","09:05:06","09:06:06");
+            // $durationArray = array("1.46","1");
+            // $split_array = array("0","1");
+            // $date_array = array("2022-12-22","2022-12-22");
 
             
             // $tmp['dataval'] = $dataVal;
             // $tmp['machineref'] = $machineRef;
             // $tmp['splitRef'] = $splitRef;
             // $tmp['time Array'] = $timeArray;
-            // $tmp['duration array']= $durationArray;
+            // $tmp['duration array'] = $durationArray;
             // $tmp['last'] = $last_updated_by;
             // $tmp['aplit_arr'] = $split_array;
             // $tmp['date_array'] = $date_array;
