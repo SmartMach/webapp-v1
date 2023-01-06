@@ -152,19 +152,18 @@ class Settings_Model extends Model{
     if($build->update()){
         $builder = $db->table('settings_machine_log');
         if($builder->insert($machineData)){
-            $sql = $db->table('settings_machine_iot');
-            $iot_gateway_topic = '/'.$machine_iot_update['location'].'/'.$machine_iot_update['site_id'].'/'.$machine_iot_update['machine_serial_id'];
-            $sql->set('iot_gateway_topic',$iot_gateway_topic);
-            $sql->set('site_id',$machine_iot_update['site_id']);
-            $sql->set('location_id',$machine_iot_update['location']);
-            $sql->set('last_updated_by',$machine_iot_update['last_updated_by']);
-            $sql->where('machine_id',$machine_iot_update['machine_id']);
-            if ($sql->update()) {
-                return true;
-            }else{
-                return false;
-            }
-           
+            // $sql = $db->table('settings_machine_iot');
+            // $iot_gateway_topic = '/'.$machine_iot_update['location'].'/'.$machine_iot_update['site_id'].'/'.$machine_iot_update['machine_serial_id'];
+            // $sql->set('iot_gateway_topic',$iot_gateway_topic);
+            // $sql->set('site_id',$machine_iot_update['site_id']);
+            // $sql->set('location_id',$machine_iot_update['location']);
+            // $sql->set('last_updated_by',$machine_iot_update['last_updated_by']);
+            // $sql->where('machine_id',$machine_iot_update['machine_id']);
+            // if ($sql->update()) {
+            //     return true;
+            // }else{
+            //     return false;
+            // }
             return true;
         }
         else{
