@@ -99,7 +99,7 @@ class Daily_production_controller extends BaseController{
     // get machine records
     public function getMachine_data(){
         if ($this->request->isAJAX()) {
-            //$date = "2022-12-30";
+            // $date = "2023-01-05";
             $date = $this->request->getVar('date');
             $getmachine_data = $this->datas->getmachine_data($date);
            
