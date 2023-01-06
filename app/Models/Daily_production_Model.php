@@ -23,7 +23,7 @@ class Daily_production_Model extends Model{
             'hostname' => 'localhost',
             'username' => 'root',
             'password' => '',
-            // 'database' => 's1002',
+            // 'database' => 's1001',
             'database' => ''.$db_name.'',
             'DBDriver' => 'MySQLi',
             'DBPrefix' => '',
@@ -92,12 +92,13 @@ class Daily_production_Model extends Model{
     public function getalldowntimeduration($mid,$sdate,$sid,$pid,$tid){
         $db =  \Config\Database::connect($this->site_connection);
 
-        $builder = $db->table('pdm_downtime_reason_mapping');
+        $builder = $db->table('pdm_events');
         $builder->select('*');
         $builder->where('machine_id',$mid);
         $builder->where('shift_date',$sdate);
         $builder->where('Shift_id',$sid);
         $builder->where('tool_id',$tid);
+        $builder->where('event','Active');
         $result = $builder->get()->getResultArray();
 
         $tmp_arr_rec = [];
@@ -117,7 +118,7 @@ class Daily_production_Model extends Model{
         $duration_mtotal_count = 0;
         $duration_stotal_count = 0;
         foreach ($tmp_arr_rec as $ke => $val) {
-            $split_duration = explode(".",$val['split_duration']); 
+            $split_duration = explode(".",$val['duration']); 
             // return $split_duration;
             $duration_mtotal_count = $duration_mtotal_count + $split_duration[0];
             if ($split_duration[1]>0) {
@@ -270,10 +271,10 @@ class Daily_production_Model extends Model{
             //    tool changeover time get function
            $get_timestamp = $this->get_tool_changeovertime($machine_id,$shiftid,$shift_date,$value['part_id'],$value['tool_id']);
             // get thats time durations    
-           $getpart_duration = $this->get_time_seconds($machine_id,$shiftid,$shift_date,$value['part_id'],$value['tool_id']);
+            // $getpart_duration = $this->get_time_seconds($machine_id,$shiftid,$shift_date,$value['part_id'],$value['tool_id']);
             // get downtime for that time durations    
            $getpart_downtime_duration = $this->getalldowntime($machine_id,$shift_date,$shiftid,$value['part_id'],$value['tool_id']); 
-           $final_duration = $getpart_duration - $getpart_downtime_duration;
+           $final_duration = $getpart_downtime_duration;
 
            array_push($tmpass_arr,$value['tool_id']);
            $getppc = $this->getpart_details($value['part_id']);
@@ -346,11 +347,11 @@ class Daily_production_Model extends Model{
                             $tmpcmp_time = explode(":",$getshift_time['shifts'][$k]['end_time']);
                             $tmpcmp_time1 = explode(":",$tmpdate_time[1]);
                             if ($tmpcmp_time1[0] ===  $tmpcmp_time[0]) {
-                                array_push($tmp_time_arr,$getshift_time_tmp['shifts'][$key]['end_time']);
+                                array_push($tmp_tcho_time,$getshift_time_tmp['shifts'][$key]['end_time']);
                             }else{
                                 $last_record_time = $this->getlast_record_time($mid,$pid,$tid,$sdate,$sid);
                                 // array_push($tmp_time_arr,$tmpcmp_time1[0]);
-                                array_push($tmp_time_arr,$last_record_time);
+                                array_push($tmp_tcho_time,$last_record_time);
                             }
                         }else{
                             array_push($tmp_tcho_time,$getshift_time_tmp['shifts'][$key]['end_time']);
@@ -784,6 +785,7 @@ class Daily_production_Model extends Model{
     }
 
     // this function for get the duration for particular part start time and end time duration
+    /* temporary hide this function
     public function get_time_seconds($machineid,$shiftid,$shiftdate,$pid,$tid){
         $db =  \Config\Database::connect($this->site_connection);
         // $ftime = $get_time_arr[0];
@@ -833,6 +835,7 @@ class Daily_production_Model extends Model{
 
 
     }
+    */
 
     // get record last updated time 
     public function getlast_record_time($mid,$pid,$tid,$sdate,$sid){
