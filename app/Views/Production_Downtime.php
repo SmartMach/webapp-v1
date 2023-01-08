@@ -1265,6 +1265,13 @@ $(document).on("click", ".deleteRec", function(){
     var shiftFlag = 0;
     var shiftStartTime;
 
+// Key Press
+$(document).on('keypress','.sval',function(key){
+  if(key.charCode < 48 || key.charCode > 57) {
+    return false;
+  }
+});
+
 //getDownTimeGraph();
 function getDownTimeGraph(){
       var machine_id = $('#Production_MachineName').val();
@@ -2039,7 +2046,7 @@ $(document).on('click','.doneEdit',function(){
           //condition check whethere total duration for that particular value is less for new enterd total value
           if (vale > m) {
             alert('Maximum split reached!');
-            document.getElementsByClassName("sval")[index3].value = data_array[index3];
+            document.getElementsByClassName("sval")[index3].value = parseInt(data_array[index3]);
           }else{
             if (vale >= 1) {
               var prev = data_array[index3];
