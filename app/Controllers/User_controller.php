@@ -661,7 +661,7 @@ class User_controller extends BaseController
         // $email = \Config\Services::email();
 
         $email->setTo($to);
-        $email->setFrom('Smartories.in');
+        $email->setFrom('support@smartories.com');
         $email->setSubject($sub);
         $email->setMessage($message);
         if($email->send()){
