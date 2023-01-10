@@ -290,6 +290,7 @@ $('#changed_date').datetimepicker({
 
 
     $(document).on('blur','#changed_date',function(){
+      $("#overlay").fadeIn(300);
       load_allfiles();
     });
 
@@ -315,13 +316,14 @@ $('#changed_date').datetimepicker({
         const current_date = getcurrent_date();
         // console.log("current date"+current_date);
         $('#changed_date').val(current_date);
+        $("#overlay").fadeIn(300);
         load_allfiles();
         color_change_value();
     });
 
       // get final json records
       function load_allfiles(){
-            $("#overlay").fadeIn(300);
+            // $("#overlay").fadeIn(300);
             var date =$('#changed_date').val();
             $.ajax({
                 url:"<?php echo base_url('Daily_production_controller/getMachine_data') ?>",
@@ -531,7 +533,7 @@ $('#changed_date').datetimepicker({
                                   +'<p  class="marrpds" id="ppc_pds">'+v2[1]+'</p>'
                                 +'</div>'
                                 +'<div class="mar_right" style="width:9.6%;margin-block:auto;">'
-                                  +'<p  class="marrpds target_pds" id="target_pds">'+Math.round(v2[3])+'</p>'
+                                  +'<p  class="marrpds target_pds" id="target_pds">'+parseInt(v2[3])+'</p>'
                                 +'</div>'
                                 +'<div class="mar_right" style="width:9.2%;margin-block:auto;">'
                                   +'<p  class="marrpds"  id="good_pds">'+res['Part_production_details'][k][k1][k2][2]+'</p>'
@@ -566,7 +568,7 @@ $('#changed_date').datetimepicker({
                                   +'<p  class="marrpds" id="ppc_pds">'+v2[1]+'</p>'
                                 +'</div>'
                                 +'<div class="mar_right" style="width:9.6%;margin-block:auto;">'
-                                  +'<p  class="marrpds target_pds" id="target_pds">'+Math.round(v2[3])+'</p>'
+                                  +'<p  class="marrpds target_pds" id="target_pds">'+parseInt(v2[3])+'</p>'
                                 +'</div>'
                                 +'<div class="mar_right" style="width:9%;margin-block:auto;">'
                                   +'<p  class="marrpds"  id="good_pds">'+res['Part_production_details'][k][k1][k2][2]+'</p>'
@@ -845,34 +847,30 @@ $('#changed_date').datetimepicker({
 
 
     // value color change
-    function color_change_value(){
-        var target_len =  $('.target_pds').length;
-        // console.log("product value color change"+target_len);
-        for(var i=0;i<parseInt(target_len);i++){
-            const tval = $('.target_pds:eq('+i+')').text();
-            const tpval = $('.tpp_pds:eq('+i+')').text();
-            if (parseInt(tval) === parseInt(tpval)) {
-              //  console.log(tval+" "+tpval);
-
-                $('.tpp_pds:eq('+i+')').css("color","#005abc");
-            }
-            else if(parseInt(tpval) > parseInt(tval)){
-              // console.log(tval+"target is greater tpp"+tpval);
-                $('.tpp_pds:eq('+i+')').css("color","#3cb371");
-            }
-            else if(parseInt(tpval) < parseInt(tval)){
-              // console.log("target is lesser tpp"+tpval);
-                $('.tpp_pds:eq('+i+')').css("color","#C00000");
-            }
-            
-           // console.log("target value:\t"+i+"value:\t"+tval);
-        }
-
+  function color_change_value(){
+    var target_len =  $('.target_pds').length;
+    // console.log("product value color change"+target_len);
+    for(var i=0;i<parseInt(target_len);i++){
+      const tval = $('.target_pds:eq('+i+')').text();
+      const tpval = $('.tpp_pds:eq('+i+')').text();
+      if (parseInt(tval) === parseInt(tpval)) {
+        $('.tpp_pds:eq('+i+')').css("color","#005abc");
+      }
+      else if(parseInt(tpval) > parseInt(tval)){
+        $('.tpp_pds:eq('+i+')').css("color","#3cb371");
+      }
+      else if(parseInt(tpval) < parseInt(tval)){
+        $('.tpp_pds:eq('+i+')').css("color","#C00000");
+      }
+          
+      // console.log("target value:\t"+i+"value:\t"+tval);
     }
+
+  }
 
    
 
-    // every one hour automatic run code function
+// every one hour automatic run code function
 function current_date_auto_run() {
   //get the mins of the current time
   var mins = new Date().getMinutes();
@@ -887,17 +885,13 @@ function current_date_auto_run() {
     if (tmp_current_date === date_inp) {
       load_allfiles();
       color_change_value();
-      // console.log("auto matically run function");
-
     }
-    // alert('Do stuff');
-  // }
-  
-  // console.log('Tick ' + mins);
 }
+
 // one hour
 // setInterval(tick,3600000);
-setInterval(current_date_auto_run,3600000);
+// one minute to  milliseconds 
+setInterval(current_date_auto_run,300000);
 
 
 </script>
