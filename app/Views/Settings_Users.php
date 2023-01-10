@@ -295,7 +295,7 @@
                                            
                                         </select>
                                         <label for="input" class="input-padding">Department <span class="paddingm validate">*</span></label>
-                                        <span class="paddingm float-start validate d-none" id="dept_err"></span> 
+                                        <span class="paddingm float-start validate" id="input_dept_err"></span>
                                     </div>
                             </div>
                             
@@ -1143,6 +1143,12 @@
         var h = retypepass();
         var i = inputSiteNameAdd();
         var j= inputLocationAdd();
+        if ($('#inputUserSiteDepartment').val() == null) {
+            var k = "*Required field";
+        }else{
+            var k = "";
+        }
+        
 
         if ($('#inputUserSiteName').val() == "all") {
             $("#sitename_error").css("display","block");
@@ -1160,6 +1166,7 @@
             $('#pass_op_err').html(g);
             $("#location_name_err").html(j);
             $("#inputUsernew_site_err").html(i);
+            $("#input_dept_err").html(k);
 
             $(".CreateUser").attr("disabled", true);
         }
@@ -1167,11 +1174,12 @@
             $("#sitename_error").css("display","none");
             $("#validate_role").html(success);
 
-            if (  b!="" || c!="" || d!="" || e!="") {
+            if (  b!="" || c!="" || d!="" || e!="" || k!="") {
                 $("#inputUserFirstNameErr").html(b);
                 $("#inputUserLastNameErr").html(c);
                 $("#inputUserPhoneErr").html(d);
                 $("#inputUserDesignationErr").html(e);
+                $("#input_dept_err").html(k);
                 $(".CreateUser").attr("disabled", true);
             }
             else{
@@ -1202,7 +1210,7 @@
                     var SUser = $('input[name="settings_user"]:checked').val();
                     User_First_Name = User_First_Name.trim();
                     User_Last_Name = User_Last_Name.trim();
-
+                    $("#input_dept_err").html('');
                     $("#overlay").fadeIn(300);
 
                     $.ajax({
@@ -1262,7 +1270,7 @@
                     var new_site_location = $('#location_name').val();
                     var pass = $('#pass_op').val();
                     var repass = $('#re_pass_op').val();
-
+                    $("#input_dept_err").html('');
                     if (pass.localeCompare(repass)== 0) {
                         $("#overlay").fadeIn(300);
                         $.ajax({
@@ -1304,6 +1312,11 @@
                 }
             }
         }   
+    });
+
+    $(document).on("change","#inputUserSiteDepartment",function(){
+        $("#input_dept_err").html('');
+        $(".CreateUser").removeAttr("disabled");
     });
 
 
@@ -3218,6 +3231,7 @@ function error_show_remove(data){
         $('#inputUserEMailErr').html('');
         $('#inputUserDesignationErr').html('');
         $('#validate_role').html('');
+        $("#input_dept_err").html('');
         // console.log("its worked");
     }
     else if (data == "edit_user") {
