@@ -2746,20 +2746,20 @@ function inputUserEMail(){
                     if (res) {
                         $('#inputUserEMailErr').html('*Email address already exists');
                         $(".CreateUser").attr("disabled", true);
-                        $('#inputUserFirstName').attr("disabled",true);
-                        $('#inputUserLastName').attr("disabled",true);
-                        $('#inputUserPhone').attr("disabled",true);
-                        $('#inputUserDesignation').attr("disabled",true);
+                        // $('#inputUserFirstName').attr("disabled",true);
+                        // $('#inputUserLastName').attr("disabled",true);
+                        // $('#inputUserPhone').attr("disabled",true);
+                        // $('#inputUserDesignation').attr("disabled",true);
                         $("#inputUserFirstName").val(" ");
                         $("#inputUserLastName").val(" ");
                         $("#inputUserPhone").val(" ");
                         $("#inputUserDesignation").val(" ");
                     }else{
                         $(".CreateUser").removeAttr("disabled");
-                        $("#inputUserFirstName").removeAttr("disabled");
-                        $("#inputUserLastName").removeAttr("disabled");
-                        $("#inputUserPhone").removeAttr("disabled");
-                        $("#inputUserDesignation").removeAttr("disabled");
+                        // $("#inputUserFirstName").removeAttr("disabled");
+                        // $("#inputUserLastName").removeAttr("disabled");
+                        // $("#inputUserPhone").removeAttr("disabled");
+                        // $("#inputUserDesignation").removeAttr("disabled");
                     }
                 },
                 error:function(res){
