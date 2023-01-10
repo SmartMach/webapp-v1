@@ -2799,7 +2799,7 @@ function inputOpUserID(){
                 },
                 success:function(res){
                     if (res == true) {
-                        alert("User Exist, Try another User ID!");
+                        alert("User already exists!");
                         $(".CreateUser").attr("disabled", true);
                         $('#inputUserFirstName').attr("disabled",true);
                         $('#inputUserLastName').attr("disabled",true);
