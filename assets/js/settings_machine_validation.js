@@ -321,7 +321,7 @@ $('#inputMachineName').keyup(function() {
   	var text_length = val_data.length;
   	if (text_length <= 50) {
 	 	var text_remaining = text_length;
-	 	$('#inputMachineName').val($('#inputMachineName').val().trimStart().trimEnd());
+	 	// 	$('#inputMachineName').val($('#inputMachineName').val().trimStart().trimEnd());
 	 	$('#inputMachineNameCunt').html(text_remaining + ' / ' + text_max);
 	}
 	else{
@@ -340,7 +340,7 @@ $('#editMachineName').keyup(function() {
   	if (text_length <= 50) {
 	 	var text_remaining = text_length;
 	 	$('#editMachineNameCuntEdit').html(text_remaining + ' / ' + text_max);
-	 	$('#editMachineName').val($('#editMachineName').val().trimStart().trimEnd());
+	 	// $('#editMachineName').val($('#editMachineName').val().trimStart().trimEnd());
 	}
 	else{
 		$('#editMachineName').val($('#editMachineName').val().substring(0,50));
