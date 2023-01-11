@@ -845,84 +845,84 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-6 box">
-                            <div class="fieldStyleInfo">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">Role</label>
                                 <p class="" ><span id="UserRole" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
                         <div class="col-sm-3 box">
-                            <div class="fieldStyleInfo">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">Status</label>
                                 <p class="info-mar"><span id="UserStatus" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
                         <div class="col-sm-3 box">
-                            <div class="fieldStyleInfo">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">Registered on</label>
                                 <p class=""><span id="UserRegisteredOn" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
                     </div>
                     <div class="row"> 
-                        <div class="col-sm-6 box">
-                            <div class="fieldStyleInfo">
+                        <div class="col-sm-6">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">User ID</label>
                                 <p class=""><span id="UserId" class="font_weight_modal"></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
-                        <div class="col-sm-3 box">
-                            <div class="fieldStyleInfo">
+                        <div class="col-sm-3">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">Site Name</label>
                                 <p class=""><span id="UserSiteName" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
-                        <div class="col-sm-3 box">
-                            <div class="fieldStyleInfo">
+                        <div class="col-sm-3">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">Site ID</label>
                                 <p class=""><span id="UserSiteId" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-3 box">
-                            <div class="fieldStyleInfo">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">First Name</label>
                                 <p class=""><span id="UserFirstName" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
                         <div class="col-sm-3 box">
-                            <div class="fieldStyleInfo">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">Last Name</label>
                                 <p class=""><span id="UserLastName" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
                         <div class="col-sm-6 box">
-                            <div class="fieldStyleInfo">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">Site Location</label>
                                 <p class=""><span id="UserSiteLocation" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
                     </div>   
                     <div class="row">
                         <div class="col-sm-6 box">
-                            <div class="fieldStyleInfo">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">Phone</label>
                                 <p class=""><span id="UserPhone" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
                         <div class="col-sm-6 box">
-                            <div class="fieldStyleInfo">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">Department</label>
                                 <p class=""><span id="UserDepartment" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6 box">
-                            <div class="fieldStyleInfo">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">Designation</label>
                                 <p class=""><span id="UserDesignation" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
                          <div class="col-sm-6 center-align">
                             <div class="ACControl cen-align" style="display: flex;">
@@ -933,16 +933,16 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-3 box">
-                            <div class="fieldStyleInfo">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">Last Updated By</label>
                                 <p class=""><span id="UserLastUpdatedBy" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
                         <div class="col-lg-4 box">
-                            <div class="fieldStyleInfo">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">Last Updated On</label>
                                 <p class=""><span id="UserLastUpdatedOn" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
                     </div>             
                 </div>
