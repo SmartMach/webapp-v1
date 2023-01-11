@@ -62,6 +62,10 @@
         height: 3rem;
         width: 12rem;
       }
+      #alert_msg{
+        padding: 0;
+        margin: 0;
+      }
 </style>
 </head>
 <body>
@@ -72,28 +76,6 @@
         <div class="img-div">
             <img id="login-mach" src="<?php echo base_url()?>/assets/img/logo.png?version=<?php echo rand() ; ?>" alt="SmartMach Logo">
         </div>
-
-       
-        <?php if(trim($inactive)!=""){  ?>
-        <div class="alert alert-danger" role="alter" id="back_end_msg">
-            <?php
-            if($inactive == "inactive_user"){
-            ?>
-              *Inactive user's account, Please contact admin!!
-            <?php
-            }
-            elseif ($inactive == "Invalid_password") {
-            ?>
-                *Invalid Password 
-            <?php 
-            }elseif($inactive == "new_user"){
-            ?>
-                *User doesn't exist
-            <?php 
-            }  
-            ?>
-        </div>
-        <?php } ?>
 
         <br>
         <div id="alert_check" class="d-none">
@@ -144,6 +126,23 @@
 
 <script type="text/javascript">
      $(document).ready(function(){
+
+        var user_status = "<?php echo $inactive;?>";
+        if(trim(user_status)!=""){
+            $('#alert_check').removeClass('d-none');
+            $('#alert_check').addClass('d-inline');
+            var err ="";
+            if(user_status == "inactive_user"){
+                err = "*Inactive user, Please contact the admin";
+            }
+            else if (user_status == "Invalid_password") {
+                err = "*Invalid Password"
+            }else if(user_status == "new_user"){
+                err = "*User doesn't exist"
+            }
+            $('#alert_msg').html(err);
+        }
+
         // $('.display_forgot').css("display","none");
         $(document).on('click','.showpass',function(){
             var pass = $("#userpassword").prop('type');
@@ -173,7 +172,6 @@
             var b = login_pass();
 
             if (a!="" || b!="") {
-                console.log('jhi');
                 $('#user_mail_err').html(a);
                 $('#pass_err').html(b);
             }else{
@@ -188,7 +186,7 @@
        
         function login_pass(){
             var required="*Required field";
-            var valid_pass = "*Password must be atleast 5 characters long";
+            var valid_pass = "*Password must be atleast 5 character long";
             var success= "";
             var val = $('#userpassword').val();
             val = val.trim();
@@ -290,7 +288,7 @@
                 method:"POST",
                 data:{username:username},
                 success:function(res){
-                    console.log(res);
+                     // console.log(res);
                     // console.log("console"+res);
                     // alert(res);
                     // if (res !== "output") {
@@ -320,17 +318,15 @@
                    
                 },
                 error:function(err){
-                    alert('Pleasr TRyAgain....');
+                    alert('Pleasr try again.');
                 }
             });
            
             
        }else{
-           // alert('Please Enter the User Id After Send The Link ..!!!');
-
             $('#alert_check').removeClass('d-none');
             $('#alert_check').addClass('d-inline');
-            $('#alert_msg').html("Please fill the user id after then send the mail .....!!");
+            $('#alert_msg').html("*User ID is required");
        }
 
     });
@@ -348,7 +344,7 @@
             $('#alert_change').removeClass('alert-danger');
             // $('#alert_change').addClass('alert-success');
             color = "alert-success";
-            $('#alert_msg').html('Please check your mail ID....!');
+            $('#alert_msg').html('*Reset password link has been send to your registered mail address. Kindly check your mail.');
         }
         else if(text === "inactiveforgot"){
             $('#alert_check').removeClass('d-none');
@@ -357,7 +353,7 @@
             $('#alert_change').removeClass('alert-danger');
             // $('#alert_change').addClass('alert-success');
             color = "alert-danger";
-            $('#alert_msg').html('Inacitve user please contact the admin');
+            $('#alert_msg').html('*Inactive user, Please contact the admin');
         }
         else if(text === "password"){
             $('#alert_check').removeClass('d-none');
@@ -366,7 +362,7 @@
             $('#alert_change').removeClass('alert-success');
             // $('#alert_change').addClass('alert-success');
             color = "alert-success";
-            $('#alert_msg').html('Please check  the mail id register the password');
+            $('#alert_msg').html('*Kindly set the password. Password generation link has been send to your registered mail id.');
         }
        else if(text === "false"){
             // alert('new user');
@@ -376,7 +372,7 @@
             $('#alert_change').removeClass('alert-success');
             // $('#alert_change').addClass('alert-danger');
             color = "alert-danger";
-            $('#alert_msg').html('New user please register....!'); 
+            $('#alert_msg').html("*User doesn't exist"); 
        }
 
        $('#alert_change').addClass(color);

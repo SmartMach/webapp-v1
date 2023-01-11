@@ -256,7 +256,7 @@ class User_Model extends Model{
         $SFM->where('username',$username);
         $query = $SFM->get()->getResultArray();
 
-        if ($query == true) {
+        if (count($query) > 0) {
             return true;
         }else{
             return false;

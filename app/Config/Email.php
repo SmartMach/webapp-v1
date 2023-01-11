@@ -47,28 +47,28 @@ class Email extends BaseConfig
      *
      * @var string
      */
-    public $SMTPHost = 'smtp.gmail.com';
+    public $SMTPHost = 'smtppro.zoho.in';
 
     /**
      * SMTP Username
      *
      * @var string
      */
-    public $SMTPUser = 'selvammanikandan2000@gmail.com';
+    public $SMTPUser = 'support@smartories.com';
 
     /**
      * SMTP Password
      *
      * @var string
      */
-    public $SMTPPass = 'lmiryjndaixlmqlp';
+    public $SMTPPass = '05dqXkeU8gHm';
 
     /**
      * SMTP Port
      *
      * @var int
      */
-    public $SMTPPort = 465;
+    public $SMTPPort = 587;
 
     /**
      * SMTP Timeout (in seconds)
@@ -89,7 +89,7 @@ class Email extends BaseConfig
      *
      * @var string
      */
-    public $SMTPCrypto = 'ssl';
+    public $SMTPCrypto = 'tls';
 
     /**
      * Enable word-wrap

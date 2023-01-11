@@ -274,7 +274,8 @@ class Daily_production_Model extends Model{
             // $getpart_duration = $this->get_time_seconds($machine_id,$shiftid,$shift_date,$value['part_id'],$value['tool_id']);
             // get downtime for that time durations    
            $getpart_downtime_duration = $this->getalldowntime($machine_id,$shift_date,$shiftid,$value['part_id'],$value['tool_id']); 
-           $final_duration = $getpart_downtime_duration;
+           $getpart_count = $this->all_time_part_count($machine_id,$shiftid,$shift_date,$value['tool_id']);
+           $final_duration = $getpart_downtime_duration/$getpart_count;
 
            array_push($tmpass_arr,$value['tool_id']);
            $getppc = $this->getpart_details($value['part_id']);
@@ -297,6 +298,19 @@ class Daily_production_Model extends Model{
     }
 
     
+    // all time get part count for the particular tool id
+    public function all_time_part_count($mid,$sid,$sdate,$tid){
+        $db =  \Config\Database::connect($this->site_connection);
+        $production = $db->table('pdm_production_info');
+        $production->select('DISTINCT(part_id)');
+        $production->where('machine_id',$mid);
+        $production->where('shift_id',$sid);
+        $production->where('shift_date',$sdate);
+        $production->where('tool_id',$tid);
+        $res = $production->get()->getResultArray();
+
+        return count($res);
+    }
 
 //  get part based array getting function
     public function getpart_details($part_id){

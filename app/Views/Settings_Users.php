@@ -295,7 +295,7 @@
                                            
                                         </select>
                                         <label for="input" class="input-padding">Department <span class="paddingm validate">*</span></label>
-                                        <span class="paddingm float-start validate d-none" id="dept_err"></span> 
+                                        <span class="paddingm float-start validate" id="input_dept_err"></span>
                                     </div>
                             </div>
                             
@@ -845,84 +845,84 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-6 box">
-                            <div class="fieldStyleInfo">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">Role</label>
                                 <p class="" ><span id="UserRole" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
                         <div class="col-sm-3 box">
-                            <div class="fieldStyleInfo">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">Status</label>
                                 <p class="info-mar"><span id="UserStatus" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
                         <div class="col-sm-3 box">
-                            <div class="fieldStyleInfo">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">Registered on</label>
                                 <p class=""><span id="UserRegisteredOn" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
                     </div>
                     <div class="row"> 
-                        <div class="col-sm-6 box">
-                            <div class="fieldStyleInfo">
+                        <div class="col-sm-6">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">User ID</label>
                                 <p class=""><span id="UserId" class="font_weight_modal"></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
-                        <div class="col-sm-3 box">
-                            <div class="fieldStyleInfo">
+                        <div class="col-sm-3">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">Site Name</label>
                                 <p class=""><span id="UserSiteName" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
-                        <div class="col-sm-3 box">
-                            <div class="fieldStyleInfo">
+                        <div class="col-sm-3">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">Site ID</label>
                                 <p class=""><span id="UserSiteId" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-3 box">
-                            <div class="fieldStyleInfo">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">First Name</label>
                                 <p class=""><span id="UserFirstName" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
                         <div class="col-sm-3 box">
-                            <div class="fieldStyleInfo">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">Last Name</label>
                                 <p class=""><span id="UserLastName" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
                         <div class="col-sm-6 box">
-                            <div class="fieldStyleInfo">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">Site Location</label>
                                 <p class=""><span id="UserSiteLocation" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
                     </div>   
                     <div class="row">
                         <div class="col-sm-6 box">
-                            <div class="fieldStyleInfo">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">Phone</label>
                                 <p class=""><span id="UserPhone" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
                         <div class="col-sm-6 box">
-                            <div class="fieldStyleInfo">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">Department</label>
                                 <p class=""><span id="UserDepartment" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6 box">
-                            <div class="fieldStyleInfo">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">Designation</label>
                                 <p class=""><span id="UserDesignation" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
                          <div class="col-sm-6 center-align">
                             <div class="ACControl cen-align" style="display: flex;">
@@ -933,16 +933,16 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-3 box">
-                            <div class="fieldStyleInfo">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">Last Updated By</label>
                                 <p class=""><span id="UserLastUpdatedBy" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
                         <div class="col-lg-4 box">
-                            <div class="fieldStyleInfo">
+                            <!-- <div class="fieldStyleInfo"> -->
                                 <label for="" class="col-form-label headTitle">Last Updated On</label>
                                 <p class=""><span id="UserLastUpdatedOn" class="font_weight_modal "></span></p>
-                            </div>
+                            <!-- </div> -->
                         </div>
                     </div>             
                 </div>
@@ -1143,6 +1143,12 @@
         var h = retypepass();
         var i = inputSiteNameAdd();
         var j= inputLocationAdd();
+        if ($('#inputUserSiteDepartment').val() == null) {
+            var k = "*Required field";
+        }else{
+            var k = "";
+        }
+        
 
         if ($('#inputUserSiteName').val() == "all") {
             $("#sitename_error").css("display","block");
@@ -1160,6 +1166,7 @@
             $('#pass_op_err').html(g);
             $("#location_name_err").html(j);
             $("#inputUsernew_site_err").html(i);
+            $("#input_dept_err").html(k);
 
             $(".CreateUser").attr("disabled", true);
         }
@@ -1167,11 +1174,12 @@
             $("#sitename_error").css("display","none");
             $("#validate_role").html(success);
 
-            if (  b!="" || c!="" || d!="" || e!="") {
+            if (  b!="" || c!="" || d!="" || e!="" || k!="") {
                 $("#inputUserFirstNameErr").html(b);
                 $("#inputUserLastNameErr").html(c);
                 $("#inputUserPhoneErr").html(d);
                 $("#inputUserDesignationErr").html(e);
+                $("#input_dept_err").html(k);
                 $(".CreateUser").attr("disabled", true);
             }
             else{
@@ -1202,7 +1210,7 @@
                     var SUser = $('input[name="settings_user"]:checked').val();
                     User_First_Name = User_First_Name.trim();
                     User_Last_Name = User_Last_Name.trim();
-
+                    $("#input_dept_err").html('');
                     $("#overlay").fadeIn(300);
 
                     $.ajax({
@@ -1262,7 +1270,7 @@
                     var new_site_location = $('#location_name').val();
                     var pass = $('#pass_op').val();
                     var repass = $('#re_pass_op').val();
-
+                    $("#input_dept_err").html('');
                     if (pass.localeCompare(repass)== 0) {
                         $("#overlay").fadeIn(300);
                         $.ajax({
@@ -1304,6 +1312,11 @@
                 }
             }
         }   
+    });
+
+    $(document).on("change","#inputUserSiteDepartment",function(){
+        $("#input_dept_err").html('');
+        $(".CreateUser").removeAttr("disabled");
     });
 
 
@@ -2733,20 +2746,20 @@ function inputUserEMail(){
                     if (res) {
                         $('#inputUserEMailErr').html('*Email address already exists');
                         $(".CreateUser").attr("disabled", true);
-                        $('#inputUserFirstName').attr("disabled",true);
-                        $('#inputUserLastName').attr("disabled",true);
-                        $('#inputUserPhone').attr("disabled",true);
-                        $('#inputUserDesignation').attr("disabled",true);
+                        // $('#inputUserFirstName').attr("disabled",true);
+                        // $('#inputUserLastName').attr("disabled",true);
+                        // $('#inputUserPhone').attr("disabled",true);
+                        // $('#inputUserDesignation').attr("disabled",true);
                         $("#inputUserFirstName").val(" ");
                         $("#inputUserLastName").val(" ");
                         $("#inputUserPhone").val(" ");
                         $("#inputUserDesignation").val(" ");
                     }else{
                         $(".CreateUser").removeAttr("disabled");
-                        $("#inputUserFirstName").removeAttr("disabled");
-                        $("#inputUserLastName").removeAttr("disabled");
-                        $("#inputUserPhone").removeAttr("disabled");
-                        $("#inputUserDesignation").removeAttr("disabled");
+                        // $("#inputUserFirstName").removeAttr("disabled");
+                        // $("#inputUserLastName").removeAttr("disabled");
+                        // $("#inputUserPhone").removeAttr("disabled");
+                        // $("#inputUserDesignation").removeAttr("disabled");
                     }
                 },
                 error:function(res){
@@ -2786,7 +2799,7 @@ function inputOpUserID(){
                 },
                 success:function(res){
                     if (res == true) {
-                        alert("User Exist, Try another User ID!");
+                        alert("User already exists!");
                         $(".CreateUser").attr("disabled", true);
                         $('#inputUserFirstName').attr("disabled",true);
                         $('#inputUserLastName').attr("disabled",true);
@@ -3218,6 +3231,7 @@ function error_show_remove(data){
         $('#inputUserEMailErr').html('');
         $('#inputUserDesignationErr').html('');
         $('#validate_role').html('');
+        $("#input_dept_err").html('');
         // console.log("its worked");
     }
     else if (data == "edit_user") {

@@ -70,6 +70,7 @@ function inputMachineName(data){
 			$(".Add_Machine_Data").removeAttr("disabled");
 			val = val.trimStart().trimEnd();
 			$('#inputMachineName').val(val);
+			$('#inputMachineNameCunt').html(val.length + ' / ' + "50");
 			return success;
 		}
 		else{
@@ -291,6 +292,7 @@ $('#inputMachineName').on('keypress', function(key) {
 	var val = $("#inputMachineName").val();
 	val = val.trim();
     if(val.length>50) {
+    	$('#inputMachineName').val(val);
 		return false;
 	}
 });
@@ -316,14 +318,15 @@ $('#inputMachineNameCunt').html('0 / ' + text_max);
 $('#inputMachineName').keyup(function() {
 	val_data = $('#inputMachineName').val();
 	val_data = val_data.trimStart().trimEnd();
-  var text_length = val_data.length;
+  	var text_length = val_data.length;
   	if (text_length <= 50) {
 	 	var text_remaining = text_length;
+	 	// 	$('#inputMachineName').val($('#inputMachineName').val().trimStart().trimEnd());
 	 	$('#inputMachineNameCunt').html(text_remaining + ' / ' + text_max);
 	}
 	else{
 		$('#inputMachineName').val($('#inputMachineName').val().substring(0,50));
-		var text_remaining = $('#inputMachineName').val().length;
+		var text_remaining = ($('#inputMachineName').val().trimStart().trimEnd()).length;
 	 	$('#inputMachineNameCunt').html(text_remaining + ' / ' + text_max);
 	}
 });
@@ -337,10 +340,11 @@ $('#editMachineName').keyup(function() {
   	if (text_length <= 50) {
 	 	var text_remaining = text_length;
 	 	$('#editMachineNameCuntEdit').html(text_remaining + ' / ' + text_max);
+	 	// $('#editMachineName').val($('#editMachineName').val().trimStart().trimEnd());
 	}
-	else{	
+	else{
 		$('#editMachineName').val($('#editMachineName').val().substring(0,50));
-		var text_remaining = $('#editMachineName').val().length;
+		var text_remaining = ($('#editMachineName').val().trimStart().trimEnd()).length;
 	 	$('#editMachineNameCuntEdit').html(text_remaining + ' / ' + text_max);
 	}
 });
@@ -478,7 +482,7 @@ function editMachineName(data){
 			var ve_demo = $('#editMachineName').val();
 			ve_demo = ve_demo.trimStart().trimEnd();
 			$('#editMachineName').val(ve_demo);
-			console.log("machien settings");
+			$('#editMachineNameCuntEdit').html(ve_demo.length + ' / ' + "50");
 			return success;
 		}
 		else{
