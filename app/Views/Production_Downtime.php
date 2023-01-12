@@ -2040,6 +2040,11 @@ $(document).on('click','.doneEdit',function(){
           //actual duration before new duration enter 
           var len_split = document.getElementsByClassName("sval").length;
           var remain_value;
+
+          if (!(vale.trim())) {
+            document.getElementsByClassName("sval")[index3].value = parseInt(data_array[index3]);
+          }
+
           //len_split = parseInt(len_split) - 1;
           // overall_value = parseInt(overall_value) - parseInt(len_split);
           var m =overall_duration_value-(len_split-1);
