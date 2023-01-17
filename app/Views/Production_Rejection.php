@@ -829,7 +829,7 @@ $(document).ready(function(){
 
                     }
                 }
-                msg = "*Total reject counts shouldn't be greater than Max rejects";
+                // msg = "*Total reject counts shouldn't be greater than Max rejects";
                 $('.EditReject_submit').attr("disabled",true);
             }   
         }
