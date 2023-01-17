@@ -782,6 +782,7 @@ $(document).ready(function(){
  
     // on edit rejection count its updated total reject 
     $(document).on('blur','.RejectCount',function(){
+        // alert('ok');
         var count = $('.RejectCount');
         var index1 = count.index($(this));
         var pattern = $('.RejectCount')[index1].value;
@@ -796,15 +797,16 @@ $(document).ready(function(){
             var re_count =  document.getElementsByClassName('RejectCount')[i].value;
             myarr.push(re_count);
             if(re_count!="" && re_count >0){
-                array_sum_rcount = (array_sum_rcount)+parseInt(re_count);
+                // alert('ok that`s second');
+                array_sum_rcount = parseInt(array_sum_rcount)+parseInt(re_count);
                 re_count = Math.trunc(re_count);
                 $('.RejectCount:eq('+i+')').val(re_count);
                 document.getElementsByClassName('reject_count_err')[i].textContent ="";
+            
             }
             else{
-                // console.log('err');
-                // document.getElementsByClassName('reject_count_err')[i].textContent ="*Total reject counts shouldn't be greater than Max rejects";
-                $('.EditReject_submit').attr("disabled",true);
+                // alert('ji');
+                $('.EditReject_submit').attr("disabled",true);    
             }
         }
 
@@ -816,6 +818,17 @@ $(document).ready(function(){
             }
             else{
                 $('#TotalRejets').text(array_sum_rcount);
+                // rejection error message
+                for(var k=0;k<parseInt(rcount);k++){
+                    var tmpval = document.getElementsByClassName('RejectCount')[k].value;
+                    if (parseInt(tmpval)<= parseInt(max_reject)) {
+                        $('.reject_count_err:eq('+k+')').text('');
+                    }else{
+                        $('.reject_count_err:eq('+k+')').text('*Total reject counts shouldn`t be greater than Max rejects');
+                        $('.EditReject_submit').attr("disabled",true);
+
+                    }
+                }
                 msg = "*Total reject counts shouldn't be greater than Max rejects";
                 $('.EditReject_submit').attr("disabled",true);
             }   
