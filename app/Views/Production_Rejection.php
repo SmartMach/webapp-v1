@@ -765,14 +765,22 @@ $(document).ready(function(){
         var totalrj_count = 0;
         for(var j=0;j<rjcount;j++){
             var tmp_count = $('.RejectCount:eq('+j+')').val();
-            totalrj_count = parseInt(tmp_count) + parseInt(totalrj_count);
+            if (parseInt(tmp_count)>0) {
+                totalrj_count = parseInt(tmp_count) + parseInt(totalrj_count);
+            }else{
+                totalrj_count = 0 + parseInt(totalrj_count);
+
+            }
         }
+        var max_reject_count = $('#MaxReject').text();
         console.log(totalrj_count);
-        console.log(total_count);
-        if (parseInt(totalrj_count)>parseInt(total_count)) {
+        console.log(max_reject_count);
+        
+        if (parseInt(totalrj_count)>parseInt(max_reject_count)) {
             $('.EditReject_submit').attr("disabled",true);
             // console.log("total rejection is greater");
         }else{
+            $('.reject_count_err').html(" ");
             $('.EditReject_submit').removeAttr("disabled");
             // console.log("total rejection is lesser");
         }
@@ -802,7 +810,12 @@ $(document).ready(function(){
                 re_count = Math.trunc(re_count);
                 $('.RejectCount:eq('+i+')').val(re_count);
                 document.getElementsByClassName('reject_count_err')[i].textContent ="";
-            
+                // if (parseInt(re_count)>=parseInt(max_reject)) {
+                //     $('.reject_count_err:eq('+i+')').text('error');
+                //     //document.getElementsByClassName('reject_count_err')[i].textContent ="*";
+                // }else{
+                //     document.getElementsByClassName('reject_count_err')[i].textContent =" ";
+                // }
             }
             else{
                 // alert('ji');
@@ -819,17 +832,21 @@ $(document).ready(function(){
             else{
                 $('#TotalRejets').text(array_sum_rcount);
                 // rejection error message
-                for(var k=0;k<parseInt(rcount);k++){
-                    var tmpval = document.getElementsByClassName('RejectCount')[k].value;
-                    if (parseInt(tmpval)<= parseInt(max_reject)) {
-                        $('.reject_count_err:eq('+k+')').text('');
-                    }else{
-                        $('.reject_count_err:eq('+k+')').text('*Total reject counts shouldn`t be greater than Max rejects');
-                        $('.EditReject_submit').attr("disabled",true);
+                //msg = "*Total reject counts shouldn't be greater than Max rejects";
+                for(var k=0;k<=parseInt(rcount);k++){
+                    var tmpcount =  document.getElementsByClassName('RejectCount')[k].value;
+                    if (parseInt(tmpcount)>=parseInt(max_reject)) {
+                        document.getElementsByClassName('reject_count_err')[k].textContent = "*This element is greater to maxreject"; 
+                    }
+                    else if((tmpcount<0) || tmpcount===""){
+                        document.getElementsByClassName('reject_count_err')[k].textContent = " "; 
+                    }
+                    else{
+                        document.getElementsByClassName('reject_count_err')[k].textContent = "*Total reject counts shouldn't be greater than Max rejects"; 
 
                     }
+                    console.log(parseInt(tmpcount));
                 }
-                // msg = "*Total reject counts shouldn't be greater than Max rejects";
                 $('.EditReject_submit').attr("disabled",true);
             }   
         }
