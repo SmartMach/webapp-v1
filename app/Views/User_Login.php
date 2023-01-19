@@ -142,7 +142,9 @@
      $(document).ready(function(){
 
         var user_status = "<?php echo $inactive;?>";
-        if(trim(user_status)!=""){
+        // console.log(user_status);
+        user_status = user_status.trim();
+        if(user_status!=""){
             $('#alert_check').removeClass('d-none');
             $('#alert_check').addClass('d-inline');
             var err ="";
@@ -158,21 +160,21 @@
         }
 
         // $('.display_forgot').css("display","none");
-        $(document).on('click','.showpass',function(){
+        $(document).on('click','.showpass',function(event){
+            event.preventDefault();
+            // alert('ok');
             var pass = $("#userpassword").prop('type');
+           
             var element = document.getElementById("eye-pass");
- 
             if(pass == 'password'){
                $("#userpassword").prop('type','text'); 
-            //    $('.showpass').replaceClass('fa-eye','fa-eye-slash');
-            element.classList.remove("fa-eye-slash");
-            element.classList.add("fa-eye");
+                element.classList.remove("fa-eye-slash");
+                element.classList.add("fa-eye");
             }
             else{
                 $("#userpassword").prop('type','password');
-                // $('.showpass').addClass('fa-eye-slash').removeClass('fa-eye');
                 element.classList.remove("fa-eye");
-            element.classList.add("fa-eye-slash");
+                element.classList.add("fa-eye-slash");
             }
         });
 
