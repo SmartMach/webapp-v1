@@ -60,7 +60,7 @@ class Login extends BaseController
                     ]);
                 } 
             }else{
-                echo "Session Expired!";
+                echo "Session Expired!!";
             }
 		   
 		// }
@@ -150,7 +150,7 @@ class Login extends BaseController
         // echo "current_date".$current_date_check."time date";
         // print_r($time_date_split);
         if (strcmp($current_date_check,$time_date_split[0]) ) {
-            echo "Session Expired";
+            echo "Session Expired!!";
         }else{
             $time_out = explode(":",$time_date_split[1]);
             date_default_timezone_set('Asia/Kolkata');
@@ -174,7 +174,7 @@ class Login extends BaseController
                 // echo $old_count."old count";
                 // echo $count."count";
                 // print_r($time_out);
-                echo  "Session Expired!! The Link Active In 5Mins";
+                echo  "Session Expired!!";
             }
            
         }
@@ -249,7 +249,7 @@ class Login extends BaseController
         // $email = \Config\Services::email();
 
         $email->setTo($to);
-        $email->setFrom('Smartories.in');
+        $email->setFrom('support@smartories.com');
         $email->setSubject($sub);
         $email->setMessage($message);
         if($email->send()){

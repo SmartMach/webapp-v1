@@ -639,7 +639,7 @@
             </nav> 
               <div class="divMarLeft">
                 <p class="paddingm headTitle financial_font">PROFIT / LOSS</p>
-                <p class="paddingm valueGraph"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft" id="GTotalPL"></span></p>
+                <p class="paddingm valueGraph valueGraph_Loss"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft" id="GTotalPL"></span></p>
               </div>
 
               <div class="parent_graph_part_wise_pl parent_div marginScroll">
@@ -894,7 +894,7 @@ function plopportunity(){
               var days = parseInt(parseInt(v/60)/24);
               var hours = parseInt(parseInt(v-(days*1440))/60);
               var min = parseInt(parseInt(v-(days*1440))%60);
-              return '<div class="global">'+
+              return '<div class="global" style="border-radius:0;">'+
                   '<div class="grid-container">'+ 
                     '<div class="title-bold"><span>'+l+'</span></div>'+
                     '<div class="grid-item title-bold"><span></span></div>'+
@@ -976,7 +976,7 @@ function plopportunity(){
           var days = parseInt(parseInt(duration/60)/24);
           var hours = parseInt(parseInt(duration-(days*1440))/60);
           var min = parseInt(parseInt(duration-(days*1440))%60);
-            return '<div class="global">'+
+            return '<div class="global" style="border-radius:0;">'+
                   '<div class="grid-container">'+ 
                     '<div class="title-bold"><span>'+title+'</span></div>'+
                     '<div class="grid-item title-bold"><span></span></div>'+
@@ -1275,7 +1275,15 @@ function partplopportunity(){
         res['part'].forEach(function(item){
           partWiseLable.push(item.Part_Name);
         });
-        $('#GTotalPL').html(res['total'].toLocaleString("en-IN"));
+
+        if (res['total']<0) {
+          $('#GTotalPL').html("("+res['total'].toLocaleString("en-IN")+")");
+          $('.valueGraph_Loss').css("color","#C00000");
+        }else{
+          $('#GTotalPL').html(res['total'].toLocaleString("en-IN"));
+          $('.valueGraph_Loss').css("color","#004b9b"); 
+        }
+        
         
         // for (var i =0 ; i < res.part.length; i++) {
         //   partWiseLable.push(res.part[i].Part_Name);

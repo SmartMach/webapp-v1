@@ -919,7 +919,7 @@ $session = \Config\Services::session();
         
         // Machine Record Updations ........... 
         $(document).on("click", ".EditMachine", function(event){
-            event.preventDefault();
+            // event.preventDefault();
             check_machine_serial_id_edit($("#editMachineSerialNumber").val().trim());
             var e = editMachineOffRateHour($("#editMachineOffRateHour").val());
             var f = editMachineRateHour($("#editMachineRateHour").val());
@@ -934,9 +934,9 @@ $session = \Config\Services::session();
                 $("#editTonnageErr").html(a); 
                 $("#editMachineBrandErr").html(b);
                 $("#editMachineSerialNumberErr").html(h);            
+                $("#overlay").fadeOut(300);
             }
             else{
-                $("#overlay").fadeIn(300);
                 var  veditMachineName = $('#editMachineName').val();
                 var  veditMachineRateHour = $('#editMachineRateHour').val();
                 var  veditMachineOffRateHour = $('#editMachineOffRateHour').val();
@@ -947,7 +947,7 @@ $session = \Config\Services::session();
                 $.ajax({
                     url: "<?php echo base_url('Settings_controller/editMachineData'); ?>",
                     type: "POST",
-                    cache: false,
+                    // cache: false,
                     async:false,
                     data: {
                         MachineId : machine_id,
@@ -1007,9 +1007,11 @@ $session = \Config\Services::session();
     });
         
     function check_machine_serial_id(serial_id) {
+        window.localStorage.clear();
         if (serial_id.trim() == "") {
             $('#inputMachineSerialId_err').html(required);
             $('.Add_Machine_Data').attr("disabled",true);
+            $("#overlay").fadeOut(300);
         }else{
             $.ajax({
                 url:"<?php echo base_url('Settings_controller/check_serialid'); ?>",
@@ -1022,10 +1024,12 @@ $session = \Config\Services::session();
                     if(data == true){
                         $('#inputMachineSerialId_err').html('*Machine serial id already exists');
                         $('.Add_Machine_Data').attr("disabled",true);
+                        $("#overlay").fadeOut(300);
                     }else{
                         $('#inputMachineSerialId_err').html('');
                         $('#inputMachineSerialId').val(serial_id);
                         $('.Add_Machine_Data').removeAttr("disabled");
+                        $("#overlay").fadeOut(300);
                     }
                 },
                 error:function(res){
@@ -1036,14 +1040,17 @@ $session = \Config\Services::session();
     }
 
     function check_machine_serial_id_edit(serial_id) {
+        window.localStorage.clear();
         var old_val = $('.EditMachine').attr("serial_data");
         if (serial_id.trim() == "") {
             $('#editMachineSerialNumber_err').html(required);
             $('.EditMachine').attr("disabled",true);
+            $("#overlay").fadeOut(300);
         }
         else if (old_val == serial_id) {
             $('#editMachineSerialNumber_err').html('');
             $('.EditMachine').removeAttr("disabled");
+            $("#overlay").fadeOut(300);
         }
         else{
             $.ajax({
@@ -1055,16 +1062,17 @@ $session = \Config\Services::session();
                     async:false,
                     success:function(data){
                         if(data==true){
-                            $('#editMachineSerialNumber').val(old_val);
-                            $('#editMachineSerialNumber_err').html('*Machine serial id already exists');
+                            $('#editMachineSerialNumber_err').text('*Machine serial id already exists');
                             $('.EditMachine').attr("disabled",true);
                         }else{
                             $('#editMachineSerialNumber_err').html('');
                             $('.EditMachine').removeAttr("disabled");
                         }
+                        $("#overlay").fadeOut(300);
                     },
                     error:function(res){
                         alert('sorry Try Again...');
+                        $("#overlay").fadeOut(300);
                     }
                 });
             }
@@ -1086,7 +1094,7 @@ $session = \Config\Services::session();
     // Machine Serial ID Back-End Validation for Edit Functions ............. 
     $(document).on('change','#editMachineSerialNumber',function(event){
         // event.stopPropagation();
-        event.preventDefault();
+        // event.preventDefault();
         $('.EditMachine').attr("disabled",true);
         var serial_id = $('#editMachineSerialNumber').val();
         serial_id = serial_id.trim();
@@ -1178,7 +1186,7 @@ function get_machine_data(){
                                 +'<div class="col-sm-1 col d-flex justify-content-center fasdiv">'
                                     +'<ul class="edit-menu" style="z-index:10;">'
                                         +'<li class="d-flex justify-content-center">'
-                                            +'<a href="#">'
+                                            +'<a href="javascript:function(){return false;}">'
                                                 +'<i class="edit fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
                                             +'</a>'
                                             +'<ul class="edit-subMenu" style="z-index:10;">'
@@ -1211,7 +1219,7 @@ function get_machine_data(){
                             +'<div class="col-sm-1 col d-flex justify-content-center fasdiv">'
                                 +'<ul class="edit-menu">'
                                     +'<li class="d-flex justify-content-center">'
-                                        +'<a href="#">'
+                                        +'<a href="javascript:function(){return false;}">'
                                             +'<i class="edit fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
                                         +'</a>'
                                         +'<ul class="edit-subMenu" style="z-index:10;">'

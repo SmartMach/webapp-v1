@@ -332,8 +332,8 @@ input[type=number] {
       <br>
       <br>
         <!-- Downtime Graph -->
-       
-          <div class="chart-div" style="position:fixed;left:4.5rem;right:0;background-color:white;z-index:150;">
+
+        <div class="chart-div" style="position:fixed;left:4.5rem;right:0;background-color:white;z-index:150;">
             
               <div id="chart"></div>
               <div class="text-label-graph" style="width: 50%;float: left;">
@@ -343,46 +343,45 @@ input[type=number] {
                 <p  id="shift_end_time_label" class="endTimeVal"></p>
               </div>
           </div>
-
           <!--  -->
           <div class="tableContent downtimeHeader" style="display: none;top:20rem">
-            <div class="settings_machine_header sticky-top" style="position:fixed;left:4.5rem;right:0;top:19rem;margin-left: 0.5rem;margin-right: 0.5rem;">
-                <div class="row paddingm">
-                    <div class="col-sm-1 p3 paddingm">
-                      <p class="basic_header">START TIME</p>
-                    </div>
-                    <div class="col-sm-1 p3 paddingm" style="word-wrap: break-word;flex-wrap: wrap;">
-                      <p class=" basic_header">DURATION
-                        <br>
-                        (min)
-                      </p>
-                    </div>
-                    <div class="col-sm-1 p3 paddingm">
-                      <p class="basic_header">END TIME</p>
-                    </div>
-                    <div class="col-sm-1 p3 paddingm">
-                      <p class="basic_header">CATEGORY</p>
-                    </div>
-                    <div class="col-sm-2 p3 paddingm">
-                      <p class="basic_header">REASON</p>
-                    </div>
-                    <div class="col-sm-2 p3 paddingm">
-                      <p class="basic_header">TOOL NAME</p>
-                    </div>
-                    <div class="col-sm-2 p3 paddingm">
-                      <p class="basic_header">PART NAME</p>
-                    </div>
-                    <div class="col-sm-2 p3 paddingm" style="justify-content: center;">
-                      <p class="basic_header">ACTION</p>
-                    </div>
-                </div>
+            <div class="settings_machine_header sticky-top" style="position:fixed;left:4.5rem;right:0;top:19rem;margin-left: 0.5rem;margin-right: 0.5rem;background-color: white;">
+              <div class="row paddingm">
+                  <div class="col-sm-1 p3 paddingm">
+                    <p class="basic_header">START TIME</p>
+                  </div>
+                  <div class="col-sm-1 p3 paddingm" style="word-wrap: break-word;flex-wrap: wrap;">
+                    <p class=" basic_header">DURATION
+                      <br>
+                      (min)
+                    </p>
+                  </div>
+                  <div class="col-sm-1 p3 paddingm">
+                    <p class="basic_header">END TIME</p>
+                  </div>
+                  <div class="col-sm-1 p3 paddingm">
+                    <p class="basic_header">CATEGORY</p>
+                  </div>
+                  <div class="col-sm-2 p3 paddingm">
+                    <p class="basic_header">REASON</p>
+                  </div>
+                  <div class="col-sm-2 p3 paddingm">
+                    <p class="basic_header">TOOL NAME</p>
+                  </div>
+                  <div class="col-sm-2 p3 paddingm">
+                    <p class="basic_header">PART NAME</p>
+                  </div>
+                  <div class="col-sm-2 p3 paddingm" style="justify-content: center;">
+                    <p class="basic_header">ACTION</p>
+                  </div>
+              </div>
             </div>
 
           <!-- Graph split content will be displayed in this div -->
-        <div class="contentMachine paddingm " style="margin-top:12.3rem;">
-          <div class="split_input"></div>
-        </div>
-      </div> 
+            <div class="contentMachine paddingm " style="margin-top:12.3rem;">
+              <div class="split_input"></div>
+            </div>
+          </div> 
 
       <!-- preloader -->
  <!-- preloader -->
@@ -529,8 +528,6 @@ var overall_duration_value =0;
 function getpartnames_graph(tmp_part_id_arr){
   var part_id_a = tmp_part_id_arr.split(",");
   var part_len = parseInt(part_id_a.length);
-  // console.log("graph parts:\t"+part_id_a);
-  // console.log("overall array:\t"+down_part);
   var partname_arr = new Array();
   if (parseInt(part_len)>1) {
     for(var i=0;i<parseInt(part_len);i++){
@@ -828,6 +825,7 @@ $(document).on("click", ".delete-split", function(){
     svalue = document.getElementsByClassName('sval')[indexRef].value;
     $('#DeleteSPlit').modal('show');
 });
+
 $(document).on("click", ".deleteRec", function(){
       $('#DeleteSPlit').modal('hide');
       $("#overlay").fadeIn(300);
@@ -836,10 +834,10 @@ $(document).on("click", ".deleteRec", function(){
         var duration="";
         // Remove the current deleted row........
         $('.rowData:eq('+indexRef+')').remove();
-        if (indexRef == 1) {  
-          var tmp = (parseFloat(data_array[0]).toFixed(2)).split(".");
+        if (indexRef == 1) {
+          var tmp = ((data_array[0]).toString()).split(".");
           var tmpVal = parseInt(tmp[0])+parseInt(data_array[1]);
-          data_array[0] = tmpVal+"."+tmp[1];
+          data_array[0] = tmpVal+"."+("0" + (tmp[1])).slice(-2);
           duration = data_array[0];
         }
         else{
@@ -914,7 +912,7 @@ $(document).on("click", ".deleteRec", function(){
       //Show Model..........
       $('#EditSPlit').modal('show');
       $('.NotesValue').val(data_notes[index]);
-      
+    
     });
     //Model save click event........
     $(document).on("click",".saveNotes",function(){
@@ -1140,6 +1138,13 @@ $(document).on("click", ".deleteRec", function(){
       val_second = splitTmp[0];
     }
 
+    if (notes) {
+      var notes_mapped = "info_reason.png";
+    }
+    else{
+      var notes_mapped = "info.png";
+    }
+    
    var cal_count = 1;
     $( ".split_input" ).append('<div id="settings_div" class="rowData">'
             +'<div class="row paddingm">'
@@ -1216,7 +1221,7 @@ $(document).on("click", ".deleteRec", function(){
                     +'<span class="optionLeft doth addNotesReason dedit" value=""><img src="<?php echo base_url('assets/img/notes.png'); ?>" class="icon_img_wh ICON"></span>'
                     +'<span class="doth doneEdit dcheck" split="1" ><img src="<?php echo base_url('assets/img/tick.png'); ?>" class="icon_img_wh1 ICON" style="color:white;"></span>'
                     +'<span class="doth edit-split ninfo reasonInfo" >'
-                      +'<img src="<?php echo base_url('assets/img/info.png'); ?>" class="icon_img_wh ICON info_click"  data_val="'+last_updated_by+'">'
+                      +'<img src="<?php echo base_url()?>/assets/img/'+notes_mapped+'" class="icon_img_wh ICON info_click"  data_val="'+last_updated_by+'">'
                       +'<div class="edit-Subsplit" style="z-index:10;">'
                           +'<div style="display: flex;width: 100%;">'
                             +'<div style="width: 50%;float: left;height: 100%;">'
@@ -1239,7 +1244,9 @@ $(document).on("click", ".deleteRec", function(){
                               +'<p class="marleft p1 pvalue">Notes</p>'
                             +'</div>'
                             +'<div style="width: 50%;float: left;height: 100%;">'
-                              +'<p class="marleft pvalue">'+notes+'</p>'
+                              +'<div style="word-wrap: break-word;flex-wrap: wrap;display:flex;overflow: hidden;height: 4.5rem;width:10rem;">'
+                                +'<p class="marleft pvalue" title="'+notes+'">'+notes+'</p>' 
+                                +'</div>'
                             +'</div>'
                           +'</div>'
                       +'</div>'
@@ -1256,6 +1263,13 @@ $(document).on("click", ".deleteRec", function(){
 
     var shiftFlag = 0;
     var shiftStartTime;
+
+// Key Press
+$(document).on('keypress','.sval',function(key){
+  if(key.charCode < 48 || key.charCode > 57) {
+    return false;
+  }
+});
 
 //getDownTimeGraph();
 function getDownTimeGraph(){
@@ -1692,8 +1706,8 @@ function getDownTimeGraph(){
         //progress for graph data updation
         //Update the value in data_array(global variable)....
         if (index1 == 0) {
-          var fistSec = (parseFloat(data_array[0]).toFixed(2)).split(".");
-          data_array[index1] = parseFloat(mathv+"."+(parseInt(fistSec[1]))).toFixed(2);
+          var fistSec = ((data_array[0]).toString()).split(".");
+          data_array[index1] = (mathv+"."+("0" + (fistSec[1])).slice(-2));
         }
         else{
           data_array[index1] = mathv;
@@ -1718,7 +1732,7 @@ function getDownTimeGraph(){
         stime = datetext.split(' ')[0];
         calendar_date = s_date.getFullYear()+"-"+("0" + (parseInt(s_date.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + s_date.getDate()).slice(-2);
         //convert the values to seconds.....
-        var firstSecond = (parseFloat(data_array[0]).toFixed(2)).split(".");
+        var firstSecond = ((data_array[0]).toString()).split(".");
         for(let i=0;i<l;i++){
           calendar_date = s_date.getFullYear()+"-"+("0" + (parseInt(s_date.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + s_date.getDate()).slice(-2);
           calendar_date_array.push(calendar_date);
@@ -1740,7 +1754,7 @@ function getDownTimeGraph(){
           }
           if (i==0) {
             var tm = data_array[0].split(".");
-            data_array[0] = tm[0]+"."+firstSecond[1];
+            data_array[0] = tm[0]+"."+(("0" + (firstSecond[1])).slice(-2));
           }
 
           datetext = s_date.toTimeString();
@@ -1819,8 +1833,8 @@ function getDownTimeGraph(){
         else{
           data_time=[];
           data_array=[];
-          split_ref =[];    
-          down_notes = []; 
+          split_ref =[];  
+          down_notes = [];
           getSplittedData(machineEventIdRef,overall_duration_value);
           getDownTimeGraph();
           getTotalCount();
@@ -1846,7 +1860,7 @@ function getSplittedData(machineEventRef,svalue){
     dataType: "json",
     async:false,
     data:{
-      ref:machineEventRef, 
+      ref:machineEventRef,
     },
     success:function(res){
       $('.split_input').empty();
@@ -1854,6 +1868,8 @@ function getSplittedData(machineEventRef,svalue){
       data_array=[];
       split_ref =[];  
       down_notes =[]; 
+      data_notes = [];
+
           if (res['value'].length > 0) {
             var z = 0;
             res['value'].forEach(function(item){
@@ -1862,13 +1878,13 @@ function getSplittedData(machineEventRef,svalue){
               var downReason = item.downtime_reason_id;
               if ((item.event != "Active")&&(item.event != "No Data")&&(item.split_duration >=1) ) {
                 $('.downtimeHeader').css("display","block");
-                // shiftStartTime = start ; 
+                // shiftStartTime = start ;
 
                 data_time.push(item.start_time);
                 data_time.push(item.end_time);
                 data_array.push(item.split_duration);
                 split_ref.push(item.split_id);
-                down_notes.push(item.notes);
+                setNotes(item.notes);
 
                 var reason = findDownReason(item.downtime_reason_id);
                 //Draw Graph
@@ -1899,6 +1915,11 @@ function getSplittedData(machineEventRef,svalue){
       alert(res);
     }
   });
+}
+
+function setNotes(notes){
+  down_notes.push(notes);
+  data_notes.push(notes);
 }
 
 
@@ -1966,7 +1987,16 @@ $(document).on('click','.doneEdit',function(){
     }
     dataArray.push(category,reason,toolname,part_arr,machineEventRef,splitRef,machineID_ref,shift_date_ref,shift_Ref,notes);
 
-    //Ajax function for update particular splitted value in database
+    // console.log("data Array");
+    // console.log(dataArray);
+    // console.log(machineEventRef);
+    // console.log(splitRef);
+    // console.log(data_time);
+    // console.log(data_array);
+    // console.log(split_ref);
+    // console.log(calendar_array);
+
+    // Ajax function for update particular splitted value in database
     $.ajax({
       url: "<?php echo base_url('PDM_controller/updateDownGraph'); ?>",
       type: "POST",
@@ -1981,7 +2011,6 @@ $(document).on('click','.doneEdit',function(){
           date_array:calendar_array
       },
       success:function(res_Site){
-        console.log(res_Site);
         if (res_Site) {
           alert("Updated Successfully!!");
         } 
@@ -2018,13 +2047,18 @@ $(document).on('click','.doneEdit',function(){
           //actual duration before new duration enter 
           var len_split = document.getElementsByClassName("sval").length;
           var remain_value;
+
+          if (!(vale.trim())) {
+            document.getElementsByClassName("sval")[index3].value = parseInt(data_array[index3]);
+          }
+
           //len_split = parseInt(len_split) - 1;
           // overall_value = parseInt(overall_value) - parseInt(len_split);
           var m =overall_duration_value-(len_split-1);
           //condition check whethere total duration for that particular value is less for new enterd total value
           if (vale > m) {
             alert('Maximum split reached!');
-            document.getElementsByClassName("sval")[index3].value = data_array[index3];
+            document.getElementsByClassName("sval")[index3].value = parseInt(data_array[index3]);
           }else{
             if (vale >= 1) {
               var prev = data_array[index3];
@@ -2043,7 +2077,7 @@ $(document).on('click','.doneEdit',function(){
                         if (i==0) {
                           var tmp = data_array[0].split(".");
                           data_array[i] = parseInt(v);
-                          split_second = parseInt(tmp[1]);
+                          split_second = parseInt(("0" + (tmp[1])).slice(-2));
                         }
                         else{
                           data_array[i] = parseInt(v);
@@ -2066,7 +2100,7 @@ $(document).on('click','.doneEdit',function(){
                             if (i==0) {
                               var tmp = data_array[0].split(".");
                               data_array[i] = parseInt(v);
-                              split_second =parseInt(tmp[1]);
+                              split_second =parseInt(("0" + (tmp[1])).slice(-2));
                             }
                             else{
                               data_array[i] = parseInt(v);
@@ -2083,7 +2117,7 @@ $(document).on('click','.doneEdit',function(){
                         if (i==0) {
                           var tmp = data_array[0].split(".");
                           data_array[i] = parseInt(v);
-                          split_second = parseInt(tmp[1]);
+                          split_second = parseInt(("0" + (tmp[1])).slice(-2));
                         }
                         else{
                           data_array[i] = parseInt(v);
@@ -2103,11 +2137,11 @@ $(document).on('click','.doneEdit',function(){
                             var tmp = data_array[0].split(".");
                             if (tmp.length > 1) {
                               data_array[i] = parseInt(v);
-                              split_second = parseInt(tmp[1]);
+                              split_second = parseInt(("0" + (tmp[1])).slice(-2));
                             }
                             else{
                               data_array[i] = parseInt(v);
-                              split_second = parseInt(tmp[1]);
+                              split_second = parseInt(("0" + (tmp[1])).slice(-2));
                             }
                           }
                           else{
@@ -2155,7 +2189,7 @@ $(document).on('click','.doneEdit',function(){
                   var tmpsplit = data_array[0].split(".");
                   if (tmpsplit.length > 1) {
                     data_array[index3] = parseInt(vale);
-                    split_second = parseInt(tmpsplit[1]);
+                    split_second = parseInt(("0" + (tmpsplit[1])).slice(-2));
                   }
                   else{
                     data_array[index3] = parseInt(vale);
@@ -2424,13 +2458,15 @@ function addDownPart(part,part_id){
             // if (item.part_id == "PT1001") {
               
             // }else{
-              if (tool == item.tool_id) {
-                if (item.part_id == part) {
-                  elements = elements.add('<div class="option_multi"><div class="multi-check "><input type="checkbox" id="one" value="'+item.part_id+'" name="multi_part[]" class="checkboxIn" checked="true"></div><div class="multi-lable check_dis"><span>'+item.part_id+'-'+item.part_name+'</span></div></div>');                 
-                }
-                else{
-                  // elements = elements.add('<option class="DownPartVal" pval="'+item.part_name+'.'+item.part_id+'" tvalue="'+item.tool_id+'" value="'+item.part_id+'">'+item.part_name+' -'+item.part_id+'</option>');
-                  elements = elements.add('<div class="option_multi"><div class="multi-check "><input type="checkbox" id="one" value="'+item.part_id+'" name="multi_part[]" class="checkboxIn"></div><div class="multi-lable check_dis"><span>'+item.part_id+'-'+item.part_name+'</span></div></div>');
+              if (item.status == 1) {
+                if (tool == item.tool_id) {
+                  if (item.part_id == part) {
+                    elements = elements.add('<div class="option_multi"><div class="multi-check "><input type="checkbox" id="one" value="'+item.part_id+'" name="multi_part[]" class="checkboxIn" checked="true"></div><div class="multi-lable check_dis"><span>'+item.part_id+'-'+item.part_name+'</span></div></div>');                 
+                  }
+                  else{
+                    // elements = elements.add('<option class="DownPartVal" pval="'+item.part_name+'.'+item.part_id+'" tvalue="'+item.tool_id+'" value="'+item.part_id+'">'+item.part_name+' -'+item.part_id+'</option>');
+                    elements = elements.add('<div class="option_multi"><div class="multi-check "><input type="checkbox" id="one" value="'+item.part_id+'" name="multi_part[]" class="checkboxIn"></div><div class="multi-lable check_dis"><span>'+item.part_id+'-'+item.part_name+'</span></div></div>');
+                  }
                 }
               }
             // }
@@ -2552,8 +2588,10 @@ function addDownPart(part,part_id){
               // if (item.part_id == "PT1001") {
                 
               // }else{
-                part_collection.push(Object.values(item));
-                elements = elements.add('<div class="option_multi"><div class="multi-check "><input type="checkbox" id="one" value="'+item.part_id+'" name="multi_part[]" class="checkboxIn"></div><div class="multi-lable check_dis"><span>'+item.part_id+'-'+item.part_name+'</span></div></div>');
+                if (item.status == 1) {
+                  part_collection.push(Object.values(item));
+                  elements = elements.add('<div class="option_multi"><div class="multi-check "><input type="checkbox" id="one" value="'+item.part_id+'" name="multi_part[]" class="checkboxIn"></div><div class="multi-lable check_dis"><span>'+item.part_id+'-'+item.part_name+'</span></div></div>');
+                }
 
                 // elements = elements.add('<option class="DownPartVal" pval="'+item.part_name+'.'+item.part_id+'" tvalue="'+item.tool_id+'" value="'+item.part_id+'">'+item.part_name+' -'+item.part_id+'</option>');
               // }

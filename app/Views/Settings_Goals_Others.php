@@ -165,6 +165,11 @@
     font-size: 1rem;
 }
 
+.ellipse{
+    white-space: initial;
+    line-height: 1rem;
+}
+
 
 </style>
 
@@ -578,13 +583,13 @@
                             <div class="row paddingm">
                             <div class="box float-start col-lg-6">
                                 <div class="input-box fieldStyle">
-                                <input type="text" class="form-control font_weight" id="DTReasonVal" name="" value="" class="DTReason" required="" autocomplete="off" onkeydown="return false" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" >
+                                <input type="text" class="form-control font_weight paddinginright" id="DTReasonVal" name="" value="" class="DTReason" required="" autocomplete="off" onkeydown="return false" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" >
                                     <label class="input-padding">Reason Image <span class="paddingm validate">*</span></label>
                                     <input type="file" style="display: none;" class="downtime_img form-control form-control-md" id="attach_file" name="DTReasonimg" required="true" >
                                     <span class="unit"><i class="fa fa-paperclip clip DTI " style="font-size: 20px;" aria-hidden="true"></i></span>
 
                                     <span class="grey_label float-end">(100 px x 100 px), preferably JPG, WEBP format</span>
-                                    <span class="add_img_err img_validate float-start"></span>
+                                    <!-- <span class="add_img_err img_validate float-start"></span> -->
                                 </div>
                             </div>
                         </div>
@@ -633,12 +638,12 @@
                         <div class="row">
                             <div class="box float-start col-lg-6">
                                 <div class="input-box fieldStyle">
-                                    <input type="text" class="form-control UDTReason font_weight" name="" value="" id="UDTReason" required="" autocomplete="off" onkeydown="return false" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" >
+                                    <input type="text" class="form-control UDTReason font_weight paddinginright" name="" value="" id="UDTReason" required="" autocomplete="off" onkeydown="return false" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" >
                                     <label class="input-padding">Reason Image <span class="paddingm validate">*</span></label>
                                     <input type="file" style="display: none;" id="update_attach_file" name="UDTReasonImg">
                                     <span class="unit"><i class="fa fa-paperclip clip UDTI " style="font-size: 20px;" aria-hidden="true"></i></span>
                                     <span class="grey_label float-end">(100 px x 100 px), preferably JPG, WEBP format</span>
-                                    <span class="edit_img_err float-end img_validate"></span>
+                                    <!-- <span class="edit_img_err float-end img_validate"></span> -->
                                     <br>
                                     <a href="" id="download_link_downtime" download >
                                         <span id="img_name_for_download_downtime" style="font-size:10px;float:right;"></span><i class="fa fa-download" style="font-size:smaller;float:right;"></i>
@@ -691,12 +696,12 @@
                             </div>
                             <div class="box float-start col-lg-6">
                                 <div class="input-box fieldStyle">
-                                    <input type="text" class="form-control font_weight" name="" id="Qreason" value="" required="" autocomplete="off" onkeydown="return false" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" >
+                                    <input type="text" class="form-control font_weight paddinginright" name="" id="Qreason" value="" required="" autocomplete="off" onkeydown="return false" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" >
                                     <label class="input-padding">Reason Image <span class="paddingm validate">*</span></label>
                                     <input type="file" style="display: none;" id="attach_file_Quality" name="QReasonImg">
                                     <span class="unit"><i class="fa fa-paperclip clip QRI" style="font-size: 20px;" aria-hidden="true"></i></span>
                                     <span class="grey_label float-end">(100 px x 100 px), preferably JPG, WEBP format</span>
-                                    <span class="qr_img_err float-start  img_validate"></span>
+                                    <!-- <span class="qr_img_err float-start  img_validate"></span> -->
                                 </div>
                             </div>
                         </div>
@@ -741,12 +746,12 @@
                             </div>
                             <div class="box float-start col-lg-6">
                                 <div class="input-box fieldStyle">
-                                    <input type="text" class="form-control font_weight" name="" id="UQReasonImg" value="" required="" autocomplete="off" onkeydown="return false" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" >
+                                    <input type="text" class="form-control font_weight paddinginright" name="" id="UQReasonImg" value="" required="" autocomplete="off" onkeydown="return false" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" >
                                     <label class="input-padding">Reason Image <span class="paddingm validate">*</span></label>
                                     <input type="file" style="display: none;" id="update_file_Quality" name="UQReasonImg">
                                     <span class="unit"><i class="fa fa-paperclip clip UQRI" style="font-size: 20px;" aria-hidden="true"></i></span>
                                     <span class="grey_label float-end">(100 px x 100 px), preferably JPG, WEBP format</span>
-                                    <span class="edit_qr_img img_validate float-end"></span>
+                                    <!-- <span class="edit_qr_img img_validate float-end"></span> -->
                                     <br>
                                     <a href="" id="download_link" download>
                                         <span id="img_name_for_download" style="font-size:10px;float:right;"></span><i class="fa fa-download" style="font-size:smaller;float:right;"></i>
@@ -1129,7 +1134,7 @@ $(document).on('click','#add_downtime_reason',function(event){
     $('#DTName').val(success);
     $('#DTRCategory').val('select');
     $('#DTReasonVal').val(success);
-    $('.add_img_err').html(success);
+    // $('.add_img_err').html(success);
     $("#DTNameErr").html(success);
     $("#DTCategoryErr").html(success);
     $(".submit_downtime_reason").removeAttr("disabled");
@@ -1143,7 +1148,7 @@ $(document).on('click','#add_quality_reasons',function(event){
     $('#QReasonName').val(success);
     $('#Qreason').val(success);
     $("#QReasonNameErr").html(success);
-    $('.qr_img_err').html(success);
+    // $('.qr_img_err').html(success);
     $(".submit_quality_reason").removeAttr("disabled");
     $('#EditQRModal').modal('show');
 });
@@ -1494,11 +1499,12 @@ $(document).on("click", ".DTI", function(event){
         var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.tif|\.webp)$/i;
         if (!allowedExtensions.exec(file_input)) {
             alert('Invalid File Extension....');
-            $('.add_img_err').html('Valid formats are jpg , jpeg , png , gif ,tif  ,webp.');
+            $('#attach_file').val(null);
+            // $('.add_img_err').html('Valid formats are jpg , jpeg , png , gif ,tif  ,webp.');
         }
         else
         {
-            $('.add_img_err').html(success);
+            // $('.add_img_err').html(success);
             $('#DTReasonVal').val(this.files[0].name);
         }
     });
@@ -1514,11 +1520,12 @@ $(document).on("click", ".QRI", function(event){
         var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.tif|\.webp)$/i;
         if (!allowedExtensions.exec(input_file)) {
             alert('Invalid File Extension....');
-            $('.qr_img_err').html('Valid formats are jpg , jpeg , png , gif ,tif  ,webp.');
+            $('#attach_file_Quality').val(null);
+            // $('.qr_img_err').html('Valid formats are jpg , jpeg , png , gif ,tif  ,webp.');
         }
         else
         {
-            $('.qr_img_err').html(success);
+            // $('.qr_img_err').html(success);
             $('#Qreason').val(this.files[0].name);
         }
     });
@@ -1534,9 +1541,10 @@ $(document).on("click", ".UDTI", function(event){
         var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.tif|\.webp)$/i;
         if (!allowedExtensions.exec(file_input)) {
             alert('Invalid File Extension.....');
-            $('.edit_img_err').html('Valid formats are  jpg , jpeg , png , gif ,tif  ,webp.');
+            $('#update_attach_file').val(null);
+            // $('.edit_img_err').html('Valid formats are  jpg , jpeg , png , gif ,tif  ,webp.');
         }else{
-            $('.edit_img_err').html(success);
+            // $('.edit_img_err').html(success);
             $('.UDTReason').val(this.files[0].name);
         }
     });
@@ -1552,9 +1560,10 @@ $(document).on("click", ".UQRI", function(event){
         var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.tif|\.webp)$/i;
         if (!allowedExtensions.exec(file_input)) {
             alert('Invalid File Extension.....');
-            $('.edit_qr_img').html('Valid Image jpg , jpeg , png , gif ,tif  ,webp.'); 
+            $('#update_file_Quality').val(null);
+            // $('.edit_qr_img').html('Valid Image jpg , jpeg , png , gif ,tif  ,webp.'); 
         }else{
-            $('.edit_qr_img').html(success); 
+            // $('.edit_qr_img').html(success); 
             $('#UQReasonImg').val(this.files[0].name);
         }
       
@@ -1767,7 +1776,7 @@ function get_shift_data(){
                         if (item.downtime_category == "Planned") {
                             elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
                             +'<div class="dot col float-start" style="overflow:hidden"><img src="'+item.uploaded_file_location+item.uploaded_file_name+'.'+item.original_file_extension+'" alt="" width="100%" height="100%"></div>'
-                            +'<div class="col.float-start down d-flex fontheight fontbox"><p class="alignCenter font_weight">'+item.downtime_reason+'</p></div>'
+                            +'<div class="col.float-start down d-flex fontheight fontbox"><p class="alignCenter font_weight ellipse">'+item.downtime_reason+'</p></div>'
                             +'<div class="dotHover dclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh  reason-pen" style="color:grey; "></i></div>'
                             +'<div class="dotHover1 drclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/delete.png'); ?>" class="img_font_wh reason-pen" ></i></div>'
                             +'</div>');
@@ -1775,7 +1784,7 @@ function get_shift_data(){
                         else{
                             elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
                             +'<div class="dot col float-start" style="overflow:hidden"><img src="'+item.uploaded_file_location+item.uploaded_file_name+'.'+item.original_file_extension+'" alt="" width="100%" height="100%"></div>'
-                            +'<div class="col.float-start down d-flex fontheight fontbox"><p class="alignCenter font_weight">'+item.downtime_reason+'</p></div>'
+                            +'<div class="col.float-start down d-flex fontheight fontbox"><p class="alignCenter font_weight ellipse">'+item.downtime_reason+'</p></div>'
                             +'<div class="dotHover dclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh reason-pen" style="color:grey;"></div>'
                             +'<div class="dotHover1 drclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="img_font_wh reason-pen"></i></div>'
                             +'</div>');
@@ -1802,6 +1811,16 @@ function get_shift_data(){
                         $('#DTReasonContent').append(elements);
                 });
             },
+            statusCode: {
+               
+               500: function(){
+                console.log("Record Issue 500 in based on images");
+               },
+               404:function(){
+                
+                 console.log("Data Passing Issue 404  image found the particular location ");
+               }
+            },
             error:function(res){
                 alert("Sorry!Try Agian!!");
             }
@@ -1824,20 +1843,30 @@ function get_shift_data(){
                     if (quality_imgError(file_name) == true) {
                         elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
                         +'<div class="dot col float-start" style="overflow:hidden"><img src="'+item.uploaded_file_location+item.uploaded_file_name+'.'+item.uploaded_file_extension+'" alt="" width="100%" height="100%"></div>'
-                        +'<div class="col.float-start down d-flex fontheight fontbox"><p class="alignCenter font_weight">'+item.quality_reason_name+'</p></div>'
+                        +'<div class="col.float-start down d-flex fontheight fontbox"><p class="alignCenter font_weight ellipse">'+item.quality_reason_name+'</p></div>'
                         +'<div class="dotHover qclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_qreason+'"><img src="<?php echo base_url('assets/img/pencil.png') ?>" class="reason-pen img_font_wh"></i></div>'
                         +'<div class="dotHover1 qrclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_qreason+'"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="img_font_wh reason-pen"></i></div>'
                         +'</div>');   
                     }else{
                         elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
                         +'<div class="dot col float-start" style="overflow:hidden"><div class="no_img_circle" width="100%" height="100%"></div></div>'
-                        +'<div class="col.float-start down d-flex fontheight fontbox"><p class="alignCenter font_weight">'+item.quality_reason_name+'</p></div>'
+                        +'<div class="col.float-start down d-flex fontheight fontbox"><p class="alignCenter font_weight ellipse">'+item.quality_reason_name+'</p></div>'
                         +'<div class="dotHover qclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_qreason+'"><img src="<?php echo base_url('assets/img/pencil.png') ?>" class="reason-pen img_font_wh"></i></div>'
                         +'<div class="dotHover1 qrclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_qreason+'"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="img_font_wh reason-pen"></i></div>'
                         +'</div>');  
                     }
                     $('#QReasonContent').append(elements);
                 });
+            },
+            statusCode: {
+               
+               500: function(){
+                console.log("Record Issue 500 in based on images");
+               },
+               404:function(){
+                
+                 console.log("Data Passing Issue 404  image found the particular location ");
+               }
             },
             error:function(res){
                 alert("Sorry!Try Agian!!");
@@ -1913,6 +1942,14 @@ function get_shift_data(){
                 $('#Update_Downtime_Reason').attr('image_name',res[0].original_file_name);
                 $('#Update_Downtime_Reason').attr('record_no',res[0].image_id); 
                 $('#download_link_downtime').attr("href",download_file);
+                if (res[0].original_file_name==="no_image") {
+                    $('#download_link_downtime').attr("disabled",true);
+                    $('#download_link_downtime').css("pointer-events","none");
+                    // $('#download_link_downtime').css("display","inline-block");
+                }else{
+                    $('#download_link_downtime').css("pointer-events","auto");
+                    $('#download_link_downtime').removeAttr("disabled");
+                }
                 $('#img_name_for_download_downtime').html(res[0].original_file_name);
 
                 $('#UDTNameCunt').html(res[0].downtime_reason.length + ' / ' + text_max);
@@ -1950,6 +1987,13 @@ function get_shift_data(){
                 $('#UQReasonNameCunt').html($('#UQReasonName').val().length + ' / ' + text_max);
 
                 $('#edit_quality_reasons').attr('image_name',res[0].original_file_name); 
+                if (res[0].original_file_name === "no_img") {
+                    $('#download_link').attr("disabled",true);
+                    $('#download_link').css("pointer-events","none");
+                }else{
+                    $('#download_link').css("pointer-events","auto");
+                    $('#download_link').removeAttr("disabled");
+                }
                 $('#download_link').attr("href",download_file);
                 $('#img_name_for_download').html(res[0].original_file_name);       
                 $('#updateQRModal').modal('show');

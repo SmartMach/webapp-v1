@@ -22,8 +22,8 @@ class Financial_Metrics extends BaseController
         $ref="Overall";
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
-        // $fromTime = "2022-12-20T17:00:00";
-        // $toTime = "2022-12-26T16:00:00";
+        // $fromTime = "2022-12-18T09:00:00";
+        // $toTime = "2022-12-18T21:00:00";
 
         // $url = "http://localhost:8080/graph/overallMonitoringValues/".$fromTime."/".$toTime."/";
         // $ch = curl_init($url);
@@ -104,11 +104,11 @@ class Financial_Metrics extends BaseController
                             if ($value['end_time']>= $ToTime) {
                                 $output[$key]['end_time'] = $ToTime;
                             }
-                            $output[$key]['duration'] = $this->getDuration($value['calendar_date']." ".$output[$key]['start_time'],$value['calendar_date']." ".$output[$key]['end_time']);
+                            $output[$key]['split_duration'] = $this->getDuration($value['calendar_date']." ".$output[$key]['start_time'],$value['calendar_date']." ".$output[$key]['end_time']);
                         }
                         else if (($value['shift_date'] == $ToDate && $value['start_time']>=$value['end_time']) || $value['shift_date'] == $ToDate && $value['end_time'] >= $ToTime) {
                             $output[$key]['end_time'] = $ToTime;
-                            $output[$key]['duration'] = $this->getDuration($value['calendar_date']." ".$output[$key]['start_time'],$value['calendar_date']." ".$output[$key]['end_time']);
+                            $output[$key]['split_duration'] = $this->getDuration($value['calendar_date']." ".$output[$key]['start_time'],$value['calendar_date']." ".$output[$key]['end_time']);
                         }
                         else{
                             if ($value['shift_date'] == $FromDate  && strtotime($value['start_time']) < strtotime($FromTime)){
@@ -174,7 +174,7 @@ class Financial_Metrics extends BaseController
                         }
                     }
                 }
-            }
+            }   
 
             // Filter for Production Info Table Data..........
             foreach ($production as $key => $value) {   
@@ -202,6 +202,7 @@ class Financial_Metrics extends BaseController
 
             // Machine-Wise Downtime........
             $allTimeValues = $this->allTimeFound($getAllTimeValues,$machine,$part,$FromDate,$ToDate);
+
             // Day-wise With Machine-Wise Downtime....
             $allTimeValuesDay = $this->allTimeFoundDay($getAllTimeValues,$machine,$part,$FromDate,$ToDate);
 
@@ -227,7 +228,12 @@ class Financial_Metrics extends BaseController
             
             //Downtime data has been calculated......
             // To find Planned Downtime, Unplanned Downtime, Machine OFF Downtime.........
-            $downtime = $this->oeeData($MachineWiseDataRaw,$getAllTimeValues);
+
+            if ($graphRef == "PLOpportunity") {
+                $downtime = $this->oeeData($MachineWiseDataRaw,$getAllTimeValues,true);
+            }else{
+                $downtime = $this->oeeData($MachineWiseDataRaw,$getAllTimeValues);
+            }
 
             if ($graphRef == "PartPLOpportunity") {
                 $res['production'] = $production;
@@ -250,6 +256,7 @@ class Financial_Metrics extends BaseController
             }
 
             //Machine wise Performance,Quality,Availability........
+
             $MachineWiseData = [];
             foreach ($downtime as $down) {
                 $PlannedDownTime = $down['Planned'];
@@ -504,9 +511,8 @@ class Financial_Metrics extends BaseController
 
         $ref = "MachinewiseOEE";
 
-        // $fromTime = "2022-12-16T09:00:00";
-        // $toTime = "2022-12-16T21:00:00";
-
+        // $fromTime = "2022-12-18T09:00:00";
+        // $toTime = "2022-12-18T21:00:00";
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
 
@@ -630,7 +636,7 @@ class Financial_Metrics extends BaseController
         return $arr;
     }
 
-    public function oeeData($MachineWiseDataRaw,$getAllTimeValues)
+    public function oeeData($MachineWiseDataRaw,$getAllTimeValues,$noplan=false)
     {
         $DowntimeTimeData =[];
         foreach ($MachineWiseDataRaw as $Machine){
@@ -679,10 +685,18 @@ class Financial_Metrics extends BaseController
                                 $st[1]=$st[1]/sizeof($part_count);
                             }   
 
-                            // echo $DTR['downtime_category']."  ".$DTR['downtime_reason'];
-                            // echo "<br>";
-
-                            if($DTR['downtime_category'] == 'Unplanned'){
+                            $noplan = trim($DTR['downtime_reason']);
+                            $noplan = strtolower(str_replace(" ","",$noplan));
+                            if ($DTR['downtime_category'] == 'Planned' && $noplan == 'noplan' && $noplan == true) {
+                                if (sizeof($st) > 1) {
+                                    $tmpMachineOFFDown = $tmpMachineOFFDown + $st[0];
+                                    $tmpMachineOFFDownSec = $tmpMachineOFFDownSec + $st[1];
+                                }
+                                else{
+                                    $tmpMachineOFFDown = $tmpMachineOFFDown + $st[0];   
+                                }
+                            }
+                            else if($DTR['downtime_category'] == 'Unplanned'){
                                 // $st = explode(".", $DTR['split_duration']);
                                 if (sizeof($st) > 1) {
                                     $tmpUnplannedDown = $tmpUnplannedDown + $st[0];
@@ -718,7 +732,7 @@ class Financial_Metrics extends BaseController
                                 
                             }
 
-                            if ($DTR['downtime_reason'] != 'Machine OFF') {
+                            if ($DTR['downtime_reason'] != 'Machine OFF' || ($DTR['downtime_category'] == 'Planned' && $noplan == 'noplan' && $noplan == true)) {
                                 if (sizeof($st) > 1) {
                                     $PartInMachine = $PartInMachine + $st[0];
                                     $PartInMachineSec = $PartInMachineSec + $st[1];
@@ -809,8 +823,6 @@ class Financial_Metrics extends BaseController
     public function getAvailabilityReasonWise(){
         $ref = "AvailabilityReasonWise";
 
-        // $fromTime = "2022-11-03T09:00:00";
-        // $toTime = "2022-11-03T21:00:00";
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
 
@@ -868,6 +880,7 @@ class Financial_Metrics extends BaseController
         
         $GrandTotal = 0;
         $finalArray=[];
+
         foreach ($MachineName as $key => $machine) {
             $ar=[];
             foreach ($DowntimeReason as $reason) {
@@ -887,7 +900,7 @@ class Financial_Metrics extends BaseController
                             else{
                                 $duration = ($st[0]);
                             }
-                            
+
                             $reasonValue = $reasonValue +(($machine['machine_offrate_per_hour'])*(($duration)/60));
                         }
                         else{
@@ -910,11 +923,22 @@ class Financial_Metrics extends BaseController
                         $split_duration=$split_duration+$dur;
                     }
                 }
-                $t=array("machine_id"=>$machine['machine_id'],"reason_id"=>$reason['downtime_reason_id'],"reason"=>$reason['downtime_reason'],"machine_name"=>$machine['machine_name'],"oppCost"=>$reasonValue,"duration"=>$split_duration);
+
+                $reason_merge_name = $reason['downtime_reason']." (".strtoupper(str_split($reason['downtime_category'])[0]).")";
+
+                // echo $machine['machine_id']." ".$reason_merge_name." ".$reasonValue;
+                // echo "<br>";
+
+                $t=array("machine_id"=>$machine['machine_id'],"reason_id"=>$reason['downtime_reason_id'],"reason"=>$reason_merge_name,"machine_name"=>$machine['machine_name'],"oppCost"=>$reasonValue,"duration"=>$split_duration);
                 array_push($ar,$t);
                 $GrandTotal = $GrandTotal+$reasonValue;
             }
             array_push($finalArray,$ar);
+        }
+
+        foreach ($DowntimeReason as $key => $reason) {
+            $reason_merge = $reason['downtime_reason']." (".strtoupper(str_split($reason['downtime_category'])[0]).")";
+            $DowntimeReason[$key]['downtime_reason'] = $reason_merge;
         }
 
         $l=sizeof($DowntimeReason);
@@ -940,6 +964,7 @@ class Financial_Metrics extends BaseController
         $res['machineName'] = $MachineName;
         $res['totalDuration'] = $durationTotal;
 
+        echo (int)$GrandTotal;
         //sorting in desending order......
         $out = $this->selectionSortAvailability($res,sizeof($res['total']));
         echo json_encode($out);   
@@ -1007,8 +1032,8 @@ class Financial_Metrics extends BaseController
 
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
-        // $fromTime = "2022-11-21T15:00:00";
-        // $toTime = "2022-11-27T14:00:00";
+        // $fromTime = "2022-12-18T09:00:00";
+        // $toTime = "2022-12-18T21:00:00";
 
         // $url = "http://localhost:8080/graph/qualityOpportunity/".$fromTime."/".$toTime."/";
         // $ch = curl_init($url);
@@ -1165,10 +1190,10 @@ class Financial_Metrics extends BaseController
         $ref = "PerformanceOpportunity";
 
         $fromTime = $this->request->getVar("from");
-        $toTime = $this->request->getVar("to");
-        
-        // $fromTime = "2022-11-21T15:00:00";
-        // $toTime = "2022-11-27T14:00:00";
+        $toTime = $this->request->getVar("to");    
+
+        // $fromTime = "2022-12-18T09:00:00";
+        // $toTime = "2022-12-18T21:00:00";
 
         // $url = "http://localhost:8080/graph/performanceOpportunity/".$fromTime."/".$toTime."/";
         // $ch = curl_init($url);
@@ -1229,26 +1254,26 @@ class Financial_Metrics extends BaseController
                         $temp_split = explode(",", $value['part_id']);
                         foreach ($temp_split as $value_part) {
                             if ($part['part_id'] == $value_part) {
-                                $partRunningTime=($value['PartInMachine'])-($value['Planed']+$value['Unplanned']);
+                                $partRunningTime=floatval(($value['PartInMachine']))-floatval(($value['Planed']+$value['Unplanned']));
                                 $downtime=floatval($All)-floatval(floatval($machine['Planned'])+floatval($machine['Unplanned'])+floatval($machine['Machine_OFF']));
                             }
                         }
                     }
 
                     //For no production........
-                    $Opportunity = (floatval(($downtime-$corrected_tppNICT))/floatval(60*(int)$machineOFFRate));
+                    $Opportunity = floatval((floatval(floatval($partRunningTime)-floatval($corrected_tppNICT))/(60))*(int)$machineOFFRate);
 
                     $partRunningDurationAtIdeal=$corrected_tppNICT;
                     $speedLoss= $partRunningTime-$partRunningDurationAtIdeal;
-
                     if (floatval($Opportunity)<0) {
                         $Opportunity=0;
                         $speedLoss=0;
                     }
-                    $Opportunity= array('Opportunity' => floatval(number_format($Opportunity, 2)),'SpeedLoss'=>$speedLoss);
-                    $temp = array("part_id"=>$part['part_id'],"data"=>$corrected_tppNICT,"OppCost"=>$Opportunity,"speedLoss"=>$speedLoss);
+                    $Opportunity_arr = array('Opportunity' => floatval($Opportunity),'SpeedLoss'=>$speedLoss);
+
+                    $temp = array("part_id"=>$part['part_id'],"data"=>$corrected_tppNICT,"OppCost"=>$Opportunity_arr,"speedLoss"=>$speedLoss);
                     array_push($tmpMachine, $temp);
-                    array_push($varData, $Opportunity);
+                    array_push($varData, $Opportunity_arr);
                 }
                 // $x = array("machine_id"=>$machine['Machine_ID'],"machineData"=>$tmpMachine);
                 // array_push($AvailabilityOpportunity, $x);
@@ -1269,7 +1294,7 @@ class Financial_Metrics extends BaseController
             for ($j=0; $j <$length ; $j++) { 
                 $tmpPartTotal=floatval($tmpPartTotal)+floatval($varDataMachine[$j]['machineData'][$i]['Opportunity']);
                 $tmpSpeedLoss=$tmpSpeedLoss+($varDataMachine[$j]['machineData'][$i]['SpeedLoss']);
-            }   
+            }
             $GrandTotal=floatval($GrandTotal)+floatval($tmpPartTotal);
             array_push($partTotal, $tmpPartTotal);
             array_push($speedTotal, $tmpSpeedLoss);
@@ -1279,7 +1304,7 @@ class Financial_Metrics extends BaseController
         $res['Part']=$partDetails;
         $res['Total']=$partTotal;
         $res['SpeedLossTotal']=$speedTotal;
-        $res['GrandTotal']=number_format($GrandTotal,0);
+        $res['GrandTotal']=($GrandTotal);
 
         //sorting in desending order......
         $out = $this->selectionSortQuality($res,sizeof($res['Total']));
@@ -1352,8 +1377,8 @@ class Financial_Metrics extends BaseController
         // $res = json_decode($result);
         // echo json_encode($res);
 
-        // $fromTime = "2022-11-29T19:00:00";
-        // $toTime = "2022-12-05T18:00:00";
+        // $fromTime = "2022-12-18T09:00:00";
+        // $toTime = "2022-12-18T21:00:00";
 
         $downtime = $this->getDataRaw($ref,$fromTime,$toTime);
         $partDetails = $this->Financial->PartDetails();
@@ -1370,6 +1395,9 @@ class Financial_Metrics extends BaseController
         $MachineOFFDuration=0;
         $QualityDuration=0;
         $PerformanceDuration=0;
+
+        // echo "<pre>";
+        // print_r($downtime);
 
         foreach ($machineDetails as $machine) {
             foreach ($downtime as $reason) {
@@ -1467,8 +1495,8 @@ class Financial_Metrics extends BaseController
         // $res = json_decode($result);
         // echo json_encode($res);
 
-        // $fromTime = "2022-11-21T15:00:00";
-        // $toTime = "2022-11-27T14:00:00";
+        // $fromTime = "2022-12-18T09:00:00";
+        // $toTime = "2022-12-18T21:00:00";
 
         // $downtime = $this->getDataRaw($ref,$fromTime,$toTime);
         $partDetails = $this->Financial->PartDetails();
@@ -1706,8 +1734,9 @@ class Financial_Metrics extends BaseController
         // $res = json_decode($result);
         // echo json_encode($res);
 
-        // $fromTime = "2022-12-16T09:00:00";
-        // $toTime = "2022-12-16T21:00:00";
+        // $fromTime = "2022-12-18T09:00:00";
+        // $toTime = "2022-12-18T21:00:00";
+
 
         $production = $this->getDataRaw($ref,$fromTime,$toTime);
         $partDetails = $this->Financial->PartDetailsOpportunity();
@@ -1926,7 +1955,7 @@ class Financial_Metrics extends BaseController
 
         $rawData = $this->getDataRaw($ref,$fromTime,$toTime);
         
-        $downtime = $this->oeeDataTreand($rawData['raw'],$rawData['machine'],$rawData['part'],$days);
+        $downtime = $this->oeeDataTreand($rawData['raw'],$rawData['machine'],$rawData['part'],$days,true);
         $partDetails = $this->Financial->PartDetails();
         $machineDetails = $this->Financial->getMachineDetails();
 
@@ -2065,7 +2094,7 @@ class Financial_Metrics extends BaseController
     }
 
 
-public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days)
+public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days,$noplan=false)
 {
     $downData=[];
     foreach ($days as $d) {
@@ -2104,7 +2133,12 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days)
                                     $duration = ($st[0]);
                                 }
 
-                                if($DTR['downtime_category'] == 'Unplanned'){
+                                $noplan = trim($DTR['downtime_reason']);
+                                $noplan = strtolower(str_replace(" ","",$noplan));
+                                if ($DTR['downtime_category'] == 'Planned' && $noplan == 'noplan' && $noplan == true) {
+                                    $tmpMachineOFFDown = $tmpMachineOFFDown + $duration;
+                                }
+                                else if($DTR['downtime_category'] == 'Unplanned'){
                                     $tmpUnplannedDown = $tmpUnplannedDown + $duration;
                                 }
                                 else if(($DTR['downtime_category'] == 'Planned') && ($DTR['downtime_reason'] == 'Machine OFF')){
@@ -2163,7 +2197,7 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days)
         }
 
         $rawData = $this->getDataRaw($ref,$fromTime,$toTime);
-        $downtime = $this->oeeDataTreand($rawData['raw'],$rawData['machine'],$rawData['part'],$days);
+        $downtime = $this->oeeDataTreand($rawData['raw'],$rawData['machine'],$rawData['part'],$days,false);
         $partDetails = $this->Financial->PartDetails();
         $machineDetails = $this->Financial->getMachineDetails();
 
@@ -2334,8 +2368,8 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days)
         // $res = json_decode($result);
         // echo json_encode($res);
 
-        // $fromTime = "2022-11-21T15:00:00";
-        // $toTime = "2022-11-27T14:00:00";
+        // $fromTime = "2022-12-18T09:00:00";
+        // $toTime = "2022-12-18T21:00:00";
 
         // // Calculation for to find ALL time value
             $tmpFromDate =explode("T", $fromTime);
@@ -2476,6 +2510,7 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days)
         $DowntimeReason = $this->Financial->downtimeReason();
         // Machine Data.........
         // $ReasonwiseData = $this->Financial->ReasonwiseData($FromDate,$ToDate);
+                
 
         //Reason wise Availability for Logical Perspective..........
         $ReasonwiseAvailability =[];
@@ -2524,11 +2559,17 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days)
                         $split_duration=$split_duration+$dur;
                     }
                 }
-                $t=array("machine_id"=>$machine['machine_id'],"reason_id"=>$reason['downtime_reason_id'],"reason"=>$reason['downtime_reason'],"machine_name"=>$machine['machine_name'],"oppCost"=>$reasonValue,"duration"=>$split_duration);
+                $reason_merge_name = $reason['downtime_reason']." (".strtoupper(str_split($reason['downtime_category'])[0]).")";
+                $t=array("machine_id"=>$machine['machine_id'],"reason_id"=>$reason['downtime_reason_id'],"reason"=>$reason_merge_name,"machine_name"=>$machine['machine_name'],"oppCost"=>$reasonValue,"duration"=>$split_duration);
                 array_push($ar,$t);
                 $GrandTotal = $GrandTotal+$reasonValue;
             }
             array_push($finalArray,$ar);
+        }
+
+        foreach ($DowntimeReason as $key => $reason) {
+            $reason_merge = $reason['downtime_reason']." (".strtoupper(str_split($reason['downtime_category'])[0]).")";
+            $DowntimeReason[$key]['downtime_reason'] = $reason_merge;
         }
 
         $l=sizeof($DowntimeReason);
@@ -2652,7 +2693,7 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days)
         $out['Reason']=$totalreasons;
         $out['Total']=$totalvalues;
         $out['Duration'] = $durationTotal;
-
+        
         $res = $this->selectionSortDrillDown($out,sizeof($totalreasons));
         echo json_encode($res);
     }

@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smartories Login Page</title>
-
+    <!-- <title>Smartories Login Page</title> -->
+    <title>OEE Monitoring!</title>
+    <link rel="shortcut icon" href="<?php echo base_url() ?>/assets/img/Myproject.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--Link For Bootstrap -->
     <link href="<?php echo base_url()?>/bootstrap_5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -62,6 +63,10 @@
         height: 3rem;
         width: 12rem;
       }
+      #alert_msg{
+        padding: 0;
+        margin: 0;
+      }
 </style>
 </head>
 <body>
@@ -72,28 +77,6 @@
         <div class="img-div">
             <img id="login-mach" src="<?php echo base_url()?>/assets/img/logo.png?version=<?php echo rand() ; ?>" alt="SmartMach Logo">
         </div>
-
-       
-        <?php if(trim($inactive)!=""){  ?>
-        <div class="alert alert-danger" role="alter" id="back_end_msg">
-            <?php
-            if($inactive == "inactive_user"){
-            ?>
-              *Inactive user's account, Please contact admin!!
-            <?php
-            }
-            elseif ($inactive == "Invalid_password") {
-            ?>
-                *Invalid Password 
-            <?php 
-            }elseif($inactive == "new_user"){
-            ?>
-                *User doesn't exist
-            <?php 
-            }  
-            ?>
-        </div>
-        <?php } ?>
 
         <br>
         <div id="alert_check" class="d-none">
@@ -143,23 +126,55 @@
 </html>
 
 <script type="text/javascript">
+    // document title
+
+    let doc_title = document.title;
+    window.addEventListener("blur",()=>{
+        document.title="SmartMach!";
+    });
+
+    window.addEventListener("focus",()=>{
+        document.title = doc_title;
+    });
+
+
+
      $(document).ready(function(){
+
+        var user_status = "<?php echo $inactive;?>";
+        // console.log(user_status);
+        user_status = user_status.trim();
+        if(user_status!=""){
+            $('#alert_check').removeClass('d-none');
+            $('#alert_check').addClass('d-inline');
+            var err ="";
+            if(user_status == "inactive_user"){
+                err = "*Inactive user, Please contact the admin";
+            }
+            else if (user_status == "Invalid_password") {
+                err = "*Invalid Password"
+            }else if(user_status == "new_user"){
+                err = "*User doesn't exist"
+            }
+            $('#alert_msg').html(err);
+        }
+
         // $('.display_forgot').css("display","none");
-        $(document).on('click','.showpass',function(){
+        $(document).on('click','.showpass',function(event){
+            event.preventDefault();
+            // alert('ok');
             var pass = $("#userpassword").prop('type');
+           
             var element = document.getElementById("eye-pass");
- 
             if(pass == 'password'){
                $("#userpassword").prop('type','text'); 
-            //    $('.showpass').replaceClass('fa-eye','fa-eye-slash');
-            element.classList.remove("fa-eye-slash");
-            element.classList.add("fa-eye");
+                element.classList.remove("fa-eye-slash");
+                element.classList.add("fa-eye");
             }
             else{
                 $("#userpassword").prop('type','password');
-                // $('.showpass').addClass('fa-eye-slash').removeClass('fa-eye');
                 element.classList.remove("fa-eye");
-            element.classList.add("fa-eye-slash");
+                element.classList.add("fa-eye-slash");
             }
         });
 
@@ -173,7 +188,6 @@
             var b = login_pass();
 
             if (a!="" || b!="") {
-                console.log('jhi');
                 $('#user_mail_err').html(a);
                 $('#pass_err').html(b);
             }else{
@@ -188,7 +202,7 @@
        
         function login_pass(){
             var required="*Required field";
-            var valid_pass = "*Password must be atleast 5 characters long";
+            var valid_pass = "*Password must be atleast 5 character long";
             var success= "";
             var val = $('#userpassword').val();
             val = val.trim();
@@ -290,7 +304,7 @@
                 method:"POST",
                 data:{username:username},
                 success:function(res){
-                    console.log(res);
+                     // console.log(res);
                     // console.log("console"+res);
                     // alert(res);
                     // if (res !== "output") {
@@ -320,17 +334,15 @@
                    
                 },
                 error:function(err){
-                    alert('Pleasr TRyAgain....');
+                    alert('Pleasr try again.');
                 }
             });
            
             
        }else{
-           // alert('Please Enter the User Id After Send The Link ..!!!');
-
             $('#alert_check').removeClass('d-none');
             $('#alert_check').addClass('d-inline');
-            $('#alert_msg').html("Please fill the user id after then send the mail .....!!");
+            $('#alert_msg').html("*User ID is required");
        }
 
     });
@@ -348,7 +360,7 @@
             $('#alert_change').removeClass('alert-danger');
             // $('#alert_change').addClass('alert-success');
             color = "alert-success";
-            $('#alert_msg').html('Please check your mail ID....!');
+            $('#alert_msg').html('*Reset password link has been send to your registered mail address. Kindly check your mail.');
         }
         else if(text === "inactiveforgot"){
             $('#alert_check').removeClass('d-none');
@@ -357,7 +369,7 @@
             $('#alert_change').removeClass('alert-danger');
             // $('#alert_change').addClass('alert-success');
             color = "alert-danger";
-            $('#alert_msg').html('Inacitve user please contact the admin');
+            $('#alert_msg').html('*Inactive user, Please contact the admin');
         }
         else if(text === "password"){
             $('#alert_check').removeClass('d-none');
@@ -366,7 +378,7 @@
             $('#alert_change').removeClass('alert-success');
             // $('#alert_change').addClass('alert-success');
             color = "alert-success";
-            $('#alert_msg').html('Please check  the mail id register the password');
+            $('#alert_msg').html('*Kindly set the password. Password generation link has been send to your registered mail id.');
         }
        else if(text === "false"){
             // alert('new user');
@@ -376,7 +388,7 @@
             $('#alert_change').removeClass('alert-success');
             // $('#alert_change').addClass('alert-danger');
             color = "alert-danger";
-            $('#alert_msg').html('New user please register....!'); 
+            $('#alert_msg').html("*User doesn't exist"); 
        }
 
        $('#alert_change').addClass(color);

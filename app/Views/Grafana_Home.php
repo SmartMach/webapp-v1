@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
     <title>OEE Monitoring!</title>
+    <!-- <link rel="shortcut icon" href="<?php echo  base_url(); ?>/assets/img/Myproject.png" type="image/x-icon" style="height:100%;width:100%;object-fit:contain;aspect-ratio:1/1;mix-blend-mode:color-burn;"> -->
+    <link rel="shortcut icon" href="<?php echo  base_url(); ?>/assets/img/Myproject.png" type="image/x-icon">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--Link For Bootstrap -->
     <link href="<?php echo base_url()?>/bootstrap_5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -325,7 +328,7 @@
         height:2.7rem;
         width:2.7rem;
         border-radius:50%;
-        background-color:#005abc;
+        /* background-color:#005abc; */
         
         display:flex;
         justify-content:center;
@@ -382,12 +385,14 @@
         height:2.4rem;
         width:2.4rem;
         border-radius:50%;
-        /* background-color:red; */
         color:white;
         display:flex;
         justify-content:center;
         align-items:center;
-
+      }
+      #get_text_info{
+        padding: 0;
+        margin-top: 1.2rem;
       }
 
 </style>
@@ -539,6 +544,20 @@
                             <?php } ?>
                             </ul>
                         </li>
+
+                        <!-- daily production link -->
+                        <li class="side-menu-li d-flex ">
+                            <a href="<?= base_url('Home/load_option/Daily_Production_Status')?>">
+                                <i class="fa fa-bar-chart nav-icon nav-icon-hover prodcution_status_background" style="font-size: 26px;" dvalue="Daily" alt="Production Status"></i>
+                            </a>
+                            <!-- <i class="fa fa-ellipsis-v icons-menu icon-font_third icon-font-js" style=""></i> -->
+                            <!-- <ul>
+                                <nav style="border-bottom:1px solid #d9d9d9;">
+                                    <p class="nav-menu-title">Daily Production Data</p> 
+                                </nav> 
+                            </ul> -->
+                        </li>
+                        <!-- daily production link end -->
                 </ul>
             </div> 
             <div class="col-lg paddingm">        
@@ -565,6 +584,19 @@
 </html>
 <!-- <script src="<?php //echo base_url('assets/js') ?>js/popper.min.js"></script> -->
 <script>
+
+    // document title
+    let doc_title = document.title;
+    window.addEventListener("blur",()=>{
+        document.title="SmartMach!";
+    });
+
+    window.addEventListener("focus",()=>{
+        document.title = doc_title;
+    });
+
+
+
     var MenuOpt = '<?php echo $this->data['select_opt']; ?>';
     var MenuSub = MenuOpt.split("_");
     var listIcons = document.getElementsByClassName("nav-icon");
@@ -587,6 +619,13 @@
             }else if(split_nav[1] === "fa-industry"){
                 listIcons[i].style = "background-color:#005abc;color:white;font-size:25px;padding:9px;";
                 // actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 1px;font-weight:500;";
+            }
+            // daily production status icon
+            else if(split_nav[1] === "fa-bar-chart"){
+                // alert('ok');
+                listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:27px;padding:9px;";
+                // actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 1px;font-weight:500;";
+               
             }
             else{
                 listIcons[i].style = "background-color:#005abc;color:white;font-size:29px;padding:9px;";
@@ -778,6 +817,7 @@ $(document).ready(function(){
     var info_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
     var random_info_color = info_color[Math.floor(Math.random()*info_color.length)];
     $('#info_circle_color').css("background-color",random_info_color);
+    $('.circle_div').css("background-color",random_info_color);
     $('#get_text_info').html(first_letter+''+last_letter);
 
 /*

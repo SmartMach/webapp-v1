@@ -711,7 +711,12 @@ function correctionCount(){
             $('#CorrectionCount').val(cval);
             $("#TotalCorrection").html(cval);
             $('.EditCorrection').removeAttr("disabled");
-        }else{
+        }
+        else if (parseInt(cval) < parseInt(mincount)) {
+            msg = "*Value should be greater than Min Counts";
+            $('.EditCorrection').attr("disabled",true);
+        }
+        else{
             msg = "*Numerical values only allowed";
             $('.EditCorrection').attr("disabled",true);
         }
