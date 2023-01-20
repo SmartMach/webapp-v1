@@ -323,6 +323,7 @@ class PDM_Model extends Model{
         if (sizeof($output) == 0) {
 
         }
+
         else{   
             $db = \Config\Database::connect($this->site_creation);
 
@@ -349,7 +350,6 @@ class PDM_Model extends Model{
             $tmp_tool_date['data'] = $data;
             $tmp_tool_date['date array'] = $date_array;
             $tmp_tool_date['split array'] = $split_array;
-            // return $tmp_tool_date;
         
             // for ($i = 0; $i < ($size); $i++) {
             foreach($split_array as $i => $val_arr){
@@ -376,7 +376,6 @@ class PDM_Model extends Model{
                     }
                     $sstart = $timeArray[2*$i];
                     $send = $timeArray[(2*$i)+1];
-                   // $j = $j+1;
                 }
                 else{
                     $refStart = $timeArray[2*$i];
@@ -390,11 +389,10 @@ class PDM_Model extends Model{
                     if ($build->update()) {
                         $j=$j+1;
                     } 
-                    //$j = $j+1;
                 }
-            }  
-            // return "reasons updated";
-            if ($j == sizeof($durationArray)) { 
+            }
+
+            if ($j == sizeof($durationArray)) {
                 
                 //Update the Reason Mapped
                 $codeTable = $db->table('pdm_downtime_reason_mapping as m');
@@ -403,9 +401,9 @@ class PDM_Model extends Model{
                 $codeTable->where('r.downtime_category', "Unplanned");
                 $codeTable->where('r.downtime_reason', "Unnamed");
                 $codeTable->join('settings_downtime_reasons as r','r.downtime_reason_id  = m.downtime_reason_id ');
-                $codeVal = $codeTable->get()->getResultArray();
+                $codeVal = $codeTable->get();
 
-                if (sizeof($codeVal) < 1) {
+                if (gettype($codeVal) != "object") {
                     $bd = $db->table('pdm_events');
                     $bd->set('reason_mapped',1);
                     // $db->set('last_updated_by',$last_updated_by);
@@ -428,6 +426,7 @@ class PDM_Model extends Model{
                         return false;
                     }
                 }
+
                 if ($data[1] == 2 OR $data[1] == 3) {
                     // $query = $db->table('pdm_tool_changeover_log');
                     $mid=$data[6];
@@ -476,17 +475,6 @@ class PDM_Model extends Model{
                                 $tmp = $len-1;
                                 if ($j == $tmp) {
                                     $part_str = implode(',',$part_arr);
-
-                                    // $tmp11['machineref'] = $machineRef;
-                                    // $tmp11['tool_changeover'] = $tool_changeover_cdate;
-                                    // $tmp11['tool id'] = $tmp_tool_id;
-                                    // $tmp11['part str'] = $part_str;
-                                    // $tmp11['tmp shift date'] = $tmp_shift_date;
-                                    // $tmp11['time array'] = $timeArray[2*$splitRef];
-                                    // $tmp11['sstart'] = $sstart;
-                                    // $tmp11['end'] = $send;
-                                    // $tmp11['mid'] = $mid;
-                                    // return $tmp11;
                                     $var = $this->updatePDMGraph($machineRef,$tool_changeover_cdate,$tmp_tool_id,$part_str,$tmp_shift_date,$timeArray[2*$splitRef],$sstart,$send,$mid,$last_updated_by);
                                     return $var;
                                 }
@@ -545,21 +533,29 @@ class PDM_Model extends Model{
         $query->select('*');
         $query->where('calendar_date <=',$data['calendar_date']);
         $query->where('machine_id',$data['machine_id']);
-        $query->where('machine_event_id <',$machineRef);
+        $query->where('machine_event_id <=',$machineRef);
+        $query->where('event_start_time <',$data['event_start_time']);
         // $query->where('tool_changeover_id !=',$current_record[0]['tool_changeover_id']);
         $query->orderby('machine_event_id','DESC');
+        $query->orderby('event_start_time','DESC');
+        $query->orderby('last_updated_on','DESC');
         $query->limit(1);
-        $response = $query->get()->getResultArray();   
-        
+        $response = $query->get()->getResultArray();
+
         // future tool changeover
         $query1 = $db->table('pdm_tool_changeover');
         $query1->select('*');
         $query1->where('calendar_date >=',$data['calendar_date']);
         $query1->where('machine_id',$data['machine_id']);
-        $query1->where('machine_event_id >',$machineRef);
-        $query1->orderby('calendar_date','ASC');
+        $query1->where('machine_event_id >=',$machineRef);
+        $query1->where('event_start_time >',$data['event_start_time']);
+        $query1->orderby('machine_event_id','ASC');
+        $query1->orderby('event_start_time','ASC');
         $query1->limit(1);
-        $response1 = $query1->get()->getResultArray();   
+        $response1 = $query1->get()->getResultArray();
+
+        // print_r($response1);
+        // return;
 
         // just display conditions 
         $tmp_check['before tool_change'] = $response;
@@ -1497,18 +1493,20 @@ class PDM_Model extends Model{
             }
            // return "production info complete";
             foreach ($pdmDataUpdate as $key => $value) { 
-                if ((strtotime($value->calendar_date) == strtotime($data['calendar_date'])) && ($value->machine_event_id <  $current_record[0]['machine_event_id']) && (strtotime($value->start_time) < strtotime($data['event_start_time']))){
+                if ((strcmp($response[0]['machine_event_id'],$value->machine_event_id)==0) && (strtotime($value->start_time) <= strtotime($response[0]['event_start_time'])) && count($response)>0) {
+                        unset($pdmDataUpdate[$key]);
+                }
+                elseif ((strtotime($value->calendar_date) == strtotime($data['calendar_date'])) && ($value->machine_event_id <  $current_record[0]['machine_event_id']) && (strtotime($value->start_time) < strtotime($data['event_start_time']))){
                     unset($pdmDataUpdate[$key]);
                 }
-                if (count($response1)>0) {
-                    if ((strtotime($value->calendar_date) == strtotime($response1[0]['calendar_date'])) && ($value->machine_event_id > $response1[0]['machine_event_id'])) {
-                        unset($pdmDataUpdate[$key]);
-                    }
-                    if ((strcmp($response1[0]['machine_event_id'],$value->machine_event_id)==0) && (strtotime($value->start_time) >= strtotime($response1[0]['event_start_time']))) {
-                        unset($pdmDataUpdate[$key]);
-                    }   
+                elseif ((strtotime($value->calendar_date) == strtotime($response1[0]['calendar_date'])) && ($value->machine_event_id > $response1[0]['machine_event_id']) && (count($response1)>0)) {
+                    unset($pdmDataUpdate[$key]);
                 }
+                elseif ((strcmp($response1[0]['machine_event_id'],$value->machine_event_id)==0) && (strtotime($value->start_time) >= strtotime($response1[0]['event_start_time'])) && (count($response1)>0)) {
+                    unset($pdmDataUpdate[$key]);
+                }   
             }
+
             $r=[];
             $part_str_pdm_reasons = implode(",",$part_arr_pdm);
             foreach ($pdmDataUpdate as $value) {
@@ -1551,11 +1549,10 @@ class PDM_Model extends Model{
                 if ((strtotime($value->calendar_date) == strtotime($data['calendar_date'])) && ($value->machine_event_id < $current_record[0]['machine_event_id'])) {
                     unset($pdmEventsDataUpdate[$key]);
                 }
-                if (count($response1)>0) {
+                elseif(count($response1)>0) {
                     if ((strtotime($value->calendar_date) == strtotime($response1[0]['calendar_date'])) && ($value->machine_event_id >= $response1[0]['machine_event_id']) ) {
                         unset($pdmEventsDataUpdate[$key]);
                     }
-                   
                 }
             }
             $part_str_pdm_event = implode(",",$part_arr_pdm);
@@ -1802,12 +1799,16 @@ class PDM_Model extends Model{
         // future tool changeover
         $query = $db->table("pdm_tool_changeover");
         $query->select('*');
-        $query->where('shift_date >=',$date);
+        $query->where('calendar_date >=',$date);
         $query->where('machine_id',$mid);
-        $query->where('machine_event_id >',$machineRef);
-        $query->orderby('shift_date','ASC');
+        $query->where('machine_event_id >=',$machineRef);
+        $query->where('event_start_time >',$sstart);
+        // $query->orderby('shift_date','ASC');
+        $query->orderby('machine_event_id','ASC');
+        $query->orderby('event_start_time','ASC');
         $query->limit(1);
         $response = $query->get()->getResultArray();
+
         if (count($response)>0) {
             //Get the the data from the production info table.
             $builder = $db->table('pdm_production_info');
@@ -1862,13 +1863,26 @@ class PDM_Model extends Model{
             $pdmEventsDataUpdate = $pdmDataEvent->get()->getResult();
         }
 
-        // existing tool change over query
-        $exist_tool = $db->table("pdm_tool_changeover");
+        // // existing tool change over query
+        // $exist_tool = $db->table("pdm_tool_changeover");
+        // $exist_tool->select('*');
+        // $exist_tool->where('calendar_date <=',$tool_changeover_cdate);
+        // $exist_tool->where('machine_id ',$mid);
+        // $exist_tool->where('machine_event_id <',$machineRef);
+        // $exist_tool->orderby('shift_date','DESC');
+        // $exist_tool->limit(1);
+        // $ex_res_tool = $exist_tool->get()->getResultArray();
+
+        // previous tool changeover
+        $exist_tool = $db->table('pdm_tool_changeover');
         $exist_tool->select('*');
         $exist_tool->where('calendar_date <=',$tool_changeover_cdate);
-        $exist_tool->where('machine_id ',$mid);
-        $exist_tool->where('machine_event_id <',$machineRef);
-        $exist_tool->orderby('shift_date','DESC');
+        $exist_tool->where('machine_id',$mid);
+        $exist_tool->where('machine_event_id <=',$machineRef);
+        $exist_tool->where('event_start_time <',$sstart);
+        $exist_tool->orderby('machine_event_id','DESC');
+        $exist_tool->orderby('event_start_time','DESC');
+        $exist_tool->orderby('last_updated_on','DESC');
         $exist_tool->limit(1);
         $ex_res_tool = $exist_tool->get()->getResultArray();
 
@@ -2609,8 +2623,10 @@ class PDM_Model extends Model{
             if ((strtotime($value->calendar_date) == strtotime($tool_changeover_cdate)) && ($value->machine_event_id < $machineRef) && (strtotime($value->start_time)<strtotime($sstart))) {
                 unset($pdmEventsDataUpdate[$key]);
             }
-            if ((strtotime($value->calendar_date) == strtotime($response[0]['calendar_date'])) && ($value->machine_event_id > $response[0]['machine_event_id'])) {
-                unset($pdmEventsDataUpdate[$key]);
+            if (count($response)>0) {
+                if ((strtotime($value->calendar_date) == strtotime($response[0]['calendar_date'])) && ($value->machine_event_id > $response[0]['machine_event_id'])) {
+                    unset($pdmEventsDataUpdate[$key]);
+                }
             }
         }
 
