@@ -332,8 +332,8 @@ input[type=number] {
       <br>
       <br>
         <!-- Downtime Graph -->
-       
-          <div class="chart-div" style="position:fixed;left:4.5rem;right:0;background-color:white;z-index:150;">
+
+        <div class="chart-div" style="position:fixed;left:4.5rem;right:0;background-color:white;z-index:150;">
             
               <div id="chart"></div>
               <div class="text-label-graph" style="width: 50%;float: left;">
@@ -343,7 +343,6 @@ input[type=number] {
                 <p  id="shift_end_time_label" class="endTimeVal"></p>
               </div>
           </div>
-
           <!--  -->
           <div class="tableContent downtimeHeader" style="display: none;top:20rem">
             <div class="settings_machine_header sticky-top" style="position:fixed;left:4.5rem;right:0;top:19rem;margin-left: 0.5rem;margin-right: 0.5rem;background-color: white;">
@@ -913,7 +912,7 @@ $(document).on("click", ".deleteRec", function(){
       //Show Model..........
       $('#EditSPlit').modal('show');
       $('.NotesValue').val(data_notes[index]);
-      
+    
     });
     //Model save click event........
     $(document).on("click",".saveNotes",function(){
@@ -1869,6 +1868,8 @@ function getSplittedData(machineEventRef,svalue){
       data_array=[];
       split_ref =[];  
       down_notes =[]; 
+      data_notes = [];
+
           if (res['value'].length > 0) {
             var z = 0;
             res['value'].forEach(function(item){
@@ -1877,13 +1878,13 @@ function getSplittedData(machineEventRef,svalue){
               var downReason = item.downtime_reason_id;
               if ((item.event != "Active")&&(item.event != "No Data")&&(item.split_duration >=1) ) {
                 $('.downtimeHeader').css("display","block");
-                // shiftStartTime = start ; 
+                // shiftStartTime = start ;
 
                 data_time.push(item.start_time);
                 data_time.push(item.end_time);
                 data_array.push(item.split_duration);
                 split_ref.push(item.split_id);
-                down_notes.push(item.notes);
+                setNotes(item.notes);
 
                 var reason = findDownReason(item.downtime_reason_id);
                 //Draw Graph
@@ -1914,6 +1915,11 @@ function getSplittedData(machineEventRef,svalue){
       alert(res);
     }
   });
+}
+
+function setNotes(notes){
+  down_notes.push(notes);
+  data_notes.push(notes);
 }
 
 
@@ -1980,15 +1986,17 @@ $(document).on('click','.doneEdit',function(){
       part_arr = "empty";
     }
     dataArray.push(category,reason,toolname,part_arr,machineEventRef,splitRef,machineID_ref,shift_date_ref,shift_Ref,notes);
-    console.log("data Array");
-    console.log(dataArray);
-    console.log(machineEventRef);
-    console.log(splitRef);
-    console.log(data_time);
-    console.log(data_array);
-    console.log(split_ref);
-    console.log(calendar_array);
-    //Ajax function for update particular splitted value in database
+
+    // console.log("data Array");
+    // console.log(dataArray);
+    // console.log(machineEventRef);
+    // console.log(splitRef);
+    // console.log(data_time);
+    // console.log(data_array);
+    // console.log(split_ref);
+    // console.log(calendar_array);
+
+    // Ajax function for update particular splitted value in database
     $.ajax({
       url: "<?php echo base_url('PDM_controller/updateDownGraph'); ?>",
       type: "POST",
@@ -2003,7 +2011,6 @@ $(document).on('click','.doneEdit',function(){
           date_array:calendar_array
       },
       success:function(res_Site){
-        console.log(res_Site);
         if (res_Site) {
           alert("Updated Successfully!!");
         } 
