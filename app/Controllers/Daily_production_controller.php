@@ -99,7 +99,7 @@ class Daily_production_controller extends BaseController{
     // get machine records
     public function getMachine_data(){
         if ($this->request->isAJAX()) {
-            // $date = "2023-01-05";
+            // $date = "2023-01-10";
             $date = $this->request->getVar('date');
             $getmachine_data = $this->datas->getmachine_data($date);
            
@@ -145,6 +145,7 @@ class Daily_production_controller extends BaseController{
                 array_push($machine_array_tmp,$value['machine_id']);
             }
 
+
             // machine wise part count its ui purpose
             $getpart_count = $this->macine_wise_part_count($get_toolchangeover);
             // echo "part count";
@@ -180,11 +181,11 @@ class Daily_production_controller extends BaseController{
             
             // ui purpose just remove future shift id records
             $data['shift_wise_time'] = $get_shift_wise_time_arr;
-            /*
-            echo "<pre>";
-            print_r($data);
-            echo "</pre>";
-            */
+           
+            // echo "<pre>";
+            // print_r($data);
+            // echo "</pre>";
+           
             echo json_encode($data);
         }
       

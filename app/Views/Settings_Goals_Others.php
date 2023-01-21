@@ -589,7 +589,7 @@
                                     <span class="unit"><i class="fa fa-paperclip clip DTI " style="font-size: 20px;" aria-hidden="true"></i></span>
 
                                     <span class="grey_label float-end">(100 px x 100 px), preferably JPG, WEBP format</span>
-                                    <span class="add_img_err img_validate float-start"></span>
+                                    <!-- <span class="add_img_err img_validate float-start"></span> -->
                                 </div>
                             </div>
                         </div>
@@ -643,7 +643,7 @@
                                     <input type="file" style="display: none;" id="update_attach_file" name="UDTReasonImg">
                                     <span class="unit"><i class="fa fa-paperclip clip UDTI " style="font-size: 20px;" aria-hidden="true"></i></span>
                                     <span class="grey_label float-end">(100 px x 100 px), preferably JPG, WEBP format</span>
-                                    <span class="edit_img_err float-end img_validate"></span>
+                                    <!-- <span class="edit_img_err float-end img_validate"></span> -->
                                     <br>
                                     <a href="" id="download_link_downtime" download >
                                         <span id="img_name_for_download_downtime" style="font-size:10px;float:right;"></span><i class="fa fa-download" style="font-size:smaller;float:right;"></i>
@@ -701,7 +701,7 @@
                                     <input type="file" style="display: none;" id="attach_file_Quality" name="QReasonImg">
                                     <span class="unit"><i class="fa fa-paperclip clip QRI" style="font-size: 20px;" aria-hidden="true"></i></span>
                                     <span class="grey_label float-end">(100 px x 100 px), preferably JPG, WEBP format</span>
-                                    <span class="qr_img_err float-start  img_validate"></span>
+                                    <!-- <span class="qr_img_err float-start  img_validate"></span> -->
                                 </div>
                             </div>
                         </div>
@@ -751,7 +751,7 @@
                                     <input type="file" style="display: none;" id="update_file_Quality" name="UQReasonImg">
                                     <span class="unit"><i class="fa fa-paperclip clip UQRI" style="font-size: 20px;" aria-hidden="true"></i></span>
                                     <span class="grey_label float-end">(100 px x 100 px), preferably JPG, WEBP format</span>
-                                    <span class="edit_qr_img img_validate float-end"></span>
+                                    <!-- <span class="edit_qr_img img_validate float-end"></span> -->
                                     <br>
                                     <a href="" id="download_link" download>
                                         <span id="img_name_for_download" style="font-size:10px;float:right;"></span><i class="fa fa-download" style="font-size:smaller;float:right;"></i>
@@ -1134,7 +1134,7 @@ $(document).on('click','#add_downtime_reason',function(event){
     $('#DTName').val(success);
     $('#DTRCategory').val('select');
     $('#DTReasonVal').val(success);
-    $('.add_img_err').html(success);
+    // $('.add_img_err').html(success);
     $("#DTNameErr").html(success);
     $("#DTCategoryErr").html(success);
     $(".submit_downtime_reason").removeAttr("disabled");
@@ -1148,7 +1148,7 @@ $(document).on('click','#add_quality_reasons',function(event){
     $('#QReasonName').val(success);
     $('#Qreason').val(success);
     $("#QReasonNameErr").html(success);
-    $('.qr_img_err').html(success);
+    // $('.qr_img_err').html(success);
     $(".submit_quality_reason").removeAttr("disabled");
     $('#EditQRModal').modal('show');
 });
@@ -1499,11 +1499,12 @@ $(document).on("click", ".DTI", function(event){
         var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.tif|\.webp)$/i;
         if (!allowedExtensions.exec(file_input)) {
             alert('Invalid File Extension....');
-            $('.add_img_err').html('Valid formats are jpg , jpeg , png , gif ,tif  ,webp.');
+            $('#attach_file').val(null);
+            // $('.add_img_err').html('Valid formats are jpg , jpeg , png , gif ,tif  ,webp.');
         }
         else
         {
-            $('.add_img_err').html(success);
+            // $('.add_img_err').html(success);
             $('#DTReasonVal').val(this.files[0].name);
         }
     });
@@ -1519,11 +1520,12 @@ $(document).on("click", ".QRI", function(event){
         var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.tif|\.webp)$/i;
         if (!allowedExtensions.exec(input_file)) {
             alert('Invalid File Extension....');
-            $('.qr_img_err').html('Valid formats are jpg , jpeg , png , gif ,tif  ,webp.');
+            $('#attach_file_Quality').val(null);
+            // $('.qr_img_err').html('Valid formats are jpg , jpeg , png , gif ,tif  ,webp.');
         }
         else
         {
-            $('.qr_img_err').html(success);
+            // $('.qr_img_err').html(success);
             $('#Qreason').val(this.files[0].name);
         }
     });
@@ -1539,9 +1541,10 @@ $(document).on("click", ".UDTI", function(event){
         var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.tif|\.webp)$/i;
         if (!allowedExtensions.exec(file_input)) {
             alert('Invalid File Extension.....');
-            $('.edit_img_err').html('Valid formats are  jpg , jpeg , png , gif ,tif  ,webp.');
+            $('#update_attach_file').val(null);
+            // $('.edit_img_err').html('Valid formats are  jpg , jpeg , png , gif ,tif  ,webp.');
         }else{
-            $('.edit_img_err').html(success);
+            // $('.edit_img_err').html(success);
             $('.UDTReason').val(this.files[0].name);
         }
     });
@@ -1557,9 +1560,10 @@ $(document).on("click", ".UQRI", function(event){
         var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.tif|\.webp)$/i;
         if (!allowedExtensions.exec(file_input)) {
             alert('Invalid File Extension.....');
-            $('.edit_qr_img').html('Valid Image jpg , jpeg , png , gif ,tif  ,webp.'); 
+            $('#update_file_Quality').val(null);
+            // $('.edit_qr_img').html('Valid Image jpg , jpeg , png , gif ,tif  ,webp.'); 
         }else{
-            $('.edit_qr_img').html(success); 
+            // $('.edit_qr_img').html(success); 
             $('#UQReasonImg').val(this.files[0].name);
         }
       
@@ -1938,6 +1942,14 @@ function get_shift_data(){
                 $('#Update_Downtime_Reason').attr('image_name',res[0].original_file_name);
                 $('#Update_Downtime_Reason').attr('record_no',res[0].image_id); 
                 $('#download_link_downtime').attr("href",download_file);
+                if (res[0].original_file_name==="no_image") {
+                    $('#download_link_downtime').attr("disabled",true);
+                    $('#download_link_downtime').css("pointer-events","none");
+                    // $('#download_link_downtime').css("display","inline-block");
+                }else{
+                    $('#download_link_downtime').css("pointer-events","auto");
+                    $('#download_link_downtime').removeAttr("disabled");
+                }
                 $('#img_name_for_download_downtime').html(res[0].original_file_name);
 
                 $('#UDTNameCunt').html(res[0].downtime_reason.length + ' / ' + text_max);
@@ -1975,6 +1987,13 @@ function get_shift_data(){
                 $('#UQReasonNameCunt').html($('#UQReasonName').val().length + ' / ' + text_max);
 
                 $('#edit_quality_reasons').attr('image_name',res[0].original_file_name); 
+                if (res[0].original_file_name === "no_img") {
+                    $('#download_link').attr("disabled",true);
+                    $('#download_link').css("pointer-events","none");
+                }else{
+                    $('#download_link').css("pointer-events","auto");
+                    $('#download_link').removeAttr("disabled");
+                }
                 $('#download_link').attr("href",download_file);
                 $('#img_name_for_download').html(res[0].original_file_name);       
                 $('#updateQRModal').modal('show');
