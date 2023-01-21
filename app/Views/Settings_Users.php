@@ -1192,70 +1192,76 @@
 
                   var role = $('#inputRoleAdd').val();
                 if (role != "Operator") {
-                    var User_Email = $('#inputUserEMail').val();
-                    var User_First_Name = $('#inputUserFirstName').val();
-                    var User_Last_Name = $('#inputUserLastName').val();
-                    var User_Phone = $('#inputUserPhone').val();
-                    var User_Designation = $('#inputUserDesignation').val();
-                    var User_Site_Name = $('#inputUserSiteName').val();
-                    var User_Department = $('#inputUserSiteDepartment').val();
-                    var FDrillDown = $('input[name="ooe_f_drill_down"]:checked').val();
-                    var Opportunityinsights = $('input[name="opportunity_insights"]:checked').val();
-                    var OEEDrillDown = $('input[name="ooe_drill_down"]:checked').val();
-                    var OUI = $('input[name="oui"]:checked').val();
-                    var PDM = $('input[name="pdm"]:checked').val();
-                    var SMachine = $('input[name="settings_macine"]:checked').val();
-                    var SPart = $('input[name="settings_part"]:checked').val();
-                    var SGeneral = $('input[name="settings_general"]:checked').val();
-                    var SUser = $('input[name="settings_user"]:checked').val();
-                    User_First_Name = User_First_Name.trim();
-                    User_Last_Name = User_Last_Name.trim();
-                    $("#input_dept_err").html('');
-                    $("#overlay").fadeIn(300);
+                    //alert(site_name);
+                    if ((site_name!=null)) {
+                        var User_Email = $('#inputUserEMail').val();
+                        var User_First_Name = $('#inputUserFirstName').val();
+                        var User_Last_Name = $('#inputUserLastName').val();
+                        var User_Phone = $('#inputUserPhone').val();
+                        var User_Designation = $('#inputUserDesignation').val();
+                        var User_Site_Name = $('#inputUserSiteName').val();
+                        var User_Department = $('#inputUserSiteDepartment').val();
+                        var FDrillDown = $('input[name="ooe_f_drill_down"]:checked').val();
+                        var Opportunityinsights = $('input[name="opportunity_insights"]:checked').val();
+                        var OEEDrillDown = $('input[name="ooe_drill_down"]:checked').val();
+                        var OUI = $('input[name="oui"]:checked').val();
+                        var PDM = $('input[name="pdm"]:checked').val();
+                        var SMachine = $('input[name="settings_macine"]:checked').val();
+                        var SPart = $('input[name="settings_part"]:checked').val();
+                        var SGeneral = $('input[name="settings_general"]:checked').val();
+                        var SUser = $('input[name="settings_user"]:checked').val();
+                        User_First_Name = User_First_Name.trim();
+                        User_Last_Name = User_Last_Name.trim();
+                        $("#input_dept_err").html('');
+                        $("#overlay").fadeIn(300);
 
-                    $.ajax({
-                        url: "<?php echo base_url('User_controller/createNewUser'); ?>",
-                        type: "POST",
-                        dataType: "json",
-                        cache: false,
-                        data:{
-                            User_Email:User_Email,
-                            User_First_Name:User_First_Name,
-                            User_Last_Name:User_Last_Name,
-                            User_Phone:User_Phone,
-                            User_Designation:User_Designation,
-                            Role:role,
-                            User_Site_Name:User_Site_Name,
-                            User_Department:User_Department,
-                            User_Ref:UserNameRef,
-                            FDrillDown:FDrillDown,
-                            Opportunityinsights:Opportunityinsights,
-                            OEEDrillDown:OEEDrillDown,
-                            OUI:OUI,
-                            PDM:PDM,
-                            SMachine:SMachine,
-                            SPart:SPart,
-                            SGeneral:SGeneral,
-                            SUser:SUser,
-                            new_site_name:new_site_name,
-                            new_site_location:new_site_location
-                        },
-                        success:function(res){
-                            if (res == true) {
-                                // after insert user load the div function
-                                get_all_user();
-                                // after add user close the modal
-                                $('#AddUserModal').modal('hide');
+                        $.ajax({
+                            url: "<?php echo base_url('User_controller/createNewUser'); ?>",
+                            type: "POST",
+                            dataType: "json",
+                            cache: false,
+                            data:{
+                                User_Email:User_Email,
+                                User_First_Name:User_First_Name,
+                                User_Last_Name:User_Last_Name,
+                                User_Phone:User_Phone,
+                                User_Designation:User_Designation,
+                                Role:role,
+                                User_Site_Name:User_Site_Name,
+                                User_Department:User_Department,
+                                User_Ref:UserNameRef,
+                                FDrillDown:FDrillDown,
+                                Opportunityinsights:Opportunityinsights,
+                                OEEDrillDown:OEEDrillDown,
+                                OUI:OUI,
+                                PDM:PDM,
+                                SMachine:SMachine,
+                                SPart:SPart,
+                                SGeneral:SGeneral,
+                                SUser:SUser,
+                                new_site_name:new_site_name,
+                                new_site_location:new_site_location
+                            },
+                            success:function(res){
+                                if (res == true) {
+                                    // after insert user load the div function
+                                    get_all_user();
+                                    // after add user close the modal
+                                    $('#AddUserModal').modal('hide');
+                                    // document.body.classList.remove('demo_class');
+                                    $("#overlay").fadeOut(300);
+                                }
+                            },
+                            error:function(res){
+                                alert("Sorry!Try Agian!!");
                                 // document.body.classList.remove('demo_class');
                                 $("#overlay").fadeOut(300);
                             }
-                        },
-                        error:function(res){
-                            alert("Sorry!Try Agian!!");
-                            // document.body.classList.remove('demo_class');
-                            $("#overlay").fadeOut(300);
-                        }
-                    });
+                        });
+                    }else{
+                        $('#sitename_error').css("display","inline");
+                        $('#sitename_error').html('* required Field');
+                    }
                 }
                 else{
                     var User_First_Name = $('#inputUserFirstName').val();
@@ -1272,39 +1278,47 @@
                     var repass = $('#re_pass_op').val();
                     $("#input_dept_err").html('');
                     if (pass.localeCompare(repass)== 0) {
-                        $("#overlay").fadeIn(300);
-                        $.ajax({
-                            url: "<?php echo base_url('User_controller/createNewUser_op'); ?>",
-                            type: "POST",
-                            cache: false,
-                            data:{
-                                User_First_Name:User_First_Name,
-                                userName:User_ID,
-                                User_Last_Name:User_Last_Name,
-                                User_Phone:User_Phone,
-                                Role:role,
-                                User_Site_Name:User_Site_Name,
-                                User_Site_ID:User_Site_ID,
-                                User_Department:User_Department,
-                                User_Designation:User_Designation,
-                                user_id:UserNameRef,
-                                pass:pass,
-                            },
-                            dataType: "json",
-                            success:function(res){
-                                if (res == true) {
-                                    // after insert user load the div function
-                                    get_all_user();
-                                    // after add user close the modal
-                                    $('#AddUserModal').modal('hide');
+                        // $("#overlay").fadeIn(300);
+                        // alert(User_Site_ID);
+                        if (User_Site_ID !=null) { 
+                            $.ajax({
+                                url: "<?php echo base_url('User_controller/createNewUser_op'); ?>",
+                                type: "POST",
+                                cache: false,
+                                data:{
+                                    User_First_Name:User_First_Name,
+                                    userName:User_ID,
+                                    User_Last_Name:User_Last_Name,
+                                    User_Phone:User_Phone,
+                                    Role:role,
+                                    User_Site_Name:User_Site_Name,
+                                    User_Site_ID:User_Site_ID,
+                                    User_Department:User_Department,
+                                    User_Designation:User_Designation,
+                                    user_id:UserNameRef,
+                                    pass:pass,
+                                },
+                                dataType: "json",
+                                success:function(res){
+                                    if (res == true) {
+                                        // after insert user load the div function
+                                        get_all_user();
+                                        // after add user close the modal
+                                        $('#AddUserModal').modal('hide');
+                                        $("#overlay").fadeOut(300);
+                                    }
+                                },
+                                error:function(res){
+                                    alert("Sorry!Try Agian!!");
                                     $("#overlay").fadeOut(300);
                                 }
-                            },
-                            error:function(res){
-                                alert("Sorry!Try Agian!!");
-                                $("#overlay").fadeOut(300);
-                            }
-                        });
+                            });
+                            
+                        }
+                        else{
+                            $('#sitename_error').css("display","inline");
+                            $('#sitename_error').html('* required Field');
+                        }
                     }else{
                         $('#pass_op_err').html("*Password mismatch");
                         $('#re_pass_op_err').html('*Password mismatch');
@@ -2877,7 +2891,7 @@ function inputOpUserID(){
     function retypepass(){
         var pass = $('#re_pass_op').val();
         var msg = " ";
-        var pattern = /^[0-9a-z]+$/;
+        var pattern = /^[0-9a-zA-Z]{5,}$/;
         pass = pass.trim();
         if (pass == "") {
             msg = required;
@@ -2885,7 +2899,7 @@ function inputOpUserID(){
             msg = success;
             $('.CreateUser').removeAttr("disabled");
         }else{
-            msg = alphaNum;
+            msg = "Minimum 5 chars required";
             $('.CreateUser').attr("disabled",true);
         }
         return msg;
@@ -2903,7 +2917,7 @@ function inputOpUserID(){
         var msg = " ";
         pass=pass.trim();
 
-        var pattern = /^[0-9a-z]+$/;
+        var pattern = /^[0-9a-zA-Z]{5,}$/;
 
         if (pass == "") {
             msg = required;
@@ -2913,7 +2927,7 @@ function inputOpUserID(){
             msg = success;
             $('.CreateUser').removeAttr("disabled");
         }else{
-            msg = alphaNum;
+            msg = "Minimum 5 chars required";
             $('.CreateUser').attr("disabled",true);
         }
         return msg;
