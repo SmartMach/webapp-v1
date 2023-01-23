@@ -60,12 +60,12 @@
                 }
                 
             ?>
-        <div class="d-flex" onfocusout="myFunction(event);">
-            <div class="tooltip_logout">
+        <div class="d-flex" onfocus="myFunction(event);">
+            <div class="tooltip_logout ">
                 <div id="info_circle_color">
                     <p id="get_text_info"></p>
                 </div>
-                <div class="tooltiptext">
+                <div class="tooltiptext out">
                     <div class="" style="display:flex; height:max-content; margin-bottom:0.2rem;">
                         <div class="" style="width:20%;display:flex;justify-content:center;align-items:center;margin:3px;">
                             <div class="circle_div" id="short_name"></div>
