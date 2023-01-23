@@ -625,7 +625,8 @@ function operator__forgot_password(){
 		return required;
 	}else{
 		val_leng = val.length;
-		if (val_leng > 5) {
+		var pattern = /^[0-9a-zA-Z]{5,}$/;
+		if (pattern.test(val)) {
 			var val_data = $('#forgot_pass').val();
 			val_data = val_data.trimStart().trimEnd();
 			$('#forgot_pass').val(val_data);
@@ -646,7 +647,7 @@ $('#forgot_pass').on('blur',function(){
 });
 
 function operator__forgot_confirm_password(){
-	var pass_leng = "*Password must be atleast 5 characters long";
+	var pass_leng = "*Password must be	 atleast 5 characters long";
 	var val = $('#forgot_confirm_pass').val();
 	val = val.trim();
 	if (!val) {
@@ -655,7 +656,8 @@ function operator__forgot_confirm_password(){
 		return required;
 	}else{
 		val_len = val.length;
-		if (val_len > 5) {
+		var pattern = /^[0-9a-zA-Z]{5,}$/;
+		if (pattern.test(val)) {
 			var val_data = $('#forgot_confirm_pass').val();
 			val_data = val_data.trimStart().trimEnd();
 			$('#forgot_confirm_pass').html(val_data);

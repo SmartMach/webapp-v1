@@ -288,6 +288,7 @@
    
     .tooltip_logout .tooltiptext {
         visibility: hidden;
+        /* transition-delay: 2s; */
         min-width: max-content;
         background-color: white;
         border: 1px solid #d9d9d9;
@@ -302,6 +303,7 @@
         right: 110%;
         min-height: max-content;
         font-family:'Roboto' sans-serif;
+        transition-delay: -1s;
     }
 
     
@@ -314,14 +316,20 @@
         border-width: 5px;
         border-style: solid;
         border-color: transparent transparent transparent grey;
+
     }
     .tooltip_logout:hover .tooltiptext {
         visibility: visible;
+        
       
     }
     .tooltiptext{
         position: relative;
         /* z-index: 2000; */
+    }
+
+    .out{
+        transition-duration: 2s;
     }
 
     .circle_div{
