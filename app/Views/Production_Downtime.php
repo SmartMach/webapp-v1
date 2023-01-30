@@ -635,6 +635,8 @@ $(document).on('change','#Production_MachineName',function(){
       data:{
         machine:machinename,
       },
+      async:false,
+      cache: false,
       dataType:"json",
       success:function(date_shift){
           // enable days function
@@ -643,6 +645,11 @@ $(document).on('change','#Production_MachineName',function(){
             enableDays.push(item.shift_date);
           });
 
+          $( ".datepicker" ).datepicker( "option", "minDate", null)
+
+          var t = new Date(date_shift[0].last_updated_on);
+          var date_s = ("0" + t.getDate()).slice(-2)+"-"+("0" + (parseInt(t.getMonth())+parseInt(1))).slice(-2)+"-"+t.getFullYear();
+
           $(".datepicker").datepicker({
             beforeShowDay: function(dt) {
               var datestring = $.datepicker.formatDate('yy-mm-dd', dt);
@@ -650,18 +657,17 @@ $(document).on('change','#Production_MachineName',function(){
                 return [true];
               }
               else{
-                // return [dt.getDay() == 1 || dt.getDay() == 2 ? false : true && vakantie.indexOf(datestring) == -1 ];
-                // return [vakantie.indexOf(datestring) == -1 ];
-                // tmeporary hide for this condition
-                // return [false];
                 return [true];
-              }   
+              }
             },
+            dateFormat: 'dd-mm-yy',
             changeMonth: true,
             changeYear: true,
-            maxDate: new Date()
+            minDate: date_s,
+            maxDate: new Date(),
           });
-       
+          $(".datepicker").datepicker("option", "minDate", date_s);
+          $('.ui-datepicker').css("display","none");
       },
       error:function(err){
         alert("Error while processing Machine active dates");
