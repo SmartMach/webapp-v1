@@ -3045,11 +3045,13 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
     // pdm model downtime graph shift date
      public function getMachineDate($machine){
         $db = \Config\Database::connect($this->site_creation);
-        $builder = $db->table('pdm_production_info');   
-        $builder->select('shift_date');
+        $builder = $db->table('settings_machine_current'); 
+        $builder->select('last_updated_on');
         $builder->where('machine_id', $machine);
-        $builder->where('production !=', "Null");
-        $query = $builder->distinct()->get()->getResultArray();     
+        // $builder->where('production !=', "Null");
+        // $builder->orderBy('shift_date', 'ASC');
+        // $builder->limit(1);
+        $query = $builder->get()->getResult();     
         return $query;
     }
 
