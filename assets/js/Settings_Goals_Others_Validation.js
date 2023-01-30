@@ -10,6 +10,9 @@ var alpha = "*Alphanumeric only";
 
 function EOTEEP(){
 	var val = $("#EOTEEP").val();
+	var val_ooe = $("#EOOOE").val();
+	var val_oee = $("#EOOEE").val();
+
 	if (!val) {
 		$(".Update_GFM").attr("disabled", true);
 		return required;
@@ -19,6 +22,10 @@ function EOTEEP(){
 		if (val>=100) {
 			$(".Update_GFM").attr("disabled", true);
 			return less;
+		}
+		else if (val > val_ooe || val > val_oee) {
+			$(".Update_GFM").attr("disabled", true);
+			return "*Should be less than others";
 		}
 		else if (val<100 && val>=0 && num.test(val)) {
 			$(".Update_GFM").removeAttr("disabled");
@@ -42,6 +49,8 @@ function EOTEEP(){
 }
 function EOOOE(){
 	var val = $("#EOOOE").val();
+	var val_teep = $("#EOTEEP").val();
+	var val_oee = $("#EOOEE").val();
 
 	if (!val) {
 		$(".Update_GFM").attr("disabled", true);
@@ -52,6 +61,14 @@ function EOOOE(){
 		if (val>=100) {
 			$(".Update_GFM").attr("disabled", true);
 			return less;
+		}
+		else if (val < val_teep) {
+			$(".Update_GFM").attr("disabled", true);
+			return "*Should be greater than TEEP";
+		}
+		else if (val > val_oee) {
+			$(".Update_GFM").attr("disabled", true);
+			return "*Should be less than OEE";
 		}
 		else if (val<100 && val>=0 && num.test(val)) {
 			$(".Update_GFM").removeAttr("disabled");
@@ -75,6 +92,9 @@ function EOOOE(){
 function EOOEE(){
 	var val = $("#EOOEE").val();
 
+	var val_ooe = $("#EOOOE").val();
+	var val_teep = $("#EOTEEP").val();
+
 	if (!val) {
 		$(".Update_GFM").attr("disabled", true);
 		return required;
@@ -84,6 +104,14 @@ function EOOEE(){
 		if (val>=100) {
 			$(".Update_GFM").attr("disabled", true);
 			return less;
+		}
+		else if (val < val_teep) {
+			$(".Update_GFM").attr("disabled", true);
+			return "*Should not less than TEEP";
+		}
+		else if (val < val_ooe) {
+			$(".Update_GFM").attr("disabled", true);
+			return "*Should not less than OOE";
 		}
 		else if (val<100 && val>=0 && num.test(val)) {
 			$(".Update_GFM").removeAttr("disabled");
@@ -104,6 +132,7 @@ function EOOEE(){
 		}
 	}
 }
+
 function EAvailability(){
 	var val = $("#EAvailability").val();
 
