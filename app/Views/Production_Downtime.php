@@ -648,7 +648,7 @@ $(document).on('change','#Production_MachineName',function(){
           $( ".datepicker" ).datepicker( "option", "minDate", null)
 
           var t = new Date(date_shift[0].last_updated_on);
-          var date_s = ("0" + t.getDate()).slice(-2)+"-"+("0" + (parseInt(t.getMonth())+parseInt(1))).slice(-2)+"-"+t.getFullYear();
+          var date_s = t.getFullYear()+"-"+("0" + (parseInt(t.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + t.getDate()).slice(-2);
 
           $(".datepicker").datepicker({
             beforeShowDay: function(dt) {
@@ -660,7 +660,7 @@ $(document).on('change','#Production_MachineName',function(){
                 return [true];
               }
             },
-            dateFormat: 'dd-mm-yy',
+            dateFormat: 'yy-mm-dd',
             changeMonth: true,
             changeYear: true,
             minDate: date_s,
