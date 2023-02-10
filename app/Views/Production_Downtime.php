@@ -92,15 +92,15 @@
     .inEditValue{
       display: none;
     }
-    .addNotesReason{
+    /* .addNotesReason{
       display: none;
       position: relative;
-    }
-    .addNotesReason img{
+    } */
+    /* .addNotesReason img{
       position: absolute;
       top: 23%;
       left: 23%;
-    }
+    } */
     .doneEdit{
       display: none;
       position: relative;
@@ -277,7 +277,292 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+/* bulg edit css  is important */
+
+.filterbtnstyle{
+  color:white;
+  background-color:#005abc;
+  /* opacity: 0.7; */
+  height:2.4rem;
+}
+
+/* filter button hovering style */
+.filterbtnstyle:hover{
+  color:white;
+  background-color:#005abc;
+  opacity: 0.9;
+
+}
+
+.filter_edit_div{
+  height:4rem;
+  top:19rem;
+  left:4.6rem;
+  right:0;
+  background-color:white;
+  z-index:1000;
+  position: fixed;
+  /* margin-top:8rem; */
+  display:flex;
+  flex-direction:row;
+  justify-content:flex-end;
+  align-items:center;
+}
+
+.filter{
+  display:none;
+  z-index:5000;
+  position:fixed;
+}
+
+.filter_input{
+  display:flex;
+  flex-direction:row-reverse;
+  justify-content:flex-end;
+  align-items:center;
+  height:100%;
+  width:100%;
+}
+
+.reset_img{
+  height:1.5rem;
+  margin-left:1rem;
+  margin-right:1rem;
+}
+
+.bulg_edit_ui{
+  display:none;
+  z-index:5000;
+  position:fixed;
+}
+.bulg_edit_div{
+  display:flex;
+  flex-direction:row;
+  justify-content:flex-end;
+  align-items:center;
+  height:100%;
+  width:100%;
+}
+
+/* css for filter dropd */
+.filter_selectBox {
+    position: relative;
+    /* height:3.5rem; */
+    width:100%;
+    display:flex;
+    align-items:center;
+
+  }
+  
+  .filter_selectBox select {
+    width: 100%;
+    font-weight: bold;
+  }
+
+  
+  .filter_overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+
+  
+  
+  .filter_checkboxes {
+    display: none;
+    border: 1px #dadada solid;
+    z-index:2000;
+    position: absolute;
+    background:white;
+    /* padding:0.4rem; */
+    border-radius:0.25rem;
+    min-width:8.7rem;
+  }
+  
+  .filter_checkboxes label {
+    display: block;
+  }
+  
+  .filter_checkboxes div:hover {
+    background-color: #E7F2FF;
+    padding:0;
+    cursor:context-menu;
+  }
+  
+  /* bulk edit multi select dropdown */
+  .multi_select_label{
+    position:fixed;
+    margin-top:-0.6rem;
+    margin-left:0.8rem;
+    z-index:1500;
+    background:white;
+    font-size:12px;
+    color:#8c8c8c;
+    font-family:'Roboto' sans-serif;
+  }
+  .multi_select_drp{
+    height:2.5rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem;
+  }
+  .filter_check_cate{
+    display:flex;
+    padding-left:0.1rem;
+    padding-right:0.5rem;
+    justify-content:center;
+    align-items:center;
+  }
+  .cate_drp_check{
+    width:20%;
+    display:flex;
+    justify-content:center;
+  }
+  .cate_drp_text{
+    width:90%;
+  }
+
+  /* downtime reason multi select dropdown */
+  .filter_selectBox_reason{
+    position: relative;
+    /* height:3.5rem; */
+    width:100%;
+    display:flex;
+    align-items:center;
+  }
+  .filter_selectBox_reason select{
+    width: 100%;
+    font-weight: bold;
+  }
+  .filter_overSelect_reason{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+  .filter_checkboxes_reason{
+    display: none;
+    border: 1px #dadada solid;
+    z-index:2000;
+    position: absolute;
+    background:white;
+    /* padding:0.4rem; */
+    border-radius:0.25rem;
+    min-width:8.7rem;
+
+    min-height:max-content;
+    max-height:10rem;
+    overflow:scroll;
+  }
+
+  .filter_checkboxes_reason label{
+    display: block;
+  }
+  .filter_checkboxes_reason div:hover{
+    background-color: #E7F2FF;
+    padding:0;
+    cursor:context-menu;
+  }
+  .filter_check_reason{
+    display:flex;
+    /* padding-left:0.1rem;
+    padding-right:0.5rem; */
+    justify-content:center;
+    align-items:center;
+  }
+  .reason_drp_check{
+    width:20%;
+    display:flex;
+    justify-content:center;
+    font-family:'Roboto',sans-serif;
+    font-size:12px;
+    font-weight:500;
+  }
+  .reason_drp_text{
+    width:90%;
+  }
+
+  /* edit notes */
+  .edit-split .note_edit {
+      display: none;
+      position: absolute;
+      border-radius: 6px 6px 6px 6px;
+      border:1px solid #d9d9d9;
+      background: #fff;
+      color: #595959;
+      font-size: 12px;
+      right:2.5rem;
+      top: 0px;
+      z-index: 1000;
+      width: 20rem;
+      height: 8rem;
+    }
+
+
+    /* bulk edit enable button */
+
+    .bulk_edit_btn_case{
+      position:fixed;
+      z-index:5000;
+      padding-right:1rem;
+      display:none;
+    }
+
+    .bulk_edit_enable{
+      width:8rem;
+      height:2.6rem;
+      border:1px solid #ced4ca;
+      border-radius:0.25rem;
+      display:flex;
+      flex-direction:row;
+      justify-content:center;
+      align-items:center;
+      color:grey;
+      padding:0.5rem;
+      font-family:'Roboto' sans-serif;
+      font-weight:400;
+    }
+
+    .bulk_edit_enable:hover{
+      cursor:pointer;
+    }
+
+    /* font style for multi select dropdwon */
+    .font_multi_drp{
+      font-family:'Roboto',sans-serif;
+      font-weight:500;
+      font-size:12px;
+      margin:auto;
+      user-select: none; 
+      -webkit-user-select: none;
+      -ms-user-select: none; 
+    }
+
+
+    /* no records found filter text */
+    .no_record{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-family:'Roboto' sans-serif;
+      font-weight:400;
+      font-size:15px;
+      height:5rem;
+      color:#ced4ca;
+    }
 </style>
+
+ <!-- timepicker start -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.14.0/jquery.timepicker.min.css" integrity="sha512-WlaNl0+Upj44uL9cq9cgIWSobsjEOD1H7GK1Ny1gmwl43sO0QAUxVpvX2x+5iQz/C60J3+bM7V07aC/CNWt/Yw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.14.0/jquery.timepicker.js" integrity="sha512-v84GNWs/NREzyztDm0s2NCXR9tIXH4aD/pe3uktyJeCWICr+/J38obdjXx1wxPRzTXHY54Hf0zBD5fbuRSNvGw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- timepicker end -->
 
 <div style="margin-left: 4.5rem;">
         <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav">
@@ -331,23 +616,188 @@ input[type=number] {
         </nav>
       <br>
       <br>
-        <!-- Downtime Graph -->
 
+        <!-- Downtime Graph -->
         <div class="chart-div" style="position:fixed;left:4.5rem;right:0;background-color:white;z-index:150;">
-            
-              <div id="chart"></div>
-              <div class="text-label-graph" style="width: 50%;float: left;">
-                <p  id="shift_start_time_label" class="startTimeVal"></p>
-              </div>
-              <div class="text-label-graph-end" style="width: 50%;float: left;">
-                <p  id="shift_end_time_label" class="endTimeVal"></p>
-              </div>
+          <div id="chart"></div>
+          <div class="text-label-graph" style="width: 50%;float: left;">
+            <p  id="shift_start_time_label" class="startTimeVal"></p>
           </div>
+          <div class="text-label-graph-end" style="width: 50%;float: left;">
+            <p  id="shift_end_time_label" class="endTimeVal"></p>
+          </div>
+        </div>
+
+        <!-- filter option bulg edit -->
+        <!-- filter downtime -->
+        <div class="filter_edit_div" style="">
+          <!-- filter option ui -->
+          <div class="filter" style="">
+            <!-- <div class="filter_re" style="height:100%;width:100%;"> -->     
+            <div class="filter_input" style="">
+              <!-- reset img -->
+              <img src="<?php echo base_url(); ?>/assets/img/filter_reset.png" alt="" class="reset_img" style="">
+              <!-- reset img -->
+              <!-- filter button -->
+              <button class="btn fo bn saveNotes filterbtnstyle" style="" id="apply_filter_btn">Apply Filter</button>
+              <!-- filter button -->
+
+              <!-- temporary hide for this code has change for the multi select dropdwon -->
+              <!-- <div class="box rightmar" style="margin-right: 0.5rem;">
+                <div class="input-box">
+                  <select class="form-select font_weight bulgedit_downtime_reason_drp" name="bulg_edit_drp" id="bulgedit_downtime_reason_drp" style="width: 10rem;" >
+                  </select>
+                  <label for="inputSiteNameAdd" class="input-padding ">Reason</label>
+                </div>
+              </div> -->
+              <div class="box rightmar" style="margin-right: 0.5rem;">
+                <label class="multi_select_label" style="">Reason</label>
+                <div class="filter_selectBox_reason" onclick="reason_multi_drp()">
+                  <select  class="multi_select_drp" style="">
+                    <option style="text-align:center;" id="text_reason">All Reasons</option>
+                  </select>
+                  <div class="filter_overSelect_reason"></div>
+                </div>
+                <div class="filter_checkboxes_reason" style="">
+                  <!-- <div class="filter_check_reason" style="">
+                    <div class="reason_drp_check" style="">
+                      <input type="checkbox" id="one" class="reason_drp_checkbox" value="all"/>
+                    </div>
+                    <div class="reason_drp_text" style="">
+                      <p style="font-size:15px;margin:auto;">All Reasons</p>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+
+              <!-- temporary hide for this code because this code has change for multi select dropdwon -->
+              <!-- <div class="box rightmar" style="margin-right: 0.5rem;">
+                <div class="input-box">
+                  <select class="form-select font_weight" name="" id="bulg_drp_category" style="width: 10rem;">
+                    <option value="" class="hide_text" selected disabled>Select</option>
+                    <option value="Planned">Planned</option>
+                    <option value="Unplanned">UnPlanned</option>
+                  </select>
+                  <label for="inputSiteNameAdd" class="input-padding ">Category</label>
+                </div>
+              </div> -->
+              <div class="box rightmar" style="margin-right: 0.5rem;" >
+                <label class="multi_select_label" style="">Category</label>
+                <div class="filter_selectBox" onclick="category_drp()">
+                  <select  class="multi_select_drp" style="" >
+                    <option id="text_category_drp" style="text-align:center;">All Categories</option>
+                  </select>
+                  <div class="filter_overSelect"></div>
+                </div>
+                <div class="filter_checkboxes" style="" >
+                  <div class="filter_check_cate" style="">
+                    <div class="cate_drp_check" style="">
+                      <input type="checkbox" id="one" class="category_drp_checkbox" value="all"/>
+                    </div>
+                    <div class="cate_drp_text" style="">
+                      <p class="font_multi_drp" >All Categories</p>
+                    </div>
+                  </div>
+
+                  <div class="filter_check_cate" style="">
+                    <div class="cate_drp_check" style="">
+                      <input type="checkbox" id="one" class="category_drp_checkbox" value="Planned"/>
+                    </div>
+                    <div class="cate_drp_text" style="">
+                      <p class="font_multi_drp">Planned</p>
+                    </div>
+                  </div>
+
+                  <div class="filter_check_cate" style="">
+                    <div class="cate_drp_check" style="">
+                      <input type="checkbox" id="one" class="category_drp_checkbox" value="Unplanned"/>
+                    </div>
+                    <div class="cate_drp_text" style="">
+                      <p class="font_multi_drp">UnPlanned</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+           
+
+                 
+              <div class="box rightmar" style="margin-right: 0.5rem;">
+                <div class="input-box">
+                  <input type="time" class="form-control start_time_till" id="start_time_till" step="1" placeholder="Select" required>
+                  <label for="inputSiteNameAdd" class="input-padding ">Start Time Till</label>
+                </div>
+              </div>
+               
+              <div class="box rightmar" style="margin-right: 0.5rem;">
+                <div class="input-box">
+                  <input type="time" class="form-control start_time_from" id="start_time_from" step="1" placeholder="Select" required>
+                  <label for="inputSiteNameAdd" class="input-padding ">Start Time From</label>
+                </div>        
+              </div>
+            </div>
+
+            
+            <!-- </div> -->
+          </div>
+          <!-- filter option ui end -->
+          <!-- after change edit checkbox -->
+          <div class="bulg_edit_ui" style="">
+            <div class="bulg_edit_div" style="">     
+              <!-- category dropdown -->
+              <div class="box rightmar" style="margin-right: 0.5rem;">
+                <div class="input-box">
+                  <select class="form-select font_weight bulg_edit_category_drp" name="" id="bulg_edit_category_drp" style="width: 10rem;">
+                    <option value="" selected disabled>Select</option>
+                    <option value="Planned">Planned</option>
+                    <option value="Unplanned">UnPlanned</option>
+                  </select>
+                  <label for="inputSiteNameAdd" class="input-padding ">Category</label>
+                </div>
+              </div>
+              <!-- category dropdown -->
+              <!-- reason dropdown -->
+              <div class="box rightmar" style="margin-right: 0.5rem;">
+                <div class="input-box">
+                  <select class="form-select font_weight bulg_edit_drp" name="bulg_edit_drp" id="bulg_edit_drp" style="width: 10rem;" disabled="true">
+                    <!-- <option value="" class="hide_text" selected disabled id="select_color">Select</option> -->
+                  </select>
+                  <label for="inputSiteNameAdd" class="input-padding ">Reason</label>
+                </div>
+              </div>
+              <!-- reason dropwon -->
+              <!-- button  -->
+              <button class="btn fo bn saveNotes saveBtnStyle bulg_edit_submit" style="height:2.4rem;margin-right:1rem;">Save</button>
+              <!-- button -->
+
+            </div>
+          </div>
+          <!-- after change edit checkbox code end -->
+
+          <!-- new design for bulk edit button -->
+          <div class="bulk_edit_btn_case" style="" onclick="filter_show_hide()">
+            <div class="bulk_edit_enable" style="">
+              <div style="width:20%;text-align:center;">
+                <i class="fa fa-clipboard"></i>
+              </div>
+              <div style="width:80%;">
+                <span>Bulk Edit</span>
+              </div>
+            </div>
+          </div>
+          <!-- nre design for bulk edit button end -->
+        </div>
+          <!-- </div> -->
+
+        <!-- filter option code end -->
           <!--  -->
           <div class="tableContent downtimeHeader" style="display: none;top:20rem">
-            <div class="settings_machine_header sticky-top" style="position:fixed;left:4.5rem;right:0;top:19rem;margin-left: 0.5rem;margin-right: 0.5rem;background-color: white;">
+            <div class="settings_machine_header sticky-top" style="position:fixed;left:4.5rem;right:0;top:23rem;margin-left: 0.5rem;margin-right: 0.5rem;background-color: white;z-index:100;">
               <div class="row paddingm">
-                  <div class="col-sm-1 p3 paddingm">
+                  <div class="col-sm-1 p3 paddingm" style="width:3%;">
+                      <input type="checkbox" class="select_item" id="select_all_checkbox" style="height:1rem;width:1rem;margin:auto;">
+                  </div>
+                  <div class="col-sm-1 p3 paddingm" style="display:flex;flex-direction:row;">
                     <p class="basic_header">START TIME</p>
                   </div>
                   <div class="col-sm-1 p3 paddingm" style="word-wrap: break-word;flex-wrap: wrap;">
@@ -362,23 +812,23 @@ input[type=number] {
                   <div class="col-sm-1 p3 paddingm">
                     <p class="basic_header">CATEGORY</p>
                   </div>
-                  <div class="col-sm-2 p3 paddingm">
+                  <div class="col-sm-2 p3 paddingm" style="width:15%;">
                     <p class="basic_header">REASON</p>
                   </div>
-                  <div class="col-sm-2 p3 paddingm">
+                  <div class="col-sm-2 p3 paddingm" style="width:15%;">
                     <p class="basic_header">TOOL NAME</p>
                   </div>
-                  <div class="col-sm-2 p3 paddingm">
+                  <div class="col-sm-2 p3 paddingm" style="width:15%;">
                     <p class="basic_header">PART NAME</p>
                   </div>
-                  <div class="col-sm-2 p3 paddingm" style="justify-content: center;">
+                  <div class="col-sm-2 p3 paddingm" style="justify-content: center;width:15%;">
                     <p class="basic_header">ACTION</p>
                   </div>
               </div>
             </div>
 
           <!-- Graph split content will be displayed in this div -->
-            <div class="contentMachine paddingm " style="margin-top:12.3rem;">
+            <div class="contentMachine paddingm " style="margin-top:16.2rem;">
               <div class="split_input"></div>
             </div>
           </div> 
@@ -412,7 +862,7 @@ input[type=number] {
     </div>
   </div>
 </div>
-
+<!--  temporary hide this function notes model insertion as per the madhan sir instruction
 <div class="modal fade" id="EditSPlit" tabindex="-1" aria-labelledby="EditSPlit1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered rounded">
     <div class="modal-content bodercss">
@@ -424,7 +874,7 @@ input[type=number] {
                       <div class="input-box fieldStyle">  
                           <textarea class="form-control NotesValue" id="NotesValue" placeholder="Enter Your Notes Here.." rows="3"></textarea>    
                           <br>
-                          <!-- <input type="text" class="form-control" id="" name=""> -->
+                          <!-- <input type="text" class="form-control" id="" name=""> --
                           <label for="inputMachineName" class="input-padding">Notes</label>
                       </div>
                       <input type="text" name="" class="indexNotes" id="indexNotes" style="display: none;">
@@ -436,13 +886,20 @@ input[type=number] {
                 </div>
     </div>
   </div>
-</div>
+</div> -->
         
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> -->
+<!-- apexcharts js local -->
+<script src="<?php echo base_url(); ?>/assets/apexchart/dist/apexcharts.js"></script>
+
+
 <!-- Link For Calender -->
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+
+
+
 
 // Code for find the diference between two different timestamps...........
 // var difference = new Date(date2).getTime() - new Date(date1).getTime();
@@ -478,6 +935,791 @@ function datePick(date_shift){
   });
 }
 */
+
+
+// bulg edit functional code 
+
+
+// bulk edit hide and show function
+function filter_show_hide(){
+  $('.filter').css('display','inline');
+  $('.bulk_edit_btn_case').css('display','none');
+  $('.select_item').css('display','inline');
+  $('.npencil').css('display','none');
+  $('.splitclick').css('display','none');
+  $('.ndelete').css('display','none');
+
+
+  $('.tableContent').css('display','none');
+  $('.split_input').empty();
+  $('.edit_input').css('display','none');
+  $('.edit_display').css('display','inline');
+  $('.edit_input1').css('display','none');
+  $('.edit_display1').css('display','inline');
+  $('.edit_input2').css('display','none');
+  $('.edit_display2').css('display','inline');
+  $('.edit_input3').css('display','none');
+  $('.edit_display3').css('display','inline');
+  $('.edit_input4').css('display','none');
+  $('.edit_display4').css('display','inline');
+  $('.doneEdit').css('display','none');
+  $('.reasonInfo').css('display','inline');
+}
+
+// reset category dropdwon
+function reset_category(){
+ 
+  var cate_arr = $('.category_drp_checkbox');
+  // alert(cate_arr.length);
+  // for(var j=0;j<parseInt(cate_arr.length);j++){
+  //   cate_arr[j].checked=true;
+  //   $('.category_drp_checkbox:eq('+j+')').attr('checked',true);
+  // }
+  jQuery('.category_drp_checkbox').each(function(index){
+    cate_arr[index].checked=true;
+  });
+  
+}
+
+// bulk edit code downtime reasons all selected
+function reset_downtime_reasons(){
+  var rarr = $('.reason_drp_checkbox');
+  // alert(cate_arr.length);
+  jQuery('.reason_drp_checkbox').each(function(index){
+    rarr[index].checked=true;
+  });
+
+}
+
+// category dropdwon checkbox click
+/* temporary hide for this function
+$(document).on('click','.category_drp_checkbox',function(event){
+  event.preventDefault();
+  var dummy_in = $('.category_drp_checkbox');
+  var d_index = dummy_in.index($(this));
+  var tmp_che = $('.category_drp_checkbox');
+  if (tmp_che[d_index].checked ===true) {
+    tmp_che[d_index].checked = false;
+    // $('.category_drp_checkbox:eq('+d_index+')').removeAttr('checked');
+  }else{
+    tmp_che[d_index].checked = true;
+    // $('.category_drp_checkbox:eq('+d_index+')').attr('checked','checked');
+  }
+  alert(d_index);
+});
+*/
+// bulk edit label onclick category reasons code
+var count_category = 0;
+$(document).on('click','.filter_check_cate',function(event){
+  event.preventDefault();
+  var count1 = $('.filter_check_cate');
+  var index_val = count1.index($(this));
+  // alert(index_val);
+  var check_if = $('.category_drp_checkbox');
+  if (index_val === 0) {
+    // alert(index_val);
+    // alert(check_if[index_val].checked);
+    if (check_if[index_val].checked===false) {
+      // alert('ok');
+      check_if[0].checked=true;
+      check_if[1].checked=true;
+      check_if[2].checked=true;
+      $('.category_drp_checkbox').attr('checked','checked');
+      count_category = 2;
+      
+    }else{
+      count_category = 0
+      $('.category_drp_checkbox').removeAttr('checked');
+     
+    }
+    // $('.category_drp_checkbox').attr('checked','checked');
+  }else{
+    if (check_if[index_val].checked === false) {
+      check_if[index_val].checked=true;
+      count_category = parseInt(count_category)+1
+      $('.category_drp_checkbox:eq('+index_val+')').attr('checked','checked');
+      
+      // if (parseInt(count_category)==2) {
+      //   check_if[0].checked=true;
+       
+      //   // downtime_reason_filter();
+      // }
+
+    }else{
+      // check_if[index_val].checked=true;
+      count_category = parseInt(count_category)-1
+      if (parseInt(count_category)<2) {
+        check_if[0].checked=false;
+      }
+      
+      $('.category_drp_checkbox:eq('+index_val+')').removeAttr('checked');
+
+    }
+  }
+
+  // check the count
+  var count_cate = 0;
+  jQuery('.category_drp_checkbox').each(function(index){
+    if (check_if[index].checked===true) {
+      count_cate = parseInt(count_cate)+1;
+    }
+  });
+
+  // text alignment
+  // var temp_reason = "";
+  if (parseInt(count_cate)>=2) {
+    check_if[0].checked=true;
+    var temp_reason = null;
+    downtime_reason_filter(temp_reason);
+    $('#text_category_drp').text('All Categories');
+  }else if(parseInt(count_cate)>0){
+    var temp_reason = getcategory_arr();
+    downtime_reason_filter(temp_reason[0]);
+    $('#text_category_drp').text(count_cate+' Selected');
+   
+  }
+  else{
+    var temp_reason = null;
+    downtime_reason_filter(temp_reason);
+    // reset_category();
+    $('#text_category_drp').text('No Selected');
+  }
+  $('#text_reason').text('All Reasons');
+
+});
+
+// bulk edit label onclick downtime reasons code
+$(document).on('click','.filter_check_reason',function(event){
+  event.preventDefault();
+
+  var countr = $('.filter_check_reason');
+  var inval_reason = countr.index($(this));
+  var check_reason_if = $('.reason_drp_checkbox');
+  if (inval_reason == 0) {
+    if (check_reason_if[0].checked === true) {
+      $('.reason_drp_checkbox').removeAttr('checked');
+      // reset_downtime_reasons();
+      $('#text_reason').text('No Reasons');
+    }else{
+      $('.reason_drp_checkbox').attr('checked',true);
+      jQuery('.reason_drp_checkbox').each(function(index) {
+          check_reason_if[index].checked=true;
+
+      });
+      $('#text_reason').text('All Reasons');
+    }
+
+  }else if(parseInt(inval_reason)>0){
+
+    if (check_reason_if[inval_reason].checked === false) {
+      check_reason_if[inval_reason].checked=true;
+      $('.reason_drp_checkbox:eq('+inval_reason+')').attr('checked','checked');
+      
+
+    }else{
+      $('.reason_drp_checkbox:eq('+inval_reason+')').removeAttr('checked');
+    }
+
+    // selected reasons
+    
+    var reason_selected_count = 0;
+    jQuery('.reason_drp_checkbox').each(function(index){
+      if (check_reason_if[index].checked===true) {
+        reason_selected_count = parseInt(reason_selected_count)+1;
+      }
+    });
+    var reason_select_leng = $('.reason_drp_checkbox').length;
+    reason_select_leng = parseInt(reason_select_leng)-1;
+    if (parseInt(reason_selected_count)>=parseInt(reason_select_leng)) {
+      if(check_reason_if[0].checked===true){
+        check_reason_if[0].checked=false;
+        $('#text_reason').text(parseInt(reason_selected_count)-1+' Selected');
+      }else{
+        check_reason_if[0].checked=true;
+        $('#text_reason').text('All Reasons');
+      }
+    
+    }else if((parseInt(reason_selected_count)<parseInt(reason_select_leng)) && (parseInt(reason_selected_count)>0)){
+      $('#text_reason').text(parseInt(reason_selected_count)+' Selected');
+    }else{
+      // reset_downtime_reasons();
+      $('#text_reason').text('No Reasons');
+    }
+
+  }
+
+  
+});
+
+// 
+
+// select all checkbox click event function
+// bulg edit code
+$(document).on('click','#select_all_checkbox',function(event){
+  var check = $('#select_all_checkbox').prop('checked');
+
+  if (check === true) {
+    var val_arr = $('.select_item');
+    for(var i=0;i<val_arr.length;i++){
+      if (val_arr[i].checked === false) {
+        val_arr[i].checked = true;
+        $('.select_item:eq('+i+')').attr('checked','checked');
+      }
+    }
+    // $('.select_item').attr('checked','checked');
+  }else{
+    $('.select_item').removeAttr('checked');
+  }
+    //$('.select_item').attr('checked','checked');
+});
+
+// filter option dropdown checkbox
+var filter_expanded = false;
+
+function category_drp() {
+  // event.preventDefault();
+
+var checkboxes = document.getElementsByClassName("filter_checkboxes");
+if (!filter_expanded) {
+    // checkboxes.style.display = "block";
+    console.log("just click");
+    $('.filter_checkboxes').css("display","block");
+    filter_expanded = true;
+} else  {
+    // checkboxes.style.display = "none";
+    var category_drp = "";
+    var category_arr_drp_tmp = getcategory_arr();
+    var cate_leng = category_arr_drp_tmp.length;
+    if (parseInt(cate_leng)>2) {
+      category_drp = null;
+    }else{
+      category_drp = category_arr_drp_tmp[0];
+    }
+    // console.log("after select category dropdwon");
+    console.log("category_drp");
+    downtime_reason_filter(category_drp);
+    $('#text_reason').text('All Reasons');
+    $('.filter_checkboxes').css("display","none");
+    filter_expanded = false;
+}
+}
+
+
+// filter multi select dropdwon downtime reasons
+var reason_expand = false;
+function reason_multi_drp(){
+  var checkboxes = document.getElementsByClassName("filter_checkboxes_reason");
+  if (!reason_expand) {
+      // checkboxes.style.display = "block";
+    
+      // console.log(category_drp);
+      $('.filter_checkboxes_reason').css("display","block");
+      reason_expand = true;
+  } else {
+      // checkboxes.style.display = "none";
+      $('.filter_checkboxes_reason').css("display","none");
+      reason_expand = false;
+  }
+}
+
+// start time till onchange
+$(document).on('change','#start_time_till',function(event){
+  
+  event.preventDefault();
+  var start_time_til = $('#start_time_till').val();
+  if (start_time_til != null || start_time_til !="") {
+    var start_time_start = $('#start_time_from').val();
+    if ((start_time_start !=null) && (start_time_start!="") ){
+      // console.log(start_time_start);
+      // console.log(start_time_til); 
+      $('#apply_filter_btn').css("color","white");
+      $('#apply_filter_btn').css("background-color","#005abc");
+      $('#apply_filter_btn').css("opacity","1");
+    }
+  }
+
+});
+
+// start time from onchange
+$(document).on('change','#start_time_from',function(event){
+  event.preventDefault();
+  var start_time_from = $('#start_time_from').val();
+  if (start_time_from !=null || start_time_from !="") {
+    var start_time_till = $('#start_time_till').val();
+    if ((start_time_till !=null) && (start_time_till !="")) {
+      // console.log(start_time_from);
+      // console.log(start_time_till);
+      $('#apply_filter_btn').css("color","white");
+      $('#apply_filter_btn').css("background-color","#005abc");
+      $('#apply_filter_btn').css("opacity","1");
+    }
+  }
+});
+
+// reset image this function reset the records display div
+$(document).on('click','.reset_img',function(event){
+
+  event.preventDefault();
+  $('.split_input').empty();
+  var stime = $('#shift_start_time_label').text();
+  var etime = $('#shift_end_time_label').text();
+  // console.log("end time start time");
+  // console.log(stime);
+  $('#start_time_from').val(stime);
+  $('#start_time_till').val(etime);
+  // $('#bulg_drp_category').val('');
+  // this function  is reset the category dropdwon all selected function
+  reset_category();
+  $('#text_category_drp').text('All Categories');
+  $('#text_reason').text('All Reasons');
+  var category_tmp = null;
+  downtime_reason_filter(category_tmp);
+});
+
+// filter downtime reasons dropdwon function
+function downtime_reason_filter(category_temp){
+  // var cate_arr = getcategory_arr(); 
+  // var arr_leng = cate_arr.length;
+  $('.filter_checkboxes_reason').empty();
+  if (category_temp === null) {
+    $.ajax({
+      url:"<?php echo base_url(); ?>/PDM_controller/downtime_reason_bulgedit",
+      method:"POST",
+      dataType:"json",
+      success:function(res){
+        // console.log("reason dropdwon");
+        // console.log(res);
+
+        var element = $();
+        $('.filter_checkboxes_reason').append('<div class="filter_check_reason" style=""><div class="reason_drp_check" style=""><input type="checkbox" id="one" class="reason_drp_checkbox" value="all_reason"/></div><div class="reason_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
+        res.forEach(function(item){
+          // console.log(item.downtime_reason_id);
+          if (item.downtime_reason==="Tool Changeover") {
+            
+          }else{
+            // element = element.add('<option value="'+item.downtime_reason+'">'+item.downtime_reason+'</option>');
+            element = element.add('<div class="filter_check_reason" style=""><div class="reason_drp_check" style=""><input type="checkbox" id="one" class="reason_drp_checkbox" value="'+item.downtime_reason+'"/></div><div class="reason_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
+            $('.filter_checkboxes_reason').append(element);
+          }
+        
+        });
+        // downtime reasons all reasons selection funciton [reset the multiselect dropdwon]
+        reset_downtime_reasons();
+      },
+      error:function(err){
+        console.log(err);
+      },
+    });
+  }
+  else if(category_temp!=null){
+    // selected_cate_reasons(cate_arr[0]);
+    // console.log("ok");
+    // console.log(category_temp);
+    category_based_reson(category_temp);
+  }
+
+  
+ 
+}
+
+
+// bulk edit this function get category array for before filter submission
+function getcategory_arr(){
+  const temp_arr = [];
+  var loop_cate = $('.category_drp_checkbox').val();
+  $('.category_drp_checkbox').each(function(){ 
+    if($(this).is(':checked')){
+      temp_arr.push($(this).val());
+    }           
+  });
+  return temp_arr;
+
+}
+
+// after change category update the downtime reason dropdwon
+/* this function not now
+function after_cate(){
+  alert('ji');
+  var category_drp = "";
+  var category_arr_drp_tmp = getcategory_arr();
+  var cate_leng = category_arr_drp_tmp.length;
+  if (parseInt(cate_leng)>2) {
+    category_drp = null;
+  }else{
+    category_drp = category_arr_drp_tmp[0];
+  }
+  console.log("after select category dropdwon");
+  console.log(category_drp);
+  downtime_reason_filter(category_drp);
+}
+*/
+
+// get filter reason array
+function getreason_arr(){
+  const tarr = [];
+  var loop_reason = $('.reason_drp_checkbox').val();
+  $('.reason_drp_checkbox').each(function(){
+    if ($(this).is(':checked')) {
+      tarr.push($(this).val());
+    }
+  });
+  return tarr;
+}
+
+// filter function
+function filter_btn_call(){
+  var start_time_from = $('#start_time_from').val();
+    var start_time_till = $('#start_time_till').val();
+    if (((start_time_from!=null) && (start_time_from!="")) && ((start_time_till!=null) && (start_time_till!=""))) {
+      // var category_drp = $('#bulg_drp_category').val();
+      // category value getting
+      var category_drp = "";
+      const category_arr = getcategory_arr();
+      cate_leng = category_arr.length;
+      if (parseInt(cate_leng)>2) {
+        category_drp = null;
+      }else{
+        category_drp = category_arr[0];
+      }
+
+      // console.log(category_arr);
+      // console.log(category_drp);
+      // var reason_drp = $('#bulgedit_downtime_reason_drp').val();
+      // reason dropdown
+      var reason_drp = "";
+      const reason_arr = getreason_arr();
+      var rleng = $('.reason_drp_checkbox').length;
+      if (parseInt(rleng)===parseInt(reason_arr.length)) {
+        reason_drp = null;
+      }else if(parseInt(reason_arr.length)>0) {
+        reason_drp = reason_arr
+      }
+      // console.log(category_drp);
+      // console.log("Reason Array");
+      // console.log(reason_drp);
+      var machine_id = $('#Production_MachineName').val();
+      var sdate = $('#Production_shift_date').val();
+      var sid = $('#RejectShift').val();
+      var shift_id = sid.split('0');
+      const tmp_sdate = sdate.split("/");
+      var sdate_tmp = tmp_sdate[2]+'-'+tmp_sdate[0]+'-'+tmp_sdate[1];
+      // alert(shift_id);
+      // alert(reason_drp);
+      // alert(start_time_from);
+      // alert(start_time_till);
+      $('.split_input').empty();  
+      $.ajax({
+        url:"<?php echo base_url(); ?>/PDM_controller/apply_filter_get_data",
+        method:"POST",
+        dataType:"json",
+        data:{
+          start_time:start_time_from,
+          end_time:start_time_till,
+          category:category_drp,
+          dreason:reason_drp,
+          machine_id:machine_id,
+          shift_date:sdate_tmp,
+          sid:shift_id[0],
+        },
+        success:function(res){
+          // console.log("apply filter");
+          // console.log(res);
+          if (parseInt(res.length)>0) {
+            var z=0;
+            res.forEach(function(item){
+              // console.log(item.start_time);
+
+
+              data_time.push(item.start_time);
+              data_time.push(item.end_time);
+              data_array.push(item.split_duration);
+              split_ref.push(item.split_id);
+              data_notes.push(item.notes);
+
+              var reason = findDownReason(item.downtime_reason_id);
+              $('.downtimeHeader').css("display","block");
+              var partid = item.part_id;
+              var toolid = item.tool_id;
+              drawGraph(item.start_time,item.split_duration,item.end_time,item.machine_event_id,item.notes,reason,partid,toolid,item.split_id,item.last_updated_by,item.last_updated_on);
+              $('.ndelete').css("display","none");
+              $('.nsplit').css('display','none');
+              $(".delete-split:eq(0)").css("display","none");
+              $(".circleMatch:eq(0)").css("display","block");
+              $('.npencil').css('display','none');
+              DownReasonUpdate(z,reason,item.downtime_reason_id);
+              DownToolUpdate(z,toolid);
+              DownPartUpdate(z,partid,toolid);
+
+              z = parseInt(z)+1;
+            
+            });
+          }else{
+            // console.log("No Records Found!!!");
+            $('.split_input').html('<p class="no_record">No Records Found!!</p>');
+          }
+         
+          $("#overlay").fadeOut(300);
+        },
+        error:function(err){
+          console.log(er);
+          // alert('Sorry Try Again');
+          $("#overlay").fadeOut(300);
+        }
+      });
+
+    }
+}
+
+// apply filter submission button
+$(document).on('click','#apply_filter_btn',function(event){
+    event.preventDefault();
+    console.log("filter button");
+    $("#overlay").fadeIn(300);
+   
+    // $('.ndelete').css('display','none');
+    filter_btn_call();
+   
+    // $('.splitclick').css('display','none');
+  
+});
+
+
+// after click checkbox change ui 
+$(document).on('change','.select_item',function(event){
+
+  event.preventDefault();
+  var count = 0;
+  var count_len = $('.select_item').length;
+  var checkbox = $('.select_item');
+  if (parseInt(count_len)>1) {
+    
+  
+    for(var i=0;i<parseInt(count_len);i++){
+      // console.log(checkbox[i].checked);
+      if (checkbox[i].checked === true) {
+        count = parseInt(count)+1;
+      }
+    }
+    if (parseInt(count)>0) {
+      // console.log("one then more checkbxes selected"+count);
+      bulg_edit_dropdown();
+      $('.filter').css("display","none");
+      $('.bulg_edit_ui').css("display","inline");
+      $('#bulg_edit_drp').val('');
+      $('#bulg_edit_drp').attr("disabled",true);
+      $('#bulg_edit_category_drp').val('');
+
+
+      $('.note_edit').css('display','none');
+      $('.splitclick').css("display","none");
+      $('.edit_visible').css("display","none");
+      $('.ninfo').css("display","none");
+      $('.ndelete').css('display','none');
+      $('.npencil').css('display','none');
+
+      // $('.action_div').css("display","none");
+      var edit_count = 0;
+      jQuery('.select_item').each(function(index){
+        if (checkbox[index].checked === true) {
+          edit_count = parseInt(edit_count)+1;
+        }
+      });
+      var tmp = parseInt(count_len)-1;
+      if (parseInt(tmp)==parseInt(edit_count)) {
+        if(checkbox[0].checked===true){
+          checkbox[0].checked=false;
+        }else{
+          checkbox[0].checked=true;
+        }
+      }
+
+    }else{
+      // console.log("no checkboxes selected"+count);
+      $('.filter').css("display","inline");
+      $('#bulg_edit_drp').val('');
+      $('#bulg_edit_category_drp').val('');
+      $('.bulg_edit_ui').css("display","none");
+
+      $('.ninfo').css("display","inline");
+      $('.edit_visible').css("display","inline");
+      $('.splitclick').css("display","none");
+      $('.ndelete').css('display','none');
+      $('.npencil').css('display','none');
+      // var del = $('.ndelete');
+      // jQuery('.select_item').each(function(index){
+      //     if ($('.ndelete:eq('+index+')').attr("splitref")==="0") {
+      //       $('.ndelete:eq('+index+')').css('display','none');
+      //     }else{
+      //       $('.ndelete:eq('+index+')').css('display','inline');
+      //     }
+      // });
+      // $('.ndelete:eq(0)').css('display','none');
+      // $('.ndelete').css('display','inline');
+      // $('.action_div').css("display","inline");
+    }
+  }
+  else{
+    $('.select_item').removeAttr('checked');
+    alert("only on filter or graph ");
+  }
+
+  // $('.filter').css("display","none");
+  // $('.bulg_edit_ui').css("display","inline");
+
+});
+
+// after click checkbox and change category dropdown function
+$(document).on('change','#bulg_edit_category_drp',function(event){
+  event.preventDefault();
+
+  var get_category =  $('#bulg_edit_category_drp').val();
+  if ((get_category!="") && (get_category!=null)) {
+    
+    $('#bulg_edit_drp').removeAttr("disabled");
+    bulg_edit_dropdown(get_category);
+  }
+
+  
+});
+
+// bulg edit submission function 
+$(document).on('click','.bulg_edit_submit',function(event){
+  event.preventDefault();
+  $("#overlay").fadeIn(300);
+  var bulg_reason = $('#bulg_edit_drp').val();
+  var bulg_category = $('#bulg_edit_category_drp').val();
+  var machine_id = $('#Production_MachineName').val();
+  var shift_date = $('#Production_shift_date').val();
+  var shift_id = $('#RejectShift').val();
+  const sid = shift_id.split("0");
+  const sdate = shift_date.split("/");
+  if ((bulg_category!="") && (bulg_category!=null)) {
+    if ((bulg_reason!="")&& (bulg_reason!=null)) {
+      // alert("all values are correct");
+
+      // checked value only get 
+      var check_box = $('.select_item');
+      const start_time_arr = [];
+      const end_time_arr = [];
+      const machine_event_id_arr = [];
+      const split_id_arr = [];
+      // getting values condition
+      if (check_box[0].checked === true) {
+        // this condition getting all records values
+        for(c=0;c<parseInt(check_box.length)-1;c++){
+          if (check_box[c].checked === true) {
+            var tmp_index = parseInt(c);
+            
+            var tmp_stime = $('.startTime:eq('+parseInt(tmp_index)+')').text();
+            var tmp_etime = $('.endTime:eq('+parseInt(tmp_index)+')').text();
+            var tmp_meid = $('.splitclick:eq('+parseInt(tmp_index)+')').attr("refval");
+            var tmp_spid = $('.splitclick:eq('+parseInt(tmp_index)+')').attr("splitref");
+
+            // pushing record
+            start_time_arr.push(tmp_stime);
+            end_time_arr.push(tmp_etime);
+            machine_event_id_arr.push(tmp_meid);
+            split_id_arr.push(tmp_spid);
+          }
+        }
+      }
+      else if(check_box[0].checked !=true){
+        // this condition getting selected values
+        for(c=0;c<parseInt(check_box.length);c++){
+          if (check_box[c].checked === true) {
+            var tmp_index = parseInt(c)-1;
+            
+            var tmp_stime = $('.startTime:eq('+parseInt(tmp_index)+')').text();
+            var tmp_etime = $('.endTime:eq('+parseInt(tmp_index)+')').text();
+            var tmp_meid = $('.splitclick:eq('+parseInt(tmp_index)+')').attr("refval");
+            var tmp_spid = $('.splitclick:eq('+parseInt(tmp_index)+')').attr("splitref");
+
+            // pushing record
+            start_time_arr.push(tmp_stime);
+            end_time_arr.push(tmp_etime);
+            machine_event_id_arr.push(tmp_meid);
+            split_id_arr.push(tmp_spid);
+          }
+        }
+      }
+
+      // display selected records
+      // console.log("after click bulg edit submission");
+      // console.log(start_time_arr);
+      // console.log(end_time_arr);
+      // console.log(machine_event_id_arr);
+      // console.log(split_id_arr);
+
+      var tmp_sid = sid[0];
+      var sdate_tmp = sdate[2]+'-'+sdate[0]+'-'+sdate[1];
+      // bulg edit ajax function
+      $.ajax({
+        url:"<?php echo base_url(); ?>/PDM_controller/bulg_updation",
+        method:"POST",
+        dataType:"json",
+        data:{
+          start_time_ar:start_time_arr,
+          end_time_ar:end_time_arr,
+          machine_event_arr:machine_event_id_arr,
+          split_arr:split_id_arr,
+          dcategory:bulg_category,
+          dreason:bulg_reason,
+          mid:machine_id,
+          sid:tmp_sid,
+          sdate:sdate_tmp,
+
+        },
+        success:function(res){
+          // console.log(res);
+          if (res == true) {
+            // $('#bulg_edit_category_drp').val('');
+            // $('#bulg_edit_drp').val('');
+            $('.bulg_edit_ui').css("display","none");
+            $('.filter').css("display","inline");
+            // $('.split_input').empty();
+
+            // refresh filter input 
+            // $('#start_time_from').val('');
+            // $('#start_time_till').val('');
+            // $('#bulg_drp_category').val('');
+            // $('.category_drp_checkbox').attr('checked',true);
+            $('#bulgedit_downtime_reason_drp').val('');
+            $('.select_item').removeAttr("checked");
+
+            // $('.filterbtnstyle').css("color","white");
+            // $('.filterbtnstyle').css("background-color","grey");
+            // $('.filterbtnstyle').css("opacity","0.7");
+            // downtime graph refreshment
+            filter_btn_call();
+            getDownTimeGraph();
+            getTotalCount();
+
+            alert("Bulk Updation SuccessFully");
+          }
+          $("#overlay").fadeOut(300);
+        },
+        error:function(err){
+          console.log(err);
+          alert("Sorry Try Again");
+          $("#overlay").fadeOut(300);
+        },
+      });
+
+    }else{
+      alert("Required field reason");
+    }
+  }else{
+    alert("Required field category");
+  }
+});
+
+
+// bulg edit function code end
+
+
+
+
+
 
 var UserNameRef = "<?php //echo($this->data['user_details'][0]['User_Name'])?>";
 var UserRoleRef ="<?php //echo($this->data['user_details'][0]['Role'])?>";
@@ -567,6 +1809,7 @@ $(document).ready(function(){
 
   
   
+  
 // document.getElementsByClassName('circleMatch')[0].style.display = "inline";
   // var delete_icon = document.getElementsByClassName('delete-split');
   // delete_icon[0].style.display = "none";
@@ -599,7 +1842,7 @@ $(document).ready(function(){
 // this function for dropdown shift date design changes function for the border crosing the table
 $(document).on('click','#Production_shift_date',function(){
   $( "#ui-datepicker-div" ).css( "border","1px solid #dddddd" );
-  $('#ui-datepicker-div').css("z-index","2000");
+  $('#ui-datepicker-div').css("z-index","6000");
 });
 
 // then if you change the machine dropdown to enable the date input
@@ -617,6 +1860,10 @@ $(document).on('change','#Production_MachineName',function(){
     $('.fixtabletitle').css("z-index",'100');
     $('.split_input').empty();
     $('.downtimeHeader').css("display","none");
+
+    // filter option reset
+    $('.filter').css('display','none');
+    $('.bulk_edit_btn_case').css('display','none');
 
   if (machinename == "") {
     $('#Production_shift_date').attr('readonly',true); 
@@ -687,6 +1934,11 @@ $(document).on('change','#Production_shift_date',function(){
     // $('#RejectShift').prop('selectedIndex',0);
     $('.split_input').empty();
     $('.downtimeHeader').css("display","none");
+
+    // filter option display 
+    $('.filter').css('display','none');
+    $('.bulk_edit_btn_case').css('display','none');
+
 
     var formattedDate = new Date(production_shift_date);
     var d = formattedDate.getDate();
@@ -810,6 +2062,33 @@ $(document).on('change','#RejectShift',function(){
     $('.split_input').empty();
     getDownTimeGraph();
     getTotalCount();
+    $('.filter').css('display','inline');
+
+    
+    // reset the bulg edit inputs and button
+    $('#start_time_from').val('');
+    $('#start_time_till').val('');
+    // $('#bulg_drp_category').val('');
+
+    $('#bulgedit_downtime_reason_drp').val('');
+    // $('.filterbtnstyle').css("color","white");
+    // $('.filterbtnstyle').css("background-color","grey");
+    // $('.filterbtnstyle').css("opacity","0.7");
+
+    // bulg edit update inputs reset
+    // $('#bulg_edit_category_drp').val('');
+    $('#bulg_edit_drp').val('');
+    reset_category();
+    $('#text_category_drp').text('All Categories');
+    $('#text_reason').text('All Reasons');
+    $('.bulk_edit_btn_case').css('display','none');
+    
+    var category_tmp = null;
+    downtime_reason_filter(category_tmp);
+
+
+    // $('.category_drp_checkbox').attr('checked',true);
+
   }
   
 });
@@ -870,10 +2149,10 @@ $(document).on("click", ".deleteRec", function(){
           $('.ReasonDuration:eq('+i+')').text(data_array[i]);
           $('.sval:eq('+i+')').val(data_array[i]);
         }
-    // alert("Start ="+startTime+"Duration ="+duration+" End ="+endTime);
-    // alert(refValSPlit);
-    const tmp_arr = [machineEventIdRef,endTime,duration,refValSPlit,startTime];    
-    // Update after Delete......
+      // alert("Start ="+startTime+"Duration ="+duration+" End ="+endTime);
+      // alert(refValSPlit);
+      const tmp_arr = [machineEventIdRef,endTime,duration,refValSPlit,startTime];    
+      // Update after Delete......
       $.ajax({
         url: "<?php echo base_url('PDM_controller/deleteSPlit'); ?>",
         type: "POST", 
@@ -891,19 +2170,23 @@ $(document).on("click", ".deleteRec", function(){
           getSplittedData(machineEventIdRef,overall_duration_value);
           getDownTimeGraph();
           getTotalCount();
+          $('.select_item').css('display','none');
           $("#overlay").fadeOut(300);
+        
         },
         error:function(err){
           alert("Something went wrong!!");
           getSplittedData(machineEventIdRef,overall_duration_value);
           getDownTimeGraph();
           getTotalCount();
+          $('.select_item').css('display','none');
           $("#overlay").fadeOut(300);
+        
         }    
-      });
-      
-    });
+      });      
+});
 
+/* temporary hide this code for notes save 
     var IndexNotes = 0;
     $(document).on("click", ".addNotesReason", function(){
       var index = $('.addNotesReason').index(this);
@@ -919,7 +2202,7 @@ $(document).on("click", ".deleteRec", function(){
         var x = $('.NotesValue').val();
         data_notes[IndexNotes] = x;
     });
-
+*/
     $('#EditSPlit').on('hidden.bs.modal', function () {
       $('.NotesValue').val("");
     });
@@ -934,7 +2217,7 @@ $(document).on("click", ".deleteRec", function(){
         $(this).siblings('.delete-split').css("display","none");
         $(this).siblings('.splitclick').css("display","none");
         $(this).siblings('.doneEdit').css("display","block");
-        $(this).siblings('.addNotesReason').css("display","block");
+        // $(this).siblings('.addNotesReason').css("display","block");
         //$('.paraEdit').css("display","none");
       }
       else{
@@ -957,9 +2240,10 @@ $(document).on("click", ".deleteRec", function(){
       var elements = $();
       var id = 0;
       $('.DownReason:eq('+index_value+')').empty();
+      // console.log(down_reason_collection);
       down_reason_collection.forEach(function(item){
         if (val == item[1]) {
-          id = item[0];
+          id = item[0]; 
           elements = elements.add('<option value='+item[0]+' dvalue='+item[0]+' selected="true">'+item[2]+'</option>');
         }
       });
@@ -1088,7 +2372,7 @@ $(document).on("click", ".deleteRec", function(){
     });
 
     });
-
+    /* temporary hide for this function for strategy
     $(document).on("click", ".edit-split", function(){
         if($(this).children(".edit-Subsplit").css('display').toLowerCase() == 'none'){
             // $(".edit-subMenu").css("display","block");
@@ -1106,6 +2390,7 @@ $(document).on("click", ".deleteRec", function(){
             }
         });
     });
+    */
 
     // var cal_count = 0;
    function drawGraph(start,svalue,end,machineEventRef,notes,reason=null,part=null,tool=null,splitId,last_updated_by,last_updated_on){
@@ -1139,45 +2424,47 @@ $(document).on("click", ".deleteRec", function(){
     }
 
     if (notes) {
-      var notes_mapped = "info_reason.png";
+      var notes_mapped = "notes.png";
     }
     else{
-      var notes_mapped = "info.png";
+      var notes_mapped = "notes.png";
     }
     
+    // var last_updated_name = getlast_updated_name(last_updated_by);
    var cal_count = 1;
     $( ".split_input" ).append('<div id="settings_div" class="rowData">'
             +'<div class="row paddingm">'
-                +'<div class="col-sm-1 col marleft" ><p class="startTime">'+start+'</p></div>'
-                +'<div class="col-sm-1 col marleft" >'
+                +'<div class="" style="width:3%;display:flex;padding:0;"><input type="checkbox" style="height:1rem;width:1rem;margin:auto;" class="select_item"></div>'
+                +'<div class="col-sm-1 col marleft" style="width:8.6%;"><p class="startTime">'+start+'</p></div>'
+                +'<div class="col-sm-1 col marleft" style="width:8%;">'
                     +'<input type="number" value="'+val_second+'" class="form-control inEdit form-control-md sval edit_input" id="val_g" required="true" name="val_g[]">'
                     +'<p class="paraEdit ReasonDuration edit_display" id="ReasonDuration">'+svalue+'</p>'
                 +'</div>'        
-                +'<div class="col-sm-1 col marleft" >'
+                +'<div class="col-sm-1 col marleft" style="width:8.5%;">'
                     +'<p class="endTime">'+end+'</p>'
                 +'</div>'
-                +'<div class="col-sm-1 col marleft" >'
+                +'<div class="col-sm-1 col marleft" style="width:8.4%;">'
                     +'<select class="form-select inEdit marginlr DownCategoryValue edit_input1 font-size">'
                       // +'<option value="planned">Planned</option>'
                       // +'<option value="unplanned" selected>Unplanned</option>'
                     +'</select>'
                     +'<p class="paraEdit ReasonCategory edit_display1" id="ReasonCategory">Unplanned</p>'
                 +'</div>'
-                +'<div class="col-sm-2 col marleft DownReasonDiv" >'
+                +'<div class="col-sm-2 col marleft DownReasonDiv" style="width:15%;">'
                   +'<select class="form-select inEdit marginlr DownReason DownReasonValue edit_input2 font-size">'
                       // +'<option>Tool Changeover</option>'
                       // +'<option>Break Down</option>'
                   +'</select>'
                   +'<p class="paraEdit ReasonName edit_display2" id="ReasonName">'+reason+'</p>'
                 +'</div>'
-                +'<div class="col-sm-2 col marleft" >'
+                +'<div class="col-sm-2 col marleft" style="width:14.8%;">'
                   +'<select class="form-select inEditValue marginlr DownTool edit_input3 font-size">'
                       // +'<option>Tool Name1</option>'
                       // +'<option>Tool Name2</option>'
                   +'</select>'
                   +'<p class="paraEditValue  edit_display3 ToolName">'+toolName+'</p>'
                 +'</div>'
-                +'<div class="col-sm-2 col marleft" >'
+                +'<div class="col-sm-2 col marleft" style="width:14.9%;">'
 
                   // +'<select class="form-select inEditValue marginlr DownPart edit_input4 font-size">'
                   //     // +'<option>Part Name1</option>'
@@ -1211,16 +2498,16 @@ $(document).on("click", ".deleteRec", function(){
                       //   +'</div>'
                       // +'</div>'
                     +'</div>'
-                  +'</div>'
+                  +'</div>' 
                   
                   +'<p class="paraEditValue  PartNameValue edit_display4" title="'+partName+'" id_check="'+part+'">'+partName+'</p>'
                 +'</div>'
-                +'<div class="col-sm-2 col marleft ICONDiv">'
-                    +'<span class="doth optionLeft splitclick center-align clickdb dataUpdateVal nsplit" dvalue="'+end+'"  svalue="'+svalue+'" evalue="'+end+'" refVal="'+machineEventRef+'" splitRef="'+splitId+'" reason="'+reason+'" tool="'+tool+'" part="'+part+'"><img src="<?php echo base_url('assets/img/split.png'); ?>" class="icon_img_wh  ICON"></span>'
+                +'<div class="col-sm-2 col marleft ICONDiv action_div" style="width:18.6%;">'
+                    +'<span class="doth optionLeft splitclick center-align clickdb dataUpdateVal nsplit filter_css" dvalue="'+end+'"  svalue="'+svalue+'" evalue="'+end+'" refVal="'+machineEventRef+'" splitRef="'+splitId+'" reason="'+reason+'" tool="'+tool+'" part="'+part+'"><img src="<?php echo base_url('assets/img/split.png'); ?>" class="icon_img_wh  ICON"></span>'
                     +'<span class="doth addNotes edit_visible npencil"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="icon_img_wh ICON "></span>'
-                    +'<span class="optionLeft doth addNotesReason dedit" value=""><img src="<?php echo base_url('assets/img/notes.png'); ?>" class="icon_img_wh ICON"></span>'
+                    // +'<span class="optionLeft doth addNotesReason dedit" value=""><img src="<?php echo base_url('assets/img/notes.png'); ?>" class="icon_img_wh ICON"></span>'
                     +'<span class="doth doneEdit dcheck" split="1" ><img src="<?php echo base_url('assets/img/tick.png'); ?>" class="icon_img_wh1 ICON" style="color:white;"></span>'
-                    +'<span class="doth edit-split ninfo reasonInfo" >'
+                    +'<span class="doth edit-split ninfo reasonInfo" onmouseover="check_info(this)" onmouseout="mouse_out_check(this)">'
                       +'<img src="<?php echo base_url()?>/assets/img/'+notes_mapped+'" class="icon_img_wh ICON info_click"  data_val="'+last_updated_by+'">'
                       +'<div class="edit-Subsplit" style="z-index:10;">'
                           +'<div style="display: flex;width: 100%;">'
@@ -1228,7 +2515,7 @@ $(document).on("click", ".deleteRec", function(){
                               +'<p class="marleft p1 pvalue">Last Updated by</p>'
                             +'</div>'
                             +'<div style="width: 50%;float: left;height: 100%;">'
-                              +'<p class="marleft pvalue"><span class="info_last_data"></span></p>'
+                              +'<p class="marleft pvalue"><span class="info_last_data">'+last_updated_by+'</span></p>'
                             +'</div>'
                           +'</div>'
                           +'<div style="display: flex;width: 100%;">'
@@ -1249,6 +2536,21 @@ $(document).on("click", ".deleteRec", function(){
                                 +'</div>'
                             +'</div>'
                           +'</div>'
+                      +'</div>'
+                      +'<div class="note_edit" style="z-index:10;" >'
+                        +'<div style="display:flex;width:100%;height:100%;">'
+                          +'<div class="box" style="width:80%;padding:0.5rem;padding-top:1.6rem;">'
+                            +'<div class="input-box fieldStyle" style="height:100%;">'
+                              +'<textarea class="form-control NotesValue" id="NotesValue" rows="3" value="'+notes+'" style="border-radius:0.8rem;height:100%;resize:none;">'+notes+'</textarea>'
+                              +'<label for="inputMachineName" class="input-padding">Notes</label>'
+                            +'</div>'
+                          +'</div>'
+                          +'<div style="width:20%;display:flex;justify-content:center;padding-bottom:1rem;">'
+                          +'<div style="display:flex;justify-content:center;align-items:flex-end;">'
+                            +'<img  src="<?php echo base_url()?>/assets/img/tick.png" class="icon_img_wh ICON note_sub_cl" style="width:2.2rem;height:2.2rem;" onclick="notes_submit()">'
+                          +'</div>'
+                          +'</div>'
+                        +'</div>'
                       +'</div>'
                     +'</span>'
                     +'<span class="doth delete-split ndelete" style="" refVal="'+machineEventRef+'" splitRef="'+splitId+'" svalue="'+svalue+'"><img src="<?php echo base_url('assets/img/delete.png'); ?>" class="icon_img_wh1 ICON" ></span>'
@@ -1298,6 +2600,10 @@ function getDownTimeGraph(){
                     const downtime_end_time_split = item.end_time.split(':');
                     $('.startTimeVal').html(downtime_start_time_split[0]+':'+downtime_start_time_split[1]);
                     $('.endTimeVal').html(downtime_end_time_split[0]+':'+downtime_end_time_split[1]);
+                    // graph load time set the input value
+                    $('#start_time_from').val(downtime_start_time_split[0]+':'+downtime_start_time_split[1]);
+                    $('#start_time_till').val(downtime_end_time_split[0]+':'+downtime_end_time_split[1]);
+
                     shift_stime = item.start_time;
                     shift_etime = item.end_time;
                   }
@@ -1430,6 +2736,8 @@ function getDownTimeGraph(){
                     },
                     events:{
                       click:function(event, chartContext, config){
+                       
+                        
                         if (config.seriesIndex >= 0) {
                           $('.split_input').empty();
                           //function for find the split records
@@ -1476,6 +2784,15 @@ function getDownTimeGraph(){
                                 calendar_array = [];
                                 if (((res['value'].length > 0) && (sname == "Inactive")) || ((res['value'].length > 0) && (sname == "Machine OFF"))) {
                                   
+                                  // bulk edit
+                                  $('.filter').css("display","none");
+                                  $('.bulk_edit_btn_case').css('display','inline');
+                                  // dipslay none in bulg edit submission
+                                  $('.bulg_edit_ui').css("display","none");
+                                  // bulg edit submission input value reset
+                                  $('#bulg_edit_drp').val('');
+                                  $('#bulg_edit_category_drp').val('');
+
                                   var z = 0;
                                   res['value'].forEach(function(item){
                                     calendar_array.push(item.calendar_date);
@@ -1513,6 +2830,8 @@ function getDownTimeGraph(){
                                     // else {
                                     //   $('.downtimeHeader').css("display","none");
                                     // }
+
+                                    $('.select_item').css('display','none');
 
                                     //function for retrive data......
                                     DownReasonUpdate(z,reason,downtime_reason_id);
@@ -1621,6 +2940,14 @@ function getDownTimeGraph(){
 
               var chart = new ApexCharts(document.querySelector("#chart"), options);
               chart.render();
+              // $('.filter').css("display","none");
+              // dipslay none in bulg edit submission
+              $('.bulg_edit_ui').css("display","none");
+              // bulg edit submission input value reset
+              $('#bulg_edit_drp').val('');
+              $('#bulg_edit_category_drp').val('');
+              // var tmp_val = null;
+              // downtime_reason_filter(tmp_val);
 
               // alert(data_duration);
               // DownReason();
@@ -1690,7 +3017,7 @@ function getDownTimeGraph(){
     var tempSplit = 0;
     var calendar_date="";
     var calendar_date_array = [];
-
+    // console.log(svalue);
     if (svalue === "") {
       alert('please select the value');
     }
@@ -1792,11 +3119,12 @@ function getDownTimeGraph(){
         //Draw Graph required values.....
         //drawGraph(start,svalue,end,machineEventRef,notes,reason=null,part=null,tool=null,splitRef);
         drawGraph(data_time[TmpIndex],data_array[i],data_time[parseInt(TmpIndex)+1],machineEventIdRef,down_notes[i],reason,part,tool,i);
-      
+        
         $(".delete-split:eq(0)").css("display","none");
         $(".circleMatch:eq(0)").css("display","block");
         TmpIndex = parseInt(TmpIndex)+2;
       }
+    
     
     var eventRefVal = $(this).attr('refVal');
     // Ajax function for store splitted value in database
@@ -1839,6 +3167,10 @@ function getDownTimeGraph(){
           getDownTimeGraph();
           getTotalCount();
         }
+        $('.select_item').css('display','none');
+        $('.filter').css('display','none');
+        $('.bulk_edit_btn_case').css('display','inline');
+       
       document.body.classList.remove('demo_class');
       $("#overlay").fadeOut(300);
       },
@@ -1895,7 +3227,7 @@ function getSplittedData(machineEventRef,svalue){
 
                 $(".delete-split:eq(0)").css("display","none");
                 $(".circleMatch:eq(0)").css("display","block");
-              
+                
                 machineEventIdRef = item.machine_event_id ;
 
                 overall_value = svalue;
@@ -1959,7 +3291,7 @@ $(document).on('click','.doneEdit',function(){
     $(this).siblings('.delete-split').css("display","block");
     $(this).siblings('.splitclick').css("display","block");
     $(this).css("display","none");
-    $(this).siblings('.addNotesReason').css("display","none");
+    // $(this).siblings('.addNotesReason').css("display","none");
     $(".delete-split:eq(0)").css("display","none");
     $(".delete-split:eq(0)").css("visibility","hidden");
 
@@ -1981,11 +3313,11 @@ $(document).on('click','.doneEdit',function(){
            
         });
 
-    notes = data_notes[index];
+    // notes = data_notes[index];
     if(parseInt(part_arr.length) === 0){
       part_arr = "empty";
     }
-    dataArray.push(category,reason,toolname,part_arr,machineEventRef,splitRef,machineID_ref,shift_date_ref,shift_Ref,notes);
+    dataArray.push(category,reason,toolname,part_arr,machineEventRef,splitRef,machineID_ref,shift_date_ref,shift_Ref);
 
     // console.log("data Array");
     // console.log(dataArray);
@@ -2011,6 +3343,7 @@ $(document).on('click','.doneEdit',function(){
           date_array:calendar_array
       },
       success:function(res_Site){
+        // console.log(res_Site);
         if (res_Site) {
           alert("Updated Successfully!!");
         } 
@@ -2023,6 +3356,7 @@ $(document).on('click','.doneEdit',function(){
         getSplittedData(machineEventIdRef,overall_duration_value);
         getDownTimeGraph();
         getTotalCount();
+        $('.select_item').css('display','none');
         $("#overlay").fadeOut(300);
       },
       error:function(res){
@@ -2033,6 +3367,7 @@ $(document).on('click','.doneEdit',function(){
         getSplittedData(machineEventIdRef,overall_duration_value);
         getDownTimeGraph();
         getTotalCount();
+        $('.select_item').css('display','none');
         $("#overlay").fadeOut(300);
       }
     });
@@ -2685,7 +4020,8 @@ function true_value(index_value,einput){
       
       
       // icons
-      document.getElementsByClassName('dedit')[i].style.display="none";
+      // for notes
+      // document.getElementsByClassName('dedit')[i].style.display="none";
       document.getElementsByClassName('dcheck')[i].style.display="none";
    
       document.getElementsByClassName('nsplit')[i].style.display="inline";
@@ -2715,7 +4051,8 @@ function true_value(index_value,einput){
     document.getElementsByClassName('edit_display2')[index_value].style.display="none";
   
     // icons
-    document.getElementsByClassName('dedit')[index_value].style.display="inline";
+    // for notes
+    // document.getElementsByClassName('dedit')[index_value].style.display="inline";
     document.getElementsByClassName('dcheck')[index_value].style.display="inline";
    
     document.getElementsByClassName('nsplit')[index_value].style.display="none";
@@ -2744,15 +4081,30 @@ function true_value(index_value,einput){
     });   
 }
 
+
+
 // get last updated by function
 $(document).on('click','.info_click',function(){
 
   var valu = $('.info_click');
   var index_val = valu.index($(this));
-  //alert(index_val);
+  $('.edit-Subsplit:eq('+index_val+')').css('display','none');
+  if ($('.note_edit:eq('+index_val+')').css('display') === "none") {
+    $('.note_edit').css('display','none');
+    $('.note_edit:eq('+index_val+')').css('display','inline');
+    // $('.edit-Subsplit:eq('+index_val+')').css('display','none');
+    // $('.edit-Subsplit').css('display','none');
+    $('.reasonInfo').removeAttr("onmouseover");
+  }else{
+    $('.note_edit:eq('+index_val+')').css('display','none');
+    $('.edit-Subsplit').css('display','none');
+    $('.edit-Subsplit:eq('+index_val+')').css('display','none');
+    $('.reasonInfo').attr("onmouseover","check_info(this)");
+  }
+  
   var last_updated_id = $(this).attr('data_val');
   //alert(last_updated_id);
-
+/*
   $.ajax({
     url:"<?php echo base_url('PDM_controller/graph_get_last_updated_by'); ?>",
     method:"POST",
@@ -2770,6 +4122,7 @@ $(document).on('click','.info_click',function(){
      
     }
   });
+*/
 
 });
 </script>
@@ -2802,14 +4155,11 @@ $(document).on('click','.info_click',function(){
 var expanded = false;
 function showCheckboxes(index) {
   //var checkboxes = document.getElementById("checkboxes");
-//  alert("ok");
+  //  alert("ok");
   // index value
   var els = Array.prototype.slice.call( document.getElementsByClassName('selectOpp'), 0 );
-  //console.log(els.indexOf(event.currentTarget));
   var index_val = els.indexOf(event.currentTarget);
   var w = $('.overSelect:eq('+index_val+')').width();
-  // console.log("array:\t"+parseInt((down_part.length-2)/2));
-
   // alert(w);
   var sel_drp_ch = $('.PartNameValue:eq('+index_val+')').attr("id_check");
   const sel_part = sel_drp_ch.split(",");
@@ -2827,8 +4177,6 @@ function showCheckboxes(index) {
           l = l+1;
       }
   }
-
-  
 
   var checkboxes = $('.checkboxes:eq('+index_val+')');
   if (!expanded) {
@@ -2852,13 +4200,77 @@ function showCheckboxes(index) {
 }
 
 $(document).mouseup(function(e){ 
-  // var container = $("#checkboxes");
+  // one tool multipart code 
+  // multipart dropdwon outside click closed the menu
   var container = $('.checkboxes');
   // alert("container"+container);
+  // console.log("mouse up");
+  // console.log(!container.is(e.target));
   if (!container.is(e.target) && container.has(e.target).length === 0) 
   {
       container.hide();
   }
+  // bulk edit code
+  // bulk edit filter category dropdwon outside click its closed the menu
+  var cate_con = $('.filter_checkboxes');
+  if (!cate_con.is(e.target) && cate_con.has(e.target).length===0) {
+    cate_con.hide();
+
+    var cate_arr_demo = $('.category_drp_checkbox');
+    var dummy_count = 0;
+    jQuery('.category_drp_checkbox').each(function(index){
+      if(cate_arr_demo[index].checked===true){
+        dummy_count = parseInt(dummy_count)+1;
+        // category_drp_val = 
+      }
+    });
+    
+    if (parseInt(dummy_count)===0) {
+      reset_category();
+      $('#text_category_drp').text('All Categories');
+    }
+    // else if(parseInt(dummy_count)>0){
+    //   if (parseInt(dummy_count)>=2) {
+    //     var demo = null;
+    //     downtime_reason_filter(demo);
+    //   }else{
+    //     var category_drp_val = getcategory_arr();
+    //     // console.log("single value for category");
+    //     downtime_reason_filter(category_drp_val[0]);
+    //   }
+    // }
+
+  }
+
+  // bulk edit filter reasons dropdwon outside click its close the menu
+  var reason_con = $('.filter_checkboxes_reason');
+  if (!reason_con.is(e.target) && reason_con.has(e.target).length === 0) {
+    reason_con.hide();
+
+    // downtime reasons
+    var reason_arr_demo = $('.reason_drp_checkbox');
+    var tmp_dummy_count = 0;
+    jQuery('.reason_drp_checkbox').each(function(index){
+      if (reason_arr_demo[index].checked===true) {
+        tmp_dummy_count = parseInt(tmp_dummy_count)+1;
+      }
+    });
+
+    if (parseInt(tmp_dummy_count)===0) {
+      reset_downtime_reasons();
+      $('#text_reason').text('All Reasons');
+    }
+
+  }
+
+
+  // notes outside click
+  var notes_target = $('.note_edit');
+  if (!notes_target.is(e.target) && notes_target.has(e.target).length === 0) {
+    notes_target.hide();
+    $('.reasonInfo').attr("onmouseover","check_info(this)");
+  }
+ 
 });
 
 // tool changeover part selection click p tag checked the input tag
@@ -2877,6 +4289,194 @@ $(document).mouseup(function(e){
 
 // });
 
+
+// bulk edit function category based downtime reasons function 
+function category_based_reson(temp_category){
+  // console.log(temp_category);
+  // console.log(down_reason_collection);
+  $('.filter_checkboxes_reason').empty();
+  var elements = $();
+  $('.filter_checkboxes_reason').append('<div class="filter_check_reason" style=""><div class="reason_drp_check" style=""><input type="checkbox" id="one" class="reason_drp_checkbox" value="all_reason"/></div><div class="reason_drp_text" style=""><p class="font_multi_drp" >All Reasons</p></div></idv>');
+  down_reason_collection.forEach(function(item){
+    if (temp_category == item[1]) {
+      // console.log(item[1]);
+      // console.log(item[2]);
+      if (item[2] === "Tool Changeover") {
+        
+      }else{
+        elements = elements.add('<div class="filter_check_reason" style=""><div class="reason_drp_check" style=""><input type="checkbox" id="one" class="reason_drp_checkbox" value="'+item[2]+'"/></div><div class="reason_drp_text" style=""><p class="font_multi_drp">'+item[2]+'</p></div></idv>');
+        $('.filter_checkboxes_reason').append(elements);
+      }
+      // id = item[0]; 
+      // elements = elements.add('<option value='+item[0]+' dvalue='+item[0]+' selected="true">'+item[2]+'</option>');
+    }
+  });
+  // reset the downtime reasons for all selection function 
+  reset_downtime_reasons();
+}
+
+// bulk edit category based dropdwon using 
+// edit downtime reasons dropdown function
+function bulg_edit_dropdown(category){
+  if (category!=null) {
+    $('.bulg_edit_drp').empty();
+    var element = $();
+    $('.bulg_edit_drp').append('<option selected="true" value="empty" disabled>Select</option>');
+    down_reason_collection.forEach(function(item){
+      if (category == item[1]) {
+        // console.log(item[1]);
+        // console.log(item[2]);
+        if (item[2] === "Tool Changeover") {
+          
+        }else{
+          element = element.add('<option value="'+item[0]+'">'+item[2]+'</option>');
+          // console.log(item);
+          $('.bulg_edit_drp').append(element);
+        }
+      }
+    });
+  }
+  
+  /*
+  $.ajax({
+    url:"<?php echo base_url(); ?>/PDM_controller/downtime_reason_bulgedit",
+    method:"POST",
+    dataType:"json",
+    success:function(res){
+      // console.log(res);
+      var element = $();
+      $('.bulg_edit_drp').append('<option selected="true" value="empty" disabled>Select</option>');
+      res.forEach(function(item){
+        // console.log(item.downtime_reason_id);
+        if (item.downtime_reason==="Tool Changeover") {
+          
+        }else{
+          element = element.add('<option value="'+item.downtime_reason+'">'+item.downtime_reason+'</option>');
+          $('.bulg_edit_drp').append(element);
+        }
+       
+      });
+    },
+    error:function(err){
+      console.log(err);
+    },
+  });
+  */
+}
+
+function check_info(ele){
+  // e.preventDefault();
+  var els = Array.prototype.slice.call( document.getElementsByClassName('edit-split'), 0 );
+  var index_val = els.indexOf(event.currentTarget);
+  var temp_count = 0;
+  var tmp = $('.node_edit');
+  var last_updated_id = $('.info_click:eq('+index_val+')').attr("data_val");
+  $('.info_last_data').html('');
+  $.ajax({
+    url:"<?php echo base_url('PDM_controller/graph_get_last_updated_by'); ?>",
+    method:"POST",
+    data:{last_updated_id:last_updated_id},
+    dataType:"json",
+    success:function(res){
+      //console.log(res);
+      if (parseInt(res.length)>0) {
+        $('.info_last_data:eq('+index_val+')').html(res[0]['first_name']+" "+res[0]['last_name']);
+        $('.info_last_data').css("font-weight","bold");
+      }else{
+        $('.info_last_data:eq('+index_val+')').html('');
+        $('.info_last_data').css("font-weight","bold");
+      }
+     
+    },
+
+  });
+ 
+  $('.edit-Subsplit').css("display","none"); 
+    if ($('.node_edit:eq('+index_val+')').css('display') == 'inline') {
+      // console.log('ite ok');
+      $('.edit-Subsplit:eq('+index_val+')').css("display","none");
+    }else{
+      $('.edit-Subsplit:eq('+index_val+')').css("display","block");
+    }
+    
+
+}
+function mouse_out_check(ele1){
+  var els = Array.prototype.slice.call( document.getElementsByClassName('edit-split'), 0 );
+  var index_val1 = els.indexOf(event.currentTarget);
+  $('.edit-Subsplit:eq('+index_val1+')').css("display","none");
+
+}
+
+// notes submit function
+function notes_submit(){
+  $("#overlay").fadeIn(100);
+  var tmp_els= Array.prototype.slice.call( document.getElementsByClassName('note_sub_cl'), 0 );
+  var inval = tmp_els.indexOf(event.currentTarget);
+  // alert(inval);
+  var notes_val = $('.NotesValue:eq('+inval+')').val();
+  var start_time = $('.startTime:eq('+inval+')').text();
+  var end_time = $('.endTime:eq('+inval+')').text();
+  var machine_ref_id = $('.splitclick:eq('+inval+')').attr('refval');
+  var splitref = $('.splitclick:eq('+inval+')').attr('splitref');
+
+  var mid = $('#Production_MachineName').val();
+  var sdate = $('#Production_shift_date').val();
+  var sid = $('#RejectShift').val();
+  const tmpsid = sid.split('0');
+  const tmpsdate = sdate.split('/');
+  var tmpshiftdate = tmpsdate[2]+'-'+tmpsdate[0]+'-'+tmpsdate[1];
+  // alert(notes_val);
+  // alert(tmpshiftdate);
+  // console.log(notes_val);
+  // console.log()
+  $.ajax({
+    url:"<?php echo base_url(); ?>/PDM_controller/notes_submit",
+    dataType:"json",
+    method:"POST",
+    data:{
+      nval:notes_val,
+      stime:start_time,
+      etime:end_time,
+      mrefid:machine_ref_id,
+      srefid:splitref,
+      mid:mid,
+      sdate:tmpshiftdate,
+      sid:tmpsid[0],
+    },
+    success:function(res){
+      // alert(res);
+      // console.log(res);
+      // if (res == true) {
+      alert('Notes Added Successfully');
+      // }
+      $('.reasonInfo:eq('+inval+')').attr("onmouseover","check_info(this)");
+      $('.filter').css('display','inline');
+      $('.bulg_edit_ui').css('display','none');
+      $('.bulk_edit_btn_case').css('display','none');
+      filter_btn_call();
+      getDownTimeGraph();
+      getTotalCount();
+      $('.note_edit:eq('+inval+')').css('display','none');
+      $("#overlay").fadeOut(100);
+
+
+    },
+    error:function(er){
+      alert('Sorry TryAgain');
+      $("#overlay").fadeOut(100);
+    },
+  });
+
+
+
+
+
+}
+
+// $('.edit-split').hover(function(){
+//   alert('hi');
+// });
 
 
 </script>
