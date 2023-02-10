@@ -1401,8 +1401,9 @@ function filter_btn_call(){
       var sdate = $('#Production_shift_date').val();
       var sid = $('#RejectShift').val();
       var shift_id = sid.split('0');
-      const tmp_sdate = sdate.split("/");
-      var sdate_tmp = tmp_sdate[2]+'-'+tmp_sdate[0]+'-'+tmp_sdate[1];
+      const tmp_sdate = sdate.split("-");
+      var sdate_tmp = tmp_sdate[0]+'-'+tmp_sdate[1]+'-'+tmp_sdate[2];
+      console.log(tmp_sdate);
       // alert(shift_id);
       // alert(reason_drp);
       // alert(start_time_from);
@@ -1422,8 +1423,8 @@ function filter_btn_call(){
           sid:shift_id[0],
         },
         success:function(res){
-          // console.log("apply filter");
-          // console.log(res);
+          console.log("apply filter");
+          console.log(res);
           if (parseInt(res.length)>0) {
             var z=0;
             res.forEach(function(item){
@@ -1592,7 +1593,7 @@ $(document).on('click','.bulg_edit_submit',function(event){
   var shift_date = $('#Production_shift_date').val();
   var shift_id = $('#RejectShift').val();
   const sid = shift_id.split("0");
-  const sdate = shift_date.split("/");
+  const sdate = shift_date.split("-");
   if ((bulg_category!="") && (bulg_category!=null)) {
     if ((bulg_reason!="")&& (bulg_reason!=null)) {
       // alert("all values are correct");
@@ -1651,7 +1652,7 @@ $(document).on('click','.bulg_edit_submit',function(event){
       // console.log(split_id_arr);
 
       var tmp_sid = sid[0];
-      var sdate_tmp = sdate[2]+'-'+sdate[0]+'-'+sdate[1];
+      var sdate_tmp = sdate[0]+'-'+sdate[1]+'-'+sdate[2];
       // bulg edit ajax function
       $.ajax({
         url:"<?php echo base_url(); ?>/PDM_controller/bulg_updation",
@@ -4431,7 +4432,7 @@ function notes_submit(){
   var sid = $('#RejectShift').val();
   const tmpsid = sid.split('0');
   const tmpsdate = sdate.split('/');
-  var tmpshiftdate = tmpsdate[2]+'-'+tmpsdate[0]+'-'+tmpsdate[1];
+  var tmpshiftdate = tmpsdate[0]+'-'+tmpsdate[1]+'-'+tmpsdate[2];
   // alert(notes_val);
   // alert(tmpshiftdate);
   // console.log(notes_val);

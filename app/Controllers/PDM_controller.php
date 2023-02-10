@@ -461,7 +461,7 @@ public function notes_submit(){
         $start_time = $this->request->getVar('stime');
         $notes_val = $this->request->getVar('nval');
         $last_updated_by = $this->session->get('user_name');
-        
+
         $tmp_date['machine_id'] = $mid;
         $tmp_date['shift_date'] = $sdate;
         $tmp_date['shift_id'] = $sid;
