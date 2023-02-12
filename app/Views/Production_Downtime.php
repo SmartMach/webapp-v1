@@ -1586,7 +1586,7 @@ $(document).on('change','#bulg_edit_category_drp',function(event){
 // bulg edit submission function 
 $(document).on('click','.bulg_edit_submit',function(event){
   event.preventDefault();
-  $("#overlay").fadeIn(300);
+ 
   var bulg_reason = $('#bulg_edit_drp').val();
   var bulg_category = $('#bulg_edit_category_drp').val();
   var machine_id = $('#Production_MachineName').val();
@@ -1597,7 +1597,7 @@ $(document).on('click','.bulg_edit_submit',function(event){
   if ((bulg_category!="") && (bulg_category!=null)) {
     if ((bulg_reason!="")&& (bulg_reason!=null)) {
       // alert("all values are correct");
-
+      $("#overlay").fadeIn(300);
       // checked value only get 
       var check_box = $('.select_item');
       const start_time_arr = [];
@@ -4458,12 +4458,26 @@ function notes_submit(){
       alert('Notes Added Successfully');
       // }
       $('.reasonInfo:eq('+inval+')').attr("onmouseover","check_info(this)");
-      $('.filter').css('display','inline');
-      $('.bulg_edit_ui').css('display','none');
-      $('.bulk_edit_btn_case').css('display','none');
-      filter_btn_call();
-      getDownTimeGraph();
-      getTotalCount();
+      var de = $('.filter').css('display');
+      if (de === "none") {
+        $('.filter').css('display','none');
+        $('.bulg_edit_ui').css('display','none');
+        $('.bulk_edit_btn_case').css('display','inline');
+        // filter_btn_call();
+        getSplittedData(machineEventIdRef,overall_duration_value);
+        getDownTimeGraph();
+        getTotalCount();
+      }else{
+          $('.filter').css('display','inline');
+          $('.bulg_edit_ui').css('display','none');
+          $('.bulk_edit_btn_case').css('display','none');
+          filter_btn_call();
+          getDownTimeGraph();
+          getTotalCount();
+      }
+      console.log(de+"display check after notes submission");
+    
+      
       $('.note_edit:eq('+inval+')').css('display','none');
       $("#overlay").fadeOut(100);
 
