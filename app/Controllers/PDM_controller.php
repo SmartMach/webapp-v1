@@ -345,6 +345,7 @@ class PDM_controller extends BaseController{
             // $split_array = array('0', '3', '4', '1', '2', '5', '6');
             // $date_array = array('2023-01-10', '2023-01-10', '2023-01-10', '2023-01-10', '2023-01-10', '2023-01-10', '2023-01-10');
            
+           
             $res = $this->data->updateDownGraph($dataVal,$machineRef,$splitRef,$timeArray,$durationArray,$last_updated_by,$split_array,$date_array);
             // echo "Process Completed!";
             echo json_encode($res);
@@ -378,6 +379,107 @@ class PDM_controller extends BaseController{
             echo json_encode($output_res);
         }
     }
+
+    
+    // bulg edit functional code start
+    
+    // bulg edit function retrive downtime reasons 
+    public function downtime_reason_bulgedit(){
+        if ($this->request->isAJAX()) {
+            $output = $this->data->getdowntime_reason_bulgedit();
+            
+            echo json_encode($output);
+        }
+    }
+    
+    
+    // bulg edit filter option
+    public function apply_filter_get_data(){
+        if ($this->request->isAjax()) {
+            $start_time = $this->request->getVar('start_time');
+            $end_time = $this->request->getVar('end_time');
+            $category = $this->request->getVar('category');
+            $downtime_reason = $this->request->getVar('dreason');
+            $mid = $this->request->getVar('machine_id');
+            $sdate = $this->request->getVar('shift_date');
+            $sid = $this->request->getVar('sid');
+
+            $myarr['start_time'] = $start_time;
+            $myarr['end_time'] = $end_time;
+            $myarr['category'] = $category;
+            $myarr['downtime_reason'] = $downtime_reason;
+            $myarr['machine_id'] = $mid;
+            $myarr['shift_date'] = $sdate;
+            $myarr['shift_id'] = $sid;
+
+            $result = $this->data->bulgedit_filter($myarr);
+            echo json_encode($result);
+            
+        }
+    }
+
+    // bulg edit updation function
+    public function bulg_updation(){
+        if ($this->request->isAjax()) {
+            // array values getting
+            $start_time_arr = $this->request->getVar('start_time_ar');
+            $end_time_arr = $this->request->getVar('end_time_ar');
+            $split_arr = $this->request->getVar('split_arr');
+            $machine_event_arr = $this->request->getVar('machine_event_arr');
+
+            // normal values
+            $downtime_reason = $this->request->getVar('dreason');
+            $downtime_category = $this->request->getVar('dcategory');
+            $mid = $this->request->getVar('mid');
+            $sid = $this->request->getVar('sid');
+            $sdate = $this->request->getVar('sdate');
+
+            $mydata['machine_id'] = $mid;
+            $mydata['shift_id'] = $sid;
+            $mydata['shift_date'] = $sdate;
+            $mydata['dreason'] = $downtime_reason;
+            $mydata['dcategory'] = $downtime_category;
+            $mydata['last_updated_by'] = $this->session->get('user_name');
+            $res = $this->data->bulg_updation($mydata,$start_time_arr,$end_time_arr,$split_arr,$machine_event_arr);
+            echo json_encode($res);
+        }
+    }
+
+
+
+
+
+//  BULK EDIT NOTES SUBMISSION
+public function notes_submit(){
+    if ($this->request->isAJAX()) {
+        $mid = $this->request->getVar('mid');
+        $sdate = $this->request->getVar('sdate');
+        $sid = $this->request->getVar('sid');
+        $machine_ref_id = $this->request->getVar('mrefid');
+        $splitid = $this->request->getVar('srefid');
+        $end_time = $this->request->getVar('etime');
+        $start_time = $this->request->getVar('stime');
+        $notes_val = $this->request->getVar('nval');
+        $last_updated_by = $this->session->get('user_name');
+
+        $tmp_date['machine_id'] = $mid;
+        $tmp_date['shift_date'] = $sdate;
+        $tmp_date['shift_id'] = $sid;
+        $tmp_date['machine_ref_id'] = $machine_ref_id;
+        $tmp_date['split_id'] = $splitid;
+        $tmp_date['start_time'] = $start_time;
+        $tmp_date['end_time'] = $end_time;
+        $tmp_date['notes_val'] = $notes_val;
+        $tmp_date['last_updated_by'] = $last_updated_by;
+
+        $res = $this->data->notes_update($tmp_date);
+        echo json_encode($res);
+
+
+        
+        // echo json_encode('ji');     
+    }
+}
 
 }
  ?>

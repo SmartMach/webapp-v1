@@ -319,7 +319,7 @@ class PDM_Model extends Model{
         $builder->where('machine_event_id', $machineRef);
         $builder->where('split_id', $splitRef);
         $output = $builder->get()->getResultArray();
-
+       
         if (sizeof($output) == 0) {
 
         }
@@ -366,7 +366,7 @@ class PDM_Model extends Model{
                     $build->set('split_duration',$durationArray[$i]);
                     $build->set('end_time',$timeArray[(2*$i)+1]);
                     $build->set('downtime_reason_id',$data[1]);
-                    $build->set('notes',$data[9]);
+                    // $build->set('notes',$data[9]);
                     $build->set('calendar_date',$date_array[$i]);
                     $build->set('last_updated_by',$last_updated_by);
                     $build->where('split_id', $splitRef);
@@ -3045,11 +3045,13 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
     // pdm model downtime graph shift date
      public function getMachineDate($machine){
         $db = \Config\Database::connect($this->site_creation);
-        $builder = $db->table('pdm_production_info');   
-        $builder->select('shift_date');
+        $builder = $db->table('settings_machine_current'); 
+        $builder->select('last_updated_on');
         $builder->where('machine_id', $machine);
-        $builder->where('production !=', "Null");
-        $query = $builder->distinct()->get()->getResultArray();     
+        // $builder->where('production !=', "Null");
+        // $builder->orderBy('shift_date', 'ASC');
+        // $builder->limit(1);
+        $query = $builder->get()->getResult();     
         return $query;
     }
 
@@ -3079,6 +3081,419 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
         $res = $query->get()->getResultArray();
         return $res;
     }
+
+    
+    // bulg edit functional code start
+    
+    // bulg edit function for downtime reasons retrive function
+    public function getdowntime_reason_bulgedit(){
+
+        // $db = \Config\Database::connect($this->site_creation);
+        $db = \Config\Database::connect($this->site_creation);
+        $query = $db->table('settings_downtime_reasons');
+        // $query->select('DISTINCT(downtime_reason),downtime_reason_id');
+        $query->select('DISTINCT(downtime_reason)');
+        $query->orderBy('downtime_reason','ASC');
+        $res = $query->get()->getResultArray();
+        return $res;    
+    }
+
+
+    
+    //    bulg edit filter function
+    public function bulgedit_filter($mydata){
+
+        $db = \Config\Database::connect($this->site_creation);
+        if (($mydata['downtime_reason']!=null) && ($mydata['downtime_reason']!="")) {
+            if (($mydata['category']!=null) && ($mydata['category']!="")) {
+                // DOWNTIME REASONS GET REASON ID
+                $tem_cate_ra = [];
+                foreach ($mydata['downtime_reason'] as $key_k1 => $value_k1) {
+                    $build1 = $db->table('settings_downtime_reasons');
+                    $build1->select('*');
+                    $build1->where('downtime_category',$mydata['category']);
+                    $build1->where('downtime_reason',$value_k1);
+                    $res = $build1->get()->getResultArray();
+                    // return $res;
+                    if (count($res)>0) {
+                        $pdm = $db->table('pdm_downtime_reason_mapping');
+                        $pdm->select('*');
+                        $pdm->where('machine_id',$mydata['machine_id']);
+                        $pdm->where('shift_date',$mydata['shift_date']);
+                        $pdm->where('Shift_id',$mydata['shift_id']);
+                        $pdm->where('downtime_reason_id',$res[0]['downtime_reason_id']);
+                        $pdm->orderBy('machine_event_id','ASC');
+                        $pdm->orderBy('split_id','ASC');
+                        // $pdm->orderBy('')
+                        $pdm_res = $pdm->get()->getResultArray();
+                        // $getfinal_re = $this->getfilter_time_range($pdm_res,$mydata);
+                        // $getfinal_re1 = array_values($getfinal_re);
+                        // return $getfinal_re;
+                        if (count($pdm_res)>0) {
+                            array_push($tem_cate_ra,$pdm_res);
+                        }
+                    }  
+                }
+                $getcatera = $this->getsimple_arr_format($tem_cate_ra);
+                $getarrcatra = $this->getfilter_time_range($getcatera,$mydata);
+                return $getarrcatra;
+               
+            }else{
+                // get downtime reason id 
+                $temp2_arr = [];
+                foreach ($mydata['downtime_reason'] as $ke => $va) {
+                    $build2 = $db->table('settings_downtime_reasons');
+                    $build2->select('*');
+                    //$build2->where('downtime_category',$mydata['category']);
+                    $build2->where('downtime_reason',$va);
+                    $res1 = $build2->get()->getResultArray();
+                //     // return $res1;
+                // //    $tmp = [];
+                    $temp1_arr = [];
+                    foreach ($res1 as $ke => $val) {
+                        if (($val['downtime_reason_id']==2) || ($val['downtime_reason_id']==3)) {
+                    
+                        }else{
+                            $pdmreason1 = $db->table('pdm_downtime_reason_mapping');
+                            $pdmreason1->select('*');
+                            $pdmreason1->where('machine_id',$mydata['machine_id']);
+                            $pdmreason1->where('shift_date',$mydata['shift_date']);
+                            $pdmreason1->where('Shift_id',$mydata['shift_id']);
+                            $pdmreason1->where('downtime_reason_id',$val['downtime_reason_id']);
+                            $pdmreason1->orderBy('machine_event_id','ASC');
+                            $pdmreason1->orderBy('split_id','ASC');
+                            $temp_res1 = $pdmreason1->get()->getResultArray();
+                            // return $v['downtime_reason_id'];
+                            // return $tmp_res;
+                            if (count($temp_res1)>0) {
+                                array_push($temp1_arr,$temp_res1);
+                            }
+                        }
+                    }
+                    $tmp_var = array_values($temp1_arr);
+                    array_push($temp2_arr,$tmp_var);
+                //  return $temp1_arr;
+                }
+               
+                $getfinal_arr = $this->getsimple_arr_format1($temp2_arr);
+                $getfilter_record = $this->getfilter_time_range($getfinal_arr,$mydata);
+                // $getfilterrecordfinal = array_values($getfilter_record);
+                return $getfilter_record;
+
+            }
+            
+        }elseif(($mydata['category']!=null) && ($mydata['category']!="")) {
+            
+            $build3 = $db->table('settings_downtime_reasons');
+            $build3->select('*');
+            $build3->where('downtime_category',$mydata['category']);
+            //$build3->where('downtime_reason',$mydata['downtime_reason']);
+            $res2 = $build3->get()->getResultArray();
+
+            $tmp_arr = [];
+            // foreach for every reason id based record getting
+            foreach ($res2 as $k1 => $v) {
+                if (($v['downtime_reason_id']==2) || ($v['downtime_reason_id']==3)) {
+                
+                }else{
+                    $pdmreason = $db->table('pdm_downtime_reason_mapping');
+                    $pdmreason->select('*');
+                    $pdmreason->where('machine_id',$mydata['machine_id']);
+                    $pdmreason->where('shift_date',$mydata['shift_date']);
+                    $pdmreason->where('Shift_id',$mydata['shift_id']);
+                    $pdmreason->where('downtime_reason_id',$v['downtime_reason_id']);
+                    $pdmreason->orderBy('machine_event_id','ASC');
+                    $pdmreason->orderBy('split_id','ASC');
+                    $tmp_res = $pdmreason->get()->getResultArray();
+                    // return $v['downtime_reason_id'];
+                    // return $tmp_res;
+                    if (count($tmp_res)>0) {
+                        array_push($tmp_arr,$tmp_res);
+                    }
+                }
+            
+            }
+            $getarr = $this->getsimple_arr_format($tmp_arr);
+            $getarr_final = $this->getfilter_time_range($getarr,$mydata);
+            // $gfa = array_values($getarr_final);
+            return $getarr_final;
+        }else{
+        
+            $build = $db->table('pdm_downtime_reason_mapping');
+            $build->select('*');
+            // $build->where('start_time >=',$mydata['start_time']);
+            // $build->where('end_time <=',$mydata['end_time']);
+            $build->where('Shift_id',$mydata['shift_id']);
+            $build->where('shift_date',$mydata['shift_date']);
+            $build->where('machine_id',$mydata['machine_id']);
+            $build->orderBy('machine_event_id','ASC');
+            $build->orderBy('split_id','ASC');
+            $result = $build->get()->getResultArray();
+            $getres_final = $this->getfilter_time_range($result,$mydata);
+            // $getfinalarr = array_values($getres_final);
+
+            /* time filtering condition is temporary hide because the reason is that kind of filter using function
+            foreach ($result as $key => $value) {
+                // start time 09 and end time is 21
+                if ($mydata['end_time'] > $mydata['start_time']) {
+                    if (($value['start_time']>$mydata['start_time'])&&($value['end_time']<=$mydata['end_time'])) {
+                        if (($value['downtime_reason_id'] == 2) || ($value['downtime_reason_id']== 3)) {
+                            unset($result[$key]);
+                        }
+                    }else{
+                        unset($result[$key]);
+                    }
+                }
+                // start time is 21 end time 08
+                elseif ($mydata['end_time'] < $mydata['start_time']) {
+                    // 21:10:00 > 21
+                    if ($value['start_time'] >= $mydata['start_time']) {
+                        if (($value['downtime_reason_id'] ==2) || ($value['downtime_reason_id']==3)) {
+                            unset($result[$key]);
+                        }
+                    }
+                    // 08:00:00 <= 08:30:00
+                    elseif ($value['end_time']<= $mydata['end_time']) {
+                        if (($value['downtime_reason_id'] === 2) || ($value['downtime_reason_id']=== 3)) {
+                            unset($result[$key]);
+                        }
+                    }
+                    // above conditions not satisfied using else
+                    else{
+                        unset($result[$key]);
+                    }
+                }else{
+                    unset($result[$key]);
+                }
+            }
+            */
+            return $getres_final;
+
+        }
+    }
+
+    // double array ordering to single array
+    public function getsimple_arr_format($arr){
+
+        $demo_arr = [];
+
+        foreach ($arr as $key => $value) {
+            foreach ($value as $k => $v) {
+                array_push($demo_arr,$v);
+            }
+        }
+
+        return $demo_arr;
+
+    }
+
+    // double array change single format
+    public function getsimple_arr_format1($arr_demo){
+        $demoarr = [];
+        foreach($arr_demo as $k => $v){
+            foreach ($v as $key => $value) {
+                foreach ($value as $k1 => $val) {
+                    array_push($demoarr,$val);
+                }
+            }
+        }
+
+        return $demoarr;
+    }
+
+    // filtering the time range ordering records
+    public function getfilter_time_range($res_arr,$demo_data){
+        foreach ($res_arr as $key => $value) {
+            // start time 09 and end time is 21
+            // 
+            if ($demo_data['end_time'] > $demo_data['start_time']) {
+                // 09:00>=09:00 && 21:00<=21:00:00
+                if (($value['start_time']>=$demo_data['start_time'])&&($value['start_time']<=$demo_data['end_time'])) {
+                    if (($value['downtime_reason_id'] == 2) || ($value['downtime_reason_id']== 3)) {
+                        unset($res_arr[$key]);
+                    }
+                }else{
+                    unset($res_arr[$key]);
+                }
+            }
+            // start time is 21 end time 08
+            elseif ($demo_data['end_time'] < $demo_data['start_time']) {
+                // 21:10:00 > 21
+                if ($value['start_time'] >= $demo_data['start_time']) {
+                    if (($value['downtime_reason_id'] ==2) || ($value['downtime_reason_id']==3)) {
+                        unset($res_arr[$key]);
+                    }
+                }
+                // 08:00:00 <= 08:30:00
+                elseif ($value['start_time']<= $demo_data['end_time']) {
+                    if (($value['downtime_reason_id'] === 2) || ($value['downtime_reason_id']=== 3)) {
+                        unset($res_arr[$key]);
+                    }
+                }
+                // above conditions not satisfied using else
+                else{
+                    unset($res_arr[$key]);
+                }
+            }else{
+                unset($res_arr[$key]);
+            }
+        }
+
+        $tmp_final_arr = array_values($res_arr);
+        return $tmp_final_arr;
+    }
+
+
+    // bulg updation function
+    public function bulg_updation($mydata,$start_time_arr,$end_time_arr,$split_arr,$machine_event_arr){
+        $db = \Config\Database::connect($this->site_creation);
+        
+        $getid = $db->table('settings_downtime_reasons');
+        $getid->select('*');
+        // $getid->where('downtime_category',$mydata['dcategory']);
+        $getid->where('downtime_reason_id',$mydata['dreason']);
+        $getdata = $getid->get()->getResultArray();
+
+        if (count($getdata)>0) {
+            foreach ($start_time_arr as $key => $value) {
+                // return $end_time_arr[$key];
+                $build = $db->table('pdm_downtime_reason_mapping');
+                $build->set('downtime_reason_id',$getdata[0]['downtime_reason_id']);
+                $build->set('last_updated_by',$mydata['last_updated_by']);
+                $build->where('machine_id',$mydata['machine_id']);
+                $build->where('Shift_id',$mydata['shift_id']);
+                $build->where('shift_date',$mydata['shift_date']);
+                $build->where('start_time',$value);
+                $build->where('end_time',$end_time_arr[$key]);
+                $build->where('machine_event_id',$machine_event_arr[$key]);
+                $build->where('split_id',$split_arr[$key]);
+                if ($build->update()) {
+                    $arr_leng = count($start_time_arr)-1;
+                    if ($arr_leng == $key) {
+                        // $get_res = $this->bulg_edit_pdm_event($machine_event_arr);
+                        // if ($get_res == true) {
+                        //     return true;
+                        // }
+                        // return true;
+                        $umeid = array_unique($machine_event_arr);
+                        $count_meid = count($umeid)-1;
+                        foreach ($umeid as $k1 => $v1) {
+                            $build1=$db->table('pdm_downtime_reason_mapping');
+                            $build1->select('*');
+                            $build1->where('downtime_reason_id','0');
+                            $build1->where('machine_event_id',$v1);
+                            $res = $build1->get()->getResultArray();
+                            // reason mapped 0
+                            if (count($res)>0) {
+                                $pdm = $db->table('pdm_events');
+                                $pdm->set('reason_mapped',0);
+                                $pdm->where('machine_event_id',$v1);
+                                if ($pdm->update()) {
+                                    if ($count_meid == $k1) {
+                                        return true;
+                                    }
+                                }else{
+                                    return false;
+                                }
+                            }
+                            // pdm events reason mapped 1
+                            else{
+                                $pdm1 = $db->table('pdm_events');
+                                $pdm1->set('reason_mapped',1);
+                                $pdm1->where('machine_event_id',$v1);
+                                if ($pdm1->update()) {
+                                    if ($count_meid == $k1) {
+                                        return true;
+                                    }
+                                }else{
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }else{
+            return false;
+        }
+
+
+
+    }
+
+    // update pdm events 
+    /* temporary hide this function  because i`m writing the code in above function
+    public function bulg_edit_pdm_event($machine_event_arr){
+        $db = \Config\Database::connect($this->site_creation);
+        $machine_arr = array_unique($machine_event_arr);
+        $count_arr = count($machine_arr)-1;
+        foreach ($machine_arr as $key => $value) {
+            $codeTable = $db->table('pdm_downtime_reason_mapping as m');
+            $codeTable->select('m.machine_event_id');
+            $codeTable->where('m.machine_event_id', $value);
+            $codeTable->where('r.downtime_category', "Unplanned");
+            $codeTable->where('r.downtime_reason', "Unnamed");
+            $codeTable->join('settings_downtime_reasons as r','r.downtime_reason_id  = m.downtime_reason_id ');
+            $codeVal = $codeTable->get()->getResultArray();
+            if (count($codeVal)>0) {
+                $bd = $db->table('pdm_events');
+                $bd->set('reason_mapped',1);
+                // $db->set('last_updated_by',$last_updated_by);
+                $bd->where('machine_event_id',$value);
+                if ($bd->update()) {
+                    //pass
+                    if ($count_arr == $key) {
+                        return true;
+                    }
+                }
+                // else{
+                //     return false;
+                // }
+            }else{
+                $bd = $db->table('pdm_events');
+                $bd->set('reason_mapped',0);
+                $bd->where('machine_event_id',$value);
+                if ($bd->update()) {
+                    //pass
+                    if ($count_arr == $key) {
+                        return true;
+                    }
+                }
+                // else{
+                //     return false;
+                // }
+            }
+
+        }
+    }
+    */
+
+
+    // notes updation success
+    public function notes_update($tmp_data){
+        $db = \Config\Database::connect($this->site_creation);
+        $build = $db->table('pdm_downtime_reason_mapping');
+        $build->set('notes',$tmp_data['notes_val']);
+        $build->set('last_updated_by',$tmp_data['last_updated_by']);
+        $build->where('machine_event_id',$tmp_data['machine_ref_id']);
+        $build->where('split_id',$tmp_data['split_id']);
+        $build->where('shift_date',$tmp_data['shift_date']);
+        $build->where('Shift_id',$tmp_data['shift_id']);
+        $build->where('machine_id',$tmp_data['machine_id']);
+        $build->where('start_time',$tmp_data['start_time']);
+        $build->where('end_time',$tmp_data['end_time']);
+        if ($build->update()) {
+            return $tmp_data;
+        }else{
+            return false;
+        }
+
+
+
+
+
+    }
+
 }
 
  ?>
