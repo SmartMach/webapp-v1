@@ -1,5 +1,6 @@
 
 <head>
+  
   <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/styles_production_quality.css?version=<?php echo rand() ; ?>">
    <!-- Datetimepicker -->
     <script src="<?php echo base_url(); ?>/assets/js/datetimepicker.js?version=<?php echo rand() ; ?>"></script>
@@ -7,7 +8,22 @@
     <script src="<?php echo base_url(); ?>/assets/js/jquery.datetimepicker.js?version=<?php echo rand() ; ?>"></script>
 
     <script src="<?php echo base_url(); ?>/assets/chartjs/package/dist/chart.min.js?version=<?php echo rand() ; ?>"></script>
-
+<style>
+  /* filter css design */
+  .filterbtnstyle{
+    color:white;
+    background-color:#005abc;
+    /* opacity: 0.7; */
+    height:2.4rem;
+    margin-top:0.5rem;
+    margin-right:0.6rem;
+  }
+  .filterbtnstyle:hover{
+    color:white;
+    background-color:#005abc;
+    opacity: 0.8;
+  }
+</style>
 <script type="text/javascript">
   var checkPastTime = function(inputDateTime) {
       var current = new Date($('.fromDate').val());
@@ -81,16 +97,24 @@
     <div class="container-fluid paddingm" style="margin-top:0.2rem;">
       <p class="float-start p3" id="logo">Production Quality</p>
       <div class="d-flex">
-              <div class="float-end stcode paddingm logo-style opt-cont" style="color:#005CBC;font-size:1rem;margin-right:0.5rem; ">
-                <div class="img-div">
-                  <!-- <img id="graph-cont" class="img-style" src="<?php echo base_url('assets/img/filter_reset.png'); ?>"> -->
-                  <i id="graph-cont" class="fa fa-industry img-style" alt=""></i>
+              <!-- <div class="float-end stcode paddingm logo-style opt-cont" style="color:#005CBC;font-size:1rem;margin-right:0.5rem; "> -->
+                <!-- <div class="img-div">
+
+                <i id="graph-cont" class="fa fa-industry img-style" alt=""></i>
                 </div>
                 <div class="img-div">
-                 <!--  <img id="table-cont" class="img-style" src="<?php echo base_url('assets/img/filter_reset.png'); ?>"> -->
-                 <i id="table-cont" class="fa fa-industry img-style"  alt=""></i>
-                </div>
-              </div>
+
+                <i id="table-cont" class="fa fa-industry img-style"  alt=""></i>
+                </div> -->
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" style="border:1px solid #ced4ca;border-radius:0.25rem;padding:0.1rem;margin:auto;margin-right:0.5rem;">
+                  <li class="nav-item" role="presentation"  >
+                    <i class="fa fa-sitemap nav-link active"  id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" style="padding:0.4rem;font-size:1.3rem;"></i>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <i class="fa fa-calculator nav-link"  id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" style="padding:0.4rem;font-size:1.3rem;"></i>
+                  </li>
+                </ul>
+              <!-- </div> -->
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box">
                   <!-- <input type="date" name="" class="form-control fromDate" id="from"> -->
@@ -109,6 +133,230 @@
         </div>
     </div>
   </nav>
+  <div class="tab-content" id="pills-tabContent" style="margin-top:3.8rem;">
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+    <div class="grid-container">
+      <div class="row paddingm" style="height: 15rem;width:100%;">
+        <div class="grid-item mar-left paddingm" style="margin-top: 1.5rem;width:48.5%;margin-left:0.5rem;">
+          <div>
+            <p class="paddingm fontBold financial_font">Cost of Poor Quality (COPQ) by Reason</p>
+          </div>
+          <div class="valueMarLeft">
+              <p class="paddingm headTitle">TOTAL</p>
+              <p class="paddingm valueGraph" style="margin-left:0.4rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft COPQP" ></span></p>
+          </div>
+          <div class="parent_graph_quality_opportunity parent_graph_div parent-style">
+            <div class="child_graph_quality_opportunity child-style">
+              <canvas id="COPQP" height="110"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item mar-right paddingm" style="margin-top: 1.5rem;width:48.5%;margin-right:0.5rem;">
+          <div>
+            <p class="paddingm fontBold financial_font">Quality Rejection by Reason</p>
+          </div>
+          <div class="valueMarLeft">
+              <p class="paddingm headTitle">TOTAL</p>
+              <p class="paddingm valueGraph" style="margin-left:0.4rem;"><span class="paddingm valueMarLeft CRBR" ></span></p>
+          </div>
+          <div class="parent_graph_quality_reason_wise parent_graph_div parent-style">
+            <div class="child_graph_quality_reason_wise child-style">
+              <canvas id="QRBR" height="110"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row paddingm" style="height: 15rem;width:100%;">
+        <div class="grid-item mar-left mar-top paddingm" style="width:48.5%;margin-left:0.5rem;">
+          <div>
+            <p class="paddingm fontBold financial_font">Cost of Poor Quality (COPQ) by Machines</p>
+          </div>
+          <div class="valueMarLeft">
+              <p class="paddingm headTitle">TOTAL</p>
+              <p class="paddingm valueGraph" style="margin-left:0.4rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft COPQM" ></span></p>
+          </div>
+          <div class="parent_graph_quality_machine_wise parent_graph_div parent-style">
+            <div class="child_graph_quality_machine_wise child-style">
+              <canvas id="COPQM" height="110"></canvas>
+            </div>  
+          </div>
+        </div>
+        <div class="grid-item mar-right mar-top paddingm" style="width:48.5%;margin-right:0.5rem;">
+          <div>
+            <p class="paddingm fontBold financial_font">Quality Rejection by Machines with Reasons</p>
+          </div>
+          <div class="valueMarLeft">
+              <p class="paddingm headTitle">TOTAL</p>
+              <p class="paddingm valueGraph" style="margin-left:0.4rem;"><span class="paddingm valueMarLeft CRBMR" ></span></p>
+          </div>
+          <div class="parent_graph_quality_machine_reason parent_graph_div parent-style">
+            <div class="child_graph_quality_machine_reason child-style">
+              <canvas id="CRBMR" height="110"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row paddingm" style="height: 15rem;width:100%;">
+        <div class="grid-item mar-left mar-top paddingm" style="width:48.5%;margin-left:0.5rem;">
+          <div>
+            <p class="paddingm fontBold financial_font">Cost of Poor Quality (COPQ) by Parts</p>
+          </div>
+          <div class="valueMarLeft">
+              <p class="paddingm headTitle">TOTAL</p>
+              <p class="paddingm valueGraph" style="margin-left:0.4rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft CQRP" ></span></p>
+          </div>
+          <div class="parent_graph_quality_parts parent_graph_div parent-style">
+            <div class="child_graph_quality_parts child-style">
+              <canvas id="CQRP" height="110"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item mar-right mar-top paddingm" style="width:48.5%;margin-right:0.5rem;">
+          <div>
+            <p class="paddingm fontBold financial_font">Quality Rejection by Parts with Reasons</p>
+          </div>
+          <div class="valueMarLeft">
+              <p class="paddingm headTitle">TOTAL</p>
+              <p class="paddingm valueGraph" style="margin-left:0.4rem;"><span class="paddingm valueMarLeft CQRPR" ></span></p>
+          </div>
+          <div class="parent_graph_quality_part_reason parent_graph_div parent-style">
+            <div class="child_graph_quality_part_reason child-style">
+              <canvas id="CQRPR" height="110"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+    <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav">
+      <div class="container-fluid paddingm ">
+        <div>
+            
+        </div>
+        <div class="d-flex innerNav">
+          <div class="box rightmar" style="margin-right: 0.5rem;">
+            <div class="input-box">
+              <input type="number" class="form-control font_weight" name="" id="pagination_val" style="width: 4rem;">
+            </div>
+          </div>
+          <div class="box rightmar center-align font_color" style="margin-right: 0.5rem;">
+            <p class="paddingm">of <span id="total_pagination"></span> pages</p>
+          </div>
+          <div class="box rightmar" style="margin-right: 0.5rem;">
+            <div class="input-box">
+              <select class="form-select font_weight" name="" id="Production_MachineName" style="width: 10rem;">
+              </select>
+              <label for="inputSiteNameAdd" class="input-padding ">Search</label>
+            </div>
+          </div>
+          <div class="box rightmar" style="margin-right: 0.5rem;">
+            <div class="input-box">
+              <div class="filter_multiselect">
+                <div class="filter_selectBox" onclick="multiple_drp()">
+                  <div class="inbox-span fontStyle search_style"><p class="paddingm" id="part_text">Select</p></div>
+                </div>
+                <div class="filter_checkboxes filter_part">
+                </div>
+              </div>
+              <label for="partNameFilter" class="input-padding">Part Name</label>
+            </div>
+          </div>
+
+          <div class="box rightmar" style="margin-right: 0.5rem;">
+            <div class="input-box">
+              <div class="filter_multiselect">
+                <div class="filter_selectBox" onclick="multiple_drp_machine()">
+                  <div class="inbox-span fontStyle search_style"><p class="paddingm" id="machine_text">Select</p></div>
+                </div>
+                <div class="filter_checkboxes filter_machine">
+                </div>
+              </div>
+              <label for="machineNameFilter" class="input-padding ">Machine Name</label>
+            </div>
+          </div> 
+          
+          <div class="box rightmar" style="margin-right: 0.5rem;">
+            <div class="input-box">
+              <div class="filter_multiselect">
+                <div class="filter_selectBox" onclick="multiple_drp_reason()">
+                  <div class="inbox-span fontStyle search_style"><p class="paddingm" id="reason_text">Select</p></div>
+                </div>
+                <div class="filter_checkboxes filter_reason">
+                </div>
+              </div>
+              <label for="reasonNameFilter" class="input-padding ">Reason</label>
+            </div>
+          </div> 
+
+          <div class="box rightmar" style="margin-right: 0.5rem;">
+            <div class="input-box">
+              <div class="filter_multiselect">
+                <div class="filter_selectBox" onclick="multiple_drp_user()">
+                  <div class="inbox-span fontStyle search_style"><p class="paddingm" id="user_text">Select</p></div>
+                </div>
+                <div class="filter_checkboxes filter_user">
+                </div>
+              </div>
+              <label for="userNameFilter" class="input-padding ">Created by</label>
+            </div>
+          </div> 
+
+          <div class="box rightmar" style="margin-right: 0.5rem;">
+            <!-- <a style="background: #005abc;color: white;width:9rem;" class="settings_nav_anchor float-end" id="add_machine_button" onclick="getFilterval()">Apply</a>  -->
+            <button class="btn fo bn filterbtnstyle settings_nav_anchor float-end" style="margin-block:auto;" id="add_machine_button" onclick="getFilterval()">Apply Filter</button>
+          </div>
+          <div class="box rightmar" style="margin-right: 0.5rem;">
+            <img src="<?php echo base_url('assets/img/filter_reset.png'); ?>" class="undo" style="font-size:20px;color: #b5b8bc;cursor: pointer;width:1.3rem;height:1.3rem;">
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="tableContent">
+      <div class="settings_machine_header sticky-top fixtabletitle">
+        <div class="row paddingm">
+          <div class="col-sm-1 p3 paddingm">
+            <p class="basic_header">FROM DATE</p>
+          </div>
+          <div class="col-sm-1 p3 paddingm">
+            <p class="basic_header">FROM TIME</p>
+          </div>
+          <div class="col-sm-1 p3 paddingm">
+            <p class="basic_header">TO TIME</p>
+          </div>
+          <div class="col-sm-1 p3 paddingm marleft" >
+            <p class="basic_header">PART NAME </p>
+          </div>
+          <div class="col-sm-2 p3 paddingm marleft">
+            <p class="basic_header">MACHINE</p>
+          </div>
+          <div class="col-sm-2 p3 paddingm">
+            <p class="basic_header">REJECT COUNTS</p>
+          </div>
+          <div class="col-sm-1 p3 paddingm">
+            <p class="basic_header">REASON</p>
+          </div>
+          <div class="col-sm-1 p3 paddingm">
+            <p class="basic_header">UPDATED BY</p>
+          </div>
+          <div class="col-sm-1 p3 paddingm">
+            <p class="basic_header">UPDATED AT</p>
+          </div>
+          <div class="col-sm-1 p3 paddingm">
+            <p class="basic_header">NOTES</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contentQualityFilter contentContainer paddingm " style="margin-bottom:0rem;">
+      </div>
+    </div>
+    </div>
+  </div>
+
+
+<!--   temporary hide this tags because its ui changes
   <div style="margin-top: 4.2rem;display: none;" id="graph-container-div"> 
     <div class="grid-container">
       <div class="row paddingm" style="height: 15rem;">
@@ -202,147 +450,134 @@
           </div>
         </div>
       </div>
+    </div>
+  </div> -->
+<!--  temporary hide this tags because its ui changes
+  <div style="margin-top: 3.8rem;display: block;" id="table-container">
+    <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav">
+      <div class="container-fluid paddingm ">
+        <div>
+            
+        </div>
+        <div class="d-flex innerNav">
+          <div class="box rightmar" style="margin-right: 0.5rem;">
+            <div class="input-box">
+              <input type="number" class="form-control font_weight" name="" id="pagination_val" style="width: 4rem;">
+            </div>
+          </div>
+          <div class="box rightmar center-align font_color" style="margin-right: 0.5rem;">
+            <p class="paddingm">of <span id="total_pagination"></span> pages</p>
+          </div>
+          <div class="box rightmar" style="margin-right: 0.5rem;">
+            <div class="input-box">
+              <select class="form-select font_weight" name="" id="Production_MachineName" style="width: 10rem;">
+              </select>
+              <label for="inputSiteNameAdd" class="input-padding ">Search</label>
+            </div>
+          </div>
+          <div class="box rightmar" style="margin-right: 0.5rem;">
+            <div class="input-box">
+              <div class="filter_multiselect">
+                <div class="filter_selectBox" onclick="multiple_drp()">
+                  <div class="inbox-span fontStyle search_style"><p class="paddingm" id="part_text">Select</p></div>
+                </div>
+                <div class="filter_checkboxes filter_part">
+                </div>
+              </div>
+              <label for="partNameFilter" class="input-padding">Part Name</label>
+            </div>
+          </div>
+
+          <div class="box rightmar" style="margin-right: 0.5rem;">
+            <div class="input-box">
+              <div class="filter_multiselect">
+                <div class="filter_selectBox" onclick="multiple_drp_machine()">
+                  <div class="inbox-span fontStyle search_style"><p class="paddingm" id="machine_text">Select</p></div>
+                </div>
+                <div class="filter_checkboxes filter_machine">
+                </div>
+              </div>
+              <label for="machineNameFilter" class="input-padding ">Machine Name</label>
+            </div>
+          </div> 
+          
+          <div class="box rightmar" style="margin-right: 0.5rem;">
+            <div class="input-box">
+              <div class="filter_multiselect">
+                <div class="filter_selectBox" onclick="multiple_drp_reason()">
+                  <div class="inbox-span fontStyle search_style"><p class="paddingm" id="reason_text">Select</p></div>
+                </div>
+                <div class="filter_checkboxes filter_reason">
+                </div>
+              </div>
+              <label for="reasonNameFilter" class="input-padding ">Reason</label>
+            </div>
+          </div> 
+
+          <div class="box rightmar" style="margin-right: 0.5rem;">
+            <div class="input-box">
+              <div class="filter_multiselect">
+                <div class="filter_selectBox" onclick="multiple_drp_user()">
+                  <div class="inbox-span fontStyle search_style"><p class="paddingm" id="user_text">Select</p></div>
+                </div>
+                <div class="filter_checkboxes filter_user">
+                </div>
+              </div>
+              <label for="userNameFilter" class="input-padding ">Created by</label>
+            </div>
+          </div> 
+
+          <div class="box rightmar" style="margin-right: 0.5rem;">
+            <button class="btn fo bn filterbtnstyle settings_nav_anchor float-end" style="margin-block:auto;" id="add_machine_button" onclick="getFilterval()">Apply Filter</button>
+          </div>
+          <div class="box rightmar" style="margin-right: 0.5rem;">
+            <img src="<?php echo base_url('assets/img/filter_reset.png'); ?>" class="undo" style="font-size:20px;color: #b5b8bc;cursor: pointer;width:1.3rem;height:1.3rem;">
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="tableContent">
+      <div class="settings_machine_header sticky-top fixtabletitle">
+        <div class="row paddingm">
+          <div class="col-sm-1 p3 paddingm">
+            <p class="basic_header">FROM DATE</p>
+          </div>
+          <div class="col-sm-1 p3 paddingm">
+            <p class="basic_header">FROM TIME</p>
+          </div>
+          <div class="col-sm-1 p3 paddingm">
+            <p class="basic_header">TO TIME</p>
+          </div>
+          <div class="col-sm-1 p3 paddingm marleft" >
+            <p class="basic_header">PART NAME </p>
+          </div>
+          <div class="col-sm-2 p3 paddingm marleft">
+            <p class="basic_header">MACHINE</p>
+          </div>
+          <div class="col-sm-2 p3 paddingm">
+            <p class="basic_header">REJECT COUNTS</p>
+          </div>
+          <div class="col-sm-1 p3 paddingm">
+            <p class="basic_header">REASON</p>
+          </div>
+          <div class="col-sm-1 p3 paddingm">
+            <p class="basic_header">UPDATED BY</p>
+          </div>
+          <div class="col-sm-1 p3 paddingm">
+            <p class="basic_header">UPDATED AT</p>
+          </div>
+          <div class="col-sm-1 p3 paddingm">
+            <p class="basic_header">NOTES</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contentQualityFilter contentContainer paddingm " style="margin-bottom:0rem;">
+       
       </div>
     </div>
 
-  <div style="margin-top: 3.8rem;display: block;" id="table-container">
-    <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav">
-          <div class="container-fluid paddingm ">
-              <div>
-               
-              </div>
-              <div class="d-flex innerNav">
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
-                        <div class="input-box">
-                            <input type="number" class="form-control font_weight" name="" id="pagination_val" style="width: 4rem;">
-                        </div>
-                    </div>
-                    <div class="box rightmar center-align font_color" style="margin-right: 0.5rem;">
-                        <p class="paddingm">of <span id="total_pagination"></span> pages</p>
-                    </div>
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
-                        <div class="input-box">
-                            <select class="form-select font_weight" name="" id="Production_MachineName" style="width: 10rem;">
-                            </select>
-                            <label for="inputSiteNameAdd" class="input-padding ">Search</label>
-                        </div>
-                    </div>
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
-                        <div class="input-box">
-                          <div class="filter_multiselect">
-                            <div class="filter_selectBox" onclick="multiple_drp()">
-                              <div class="inbox-span fontStyle search_style"><p class="paddingm">Select</p></div>
-                            </div>
-                            <div class="filter_checkboxes filter_part">
-
-                            </div>
-                          </div>
-                            <label for="partNameFilter" class="input-padding">Part Name</label>
-                          </div>
-                    </div>
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
-                        <div class="input-box">
-                            <div class="filter_multiselect">
-                              <div class="filter_selectBox" onclick="multiple_drp_machine()">
-                                <div class="inbox-span fontStyle search_style"><p class="paddingm">Select</p></div>
-                              </div>
-                              <div class="filter_checkboxes filter_machine">
-
-                              </div>
-                            </div>
-                            <label for="machineNameFilter" class="input-padding ">Machine Name</label>
-                        </div>
-                    </div> 
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
-                        <div class="input-box">
-                            <div class="filter_multiselect">
-                              <div class="filter_selectBox" onclick="multiple_drp_reason()">
-                                <div class="inbox-span fontStyle search_style"><p class="paddingm">Select</p></div>
-                              </div>
-                              <div class="filter_checkboxes filter_reason">
-
-                              </div>
-                            </div>
-                            <label for="reasonNameFilter" class="input-padding ">Reason</label>
-                        </div>
-                    </div> 
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
-                        <div class="input-box">
-                            <div class="filter_multiselect">
-                              <div class="filter_selectBox" onclick="multiple_drp_user()">
-                                <div class="inbox-span fontStyle search_style"><p class="paddingm">Select</p></div>
-                              </div>
-                              <div class="filter_checkboxes filter_user">
-
-                              </div>
-                            </div>
-                            <label for="userNameFilter" class="input-padding ">Created by</label>
-                        </div>
-                    </div> 
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
-                        <a style="background: #005abc;color: white;width:9rem;" class="settings_nav_anchor float-end" id="add_machine_button" onclick="getFilterval()">Apply</a> 
-                    </div>
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
-                        <img src="<?php echo base_url('assets/img/filter_reset.png'); ?>" class="undo" style="font-size:20px;color: #b5b8bc;cursor: pointer;width:1.3rem;height:1.3rem;">
-                    </div>
-              </div>
-          </div>
-        </nav>
-        <div class="tableContent">
-            <div class="settings_machine_header sticky-top fixtabletitle">
-                <div class="row paddingm">
-                    <div class="col-sm-1 p3 paddingm">
-                      <p class="basic_header">FROM DATE</p>
-                    </div>
-                    <div class="col-sm-1 p3 paddingm">
-                      <p class="basic_header">FROM TIME</p>
-                    </div>
-                    <div class="col-sm-1 p3 paddingm">
-                      <p class="basic_header">TO TIME</p>
-                    </div>
-                    <div class="col-sm-1 p3 paddingm marleft" >
-                      <p class="basic_header">PART NAME </p>
-                    </div>
-                    <div class="col-sm-2 p3 paddingm marleft">
-                      <p class="basic_header">MACHINE</p>
-                    </div>
-                    <div class="col-sm-2 p3 paddingm">
-                      <p class="basic_header">REJECT COUNTS</p>
-                    </div>
-                    <div class="col-sm-1 p3 paddingm">
-                      <p class="basic_header">REASON</p>
-                    </div>
-                    <div class="col-sm-1 p3 paddingm">
-                      <p class="basic_header">UPDATED BY</p>
-                    </div>
-                    <div class="col-sm-1 p3 paddingm">
-                      <p class="basic_header">UPDATED AT</p>
-                    </div>
-                    <div class="col-sm-1 p3 paddingm">
-                      <p class="basic_header">NOTES</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="contentQualityFilter contentContainer paddingm " style="margin-bottom:0rem;">
-              <!-- <div id="settings_div">
-                <div class="row paddingm">
-                  <div class="col-sm-1 col marleft">j</div>
-                  <div class="col-sm-1 col marleft">j</div>
-                  <div class="col-sm-1 col marleft">j</div>
-                  <div class="col-sm-1 col marleft">j</div>
-                  <div class="col-sm-2 col marleft">j</div>
-                  <div class="col-sm-2 col marleft">j</div> 
-                  <div class="col-sm-1 col marleft">j</div>
-                  <div class="col-sm-1 col marleft">j</div>
-                  <div class="col-sm-1 col marleft">j</div>
-                  <div class="col-sm-1 col marleft">j</div>
-                </div>
-              </div> -->
-            </div>
-        </div>
-
-  </div>
+  </div> -->
 </div>
 
 <script type="text/javascript">
@@ -507,6 +742,7 @@
     crbmr();
     qualitybyparts();
     qualitybyreasonparts();
+  
   }
 
 function multiple_drp() {
@@ -568,7 +804,37 @@ $(document).on('click','.inbox_part',function(event){
   if (l2 < l1) {
     $( ".filter_part_val:eq(0)").prop( "checked", false );
   }
+
+  // part count
+  var part_count = 0;
+  var check_if = $('.filter_part_val');
+  jQuery('.filter_part_val').each(function(index){
+    if (check_if[index].checked===true) {
+      part_count = parseInt(part_count)+1;
+    }
+  });
+
+  var part_len = $('.filter_part_val').length;
+  part_len = parseInt(part_len)-1;
+  if (parseInt(part_count)>=parseInt(part_len)) {
+      if(check_if[0].checked===true){
+        check_if[0].checked=true;
+        $('#part_text').text(parseInt(part_count)-1+' Selected');
+      }else{
+      // check_if[0].checked=true;
+      reset_part();
+      $('#part_text').text('All');
+    }
+  }else if(((parseInt(part_count)<parseInt(part_len))) && (parseInt(part_count)>0)){
+    $('#part_text').text(parseInt(part_count)+' Selected');
+    // check_if[0].checked=false;
+  }else {
+    $('#part_text').text('No Part');
+  }
+
 });
+
+
 
 $(document).on('click','.inbox_machine',function(event){
   var index = $('.inbox_machine').index(this);
@@ -591,6 +857,36 @@ $(document).on('click','.inbox_machine',function(event){
   if (l2 < l1) {
     $( ".filter_machine_val:eq(0)").prop( "checked", false );
   }
+
+
+  
+  // machine count
+  var machine_count = 0;
+  var check_if = $('.filter_machine_val');
+  jQuery('.filter_machine_val').each(function(index){
+    if (check_if[index].checked===true) {
+      machine_count = parseInt(machine_count)+1;
+    }
+  });
+
+  var machine_len = $('.filter_machine_val').length;
+  machine_len = parseInt(machine_len)-1;
+  if (parseInt(machine_count)>=parseInt(machine_len)) {
+      if(check_if[0].checked===true){
+        check_if[0].checked=true;
+        $('#machine_text').text(parseInt(machine_count)-1+' Selected');
+      }else{
+      // check_if[0].checked=true;
+      reset_machine();
+      $('#machine_text').text('All');
+    }
+  }else if(((parseInt(machine_count)<parseInt(machine_len))) && (parseInt(machine_count)>0)){
+    $('#machine_text').text(parseInt(machine_count)+' Selected');
+    // check_if[0].checked=false;
+  }else {
+    $('#machine_text').text('No Machine');
+  }
+
 });
 
 $(document).on('click','.inbox_reason',function(event){
@@ -614,6 +910,37 @@ $(document).on('click','.inbox_reason',function(event){
   if (l2 < l1) {
     $( ".filter_reason_val:eq(0)").prop( "checked", false );
   }
+
+  
+  
+  // Reason  count
+  var reason_count = 0;
+  var check_if = $('.filter_reason_val');
+  jQuery('.filter_reason_val').each(function(index){
+    if (check_if[index].checked===true) {
+      reason_count = parseInt(reason_count)+1;
+    }
+  });
+
+  var reason_len = $('.filter_reason_val').length;
+  reason_len = parseInt(reason_len)-1;
+  if (parseInt(reason_count)>=parseInt(reason_len)) {
+      if(check_if[0].checked===true){
+        check_if[0].checked=true;
+        $('#reason_text').text(parseInt(reason_count)-1+' Selected');
+      }else{
+      // check_if[0].checked=true;
+      reset_reason();
+      $('#reason_text').text('All');
+    }
+  }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
+    $('#reason_text').text(parseInt(reason_count)+' Selected');
+    // check_if[0].checked=false;
+  }else {
+    $('#reason_text').text('No Reason');
+  }
+
+
 });
 
 $(document).on('click','.inbox_user',function(event){
@@ -636,6 +963,35 @@ $(document).on('click','.inbox_user',function(event){
   var l2 = $('.filter_user_val:checked').length;
   if (l2 < l1) {
     $( ".filter_user_val:eq(0)").prop( "checked", false );
+  }
+
+  
+  
+  // user  count
+  var user_count = 0;
+  var check_if = $('.filter_user_val');
+  jQuery('.filter_user_val').each(function(index){
+    if (check_if[index].checked===true) {
+      user_count = parseInt(user_count)+1;
+    }
+  });
+
+  var user_len = $('.filter_user_val').length;
+  user_len = parseInt(user_len)-1;
+  if (parseInt(user_count)>=parseInt(user_len)) {
+      if(check_if[0].checked===true){
+        check_if[0].checked=true;
+        $('#user_text').text(parseInt(user_count)-1+' Selected');
+      }else{
+      // check_if[0].checked=true;
+      reset_created();
+      $('#user_text').text('All');
+    }
+  }else if(((parseInt(user_count)<parseInt(user_len))) && (parseInt(user_count)>0)){
+    $('#user_text').text(parseInt(user_count)+' Selected');
+    // check_if[0].checked=false;
+  }else {
+    $('#user_text').text('No users');
   }
 });
 
@@ -1644,7 +2000,7 @@ function getfilterdata() {
                                 +'</div>'
                               +'</div>');
       });
-
+      getFilterval();
     },
     error:function(res){
       alert("Something went wrong!");
@@ -1720,6 +2076,82 @@ function filter_table_data(){
 //     }
 // });
 
+// mouse up function dropdown outside click remove function  
+$(document).mouseup(function(event){
 
+  // part dropdown outside click
+  var part_check = $('.filter_part');
+  if (!part_check.is(event.target) && part_check.has(event.target).length==0) {
+    part_check.hide();
+    
+  }
+
+  // machine dropdown outside click
+  var machine_check = $('.filter_machine');
+  if (!machine_check.is(event.target) && machine_check.has(event.target).length==0) {
+    machine_check.hide();
+  }
+
+  // reason dropdown outside click
+  var reason_check = $('.filter_reason');
+  if (!reason_check.is(event.target) && reason_check.has(event.target).length==0) {
+    reason_check.hide();
+  }
+
+  // created by dropdown outside click
+  var created_check = $('.filter_user');
+  if (!created_check.is(event.target) && created_check.has(event.target).length==0) {
+    created_check.hide();
+  }
+
+});
+
+// undo button
+$(document).on('click','.undo',function(event){
+  event.preventDefault();
+
+  reset_part();
+  reset_machine();
+  reset_reason();
+  reset_created();
+  getFilterval();
+
+});
+
+// reset part
+function reset_part(){
+  var machine_arr = $('.filter_part_val');
+  jQuery('.filter_part_val').each(function(index){
+    machine_arr[index].checked=true;
+  });
+  $('#part_text').text('All Parts');
+}
+
+// reset machine 
+function reset_machine(){
+  var machine_arr = $('.filter_machine_val');
+  jQuery('.filter_machine_val').each(function(index){
+    machine_arr[index].checked=true;
+  });
+  $('#filter_machine_val').text('All Machine');
+}
+
+// reset reason
+function reset_reason(){
+  var reason_arr = $('.filter_reason_val');
+  jQuery('.filter_reason_val').each(function(index){
+    reason_arr[index].checked=true;
+  });
+  $('#reason_text').text('All Machine');
+}
+
+// reset created by
+function reset_created(){
+  var created_arr = $('.filter_user_val');
+  jQuery('.filter_user_val').each(function(index){
+    created_arr[index].checked=true;
+  });
+  $('#user_text').text('All Machine');
+}
 </script>
 

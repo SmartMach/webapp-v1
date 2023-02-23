@@ -676,10 +676,10 @@ $session = \Config\Services::session();
                 <!-- <div class="input-box" style="border:1px solid #ced4ca;padding:2px;border-radius:0.25rem;height:100%;width:4.3rem;display:flex;flex-direction:row;"> -->
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" style="border:1px solid #ced4ca;border-radius:0.25rem;padding:0.1rem;">
                         <li class="nav-item" role="presentation"  onclick="graph_view_click()">
-                        <i class="fa fa-chart-bar nav-link active"  id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" style="padding:0.4rem;font-size:1.3rem;"></i>
+                        <i class="fa fa-sitemap nav-link active"  id="pills-graph-tab" data-bs-toggle="pill" data-bs-target="#pills-graph" type="button" role="tab" aria-controls="pills-graph" aria-selected="true" style="padding:0.4rem;font-size:1.3rem;"></i>
                         </li>
                         <li class="nav-item" role="presentation" onclick="table_onclick()">
-                        <i class="fa fa-calculator nav-link"  id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" style="padding:0.4rem;font-size:1.3rem;"></i>
+                        <i class="fa fa-calculator nav-link"  id="pills-table-tab" data-bs-toggle="pill" data-bs-target="#pills-table" type="button" role="tab" aria-controls="pills-table" aria-selected="false" style="padding:0.4rem;font-size:1.3rem;"></i>
                         </li>
                     </ul>
                     <!-- </div> -->
@@ -705,7 +705,7 @@ $session = \Config\Services::session();
     </nav>
   
     <div class="tab-content" id="pills-tabContent" style="margin-top:3.8rem;">
-        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+        <div class="tab-pane fade show active" id="pills-graph" role="tabpanel" aria-labelledby="pills-graph-tab" tabindex="0">
             <!-- tamil design graph design -->
             <!-- <div id="graphview" class="graphview_1" style="margin-top:1rem;"> -->
                 <div  class="graph_1div" >
@@ -782,7 +782,7 @@ $session = \Config\Services::session();
                 </div>
             <!-- </div> -->
         </div>
-        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+        <div class="tab-pane fade" id="pills-table" role="tabpanel" aria-labelledby="pills-table-tab" tabindex="0">
             <div style="display:flex;flex-direction:row;height:3rem;align-items:center;">
                 <div style="width:10%;display:flex;flex-direction:row;">
                     <div style="margin-left:1rem;font-size:12px;color:#8c8c8c;">
@@ -793,7 +793,7 @@ $session = \Config\Services::session();
                     <!-- <div style=""> -->
                         <!-- reset -->
                         <div class="" style="margin-top:0.5rem;">
-                           <img src="<?php echo base_url(); ?>/assets/img/filter_reset.png" style="height:1.5rem;width:1.5rem;" alt="">
+                           <img src="<?php echo base_url(); ?>/assets/img/filter_reset.png" style="height:1.5rem;width:1.5rem;" class="table_reset" alt="">
                         </div>
                         <!-- filter button -->
                         <button class="btn fo bn saveNotes filterbtnstyle" style="" id="apply_filter_btn">Apply Filter</button>
@@ -1415,6 +1415,7 @@ function reset_machine(){
   jQuery('.machine_checkbox').each(function(index){
     machine_arr[index].checked=true;
   });
+  $('#text_machine_drp').text('All Machines');
 }
 
 
@@ -1424,6 +1425,7 @@ function reset_part(){
     jQuery('.partname_checkbox').each(function(index){
         part_arr[index].checked=true;
     });
+    $('#text_category_drp_part').text('All Parts');
 }
 
 // reset downtime reasons dropdown
@@ -1432,6 +1434,7 @@ function reset_reason(){
     jQuery('.reason_checkbox').each(function(in1){
         reason_arr[in1].checked=true;
     });
+    $('#text_reason_drp').text('All Reasons');
 }
 
 // reset downtime category
@@ -1440,6 +1443,7 @@ function reset_category(){
     jQuery('.category_drp_checkbox').each(function(in2){
         category_arr[in2].checked=true;
     });
+    $('#text_category_drp').text('All Category');
 }
 
 // reset created by
@@ -1448,6 +1452,7 @@ function reset_created_by(){
     jQuery('.created_by_checkbox').each(function(in3){
         created_by_arr[in3].checked=true;
     });
+    $('#text_created_by_drp').text('All Users');
 }
 
 
@@ -1507,7 +1512,7 @@ $(document).ready(function(){
     filter_after_filter(end_index,start_index);
 
     // preloader off function
-    $("#overlay").fadeOut(500);
+   // $("#overlay").fadeOut(500);
 
 });
 
@@ -1537,7 +1542,7 @@ $(document).on('blur','.fromDate',function(event){
     filter_after_filter(end_index,start_index);
 
     // preloader off function
-    $("#overlay").fadeOut(400);
+  //  $("#overlay").fadeOut(400);
   
 });
 
@@ -1568,7 +1573,7 @@ $(document).on('blur','.toDate',function(event){
    
 
     // preloader off function
-     $("#overlay").fadeOut(400);
+  //   $("#overlay").fadeOut(400);
   
 });
 
@@ -2565,6 +2570,7 @@ function pagination_filter(){
     var limit_val = $('#total_page').text();
     // console.log(value_input);
     // console.log(limit_val);
+    $("#overlay").fadeIn(400);
     var start_index =0;
     var end_index = 0;
     if (parseInt(value_input)>0) {
@@ -3056,9 +3062,11 @@ $(document).mouseup(function(event){
 $(document).on('click','#apply_filter_btn',function(event){
     event.preventDefault();
     $('#pagination_val').val('1');
+    $("#overlay").fadeIn(400);
     var start_index = 0;
     var end_index = 50;
     filter_after_filter(end_index,start_index);
+   
    
     // alert('ji');
 
@@ -3191,6 +3199,7 @@ function filter_after_filter(end_index,start_index){
                 
             });
             table_onclick();
+            $("#overlay").fadeOut(400);
             // var width_get = $('.fixed_rows').css('height');
             // var width_get_1 = $('.scroll_rows').css('height');
             // // console.log("table height");
@@ -3205,5 +3214,29 @@ function filter_after_filter(end_index,start_index){
 
     });       
 }
+
+
+// table reset click
+$(document).on('click','.table_reset',function(event){
+    event.preventDefault();
+    $('.fixed_rows').empty();
+    $('.scroll_rows').empty();
+    $("#overlay").fadeIn(400);
+    // reset all dropdown values
+    reset_category();
+    reset_created_by();
+    reset_machine();
+    reset_part();
+    reset_reason();
+
+    // filter function calling
+    var start_index = 0;
+    var end_index = 50;
+    $('#pagination_val').val('1');
+    
+    filter_after_filter(end_index,start_index);
+
+
+});
 
 </script>
