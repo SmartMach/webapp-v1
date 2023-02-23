@@ -566,6 +566,22 @@
                             </ul> -->
                         </li>
                         <!-- daily production link end -->
+
+                        <!-- production Downtime New module -->
+                        <li class="side-menu-li d-flex">
+                            <a href="<?php echo base_url('Home/load_option/Downtime_Production'); ?>">
+                                <i class="fa fa-chart-pie nav-icon nav-icon-hover production_downtime_background" style="font-size:26px;" dvalue="Downtime" alt="Downtime"></i>
+                            </a>
+                        </li>
+                        <!-- production downtime new module end -->
+
+                         <!-- production Downtime New module -->
+                         <li class="side-menu-li d-flex">
+                            <a href="<?php echo base_url('Home/load_option/Quality_Production'); ?>">
+                                <i class="fa fa-chart-area nav-icon nav-icon-hover production_downtime_background" style="font-size:26px;" dvalue="Quality" alt="Quality"></i>
+                            </a>
+                        </li>
+                        <!-- production downtime new module end -->
                 </ul>
             </div> 
             <div class="col-lg paddingm">        
@@ -616,8 +632,10 @@
         
         if(MenuSub[0] == x){
             var icon_name = listIcons[i].getAttribute("class");
-
+            // alert(listIcons[1]);
+            // console.log(MenuSub);
             const split_nav = icon_name.split(" ");
+            // console.log(split_nav[1]);
             if (split_nav[1] === "fa-line-chart") {
                 listIcons[i].style = "background-color:#005abc;color:white;font-size:23px;padding:9px;";
                 // actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 1px;font-weight:500;";
@@ -633,7 +651,12 @@
                 // alert('ok');
                 listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:27px;padding:9px;";
                 // actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 1px;font-weight:500;";
-               
+            }
+            else if(split_nav[1] === "fa-chart-pie"){
+                listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:27px;padding:9px;";
+            }
+            else if(split_nav[1]==="fa fa-chart-area"){
+                listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:27px;padding:9px;";
             }
             else{
                 listIcons[i].style = "background-color:#005abc;color:white;font-size:29px;padding:9px;";
