@@ -1483,8 +1483,9 @@ $(document).ready(function(){
     machine_reason_wise_duration();
 
     $('#pagination_val').val('1');
-    // table data function
-    get_table_record();
+    // table data function temporary hide this function for onlu filter apply function
+    // get_table_record();
+    
 
     // machine dropdown record filling function
     fill_machine_dropdown();
@@ -1496,8 +1497,14 @@ $(document).ready(function(){
     // created by dropdown record filling
     fill_created_by();
 
+    // downtime reasons function
     var temp = null;
     downtime_reason_filter(temp);
+
+    var end_index = 50;
+    var start_index = 0;
+    // filter function apply
+    filter_after_filter(end_index,start_index);
 
     // preloader off function
     $("#overlay").fadeOut(500);
@@ -1522,8 +1529,12 @@ $(document).on('blur','.fromDate',function(event){
     machine_reason_wise_duration();
 
     $('#pagination_val').val('1');
-    // table data function
-    get_table_record();
+    // table data function temporary hid this function for apply filter function
+    // get_table_record();
+    var end_index = 50;
+    var start_index = 0;
+    // filter function apply
+    filter_after_filter(end_index,start_index);
 
     // preloader off function
     $("#overlay").fadeOut(400);
@@ -1547,9 +1558,13 @@ $(document).on('blur','.toDate',function(event){
     machine_reason_wise_duration();
 
     $('#pagination_val').val('1');
-    // table data function
-    get_table_record();
+    // table data function temporary hide this function 
+    // get_table_record();
 
+    var end_index = 50;
+    var start_index = 0;
+    // filter function apply
+    filter_after_filter(end_index,start_index);
    
 
     // preloader off function
@@ -2458,7 +2473,8 @@ function machine_and_reason_wise_tooltip(context){
     tooltipEl.style.pointerEvents = 'none';
 }
 
-// get table data function 
+// get table data function  temporary hide this function for only filter function
+/*
 function get_table_record(){
     f = $('.fromDate').val();
     t = $('.toDate').val();
@@ -2541,6 +2557,7 @@ function get_table_record(){
     });
  
 }
+*/
 
 // pagination filter function
 function pagination_filter(){
@@ -2572,10 +2589,12 @@ function pagination_filter(){
         start_index = 0;
         end_index = 50;
     }
-    pagination_filter_pass(start_index,end_index);
+    // pagination_filter_pass(start_index,end_index);
+    filter_after_filter(end_index,start_index);
 }
 
-// filter process function
+// filter process function temporary hide this function filter pagination apply
+/*
 function pagination_filter_pass(start_index,end_index){
     f = $('.fromDate').val();
     t = $('.toDate').val();
@@ -2653,7 +2672,7 @@ function pagination_filter_pass(start_index,end_index){
         }
     });
 }
-
+*/
 
 // table onclick 
 
@@ -3036,7 +3055,16 @@ $(document).mouseup(function(event){
 // filter onclick  function
 $(document).on('click','#apply_filter_btn',function(event){
     event.preventDefault();
+    $('#pagination_val').val('1');
+    var start_index = 0;
+    var end_index = 50;
+    filter_after_filter(end_index,start_index);
+   
+    // alert('ji');
 
+});
+// after click filter and document ready function and after pagination uusing filter
+function filter_after_filter(end_index,start_index){
     var get_category_data = getcategory_arr();
     var machine_arr = getmachine_arr();
     var part_arr = getpart_arr();
@@ -3125,7 +3153,7 @@ $(document).on('click','#apply_filter_btn',function(event){
             res['data'].forEach(function(val,key){
                 
                 // index = parseInt(index)+1;
-                if ((parseInt(key)<parseInt(end_len)) && (parseInt(key)>=parseInt(from_len))) {  
+                if ((parseInt(key)<parseInt(end_index)) && (parseInt(key)>=parseInt(start_index))) {  
                     var elements = $();
                     var element = $();
 
@@ -3175,9 +3203,7 @@ $(document).on('click','#apply_filter_btn',function(event){
             console.log("Try Again for filter button");
         }
 
-    });
-    // alert('ji');
-
-});
+    });       
+}
 
 </script>
