@@ -41,7 +41,7 @@ class Production_Quality extends BaseController
 
             // // Data from reason mapping table...........
             $output = $this->Financial->getDataRaw($FromDate,$FromTime,$ToDate,$ToTime);
-        
+            
             // Data from PDM Events table for find the All Time Duration...........
             $getAllTimeValues = $this->Financial->getDataRawAll($FromDate,$ToDate);
 
@@ -55,7 +55,7 @@ class Production_Quality extends BaseController
 
             //Production Data for PDM_Production_Info Table......
             $production = $this->Financial->getProductionRec($FromDate,$ToDate);
-
+           //return $production;
             // Get the Inactive(Current) Data.............
             $getInactiveMachine = $this->Financial->getInactiveMachineData();
 
@@ -202,10 +202,10 @@ class Production_Quality extends BaseController
         //Function call for production data............
         $ref = "qualityOpportunity";
 
-        // $fromTime = $this->request->getVar("from");
-        // $toTime = $this->request->getVar("to");
-        $fromTime = "2023-01-12T09:00:00";
-        $toTime = "2023-01-21T21:00:00";
+        $fromTime = $this->request->getVar("from");
+        $toTime = $this->request->getVar("to");
+        // $fromTime = "2023-01-12T09:00:00";
+        // $toTime = "2023-01-21T21:00:00";
 
         // $url = "http://localhost:8080/graph/qualityOpportunity/".$fromTime."/".$toTime."/";
         // $ch = curl_init($url);
@@ -479,7 +479,7 @@ class Production_Quality extends BaseController
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
         // $fromTime = "2023-01-12T09:00:00";
-        // $toTime = "2023-01-21T21:00:00";
+        // $toTime = "2023-02-24T21:00:00";
 
         // $url = "http://localhost:8080/graph/qualityOpportunity/".$fromTime."/".$toTime."/";
         // $ch = curl_init($url);
@@ -534,6 +534,8 @@ class Production_Quality extends BaseController
 
         $out = $this->selectionSortQualityParts($result,sizeof($result['Part']));
         echo json_encode($out);
+        // echo "<pre>";
+        // print_r($out);
     }
 
     public function selectionSortQualityParts($arr, $n)

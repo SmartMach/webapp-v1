@@ -278,7 +278,7 @@ class Production_Downtime_Model extends Model{
     // multi select dropdown reason wise
     public function downtime_reason_filter_con(){
         // $db = \Config\Database::connect($this->site_creation);
-        $db = \Config\Database::connect($this->site_creation);
+        $db = \Config\Database::connect($this->site_connection);
         $query = $db->table('settings_downtime_reasons');
         // $query->select('DISTINCT(downtime_reason),downtime_reason_id');
         $query->select('DISTINCT(downtime_reason)');
@@ -290,7 +290,7 @@ class Production_Downtime_Model extends Model{
 
     // multi select dropdown category wise
     public function getcategory_based_record($category){
-        $db = \Config\Database::connect($this->site_creation);
+        $db = \Config\Database::connect($this->site_connection);
         $build = $db->table('settings_downtime_reasons');
         $build->select('downtime_reason');
         $build->where('downtime_category',$category);

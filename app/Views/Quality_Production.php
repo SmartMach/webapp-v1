@@ -856,10 +856,12 @@ function qualitybyreasonparts() {
           borderWidth: 1,
           showLine : false,
           fill: false,
+          percentage_data:totalVal,
           // reject:totalReject, 
           data:totalVal,
           // partName:partNameTotal,
           pointRadius: 7,
+          yAxisID: 'A',  
         }           
       ];
 
@@ -870,17 +872,19 @@ function qualitybyreasonparts() {
           ar.push(val['reject']);
         });
         oppCost.push({
-          label: "partName",
+          label: item.reason,
           type: "bar",
-          backgroundColor: "#004b9b",
+          backgroundColor: color[x],
           borderColor: color[x],
           borderWidth: 1,
           fill: true,
           // reject:a,
           data: ar,
+          percentage_data:0,
           // partName:partNameHover,
           categoryPercentage:category_percent,
           barPercentage:bar_space,
+          yAxisID: 'B',
         });
         x=x+1;
       });
@@ -896,11 +900,31 @@ function qualitybyreasonparts() {
               responsive: true,
               maintainAspectRatio: false,   
               scales: {
-                  y: {
-                      display:false,
-                      beginAtZero:true,
-                      stacked:true
-                  },
+                  // y: {
+                  //     display:false,
+                  //     beginAtZero:true,
+                  //     stacked:true
+                  // },
+                  A:{
+                      type: 'linear',
+                      position: 'right',
+                      // beginAtZero: true,
+                      suggestedMin: 0,
+                      suggestedMax: 100,
+                      display:true,
+                      grid:{
+                        display:false
+                      },
+                    },
+                  B:{
+                      type: 'linear',
+                      position: 'left',
+                      beginAtZero: true,
+                      display:true,
+                      grid:{
+                        display:false
+                      },
+                    },
                   x:{
                       display:true,
                       grid:{
@@ -967,22 +991,33 @@ function quality_oppcost_reaosn_part_tooltip(context){
     const titleLines = tooltipModel.title || [];
     const bodyLines = tooltipModel.body.map(getBody);
     var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
-    //var mname = context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label[context.tooltip.dataPoints[0].dataIndex];
+    var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].percentage_data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
     //console.log(oppcost);
     //console.log(mname);
     let innerHtml = '<div>';
 
       innerHtml += '<div class="grid-container">';
+      if (parseInt(percentage)>0) {
+          innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+          innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+          innerHtml += '<div class="content-text sub-title"><span></span></div>';
+          innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+          innerHtml += '<div class="grid-item content-text"><span>Percentage</span></div>';  
+          innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+parseFloat(percentage).toLocaleString("en-IN")+'% </span></div>';
+            
+      }
+      else{
+          innerHtml += '<div class="grid-container">';
+          innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+          innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+          innerHtml += '<div class="content-text sub-title"><span>'+context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label+'</span></div>';
+          innerHtml += '<div class="grid-item title-bold"><span></span></div>';
 
-      innerHtml += '<div class="grid-container">';
-      innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
-      innerHtml += '<div class="grid-item title-bold"><span></span></div>';
-      innerHtml += '<div class="content-text sub-title"><span>'+context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label+'</span></div>';
-      innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+          innerHtml += '<div class="grid-item content-text" style="height:max-content;"><p>Rejection Count</p></div>';  
+          innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+parseFloat(oppcost).toLocaleString("en-IN")+'</span></div>';
 
-      innerHtml += '<div class="grid-item content-text"><span style="margin:auto;margin-bottom:0.2rem;">Rejection Count</span></div>';  
-      innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+parseFloat(oppcost).toLocaleString("en-IN")+'</span></div>';
-
+      }
+    
 
       innerHtml += '</div>';
       innerHtml += '</div>';
@@ -1243,7 +1278,6 @@ function quality_opportunity_tooltip(context){
 
 function qualitybyparts() {
 
-  
   $('#CQRP').remove();
   $('.child_graph_quality_parts').append('<canvas id="CQRP"></canvas>');
   $('.chartjs-hidden-iframe').remove();
@@ -1543,6 +1577,8 @@ function crbmr() {
           fill: false, 
           data:machineTotal,
           pointRadius: 7,
+          yAxisID: 'A',  
+          percentage_data:machineTotal,
         }           
       ];
 
@@ -1557,13 +1593,12 @@ function crbmr() {
         oppCost.push({
           label: "partName",
           type: "bar",
-          backgroundColor: "#004b9b",
+          backgroundColor: color[x],
           borderColor: color[x],
           borderWidth: 1,
           fill: true,
-          // reject:a,
           data: arr,
-          // partName:partNameHover,
+          percentage_data:0,
           categoryPercentage:category_percent,
           barPercentage:bar_space,
         });
@@ -1584,11 +1619,31 @@ function crbmr() {
               responsive: true,
               maintainAspectRatio: false,   
               scales: {
-                  y: {
-                      display:false,
-                      beginAtZero:true,
-                      stacked:true
-                  },
+                  // y: {
+                  //     display:false,
+                  //     beginAtZero:true,
+                  //     stacked:true
+                  // },
+                  A:{
+                      type: 'linear',
+                      position: 'right',
+                      // beginAtZero: true,
+                      suggestedMin: 0,
+                      suggestedMax: 100,
+                      display:true,
+                      grid:{
+                        display:false
+                      },
+                    },
+                  B:{
+                      type: 'linear',
+                      position: 'left',
+                      beginAtZero: true,
+                      display:true,
+                      grid:{
+                        display:false
+                      },
+                    },
                   x:{
                       display:true,
                       grid:{
@@ -1657,19 +1712,30 @@ function quality_opportuntiycost_reason_machine_tooltip(context){
         const titleLines = tooltipModel.title || [];
         const bodyLines = tooltipModel.body.map(getBody);
         var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
-        //var mname = context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label[context.tooltip.dataPoints[0].dataIndex];
+        var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].percentage_data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
         //console.log(oppcost);
         //console.log(mname);
      
         let innerHtml = '<div>';
           innerHtml += '<div class="grid-container">';
-          innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
-          innerHtml += '<div class="grid-item title-bold"><span></span></div>';
-          innerHtml += '<div class="content-text sub-title"><span></span></div>';
-          innerHtml += '<div class="grid-item title-bold"><span></span></div>';
-          innerHtml += '<div class="grid-item content-text margin-top"><span>Opportunity Cost</span></div>';
-          innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="true"></i>'+parseFloat(oppcost).toLocaleString("en-IN")+'</span></div>';
+          if (parseInt(percentage)>0) {
+            innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            innerHtml += '<div class="content-text sub-title"><span></span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            innerHtml += '<div class="grid-item content-text"><span>Percentage</span></div>';  
+            innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+parseFloat(percentage).toLocaleString("en-IN")+'% </span></div>'; 
+          }
+          else{
+            innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            innerHtml += '<div class="content-text sub-title"><span></span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            innerHtml += '<div class="grid-item content-text margin-top"><span>Opportunity Cost</span></div>';
+            innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="true"></i>'+parseFloat(oppcost).toLocaleString("en-IN")+'</span></div>';
           
+          }
+         
         innerHtml += '</div>';
         innerHtml += '</div>';
         tooltipEl.innerHTML = innerHtml;
@@ -1690,8 +1756,6 @@ function quality_opportuntiycost_reason_machine_tooltip(context){
 
 function copqm() {
 
-  
-  
   $('#COPQM').remove();
   $('.child_graph_quality_machine_wise').append('<canvas id="COPQM"></canvas>');
   $('.chartjs-hidden-iframe').remove();
