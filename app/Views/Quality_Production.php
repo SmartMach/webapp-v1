@@ -1585,11 +1585,9 @@ function crbmr() {
       var x = 1;
       res['Rejection'].forEach(function(reasonWise){
         var arr=[];
-        console.log(reasonWise);
-        // reasonWise['Machine'].forEach(function(machineWise){
-        //   // console.log(machineWise);
-        //   // arr.push(machineWise['Rejection']);
-        // });
+        reasonWise['Machine'].forEach(function(machineWise){
+          arr.push(machineWise['Rejection']);
+        });
         oppCost.push({
           label: "partName",
           type: "bar",
