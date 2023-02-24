@@ -1687,7 +1687,7 @@ function reason_wise_oppcost(){
                     datasets:[{
                         type: 'line',
                         label: 'Total',
-                        data: oppcost_percent_arr,
+                        data: percentage_arr,
                         percentage_data:percentage_arr,
                         backgroundColor: 'white',
                         borderColor: "#7f7f7f", 
@@ -1917,7 +1917,7 @@ function reason_wise_duration(){
                     },{
                         type: 'line',
                         label: 'Percentage',
-                        data:duration_arr_cumulative,
+                        data:duration_percentage_arr,
                         percentage_data: duration_percentage_arr,
                         backgroundColor: 'white',
                         borderColor: "#7f7f7f", 
@@ -2138,6 +2138,7 @@ function machine_wise_oppcost(){
                         fill: false,
                         lineColor:"black", 
                         pointRadius:7,
+                        yAxisID: 'B',
 
                        
                     },{
@@ -2145,6 +2146,7 @@ function machine_wise_oppcost(){
                         data:oppcost_arr,
                         backgroundColor: "#0075F6",
                         percentage_data:0,
+                        yAxisID: 'A',
                     }],
                 },
                 options: {
@@ -2152,9 +2154,19 @@ function machine_wise_oppcost(){
                     maintainAspectRatio: false,   
                     scales: {
                         y: {
-                            display:false,
-                            beginAtZero:true,
+                            id: 'A',
+                            type:'linear',
+                            position:'left',
+                            display:true,
+                            // beginAtZero:true,
                             stacked:true
+                        },
+                        y1:{
+                            id: 'B',
+                            type:'linear',
+                            display:true,
+                            position:'right',
+                            // beginAtZero:true,
                         },
                         x:{
                             display:true,

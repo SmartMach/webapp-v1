@@ -6,6 +6,7 @@ class Production_Downtime_Model extends Model{
 
 	// protected $db_name;
     protected $site_connection;
+    protected $session;
     public function __construct($db_name =null){
 
         // $db_name = $this->db_name;
@@ -13,16 +14,13 @@ class Production_Downtime_Model extends Model{
 
         $db_name = $this->session->get('active_site');
 
-        $this->site_creation = [
+        $this->site_connection = [
                     'DSN'      => '',
-                    // 'hostname' => '165.22.208.52',
-                    // 'username' => 'smartAd',
-                    // 'password' => 'WaDl@#smat1!',
                     'hostname' => 'localhost',
                     'username' => 'root',
                     'password' => '',                    
-                    'database' => 's1002',
-                    // 'database' => ''.$db_name.'',
+                    // 'database' => 's1002',
+                    'database' => ''.$db_name.'',
                     'DBDriver' => 'MySQLi',
                     'DBPrefix' => '',
                     'pConnect' => false,

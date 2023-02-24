@@ -343,10 +343,10 @@ class Production_Quality extends BaseController
         //Function call for production data............
         $ref = "qualityOpportunity";
 
-        // $fromTime = $this->request->getVar("from");
-        // $toTime = $this->request->getVar("to");
-        $fromTime = "2023-01-12T09:00:00";
-        $toTime = "2023-01-21T21:00:00";
+        $fromTime = $this->request->getVar("from");
+        $toTime = $this->request->getVar("to");
+        // $fromTime = "2023-01-12T09:00:00";
+        // $toTime = "2023-01-21T21:00:00";
 
         // $url = "http://localhost:8080/graph/qualityOpportunity/".$fromTime."/".$toTime."/";
         // $ch = curl_init($url);
@@ -476,10 +476,10 @@ class Production_Quality extends BaseController
         //Function call for production data............
         $ref = "qualityOpportunity";
 
-        // $fromTime = $this->request->getVar("from");
-        // $toTime = $this->request->getVar("to");
-        $fromTime = "2023-01-12T09:00:00";
-        $toTime = "2023-01-21T21:00:00";
+        $fromTime = $this->request->getVar("from");
+        $toTime = $this->request->getVar("to");
+        // $fromTime = "2023-01-12T09:00:00";
+        // $toTime = "2023-01-21T21:00:00";
 
         // $url = "http://localhost:8080/graph/qualityOpportunity/".$fromTime."/".$toTime."/";
         // $ch = curl_init($url);
@@ -563,10 +563,10 @@ class Production_Quality extends BaseController
         //Function call for production data............
         $ref = "qualityOpportunity";
 
-        // $fromTime = $this->request->getVar("from");
-        // $toTime = $this->request->getVar("to");
-        $fromTime = "2023-01-13T09:00:00";
-        $toTime = "2023-01-21T21:00:00";
+        $fromTime = $this->request->getVar("from");
+        $toTime = $this->request->getVar("to");
+        // $fromTime = "2023-01-13T09:00:00";
+        // $toTime = "2023-01-21T21:00:00";
 
         // $url = "http://localhost:8080/graph/qualityOpportunity/".$fromTime."/".$toTime."/";
         // $ch = curl_init($url);
@@ -658,10 +658,10 @@ class Production_Quality extends BaseController
         //Function call for production data............
         $ref = "qualityOpportunity";
 
-        // $fromTime = $this->request->getVar("from");
-        // $toTime = $this->request->getVar("to");
-        $fromTime = "2023-01-12T09:00:00";
-        $toTime = "2023-01-21T21:00:00";
+        $fromTime = $this->request->getVar("from");
+        $toTime = $this->request->getVar("to");
+        // $fromTime = "2023-01-12T09:00:00";
+        // $toTime = "2023-01-21T21:00:00";
 
         $qualityReason = $this->Financial->qualityReason();
         $ProductionData = $this->getDataRaw($ref,$fromTime,$toTime);
@@ -758,10 +758,10 @@ class Production_Quality extends BaseController
         //Function call for production data............
         $ref = "qualityOpportunity";
 
-        // $fromTime = $this->request->getVar("from");
-        // $toTime = $this->request->getVar("to");
-        $fromTime = "2023-01-12T09:00:00";
-        $toTime = "2023-01-21T21:00:00";
+        $fromTime = $this->request->getVar("from");
+        $toTime = $this->request->getVar("to");
+        // $fromTime = "2023-01-12T09:00:00";
+        // $toTime = "2023-01-21T21:00:00";
 
         $qualityReason = $this->Financial->qualityReason();
         $ProductionData = $this->getDataRaw($ref,$fromTime,$toTime);

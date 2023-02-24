@@ -56,7 +56,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <style>    
     .paddingm{
       padding: 0;
@@ -570,7 +569,7 @@
                         <!-- production Downtime New module -->
                         <li class="side-menu-li d-flex">
                             <a href="<?php echo base_url('Home/load_option/Downtime_Production'); ?>">
-                                <i class="fa fa-chart-pie nav-icon nav-icon-hover production_downtime_background" style="font-size:26px;" dvalue="Downtime" alt="Downtime"></i>
+                                <i class="fa fa-briefcase nav-icon nav-icon-hover production_downtime_background" style="font-size:26px;" dvalue="Downtime" alt="Downtime"></i>
                             </a>
                         </li>
                         <!-- production downtime new module end -->
@@ -578,7 +577,7 @@
                          <!-- production Downtime New module -->
                          <li class="side-menu-li d-flex">
                             <a href="<?php echo base_url('Home/load_option/Quality_Production'); ?>">
-                                <i class="fa fa-chart-area nav-icon nav-icon-hover production_downtime_background" style="font-size:26px;" dvalue="Quality" alt="Quality"></i>
+                                <i class="fa fa-folder-open nav-icon nav-icon-hover production_downtime_background" style="font-size:26px;" dvalue="Quality" alt="Quality"></i>
                             </a>
                         </li>
                         <!-- production downtime new module end -->

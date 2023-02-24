@@ -998,6 +998,11 @@ $(document).on('click','.inbox_user',function(event){
 
 
 function qualitybyreasonparts() {
+
+  $('#CQRPR').remove();
+  $('.child_graph_quality_part_reason').append('<canvas id="CQRPR"><canvas>');
+  $('.chartjs-hidden-iframe').remove();
+  
   f = $('.fromDate').val();
   t = $('.toDate').val();
   f = f.replace(" ","T");
@@ -1147,6 +1152,11 @@ function qualitybyreasonparts() {
 
 
 function copqp() {
+
+  $('#COPQP').remove();
+  $('.child_graph_quality_opportunity').append('<canvas id="COPQP"><canvas>');
+  $('.chartjs-hidden-iframe').remove();
+
   f = $('.fromDate').val();
   t = $('.toDate').val();
   f = f.replace(" ","T");
@@ -1308,6 +1318,12 @@ function copqp() {
 }
 
 function qualitybyparts() {
+
+  
+  $('#CQRP').remove();
+  $('.child_graph_quality_parts').append('<canvas id="CQRP"><canvas>');
+  $('.chartjs-hidden-iframe').remove();
+
   f = $('.fromDate').val();
   t = $('.toDate').val();
   f = f.replace(" ","T");
@@ -1450,6 +1466,13 @@ function qualitybyparts() {
 }
 
 function crbmr() {
+
+
+  
+  $('#CRBMR').remove();
+  $('.child_graph_quality_machine_reason').append('<canvas id="CRBMR"><canvas>');
+  $('.chartjs-hidden-iframe').remove();
+
   f = $('.fromDate').val();
   t = $('.toDate').val();
   f = f.replace(" ","T");
@@ -1604,6 +1627,14 @@ function crbmr() {
 }
 
 function copqm() {
+
+  
+  
+  $('#COPQM').remove();
+  $('.child_graph_quality_machine_wise').append('<canvas id="COPQM"><canvas>');
+  $('.chartjs-hidden-iframe').remove();
+
+
   f = $('.fromDate').val();
   t = $('.toDate').val();
   f = f.replace(" ","T");
@@ -1747,6 +1778,11 @@ function copqm() {
 }
 
 function qrbr() {
+
+  $('#QRBR').remove();
+  $('.child_graph_quality_reason_wise').append('<canvas id="QRBR"><canvas>');
+  $('.chartjs-hidden-iframe').remove();
+
   f = $('.fromDate').val();
   t = $('.toDate').val();
   f = f.replace(" ","T");
