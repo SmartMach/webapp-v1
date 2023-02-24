@@ -1697,6 +1697,7 @@ function reason_wise_oppcost(){
                         fill: false,
                         lineColor:"black",
                         pointRadius:7,
+                        yAxisID: 'A',  
                        
                     }
                     ,{
@@ -1705,7 +1706,8 @@ function reason_wise_oppcost(){
                         data: oppcost_arr,
                         percentage_data:0,
                         // borderColor: 'rgb(255, 99, 132)',
-                        backgroundColor: '#0075F6' 
+                        backgroundColor: '#0075F6',
+                        yAxisID: 'B',
                     }
                 ],
                 },
@@ -1714,10 +1716,30 @@ function reason_wise_oppcost(){
                     responsive: true,
                     maintainAspectRatio: false,   
                     scales: {
-                        y: {
-                            display:false,
-                            beginAtZero:true,
-                            stacked:true
+                        // y: {
+                        //     display:false,
+                        //     beginAtZero:true,
+                        //     stacked:true
+                        // },
+                        A:{
+                          type: 'linear',
+                          position: 'right',
+                          // beginAtZero: true,
+                          suggestedMin: 0,
+                          suggestedMax: 100,
+                          display:true,
+                          grid:{
+                            display:false
+                          },
+                        },
+                        B:{
+                          type: 'linear',
+                          position: 'left',
+                          beginAtZero: true,
+                          display:true,
+                          grid:{
+                            display:false
+                          },
                         },
                         x:{
                             display:true,
@@ -1910,10 +1932,13 @@ function reason_wise_duration(){
                 data: {
                     labels: reason_label,
                     datasets: [{
+                        type:'bar',
                         label:reason_label,
                         data:duration_arr,
                         percentage_data:0,
                         backgroundColor: "#0075F6",
+                        yAxisID: 'B',  
+
                     },{
                         type: 'line',
                         label: 'Percentage',
@@ -1927,16 +1952,37 @@ function reason_wise_duration(){
                         fill: false,
                         lineColor:"black",
                         pointRadius:7,
+                        yAxisID: 'A',
                     }],
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,   
                     scales: {
-                        y: {
-                            display:false,
-                            beginAtZero:true,
-                            stacked:true
+                        // y: {
+                        //     display:false,
+                        //     beginAtZero:true,
+                        //     stacked:true
+                        // },
+                        A:{
+                          type: 'linear',
+                          position: 'right',
+                          // beginAtZero: true,
+                          suggestedMin: 0,
+                          suggestedMax: 100,
+                          display:true,
+                          grid:{
+                            display:false
+                          },
+                        },
+                        B:{
+                          type: 'linear',
+                          position: 'left',
+                          beginAtZero: true,
+                          display:true,
+                          grid:{
+                            display:false
+                          },
                         },
                         x:{
                             display:true,
@@ -2138,7 +2184,7 @@ function machine_wise_oppcost(){
                         fill: false,
                         lineColor:"black", 
                         pointRadius:7,
-                        yAxisID: 'B',
+                        yAxisID: 'A',  
 
                        
                     },{
@@ -2146,27 +2192,40 @@ function machine_wise_oppcost(){
                         data:oppcost_arr,
                         backgroundColor: "#0075F6",
                         percentage_data:0,
-                        yAxisID: 'A',
+                        yAxisID: 'B',
                     }],
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,   
                     scales: {
-                        y: {
-                            id: 'A',
-                            type:'linear',
-                            position:'left',
-                            display:true,
-                            // beginAtZero:true,
-                            stacked:true
+                        // y: {
+                        //     id: 'A',
+                        //     type:'linear',
+                        //     position:'left',
+                        //     display:true,
+                        //     // beginAtZero:true,
+                        //     stacked:true
+                        // },
+                        A:{
+                          type: 'linear',
+                          position: 'right',
+                          // beginAtZero: true,
+                          suggestedMin: 0,
+                          suggestedMax: 100,
+                          display:true,
+                          grid:{
+                            display:false
+                          },
                         },
-                        y1:{
-                            id: 'B',
-                            type:'linear',
-                            display:true,
-                            position:'right',
-                            // beginAtZero:true,
+                        B:{
+                          type: 'linear',
+                          position: 'left',
+                          beginAtZero: true,
+                          display:true,
+                          grid:{
+                            display:false
+                          },
                         },
                         x:{
                             display:true,
@@ -2315,9 +2374,29 @@ function machine_reason_wise_duration(){
         var machineName = [];
         var category_percent = 1.0;
         var bar_space = 0.5;
-       
+       var percentage_arr = [];
+       var temp_duration = 0;
         res['data'].forEach(function(value){
             machineName.push(value.machine_name);
+            temp_duration = parseInt(temp_duration)+parseInt(value.total);
+            var temp_data =  parseFloat(parseInt(temp_duration)/parseInt(res['total_duration'])).toFixed(2)*100;
+            percentage_arr.push(temp_data);
+        });
+
+        demo.push({
+            label:"Total",
+            type: "line",
+            backgroundColor: 'white',
+            borderColor: "#7f7f7f", 
+            pointBorderColor: "#d9d9ff",  
+            borderWidth: 1, 
+            showLine : true,
+            fill: false,
+            lineColor:"black", 
+            percentage_data:percentage_arr,
+            data:percentage_arr,
+            pointRadius: 7,
+            yAxisID: 'A',  
         });
 
         res['reason'].forEach(function(k,val) {
@@ -2326,6 +2405,7 @@ function machine_reason_wise_duration(){
             res['data'].forEach(function(item){
                 arr_1.push(item.reason_duration[val]);
                 rname.push(item.reason_name[val]);
+                
             });
             demo.push({
                 label:res['reason'][val]['downtime_reason'],
@@ -2336,9 +2416,11 @@ function machine_reason_wise_duration(){
                 fill: true,
                 data: arr_1,
                 reasonid:val,
+                percentage_data:0,
                 // reject:machineWiseReject,
                 categoryPercentage:category_percent,
                 barPercentage: bar_space,
+                yAxisID: 'B',
             });
             x = x+1;
         });
@@ -2375,11 +2457,31 @@ function machine_reason_wise_duration(){
                 responsive: true,
                 maintainAspectRatio: false,   
                 scales: {
-                    y: {
-                        display:false,
-                        beginAtZero:true,
-                        stacked:true,
-                    },
+                    // y: {
+                    //     display:false,
+                    //     beginAtZero:true,
+                    //     stacked:true,
+                    // },
+                    A:{
+                          type: 'linear',
+                          position: 'right',
+                          // beginAtZero: true,
+                          suggestedMin: 0,
+                          suggestedMax: 100,
+                          display:true,
+                          grid:{
+                            display:false
+                          },
+                        },
+                        B:{
+                          type: 'linear',
+                          position: 'left',
+                          beginAtZero: true,
+                          display:true,
+                          grid:{
+                            display:false
+                          },
+                        },
                     x:{
                         display:true,
                         grid:{
@@ -2447,6 +2549,7 @@ function machine_and_reason_wise_tooltip(context){
         const bodyLines = tooltipModel.body.map(getBody);
 
         var duration = parseInt(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
+        var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].percentage_data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
         var days = parseInt(parseInt(duration/60)/24);
         var hours = parseInt(parseInt(duration-(days*1440))/60);
         var min = parseInt(parseInt(duration-(days*1440))%60);
@@ -2456,20 +2559,33 @@ function machine_and_reason_wise_tooltip(context){
         let innerHtml = '<div>';
 
         innerHtml += '<div class="grid-container">';
+        if (parseInt(percentage)>0) {
+            //innerHtml += '<div class="grid-container">';
+            innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            innerHtml += '<div class="content-text sub-title"><span></span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
 
-        innerHtml += '<div class="grid-container">';
-        innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
-        innerHtml += '<div class="grid-item title-bold"><span></span></div>';
-        innerHtml += '<div class="content-text sub-title"><span>'+context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label+'</span></div>';
-        innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            innerHtml += '<div class="grid-item content-text"><span>Percentage</span></div>';  
+            innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+parseFloat(percentage).toLocaleString("en-IN")+'% </span></div>';
+            
 
-        innerHtml += '<div class="grid-item content-text"><span>Duration</span></div>';  
-        if (days>0) {
-            innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+days+"d"+" "+hours+"h"+" "+min+"m"+'</span></div>';
+        }else{
+            //innerHtml += '<div class="grid-container">';
+            innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            innerHtml += '<div class="content-text sub-title"><span>'+context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label+'</span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+
+            innerHtml += '<div class="grid-item content-text"><span>Duration</span></div>';  
+            if (days>0) {
+                innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+days+"d"+" "+hours+"h"+" "+min+"m"+'</span></div>';
+            }
+            else{
+                innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+hours+"h"+" "+min+"m"+'</span></div>';
+            }
         }
-        else{
-            innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+hours+"h"+" "+min+"m"+'</span></div>';
-        }
+      
        
         innerHtml += '</div>';
         innerHtml += '</div>';
@@ -2912,8 +3028,8 @@ function downtime_reason_filter(category_temp){
       method:"POST",
       dataType:"json",
       success:function(res){
-        // console.log("reason dropdwon");
-        // console.log(res);
+        console.log("reason dropdwon");
+        console.log(res);
 
         var element = $();
         $('.filter_checkboxes_r').append('<div class="filter_check_r" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');

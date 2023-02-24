@@ -66,7 +66,7 @@
   background-color: rgb(0, 90, 188);
   transition: all .3s ease-in;
 }
-.grid-container {
+.grid-container_graph {
   /*display: flex;*/
   /*grid-template-columns: auto auto;*/
   padding: 0;
@@ -87,17 +87,17 @@
 .child-style{
   height: 98%;
 }
-.grid-item{
+.grid-item_graph{
   float: left;
   width: 45.5%;
 	border-radius: 0.5rem;
   border:1px solid #d9d9d9;
 }
-.mar-left{
+.mar-left_graph{
 	margin-left: 3rem;
 	margin-right: 0.25rem;
 }
-.mar-right{
+.mar-right_graph{
 	margin-right: 3rem;
 	margin-left: 0.5rem;
 }
@@ -106,8 +106,9 @@
   font-weight: bold;
 }
 .search_style{
-  font-weight: bold;
-  font-size: 0.8rem;
+  font-weight: 450;
+  font-size: 12px;
+  color:#8c8c8c;
 }
 .font_color{
   color: #a6a6a6;

@@ -1,11 +1,12 @@
 
 <head>
   
-  <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/styles_production_quality.css?version=<?php echo rand() ; ?>">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/styles_production_quality.css?version=<?php echo rand() ; ?>">
    <!-- Datetimepicker -->
     <script src="<?php echo base_url(); ?>/assets/js/datetimepicker.js?version=<?php echo rand() ; ?>"></script>
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/jquery.datetimepicker.min.css?version=<?php echo rand() ; ?>">
     <script src="<?php echo base_url(); ?>/assets/js/jquery.datetimepicker.js?version=<?php echo rand() ; ?>"></script>
+    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/financial_metrics.css?version=<?php echo rand() ; ?>">
 
     <script src="<?php echo base_url(); ?>/assets/chartjs/package/dist/chart.min.js?version=<?php echo rand() ; ?>"></script>
 <style>
@@ -135,9 +136,9 @@
   </nav>
   <div class="tab-content" id="pills-tabContent" style="margin-top:3.8rem;">
     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-    <div class="grid-container">
+    <div class="grid-container_graph">
       <div class="row paddingm" style="height: 15rem;width:100%;">
-        <div class="grid-item mar-left paddingm" style="margin-top: 1.5rem;width:48.5%;margin-left:0.5rem;">
+        <div class="grid-item_graph mar-left_graph paddingm" style="margin-top: 1.5rem;width:48.5%;margin-left:0.5rem;">
           <div>
             <p class="paddingm fontBold financial_font">Cost of Poor Quality (COPQ) by Reason</p>
           </div>
@@ -151,7 +152,7 @@
             </div>
           </div>
         </div>
-        <div class="grid-item mar-right paddingm" style="margin-top: 1.5rem;width:48.5%;margin-right:0.5rem;">
+        <div class="grid-item_graph mar-right_graph paddingm" style="margin-top: 1.5rem;width:48.5%;margin-right:0.5rem;">
           <div>
             <p class="paddingm fontBold financial_font">Quality Rejection by Reason</p>
           </div>
@@ -167,7 +168,7 @@
         </div>
       </div>
       <div class="row paddingm" style="height: 15rem;width:100%;">
-        <div class="grid-item mar-left mar-top paddingm" style="width:48.5%;margin-left:0.5rem;">
+        <div class="grid-item_graph mar-left_graph mar-top paddingm" style="width:48.5%;margin-left:0.5rem;">
           <div>
             <p class="paddingm fontBold financial_font">Cost of Poor Quality (COPQ) by Machines</p>
           </div>
@@ -181,7 +182,7 @@
             </div>  
           </div>
         </div>
-        <div class="grid-item mar-right mar-top paddingm" style="width:48.5%;margin-right:0.5rem;">
+        <div class="grid-item_graph mar-right_graph mar-top paddingm" style="width:48.5%;margin-right:0.5rem;">
           <div>
             <p class="paddingm fontBold financial_font">Quality Rejection by Machines with Reasons</p>
           </div>
@@ -198,7 +199,7 @@
       </div>
       
       <div class="row paddingm" style="height: 15rem;width:100%;">
-        <div class="grid-item mar-left mar-top paddingm" style="width:48.5%;margin-left:0.5rem;">
+        <div class="grid-item_graph mar-left_graph mar-top paddingm" style="width:48.5%;margin-left:0.5rem;">
           <div>
             <p class="paddingm fontBold financial_font">Cost of Poor Quality (COPQ) by Parts</p>
           </div>
@@ -212,7 +213,7 @@
             </div>
           </div>
         </div>
-        <div class="grid-item mar-right mar-top paddingm" style="width:48.5%;margin-right:0.5rem;">
+        <div class="grid-item_graph mar-right_graph mar-top paddingm" style="width:48.5%;margin-right:0.5rem;">
           <div>
             <p class="paddingm fontBold financial_font">Quality Rejection by Parts with Reasons</p>
           </div>
@@ -356,228 +357,6 @@
   </div>
 
 
-<!--   temporary hide this tags because its ui changes
-  <div style="margin-top: 4.2rem;display: none;" id="graph-container-div"> 
-    <div class="grid-container">
-      <div class="row paddingm" style="height: 15rem;">
-        <div class="grid-item mar-left paddingm" style="margin-top: 1.5rem;">
-          <div>
-            <p class="paddingm fontBold financial_font">Cost of Poor Quality (COPQ) by Reason</p>
-          </div>
-          <div class="valueMarLeft">
-              <p class="paddingm headTitle">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0.4rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft COPQP" ></span></p>
-          </div>
-          <div class="parent_graph_quality_opportunity parent_graph_div parent-style">
-            <div class="child_graph_quality_opportunity child-style">
-              <canvas id="COPQP" height="110"></canvas>
-            </div>
-          </div>
-        </div>
-        <div class="grid-item mar-right paddingm" style="margin-top: 1.5rem;">
-          <div>
-            <p class="paddingm fontBold financial_font">Quality Rejection by Reason</p>
-          </div>
-          <div class="valueMarLeft">
-              <p class="paddingm headTitle">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0.4rem;"><span class="paddingm valueMarLeft CRBR" ></span></p>
-          </div>
-          <div class="parent_graph_quality_reason_wise parent_graph_div parent-style">
-            <div class="child_graph_quality_reason_wise child-style">
-              <canvas id="QRBR" height="110"></canvas>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row paddingm" style="height: 15rem">
-        <div class="grid-item mar-left mar-top paddingm">
-          <div>
-            <p class="paddingm fontBold financial_font">Cost of Poor Quality (COPQ) by Machines</p>
-          </div>
-          <div class="valueMarLeft">
-              <p class="paddingm headTitle">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0.4rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft COPQM" ></span></p>
-          </div>
-          <div class="parent_graph_quality_machine_wise parent_graph_div parent-style">
-            <div class="child_graph_quality_machine_wise child-style">
-              <canvas id="COPQM" height="110"></canvas>
-            </div>  
-          </div>
-        </div>
-        <div class="grid-item mar-right mar-top paddingm">
-          <div>
-            <p class="paddingm fontBold financial_font">Quality Rejection by Machines with Reasons</p>
-          </div>
-          <div class="valueMarLeft">
-              <p class="paddingm headTitle">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0.4rem;"><span class="paddingm valueMarLeft CRBMR" ></span></p>
-          </div>
-          <div class="parent_graph_quality_machine_reason parent_graph_div parent-style">
-            <div class="child_graph_quality_machine_reason child-style">
-              <canvas id="CRBMR" height="110"></canvas>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="row paddingm" style="height: 15rem">
-        <div class="grid-item mar-left mar-top paddingm">
-          <div>
-            <p class="paddingm fontBold financial_font">Cost of Poor Quality (COPQ) by Parts</p>
-          </div>
-          <div class="valueMarLeft">
-              <p class="paddingm headTitle">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0.4rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft CQRP" ></span></p>
-          </div>
-          <div class="parent_graph_quality_parts parent_graph_div parent-style">
-            <div class="child_graph_quality_parts child-style">
-              <canvas id="CQRP" height="110"></canvas>
-            </div>
-          </div>
-        </div>
-        <div class="grid-item mar-right mar-top paddingm">
-          <div>
-            <p class="paddingm fontBold financial_font">Quality Rejection by Parts with Reasons</p>
-          </div>
-          <div class="valueMarLeft">
-              <p class="paddingm headTitle">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0.4rem;"><span class="paddingm valueMarLeft CQRPR" ></span></p>
-          </div>
-          <div class="parent_graph_quality_part_reason parent_graph_div parent-style">
-            <div class="child_graph_quality_part_reason child-style">
-              <canvas id="CQRPR" height="110"></canvas>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-<!--  temporary hide this tags because its ui changes
-  <div style="margin-top: 3.8rem;display: block;" id="table-container">
-    <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav">
-      <div class="container-fluid paddingm ">
-        <div>
-            
-        </div>
-        <div class="d-flex innerNav">
-          <div class="box rightmar" style="margin-right: 0.5rem;">
-            <div class="input-box">
-              <input type="number" class="form-control font_weight" name="" id="pagination_val" style="width: 4rem;">
-            </div>
-          </div>
-          <div class="box rightmar center-align font_color" style="margin-right: 0.5rem;">
-            <p class="paddingm">of <span id="total_pagination"></span> pages</p>
-          </div>
-          <div class="box rightmar" style="margin-right: 0.5rem;">
-            <div class="input-box">
-              <select class="form-select font_weight" name="" id="Production_MachineName" style="width: 10rem;">
-              </select>
-              <label for="inputSiteNameAdd" class="input-padding ">Search</label>
-            </div>
-          </div>
-          <div class="box rightmar" style="margin-right: 0.5rem;">
-            <div class="input-box">
-              <div class="filter_multiselect">
-                <div class="filter_selectBox" onclick="multiple_drp()">
-                  <div class="inbox-span fontStyle search_style"><p class="paddingm" id="part_text">Select</p></div>
-                </div>
-                <div class="filter_checkboxes filter_part">
-                </div>
-              </div>
-              <label for="partNameFilter" class="input-padding">Part Name</label>
-            </div>
-          </div>
-
-          <div class="box rightmar" style="margin-right: 0.5rem;">
-            <div class="input-box">
-              <div class="filter_multiselect">
-                <div class="filter_selectBox" onclick="multiple_drp_machine()">
-                  <div class="inbox-span fontStyle search_style"><p class="paddingm" id="machine_text">Select</p></div>
-                </div>
-                <div class="filter_checkboxes filter_machine">
-                </div>
-              </div>
-              <label for="machineNameFilter" class="input-padding ">Machine Name</label>
-            </div>
-          </div> 
-          
-          <div class="box rightmar" style="margin-right: 0.5rem;">
-            <div class="input-box">
-              <div class="filter_multiselect">
-                <div class="filter_selectBox" onclick="multiple_drp_reason()">
-                  <div class="inbox-span fontStyle search_style"><p class="paddingm" id="reason_text">Select</p></div>
-                </div>
-                <div class="filter_checkboxes filter_reason">
-                </div>
-              </div>
-              <label for="reasonNameFilter" class="input-padding ">Reason</label>
-            </div>
-          </div> 
-
-          <div class="box rightmar" style="margin-right: 0.5rem;">
-            <div class="input-box">
-              <div class="filter_multiselect">
-                <div class="filter_selectBox" onclick="multiple_drp_user()">
-                  <div class="inbox-span fontStyle search_style"><p class="paddingm" id="user_text">Select</p></div>
-                </div>
-                <div class="filter_checkboxes filter_user">
-                </div>
-              </div>
-              <label for="userNameFilter" class="input-padding ">Created by</label>
-            </div>
-          </div> 
-
-          <div class="box rightmar" style="margin-right: 0.5rem;">
-            <button class="btn fo bn filterbtnstyle settings_nav_anchor float-end" style="margin-block:auto;" id="add_machine_button" onclick="getFilterval()">Apply Filter</button>
-          </div>
-          <div class="box rightmar" style="margin-right: 0.5rem;">
-            <img src="<?php echo base_url('assets/img/filter_reset.png'); ?>" class="undo" style="font-size:20px;color: #b5b8bc;cursor: pointer;width:1.3rem;height:1.3rem;">
-          </div>
-        </div>
-      </div>
-    </nav>
-    <div class="tableContent">
-      <div class="settings_machine_header sticky-top fixtabletitle">
-        <div class="row paddingm">
-          <div class="col-sm-1 p3 paddingm">
-            <p class="basic_header">FROM DATE</p>
-          </div>
-          <div class="col-sm-1 p3 paddingm">
-            <p class="basic_header">FROM TIME</p>
-          </div>
-          <div class="col-sm-1 p3 paddingm">
-            <p class="basic_header">TO TIME</p>
-          </div>
-          <div class="col-sm-1 p3 paddingm marleft" >
-            <p class="basic_header">PART NAME </p>
-          </div>
-          <div class="col-sm-2 p3 paddingm marleft">
-            <p class="basic_header">MACHINE</p>
-          </div>
-          <div class="col-sm-2 p3 paddingm">
-            <p class="basic_header">REJECT COUNTS</p>
-          </div>
-          <div class="col-sm-1 p3 paddingm">
-            <p class="basic_header">REASON</p>
-          </div>
-          <div class="col-sm-1 p3 paddingm">
-            <p class="basic_header">UPDATED BY</p>
-          </div>
-          <div class="col-sm-1 p3 paddingm">
-            <p class="basic_header">UPDATED AT</p>
-          </div>
-          <div class="col-sm-1 p3 paddingm">
-            <p class="basic_header">NOTES</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="contentQualityFilter contentContainer paddingm " style="margin-bottom:0rem;">
-       
-      </div>
-    </div>
-
-  </div> -->
 </div>
 
 <script type="text/javascript">
@@ -1000,7 +779,7 @@ $(document).on('click','.inbox_user',function(event){
 function qualitybyreasonparts() {
 
   $('#CQRPR').remove();
-  $('.child_graph_quality_part_reason').append('<canvas id="CQRPR"><canvas>');
+  $('.child_graph_quality_part_reason').append('<canvas id="CQRPR"></canvas>');
   $('.chartjs-hidden-iframe').remove();
   
   f = $('.fromDate').val();
@@ -1019,7 +798,8 @@ function qualitybyreasonparts() {
       // $('#qualityOpportunity').remove();
       // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
       // $('.chartjs-hidden-iframe').remove();
-
+      console.log("Stacked bar charts");
+      console.log(res);
       // res=res["QualityOpportunity"]
       $(".CQRPR").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
       // color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
@@ -1136,7 +916,7 @@ function qualitybyreasonparts() {
                 tooltip: {
                   enabled: false,
                   // borderColor:"red",
-                  // external: qualityOpp,
+                  external: quality_oppcost_reaosn_part_tooltip,
                 }
               },
             },
@@ -1149,18 +929,93 @@ function qualitybyreasonparts() {
   }); 
 }
 
+// Quality Rejection by Parts with Reasons
+function quality_oppcost_reaosn_part_tooltip(context){
+  console.log(context);
+  let tooltipEl = document.getElementById('tooltip-quality_oppcost_partreason');
+
+  // Create element on first render
+  if (!tooltipEl) {
+    tooltipEl = document.createElement('div');
+    tooltipEl.id = 'tooltip-quality_oppcost_partreason';
+    document.body.appendChild(tooltipEl);
+  }
+  tooltipEl.classList.add("global");
+
+  // Hide if no tooltip
+  const tooltipModel = context.tooltip;
+  if (tooltipModel.opacity === 0) {
+    tooltipEl.style.opacity = 0;
+    return;
+  }
+
+  // Set caret Position
+  tooltipEl.classList.remove('above', 'below', 'no-transform');
+  if (tooltipModel.yAlign) {
+    tooltipEl.classList.add(tooltipModel.yAlign);        
+  } else {
+    tooltipEl.classList.add('no-transform');
+  }
+
+  function getBody(bodyItem) {
+    return bodyItem.lines;
+  }
+
+  // Set Text
+  if (tooltipModel.body) {
+        
+    const titleLines = tooltipModel.title || [];
+    const bodyLines = tooltipModel.body.map(getBody);
+    var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
+    //var mname = context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label[context.tooltip.dataPoints[0].dataIndex];
+    //console.log(oppcost);
+    //console.log(mname);
+    let innerHtml = '<div>';
+
+      innerHtml += '<div class="grid-container">';
+
+      innerHtml += '<div class="grid-container">';
+      innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+      innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+      innerHtml += '<div class="content-text sub-title"><span>'+context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label+'</span></div>';
+      innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+
+      innerHtml += '<div class="grid-item content-text"><span style="margin:auto;margin-bottom:0.2rem;">Rejection Count</span></div>';  
+      innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+parseFloat(oppcost).toLocaleString("en-IN")+'</span></div>';
+
+
+      innerHtml += '</div>';
+      innerHtml += '</div>';
+      tooltipEl.innerHTML = innerHtml;
+  }
+
+  const position = context.chart.canvas.getBoundingClientRect();
+  const bodyFont = Chart.helpers.toFont(tooltipModel.options.bodyFont);
+
+  // Display, position, and set styles for font
+  tooltipEl.style.opacity = 1;
+  tooltipEl.style.position = 'absolute';
+  tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px';
+  tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + 'px';
+  tooltipEl.style.font = bodyFont.string;
+  tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
+  tooltipEl.style.pointerEvents = 'none';
+}
 
 
 function copqp() {
 
   $('#COPQP').remove();
-  $('.child_graph_quality_opportunity').append('<canvas id="COPQP"><canvas>');
+  $('.child_graph_quality_opportunity').append('<canvas id="COPQP"></canvas>');
   $('.chartjs-hidden-iframe').remove();
 
   f = $('.fromDate').val();
   t = $('.toDate').val();
   f = f.replace(" ","T");
   t = t.replace(" ","T");
+  console.log("from time and to time");
+  console.log(f);
+  console.log(t);
   $.ajax({
     url: "<?php echo base_url('Production_Quality/qualityOpportunity'); ?>",
     type: "POST",
@@ -1304,7 +1159,7 @@ function copqp() {
                 tooltip: {
                   enabled: false,
                   // borderColor:"red",
-                  // external: qualityOpp,
+                  external: quality_opportunity_tooltip,
                 },
               },
             },
@@ -1317,11 +1172,80 @@ function copqp() {
   }); 
 }
 
+// Cost of Poor Quality (COPQ) by Reason
+function quality_opportunity_tooltip(context){
+  //console.log(context);
+  let tooltipEl = document.getElementById('tooltip-rejection__reason_oppcost');
+
+    // Create element on first render
+    if (!tooltipEl) {
+        tooltipEl = document.createElement('div');
+        tooltipEl.id = 'tooltip-rejection__reason_oppcost';
+        document.body.appendChild(tooltipEl);
+    }
+    tooltipEl.classList.add("global");
+
+    // Hide if no tooltip
+    const tooltipModel = context.tooltip;
+    if (tooltipModel.opacity === 0) {
+        tooltipEl.style.opacity = 0;
+        return;
+    }
+
+    // Set caret Position
+    tooltipEl.classList.remove('above', 'below', 'no-transform');
+    if (tooltipModel.yAlign) {
+        tooltipEl.classList.add(tooltipModel.yAlign);        
+    } else {
+        tooltipEl.classList.add('no-transform');
+    }
+
+    function getBody(bodyItem) {
+        return bodyItem.lines;
+    }
+
+    // Set Text
+    if (tooltipModel.body) {
+        
+        const titleLines = tooltipModel.title || [];
+        const bodyLines = tooltipModel.body.map(getBody);
+        var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
+        //var mname = context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label[context.tooltip.dataPoints[0].dataIndex];
+        //console.log(oppcost);
+        //console.log(mname);
+     
+        let innerHtml = '<div>';
+          innerHtml += '<div class="grid-container">';
+          innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+          innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+          innerHtml += '<div class="content-text sub-title"><span></span></div>';
+          innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+          innerHtml += '<div class="grid-item content-text margin-top"><span>Opportunity Cost</span></div>';
+          innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="true"></i>'+parseFloat(oppcost).toLocaleString("en-IN")+'</span></div>';
+          
+        innerHtml += '</div>';
+        innerHtml += '</div>';
+        tooltipEl.innerHTML = innerHtml;
+    }
+    
+    const position = context.chart.canvas.getBoundingClientRect();
+    const bodyFont = Chart.helpers.toFont(tooltipModel.options.bodyFont);
+
+    // Display, position, and set styles for font
+    tooltipEl.style.opacity = 1;
+    tooltipEl.style.position = 'absolute';
+    tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px';
+    tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + 'px';
+    tooltipEl.style.font = bodyFont.string;
+    tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
+    tooltipEl.style.pointerEvents = 'none';
+}
+
 function qualitybyparts() {
 
   
   $('#CQRP').remove();
-  $('.child_graph_quality_parts').append('<canvas id="CQRP"><canvas>');
+  $('.child_graph_quality_parts').append('<canvas id="CQRP"></canvas>');
   $('.chartjs-hidden-iframe').remove();
 
   f = $('.fromDate').val();
@@ -1337,6 +1261,8 @@ function qualitybyparts() {
       to:t
     },
     success:function(res){
+      console.log("quality rejection by parts");
+      console.log(res);
       // $('#qualityOpportunity').remove();
       // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
       // $('.chartjs-hidden-iframe').remove();
@@ -1452,7 +1378,7 @@ function qualitybyparts() {
                 tooltip: {
                   enabled: false,
                   // borderColor:"red",
-                  // external: qualityOpp,
+                  external: quality_part_wise_cost_tooltip,
                 }
               },
             },
@@ -1464,13 +1390,81 @@ function qualitybyparts() {
     }
   }); 
 }
+// Cost of Poor Quality (COPQ) by Parts tooltip function
+function quality_part_wise_cost_tooltip(context){
+  let tooltipEl = document.getElementById('tooltip-rejection__partreason_oppcost');
+
+    // Create element on first render
+    if (!tooltipEl) {
+        tooltipEl = document.createElement('div');
+        tooltipEl.id = 'tooltip-rejection__partreason_oppcost';
+        document.body.appendChild(tooltipEl);
+    }
+    tooltipEl.classList.add("global");
+
+    // Hide if no tooltip
+    const tooltipModel = context.tooltip;
+    if (tooltipModel.opacity === 0) {
+        tooltipEl.style.opacity = 0;
+        return;
+    }
+
+    // Set caret Position
+    tooltipEl.classList.remove('above', 'below', 'no-transform');
+    if (tooltipModel.yAlign) {
+        tooltipEl.classList.add(tooltipModel.yAlign);        
+    } else {
+        tooltipEl.classList.add('no-transform');
+    }
+
+    function getBody(bodyItem) {
+        return bodyItem.lines;
+    }
+
+    // Set Text
+    if (tooltipModel.body) {
+        
+        const titleLines = tooltipModel.title || [];
+        const bodyLines = tooltipModel.body.map(getBody);
+        var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
+        //var mname = context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label[context.tooltip.dataPoints[0].dataIndex];
+        //console.log(oppcost);
+        //console.log(mname);
+     
+        let innerHtml = '<div>';
+          innerHtml += '<div class="grid-container">';
+          innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+          innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+          innerHtml += '<div class="content-text sub-title"><span></span></div>';
+          innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+          innerHtml += '<div class="grid-item content-text margin-top"><span>Opportunity Cost</span></div>';
+          innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="true"></i>'+parseFloat(oppcost).toLocaleString("en-IN")+'</span></div>';
+          
+        innerHtml += '</div>';
+        innerHtml += '</div>';
+        tooltipEl.innerHTML = innerHtml;
+    }
+
+    const position = context.chart.canvas.getBoundingClientRect();
+    const bodyFont = Chart.helpers.toFont(tooltipModel.options.bodyFont);
+
+    // Display, position, and set styles for font
+    tooltipEl.style.opacity = 1;
+    tooltipEl.style.position = 'absolute';
+    tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px';
+    tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + 'px';
+    tooltipEl.style.font = bodyFont.string;
+    tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
+    tooltipEl.style.pointerEvents = 'none';
+}
+
 
 function crbmr() {
 
 
   
   $('#CRBMR').remove();
-  $('.child_graph_quality_machine_reason').append('<canvas id="CRBMR"><canvas>');
+  $('.child_graph_quality_machine_reason').append('<canvas id="CRBMR"></canvas>');
   $('.chartjs-hidden-iframe').remove();
 
   f = $('.fromDate').val();
@@ -1489,7 +1483,8 @@ function crbmr() {
       // $('#qualityOpportunity').remove();
       // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
       // $('.chartjs-hidden-iframe').remove();
-
+      console.log("quality opportunity machine wise reason");
+      console.log(res);
       // res=res["QualityOpportunity"]
       $(".CRBMR").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
       // color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
@@ -1613,7 +1608,7 @@ function crbmr() {
                 tooltip: {
                   enabled: false,
                   // borderColor:"red",
-                  // external: qualityOpp,
+                  external: quality_opportuntiycost_reason_machine_tooltip,
                 }
               },
             },
@@ -1625,13 +1620,80 @@ function crbmr() {
     }
   }); 
 }
+//  Quality Rejection by Machines with Reasons tooltip function
+function quality_opportuntiycost_reason_machine_tooltip(context){
+  let tooltipEl = document.getElementById('tooltip-rejection__machinereason_oppcost');
+
+    // Create element on first render
+    if (!tooltipEl) {
+        tooltipEl = document.createElement('div');
+        tooltipEl.id = 'tooltip-rejection__machinereason_oppcost';
+        document.body.appendChild(tooltipEl);
+    }
+    tooltipEl.classList.add("global");
+
+    // Hide if no tooltip
+    const tooltipModel = context.tooltip;
+    if (tooltipModel.opacity === 0) {
+        tooltipEl.style.opacity = 0;
+        return;
+    }
+
+    // Set caret Position
+    tooltipEl.classList.remove('above', 'below', 'no-transform');
+    if (tooltipModel.yAlign) {
+        tooltipEl.classList.add(tooltipModel.yAlign);        
+    } else {
+        tooltipEl.classList.add('no-transform');
+    }
+
+    function getBody(bodyItem) {
+        return bodyItem.lines;
+    }
+
+    // Set Text
+    if (tooltipModel.body) {
+        
+        const titleLines = tooltipModel.title || [];
+        const bodyLines = tooltipModel.body.map(getBody);
+        var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
+        //var mname = context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label[context.tooltip.dataPoints[0].dataIndex];
+        //console.log(oppcost);
+        //console.log(mname);
+     
+        let innerHtml = '<div>';
+          innerHtml += '<div class="grid-container">';
+          innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+          innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+          innerHtml += '<div class="content-text sub-title"><span></span></div>';
+          innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+          innerHtml += '<div class="grid-item content-text margin-top"><span>Opportunity Cost</span></div>';
+          innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="true"></i>'+parseFloat(oppcost).toLocaleString("en-IN")+'</span></div>';
+          
+        innerHtml += '</div>';
+        innerHtml += '</div>';
+        tooltipEl.innerHTML = innerHtml;
+    }
+
+    const position = context.chart.canvas.getBoundingClientRect();
+    const bodyFont = Chart.helpers.toFont(tooltipModel.options.bodyFont);
+
+    // Display, position, and set styles for font
+    tooltipEl.style.opacity = 1;
+    tooltipEl.style.position = 'absolute';
+    tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px';
+    tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + 'px';
+    tooltipEl.style.font = bodyFont.string;
+    tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
+    tooltipEl.style.pointerEvents = 'none';
+}
 
 function copqm() {
 
   
   
   $('#COPQM').remove();
-  $('.child_graph_quality_machine_wise').append('<canvas id="COPQM"><canvas>');
+  $('.child_graph_quality_machine_wise').append('<canvas id="COPQM"></canvas>');
   $('.chartjs-hidden-iframe').remove();
 
 
@@ -1764,7 +1826,7 @@ function copqm() {
                 tooltip: {
                   enabled: false,
                   // borderColor:"red",
-                  // external: qualityOpp,
+                  external: quality_machine_oppcost,
                 }
               },
             },
@@ -1776,11 +1838,81 @@ function copqm() {
     }
   }); 
 }
+// Cost of Poor Quality (COPQ) by Machines tooltip function
+function quality_machine_oppcost(context){
+  //console.log(context);
+    // Tooltip Element
+    let tooltipEl = document.getElementById('tooltip-rejection_machine_reason_oppcost');
+
+    // Create element on first render
+    if (!tooltipEl) {
+        tooltipEl = document.createElement('div');
+        tooltipEl.id = 'tooltip-rejection_machine_reason_oppcost';
+        document.body.appendChild(tooltipEl);
+    }
+    tooltipEl.classList.add("global");
+
+    // Hide if no tooltip
+    const tooltipModel = context.tooltip;
+    if (tooltipModel.opacity === 0) {
+        tooltipEl.style.opacity = 0;
+        return;
+    }
+
+    // Set caret Position
+    tooltipEl.classList.remove('above', 'below', 'no-transform');
+    if (tooltipModel.yAlign) {
+        tooltipEl.classList.add(tooltipModel.yAlign);        
+    } else {
+        tooltipEl.classList.add('no-transform');
+    }
+
+    function getBody(bodyItem) {
+        return bodyItem.lines;
+    }
+
+    // Set Text
+    if (tooltipModel.body) {
+        
+        const titleLines = tooltipModel.title || [];
+        const bodyLines = tooltipModel.body.map(getBody);
+        var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
+        //var mname = context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label[context.tooltip.dataPoints[0].dataIndex];
+       // console.log(oppcost);
+        //console.log(mname);
+     
+        let innerHtml = '<div>';
+          innerHtml += '<div class="grid-container">';
+          innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+          innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+          innerHtml += '<div class="content-text sub-title"><span></span></div>';
+          innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+          innerHtml += '<div class="grid-item content-text margin-top"><span>Opportunity Cost</span></div>';
+          innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="true"></i>'+parseFloat(oppcost).toLocaleString("en-IN")+'</span></div>';
+          
+        innerHtml += '</div>';
+        innerHtml += '</div>';
+        tooltipEl.innerHTML = innerHtml;
+    }
+
+    const position = context.chart.canvas.getBoundingClientRect();
+    const bodyFont = Chart.helpers.toFont(tooltipModel.options.bodyFont);
+
+    // Display, position, and set styles for font
+    tooltipEl.style.opacity = 1;
+    tooltipEl.style.position = 'absolute';
+    tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px';
+    tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + 'px';
+    tooltipEl.style.font = bodyFont.string;
+    tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
+    tooltipEl.style.pointerEvents = 'none';
+}
+
 
 function qrbr() {
 
   $('#QRBR').remove();
-  $('.child_graph_quality_reason_wise').append('<canvas id="QRBR"><canvas>');
+  $('.child_graph_quality_reason_wise').append('<canvas id="QRBR"></canvas>');
   $('.chartjs-hidden-iframe').remove();
 
   f = $('.fromDate').val();
@@ -1799,7 +1931,8 @@ function qrbr() {
       // $('#qualityOpportunity').remove();
       // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
       // $('.chartjs-hidden-iframe').remove();
-
+      console.log("quality rejeciton by reason cost");
+      console.log(res);
       // res=res["QualityOpportunity"]
       $(".CRBR").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
       // color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
@@ -1915,7 +2048,7 @@ function qrbr() {
                 tooltip: {
                   enabled: false,
                   // borderColor:"red",
-                  // external: qualityOpp,
+                  external: quality_rejection_reason_cost,
                 }
               },
             },
@@ -1927,6 +2060,75 @@ function qrbr() {
     }
   }); 
 
+}
+// Quality Rejection by Reason tooltip function
+function  quality_rejection_reason_cost(context){
+   //console.log(context);
+    // Tooltip Element
+    let tooltipEl = document.getElementById('tooltip-rejection_reason_oppcost');
+
+    // Create element on first render
+    if (!tooltipEl) {
+        tooltipEl = document.createElement('div');
+        tooltipEl.id = 'tooltip-rejection_reason_oppcost';
+        document.body.appendChild(tooltipEl);
+    }
+    tooltipEl.classList.add("global");
+
+    // Hide if no tooltip
+    const tooltipModel = context.tooltip;
+    if (tooltipModel.opacity === 0) {
+        tooltipEl.style.opacity = 0;
+        return;
+    }
+
+    // Set caret Position
+    tooltipEl.classList.remove('above', 'below', 'no-transform');
+    if (tooltipModel.yAlign) {
+        tooltipEl.classList.add(tooltipModel.yAlign);        
+    } else {
+        tooltipEl.classList.add('no-transform');
+    }
+
+    function getBody(bodyItem) {
+        return bodyItem.lines;
+    }
+
+    // Set Text
+    if (tooltipModel.body) {
+        
+        const titleLines = tooltipModel.title || [];
+        const bodyLines = tooltipModel.body.map(getBody);
+        var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
+        //var mname = context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label[context.tooltip.dataPoints[0].dataIndex];
+       // console.log(oppcost);
+        //console.log(mname);
+     
+        let innerHtml = '<div>';
+          innerHtml += '<div class="grid-container">';
+          innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+          innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+          innerHtml += '<div class="content-text sub-title"><span></span></div>';
+          innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+          innerHtml += '<div class="grid-item content-text margin-top"><span>Rejection Count</span></div>';
+          innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="true"></i>'+parseFloat(oppcost).toLocaleString("en-IN")+'</span></div>';
+          
+        innerHtml += '</div>';
+        innerHtml += '</div>';
+        tooltipEl.innerHTML = innerHtml;
+    }
+
+    const position = context.chart.canvas.getBoundingClientRect();
+    const bodyFont = Chart.helpers.toFont(tooltipModel.options.bodyFont);
+
+    // Display, position, and set styles for font
+    tooltipEl.style.opacity = 1;
+    tooltipEl.style.position = 'absolute';
+    tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px';
+    tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + 'px';
+    tooltipEl.style.font = bodyFont.string;
+    tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
+    tooltipEl.style.pointerEvents = 'none';
 }
 
 $(document).on('click','#graph-cont',function(event){
