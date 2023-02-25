@@ -460,10 +460,9 @@ class Production_Quality extends BaseController
             for ($k=0; $k < $p; $k++) {
                 for ($m=0; $m < $l ; $m++) {
                     if ($m == $min_idx) {
-                        $temp1 = $arr['Part'][$k]['part_1'][$m];
-                        $arr['Part'][$k]['part_1'][$m] = $arr['Part'][$k]['part_1'][$min_idx];
+                        $temp1 = $arr['Part'][$k]['part_1'][$i];
+                        $arr['Part'][$k]['part_1'][$i] = $arr['Part'][$k]['part_1'][$min_idx];
                         $arr['Part'][$k]['part_1'][$min_idx] = $temp1;
-                        break;
                     }
                 }
             }
@@ -848,7 +847,7 @@ class Production_Quality extends BaseController
     {
         //int i, j, min_idx;
       
-        $j = sizeof($arr['Rejection']);
+        $j_1 = sizeof($arr['Rejection']);
         // One by one move boundary of unsorted subarray
         for ($i = 0; $i < $n-1; $i++)
         {
@@ -870,11 +869,11 @@ class Production_Quality extends BaseController
 
             $l = sizeof($arr['Rejection'][0]['Machine']);
 
-            for ($k=0; $k < $j-1; $k++) {
+            for ($k=0; $k < $j_1; $k++) {
                 for ($m=0; $m <$l ; $m++) {
                     if ($m == $min_idx) {
-                        $temp1 = $arr['Rejection'][$k]['Machine'][$m];
-                        $arr['Rejection'][$k]['Machine'][$m] = $arr['Rejection'][$k]['Machine'][$min_idx];
+                        $temp1 = $arr['Rejection'][$k]['Machine'][$i];
+                        $arr['Rejection'][$k]['Machine'][$i] = $arr['Rejection'][$k]['Machine'][$min_idx];
                         $arr['Rejection'][$k]['Machine'][$min_idx] = $temp1 ;
                     }
    

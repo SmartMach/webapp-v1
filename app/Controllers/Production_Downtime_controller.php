@@ -358,8 +358,8 @@ class Production_Downtime_controller extends BaseController{
     // opportunity cost by reason 
     public function getdowntime_reason_whise_graph(){
 
-        // $FromDate = "2023-02-14T09:00:00";
-        // $todate = "2023-02-20T08:00:00";
+        // $FromDate = "2023-02-19T09:00:00";
+        // $todate = "2023-02-25T08:00:00";
         $FromDate = $this->request->getVar('from');
         $todate = $this->request->getVar('to');
         $result = $this->getAvailabilityReasonWise($FromDate,$todate);
@@ -372,6 +372,7 @@ class Production_Downtime_controller extends BaseController{
             $tmp['downtime_category'] = $value['downtime_category'];
             $tmp['opportunity_cost'] = $result['total'][$key];
             $tmp['duration'] = $result['totalDuration'][$key];
+            // $tmp['machine_id'] = $value['machine_id'];
             array_push($opporuntiy_cost_reason_arr,$tmp);  
         }
 
@@ -379,6 +380,8 @@ class Production_Downtime_controller extends BaseController{
         $final_arr['grandTotal'] = $result['grandTotal'];
         $final_arr['total_duration'] = array_sum($result['totalDuration']);
         
+        // echo "<pre>";
+        // print_r($result);
         echo json_encode($final_arr);
         
     }
@@ -1117,6 +1120,20 @@ class Production_Downtime_controller extends BaseController{
         return $demo_arr;
 
     }
+
+
+    // // graph filte reason wise opportunity cost
+    // public function graph_filter_reason_wise_oppcost(){
+    //     if ($this->request->isAJAX()) {
+    //         $machine_arr = $this->request->getVar('machine_arr');
+    //         $reason_arr = $this->request->getVar('reason_arr');
+    //         $category_arr = $this->request->getVar('category_arr');
+
+    //         $FromDate = $this->request->getVar('from');
+    //         $todate = $this->request->getVar('to');
+    //         $res = $this->getdowntime_reason_whise_graph($FromDate,$todate);
+    //     }
+    // }
 
     
 }

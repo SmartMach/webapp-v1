@@ -587,6 +587,202 @@
       -ms-user-select: none;
 }
 
+/* graph multi select dropdown css */
+/* machine css graph filter multi select dropdown */
+.filter_selectBox_machinegp{
+    height:2.3rem;
+    margin-top:0.5rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem;
+}
+.multi_select_machinegp{
+    height:2.3rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem; 
+}
+.filter_overSelect_machinegp{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;  
+}
+.filter_checkboxes_machinegp{
+    display: none;
+    border: 1px #dadada solid;
+    z-index:250;
+    position: absolute;
+    background:white;
+    /* padding:0.4rem; */
+    border-radius:0.25rem;
+    min-width:8.7rem;
+    min-height:max-content;
+    max-height:10rem; 
+    overflow:hidden;
+    overflow-y:scroll;
+    overflow-x:hidden;
+}
+.filter_checkboxes_machinegp label{
+    display:block;
+}
+.filter_checkboxes_machinegp div:hover{
+    background-color: #E7F2FF;
+    padding:0;
+    cursor:context-menu;
+    width:100%;
+}
+
+.filter_check_machinegp{
+    display:flex;
+    padding-left:0.1rem;
+    padding-right:0.5rem;
+    justify-content:center;
+    align-items:center;
+    min-height:2rem;
+    max-height:3rem;
+}
+
+
+/* part css multi select dropdown */
+.filter_selectBox_reasongp{
+    height:2.3rem;
+    margin-top:0.5rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem;
+}
+
+.multi_select_reasongp{
+    height:2.3rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem; 
+}
+.filter_overSelect_reasongp{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;  
+}
+.filter_checkboxes_reasongp{
+    display: none;
+    border: 1px #dadada solid;
+    z-index:250;
+    position: absolute;
+    background:white;
+    /* padding:0.4rem; */
+    border-radius:0.25rem;
+    min-width:8.7rem;
+    min-height:max-content;
+    max-height:10rem; 
+    overflow:hidden;
+    overflow-y:scroll;
+    overflow-x:hidden;
+}
+.filter_checkboxes_reasongp label{
+    display:block;
+}
+.filter_checkboxes_reasongp div:hover{
+    background-color: #E7F2FF;
+    padding:0;
+    cursor:context-menu;
+    width:100%;
+}
+
+.filter_check_reasongp{
+    display:flex;
+    padding-left:0.1rem;
+    padding-right:0.5rem;
+    justify-content:center;
+    align-items:center;
+    min-height:2rem;
+    max-height:3rem;
+}
+
+/* category css */
+.filter_selectBox_categorygp{
+    height:2.3rem;
+    margin-top:0.5rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem;
+}
+
+.multi_select_categorygp{
+    height:2.3rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem; 
+}
+.filter_overSelect_categorygp{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;  
+}
+.filter_checkboxes_categorygp{
+    display: none;
+    border: 1px #dadada solid;
+    z-index:250;
+    position: absolute;
+    background:white;
+    /* padding:0.4rem; */
+    border-radius:0.25rem;
+    min-width:8.7rem;
+    min-height:max-content;
+    max-height:10rem; 
+    /* overflow:hidden;
+    overflow-y:scroll;
+    overflow-x:hidden; */
+}
+.filter_checkboxes_categorygp label{
+    display:block;
+}
+.filter_checkboxes_categorygp div:hover{
+    background-color: #E7F2FF;
+    padding:0;
+    cursor:context-menu;
+    width:100%;
+}
+
+.filter_check_categorygb{
+    display:flex;
+    padding-left:0.1rem;
+    padding-right:0.5rem;
+    justify-content:center;
+    align-items:center;
+    height:2rem;
+    
+}
+
 
 </style>
 <script type="text/javascript">
@@ -717,6 +913,76 @@ $session = \Config\Services::session();
                                 <div style="display:flex;flex-direction:column">
                                     <p style="color:#A6A6A6;font-size:11px;margin-bottom:0;">TOTAL</p>
                                     <p id="total_oppcost_by_reason" class="total_font_style"><i class="fa fa-inr inr-class"></i><span id="reason_wise_oppcost_total"></span></p>
+                                </div>
+                            </div>
+                            <div style="width:90%;display:flex;flex-direction:row-reverse;">
+                                <!-- Machine Dropdown checkbox -->
+                                <div class="box rightmar" style="margin-right: 0.5rem;" >
+                                    <!-- <label class="multi_select_label" style="">Machine</label> -->
+                                    <div class="filter_selectBox_machinegp" onclick="machine_multiselect_gp()">
+                                        <select  class="multi_select_machinegp" style="" >
+                                            <option id="text_machinegp" style="text-align:center;">All Machines</option>
+                                        </select>
+                                        <div class="filter_overSelect_machinegp"></div>
+                                    </div>
+                                    <div class="filter_checkboxes_machinegp" style="" >
+                                        <!-- options in progress -->
+                                    </div>
+                                </div>
+
+                                <!-- Reasons Dropdown checkbox -->
+                                <div class="box rightmar" style="margin-right: 0.5rem;" >
+                                    <!-- <label class="multi_select_label" style="">Reason</label> -->
+                                    <div class="filter_selectBox_reasongp" onclick="reason_multiselect_gp()">
+                                        <select  class="multi_select_reasongp" style="" >
+                                            <option id="text_reasongp" style="text-align:center;">All Reasons</option>
+                                        </select>
+                                        <div class="filter_overSelect_reasongp"></div>
+                                    </div>
+                                    <div class="filter_checkboxes_reasongp" style="" >
+                                        <!-- options in progress -->
+
+                                    </div>
+                                </div>
+
+                                <!-- category dropdown checkbox -->
+                                <div class="box rightmar" style="margin-right: 0.5rem;" >
+                                    <!-- <label class="multi_select_label" style="">Reason</label> -->
+                                    <div class="filter_selectBox_categorygp" onclick="category_multiselect_gp()">
+                                        <select  class="multi_select_categorygp" style="" >
+                                            <option id="text_categorygp" style="text-align:center;">All Category</option>
+                                        </select>
+                                        <div class="filter_overSelect_categorygp"></div>
+                                    </div>
+                                    <div class="filter_checkboxes_categorygp" style="" >
+                                        <!-- options in progress -->
+                                        <div class="filter_check_categorygb" style="">
+                                            <div class="cate_drp_check" style="">
+                                                <input type="checkbox" id="one" class="categorygp_checkbox" value="all"/>
+                                            </div>
+                                            <div class="cate_drp_text" style="">
+                                                <p class="font_multi_drp" style="margin:auto;">All Categories</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="filter_check_categorygb" style="">
+                                            <div class="cate_drp_check" style="">
+                                                <input type="checkbox" id="one" class="categorygp_checkbox" value="Planned"/>
+                                            </div>
+                                            <div class="cate_drp_text" style="">
+                                                <p class="font_multi_drp" style="margin:auto;">Planned</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="filter_check_categorygb" style="">
+                                            <div class="cate_drp_check" style="">
+                                                <input type="checkbox" id="one" class="categorygp_checkbox" value="Unplanned"/>
+                                            </div>
+                                            <div class="cate_drp_text" style="">
+                                                <p class="font_multi_drp" style="margin:auto;">UnPlanned</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -993,58 +1259,7 @@ $session = \Config\Services::session();
                 </div > 
                 <!--scroll sett end-->
             </div> 
-            <!-- table tamil code end -->
 
-            <!-- <div class="tableContent">
-                <div class="settings_machine_header sticky-top fixtabletitle">
-                    <div class="row paddingm">
-                        <div>
-                            <div class="col-sm-1 p3 paddingm">
-                            <p class="basic_header">MACHINE ID</p>
-                            </div>
-                            <div class="col-sm-2 p3 paddingm">
-                            <p class="basic_header">MACHINE NAME</p>
-                            </div>
-                            <div class="col-sm-2 p3 paddingm mar_right">
-                            <p class="basic_right">MACHINE RATE HOUR</p>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="col-sm-2 p3 paddingm ">
-                            <p class="basic_right">MACHINE OFF RATE HOUR</p>
-                            </div>
-                            <div class="col-sm-1 p3 paddingm">
-                            <p class="basic_header">TONNAGE</p>
-                            </div>
-                            <div class="col-sm-2 p3 paddingm">
-                            <p class="basic_header">MACHINE BRAND</p>
-                            </div>
-                            <div class="col-sm-1 p3 paddingm">
-                            <p class="basic_header">STATUS</p>
-                            </div>
-                            <div class="col-sm-1 p3 paddingm" style="justify-content: center;">
-                            <p class="basic_header">ACTION</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="contentMachine contentContainer paddingm " style="margin-bottom:0rem;">
-                    <div id="settings_div">
-                        <div class="col-sm-1 col marleft" ><p>item.machine_id</p></div>
-                        <div class="col-sm-2 col marleft" ><p title='+item.machine_name+'>item.machine_name</p></div>
-                        <div class="col-sm-2 col marright" >
-                            <p><i class="fa fa-inr" style="margin-right:5px;"></i>machine_rph</p>
-                        </div>
-                        <div class="col-sm-2 col marright" >
-                            <p><i class="fa fa-inr" style="margin-right:5px;"></i>machine_orh</p>
-                        </div>
-                        <div class="col-sm-1 col marleft" ><p>'+item.tonnage+'T</p></div>
-                        <div class="col-sm-2 col marleft" ><p>'+item.machine_brand+'</p></div>
-                        <div class="col-sm-1 col marleft settings_active marleft" style="color:#005CBC;"><p style="color: #005CBC;"><i class="fa fa-circle" style="font-size:9px;margin-right:5px;margin-top:5px;"></i>Active</p></div>
-
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
 </div>
@@ -1142,6 +1357,49 @@ function machinename_drp(){
     }else{
         $('.filter_checkboxes_machine').css('display','none');
         filter_machinename = false;
+    }
+}
+
+// graph filter multi select dropdown
+// machine multi select
+var filter_machinegp = 0;
+function machine_multiselect_gp(){
+
+    var checkboxs = document.getElementsByClassName('filter_checkboxes_machinegp');
+    if (!filter_machinegp) {
+        $('.filter_checkboxes_machinegp').css('display','block');
+        filter_machinegp = true;
+    }else{
+        $('.filter_checkboxes_machinegp').css('display','none');
+        filter_machinegp = false;
+        // temporary hide this function
+        // getfilter_oppcost_reason();
+    }
+}
+
+// reason multi select
+var filter_reasongp = 0;
+function reason_multiselect_gp(){
+    var checkboxs = document.getElementsByClassName('filter_checkboxes_reasongp');
+    if (!filter_machinegp) {
+        $('.filter_checkboxes_reasongp').css('display','block');
+        filter_machinegp = true;
+    }else{
+        $('.filter_checkboxes_reasongp').css('display','none');
+        filter_machinegp = false;
+    }
+}
+
+// category multi select
+var filter_category_gp = 0;
+function category_multiselect_gp(){
+    var checkboxs = document.getElementsByClassName('filter_checkboxes_categorygp');
+    if (!filter_machinegp) {
+        $('.filter_checkboxes_categorygp').css('display','block');
+        filter_machinegp = true;
+    }else{
+        $('.filter_checkboxes_categorygp').css('display','none');
+        filter_machinegp = false;
     }
 }
 
@@ -1407,6 +1665,157 @@ $(document).on('click','.filter_check_machine',function(event){
    
 });
 
+// graph filter multi select dropdown
+// category multi select
+$(document).on('click','.filter_check_categorygb',function(event){
+    event.preventDefault();
+    var count_category_gp  = $('.filter_check_categorygb');
+    var index_category_gp = count_category_gp.index($(this));
+    var check_if = $('.categorygp_checkbox');
+    if (index_category_gp === 0) {
+        if (check_if[0].checked==false) {
+            reset_category_gp();
+
+        }else{
+            $('.categorygp_checkbox').removeAttr('checked');
+        }
+    }else{
+        if (check_if[index_category_gp].checked==false) {
+            check_if[index_category_gp].checked=true;
+            $('.categorygp_checkbox:eq('+index_category_gp+')').attr('checked','checked');
+        }else{
+            $('.categorygp_checkbox:eq('+index_category_gp+')').removeAttr('checked');
+            check_if[0].checked=false;
+        }
+    }
+
+    var category_gp_select_count = 0;
+    jQuery('.categorygp_checkbox').each(function(index){
+      if (check_if[index].checked===true) {
+        category_gp_select_count = parseInt(category_gp_select_count)+1;
+      }
+    });
+    var category_gp_len = $('.categorygp_checkbox').length;
+    category_gp_len = parseInt(category_gp_len)-1;
+    if (parseInt(category_gp_select_count)>=parseInt(category_gp_len)) {
+        if(check_if[0].checked===true){
+            check_if[0].checked=true;
+            $('#text_categorygp').text(parseInt(category_gp_select_count)-1+' Selected');
+        }else{
+            // check_if[0].checked=true;
+            reset_category_gp();
+            $('#text_categorygp').text('All');
+        }
+    }else if(((parseInt(category_gp_select_count)<parseInt(category_gp_len))) && (parseInt(category_gp_select_count)>0)){
+        $('#text_categorygp').text(parseInt(category_gp_select_count)+' Selected');
+
+        // check_if[0].checked=false;
+    }else {
+        $('#text_categorygp').text('No Category');
+    }
+
+});
+
+
+// graph filter reason onclick function
+$(document).on('click','.filter_check_reasongp',function(event){
+    event.preventDefault();
+    var count_reason_gp  = $('.filter_check_reasongp');
+    var index_reason_gp = count_reason_gp.index($(this));
+    var check_if = $('.reasongp_checkbox');
+    if (index_reason_gp === 0) {
+        if (check_if[0].checked==false) {
+            reset_reason_gp();
+
+        }else{
+            $('.reasongp_checkbox').removeAttr('checked');
+        }
+    }else{
+        if (check_if[index_reason_gp].checked==false) {
+            check_if[index_reason_gp].checked=true;
+            $('.reasongp_checkbox:eq('+index_reason_gp+')').attr('checked','checked');
+        }else{
+            $('.reasongp_checkbox:eq('+index_reason_gp+')').removeAttr('checked');
+            check_if[0].checked=false;
+        }
+    }
+
+    var reason_gp_select_count = 0;
+    jQuery('.reasongp_checkbox').each(function(index){
+      if (check_if[index].checked===true) {
+        reason_gp_select_count = parseInt(reason_gp_select_count)+1;
+      }
+    });
+    var reason_gp_len = $('.reasongp_checkbox').length;
+    reason_gp_len = parseInt(reason_gp_len)-1;
+    if (parseInt(reason_gp_select_count)>=parseInt(reason_gp_len)) {
+        if(check_if[0].checked===true){
+            check_if[0].checked=true;
+            $('#text_reasongp').text(parseInt(reason_gp_select_count)-1+' Selected');
+        }else{
+            // check_if[0].checked=true;
+            reset_reason_gp();
+            $('#text_reasongp').text('All');
+        }
+    }else if(((parseInt(reason_gp_select_count)<parseInt(reason_gp_len))) && (parseInt(reason_gp_select_count)>0)){
+        $('#text_reasongp').text(parseInt(reason_gp_select_count)+' Selected');
+
+        // check_if[0].checked=false;
+    }else {
+        $('#text_reasongp').text('No Reasons');
+    }
+});
+
+// graph filter machine onclick function
+$(document).on('click','.filter_check_machinegp',function(event){
+    event.preventDefault();
+
+    var count_machine_gp  = $('.filter_check_machinegp');
+    var index_machine_gp = count_machine_gp.index($(this));
+    var check_if = $('.machinegp_checkbox');
+    if (index_machine_gp === 0) {
+        if (check_if[0].checked==false) {
+            reset_machine_gp();
+
+        }else{
+            $('.machinegp_checkbox').removeAttr('checked');
+        }
+    }else{
+        if (check_if[index_machine_gp].checked==false) {
+            check_if[index_machine_gp].checked=true;
+            $('.machinegp_checkbox:eq('+index_machine_gp+')').attr('checked','checked');
+        }else{
+            $('.machinegp_checkbox:eq('+index_machine_gp+')').removeAttr('checked');
+            check_if[0].checked=false;
+        }
+    }
+
+    var machine_gp_select_count = 0;
+    jQuery('.machinegp_checkbox').each(function(index){
+      if (check_if[index].checked===true) {
+        machine_gp_select_count = parseInt(machine_gp_select_count)+1;
+      }
+    });
+    var machine_gp_len = $('.machinegp_checkbox').length;
+    machine_gp_len = parseInt(machine_gp_len)-1;
+    if (parseInt(machine_gp_select_count)>=parseInt(machine_gp_len)) {
+        if(check_if[0].checked===true){
+            check_if[0].checked=true;
+            $('#text_machinegp').text(parseInt(machine_gp_select_count)-1+' Selected');
+        }else{
+            // check_if[0].checked=true;
+            reset_machine_gp();
+            $('#text_machinegp').text('All');
+        }
+    }else if(((parseInt(machine_gp_select_count)<parseInt(machine_gp_len))) && (parseInt(machine_gp_select_count)>0)){
+        $('#text_machinegp').text(parseInt(machine_gp_select_count)+' Selected');
+
+        // check_if[0].checked=false;
+    }else {
+        $('#text_machinegp').text('No Reasons');
+    }
+
+});
 
 
 // reset machine dropdown
@@ -1453,6 +1862,34 @@ function reset_created_by(){
         created_by_arr[in3].checked=true;
     });
     $('#text_created_by_drp').text('All Users');
+}
+
+// reset graph filter function
+// reset category graph filter
+function reset_category_gp(){
+    var created_by_arr = $('.categorygp_checkbox');
+    jQuery('.categorygp_checkbox').each(function(in3){
+        created_by_arr[in3].checked=true;
+    });
+    $('#text_categorygp').text('All Category');
+}
+
+// reset reason graph filter
+function reset_reason_gp(){
+    var reason_gparr = $('.reasongp_checkbox');
+    jQuery('.reasongp_checkbox').each(function(index){
+        reason_gparr[index].checked=true;
+    });
+    $('#text_reasongp').text('All Reasons');
+}
+
+// reset machine graph filter
+function reset_machine_gp(){
+    var machine_gparr = $('.machinegp_checkbox');
+    jQuery('.machinegp_checkbox').each(function(index){
+        machine_gparr[index].checked=true;
+    });
+    $('#text_machinegp').text('All Machines');
 }
 
 
@@ -1506,6 +1943,13 @@ $(document).ready(function(){
     var temp = null;
     downtime_reason_filter(temp);
 
+     //graph filter reset category dropdown
+     reset_category_gp();
+    // // graph filter reasons dropdown
+    // reset_reason_gp();
+    // // graph filter machine dropdown
+    // reset_machine_gp();
+
     var end_index = 50;
     var start_index = 0;
     // filter function apply
@@ -1514,6 +1958,9 @@ $(document).ready(function(){
     // preloader off function
    // $("#overlay").fadeOut(500);
 
+   
+
+  
 });
 
 
@@ -1932,14 +2379,7 @@ function reason_wise_duration(){
                 data: {
                     labels: reason_label,
                     datasets: [{
-                        type:'bar',
-                        label:reason_label,
-                        data:duration_arr,
-                        percentage_data:0,
-                        backgroundColor: "#0075F6",
-                        yAxisID: 'B',  
 
-                    },{
                         type: 'line',
                         label: 'Percentage',
                         data:duration_percentage_arr,
@@ -1953,6 +2393,16 @@ function reason_wise_duration(){
                         lineColor:"black",
                         pointRadius:7,
                         yAxisID: 'A',
+
+                      
+
+                    },{
+                        type:'bar',
+                        label:reason_label,
+                        data:duration_arr,
+                        percentage_data:0,
+                        backgroundColor: "#0075F6",
+                        yAxisID: 'B',  
                     }],
                 },
                 options: {
@@ -2896,7 +3346,11 @@ function fill_machine_dropdown(){
         success:function(res){
             console.log("multi select dropdown machine");
             console.log(res);
+            
             $('.filter_checkboxes_machine').empty();
+            $('.filter_checkboxes_machinegp').empty();
+
+
             $('.filter_checkboxes_machine').append('<div class="filter_check_machine" style="">'
             +'<div class="cate_drp_check" style="">'
             +'<input type="checkbox" id="one" class="machine_checkbox" value="all"/>'
@@ -2904,9 +3358,20 @@ function fill_machine_dropdown(){
             +'<div class="cate_drp_text" style="">'
             +'<p class="font_multi_drp" style="margin:auto;">All</p>'
             +'</div>'
-            +'</div>')
+            +'</div>');
+
+            $('.filter_checkboxes_machinegp').append('<div class="filter_check_machinegp" style="">'
+            +'<div class="cate_drp_check" style="">'
+            +'<input type="checkbox" id="one" class="machinegp_checkbox" value="all"/>'
+            +'</div>'
+            +'<div class="cate_drp_text" style="">'
+            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+            +'</div>'
+            +'</div>');
             res.forEach(function(val){
                 var elements = $();
+                var element = $();
+
                 elements = elements.add('<div class="filter_check_machine" style="">'
                 +'<div class="cate_drp_check" style="">'
                 +'<input type="checkbox" id="one" class="machine_checkbox" value="'+val.machine_id+'"/>'
@@ -2916,10 +3381,22 @@ function fill_machine_dropdown(){
                 +'</div>'
                 +'</div>');
 
+
+                element = element.add('<div class="filter_check_machinegp" style="">'
+                +'<div class="cate_drp_check" style="">'
+                +'<input type="checkbox" id="one" class="machinegp_checkbox" value="'+val.machine_id+'"/>'
+                +'</div>'
+                +'<div class="cate_drp_text" style="">'
+                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
+                +'</div>'
+                +'</div>');
+
                 $('.filter_checkboxes_machine').append(elements);
+                $('.filter_checkboxes_machinegp').append(element);
             });
 
             reset_machine();
+            reset_machine_gp();
             
         },
         error:function(er){
@@ -3022,6 +3499,7 @@ function downtime_reason_filter(category_temp){
   // var cate_arr = getcategory_arr(); 
   // var arr_leng = cate_arr.length;
   $('.filter_checkboxes_r').empty();
+  $('.filter_checkboxes_reasongp').empty();
   if (category_temp === null) {
     $.ajax({
       url:"<?php echo base_url(); ?>/Production_Downtime_controller/downtime_reason_filter_con",
@@ -3032,7 +3510,10 @@ function downtime_reason_filter(category_temp){
         console.log(res);
 
         var element = $();
+        var elements = $();
         $('.filter_checkboxes_r').append('<div class="filter_check_r" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
+        $('.filter_checkboxes_reasongp').append('<div class="filter_check_reasongp" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
+
         res.forEach(function(item){
           // console.log(item.downtime_reason_id);
           if (item.downtime_reason==="Tool Changeover") {
@@ -3040,12 +3521,17 @@ function downtime_reason_filter(category_temp){
           }else{
             // element = element.add('<option value="'+item.downtime_reason+'">'+item.downtime_reason+'</option>');
             element = element.add('<div class="filter_check_r" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
+            
+            elements = elements.add('<div class="filter_check_reasongp" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
+
             $('.filter_checkboxes_r').append(element);
+            $('.filter_checkboxes_reasongp').append(elements);
           }
         
         });
         // downtime reasons all reasons selection funciton [reset the multiselect dropdwon]
         reset_reason();
+        reset_reason_gp();
       },
       error:function(err){
         console.log(err);
@@ -3183,6 +3669,25 @@ $(document).mouseup(function(event){
     var reason_drp_checkbox = $('.filter_checkboxes_r');
     if (!reason_drp_checkbox.is(event.target) && reason_drp_checkbox.has(event.target).length==0) {
         reason_drp_checkbox.hide();
+    }
+
+    // graph filter mouse out side click functions
+    // category dropdown out side click hide
+    var gp_category = $('.filter_checkboxes_categorygp');
+    if (!gp_category.is(event.target) && gp_category.has(event.target).length==0) {
+        gp_category.hide();
+    }
+
+    // reasons dropdown outside click hide
+    var gp_reason = $('.filter_checkboxes_reasongp');
+    if (!gp_reason.is(event.target) && gp_reason.has(event.target).length==0) {
+        gp_reason.hide();
+    }
+
+    // machine dropdown outside click hide
+    var gp_machine = $('.filter_checkboxes_machinegp');
+    if (!gp_machine.is(event.target) && gp_machine.has(event.target).lenght==0) {
+        gp_machine.hide();
     }
 });
 
@@ -3367,4 +3872,58 @@ $(document).on('click','.table_reset',function(event){
 
 });
 
+
+// graph filter function temporary hide 
+/*
+function getfilter_oppcost_reason(){
+    //alert('hi');
+
+    // machine array
+    var graph_reason_arr = [];
+    $('.machinegp_checkbox').each(function(){
+        if ($(this).is(':checked')) {
+            graph_reason_arr.push($(this).val());
+        }
+    });
+
+    // reason array
+    var graph_machine_arr = [];
+    $('.reasongp_checkbox').each(function(){
+        graph_machine_arr.push($(this).val());
+    });
+
+    
+    // category
+    var graph_category_arr = [];
+    $('.categorygp_checkbox').each(function(){
+        graph_category_arr.push($(this).val());
+    });
+
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
+
+    $.ajax({
+        url:"<?php echo  base_url('Production_Downtime_controller/graph_filter_reason_wise_oppcost'); ?>",
+        method:"POST",
+        dataType:"json",
+        data:{
+            reason_arr:graph_reason_arr,
+            machine_arr:graph_machine_arr,
+            category_arr:graph_category_arr,
+            from:f,
+            to:t,
+        },
+        success:function(res){
+            console.log(res);
+        }
+
+    });
+    console.log("Graph filter array");
+    console.log(graph_reason_arr);
+    console.log(graph_machine_arr);
+    console.log(graph_category_arr);
+}
+*/
 </script>

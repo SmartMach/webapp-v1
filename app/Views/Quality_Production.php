@@ -107,6 +107,9 @@
 
                 <i id="table-cont" class="fa fa-industry img-style"  alt=""></i>
                 </div> -->
+                <div class="box rightmar" style="margin-right:0.5rem;height:1rem;">
+                    <div style="padding-left:10px;padding-right:10px;height:2.3rem;border:1px solid #e6e6e6;border-radius:0.25rem;display:flex;justify-content:center;align-items:center;color:#C00000;"><p style="text-align:center;margin:auto;font-size:15px;font-weight:500;"><span id="total_rejection_header"></span> Rejects</p></div>
+                </div>
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" style="border:1px solid #ced4ca;border-radius:0.25rem;padding:0.1rem;margin:auto;margin-right:0.5rem;">
                   <li class="nav-item" role="presentation"  >
                     <i class="fa fa-sitemap nav-link active"  id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" style="padding:0.4rem;font-size:1.3rem;"></i>
@@ -800,6 +803,7 @@ function qualitybyreasonparts() {
       // $('.chartjs-hidden-iframe').remove();
       console.log("Stacked bar charts");
       console.log(res);
+      $('#total_rejection_header').text(res.GrandTotal);
       // res=res["QualityOpportunity"]
       $(".CQRPR").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
       // color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
@@ -852,9 +856,11 @@ function qualitybyreasonparts() {
           label:"Total",
           type: "line",
           backgroundColor: "white",
-          borderColor: "#d9d9ff",
+          borderColor: "#7f7f7f",
+          borderWidth: 1, 
+          lineColor:"black",
           borderWidth: 1,
-          showLine : false,
+          showLine : true,
           fill: false,
           percentage_data:totalVal,
           // reject:totalReject, 
@@ -1002,7 +1008,7 @@ function quality_oppcost_reaosn_part_tooltip(context){
           innerHtml += '<div class="grid-item title-bold"><span></span></div>';
           innerHtml += '<div class="content-text sub-title"><span></span></div>';
           innerHtml += '<div class="grid-item title-bold"><span></span></div>';
-          innerHtml += '<div class="grid-item content-text"><span>Percentage</span></div>';  
+          innerHtml += '<div class="grid-item content-text margin-top"><span>Percentage</span></div>';  
           innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+parseFloat(percentage).toLocaleString("en-IN")+'% </span></div>';
             
       }
@@ -1063,7 +1069,8 @@ function copqp() {
       // $('#qualityOpportunity').remove();
       // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
       // $('.chartjs-hidden-iframe').remove();
-
+      console.log('Quality opportunity tooltip');
+      console.log(res);
       // res=res["QualityOpportunity"]
       $(".COPQP").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
       // color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
@@ -1088,9 +1095,16 @@ function copqp() {
 
       var totalVal =[];
       var partNameTotal=[];
+      var temp_data = 0;
+      var percentage_arr = [];
+
       res['Total'].forEach(function(t){
           totalVal.push(t);
           partNameTotal.push("Total");
+
+          temp_data = parseInt(temp_data)+t;
+          var temp_percentage = parseFloat(parseInt(temp_data)/parseInt(res['GrandTotal'])).toFixed(2)*100;
+          percentage_arr.push(temp_percentage);
       });
 
       var category_percent =1.0;
@@ -1128,11 +1142,27 @@ function copqp() {
       //   }           
       // ];
 
-      oppCost = [
+      oppCost = [{
+        
+        type: 'line',
+        abel: 'Percentage',
+        data:percentage_arr,
+        percentage_data: percentage_arr,
+        backgroundColor: 'white',
+        borderColor: "#7f7f7f", 
+        pointBorderColor: "#d9d9ff",  
+        borderWidth: 1, 
+        showLine : true,
+        fill: false,
+        lineColor:"black",
+        pointRadius:7,
+        yAxisID: 'A',
+      },
         {
           label:"Total",
           type: "bar",
           backgroundColor: "#004b9b",
+          percentage_data: 0,
           borderColor: "#d9d9ff",
           borderWidth: 1,
           showLine : false,
@@ -1142,6 +1172,7 @@ function copqp() {
           partName:partNameTotal,
           categoryPercentage:1.5,
           barPercentage:0.5,
+          yAxisID: 'B',  
         }           
       ];
 
@@ -1170,10 +1201,30 @@ function copqp() {
               responsive: true,
               maintainAspectRatio: false,   
               scales: {
-                  y: {
-                      display:false,
-                      beginAtZero:true,
-                      stacked:true
+                  // y: {
+                  //     display:false,
+                  //     beginAtZero:true,
+                  //     stacked:true
+                  // },
+                  A:{
+                    type: 'linear',
+                    position: 'right',
+                    // beginAtZero: true,
+                    suggestedMin: 0,
+                    suggestedMax: 100,
+                    display:true,
+                    grid:{
+                      display:false
+                    },
+                  },
+                  B:{
+                    type: 'linear',
+                    position: 'left',
+                    beginAtZero: true,
+                    display:true,
+                    grid:{
+                      display:false
+                    },
                   },
                   x:{
                       display:true,
@@ -1245,19 +1296,30 @@ function quality_opportunity_tooltip(context){
         const titleLines = tooltipModel.title || [];
         const bodyLines = tooltipModel.body.map(getBody);
         var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
-        //var mname = context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label[context.tooltip.dataPoints[0].dataIndex];
+        var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].percentage_data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
         //console.log(oppcost);
         //console.log(mname);
      
         let innerHtml = '<div>';
-          innerHtml += '<div class="grid-container">';
-          innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
-          innerHtml += '<div class="grid-item title-bold"><span></span></div>';
-          innerHtml += '<div class="content-text sub-title"><span></span></div>';
-          innerHtml += '<div class="grid-item title-bold"><span></span></div>';
-          innerHtml += '<div class="grid-item content-text margin-top"><span>Opportunity Cost</span></div>';
-          innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="true"></i>'+parseFloat(oppcost).toLocaleString("en-IN")+'</span></div>';
-          
+        if (parseInt(percentage)>0) {
+            innerHtml += '<div class="grid-container">';
+            innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            innerHtml += '<div class="content-text sub-title"><span></span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+
+            innerHtml += '<div class="grid-item content-text margin-top"><span>Percentage</span></div>';  
+            innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+parseFloat(percentage).toLocaleString("en-IN")+'% </span></div>';
+            
+        }else{
+            innerHtml += '<div class="grid-container">';
+            innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            innerHtml += '<div class="content-text sub-title"><span></span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            innerHtml += '<div class="grid-item content-text margin-top"><span>Opportunity Cost</span></div>';
+            innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="true"></i>'+parseFloat(oppcost).toLocaleString("en-IN")+'</span></div>';
+        } 
         innerHtml += '</div>';
         innerHtml += '</div>';
         tooltipEl.innerHTML = innerHtml;
@@ -1320,9 +1382,15 @@ function qualitybyparts() {
 
       var totalVal =[];
       var partNameTotal=[];
+      var temp_data = 0;
+      var percentage_arr = [];
       res['Part'].forEach(function(t){
           totalVal.push(t['cost']);
           partNameTotal.push(t['part_name']);
+
+          temp_data = parseInt(temp_data)+parseInt(t['cost']);
+          var temp_percent = parseFloat(parseInt(temp_data)/parseInt(res['GrandTotal'])).toFixed(2)*100;
+          percentage_arr.push(temp_percent);
       }); 
 
       var category_percent =1.0;
@@ -1347,9 +1415,25 @@ function qualitybyparts() {
 
       oppCost = [
         {
+          type: 'line',
+          label: 'Percentage',
+          data:percentage_arr,
+          percentage_data: percentage_arr,
+          backgroundColor: 'white',
+          borderColor: "#7f7f7f", 
+          pointBorderColor: "#d9d9ff",  
+          borderWidth: 1, 
+          showLine : true,
+          fill: false,
+          lineColor:"black",
+          pointRadius:7,
+          yAxisID: 'A',
+        },
+        {
           label:"Total",
           type: "bar",
           backgroundColor: "#004b9b",
+          percentage_data: 0,
           borderColor: "#d9d9ff",
           borderWidth: 1,
           showLine : false,
@@ -1360,6 +1444,7 @@ function qualitybyparts() {
           // pointRadius: 7,
           categoryPercentage:category_percent,
           barPercentage:bar_space,
+          yAxisID: 'B',
         }           
       ];
 
@@ -1388,11 +1473,31 @@ function qualitybyparts() {
               responsive: true,
               maintainAspectRatio: false,   
               scales: {
-                  y: {
-                      display:false,
-                      beginAtZero:true,
-                      stacked:true
-                  },
+                  // y: {
+                  //     display:false,
+                  //     beginAtZero:true,
+                  //     stacked:true
+                  // },
+                  A:{
+                    type: 'linear',
+                    position: 'right',
+                    // beginAtZero: true,
+                    suggestedMin: 0,
+                    suggestedMax: 100,
+                    display:true,
+                      grid:{
+                        display:false
+                      },
+                    },
+                    B:{
+                      type: 'linear',
+                      position: 'left',
+                      beginAtZero: true,
+                      display:true,
+                      grid:{
+                        display:false
+                      },
+                    },
                   x:{
                       display:true,
                       grid:{
@@ -1461,19 +1566,30 @@ function quality_part_wise_cost_tooltip(context){
         const titleLines = tooltipModel.title || [];
         const bodyLines = tooltipModel.body.map(getBody);
         var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
-        //var mname = context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label[context.tooltip.dataPoints[0].dataIndex];
+        var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].percentage_data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
         //console.log(oppcost);
         //console.log(mname);
      
         let innerHtml = '<div>';
-          innerHtml += '<div class="grid-container">';
-          innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
-          innerHtml += '<div class="grid-item title-bold"><span></span></div>';
-          innerHtml += '<div class="content-text sub-title"><span></span></div>';
-          innerHtml += '<div class="grid-item title-bold"><span></span></div>';
-          innerHtml += '<div class="grid-item content-text margin-top"><span>Opportunity Cost</span></div>';
-          innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="true"></i>'+parseFloat(oppcost).toLocaleString("en-IN")+'</span></div>';
-          
+        if (parseInt(percentage)>0) {
+            innerHtml += '<div class="grid-container">';
+            innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            innerHtml += '<div class="content-text sub-title"><span></span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+
+            innerHtml += '<div class="grid-item content-text margin-top"><span>Percentage</span></div>';  
+            innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+parseFloat(percentage).toLocaleString("en-IN")+'% </span></div>';
+            
+        }else{
+            innerHtml += '<div class="grid-container">';
+            innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            innerHtml += '<div class="content-text sub-title"><span></span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            innerHtml += '<div class="grid-item content-text margin-top"><span>Opportunity Cost</span></div>';
+            innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="true"></i>'+parseFloat(oppcost).toLocaleString("en-IN")+'</span></div>';
+        }  
         innerHtml += '</div>';
         innerHtml += '</div>';
         tooltipEl.innerHTML = innerHtml;
@@ -1571,12 +1687,15 @@ function crbmr() {
           label:"Total" ,
           type: "line",
           backgroundColor: color[0],
-          borderColor: "#d9d9ff",  
+          borderColor: "#7f7f7f",
+          pointBorderColor: "#d9d9ff",   
           borderWidth: 1, 
-          showLine : false,
+          showLine : true,
           fill: false, 
           data:machineTotal,
           pointRadius: 7,
+          borderWidth: 1, 
+          lineColor:"black",
           yAxisID: 'A',  
           percentage_data:machineTotal,
         }           
@@ -1589,7 +1708,7 @@ function crbmr() {
           arr.push(machineWise['Rejection']);
         });
         oppCost.push({
-          label: "partName",
+          label: reasonWise.Reason,
           type: "bar",
           backgroundColor: color[x],
           borderColor: color[x],
@@ -1721,13 +1840,13 @@ function quality_opportuntiycost_reason_machine_tooltip(context){
             innerHtml += '<div class="grid-item title-bold"><span></span></div>';
             innerHtml += '<div class="content-text sub-title"><span></span></div>';
             innerHtml += '<div class="grid-item title-bold"><span></span></div>';
-            innerHtml += '<div class="grid-item content-text"><span>Percentage</span></div>';  
+            innerHtml += '<div class="grid-item content-text margin-top"><span>Percentage</span></div>';  
             innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+parseFloat(percentage).toLocaleString("en-IN")+'% </span></div>'; 
           }
           else{
             innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
             innerHtml += '<div class="grid-item title-bold"><span></span></div>';
-            innerHtml += '<div class="content-text sub-title"><span></span></div>';
+            innerHtml += '<div class="content-text sub-title"><span>'+context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label+'</span></div>';
             innerHtml += '<div class="grid-item title-bold"><span></span></div>';
             innerHtml += '<div class="grid-item content-text margin-top"><span>Opportunity Cost</span></div>';
             innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="true"></i>'+parseFloat(oppcost).toLocaleString("en-IN")+'</span></div>';
@@ -1775,7 +1894,8 @@ function copqm() {
       // $('#qualityOpportunity').remove();
       // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
       // $('.chartjs-hidden-iframe').remove();
-
+      console.log("Cost of Poor Quality (COPQ) by Machines");
+      console.log(res);
       // res=res["QualityOpportunity"]
       $(".COPQM").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
       // color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
@@ -1799,8 +1919,15 @@ function copqm() {
       });
 
       var machineTotal=[];
+      var temp_data = 0;
+      var percentage_arr = [];
       res['MachineCost'].forEach(function(t){
           machineTotal.push(t);
+
+          temp_data = parseInt(temp_data)+t;
+          var temp = parseFloat(parseInt(temp_data)/parseInt(res['GrandTotal'])).toFixed(2)*100;
+          percentage_arr.push(temp);
+
       }); 
 
       var category_percent =1.0;
@@ -1822,11 +1949,26 @@ function copqm() {
         }
       }
 
-      oppCost = [
+      oppCost = [{
+        type: 'line',
+        label: 'Percentage',
+        data:percentage_arr,
+        percentage_data: percentage_arr,
+        backgroundColor: 'white',
+        borderColor: "#7f7f7f", 
+        pointBorderColor: "#d9d9ff",  
+        borderWidth: 1, 
+        showLine : true,
+        fill: false,
+        lineColor:"black",
+        pointRadius:7,
+        yAxisID: 'A',
+      },
         {
-            label: "partName",
+          label: "partName",
           type: "bar",
           backgroundColor: "#004b9b",
+          percentage_data: 0,
           borderColor: "#004b9b",
           borderWidth: 1,
           fill: true,
@@ -1835,6 +1977,7 @@ function copqm() {
           // partName:partNameHover,
           categoryPercentage:category_percent,
           barPercentage:bar_space,
+          yAxisID: 'B',
         }           
       ];
 
@@ -1864,10 +2007,30 @@ function copqm() {
               responsive: true,
               maintainAspectRatio: false,   
               scales: {
-                  y: {
-                      display:false,
-                      beginAtZero:true,
-                      stacked:true
+                  // y: {
+                  //     display:false,
+                  //     beginAtZero:true,
+                  //     stacked:true
+                  // },
+                  A:{
+                    type: 'linear',
+                    position: 'right',
+                    // beginAtZero: true,
+                    suggestedMin: 0,
+                    suggestedMax: 100,
+                    display:true,
+                    grid:{
+                      display:false
+                    },
+                  },
+                  B:{
+                    type: 'linear',
+                    position: 'left',
+                    beginAtZero: true,
+                    display:true,
+                    grid:{
+                      display:false
+                    },
                   },
                   x:{
                       display:true,
@@ -1939,19 +2102,30 @@ function quality_machine_oppcost(context){
         const titleLines = tooltipModel.title || [];
         const bodyLines = tooltipModel.body.map(getBody);
         var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
-        //var mname = context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label[context.tooltip.dataPoints[0].dataIndex];
+        var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].percentage_data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
        // console.log(oppcost);
         //console.log(mname);
      
         let innerHtml = '<div>';
-          innerHtml += '<div class="grid-container">';
-          innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
-          innerHtml += '<div class="grid-item title-bold"><span></span></div>';
-          innerHtml += '<div class="content-text sub-title"><span></span></div>';
-          innerHtml += '<div class="grid-item title-bold"><span></span></div>';
-          innerHtml += '<div class="grid-item content-text margin-top"><span>Opportunity Cost</span></div>';
-          innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="true"></i>'+parseFloat(oppcost).toLocaleString("en-IN")+'</span></div>';
-          
+        if (parseInt(percentage)>0) {
+            innerHtml += '<div class="grid-container">';
+            innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            innerHtml += '<div class="content-text sub-title"><span></span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+
+            innerHtml += '<div class="grid-item content-text margin-top"><span>Percentage</span></div>';  
+            innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+parseFloat(percentage).toLocaleString("en-IN")+'% </span></div>';
+            
+          }else{
+            innerHtml += '<div class="grid-container">';
+            innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            innerHtml += '<div class="content-text sub-title"><span></span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            innerHtml += '<div class="grid-item content-text margin-top"><span>Opportunity Cost</span></div>';
+            innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="true"></i>'+parseFloat(oppcost).toLocaleString("en-IN")+'</span></div>';
+          }
         innerHtml += '</div>';
         innerHtml += '</div>';
         tooltipEl.innerHTML = innerHtml;
@@ -2019,9 +2193,15 @@ function qrbr() {
 
       var totalVal =[];
       var partNameTotal=[];
+      var temp_data = 0;
+      var percentage_arr = [];
       res['Rejection'].forEach(function(t){
           totalVal.push(t);
           partNameTotal.push("Total");
+
+          temp_data = parseInt(temp_data)+parseInt(t);
+          var temp = parseFloat(parseInt(temp_data)/parseInt(res['GrandTotal'])).toFixed(2)*100;
+          percentage_arr.push(temp);
       }); 
 
       var category_percent =1.0;
@@ -2043,11 +2223,27 @@ function qrbr() {
         }
       }
 
-      oppCost = [
+      oppCost = [{
+        type: 'line',
+        label: 'Percentage',
+        data:percentage_arr,
+        percentage_data: percentage_arr,
+        backgroundColor: 'white',
+        borderColor: "#7f7f7f", 
+        pointBorderColor: "#d9d9ff",  
+        borderWidth: 1, 
+        showLine : true,
+        fill: false,
+        lineColor:"black",
+        pointRadius:7,
+        yAxisID: 'A',
+
+      },
         {
           label:"Total",
           type: "bar",
           backgroundColor: "#004b9b",
+          percentage_data: 0,
           borderColor: "#d9d9ff",
           borderWidth: 1,
           showLine : false,
@@ -2058,6 +2254,7 @@ function qrbr() {
           // pointRadius: 7,
           categoryPercentage:category_percent,
           barPercentage:bar_space,
+          yAxisID: 'B',
         }           
       ];
 
@@ -2086,10 +2283,30 @@ function qrbr() {
               responsive: true,
               maintainAspectRatio: false,   
               scales: {
-                  y: {
-                      display:false,
-                      beginAtZero:true,
-                      stacked:true
+                  // y: {
+                  //     display:false,
+                  //     beginAtZero:true,
+                  //     stacked:true
+                  // },
+                  A:{
+                    type: 'linear',
+                    position: 'right',
+                    // beginAtZero: true,
+                    suggestedMin: 0,
+                    suggestedMax: 100,
+                    display:true,
+                    grid:{
+                      display:false
+                    },
+                  },
+                  B:{
+                    type: 'linear',
+                    position: 'left',
+                    beginAtZero: true,
+                    display:true,
+                    grid:{
+                      display:false
+                    },
                   },
                   x:{
                       display:true,
@@ -2162,19 +2379,32 @@ function  quality_rejection_reason_cost(context){
         const titleLines = tooltipModel.title || [];
         const bodyLines = tooltipModel.body.map(getBody);
         var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
-        //var mname = context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label[context.tooltip.dataPoints[0].dataIndex];
+        var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].percentage_data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
        // console.log(oppcost);
         //console.log(mname);
      
         let innerHtml = '<div>';
-          innerHtml += '<div class="grid-container">';
-          innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
-          innerHtml += '<div class="grid-item title-bold"><span></span></div>';
-          innerHtml += '<div class="content-text sub-title"><span></span></div>';
-          innerHtml += '<div class="grid-item title-bold"><span></span></div>';
-          innerHtml += '<div class="grid-item content-text margin-top"><span>Rejection Count</span></div>';
-          innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="true"></i>'+parseFloat(oppcost).toLocaleString("en-IN")+'</span></div>';
-          
+          // innerHtml += '<div class="grid-container">';
+          if (parseInt(percentage)>0) {
+            innerHtml += '<div class="grid-container">';
+            innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            innerHtml += '<div class="content-text sub-title"><span></span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+
+            innerHtml += '<div class="grid-item content-text margin-top"><span>Percentage</span></div>';  
+            innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+parseFloat(percentage).toLocaleString("en-IN")+'% </span></div>';
+            
+          }else{
+            innerHtml += '<div class="grid-container">';
+            innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            innerHtml += '<div class="content-text sub-title"><span></span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+
+            innerHtml += '<div class="grid-item content-text margin-top"><span>Rejection Count</span></div>';
+            innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="true"></i>'+parseFloat(oppcost).toLocaleString("en-IN")+'</span></div>';
+          }
         innerHtml += '</div>';
         innerHtml += '</div>';
         tooltipEl.innerHTML = innerHtml;
@@ -2216,6 +2446,8 @@ function getfilterdata() {
     type: "POST",
     dataType: "json",
     success:function(res){
+      console.log("User Data");
+      console.log(res);
       // Part Filter
       var elements = $();
       $('.filter_part').append('<div class="inbox inbox_part" style="display: flex;">'
@@ -2358,7 +2590,7 @@ function filter_table_data(){
                     +'<div class="col-sm-1 col marleft"><p class="rejection_font_color">'+value['reason_name']+'</p></div>'
                     +'<div class="col-sm-1 col marleft"><p class="rejection_font_color">'+value['user_name']+'</p></div>'
                     +'<div class="col-sm-1 col marleft"><p class="rejection_font_color">'+value['updated_at']+'</p></div>'
-                    +'<div class="col-sm-1 col marleft"><p class="rejection_font_color">'+"Notes"+'</p></div>'
+                    +'<div class="col-sm-1 col " style="justify-content:center;"><div class="rejection_font_color"><img src="<?php echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" style="height:1.4rem;width:1.4rem;"></div></div>'
                   +'</div>'
                 +'</div>');
       $('.contentQualityFilter').append(elements);
