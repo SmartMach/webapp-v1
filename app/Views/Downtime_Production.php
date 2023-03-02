@@ -140,13 +140,13 @@ $session = \Config\Services::session();
                         <!-- reason wise opportunity cost graph-->
                         <p  class="font graph_mar_align"> Downtime opportunity Cost by Reasons</p>
                         <div style="display:flex;flex-direction:row;padding-left:1rem;">
-                            <div class="width:4%;">
+                            <div style="width:15%;">
                                 <div style="display:flex;flex-direction:column">
                                     <p style="color:#A6A6A6;font-size:11px;margin-bottom:0;">TOTAL</p>
                                     <p id="total_oppcost_by_reason" class="total_font_style"><i class="fa fa-inr inr-class"></i><span id="reason_wise_oppcost_total"></span></p>
                                 </div>
                             </div>
-                            <div style="width:90%;display:flex;flex-direction:row-reverse;">
+                            <div style="width:84%;display:flex;flex-direction:row-reverse;">
                                 <!-- Machine Dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
                                     <!-- <label class="multi_select_label" style="">Machine</label> -->
@@ -316,13 +316,13 @@ $session = \Config\Services::session();
                         <!-- Machine wise opportunity cost graph-->
                         <p class="font graph_mar_align">Downtime Opportunity Cost by Machines</p>
                         <div style="display:flex;flex-direction:row;padding-left:1rem;">
-                            <div class="width:5%;">
+                            <div style="width:15%;">
                                 <div style="display:flex;flex-direction:column">
                                     <p style="color:#A6A6A6;font-size:11px;margin-bottom:0;">TOTAL</p>
                                     <p id="total_oppcost_by_reason" class="total_font_style"><i class="fa fa-inr inr-class"></i><span id="machine_wise_oppcost_total"></span></p>
                                 </div>
                             </div>
-                            <div style="width:90%;display:flex;flex-direction:row-reverse;">
+                            <div style="width:84%;display:flex;flex-direction:row-reverse;">
                                 <!-- Machine Dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
                                     <!-- <label class="multi_select_label" style="">Machine</label> -->
@@ -2316,7 +2316,7 @@ function getfilter_duration_reason(){
 function getfilter_machine_oppcost(){
 
     $('#machine_wise_oppcost').remove();
-    $('.child_machine_wise_oppcost').append('<canvas id="machine_wise_oppcost"><canvas>');
+    $('.child_machine_wise_oppcost').append('<canvas id="machine_wise_oppcost"></canvas>');
     $('.chartjs-hidden-iframe').remove();
 
 
@@ -2506,6 +2506,11 @@ function getfilter_machine_oppcost(){
 
 // machine and reason duration graph filter function
 function getfilter_machine_reason_duration(){
+
+
+    $('#machine_reason_duration').remove();
+    $('.child_machine_reason_duration').append('<canvas id="machine_reason_duration"></canvas>');
+    $('.chartjs-hidden-iframe').remove();
     
     // machine array
     var graph_machine_arr = [];
