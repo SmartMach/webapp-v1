@@ -249,7 +249,7 @@ class Production_Downtime_controller extends BaseController{
                 // echo $machine['machine_id']." ".$reason_merge_name." ".$reasonValue;
                 // echo "<br>";
 
-                $t=array("machine_id"=>$machine['machine_id'],"reason_id"=>$reason['downtime_reason_id'],"reason"=>$reason_merge_name,"machine_name"=>$machine['machine_name'],"oppCost"=>$reasonValue,"duration"=>$split_duration);
+                $t=array("machine_id"=>$machine['machine_id'],"reason_id"=>$reason['downtime_reason_id'],"reason"=>$reason_merge_name,"machine_name"=>$machine['machine_name'],"oppCost"=>$reasonValue,"duration"=>$split_duration,"category"=>$reason['downtime_category'],"normal_reason"=>$reason['downtime_reason']);
                 array_push($ar,$t);
                 $GrandTotal = $GrandTotal+$reasonValue;
             }
@@ -356,14 +356,37 @@ class Production_Downtime_controller extends BaseController{
     }
 
     // opportunity cost by reason 
-    public function getdowntime_reason_whise_graph(){
+    public function getdowntime_reason_whise_graph($FromDate,$todate){
 
         // $FromDate = "2023-02-19T09:00:00";
         // $todate = "2023-02-25T08:00:00";
-        $FromDate = $this->request->getVar('from');
-        $todate = $this->request->getVar('to');
+        // $FromDate = $this->request->getVar('from');
+        // $todate = $this->request->getVar('to');
         $result = $this->getAvailabilityReasonWise($FromDate,$todate);
     
+        $reason_id_arr = [];
+        foreach ($result['reason'] as $key => $value) {
+            // $tmp['downtime_reason_id'] = $value['downtime_reason_id'];
+            // $tmp['downtime_reason'] = $value['downtime_reason'];
+            // $tmp['downtime_category'] = $value['downtime_category'];
+            $reason_arr = [];
+            foreach ($result['data'] as $k1 => $val) {
+               // $demo_arr = [];
+                if ($value['downtime_reason_id']===$val[$key]['reason_id']) {
+                    // array_push($reason_arr,$val[$key]['oppCost']);
+                    $reason_arr[$val[$key]['machine_id']] = $val[$key]['oppCost'];
+                }
+                
+            }
+            $reason_arr['downtime_reason_id'] = $value['downtime_reason_id'];
+            $reason_arr['downtime_reason'] = $value['downtime_reason'];
+            $reason_arr['downtime_category'] = $value['downtime_category'];
+            $reason_id_arr[$value['downtime_reason_id']] = $reason_arr;
+
+            //array_push($reason_id_arr,$reason_arr);
+        }
+
+       /*
         $opporuntiy_cost_reason_arr = [];
        
         foreach ($result['reason'] as $key => $value) {
@@ -372,21 +395,59 @@ class Production_Downtime_controller extends BaseController{
             $tmp['downtime_category'] = $value['downtime_category'];
             $tmp['opportunity_cost'] = $result['total'][$key];
             $tmp['duration'] = $result['totalDuration'][$key];
-            // $tmp['machine_id'] = $value['machine_id'];
+            $tmp['machine_id'] = $value['machine_id'];
             array_push($opporuntiy_cost_reason_arr,$tmp);  
         }
+       
 
         $final_arr['graph'] = $opporuntiy_cost_reason_arr;
         $final_arr['grandTotal'] = $result['grandTotal'];
         $final_arr['total_duration'] = array_sum($result['totalDuration']);
-        
+        */
         // echo "<pre>";
         // print_r($result);
-        echo json_encode($final_arr);
+        // echo json_encode($final_arr);
+        $final_arr['graph'] = $reason_id_arr;
+        $final_arr['grandTotal'] = $result['grandTotal'];
+        $final_arr['total_duration'] = array_sum($result['totalDuration']);
+        return $final_arr;
         
     }
 
+    // reason wise duration graph function
+    public function reason_duration_graph($from_date,$to_date){
+        $result = $this->getAvailabilityReasonWise($from_date,$to_date);
+        $reason_id_arr = [];
+        foreach ($result['reason'] as $key => $value) {
+            // $tmp['downtime_reason_id'] = $value['downtime_reason_id'];
+            // $tmp['downtime_reason'] = $value['downtime_reason'];
+            // $tmp['downtime_category'] = $value['downtime_category'];
+            $reason_arr = [];
+            foreach ($result['data'] as $k1 => $val) {
+               // $demo_arr = [];
+                if ($value['downtime_reason_id']===$val[$key]['reason_id']) {
+                    // array_push($reason_arr,$val[$key]['oppCost']);
+                    $reason_arr[$val[$key]['machine_id']] = $val[$key]['duration'];
+                }
+                
+            }
+            $reason_arr['downtime_reason_id'] = $value['downtime_reason_id'];
+            $reason_arr['downtime_reason'] = $value['downtime_reason'];
+            $reason_arr['downtime_category'] = $value['downtime_category'];
+            $reason_id_arr[$value['downtime_reason_id']] = $reason_arr;
+
+            //array_push($reason_id_arr,$reason_arr);
+
+        }
+
+        $final_arr['graph'] = $reason_id_arr;
+        $final_arr['grandTotal'] = $result['grandTotal'];
+        $final_arr['total_duration'] = array_sum($result['totalDuration']);
+        return $final_arr;
+    }
+
     // machine wise opportunity cost
+    /* tempoary
     public function getMachine_wise_opporuntiy_cost(){
         // $fromdate = "2023-02-10T10:00:00";
         // $todate = "2023-02-20T10:00:00";
@@ -424,8 +485,10 @@ class Production_Downtime_controller extends BaseController{
         // echo "</pre>";
         echo json_encode($final_arr);
     }
+    
 
-    // get stacked bar graph
+
+    // get stacked bar graph this function also temporary hide because the reason for graph filter
     public function getmachine_reason_duration(){
         // echo "get Downtime duration machine with reasons";
         // $fromdate = "2023-01-10T10:00:00";
@@ -461,6 +524,7 @@ class Production_Downtime_controller extends BaseController{
         $out['total_duration'] = array_sum($result['totalDuration']);
         echo json_encode($out);
     }
+    */
 
     // get tableview records
     public function get_table_view($fromdate,$todate){
@@ -1123,17 +1187,202 @@ class Production_Downtime_controller extends BaseController{
 
 
     // // graph filte reason wise opportunity cost
-    // public function graph_filter_reason_wise_oppcost(){
-    //     if ($this->request->isAJAX()) {
-    //         $machine_arr = $this->request->getVar('machine_arr');
-    //         $reason_arr = $this->request->getVar('reason_arr');
-    //         $category_arr = $this->request->getVar('category_arr');
+    public function graph_filter_reason_wise_oppcost(){
+        if ($this->request->isAJAX()) {
+            $machine_arr = $this->request->getVar('machine_arr');
+            $reason_arr = $this->request->getVar('reason_arr');
+            $category_arr = $this->request->getVar('category_arr');
 
-    //         $FromDate = $this->request->getVar('from');
-    //         $todate = $this->request->getVar('to');
-    //         $res = $this->getdowntime_reason_whise_graph($FromDate,$todate);
-    //     }
-    // }
+            $FromDate = $this->request->getVar('from');
+            $todate = $this->request->getVar('to');
+            // $FromDate = "2023-02-19T22:00";
+            // $todate = "2023-02-25T21:00";
+            $res = $this->getdowntime_reason_whise_graph($FromDate,$todate);
 
+            $demo_arr = [];
+            foreach ($res['graph'] as $key => $value) {
+                if (in_array($value['downtime_category'],$category_arr)) {
+                    $tmp_reason = explode("(",$value['downtime_reason']);
+                    if (in_array(trim($tmp_reason[0]),$reason_arr)) {
+                        //array_push($demo_arr,$res['graph'][$key]);
+                        $temp_opportunity_cost=0;
+                        foreach ($machine_arr as $key_machine => $val) {
+                            if ($val!="all") {
+                                $temp_opportunity_cost = $temp_opportunity_cost+$res['graph'][$key][$val];
+                            }
+                        }
+                        $res['graph'][$key]['opportunity_cost'] = $temp_opportunity_cost;
+                        array_push($demo_arr,$res['graph'][$key]);
+
+                    }
+                }
+            }
+            $temp['graph'] = $demo_arr;
+            $temp['grandTotal'] = $res['grandTotal'];
+            $temp['total_duration'] = $res['total_duration'];
+            // echo "<pre>";
+            // print_r($demo_arr);
+            echo json_encode($temp);
+        }
+    }
+
+    // gaph filter reason wise duration graph function
+    public function getdowntime_graph_filter_reason_duration(){
+        if ($this->request->isAJAX()) {
+            $reason_arr = $this->request->getVar('reason_arr');
+            $machine_arr = $this->request->getVar('machine_arr');
+            $category_arr = $this->request->getVar('category_arr');
+
+            $fromdate = $this->request->getVar('from');
+            $todate = $this->request->getVar('to');
+
+            $res = $this->reason_duration_graph($fromdate,$todate);
+
+            $demo_arr = [];
+            foreach ($res['graph'] as $key => $value) {
+                if (in_array($value['downtime_category'],$category_arr)) {
+                    $tmp_reason = explode("(",$value['downtime_reason']);
+                    if (in_array(trim($tmp_reason[0]),$reason_arr)) {
+                        //array_push($demo_arr,$res['graph'][$key]);
+                        $temp_duration=0;
+                        foreach ($machine_arr as $key_machine => $val) {
+                            if ($val!="all") {
+                                $temp_duration = $temp_duration+$res['graph'][$key][$val];
+                            }
+                        }
+                        $res['graph'][$key]['duration'] = $temp_duration;
+                        array_push($demo_arr,$res['graph'][$key]);
+
+                    }
+                }
+            }
+
+            $temp['graph'] = $demo_arr;
+            $temp['grandTotal'] = $res['grandTotal'];
+            $temp['total_duration'] = $res['total_duration'];
+            echo  json_encode($temp);
+        }
+    }
+
+        
+    // machine wise oppcost
+    public function filter_machine_wise_oppcost(){
+        if ($this->request->isAJAX()) {
+            
+            $reason_arr = $this->request->getVar('reason_arr');
+            $machine_arr = $this->request->getVar('machine_arr');
+            $category_arr = $this->request->getVar('category_arr');
+
+            $reason_arr = array_map('strtolower',$reason_arr);
+
+            $fromdate = $this->request->getVar('from');
+            $todate = $this->request->getVar('to');
+
+            $result = $this->getAvailabilityReasonWise($fromdate,$todate);
+           
+            $machine_wise_arr = [];
+            foreach ($result['data'] as $key => $value) {
+               $demo_reason_arr=[];
+                $duration = 0;
+                $oppcost = 0;
+                foreach ($value as $k1 => $v1) {
+                    if (in_array($v1['machine_id'],$machine_arr)) {
+                        if (in_array($v1['category'],$category_arr)) {
+                            // $tmp_reason = explode("(",$v1['reason']);
+                            if (in_array(strtolower($v1['normal_reason']),$reason_arr)) {
+                                $oppcost = $oppcost+$v1['oppCost'];
+                                array_push($demo_reason_arr,$v1['normal_reason']);
+                                // $duration = $duration+$v1['duration'];
+                                // $oppcost = $tmp_reason;
+                            }
+                        }
+                    }
+                }
+
+                if (in_array($value[0]['machine_id'],$machine_arr)) {
+                    $tmp['machine_id'] = $value[0]['machine_id'];
+                    $tmp['machine_name'] = $value[0]['machine_name'];
+                    $tmp['oppcost'] = $oppcost;
+                    $tmp['check'] = $demo_reason_arr;
+                    // $tmp['duration'] = $duration;
+                    array_push($machine_wise_arr,$tmp);
+                }
+                // array_push($machine_wise_arr,$value[ 0]);
+            }
+            // $temp['reason_arr'] = $reason_arr;
+            // $temp['category_arr'] = $category_arr;
+            // $temp['machine_arr'] = $machine_arr;
+            // $temp['from_date'] = $fromdate;
+            // $temp['to_date'] = $todate;
+
+            $final_arr['graph'] = $machine_wise_arr;
+            $final_arr['grant_total'] = $result['grandTotal'];
+            echo json_encode($final_arr);
+        }
+    }
+
+    // machine and reason wise duration
+    public function filter_machine_reason_duration(){
+        if ($this->request->isAJAX()) {
+            $reason_arr = $this->request->getVar('reason_arr');
+            $machine_arr = $this->request->getVar('machine_arr');
+            $category_arr = $this->request->getVar('category_arr');
+
+            $reason_arr = array_map('strtolower',$reason_arr);
+
+            $fromdate = $this->request->getVar('from');
+            $todate = $this->request->getVar('to');
+
+            $result = $this->getAvailabilityReasonWise($fromdate,$todate);
+
+            $farr = [];
+            foreach ($result['data'] as $key => $value) {
+                $tmp_arr = [];
+               
+                $tmp_reason = [];
+                $tmp_duration = [];
+                $tmp_reason_id = [];
+                $tmp_total = 0;
+                foreach ($value as $k1 => $v1) {  
+                    if (in_array($v1['machine_id'],$machine_arr)) {
+                        if (in_array($v1['category'],$category_arr)) {
+                            // $tmp_reason = explode("(",$v1['reason']);
+                            if (in_array(strtolower($v1['normal_reason']),$reason_arr)) {     
+                                array_push($tmp_duration,$v1['duration']);
+                                array_push($tmp_reason,$v1['reason']);
+                                array_push($tmp_reason_id,$v1['reason_id']);
+                            }
+                        }
+                    }
+                }
+
+                if (in_array($value[0]['machine_id'],$machine_arr)) {
+                    $tmp_arr['machine_id'] = $value[0]['machine_id'];
+                    $tmp_arr['machine_name'] = $value[0]['machine_name'];
+                    $tmp_arr['reason_id'] = $tmp_reason_id;
+                    $tmp_arr['reason_name']  = $tmp_reason;
+                    $tmp_arr['total'] = array_sum($tmp_duration);
+                    $tmp_arr['reason_duration'] = $tmp_duration;
+                    array_push($farr,$tmp_arr);
+                }
+            }
+    
+
+            $out=[];
+            $out['reason']=$result['reason'];
+            $out['data']=$farr;
+            $out['total_duration'] = array_sum($result['totalDuration']);
+            echo json_encode($out);
+            // $temp['machine_arr'] = $machine_arr;
+            // $temp['reason_arr'] = $reason_arr;
+            // $temp['category_arr'] = $category_arr;
+            // $temp['from_date'] = $fromdate;
+            // $temp['todate'] = $todate;
+
+
+            // echo json_encode($temp);
+        }
+    }
     
 }
+

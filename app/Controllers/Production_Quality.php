@@ -946,7 +946,7 @@ class Production_Quality extends BaseController
 
                                         $time = strtotime($value['shift_date']);
                                         $time_stamp = strtotime($value['last_updated_on']);
-                                        $tmp = array("machine_id"=>$value['machine_id'],"part_id"=>$value['part_id'],"reject_count"=>$total,"reject_reason"=>$temp,"total_reject"=>$total,"from_time"=>$value['start_time'],"to_time"=>$value['end_time'],"from_date"=>date('d M y',$time),"updated_by"=>$value['last_updated_by'],"updated_at"=>date('d M y, h:i',$time_stamp),"part_name"=>$value['part_name'],"machine_name"=>$value['machine_name'],"reason_name"=>$dr,"user_name" => $un);
+                                        $tmp = array("machine_id"=>$value['machine_id'],"part_id"=>$value['part_id'],"reject_count"=>$total,"reject_reason"=>$temp,"total_reject"=>$total,"from_time"=>$value['start_time'],"to_time"=>$value['end_time'],"from_date"=>date('d M y',$time),"updated_by"=>$value['last_updated_by'],"updated_at"=>date('d M y, h:i',$time_stamp),"part_name"=>$value['part_name'],"machine_name"=>$value['machine_name'],"reason_name"=>$dr,"user_name" => $un,"notes"=>$value['rejections_notes']);
                                         array_push($ProductionDataExpand, $tmp);
                                     }
                                 }

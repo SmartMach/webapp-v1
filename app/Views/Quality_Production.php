@@ -24,6 +24,46 @@
     background-color:#005abc;
     opacity: 0.8;
   }
+
+  /* notes */
+   
+  .icon_img_wh{
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+    .icon_img_wh:hover{
+      width: 1.2rem;
+      height: 1.2rem;
+      color:red;
+    }
+    .notes_check{
+        height:1.8rem;
+        width:1.8rem;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        background-color:white;
+        border-radius:50%;
+    }
+    .notes_check:hover {
+    
+        cursor: pointer;
+        background-color:#e6e6e6;
+    }
+      /* notes display property */
+   .notes_display{
+    min-height:4.8rem;
+    max-width:10.9rem;
+    min-width:10rem;
+    background-color:white;
+    margin-left:-15rem; 
+    border:1px solid #e6e6e6;
+    padding:0.7rem;
+    border-radius:10px;
+    display:none;
+   }
+
+
 </style>
 <script type="text/javascript">
   var checkPastTime = function(inputDateTime) {
@@ -250,8 +290,8 @@
           </div>
           <div class="box rightmar" style="margin-right: 0.5rem;">
             <div class="input-box">
-              <select class="form-select font_weight" name="" id="Production_MachineName" style="width: 10rem;">
-              </select>
+              <input type="text" class="form-control font_weight" name="" style="font-size:0.8rem;" placeholder="Search Keywords" id="Production_MachineName" style="width: 10rem;">
+              <!-- </select> -->
               <label for="inputSiteNameAdd" class="input-padding ">Search</label>
             </div>
           </div>
@@ -2554,6 +2594,8 @@ function getTableData(part,machine,reason,user){
       user:user
     },
     success:function(res){
+      console.log("table data");
+      console.log(res);
       res.forEach(function(value, index) {
         filter_array.push(value);
       });
@@ -2580,7 +2622,7 @@ function filter_table_data(){
     if ((index > (x*pagination_length)-(pagination_length+1)) && (index < (x*pagination_length))) {
       var elements = $();
       elements = elements.add('<div id="settings_div">'
-                  +'<div class="row paddingm">'
+                  +'<div class="row paddingm" style="max-height:3.4rem;">'
                     +'<div class="col-sm-1 col marleft"><p class="rejection_font_color">'+value['from_date']+'</p></div>'
                     +'<div class="col-sm-1 col marleft"><p class="rejection_font_color">'+value['from_time']+'</p></div>'
                     +'<div class="col-sm-1 col marleft"><p class="rejection_font_color">'+value['to_time']+'</p></div>'
@@ -2590,7 +2632,10 @@ function filter_table_data(){
                     +'<div class="col-sm-1 col marleft"><p class="rejection_font_color">'+value['reason_name']+'</p></div>'
                     +'<div class="col-sm-1 col marleft"><p class="rejection_font_color">'+value['user_name']+'</p></div>'
                     +'<div class="col-sm-1 col marleft"><p class="rejection_font_color">'+value['updated_at']+'</p></div>'
-                    +'<div class="col-sm-1 col " style="justify-content:center;"><div class="rejection_font_color"><img src="<?php echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" style="height:1.4rem;width:1.4rem;"></div></div>'
+                    +'<div class="col-sm-1 col " style="justify-content:center;"><div class="rejection_font_color notes_check"><img src="<?php echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" style="height:1.4rem;width:1.4rem;" onmouseover="notes_hover(this)"  onmouseout="mouse_out_check(this)"></div></div>'
+                    +'<div class="notes_display" style="">'
+                            +'<p >'+value['notes']+'</p>'
+                    +'</div>'
                   +'</div>'
                 +'</div>');
       $('.contentQualityFilter').append(elements);
@@ -2684,6 +2729,25 @@ function reset_created(){
     created_arr[index].checked=true;
   });
   $('#user_text').text('All Machine');
+}
+
+
+// notes hover function
+function notes_hover(ele){
+    var els = Array.prototype.slice.call( document.getElementsByClassName('icon_img_wh'), 0 );
+    var index_val = els.indexOf(event.currentTarget);
+    //   alert(index_val);
+    $('.notes_display:eq('+index_val+')').css('display','block');
+    //   console.log("notes index hovering"+index_val);
+}
+
+
+function mouse_out_check(ele1){
+  var els = Array.prototype.slice.call( document.getElementsByClassName('icon_img_wh'), 0 );
+  var index_val1 = els.indexOf(event.currentTarget);
+  $('.notes_display:eq('+index_val1+')').css("display","none");
+    //   console.log("notes index  hovering remove"+index_val1);
+
 }
 </script>
 

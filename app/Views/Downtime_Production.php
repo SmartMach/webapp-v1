@@ -1,787 +1,18 @@
 <head>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script> 
-    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/model.css?version=<?php echo rand() ; ?>">
-    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/financial_metrics.css?version=<?php echo rand() ; ?>">
-
-    <script src="<?php echo base_url(); ?>/assets/chartjs/package/dist/chart.min.js?version=<?php echo rand() ; ?>"></script>
-
-    <!-- Datetimepicker -->
-    <script src="<?php echo base_url(); ?>/assets/js/datetimepicker.js?version=<?php echo rand() ; ?>"></script>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/jquery.datetimepicker.min.css?version=<?php echo rand() ; ?>">
-    <script src="<?php echo base_url(); ?>/assets/js/jquery.datetimepicker.js?version=<?php echo rand() ; ?>"></script>
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script> 
+<link rel="stylesheet" href="<?php echo base_url()?>/assets/css/model.css?version=<?php echo rand() ; ?>">
+<link rel="stylesheet" href="<?php echo base_url()?>/assets/css/financial_metrics.css?version=<?php echo rand() ; ?>">
+<script src="<?php echo base_url(); ?>/assets/chartjs/package/dist/chart.min.js?version=<?php echo rand() ; ?>"></script>
+   <!-- Datetimepicker -->
+<script src="<?php echo base_url(); ?>/assets/js/datetimepicker.js?version=<?php echo rand() ; ?>"></script>
+<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/jquery.datetimepicker.min.css?version=<?php echo rand() ; ?>">
+<script src="<?php echo base_url(); ?>/assets/js/jquery.datetimepicker.js?version=<?php echo rand() ; ?>"></script>
+   <!-- style css -->
+<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/Downtime_production.css?version=<?php echo rand(); ?>">
 <style type="text/css">
-    #table_view_icon:hover{
-        cursor: pointer;
-    }
-    #graph_view_icon:hover{
-        cursor:pointer;
-    }
-
-     /*if graph icon clicked then shown this heght width container for graph*/
-     .graphview_1{
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-      align-items:center;
-     }
-      /*splited  halff container for 1st two graphs*/
-     .graph_1div{
-      display: flex;
-      flex-wrap: wrap;
-      align-items:center;
-      height:100%;
-      width:100%;   
-      margin-top:1rem;
-     }
-      /* rupees symbol sdujustment*/
-     .icon-margin{
-      margin-top: 0;
-      margin-left: 1rem;
-     } 
-     /* alignment  'total' text in inner graph */
-      .texttotal{
-      margin-bottom:0;
-      margin-left:1rem;
-      padding:0
-}     
-     /* spliting two graphs in first div*/
-     .graph_01,.graph_02{
-        width: 49%;
-        height: 98%;
-        border:1px solid #000000; 
-        border-radius: 15px;
-        margin-left: 0.5%;
-        margin-top: 0.2rem;
-         }
-    /* spliting two graphs in second div*/
-        .graph_03,.graph_04{
-        width: 49%;
-        height: 98%;
-        border:1px solid #000000; 
-        border-radius: 15px;
-        margin-left: 0.5%;
-        margin-top: 0.2rem;
-         }
-
-         /* graph header margin align */
-    .graph_mar_align{
-        margin-top:0.5rem;
-        margin-left:1rem;
-        color:#404040;
-    }
-
-
-    /* chartjs graph alignment css */
-    .parent_div{
-        height:11rem;
-        overflow-y:hidden;
-    }
-    .prodcution_downtime_graph{
-        margin-bottom:0.6rem;
-    }
-    .marginScroll{
-        margin-left:1rem;
-        margin-right:1rem;
-    }
-    .child_div{
-        height:100%;
-        padding:0.5rem;    
-    }
-    
-
-    /* table view design */
-    .container_table{
-        min-height: 10rem;
-        width:102rem;
-        overflow-x: scroll;
-        overflow-y: hidden;
-        box-sizing: border-box;
-    }
-    .table_row_flex{
-        display: flex;
-        flex-direction: row;
-    }
-    .fixed_col_class{
-        /* height: 25rem; */
-        width:23%;
-        margin-left: 0;
-        margin-top: 0;
-        float: left;
-        position: sticky;
-        left:0;
-        z-index:200;
-    }
-    .fixed_col_class2{
-        /* height: 27rem; */
-        float: left;
-        z-index:100;
-        width:70%;
-    }
-    .fixed_col_width{
-        margin-left: 0.5rem;
-        float:left;
-        width: 98%;
-    }
-    .fixed_col_common{
-        width:100%;
-        height: 3.5rem;
-        position:sticky;
-        background-color: white;
-        border-radius: 8px 0px 0px 8px ;
-        border:1px solid #d9d9d9;
-        border-right:0px;
-        margin-top: 0.2rem;
-    }
-    .alignflex{
-        display: flex;
-        align-items: center;
-    }
-    .fixed_col_common2{
-        width:100%;
-        height: 3.5rem;
-        background-color: white;
-        border-radius: 0px 8px 8px 0px ;
-        border:1px solid #d9d9d9;
-        margin-top: 0.2rem;
-        border-left: 0;
-    }
-    .header_fixed_col{
-        border-radius:10px 0px 0px 10px;
-        color:black;
-        box-shadow:3px 0px 4px #e6e6e6;
-        border:1px solid rgba(242,242,242);
-        border-right:0px;
-        margin-bottom:0.5rem;
-        background:#fff;
-        white-space:nowrap;
-    }
-    .red{
-        font-size:13px;
-        font-family:'Roboto' sans-serif;
-        font-weight:500;
-        color:#C00000;
-    }
-    .font_row{
-        font-size:12px;
-        font-family:'Roboto' sans-serif;
-        font-weight:450;
-        color:#404040;
-    }
-
-    /* notes height and width */
-    
-    .icon_img_wh{
-      width: 1.2rem;
-      height: 1.2rem;
-    }
-    .icon_img_wh:hover{
-      width: 1.2rem;
-      height: 1.2rem;
-      color:red;
-    }
-    .notes_check{
-        height:1.8rem;
-        width:1.8rem;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        background-color:white;
-        border-radius:50%;
-    }
-    .notes_check:hover {
-    
-        cursor: pointer;
-        background-color:#e6e6e6;
-    }
-
-    /* notes display property */
-   .notes_display{
-    min-height:4.8rem;
-    max-width:10.9rem;
-    min-width:10rem;
-    background-color:white;
-    margin-left:-14rem; 
-    border:1px solid #e6e6e6;
-    padding:0.7rem;
-    border-radius:10px;
-    display:none;
-   }
-#total_duration_header{
-    font-weight:600;    
-}
-  
-  /* dropdown checkbox category */
-   .multi_select_label{
-    position:fixed;
-    margin-top:0rem;
-    margin-left:0.8rem;
-    z-index:1;
-    background:white;
-    font-size:12px;
-    color:#8c8c8c;
-    font-family:'Roboto' sans-serif;
-  }
-  .filter_selectBox{
-    height:2.3rem;
-    margin-top:0.5rem;
-    position:relative;
-    min-width:9rem;
-    font-size:12px;
-    font-weight:500;
-    color:#8c8c8c;
-    border:1px solid #ced4da;
-    border-radius:0.25rem;
-  }
-
-  .filter_check_cate{
-    display:flex;
-    padding-left:0.1rem;
-    padding-right:0.5rem;
-    justify-content:center;
-    align-items:center;
-    min-height:2rem;
-    max-height:3rem;
-  }
-  .cate_drp_check{
-    width:20%;
-    display:flex;
-    justify-content:center;
-  }
-  .cate_drp_text{
-    width:80%;
-  }
-  .multi_select_drp{
-    height:2.3rem;
-    position:relative;
-    min-width:9rem;
-    font-size:12px;
-    font-weight:500;
-    color:#8c8c8c;
-    border:1px solid #ced4da;
-    border-radius:0.25rem;
-  }
-  
-  .filter_overSelect {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-  }
-  .filter_checkboxes {
-    display: none;
-    border: 1px #dadada solid;
-    z-index:250;
-    position: absolute;
-    background:white;
-    /* padding:0.4rem; */
-    border-radius:0.25rem;
-    min-width:8.7rem;
-    min-height:max-content;
-    max-height:10rem;
-    overflow:hidden;
-    /* overflow-y:scroll;
-    overflow-x:hidden; */
-  }
-  
-  .filter_checkboxes label {
-    display: block;
-  }
-  
-  .filter_checkboxes div:hover {
-    background-color: #E7F2FF;
-    padding:0;
-    cursor:context-menu;
-    width:100%;
-  }
-
-  /* filter css design */
-  .filterbtnstyle{
-    color:white;
-    background-color:#005abc;
-    /* opacity: 0.7; */
-    height:2.4rem;
-    margin-top:0.5rem;
-    margin-right:0.6rem;
-  }
-  .filterbtnstyle:hover{
-    color:white;
-    background-color:#005abc;
-    opacity: 0.8;
-  }
-
-  /* dropdown checkbox created by */
-  .filter_selectBox_cb{
-    height:2.3rem;
-    margin-top:0.5rem;
-    position:relative;
-    min-width:9rem;
-    font-size:12px;
-    font-weight:500;
-    color:#8c8c8c;
-    border:1px solid #ced4da;
-    border-radius:0.25rem;
-  }
-.multi_select_drp_cb{
-    height:2.3rem;
-    position:relative;
-    min-width:9rem;
-    font-size:12px;
-    font-weight:500;
-    color:#8c8c8c;
-    border:1px solid #ced4da;
-    border-radius:0.25rem;
-}
-.filter_overSelect_cb{
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-}
-.filter_checkboxes_cb{
-    display: none;
-    border: 1px #dadada solid;
-    z-index:250;
-    position: absolute;
-    background:white;
-    /* padding:0.4rem; */
-    border-radius:0.25rem;
-    min-width:8.7rem;
-    min-height:max-content;
-    max-height:10rem;
-    overflow:hidden;
-    overflow-y:scroll;
-    overflow-x:hidden;
-}
-.filter_checkboxes_cb label{
-    display: block;
-}
-.filter_checkboxes_cb div:hover{
-    background-color: #E7F2FF;
-    padding:0;
-    cursor:context-menu;
-    width:100%;
-}
-.filter_check_cb{
-    display:flex;
-    padding-left:0.1rem;
-    padding-right:0.5rem;
-    justify-content:center;
-    align-items:center;
-    min-height:2rem;
-    max-height:3rem;
-}
-
-/* reason dropdown checkbox */
-.filter_selectBox_drpr{
-    height:2.3rem;
-    margin-top:0.5rem;
-    position:relative;
-    min-width:9rem;
-    font-size:12px;
-    font-weight:500;
-    color:#8c8c8c;
-    border:1px solid #ced4da;
-    border-radius:0.25rem;
-}
-.multi_select_drp_r{
-    height:2.3rem;
-    position:relative;
-    min-width:9rem;
-    font-size:12px;
-    font-weight:500;
-    color:#8c8c8c;
-    border:1px solid #ced4da;
-    border-radius:0.25rem;
-}
-.filter_overSelect_r{
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0; 
-}
-.filter_checkboxes_r{
-    display: none;
-    border: 1px #dadada solid;
-    z-index:250;
-    position: absolute;
-    background:white;
-    /* padding:0.4rem; */
-    border-radius:0.25rem;
-    min-width:8.7rem;
-    min-height:max-content;
-    max-height:10rem;
-    overflow:hidden;
-    overflow-y:scroll;
-    overflow-x:hidden;
-}
-.filter_checkboxes_r label{
-    display:block;
-}
-.filter_checkboxes_r div:hover{
-    background-color: #E7F2FF;
-    padding:0;
-    cursor:context-menu;
-    width:100%;
-}
-.filter_check_r{
-    display:flex;
-    padding-left:0.1rem;
-    padding-right:0.5rem;
-    justify-content:center;
-    align-items:center;
-    min-height:2rem;
-    max-height:3rem;
-}
-
-
-/* multiselect dropdown part name  */
-.filter_selectBox_part{
-    height:2.3rem;
-    margin-top:0.5rem;
-    position:relative;
-    min-width:9rem;
-    font-size:12px;
-    font-weight:500;
-    color:#8c8c8c;
-    border:1px solid #ced4da;
-    border-radius:0.25rem;
-}
-.multi_select_drp_part{
-    height:2.3rem;
-    position:relative;
-    min-width:9rem;
-    font-size:12px;
-    font-weight:500;
-    color:#8c8c8c;
-    border:1px solid #ced4da;
-    border-radius:0.25rem;
-}
-.filter_overSelect_part{
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0; 
-}
-.filter_checkboxes_part{
-    display: none;
-    border: 1px #dadada solid;
-    z-index:250;
-    position: absolute;
-    background:white;
-    /* padding:0.4rem; */
-    border-radius:0.25rem;
-    min-width:8.7rem; 
-    min-height:max-content;
-    max-height:10rem;
-    overflow:hidden;
-    overflow-y:scroll;
-    overflow-x:hidden;
-}
-.filter_checkboxes_part label{
-    display:block;
-}
-.filter_checkboxes_part div:hover{
-    background-color: #E7F2FF;
-    padding:0;
-    cursor:context-menu;
-    width:100%;
-}
-.filter_check_part{
-    display:flex;
-    padding-left:0.1rem;
-    padding-right:0.5rem;
-    justify-content:center;
-    align-items:center;
-    min-height:2rem;
-    max-height:3rem;
-}
-
-/* multiselect dropdwon machine  */
-.filter_selectBox_machine{
-    height:2.3rem;
-    margin-top:0.5rem;
-    position:relative;
-    min-width:9rem;
-    font-size:12px;
-    font-weight:500;
-    color:#8c8c8c;
-    border:1px solid #ced4da;
-    border-radius:0.25rem;
-}
-.multi_select_drp_machine{
-    height:2.3rem;
-    position:relative;
-    min-width:9rem;
-    font-size:12px;
-    font-weight:500;
-    color:#8c8c8c;
-    border:1px solid #ced4da;
-    border-radius:0.25rem;
-}
-.filter_overSelect_machine{
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0; 
-}
-.filter_checkboxes_machine{
-    display: none;
-    border: 1px #dadada solid;
-    z-index:250;
-    position: absolute;
-    background:white;
-    /* padding:0.4rem; */
-    border-radius:0.25rem;
-    min-width:8.7rem;
-    min-height:max-content;
-    max-height:10rem; 
-    overflow:hidden;
-    overflow-y:scroll;
-    overflow-x:hidden;
-}
-.filter_checkboxes_machine label{
-    display:block;
-}
-.filter_checkboxes_machine div:hover{
-    background-color: #E7F2FF;
-    padding:0;
-    cursor:context-menu;
-    width:100%;
-}
-.filter_check_machine{
-    display:flex;
-    padding-left:0.1rem;
-    padding-right:0.5rem;
-    justify-content:center;
-    align-items:center;
-    min-height:2rem;
-    max-height:3rem;
-}
-
-/* graph font color and size */
-.total_font_style{
-    color:#005abc;
-    font-size:1rem;
-    font-weight:800;
-}
-
-/* font for multi select dropdown */
-.font_multi_drp{
-    font-family:'Roboto',sans-serif;
-      font-weight:500;
-      font-size:12px;
-      margin:auto;
-      user-select: none; 
-      -webkit-user-select: none;
-      -ms-user-select: none;
-}
-
-/* graph multi select dropdown css */
-/* machine css graph filter multi select dropdown */
-.filter_selectBox_machinegp{
-    height:2.3rem;
-    margin-top:0.5rem;
-    position:relative;
-    min-width:9rem;
-    font-size:12px;
-    font-weight:500;
-    color:#8c8c8c;
-    border:1px solid #ced4da;
-    border-radius:0.25rem;
-}
-.multi_select_machinegp{
-    height:2.3rem;
-    position:relative;
-    min-width:9rem;
-    font-size:12px;
-    font-weight:500;
-    color:#8c8c8c;
-    border:1px solid #ced4da;
-    border-radius:0.25rem; 
-}
-.filter_overSelect_machinegp{
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;  
-}
-.filter_checkboxes_machinegp{
-    display: none;
-    border: 1px #dadada solid;
-    z-index:250;
-    position: absolute;
-    background:white;
-    /* padding:0.4rem; */
-    border-radius:0.25rem;
-    min-width:8.7rem;
-    min-height:max-content;
-    max-height:10rem; 
-    overflow:hidden;
-    overflow-y:scroll;
-    overflow-x:hidden;
-}
-.filter_checkboxes_machinegp label{
-    display:block;
-}
-.filter_checkboxes_machinegp div:hover{
-    background-color: #E7F2FF;
-    padding:0;
-    cursor:context-menu;
-    width:100%;
-}
-
-.filter_check_machinegp{
-    display:flex;
-    padding-left:0.1rem;
-    padding-right:0.5rem;
-    justify-content:center;
-    align-items:center;
-    min-height:2rem;
-    max-height:3rem;
-}
-
-
-/* part css multi select dropdown */
-.filter_selectBox_reasongp{
-    height:2.3rem;
-    margin-top:0.5rem;
-    position:relative;
-    min-width:9rem;
-    font-size:12px;
-    font-weight:500;
-    color:#8c8c8c;
-    border:1px solid #ced4da;
-    border-radius:0.25rem;
-}
-
-.multi_select_reasongp{
-    height:2.3rem;
-    position:relative;
-    min-width:9rem;
-    font-size:12px;
-    font-weight:500;
-    color:#8c8c8c;
-    border:1px solid #ced4da;
-    border-radius:0.25rem; 
-}
-.filter_overSelect_reasongp{
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;  
-}
-.filter_checkboxes_reasongp{
-    display: none;
-    border: 1px #dadada solid;
-    z-index:250;
-    position: absolute;
-    background:white;
-    /* padding:0.4rem; */
-    border-radius:0.25rem;
-    min-width:8.7rem;
-    min-height:max-content;
-    max-height:10rem; 
-    overflow:hidden;
-    overflow-y:scroll;
-    overflow-x:hidden;
-}
-.filter_checkboxes_reasongp label{
-    display:block;
-}
-.filter_checkboxes_reasongp div:hover{
-    background-color: #E7F2FF;
-    padding:0;
-    cursor:context-menu;
-    width:100%;
-}
-
-.filter_check_reasongp{
-    display:flex;
-    padding-left:0.1rem;
-    padding-right:0.5rem;
-    justify-content:center;
-    align-items:center;
-    min-height:2rem;
-    max-height:3rem;
-}
-
-/* category css */
-.filter_selectBox_categorygp{
-    height:2.3rem;
-    margin-top:0.5rem;
-    position:relative;
-    min-width:9rem;
-    font-size:12px;
-    font-weight:500;
-    color:#8c8c8c;
-    border:1px solid #ced4da;
-    border-radius:0.25rem;
-}
-
-.multi_select_categorygp{
-    height:2.3rem;
-    position:relative;
-    min-width:9rem;
-    font-size:12px;
-    font-weight:500;
-    color:#8c8c8c;
-    border:1px solid #ced4da;
-    border-radius:0.25rem; 
-}
-.filter_overSelect_categorygp{
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;  
-}
-.filter_checkboxes_categorygp{
-    display: none;
-    border: 1px #dadada solid;
-    z-index:250;
-    position: absolute;
-    background:white;
-    /* padding:0.4rem; */
-    border-radius:0.25rem;
-    min-width:8.7rem;
-    min-height:max-content;
-    max-height:10rem; 
-    /* overflow:hidden;
-    overflow-y:scroll;
-    overflow-x:hidden; */
-}
-.filter_checkboxes_categorygp label{
-    display:block;
-}
-.filter_checkboxes_categorygp div:hover{
-    background-color: #E7F2FF;
-    padding:0;
-    cursor:context-menu;
-    width:100%;
-}
-
-.filter_check_categorygb{
-    display:flex;
-    padding-left:0.1rem;
-    padding-right:0.5rem;
-    justify-content:center;
-    align-items:center;
-    height:2rem;
-    
-}
 
 
 </style>
@@ -996,10 +227,80 @@ $session = \Config\Services::session();
                     <!-- Reason wise duration graph-->
                         <p class="font graph_mar_align"> Downtime Duration by Reasons</p>
                         <div style="display:flex;flex-direction:row;padding-left:1rem;">
-                            <div class="width:4%;">
+                            <div class="width:10%;">
                                 <div style="display:flex;flex-direction:column">
                                     <p style="color:#A6A6A6;font-size:11px;margin-bottom:0;">TOTAL</p>
                                     <p id="total_oppcost_by_reason" class="total_font_style"><span id="reason_duration_text"></span></p>
+                                </div>
+                            </div>
+                            <div style="width:88%;display:flex;flex-direction:row-reverse;">
+                                <!-- Machine Dropdown checkbox -->
+                                <div class="box rightmar" style="margin-right: 0.5rem;" >
+                                    <!-- <label class="multi_select_label" style="">Machine</label> -->
+                                    <div class="filter_selectBox_machinegp1" onclick="machine_multiselect_gp1()">
+                                        <select  class="multi_select_machinegp1" style="" >
+                                            <option id="text_machinegp1" style="text-align:center;">All Machines</option>
+                                        </select>
+                                        <div class="filter_overSelect_machinegp1"></div>
+                                    </div>
+                                    <div class="filter_checkboxes_machinegp1" style="" >
+                                        <!-- options in progress -->
+                                    </div>
+                                </div>
+
+                                <!-- Reasons Dropdown checkbox -->
+                                <div class="box rightmar" style="margin-right: 0.5rem;" >
+                                    <!-- <label class="multi_select_label" style="">Reason</label> -->
+                                    <div class="filter_selectBox_reasongp1" onclick="reason_multiselect_gp1();">
+                                        <select  class="multi_select_reasongp1" style="" >
+                                            <option id="text_reasongp1" style="text-align:center;">All Reasons</option>
+                                        </select>
+                                        <div class="filter_overSelect_reasongp1"></div>
+                                    </div>
+                                    <div class="filter_checkboxes_reasongp1" style="" >
+                                        <!-- options in progress -->
+
+                                    </div>
+                                </div>
+
+                                <!-- category dropdown checkbox -->
+                                <div class="box rightmar" style="margin-right: 0.5rem;" >
+                                    <!-- <label class="multi_select_label" style="">Reason</label> -->
+                                    <div class="filter_selectBox_categorygp1" onclick="category_multiselect_gp1()">
+                                        <select  class="multi_select_categorygp1" style="" >
+                                            <option id="text_categorygp1" style="text-align:center;">All Category</option>
+                                        </select>
+                                        <div class="filter_overSelect_categorygp1"></div>
+                                    </div>
+                                    <div class="filter_checkboxes_categorygp1" style="" >
+                                        <!-- options in progress -->
+                                        <div class="filter_check_categorygb1" style="">
+                                            <div class="cate_drp_check" style="">
+                                                <input type="checkbox" id="one" class="categorygp_checkbox1" value="all"/>
+                                            </div>
+                                            <div class="cate_drp_text" style="">
+                                                <p class="font_multi_drp" style="margin:auto;">All Categories</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="filter_check_categorygb1" style="">
+                                            <div class="cate_drp_check" style="">
+                                                <input type="checkbox" id="one" class="categorygp_checkbox1" value="Planned"/>
+                                            </div>
+                                            <div class="cate_drp_text" style="">
+                                                <p class="font_multi_drp" style="margin:auto;">Planned</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="filter_check_categorygb1" style="">
+                                            <div class="cate_drp_check" style="">
+                                                <input type="checkbox" id="one" class="categorygp_checkbox1" value="Unplanned"/>
+                                            </div>
+                                            <div class="cate_drp_text" style="">
+                                                <p class="font_multi_drp" style="margin:auto;">UnPlanned</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1015,10 +316,80 @@ $session = \Config\Services::session();
                         <!-- Machine wise opportunity cost graph-->
                         <p class="font graph_mar_align">Downtime Opportunity Cost by Machines</p>
                         <div style="display:flex;flex-direction:row;padding-left:1rem;">
-                            <div class="width:4%;">
+                            <div class="width:5%;">
                                 <div style="display:flex;flex-direction:column">
                                     <p style="color:#A6A6A6;font-size:11px;margin-bottom:0;">TOTAL</p>
                                     <p id="total_oppcost_by_reason" class="total_font_style"><i class="fa fa-inr inr-class"></i><span id="machine_wise_oppcost_total"></span></p>
+                                </div>
+                            </div>
+                            <div style="width:90%;display:flex;flex-direction:row-reverse;">
+                                <!-- Machine Dropdown checkbox -->
+                                <div class="box rightmar" style="margin-right: 0.5rem;" >
+                                    <!-- <label class="multi_select_label" style="">Machine</label> -->
+                                    <div class="filter_selectBox_machinegp2" onclick="machine_multiselect_gp2()">
+                                        <select  class="multi_select_machinegp2" style="" >
+                                            <option id="text_machinegp2" style="text-align:center;">All Machines</option>
+                                        </select>
+                                        <div class="filter_overSelect_machinegp2"></div>
+                                    </div>
+                                    <div class="filter_checkboxes_machinegp2" style="" >
+                                        <!-- options in progress -->
+                                    </div>
+                                </div>
+
+                                <!-- Reasons Dropdown checkbox -->
+                                <div class="box rightmar" style="margin-right: 0.5rem;" >
+                                    <!-- <label class="multi_select_label" style="">Reason</label> -->
+                                    <div class="filter_selectBox_reasongp2" onclick="reason_multiselect_gp2();">
+                                        <select  class="multi_select_reasongp2" style="" >
+                                            <option id="text_reasongp2" style="text-align:center;">All Reasons</option>
+                                        </select>
+                                        <div class="filter_overSelect_reasongp2"></div>
+                                    </div>
+                                    <div class="filter_checkboxes_reasongp2" style="" >
+                                        <!-- options in progress -->
+
+                                    </div>
+                                </div>
+
+                                <!-- category dropdown checkbox -->
+                                <div class="box rightmar" style="margin-right: 0.5rem;" >
+                                    <!-- <label class="multi_select_label" style="">Reason</label> -->
+                                    <div class="filter_selectBox_categorygp2" onclick="category_multiselect_gp2()">
+                                        <select  class="multi_select_categorygp2" style="" >
+                                            <option id="text_categorygp2" style="text-align:center;">All Category</option>
+                                        </select>
+                                        <div class="filter_overSelect_categorygp2"></div>
+                                    </div>
+                                    <div class="filter_checkboxes_categorygp2" style="" >
+                                        <!-- options in progress -->
+                                        <div class="filter_check_categorygb2" style="">
+                                            <div class="cate_drp_check" style="">
+                                                <input type="checkbox" id="one" class="categorygp_checkbox2" value="all"/>
+                                            </div>
+                                            <div class="cate_drp_text" style="">
+                                                <p class="font_multi_drp" style="margin:auto;">All Categories</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="filter_check_categorygb2" style="">
+                                            <div class="cate_drp_check" style="">
+                                                <input type="checkbox" id="one" class="categorygp_checkbox2" value="Planned"/>
+                                            </div>
+                                            <div class="cate_drp_text" style="">
+                                                <p class="font_multi_drp" style="margin:auto;">Planned</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="filter_check_categorygb2" style="">
+                                            <div class="cate_drp_check" style="">
+                                                <input type="checkbox" id="one" class="categorygp_checkbox2" value="Unplanned"/>
+                                            </div>
+                                            <div class="cate_drp_text" style="">
+                                                <p class="font_multi_drp" style="margin:auto;">UnPlanned</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1032,10 +403,80 @@ $session = \Config\Services::session();
                         <!-- graph 4 inner lables-->
                         <p class="font graph_mar_align">Downtime Duration by Machines With Reasons</p>
                         <div style="display:flex;flex-direction:row;padding-left:1rem;">
-                            <div class="width:4%;">
+                            <div class="width:10%;">
                                 <div style="display:flex;flex-direction:column">
                                     <p style="color:#A6A6A6;font-size:11px;margin-bottom:0;">TOTAL</p>
                                     <p id="total_oppcost_by_reason" class="total_font_style"><span id="machine_reason_duration_text"></span></p>
+                                </div>
+                            </div>
+                            <div style="width:88%;display:flex;flex-direction:row-reverse;">
+                                <!-- Machine Dropdown checkbox -->
+                                <div class="box rightmar" style="margin-right: 0.5rem;margin-right:2rem;" >
+                                    <!-- <label class="multi_select_label" style="">Machine</label> -->
+                                    <div class="filter_selectBox_machinegp3" onclick="machine_multiselect_gp3()">
+                                        <select  class="multi_select_machinegp3" style="" >
+                                            <option id="text_machinegp3" style="text-align:center;">All Machines</option>
+                                        </select>
+                                        <div class="filter_overSelect_machinegp3"></div>
+                                    </div>
+                                    <div class="filter_checkboxes_machinegp3" style="" >
+                                        <!-- options in progress -->
+                                    </div>
+                                </div>
+
+                                <!-- Reasons Dropdown checkbox -->
+                                <div class="box rightmar" style="margin-right: 0.5rem;" >
+                                    <!-- <label class="multi_select_label" style="">Reason</label> -->
+                                    <div class="filter_selectBox_reasongp3" onclick="reason_multiselect_gp3();">
+                                        <select  class="multi_select_reasongp3" style="" >
+                                            <option id="text_reasongp3" style="text-align:center;">All Reasons</option>
+                                        </select>
+                                        <div class="filter_overSelect_reasongp3"></div>
+                                    </div>
+                                    <div class="filter_checkboxes_reasongp3" style="" >
+                                        <!-- options in progress -->
+
+                                    </div>
+                                </div>
+
+                                <!-- category dropdown checkbox -->
+                                <div class="box rightmar" style="margin-right: 0.5rem;" >
+                                    <!-- <label class="multi_select_label" style="">Reason</label> -->
+                                    <div class="filter_selectBox_categorygp3" onclick="category_multiselect_gp3()">
+                                        <select  class="multi_select_categorygp3" style="" >
+                                            <option id="text_categorygp3" style="text-align:center;">All Category</option>
+                                        </select>
+                                        <div class="filter_overSelect_categorygp3"></div>
+                                    </div>
+                                    <div class="filter_checkboxes_categorygp3" style="" >
+                                        <!-- options in progress -->
+                                        <div class="filter_check_categorygb3" style="">
+                                            <div class="cate_drp_check" style="">
+                                                <input type="checkbox" id="one" class="categorygp_checkbox3" value="all"/>
+                                            </div>
+                                            <div class="cate_drp_text" style="">
+                                                <p class="font_multi_drp" style="margin:auto;">All Categories</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="filter_check_categorygb3" style="">
+                                            <div class="cate_drp_check" style="">
+                                                <input type="checkbox" id="one" class="categorygp_checkbox3" value="Planned"/>
+                                            </div>
+                                            <div class="cate_drp_text" style="">
+                                                <p class="font_multi_drp" style="margin:auto;">Planned</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="filter_check_categorygb3" style="">
+                                            <div class="cate_drp_check" style="">
+                                                <input type="checkbox" id="one" class="categorygp_checkbox3" value="Unplanned"/>
+                                            </div>
+                                            <div class="cate_drp_text" style="">
+                                                <p class="font_multi_drp" style="margin:auto;">UnPlanned</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1268,632 +709,16 @@ $session = \Config\Services::session();
 <!-- preloader -->
 <!-- preloader -->
 <div id="overlay">
-      <div class="cv-spinner">
+    <div class="cv-spinner">
         <span class="spinner"></span>
         <span class="loading">Awaiting Completion...</span>
-      </div>
+    </div>
 </div>
 <!-- preloader end -->
-
+<script src="<?php echo base_url(); ?>/assets/js/Downtime_Production.js?version=<?php echo rand() ; ?>"></script>
 <script type="text/javascript">
 
-
-// filter multi select dropdwon downtime reasons
-// filter option dropdown checkbox
-var filter_expanded = false;
-
-function category_drp() {
-  // event.preventDefault();
-
-  var checkboxes = document.getElementsByClassName("filter_checkboxes");
-  if (!filter_expanded) {
-      // checkboxes.style.display = "block";
-    //   console.log("just click");
-      $('.filter_checkboxes').css("display","block");
-      filter_expanded = true;
-  } else  {
-     
-      $('#text_reason').text('All Reasons');
-      $('.filter_checkboxes').css("display","none");
-      filter_expanded = false;
-  }
-}
-
-
-// filter created by function
-var filter_created_by = false;
-function created_by_drp(){
-    var checkboxes = document.getElementsByClassName("filter_checkboxes_cb");
-  if (!filter_created_by) {
-      // checkboxes.style.display = "block";
-    //   console.log("just click");
-      $('.filter_checkboxes_cb').css("display","block");
-      filter_created_by = true;
-  } else  {
-     
-      $('#text_reason').text('All Reasons');
-      $('.filter_checkboxes_cb').css("display","none");
-      filter_created_by = false;
-  }
-}
-
-// reason dropdown function
-var filter_reason = 0;
-function reason_drp(){
-    var checkboxes = document.getElementsByClassName("filter_checkboxes_r");
-  if (!filter_created_by) {
-      // checkboxes.style.display = "block";
-    //   console.log("just click");
-      $('.filter_checkboxes_r').css("display","block");
-      filter_created_by = true;
-  } else  {
-     
-      $('#text_reason').text('All Reasons');
-      $('.filter_checkboxes_r').css("display","none");
-      filter_created_by = false;
-  }
-}
-
-// part name dropdown function 
-var filter_partname = 0;
-function partname_drp(){
-    var checkboxes = document.getElementsByClassName("filter_checkboxes_part");
-    if (!filter_partname) {
-        $('.filter_checkboxes_part').css('display','block');
-        filter_partname = true;
-    }else{
-        $('.filter_checkboxes_part').css('display','none');
-        filter_partname = false;
-    }
-}
-
-// machine name dropdown function 
-var filter_machinename = 0;
-function machinename_drp(){
-    var checkboxes = document.getElementsByClassName('filter_checkboxes_machine');
-    if (!filter_machinename) {
-        $('.filter_checkboxes_machine').css('display','block');
-        filter_machinename = true;
-    }else{
-        $('.filter_checkboxes_machine').css('display','none');
-        filter_machinename = false;
-    }
-}
-
-// graph filter multi select dropdown
-// machine multi select
-var filter_machinegp = 0;
-function machine_multiselect_gp(){
-
-    var checkboxs = document.getElementsByClassName('filter_checkboxes_machinegp');
-    if (!filter_machinegp) {
-        $('.filter_checkboxes_machinegp').css('display','block');
-        filter_machinegp = true;
-    }else{
-        $('.filter_checkboxes_machinegp').css('display','none');
-        filter_machinegp = false;
-        // temporary hide this function
-        // getfilter_oppcost_reason();
-    }
-}
-
-// reason multi select
-var filter_reasongp = 0;
-function reason_multiselect_gp(){
-    var checkboxs = document.getElementsByClassName('filter_checkboxes_reasongp');
-    if (!filter_machinegp) {
-        $('.filter_checkboxes_reasongp').css('display','block');
-        filter_machinegp = true;
-    }else{
-        $('.filter_checkboxes_reasongp').css('display','none');
-        filter_machinegp = false;
-    }
-}
-
-// category multi select
-var filter_category_gp = 0;
-function category_multiselect_gp(){
-    var checkboxs = document.getElementsByClassName('filter_checkboxes_categorygp');
-    if (!filter_machinegp) {
-        $('.filter_checkboxes_categorygp').css('display','block');
-        filter_machinegp = true;
-    }else{
-        $('.filter_checkboxes_categorygp').css('display','none');
-        filter_machinegp = false;
-    }
-}
-
-// filter 
-// onselect multiselect dropdown
-
-// category dropdown checkbox label onclick category reasons code
-var count_category = 0;
-$(document).on('click','.filter_check_cate',function(event){
-  event.preventDefault();
-  var count1 = $('.filter_check_cate');
-  var index_val = count1.index($(this));
-  
-  var check_if = $('.category_drp_checkbox');
-  if (index_val === 0) {
-    // alert(index_val);
-    // alert(check_if[index_val].checked);
-    if (check_if[index_val].checked===false) {
-      // alert('ok');
-      check_if[0].checked=true;
-      check_if[1].checked=true;
-      check_if[2].checked=true;
-      $('.category_drp_checkbox').attr('checked','checked');
-      count_category = 2;
-      
-    }else{
-      count_category = 0
-      $('.category_drp_checkbox').removeAttr('checked');
-    }
-  }else{
-    if (check_if[index_val].checked === false) {
-      check_if[index_val].checked=true;
-      count_category = parseInt(count_category)+1
-      $('.category_drp_checkbox:eq('+index_val+')').attr('checked','checked');
-    }else{
-      count_category = parseInt(count_category)-1
-      if (parseInt(count_category)<2) {
-        check_if[0].checked=false;
-      }
-      $('.category_drp_checkbox:eq('+index_val+')').removeAttr('checked');
-    }
-  }
-
-  // check the count
-  var count_cate = 0;
-  jQuery('.category_drp_checkbox').each(function(index){
-    if (check_if[index].checked===true) {
-      count_cate = parseInt(count_cate)+1;
-    }
-  });
-
-  // text alignment
-  // var temp_reason = "";
-  if (parseInt(count_cate)>=2) {
-    check_if[0].checked=true;
-    var temp_reason = null;
-    downtime_reason_filter(temp_reason);
-    $('#text_category_drp').text('All Categories');
-  }else if(parseInt(count_cate)>0){
-    var temp_reason = getcategory_arr();
-    downtime_reason_filter(temp_reason[0]);
-    $('#text_category_drp').text(count_cate+' Selected');
-   
-  }
-  else{
-    var temp_reason = null;
-    downtime_reason_filter(temp_reason);
-    // reset_category();
-    $('#text_category_drp').text('No Selected');
-  }
-});
-
-// created by dropdown checkbox label onclick created by code
-$(document).on('click','.filter_check_cb',function(event){
-    event.preventDefault();
-    var count1 = $('.filter_check_cb');
-    var index_val = count1.index($(this));
-    var check_if = $('.created_by_checkbox');
-    if (parseInt(index_val)===0) {
-        reset_created_by();
-    }else if(parseInt(index_val)>0){
-        if (check_if[index_val].checked === false) {
-        check_if[index_val].checked=true;
-        $('.created_by_checkbox:eq('+index_val+')').attr('checked','checked');
-        }else{
-        $('.created_by_checkbox:eq('+index_val+')').removeAttr('checked');
-        check_if[0].checked=false;
-        }
-    }
-
-    var createdby_select_count = 0;
-    jQuery('.created_by_checkbox').each(function(index){
-        if (check_if[index].checked===true) {
-            createdby_select_count = parseInt(createdby_select_count)+1;
-        }
-    });
-    var createdby_len = $('.created_by_checkbox').length;
-    // console.log("reason length:\t"+reason_len);
-    // console.log("reason select count:\t"+reason_select_count);
-    createdby_len = parseInt(createdby_len)-1;
-    if (parseInt(createdby_select_count)>=parseInt(createdby_len)) {
-        if (check_if[0].checked==true) {
-            check_if[0].checked=true;
-            $('#text_created_by_drp').text(parseInt(createdby_select_count)-1+' Selected');
-        }else{
-            reset_created_by();
-            $('#text_created_by_drp').text('All');
-        }
-    }
-    else if((parseInt(createdby_select_count)<parseInt(createdby_len)) && (parseInt(createdby_select_count)>0)){
-        $('#text_created_by_drp').text(parseInt(createdby_select_count)+' selected');
-    }else{
-        $('#text_created_by_drp').text('No Reason');  
-    }
-
-});
-
-// downtime reason dropdown checkbox label onclick function code
-$(document).on('click','.filter_check_r',function(event){
-    event.preventDefault();
-    var count_reason = $('.filter_check_r');
-    var index_reason = count_reason.index($(this));
-    var check_if = $('.reason_checkbox');
-    if (parseInt(index_reason)==0) {
-        reset_reason();
-    }else{
-        if (check_if[index_reason].checked=== false) {
-            check_if[index_reason].checked=true;
-            $('.reason_checkbox:eq('+index_reason+')').attr('checked','checked');
-        }else{
-            check_if[0].checked=false;
-            $('.reason_checkbox:eq('+index_reason+')').removeAttr('checked');
-        }
-    }
-    var reason_select_count = 0;
-    jQuery('.reason_checkbox').each(function(index){
-        if (check_if[index].checked===true) {
-            reason_select_count = parseInt(reason_select_count)+1;
-        }
-    });
-    var reason_len = $('.reason_checkbox').length;
-    // console.log("reason length:\t"+reason_len);
-    // console.log("reason select count:\t"+reason_select_count);
-    reason_len = parseInt(reason_len)-1;
-    if (parseInt(reason_select_count)>=parseInt(reason_len)) {
-        if (check_if[0].checked==true) {
-            check_if[0].checked=true;
-            $('#text_reason_drp').text(parseInt(reason_select_count)-1+' Selected');
-        }else{
-            reset_reason();
-            $('#text_reason_drp').text('All');
-        }
-    }
-    else if((parseInt(reason_select_count)<parseInt(reason_len)) && (parseInt(reason_select_count)>0)){
-        $('#text_reason_drp').text(parseInt(reason_select_count)+' selected');
-    }else{
-        $('#text_reason_drp').text('No Reason');  
-    }
-
-   
-});
-
-// downtime part dropdown checkbox label onclick function
-$(document).on('click','.filter_check_part',function(event){
-    event.preventDefault();
-    var count_part = $('.filter_check_part');
-    var index_part = count_part.index($(this));
-    var check_if = $('.partname_checkbox');
-    if (index_part === 0) {
-        if (check_if[0].checked==false) {
-            reset_part();
-
-        }else{
-            $('.partname_checkbox').removeAttr('checked');
-        }
-    }else{
-        if (check_if[index_part].checked=== false) {
-            check_if[index_part].checked=true;
-            $('.partname_checkbox:eq('+index_part+')').attr('checked','checked');
-        }else{
-            $('.partname_checkbox:eq('+index_part+')').removeAttr('checked');
-            check_if[0].checked = false;
-        }
-    }
-
-    var part_select_count = 0;
-    jQuery('.partname_checkbox').each(function(index){
-        if (check_if[index].checked===true) {
-            part_select_count = parseInt(part_select_count)+1;
-        }
-    });
-    var part_len = $('.partname_checkbox').length;
-    console.log("part length:\t"+part_len);
-    console.log("part select count:\t"+part_select_count);
-    part_len = parseInt(part_len)-1;
-    if (parseInt(part_select_count)>=parseInt(part_len)) {
-        if (check_if[0].checked==true) {
-            check_if[0].checked=true;
-            $('#text_category_drp_part').text(parseInt(part_select_count)-1+' Selected');
-        }else{
-            reset_part();
-            $('#text_category_drp_part').text('All');
-        }
-    }
-    else if((parseInt(part_select_count)<parseInt(part_len)) && (parseInt(part_select_count)>0)){
-        $('#text_category_drp_part').text(parseInt(part_select_count)+' selected');
-    }else{
-        $('#text_category_drp_part').text('No Parts');  
-    }
-   
-
-});
-
-// downtime machine dropdown checkbox label onclick function
-$(document).on('click','.filter_check_machine',function(event){
-    event.preventDefault();
-    var count_machine  = $('.filter_check_machine');
-    var index_machine = count_machine.index($(this));
-    var check_if = $('.machine_checkbox');
-    if (index_machine === 0) {
-        if (check_if[0].checked==false) {
-            reset_machine();
-
-        }else{
-            $('.machine_checkbox').removeAttr('checked');
-        }
-    }else{
-        if (check_if[index_machine].checked==false) {
-            check_if[index_machine].checked=true;
-            $('.machine_checkbox:eq('+index_machine+')').attr('checked','checked');
-        }else{
-            $('.machine_checkbox:eq('+index_machine+')').removeAttr('checked');
-            check_if[0].checked=false;
-        }
-    }
-
-    var machine_select_count = 0;
-    jQuery('.machine_checkbox').each(function(index){
-      if (check_if[index].checked===true) {
-        machine_select_count = parseInt(machine_select_count)+1;
-      }
-    });
-    var machine_len = $('.machine_checkbox').length;
-    machine_len = parseInt(machine_len)-1;
-    console.log("total machine:\t"+machine_len);
-    console.log('select machine:\t'+machine_select_count);
-    if (parseInt(machine_select_count)>=parseInt(machine_len)) {
-        if(check_if[0].checked===true){
-            check_if[0].checked=true;
-            $('#text_machine_drp').text(parseInt(machine_select_count)-1+' Selected');
-        }else{
-            // check_if[0].checked=true;
-            reset_machine();
-            $('#text_machine_drp').text('All');
-        }
-    }else if(((parseInt(machine_select_count)<parseInt(machine_len))) && (parseInt(machine_select_count)>0)){
-        $('#text_machine_drp').text(parseInt(machine_select_count)+' Selected');
-
-        // check_if[0].checked=false;
-    }else {
-        $('#text_machine_drp').text('No Machine');
-    }
-   
-});
-
-// graph filter multi select dropdown
-// category multi select
-$(document).on('click','.filter_check_categorygb',function(event){
-    event.preventDefault();
-    var count_category_gp  = $('.filter_check_categorygb');
-    var index_category_gp = count_category_gp.index($(this));
-    var check_if = $('.categorygp_checkbox');
-    if (index_category_gp === 0) {
-        if (check_if[0].checked==false) {
-            reset_category_gp();
-
-        }else{
-            $('.categorygp_checkbox').removeAttr('checked');
-        }
-    }else{
-        if (check_if[index_category_gp].checked==false) {
-            check_if[index_category_gp].checked=true;
-            $('.categorygp_checkbox:eq('+index_category_gp+')').attr('checked','checked');
-        }else{
-            $('.categorygp_checkbox:eq('+index_category_gp+')').removeAttr('checked');
-            check_if[0].checked=false;
-        }
-    }
-
-    var category_gp_select_count = 0;
-    jQuery('.categorygp_checkbox').each(function(index){
-      if (check_if[index].checked===true) {
-        category_gp_select_count = parseInt(category_gp_select_count)+1;
-      }
-    });
-    var category_gp_len = $('.categorygp_checkbox').length;
-    category_gp_len = parseInt(category_gp_len)-1;
-    if (parseInt(category_gp_select_count)>=parseInt(category_gp_len)) {
-        if(check_if[0].checked===true){
-            check_if[0].checked=true;
-            $('#text_categorygp').text(parseInt(category_gp_select_count)-1+' Selected');
-        }else{
-            // check_if[0].checked=true;
-            reset_category_gp();
-            $('#text_categorygp').text('All');
-        }
-    }else if(((parseInt(category_gp_select_count)<parseInt(category_gp_len))) && (parseInt(category_gp_select_count)>0)){
-        $('#text_categorygp').text(parseInt(category_gp_select_count)+' Selected');
-
-        // check_if[0].checked=false;
-    }else {
-        $('#text_categorygp').text('No Category');
-    }
-
-});
-
-
-// graph filter reason onclick function
-$(document).on('click','.filter_check_reasongp',function(event){
-    event.preventDefault();
-    var count_reason_gp  = $('.filter_check_reasongp');
-    var index_reason_gp = count_reason_gp.index($(this));
-    var check_if = $('.reasongp_checkbox');
-    if (index_reason_gp === 0) {
-        if (check_if[0].checked==false) {
-            reset_reason_gp();
-
-        }else{
-            $('.reasongp_checkbox').removeAttr('checked');
-        }
-    }else{
-        if (check_if[index_reason_gp].checked==false) {
-            check_if[index_reason_gp].checked=true;
-            $('.reasongp_checkbox:eq('+index_reason_gp+')').attr('checked','checked');
-        }else{
-            $('.reasongp_checkbox:eq('+index_reason_gp+')').removeAttr('checked');
-            check_if[0].checked=false;
-        }
-    }
-
-    var reason_gp_select_count = 0;
-    jQuery('.reasongp_checkbox').each(function(index){
-      if (check_if[index].checked===true) {
-        reason_gp_select_count = parseInt(reason_gp_select_count)+1;
-      }
-    });
-    var reason_gp_len = $('.reasongp_checkbox').length;
-    reason_gp_len = parseInt(reason_gp_len)-1;
-    if (parseInt(reason_gp_select_count)>=parseInt(reason_gp_len)) {
-        if(check_if[0].checked===true){
-            check_if[0].checked=true;
-            $('#text_reasongp').text(parseInt(reason_gp_select_count)-1+' Selected');
-        }else{
-            // check_if[0].checked=true;
-            reset_reason_gp();
-            $('#text_reasongp').text('All');
-        }
-    }else if(((parseInt(reason_gp_select_count)<parseInt(reason_gp_len))) && (parseInt(reason_gp_select_count)>0)){
-        $('#text_reasongp').text(parseInt(reason_gp_select_count)+' Selected');
-
-        // check_if[0].checked=false;
-    }else {
-        $('#text_reasongp').text('No Reasons');
-    }
-});
-
-// graph filter machine onclick function
-$(document).on('click','.filter_check_machinegp',function(event){
-    event.preventDefault();
-
-    var count_machine_gp  = $('.filter_check_machinegp');
-    var index_machine_gp = count_machine_gp.index($(this));
-    var check_if = $('.machinegp_checkbox');
-    if (index_machine_gp === 0) {
-        if (check_if[0].checked==false) {
-            reset_machine_gp();
-
-        }else{
-            $('.machinegp_checkbox').removeAttr('checked');
-        }
-    }else{
-        if (check_if[index_machine_gp].checked==false) {
-            check_if[index_machine_gp].checked=true;
-            $('.machinegp_checkbox:eq('+index_machine_gp+')').attr('checked','checked');
-        }else{
-            $('.machinegp_checkbox:eq('+index_machine_gp+')').removeAttr('checked');
-            check_if[0].checked=false;
-        }
-    }
-
-    var machine_gp_select_count = 0;
-    jQuery('.machinegp_checkbox').each(function(index){
-      if (check_if[index].checked===true) {
-        machine_gp_select_count = parseInt(machine_gp_select_count)+1;
-      }
-    });
-    var machine_gp_len = $('.machinegp_checkbox').length;
-    machine_gp_len = parseInt(machine_gp_len)-1;
-    if (parseInt(machine_gp_select_count)>=parseInt(machine_gp_len)) {
-        if(check_if[0].checked===true){
-            check_if[0].checked=true;
-            $('#text_machinegp').text(parseInt(machine_gp_select_count)-1+' Selected');
-        }else{
-            // check_if[0].checked=true;
-            reset_machine_gp();
-            $('#text_machinegp').text('All');
-        }
-    }else if(((parseInt(machine_gp_select_count)<parseInt(machine_gp_len))) && (parseInt(machine_gp_select_count)>0)){
-        $('#text_machinegp').text(parseInt(machine_gp_select_count)+' Selected');
-
-        // check_if[0].checked=false;
-    }else {
-        $('#text_machinegp').text('No Reasons');
-    }
-
-});
-
-
-// reset machine dropdown
-function reset_machine(){
-  var machine_arr = $('.machine_checkbox');
-  jQuery('.machine_checkbox').each(function(index){
-    machine_arr[index].checked=true;
-  });
-  $('#text_machine_drp').text('All Machines');
-}
-
-
-// reset part dropdown
-function reset_part(){
-    var part_arr = $('.partname_checkbox');
-    jQuery('.partname_checkbox').each(function(index){
-        part_arr[index].checked=true;
-    });
-    $('#text_category_drp_part').text('All Parts');
-}
-
-// reset downtime reasons dropdown
-function reset_reason(){
-    var reason_arr = $('.reason_checkbox');
-    jQuery('.reason_checkbox').each(function(in1){
-        reason_arr[in1].checked=true;
-    });
-    $('#text_reason_drp').text('All Reasons');
-}
-
-// reset downtime category
-function reset_category(){
-    var category_arr = $('.category_drp_checkbox');
-    jQuery('.category_drp_checkbox').each(function(in2){
-        category_arr[in2].checked=true;
-    });
-    $('#text_category_drp').text('All Category');
-}
-
-// reset created by
-function reset_created_by(){
-    var created_by_arr = $('.created_by_checkbox');
-    jQuery('.created_by_checkbox').each(function(in3){
-        created_by_arr[in3].checked=true;
-    });
-    $('#text_created_by_drp').text('All Users');
-}
-
-// reset graph filter function
-// reset category graph filter
-function reset_category_gp(){
-    var created_by_arr = $('.categorygp_checkbox');
-    jQuery('.categorygp_checkbox').each(function(in3){
-        created_by_arr[in3].checked=true;
-    });
-    $('#text_categorygp').text('All Category');
-}
-
-// reset reason graph filter
-function reset_reason_gp(){
-    var reason_gparr = $('.reasongp_checkbox');
-    jQuery('.reasongp_checkbox').each(function(index){
-        reason_gparr[index].checked=true;
-    });
-    $('#text_reasongp').text('All Reasons');
-}
-
-// reset machine graph filter
-function reset_machine_gp(){
-    var machine_gparr = $('.machinegp_checkbox');
-    jQuery('.machinegp_checkbox').each(function(index){
-        machine_gparr[index].checked=true;
-    });
-    $('#text_machinegp').text('All Machines');
-}
-
-
-// date time 
+// from  date time 
 $('.fromDate').datetimepicker({  
   format:'Y-m-d H:00:00',
   // minDate : '0',
@@ -1902,129 +727,13 @@ $('.fromDate').datetimepicker({
   onShow:checkPastTime_F,
 });
 
+// to date time
 $('.toDate').datetimepicker({
   format:'Y-m-d H:00',
   onChangeDateTime:checkPastTime,
   onShow:checkPastTime,
   maxDate: new Date()
 });
-
-
-// page load time this function execute
-$(document).ready(function(){
-
-    // preloader on function
-    $("#overlay").fadeIn(500);
-    // reason wise opportunity graph
-    reason_wise_oppcost();
-    // reason wise duration graph
-    reason_wise_duration();
-    // machine wise opportunity graph
-    machine_wise_oppcost();
-    // machine wise and reason wise duration
-    machine_reason_wise_duration();
-
-    $('#pagination_val').val('1');
-    // table data function temporary hide this function for onlu filter apply function
-    // get_table_record();
-    
-
-    // machine dropdown record filling function
-    fill_machine_dropdown();
-
-    // part dropdown record filling
-    fill_part_dropdown();
-
-  
-    // created by dropdown record filling
-    fill_created_by();
-
-    // downtime reasons function
-    var temp = null;
-    downtime_reason_filter(temp);
-
-     //graph filter reset category dropdown
-     reset_category_gp();
-    // // graph filter reasons dropdown
-    // reset_reason_gp();
-    // // graph filter machine dropdown
-    // reset_machine_gp();
-
-    var end_index = 50;
-    var start_index = 0;
-    // filter function apply
-    filter_after_filter(end_index,start_index);
-
-    // preloader off function
-   // $("#overlay").fadeOut(500);
-
-   
-
-  
-});
-
-
-// onblur function change input filter
-// from date on blur function
-$(document).on('blur','.fromDate',function(event){
-    event.preventDefault();
-
-    // preloader function on load
-    $("#overlay").fadeIn(400);
-    // reason wise opportunity graph
-    reason_wise_oppcost();
-    // reason wise duration graph
-    reason_wise_duration();
-    // machine wise opportunity graph
-    machine_wise_oppcost();
-    // machine wise and reason wise duration
-    machine_reason_wise_duration();
-
-    $('#pagination_val').val('1');
-    // table data function temporary hid this function for apply filter function
-    // get_table_record();
-    var end_index = 50;
-    var start_index = 0;
-    // filter function apply
-    filter_after_filter(end_index,start_index);
-
-    // preloader off function
-  //  $("#overlay").fadeOut(400);
-  
-});
-
-// to date onblur function
-$(document).on('blur','.toDate',function(event){
-
-    event.preventDefault();  
-
-    // preloader function on load
-    $("#overlay").fadeIn(400);
-    // reason wise opportunity graph
-    reason_wise_oppcost();
-    // reason wise duration graph
-    reason_wise_duration();
-    // machine wise opportunity graph
-    machine_wise_oppcost();
-    // machine wise and reason wise duration
-    machine_reason_wise_duration();
-
-    $('#pagination_val').val('1');
-    // table data function temporary hide this function 
-    // get_table_record();
-
-    var end_index = 50;
-    var start_index = 0;
-    // filter function apply
-    filter_after_filter(end_index,start_index);
-   
-
-    // preloader off function
-  //   $("#overlay").fadeOut(400);
-  
-});
-
-
 
 
 // this open code has default one week date selection 
@@ -2037,180 +746,6 @@ now.setDate(now.getDate() - 6);
 var tdate = now.getFullYear()+"-"+("0" + (parseInt(now.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + now.getDate()).slice(-2)+" "+("0" + now.getHours()).slice(-2)+":00";
 $('.toDate').val(fdate);
 $('.fromDate').val(tdate);
-
-// reason wise opportunitycost graph
-function reason_wise_oppcost(){
-
-    $('#reason_wise_oppcost').remove();
-    $('.child_reason_wise_oppcost').append('<canvas id="reason_wise_oppcost"><canvas>');
-    $('.chartjs-hidden-iframe').remove();
-
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
-    f = f.replace(" ","T");
-    t = t.replace(" ","T");
-    // console.log("from date:\t"+f);
-    // console.log("to date:\t"+t);
-    $.ajax({
-        url:"<?php echo base_url('Production_Downtime_controller/getdowntime_reason_whise_graph'); ?>",
-        type: "POST",
-        dataType: "json",
-        data:{
-            from:f,
-            to:t
-        },
-        success:function(res){
-            console.log("Reason Wise Opportunity Graph");
-            console.log(res);
-
-            $('#reason_wise_oppcost_total').text(parseFloat(res['grandTotal']).toLocaleString("en-IN"));
-            // total hour and minute
-            var thour = parseInt(res['total_duration'])/60;
-            var tminute = parseInt(res['total_duration']%60);
-            $('#total_duration_header').html(parseInt(thour)+'h'+' '+parseInt(tminute)+'m');
-
-            var reason_label = [];
-            var oppcost_arr = [];
-            var reason_id_arr = [];
-           
-
-            var oppcost_percent_arr = [];
-            var temp_cost_ini = 0;
-            res['graph'].forEach(function(val){
-                reason_label.push(val.downtime_reason);
-                var tempcost = parseInt(val.opportunity_cost);
-                // console.log(typeof tempcost);
-                oppcost_arr.push(tempcost);
-                reason_id_arr.push(val.downtime_reason_id);
-                // console.log(val.downtime_reason);
-                // console.log('tempcost'+tempcost);
-                // console.log('ex temp cost'+temp_cost_ini);
-                // console.log(res['grandTotal']);
-                temp_cost_ini = parseInt(temp_cost_ini)+parseInt(tempcost);
-                oppcost_percent_arr.push(temp_cost_ini);
-            });
-
-            // calculate percentage array
-            var percentage_arr = [];
-            oppcost_percent_arr.forEach(function(item){
-                // console.log(item);
-                // console.log(res['grandTotal']);
-                var temp_data = parseFloat(parseInt(item)/parseInt(res['grandTotal'])).toFixed(2)*100;
-                // temp_data = temp_data*100;
-                percentage_arr.push(temp_data);
-            });
-
-            // console.log("temporary cost array");
-            // console.log(oppcost_percent_arr);
-            var bar_width = 0.6;
-            var bar_size = 0.7;
-        
-            while(true){
-                var len= reason_label.length;
-                if (len < 8) {
-                    reason_label.push("");
-                }
-                else if(len > 8){
-                var l = parseInt(len)%parseInt(8);
-                var w= parseInt($('.parent_reason_wise_oppcost').css("width"))+parseInt(l*18*16);
-                // console.log("Reason Mapping");
-                // console.log(w);
-                $('.child_reason_wise_oppcost').css("width",w+"px");
-                break;
-                }
-                else{
-                break;
-                }
-            }
-          
-           
-            // console.log(oppcost_percent_arr);
-            // console.log(percentage_arr);
-            var ctx = document.getElementById("reason_wise_oppcost").getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: reason_label,
-                    datasets:[{
-                        type: 'line',
-                        label: 'Total',
-                        data: percentage_arr,
-                        percentage_data:percentage_arr,
-                        backgroundColor: 'white',
-                        borderColor: "#7f7f7f", 
-                        pointBorderColor: "#d9d9ff",  
-                        borderWidth: 1, 
-                        showLine : true,
-                        fill: false,
-                        lineColor:"black",
-                        pointRadius:7,
-                        yAxisID: 'A',  
-                       
-                    }
-                    ,{
-                        type: 'bar',
-                        label:reason_label ,
-                        data: oppcost_arr,
-                        percentage_data:0,
-                        // borderColor: 'rgb(255, 99, 132)',
-                        backgroundColor: '#0075F6',
-                        yAxisID: 'B',
-                    }
-                ],
-                },
-                // borderColor: "#004b9b", 
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,   
-                    scales: {
-                        // y: {
-                        //     display:false,
-                        //     beginAtZero:true,
-                        //     stacked:true
-                        // },
-                        A:{
-                          type: 'linear',
-                          position: 'right',
-                          // beginAtZero: true,
-                          suggestedMin: 0,
-                          suggestedMax: 100,
-                          display:true,
-                          grid:{
-                            display:false
-                          },
-                        },
-                        B:{
-                          type: 'linear',
-                          position: 'left',
-                          beginAtZero: true,
-                          display:true,
-                          grid:{
-                            display:false
-                          },
-                        },
-                        x:{
-                            display:true,
-                            grid:{
-                            display:false
-                            },
-                            stacked:true,
-                        },
-                    },
-                    plugins: {
-                    legend: {
-                        display: false,
-                    },
-                    tooltip: {
-                        enabled: false,
-                        external: reason_oppcost_tooltip,
-                    }
-                    },
-                },            
-            });
-  
-        }
-    });
-}
 
 // reason wise opportunitycost graph tooltip
 function reason_oppcost_tooltip(context) {  
@@ -2305,158 +840,6 @@ function reason_oppcost_tooltip(context) {
     tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
     tooltipEl.style.pointerEvents = 'none';
 }
-
-// reason wise duration graph
-function reason_wise_duration(){
-        
-    $('#reason_wise_duration').remove();
-    $('.child_reason_wise_duration').append('<canvas id="reason_wise_duration"><canvas>');
-    $('.chartjs-hidden-iframe').remove();
-
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
-    f = f.replace(" ","T");
-    t = t.replace(" ","T");
-    $.ajax({
-        url:"<?php echo base_url('Production_Downtime_controller/getdowntime_reason_whise_graph'); ?>",
-        type: "POST",
-        dataType: "json",
-        data:{
-            from:f,
-            to:t
-        },
-        success:function(res){
-            console.log("Reason Wise duration");
-            console.log(res);
-
-            var hour_text = parseInt(parseInt(res['total_duration'])/60);
-            var minute_text = parseInt(parseInt(res['total_duration'])%60);
-            $('#reason_duration_text').text(hour_text+'h'+' '+minute_text+'m');
-
-            var reason_label = [];
-            var duration_arr = [];
-            var reason_id_arr = [];
-
-            var duration_percentage_arr = [];
-            var duration_arr_cumulative = [];
-            var total_duration = 0;
-            res['graph'].forEach(function(val){
-                reason_label.push(val.downtime_reason);
-                var tempcost = parseInt(val.duration);
-                // console.log(typeof tempcost);
-                duration_arr.push(tempcost);
-                reason_id_arr.push(val.downtime_reason_id);
-                // console.log(val.downtime_reason);
-                total_duration = parseInt(total_duration) + parseInt(tempcost);
-                duration_arr_cumulative.push(total_duration);
-                var temp_data = parseFloat(parseInt(total_duration)/parseInt(res['total_duration'])).toFixed(2)*100;
-                duration_percentage_arr.push(temp_data);
-            });
-
-            var bar_width = 0.6;
-            var bar_size = 0.7;
-            
-            while(true){
-                var len= reason_label.length;
-                if (len < 8) {
-                    reason_label.push("");
-                }
-                else if(len > 8){
-                var l = parseInt(len)%parseInt(8);
-                var w= parseInt($('.parent_reason_wise_duration').css("width"))+parseInt(l*18*16);
-                $('.child_reason_wise_duration').css("width",w+"px");
-                break;
-                }
-                else{
-                break;
-                }
-            }
-            // console.log("duration by reasons");
-            // console.log(duration_percentage_arr);
-            var ctx = document.getElementById("reason_wise_duration").getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: reason_label,
-                    datasets: [{
-
-                        type: 'line',
-                        label: 'Percentage',
-                        data:duration_percentage_arr,
-                        percentage_data: duration_percentage_arr,
-                        backgroundColor: 'white',
-                        borderColor: "#7f7f7f", 
-                        pointBorderColor: "#d9d9ff",  
-                        borderWidth: 1, 
-                        showLine : true,
-                        fill: false,
-                        lineColor:"black",
-                        pointRadius:7,
-                        yAxisID: 'A',
-
-                      
-
-                    },{
-                        type:'bar',
-                        label:reason_label,
-                        data:duration_arr,
-                        percentage_data:0,
-                        backgroundColor: "#0075F6",
-                        yAxisID: 'B',  
-                    }],
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,   
-                    scales: {
-                        // y: {
-                        //     display:false,
-                        //     beginAtZero:true,
-                        //     stacked:true
-                        // },
-                        A:{
-                          type: 'linear',
-                          position: 'right',
-                          // beginAtZero: true,
-                          suggestedMin: 0,
-                          suggestedMax: 100,
-                          display:true,
-                          grid:{
-                            display:false
-                          },
-                        },
-                        B:{
-                          type: 'linear',
-                          position: 'left',
-                          beginAtZero: true,
-                          display:true,
-                          grid:{
-                            display:false
-                          },
-                        },
-                        x:{
-                            display:true,
-                            grid:{
-                            display:false
-                            },
-                            stacked:true,
-                        },
-                    },
-                    plugins: {
-                    legend: {
-                        display: false,
-                    },
-                    tooltip: {
-                        enabled: false,
-                        external: reason_wise_duration_tooltip,
-                    }
-                    },
-                },            
-            });
-        }
-    });
-}
-
 // reason wise duration tooltip function
 function reason_wise_duration_tooltip(context){
     // console.log(context);
@@ -2551,156 +934,6 @@ function reason_wise_duration_tooltip(context){
     tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
     tooltipEl.style.pointerEvents = 'none';
 }
-
-// reason wise oppcost graph
-function machine_wise_oppcost(){
-    $('#machine_wise_oppcost').remove();
-    $('.child_machine_wise_oppcost').append('<canvas id="machine_wise_oppcost"><canvas>');
-    $('.chartjs-hidden-iframe').remove();
-
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
-    f = f.replace(" ","T");
-    t = t.replace(" ","T");
-    $.ajax({
-        url:"<?php echo base_url('Production_Downtime_controller/getMachine_wise_opporuntiy_cost'); ?>",
-        type: "POST",
-        dataType: "json",
-        data:{
-        from:f,
-        to:t
-        },
-        success:function(res){
-            console.log("Machine Wise opportunity graph");
-            console.log(res);
-
-            $('#machine_wise_oppcost_total').text(parseFloat(res['grant_total']).toLocaleString("en-IN"));
-            var machine_label = [];
-            var oppcost_arr = [];
-            var machine_id_arr = [];
-
-            var machine_duration_percentage = 0;
-            var mdarr = [];
-            var oppcost_arr_cumulative = [];
-            res['graph'].forEach(function(val){
-                machine_label.push(val.machine_name);
-                var tempcost = parseInt(val.oppcost);
-                // console.log(typeof tempcost);
-                oppcost_arr.push(tempcost);
-                machine_id_arr.push(val.machine_id);
-                // console.log(val.downtime_reason);
-                machine_duration_percentage = parseInt(machine_duration_percentage)+parseInt(tempcost);
-                oppcost_arr_cumulative.push(machine_duration_percentage);
-                var temp_d = parseFloat(parseInt(machine_duration_percentage)/parseInt(res['grant_total'])).toFixed(2)*100;
-                mdarr.push(temp_d);
-                
-            });
-
-            var bar_width = 0.6;
-            var bar_size = 0.7;
-        
-            while(true){
-                var len= machine_label.length;
-                if (len < 8) {
-                    machine_label.push("");
-                }
-                else if(len > 8){
-                var l = parseInt(len)%parseInt(8);
-                var w= parseInt($('.parent_machine_wise_oppcost').css("width"))+parseInt(l*18*16);
-                $('.child_machine_wise_oppcost').css("width",w+"px");
-                break;
-                }
-                else{
-                break;
-                }
-            }
-
-            var ctx = document.getElementById("machine_wise_oppcost").getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: machine_label,
-                    datasets: [{
-                        type: 'line',
-                        label: 'Percentage',
-                        // data: oppcost_arr_cumulative,
-                        percentage_data:mdarr,
-                        data:mdarr,
-                        backgroundColor: 'white',
-                        borderColor: "#7f7f7f", 
-                        pointBorderColor: "#d9d9ff",  
-                        borderWidth: 1, 
-                        showLine : true,
-                        fill: false,
-                        lineColor:"black", 
-                        pointRadius:7,
-                        yAxisID: 'A',  
-
-                       
-                    },{
-                        label:machine_label,
-                        data:oppcost_arr,
-                        backgroundColor: "#0075F6",
-                        percentage_data:0,
-                        yAxisID: 'B',
-                    }],
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,   
-                    scales: {
-                        // y: {
-                        //     id: 'A',
-                        //     type:'linear',
-                        //     position:'left',
-                        //     display:true,
-                        //     // beginAtZero:true,
-                        //     stacked:true
-                        // },
-                        A:{
-                          type: 'linear',
-                          position: 'right',
-                          // beginAtZero: true,
-                          suggestedMin: 0,
-                          suggestedMax: 100,
-                          display:true,
-                          grid:{
-                            display:false
-                          },
-                        },
-                        B:{
-                          type: 'linear',
-                          position: 'left',
-                          beginAtZero: true,
-                          display:true,
-                          grid:{
-                            display:false
-                          },
-                        },
-                        x:{
-                            display:true,
-                            grid:{
-                            display:false
-                            },
-                            stacked:true,
-                        },
-                    },
-                    plugins: {
-                        legend: {
-                            display: false,
-                        },
-                        tooltip: {
-                            enabled: false,
-                            external: machine_wise_oppcost_tooltip,
-                        }
-                    },
-                },            
-            });
-        }
-  });
-
-}
-
 // machine wise opportunity cost tooltip function
 function machine_wise_oppcost_tooltip(context){
     // console.log(context);
@@ -2787,175 +1020,6 @@ function machine_wise_oppcost_tooltip(context){
     tooltipEl.style.font = bodyFont.string;
     tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
     tooltipEl.style.pointerEvents = 'none';
-}
-
-// Machine  wise and reason wise duration graph
-function machine_reason_wise_duration(){
-    $('#machine_reason_duration').remove();
-    $('.child_machine_reason_duration').append('<canvas id="machine_reason_duration"><canvas>');
-    $('.chartjs-hidden-iframe').remove();
-
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
-    f = f.replace(" ","T");
-    t = t.replace(" ","T");
-
-    
-  $.ajax({
-    url: "<?php echo base_url('Production_Downtime_controller/getmachine_reason_duration'); ?>",
-    type: "POST",
-    dataType: "json",
-    data:{
-      from:f,
-      to:t
-    },
-    success:function(res){
-        console.log("Machine and Reason Array Duration");
-        console.log(res);
-
-        var hour_text = parseInt(parseInt(res['total_duration'])/60);
-        var minute_text = parseInt(parseInt(res['total_duration'])%60);
-        $('#machine_reason_duration_text').text(hour_text+'h'+' '+minute_text+'m');
-
-
-        var color = ["white","#004591","#0071EE","#97C9FF","#595959","#A6A6A6","#D9D9D9","#09BB9F","#39F3BB"];
-        var demo = [];
-        var x= 1;
-        var machineName = [];
-        var category_percent = 1.0;
-        var bar_space = 0.5;
-       var percentage_arr = [];
-       var temp_duration = 0;
-        res['data'].forEach(function(value){
-            machineName.push(value.machine_name);
-            temp_duration = parseInt(temp_duration)+parseInt(value.total);
-            var temp_data =  parseFloat(parseInt(temp_duration)/parseInt(res['total_duration'])).toFixed(2)*100;
-            percentage_arr.push(temp_data);
-        });
-
-        demo.push({
-            label:"Total",
-            type: "line",
-            backgroundColor: 'white',
-            borderColor: "#7f7f7f", 
-            pointBorderColor: "#d9d9ff",  
-            borderWidth: 1, 
-            showLine : true,
-            fill: false,
-            lineColor:"black", 
-            percentage_data:percentage_arr,
-            data:percentage_arr,
-            pointRadius: 7,
-            yAxisID: 'A',  
-        });
-
-        res['reason'].forEach(function(k,val) {
-            var arr_1 =[];
-            var rname = [];
-            res['data'].forEach(function(item){
-                arr_1.push(item.reason_duration[val]);
-                rname.push(item.reason_name[val]);
-                
-            });
-            demo.push({
-                label:res['reason'][val]['downtime_reason'],
-                type: "bar",
-                backgroundColor: color[x],
-                borderColor: color[x],
-                borderWidth: 1,
-                fill: true,
-                data: arr_1,
-                reasonid:val,
-                percentage_data:0,
-                // reject:machineWiseReject,
-                categoryPercentage:category_percent,
-                barPercentage: bar_space,
-                yAxisID: 'B',
-            });
-            x = x+1;
-        });
-
-        // console.log("graph data graph4");
-        // console.log(demo);
-
-      
-        while(true){
-            var len= machineName.length;
-            if (len < 8) {
-              machineName.push("");
-            }
-            else if(len > 8){
-              var l = parseInt(len)%parseInt(8);
-              var w= parseInt($('.parent_machine_reason_duration').css("width"))+parseInt(l*18*16);
-              $('.child_machine_reason_duration').css("width",w+"px");
-              break;
-            }
-            else{
-              break;
-            }
-            
-        }
-
-        var ctx = document.getElementById("machine_reason_duration").getContext('2d');
-        var myChart = new Chart(ctx, {
-          type: 'bar',
-            data: {
-                labels: machineName,
-                datasets: demo,
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,   
-                scales: {
-                    // y: {
-                    //     display:false,
-                    //     beginAtZero:true,
-                    //     stacked:true,
-                    // },
-                    A:{
-                          type: 'linear',
-                          position: 'right',
-                          // beginAtZero: true,
-                          suggestedMin: 0,
-                          suggestedMax: 100,
-                          display:true,
-                          grid:{
-                            display:false
-                          },
-                        },
-                        B:{
-                          type: 'linear',
-                          position: 'left',
-                          beginAtZero: true,
-                          display:true,
-                          grid:{
-                            display:false
-                          },
-                        },
-                    x:{
-                        display:true,
-                        grid:{
-                        display:false
-                        },
-                        stacked:true
-                    },
-                },
-                plugins: {
-                legend: {
-                    display: false,
-                },
-                tooltip: {
-                    enabled: false,
-                    external: machine_and_reason_wise_tooltip,
-                }
-                },
-            },
-        });
-    },
-    error:function(res){
-        // alert("Sorry!Try Agian!!");
-    }
-  });
 }
 
 // machine and reason wise tooltip function
@@ -3056,92 +1120,6 @@ function machine_and_reason_wise_tooltip(context){
     tooltipEl.style.pointerEvents = 'none';
 }
 
-// get table data function  temporary hide this function for only filter function
-/*
-function get_table_record(){
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
-    from = f.replace(" ","T");
-    to = t.replace(" ","T");
-
-    $.ajax({
-        url:"<?php echo base_url('Production_Downtime_controller/gettable_data'); ?>",
-        type:"POST",
-        dataType: "json",
-        data:{from:from,to:to},
-        success:function(res){
-            console.log("table data");
-            console.log(res);
-            $('.fixed_rows').empty();
-            $('.scroll_rows').empty();
-            
-            // console.log("table key");
-            // console.log(res['total']);
-            var from_len = 0;
-            var end_len = 50;
-            var index = 0;
-            var total_page = parseInt(res['total'])/50;
-            total_page = Math.ceil(total_page);
-            $('#total_page').html(total_page);
-            // var count_leng = 0;
-            res['data'].forEach(function(val,key){
-                
-                // index = parseInt(index)+1;
-                if (parseInt(key)<parseInt(end_len)) {  
-                    var elements = $();
-                    var element = $();
-
-                    var from_date = date_formate_change(from);
-                    var to_date = date_formate_change(to);
-                    var updated_at = date_formate_change(val.last_updated_on)
-
-
-                    elements = elements.add('<div class="fixed_col_common alignflex" style="width:100%;">'
-                        +'<div class="border-left font_row alignflex" style="width:30%;height: 100%;"><span style="margin-left:1rem;">'+val.machine_name+'</span></div>'
-                        +'<div class="font_row alignflex"style="width:42%;height: 100%"><span style="margin:auto;">'+from_date+'</span></div>'
-                        +' <div  class="red alignflex" style="width:28%;height: 100%;justify-content:flex-end;"><span style="margin-right:1rem;">'+val.split_duration+'</span></div>'
-                    +'</div>');
-
-                    element = element.add('<div class="alignflex fixed_col_common2"  style="width:83%;">'
-                        +'<div class="font_row alignflex " style="height:100%;width:15.1%;"><span style="margin:auto;">'+to_date+'</span></div>'
-                        +'<div class="font_row alignflex" style="height:100%;width:10%;"><span style="margin-left:1rem;">'+val.downtime_category+'</span></div>'
-                        +' <div class="font_row alignflex" style="height:100%;width:15%;"><span style="margin-left:1rem;">'+val.downtime_reason+'</span></div>'
-                        +' <div class="font_row alignflex" style="height:100%;width:12%"><span style="margin-left:1rem;">'+val.tool_name+'</span></div>'
-                        +'<div class="font_row alignflex" style="height:100%;width:15%;"><span style="margin-left:1rem;">'+val.part_name+'</span></div>'
-                        +'<div class="font_row alignflex" style="height:100%;width:10%;"><span style="margin-left:1rem;">'+val.last_updated_by+'</span></div>'
-                        +'<div class="font_row alignflex" style="height:100%;width: 15%;"><span style="margin-left:1rem;">'+updated_at+'</span></div>'
-                        +'<div class="font_row alignflex "  style="height:100%;width: 8%;justify-content:center;"><div class="notes_check"><img src="<?php  echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" onmouseover="notes_hover(this)"  onmouseout="mouse_out_check(this)"/></div></div>'
-                        +'<div class="notes_display" style="">'
-                            +'<p >'+val.notes+'</p>'
-                        +'</div>'
-                    +'</div>');
-
-                    $('.fixed_rows').append(elements);
-                    $('.scroll_rows').append(element);
-                    // console.log("Table Data");
-                    // console.log(val);
-                }
-                
-            });
-            // once complete next move on this function for height
-            table_onclick();
-
-            // var width_get = $('.fixed_rows').css('height');
-            // // var width_get_1 = $('.scroll_rows').css('height');
-            // console.log("table height");
-            // // console.log(width_get);
-            // // consoe.log(width_get_1);
-            // var demo_height = parseInt(width_get)+98;
-            // $('#container_table').css('height',parseInt(demo_height)+"px");
-        },
-        error:function(err){
-            console.log("Sorry TryAgain");
-        }
-    });
- 
-}
-*/
-
 // pagination filter function
 function pagination_filter(){
     var value_input = $('#pagination_val').val();
@@ -3177,89 +1155,8 @@ function pagination_filter(){
     filter_after_filter(end_index,start_index);
 }
 
-// filter process function temporary hide this function filter pagination apply
-/*
-function pagination_filter_pass(start_index,end_index){
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
-    from = f.replace(" ","T");
-    to = t.replace(" ","T");
-    $.ajax({
-        url:"<?php echo base_url('Production_Downtime_controller/gettable_data'); ?>",
-        type:"POST",
-        dataType: "json",
-        data:{from:from,to:to},
-        success:function(res){
-            console.log("table data");
-            console.log(res);
-            $('.fixed_rows').empty();
-            $('.scroll_rows').empty();
-            // console.log("table key");
-            // console.log(res['total']);
-            var from_len = 0;
-            var end_len = 50;
-            var index = 0;
-            var total_page = parseInt(res['total'])/50;
-            total_page = Math.ceil(total_page);
-            $('#total_page').html(total_page);
-            res['data'].forEach(function(val,key){
-                
-                // index = parseInt(index)+1;
-                if ((parseInt(key)<parseInt(end_index)) && (parseInt(key)>=parseInt(start_index))) {  
-                    var elements = $();
-                    var element = $();
-
-                    var from_date = date_formate_change(from);
-                    var to_date = date_formate_change(to);
-                    var updated_at = date_formate_change(val.last_updated_on)
-
-
-                    elements = elements.add('<div class="fixed_col_common alignflex" style="width:100%;">'
-                        +'<div class="border-left font_row alignflex" style="width:30%;height: 100%;"><span style="margin-left:1rem;">'+val.machine_name+'</span></div>'
-                        +'<div class="font_row alignflex"style="width:42%;height: 100%"><span style="margin:auto;">'+from_date+'</span></div>'
-                        +' <div  class="red alignflex" style="width:28%;height: 100%;justify-content:flex-end;"><span style="margin-right:1rem;">'+val.split_duration+'</span></div>'
-                    +'</div>');
-
-
-                    element = element.add('<div class="alignflex fixed_col_common2"  style="width:83%;">'
-                        +'<div class="font_row alignflex " style="height:100%;width:15.1%;"><span style="margin:auto;">'+to_date+'</span></div>'
-                        +'<div class="font_row alignflex" style="height:100%;width:10%;"><span style="margin-left:1rem;">'+val.downtime_category+'</span></div>'
-                        +' <div class="font_row alignflex" style="height:100%;width:15%;"><span style="margin-left:1rem;">'+val.downtime_reason+'</span></div>'
-                        +' <div class="font_row alignflex" style="height:100%;width:12%"><span style="margin-left:1rem;">'+val.tool_name+'</span></div>'
-                        +'<div class="font_row alignflex" style="height:100%;width:15%;"><span style="margin-left:1rem;">'+val.part_name+'</span></div>'
-                        +'<div class="font_row alignflex" style="height:100%;width:10%;"><span style="margin-left:1rem;">'+val.last_updated_by+'</span></div>'
-                        +'<div class="font_row alignflex" style="height:100%;width: 15%;"><span style="margin-left:1rem;">'+updated_at+'</span></div>'
-                        +'<div class="font_row alignflex "  style="height:100%;width: 8%;justify-content:center;"><div class="notes_check"><img src="<?php  echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" onmouseover="notes_hover(this)"  onmouseout="mouse_out_check(this)"/></div></div>'
-                        +'<div class="notes_display" style="">'
-                            +'<p >'+val.notes+'</p>'
-                        +'</div>'
-                    +'</div>');
-
-                    $('.fixed_rows').append(elements);
-                    $('.scroll_rows').append(element);
-                    // console.log("Table Data");
-                    // console.log(val);
-                }
-                
-            });
-            table_onclick();
-            // var width_get = $('.fixed_rows').css('height');
-            // var width_get_1 = $('.scroll_rows').css('height');
-            // // console.log("table height");
-            // // console.log(width_get);
-            // // consoe.log(width_get_1);
-            // var demo_height = parseInt(width_get)+98;
-            // $('#container_table').css('height',parseInt(demo_height)+"px");
-        },
-        error:function(err){
-            console.log("Sorry TryAgain");
-        }
-    });
-}
-*/
 
 // table onclick 
-
 function table_onclick(){
     // alert('hi');
     var demo = $('.fixed_col_common').length;
@@ -3342,13 +1239,15 @@ function fill_machine_dropdown(){
         url:"<?php echo base_url('Production_Downtime_controller/getmachine_data'); ?>",
         type:"POST",
         dataType: "json",
-        // data:{from:from,to:to},
         success:function(res){
             console.log("multi select dropdown machine");
             console.log(res);
             
             $('.filter_checkboxes_machine').empty();
             $('.filter_checkboxes_machinegp').empty();
+            $('.filter_checkboxes_machinegp1').empty();
+            $('.filter_checkboxes_machinegp2').empty();
+            $('.filter_checkboxes_machinegp3').empty();
 
 
             $('.filter_checkboxes_machine').append('<div class="filter_check_machine" style="">'
@@ -3368,9 +1267,41 @@ function fill_machine_dropdown(){
             +'<p class="font_multi_drp" style="margin:auto;">All</p>'
             +'</div>'
             +'</div>');
+
+            $('.filter_checkboxes_machinegp1').append('<div class="filter_check_machinegp1" style="">'
+            +'<div class="cate_drp_check" style="">'
+            +'<input type="checkbox" id="one" class="machinegp_checkbox1" value="all"/>'
+            +'</div>'
+            +'<div class="cate_drp_text" style="">'
+            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+            +'</div>'
+            +'</div>');
+
+            $('.filter_checkboxes_machinegp2').append('<div class="filter_check_machinegp2" style="">'
+            +'<div class="cate_drp_check" style="">'
+            +'<input type="checkbox" id="one" class="machinegp_checkbox2" value="all"/>'
+            +'</div>'
+            +'<div class="cate_drp_text" style="">'
+            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+            +'</div>'
+            +'</div>');
+
+            $('.filter_checkboxes_machinegp3').append('<div class="filter_check_machinegp3" style="">'
+            +'<div class="cate_drp_check" style="">'
+            +'<input type="checkbox" id="one" class="machinegp_checkbox3" value="all"/>'
+            +'</div>'
+            +'<div class="cate_drp_text" style="">'
+            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+            +'</div>'
+            +'</div>');
             res.forEach(function(val){
                 var elements = $();
                 var element = $();
+                var ele = $();
+                var ele_1 = $();
+                var ele_2 = $();
+
+
 
                 elements = elements.add('<div class="filter_check_machine" style="">'
                 +'<div class="cate_drp_check" style="">'
@@ -3391,12 +1322,61 @@ function fill_machine_dropdown(){
                 +'</div>'
                 +'</div>');
 
+                ele = ele.add('<div class="filter_check_machinegp1" style="">'
+                +'<div class="cate_drp_check" style="">'
+                +'<input type="checkbox" id="one" class="machinegp_checkbox1" value="'+val.machine_id+'"/>'
+                +'</div>'
+                +'<div class="cate_drp_text" style="">'
+                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
+                +'</div>'
+                +'</div>');
+
+                ele_1 = ele_1.add('<div class="filter_check_machinegp2" style="">'
+                +'<div class="cate_drp_check" style="">'
+                +'<input type="checkbox" id="one" class="machinegp_checkbox2" value="'+val.machine_id+'"/>'
+                +'</div>'
+                +'<div class="cate_drp_text" style="">'
+                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
+                +'</div>'
+                +'</div>');
+
+                ele_2 = ele_2.add('<div class="filter_check_machinegp3" style="">'
+                +'<div class="cate_drp_check" style="">'
+                +'<input type="checkbox" id="one" class="machinegp_checkbox3" value="'+val.machine_id+'"/>'
+                +'</div>'
+                +'<div class="cate_drp_text" style="">'
+                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
+                +'</div>'
+                +'</div>');
+
                 $('.filter_checkboxes_machine').append(elements);
                 $('.filter_checkboxes_machinegp').append(element);
+                $('.filter_checkboxes_machinegp1').append(ele);
+                $('.filter_checkboxes_machinegp2').append(ele_1);
+                $('.filter_checkboxes_machinegp3').append(ele_2);
+
             });
 
             reset_machine();
             reset_machine_gp();
+            reset_machine_gp1();
+            reset_machine_gp2();
+            reset_machine_gp3();
+
+          
+
+            // reason oppcost graph
+            getfilter_oppcost_reason();
+
+            // reason duration graph
+            getfilter_duration_reason();
+
+            // machine wise oppcost
+            getfilter_machine_oppcost();
+
+            // machine wise and duration wise graph filter function
+            getfilter_machine_reason_duration();
+
             
         },
         error:function(er){
@@ -3495,55 +1475,104 @@ function fill_created_by(){
 }
 
 // filter downtime reasons dropdwon function
-function downtime_reason_filter(category_temp){
+function downtime_reason_filter(){
   // var cate_arr = getcategory_arr(); 
   // var arr_leng = cate_arr.length;
-  $('.filter_checkboxes_r').empty();
-  $('.filter_checkboxes_reasongp').empty();
-  if (category_temp === null) {
+ 
+//   if (category_temp === null) {
     $.ajax({
       url:"<?php echo base_url(); ?>/Production_Downtime_controller/downtime_reason_filter_con",
       method:"POST",
       dataType:"json",
       success:function(res){
+
+        $('.filter_checkboxes_r').empty();
+        $('.filter_checkboxes_reasongp').empty();
+        $('.filter_checkboxes_reasongp1').empty();
+        $('.filter_checkboxes_reasongp2').empty();
+        $('.filter_checkboxes_reasongp3').empty();
+
         console.log("reason dropdwon");
         console.log(res);
 
         var element = $();
         var elements = $();
+        var ele = $();
+        var ele_1 = $();
+        var ele_2 = $();
+
         $('.filter_checkboxes_r').append('<div class="filter_check_r" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
         $('.filter_checkboxes_reasongp').append('<div class="filter_check_reasongp" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
+        $('.filter_checkboxes_reasongp1').append('<div class="filter_check_reasongp1" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox1" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
+        $('.filter_checkboxes_reasongp2').append('<div class="filter_check_reasongp2" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox2" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
+        $('.filter_checkboxes_reasongp3').append('<div class="filter_check_reasongp3" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox3" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
+
 
         res.forEach(function(item){
           // console.log(item.downtime_reason_id);
-          if (item.downtime_reason==="Tool Changeover") {
+        //   if (item.downtime_reason==="Tool Changeover") {
             
-          }else{
+        //   }else{
             // element = element.add('<option value="'+item.downtime_reason+'">'+item.downtime_reason+'</option>');
             element = element.add('<div class="filter_check_r" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
             
             elements = elements.add('<div class="filter_check_reasongp" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
 
+            ele = ele.add('<div class="filter_check_reasongp1" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox1" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
+            
+            ele_1 = ele_1.add('<div class="filter_check_reasongp2" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox2" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
+            ele_2 = ele_2.add('<div class="filter_check_reasongp3" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox3" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
+           
             $('.filter_checkboxes_r').append(element);
             $('.filter_checkboxes_reasongp').append(elements);
-          }
+            $('.filter_checkboxes_reasongp1').append(ele);
+            $('.filter_checkboxes_reasongp2').append(ele_1);
+            $('.filter_checkboxes_reasongp3').append(ele_2);
+
+
+
+        //   }
         
         });
         // downtime reasons all reasons selection funciton [reset the multiselect dropdwon]
         reset_reason();
         reset_reason_gp();
+        reset_reason_gp1();
+        reset_reason_gp2();
+        reset_reason_gp3();
+
+         //graph filter reset category dropdown
+        reset_category_gp();
+        reset_category_gp1();
+        reset_category_gp2();
+        reset_category_gp3();
+
+        // graph 
+         // reason oppcost graph
+    getfilter_oppcost_reason();
+
+// // reason duration graph
+getfilter_duration_reason();
+
+// // machine wise oppcost
+getfilter_machine_oppcost();
+
+// // machine wise and duration wise graph filter function
+getfilter_machine_reason_duration();
+
+        
       },
       error:function(err){
         console.log(err);
       },
     });
-  }
-  else if(category_temp!=null){
-    // selected_cate_reasons(cate_arr[0]);
-    // console.log("ok");
-    // console.log(category_temp);
-    category_based_reson(category_temp);
-  }
+//   }
+//   else if(category_temp!=null){
+//     // selected_cate_reasons(cate_arr[0]);
+//     // console.log("ok");
+//     // console.log(category_temp);
+//     category_based_reson(category_temp);
+//   }
 }
 
 // category based reason
@@ -3706,6 +1735,7 @@ $(document).on('click','#apply_filter_btn',function(event){
 });
 // after click filter and document ready function and after pagination uusing filter
 function filter_after_filter(end_index,start_index){
+
     var get_category_data = getcategory_arr();
     var machine_arr = getmachine_arr();
     var part_arr = getpart_arr();
@@ -3763,7 +1793,7 @@ function filter_after_filter(end_index,start_index){
     t = $('.toDate').val();
     from = f.replace(" ","T");
     to = t.replace(" ","T");
-    
+
     $.ajax({
         url:"<?php echo base_url('Production_Downtime_controller/filter_records'); ?>",
         method:"POST",
@@ -3832,7 +1862,8 @@ function filter_after_filter(end_index,start_index){
                 
             });
             table_onclick();
-            $("#overlay").fadeOut(400);
+
+            $("#overlay").fadeOut(550);
             // var width_get = $('.fixed_rows').css('height');
             // var width_get_1 = $('.scroll_rows').css('height');
             // // console.log("table height");
@@ -3874,35 +1905,49 @@ $(document).on('click','.table_reset',function(event){
 
 
 // graph filter function temporary hide 
-/*
+
+// Downtime opportunity Cost by Reasons
 function getfilter_oppcost_reason(){
     //alert('hi');
+    $('#reason_wise_oppcost').remove();
+    $('.child_reason_wise_oppcost').append('<canvas id="reason_wise_oppcost"></canvas>');
+    $('.chartjs-hidden-iframe').remove();
 
     // machine array
-    var graph_reason_arr = [];
+    var graph_machine_arr = [];
     $('.machinegp_checkbox').each(function(){
         if ($(this).is(':checked')) {
-            graph_reason_arr.push($(this).val());
+            graph_machine_arr.push($(this).val().trim());
         }
     });
 
     // reason array
-    var graph_machine_arr = [];
+    var graph_reason_arr = [];
     $('.reasongp_checkbox').each(function(){
-        graph_machine_arr.push($(this).val());
+        if ($(this).is(':checked')) {
+            graph_reason_arr.push($(this).val());
+        }
     });
 
     
     // category
     var graph_category_arr = [];
     $('.categorygp_checkbox').each(function(){
-        graph_category_arr.push($(this).val());
+        if ($(this).is(':checked')) {
+            graph_category_arr.push($(this).val());
+        }
     });
 
     f = $('.fromDate').val();
     t = $('.toDate').val();
     f = f.replace(" ","T");
     t = t.replace(" ","T");
+    console.log('reason oppcost graph filter');
+    console.log(graph_machine_arr);
+    console.log(graph_category_arr);
+    console.log(graph_reason_arr);
+    console.log(f);
+    console.log(t);
 
     $.ajax({
         url:"<?php echo  base_url('Production_Downtime_controller/graph_filter_reason_wise_oppcost'); ?>",
@@ -3916,14 +1961,883 @@ function getfilter_oppcost_reason(){
             to:t,
         },
         success:function(res){
+            console.log("filter data");
             console.log(res);
+
+
+            $('#reason_wise_oppcost_total').text(parseFloat(res['grandTotal']).toLocaleString("en-IN"));
+            // total hour and minute
+            var thour = parseInt(res['total_duration'])/60;
+            var tminute = parseInt(res['total_duration']%60);
+            $('#total_duration_header').html(parseInt(thour)+'h'+' '+parseInt(tminute)+'m');
+
+            var reason_label = [];
+            var oppcost_arr = [];
+            var reason_id_arr = [];
+           
+
+            var oppcost_percent_arr = [];
+            var temp_cost_ini = 0;
+            res['graph'].forEach(function(val){
+                reason_label.push(val.downtime_reason);
+                var tempcost = parseInt(val.opportunity_cost);
+                // console.log(typeof tempcost);
+                oppcost_arr.push(tempcost);
+                reason_id_arr.push(val.downtime_reason_id);
+                // console.log(val.downtime_reason);
+                // console.log('tempcost'+tempcost);
+                // console.log('ex temp cost'+temp_cost_ini);
+                // console.log(res['grandTotal']);
+                temp_cost_ini = parseInt(temp_cost_ini)+parseInt(tempcost);
+                oppcost_percent_arr.push(temp_cost_ini);
+            });
+
+            // calculate percentage array
+            var percentage_arr = [];
+            oppcost_percent_arr.forEach(function(item){
+                // console.log(item);
+                // console.log(res['grandTotal']);
+                var temp_data = parseFloat(parseInt(item)/parseInt(res['grandTotal'])).toFixed(2)*100;
+                // temp_data = temp_data*100;
+                percentage_arr.push(temp_data);
+            });
+
+            // console.log("temporary cost array");
+            // console.log(oppcost_percent_arr);
+            var bar_width = 0.6;
+            var bar_size = 0.7;
+        
+            while(true){
+                var len= reason_label.length;
+                if (len < 8) {
+                    reason_label.push("");
+                }
+                else if(len > 8){
+                var l = parseInt(len)%parseInt(8);
+                var w= parseInt($('.parent_reason_wise_oppcost').css("width"))+parseInt(l*18*16);
+                // console.log("Reason Mapping");
+                // console.log(w);
+                $('.child_reason_wise_oppcost').css("width",w+"px");
+                break;
+                }
+                else{
+                break;
+                }
+            }
+          
+           
+            // console.log(oppcost_percent_arr);
+            // console.log(percentage_arr);
+            var ctx = document.getElementById("reason_wise_oppcost").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: reason_label,
+                    datasets:[{
+                        type: 'line',
+                        label: 'Total',
+                        data: percentage_arr,
+                        percentage_data:percentage_arr,
+                        backgroundColor: 'white',
+                        borderColor: "#7f7f7f", 
+                        pointBorderColor: "#d9d9ff",  
+                        borderWidth: 1, 
+                        showLine : true,
+                        fill: false,
+                        lineColor:"black",
+                        pointRadius:7,
+                        yAxisID: 'A',  
+                       
+                    }
+                    ,{
+                        type: 'bar',
+                        label:reason_label ,
+                        data: oppcost_arr,
+                        percentage_data:0,
+                        // borderColor: 'rgb(255, 99, 132)',
+                        backgroundColor: '#0075F6',
+                        yAxisID: 'B',
+                    }
+                ],
+                },
+                // borderColor: "#004b9b", 
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,   
+                    scales: {
+                        // y: {
+                        //     display:false,
+                        //     beginAtZero:true,
+                        //     stacked:true
+                        // },
+                        A:{
+                          type: 'linear',
+                          position: 'right',
+                          // beginAtZero: true,
+                          suggestedMin: 0,
+                          suggestedMax: 100,
+                          display:true,
+                          grid:{
+                            display:false
+                          },
+                        },
+                        B:{
+                          type: 'linear',
+                          position: 'left',
+                          beginAtZero: true,
+                          display:true,
+                          grid:{
+                            display:false
+                          },
+                        },
+                        x:{
+                            display:true,
+                            grid:{
+                            display:false
+                            },
+                            stacked:true,
+                        },
+                    },
+                    plugins: {
+                    legend: {
+                        display: false,
+                    },
+                    tooltip: {
+                        enabled: false,
+                        external: reason_oppcost_tooltip,
+                    }
+                    },
+                },            
+            });
         }
 
     });
-    console.log("Graph filter array");
-    console.log(graph_reason_arr);
+   console.log('filter data');
+   console.log(graph_category_arr);
+   console.log(graph_reason_arr);
+   console.log(graph_machine_arr);
+}
+
+
+// Downtime Duration by Reasons
+
+function getfilter_duration_reason(){
+     
+    $('#reason_wise_duration').remove();
+    $('.child_reason_wise_duration').append('<canvas id="reason_wise_duration"></canvas>');
+    $('.chartjs-hidden-iframe').remove();
+
+
+    // machine array
+    var graph_machine_arr = [];
+    $('.machinegp_checkbox1').each(function(){
+        if ($(this).is(':checked')) {
+            graph_machine_arr.push($(this).val().trim());
+        }
+    });
+
+    // reason array
+    var graph_reason_arr = [];
+    $('.reasongp_checkbox1').each(function(){
+        if ($(this).is(':checked')) {
+            graph_reason_arr.push($(this).val());
+        }
+    });
+
+    
+    // category
+    var graph_category_arr = [];
+    $('.categorygp_checkbox1').each(function(){
+        if ($(this).is(':checked')) {
+            graph_category_arr.push($(this).val());
+        }
+    });
+
+
+
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
+    console.log('reason duration graph filter');
     console.log(graph_machine_arr);
     console.log(graph_category_arr);
+    console.log(graph_reason_arr);
+    console.log(f);
+    console.log(t);
+    $.ajax({
+        url:"<?php echo base_url('Production_Downtime_controller/getdowntime_graph_filter_reason_duration'); ?>",
+        type: "POST",
+        dataType: "json",
+        data:{
+            from:f,
+            to:t,
+            reason_arr:graph_reason_arr,
+            machine_arr:graph_machine_arr,
+            category_arr:graph_category_arr
+        },
+        success:function(res){
+            console.log("Reason Wise duration graph filter");
+            console.log(res);
+
+            var hour_text = parseInt(parseInt(res['total_duration'])/60);
+            var minute_text = parseInt(parseInt(res['total_duration'])%60);
+            $('#reason_duration_text').text(hour_text+'h'+' '+minute_text+'m');
+
+            var reason_label = [];
+            var duration_arr = [];
+            var reason_id_arr = [];
+
+            var duration_percentage_arr = [];
+            var duration_arr_cumulative = [];
+            var total_duration = 0;
+            res['graph'].forEach(function(val){
+                reason_label.push(val.downtime_reason);
+                var tempcost = parseInt(val.duration);
+                // console.log(typeof tempcost);
+                duration_arr.push(tempcost);
+                reason_id_arr.push(val.downtime_reason_id);
+                // console.log(val.downtime_reason);
+                total_duration = parseInt(total_duration) + parseInt(tempcost);
+                duration_arr_cumulative.push(total_duration);
+                var temp_data = parseFloat(parseInt(total_duration)/parseInt(res['total_duration'])).toFixed(2)*100;
+                duration_percentage_arr.push(temp_data);
+            });
+
+            var bar_width = 0.6;
+            var bar_size = 0.7;
+            
+            while(true){
+                var len= reason_label.length;
+                if (len < 8) {
+                    reason_label.push("");
+                }
+                else if(len > 8){
+                var l = parseInt(len)%parseInt(8);
+                var w= parseInt($('.parent_reason_wise_duration').css("width"))+parseInt(l*18*16);
+                $('.child_reason_wise_duration').css("width",w+"px");
+                break;
+                }
+                else{
+                break;
+                }
+            }
+            // console.log("duration by reasons");
+            // console.log(duration_percentage_arr);
+            var ctx = document.getElementById("reason_wise_duration").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: reason_label,
+                    datasets: [{
+
+                        type: 'line',
+                        label: 'Percentage',
+                        data:duration_percentage_arr,
+                        percentage_data: duration_percentage_arr,
+                        backgroundColor: 'white',
+                        borderColor: "#7f7f7f", 
+                        pointBorderColor: "#d9d9ff",  
+                        borderWidth: 1, 
+                        showLine : true,
+                        fill: false,
+                        lineColor:"black",
+                        pointRadius:7,
+                        yAxisID: 'A',
+
+                      
+
+                    },{
+                        type:'bar',
+                        label:reason_label,
+                        data:duration_arr,
+                        percentage_data:0,
+                        backgroundColor: "#0075F6",
+                        yAxisID: 'B',  
+                    }],
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,   
+                    scales: {
+                        // y: {
+                        //     display:false,
+                        //     beginAtZero:true,
+                        //     stacked:true
+                        // },
+                        A:{
+                          type: 'linear',
+                          position: 'right',
+                          // beginAtZero: true,
+                          suggestedMin: 0,
+                          suggestedMax: 100,
+                          display:true,
+                          grid:{
+                            display:false
+                          },
+                        },
+                        B:{
+                          type: 'linear',
+                          position: 'left',
+                          beginAtZero: true,
+                          display:true,
+                          grid:{
+                            display:false
+                          },
+                        },
+                        x:{
+                            display:true,
+                            grid:{
+                            display:false
+                            },
+                            stacked:true,
+                        },
+                    },
+                    plugins: {
+                    legend: {
+                        display: false,
+                    },
+                    tooltip: {
+                        enabled: false,
+                        external: reason_wise_duration_tooltip,
+                    }
+                    },
+                },            
+            });
+
+            
+        }
+    });
+    
 }
-*/
+
+
+// machine wise oppcost graph filter function 
+function getfilter_machine_oppcost(){
+
+    $('#machine_wise_oppcost').remove();
+    $('.child_machine_wise_oppcost').append('<canvas id="machine_wise_oppcost"><canvas>');
+    $('.chartjs-hidden-iframe').remove();
+
+
+    // machine array
+    var graph_machine_arr = [];
+    $('.machinegp_checkbox2').each(function(){
+        if ($(this).is(':checked')) {
+            graph_machine_arr.push($(this).val().trim());
+        }
+    });
+
+    // reason array
+    var graph_reason_arr = [];
+    $('.reasongp_checkbox2').each(function(){
+        if ($(this).is(':checked')) {
+            graph_reason_arr.push($(this).val());
+        }
+    });
+
+    
+    // category
+    var graph_category_arr = [];
+    $('.categorygp_checkbox2').each(function(){
+        if ($(this).is(':checked')) {
+            graph_category_arr.push($(this).val());
+        }
+    });
+
+
+
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
+    console.log('machine wise oppcost graph filter');
+    console.log(graph_machine_arr);
+    console.log(graph_category_arr);
+    console.log(graph_reason_arr);
+    console.log(f);
+    console.log(t);
+    $.ajax({
+        url:'<?php echo base_url('Production_Downtime_controller/filter_machine_wise_oppcost') ?>',
+        type: "POST",
+        dataType: "json",
+        data:{
+            from:f,
+            to:t,
+            reason_arr:graph_reason_arr,
+            machine_arr:graph_machine_arr,
+            category_arr:graph_category_arr
+        },
+        success:function(res){
+            console.log('Machine wise oppcost');
+            console.log(res);
+            $('#machine_wise_oppcost_total').text(parseFloat(res['grant_total']).toLocaleString("en-IN"));
+            var machine_label = [];
+            var oppcost_arr = [];
+            var machine_id_arr = [];
+
+            var machine_duration_percentage = 0;
+            var mdarr = [];
+            var oppcost_arr_cumulative = [];
+            res['graph'].forEach(function(val){
+                machine_label.push(val.machine_name);
+                var tempcost = parseInt(val.oppcost);
+                // console.log(typeof tempcost);
+                oppcost_arr.push(tempcost);
+                machine_id_arr.push(val.machine_id);
+                // console.log(val.downtime_reason);
+                machine_duration_percentage = parseInt(machine_duration_percentage)+parseInt(tempcost);
+                oppcost_arr_cumulative.push(machine_duration_percentage);
+                var temp_d = parseFloat(parseInt(machine_duration_percentage)/parseInt(res['grant_total'])).toFixed(2)*100;
+                mdarr.push(temp_d);
+                
+            });
+
+            var bar_width = 0.6;
+            var bar_size = 0.7;
+        
+            while(true){
+                var len= machine_label.length;
+                if (len < 8) {
+                    machine_label.push("");
+                }
+                else if(len > 8){
+                var l = parseInt(len)%parseInt(8);
+                var w= parseInt($('.parent_machine_wise_oppcost').css("width"))+parseInt(l*18*16);
+                $('.child_machine_wise_oppcost').css("width",w+"px");
+                break;
+                }
+                else{
+                break;
+                }
+            }
+
+            var ctx = document.getElementById("machine_wise_oppcost").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: machine_label,
+                    datasets: [{
+                        type: 'line',
+                        label: 'Percentage',
+                        // data: oppcost_arr_cumulative,
+                        percentage_data:mdarr,
+                        data:mdarr,
+                        backgroundColor: 'white',
+                        borderColor: "#7f7f7f", 
+                        pointBorderColor: "#d9d9ff",  
+                        borderWidth: 1, 
+                        showLine : true,
+                        fill: false,
+                        lineColor:"black", 
+                        pointRadius:7,
+                        yAxisID: 'A',  
+
+                       
+                    },{
+                        label:machine_label,
+                        data:oppcost_arr,
+                        backgroundColor: "#0075F6",
+                        percentage_data:0,
+                        yAxisID: 'B',
+                    }],
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,   
+                    scales: {
+                        // y: {
+                        //     id: 'A',
+                        //     type:'linear',
+                        //     position:'left',
+                        //     display:true,
+                        //     // beginAtZero:true,
+                        //     stacked:true
+                        // },
+                        A:{
+                          type: 'linear',
+                          position: 'right',
+                          // beginAtZero: true,
+                          suggestedMin: 0,
+                          suggestedMax: 100,
+                          display:true,
+                          grid:{
+                            display:false
+                          },
+                        },
+                        B:{
+                          type: 'linear',
+                          position: 'left',
+                          beginAtZero: true,
+                          display:true,
+                          grid:{
+                            display:false
+                          },
+                        },
+                        x:{
+                            display:true,
+                            grid:{
+                            display:false
+                            },
+                            stacked:true,
+                        },
+                    },
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        tooltip: {
+                            enabled: false,
+                            external: machine_wise_oppcost_tooltip,
+                        }
+                    },
+                },            
+            });
+
+
+        },
+        error:function(er){
+            // alert(er);
+        }
+    });
+
+}
+
+
+// machine and reason duration graph filter function
+function getfilter_machine_reason_duration(){
+    
+    // machine array
+    var graph_machine_arr = [];
+    $('.machinegp_checkbox3').each(function(){
+        if ($(this).is(':checked')) {
+            graph_machine_arr.push($(this).val().trim());
+        }
+    });
+
+    // reason array
+    var graph_reason_arr = [];
+    $('.reasongp_checkbox3').each(function(){
+        if ($(this).is(':checked')) {
+            graph_reason_arr.push($(this).val());
+        }
+    });
+
+    
+    // category
+    var graph_category_arr = [];
+    $('.categorygp_checkbox3').each(function(){
+        if ($(this).is(':checked')) {
+            graph_category_arr.push($(this).val());
+        }
+    });
+
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
+    console.log('machine and reason duration  graph filter');
+    console.log(graph_machine_arr);
+    console.log(graph_category_arr);
+    console.log(graph_reason_arr);
+    console.log("from date:\t"+f);
+    console.log("to date:\t"+t);
+    $.ajax({
+        url:'<?php echo base_url('Production_Downtime_controller/filter_machine_reason_duration') ?>',
+        type: "POST",
+        dataType: "json",
+        data:{
+            from:f,
+            to:t,
+            reason_arr:graph_reason_arr,
+            machine_arr:graph_machine_arr,
+            category_arr:graph_category_arr
+        },
+        success:function(res){
+            console.log('Machine and reason  wise duration');
+            console.log(res);
+           
+            var hour_text = parseInt(parseInt(res['total_duration'])/60);
+            var minute_text = parseInt(parseInt(res['total_duration'])%60);
+            $('#machine_reason_duration_text').text(hour_text+'h'+' '+minute_text+'m');
+
+
+            var color = ["white","#004591","#0071EE","#97C9FF","#595959","#A6A6A6","#D9D9D9","#09BB9F","#39F3BB"];
+            var demo = [];
+            var x= 1;
+            var machineName = [];
+            var category_percent = 1.0;
+            var bar_space = 0.5;
+            var percentage_arr = [];
+            var temp_duration = 0;
+            res['data'].forEach(function(value){
+                machineName.push(value.machine_name);
+                temp_duration = parseInt(temp_duration)+parseInt(value.total);
+                var temp_data =  parseFloat(parseInt(temp_duration)/parseInt(res['total_duration'])).toFixed(2)*100;
+                percentage_arr.push(temp_data);
+            });
+
+            demo.push({
+                label:"Total",
+                type: "line",
+                backgroundColor: 'white',
+                borderColor: "#7f7f7f", 
+                pointBorderColor: "#d9d9ff",  
+                borderWidth: 1, 
+                showLine : true,
+                fill: false,
+                lineColor:"black", 
+                percentage_data:percentage_arr,
+                data:percentage_arr,
+                pointRadius: 7,
+                yAxisID: 'A',  
+            });
+
+            res['reason'].forEach(function(k,val) {
+                var arr_1 =[];
+                var rname = [];
+                res['data'].forEach(function(item){
+                    arr_1.push(item.reason_duration[val]);
+                    rname.push(item.reason_name[val]);
+                    
+                });
+                demo.push({
+                    label:res['reason'][val]['downtime_reason'],
+                    type: "bar",
+                    backgroundColor: color[x],
+                    borderColor: color[x],
+                    borderWidth: 1,
+                    fill: true,
+                    data: arr_1,
+                    reasonid:val,
+                    percentage_data:0,
+                    // reject:machineWiseReject,
+                    categoryPercentage:category_percent,
+                    barPercentage: bar_space,
+                    yAxisID: 'B',
+                });
+                x = x+1;
+            });
+
+            // console.log("graph data graph4");
+            // console.log(demo);
+
+        
+            while(true){
+                var len= machineName.length;
+                if (len < 8) {
+                machineName.push("");
+                }
+                else if(len > 8){
+                var l = parseInt(len)%parseInt(8);
+                var w= parseInt($('.parent_machine_reason_duration').css("width"))+parseInt(l*18*16);
+                $('.child_machine_reason_duration').css("width",w+"px");
+                break;
+                }
+                else{
+                break;
+                }
+                
+            }
+
+            var ctx = document.getElementById("machine_reason_duration").getContext('2d');
+            var myChart = new Chart(ctx, {
+            type: 'bar',
+                data: {
+                    labels: machineName,
+                    datasets: demo,
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,   
+                    scales: {
+                        // y: {
+                        //     display:false,
+                        //     beginAtZero:true,
+                        //     stacked:true,
+                        // },
+                        A:{
+                            type: 'linear',
+                            position: 'right',
+                            // beginAtZero: true,
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            display:true,
+                            grid:{
+                                display:false
+                            },
+                            },
+                            B:{
+                            type: 'linear',
+                            position: 'left',
+                            beginAtZero: true,
+                            display:true,
+                            grid:{
+                                display:false
+                            },
+                            },
+                        x:{
+                            display:true,
+                            grid:{
+                            display:false
+                            },
+                            stacked:true
+                        },
+                    },
+                    plugins: {
+                    legend: {
+                        display: false,
+                    },
+                    tooltip: {
+                        enabled: false,
+                        external: machine_and_reason_wise_tooltip,
+                    }
+                    },
+                },
+            });
+
+        },
+        error:function(er){
+            // alert(er);
+            console.log("error "+er);
+        }
+    });
+
+
+
+
+}
+
+
+// page load time this function execute
+$(document).ready(function(){
+
+    // preloader on function
+    $("#overlay").fadeIn(500);
+
+    $('#pagination_val').val('1');
+
+    // load function
+    // myfun_load();
+    // machine dropdown record filling function
+    fill_machine_dropdown();
+
+    // part dropdown record filling
+    fill_part_dropdown();
+
+  
+    // created by dropdown record filling
+    fill_created_by();
+
+    // downtime reasons function
+    // var temp1 = null;
+    downtime_reason_filter();
+   
+
+   
+   
+    var end_index = 50;
+    var start_index = 0;
+    // filter function apply
+    filter_after_filter(end_index,start_index);
+
+});
+
+
+// onblur function change input filter
+// from date on blur function
+$(document).on('blur','.fromDate',function(event){
+    event.preventDefault();
+
+    // preloader function on load
+    $("#overlay").fadeIn(400);
+
+    $('#pagination_val').val('1');
+
+    
+    // load function
+    // myfun_load();
+    // machine dropdown record filling function
+    fill_machine_dropdown();
+
+    // part dropdown record filling
+    fill_part_dropdown();
+
+  
+    // created by dropdown record filling
+    fill_created_by();
+
+    // downtime reasons function
+    // var temp = null;
+    downtime_reason_filter();
+
+    // // reason oppcost graph
+    // getfilter_oppcost_reason();
+
+    // // reason duration graph
+    // getfilter_duration_reason();
+
+    // // machine wise oppcost
+    // getfilter_machine_oppcost();
+
+    // // machine wise and duration wise graph filter function
+    // getfilter_machine_reason_duration();
+
+
+    var end_index = 50;
+    var start_index = 0;
+    // filter function apply
+    filter_after_filter(end_index,start_index);
+});
+
+// to date onblur function
+$(document).on('blur','.toDate',function(event){
+
+    event.preventDefault();  
+
+    // preloader function on load
+    $("#overlay").fadeIn(400);
+
+    // load function
+    // myfun_load();
+    // machine dropdown record filling function
+    fill_machine_dropdown();
+
+    // part dropdown record filling
+    fill_part_dropdown();
+
+  
+    // created by dropdown record filling
+    fill_created_by();
+
+    // downtime reasons function
+    // var temp = null;
+    downtime_reason_filter();
+
+    //graph filter reset category dropdown
+        
+    // // reason oppcost graph
+    // getfilter_oppcost_reason();
+
+    // // reason duration graph
+    // getfilter_duration_reason();
+
+    // // machine wise oppcost
+    // getfilter_machine_oppcost();
+
+    // // machine wise and duration wise graph filter function
+    // getfilter_machine_reason_duration();
+
+
+
+
+    $('#pagination_val').val('1');
+
+    var end_index = 50;
+    var start_index = 0;
+    // filter function apply
+    filter_after_filter(end_index,start_index);
+});
+
+
 </script>
