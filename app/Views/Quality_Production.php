@@ -2253,9 +2253,9 @@ function qualitybyreasonparts() {
       var bar_space=0.5;
 
       while(true){
-        var len= totalVal.length;
+        var len= lab.length;
         if (len < 8) {
-          totalVal.push("");
+          lab.push("");
         }
         else if(len > 8){
           var l = parseInt(len)%parseInt(8);  
@@ -3277,9 +3277,9 @@ function crbmr() {
       var bar_space=0.5;
 
       while(true){
-        var len= machineTotal.length;
+        var len= machineList.length;
         if (len < 8) {
-          machineTotal.push("");
+          machineList.push("");
         }
         else if(len > 8){
           var l = parseInt(len)%parseInt(8);  
@@ -3331,8 +3331,6 @@ function crbmr() {
         });
         x=x+1;
       });
-
-        
 
             var ctx = document.getElementById("CRBMR").getContext('2d');
             var myChart = new Chart(ctx, {
