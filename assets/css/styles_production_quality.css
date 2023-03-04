@@ -5,6 +5,21 @@
     border: 1px solid #ced4da;
     border-radius: 0.3rem;
 }
+.filter_option{
+  height: 1.5rem !important;
+  position: relative;
+  z-index: 1001;
+}
+.filter_div{
+  display: flex;
+  justify-content: flex-end;
+}
+.indexing{
+  z-index: 1000;
+}
+.filter_last{
+  margin-right: 0.5rem;
+}
   .filter_selectBox {
     position: relative;
     display: flex;
@@ -14,7 +29,7 @@
   .filter_checkboxes {
     display: none;
     border: 1px solid #dadada ;
-    max-height: 15rem;
+    max-height: 12rem;
     overflow-y: scroll;
     background-color: white;
   }

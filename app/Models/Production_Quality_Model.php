@@ -234,7 +234,7 @@ class Production_Quality_Model extends Model{
     public function qualityReason(){
         $db = \Config\Database::connect($this->site_connection);
         $query = $db->table('settings_quality_reasons');
-        $query->select('*');
+        $query->select('quality_reason_id,quality_reason_name');
         $res= $query->get()->getResultArray();
         return $res;
     }

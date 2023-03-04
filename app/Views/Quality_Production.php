@@ -24,46 +24,6 @@
     background-color:#005abc;
     opacity: 0.8;
   }
-
-  /* notes */
-   
-  .icon_img_wh{
-      width: 1.2rem;
-      height: 1.2rem;
-    }
-    .icon_img_wh:hover{
-      width: 1.2rem;
-      height: 1.2rem;
-      color:red;
-    }
-    .notes_check{
-        height:1.8rem;
-        width:1.8rem;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        background-color:white;
-        border-radius:50%;
-    }
-    .notes_check:hover {
-    
-        cursor: pointer;
-        background-color:#e6e6e6;
-    }
-      /* notes display property */
-   .notes_display{
-    min-height:4.8rem;
-    max-width:10.9rem;
-    min-width:10rem;
-    background-color:white;
-    margin-left:-15rem; 
-    border:1px solid #e6e6e6;
-    padding:0.7rem;
-    border-radius:10px;
-    display:none;
-   }
-
-
 </style>
 <script type="text/javascript">
   var checkPastTime = function(inputDateTime) {
@@ -186,8 +146,49 @@
             <p class="paddingm fontBold financial_font">Cost of Poor Quality (COPQ) by Reason</p>
           </div>
           <div class="valueMarLeft">
+            <div style="float: left;width: 10%">
               <p class="paddingm headTitle">TOTAL</p>
               <p class="paddingm valueGraph" style="margin-left:0.4rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft COPQP" ></span></p>
+            </div>
+            <div style="float: left;width:90%;" class="filter_div">
+              <div class="box rightmar" style="margin-right: 0.5rem;">
+                <div class="input-box indexing Reasons_COPQP">
+                  <div class="filter_multiselect filter_option">
+                    <div class="filter_selectBox copq_filter" onclick="multiple_drp_reason_copq()">
+                      <div class="inbox-span fontStyle search_style">
+                        <p class="paddingm" id="reason_text_copqp">All Reasons</p>
+                      </div>
+                    </div>
+                    <div class="filter_checkboxes filter_reason_copq">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="box rightmar" style="margin-right: 0.5rem;">
+                <div class="input-box indexing Reasons_COPQP">
+                  <div class="filter_multiselect filter_option">
+                    <div class="filter_selectBox copq_filter" onclick="multiple_drp_machine_copq()">
+                      <div class="inbox-span fontStyle search_style"><p class="paddingm" id="machine_text_copq">All Machines</p></div>
+                    </div>
+                    <div class="filter_checkboxes filter_machine_copq">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="box rightmar" style="margin-right: 0.5rem;">
+                <div class="input-box indexing Reasons_COPQP">
+                  <div class="filter_multiselect filter_option">
+                    <div class="filter_selectBox copq_filter" onclick="multiple_drp_copq()">
+                      <div class="inbox-span fontStyle search_style"><p class="paddingm" id="part_text_copq">All Parts</p></div>
+                    </div>
+                    <div class="filter_checkboxes filter_part_copq">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="parent_graph_quality_opportunity parent_graph_div parent-style">
             <div class="child_graph_quality_opportunity child-style">
@@ -200,8 +201,49 @@
             <p class="paddingm fontBold financial_font">Quality Rejection by Reason</p>
           </div>
           <div class="valueMarLeft">
+            <div style="float: left;width: 10%">
               <p class="paddingm headTitle">TOTAL</p>
               <p class="paddingm valueGraph" style="margin-left:0.4rem;"><span class="paddingm valueMarLeft CRBR" ></span></p>
+            </div>
+            <div style="float: left;width:90%;" class="filter_div">
+              <div class="box rightmar" style="margin-right: 0.5rem;">
+                <div class="input-box indexing">
+                  <div class="filter_multiselect filter_option">
+                    <div class="filter_selectBox" onclick="multiple_drp_reason_crpr()">
+                      <div class="inbox-span fontStyle search_style">
+                        <p class="paddingm" id="reason_text_crpr">All Reasons</p>
+                      </div>
+                    </div>
+                    <div class="filter_checkboxes filter_reason_crpr">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="box rightmar" style="margin-right: 0.5rem;">
+                <div class="input-box indexing">
+                  <div class="filter_multiselect filter_option">
+                    <div class="filter_selectBox" onclick="multiple_drp_machine_crpr()">
+                      <div class="inbox-span fontStyle search_style"><p class="paddingm" id="machine_text_crpr">All Machines</p></div>
+                    </div>
+                    <div class="filter_checkboxes filter_machine_crpr">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="box rightmar" style="margin-right: 0.5rem;">
+                <div class="input-box indexing">
+                  <div class="filter_multiselect filter_option">
+                    <div class="filter_selectBox" onclick="multiple_drp_crpr()">
+                      <div class="inbox-span fontStyle search_style"><p class="paddingm" id="part_text_crpr">All Parts</p></div>
+                    </div>
+                    <div class="filter_checkboxes filter_part_crpr">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="parent_graph_quality_reason_wise parent_graph_div parent-style">
             <div class="child_graph_quality_reason_wise child-style">
@@ -216,8 +258,49 @@
             <p class="paddingm fontBold financial_font">Cost of Poor Quality (COPQ) by Machines</p>
           </div>
           <div class="valueMarLeft">
+            <div style="float: left;width: 10%">
               <p class="paddingm headTitle">TOTAL</p>
               <p class="paddingm valueGraph" style="margin-left:0.4rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft COPQM" ></span></p>
+            </div>
+            <div style="float: left;width:90%;" class="filter_div">
+              <div class="box rightmar" style="margin-right: 0.5rem;">
+                <div class="input-box indexing">
+                  <div class="filter_multiselect filter_option">
+                    <div class="filter_selectBox" onclick="multiple_drp_reason_copqm()">
+                      <div class="inbox-span fontStyle search_style">
+                        <p class="paddingm" id="reason_text_copqm">All Reasons</p>
+                      </div>
+                    </div>
+                    <div class="filter_checkboxes filter_reason_copqm">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="box rightmar" style="margin-right: 0.5rem;">
+                <div class="input-box indexing">
+                  <div class="filter_multiselect filter_option">
+                    <div class="filter_selectBox" onclick="multiple_drp_machine_copqm()">
+                      <div class="inbox-span fontStyle search_style"><p class="paddingm" id="machine_text_copqm">All Machines</p></div>
+                    </div>
+                    <div class="filter_checkboxes filter_machine_copqm">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="box rightmar" style="margin-right: 0.5rem;">
+                <div class="input-box indexing">
+                  <div class="filter_multiselect filter_option">
+                    <div class="filter_selectBox" onclick="multiple_drp_copqm()">
+                      <div class="inbox-span fontStyle search_style"><p class="paddingm" id="part_text_copqm">All Parts</p></div>
+                    </div>
+                    <div class="filter_checkboxes filter_part_copqm">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="parent_graph_quality_machine_wise parent_graph_div parent-style">
             <div class="child_graph_quality_machine_wise child-style">
@@ -230,8 +313,51 @@
             <p class="paddingm fontBold financial_font">Quality Rejection by Machines with Reasons</p>
           </div>
           <div class="valueMarLeft">
+            <div style="float: left;width: 10%">
               <p class="paddingm headTitle">TOTAL</p>
               <p class="paddingm valueGraph" style="margin-left:0.4rem;"><span class="paddingm valueMarLeft CRBMR" ></span></p>
+            </div>
+            <div style="float: left;width:90%;" class="filter_div">
+              <div class="box rightmar" style="margin-right: 0.5rem;">
+                <div class="input-box indexing">
+                  <div class="filter_multiselect filter_option">
+                    <div class="filter_selectBox" onclick="multiple_drp_reason_qrmr()">
+                      <div class="inbox-span fontStyle search_style">
+                        <p class="paddingm" id="reason_text_qrmr">All Reasons</p>
+                      </div>
+                    </div>
+                    <div class="filter_checkboxes filter_reason_qrmr">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="box rightmar" style="margin-right: 0.5rem;">
+                <div class="input-box indexing">
+                  <div class="filter_multiselect filter_option">
+                    <div class="filter_selectBox" onclick="multiple_drp_machine_qrmr()">
+                      <div class="inbox-span fontStyle search_style"><p class="paddingm" id="machine_text_qrmr">All Machines</p></div>
+                    </div>
+                    <div class="filter_checkboxes filter_machine_qrmr">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="box rightmar" style="margin-right: 0.5rem;">
+                <div class="input-box indexing">
+                  <div class="filter_multiselect filter_option">
+                    <div class="filter_selectBox" onclick="multiple_drp_qrmr()">
+                      <div class="inbox-span fontStyle search_style"><p class="paddingm" id="part_text_qrmr">All Parts</p></div>
+                    </div>
+                    <div class="filter_checkboxes filter_part_qrmr">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
           </div>
           <div class="parent_graph_quality_machine_reason parent_graph_div parent-style">
             <div class="child_graph_quality_machine_reason child-style">
@@ -247,8 +373,49 @@
             <p class="paddingm fontBold financial_font">Cost of Poor Quality (COPQ) by Parts</p>
           </div>
           <div class="valueMarLeft">
+            <div style="float: left;width: 10%">
               <p class="paddingm headTitle">TOTAL</p>
               <p class="paddingm valueGraph" style="margin-left:0.4rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft CQRP" ></span></p>
+            </div>
+            <div style="float: left;width:90%;" class="filter_div">
+              <div class="box rightmar" style="margin-right: 0.5rem;">
+                <div class="input-box indexing">
+                  <div class="filter_multiselect filter_option">
+                    <div class="filter_selectBox" onclick="multiple_drp_reason_copqp()">
+                      <div class="inbox-span fontStyle search_style">
+                        <p class="paddingm" id="reason_text_copqp">All Reasons</p>
+                      </div>
+                    </div>
+                    <div class="filter_checkboxes filter_reason_copqp">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="box rightmar" style="margin-right: 0.5rem;">
+                <div class="input-box indexing">
+                  <div class="filter_multiselect filter_option">
+                    <div class="filter_selectBox" onclick="multiple_drp_machine_copqp()">
+                      <div class="inbox-span fontStyle search_style"><p class="paddingm" id="machine_text_copqp">All Machines</p></div>
+                    </div>
+                    <div class="filter_checkboxes filter_machine_copqp">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="box rightmar" style="margin-right: 0.5rem;">
+                <div class="input-box indexing">
+                  <div class="filter_multiselect filter_option">
+                    <div class="filter_selectBox" onclick="multiple_drp_copqp()">
+                      <div class="inbox-span fontStyle search_style"><p class="paddingm" id="part_text_copqp">All Parts</p></div>
+                    </div>
+                    <div class="filter_checkboxes filter_part_copqp">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="parent_graph_quality_parts parent_graph_div parent-style">
             <div class="child_graph_quality_parts child-style">
@@ -261,8 +428,49 @@
             <p class="paddingm fontBold financial_font">Quality Rejection by Parts with Reasons</p>
           </div>
           <div class="valueMarLeft">
+            <div style="float: left;width: 10%">
               <p class="paddingm headTitle">TOTAL</p>
               <p class="paddingm valueGraph" style="margin-left:0.4rem;"><span class="paddingm valueMarLeft CQRPR" ></span></p>
+            </div>
+            <div style="float: left;width:90%;" class="filter_div">
+              <div class="box rightmar" style="margin-right: 0.5rem;">
+                <div class="input-box indexing">
+                  <div class="filter_multiselect filter_option">
+                    <div class="filter_selectBox" onclick="multiple_drp_reason_qrpr()">
+                      <div class="inbox-span fontStyle search_style">
+                        <p class="paddingm" id="reason_text_qrpr">All Reasons</p>
+                      </div>
+                    </div>
+                    <div class="filter_checkboxes filter_reason_qrpr">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="box rightmar" style="margin-right: 0.5rem;">
+                <div class="input-box indexing">
+                  <div class="filter_multiselect filter_option">
+                    <div class="filter_selectBox" onclick="multiple_drp_machine_qrpr()">
+                      <div class="inbox-span fontStyle search_style"><p class="paddingm" id="machine_text_qrpr">All Machines</p></div>
+                    </div>
+                    <div class="filter_checkboxes filter_machine_qrpr">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="box rightmar" style="margin-right: 0.5rem;">
+                <div class="input-box indexing">
+                  <div class="filter_multiselect filter_option">
+                    <div class="filter_selectBox" onclick="multiple_drp_qrpr()">
+                      <div class="inbox-span fontStyle search_style"><p class="paddingm" id="part_text_qrpr">All Parts</p></div>
+                    </div>
+                    <div class="filter_checkboxes filter_part_qrpr">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="parent_graph_quality_part_reason parent_graph_div parent-style">
             <div class="child_graph_quality_part_reason child-style">
@@ -288,13 +496,13 @@
           <div class="box rightmar center-align font_color" style="margin-right: 0.5rem;">
             <p class="paddingm">of <span id="total_pagination"></span> pages</p>
           </div>
-          <div class="box rightmar" style="margin-right: 0.5rem;">
+          <!-- <div class="box rightmar" style="margin-right: 0.5rem;">
             <div class="input-box">
-              <input type="text" class="form-control font_weight" name="" style="font-size:0.8rem;" placeholder="Search Keywords" id="Production_MachineName" style="width: 10rem;">
-              <!-- </select> -->
+              <select class="form-select font_weight" name="" id="Production_MachineName" style="width: 10rem;">
+              </select>
               <label for="inputSiteNameAdd" class="input-padding ">Search</label>
             </div>
-          </div>
+          </div> -->
           <div class="box rightmar" style="margin-right: 0.5rem;">
             <div class="input-box">
               <div class="filter_multiselect">
@@ -403,6 +611,8 @@
 </div>
 
 <script type="text/javascript">
+
+  var copq_hide = 0;
 
   var filter_array = [];
  
@@ -520,8 +730,6 @@
   $('.fromDate').val(tdate);
 
 
-  myFun();
-
   $(document).on('blur','.fromDate',function(){
     myFun();
   });
@@ -564,7 +772,6 @@
     crbmr();
     qualitybyparts();
     qualitybyreasonparts();
-  
   }
 
 function multiple_drp() {
@@ -575,6 +782,7 @@ function multiple_drp() {
       $('.filter_part').css("display","none");
   }
 }
+
 
 function multiple_drp_machine() {
   $('.filter_checkboxes').css("display","none");
@@ -594,7 +802,6 @@ function multiple_drp_reason() {
   }
 }
 
-
 function multiple_drp_user() {
   $('.filter_checkboxes').css("display","none");
   if ($('.filter_user').css("display") == "none") {
@@ -603,6 +810,177 @@ function multiple_drp_user() {
       $('.filter_user').css("display","none");
   }
 }
+
+function multiple_drp_reason_copq() {
+  $('.filter_checkboxes').css("display","none");
+  if ($('.filter_reason_copq').css("display") == "none") {
+      $('.filter_reason_copq').css("display","block");
+      // copq_hide = 0;
+  } else {
+      $('.filter_reason_copq').css("display","none");
+      // copqp();
+  }
+}
+
+function multiple_drp_machine_copq() {
+  $('.filter_checkboxes').css("display","none");
+  if ($('.filter_machine_copq').css("display") == "none") {
+      $('.filter_machine_copq').css("display","block");
+      // copq_hide = 1;
+  } else {
+      $('.filter_machine_copq').css("display","none");
+      // copqp();
+  }
+}
+
+function multiple_drp_copq() {
+  $('.filter_checkboxes').css("display","none");
+  if ($('.filter_part_copq').css("display") == "none") {
+      $('.filter_part_copq').css("display","block");
+      // copq_hide = 0;
+  } else {
+      $('.filter_part_copq').css("display","none");
+      // copqp();
+  }
+}
+
+
+function multiple_drp_reason_crpr() {
+  $('.filter_checkboxes').css("display","none");
+  if ($('.filter_reason_crpr').css("display") == "none") {
+      $('.filter_reason_crpr').css("display","block");
+  } else {
+      $('.filter_reason_crpr').css("display","none");
+  }
+}
+
+function multiple_drp_machine_crpr() {
+  $('.filter_checkboxes').css("display","none");
+  if ($('.filter_machine_crpr').css("display") == "none") {
+      $('.filter_machine_crpr').css("display","block");
+  } else {
+      $('.filter_machine_crpr').css("display","none");
+  }
+}
+
+function multiple_drp_crpr() {
+  $('.filter_checkboxes').css("display","none");
+  if ($('.filter_part_crpr').css("display") == "none") {
+      $('.filter_part_crpr').css("display","block");
+  } else {
+      $('.filter_part_crpr').css("display","none");
+  }
+}
+
+function multiple_drp_reason_copqm() {
+  $('.filter_checkboxes').css("display","none");
+  if ($('.filter_reason_copqm').css("display") == "none") {
+      $('.filter_reason_copqm').css("display","block");
+  } else {
+      $('.filter_reason_copqm').css("display","none");
+  }
+}
+
+function multiple_drp_machine_copqm() {
+  $('.filter_checkboxes').css("display","none");
+  if ($('.filter_machine_copqm').css("display") == "none") {
+      $('.filter_machine_copqm').css("display","block");
+  } else {
+      $('.filter_machine_copqm').css("display","none");
+  }
+}
+
+function multiple_drp_copqm() {
+  $('.filter_checkboxes').css("display","none");
+  if ($('.filter_part_copqm').css("display") == "none") {
+      $('.filter_part_copqm').css("display","block");
+  } else {
+      $('.filter_part_copqm').css("display","none");
+  }
+}
+
+function multiple_drp_reason_copqp() {
+  $('.filter_checkboxes').css("display","none");
+  if ($('.filter_reason_copqp').css("display") == "none") {
+      $('.filter_reason_copqp').css("display","block");
+  } else {
+      $('.filter_reason_copqp').css("display","none");
+  }
+}
+
+function multiple_drp_machine_copqp() {
+  $('.filter_checkboxes').css("display","none");
+  if ($('.filter_machine_copqp').css("display") == "none") {
+      $('.filter_machine_copqp').css("display","block");
+  } else {
+      $('.filter_machine_copqp').css("display","none");
+  }
+}
+
+function multiple_drp_copqp() {
+  $('.filter_checkboxes').css("display","none");
+  if ($('.filter_part_copqp').css("display") == "none") {
+      $('.filter_part_copqp').css("display","block");
+  } else {
+      $('.filter_part_copqp').css("display","none");
+  }
+}
+
+function multiple_drp_reason_qrmr() {
+  $('.filter_checkboxes').css("display","none");
+  if ($('.filter_reason_qrmr').css("display") == "none") {
+      $('.filter_reason_qrmr').css("display","block");
+  } else {
+      $('.filter_reason_qrmr').css("display","none");
+  }
+}
+
+function multiple_drp_machine_qrmr() {
+  $('.filter_checkboxes').css("display","none");
+  if ($('.filter_machine_qrmr').css("display") == "none") {
+      $('.filter_machine_qrmr').css("display","block");
+  } else {
+      $('.filter_machine_qrmr').css("display","none");
+  }
+}
+
+function multiple_drp_qrmr() {
+  $('.filter_checkboxes').css("display","none");
+  if ($('.filter_part_qrmr').css("display") == "none") {
+      $('.filter_part_qrmr').css("display","block");
+  } else {
+      $('.filter_part_qrmr').css("display","none");
+  }
+}
+
+
+function multiple_drp_reason_qrpr() {
+  $('.filter_checkboxes').css("display","none");
+  if ($('.filter_reason_qrpr').css("display") == "none") {
+      $('.filter_reason_qrpr').css("display","block");
+  } else {
+      $('.filter_reason_qrpr').css("display","none");
+  }
+}
+
+function multiple_drp_machine_qrpr() {
+  $('.filter_checkboxes').css("display","none");
+  if ($('.filter_machine_qrpr').css("display") == "none") {
+      $('.filter_machine_qrpr').css("display","block");
+  } else {
+      $('.filter_machine_qrpr').css("display","none");
+  }
+}
+
+function multiple_drp_qrpr() {
+  $('.filter_checkboxes').css("display","none");
+  if ($('.filter_part_qrpr').css("display") == "none") {
+      $('.filter_part_qrpr').css("display","block");
+  } else {
+      $('.filter_part_qrpr').css("display","none");
+  }
+}
+
 
 
 $(document).on('click','.inbox_part',function(event){
@@ -652,6 +1030,58 @@ $(document).on('click','.inbox_part',function(event){
     // check_if[0].checked=false;
   }else {
     $('#part_text').text('No Part');
+  }
+
+});
+
+
+$(document).on('click','.inbox_part_copq',function(event){
+  var index = $('.inbox_part_copq').index(this);
+  if(index==0 && $( ".filter_part_val_copq:eq('"+index+"')").prop( "checked")==true){
+    $( ".filter_part_val_copq").prop( "checked", false );
+  }
+  else if(index==0 && $( ".filter_part_val_copq:eq('"+index+"')").prop( "checked")==false){
+    $( ".filter_part_val_copq").prop( "checked", true );
+  }
+  else{
+    if ($( ".filter_part_val_copq:eq('"+index+"')").prop( "checked")==true) {
+      $( ".filter_part_val_copq:eq('"+index+"')").prop( "checked", false );
+    }
+    else{
+      $( ".filter_part_val_copq:eq('"+index+"')").prop( "checked", true );
+    }
+  }
+  var l1 = $('.filter_part_val_copq').length;
+  var l2 = $('.filter_part_val_copq:checked').length;
+  if (l2 < l1) {
+    $( ".filter_part_val_copq:eq(0)").prop( "checked", false );
+  }
+
+  // part count
+  var part_count = 0;
+  var check_if = $('.filter_part_val_copq');
+  jQuery('.filter_part_val_copq').each(function(index){
+    if (check_if[index].checked===true) {
+      part_count = parseInt(part_count)+1;
+    }
+  });
+
+  var part_len = $('.filter_part_val_copq').length;
+  part_len = parseInt(part_len)-1;
+  if (parseInt(part_count)>=parseInt(part_len)) {
+      if(check_if[0].checked===true){
+        check_if[0].checked=true;
+        $('#part_text_copq').text(parseInt(part_count)-1+' Selected');
+      }else{
+      // check_if[0].checked=true;
+      reset_part();
+      $('#part_text_copq').text('All');
+    }
+  }else if(((parseInt(part_count)<parseInt(part_len))) && (parseInt(part_count)>0)){
+    $('#part_text_copq').text(parseInt(part_count)+' Selected');
+    // check_if[0].checked=false;
+  }else {
+    $('#part_text_copq').text('No Part');
   }
 
 });
@@ -711,6 +1141,55 @@ $(document).on('click','.inbox_machine',function(event){
 
 });
 
+
+$(document).on('click','.inbox_machine_copq',function(event){
+  var index = $('.inbox_machine_copq').index(this);
+  if(index==0 && $( ".filter_machine_val_copq:eq('"+index+"')").prop( "checked")==true){
+    $( ".filter_machine_val_copq").prop( "checked", false );
+  }
+  else if(index==0 && $( ".filter_machine_val_copq:eq('"+index+"')").prop( "checked")==false){
+    $( ".filter_machine_val_copq").prop( "checked", true );
+  }
+  else{
+    if ($( ".filter_machine_val_copq:eq('"+index+"')").prop( "checked")==true) {
+      $( ".filter_machine_val_copq:eq('"+index+"')").prop( "checked", false );
+    }
+    else{
+      $( ".filter_machine_val_copq:eq('"+index+"')").prop( "checked", true );
+    }
+  }
+  var l1 = $('.filter_machine_val_copq').length;
+  var l2 = $('.filter_machine_val_copq:checked').length;
+  if (l2 < l1) {
+    $( ".filter_machine_val_copq:eq(0)").prop( "checked", false );
+  }
+
+  var machine_count = 0;
+  var check_if = $('.filter_machine_val_copq');
+  jQuery('.filter_machine_val_copq').each(function(index){
+    if (check_if[index].checked===true) {
+      machine_count = parseInt(machine_count)+1;
+    }
+  });
+
+  var machine_len = $('.filter_machine_val_copq').length;
+  machine_len = parseInt(machine_len)-1;
+  if (parseInt(machine_count)>=parseInt(machine_len)) {
+      if(check_if[0].checked===true){
+        check_if[0].checked=true;
+        $('#machine_text_copq').text(parseInt(machine_count)-1+' Selected');
+      }else{
+      reset_machine();
+      $('#machine_text_copq').text('All');
+    }
+  }else if(((parseInt(machine_count)<parseInt(machine_len))) && (parseInt(machine_count)>0)){
+    $('#machine_text_copq').text(parseInt(machine_count)+' Selected');
+  }else {
+    $('#machine_text_copq').text('No Machine');
+  }
+
+});
+
 $(document).on('click','.inbox_reason',function(event){
   var index = $('.inbox_reason').index(this);
   if(index==0 && $( ".filter_reason_val:eq('"+index+"')").prop( "checked")==true){
@@ -761,9 +1240,830 @@ $(document).on('click','.inbox_reason',function(event){
   }else {
     $('#reason_text').text('No Reason');
   }
+});
 
+
+$(document).on('click','.inbox_reason_copq',function(event){
+  var index = $('.inbox_reason_copq').index(this);
+  if(index==0 && $( ".filter_reason_val_copq:eq('"+index+"')").prop( "checked")==true){
+    $( ".filter_reason_val_copq").prop( "checked", false );
+  }
+  else if(index==0 && $( ".filter_reason_val_copq:eq('"+index+"')").prop( "checked")==false){
+    $( ".filter_reason_val_copq").prop( "checked", true );
+  }
+  else{
+    if ($( ".filter_reason_val_copq:eq('"+index+"')").prop( "checked")==true) {
+      $( ".filter_reason_val_copq:eq('"+index+"')").prop( "checked", false );
+    }
+    else{
+      $( ".filter_reason_val_copq:eq('"+index+"')").prop( "checked", true );
+    }
+  }
+  var l1 = $('.filter_reason_val_copq').length;
+  var l2 = $('.filter_reason_val_copq:checked').length;
+  if (l2 < l1) {
+    $( ".filter_reason_val_copq:eq(0)").prop( "checked", false );
+  }
+
+  
+  
+  // Reason  count
+  var reason_count = 0;
+  var check_if = $('.filter_reason_val_copq');
+  jQuery('.filter_reason_val_copq').each(function(index){
+    if (check_if[index].checked===true) {
+      reason_count = parseInt(reason_count)+1;
+    }
+  });
+
+  var reason_len = $('.filter_reason_val_copq').length;
+  reason_len = parseInt(reason_len)-1;
+  if (parseInt(reason_count)>=parseInt(reason_len)) {
+      if(check_if[0].checked===true){
+        check_if[0].checked=true;
+        $('#reason_text_copqp').text(parseInt(reason_count)-1+' Selected');
+      }else{
+      // check_if[0].checked=true;
+      reset_reason();
+      $('#reason_text_copqp').text('All');
+    }
+  }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
+    $('#reason_text_copqp').text(parseInt(reason_count)+' Selected');
+    // check_if[0].checked=false;
+  }else {
+    $('#reason_text_copqp').text('No Reason');
+  }
+});
+
+
+
+$(document).on('click','.inbox_reason_crpr',function(event){
+  var index = $('.inbox_reason_crpr').index(this);
+  if(index==0 && $( ".filter_reason_val_crpr:eq('"+index+"')").prop( "checked")==true){
+    $( ".filter_reason_val_crpr").prop( "checked", false );
+  }
+  else if(index==0 && $( ".filter_reason_val_crpr:eq('"+index+"')").prop( "checked")==false){
+    $( ".filter_reason_val_crpr").prop( "checked", true );
+  }
+  else{
+    if ($( ".filter_reason_val_crpr:eq('"+index+"')").prop( "checked")==true) {
+      $( ".filter_reason_val_crpr:eq('"+index+"')").prop( "checked", false );
+    }
+    else{
+      $( ".filter_reason_val_crpr:eq('"+index+"')").prop( "checked", true );
+    }
+  }
+  var l1 = $('.filter_reason_val_crpr').length;
+  var l2 = $('.filter_reason_val_crpr:checked').length;
+  if (l2 < l1) {
+    $( ".filter_reason_val_crpr:eq(0)").prop( "checked", false );
+  }
+
+  
+  
+  // Reason  count
+  var reason_count = 0;
+  var check_if = $('.filter_reason_val_crpr');
+  jQuery('.filter_reason_val_crpr').each(function(index){
+    if (check_if[index].checked===true) {
+      reason_count = parseInt(reason_count)+1;
+    }
+  });
+
+  var reason_len = $('.filter_reason_val_crpr').length;
+  reason_len = parseInt(reason_len)-1;
+  if (parseInt(reason_count)>=parseInt(reason_len)) {
+      if(check_if[0].checked===true){
+        check_if[0].checked=true;
+        $('#reason_text_crpr').text(parseInt(reason_count)-1+' Selected');
+      }else{
+      // check_if[0].checked=true;
+      reset_reason();
+      $('#reason_text_crpr').text('All');
+    }
+  }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
+    $('#reason_text_crpr').text(parseInt(reason_count)+' Selected');
+    // check_if[0].checked=false;
+  }else {
+    $('#reason_text_crpr').text('No Reason');
+  }
+});
+
+$(document).on('click','.inbox_part_crpr',function(event){
+  var index = $('.inbox_part_crpr').index(this);
+  if(index==0 && $( ".filter_part_val_crpr:eq('"+index+"')").prop( "checked")==true){
+    $( ".filter_part_val_crpr").prop( "checked", false );
+  }
+  else if(index==0 && $( ".filter_part_val_crpr:eq('"+index+"')").prop( "checked")==false){
+    $( ".filter_part_val_crpr").prop( "checked", true );
+  }
+  else{
+    if ($( ".filter_part_val_crpr:eq('"+index+"')").prop( "checked")==true) {
+      $( ".filter_part_val_crpr:eq('"+index+"')").prop( "checked", false );
+    }
+    else{
+      $( ".filter_part_val_crpr:eq('"+index+"')").prop( "checked", true );
+    }
+  }
+  var l1 = $('.filter_part_val_crpr').length;
+  var l2 = $('.filter_part_val_crpr:checked').length;
+  if (l2 < l1) {
+    $( ".filter_part_val_crpr:eq(0)").prop( "checked", false );
+  }
+
+  // part count
+  var part_count = 0;
+  var check_if = $('.filter_part_val_crpr');
+  jQuery('.filter_part_val_crpr').each(function(index){
+    if (check_if[index].checked===true) {
+      part_count = parseInt(part_count)+1;
+    }
+  });
+
+  var part_len = $('.filter_part_val_crpr').length;
+  part_len = parseInt(part_len)-1;
+  if (parseInt(part_count)>=parseInt(part_len)) {
+      if(check_if[0].checked===true){
+        check_if[0].checked=true;
+        $('#part_text_crpr').text(parseInt(part_count)-1+' Selected');
+      }else{
+      // check_if[0].checked=true;
+      reset_part();
+      $('#part_text_crpr').text('All');
+    }
+  }else if(((parseInt(part_count)<parseInt(part_len))) && (parseInt(part_count)>0)){
+    $('#part_text_crpr').text(parseInt(part_count)+' Selected');
+    // check_if[0].checked=false;
+  }else {
+    $('#part_text_crpr').text('No Part');
+  }
 
 });
+$(document).on('click','.inbox_machine_crpr',function(event){
+  var index = $('.inbox_machine_crpr').index(this);
+  if(index==0 && $( ".filter_machine_val_crpr:eq('"+index+"')").prop( "checked")==true){
+    $( ".filter_machine_val_crpr").prop( "checked", false );
+  }
+  else if(index==0 && $( ".filter_machine_val_crpr:eq('"+index+"')").prop( "checked")==false){
+    $( ".filter_machine_val_crpr").prop( "checked", true );
+  }
+  else{
+    if ($( ".filter_machine_val_crpr:eq('"+index+"')").prop( "checked")==true) {
+      $( ".filter_machine_val_crpr:eq('"+index+"')").prop( "checked", false );
+    }
+    else{
+      $( ".filter_machine_val_crpr:eq('"+index+"')").prop( "checked", true );
+    }
+  }
+  var l1 = $('.filter_machine_val_crpr').length;
+  var l2 = $('.filter_machine_val_crpr:checked').length;
+  if (l2 < l1) {
+    $( ".filter_machine_val_crpr:eq(0)").prop( "checked", false );
+  }
+
+  var machine_count = 0;
+  var check_if = $('.filter_machine_val_crpr');
+  jQuery('.filter_machine_val_crpr').each(function(index){
+    if (check_if[index].checked===true) {
+      machine_count = parseInt(machine_count)+1;
+    }
+  });
+
+  var machine_len = $('.filter_machine_val_crpr').length;
+  machine_len = parseInt(machine_len)-1;
+  if (parseInt(machine_count)>=parseInt(machine_len)) {
+      if(check_if[0].checked===true){
+        check_if[0].checked=true;
+        $('#machine_text_crpr').text(parseInt(machine_count)-1+' Selected');
+      }else{
+      reset_machine();
+      $('#machine_text_crpr').text('All');
+    }
+  }else if(((parseInt(machine_count)<parseInt(machine_len))) && (parseInt(machine_count)>0)){
+    $('#machine_text_crpr').text(parseInt(machine_count)+' Selected');
+  }else {
+    $('#machine_text_crpr').text('No Machine');
+  }
+
+});
+
+
+$(document).on('click','.inbox_reason_copqm',function(event){
+  var index = $('.inbox_reason_copqm').index(this);
+  if(index==0 && $( ".filter_reason_val_copqm:eq('"+index+"')").prop( "checked")==true){
+    $( ".filter_reason_val_copqm").prop( "checked", false );
+  }
+  else if(index==0 && $( ".filter_reason_val_copqm:eq('"+index+"')").prop( "checked")==false){
+    $( ".filter_reason_val_copqm").prop( "checked", true );
+  }
+  else{
+    if ($( ".filter_reason_val_copqm:eq('"+index+"')").prop( "checked")==true) {
+      $( ".filter_reason_val_copqm:eq('"+index+"')").prop( "checked", false );
+    }
+    else{
+      $( ".filter_reason_val_copqm:eq('"+index+"')").prop( "checked", true );
+    }
+  }
+  var l1 = $('.filter_reason_val_copqm').length;
+  var l2 = $('.filter_reason_val_copqm:checked').length;
+  if (l2 < l1) {
+    $( ".filter_reason_val_copqm:eq(0)").prop( "checked", false );
+  }
+
+  
+  // Reason  count
+  var reason_count = 0;
+  var check_if = $('.filter_reason_val_copqm');
+  jQuery('.filter_reason_val_copqm').each(function(index){
+    if (check_if[index].checked===true) {
+      reason_count = parseInt(reason_count)+1;
+    }
+  });
+
+  var reason_len = $('.filter_reason_val_copqm').length;
+  reason_len = parseInt(reason_len)-1;
+  if (parseInt(reason_count)>=parseInt(reason_len)) {
+      if(check_if[0].checked===true){
+        check_if[0].checked=true;
+        $('#reason_text_copqm').text(parseInt(reason_count)-1+' Selected');
+      }else{
+      // check_if[0].checked=true;
+      reset_reason();
+      $('#reason_text_copqm').text('All');
+    }
+  }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
+    $('#reason_text_copqm').text(parseInt(reason_count)+' Selected');
+    // check_if[0].checked=false;
+  }else {
+    $('#reason_text_copqm').text('No Reason');
+  }
+});
+
+$(document).on('click','.inbox_part_copqm',function(event){
+  var index = $('.inbox_part_copqm').index(this);
+  if(index==0 && $( ".filter_part_val_copqm:eq('"+index+"')").prop( "checked")==true){
+    $( ".filter_part_val_copqm").prop( "checked", false );
+  }
+  else if(index==0 && $( ".filter_part_val_copqm:eq('"+index+"')").prop( "checked")==false){
+    $( ".filter_part_val_copqm").prop( "checked", true );
+  }
+  else{
+    if ($( ".filter_part_val_copqm:eq('"+index+"')").prop( "checked")==true) {
+      $( ".filter_part_val_copqm:eq('"+index+"')").prop( "checked", false );
+    }
+    else{
+      $( ".filter_part_val_copqm:eq('"+index+"')").prop( "checked", true );
+    }
+  }
+  var l1 = $('.filter_part_val_copqm').length;
+  var l2 = $('.filter_part_val_copqm:checked').length;
+  if (l2 < l1) {
+    $( ".filter_part_val_copqm:eq(0)").prop( "checked", false );
+  }
+
+  // part count
+  var part_count = 0;
+  var check_if = $('.filter_part_val_copqm');
+  jQuery('.filter_part_val_copqm').each(function(index){
+    if (check_if[index].checked===true) {
+      part_count = parseInt(part_count)+1;
+    }
+  });
+
+  var part_len = $('.filter_part_val_copqm').length;
+  part_len = parseInt(part_len)-1;
+  if (parseInt(part_count)>=parseInt(part_len)) {
+      if(check_if[0].checked===true){
+        check_if[0].checked=true;
+        $('#part_text_copqm').text(parseInt(part_count)-1+' Selected');
+      }else{
+      // check_if[0].checked=true;
+      reset_part();
+      $('#part_text_copqm').text('All');
+    }
+  }else if(((parseInt(part_count)<parseInt(part_len))) && (parseInt(part_count)>0)){
+    $('#part_text_copqm').text(parseInt(part_count)+' Selected');
+    // check_if[0].checked=false;
+  }else {
+    $('#part_text_copqm').text('No Part');
+  }
+});
+
+$(document).on('click','.inbox_machine_copqm',function(event){
+  var index = $('.inbox_machine_copqm').index(this);
+  if(index==0 && $( ".filter_machine_val_copqm:eq('"+index+"')").prop( "checked")==true){
+    $( ".filter_machine_val_copqm").prop( "checked", false );
+  }
+  else if(index==0 && $( ".filter_machine_val_copqm:eq('"+index+"')").prop( "checked")==false){
+    $( ".filter_machine_val_copqm").prop( "checked", true );
+  }
+  else{
+    if ($( ".filter_machine_val_copqm:eq('"+index+"')").prop( "checked")==true) {
+      $( ".filter_machine_val_copqm:eq('"+index+"')").prop( "checked", false );
+    }
+    else{
+      $( ".filter_machine_val_copqm:eq('"+index+"')").prop( "checked", true );
+    }
+  }
+  var l1 = $('.filter_machine_val_copqm').length;
+  var l2 = $('.filter_machine_val_copqm:checked').length;
+  if (l2 < l1) {
+    $( ".filter_machine_val_copqm:eq(0)").prop( "checked", false );
+  }
+
+  var machine_count = 0;
+  var check_if = $('.filter_machine_val_copqm');
+  jQuery('.filter_machine_val_copqm').each(function(index){
+    if (check_if[index].checked===true) {
+      machine_count = parseInt(machine_count)+1;
+    }
+  });
+
+  var machine_len = $('.filter_machine_val_copqm').length;
+  machine_len = parseInt(machine_len)-1;
+  if (parseInt(machine_count)>=parseInt(machine_len)) {
+      if(check_if[0].checked===true){
+        check_if[0].checked=true;
+        $('#machine_text_copqm').text(parseInt(machine_count)-1+' Selected');
+      }else{
+      reset_machine();
+      $('#machine_text_copqm').text('All');
+    }
+  }else if(((parseInt(machine_count)<parseInt(machine_len))) && (parseInt(machine_count)>0)){
+    $('#machine_text_copqm').text(parseInt(machine_count)+' Selected');
+  }else {
+    $('#machine_text_copqm').text('No Machine');
+  }
+
+});
+
+
+
+$(document).on('click','.inbox_reason_copqp',function(event){
+  var index = $('.inbox_reason_copqp').index(this);
+  if(index==0 && $( ".filter_reason_val_copqp:eq('"+index+"')").prop( "checked")==true){
+    $( ".filter_reason_val_copqp").prop( "checked", false );
+  }
+  else if(index==0 && $( ".filter_reason_val_copqp:eq('"+index+"')").prop( "checked")==false){
+    $( ".filter_reason_val_copqp").prop( "checked", true );
+  }
+  else{
+    if ($( ".filter_reason_val_copqp:eq('"+index+"')").prop( "checked")==true) {
+      $( ".filter_reason_val_copqp:eq('"+index+"')").prop( "checked", false );
+    }
+    else{
+      $( ".filter_reason_val_copqp:eq('"+index+"')").prop( "checked", true );
+    }
+  }
+  var l1 = $('.filter_reason_val_copqp').length;
+  var l2 = $('.filter_reason_val_copqp:checked').length;
+  if (l2 < l1) {
+    $( ".filter_reason_val_copqp:eq(0)").prop( "checked", false );
+  }
+
+  
+  // Reason  count
+  var reason_count = 0;
+  var check_if = $('.filter_reason_val_copqp');
+  jQuery('.filter_reason_val_copqp').each(function(index){
+    if (check_if[index].checked===true) {
+      reason_count = parseInt(reason_count)+1;
+    }
+  });
+
+  var reason_len = $('.filter_reason_val_copqp').length;
+  reason_len = parseInt(reason_len)-1;
+  if (parseInt(reason_count)>=parseInt(reason_len)) {
+      if(check_if[0].checked===true){
+        check_if[0].checked=true;
+        $('#reason_text_copqp').text(parseInt(reason_count)-1+' Selected');
+      }else{
+      // check_if[0].checked=true;
+      reset_reason();
+      $('#reason_text_copqp').text('All');
+    }
+  }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
+    $('#reason_text_copqp').text(parseInt(reason_count)+' Selected');
+    // check_if[0].checked=false;
+  }else {
+    $('#reason_text_copqp').text('No Reason');
+  }
+});
+
+$(document).on('click','.inbox_part_copqp',function(event){
+  var index = $('.inbox_part_copqp').index(this);
+  if(index==0 && $( ".filter_part_val_copqp:eq('"+index+"')").prop( "checked")==true){
+    $( ".filter_part_val_copqp").prop( "checked", false );
+  }
+  else if(index==0 && $( ".filter_part_val_copqp:eq('"+index+"')").prop( "checked")==false){
+    $( ".filter_part_val_copqp").prop( "checked", true );
+  }
+  else{
+    if ($( ".filter_part_val_copqp:eq('"+index+"')").prop( "checked")==true) {
+      $( ".filter_part_val_copqp:eq('"+index+"')").prop( "checked", false );
+    }
+    else{
+      $( ".filter_part_val_copqp:eq('"+index+"')").prop( "checked", true );
+    }
+  }
+  var l1 = $('.filter_part_val_copqp').length;
+  var l2 = $('.filter_part_val_copqp:checked').length;
+  if (l2 < l1) {
+    $( ".filter_part_val_copqp:eq(0)").prop( "checked", false );
+  }
+
+  // part count
+  var part_count = 0;
+  var check_if = $('.filter_part_val_copqp');
+  jQuery('.filter_part_val_copqp').each(function(index){
+    if (check_if[index].checked===true) {
+      part_count = parseInt(part_count)+1;
+    }
+  });
+
+  var part_len = $('.filter_part_val_copqp').length;
+  part_len = parseInt(part_len)-1;
+  if (parseInt(part_count)>=parseInt(part_len)) {
+      if(check_if[0].checked===true){
+        check_if[0].checked=true;
+        $('#part_text_copqp').text(parseInt(part_count)-1+' Selected');
+      }else{
+      // check_if[0].checked=true;
+      reset_part();
+      $('#part_text_copqp').text('All');
+    }
+  }else if(((parseInt(part_count)<parseInt(part_len))) && (parseInt(part_count)>0)){
+    $('#part_text_copqp').text(parseInt(part_count)+' Selected');
+    // check_if[0].checked=false;
+  }else {
+    $('#part_text_copqp').text('No Part');
+  }
+});
+
+$(document).on('click','.inbox_machine_copqp',function(event){
+  var index = $('.inbox_machine_copqp').index(this);
+  if(index==0 && $( ".filter_machine_val_copqp:eq('"+index+"')").prop( "checked")==true){
+    $( ".filter_machine_val_copqp").prop( "checked", false );
+  }
+  else if(index==0 && $( ".filter_machine_val_copqp:eq('"+index+"')").prop( "checked")==false){
+    $( ".filter_machine_val_copqp").prop( "checked", true );
+  }
+  else{
+    if ($( ".filter_machine_val_copqp:eq('"+index+"')").prop( "checked")==true) {
+      $( ".filter_machine_val_copqp:eq('"+index+"')").prop( "checked", false );
+    }
+    else{
+      $( ".filter_machine_val_copqp:eq('"+index+"')").prop( "checked", true );
+    }
+  }
+  var l1 = $('.filter_machine_val_copqp').length;
+  var l2 = $('.filter_machine_val_copqp:checked').length;
+  if (l2 < l1) {
+    $( ".filter_machine_val_copqp:eq(0)").prop( "checked", false );
+  }
+
+  var machine_count = 0;
+  var check_if = $('.filter_machine_val_copqp');
+  jQuery('.filter_machine_val_copqp').each(function(index){
+    if (check_if[index].checked===true) {
+      machine_count = parseInt(machine_count)+1;
+    }
+  });
+
+  var machine_len = $('.filter_machine_val_copqp').length;
+  machine_len = parseInt(machine_len)-1;
+  if (parseInt(machine_count)>=parseInt(machine_len)) {
+      if(check_if[0].checked===true){
+        check_if[0].checked=true;
+        $('#machine_text_copqp').text(parseInt(machine_count)-1+' Selected');
+      }else{
+      reset_machine();
+      $('#machine_text_copqp').text('All');
+    }
+  }else if(((parseInt(machine_count)<parseInt(machine_len))) && (parseInt(machine_count)>0)){
+    $('#machine_text_copqp').text(parseInt(machine_count)+' Selected');
+  }else {
+    $('#machine_text_copqp').text('No Machine');
+  }
+});
+
+$(document).on('click','.inbox_reason_qrmr',function(event){
+  var index = $('.inbox_reason_qrmr').index(this);
+  if(index==0 && $( ".filter_reason_val_qrmr:eq('"+index+"')").prop( "checked")==true){
+    $( ".filter_reason_val_qrmr").prop( "checked", false );
+  }
+  else if(index==0 && $( ".filter_reason_val_qrmr:eq('"+index+"')").prop( "checked")==false){
+    $( ".filter_reason_val_qrmr").prop( "checked", true );
+  }
+  else{
+    if ($( ".filter_reason_val_qrmr:eq('"+index+"')").prop( "checked")==true) {
+      $( ".filter_reason_val_qrmr:eq('"+index+"')").prop( "checked", false );
+    }
+    else{
+      $( ".filter_reason_val_qrmr:eq('"+index+"')").prop( "checked", true );
+    }
+  }
+  var l1 = $('.filter_reason_val_qrmr').length;
+  var l2 = $('.filter_reason_val_qrmr:checked').length;
+  if (l2 < l1) {
+    $( ".filter_reason_val_qrmr:eq(0)").prop( "checked", false );
+  }
+
+  
+  // Reason  count
+  var reason_count = 0;
+  var check_if = $('.filter_reason_val_qrmr');
+  jQuery('.filter_reason_val_qrmr').each(function(index){
+    if (check_if[index].checked===true) {
+      reason_count = parseInt(reason_count)+1;
+    }
+  });
+
+  var reason_len = $('.filter_reason_val_qrmr').length;
+  reason_len = parseInt(reason_len)-1;
+  if (parseInt(reason_count)>=parseInt(reason_len)) {
+      if(check_if[0].checked===true){
+        check_if[0].checked=true;
+        $('#reason_text_qrmr').text(parseInt(reason_count)-1+' Selected');
+      }else{
+      // check_if[0].checked=true;
+      reset_reason();
+      $('#reason_text_qrmr').text('All');
+    }
+  }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
+    $('#reason_text_qrmr').text(parseInt(reason_count)+' Selected');
+    // check_if[0].checked=false;
+  }else {
+    $('#reason_text_qrmr').text('No Reason');
+  }
+});
+
+$(document).on('click','.inbox_part_qrmr',function(event){
+  var index = $('.inbox_part_qrmr').index(this);
+  if(index==0 && $( ".filter_part_val_qrmr:eq('"+index+"')").prop( "checked")==true){
+    $( ".filter_part_val_qrmr").prop( "checked", false );
+  }
+  else if(index==0 && $( ".filter_part_val_qrmr:eq('"+index+"')").prop( "checked")==false){
+    $( ".filter_part_val_qrmr").prop( "checked", true );
+  }
+  else{
+    if ($( ".filter_part_val_qrmr:eq('"+index+"')").prop( "checked")==true) {
+      $( ".filter_part_val_qrmr:eq('"+index+"')").prop( "checked", false );
+    }
+    else{
+      $( ".filter_part_val_qrmr:eq('"+index+"')").prop( "checked", true );
+    }
+  }
+  var l1 = $('.filter_part_val_qrmr').length;
+  var l2 = $('.filter_part_val_qrmr:checked').length;
+  if (l2 < l1) {
+    $( ".filter_part_val_qrmr:eq(0)").prop( "checked", false );
+  }
+
+  // part count
+  var part_count = 0;
+  var check_if = $('.filter_part_val_qrmr');
+  jQuery('.filter_part_val_qrmr').each(function(index){
+    if (check_if[index].checked===true) {
+      part_count = parseInt(part_count)+1;
+    }
+  });
+
+  var part_len = $('.filter_part_val_qrmr').length;
+  part_len = parseInt(part_len)-1;
+  if (parseInt(part_count)>=parseInt(part_len)) {
+      if(check_if[0].checked===true){
+        check_if[0].checked=true;
+        $('#part_text_qrmr').text(parseInt(part_count)-1+' Selected');
+      }else{
+      // check_if[0].checked=true;
+      reset_part();
+      $('#part_text_qrmr').text('All');
+    }
+  }else if(((parseInt(part_count)<parseInt(part_len))) && (parseInt(part_count)>0)){
+    $('#part_text_qrmr').text(parseInt(part_count)+' Selected');
+    // check_if[0].checked=false;
+  }else {
+    $('#part_text_qrmr').text('No Part');
+  }
+});
+
+$(document).on('click','.inbox_machine_qrmr',function(event){
+  var index = $('.inbox_machine_qrmr').index(this);
+  if(index==0 && $( ".filter_machine_val_qrmr:eq('"+index+"')").prop( "checked")==true){
+    $( ".filter_machine_val_qrmr").prop( "checked", false );
+  }
+  else if(index==0 && $( ".filter_machine_val_qrmr:eq('"+index+"')").prop( "checked")==false){
+    $( ".filter_machine_val_qrmr").prop( "checked", true );
+  }
+  else{
+    if ($( ".filter_machine_val_qrmr:eq('"+index+"')").prop( "checked")==true) {
+      $( ".filter_machine_val_qrmr:eq('"+index+"')").prop( "checked", false );
+    }
+    else{
+      $( ".filter_machine_val_qrmr:eq('"+index+"')").prop( "checked", true );
+    }
+  }
+  var l1 = $('.filter_machine_val_qrmr').length;
+  var l2 = $('.filter_machine_val_qrmr:checked').length;
+  if (l2 < l1) {
+    $( ".filter_machine_val_qrmr:eq(0)").prop( "checked", false );
+  }
+
+  var machine_count = 0;
+  var check_if = $('.filter_machine_val_qrmr');
+  jQuery('.filter_machine_val_qrmr').each(function(index){
+    if (check_if[index].checked===true) {
+      machine_count = parseInt(machine_count)+1;
+    }
+  });
+
+  var machine_len = $('.filter_machine_val_qrmr').length;
+  machine_len = parseInt(machine_len)-1;
+  if (parseInt(machine_count)>=parseInt(machine_len)) {
+      if(check_if[0].checked===true){
+        check_if[0].checked=true;
+        $('#machine_text_qrmr').text(parseInt(machine_count)-1+' Selected');
+      }else{
+      reset_machine();
+      $('#machine_text_qrmr').text('All');
+    }
+  }else if(((parseInt(machine_count)<parseInt(machine_len))) && (parseInt(machine_count)>0)){
+    $('#machine_text_qrmr').text(parseInt(machine_count)+' Selected');
+  }else {
+    $('#machine_text_qrmr').text('No Machine');
+  }
+});
+
+$(document).on('click','.inbox_reason_qrpr',function(event){
+  var index = $('.inbox_reason_qrpr').index(this);
+  if(index==0 && $( ".filter_reason_val_qrpr:eq('"+index+"')").prop( "checked")==true){
+    $( ".filter_reason_val_qrpr").prop( "checked", false );
+  }
+  else if(index==0 && $( ".filter_reason_val_qrpr:eq('"+index+"')").prop( "checked")==false){
+    $( ".filter_reason_val_qrpr").prop( "checked", true );
+  }
+  else{
+    if ($( ".filter_reason_val_qrpr:eq('"+index+"')").prop( "checked")==true) {
+      $( ".filter_reason_val_qrpr:eq('"+index+"')").prop( "checked", false );
+    }
+    else{
+      $( ".filter_reason_val_qrpr:eq('"+index+"')").prop( "checked", true );
+    }
+  }
+  var l1 = $('.filter_reason_val_qrpr').length;
+  var l2 = $('.filter_reason_val_qrpr:checked').length;
+  if (l2 < l1) {
+    $( ".filter_reason_val_qrpr:eq(0)").prop( "checked", false );
+  }
+
+  
+  // Reason  count
+  var reason_count = 0;
+  var check_if = $('.filter_reason_val_qrpr');
+  jQuery('.filter_reason_val_qrpr').each(function(index){
+    if (check_if[index].checked===true) {
+      reason_count = parseInt(reason_count)+1;
+    }
+  });
+
+  var reason_len = $('.filter_reason_val_qrpr').length;
+  reason_len = parseInt(reason_len)-1;
+  if (parseInt(reason_count)>=parseInt(reason_len)) {
+      if(check_if[0].checked===true){
+        check_if[0].checked=true;
+        $('#reason_text_qrpr').text(parseInt(reason_count)-1+' Selected');
+      }else{
+      // check_if[0].checked=true;
+      reset_reason();
+      $('#reason_text_qrpr').text('All');
+    }
+  }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
+    $('#reason_text_qrpr').text(parseInt(reason_count)+' Selected');
+    // check_if[0].checked=false;
+  }else {
+    $('#reason_text_qrpr').text('No Reason');
+  }
+});
+
+$(document).on('click','.inbox_part_qrpr',function(event){
+  var index = $('.inbox_part_qrpr').index(this);
+  if(index==0 && $( ".filter_part_val_qrpr:eq('"+index+"')").prop( "checked")==true){
+    $( ".filter_part_val_qrpr").prop( "checked", false );
+  }
+  else if(index==0 && $( ".filter_part_val_qrpr:eq('"+index+"')").prop( "checked")==false){
+    $( ".filter_part_val_qrpr").prop( "checked", true );
+  }
+  else{
+    if ($( ".filter_part_val_qrpr:eq('"+index+"')").prop( "checked")==true) {
+      $( ".filter_part_val_qrpr:eq('"+index+"')").prop( "checked", false );
+    }
+    else{
+      $( ".filter_part_val_qrpr:eq('"+index+"')").prop( "checked", true );
+    }
+  }
+  var l1 = $('.filter_part_val_qrpr').length;
+  var l2 = $('.filter_part_val_qrpr:checked').length;
+  if (l2 < l1) {
+    $( ".filter_part_val_qrpr:eq(0)").prop( "checked", false );
+  }
+
+  // part count
+  var part_count = 0;
+  var check_if = $('.filter_part_val_qrpr');
+  jQuery('.filter_part_val_qrpr').each(function(index){
+    if (check_if[index].checked===true) {
+      part_count = parseInt(part_count)+1;
+    }
+  });
+
+  var part_len = $('.filter_part_val_qrpr').length;
+  part_len = parseInt(part_len)-1;
+  if (parseInt(part_count)>=parseInt(part_len)) {
+      if(check_if[0].checked===true){
+        check_if[0].checked=true;
+        $('#part_text_qrpr').text(parseInt(part_count)-1+' Selected');
+      }else{
+      // check_if[0].checked=true;
+      reset_part();
+      $('#part_text_qrpr').text('All');
+    }
+  }else if(((parseInt(part_count)<parseInt(part_len))) && (parseInt(part_count)>0)){
+    $('#part_text_qrpr').text(parseInt(part_count)+' Selected');
+    // check_if[0].checked=false;
+  }else {
+    $('#part_text_qrpr').text('No Part');
+  }
+});
+
+$(document).on('click','.inbox_machine_qrpr',function(event){
+  var index = $('.inbox_machine_qrpr').index(this);
+  if(index==0 && $( ".filter_machine_val_qrpr:eq('"+index+"')").prop( "checked")==true){
+    $( ".filter_machine_val_qrpr").prop( "checked", false );
+  }
+  else if(index==0 && $( ".filter_machine_val_qrpr:eq('"+index+"')").prop( "checked")==false){
+    $( ".filter_machine_val_qrpr").prop( "checked", true );
+  }
+  else{
+    if ($( ".filter_machine_val_qrpr:eq('"+index+"')").prop( "checked")==true) {
+      $( ".filter_machine_val_qrpr:eq('"+index+"')").prop( "checked", false );
+    }
+    else{
+      $( ".filter_machine_val_qrpr:eq('"+index+"')").prop( "checked", true );
+    }
+  }
+  var l1 = $('.filter_machine_val_qrpr').length;
+  var l2 = $('.filter_machine_val_qrpr:checked').length;
+  if (l2 < l1) {
+    $( ".filter_machine_val_qrpr:eq(0)").prop( "checked", false );
+  }
+
+  var machine_count = 0;
+  var check_if = $('.filter_machine_val_qrpr');
+  jQuery('.filter_machine_val_qrpr').each(function(index){
+    if (check_if[index].checked===true) {
+      machine_count = parseInt(machine_count)+1;
+    }
+  });
+
+  var machine_len = $('.filter_machine_val_qrpr').length;
+  machine_len = parseInt(machine_len)-1;
+  if (parseInt(machine_count)>=parseInt(machine_len)) {
+      if(check_if[0].checked===true){
+        check_if[0].checked=true;
+        $('#machine_text_qrpr').text(parseInt(machine_count)-1+' Selected');
+      }else{
+      reset_machine();
+      $('#machine_text_qrpr').text('All');
+    }
+  }else if(((parseInt(machine_count)<parseInt(machine_len))) && (parseInt(machine_count)>0)){
+    $('#machine_text_qrpr').text(parseInt(machine_count)+' Selected');
+  }else {
+    $('#machine_text_qrpr').text('No Machine');
+  }
+});
+
+$(document).on('click','.copq_filter',function(event){
+  copqp();
+});
+$(document).on('click','.crpr_filter',function(event){
+  qrbr();
+});
+$(document).on('click','.copqm_filter',function(event){
+  copqm();
+});
+$(document).on('click','.qrmr_filter',function(event){
+  crbmr();
+});
+$(document).on('click','.qrpr_filter',function(event){
+  qualitybyreasonparts();
+});
+$(document).on('click','.cpqp_filter',function(event){
+ qualitybyparts();
+});
+
+
+
 
 $(document).on('click','.inbox_user',function(event){
   var index = $('.inbox_user').index(this);
@@ -820,6 +2120,66 @@ $(document).on('click','.inbox_user',function(event){
 
 
 function qualitybyreasonparts() {
+      var part=[];
+    var machine =[];
+    var reason= [];
+
+    // Part Values...
+    var part_flag=0;
+    $.each($("input[name='part_filter_val_qrpr']:checked"), function(){
+      if (($(this).val() == "all")) {
+        part_flag =1;
+      }
+      else{
+        part.push($(this).val());
+      }
+    });
+    if (part_flag==1) {
+      part=[];
+      $.each($("input[name='part_filter_val_qrpr']"), function(){
+      if (($(this).val() != "all")) {
+        part.push($(this).val());
+      }
+    });
+    }
+
+    // Machine Values...
+    var machine_flag=0;
+    $.each($("input[name='machine_filter_val_qrpr']:checked"), function(){
+      if (($(this).val() == "all")) {
+        machine_flag =1;
+      }
+      else{
+        machine.push($(this).val());
+      }
+    });
+    if (machine_flag==1) {
+      machine=[];
+      $.each($("input[name='machine_filter_val_qrpr']"), function(){
+      if (($(this).val() != "all")) {
+        machine.push($(this).val());
+      }
+    });
+    }
+
+    // Reason Values...
+    var reason_flag=0;
+    $.each($("input[name='reason_filter_val_qrpr']:checked"), function(){
+      if (($(this).val() == "all")) {
+        reason_flag =1;
+      }
+      else{
+        reason.push($(this).val());
+      }
+    });
+    if (reason_flag==1) {
+      reason=[];
+      $.each($("input[name='reason_filter_val_qrpr']"), function(){
+      if (($(this).val() != "all")) {
+        reason.push($(this).val());
+      }
+    });
+    }
 
   $('#CQRPR').remove();
   $('.child_graph_quality_part_reason').append('<canvas id="CQRPR"></canvas>');
@@ -835,14 +2195,16 @@ function qualitybyreasonparts() {
     dataType: "json",
     data:{
       from:f,
-      to:t
+      to:t,
+      reason:reason,
+      machine:machine,
+      part:part
     },
     success:function(res){
       // $('#qualityOpportunity').remove();
       // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
       // $('.chartjs-hidden-iframe').remove();
-      console.log("Stacked bar charts");
-      console.log(res);
+
       $('#total_rejection_header').text(res.GrandTotal);
       // res=res["QualityOpportunity"]
       $(".CQRPR").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
@@ -864,8 +2226,23 @@ function qualitybyreasonparts() {
 
       var totalVal =[];
       res['Total'].forEach(function(t){
-          totalVal.push(t);
+          totalVal.push(parseInt(t));
       }); 
+
+
+      for (let i = 0; i < totalVal.length; i++) {
+        let lowest = i
+        for (let j = i + 1; j < totalVal.length; j++) {
+          if (totalVal[j] < totalVal[lowest]) {
+            lowest = j
+          }
+        }
+        if (lowest !== i) {
+          // Swap
+          ;[totalVal[i], totalVal[lowest]] = [totalVal[lowest], totalVal[i]]
+        }
+      }
+
 
       var lab = [];
       res['Part_List'].forEach(function(t){
@@ -993,7 +2370,7 @@ function qualitybyreasonparts() {
           });
         },
     error:function(res){
-      // console.log("Sorry!Try Agian!!!!");
+      // console.log("Sorry!Try Agian!!!!");  
         alert("Sorry!Try Agian!!!!");
     }
   }); 
@@ -1085,6 +2462,66 @@ function quality_oppcost_reaosn_part_tooltip(context){
 
 
 function copqp() {
+    var part=[];
+    var machine =[];
+    var reason= [];
+
+    // Part Values...
+    var part_flag=0;
+    $.each($("input[name='part_filter_val_copq']:checked"), function(){
+      if (($(this).val() == "all")) {
+        part_flag =1;
+      }
+      else{
+        part.push($(this).val());
+      }
+    });
+    if (part_flag==1) {
+      part=[];
+      $.each($("input[name='part_filter_val_copq']"), function(){
+      if (($(this).val() != "all")) {
+        part.push($(this).val());
+      }
+    });
+    }
+
+    // Machine Values...
+    var machine_flag=0;
+    $.each($("input[name='machine_filter_val_copq']:checked"), function(){
+      if (($(this).val() == "all")) {
+        machine_flag =1;
+      }
+      else{
+        machine.push($(this).val());
+      }
+    });
+    if (machine_flag==1) {
+      machine=[];
+      $.each($("input[name='machine_filter_val_copq']"), function(){
+      if (($(this).val() != "all")) {
+        machine.push($(this).val());
+      }
+    });
+    }
+
+    // Reason Values...
+    var reason_flag=0;
+    $.each($("input[name='reason_filter_val_copq']:checked"), function(){
+      if (($(this).val() == "all")) {
+        reason_flag =1;
+      }
+      else{
+        reason.push($(this).val());
+      }
+    });
+    if (reason_flag==1) {
+      reason=[];
+      $.each($("input[name='reason_filter_val_copq']"), function(){
+      if (($(this).val() != "all")) {
+        reason.push($(this).val());
+      }
+    });
+    }
 
   $('#COPQP').remove();
   $('.child_graph_quality_opportunity').append('<canvas id="COPQP"></canvas>');
@@ -1094,26 +2531,24 @@ function copqp() {
   t = $('.toDate').val();
   f = f.replace(" ","T");
   t = t.replace(" ","T");
-  console.log("from time and to time");
-  console.log(f);
-  console.log(t);
   $.ajax({
     url: "<?php echo base_url('Production_Quality/qualityOpportunity'); ?>",
     type: "POST",
     dataType: "json",
     data:{
       from:f,
-      to:t
+      to:t,
+      machine:machine,
+      part:part,
+      reason:reason
     },
     success:function(res){
       // $('#qualityOpportunity').remove();
       // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
       // $('.chartjs-hidden-iframe').remove();
-      console.log('Quality opportunity tooltip');
-      console.log(res);
-      // res=res["QualityOpportunity"]
+
       $(".COPQP").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
-      // color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
+
       color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
         "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
         "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
@@ -1380,6 +2815,67 @@ function quality_opportunity_tooltip(context){
 
 function qualitybyparts() {
 
+  var part=[];
+    var machine =[];
+    var reason= [];
+
+    // Part Values...
+    var part_flag=0;
+    $.each($("input[name='part_filter_val_copqp']:checked"), function(){
+      if (($(this).val() == "all")) {
+        part_flag =1;
+      }
+      else{
+        part.push($(this).val());
+      }
+    });
+    if (part_flag==1) {
+      part=[];
+      $.each($("input[name='part_filter_val_copqp']"), function(){
+      if (($(this).val() != "all")) {
+        part.push($(this).val());
+      }
+    });
+    }
+
+    // Machine Values...
+    var machine_flag=0;
+    $.each($("input[name='machine_filter_val_copqp']:checked"), function(){
+      if (($(this).val() == "all")) {
+        machine_flag =1;
+      }
+      else{
+        machine.push($(this).val());
+      }
+    });
+    if (machine_flag==1) {
+      machine=[];
+      $.each($("input[name='machine_filter_val_copqp']"), function(){
+      if (($(this).val() != "all")) {
+        machine.push($(this).val());
+      }
+    });
+    }
+
+    // Reason Values...
+    var reason_flag=0;
+    $.each($("input[name='reason_filter_val_copqp']:checked"), function(){
+      if (($(this).val() == "all")) {
+        reason_flag =1;
+      }
+      else{
+        reason.push($(this).val());
+      }
+    });
+    if (reason_flag==1) {
+      reason=[];
+      $.each($("input[name='reason_filter_val_copqp']"), function(){
+      if (($(this).val() != "all")) {
+        reason.push($(this).val());
+      }
+    });
+    }
+
   $('#CQRP').remove();
   $('.child_graph_quality_parts').append('<canvas id="CQRP"></canvas>');
   $('.chartjs-hidden-iframe').remove();
@@ -1394,11 +2890,12 @@ function qualitybyparts() {
     dataType: "json",
     data:{
       from:f,
-      to:t
+      to:t,
+      reason:reason,
+      part:part,
+      machine:machine
     },
     success:function(res){
-      console.log("quality rejection by parts");
-      console.log(res);
       // $('#qualityOpportunity').remove();
       // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
       // $('.chartjs-hidden-iframe').remove();
@@ -1650,9 +3147,68 @@ function quality_part_wise_cost_tooltip(context){
 
 
 function crbmr() {
+  var part=[];
+    var machine =[];
+    var reason= [];
+
+    // Part Values...
+    var part_flag=0;
+    $.each($("input[name='part_filter_val_qrmr']:checked"), function(){
+      if (($(this).val() == "all")) {
+        part_flag =1;
+      }
+      else{
+        part.push($(this).val());
+      }
+    });
+    if (part_flag==1) {
+      part=[];
+      $.each($("input[name='part_filter_val_qrmr']"), function(){
+      if (($(this).val() != "all")) {
+        part.push($(this).val());
+      }
+    });
+    }
+
+    // Machine Values...
+    var machine_flag=0;
+    $.each($("input[name='machine_filter_val_qrmr']:checked"), function(){
+      if (($(this).val() == "all")) {
+        machine_flag =1;
+      }
+      else{
+        machine.push($(this).val());
+      }
+    });
+    if (machine_flag==1) {
+      machine=[];
+      $.each($("input[name='machine_filter_val_qrmr']"), function(){
+      if (($(this).val() != "all")) {
+        machine.push($(this).val());
+      }
+    });
+    }
+
+    // Reason Values...
+    var reason_flag=0;
+    $.each($("input[name='reason_filter_val_qrmr']:checked"), function(){
+      if (($(this).val() == "all")) {
+        reason_flag =1;
+      }
+      else{
+        reason.push($(this).val());
+      }
+    });
+    if (reason_flag==1) {
+      reason=[];
+      $.each($("input[name='reason_filter_val_qrmr']"), function(){
+      if (($(this).val() != "all")) {
+        reason.push($(this).val());
+      }
+    });
+    }
 
 
-  
   $('#CRBMR').remove();
   $('.child_graph_quality_machine_reason').append('<canvas id="CRBMR"></canvas>');
   $('.chartjs-hidden-iframe').remove();
@@ -1667,14 +3223,16 @@ function crbmr() {
     dataType: "json",
     data:{
       from:f,
-      to:t
+      to:t,
+      machine:machine,
+      part:part,
+      reason:reason
     },
     success:function(res){
       // $('#qualityOpportunity').remove();
       // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
       // $('.chartjs-hidden-iframe').remove();
-      console.log("quality opportunity machine wise reason");
-      console.log(res);
+
       // res=res["QualityOpportunity"]
       $(".CRBMR").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
       // color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
@@ -1694,9 +3252,21 @@ function crbmr() {
       // Find the Reason Names as Lables..........
       var machineTotal =[];
       res['Total'].forEach(function(res){
-          machineTotal.push(res);
+          machineTotal.push(parseInt(res));
       });
-
+      
+      for (let i = 0; i < machineTotal.length; i++) {
+        let lowest = i
+        for (let j = i + 1; j < machineTotal.length; j++) {
+          if (machineTotal[j] < machineTotal[lowest]) {
+            lowest = j
+          }
+        }
+        if (lowest !== i) {
+          // Swap
+          ;[machineTotal[i], machineTotal[lowest]] = [machineTotal[lowest], machineTotal[i]]
+        }
+      }
 
       var machineList =[];
       res['Machine_name'].forEach(function(res){
@@ -1913,6 +3483,67 @@ function quality_opportuntiycost_reason_machine_tooltip(context){
 
 function copqm() {
 
+  var part=[];
+    var machine =[];
+    var reason= [];
+
+    // Part Values...
+    var part_flag=0;
+    $.each($("input[name='part_filter_val_copqm']:checked"), function(){
+      if (($(this).val() == "all")) {
+        part_flag =1;
+      }
+      else{
+        part.push($(this).val());
+      }
+    });
+    if (part_flag==1) {
+      part=[];
+      $.each($("input[name='part_filter_val_copqm']"), function(){
+      if (($(this).val() != "all")) {
+        part.push($(this).val());
+      }
+    });
+    }
+
+    // Machine Values...
+    var machine_flag=0;
+    $.each($("input[name='machine_filter_val_copqm']:checked"), function(){
+      if (($(this).val() == "all")) {
+        machine_flag =1;
+      }
+      else{
+        machine.push($(this).val());
+      }
+    });
+    if (machine_flag==1) {
+      machine=[];
+      $.each($("input[name='machine_filter_val_copqm']"), function(){
+      if (($(this).val() != "all")) {
+        machine.push($(this).val());
+      }
+    });
+    }
+
+    // Reason Values...
+    var reason_flag=0;
+    $.each($("input[name='reason_filter_val_copqm']:checked"), function(){
+      if (($(this).val() == "all")) {
+        reason_flag =1;
+      }
+      else{
+        reason.push($(this).val());
+      }
+    });
+    if (reason_flag==1) {
+      reason=[];
+      $.each($("input[name='reason_filter_val_copqm']"), function(){
+      if (($(this).val() != "all")) {
+        reason.push($(this).val());
+      }
+    });
+    }
+
   $('#COPQM').remove();
   $('.child_graph_quality_machine_wise').append('<canvas id="COPQM"></canvas>');
   $('.chartjs-hidden-iframe').remove();
@@ -1922,20 +3553,23 @@ function copqm() {
   t = $('.toDate').val();
   f = f.replace(" ","T");
   t = t.replace(" ","T");
+
   $.ajax({
     url: "<?php echo base_url('Production_Quality/qualityOpportunityMachine'); ?>",
     type: "POST",
     dataType: "json",
     data:{
       from:f,
-      to:t
+      to:t,
+      machine: machine,
+      part: part,
+      reason:reason
     },
     success:function(res){
       // $('#qualityOpportunity').remove();
       // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
       // $('.chartjs-hidden-iframe').remove();
-      console.log("Cost of Poor Quality (COPQ) by Machines");
-      console.log(res);
+
       // res=res["QualityOpportunity"]
       $(".COPQM").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
       // color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
@@ -2187,6 +3821,67 @@ function quality_machine_oppcost(context){
 
 function qrbr() {
 
+    var part=[];
+    var machine =[];
+    var reason= [];
+
+    // Part Values...
+    var part_flag=0;
+    $.each($("input[name='part_filter_val_crpr']:checked"), function(){
+      if (($(this).val() == "all")) {
+        part_flag =1;
+      }
+      else{
+        part.push($(this).val());
+      }
+    });
+    if (part_flag==1) {
+      part=[];
+      $.each($("input[name='part_filter_val_crpr']"), function(){
+      if (($(this).val() != "all")) {
+        part.push($(this).val());
+      }
+    });
+    }
+
+    // Machine Values...
+    var machine_flag=0;
+    $.each($("input[name='machine_filter_val_crpr']:checked"), function(){
+      if (($(this).val() == "all")) {
+        machine_flag =1;
+      }
+      else{
+        machine.push($(this).val());
+      }
+    });
+    if (machine_flag==1) {
+      machine=[];
+      $.each($("input[name='machine_filter_val_crpr']"), function(){
+      if (($(this).val() != "all")) {
+        machine.push($(this).val());
+      }
+    });
+    }
+
+    // Reason Values...
+    var reason_flag=0;
+    $.each($("input[name='reason_filter_val_crpr']:checked"), function(){
+      if (($(this).val() == "all")) {
+        reason_flag =1;
+      }
+      else{
+        reason.push($(this).val());
+      }
+    });
+    if (reason_flag==1) {
+      reason=[];
+      $.each($("input[name='reason_filter_val_crpr']"), function(){
+      if (($(this).val() != "all")) {
+        reason.push($(this).val());
+      }
+    });
+    }
+
   $('#QRBR').remove();
   $('.child_graph_quality_reason_wise').append('<canvas id="QRBR"></canvas>');
   $('.chartjs-hidden-iframe').remove();
@@ -2195,20 +3890,22 @@ function qrbr() {
   t = $('.toDate').val();
   f = f.replace(" ","T");
   t = t.replace(" ","T");
+
   $.ajax({
     url: "<?php echo base_url('Production_Quality/qualityOpportunityRejectionWise'); ?>",
     type: "POST",
     dataType: "json",
     data:{
       from:f,
-      to:t
+      to:t,
+      reason:reason,
+      part:part,
+      machine:machine
     },
     success:function(res){
       // $('#qualityOpportunity').remove();
       // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
       // $('.chartjs-hidden-iframe').remove();
-      console.log("quality rejeciton by reason cost");
-      console.log(res);
       // res=res["QualityOpportunity"]
       $(".CRBR").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
       // color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
@@ -2254,7 +3951,7 @@ function qrbr() {
         }
         else if(len > 8){
           var l = parseInt(len)%parseInt(8);  
-          var w= parseInt($('.parent_graph_quality_reason_wise').css("width"))+parseInt(l*10*16);
+          var w= parseInt($('.parent_graph_quality_reason_wise').css("width"))+parseInt(l*5*16);
           $('.child_graph_quality_reason_wise').css("width",w+"px");
           break;
         }
@@ -2477,17 +4174,21 @@ getfilterdata();
 
 function getfilterdata() {
   $('.filter_part').empty();
-  $('.filter_machine').empty(); 
+  $('.filter_machine').empty();
   $('.filter_reason').empty();
   $('#userNameFilter').empty();
+
+
+  $('.filter_reason_copq').empty();
+  $('.filter_machine_copq').empty();
+  $('.filter_part_copq').empty();
+
   
   $.ajax({
     url: "<?php echo base_url('Production_Quality/getfilterdata'); ?>",
     type: "POST",
     dataType: "json",
     success:function(res){
-      console.log("User Data");
-      console.log(res);
       // Part Filter
       var elements = $();
       $('.filter_part').append('<div class="inbox inbox_part" style="display: flex;">'
@@ -2507,7 +4208,28 @@ function getfilterdata() {
                                     +'<p class="inbox-span paddingm">'+item.part_id+"-"+item.part_name+'</p>'
                                 +'</div>'
                               +'</div>');
-      });    
+      }); 
+
+
+      // Part Filter COPQ
+      $('.filter_part_copq').append('<div class="inbox inbox_part_copq copq_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_part_val_copq" name="part_filter_val_copq" value="all" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">All</p>'
+                                +'</div>'
+                              +'</div>');
+      res['Part'].forEach(function(item){
+        $('.filter_part_copq').append('<div class="inbox inbox_part_copq copq_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_part_val_copq" name="part_filter_val_copq" value="'+item.part_id+'" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">'+item.part_id+"-"+item.part_name+'</p>'
+                                +'</div>'
+                              +'</div>');
+      });     
 
       // Machine Filter
       var elements1 = $();
@@ -2531,6 +4253,27 @@ function getfilterdata() {
       });
 
 
+      // Machine Filter COPQ
+      var elements_copq_machine = $();
+      $('.filter_machine_copq').append('<div class="inbox inbox_machine_copq copq_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_machine_val_copq" name="machine_filter_val_copq" value="all" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">All</p>'
+                                +'</div>'
+                              +'</div>');
+      res['Machine'].forEach(function(item){
+        $('.filter_machine_copq').append('<div class="inbox inbox_machine_copq copq_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_machine_val_copq" name="machine_filter_val_copq" value="'+item.machine_id+'" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">'+item.machine_id+"-"+item.machine_name+'</p>'
+                                +'</div>'
+                              +'</div>');
+      });
+
       // Reason Filter
       var elements2 = $();
       $('.filter_reason').append('<div class="inbox inbox_reason" style="display: flex;">'
@@ -2552,6 +4295,326 @@ function getfilterdata() {
                               +'</div>');
       });
 
+
+      // Reason Filter
+      var elements_copq = $();
+      $('.filter_reason_copq').append('<div class="inbox inbox_reason_copq copq_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_reason_val_copq" name="reason_filter_val_copq" value="all" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">All</p>'
+                                +'</div>'
+                              +'</div>');
+      res['Reason'].forEach(function(item){
+        $('.filter_reason_copq').append('<div class="inbox inbox_reason_copq copq_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_reason_val_copq" name="reason_filter_val_copq" value="'+item.quality_reason_id+'" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">'+item.quality_reason_id+"-"+item.quality_reason_name+'</p>'
+                                +'</div>'
+                              +'</div>');
+      });
+
+      // CRBR......
+       $('.filter_reason_crpr').append('<div class="inbox inbox_reason_crpr crpr_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_reason_val_crpr" name="reason_filter_val_crpr" value="all" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">All</p>'
+                                +'</div>'
+                              +'</div>');
+      res['Reason'].forEach(function(item){
+        $('.filter_reason_crpr').append('<div class="inbox inbox_reason_crpr crpr_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_reason_val_crpr" name="reason_filter_val_crpr" value="'+item.quality_reason_id+'" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">'+item.quality_reason_id+"-"+item.quality_reason_name+'</p>'
+                                +'</div>'
+                              +'</div>');
+      });
+
+      $('.filter_machine_crpr').append('<div class="inbox inbox_machine_crpr crpr_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_machine_val_crpr" name="machine_filter_val_crpr" value="all" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">All</p>'
+                                +'</div>'
+                              +'</div>');
+      res['Machine'].forEach(function(item){
+        $('.filter_machine_crpr').append('<div class="inbox inbox_machine_crpr crpr_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_machine_val_crpr" name="machine_filter_val_crpr" value="'+item.machine_id+'" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">'+item.machine_id+"-"+item.machine_name+'</p>'
+                                +'</div>'
+                              +'</div>');
+      });
+
+
+      $('.filter_part_crpr').append('<div class="inbox inbox_part_crpr crpr_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_part_val_crpr" name="part_filter_val_crpr" value="all" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">All</p>'
+                                +'</div>'
+                              +'</div>');
+      res['Part'].forEach(function(item){
+        $('.filter_part_crpr').append('<div class="inbox inbox_part_crpr crpr_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_part_val_crpr" name="part_filter_val_crpr" value="'+item.part_id+'" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">'+item.part_id+"-"+item.part_name+'</p>'
+                                +'</div>'
+                              +'</div>');
+      }); 
+
+      // COPQM......
+       $('.filter_reason_copqm').append('<div class="inbox inbox_reason_copqm copqm_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_reason_val_copqm" name="reason_filter_val_copqm" value="all" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">All</p>'
+                                +'</div>'
+                              +'</div>');
+      res['Reason'].forEach(function(item){
+        $('.filter_reason_copqm').append('<div class="inbox inbox_reason_copqm copqm_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_reason_val_copqm" name="reason_filter_val_copqm" value="'+item.quality_reason_id+'" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">'+item.quality_reason_id+"-"+item.quality_reason_name+'</p>'
+                                +'</div>'
+                              +'</div>');
+      });
+
+      $('.filter_machine_copqm').append('<div class="inbox inbox_machine_copqm copqm_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_machine_val_copqm" name="machine_filter_val_copqm" value="all" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">All</p>'
+                                +'</div>'
+                              +'</div>');
+      res['Machine'].forEach(function(item){
+        $('.filter_machine_copqm').append('<div class="inbox inbox_machine_copqm copqm_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_machine_val_copqm" name="machine_filter_val_copqm" value="'+item.machine_id+'" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">'+item.machine_id+"-"+item.machine_name+'</p>'
+                                +'</div>'
+                              +'</div>');
+      });
+
+
+      $('.filter_part_copqm').append('<div class="inbox inbox_part_copqm copqm_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_part_val_copqm" name="part_filter_val_copqm" value="all" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">All</p>'
+                                +'</div>'
+                              +'</div>');
+      res['Part'].forEach(function(item){
+        $('.filter_part_copqm').append('<div class="inbox inbox_part_copqm copqm_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_part_val_copqm" name="part_filter_val_copqm" value="'+item.part_id+'" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">'+item.part_id+"-"+item.part_name+'</p>'
+                                +'</div>'
+                              +'</div>');
+      }); 
+
+
+      // COPQP......
+       $('.filter_reason_copqp').append('<div class="inbox inbox_reason_copqp cpqp_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_reason_val_copqp" name="reason_filter_val_copqp" value="all" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">All</p>'
+                                +'</div>'
+                              +'</div>');
+      res['Reason'].forEach(function(item){
+        $('.filter_reason_copqp').append('<div class="inbox inbox_reason_copqp cpqp_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_reason_val_copqp" name="reason_filter_val_copqp" value="'+item.quality_reason_id+'" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">'+item.quality_reason_id+"-"+item.quality_reason_name+'</p>'
+                                +'</div>'
+                              +'</div>');
+      });
+
+      $('.filter_machine_copqp').append('<div class="inbox inbox_machine_copqp cpqp_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_machine_val_copqp" name="machine_filter_val_copqp" value="all" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">All</p>'
+                                +'</div>'
+                              +'</div>');
+      res['Machine'].forEach(function(item){
+        $('.filter_machine_copqp').append('<div class="inbox inbox_machine_copqp cpqp_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_machine_val_copqp" name="machine_filter_val_copqp" value="'+item.machine_id+'" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">'+item.machine_id+"-"+item.machine_name+'</p>'
+                                +'</div>'
+                              +'</div>');
+      });
+
+
+      $('.filter_part_copqp').append('<div class="inbox inbox_part_copqp cpqp_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_part_val_copqp" name="part_filter_val_copqp" value="all" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">All</p>'
+                                +'</div>'
+                              +'</div>');
+      res['Part'].forEach(function(item){
+        $('.filter_part_copqp').append('<div class="inbox inbox_part_copqp cpqp_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_part_val_copqp" name="part_filter_val_copqp" value="'+item.part_id+'" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">'+item.part_id+"-"+item.part_name+'</p>'
+                                +'</div>'
+                              +'</div>');
+      }); 
+
+      // QRMR......
+       $('.filter_reason_qrmr').append('<div class="inbox inbox_reason_qrmr qrmr_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_reason_val_qrmr" name="reason_filter_val_qrmr" value="all" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">All</p>'
+                                +'</div>'
+                              +'</div>');
+      res['Reason'].forEach(function(item){
+        $('.filter_reason_qrmr').append('<div class="inbox inbox_reason_qrmr qrmr_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_reason_val_qrmr" name="reason_filter_val_qrmr" value="'+item.quality_reason_id+'" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">'+item.quality_reason_id+"-"+item.quality_reason_name+'</p>'
+                                +'</div>'
+                              +'</div>');
+      });
+
+      $('.filter_machine_qrmr').append('<div class="inbox inbox_machine_qrmr qrmr_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_machine_val_qrmr" name="machine_filter_val_qrmr" value="all" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">All</p>'
+                                +'</div>'
+                              +'</div>');
+      res['Machine'].forEach(function(item){
+        $('.filter_machine_qrmr').append('<div class="inbox inbox_machine_qrmr qrmr_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_machine_val_qrmr" name="machine_filter_val_qrmr" value="'+item.machine_id+'" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">'+item.machine_id+"-"+item.machine_name+'</p>'
+                                +'</div>'
+                              +'</div>');
+      });
+
+
+      $('.filter_part_qrmr').append('<div class="inbox inbox_part_qrmr qrmr_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_part_val_qrmr" name="part_filter_val_qrmr" value="all" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">All</p>'
+                                +'</div>'
+                              +'</div>');
+      res['Part'].forEach(function(item){
+        $('.filter_part_qrmr').append('<div class="inbox inbox_part_qrmr qrmr_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_part_val_qrmr" name="part_filter_val_qrmr" value="'+item.part_id+'" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">'+item.part_id+"-"+item.part_name+'</p>'
+                                +'</div>'
+                              +'</div>');
+      }); 
+
+
+      // QRMR......
+       $('.filter_reason_qrpr').append('<div class="inbox inbox_reason_qrpr qrpr_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_reason_val_qrpr" name="reason_filter_val_qrpr" value="all" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">All</p>'
+                                +'</div>'
+                              +'</div>');
+      res['Reason'].forEach(function(item){
+        $('.filter_reason_qrpr').append('<div class="inbox inbox_reason_qrpr qrpr_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_reason_val_qrpr" name="reason_filter_val_qrpr" value="'+item.quality_reason_id+'" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">'+item.quality_reason_id+"-"+item.quality_reason_name+'</p>'
+                                +'</div>'
+                              +'</div>');
+      });
+
+      $('.filter_machine_qrpr').append('<div class="inbox inbox_machine_qrpr qrpr_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_machine_val_qrpr" name="machine_filter_val_qrpr" value="all" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">All</p>'
+                                +'</div>'
+                              +'</div>');
+      res['Machine'].forEach(function(item){
+        $('.filter_machine_qrpr').append('<div class="inbox inbox_machine_qrpr qrpr_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_machine_val_qrpr" name="machine_filter_val_qrpr" value="'+item.machine_id+'" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">'+item.machine_id+"-"+item.machine_name+'</p>'
+                                +'</div>'
+                              +'</div>');
+      });
+
+
+      $('.filter_part_qrpr').append('<div class="inbox inbox_part_qrpr qrpr_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_part_val_qrpr" name="part_filter_val_qrpr" value="all" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">All</p>'
+                                +'</div>'
+                              +'</div>');
+      res['Part'].forEach(function(item){
+        $('.filter_part_qrpr').append('<div class="inbox inbox_part_qrpr qrpr_filter" style="display: flex;">'
+                                +'<div style="float: left;width: 20%;" class="center-align">'
+                                  +'<input class="checkbox_part filter_part_val_qrpr" name="part_filter_val_qrpr" value="'+item.part_id+'" type="checkbox" checked/>'
+                                +'</div>'
+                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                    +'<p class="inbox-span paddingm">'+item.part_id+"-"+item.part_name+'</p>'
+                                +'</div>'
+                              +'</div>');
+      });
+
+
       // User Filter
       var elements3 = $();
       $('.filter_user').append('<div class="inbox inbox_user" style="display: flex;">'
@@ -2572,6 +4635,8 @@ function getfilterdata() {
                                 +'</div>'
                               +'</div>');
       });
+
+      myFun();
       getFilterval();
     },
     error:function(res){
@@ -2594,8 +4659,6 @@ function getTableData(part,machine,reason,user){
       user:user
     },
     success:function(res){
-      console.log("table data");
-      console.log(res);
       res.forEach(function(value, index) {
         filter_array.push(value);
       });
@@ -2622,7 +4685,7 @@ function filter_table_data(){
     if ((index > (x*pagination_length)-(pagination_length+1)) && (index < (x*pagination_length))) {
       var elements = $();
       elements = elements.add('<div id="settings_div">'
-                  +'<div class="row paddingm" style="max-height:3.4rem;">'
+                  +'<div class="row paddingm">'
                     +'<div class="col-sm-1 col marleft"><p class="rejection_font_color">'+value['from_date']+'</p></div>'
                     +'<div class="col-sm-1 col marleft"><p class="rejection_font_color">'+value['from_time']+'</p></div>'
                     +'<div class="col-sm-1 col marleft"><p class="rejection_font_color">'+value['to_time']+'</p></div>'
@@ -2632,10 +4695,7 @@ function filter_table_data(){
                     +'<div class="col-sm-1 col marleft"><p class="rejection_font_color">'+value['reason_name']+'</p></div>'
                     +'<div class="col-sm-1 col marleft"><p class="rejection_font_color">'+value['user_name']+'</p></div>'
                     +'<div class="col-sm-1 col marleft"><p class="rejection_font_color">'+value['updated_at']+'</p></div>'
-                    +'<div class="col-sm-1 col " style="justify-content:center;"><div class="rejection_font_color notes_check"><img src="<?php echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" style="height:1.4rem;width:1.4rem;" onmouseover="notes_hover(this)"  onmouseout="mouse_out_check(this)"></div></div>'
-                    +'<div class="notes_display" style="">'
-                            +'<p >'+value['notes']+'</p>'
-                    +'</div>'
+                    +'<div class="col-sm-1 col " style="justify-content:center;"><div class="rejection_font_color"><img src="<?php echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" style="height:1.4rem;width:1.4rem;"></div></div>'
                   +'</div>'
                 +'</div>');
       $('.contentQualityFilter').append(elements);
@@ -2643,15 +4703,6 @@ function filter_table_data(){
   });
 }
 
-// $(document).click(function() {
-//     var container = $(".filter_selectBox");
-//     if (!container.is(event.target) && !container.has(event.target).length) {
-//         $(".filter_part").hide();
-//         $(".filter_machine").hide();
-//         $(".filter_reason").hide();
-//         $(".filter_user").hide();
-//     }
-// });
 
 // mouse up function dropdown outside click remove function  
 $(document).mouseup(function(event){
@@ -2663,10 +4714,21 @@ $(document).mouseup(function(event){
     
   }
 
+  // part dropdown outside click
+  var part_check_copq = $('.filter_part_copq');
+  if (!part_check_copq.is(event.target) && part_check_copq.has(event.target).length==0) {
+    part_check_copq.hide();
+  }
+
   // machine dropdown outside click
   var machine_check = $('.filter_machine');
   if (!machine_check.is(event.target) && machine_check.has(event.target).length==0) {
     machine_check.hide();
+  }
+  // machine dropdown outside click
+  var machine_check_copq = $('.filter_machine_copq');
+  if (!machine_check_copq.is(event.target) && machine_check_copq.has(event.target).length==0) {
+    machine_check_copq.hide();
   }
 
   // reason dropdown outside click
@@ -2675,10 +4737,113 @@ $(document).mouseup(function(event){
     reason_check.hide();
   }
 
+  // reason dropdown outside click
+  var reason_check_copq = $('.filter_reason_copq');
+  if (!reason_check_copq.is(event.target) && reason_check_copq.has(event.target).length==0) {
+    reason_check_copq.hide();
+  }
+  
+
   // created by dropdown outside click
   var created_check = $('.filter_user');
   if (!created_check.is(event.target) && created_check.has(event.target).length==0) {
     created_check.hide();
+  }
+
+
+
+    // part dropdown outside click
+  var part_check_crpr = $('.filter_part_crpr');
+  if (!part_check_crpr.is(event.target) && part_check_crpr.has(event.target).length==0) {
+    part_check_crpr.hide();
+  }
+
+  // machine dropdown outside click
+  var machine_check_crpr = $('.filter_machine_crpr');
+  if (!machine_check_crpr.is(event.target) && machine_check_crpr.has(event.target).length==0) {
+    machine_check_crpr.hide();
+  }
+
+    // reason dropdown outside click
+  var reason_check_crpr = $('.filter_reason_crpr');
+  if (!reason_check_crpr.is(event.target) && reason_check_crpr.has(event.target).length==0) {
+    reason_check_crpr.hide();
+  }
+
+
+   // part dropdown outside click
+  var part_check_copqm = $('.filter_part_copqm');
+  if (!part_check_copqm.is(event.target) && part_check_copqm.has(event.target).length==0) {
+    part_check_copqm.hide();
+  }
+
+  // machine dropdown outside click
+  var machine_check_copqm = $('.filter_machine_copqm');
+  if (!machine_check_copqm.is(event.target) && machine_check_copqm.has(event.target).length==0) {
+    machine_check_copqm.hide();
+  }
+
+    // reason dropdown outside click
+  var reason_check_copqm = $('.filter_reason_copqm');
+  if (!reason_check_copqm.is(event.target) && reason_check_copqm.has(event.target).length==0) {
+    reason_check_copqm.hide();
+  }
+
+
+
+   // part dropdown outside click
+  var part_check_copqp = $('.filter_part_copqp');
+  if (!part_check_copqp.is(event.target) && part_check_copqp.has(event.target).length==0) {
+    part_check_copqp.hide();
+  }
+
+  // machine dropdown outside click
+  var machine_check_copqp = $('.filter_machine_copqp');
+  if (!machine_check_copqp.is(event.target) && machine_check_copqp.has(event.target).length==0) {
+    machine_check_copqp.hide();
+  }
+
+    // reason dropdown outside click
+  var reason_check_copqp = $('.filter_reason_copqp');
+  if (!reason_check_copqp.is(event.target) && reason_check_copqp.has(event.target).length==0) {
+    reason_check_copqp.hide();
+  }
+
+     // part dropdown outside click
+  var part_check_qrpr = $('.filter_part_qrpr');
+  if (!part_check_qrpr.is(event.target) && part_check_qrpr.has(event.target).length==0) {
+    part_check_qrpr.hide();
+  }
+
+  // machine dropdown outside click
+  var machine_check_qrpr = $('.filter_machine_qrpr');
+  if (!machine_check_qrpr.is(event.target) && machine_check_qrpr.has(event.target).length==0) {
+    machine_check_qrpr.hide();
+  }
+
+    // reason dropdown outside click
+  var reason_check_qrpr = $('.filter_reason_qrpr');
+  if (!reason_check_qrpr.is(event.target) && reason_check_qrpr.has(event.target).length==0) {
+    reason_check_qrpr.hide();
+  }
+
+
+  // part dropdown outside click
+  var part_check_qrmr = $('.filter_part_qrmr');
+  if (!part_check_qrmr.is(event.target) && part_check_qrmr.has(event.target).length==0) {
+    part_check_qrmr.hide();
+  }
+
+  // machine dropdown outside click
+  var machine_check_qrmr = $('.filter_machine_qrmr');
+  if (!machine_check_qrmr.is(event.target) && machine_check_qrmr.has(event.target).length==0) {
+    machine_check_qrmr.hide();
+  }
+
+    // reason dropdown outside click
+  var reason_check_qrmr = $('.filter_reason_qrmr');
+  if (!reason_check_qrmr.is(event.target) && reason_check_qrmr.has(event.target).length==0) {
+    reason_check_qrmr.hide();
   }
 
 });
@@ -2732,22 +4897,11 @@ function reset_created(){
 }
 
 
-// notes hover function
-function notes_hover(ele){
-    var els = Array.prototype.slice.call( document.getElementsByClassName('icon_img_wh'), 0 );
-    var index_val = els.indexOf(event.currentTarget);
-    //   alert(index_val);
-    $('.notes_display:eq('+index_val+')').css('display','block');
-    //   console.log("notes index hovering"+index_val);
-}
+// Graph Filters......
+
+// Reason Filters......
 
 
-function mouse_out_check(ele1){
-  var els = Array.prototype.slice.call( document.getElementsByClassName('icon_img_wh'), 0 );
-  var index_val1 = els.indexOf(event.currentTarget);
-  $('.notes_display:eq('+index_val1+')').css("display","none");
-    //   console.log("notes index  hovering remove"+index_val1);
 
-}
 </script>
 

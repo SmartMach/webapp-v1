@@ -204,8 +204,9 @@ class Production_Quality extends BaseController
 
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
-        // $fromTime = "2023-01-12T09:00:00";
-        // $toTime = "2023-01-21T21:00:00";
+
+        // $fromTime = "2023-02-12T09:00:00";
+        // $toTime = "2023-02-28T21:00:00";
 
         // $url = "http://localhost:8080/graph/qualityOpportunity/".$fromTime."/".$toTime."/";
         // $ch = curl_init($url);
@@ -214,43 +215,70 @@ class Production_Quality extends BaseController
         // $res = json_decode($result);
         // echo json_encode($res);
 
-        $qualityReason = $this->Financial->qualityReason();
+        $qualityReason_filter = $this->Financial->qualityReason();
+        $qualityReason = $this->request->getVar("reason");
+
         $ProductionData = $this->getDataRaw($ref,$fromTime,$toTime);
 
+        $partDetails_filter = $this->Financial->getPartDetails();
+        $partDetails = $this->request->getVar("part");
+
+        $machineDetails_filter = $this->Financial->getMachineDetails();
+        $machineDetails = $this->request->getVar("machine");
+
         $ProductionDataExpand = [];
-        foreach ($ProductionData as $value) {
-            if (trim($value['reject_reason']) !="" or trim($value['reject_reason']) !=null) {
-                $reasons =  explode("&&", $value['reject_reason']);
-                foreach ($reasons as $count) {
-                    $tt = explode("&", $count);
-                    $total = $tt[0];
-                    //$temp = explode($total, $count);
-                    $temp = $tt[1];
-                    $tmp = array("machine_id"=>$value['machine_id'],"part_id"=>$value['part_id'],"reject_count"=>$total,"reject_reason"=>$temp,"total_reject"=>$total,"total_correct"=>$value['corrections'],"total_production"=>$value['production'],"shot_count"=>$value['actual_shot_count'],"start_time"=>$value['start_time'],"end_time"=>$value['end_time']);
-                    array_push($ProductionDataExpand, $tmp);
+        foreach ($ProductionData as $k => $value) {
+            $m=0;
+            foreach ($machineDetails as $key) {
+                if ($key == $value['machine_id']) {
+                    $m=1;
                 }
+            }
+            if ($m==1) {
+                if (trim($value['reject_reason']) !="" or trim($value['reject_reason']) !=null) {
+                    $reasons =  explode("&&", $value['reject_reason']);
+                    foreach ($reasons as $count) {
+                        $tt = explode("&", $count);
+                        $total = $tt[0];
+                        //$temp = explode($total, $count);
+                        $temp = $tt[1];
+                        $tmp = array("machine_id"=>$value['machine_id'],"part_id"=>$value['part_id'],"reject_count"=>$total,"reject_reason"=>$temp,"total_reject"=>$total,"total_correct"=>$value['corrections'],"total_production"=>$value['production'],"shot_count"=>$value['actual_shot_count'],"start_time"=>$value['start_time'],"end_time"=>$value['end_time']);
+                        array_push($ProductionDataExpand, $tmp);
+                    }
+                }
+            }else{
+                unset($ProductionData[$k]);
             }
         }
 
-        $partDetails = $this->Financial->getPartDetails();
-
-        $machineDetails = $this->Financial->getMachineDetails();
-
-        //Part wise quality reason........
+        // Part wise quality reason........
         $QualityAvailabilityData=[];
         $QualityAvailabilityActual =[];
         $PartArray =[];
         $ReasonArray=[];
         $totalReject=[];
         
-        foreach ($partDetails as $part) {
+        foreach ($partDetails as $p) {
+            $part = [];
+            // Part Filter.....
+            foreach ($partDetails_filter as $value) {
+                if ($p == $value['part_id']) {
+                    $part = $value;
+                }
+            }
             $tmpReason=[];
             $tmpActualReason=[];
             $rejectTotal=[];
-            foreach ($qualityReason as $reason) {
+            foreach ($qualityReason as $r) {
                 $tmpPart =[];
                 $tmpTotalReject=0;
                 $tmpOpportunityCost=0;
+                $reason = [];
+                foreach ($qualityReason_filter as $value) {
+                    if ($r == $value['quality_reason_id']) {
+                        $reason = $value;
+                    }
+                }
                 foreach ($ProductionDataExpand as $production) {
                     if ($part['part_id'] == $production['part_id'] AND $reason['quality_reason_id'] == $production['reject_reason']){
 
@@ -281,15 +309,21 @@ class Production_Quality extends BaseController
         }
 
         $qreason = [];
-        foreach ($qualityReason as $key => $value) {
-            array_push($ReasonArray, $value["quality_reason_name"]);
-            array_push($qreason, $value["quality_reason_id"]);
+        foreach ($qualityReason as $key => $r) {
+            foreach ($qualityReason_filter as $value) {
+                if ($r == $value['quality_reason_id']) {
+                    array_push($ReasonArray, $value["quality_reason_name"]);
+                    array_push($qreason, $value["quality_reason_id"]);
+                }
+            }
         }
         
         //Reason wise Total Cost Opportunity............
         $OverallOpportunity = 0;
         $ReasonWiseTotal=[];
-        foreach ($qreason as $res) {
+        // echo "<pre>";
+        // print_r($qreason);
+        foreach ($qreason as $key => $res) {
             $tmpCost = 0;
             foreach ($QualityAvailabilityActual as $part) {
                 foreach ($part['Reason'] as $value) {
@@ -332,8 +366,16 @@ class Production_Quality extends BaseController
 
             $temp1 = $arr['Reason'][$i];
             $arr['Reason'][$i] = $arr['Reason'][$min_idx];
-            $arr['Reason'][$min_idx] = $temp1;          
+            $arr['Reason'][$min_idx] = $temp1;         
+        }
 
+        // Remove the Zero values....
+        for ($i = 0; $i < $n; $i++)
+        {   
+            if ($arr['Total'][$i] <= 0){
+                unset($arr['Total'][$i]);
+                unset($arr['Reason'][$i]);
+            }
         }
         return $arr;
     }
@@ -345,8 +387,8 @@ class Production_Quality extends BaseController
 
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
-        // $fromTime = "2023-01-12T09:00:00";
-        // $toTime = "2023-01-21T21:00:00";
+        // $fromTime = "2023-02-12T09:00:00";
+        // $toTime = "2023-02-28T21:00:00";
 
         // $url = "http://localhost:8080/graph/qualityOpportunity/".$fromTime."/".$toTime."/";
         // $ch = curl_init($url);
@@ -355,61 +397,88 @@ class Production_Quality extends BaseController
         // $res = json_decode($result);
         // echo json_encode($res);
 
-        $qualityReason = $this->Financial->qualityReason();
+    
         $ProductionData = $this->getDataRaw($ref,$fromTime,$toTime);
 
-        $ProductionDataExpand = [];
-        foreach ($ProductionData as $value) {
-            if (trim($value['reject_reason']) !="" or trim($value['reject_reason']) !=null) {
-                $reasons =  explode("&&", $value['reject_reason']);
-                foreach ($reasons as $count) {
-                    $tt = explode("&", $count);
-                    $total = $tt[0];
-                    //$temp = explode($total, $count);
-                    $temp = $tt[1];
-                    $tmp = array("machine_id"=>$value['machine_id'],"part_id"=>$value['part_id'],"reject_count"=>$total,"reject_reason"=>$temp,"total_reject"=>$total,"total_correct"=>$value['corrections'],"total_production"=>$value['production'],"shot_count"=>$value['actual_shot_count'],"start_time"=>$value['start_time'],"end_time"=>$value['end_time']);
-                    array_push($ProductionDataExpand, $tmp);
-                }
-            }
-        }
+        $qualityReason = $this->Financial->qualityReason();
+        $qualityReason_filter = $this->request->getVar("reason");
+        // $qualityReason_filter =["4"];
+
+        $ProductionData = $this->getDataRaw($ref,$fromTime,$toTime);
 
         $partDetails = $this->Financial->getPartDetails();
+        $partDetails_filter = $this->request->getVar("part");
+        // $partDetails_filter = ["PT1001","PT1002","PT1003"];
 
-        $machineDetails = $this->Financial->getMachineDetails();
+        $machineDetails_filter = $this->Financial->getMachineDetails();
+        $machineDetails = $this->request->getVar("machine");
+        // $machineDetails = ["MC1001","MC1002","MC1003"];
+
+        $ProductionDataExpand = [];
+        foreach ($ProductionData as $k => $value) {
+            $m=0;
+            foreach ($machineDetails as $key) {
+                if ($key == $value['machine_id']) {
+                    $m=1;
+                }
+            }
+            if ($m==1) {
+                if (trim($value['reject_reason']) !="" or trim($value['reject_reason']) !=null) {
+                    $reasons =  explode("&&", $value['reject_reason']);
+                    foreach ($reasons as $count) {
+                        $tt = explode("&", $count);
+                        $total = $tt[0];
+                        //$temp = explode($total, $count);
+                        $temp = $tt[1];
+                        $tmp = array("machine_id"=>$value['machine_id'],"part_id"=>$value['part_id'],"reject_count"=>$total,"reject_reason"=>$temp,"total_reject"=>$total,"total_correct"=>$value['corrections'],"total_production"=>$value['production'],"shot_count"=>$value['actual_shot_count'],"start_time"=>$value['start_time'],"end_time"=>$value['end_time']);
+                        array_push($ProductionDataExpand, $tmp);
+                    }
+                }
+            }else{
+                unset($ProductionData[$k]);
+            }
+        }
 
         
         $reasonwise =[];
         $totalPart=0;
         foreach ($qualityReason as $key => $value) {
             $tmpPart =[];
-               
-            foreach ($partDetails as $part) {
-                $tmpTotalReject=0;
-                $tmpOpportunityCost=0;
-                foreach ($ProductionDataExpand as $production) {
-                    if ($part['part_id'] == $production['part_id'] AND $value['quality_reason_id'] == $production['reject_reason']){
-                        $PartPrice = $part['part_price'];
-                        $Rejects =$production['reject_count'];
-                        $OppCost = floatval($Rejects)*floatval($PartPrice);
-                        $tmpTotalReject =$tmpTotalReject+$Rejects;
-                        $tmpOpportunityCost=floatval($tmpOpportunityCost)+floatval($OppCost);
+            
+            // Reason Filter....
+            if (in_array($value['quality_reason_id'], $qualityReason_filter)) {
+                foreach ($partDetails as $part) {
+                    $tmpTotalReject=0;
+                    $tmpOpportunityCost=0;
+                    // Part Filter....
+                    if (in_array($part['part_id'], $partDetails_filter)) {
+                        foreach ($ProductionDataExpand as $production) {
+                            // Machine Filter....
+                            if ($part['part_id'] == $production['part_id'] AND $value['quality_reason_id'] == $production['reject_reason'] AND in_array($production['machine_id'], $machineDetails)){
+
+                                $PartPrice = $part['part_price'];
+                                $Rejects =$production['reject_count'];
+                                $OppCost = floatval($Rejects)*floatval($PartPrice);
+                                $tmpTotalReject =$tmpTotalReject+$Rejects;
+                                $tmpOpportunityCost=floatval($tmpOpportunityCost)+floatval($OppCost);
+                            }
+                        }
+                        $ar = array('part_id' => $part['part_id'],'part_name' => $part['part_name'], 'reject'=> $tmpTotalReject , 'cost'=>$tmpOpportunityCost,'cost'=>$tmpOpportunityCost);
+                        $totalPart = $totalPart + $tmpOpportunityCost;
+                        array_push($tmpPart, $ar);
                     }
                 }
-                $ar = array('part_id' => $part['part_id'],'part_name' => $part['part_name'], 'reject'=> $tmpTotalReject , 'cost'=>$tmpOpportunityCost,'cost'=>$tmpOpportunityCost);
-                $totalPart = $totalPart + $tmpOpportunityCost;
-                array_push($tmpPart, $ar);
+
+                $arr  = array('reason' => $value['quality_reason_name'] , 'part_1' => $tmpPart);
+                array_push($reasonwise, $arr);
             }
-
-            $arr  = array('reason' => $value['quality_reason_name'] , 'part_1' => $tmpPart);
-            array_push($reasonwise, $arr);
         }
-
 
         $GrandTotal =0;
         $total=[];
 
-        $len_part = sizeof($partDetails);
-        $len_reason = sizeof($qualityReason);
+        $len_part = sizeof($partDetails_filter);
+        $len_reason = sizeof($qualityReason_filter);
 
         for($i=0;$i<$len_part;$i++){
             $t=0;
@@ -456,13 +525,28 @@ class Production_Quality extends BaseController
             $arr['Part_List'][$min_idx] = $temp2;
 
             $l = sizeof($arr['Part'][0]['part_1']);
-
             for ($k=0; $k < $p; $k++) {
                 for ($m=0; $m < $l ; $m++) {
                     if ($m == $min_idx) {
                         $temp1 = $arr['Part'][$k]['part_1'][$i];
                         $arr['Part'][$k]['part_1'][$i] = $arr['Part'][$k]['part_1'][$min_idx];
                         $arr['Part'][$k]['part_1'][$min_idx] = $temp1;
+                    }
+                }
+            }
+        }
+
+        $l = sizeof($arr['Part'][0]['part_1']);
+        for ($i = 0; $i < $n; $i++)
+        {   
+            if ($arr['Total'][$i] <=0 ) {
+                unset($arr['Total'][$i]);
+                unset($arr['Part_List'][$i]);
+                for ($k=0; $k < $p; $k++) {
+                    for ($m=0; $m <$l ; $m++) {
+                        if ($m == $i) {
+                            unset($arr['Part'][$k]['part_1'][$i]);
+                        }
                     }
                 }
             }
@@ -477,8 +561,8 @@ class Production_Quality extends BaseController
 
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
-        // $fromTime = "2023-01-12T09:00:00";
-        // $toTime = "2023-02-24T21:00:00";
+        // $fromTime = "2023-02-12T09:00:00";
+        // $toTime = "2023-02-28T21:00:00";
 
         // $url = "http://localhost:8080/graph/qualityOpportunity/".$fromTime."/".$toTime."/";
         // $ch = curl_init($url);
@@ -488,44 +572,68 @@ class Production_Quality extends BaseController
         // echo json_encode($res);
 
         $qualityReason = $this->Financial->qualityReason();
+        $qualityReason_filter = $this->request->getVar("reason");
+        // $qualityReason_filter =["1","2","3"];
+
+        $ProductionData = $this->getDataRaw($ref,$fromTime,$toTime);
+
+        $partDetails = $this->Financial->getPartDetails();
+        $partDetails_filter = $this->request->getVar("part");
+        // $partDetails_filter = ["PT1001","PT1002","PT1003"];
+
+        $machineDetails_filter = $this->Financial->getMachineDetails();
+        $machineDetails = $this->request->getVar("machine");
+        // $machineDetails = ["MC1001","MC1002","MC1003"];
+
+
         $ProductionData = $this->getDataRaw($ref,$fromTime,$toTime);
 
         $ProductionDataExpand = [];
-        foreach ($ProductionData as $value) {
-            if (trim($value['reject_reason']) !="" or trim($value['reject_reason']) !=null) {
-                $reasons =  explode("&&", $value['reject_reason']);
-                foreach ($reasons as $count) {
-                    $tt = explode("&", $count);
-                    $total = $tt[0];
-                    //$temp = explode($total, $count);
-                    $temp = $tt[1];
-                    $tmp = array("machine_id"=>$value['machine_id'],"part_id"=>$value['part_id'],"reject_count"=>$total,"reject_reason"=>$temp,"total_reject"=>$total,"total_correct"=>$value['corrections'],"total_production"=>$value['production'],"shot_count"=>$value['actual_shot_count'],"start_time"=>$value['start_time'],"end_time"=>$value['end_time']);
-                    array_push($ProductionDataExpand, $tmp);
+        foreach ($ProductionData as $k => $value) {
+            $m=0;
+            foreach ($machineDetails as $key) {
+                if ($key == $value['machine_id']) {
+                    $m=1;
                 }
             }
+            if ($m==1) {
+                if (trim($value['reject_reason']) !="" or trim($value['reject_reason']) !=null) {
+                    $reasons =  explode("&&", $value['reject_reason']);
+                    foreach ($reasons as $count) {
+                        $tt = explode("&", $count);
+                        $total = $tt[0];
+                        //$temp = explode($total, $count);
+                        $temp = $tt[1];
+                        $tmp = array("machine_id"=>$value['machine_id'],"part_id"=>$value['part_id'],"reject_count"=>$total,"reject_reason"=>$temp,"total_reject"=>$total,"total_correct"=>$value['corrections'],"total_production"=>$value['production'],"shot_count"=>$value['actual_shot_count'],"start_time"=>$value['start_time'],"end_time"=>$value['end_time']);
+                        array_push($ProductionDataExpand, $tmp);
+                    }
+                }
+            }else{
+                unset($ProductionData[$k]);
+            }
         }
-
-        $partDetails = $this->Financial->getPartDetails();
-
-        $machineDetails = $this->Financial->getMachineDetails();
         
         $tmpPart =[];
         $totalPart=0;
         foreach ($partDetails as $part) {
-            $tmpTotalReject=0;
-            $tmpOpportunityCost=0;
-            foreach ($ProductionDataExpand as $production) {
-                if ($part['part_id'] == $production['part_id']){
-                    $PartPrice = $part['part_price'];
-                    $Rejects =$production['reject_count'];
-                    $OppCost = floatval($Rejects)*floatval($PartPrice);
-                    $tmpTotalReject =$tmpTotalReject+$Rejects;
-                    $tmpOpportunityCost=floatval($tmpOpportunityCost)+floatval($OppCost);
+            if (in_array($part['part_id'], $partDetails_filter)) {
+                $tmpTotalReject=0;
+                $tmpOpportunityCost=0;
+                foreach ($ProductionDataExpand as $production) {
+                    if (in_array($production['reject_reason'], $qualityReason_filter)) {
+                        if ($part['part_id'] == $production['part_id']){
+                            $PartPrice = $part['part_price'];
+                            $Rejects =$production['reject_count'];
+                            $OppCost = floatval($Rejects)*floatval($PartPrice);
+                            $tmpTotalReject =$tmpTotalReject+$Rejects;
+                            $tmpOpportunityCost=floatval($tmpOpportunityCost)+floatval($OppCost);
+                        }
+                    }
                 }
+                $ar = array('part_id' => $part['part_id'],'part_name' => $part['part_name'], 'reject'=> $tmpTotalReject , 'cost'=>$tmpOpportunityCost);
+                $totalPart = $totalPart + $tmpOpportunityCost;
+                array_push($tmpPart, $ar);
             }
-            $ar = array('part_id' => $part['part_id'],'part_name' => $part['part_name'], 'reject'=> $tmpTotalReject , 'cost'=>$tmpOpportunityCost);
-            $totalPart = $totalPart + $tmpOpportunityCost;
-            array_push($tmpPart, $ar);
         }
 
         $result['Part']=$tmpPart;
@@ -556,6 +664,12 @@ class Production_Quality extends BaseController
             $arr['Part'][$i] = $arr['Part'][$min_idx];
             $arr['Part'][$min_idx] = $temp;
         }
+
+        for ($i = 0; $i < $n; $i++){
+            if ($arr['Part'][$i]['cost'] <=0 ) {
+               unset($arr['Part'][$i]['cost']);
+            }
+        }
         return $arr;
     }
 
@@ -566,8 +680,8 @@ class Production_Quality extends BaseController
 
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
-        // $fromTime = "2023-01-13T09:00:00";
-        // $toTime = "2023-01-21T21:00:00";
+        // $fromTime = "2023-02-13T09:00:00";
+        // $toTime = "2023-02-28T21:00:00";
 
         // $url = "http://localhost:8080/graph/qualityOpportunity/".$fromTime."/".$toTime."/";
         // $ch = curl_init($url);
@@ -576,27 +690,45 @@ class Production_Quality extends BaseController
         // $res = json_decode($result);
         // echo json_encode($res);x
 
-        $qualityReason = $this->Financial->qualityReason();
         $ProductionData = $this->getDataRaw($ref,$fromTime,$toTime);
 
-        $ProductionDataExpand = [];
-        foreach ($ProductionData as $value) {
-            if (trim($value['reject_reason']) !="" or trim($value['reject_reason']) !=null) {
-                $reasons =  explode("&&", $value['reject_reason']);
-                foreach ($reasons as $count) {
-                    $tt = explode("&", $count);
-                    $total = $tt[0];
-                    //$temp = explode($total, $count);
-                    $temp = $tt[1];
-                    $tmp = array("machine_id"=>$value['machine_id'],"part_id"=>$value['part_id'],"reject_count"=>$total,"reject_reason"=>$temp,"total_reject"=>$total,"total_correct"=>$value['corrections'],"total_production"=>$value['production'],"shot_count"=>$value['actual_shot_count'],"start_time"=>$value['start_time'],"end_time"=>$value['end_time']);
-                    array_push($ProductionDataExpand, $tmp);
-                }
-            }
-        }
+
+        $qualityReason = $this->Financial->qualityReason();
+        $qualityReason_filter = $this->request->getVar("reason");
+
+        $ProductionData = $this->getDataRaw($ref,$fromTime,$toTime);
 
         $partDetails = $this->Financial->getPartDetails();
+        $partDetails_filter = $this->request->getVar("part");
 
-        $machineDetails = $this->Financial->getMachineDetails();
+        $machineDetails_filter = $this->Financial->getMachineDetails();
+        $machineDetails = $this->request->getVar("machine");
+        
+
+        $ProductionDataExpand = [];
+        foreach ($ProductionData as $k => $value) {
+            $m=0;
+            foreach ($machineDetails as $key) {
+                if ($key == $value['machine_id']) {
+                    $m=1;
+                }
+            }
+            if ($m==1) {
+                if (trim($value['reject_reason']) !="" or trim($value['reject_reason']) !=null) {
+                    $reasons =  explode("&&", $value['reject_reason']);
+                    foreach ($reasons as $count) {
+                        $tt = explode("&", $count);
+                        $total = $tt[0];
+                        //$temp = explode($total, $count);
+                        $temp = $tt[1];
+                        $tmp = array("machine_id"=>$value['machine_id'],"part_id"=>$value['part_id'],"reject_count"=>$total,"reject_reason"=>$temp,"total_reject"=>$total,"total_correct"=>$value['corrections'],"total_production"=>$value['production'],"shot_count"=>$value['actual_shot_count'],"start_time"=>$value['start_time'],"end_time"=>$value['end_time']);
+                        array_push($ProductionDataExpand, $tmp);
+                    }
+                }
+            }else{
+                unset($ProductionData[$k]);
+            }
+        }
 
         $tmpActualReason=[];
         $rejectTotal=[];
@@ -605,18 +737,20 @@ class Production_Quality extends BaseController
         
         foreach ($qualityReason as $reason) {
             $tmpTotalReject=0;
-            foreach ($ProductionDataExpand as $production) {
-                if ($reason['quality_reason_id'] == $production['reject_reason']){
-                    $Rejects =$production['reject_count'];
-                    $tmpTotalReject =$tmpTotalReject+$Rejects;
+            if (in_array($reason['quality_reason_id'],$qualityReason_filter)) {
+                foreach ($ProductionDataExpand as $production) {
+                    if ($reason['quality_reason_id'] == $production['reject_reason'] and in_array($production['part_id'], $partDetails_filter)){
+                        $Rejects =$production['reject_count'];
+                        $tmpTotalReject =$tmpTotalReject+$Rejects;
+                    }
                 }
-            }
 
-            $GrandTotal = $GrandTotal + $tmpTotalReject;
-            array_push($rejectTotal,$tmpTotalReject);
-            array_push($rejectReason,$reason['quality_reason_name']);
-            $tmpActual = array("Reason"=>$reason['quality_reason_id'],"TotalRejects"=>$tmpTotalReject,"Reason_Name" =>$reason['quality_reason_name']);
-            array_push($tmpActualReason, $tmpActual);
+                $GrandTotal = $GrandTotal + $tmpTotalReject;
+                array_push($rejectTotal,$tmpTotalReject);
+                array_push($rejectReason,$reason['quality_reason_name']);
+                $tmpActual = array("Reason"=>$reason['quality_reason_id'],"TotalRejects"=>$tmpTotalReject,"Reason_Name" =>$reason['quality_reason_name']);
+                array_push($tmpActualReason, $tmpActual);
+            }
         }
  
         $result['Rejection'] = $rejectTotal;
@@ -649,8 +783,17 @@ class Production_Quality extends BaseController
             $temp1 = $arr['Reason'][$i];
             $arr['Reason'][$i] = $arr['Reason'][$min_idx];
             $arr['Reason'][$min_idx] = $temp1;          
-
         }
+
+        // Remove the Zero values....
+        for ($i = 0; $i < $n; $i++)
+        {   
+            if ($arr['Rejection'][$i] <= 0){
+                unset($arr['Rejection'][$i]);
+                unset($arr['Reason'][$i]);
+            }
+        }
+
         return $arr;
     }
 
@@ -661,48 +804,72 @@ class Production_Quality extends BaseController
 
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
-        // $fromTime = "2023-01-12T09:00:00";
-        // $toTime = "2023-01-21T21:00:00";
+        // $fromTime = "2023-02-12T09:00:00";
+        // $toTime = "2023-02-28T21:00:00";
 
-        $qualityReason = $this->Financial->qualityReason();
         $ProductionData = $this->getDataRaw($ref,$fromTime,$toTime);
 
-        $ProductionDataExpand = [];
-        foreach ($ProductionData as $value) {
-            if (trim($value['reject_reason']) !="" or trim($value['reject_reason']) !=null) {
-                $reasons =  explode("&&", $value['reject_reason']);
-                foreach ($reasons as $count) {
-                    $tt = explode("&", $count);
-                    $total = $tt[0];
-                    //$temp = explode($total, $count);
-                    $temp = $tt[1];
-                    $tmp = array("machine_id"=>$value['machine_id'],"part_id"=>$value['part_id'],"reject_count"=>$total,"reject_reason"=>$temp,"total_reject"=>$total,"total_correct"=>$value['corrections'],"total_production"=>$value['production'],"shot_count"=>$value['actual_shot_count'],"start_time"=>$value['start_time'],"end_time"=>$value['end_time']);
-                    array_push($ProductionDataExpand, $tmp);
-                }
-            }
-        }
+        $qualityReason = $this->Financial->qualityReason();
+        $qualityReason_filter = $this->request->getVar("reason");
+
+        $ProductionData = $this->getDataRaw($ref,$fromTime,$toTime);
 
         $partDetails = $this->Financial->getPartDetails();
+        $partDetails_filter = $this->request->getVar("part");
 
-        $machineDetails = $this->Financial->getMachineDetails();
+        $machineDetails_filter = $this->Financial->getMachineDetails();
+        $machineDetails = $this->request->getVar("machine");
+
+        $ProductionDataExpand = [];
+        foreach ($ProductionData as $k => $value) {
+            $m=0;
+            foreach ($machineDetails as $key) {
+                if ($key == $value['machine_id']) {
+                    $m=1;
+                }
+            }
+            if ($m==1) {
+                if (trim($value['reject_reason']) !="" or trim($value['reject_reason']) !=null) {
+                    $reasons =  explode("&&", $value['reject_reason']);
+                    foreach ($reasons as $count) {
+                        $tt = explode("&", $count);
+                        $total = $tt[0];
+                        $temp = $tt[1];
+                        $tmp = array("machine_id"=>$value['machine_id'],"part_id"=>$value['part_id'],"reject_count"=>$total,"reject_reason"=>$temp,"total_reject"=>$total,"total_correct"=>$value['corrections'],"total_production"=>$value['production'],"shot_count"=>$value['actual_shot_count'],"start_time"=>$value['start_time'],"end_time"=>$value['end_time']);
+                        array_push($ProductionDataExpand, $tmp);
+                    }
+                }
+            }else{
+                unset($ProductionData[$k]);
+            }
+        }
 
         $machineRejection=[];
         $machinewisecost=[];
         $machinearray=[];
-        $GrandTotal=0;
-        
-        foreach ($machineDetails as $machine) {
+        $GrandTotal=0;   
+
+        foreach ($machineDetails_filter as $machine) {
             $tmpTotalReject=0;
             $tmpOpportunityCost =0;
-            foreach ($partDetails as $part) {
-                foreach ($qualityReason as $reason) {
-                    foreach ($ProductionDataExpand as $production) {
-                        if ($part['part_id'] == $production['part_id'] AND $reason['quality_reason_id'] == $production['reject_reason'] AND $machine['machine_id'] == $production['machine_id']){
-                            $PartPrice = $part['part_price'];
-                            $Rejects =$production['reject_count'];
-                            $OppCost = floatval($Rejects)*floatval($PartPrice);
-                            $tmpTotalReject =$tmpTotalReject+$Rejects;
-                            $tmpOpportunityCost=floatval($tmpOpportunityCost)+floatval($OppCost);
+            // Machine Filters...
+            if (in_array($machine['machine_id'], $machineDetails)) {
+                foreach ($partDetails as $part) {
+                    // Part Filters...
+                    if (in_array($part['part_id'], $partDetails_filter)) {
+                        foreach ($qualityReason as $reason) {
+                            if (in_array($reason['quality_reason_id'], $qualityReason_filter)) {
+    
+                                foreach ($ProductionDataExpand as $production) {
+                                    if ($part['part_id'] == $production['part_id'] AND $reason['quality_reason_id'] == $production['reject_reason'] AND $machine['machine_id'] == $production['machine_id']){
+                                        $PartPrice = $part['part_price'];
+                                        $Rejects =$production['reject_count'];
+                                        $OppCost = floatval($Rejects)*floatval($PartPrice);
+                                        $tmpTotalReject =$tmpTotalReject+$Rejects;
+                                        $tmpOpportunityCost=floatval($tmpOpportunityCost)+floatval($OppCost);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -750,6 +917,16 @@ class Production_Quality extends BaseController
             $arr['MachineWiseRejection'][$min_idx] = $temp2;          
 
         }
+
+        for ($i = 0; $i < $n; $i++)
+        {   
+            if ($arr['MachineCost'][$i] <=0 ) {
+                unset($arr['MachineCost'][$i]);
+                unset($arr['Machine'][$i]);
+                unset($arr['MachineWiseRejection'][$i]);
+            }
+        }
+
         return $arr;
     }
 
@@ -761,30 +938,49 @@ class Production_Quality extends BaseController
 
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
-        // $fromTime = "2023-01-12T09:00:00";
-        // $toTime = "2023-01-21T21:00:00";
+        // $fromTime = "2023-02-12T09:00:00";
+        // $toTime = "2023-02-28T21:00:00";
 
-        $qualityReason = $this->Financial->qualityReason();
         $ProductionData = $this->getDataRaw($ref,$fromTime,$toTime);
 
-        $ProductionDataExpand = [];
-        foreach ($ProductionData as $value) {
-            if (trim($value['reject_reason']) !="" or trim($value['reject_reason']) !=null) {
-                $reasons =  explode("&&", $value['reject_reason']);
-                foreach ($reasons as $count) {
-                    $tt = explode("&", $count);
-                    $total = $tt[0];
-                    //$temp = explode($total, $count);
-                    $temp = $tt[1];
-                    $tmp = array("machine_id"=>$value['machine_id'],"part_id"=>$value['part_id'],"reject_count"=>$total,"reject_reason"=>$temp,"total_reject"=>$total,"total_correct"=>$value['corrections'],"total_production"=>$value['production'],"shot_count"=>$value['actual_shot_count'],"start_time"=>$value['start_time'],"end_time"=>$value['end_time']);
-                    array_push($ProductionDataExpand, $tmp);
-                }
-            }
-        }
+        $qualityReason = $this->Financial->qualityReason();
+        $qualityReason_filter = $this->request->getVar("reason");
+        // $qualityReason_filter =["4","5","6","7","8","9","10"];
+
+        $ProductionData = $this->getDataRaw($ref,$fromTime,$toTime);
 
         $partDetails = $this->Financial->getPartDetails();
+        $partDetails_filter = $this->request->getVar("part");
+        // $partDetails_filter = ["PT1001","PT1002","PT1003"];
 
-        $machineDetails = $this->Financial->getMachineDetails();
+        $machineDetails_filter = $this->Financial->getMachineDetails();
+        $machineDetails = $this->request->getVar("machine");
+        // $machineDetails = ["MC1001","MC1002","MC1003"];
+
+
+        $ProductionDataExpand = [];
+        foreach ($ProductionData as $k => $value) {
+            $m=0;
+            foreach ($machineDetails as $key) {
+                if ($key == $value['machine_id']) {
+                    $m=1;
+                }
+            }
+            if ($m==1) {
+                if (trim($value['reject_reason']) !="" or trim($value['reject_reason']) !=null) {
+                    $reasons =  explode("&&", $value['reject_reason']);
+                    foreach ($reasons as $count) {
+                        $tt = explode("&", $count);
+                        $total = $tt[0];
+                        $temp = $tt[1];
+                        $tmp = array("machine_id"=>$value['machine_id'],"part_id"=>$value['part_id'],"reject_count"=>$total,"reject_reason"=>$temp,"total_reject"=>$total,"total_correct"=>$value['corrections'],"total_production"=>$value['production'],"shot_count"=>$value['actual_shot_count'],"start_time"=>$value['start_time'],"end_time"=>$value['end_time']);
+                        array_push($ProductionDataExpand, $tmp);
+                    }
+                }
+            }else{
+                unset($ProductionData[$k]);
+            }
+        }
 
         $machineRejection=[];
         $machinewisecost=[];
@@ -793,38 +989,49 @@ class Production_Quality extends BaseController
         $reject_machine=[];
         foreach ($qualityReason as $reason) {
             $machinewise=[];
-            foreach ($machineDetails as $machine) {
-                $machineWiseReject=0;
-                foreach ($partDetails as $part) {
-                    foreach ($ProductionDataExpand as $production) {
-                        if ($part['part_id'] == $production['part_id'] AND $reason['quality_reason_id'] == $production['reject_reason'] AND $machine['machine_id'] == $production['machine_id']){
-                            $PartPrice = $part['part_price'];
-                            $Rejects =$production['reject_count'];
-                            $machineWiseReject =$machineWiseReject+$Rejects;
+            // Reason Filter....
+            if (in_array($reason['quality_reason_id'], $qualityReason_filter)) {
+                foreach ($machineDetails_filter as $machine) {
+                    // Machine Filter....
+                    if (in_array($machine['machine_id'], $machineDetails)) {
+                        $machineWiseReject=0;
+                        foreach ($partDetails as $part) {
+                            // Part Filter....
+                            // if (in_array($part['part_id'], $partDetails_filter)) {
+                                foreach ($ProductionDataExpand as $production) {
+                                    if ($part['part_id'] == $production['part_id'] AND $reason['quality_reason_id'] == $production['reject_reason'] AND $machine['machine_id'] == $production['machine_id']){
+                                        $PartPrice = $part['part_price'];
+                                        $Rejects =$production['reject_count'];
+                                        $machineWiseReject =$machineWiseReject+$Rejects;
+                                    }
+                                }
+                            // }
                         }
+                        $arr = array("Machine_id"=>$machine['machine_name'],"Rejection"=>$machineWiseReject);
+                        array_push($machinewise, $arr);
                     }
                 }
-                $arr = array("Machine_id"=>$machine['machine_name'],"Rejection"=>$machineWiseReject);
-                array_push($machinewise, $arr);
+                $ar = array('Reason' => $reason['quality_reason_name'],'Machine' => $machinewise);
+                array_push($reject_machine,$ar);
             }
-            $ar = array('Reason' => $reason['quality_reason_name'],'Machine' => $machinewise);
-            array_push($reject_machine,$ar);
         }
 
         $machine_ar = [];
-        foreach ($machineDetails as $key => $value) {
-            array_push($machine_ar, $value['machine_name']);
+        foreach ($machineDetails_filter as $key => $value) {
+            if (in_array($value['machine_id'], $machineDetails)) {
+                array_push($machine_ar, $value['machine_name']);
+            }
         }
 
         $GrandTotal =0;
         $total=[];
 
         $len_machine = sizeof($machineDetails);
-        $len_reason = sizeof($qualityReason);
+        $len_reason = sizeof($qualityReason_filter);
 
         for($i=0;$i<$len_machine;$i++){
             $t=0;
-            for ($j=0; $j < $len_reason ; $j++) { 
+            for ($j=0; $j < $len_reason ; $j++) {  
                 $t = $t + $reject_machine[$j]['Machine'][$i]['Rejection'];
             }
             $GrandTotal=$GrandTotal+$t;
@@ -881,6 +1088,22 @@ class Production_Quality extends BaseController
                 }
             }          
 
+        }
+
+        $l = sizeof($arr['Rejection'][0]['Machine']);
+        for ($i = 0; $i < $n; $i++)
+        {   
+            if ($arr['Total'][$i] <=0 ) {
+                unset($arr['Total'][$i]);
+                unset($arr['Machine_name'][$i]);
+                for ($k=0; $k < $j_1; $k++) {
+                    for ($m=0; $m <$l ; $m++) {
+                        if ($m == $i) {
+                            unset($arr['Rejection'][$k]['Machine'][$i]);
+                        }
+                    }
+                }
+            }
         }
         return $arr;
     }
@@ -946,7 +1169,7 @@ class Production_Quality extends BaseController
 
                                         $time = strtotime($value['shift_date']);
                                         $time_stamp = strtotime($value['last_updated_on']);
-                                        $tmp = array("machine_id"=>$value['machine_id'],"part_id"=>$value['part_id'],"reject_count"=>$total,"reject_reason"=>$temp,"total_reject"=>$total,"from_time"=>$value['start_time'],"to_time"=>$value['end_time'],"from_date"=>date('d M y',$time),"updated_by"=>$value['last_updated_by'],"updated_at"=>date('d M y, h:i',$time_stamp),"part_name"=>$value['part_name'],"machine_name"=>$value['machine_name'],"reason_name"=>$dr,"user_name" => $un,"notes"=>$value['rejections_notes']);
+                                        $tmp = array("machine_id"=>$value['machine_id'],"part_id"=>$value['part_id'],"reject_count"=>$total,"reject_reason"=>$temp,"total_reject"=>$total,"from_time"=>$value['start_time'],"to_time"=>$value['end_time'],"from_date"=>date('d M y',$time),"updated_by"=>$value['last_updated_by'],"updated_at"=>date('d M y, h:i',$time_stamp),"part_name"=>$value['part_name'],"machine_name"=>$value['machine_name'],"reason_name"=>$dr,"user_name" => $un);
                                         array_push($ProductionDataExpand, $tmp);
                                     }
                                 }
