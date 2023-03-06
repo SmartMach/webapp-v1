@@ -574,13 +574,21 @@
                         </li>
                         <!-- production downtime new module end -->
 
-                         <!-- production Downtime New module -->
-                         <li class="side-menu-li d-flex">
+                        <!-- production Downtime New module -->
+                        <li class="side-menu-li d-flex">
                             <a href="<?php echo base_url('Home/load_option/Quality_Production'); ?>">
                                 <i class="fa fa-folder-open nav-icon nav-icon-hover production_downtime_background" style="font-size:26px;" dvalue="Quality" alt="Quality"></i>
                             </a>
                         </li>
                         <!-- production downtime new module end -->
+
+                        <!-- oee drilldown new module -->
+                        <li class="side-menu-li d-flex">
+                            <a href="<?php echo base_url('Home/load_option/Oee_Drill_Down'); ?>">
+                                <i class="fa fa-television nav-icon nav-icon-hover production_downtime_background" style="font-size:26px;" dvalue="Oee" alt="Oee"></i>
+                            </a>
+                        </li>
+                        <!-- oee drilldown new module end  -->
                 </ul>
             </div> 
             <div class="col-lg paddingm">        
@@ -655,6 +663,9 @@
                 listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:27px;padding:9px;";
             }
             else if(split_nav[1]==="fa fa-chart-area"){
+                listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:27px;padding:9px;";
+            }
+            else if(split_nav[1]==="fa fa-television"){
                 listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:27px;padding:9px;";
             }
             else{

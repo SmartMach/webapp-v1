@@ -280,9 +280,9 @@ display: block;
 
 .filter_checkboxes div:hover {
 background-color: #E7F2FF;
-padding:0;
+/* padding:0; */
 cursor:context-menu;
-width:100%;
+/* width:100%; */
 }
 
 /* filter css design */
@@ -349,9 +349,9 @@ display: block;
 }
 .filter_checkboxes_cb div:hover{
 background-color: #E7F2FF;
-padding:0;
+/* padding:0; */
 cursor:context-menu;
-width:100%;
+/* width:100%; */
 }
 .filter_check_cb{
 display:flex;
@@ -412,9 +412,9 @@ display:block;
 }
 .filter_checkboxes_r div:hover{
 background-color: #E7F2FF;
-padding:0;
+/* padding:0; */
 cursor:context-menu;
-width:100%;
+/* width:100%; */
 }
 .filter_check_r{
 display:flex;
@@ -476,9 +476,9 @@ display:block;
 }
 .filter_checkboxes_part div:hover{
 background-color: #E7F2FF;
-padding:0;
+/* padding:0; */
 cursor:context-menu;
-width:100%;
+/* width:100%; */
 }
 .filter_check_part{
 display:flex;
@@ -539,9 +539,9 @@ display:block;
 }
 .filter_checkboxes_machine div:hover{
 background-color: #E7F2FF;
-padding:0;
+/* padding:0; */
 cursor:context-menu;
-width:100%;
+/* width:100%; */
 }
 .filter_check_machine{
 display:flex;
@@ -621,9 +621,9 @@ display:block;
 }
 .filter_checkboxes_machinegp div:hover{
 background-color: #E7F2FF;
-padding:0;
+/* padding:0; */
 cursor:context-menu;
-width:100%;
+/* width:100%; */
 }
 
 .filter_check_machinegp{
@@ -687,9 +687,9 @@ display:block;
 }
 .filter_checkboxes_reasongp div:hover{
 background-color: #E7F2FF;
-padding:0;
+/* padding:0; */
 cursor:context-menu;
-width:100%;
+/* width:100%; */
 }
 
 .filter_check_reasongp{
@@ -752,9 +752,9 @@ display:block;
 }
 .filter_checkboxes_categorygp div:hover{
 background-color: #E7F2FF;
-padding:0;
+/* padding:0; */
 cursor:context-menu;
-width:100%;
+/* width:100%; */
 }
 
 .filter_check_categorygb{
@@ -816,9 +816,9 @@ height:2rem;
 }
 .filter_checkboxes_machinegp1 div:hover{
     background-color: #E7F2FF;
-    padding:0;
+    /* padding:0; */
     cursor:context-menu;
-    width:100%;
+    /* width:100%; */
 }
     
 .filter_check_machinegp1{
@@ -882,9 +882,9 @@ height:2rem;
 }
 .filter_checkboxes_categorygp1 div:hover{
     background-color: #E7F2FF;
-    padding:0;
+    /* padding:0; */
     cursor:context-menu;
-    width:100%;
+    /* width:100%; */
 }
     
 .filter_check_categorygb1{
@@ -949,9 +949,9 @@ height:2rem;
 }
 .filter_checkboxes_reasongp1 div:hover{
     background-color: #E7F2FF;
-    padding:0;
+    /* padding:0; */
     cursor:context-menu;
-    width:100%;
+    /* width:100%; */
 }
     
 .filter_check_reasongp1{
@@ -1013,9 +1013,9 @@ height:2rem;
 }
 .filter_checkboxes_machinegp2 div:hover{
     background-color: #E7F2FF;
-    padding:0;
+    /* padding:0; */
     cursor:context-menu;
-    width:100%;
+    /* width:100%; */
 }
     
 .filter_check_machinegp2{
@@ -1080,9 +1080,9 @@ height:2rem;
 }
 .filter_checkboxes_reasongp2 div:hover{
     background-color: #E7F2FF;
-    padding:0;
+    /* padding:0; */
     cursor:context-menu;
-    width:100%;
+    /* width:100%; */
 }
     
 .filter_check_reasongp2{
@@ -1146,9 +1146,9 @@ height:2rem;
 }
 .filter_checkboxes_categorygp2 div:hover{
     background-color: #E7F2FF;
-    padding:0;
+    /* padding:0; */
     cursor:context-menu;
-    width:100%;
+    /* width:100%; */
 }
     
 .filter_check_categorygb2{
@@ -1211,9 +1211,9 @@ height:2rem;
 }
 .filter_checkboxes_machinegp3 div:hover{
     background-color: #E7F2FF;
-    padding:0;
+    /* padding:0; */
     cursor:context-menu;
-    width:100%;
+    /* width:100%; */
 }
     
 .filter_check_machinegp3{
@@ -1278,9 +1278,9 @@ height:2rem;
 }
 .filter_checkboxes_reasongp3 div:hover{
     background-color: #E7F2FF;
-    padding:0;
+    /* padding:0; */
     cursor:context-menu;
-    width:100%;
+    /* width:100%; */
 }
     
 .filter_check_reasongp3{
@@ -1344,9 +1344,9 @@ height:2rem;
 }
 .filter_checkboxes_categorygp3 div:hover{
     background-color: #E7F2FF;
-    padding:0;
+    /* padding:0; */
     cursor:context-menu;
-    width:100%;
+    /* width:100%; */
 }
     
 .filter_check_categorygb3{

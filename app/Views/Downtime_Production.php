@@ -117,14 +117,14 @@ $session = \Config\Services::session();
                         <!-- <input type="date" name="" class="form-control fromDate" id="from"> -->
                         <input type="text" class="form-control fromDate" value="" step="1">
                         <!-- <input type="datetime-local" class="form-control" value="2013-10-24T10:00:00" step="1"> -->
-                        <label for="inputSiteNameAdd" class="input-padding ">From Date</label>
+                        <label for="inputSiteNameAdd" class="input-padding ">From DateTime</label>
                     </div>
                 </div>
                 <div class="box rightmar" style="margin-right: 0.5rem;">
                     <div class="input-box">
                         <!-- <input type="date" name="" class="form-control toDate"> -->
                         <input type="text" class="form-control toDate" value="" step="1">
-                        <label for="inputSiteNameAdd" class="input-padding ">To Date</label>
+                        <label for="inputSiteNameAdd" class="input-padding ">To DateTime</label>
                     </div>
                 </div>
             </div>
@@ -140,7 +140,7 @@ $session = \Config\Services::session();
                         <!-- reason wise opportunity cost graph-->
                         <p  class="font graph_mar_align"> Downtime opportunity Cost by Reasons</p>
                         <div style="display:flex;flex-direction:row;padding-left:1rem;">
-                            <div style="width:15%;">
+                            <div style="width:max-content;">
                                 <div style="display:flex;flex-direction:column">
                                     <p style="color:#A6A6A6;font-size:11px;margin-bottom:0;">TOTAL</p>
                                     <p id="total_oppcost_by_reason" class="total_font_style"><i class="fa fa-inr inr-class"></i><span id="reason_wise_oppcost_total"></span></p>
@@ -227,7 +227,7 @@ $session = \Config\Services::session();
                     <!-- Reason wise duration graph-->
                         <p class="font graph_mar_align"> Downtime Duration by Reasons</p>
                         <div style="display:flex;flex-direction:row;padding-left:1rem;">
-                            <div class="width:10%;">
+                            <div class="width:max-content;">
                                 <div style="display:flex;flex-direction:column">
                                     <p style="color:#A6A6A6;font-size:11px;margin-bottom:0;">TOTAL</p>
                                     <p id="total_oppcost_by_reason" class="total_font_style"><span id="reason_duration_text"></span></p>
@@ -316,7 +316,7 @@ $session = \Config\Services::session();
                         <!-- Machine wise opportunity cost graph-->
                         <p class="font graph_mar_align">Downtime Opportunity Cost by Machines</p>
                         <div style="display:flex;flex-direction:row;padding-left:1rem;">
-                            <div style="width:15%;">
+                            <div style="width:max-content;">
                                 <div style="display:flex;flex-direction:column">
                                     <p style="color:#A6A6A6;font-size:11px;margin-bottom:0;">TOTAL</p>
                                     <p id="total_oppcost_by_reason" class="total_font_style"><i class="fa fa-inr inr-class"></i><span id="machine_wise_oppcost_total"></span></p>
@@ -403,7 +403,7 @@ $session = \Config\Services::session();
                         <!-- graph 4 inner lables-->
                         <p class="font graph_mar_align">Downtime Duration by Machines With Reasons</p>
                         <div style="display:flex;flex-direction:row;padding-left:1rem;">
-                            <div class="width:10%;">
+                            <div class="width:max-content;">
                                 <div style="display:flex;flex-direction:column">
                                     <p style="color:#A6A6A6;font-size:11px;margin-bottom:0;">TOTAL</p>
                                     <p id="total_oppcost_by_reason" class="total_font_style"><span id="machine_reason_duration_text"></span></p>
@@ -1479,7 +1479,7 @@ function downtime_reason_filter(){
   // var cate_arr = getcategory_arr(); 
   // var arr_leng = cate_arr.length;
  
-//   if (category_temp === null) {
+    //   if (category_temp === null) {
     $.ajax({
       url:"<?php echo base_url(); ?>/Production_Downtime_controller/downtime_reason_filter_con",
       method:"POST",
@@ -1549,20 +1549,20 @@ function downtime_reason_filter(){
 
         // graph 
          // reason oppcost graph
-    getfilter_oppcost_reason();
+        getfilter_oppcost_reason();
 
-// // reason duration graph
-getfilter_duration_reason();
+        // // reason duration graph
+        getfilter_duration_reason();
 
-// // machine wise oppcost
-getfilter_machine_oppcost();
+        // // machine wise oppcost
+        getfilter_machine_oppcost();
 
-// // machine wise and duration wise graph filter function
-getfilter_machine_reason_duration();
+        // // machine wise and duration wise graph filter function
+        getfilter_machine_reason_duration();
 
         
-      },
-      error:function(err){
+    },
+    error:function(err){
         console.log(err);
       },
     });
@@ -1961,7 +1961,7 @@ function getfilter_oppcost_reason(){
             to:t,
         },
         success:function(res){
-            console.log("filter data");
+            console.log("filter data reason oppcost");
             console.log(res);
 
 
