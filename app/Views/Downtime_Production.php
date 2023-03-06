@@ -2345,8 +2345,6 @@ function getfilter_machine_oppcost(){
         }
     });
 
-
-
     f = $('.fromDate').val();
     t = $('.toDate').val();
     f = f.replace(" ","T");
@@ -2536,6 +2534,7 @@ function getfilter_machine_reason_duration(){
             graph_category_arr.push($(this).val());
         }
     });
+
 
     f = $('.fromDate').val();
     t = $('.toDate').val();
