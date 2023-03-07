@@ -217,14 +217,17 @@ class Production_Quality extends BaseController
 
         $qualityReason_filter = $this->Financial->qualityReason();
         $qualityReason = $this->request->getVar("reason");
+        // $qualityReason = ["3","4","5","6","7"];
 
         $ProductionData = $this->getDataRaw($ref,$fromTime,$toTime);
 
         $partDetails_filter = $this->Financial->getPartDetails();
         $partDetails = $this->request->getVar("part");
+        // $partDetails = ["PT1001","PT1002","PT1003","PT1004"];
 
         $machineDetails_filter = $this->Financial->getMachineDetails();
         $machineDetails = $this->request->getVar("machine");
+        // $machineDetails = ["MC1001","MC1002","MC1003","MC1004"];
 
         $ProductionDataExpand = [];
         foreach ($ProductionData as $k => $value) {
@@ -402,17 +405,17 @@ class Production_Quality extends BaseController
 
         $qualityReason = $this->Financial->qualityReason();
         $qualityReason_filter = $this->request->getVar("reason");
-        // $qualityReason_filter =["4"];
+        // $qualityReason_filter =["4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"];
 
         $ProductionData = $this->getDataRaw($ref,$fromTime,$toTime);
 
         $partDetails = $this->Financial->getPartDetails();
         $partDetails_filter = $this->request->getVar("part");
-        // $partDetails_filter = ["PT1001","PT1002","PT1003"];
+        // $partDetails_filter = ["PT1001","PT1003","PT1004","PT1005","PT1006","PT1007","PT1008","PT1009","PT1010","PT1011","PT1012","PT1013","PT1014","PT1015","PT1016","PT1017","PT1018"];
 
         $machineDetails_filter = $this->Financial->getMachineDetails();
         $machineDetails = $this->request->getVar("machine");
-        // $machineDetails = ["MC1001","MC1002","MC1003"];
+        // $machineDetails = ["MC1001","MC1002","MC1003","MC1004"];
 
         $ProductionDataExpand = [];
         foreach ($ProductionData as $k => $value) {
@@ -489,13 +492,25 @@ class Production_Quality extends BaseController
             array_push($total, $t);
         }
 
+        $part_filter = [];
+        foreach ($partDetails_filter as $value) {
+            foreach ($partDetails as $p) {
+                if ($value == $p['part_id']) {
+                    array_push($part_filter, $p['part_name']);
+                }
+            }
+        }
+
+
         $result['Part']=$reasonwise;
         $result['GrandTotal']=$GrandTotal;
-        $result['Part_List'] = $partDetails;
+        $result['Part_List'] = $part_filter;
         $result['Total']=$total;
 
         $out = $this->selectionSortQualityPartsReason($result,sizeof($result['Total']));
         echo json_encode($out);
+        // echo "<pre>";
+        // print_r($out);
 
     }
 
@@ -529,6 +544,7 @@ class Production_Quality extends BaseController
                 for ($m=0; $m < $l ; $m++) {
                     if ($m == $min_idx) {
                         $temp1 = $arr['Part'][$k]['part_1'][$i];
+
                         $arr['Part'][$k]['part_1'][$i] = $arr['Part'][$k]['part_1'][$min_idx];
                         $arr['Part'][$k]['part_1'][$min_idx] = $temp1;
                     }
@@ -551,7 +567,7 @@ class Production_Quality extends BaseController
                 }
             }
         }
-        return $arr;
+        return $arr;  
     }
 
     public function qualityOpportunityparts(){
@@ -630,9 +646,12 @@ class Production_Quality extends BaseController
                         }
                     }
                 }
-                $ar = array('part_id' => $part['part_id'],'part_name' => $part['part_name'], 'reject'=> $tmpTotalReject , 'cost'=>$tmpOpportunityCost);
-                $totalPart = $totalPart + $tmpOpportunityCost;
-                array_push($tmpPart, $ar);
+                if ($tmpTotalReject > 0) {
+                    $ar = array('part_id' => $part['part_id'],'part_name' => $part['part_name'], 'reject'=> $tmpTotalReject , 'cost'=>$tmpOpportunityCost);
+                    $totalPart = $totalPart + $tmpOpportunityCost;
+                    array_push($tmpPart, $ar);
+                }
+                
             }
         }
 

@@ -5,6 +5,37 @@
     border: 1px solid #ced4da;
     border-radius: 0.3rem;
 }
+.filter_option{
+  height: 2rem !important;
+  position: relative;
+  z-index: 1001;
+}
+.dropdown-div{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.icon-style{
+  margin-right: 0.5rem;
+}
+.dropdown-arrow{
+  display: flex;
+  cursor: pointer;
+}
+.font-size-lable{
+  font-size: 12px;
+}
+.filter_div{
+  display: flex;
+  justify-content: flex-end;
+}
+.indexing{
+  z-index: 1000;
+}
+.filter_last{
+  margin-right: 0.5rem;
+}
   .filter_selectBox {
     position: relative;
     display: flex;
@@ -14,7 +45,7 @@
   .filter_checkboxes {
     display: none;
     border: 1px solid #dadada ;
-    max-height: 15rem;
+    max-height: 12rem;
     overflow-y: scroll;
     background-color: white;
   }
@@ -136,18 +167,18 @@
 	margin-top: 0.8rem;
 }
 .fontBold{
-  font-weight: bold;
+  /*font-weight: bold;*/
   margin-top:0.2rem;
+}
+.total-margin{
+  margin-left: 0.7rem;
 }
 
 .financial_font{
-  font-weight: 689;
   font-family: 'Roboto' , sans-serif;
   color: #404040;
-  font-size: 0.8rem;
-  opacity: 0.7;
-  margin-left: 0.5rem;
-  /* margin-top:1.3rem; */
+  font-size: 12px;
+  margin-left: 1rem;
 }
 .headTitle{
   font-size: 11px !important;

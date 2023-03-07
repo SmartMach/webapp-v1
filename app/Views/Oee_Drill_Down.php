@@ -23,7 +23,7 @@ color:#8c8c8c;
 font-family:'Roboto' sans-serif;
 }
 .filter_selectBox{
-height:2.3rem;
+height:2rem;
 /* margin-top:0.5rem; */
 position:relative;
 min-width:9rem;
@@ -52,7 +52,7 @@ justify-content:center;
 width:80%;
 }
 .multi_select_drp{
-height:2.3rem;
+height:2rem;
 position:relative;
 min-width:9rem;
 font-size:12px;
@@ -60,6 +60,7 @@ font-weight:500;
 color:#8c8c8c;
 border:1px solid #ced4da;
 border-radius:0.25rem;
+padding-left:1rem;
 }
 
 .filter_overSelect {
@@ -211,7 +212,71 @@ font-family:'Roboto',sans-serif;
     flex-direction:row;
     justify-content:flex-end;
 }
+/* machine wise oee% */
+.icons_bottom{
+    display:flex;
+    flex-direction:row-reverse;
+}
+.align_icons{
+    width:15%;
+    display:flex;
+    flex-direction:row;
+}
+.align_machine_icons{
+    width:20%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+.graph_label_font{
+    font-size:12px;
+    font-weight:450;
+    color:#404040;
+}
 
+.quality_circle{
+    background-color:#09BB9F;
+    height:0.5rem;
+    width:0.5rem;
+    border-radius:50%;
+}
+.performance_star{
+    color:#0075F6;
+    font-size:10px;
+}
+.availability_triangle{
+    width:0;
+    height:0;
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
+    border-bottom:10px solid #000000;
+}
+.oee_square{
+    background-color:#0075F6;
+    height:0.6rem;
+    width:0.6rem;
+}
+.each_row_split{
+    width:49.2%;
+    border-radius:0.5rem;
+    border:1px solid #e6e6e6;
+    height:19rem;
+}
+.graph_title_oee{
+    margin-bottom:auto;
+    color:#404040;
+    font-size:14px;
+    font-weight:450;
+}
+.title_div{
+   
+    display:flex;
+    flex-direction:column;
+    margin-top:1rem;
+    margin-left:1.3rem;
+    margin-bottom:0.6rem;
+}
 
 </style>
 
@@ -382,15 +447,15 @@ $session = \Config\Services::session();
 
         </div>
         <div class="oee_trend_div" style="">
-            <div style="display:flex;flex-direction:column;margin-top:1rem;">
-                <p style="margin-bottom:auto;color:#404040;font-size:14px;fpont-weight:450;">OEE Trend</p>
+            <div class="title_div" style="">
+                <p class="graph_title_oee" >OEE Trend</p>
             </div>
             <div style="display:flex;flex-direction:row;justify-content:flex-end;">
                  <!-- category multi select dropdown -->
                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                    <div class="filter_selectBox" onclick="category_drp()">
+                    <div class="filter_selectBox" onclick="byday_click()">
                         <select  class="multi_select_drp" style="" >
-                            <option id="text_category_drp" style="text-align:center;">All Categories</option>
+                            <option id="text_category_drp" style="">By Day</option>
                         </select>
                         <div class="filter_overSelect"></div>
                     </div>
@@ -400,46 +465,52 @@ $session = \Config\Services::session();
                                 <input type="checkbox" id="one" class="category_drp_checkbox" value="all"/>
                             </div>
                             <div class="cate_drp_text" style="">
-                                <p class="font_multi_drp" style="margin:auto;">All Categories</p>
+                                <p class="font_multi_drp" style="margin:auto;">All</p>
                             </div>
                         </div>
 
                         <div class="filter_check_cate category_click" style="">
                             <div class="cate_drp_check" style="">
-                                <input type="checkbox" id="one" class="category_drp_checkbox" value="Planned"/>
+                                <input type="checkbox" id="one" class="category_drp_checkbox" value="by_week"/>
                             </div>
                             <div class="cate_drp_text" style="">
-                                <p class="font_multi_drp" style="margin:auto;">Planned</p>
+                                <p class="font_multi_drp" style="margin:auto;">By Week</p>
                             </div>
                         </div>
 
                         <div class="filter_check_cate category_click" style="">
                             <div class="cate_drp_check" style="">
-                                <input type="checkbox" id="one" class="category_drp_checkbox" value="Unplanned"/>
+                                <input type="checkbox" id="one" class="category_drp_checkbox" value="by_month"/>
                             </div>
                             <div class="cate_drp_text" style="">
-                                <p class="font_multi_drp" style="margin:auto;">UnPlanned</p>
+                                <p class="font_multi_drp" style="margin:auto;">By Month</p>
+                            </div>
+                        </div>
+                        <div class="filter_check_cate category_click" style="">
+                            <div class="cate_drp_check" style="">
+                                <input type="checkbox" id="one" class="category_drp_checkbox" value="by_shift"/>
+                            </div>
+                            <div class="cate_drp_text" style="">
+                                <p class="font_multi_drp" style="margin:auto;">By Shift</p>
+                            </div>
+                        </div>
+                        <div class="filter_check_cate category_click" style="">
+                            <div class="cate_drp_check" style="">
+                                <input type="checkbox" id="one" class="category_drp_checkbox" value="by_day"/>
+                            </div>
+                            <div class="cate_drp_text" style="">
+                                <p class="font_multi_drp" style="margin:auto;">By Day</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- reason multi select dropdown -->
-                <div class="box rightmar" style="margin-right: 0.5rem;" >
-                    <div class="filter_selectBox" onclick="reason_drp()">
-                        <select  class="multi_select_drp" style="" >
-                            <option id="text_reason" style="text-align:center;">All Reason</option>
-                        </select>
-                        <div class="filter_overSelect"></div>
-                    </div>
-                    <div class="filter_checkboxes reason_fill" style="" ></div>
-                </div>
                
                 <!-- Machine multi select dropdown -->
                 <div class="box rightmar" style="margin-right: 2.4rem;" >
                     <div class="filter_selectBox" onclick="machine_drp()">
                         <select  class="multi_select_drp" style="" >
-                            <option id="text_machine" style="text-align:center;">All Machine</option>
+                            <option id="text_machine" style="">All Machine</option>
                         </select>
                         <div class="filter_overSelect"></div>
                     </div>
@@ -460,10 +531,10 @@ $session = \Config\Services::session();
 
     <!-- second row -->
     <div class="second_row" style="">
-        <div style="width:49.2%;border-radius:0.5rem;border:1px solid #e6e6e6;height:17.5rem;">
+        <div class="each_row_split" >
             <!-- title -->
-            <div style="display:flex;flex-direction:column;margin-top:1rem;margin-left:1.3rem;">
-                <p style="margin-bottom:auto;color:#404040;font-size:14px;fpont-weight:450;">Machine-wise OEE% BreakDown</p>
+            <div class="title_div" style="">
+                <p class="graph_title_oee" >Machine-wise OEE% BreakDown</p>
             </div>
             <!-- dropdowns -->
             <div class="graph_filter_div" style="">
@@ -472,7 +543,7 @@ $session = \Config\Services::session();
                 <div class="box rightmar" style="margin-right: 0.5rem;" >
                     <div class="filter_selectBox" onclick="">
                         <select  class="multi_select_drp" style="" >
-                            <option id="text_alldatafields" style="text-align:center;">All Data Fields</option>
+                            <option id="text_alldatafields" style="">All Data Fields</option>
                         </select>
                         <div class="filter_overSelect"></div>
                     </div>
@@ -483,7 +554,7 @@ $session = \Config\Services::session();
                 <div class="box rightmar" style="margin-right: 2.4rem;" >
                     <div class="filter_selectBox" onclick="machine_drp1()">
                         <select  class="multi_select_drp" style="" >
-                            <option id="text_machine1" style="text-align:center;">All Machine</option>
+                            <option id="text_machine1" style="">All Machine</option>
                         </select>
                         <div class="filter_overSelect"></div>
                     </div>
@@ -499,11 +570,38 @@ $session = \Config\Services::session();
                     <canvas id="machine_wise_oee" style="height:5rem;width:5rem;"></canvas>    
                 </div>
             </div>
+
+            <div class="icons_bottom" style="">
+                <div class="align_icons" style="">
+                    <div class="align_machine_icons" style=""><div class="quality_circle" style=""></div></div>
+                    <div style="width:80%;">
+                        <span class="graph_label_font" >Quality</span>
+                    </div>
+                </div>
+                <div class="align_icons" style="">
+                    <div class="align_machine_icons" ><i class="fa fa-certificate performance_star"  style=""></i></div>
+                    <div style="width:80%;">
+                        <span class="graph_label_font" >Performance</span>
+                    </div>
+                </div>
+                <div class="align_icons" style="">
+                    <div class="align_machine_icons" ><div class="availability_triangle" style=""></div></div>
+                    <div style="width:80%;">
+                        <span class="graph_label_font" style="">Availability</span>
+                    </div>
+                </div>
+                <div class="align_icons" style="">
+                    <div class="align_machine_icons" ><div class="oee_square" style=""></div></div>
+                    <div style="width:80%;">
+                        <span class="graph_label_font" >OEE%</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div style="width:49.2%;border-radius:0.5rem;border:1px solid #e6e6e6;height:17.5rem;">
+        <div class="each_row_split" >
              <!-- title -->
-             <div style="display:flex;flex-direction:column;margin-top:1rem;margin-left:1.3rem;">
-                <p style="margin-bottom:auto;color:#404040;font-size:14px;fpont-weight:450;">Machine-wise Availability with Reasons</p>
+             <div class="title_div" >
+                <p class="graph_title_oee" >Machine-wise Availability with Reasons</p>
             </div>
 
              <!-- dropdowns -->
@@ -512,7 +610,7 @@ $session = \Config\Services::session();
                 <div class="box rightmar" style="margin-right: 0.5rem;" >
                     <div class="filter_selectBox" onclick="category_drp2()">
                         <select  class="multi_select_drp" style="" >
-                            <option id="text_category_drp2" style="text-align:center;">All Categories</option>
+                            <option id="text_category_drp2" style="">All Categories</option>
                         </select>
                         <div class="filter_overSelect"></div>
                     </div>
@@ -550,7 +648,7 @@ $session = \Config\Services::session();
                 <div class="box rightmar" style="margin-right: 0.5rem;" >
                     <div class="filter_selectBox" onclick="reason_drp2()">
                         <select  class="multi_select_drp" style="" >
-                            <option id="text_reason2" style="text-align:center;">All Reason</option>
+                            <option id="text_reason2" style="">All Reason</option>
                         </select>
                         <div class="filter_overSelect"></div>
                     </div>
@@ -561,7 +659,7 @@ $session = \Config\Services::session();
                 <div class="box rightmar" style="margin-right: 2.4rem;" >
                     <div class="filter_selectBox" onclick="machine_drp2()">
                         <select  class="multi_select_drp" style="" >
-                            <option id="text_machine2" style="text-align:center;">All Machine</option>
+                            <option id="text_machine2" style="">All Machine</option>
                         </select>
                         <div class="filter_overSelect"></div>
                     </div>
@@ -582,11 +680,27 @@ $session = \Config\Services::session();
 
     <!-- third row -->
     <div class="second_row" >
-        <div style="width:49.2%;border-radius:0.5rem;border:1px solid #e6e6e6;height:19rem;">
-            <p>Machine-wise Performance with Parts</p>
+        <div class="each_row_split" style="">
+            <!-- graph title -->
+            <div class="title_div" >
+                <p class="graph_title_oee" style="">Machine-wise Performance with Parts</p>
+            </div>
+
+
+              <!-- graph -->
+              <div class="parent_graph_performance_opportunity prodcution_downtime_graph parent_div marginScroll" >
+                <div class="child_graph_performance_opportunity child_div ">
+                    <canvas id="performanceOpportunity" style="height:5rem;width:5rem;"></canvas>    
+                </div>
+            </div>
+
         </div>
-        <div style="width:49.2%;border-radius:0.5rem;border:1px solid #e6e6e6;height:19rem;">
-            <p>Machine-wise Quality with Reasons</p>
+        <div class="each_row_split" >
+            <!-- graph title -->
+            <div class="title_div" >
+                <p class="graph_title_oee" style="">Machine-wise Quality with Reasons</p>
+            </div>
+            
         </div>
     </div>
 
@@ -634,13 +748,12 @@ var tdate = now.getFullYear()+"-"+("0" + (parseInt(now.getMonth())+parseInt(1)))
 $('.toDate').val(fdate);
 $('.fromDate').val(tdate);
 
-$(document).ready(function(){
 
-    // overall target function
-    // target fill width function
+$(document).on('blur','.fromDate',function(event){
+    event.preventDefault();
     fill_downtime_reason();
     fill_machine_dropdown();
-    reset_category();
+    resetbyday_click();
     reset_category2();
 
     fill_target_bar();
@@ -648,6 +761,48 @@ $(document).ready(function(){
 
     // graph filter
    graph_func();
+
+   performance_opportunity();
+    
+});
+
+$(document).on('blur','.toDate',function(event){
+    event.preventDefault();
+     // overall target function
+    // target fill width function
+    fill_downtime_reason();
+    fill_machine_dropdown();
+    resetbyday_click();
+    reset_category2();
+
+    fill_target_bar();
+    overallTarget();
+
+    // graph filter
+   graph_func();
+
+   performance_opportunity();
+    
+
+
+
+});
+$(document).ready(function(){
+
+    // overall target function
+    // target fill width function
+    fill_downtime_reason();
+    fill_machine_dropdown();
+    resetbyday_click();
+    reset_category2();
+
+    fill_target_bar();
+    overallTarget();
+
+    // graph filter
+   graph_func();
+
+   performance_opportunity();
     
 
 
@@ -658,16 +813,26 @@ function graph_func(){
     oeeTrendDay();
     machineWiseOEE();
     availabilityReason_machine();
+
 }
 
-// reset category
-function reset_category(){
+// by day shift and month week
+function resetbyday_click(){
     var category_arr = $('.category_drp_checkbox');
     jQuery('.category_drp_checkbox').each(function(in2){
         category_arr[in2].checked=true;
     });
-    $('#text_category_drp').text('All Category');
+    $('#text_category_drp').text('By Day');
 }
+
+// reset category
+// function reset_category(){
+//     var category_arr = $('.category_drp_checkbox');
+//     jQuery('.category_drp_checkbox').each(function(in2){
+//         category_arr[in2].checked=true;
+//     });
+//     $('#text_category_drp').text('All Category');
+// }
 
 // availability graph reset categroy
 function reset_category2(){
@@ -676,14 +841,6 @@ function reset_category2(){
         category_arr[in2].checked=true;
     });
     $('#text_category_drp2').text('All Category');
-}
-// reset reason
-function reset_reason(){
-    var category_arr = $('.reason_checkbox');
-    jQuery('.reason_checkbox').each(function(in2){
-        category_arr[in2].checked=true;
-    });
-    $('#text_reason').text('All Reason');
 }
 
 
@@ -722,23 +879,21 @@ function reset_machine2(){
     $('#text_machine2').text('All Machine');
 }
 
-
-// category onclick
-var filter_expanded = false;
-function category_drp() {
-  // event.preventDefault();
-  var checkboxes = document.getElementsByClassName("category_fill");
-  if (!filter_expanded) {
+// by day shift meek month
+var filter_expand_by_day = 0;
+function byday_click(){
+    var checkboxes = document.getElementsByClassName("category_fill");
+  if (!filter_expand_by_day) {
       // checkboxes.style.display = "block";
     //   console.log("just click");
       $('.category_fill').css("display","block");
-      filter_expanded = true;
+      filter_expand_by_day = true;
   } else  {
      
-      $('#text_category_drp').text('All category');
+    //   $('#text_category_drp').text('All ');
       $('.category_fill').css("display","none");
-      filter_expanded = false;
-      oeeTrendDay();
+      filter_expand_by_day = false;
+      
   }
 }
 
@@ -762,24 +917,6 @@ function category_drp2() {
 }
 
 // reason
-var filter_expanded_reason = false;
-function reason_drp() {
-  // event.preventDefault();
-  var checkboxes = document.getElementsByClassName("reason_fill");
-  if (!filter_expanded_reason) {
-      // checkboxes.style.display = "block";
-    //   console.log("just click");
-      $('.reason_fill').css("display","block");
-      filter_expanded_reason = true;
-  } else  {
-     
-      $('#text_reason').text('All Reason');
-      $('.reason_fill').css("display","none");
-      filter_expanded_reason = false;
-      oeeTrendDay();
-  }
-}
-
 // availability graph
 var filter_expanded_reason2 = false;
 function reason_drp2() {
@@ -801,22 +938,6 @@ function reason_drp2() {
 
 
 // machine
-var filter_expanded_machine = false;
-function machine_drp() {
- 
-  var checkboxes = document.getElementsByClassName("filter_checkboxes_machine");
-  if (!filter_expanded_machine) {
-   
-      $('.filter_checkboxes_machine').css("display","block");
-      filter_expanded_machine = true;
-  } else  {
-     
-      $('#text_machine').text('All Machine');
-      $('.filter_checkboxes_machine').css("display","none");
-      filter_expanded_machine = false;
-      oeeTrendDay();
-  }
-}
 
 var filter_expanded_machine1 = false;
 function machine_drp1() {
@@ -833,6 +954,23 @@ function machine_drp1() {
       filter_expanded_machine1 = false;
       machineWiseOEE();
 
+  }
+}
+
+var filter_expanded_machine = false;
+function machine_drp() {
+ 
+  var checkboxes2 = document.getElementsByClassName("filter_checkboxes_machine");
+  if (!filter_expanded_machine) {
+   
+      $('.filter_checkboxes_machine').css("display","block");
+      filter_expanded_machine = true;
+  } else  {
+     
+      $('#text_machine').text('All Machine');
+      $('.filter_checkboxes_machine').css("display","none");
+      filter_expanded_machine = false;
+      oeeTrendDay();
   }
 }
 
@@ -853,7 +991,6 @@ function machine_drp2() {
   }
 }
 
-// onclick
 $(document).on('click','.category_click',function(event){
     event.preventDefault();
     // event.preventDefault();
@@ -862,7 +999,7 @@ $(document).on('click','.category_click',function(event){
     var check_if1 = $('.category_drp_checkbox');
     if (index_reason_gp1 === 0) {
         if (check_if1[0].checked==false) {
-            reset_category();
+            resetbyday_click();
 
         }else{
             $('.category_drp_checkbox').removeAttr('checked');
@@ -891,7 +1028,7 @@ $(document).on('click','.category_click',function(event){
             $('#text_category_drp').text(parseInt(reason_gp_select_count1)-1+' Selected');
         }else{
             // check_if[0].checked=true;
-            reset_category();
+            resetbyday_click();
             $('#text_category_drp').text('All');
         }
     }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
@@ -899,7 +1036,7 @@ $(document).on('click','.category_click',function(event){
 
         // check_if[0].checked=false;
     }else {
-        $('#text_category_drp').text('No Category');
+        $('#text_category_drp').text('By Shift');
     }
 });
 
@@ -953,55 +1090,6 @@ $(document).on('click','.category_click2',function(event){
     }
 });
 
-// reason onclick
-$(document).on('click','.reason_click',function(event){
-    event.preventDefault();
-    var count_reason_gp1  = $('.reason_click');
-    var index_reason_gp1 = count_reason_gp1.index($(this));
-    var check_if1 = $('.reason_checkbox');
-    if (index_reason_gp1 === 0) {
-        if (check_if1[0].checked==false) {
-            reset_reason();
-
-        }else{
-            $('.reason_checkbox').removeAttr('checked');
-        }
-    }else{
-        if (check_if1[index_reason_gp1].checked==false) {
-            check_if1[index_reason_gp1].checked=true;
-            $('.reason_checkbox:eq('+index_reason_gp1+')').attr('checked','checked');
-        }else{
-            $('.reason_checkbox:eq('+index_reason_gp1+')').removeAttr('checked');
-            check_if1[0].checked=false;
-        }
-    }
-
-    var reason_gp_select_count1 = 0;
-    jQuery('.reason_checkbox').each(function(index){
-      if (check_if1[index].checked===true) {
-        reason_gp_select_count1 = parseInt(reason_gp_select_count1)+1;
-      }
-    });
-    var reason_gp_len1 = $('.reason_checkbox').length;
-    reason_gp_len1 = parseInt(reason_gp_len1)-1;
-    if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
-        if(check_if1[0].checked===true){
-            check_if1[0].checked=true;
-            $('#text_reason').text(parseInt(reason_gp_select_count1)-1+' Selected');
-        }else{
-            // check_if[0].checked=true;
-            reset_reason();
-            $('#text_reason').text('All');
-        }
-    }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
-        $('#text_reason').text(parseInt(reason_gp_select_count1)+' Selected');
-
-        // check_if[0].checked=false;
-    }else {
-        $('#text_reason').text('No Reason');
-    }
-});
-
 // availability graph
 $(document).on('click','.reason_click2',function(event){
     event.preventDefault();
@@ -1051,7 +1139,7 @@ $(document).on('click','.reason_click2',function(event){
     }
 });
 
-// machine onclick
+
 $(document).on('click','.machine_click',function(event){
     event.preventDefault();
     var count_reason_gp1  = $('.machine_click');
@@ -1278,27 +1366,27 @@ function fill_downtime_reason(){
         console.log("reason dropdwon");
         console.log(res);
 
-        $('.reason_fill').empty();
+      
         $('.reason_fill2').empty();
         var element = $();
         var elements = $();
        
 
-        $('.reason_fill').append('<div class="filter_check_cate reason_click" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
+        // $('.reason_fill').append('<div class="filter_check_cate reason_click" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
       
         $('.reason_fill2').append('<div class="filter_check_cate reason_click2" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox2" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
         res.forEach(function(item){
-            element = element.add('<div class="filter_check_cate reason_click" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
+            // element = element.add('<div class="filter_check_cate reason_click" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
           
             elements = elements.add('<div class="filter_check_cate reason_click2" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox2" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
 
 
-            $('.reason_fill').append(element);
+            // $('.reason_fill').append(element);
             $('.reason_fill2').append(elements);
           
         });
 
-        reset_reason();
+        // reset_reason();
         reset_reason2();
         },
         error:function(err){
@@ -2170,6 +2258,160 @@ function availabilityOpp(context) {
     tooltipEl.style.font = bodyFont.string;
     tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
     tooltipEl.style.pointerEvents = 'none';
+}
+
+
+function performance_opportunity(){
+    
+  $('#performanceOpportunity').remove();
+  $('.child_graph_performance_opportunity').append('<canvas id="performanceOpportunity"><canvas>');
+  $('.chartjs-hidden-iframe').remove();
+
+
+  f = $('.fromDate').val();
+  t = $('.toDate').val();
+  f = f.replace(" ","T");
+  t = t.replace(" ","T");
+    $.ajax({
+        url: "<?php echo base_url('Financial_Metrics/performanceOpportunity'); ?>",
+        type: "POST",
+        dataType: "json",
+        data:{
+        from:f,
+        to:t
+        },
+        success:function(res){
+            console.log("performance opportunity graph");
+            console.log(res);
+                var color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
+                $(".PerformanceGrand").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
+
+                var partTotal = [];
+                res.Total.forEach(function(r){
+                partTotal.push(parseFloat(r.toFixed(2)));
+                });
+                
+                var speedTotal=[];
+                res.SpeedLossTotal.forEach(function(t){
+                speedTotal.push(parseFloat(t.toFixed(2)));
+                });
+
+                var partWiseLable = [];
+                res.Part.forEach(function(item){
+                partWiseLable.push(item.part_name);
+                });
+
+                //Find the duration for each machine in each Reason............
+                oppCost = [
+                {
+                    label:"Total" ,
+                    type: "line",
+                    backgroundColor: color[0],
+                    borderColor: "#d9d9ff",  
+                    borderWidth: 1, 
+                    showLine : false,
+                    fill: false, 
+                    data:partTotal,
+                    speedLoss:speedTotal,
+                    pointRadius: 7,
+                }           
+                ];
+
+                var x=1;
+                var index=0;
+                var mname_arr = [];
+
+                res.dataPart.forEach(function(item){
+                    var performancePart=[];
+                    var speedLoss=[];
+                    var part_name_arr = [];
+                    mname_arr.push(item['machine_name']);
+                    item.machineData.forEach(function(val){
+                        var p = parseFloat(val['Opportunity'].toFixed(2));
+                        performancePart.push(p);
+                        speedLoss.push(parseFloat(val['SpeedLoss'].toFixed(2)));
+                        part_name_arr.push(val['part_name']);
+
+                    });
+                   
+                    oppCost.push({
+                        label:part_name_arr,
+                        type: "bar",
+                        backgroundColor: color[x],
+                        borderColor: color[x],
+                        borderWidth: 1,
+                        fill: true,
+                        data: performancePart,
+                        speedLoss:speedLoss,
+                        categoryPercentage:1.0,
+                        barPercentage: 0.5, 
+                    });
+                    x=x+1;
+                    index=index+1;
+                   
+                });
+
+              
+
+                var bar_width = 0.6;
+                var bar_size = 0.7;
+
+                while(true){
+                var len= partWiseLable.length;
+                if (len < 8) {
+                    partWiseLable.push("");
+                }
+                else if(len > 8){
+                    var l = parseInt(len)%parseInt(8);
+                    var w= parseInt($('.parent_graph_performance_opportunity').css("width"))+parseInt(l*18*16);
+                    $('.child_graph_performance_opportunity').css("width",w+"px");
+                    break;
+                }
+                else{
+                    break;
+                }
+                }
+
+                var ctx = document.getElementById("performanceOpportunity").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: mname_arr,
+                    datasets:oppCost,
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,   
+                    scales: {
+                        y: {
+                            display:false,
+                            beginAtZero:true,
+                            stacked:true
+                        },
+                        x:{
+                            display:true,
+                            grid:{
+                            display:false
+                            },
+                            stacked:true,
+                        },
+                    },
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        tooltip: {
+                            enabled: false,
+                            // external: performanceOpp,
+                        }
+                    },
+                },            
+            });
+        },
+        error:function(er){
+            // alert("Sorry!Try Agian!!!!");
+        }
+    }); 
 }
 
 

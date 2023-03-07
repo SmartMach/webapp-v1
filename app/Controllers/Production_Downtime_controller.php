@@ -1236,11 +1236,42 @@ class Production_Downtime_controller extends BaseController{
             $temp['graph'] = $demo_arr;
             $temp['grandTotal'] = array_sum($oppcost_total);
             $temp['total_duration'] = $res['total_duration'];
+            // $out['old'] = $temp['graph'];
+            $out = $this->cost_based_sorting($temp);
             // echo "<pre>";
-            // print_r($res);
-            echo json_encode($temp);
+            // print_r($out);
+
+            echo json_encode($out);
         }
     }
+
+    public function cost_based_sorting($arr){
+        for($i=0;$i<count($arr['graph']);$i++){
+            $min_index = $i;
+           
+            for ($j=$i+1; $j<count($arr['graph']); $j++) { 
+                if ($arr['graph'][$j]['opportunity_cost']>$arr['graph'][$i]['opportunity_cost']) {
+                   
+                    // $temp = $arr['graph'][$i];
+                    // $arr['graph'][$i] = $arr['graph'][$min_index];
+                    // $arr['graph'][$min_index] = $temp;
+                    $min_idx = $j;
+                    $temp1 = $arr['graph'][$i];
+                    $arr['graph'][$i] = $arr['graph'][$min_idx];
+                    $arr['graph'][$min_idx] = $temp1;
+                 
+                }
+            }
+           
+          
+            
+        }
+       
+       
+
+        return $arr;
+    }
+   
 
     // gaph filter reason wise duration graph function
     public function getdowntime_graph_filter_reason_duration(){
@@ -1251,6 +1282,10 @@ class Production_Downtime_controller extends BaseController{
 
             $fromdate = $this->request->getVar('from');
             $todate = $this->request->getVar('to');
+            // $fromdate = "2023-02-02T10:00:00";
+            // $todate="2023-03-06T14:00:00";
+            //  $machine_arr = array('all','MC1001','MC1002','MC1003','MC1004');
+            // $category_arr = array('all','Planned','Unplanned');
             $reason_arr = array_map('strtolower',$reason_arr);
 
             $res = $this->reason_duration_graph($fromdate,$todate);
@@ -1259,9 +1294,7 @@ class Production_Downtime_controller extends BaseController{
             $total_duration_arr = [];
             foreach ($res['graph'] as $key => $value) {
                 if (in_array($value['downtime_category'],$category_arr)) {
-                    // $tmp_reason = explode("(",$value['downtime_reason']);
                     if (in_array(strtolower($value['normal_reason']),$reason_arr)) {     
-                        //array_push($demo_arr,$res['graph'][$key]);
                         $temp_duration=0;
                         foreach ($machine_arr as $key_machine => $val) {
                             if ($val!="all") {
@@ -1279,8 +1312,34 @@ class Production_Downtime_controller extends BaseController{
             $temp['graph'] = $demo_arr;
             $temp['grandTotal'] = $res['grandTotal'];
             $temp['total_duration'] = array_sum($total_duration_arr);
-            echo  json_encode($temp);
+            $out = $this->sort_duration_based($temp);
+            // echo "<pre>";
+            // print_r($out);
+            echo  json_encode($out);
         }
+    }
+
+    public function sort_duration_based($arr){
+        for($i=0;$i<count($arr['graph']);$i++){
+            $min_index = $i;
+           
+            for ($j=$i+1; $j<count($arr['graph']); $j++) { 
+                if ($arr['graph'][$j]['duration']>$arr['graph'][$i]['duration']) {
+                   
+                    // $temp = $arr['graph'][$i];
+                    // $arr['graph'][$i] = $arr['graph'][$min_index];
+                    // $arr['graph'][$min_index] = $temp;
+                    $min_idx = $j;
+                    $temp1 = $arr['graph'][$i];
+                    $arr['graph'][$i] = $arr['graph'][$min_idx];
+                    $arr['graph'][$min_idx] = $temp1;
+                 
+                }
+            }
+            
+        }
+
+        return $arr;
     }
 
         
@@ -1296,6 +1355,7 @@ class Production_Downtime_controller extends BaseController{
 
             $fromdate = $this->request->getVar('from');
             $todate = $this->request->getVar('to');
+
             // $fromdate = "2023-02-02T10:00:00";
             // $todate = "2023-03-06T14:00:00";
             // $machine_arr= array('all','MC1001','MC1002','MC1003','MC1004');
@@ -1312,12 +1372,10 @@ class Production_Downtime_controller extends BaseController{
                 foreach ($value as $k1 => $v1) {
                     if (in_array($v1['machine_id'],$machine_arr)) {
                         if (in_array($v1['category'],$category_arr)) {
-                            // $tmp_reason = explode("(",$v1['reason']);
                             if (in_array(strtolower($v1['normal_reason']),$reason_arr)) {
                                 $oppcost = $oppcost+$v1['oppCost'];
                                 array_push($demo_reason_arr,$v1['normal_reason']);
-                                // $duration = $duration+$v1['duration'];
-                                // $oppcost = $tmp_reason;
+                                
                             }
                         }
                     }
@@ -1335,20 +1393,38 @@ class Production_Downtime_controller extends BaseController{
                 // array_push($machine_wise_arr,$value[ 0]);
             }
             
-            // $temp['reason_arr'] = $reason_arr;
-            // $temp['category_arr'] = $category_arr;
-            // $temp['machine_arr'] = $machine_arr;
-            // $temp['from_date'] = $fromdate;
-            // $temp['to_date'] = $todate;
-
+       
             $final_arr['graph'] = $machine_wise_arr;
             // $final_arr['grant_total'] = $result['grandTotal'];
             $final_arr['grant_total'] = array_sum($total_oppcost_arr);
 
+            $out = $this->machine_wise_oppcost_sort($final_arr);
             // echo "<pre>";
-            // print_r($result);
-            echo json_encode($final_arr);
+            // print_r($out);
+            echo json_encode($out);
         }
+    }
+
+    public function machine_wise_oppcost_sort($arr){
+        for($i=0;$i<count($arr['graph']);$i++){
+            $min_index = $i;
+           
+            for ($j=$i+1; $j<count($arr['graph']); $j++) { 
+                if ($arr['graph'][$j]['oppcost']>$arr['graph'][$i]['oppcost']) {
+                   
+                    // $temp = $arr['graph'][$i];
+                    // $arr['graph'][$i] = $arr['graph'][$min_index];
+                    // $arr['graph'][$min_index] = $temp;
+                    $min_idx = $j;
+                    $temp1 = $arr['graph'][$i];
+                    $arr['graph'][$i] = $arr['graph'][$min_idx];
+                    $arr['graph'][$min_idx] = $temp1;
+                 
+                }
+            }
+            
+        }
+        return $arr;
     }
 
     // machine and reason wise duration
@@ -1362,6 +1438,12 @@ class Production_Downtime_controller extends BaseController{
 
             $fromdate = $this->request->getVar('from');
             $todate = $this->request->getVar('to');
+
+            // $fromdate = "2023-02-02T10:00:00";
+            // $todate = "2023-03-06T14:00:00";
+            // $machine_arr= array('all','MC1001','MC1002','MC1003','MC1004');
+            // $category_arr = array('all','Planned','Unplanned');
+
 
             $result = $this->getAvailabilityReasonWise($fromdate,$todate);
 
@@ -1404,7 +1486,11 @@ class Production_Downtime_controller extends BaseController{
             $out['reason']=$result['reason'];
             $out['data']=$farr;
             $out['total_duration'] = array_sum($total_duration_arr);
-            echo json_encode($out);
+
+            $final = $this->getmachine_reason_sorting($out);
+            // echo "<pre>";
+            // print_r($final);
+            echo json_encode($final);
             // $temp['machine_arr'] = $machine_arr;
             // $temp['reason_arr'] = $reason_arr;
             // $temp['category_arr'] = $category_arr;
@@ -1414,6 +1500,29 @@ class Production_Downtime_controller extends BaseController{
 
             // echo json_encode($temp);
         }
+    }
+
+    public function getmachine_reason_sorting($arr){
+        for($i=0;$i<count($arr['data']);$i++){
+            $min_index = $i;
+           
+            for ($j=$i+1; $j<count($arr['data']); $j++) { 
+                if ($arr['data'][$j]['total']>$arr['graph'][$i]['total']) {
+                   
+                    // $temp = $arr['graph'][$i];
+                    // $arr['graph'][$i] = $arr['graph'][$min_index];
+                    // $arr['graph'][$min_index] = $temp;
+                    $min_idx = $j;
+                    $temp1 = $arr['data'][$i];
+                    $arr['data'][$i] = $arr['data'][$min_idx];
+                    $arr['data'][$min_idx] = $temp1;
+                 
+                }
+            }
+            
+        }
+
+        return $arr;
     }
     
 }

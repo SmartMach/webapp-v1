@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/financial_metrics.css?version=<?php echo rand() ; ?>">
 
     <script src="<?php echo base_url(); ?>/assets/chartjs/package/dist/chart.min.js?version=<?php echo rand() ; ?>"></script>
+    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/all-fontawesome.css?version=<?php echo rand() ; ?>">
 <style>
   /* filter css design */
   .filterbtnstyle{
@@ -97,20 +98,11 @@
   <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav_quality" style="z-index: 1001!important">
     <div class="container-fluid paddingm" style="margin-top:0.2rem;">
       <p class="float-start p3" id="logo">Production Quality</p>
-      <div class="d-flex">
-              <!-- <div class="float-end stcode paddingm logo-style opt-cont" style="color:#005CBC;font-size:1rem;margin-right:0.5rem; "> -->
-                <!-- <div class="img-div">
-
-                <i id="graph-cont" class="fa fa-industry img-style" alt=""></i>
-                </div>
-                <div class="img-div">
-
-                <i id="table-cont" class="fa fa-industry img-style"  alt=""></i>
-                </div> -->
-                <div class="box rightmar" style="margin-right:0.5rem;height:1rem;">
+      <div class="d-flex" style="display: flex;align-items: center;">
+                <div class="box rightmar" style="margin-right:0.5rem;">
                     <div style="padding-left:10px;padding-right:10px;height:2.3rem;border:1px solid #e6e6e6;border-radius:0.25rem;display:flex;justify-content:center;align-items:center;color:#C00000;"><p style="text-align:center;margin:auto;font-size:15px;font-weight:500;"><span id="total_rejection_header"></span> Rejects</p></div>
                 </div>
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" style="border:1px solid #ced4ca;border-radius:0.25rem;padding:0.1rem;margin:auto;margin-right:0.5rem;">
+                <ul class="nav nav-pills" id="pills-tab" role="tablist" style="border:1px solid #ced4ca;border-radius:0.25rem;padding:0.1rem;margin:auto;margin-right:0.5rem;">
                   <li class="nav-item" role="presentation"  >
                     <i class="fa fa-sitemap nav-link active"  id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" style="padding:0.4rem;font-size:1.3rem;"></i>
                   </li>
@@ -140,23 +132,28 @@
   <div class="tab-content" id="pills-tabContent" style="margin-top:3.8rem;">
     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
     <div class="grid-container_graph">
-      <div class="row paddingm" style="height: 15rem;width:100%;">
-        <div class="grid-item_graph mar-left_graph paddingm" style="margin-top: 1.5rem;width:48.5%;margin-left:0.5rem;">
+      <div class="row paddingm" style="height:max-content;width:100%;display:flex;flex-direction:row;justify-content:space-evenly;align-items:center;margin-bottom:0.3rem;">
+        <div class="grid-item_graph  paddingm" style="margin-top: 1.5rem;width:49%;margin-left:0.5rem;height:18rem;">
           <div>
             <p class="paddingm fontBold financial_font">Cost of Poor Quality (COPQ) by Reason</p>
           </div>
           <div class="valueMarLeft">
             <div style="float: left;width: 10%">
-              <p class="paddingm headTitle">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0.4rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft COPQP" ></span></p>
+              <p class="paddingm headTitle total-margin">TOTAL</p>
+              <p class="paddingm valueGraph" style="margin-left:0.8rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft COPQP" ></span></p>
             </div>
             <div style="float: left;width:90%;" class="filter_div">
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing Reasons_COPQP">
                   <div class="filter_multiselect filter_option">
-                    <div class="filter_selectBox copq_filter" onclick="multiple_drp_reason_copq()">
-                      <div class="inbox-span fontStyle search_style">
-                        <p class="paddingm" id="reason_text_copqp">All Reasons</p>
+                    <div class="filter_selectBox" onclick="multiple_drp_reason_copq()">
+                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                        <div style="width: 80% !important">
+                          <p class="paddingm" id="reason_text_copqp">All Reasons</p>
+                        </div>
+                        <div class="dropdown-div" style=" width: 20% !important">
+                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                        </div>
                       </div>
                     </div>
                     <div class="filter_checkboxes filter_reason_copq">
@@ -168,8 +165,15 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing Reasons_COPQP">
                   <div class="filter_multiselect filter_option">
-                    <div class="filter_selectBox copq_filter" onclick="multiple_drp_machine_copq()">
-                      <div class="inbox-span fontStyle search_style"><p class="paddingm" id="machine_text_copq">All Machines</p></div>
+                    <div class="filter_selectBox" onclick="multiple_drp_machine_copq()">
+                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                        <div style="width: 80% !important">
+                          <p class="paddingm" id="machine_text_copq">All Machines</p>
+                        </div>
+                        <div class="dropdown-div" style=" width: 20% !important">
+                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                        </div>
+                      </div>
                     </div>
                     <div class="filter_checkboxes filter_machine_copq">
                     </div>
@@ -180,8 +184,15 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing Reasons_COPQP">
                   <div class="filter_multiselect filter_option">
-                    <div class="filter_selectBox copq_filter" onclick="multiple_drp_copq()">
-                      <div class="inbox-span fontStyle search_style"><p class="paddingm" id="part_text_copq">All Parts</p></div>
+                    <div class="filter_selectBox" onclick="multiple_drp_copq()">
+                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                        <div style="width: 80% !important">
+                          <p class="paddingm" id="part_text_copq">All Parts</p>
+                        </div>
+                        <div class="dropdown-div" style=" width: 20% !important">
+                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                        </div>
+                      </div>
                     </div>
                     <div class="filter_checkboxes filter_part_copq">
                     </div>
@@ -196,13 +207,13 @@
             </div>
           </div>
         </div>
-        <div class="grid-item_graph mar-right_graph paddingm" style="margin-top: 1.5rem;width:48.5%;margin-right:0.5rem;">
+        <div class="grid-item_graph  paddingm" style="margin-top: 1.5rem;width:49%;margin-right:0.5rem;height:18rem;">
           <div>
             <p class="paddingm fontBold financial_font">Quality Rejection by Reason</p>
-          </div>
+          </div> 
           <div class="valueMarLeft">
             <div style="float: left;width: 10%">
-              <p class="paddingm headTitle">TOTAL</p>
+              <p class="paddingm headTitle total-margin">TOTAL</p>
               <p class="paddingm valueGraph" style="margin-left:0.4rem;"><span class="paddingm valueMarLeft CRBR" ></span></p>
             </div>
             <div style="float: left;width:90%;" class="filter_div">
@@ -210,8 +221,13 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
                     <div class="filter_selectBox" onclick="multiple_drp_reason_crpr()">
-                      <div class="inbox-span fontStyle search_style">
-                        <p class="paddingm" id="reason_text_crpr">All Reasons</p>
+                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                        <div style="width: 80% !important">
+                          <p class="paddingm" id="reason_text_crpr">All Reasons</p>
+                        </div>
+                        <div class="dropdown-div" style=" width: 20% !important">
+                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                        </div>
                       </div>
                     </div>
                     <div class="filter_checkboxes filter_reason_crpr">
@@ -224,7 +240,14 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
                     <div class="filter_selectBox" onclick="multiple_drp_machine_crpr()">
-                      <div class="inbox-span fontStyle search_style"><p class="paddingm" id="machine_text_crpr">All Machines</p></div>
+                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                        <div style="width: 80% !important">
+                          <p class="paddingm" id="machine_text_crpr">All Machines</p>
+                        </div>
+                        <div class="dropdown-div" style=" width: 20% !important">
+                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                        </div>
+                      </div>
                     </div>
                     <div class="filter_checkboxes filter_machine_crpr">
                     </div>
@@ -236,7 +259,14 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
                     <div class="filter_selectBox" onclick="multiple_drp_crpr()">
-                      <div class="inbox-span fontStyle search_style"><p class="paddingm" id="part_text_crpr">All Parts</p></div>
+                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                        <div style="width: 80% !important">
+                          <p class="paddingm" id="part_text_crpr">All Parts</p>
+                        </div>
+                        <div class="dropdown-div" style=" width: 20% !important">
+                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                        </div>
+                      </div>
                     </div>
                     <div class="filter_checkboxes filter_part_crpr">
                     </div>
@@ -252,23 +282,28 @@
           </div>
         </div>
       </div>
-      <div class="row paddingm" style="height: 15rem;width:100%;">
-        <div class="grid-item_graph mar-left_graph mar-top paddingm" style="width:48.5%;margin-left:0.5rem;">
+      <div class="row paddingm" style="height: max-content;width:100%;display:flex;flex-direction:row;justify-content:space-evenly;alig-items:center;margin-bottom:0.3rem;">
+        <div class="grid-item_graph  paddingm" style="width:49%;margin-left:0.5rem;height:18rem;">
           <div>
             <p class="paddingm fontBold financial_font">Cost of Poor Quality (COPQ) by Machines</p>
           </div>
           <div class="valueMarLeft">
             <div style="float: left;width: 10%">
-              <p class="paddingm headTitle">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0.4rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft COPQM" ></span></p>
+              <p class="paddingm headTitle total-margin">TOTAL</p>
+              <p class="paddingm valueGraph" style="margin-left:0.8rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft COPQM" ></span></p>
             </div>
             <div style="float: left;width:90%;" class="filter_div">
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
                     <div class="filter_selectBox" onclick="multiple_drp_reason_copqm()">
-                      <div class="inbox-span fontStyle search_style">
-                        <p class="paddingm" id="reason_text_copqm">All Reasons</p>
+                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                        <div style="width: 80% !important">
+                          <p class="paddingm" id="reason_text_copqm">All Reasons</p>
+                        </div>
+                        <div class="dropdown-div" style=" width: 20% !important">
+                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                        </div>
                       </div>
                     </div>
                     <div class="filter_checkboxes filter_reason_copqm">
@@ -281,7 +316,14 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
                     <div class="filter_selectBox" onclick="multiple_drp_machine_copqm()">
-                      <div class="inbox-span fontStyle search_style"><p class="paddingm" id="machine_text_copqm">All Machines</p></div>
+                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                        <div style="width: 80% !important">
+                          <p class="paddingm" id="machine_text_copqm">All Machines</p>
+                        </div>
+                        <div class="dropdown-div" style=" width: 20% !important">
+                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                        </div>
+                      </div>
                     </div>
                     <div class="filter_checkboxes filter_machine_copqm">
                     </div>
@@ -293,7 +335,14 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
                     <div class="filter_selectBox" onclick="multiple_drp_copqm()">
-                      <div class="inbox-span fontStyle search_style"><p class="paddingm" id="part_text_copqm">All Parts</p></div>
+                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                        <div style="width: 80% !important">
+                          <p class="paddingm" id="part_text_copqm">All Parts</p>
+                        </div>
+                        <div class="dropdown-div" style=" width: 20% !important">
+                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                        </div>
+                      </div>
                     </div>
                     <div class="filter_checkboxes filter_part_copqm">
                     </div>
@@ -308,13 +357,13 @@
             </div>  
           </div>
         </div>
-        <div class="grid-item_graph mar-right_graph mar-top paddingm" style="width:48.5%;margin-right:0.5rem;">
+        <div class="grid-item_graph   paddingm" style="width:49%;margin-right:0.5rem;height:18rem;">
           <div>
             <p class="paddingm fontBold financial_font">Quality Rejection by Machines with Reasons</p>
           </div>
           <div class="valueMarLeft">
             <div style="float: left;width: 10%">
-              <p class="paddingm headTitle">TOTAL</p>
+              <p class="paddingm headTitle total-margin">TOTAL</p>
               <p class="paddingm valueGraph" style="margin-left:0.4rem;"><span class="paddingm valueMarLeft CRBMR" ></span></p>
             </div>
             <div style="float: left;width:90%;" class="filter_div">
@@ -322,8 +371,13 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
                     <div class="filter_selectBox" onclick="multiple_drp_reason_qrmr()">
-                      <div class="inbox-span fontStyle search_style">
-                        <p class="paddingm" id="reason_text_qrmr">All Reasons</p>
+                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                        <div style="width: 80% !important">
+                          <p class="paddingm" id="reason_text_qrmr">All Reasons</p>
+                        </div>
+                        <div class="dropdown-div" style=" width: 20% !important">
+                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                        </div>
                       </div>
                     </div>
                     <div class="filter_checkboxes filter_reason_qrmr">
@@ -336,7 +390,14 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
                     <div class="filter_selectBox" onclick="multiple_drp_machine_qrmr()">
-                      <div class="inbox-span fontStyle search_style"><p class="paddingm" id="machine_text_qrmr">All Machines</p></div>
+                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                        <div style="width: 80% !important">
+                          <p class="paddingm" id="machine_text_qrmr">All Machines</p>
+                        </div>
+                        <div class="dropdown-div" style=" width: 20% !important">
+                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                        </div>
+                      </div>
                     </div>
                     <div class="filter_checkboxes filter_machine_qrmr">
                     </div>
@@ -348,7 +409,14 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
                     <div class="filter_selectBox" onclick="multiple_drp_qrmr()">
-                      <div class="inbox-span fontStyle search_style"><p class="paddingm" id="part_text_qrmr">All Parts</p></div>
+                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                        <div style="width: 80% !important">
+                          <p class="paddingm" id="part_text_qrmr">All Parts</p>
+                        </div>
+                        <div class="dropdown-div" style=" width: 20% !important">
+                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                        </div>
+                      </div>
                     </div>
                     <div class="filter_checkboxes filter_part_qrmr">
                     </div>
@@ -367,23 +435,28 @@
         </div>
       </div>
       
-      <div class="row paddingm" style="height: 15rem;width:100%;">
-        <div class="grid-item_graph mar-left_graph mar-top paddingm" style="width:48.5%;margin-left:0.5rem;">
+      <div class="row paddingm" style="height:max-content;width:100%;display:flex;flex-direction:row;justify-content:space-evenly;align-items:center;margin-bottom:0.5rem">
+        <div class="grid-item_graph  paddingm" style="width:49%;margin-left:0.5rem;height:18rem;">
           <div>
             <p class="paddingm fontBold financial_font">Cost of Poor Quality (COPQ) by Parts</p>
           </div>
           <div class="valueMarLeft">
             <div style="float: left;width: 10%">
-              <p class="paddingm headTitle">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0.4rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft CQRP" ></span></p>
+              <p class="paddingm headTitle total-margin">TOTAL</p>
+              <p class="paddingm valueGraph" style="margin-left:0.8rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft CQRP" ></span></p>
             </div>
             <div style="float: left;width:90%;" class="filter_div">
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
                     <div class="filter_selectBox" onclick="multiple_drp_reason_copqp()">
-                      <div class="inbox-span fontStyle search_style">
-                        <p class="paddingm" id="reason_text_copqp">All Reasons</p>
+                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                        <div style="width: 80% !important">
+                          <p class="paddingm" id="reason_text_copqp">All Reasons</p>
+                        </div>
+                        <div class="dropdown-div" style=" width: 20% !important">
+                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                        </div>
                       </div>
                     </div>
                     <div class="filter_checkboxes filter_reason_copqp">
@@ -396,7 +469,14 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
                     <div class="filter_selectBox" onclick="multiple_drp_machine_copqp()">
-                      <div class="inbox-span fontStyle search_style"><p class="paddingm" id="machine_text_copqp">All Machines</p></div>
+                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                        <div style="width: 80% !important">
+                          <p class="paddingm" id="machine_text_copqp">All Machines</p>
+                        </div>
+                        <div class="dropdown-div" style=" width: 20% !important">
+                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                        </div>
+                      </div>
                     </div>
                     <div class="filter_checkboxes filter_machine_copqp">
                     </div>
@@ -408,7 +488,14 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
                     <div class="filter_selectBox" onclick="multiple_drp_copqp()">
-                      <div class="inbox-span fontStyle search_style"><p class="paddingm" id="part_text_copqp">All Parts</p></div>
+                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                        <div style="width: 80% !important">
+                          <p class="paddingm" id="part_text_copqp">All Parts</p>
+                        </div>
+                        <div class="dropdown-div" style=" width: 20% !important">
+                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                        </div>
+                      </div>
                     </div>
                     <div class="filter_checkboxes filter_part_copqp">
                     </div>
@@ -423,13 +510,13 @@
             </div>
           </div>
         </div>
-        <div class="grid-item_graph mar-right_graph mar-top paddingm" style="width:48.5%;margin-right:0.5rem;">
+        <div class="grid-item_graph  paddingm" style="width:49%;margin-right:0.5rem;height:18rem;">
           <div>
             <p class="paddingm fontBold financial_font">Quality Rejection by Parts with Reasons</p>
           </div>
           <div class="valueMarLeft">
             <div style="float: left;width: 10%">
-              <p class="paddingm headTitle">TOTAL</p>
+              <p class="paddingm headTitle total-margin">TOTAL</p>
               <p class="paddingm valueGraph" style="margin-left:0.4rem;"><span class="paddingm valueMarLeft CQRPR" ></span></p>
             </div>
             <div style="float: left;width:90%;" class="filter_div">
@@ -437,8 +524,13 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
                     <div class="filter_selectBox" onclick="multiple_drp_reason_qrpr()">
-                      <div class="inbox-span fontStyle search_style">
-                        <p class="paddingm" id="reason_text_qrpr">All Reasons</p>
+                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                        <div style="width: 80% !important">
+                          <p class="paddingm" id="reason_text_qrpr">All Reasons</p>
+                        </div>
+                        <div class="dropdown-div" style=" width: 20% !important">
+                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                        </div>
                       </div>
                     </div>
                     <div class="filter_checkboxes filter_reason_qrpr">
@@ -451,7 +543,14 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
                     <div class="filter_selectBox" onclick="multiple_drp_machine_qrpr()">
-                      <div class="inbox-span fontStyle search_style"><p class="paddingm" id="machine_text_qrpr">All Machines</p></div>
+                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                        <div style="width: 80% !important">
+                          <p class="paddingm" id="machine_text_qrpr">All Machines</p>
+                        </div>
+                        <div class="dropdown-div" style=" width: 20% !important">
+                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                        </div>
+                      </div>
                     </div>
                     <div class="filter_checkboxes filter_machine_qrpr">
                     </div>
@@ -463,7 +562,14 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
                     <div class="filter_selectBox" onclick="multiple_drp_qrpr()">
-                      <div class="inbox-span fontStyle search_style"><p class="paddingm" id="part_text_qrpr">All Parts</p></div>
+                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                        <div style="width: 80% !important">
+                          <p class="paddingm" id="part_text_qrpr">All Parts</p>
+                        </div>
+                        <div class="dropdown-div" style=" width: 20% !important">
+                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                        </div>
+                      </div>
                     </div>
                     <div class="filter_checkboxes filter_part_qrpr">
                     </div>
@@ -484,18 +590,16 @@
     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
     <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav">
       <div class="container-fluid paddingm ">
-        <div>
-            
-        </div>
-        <div class="d-flex innerNav">
-          <div class="box rightmar" style="margin-right: 0.5rem;">
-            <div class="input-box">
-              <input type="number" class="form-control font_weight" name="" id="pagination_val" style="width: 4rem;">
+        <div class="box rightmar" style="margin-left: 0.5rem;width: 10rem;">
+            <div class="input-box" style="display: flex;">
+              <input type="number" class="form-control font_weight font_color" name="" id="pagination_val" style="width: 3.5rem;">
+              <div class="box rightmar center-align font_color font-size-lable" style="margin-left: 0.5rem;">
+                <p class="paddingm">of <span id="total_pagination"></span> pages</p>
+              </div>
             </div>
-          </div>
-          <div class="box rightmar center-align font_color" style="margin-right: 0.5rem;">
-            <p class="paddingm">of <span id="total_pagination"></span> pages</p>
-          </div>
+        </div>
+          
+        <div class="d-flex innerNav">
           <!-- <div class="box rightmar" style="margin-right: 0.5rem;">
             <div class="input-box">
               <select class="form-select font_weight" name="" id="Production_MachineName" style="width: 10rem;">
@@ -507,7 +611,14 @@
             <div class="input-box">
               <div class="filter_multiselect">
                 <div class="filter_selectBox" onclick="multiple_drp()">
-                  <div class="inbox-span fontStyle search_style"><p class="paddingm" id="part_text">Select</p></div>
+                  <div class="inbox-span fontStyle search_style dropdown-arrow">
+                    <div style="width: 80% !important;">
+                      <p class="paddingm" id="part_text">Select</p>
+                    </div>
+                    <div style="width: 80% !important;" class="dropdown-div">
+                      <i class="fa-solid fa-chevron-down icon-style"></i>
+                    </div>
+                  </div>
                 </div>
                 <div class="filter_checkboxes filter_part">
                 </div>
@@ -520,7 +631,14 @@
             <div class="input-box">
               <div class="filter_multiselect">
                 <div class="filter_selectBox" onclick="multiple_drp_machine()">
-                  <div class="inbox-span fontStyle search_style"><p class="paddingm" id="machine_text">Select</p></div>
+                  <div class="inbox-span fontStyle search_style dropdown-arrow">
+                    <div style="width: 80% !important;">
+                      <p class="paddingm" id="machine_text">Select</p>
+                    </div>
+                    <div style="width: 80% !important;" class="dropdown-div">
+                      <i class="fa-solid fa-chevron-down icon-style"></i>
+                    </div>
+                  </div>
                 </div>
                 <div class="filter_checkboxes filter_machine">
                 </div>
@@ -533,7 +651,14 @@
             <div class="input-box">
               <div class="filter_multiselect">
                 <div class="filter_selectBox" onclick="multiple_drp_reason()">
-                  <div class="inbox-span fontStyle search_style"><p class="paddingm" id="reason_text">Select</p></div>
+                  <div class="inbox-span fontStyle search_style dropdown-arrow">
+                    <div style="width: 80% !important;">
+                      <p class="paddingm" id="reason_text">Select</p>
+                    </div>
+                    <div style="width: 80% !important;" class="dropdown-div">
+                      <i class="fa-solid fa-chevron-down icon-style"></i>
+                    </div>
+                  </div>
                 </div>
                 <div class="filter_checkboxes filter_reason">
                 </div>
@@ -546,7 +671,14 @@
             <div class="input-box">
               <div class="filter_multiselect">
                 <div class="filter_selectBox" onclick="multiple_drp_user()">
-                  <div class="inbox-span fontStyle search_style"><p class="paddingm" id="user_text">Select</p></div>
+                  <div class="inbox-span fontStyle search_style dropdown-arrow">
+                    <div style="width: 80% !important;">
+                      <p class="paddingm" id="user_text">Select</p>
+                    </div>
+                    <div style="width: 80% !important;" class="dropdown-div">
+                      <i class="fa-solid fa-chevron-down icon-style"></i>
+                    </div>
+                  </div>
                 </div>
                 <div class="filter_checkboxes filter_user">
                 </div>
@@ -555,11 +687,10 @@
             </div>
           </div> 
 
-          <div class="box rightmar" style="margin-right: 0.5rem;">
-            <!-- <a style="background: #005abc;color: white;width:9rem;" class="settings_nav_anchor float-end" id="add_machine_button" onclick="getFilterval()">Apply</a>  -->
-            <button class="btn fo bn filterbtnstyle settings_nav_anchor float-end" style="margin-block:auto;" id="add_machine_button" onclick="getFilterval()">Apply Filter</button>
-          </div>
-          <div class="box rightmar" style="margin-right: 0.5rem;">
+          <!-- <div class="box rightmar" style="margin-right: 0.5rem;"> -->
+          <button class="btn fo bn filterbtnstyle settings_nav_anchor float-end" style="margin-right:0.5rem;margin-left: 0;margin-top: 0;margin-bottom: 0;" id="add_machine_button" onclick="getFilterval()">Apply Filter</button>
+          <!-- </div> -->
+          <div class="box rightmar" style="margin-right: 0.5rem;display: flex;justify-content: center;">
             <img src="<?php echo base_url('assets/img/filter_reset.png'); ?>" class="undo" style="font-size:20px;color: #b5b8bc;cursor: pointer;width:1.3rem;height:1.3rem;">
           </div>
         </div>
@@ -815,10 +946,8 @@ function multiple_drp_reason_copq() {
   $('.filter_checkboxes').css("display","none");
   if ($('.filter_reason_copq').css("display") == "none") {
       $('.filter_reason_copq').css("display","block");
-      // copq_hide = 0;
   } else {
       $('.filter_reason_copq').css("display","none");
-      // copqp();
   }
 }
 
@@ -826,10 +955,8 @@ function multiple_drp_machine_copq() {
   $('.filter_checkboxes').css("display","none");
   if ($('.filter_machine_copq').css("display") == "none") {
       $('.filter_machine_copq').css("display","block");
-      // copq_hide = 1;
   } else {
       $('.filter_machine_copq').css("display","none");
-      // copqp();
   }
 }
 
@@ -837,10 +964,8 @@ function multiple_drp_copq() {
   $('.filter_checkboxes').css("display","none");
   if ($('.filter_part_copq').css("display") == "none") {
       $('.filter_part_copq').css("display","block");
-      // copq_hide = 0;
   } else {
       $('.filter_part_copq').css("display","none");
-      // copqp();
   }
 }
 
@@ -2120,7 +2245,7 @@ $(document).on('click','.inbox_user',function(event){
 
 
 function qualitybyreasonparts() {
-      var part=[];
+    var part=[];
     var machine =[];
     var reason= [];
 
@@ -2181,6 +2306,10 @@ function qualitybyreasonparts() {
     });
     }
 
+    if(reason.length ==0 || machine.length ==0 || part.length ==0){
+      return;  
+    }
+
   $('#CQRPR').remove();
   $('.child_graph_quality_part_reason').append('<canvas id="CQRPR"></canvas>');
   $('.chartjs-hidden-iframe').remove();
@@ -2227,8 +2356,20 @@ function qualitybyreasonparts() {
       var totalVal =[];
       res['Total'].forEach(function(t){
           totalVal.push(parseInt(t));
-      }); 
+      });
 
+      var totalVal_percentage =[];
+      res['Total'].forEach(function callback(value, index) {
+        if (index == 0) {
+          totalVal_percentage.push(parseInt((parseInt(value)/parseInt(res.GrandTotal))*100));
+        }else if (index == (res['Total'].length-1)) {
+          totalVal_percentage.push(100);
+        }
+        else{
+          var temp =  parseInt((parseInt(value)/parseInt(res.GrandTotal))*100);
+          totalVal_percentage.push(totalVal_percentage[index-1]+parseInt(temp));
+        }
+      });
 
       for (let i = 0; i < totalVal.length; i++) {
         let lowest = i
@@ -2243,12 +2384,10 @@ function qualitybyreasonparts() {
         }
       }
 
-
       var lab = [];
       res['Part_List'].forEach(function(t){
-        lab.push(t['part_name']);
+        lab.push(t);
       });
-
       var category_percent =1.0;
       var bar_space=0.5;
 
@@ -2267,7 +2406,6 @@ function qualitybyreasonparts() {
           break;
         }
       }
-
       oppCost = [
         {
           label:"Total",
@@ -2279,9 +2417,9 @@ function qualitybyreasonparts() {
           borderWidth: 1,
           showLine : true,
           fill: false,
-          percentage_data:totalVal,
+          percentage_data:totalVal_percentage,
           // reject:totalReject, 
-          data:totalVal,
+          data:totalVal_percentage,
           // partName:partNameTotal,
           pointRadius: 7,
           yAxisID: 'A',  
@@ -2323,11 +2461,6 @@ function qualitybyreasonparts() {
               responsive: true,
               maintainAspectRatio: false,   
               scales: {
-                  // y: {
-                  //     display:false,
-                  //     beginAtZero:true,
-                  //     stacked:true
-                  // },
                   A:{
                       type: 'linear',
                       position: 'right',
@@ -2347,6 +2480,7 @@ function qualitybyreasonparts() {
                       grid:{
                         display:false
                       },
+                      stacked:true
                     },
                   x:{
                       display:true,
@@ -2370,7 +2504,6 @@ function qualitybyreasonparts() {
           });
         },
     error:function(res){
-      // console.log("Sorry!Try Agian!!!!");  
         alert("Sorry!Try Agian!!!!");
     }
   }); 
@@ -2378,7 +2511,6 @@ function qualitybyreasonparts() {
 
 // Quality Rejection by Parts with Reasons
 function quality_oppcost_reaosn_part_tooltip(context){
-  console.log(context);
   let tooltipEl = document.getElementById('tooltip-quality_oppcost_partreason');
 
   // Create element on first render
@@ -2438,7 +2570,6 @@ function quality_oppcost_reaosn_part_tooltip(context){
 
           innerHtml += '<div class="grid-item content-text" style="height:max-content;"><p>Rejection Count</p></div>';  
           innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+parseFloat(oppcost).toLocaleString("en-IN")+'</span></div>';
-
       }
     
 
@@ -2523,6 +2654,10 @@ function copqp() {
     });
     }
 
+    if(reason.length ==0 || machine.length ==0 || part.length ==0){
+      return;  
+    }
+
   $('#COPQP').remove();
   $('.child_graph_quality_opportunity').append('<canvas id="COPQP"></canvas>');
   $('.chartjs-hidden-iframe').remove();
@@ -2573,13 +2708,20 @@ function copqp() {
       var temp_data = 0;
       var percentage_arr = [];
 
-      res['Total'].forEach(function(t){
-          totalVal.push(t);
+      // res['Total'].forEach(function(t){
+      res['Total'].forEach(function callback(value, index) {
+          totalVal.push(value);
           partNameTotal.push("Total");
 
-          temp_data = parseInt(temp_data)+t;
-          var temp_percentage = parseFloat(parseInt(temp_data)/parseInt(res['GrandTotal'])).toFixed(2)*100;
-          percentage_arr.push(temp_percentage);
+          if (index == 0) {
+            percentage_arr.push(parseInt((parseInt(value)/parseInt(res.GrandTotal))*100));
+          }else if (index == (res['Total'].length-1)) {
+            percentage_arr.push(100);
+          }
+          else{
+            var temp =  parseInt((parseInt(value)/parseInt(res.GrandTotal))*100);
+            percentage_arr.push(percentage_arr[index-1]+parseInt(temp));
+          }
       });
 
       var category_percent =1.0;
@@ -2601,26 +2743,10 @@ function copqp() {
         }
       }
 
-      // oppCost = [
-      //   {
-      //     label:"Total",
-      //     type: "bar",
-      //     backgroundColor: "#004b9b",
-      //     borderColor: "#d9d9ff",
-      //     borderWidth: 1,
-      //     showLine : false,
-      //     fill: false,
-      //     // reject:totalReject, 
-      //     data:totalVal,
-      //     partName:partNameTotal,
-      //     pointRadius: 7,
-      //   }           
-      // ];
-
       oppCost = [{
         
         type: 'line',
-        abel: 'Percentage',
+        label: 'Percentage',
         data:percentage_arr,
         percentage_data: percentage_arr,
         backgroundColor: 'white',
@@ -2650,20 +2776,6 @@ function copqp() {
           yAxisID: 'B',  
         }           
       ];
-
-        // oppCost.push({
-        //   label: "partName",
-        //   type: "bar",
-        //   backgroundColor: "#004b9b",
-        //   borderColor: color[x],
-        //   borderWidth: 1,
-        //   fill: true,
-        //   // reject:a,
-        //   data: totalVal,
-        //   // partName:partNameHover,
-        //   categoryPercentage:category_percent,
-        //   barPercentage:bar_space,
-        // });
             var ctx = document.getElementById("COPQP").getContext('2d');
             var myChart = new Chart(ctx, {
               type: 'bar',
@@ -2676,11 +2788,6 @@ function copqp() {
               responsive: true,
               maintainAspectRatio: false,   
               scales: {
-                  // y: {
-                  //     display:false,
-                  //     beginAtZero:true,
-                  //     stacked:true
-                  // },
                   A:{
                     type: 'linear',
                     position: 'right',
@@ -2814,7 +2921,6 @@ function quality_opportunity_tooltip(context){
 }
 
 function qualitybyparts() {
-
   var part=[];
     var machine =[];
     var reason= [];
@@ -2876,6 +2982,10 @@ function qualitybyparts() {
     });
     }
 
+    if(reason.length ==0 || machine.length ==0 || part.length ==0){
+      return;  
+    }
+
   $('#CQRP').remove();
   $('.child_graph_quality_parts').append('<canvas id="CQRP"></canvas>');
   $('.chartjs-hidden-iframe').remove();
@@ -2921,14 +3031,20 @@ function qualitybyparts() {
       var partNameTotal=[];
       var temp_data = 0;
       var percentage_arr = [];
-      res['Part'].forEach(function(t){
-          totalVal.push(t['cost']);
-          partNameTotal.push(t['part_name']);
+      res['Part'].forEach(function callback(value, index) {
+          totalVal.push(value['cost']);
+          partNameTotal.push(value['part_name']);
 
-          temp_data = parseInt(temp_data)+parseInt(t['cost']);
-          var temp_percent = parseFloat(parseInt(temp_data)/parseInt(res['GrandTotal'])).toFixed(2)*100;
-          percentage_arr.push(temp_percent);
-      }); 
+          if (index == 0) {
+            percentage_arr.push(parseInt((parseInt(value['cost'])/parseInt(res.GrandTotal))*100));
+          }else if (index == (res['Part'].length-1)) {
+            percentage_arr.push(100);
+          }
+          else{
+            var temp =  parseInt((parseInt(value['cost'])/parseInt(res.GrandTotal))*100);
+            percentage_arr.push(percentage_arr[index-1]+parseInt(temp));
+          }
+      });
 
       var category_percent =1.0;
       var bar_space=0.5;
@@ -2985,19 +3101,6 @@ function qualitybyparts() {
         }           
       ];
 
-        // oppCost.push({
-        //   label: "partName",
-        //   type: "bar",
-        //   backgroundColor: "#004b9b",
-        //   borderColor: color[x],
-        //   borderWidth: 1,
-        //   fill: true,
-        //   // reject:a,
-        //   data: totalVal,
-        //   // partName:partNameHover,
-        //   categoryPercentage:category_percent,
-        //   barPercentage:bar_space,
-        // });
             var ctx = document.getElementById("CQRP").getContext('2d');
             var myChart = new Chart(ctx, {
               type: 'bar',
@@ -3010,11 +3113,6 @@ function qualitybyparts() {
               responsive: true,
               maintainAspectRatio: false,   
               scales: {
-                  // y: {
-                  //     display:false,
-                  //     beginAtZero:true,
-                  //     stacked:true
-                  // },
                   A:{
                     type: 'linear',
                     position: 'right',
@@ -3208,6 +3306,9 @@ function crbmr() {
     });
     }
 
+    if(reason.length ==0 || machine.length ==0 || part.length ==0){
+      return;  
+    }
 
   $('#CRBMR').remove();
   $('.child_graph_quality_machine_reason').append('<canvas id="CRBMR"></canvas>');
@@ -3251,10 +3352,20 @@ function crbmr() {
         
       // Find the Reason Names as Lables..........
       var machineTotal =[];
-      res['Total'].forEach(function(res){
-          machineTotal.push(parseInt(res));
+      var percentage_arr = [];
+      res['Total'].forEach(function callback(value, index) {
+          machineTotal.push(value);
+          if (index == 0) {
+            percentage_arr.push(parseInt((parseInt(value)/parseInt(res.GrandTotal))*100));
+          }else if (index == (res['Total'].length-1)) {
+            percentage_arr.push(100);
+          }
+          else{
+            var temp =  parseInt((parseInt(value)/parseInt(res.GrandTotal))*100);
+            percentage_arr.push(percentage_arr[index-1]+parseInt(temp));
+          }
       });
-      
+
       for (let i = 0; i < machineTotal.length; i++) {
         let lowest = i
         for (let j = i + 1; j < machineTotal.length; j++) {
@@ -3302,12 +3413,12 @@ function crbmr() {
           borderWidth: 1, 
           showLine : true,
           fill: false, 
-          data:machineTotal,
+          data:percentage_arr,
           pointRadius: 7,
           borderWidth: 1, 
           lineColor:"black",
           yAxisID: 'A',  
-          percentage_data:machineTotal,
+          percentage_data:percentage_arr,
         }           
       ];
 
@@ -3328,6 +3439,7 @@ function crbmr() {
           percentage_data:0,
           categoryPercentage:category_percent,
           barPercentage:bar_space,
+          yAxisID: 'B',  
         });
         x=x+1;
       });
@@ -3368,6 +3480,7 @@ function crbmr() {
                       grid:{
                         display:false
                       },
+                      stacked:true,
                     },
                   x:{
                       display:true,
@@ -3456,8 +3569,8 @@ function quality_opportuntiycost_reason_machine_tooltip(context){
             innerHtml += '<div class="grid-item title-bold"><span></span></div>';
             innerHtml += '<div class="content-text sub-title"><span>'+context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label+'</span></div>';
             innerHtml += '<div class="grid-item title-bold"><span></span></div>';
-            innerHtml += '<div class="grid-item content-text margin-top"><span>Opportunity Cost</span></div>';
-            innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="true"></i>'+parseFloat(oppcost).toLocaleString("en-IN")+'</span></div>';
+            innerHtml += '<div class="grid-item content-text margin-top"><span>Rejection Count</span></div>';
+            innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+parseFloat(oppcost).toLocaleString("en-IN")+'</span></div>';
           
           }
          
@@ -3542,6 +3655,10 @@ function copqm() {
     });
     }
 
+    if(reason.length ==0 || machine.length ==0 || part.length ==0){
+      return;  
+    }
+
   $('#COPQM').remove();
   $('.child_graph_quality_machine_wise').append('<canvas id="COPQM"></canvas>');
   $('.chartjs-hidden-iframe').remove();
@@ -3593,14 +3710,19 @@ function copqm() {
       var machineTotal=[];
       var temp_data = 0;
       var percentage_arr = [];
-      res['MachineCost'].forEach(function(t){
-          machineTotal.push(t);
 
-          temp_data = parseInt(temp_data)+t;
-          var temp = parseFloat(parseInt(temp_data)/parseInt(res['GrandTotal'])).toFixed(2)*100;
-          percentage_arr.push(temp);
-
-      }); 
+      res['MachineCost'].forEach(function callback(value, index) {
+          machineTotal.push(value);
+          if (index == 0) {
+            percentage_arr.push(parseInt((parseInt(value)/parseInt(res.GrandTotal))*100));
+          }else if (index == (res['MachineCost'].length-1)) {
+            percentage_arr.push(100);
+          }
+          else{
+            var temp =  parseInt((parseInt(value)/parseInt(res.GrandTotal))*100);
+            percentage_arr.push(percentage_arr[index-1]+parseInt(temp));
+          }
+      });
 
       var category_percent =1.0;
       var bar_space=0.5;
@@ -3653,20 +3775,6 @@ function copqm() {
         }           
       ];
 
-        // oppCost.push({
-        //   label: "partName",
-        //   type: "bar",
-        //   backgroundColor: "#004b9b",
-        //   borderColor: color[x],
-        //   borderWidth: 1,
-        //   fill: true,
-        //   // reject:a,
-        //   data: totalVal,
-        //   // partName:partNameHover,
-        //   categoryPercentage:category_percent,
-        //   barPercentage:bar_space,
-        // });
-
             var ctx = document.getElementById("COPQM").getContext('2d');
             var myChart = new Chart(ctx, {
               type: 'bar',
@@ -3679,11 +3787,6 @@ function copqm() {
               responsive: true,
               maintainAspectRatio: false,   
               scales: {
-                  // y: {
-                  //     display:false,
-                  //     beginAtZero:true,
-                  //     stacked:true
-                  // },
                   A:{
                     type: 'linear',
                     position: 'right',
@@ -3880,6 +3983,10 @@ function qrbr() {
     });
     }
 
+    if(reason.length ==0 || machine.length ==0 || part.length ==0){
+      return;  
+    }
+
   $('#QRBR').remove();
   $('.child_graph_quality_reason_wise').append('<canvas id="QRBR"></canvas>');
   $('.chartjs-hidden-iframe').remove();
@@ -3930,14 +4037,21 @@ function qrbr() {
       var partNameTotal=[];
       var temp_data = 0;
       var percentage_arr = [];
-      res['Rejection'].forEach(function(t){
-          totalVal.push(t);
+
+      res['Rejection'].forEach(function callback(value, index) {
+          totalVal.push(value);
           partNameTotal.push("Total");
 
-          temp_data = parseInt(temp_data)+parseInt(t);
-          var temp = parseFloat(parseInt(temp_data)/parseInt(res['GrandTotal'])).toFixed(2)*100;
-          percentage_arr.push(temp);
-      }); 
+          if (index == 0) {
+            percentage_arr.push(parseInt((parseInt(value)/parseInt(res.GrandTotal))*100));
+          }else if (index == (res['Rejection'].length-1)) {
+            percentage_arr.push(100);
+          }
+          else{
+            var temp =  parseInt((parseInt(value)/parseInt(res.GrandTotal))*100);
+            percentage_arr.push(percentage_arr[index-1]+parseInt(temp));
+          }
+      });
 
       var category_percent =1.0;
       var bar_space=0.5;
@@ -4138,7 +4252,7 @@ function  quality_rejection_reason_cost(context){
             innerHtml += '<div class="grid-item title-bold"><span></span></div>';
 
             innerHtml += '<div class="grid-item content-text margin-top"><span>Rejection Count</span></div>';
-            innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="true"></i>'+parseFloat(oppcost).toLocaleString("en-IN")+'</span></div>';
+            innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+parseFloat(oppcost).toLocaleString("en-IN")+'</span></div>';
           }
         innerHtml += '</div>';
         innerHtml += '</div>';
@@ -4903,3 +5017,4 @@ function reset_created(){
 
 </script>
 
+<script src="<?php echo base_url(); ?>/assets/js/all-fontawesome.js?version=<?php echo rand() ; ?>"></script>

@@ -1387,6 +1387,193 @@ class OEE_Drill_Down_controller extends BaseController
         return $tmpid_arr;
     }
 
+
+    public function performanceOpportunity(){
+        
+        $ref = "PerformanceOpportunity";
+
+        $fromTime = $this->request->getVar("from");
+        $toTime = $this->request->getVar("to");    
+
+        // $fromTime = "2023-02-02T10:00:00";
+        // $toTime = "2023-03-06T21:00:00";
+
+        // $url = "http://localhost:8080/graph/performanceOpportunity/".$fromTime."/".$toTime."/";
+        // $ch = curl_init($url);
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+        // $result = curl_exec($ch);
+        // $res = json_decode($result);
+        // echo json_encode($res);
+
+        $machineData = $this->getDataRaw($ref,$fromTime,$toTime);
+        $partDetails = $this->data->PartDetails();
+        $machineDetails = $this->data->getMachineDetails();
+
+        // new array machine data
+        $get_new_machine = $this->data->getmachine_arr();
+
+        //Availability Opportunity.........
+        $AvailabilityOpportunity=[];
+
+        //Direct value for graph......
+        $varDataMachine=[];
+        foreach ($machineData['downtime'] as $machine) {
+            $All =0;
+            foreach ($machineData['all'] as  $a) {
+                if ($machine['Machine_ID']==$a['machine_id']) {
+                    $All = $a['duration'];
+                }
+            }
+            $tmpMachine=[];
+            //Direct value for graph......
+            $varData=[];
+            if ($All>0) {
+                foreach ($partDetails as $key => $part) {
+                    $tmpPart=[];
+                    $corrected_tppNICT=0;
+                    $machineOFFRate=1;
+                    foreach ($machineData['production'] as $val) {
+                        if ($machine['Machine_ID']==$val['machine_id'] AND $part['part_id']==$val['part_id']) {
+                            $corrected_tpp = (int)$val['production']+(int)($val['corrections']);
+
+                            $tnict=0;
+                            $mnict = explode(".", $part['NICT']);
+                            if (sizeof($mnict)>1) {
+                                $tnict = (($mnict[0]/60)+($mnict[1]/1000));
+                            }else{
+                                $tnict = ($mnict[0]/60);
+                            }
+
+                            $ctpNICT = ($tnict)*$corrected_tpp;
+                            $corrected_tppNICT = $corrected_tppNICT+$ctpNICT;
+                        }
+                    }
+                    foreach($machineDetails as $m) {
+                        if ($m['machine_id'] == $machine['Machine_ID']) {
+                            $machineOFFRate = $m['rate_per_hour'];
+                        }
+                    }
+
+                    $partRunningTime=0;
+                    $downtime=0;
+                    foreach ($machine['Part_Wise'] as $key => $value) {
+                        $temp_split = explode(",", $value['part_id']);
+                        foreach ($temp_split as $value_part) {
+                            if ($part['part_id'] == $value_part) {
+                                $partRunningTime=floatval(($value['PartInMachine']))-floatval(($value['Planed']+$value['Unplanned']));
+                                $downtime=floatval($All)-floatval(floatval($machine['Planned'])+floatval($machine['Unplanned'])+floatval($machine['Machine_OFF']));
+                            }
+                        }
+                    }
+
+                    //For no production........
+                    $Opportunity = floatval((floatval(floatval($partRunningTime)-floatval($corrected_tppNICT))/(60))*(int)$machineOFFRate);
+
+                    $partRunningDurationAtIdeal=$corrected_tppNICT;
+                    $speedLoss= $partRunningTime-$partRunningDurationAtIdeal;
+                    if (floatval($Opportunity)<0) {
+                        $Opportunity=0;
+                        $speedLoss=0;
+                    }
+                    $Opportunity_arr = array('Opportunity' => floatval($Opportunity),'SpeedLoss'=>$speedLoss,'part_id'=>$part['part_id'],'part_name'=>$part['part_name']);
+
+                    $temp = array("part_id"=>$part['part_id'],"data"=>$corrected_tppNICT,"OppCost"=>$Opportunity_arr,"speedLoss"=>$speedLoss);
+                    array_push($tmpMachine, $temp);
+                    array_push($varData, $Opportunity_arr);
+                }
+                // $x = array("machine_id"=>$machine['Machine_ID'],"machineData"=>$tmpMachine);
+                // array_push($AvailabilityOpportunity, $x);
+                $m_name_tmp = $get_new_machine[$machine['Machine_ID']]['machine_name'];
+                $z= array("machine_id"=>$machine['Machine_ID'],"machineData"=>$varData,"machine_name"=>$m_name_tmp);
+                array_push($varDataMachine, $z);
+            }
+        }
+
+        $length = sizeof($varDataMachine);
+        $l=sizeof($partDetails);
+        $partTotal=[];
+        $speedTotal=[];
+        $GrandTotal=0;
+        for ($i=0; $i < $l ; $i++) { 
+            $tmpPartTotal=0;
+            $tmpSpeedLoss=0;
+            for ($j=0; $j <$length ; $j++) { 
+                $tmpPartTotal=floatval($tmpPartTotal)+floatval($varDataMachine[$j]['machineData'][$i]['Opportunity']);
+                $tmpSpeedLoss=$tmpSpeedLoss+($varDataMachine[$j]['machineData'][$i]['SpeedLoss']);
+            }
+            $GrandTotal=floatval($GrandTotal)+floatval($tmpPartTotal);
+            array_push($partTotal, $tmpPartTotal);
+            array_push($speedTotal, $tmpSpeedLoss);
+        }
+
+        $res['dataPart']=$varDataMachine;
+        $res['Part']=$partDetails;
+        $res['Total']=$partTotal;
+        $res['SpeedLossTotal']=$speedTotal;
+        $res['GrandTotal']=($GrandTotal);
+        // $res['machine_data_demo'] = $get_new_machine;
+
+        //sorting in desending order......
+        $out = $this->selectionSortQuality($res,sizeof($res['Total']));
+ 
+        echo json_encode($machineData);
+        // echo "<pre>";
+        // print_r($out);
+    }
+
+    public function selectionSortQuality($arr, $n)
+    {
+        //int i, j, min_idx;
+      
+        // One by one move boundary of unsorted subarray
+        for ($i = 0; $i < $n-1; $i++)
+        {
+            // Find the minimum element in unsorted array
+            $min_idx = $i;
+            for ($j = $i+1; $j < $n; $j++){
+                if ($arr['Total'][$j] > $arr['Total'][$min_idx]){
+                    $min_idx = $j;
+                }
+            }
+
+            $temp = $arr['Total'][$i];
+            $arr['Total'][$i] = $arr['Total'][$min_idx];
+            $arr['Total'][$min_idx] = $temp;
+
+
+            $temp2 = $arr['Part'][$i];
+            $arr['Part'][$i] = $arr['Part'][$min_idx];
+            $arr['Part'][$min_idx] = $temp2;
+
+            $temp3 = $arr['SpeedLossTotal'][$i];
+            $arr['SpeedLossTotal'][$i] = $arr['SpeedLossTotal'][$min_idx];
+            $arr['SpeedLossTotal'][$min_idx] = $temp3;            
+            
+
+            $l = sizeof($arr['dataPart']);
+            for ($k=0; $k < $l; $k++) { 
+                $temp1 = $arr['dataPart'][$k]['machineData'][$i];
+                $arr['dataPart'][$k]['machineData'][$i] = $arr['dataPart'][$k]['machineData'][$min_idx];
+                $arr['dataPart'][$k]['machineData'][$min_idx] = $temp1;
+            }
+        }
+
+        for ($i = 0; $i < $n; $i++)
+        {
+            if (floatval($arr['Total'][$i]) <= 0){
+                unset($arr['Total'][$i]);
+                $l = sizeof($arr['dataPart']);
+                for ($k=0; $k < $l; $k++) { 
+                    unset($arr['dataPart'][$k]['machineData'][$i]);
+                }
+                unset($arr['SpeedLossTotal'][$i]);
+                unset($arr['Part'][$i]);
+            }
+        }
+        return $arr;
+    }
+
+
 }
 
 

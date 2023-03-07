@@ -152,7 +152,7 @@ $session = \Config\Services::session();
                                     <!-- <label class="multi_select_label" style="">Machine</label> -->
                                     <div class="filter_selectBox_machinegp" onclick="machine_multiselect_gp()">
                                         <select  class="multi_select_machinegp" style="" >
-                                            <option id="text_machinegp" style="text-align:center;">All Machines</option>
+                                            <option id="text_machinegp" style="">All Machines</option>
                                         </select>
                                         <div class="filter_overSelect_machinegp"></div>
                                     </div>
@@ -166,7 +166,7 @@ $session = \Config\Services::session();
                                     <!-- <label class="multi_select_label" style="">Reason</label> -->
                                     <div class="filter_selectBox_reasongp" onclick="reason_multiselect_gp()">
                                         <select  class="multi_select_reasongp" style="" >
-                                            <option id="text_reasongp" style="text-align:center;">All Reasons</option>
+                                            <option id="text_reasongp" style="">All Reasons</option>
                                         </select>
                                         <div class="filter_overSelect_reasongp"></div>
                                     </div>
@@ -181,7 +181,7 @@ $session = \Config\Services::session();
                                     <!-- <label class="multi_select_label" style="">Reason</label> -->
                                     <div class="filter_selectBox_categorygp" onclick="category_multiselect_gp()">
                                         <select  class="multi_select_categorygp" style="" >
-                                            <option id="text_categorygp" style="text-align:center;">All Category</option>
+                                            <option id="text_categorygp" style="">All Category</option>
                                         </select>
                                         <div class="filter_overSelect_categorygp"></div>
                                     </div>
@@ -239,7 +239,7 @@ $session = \Config\Services::session();
                                     <!-- <label class="multi_select_label" style="">Machine</label> -->
                                     <div class="filter_selectBox_machinegp1" onclick="machine_multiselect_gp1()">
                                         <select  class="multi_select_machinegp1" style="" >
-                                            <option id="text_machinegp1" style="text-align:center;">All Machines</option>
+                                            <option id="text_machinegp1" style="">All Machines</option>
                                         </select>
                                         <div class="filter_overSelect_machinegp1"></div>
                                     </div>
@@ -253,7 +253,7 @@ $session = \Config\Services::session();
                                     <!-- <label class="multi_select_label" style="">Reason</label> -->
                                     <div class="filter_selectBox_reasongp1" onclick="reason_multiselect_gp1();">
                                         <select  class="multi_select_reasongp1" style="" >
-                                            <option id="text_reasongp1" style="text-align:center;">All Reasons</option>
+                                            <option id="text_reasongp1" style="">All Reasons</option>
                                         </select>
                                         <div class="filter_overSelect_reasongp1"></div>
                                     </div>
@@ -268,7 +268,7 @@ $session = \Config\Services::session();
                                     <!-- <label class="multi_select_label" style="">Reason</label> -->
                                     <div class="filter_selectBox_categorygp1" onclick="category_multiselect_gp1()">
                                         <select  class="multi_select_categorygp1" style="" >
-                                            <option id="text_categorygp1" style="text-align:center;">All Category</option>
+                                            <option id="text_categorygp1" style="">All Category</option>
                                         </select>
                                         <div class="filter_overSelect_categorygp1"></div>
                                     </div>
@@ -328,7 +328,7 @@ $session = \Config\Services::session();
                                     <!-- <label class="multi_select_label" style="">Machine</label> -->
                                     <div class="filter_selectBox_machinegp2" onclick="machine_multiselect_gp2()">
                                         <select  class="multi_select_machinegp2" style="" >
-                                            <option id="text_machinegp2" style="text-align:center;">All Machines</option>
+                                            <option id="text_machinegp2" style="">All Machines</option>
                                         </select>
                                         <div class="filter_overSelect_machinegp2"></div>
                                     </div>
@@ -342,7 +342,7 @@ $session = \Config\Services::session();
                                     <!-- <label class="multi_select_label" style="">Reason</label> -->
                                     <div class="filter_selectBox_reasongp2" onclick="reason_multiselect_gp2();">
                                         <select  class="multi_select_reasongp2" style="" >
-                                            <option id="text_reasongp2" style="text-align:center;">All Reasons</option>
+                                            <option id="text_reasongp2" style="">All Reasons</option>
                                         </select>
                                         <div class="filter_overSelect_reasongp2"></div>
                                     </div>
@@ -357,7 +357,7 @@ $session = \Config\Services::session();
                                     <!-- <label class="multi_select_label" style="">Reason</label> -->
                                     <div class="filter_selectBox_categorygp2" onclick="category_multiselect_gp2()">
                                         <select  class="multi_select_categorygp2" style="" >
-                                            <option id="text_categorygp2" style="text-align:center;">All Category</option>
+                                            <option id="text_categorygp2" style="">All Category</option>
                                         </select>
                                         <div class="filter_overSelect_categorygp2"></div>
                                     </div>
@@ -415,7 +415,7 @@ $session = \Config\Services::session();
                                     <!-- <label class="multi_select_label" style="">Machine</label> -->
                                     <div class="filter_selectBox_machinegp3" onclick="machine_multiselect_gp3()">
                                         <select  class="multi_select_machinegp3" style="" >
-                                            <option id="text_machinegp3" style="text-align:center;">All Machines</option>
+                                            <option id="text_machinegp3" style="">All Machines</option>
                                         </select>
                                         <div class="filter_overSelect_machinegp3"></div>
                                     </div>
@@ -429,7 +429,7 @@ $session = \Config\Services::session();
                                     <!-- <label class="multi_select_label" style="">Reason</label> -->
                                     <div class="filter_selectBox_reasongp3" onclick="reason_multiselect_gp3();">
                                         <select  class="multi_select_reasongp3" style="" >
-                                            <option id="text_reasongp3" style="text-align:center;">All Reasons</option>
+                                            <option id="text_reasongp3" style="">All Reasons</option>
                                         </select>
                                         <div class="filter_overSelect_reasongp3"></div>
                                     </div>
@@ -444,7 +444,7 @@ $session = \Config\Services::session();
                                     <!-- <label class="multi_select_label" style="">Reason</label> -->
                                     <div class="filter_selectBox_categorygp3" onclick="category_multiselect_gp3()">
                                         <select  class="multi_select_categorygp3" style="" >
-                                            <option id="text_categorygp3" style="text-align:center;">All Category</option>
+                                            <option id="text_categorygp3" style="">All Category</option>
                                         </select>
                                         <div class="filter_overSelect_categorygp3"></div>
                                     </div>
@@ -510,7 +510,7 @@ $session = \Config\Services::session();
                             <label class="multi_select_label" style="">Created by</label>
                             <div class="filter_selectBox_cb" onclick="created_by_drp()">
                                 <select  class="multi_select_drp_cb" style="" >
-                                    <option id="text_created_by_drp" style="text-align:center;">Created by</option>
+                                    <option id="text_created_by_drp" style="">Created by</option>
                                 </select>
                                 <div class="filter_overSelect_cb"></div>
                             </div>
@@ -531,7 +531,7 @@ $session = \Config\Services::session();
                             <label class="multi_select_label" style="">Reason</label>
                             <div class="filter_selectBox_drpr" onclick="reason_drp()">
                                 <select  class="multi_select_drp_r" style="" >
-                                    <option id="text_reason_drp" style="text-align:center;">Reason</option>
+                                    <option id="text_reason_drp" style="">Reason</option>
                                 </select>
                                 <div class="filter_overSelect_r"></div>
                             </div>
@@ -552,7 +552,7 @@ $session = \Config\Services::session();
                             <label class="multi_select_label" style="">Category</label>
                             <div class="filter_selectBox" onclick="category_drp()">
                             <select  class="multi_select_drp" style="" >
-                                <option id="text_category_drp" style="text-align:center;">All Categories</option>
+                                <option id="text_category_drp" style="">All Categories</option>
                             </select>
                             <div class="filter_overSelect"></div>
                             </div>
@@ -592,7 +592,7 @@ $session = \Config\Services::session();
                             <label class="multi_select_label" style="">PartName</label>
                             <div class="filter_selectBox_part" onclick="partname_drp()">
                                 <select  class="multi_select_drp_part" style="" >
-                                    <option id="text_category_drp_part" style="text-align:center;">All PartName</option>
+                                    <option id="text_category_drp_part" style="">All PartName</option>
                                 </select>
                                 <div class="filter_overSelect_part"></div>
                             </div>
@@ -614,7 +614,7 @@ $session = \Config\Services::session();
                             <label class="multi_select_label" style="">Machine Name</label>
                             <div class="filter_selectBox_machine" onclick="machinename_drp()">
                             <select  class="multi_select_drp_machine" style="" >
-                                <option id="text_machine_drp" style="text-align:center;">All Machine</option>
+                                <option id="text_machine_drp" style="">All Machine</option>
                             </select>
                             <div class="filter_overSelect_part"></div>
                             </div>
@@ -633,7 +633,7 @@ $session = \Config\Services::session();
                         <!-- keywords input -->
                         <div class="box rightmar" style="margin-right:0.5rem;margin-top:2.2rem;">
                             <div class="fieldStyle input-box">
-                                <input type="text" class="form-control font_weight" id="filterkeyword" style="font-size:12px;height:2.4rem;" name="filterkeyword" placeholder="Search by Keyword">
+                                <input type="text" class="form-control font_weight" id="filterkeyword" style="font-size:12px;height:2.1rem;margin-top:0.5rem;" name="filterkeyword" placeholder="Search by Keyword">
                                 <label for="filterkeyword" class="input-padding">Search</label>
                             </div>   
                         </div>
@@ -2506,10 +2506,7 @@ function getfilter_machine_oppcost(){
 function getfilter_machine_reason_duration(){
 
 
-    $('#machine_reason_duration').remove();
-    $('.child_machine_reason_duration').append('<canvas id="machine_reason_duration"></canvas>');
-    $('.chartjs-hidden-iframe').remove();
-    
+   
     // machine array
     var graph_machine_arr = [];
     $('.machinegp_checkbox3').each(function(){
@@ -2560,6 +2557,11 @@ function getfilter_machine_reason_duration(){
         success:function(res){
             console.log('Machine and reason  wise duration');
             console.log(res);
+
+            $('#machine_reason_duration').remove();
+            $('.child_machine_reason_duration').append('<canvas id="machine_reason_duration"></canvas>');
+            $('.chartjs-hidden-iframe').remove();
+    
            
             var hour_text = parseInt(parseInt(res['total_duration'])/60);
             var minute_text = parseInt(parseInt(res['total_duration'])%60);

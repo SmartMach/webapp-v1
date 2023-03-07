@@ -196,6 +196,23 @@ class OEE_Drill_Down_Model extends Model{
         return $res;
     }
 
+
+    // get machine array data
+    public function getmachine_arr(){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('settings_machine_current');
+        $query->select('machine_id,machine_name,machine_offrate_per_hour,rate_per_hour');
+        $res= $query->get()->getResultArray();
+        // return $res;
+
+        $tmp_data = [];
+        foreach ($res as $key => $value) {
+            $tmp_data[$value['machine_id']] = $res[$key];
+        }
+
+        return $tmp_data;
+    }
+
    
 
 

@@ -37,18 +37,18 @@
  /* spliting two graphs in first div*/
  .graph_01,.graph_02{
     width: 49%;
-    height: 98%;
+    height: 19.5rem;
     border:1px solid #000000; 
-    border-radius: 15px;
+    border-radius: 10px;
     margin-left: 0.5%;
     margin-top: 0.2rem;
      }
 /* spliting two graphs in second div*/
     .graph_03,.graph_04{
     width: 49%;
-    height: 98%;
+    height: 19.5rem;
     border:1px solid #000000; 
-    border-radius: 15px;
+    border-radius: 10px;
     margin-left: 0.5%;
     margin-top: 0.2rem;
      }
@@ -212,7 +212,7 @@ color:#8c8c8c;
 font-family:'Roboto' sans-serif;
 }
 .filter_selectBox{
-height:2.3rem;
+height:2rem;
 margin-top:0.5rem;
 position:relative;
 min-width:9rem;
@@ -241,7 +241,7 @@ justify-content:center;
 width:80%;
 }
 .multi_select_drp{
-height:2.3rem;
+height:2rem;
 position:relative;
 min-width:9rem;
 font-size:12px;
@@ -249,6 +249,7 @@ font-weight:500;
 color:#8c8c8c;
 border:1px solid #ced4da;
 border-radius:0.25rem;
+padding-left: 0.3rem;
 }
 
 .filter_overSelect {
@@ -290,7 +291,7 @@ cursor:context-menu;
 color:white;
 background-color:#005abc;
 /* opacity: 0.7; */
-height:2.4rem;
+height:2.2rem;
 margin-top:0.5rem;
 margin-right:0.6rem;
 }
@@ -302,7 +303,7 @@ opacity: 0.8;
 
 /* dropdown checkbox created by */
 .filter_selectBox_cb{
-height:2.3rem;
+height:2rem;
 margin-top:0.5rem;
 position:relative;
 min-width:9rem;
@@ -313,7 +314,7 @@ border:1px solid #ced4da;
 border-radius:0.25rem;
 }
 .multi_select_drp_cb{
-height:2.3rem;
+height:2rem;
 position:relative;
 min-width:9rem;
 font-size:12px;
@@ -321,6 +322,7 @@ font-weight:500;
 color:#8c8c8c;
 border:1px solid #ced4da;
 border-radius:0.25rem;
+padding-left: 0.3rem;
 }
 .filter_overSelect_cb{
 position: absolute;
@@ -365,7 +367,7 @@ max-height:3rem;
 
 /* reason dropdown checkbox */
 .filter_selectBox_drpr{
-height:2.3rem;
+height:2rem;
 margin-top:0.5rem;
 position:relative;
 min-width:9rem;
@@ -376,7 +378,7 @@ border:1px solid #ced4da;
 border-radius:0.25rem;
 }
 .multi_select_drp_r{
-height:2.3rem;
+height:2rem;
 position:relative;
 min-width:9rem;
 font-size:12px;
@@ -384,6 +386,7 @@ font-weight:500;
 color:#8c8c8c;
 border:1px solid #ced4da;
 border-radius:0.25rem;
+padding-left: 0.3rem;
 }
 .filter_overSelect_r{
 position: absolute;
@@ -429,7 +432,7 @@ max-height:3rem;
 
 /* multiselect dropdown part name  */
 .filter_selectBox_part{
-height:2.3rem;
+height:2rem;
 margin-top:0.5rem;
 position:relative;
 min-width:9rem;
@@ -440,7 +443,7 @@ border:1px solid #ced4da;
 border-radius:0.25rem;
 }
 .multi_select_drp_part{
-height:2.3rem;
+height:2rem;
 position:relative;
 min-width:9rem;
 font-size:12px;
@@ -448,6 +451,7 @@ font-weight:500;
 color:#8c8c8c;
 border:1px solid #ced4da;
 border-radius:0.25rem;
+padding-left: 0.3rem;
 }
 .filter_overSelect_part{
 position: absolute;
@@ -492,7 +496,7 @@ max-height:3rem;
 
 /* multiselect dropdwon machine  */
 .filter_selectBox_machine{
-height:2.3rem;
+height:2rem;
 margin-top:0.5rem;
 position:relative;
 min-width:9rem;
@@ -503,7 +507,7 @@ border:1px solid #ced4da;
 border-radius:0.25rem;
 }
 .multi_select_drp_machine{
-height:2.3rem;
+height:2rem;
 position:relative;
 min-width:9rem;
 font-size:12px;
@@ -511,6 +515,7 @@ font-weight:500;
 color:#8c8c8c;
 border:1px solid #ced4da;
 border-radius:0.25rem;
+padding-left: 0.3rem;
 }
 .filter_overSelect_machine{
 position: absolute;
@@ -574,7 +579,7 @@ font-family:'Roboto',sans-serif;
 /* graph multi select dropdown css */
 /* machine css graph filter multi select dropdown */
 .filter_selectBox_machinegp{
-height:2.3rem;
+height:2rem;
 margin-top:0.5rem;
 position:relative;
 min-width:9rem;
@@ -585,7 +590,7 @@ border:1px solid #ced4da;
 border-radius:0.25rem;
 }
 .multi_select_machinegp{
-height:2.3rem;
+height:2rem;
 position:relative;
 min-width:9rem;
 font-size:12px;
@@ -593,6 +598,7 @@ font-weight:500;
 color:#8c8c8c;
 border:1px solid #ced4da;
 border-radius:0.25rem; 
+padding-left: 0.3rem;
 }
 .filter_overSelect_machinegp{
 position: absolute;
@@ -639,7 +645,7 @@ max-height:3rem;
 
 /* part css multi select dropdown */
 .filter_selectBox_reasongp{
-height:2.3rem;
+height:2rem;
 margin-top:0.5rem;
 position:relative;
 min-width:9rem;
@@ -651,7 +657,7 @@ border-radius:0.25rem;
 }
 
 .multi_select_reasongp{
-height:2.3rem;
+height:2rem;
 position:relative;
 min-width:9rem;
 font-size:12px;
@@ -659,6 +665,7 @@ font-weight:500;
 color:#8c8c8c;
 border:1px solid #ced4da;
 border-radius:0.25rem; 
+padding-left: 0.3rem;
 }
 .filter_overSelect_reasongp{
 position: absolute;
@@ -704,7 +711,7 @@ max-height:3rem;
 
 /* category css */
 .filter_selectBox_categorygp{
-height:2.3rem;
+height:2rem;
 margin-top:0.5rem;
 position:relative;
 min-width:9rem;
@@ -716,7 +723,7 @@ border-radius:0.25rem;
 }
 
 .multi_select_categorygp{
-height:2.3rem;
+height:2rem;
 position:relative;
 min-width:9rem;
 font-size:12px;
@@ -724,6 +731,7 @@ font-weight:500;
 color:#8c8c8c;
 border:1px solid #ced4da;
 border-radius:0.25rem; 
+padding-left: 0.3rem;
 }
 .filter_overSelect_categorygp{
 position: absolute;
@@ -769,7 +777,7 @@ height:2rem;
 
 /* machine css graph filter multi select dropdown */
 .filter_selectBox_machinegp1{
-    height:2.3rem;
+    height:2rem;
     margin-top:0.5rem;
     position:relative;
     min-width:9rem;
@@ -780,14 +788,15 @@ height:2rem;
     border-radius:0.25rem;
 }
 .multi_select_machinegp1{
-    height:2.3rem;
+    height:2rem;
     position:relative;
     min-width:9rem;
     font-size:12px;
     font-weight:500;
     color:#8c8c8c;
     border:1px solid #ced4da;
-    border-radius:0.25rem; 
+    border-radius:0.25rem;
+    padding-left: 0.3rem; 
 }
 .filter_overSelect_machinegp1{
     position: absolute;
@@ -834,7 +843,7 @@ height:2rem;
 
 /* category css */
 .filter_selectBox_categorygp1{
-    height:2.3rem;
+    height:2rem;
     margin-top:0.5rem;
     position:relative;
     min-width:9rem;
@@ -846,14 +855,15 @@ height:2rem;
 }
     
 .multi_select_categorygp1{
-    height:2.3rem;
+    height:2rem;
     position:relative;
     min-width:9rem;
     font-size:12px;
     font-weight:500;
     color:#8c8c8c;
     border:1px solid #ced4da;
-    border-radius:0.25rem; 
+    border-radius:0.25rem;
+    padding-left: 0.3rem; 
 }
 .filter_overSelect_categorygp1{
     position: absolute;
@@ -901,7 +911,7 @@ height:2rem;
 
 /* reason duration reason dropdown css multi select dropdown */
 .filter_selectBox_reasongp1{
-    height:2.3rem;
+    height:2rem;
     margin-top:0.5rem;
     position:relative;
     min-width:9rem;
@@ -913,7 +923,7 @@ height:2rem;
 }
     
 .multi_select_reasongp1{
-    height:2.3rem;
+    height:2rem;
     position:relative;
     min-width:9rem;
     font-size:12px;
@@ -921,6 +931,7 @@ height:2rem;
     color:#8c8c8c;
     border:1px solid #ced4da;
     border-radius:0.25rem; 
+    padding-left: 0.3rem;
 }
 .filter_overSelect_reasongp1{
     position: absolute;
@@ -966,7 +977,7 @@ height:2rem;
 
 /* machine wise opportunity cost css multi select dropdown */
 .filter_selectBox_machinegp2{
-    height:2.3rem;
+    height:2rem;
     margin-top:0.5rem;
     position:relative;
     min-width:9rem;
@@ -977,7 +988,7 @@ height:2rem;
     border-radius:0.25rem;
 }
 .multi_select_machinegp2{
-    height:2.3rem;
+    height:2rem;
     position:relative;
     min-width:9rem;
     font-size:12px;
@@ -985,6 +996,7 @@ height:2rem;
     color:#8c8c8c;
     border:1px solid #ced4da;
     border-radius:0.25rem; 
+    padding-left: 0.3rem;
 }
 .filter_overSelect_machinegp2{
     position: absolute;
@@ -1032,7 +1044,7 @@ height:2rem;
 /* reason multi select */
 
 .filter_selectBox_reasongp2{
-    height:2.3rem;
+    height:2rem;
     margin-top:0.5rem;
     position:relative;
     min-width:9rem;
@@ -1044,7 +1056,7 @@ height:2rem;
 }
     
 .multi_select_reasongp2{
-    height:2.3rem;
+    height:2rem;
     position:relative;
     min-width:9rem;
     font-size:12px;
@@ -1052,6 +1064,7 @@ height:2rem;
     color:#8c8c8c;
     border:1px solid #ced4da;
     border-radius:0.25rem; 
+    padding-left: 0.3rem;
 }
 .filter_overSelect_reasongp2{
     position: absolute;
@@ -1098,7 +1111,7 @@ height:2rem;
 
 /* category multi select dropdown */
 .filter_selectBox_categorygp2{
-    height:2.3rem;
+    height:2rem;
     margin-top:0.5rem;
     position:relative;
     min-width:9rem;
@@ -1110,7 +1123,7 @@ height:2rem;
 }
     
 .multi_select_categorygp2{
-    height:2.3rem;
+    height:2rem;
     position:relative;
     min-width:9rem;
     font-size:12px;
@@ -1118,6 +1131,7 @@ height:2rem;
     color:#8c8c8c;
     border:1px solid #ced4da;
     border-radius:0.25rem; 
+    padding-left: 0.3rem;
 }
 .filter_overSelect_categorygp2{
     position: absolute;
@@ -1164,7 +1178,7 @@ height:2rem;
 /* machine and reason duration graph filter design */
 /* machine multi select dropdown */
 .filter_selectBox_machinegp3{
-    height:2.3rem;
+    height:2rem;
     margin-top:0.5rem;
     position:relative;
     min-width:9rem;
@@ -1175,7 +1189,7 @@ height:2rem;
     border-radius:0.25rem;
 }
 .multi_select_machinegp3{
-    height:2.3rem;
+    height:2rem;
     position:relative;
     min-width:9rem;
     font-size:12px;
@@ -1183,6 +1197,7 @@ height:2rem;
     color:#8c8c8c;
     border:1px solid #ced4da;
     border-radius:0.25rem; 
+    padding-left: 0.3rem;
 }
 .filter_overSelect_machinegp3{
     position: absolute;
@@ -1230,7 +1245,7 @@ height:2rem;
 /* reason multi select */
 
 .filter_selectBox_reasongp3{
-    height:2.3rem;
+    height:2rem;
     margin-top:0.5rem;
     position:relative;
     min-width:9rem;
@@ -1242,7 +1257,7 @@ height:2rem;
 }
     
 .multi_select_reasongp3{
-    height:2.3rem;
+    height:2rem;
     position:relative;
     min-width:9rem;
     font-size:12px;
@@ -1250,6 +1265,7 @@ height:2rem;
     color:#8c8c8c;
     border:1px solid #ced4da;
     border-radius:0.25rem; 
+    padding-left: 0.3rem;
 }
 .filter_overSelect_reasongp3{
     position: absolute;
@@ -1296,7 +1312,7 @@ height:2rem;
 
 /* category multi select dropdown */
 .filter_selectBox_categorygp3{
-    height:2.3rem;
+    height:2rem;
     margin-top:0.5rem;
     position:relative;
     min-width:9rem;
@@ -1308,7 +1324,7 @@ height:2rem;
 }
     
 .multi_select_categorygp3{
-    height:2.3rem;
+    height:2rem;
     position:relative;
     min-width:9rem;
     font-size:12px;
@@ -1316,6 +1332,7 @@ height:2rem;
     color:#8c8c8c;
     border:1px solid #ced4da;
     border-radius:0.25rem; 
+    padding-left: 0.3rem;
 }
 .filter_overSelect_categorygp3{
     position: absolute;
