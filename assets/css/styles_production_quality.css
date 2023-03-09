@@ -10,6 +10,10 @@
   position: relative;
   z-index: 1001;
 }
+.graph-div-header{
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+}
 .dropdown-div{
   width: 100%;
   display: flex;

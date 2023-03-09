@@ -134,7 +134,7 @@
     <div class="grid-container_graph">
       <div class="row paddingm" style="height:max-content;width:100%;display:flex;flex-direction:row;justify-content:space-evenly;align-items:center;margin-bottom:0.3rem;">
         <div class="grid-item_graph  paddingm" style="margin-top: 1.5rem;width:49%;margin-left:0.5rem;height:18rem;">
-          <div>
+          <div class="graph-div-header">
             <p class="paddingm fontBold financial_font">Cost of Poor Quality (COPQ) by Reason</p>
           </div>
           <div class="valueMarLeft">
@@ -208,7 +208,7 @@
           </div>
         </div>
         <div class="grid-item_graph  paddingm" style="margin-top: 1.5rem;width:49%;margin-right:0.5rem;height:18rem;">
-          <div>
+          <div class="graph-div-header">
             <p class="paddingm fontBold financial_font">Quality Rejection by Reason</p>
           </div> 
           <div class="valueMarLeft">
@@ -284,7 +284,7 @@
       </div>
       <div class="row paddingm" style="height: max-content;width:100%;display:flex;flex-direction:row;justify-content:space-evenly;alig-items:center;margin-bottom:0.3rem;">
         <div class="grid-item_graph  paddingm" style="width:49%;margin-left:0.5rem;height:18rem;">
-          <div>
+          <div class="graph-div-header">
             <p class="paddingm fontBold financial_font">Cost of Poor Quality (COPQ) by Machines</p>
           </div>
           <div class="valueMarLeft">
@@ -358,7 +358,7 @@
           </div>
         </div>
         <div class="grid-item_graph   paddingm" style="width:49%;margin-right:0.5rem;height:18rem;">
-          <div>
+          <div class="graph-div-header">
             <p class="paddingm fontBold financial_font">Quality Rejection by Machines with Reasons</p>
           </div>
           <div class="valueMarLeft">
@@ -437,7 +437,7 @@
       
       <div class="row paddingm" style="height:max-content;width:100%;display:flex;flex-direction:row;justify-content:space-evenly;align-items:center;margin-bottom:0.5rem">
         <div class="grid-item_graph  paddingm" style="width:49%;margin-left:0.5rem;height:18rem;">
-          <div>
+          <div class="graph-div-header">
             <p class="paddingm fontBold financial_font">Cost of Poor Quality (COPQ) by Parts</p>
           </div>
           <div class="valueMarLeft">
@@ -511,7 +511,7 @@
           </div>
         </div>
         <div class="grid-item_graph  paddingm" style="width:49%;margin-right:0.5rem;height:18rem;">
-          <div>
+          <div class="graph-div-header">
             <p class="paddingm fontBold financial_font">Quality Rejection by Parts with Reasons</p>
           </div>
           <div class="valueMarLeft">
@@ -697,7 +697,7 @@
       </div>
     </nav>
     <div class="tableContent">
-      <div class="settings_machine_header sticky-top fixtabletitle">
+      <div class="settings_machine_header sticky-top fixtabletitle" style="top: 11.19rem !important;">
         <div class="row paddingm">
           <div class="col-sm-1 p3 paddingm">
             <p class="basic_header">FROM DATE</p>
@@ -740,6 +740,15 @@
 
 
 </div>
+
+ <!-- preloader -->
+  <div id="overlay">
+    <div class="cv-spinner">
+      <span class="spinner"></span>
+      <span class="loading">Awaiting Completion...</span>
+    </div>
+  </div>
+  <!-- preloader end -->
 
 <script type="text/javascript">
 
@@ -862,9 +871,11 @@
 
 
   $(document).on('blur','.fromDate',function(){
+    $("#overlay").fadeIn(300);
     myFun();
   });
   $(document).on('blur','.toDate',function(){
+    $("#overlay").fadeIn(300);
     myFun();
   });
   function myFun(){
@@ -897,12 +908,14 @@
       f = $('.fromDate').val();
       t = $('.toDate').val();
     }
+    
     copqp();
     qrbr();
     copqm();
     crbmr();
     qualitybyparts();
     qualitybyreasonparts();
+    $("#overlay").fadeOut(300);
   }
 
 function multiple_drp() {
@@ -4285,6 +4298,8 @@ $(document).on('click','#table-cont',function(event){
 getfilterdata();
 
 function getfilterdata() {
+  $("#overlay").fadeIn(300);
+
   $('.filter_part').empty();
   $('.filter_machine').empty();
   $('.filter_reason').empty();
@@ -4750,6 +4765,7 @@ function getfilterdata() {
 
       myFun();
       getFilterval();
+      $("#overlay").fadeOut(300);
     },
     error:function(res){
       alert("Something went wrong!");

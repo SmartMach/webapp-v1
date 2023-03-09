@@ -486,19 +486,17 @@
                             </ul>
                         </li>
 
-                        <!-- temporary hide this condition -->
-
-                        <!-- <li class="side-menu-li d-flex ">
+                        <li class="side-menu-li d-flex ">
                             <a href="<?= base_url('Home/load_option/Current_Shift_Performance')?>">
-                                <i class="fa fa-clock-o nav-icon nav-icon-hover " style="font-size: 30px;" dvalue="Current" alt="Current Shift"></i>
+                                <i class="fa fa-clock-o nav-icon nav-icon-hover" dvalue="Current" style="font-size: 29px;padding:9px" alt="Current Shift"></i>
                             </a>
-                            <i class="fa fa-ellipsis-v icons-menu icon-font_third icon-font-js" style=""></i>
+                            <!-- <i class="fa fa-ellipsis-v icons-menu icon-font_last icon-font-js" style=""></i> -->
                             <ul>
-                                 <nav style="border-bottom:1px solid #d9d9d9;">
-                                    <p class="nav-menu-title">CURRENT SHIFT PERFORMANCE</p> 
+                                <nav style="border-bottom:1px solid #d9d9d9;">
+                                    <p class="nav-menu-title">CURRENT SHIFT PERFORMANCE</p>
                                 </nav>
                             </ul>
-                        </li> -->
+                        </li>
 
                         <li class="side-menu-li d-flex ">
                             <a href="#">
@@ -558,11 +556,11 @@
                                 <i class="fa fa-bar-chart nav-icon nav-icon-hover prodcution_status_background" style="font-size: 26px;" dvalue="Daily" alt="Production Status"></i>
                             </a>
                             <!-- <i class="fa fa-ellipsis-v icons-menu icon-font_third icon-font-js" style=""></i> -->
-                            <!-- <ul>
+                            <ul>
                                 <nav style="border-bottom:1px solid #d9d9d9;">
-                                    <p class="nav-menu-title">Daily Production Data</p> 
+                                    <p class="nav-menu-title">DAILY PRODUCTION DATA</p> 
                                 </nav> 
-                            </ul> -->
+                            </ul>
                         </li>
                         <!-- daily production link end -->
 
@@ -571,6 +569,11 @@
                             <a href="<?php echo base_url('Home/load_option/Downtime_Production'); ?>">
                                 <i class="fa fa-briefcase nav-icon nav-icon-hover production_downtime_background" style="font-size:26px;" dvalue="Downtime" alt="Downtime"></i>
                             </a>
+                            <ul>
+                                <nav style="border-bottom:1px solid #d9d9d9;">
+                                    <p class="nav-menu-title">PRODUCTION DOWNTIME</p>
+                                </nav>
+                            </ul>
                         </li>
                         <!-- production downtime new module end -->
 
@@ -579,6 +582,12 @@
                             <a href="<?php echo base_url('Home/load_option/Quality_Production'); ?>">
                                 <i class="fa fa-folder-open nav-icon nav-icon-hover production_downtime_background" style="font-size:26px;" dvalue="Quality" alt="Quality"></i>
                             </a>
+
+                            <ul>
+                                <nav style="border-bottom:1px solid #d9d9d9;">
+                                    <p class="nav-menu-title">PRODUCTION QUALITY</p>
+                                </nav>
+                            </ul>
                         </li>
                         <!-- production downtime new module end -->
 
@@ -587,6 +596,11 @@
                             <a href="<?php echo base_url('Home/load_option/Oee_Drill_Down'); ?>">
                                 <i class="fa fa-television nav-icon nav-icon-hover production_downtime_background" style="font-size:26px;" dvalue="Oee" alt="Oee"></i>
                             </a>
+                            <ul>
+                                <nav style="border-bottom:1px solid #d9d9d9;">
+                                    <p class="nav-menu-title">OEE DRILLDOWN</p> 
+                                </nav> 
+                            </ul>
                         </li>
                         <!-- oee drilldown new module end  -->
                 </ul>
