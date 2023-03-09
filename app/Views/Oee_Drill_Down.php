@@ -152,7 +152,14 @@ font-family:'Roboto',sans-serif;
 }
 
 
-.filter_checkboxes_machine , .filter_checkboxes_machine1 ,.filter_checkboxes_machine2{
+.filter_checkboxes_machine , .filter_checkboxes_machine1 ,.filter_checkboxes_machine2,.filter_checkboxes_machine3{
+    max-height:8rem;
+    min-height:4rem;
+    overflow-x:hidden;
+    overflow-y:scroll;
+}
+
+.part_fill{
     max-height:8rem;
     min-height:4rem;
     overflow-x:hidden;
@@ -459,44 +466,44 @@ $session = \Config\Services::session();
                         </select>
                         <div class="filter_overSelect"></div>
                     </div>
-                    <div class="filter_checkboxes category_fill" style="" >
-                        <div class="filter_check_cate category_click" style="">
+                    <div class="filter_checkboxes byday_fill" style="" >
+                        <div class="filter_check_cate byday_click" style="">
                             <div class="cate_drp_check" style="">
-                                <input type="checkbox" id="one" class="category_drp_checkbox" value="all"/>
+                                <input type="checkbox" id="one" class="by_day_checkbox" value="all"/>
                             </div>
                             <div class="cate_drp_text" style="">
                                 <p class="font_multi_drp" style="margin:auto;">All</p>
                             </div>
                         </div>
 
-                        <div class="filter_check_cate category_click" style="">
+                        <div class="filter_check_cate byday_click" style="">
                             <div class="cate_drp_check" style="">
-                                <input type="checkbox" id="one" class="category_drp_checkbox" value="by_week"/>
+                                <input type="checkbox" id="one" class="by_day_checkbox" value="by_week"/>
                             </div>
                             <div class="cate_drp_text" style="">
                                 <p class="font_multi_drp" style="margin:auto;">By Week</p>
                             </div>
                         </div>
 
-                        <div class="filter_check_cate category_click" style="">
+                        <div class="filter_check_cate byday_click" style="">
                             <div class="cate_drp_check" style="">
-                                <input type="checkbox" id="one" class="category_drp_checkbox" value="by_month"/>
+                                <input type="checkbox" id="one" class="by_day_checkbox" value="by_month"/>
                             </div>
                             <div class="cate_drp_text" style="">
                                 <p class="font_multi_drp" style="margin:auto;">By Month</p>
                             </div>
                         </div>
-                        <div class="filter_check_cate category_click" style="">
+                        <div class="filter_check_cate byday_click" style="">
                             <div class="cate_drp_check" style="">
-                                <input type="checkbox" id="one" class="category_drp_checkbox" value="by_shift"/>
+                                <input type="checkbox" id="one" class="by_day_checkbox" value="by_shift"/>
                             </div>
                             <div class="cate_drp_text" style="">
                                 <p class="font_multi_drp" style="margin:auto;">By Shift</p>
                             </div>
                         </div>
-                        <div class="filter_check_cate category_click" style="">
+                        <div class="filter_check_cate byday_click" style="">
                             <div class="cate_drp_check" style="">
-                                <input type="checkbox" id="one" class="category_drp_checkbox" value="by_day"/>
+                                <input type="checkbox" id="one" class="by_day_checkbox" value="by_day"/>
                             </div>
                             <div class="cate_drp_text" style="">
                                 <p class="font_multi_drp" style="margin:auto;">By Day</p>
@@ -605,65 +612,71 @@ $session = \Config\Services::session();
             </div>
 
              <!-- dropdowns -->
-             <div style="display:flex;flex-direction:row;justify-content:flex-end;">
-                 <!-- category multi select dropdown -->
-                <div class="box rightmar" style="margin-right: 0.5rem;" >
-                    <div class="filter_selectBox" onclick="category_drp2()">
-                        <select  class="multi_select_drp" style="" >
-                            <option id="text_category_drp2" style="">All Categories</option>
-                        </select>
-                        <div class="filter_overSelect"></div>
-                    </div>
-                    <div class="filter_checkboxes category_fill2" style="" >
-                        <div class="filter_check_cate category_click2" style="">
-                            <div class="cate_drp_check" style="">
-                                <input type="checkbox" id="one" class="category_drp_checkbox2" value="all"/>
-                            </div>
-                            <div class="cate_drp_text" style="">
-                                <p class="font_multi_drp" style="margin:auto;">All Categories</p>
-                            </div>
-                        </div>
-
-                        <div class="filter_check_cate category_click2" style="">
-                            <div class="cate_drp_check" style="">
-                                <input type="checkbox" id="one" class="category_drp_checkbox2" value="Planned"/>
-                            </div>
-                            <div class="cate_drp_text" style="">
-                                <p class="font_multi_drp" style="margin:auto;">Planned</p>
-                            </div>
-                        </div>
-
-                        <div class="filter_check_cate category_click2" style="">
-                            <div class="cate_drp_check" style="">
-                                <input type="checkbox" id="one" class="category_drp_checkbox2" value="Unplanned"/>
-                            </div>
-                            <div class="cate_drp_text" style="">
-                                <p class="font_multi_drp" style="margin:auto;">UnPlanned</p>
-                            </div>
-                        </div>
-                    </div>
+            <div style="display:flex;flex-direction:row;justify-content:flex-start;">
+                <div style="width:max-content;margin-left:1rem;">
+                    <p style="font-size:11px;color:#A6A6A6;margin-bottom:0;">TOTAL</p>
+                    <span style="color:#005abc;font-size:1rem;font-weight:800;" id="total_duration_availability"></span>
                 </div>
+                <div style="width:80%;display:flex;flex-direction:row;justify-content:flex-end;">
+                    <!-- category multi select dropdown -->
+                    <div class="box rightmar" style="margin-right: 0.5rem;" >
+                        <div class="filter_selectBox" onclick="category_drp2()">
+                            <select  class="multi_select_drp" style="" >
+                                <option id="text_category_drp2" style="">All Categories</option>
+                            </select>
+                            <div class="filter_overSelect"></div>
+                        </div>
+                        <div class="filter_checkboxes category_fill2" style="" >
+                            <div class="filter_check_cate category_click2" style="">
+                                <div class="cate_drp_check" style="">
+                                    <input type="checkbox" id="one" class="category_drp_checkbox2" value="all"/>
+                                </div>
+                                <div class="cate_drp_text" style="">
+                                    <p class="font_multi_drp" style="margin:auto;">All Categories</p>
+                                </div>
+                            </div>
 
-                <!-- reason multi select dropdown -->
-                <div class="box rightmar" style="margin-right: 0.5rem;" >
-                    <div class="filter_selectBox" onclick="reason_drp2()">
-                        <select  class="multi_select_drp" style="" >
-                            <option id="text_reason2" style="">All Reason</option>
-                        </select>
-                        <div class="filter_overSelect"></div>
+                            <div class="filter_check_cate category_click2" style="">
+                                <div class="cate_drp_check" style="">
+                                    <input type="checkbox" id="one" class="category_drp_checkbox2" value="Planned"/>
+                                </div>
+                                <div class="cate_drp_text" style="">
+                                    <p class="font_multi_drp" style="margin:auto;">Planned</p>
+                                </div>
+                            </div>
+
+                            <div class="filter_check_cate category_click2" style="">
+                                <div class="cate_drp_check" style="">
+                                    <input type="checkbox" id="one" class="category_drp_checkbox2" value="Unplanned"/>
+                                </div>
+                                <div class="cate_drp_text" style="">
+                                    <p class="font_multi_drp" style="margin:auto;">UnPlanned</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="filter_checkboxes reason_fill2" style="" ></div>
-                </div>
-               
-                <!-- Machine multi select dropdown -->
-                <div class="box rightmar" style="margin-right: 2.4rem;" >
-                    <div class="filter_selectBox" onclick="machine_drp2()">
-                        <select  class="multi_select_drp" style="" >
-                            <option id="text_machine2" style="">All Machine</option>
-                        </select>
-                        <div class="filter_overSelect"></div>
+
+                    <!-- reason multi select dropdown -->
+                    <div class="box rightmar" style="margin-right: 0.5rem;" >
+                        <div class="filter_selectBox" onclick="reason_drp2()">
+                            <select  class="multi_select_drp" style="" >
+                                <option id="text_reason2" style="">All Reason</option>
+                            </select>
+                            <div class="filter_overSelect"></div>
+                        </div>
+                        <div class="filter_checkboxes reason_fill2" style="" ></div>
                     </div>
-                    <div class="filter_checkboxes filter_checkboxes_machine2" style="" >
+                
+                    <!-- Machine multi select dropdown -->
+                    <div class="box rightmar" style="margin-right: 2.4rem;" >
+                        <div class="filter_selectBox" onclick="machine_drp2()">
+                            <select  class="multi_select_drp" style="" >
+                                <option id="text_machine2" style="">All Machine</option>
+                            </select>
+                            <div class="filter_overSelect"></div>
+                        </div>
+                        <div class="filter_checkboxes filter_checkboxes_machine2" style="" >
+                        </div>
                     </div>
                 </div>
             </div>
@@ -685,10 +698,41 @@ $session = \Config\Services::session();
             <div class="title_div" >
                 <p class="graph_title_oee" style="">Machine-wise Performance with Parts</p>
             </div>
+            <!-- flex for dropdown and total -->
+            <div style="display:flex;flex-direction:row;justify-content:flex-start;">
+                <div style="width:20%;margin-left:1rem;">
+                    <p style="font-size:11px;color:#A6A6A6;margin-bottom:0;">TOTAL</p>
+                    <span style="color:#005abc;font-size:1rem;font-weight:800;" id="total_speed_loss"></span>
+                </div>
+                <div style="width:80%;display:flex;flex-direction:row;justify-content:flex-end;">    
+                    <!-- reason multi select dropdown -->
+                    <div class="box rightmar" style="margin-right: 0.5rem;" >
+                        <div class="filter_selectBox" onclick="part_drp()">
+                            <select  class="multi_select_drp" style="" >
+                                <option id="text_part" style="">All Parts</option>
+                            </select>
+                            <div class="filter_overSelect"></div>
+                        </div>
+                        <div class="filter_checkboxes part_fill" style="" ></div>
+                    </div>
+               
+                    <!-- Machine multi select dropdown -->
+                    <div class="box rightmar" style="margin-right: 2.4rem;" >
+                        <div class="filter_selectBox" onclick="machine_drp3()">
+                            <select  class="multi_select_drp" style="" >
+                                <option id="text_machine3" style="">All Machine</option>
+                            </select>
+                            <div class="filter_overSelect"></div>
+                        </div>
+                        <div class="filter_checkboxes filter_checkboxes_machine3" style="" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
 
-
-              <!-- graph -->
-              <div class="parent_graph_performance_opportunity prodcution_downtime_graph parent_div marginScroll" >
+            <!-- graph -->
+            <div class="parent_graph_performance_opportunity prodcution_downtime_graph parent_div marginScroll" >
                 <div class="child_graph_performance_opportunity child_div ">
                     <canvas id="performanceOpportunity" style="height:5rem;width:5rem;"></canvas>    
                 </div>
@@ -753,6 +797,7 @@ $(document).on('blur','.fromDate',function(event){
     event.preventDefault();
     fill_downtime_reason();
     fill_machine_dropdown();
+    fill_part_drp();
     resetbyday_click();
     reset_category2();
 
@@ -763,6 +808,7 @@ $(document).on('blur','.fromDate',function(event){
    graph_func();
 
    performance_opportunity();
+   
     
 });
 
@@ -772,6 +818,7 @@ $(document).on('blur','.toDate',function(event){
     // target fill width function
     fill_downtime_reason();
     fill_machine_dropdown();
+    fill_part_drp();
     resetbyday_click();
     reset_category2();
 
@@ -793,6 +840,7 @@ $(document).ready(function(){
     // target fill width function
     fill_downtime_reason();
     fill_machine_dropdown();
+    fill_part_drp();
     resetbyday_click();
     reset_category2();
 
@@ -804,7 +852,6 @@ $(document).ready(function(){
 
    performance_opportunity();
     
-
 
 });
 
@@ -818,11 +865,11 @@ function graph_func(){
 
 // by day shift and month week
 function resetbyday_click(){
-    var category_arr = $('.category_drp_checkbox');
-    jQuery('.category_drp_checkbox').each(function(in2){
+    var category_arr = $('.by_day_checkbox');
+    jQuery('.by_day_checkbox').each(function(in2){
         category_arr[in2].checked=true;
     });
-    $('#text_category_drp').text('By Day');
+    $('#by_day_checkbox').text('By Day');
 }
 
 // reset category
@@ -879,19 +926,37 @@ function reset_machine2(){
     $('#text_machine2').text('All Machine');
 }
 
+
+function reset_machine3(){
+    var category_arr = $('.machine_checkbox3');
+    jQuery('.machine_checkbox3').each(function(in2){
+        category_arr[in2].checked=true;
+    });
+    $('#text_machine3').text('All Machine');
+}
+
+
+function reset_part(){
+    var category_arr = $('.part_checkbox');
+    jQuery('.part_checkbox').each(function(in2){
+        category_arr[in2].checked=true;
+    });
+    $('#text_part').text('All Part');
+}
+
 // by day shift meek month
 var filter_expand_by_day = 0;
 function byday_click(){
-    var checkboxes = document.getElementsByClassName("category_fill");
+    var checkboxes = document.getElementsByClassName("byday_fill");
   if (!filter_expand_by_day) {
       // checkboxes.style.display = "block";
     //   console.log("just click");
-      $('.category_fill').css("display","block");
+      $('.byday_fill').css("display","block");
       filter_expand_by_day = true;
   } else  {
      
     //   $('#text_category_drp').text('All ');
-      $('.category_fill').css("display","none");
+      $('.byday_fill').css("display","none");
       filter_expand_by_day = false;
       
   }
@@ -991,36 +1056,69 @@ function machine_drp2() {
   }
 }
 
-$(document).on('click','.category_click',function(event){
+
+var filter_expanded_machine3 = false;
+function machine_drp3() {
+ 
+  var checkboxes3 = document.getElementsByClassName("filter_checkboxes_machine3");
+  if (!filter_expanded_machine3) {
+   
+      $('.filter_checkboxes_machine3').css("display","block");
+      filter_expanded_machine3 = true;
+  } else  {
+     
+      $('#text_machine3').text('All Machine');
+      $('.filter_checkboxes_machine3').css("display","none");
+      filter_expanded_machine3 = false;
+      performance_opportunity();
+  }
+}
+
+var filterexpand_part = false;
+function part_drp(){
+    var checkbox1 = document.getElementsByClassName("part_fill");
+    if (!filterexpand_part) {
+        $('.part_fill').css('display','block');
+        filterexpand_part = true;
+    }else{
+        $('#text_part').text('All Part');
+        $('.part_fill').css('display','none');
+        filterexpand_part = false;
+        performance_opportunity();
+    }
+}
+
+
+$(document).on('click','.byday_click',function(event){
     event.preventDefault();
     // event.preventDefault();
-    var count_reason_gp1  = $('.category_click');
+    var count_reason_gp1  = $('.byday_click');
     var index_reason_gp1 = count_reason_gp1.index($(this));
-    var check_if1 = $('.category_drp_checkbox');
+    var check_if1 = $('.by_day_checkbox');
     if (index_reason_gp1 === 0) {
         if (check_if1[0].checked==false) {
             resetbyday_click();
 
         }else{
-            $('.category_drp_checkbox').removeAttr('checked');
+            $('.by_day_checkbox').removeAttr('checked');
         }
     }else{
         if (check_if1[index_reason_gp1].checked==false) {
             check_if1[index_reason_gp1].checked=true;
-            $('.category_drp_checkbox:eq('+index_reason_gp1+')').attr('checked','checked');
+            $('.by_day_checkbox:eq('+index_reason_gp1+')').attr('checked','checked');
         }else{
-            $('.category_drp_checkbox:eq('+index_reason_gp1+')').removeAttr('checked');
+            $('.by_day_checkbox:eq('+index_reason_gp1+')').removeAttr('checked');
             check_if1[0].checked=false;
         }
     }
 
     var reason_gp_select_count1 = 0;
-    jQuery('.category_drp_checkbox').each(function(index){
+    jQuery('.by_day_checkbox').each(function(index){
       if (check_if1[index].checked===true) {
         reason_gp_select_count1 = parseInt(reason_gp_select_count1)+1;
       }
     });
-    var reason_gp_len1 = $('.category_drp_checkbox').length;
+    var reason_gp_len1 = $('.by_day_checkbox').length;
     reason_gp_len1 = parseInt(reason_gp_len1)-1;
     if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
         if(check_if1[0].checked===true){
@@ -1286,6 +1384,104 @@ $(document).on('click','.machine_click2',function(event){
 });
 
 
+$(document).on('click','.machine_click3',function(event){
+    event.preventDefault();
+    var count_reason_gp1  = $('.machine_click3');
+    var index_reason_gp1 = count_reason_gp1.index($(this));
+    var check_if1 = $('.machine_checkbox3');
+    if (index_reason_gp1 === 0) {
+        if (check_if1[0].checked==false) {
+            reset_machine3();
+
+        }else{
+            $('.machine_checkbox3').removeAttr('checked');
+        }
+    }else{
+        if (check_if1[index_reason_gp1].checked==false) {
+            check_if1[index_reason_gp1].checked=true;
+            $('.machine_checkbox3:eq('+index_reason_gp1+')').attr('checked','checked');
+        }else{
+            $('.machine_checkbox3:eq('+index_reason_gp1+')').removeAttr('checked');
+            check_if1[0].checked=false;
+        }
+    }
+
+    var reason_gp_select_count1 = 0;
+    jQuery('.machine_checkbox3').each(function(index){
+      if (check_if1[index].checked===true) {
+        reason_gp_select_count1 = parseInt(reason_gp_select_count1)+1;
+      }
+    });
+    var reason_gp_len1 = $('.machine_checkbox3').length;
+    reason_gp_len1 = parseInt(reason_gp_len1)-1;
+    if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
+        if(check_if1[0].checked===true){
+            check_if1[0].checked=true;
+            $('#text_machine3').text(parseInt(reason_gp_select_count1)-1+' Selected');
+        }else{
+            // check_if[0].checked=true;
+            reset_machine3();
+            $('#text_machine3').text('All');
+        }
+    }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
+        $('#text_machine3').text(parseInt(reason_gp_select_count1)+' Selected');
+
+        // check_if[0].checked=false;
+    }else {
+        $('#text_machine3').text('No Machine');
+    }
+});
+
+
+
+$(document).on('click','.part_click',function(event){
+    event.preventDefault();
+    var count_reason_gp1  = $('.part_click');
+    var index_reason_gp1 = count_reason_gp1.index($(this));
+    var check_if1 = $('.part_checkbox');
+    if (index_reason_gp1 === 0) {
+        if (check_if1[0].checked==false) {
+            reset_part();
+
+        }else{
+            $('.part_checkbox').removeAttr('checked');
+        }
+    }else{
+        if (check_if1[index_reason_gp1].checked==false) {
+            check_if1[index_reason_gp1].checked=true;
+            $('.part_checkbox:eq('+index_reason_gp1+')').attr('checked','checked');
+        }else{
+            $('.part_checkbox:eq('+index_reason_gp1+')').removeAttr('checked');
+            check_if1[0].checked=false;
+        }
+    }
+
+    var reason_gp_select_count1 = 0;
+    jQuery('.part_checkbox').each(function(index){
+      if (check_if1[index].checked===true) {
+        reason_gp_select_count1 = parseInt(reason_gp_select_count1)+1;
+      }
+    });
+    var reason_gp_len1 = $('.part_checkbox').length;
+    reason_gp_len1 = parseInt(reason_gp_len1)-1;
+    if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
+        if(check_if1[0].checked===true){
+            check_if1[0].checked=true;
+            $('#text_part').text(parseInt(reason_gp_select_count1)-1+' Selected');
+        }else{
+            // check_if[0].checked=true;
+            reset_part();
+            $('#text_part').text('All');
+        }
+    }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
+        $('#text_part').text(parseInt(reason_gp_select_count1)+' Selected');
+
+        // check_if[0].checked=false;
+    }else {
+        $('#text_part').text('No Part');
+    }
+});
+
 
 // graph value for overallTarget
 function overallTarget(){
@@ -1409,7 +1605,7 @@ function fill_machine_dropdown(){
             $('.filter_checkboxes_machine').empty();
             $('.filter_checkboxes_machine1').empty();
             $('.filter_checkboxes_machine2').empty();
-
+            $('.filter_checkboxes_machine3').empty();
 
             $('.filter_checkboxes_machine').append('<div class="filter_check_cate machine_click" style="">'
             +'<div class="cate_drp_check" style="">'
@@ -1439,10 +1635,21 @@ function fill_machine_dropdown(){
             +'</div>'
             +'</div>');
 
+
+            $('.filter_checkboxes_machine3').append('<div class="filter_check_cate machine_click3" style="">'
+            +'<div class="cate_drp_check" style="">'
+            +'<input type="checkbox" id="one" class="machine_checkbox3" value="all"/>'
+            +'</div>'
+            +'<div class="cate_drp_text" style="">'
+            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+            +'</div>'
+            +'</div>');
+
             res.forEach(function(val){
                 var elements = $();
                 var element = $();
                 var ele = $();
+                var eles = $();
              
                 elements = elements.add('<div class="filter_check_cate machine_click" style="">'
                 +'<div class="cate_drp_check" style="">'
@@ -1473,19 +1680,76 @@ function fill_machine_dropdown(){
                 +'</div>');
               
 
+                eles = eles.add('<div class="filter_check_cate machine_click3" style="">'
+                +'<div class="cate_drp_check" style="">'
+                +'<input type="checkbox" id="one" class="machine_checkbox3" value="'+val.machine_id+'"/>'
+                +'</div>'
+                +'<div class="cate_drp_text" style="">'
+                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
+                +'</div>'
+                +'</div>');
+
                 $('.filter_checkboxes_machine').append(elements);
                 $('.filter_checkboxes_machine1').append(element);
                 $('.filter_checkboxes_machine2').append(ele);
+                $('.filter_checkboxes_machine3').append(eles);
 
             });
 
             reset_machine();
             reset_machine1();
             reset_machine2();
+            reset_machine3();
 
             oeeTrendDay();
             machineWiseOEE();
             availabilityReason_machine();
+            
+        },
+        error:function(er){
+            console.log("Error Try Again...");
+        }
+    });
+}
+
+// fill part 
+function fill_part_drp(){
+    $.ajax({
+        url:"<?php echo base_url('OEE_Drill_Down_controller/getpart_data'); ?>",
+        type:"POST",
+        dataType: "json",
+        success:function(res){
+            console.log("multi select dropdown part");
+            console.log(res);
+            $('.part_fill').empty();
+            $('.part_fill').append('<div class="filter_check_cate part_click" style="">'
+            +'<div class="cate_drp_check" style="">'
+            +'<input type="checkbox" id="one" class="part_checkbox" value="all"/>'
+            +'</div>'
+            +'<div class="cate_drp_text" style="">'
+            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+            +'</div>'
+            +'</div>');
+            res.forEach(function(val){
+                var elements = $();
+                elements = elements.add('<div class="filter_check_cate part_click" style="">'
+                +'<div class="cate_drp_check" style="">'
+                +'<input type="checkbox" id="one" class="part_checkbox" value="'+val.part_id+'"/>'
+                +'</div>'
+                +'<div class="cate_drp_text" style="">'
+                +'<p class="font_multi_drp" style="margin:auto;">'+val.part_name+'</p>'
+                +'</div>'
+                +'</div>');
+
+
+
+                $('.part_fill').append(elements);
+            });
+            reset_part();
+            performance_opportunity();
+
+         
+           
         },
         error:function(er){
             console.log("Error Try Again...");
@@ -1504,22 +1768,22 @@ function oeeTrendDay() {
         }
     });
 
-    // reason array
-    var graph_reason_arr = [];
-    $('.reason_checkbox').each(function(){
-        if ($(this).is(':checked')) {
-            graph_reason_arr.push($(this).val());
-        }
-    });
+    // // reason array
+    // var graph_reason_arr = [];
+    // $('.reason_checkbox').each(function(){
+    //     if ($(this).is(':checked')) {
+    //         graph_reason_arr.push($(this).val());
+    //     }
+    // });
 
     
-    // category
-    var graph_category_arr = [];
-    $('.category_drp_checkbox').each(function(){
-        if ($(this).is(':checked')) {
-            graph_category_arr.push($(this).val());
-        }
-    });
+    // // category
+    // var graph_category_arr = [];
+    // $('.category_drp_checkbox').each(function(){
+    //     if ($(this).is(':checked')) {
+    //         graph_category_arr.push($(this).val());
+    //     }
+    // });
 
 
 
@@ -1528,10 +1792,10 @@ function oeeTrendDay() {
   t = $('.toDate').val();
   f = f.replace(" ","T");
   t = t.replace(" ","T");
-  console.log(graph_reason_arr);
-  console.log(graph_category_arr);
-  console.log(graph_machine_arr);
-      // oee trend day
+    //   console.log(graph_reason_arr);
+    //   console.log(graph_category_arr);
+    //   console.log(graph_machine_arr);
+    // oee trend day
     $.ajax({
         url: "<?php echo base_url('OEE_Drill_Down_controller/oeeTrendDay'); ?>",
         type: "POST",
@@ -1539,8 +1803,8 @@ function oeeTrendDay() {
         data:{
           from:f,
           to:t,
-          reason_arr:graph_reason_arr,
-          category_arr:graph_category_arr,
+        //   reason_arr:graph_reason_arr,
+        //   category_arr:graph_category_arr,
           machine_arr:graph_machine_arr,
         },
         success:function(res){
@@ -2006,9 +2270,6 @@ function availabilityReason_machine() {
         }
     });
 
-
-
-
 	$.ajax({
         url: "<?php echo base_url('OEE_Drill_Down_controller/getmachine_reason_availability');?>",
         type: "POST",
@@ -2030,21 +2291,33 @@ function availabilityReason_machine() {
             
             // res= res["AvailabilityOpportunity"];
 
-            $(".TotalAvail").html(res.grandTotal.toLocaleString("en-IN"));
+            //$(".TotalAvail").html(res.grandTotal.toLocaleString("en-IN"));
             color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
-        "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
-        "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
-        "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
-        "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
-        "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
-        "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
-        "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
-        "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
-        "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
-        "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
-      ];
+                "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
+                "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
+                "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
+                "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
+                "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
+                "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
+                "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
+                "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
+                "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
+                "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
+            ];
                 
             // Find the Reason Names as Lables..........
+            var machine_wise_total = [];
+            res['data'].forEach(function(item){
+                var tmp_total_duration = 0;
+                item.forEach(function(val){
+                    tmp_total_duration = tmp_total_duration + val['duration'];
+                });
+                machine_wise_total.push(tmp_total_duration);
+            });
+
+
+            console.log("Availability graph total");
+            console.log(machine_wise_total);
             var reasonList =[];
             res['reason'].forEach(function(reason){
                 reasonList.push(reason.downtime_reason);
@@ -2065,6 +2338,11 @@ function availabilityReason_machine() {
             res['machineName'].forEach(function(Name){
                 machineName.push(Name.machine_name);
             });
+
+            var sum = machine_wise_total.reduce(function(a, b) { return a + b; }, 0);
+            var hour_text = parseInt(parseInt(sum)/60);
+            var minute_text = parseInt(parseInt(sum)%60);
+            $('#total_duration_availability').text(hour_text+'h'+' '+minute_text+'m');
 
             var category_percent =1.0;
             var bar_space=0.5;
@@ -2094,7 +2372,9 @@ function availabilityReason_machine() {
                 borderWidth: 1, 
                 showLine : false,
                 fill: false, 
-                data:totalVal,
+                // data:totalVal,
+                data:machine_wise_total,
+                data_percentage:machine_wise_total,
                 duration:totalDuration,
                 pointRadius: 7,
                 }           
@@ -2121,13 +2401,16 @@ function availabilityReason_machine() {
                     borderWidth: 1,
                     fill: true,
                     duration:machineWise['duration'],
-                    data: machineWise['oppcost'],
+                    // data: machineWise['oppcost'],
+                    data_percentage:0,
+                    data: machineWise['duration'],
                     categoryPercentage:category_percent,
                     barPercentage: bar_space,
                 });
                 x=x+1;
                 index=index+1;
             });
+            console.log("machine array");
             console.log(machine)
             var avlOpp = document.getElementById("machine_reason_availability").getContext('2d');
             var avlOppChart = new Chart(avlOpp, {
@@ -2218,28 +2501,48 @@ function availabilityOpp(context) {
         const bodyLines = tooltipModel.body.map(getBody);
         let innerHtml = '<div>';
 
-        var duration= parseInt(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].duration[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
-
+        var duration= parseInt(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
+        var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data_percentage[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
         var days = parseInt(parseInt(duration/60)/24);
         var hours = parseInt(parseInt(duration-(days*1440))/60);
         var min = parseInt(parseInt(duration-(days*1440))%60);
 
         innerHtml += '<div class="grid-container">';
-        innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
-        innerHtml += '<div class="grid-item title-bold"><span></span></div>';
-        innerHtml += '<div class="content-text sub-title"><span>'+context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label+'</span></div>';
-        innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+        if (parseInt(percentage)>0) {
+            innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            innerHtml += '<div class="content-text sub-title"><span></span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            var tmpdays = parseInt(parseInt(percentage/60)/24);
+            var tmphours = parseInt(parseInt(percentage-(tmpdays*1440))/60);
+            var tmpmin = parseInt(parseInt(percentage-(tmpdays*1440))%60);
+            innerHtml += '<div class="grid-item content-text"><span>Total Duration</span></div>';  
+            if (days>0) {
+                innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+tmpdays+"d"+" "+tmphours+"h"+" "+tmpmin+"m"+'</span></div>';
+            }
+            else{
+                innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+tmphours+"h"+" "+tmpmin+"m"+'</span></div>';
+            }        
 
-        innerHtml += '<div class="grid-item content-text margin-top"><span>Opportunity Cost</span></div>';
-        innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="true"></i>'+parseInt(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toLocaleString("en-IN")+'</span></div>';
-        innerHtml += '<div class="grid-item content-text"><span>Duration</span></div>';
-        if (days>0) {
-          innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+days+"d"+" "+hours+"h"+" "+min+"m"+'</span></div>';
         }
         else{
-          innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+hours+"h"+" "+min+"m"+'</span></div>';
+            innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            innerHtml += '<div class="content-text sub-title"><span>'+context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label+'</span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+
+            // innerHtml += '<div class="grid-item content-text margin-top"><span>Opportunity Cost</span></div>';
+            // innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="true"></i>'+parseInt(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toLocaleString("en-IN")+'</span></div>';
+            innerHtml += '<div class="grid-item content-text"><span>Duration</span></div>';
+            if (days>0) {
+            innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+days+"d"+" "+hours+"h"+" "+min+"m"+'</span></div>';
+            }
+            else{
+            innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+hours+"h"+" "+min+"m"+'</span></div>';
+            }
+            
         }
-        
+      
 
         innerHtml += '</div>';
         innerHtml += '</div>';
@@ -2263,28 +2566,56 @@ function availabilityOpp(context) {
 
 function performance_opportunity(){
     
-  $('#performanceOpportunity').remove();
-  $('.child_graph_performance_opportunity').append('<canvas id="performanceOpportunity"><canvas>');
-  $('.chartjs-hidden-iframe').remove();
+    $('#performanceOpportunity').remove();
+    $('.child_graph_performance_opportunity').append('<canvas id="performanceOpportunity"></canvas>');
+    $('.chartjs-hidden-iframe').remove();
+
+    var graph_machine_arr = [];
+    $('.machine_checkbox3').each(function(){
+        if ($(this).is(':checked')) {
+            graph_machine_arr.push($(this).val().trim());
+        }
+    });
+
+    var part_arr = [];
+    $('.part_checkbox').each(function(){
+        if ($(this).is(':checked')) {
+            part_arr.push($(this).val().trim());
+        }
+    });
 
 
-  f = $('.fromDate').val();
-  t = $('.toDate').val();
-  f = f.replace(" ","T");
-  t = t.replace(" ","T");
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
+
     $.ajax({
-        url: "<?php echo base_url('Financial_Metrics/performanceOpportunity'); ?>",
+        url: "<?php echo base_url('OEE_Drill_Down_controller/performanceOpportunity'); ?>",
         type: "POST",
         dataType: "json",
         data:{
         from:f,
-        to:t
+        to:t,
+        machine_arr:graph_machine_arr,
+        part_arr:part_arr,
         },
         success:function(res){
             console.log("performance opportunity graph");
             console.log(res);
-                var color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
-                $(".PerformanceGrand").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
+            color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
+                "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
+                "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
+                "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
+                "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
+                "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
+                "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
+                "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
+                "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
+                "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
+                "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
+            ];
+                // $(".PerformanceGrand").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
 
                 var partTotal = [];
                 res.Total.forEach(function(r){
@@ -2296,9 +2627,27 @@ function performance_opportunity(){
                 speedTotal.push(parseFloat(t.toFixed(2)));
                 });
 
+                var sum = speedTotal.reduce(function(a, b) { return a + b; }, 0);
+                var hour_text = parseInt(parseInt(sum)/60);
+                var minute_text = parseInt(parseInt(sum)%60);
+                $('#total_speed_loss').text(hour_text+'h'+' '+minute_text+'m');
+
+                console.log("total speed loss");
+                console.log(sum);
                 var partWiseLable = [];
                 res.Part.forEach(function(item){
                 partWiseLable.push(item.part_name);
+                });
+
+                var machine_total_arr = [];
+                var mname_arr = [];
+                res.dataPart.forEach(function(item){
+                    var tmp_data = 0;
+                    mname_arr.push(item['machine_name']);
+                    item['machineData'].forEach(function(val){
+                        tmp_data = parseInt(tmp_data)+parseInt(val['SpeedLoss']);
+                    });
+                    machine_total_arr.push(tmp_data);
                 });
 
                 //Find the duration for each machine in each Reason............
@@ -2311,7 +2660,9 @@ function performance_opportunity(){
                     borderWidth: 1, 
                     showLine : false,
                     fill: false, 
-                    data:partTotal,
+                    data:machine_total_arr,
+                    percentage_data:machine_total_arr,
+                    machine_wise_total:0,
                     speedLoss:speedTotal,
                     pointRadius: 7,
                 }           
@@ -2319,30 +2670,39 @@ function performance_opportunity(){
 
                 var x=1;
                 var index=0;
-                var mname_arr = [];
-
-                res.dataPart.forEach(function(item){
+               
+                // var machine_total_arr = [];
+                res.Part.forEach(function(item){
                     var performancePart=[];
                     var speedLoss=[];
                     var part_name_arr = [];
-                    mname_arr.push(item['machine_name']);
-                    item.machineData.forEach(function(val){
-                        var p = parseFloat(val['Opportunity'].toFixed(2));
-                        performancePart.push(p);
-                        speedLoss.push(parseFloat(val['SpeedLoss'].toFixed(2)));
-                        part_name_arr.push(val['part_name']);
-
+                    
+                    var machine_wise_total = 0;   
+                    res.dataPart.forEach(function(val){
+                        // mname_arr.push(val['machine_name']);
+                        val.machineData.forEach(function(value){
+                            if (value['part_id'] === item['part_id']) {
+                                var p = parseFloat(value['Opportunity'].toFixed(2));
+                                //var tmp_sploss = parseFloat(value['SpeedLoss'].toFixed(2));
+                                performancePart.push(p);
+                                speedLoss.push(parseFloat(value['SpeedLoss'].toFixed(2)));
+                                part_name_arr.push(value['part_name']);
+                                machine_wise_total = parseFloat(machine_wise_total) + parseFloat(p).toFixed(2);
+                            }
+                        });     
+                    
                     });
-                   
+                    // machine_total_arr.push(machine_wise_total)
                     oppCost.push({
-                        label:part_name_arr,
+                        label:item['part_name'],
                         type: "bar",
                         backgroundColor: color[x],
                         borderColor: color[x],
                         borderWidth: 1,
                         fill: true,
-                        data: performancePart,
-                        speedLoss:speedLoss,
+                        data: speedLoss,
+                       // speedLoss:speedLoss,
+                        percentage_data:0,
                         categoryPercentage:1.0,
                         barPercentage: 0.5, 
                     });
@@ -2351,7 +2711,8 @@ function performance_opportunity(){
                    
                 });
 
-              
+                // console.log("Graph array")
+                // console.log(oppCost);
 
                 var bar_width = 0.6;
                 var bar_size = 0.7;
@@ -2371,7 +2732,8 @@ function performance_opportunity(){
                     break;
                 }
                 }
-
+                // console.log("Machine name lable");
+                // console.log(mname_arr);
                 var ctx = document.getElementById("performanceOpportunity").getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'bar',
@@ -2402,16 +2764,149 @@ function performance_opportunity(){
                         },
                         tooltip: {
                             enabled: false,
-                            // external: performanceOpp,
+                           external: performanceOpp,
                         }
                     },
                 },            
             });
         },
         error:function(er){
+            console.log("No Records");
+            console.log(er);
             // alert("Sorry!Try Agian!!!!");
         }
     }); 
+}
+
+
+function performanceOpp(context){
+    // console.log(context);
+    let tooltipEl = document.getElementById('tooltip-machine_part_performance');
+
+    // Create element on first render
+    if (!tooltipEl) {
+        tooltipEl = document.createElement('div');
+        tooltipEl.id = 'tooltip-machine_part_performance';
+        document.body.appendChild(tooltipEl);
+    }
+    tooltipEl.classList.add("global");
+
+    // Hide if no tooltip
+    const tooltipModel = context.tooltip;
+    if (tooltipModel.opacity === 0) {
+        tooltipEl.style.opacity = 0;
+        return;
+    }
+
+    // Set caret Position
+    tooltipEl.classList.remove('above', 'below', 'no-transform');
+    if (tooltipModel.yAlign) {
+        tooltipEl.classList.add(tooltipModel.yAlign);
+        
+    } else {
+        tooltipEl.classList.add('no-transform');
+    }
+
+    function getBody(bodyItem) {
+        return bodyItem.lines;
+    }
+
+    // Set Text
+    if (tooltipModel.body) {
+        
+        const titleLines = tooltipModel.title || [];
+        const bodyLines = tooltipModel.body.map(getBody);
+
+        var performance = parseInt(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
+        var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].percentage_data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
+        var days = parseInt(parseInt(performance/60)/24);
+        var hours = parseInt(parseInt(performance-(days*1440))/60);
+        var min = parseInt(parseInt(performance-(days*1440))%60);
+     
+        let innerHtml = '<div>';
+
+        innerHtml += '<div class="grid-container">';
+        if (parseInt(percentage)>0) {
+            //innerHtml += '<div class="grid-container">';
+            innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            innerHtml += '<div class="content-text sub-title"><span></span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            var tmpdays = parseInt(parseInt(percentage/60)/24);
+            var tmphours = parseInt(parseInt(percentage-(tmpdays*1440))/60);
+            var tmpmin = parseInt(parseInt(percentage-(tmpdays*1440))%60);
+            innerHtml += '<div class="grid-item content-text"><span>Total Speed Loss</span></div>';  
+            if (days>0) {
+                innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+tmpdays+"d"+" "+tmphours+"h"+" "+tmpmin+"m"+'</span></div>';
+            }
+            else{
+                innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+tmphours+"h"+" "+tmpmin+"m"+'</span></div>';
+            }        
+
+        }else{
+            //innerHtml += '<div class="grid-container">';
+            innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            innerHtml += '<div class="content-text sub-title"><span>'+context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label+'</span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+
+            innerHtml += '<div class="grid-item content-text"><span>Spped Loss</span></div>';  
+            if (days>0) {
+                innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+days+"d"+" "+hours+"h"+" "+min+"m"+'</span></div>';
+            }
+            else{
+                innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+hours+"h"+" "+min+"m"+'</span></div>';
+            }
+        }
+    
+    
+        innerHtml += '</div>';
+        innerHtml += '</div>';
+
+        tooltipEl.innerHTML = innerHtml;
+
+    }
+
+    const position = context.chart.canvas.getBoundingClientRect();
+    const bodyFont = Chart.helpers.toFont(tooltipModel.options.bodyFont);
+
+    // Display, position, and set styles for font
+    tooltipEl.style.opacity = 1;
+    tooltipEl.style.position = 'absolute';
+    tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px';
+    tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + 'px';
+    tooltipEl.style.font = bodyFont.string;
+    tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
+    tooltipEl.style.pointerEvents = 'none';
+}
+
+function qualityOpportunity() {
+  f = $('.fromDate').val();
+  t = $('.toDate').val();
+  f = f.replace(" ","T");
+  t = t.replace(" ","T");
+  $.ajax({
+    url: "<?php echo base_url('Financial_Metrics/qualityOpportunity'); ?>",
+    type: "POST",
+    dataType: "json",
+    data:{
+      from:f,
+      to:t
+    },
+    success:function(res){
+        //   $('#qualityOpportunity').remove();
+        //   $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
+        //   $('.chartjs-hidden-iframe').remove();
+        console.log("Quality Opportunity graph");
+        conole.log(res);
+     
+    },
+    error:function(er){
+        console.log(er);
+        // console.log("Sorry!Try Agian!!!!");
+        // alert("Sorry!Try Agian!!!!");
+    }
+  }); 
 }
 
 

@@ -213,6 +213,33 @@ class OEE_Drill_Down_Model extends Model{
         return $tmp_data;
     }
 
+    // dropdown get part data
+    public function getpart_data(){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('settings_part_current');
+        $query->select('part_id,part_name');
+        $res= $query->get()->getResultArray();
+
+        return $res;
+
+    }
+
+    public function qualityReason(){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('settings_quality_reasons');
+        $query->select('*');
+        $res= $query->get()->getResultArray();
+        return $res;
+    }
+
+    public function getPartDetails(){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('settings_part_current');
+        $query->select('part_id,part_price,part_weight,material_price,part_name,NICT');
+        $res= $query->get()->getResultArray();
+        return $res;
+    }
+
    
 
 
