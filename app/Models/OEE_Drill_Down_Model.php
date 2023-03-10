@@ -19,6 +19,7 @@ class OEE_Drill_Down_Model extends Model{
             'username' => 'root',
             'password' => '',
             'database' => ''.$db_name.'',
+            // 'database' => 's1002',
             'DBDriver' => 'MySQLi',
             'DBPrefix' => '',
             'pConnect' => false,
@@ -240,7 +241,23 @@ class OEE_Drill_Down_Model extends Model{
         return $res;
     }
 
-   
+    public function PartDetails_filter($part_arr){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('settings_part_current');
+        $query->select('part_id,part_price,NICT,part_name');
+        $query->WhereIn('part_id',$part_arr);
+        $res= $query->get()->getResultArray();
+        return $res;
+    }
+
+    public function get_quality_reject(){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('settings_quality_reasons');
+        $query->select('quality_reason_name,quality_reason_id');
+        $res= $query->get()->getResultArray();
+        return $res;
+
+    }
 
 
 }
