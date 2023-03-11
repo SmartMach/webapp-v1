@@ -1,0 +1,273 @@
+.multi_select_label{
+    position:fixed;
+    margin-top:0rem;
+    margin-left:0.8rem;
+    z-index:1;
+    background:white;
+    font-size:12px;
+    color:#8c8c8c;
+    font-family:'Roboto' sans-serif;
+    }
+    .filter_selectBox{
+    height:2rem;
+    /* margin-top:0.5rem; */
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem;
+    }
+    
+    .filter_check_cate{
+    display:flex;
+    padding-left:0.1rem;
+    padding-right:0.5rem;
+    justify-content:center;
+    align-items:center;
+    min-height:2rem;
+    max-height:3rem;
+    }
+    .cate_drp_check{
+    width:20%;
+    display:flex;
+    justify-content:center;
+    }
+    .cate_drp_text{
+    width:80%;
+    }
+    .multi_select_drp{
+    height:2rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem;
+    padding-left:1rem;
+    }
+    
+    .filter_overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    }
+    .filter_checkboxes {
+    display: none;
+    border: 1px #dadada solid;
+    z-index:250;
+    position: absolute;
+    background:white;
+    /* padding:0.4rem; */
+    border-radius:0.25rem;
+    min-width:8.7rem;
+    min-height:max-content;
+    max-height:10rem;
+    overflow:hidden;
+    /* overflow-y:scroll;
+    overflow-x:hidden; */
+    }
+    
+    .filter_checkboxes label {
+    display: block;
+    }
+    
+    .filter_checkboxes div:hover {
+    background-color: #E7F2FF;
+    padding:0;
+    /* cursor:context-menu; */
+    /* width:100%; */
+    }
+    
+    /* over all target graph css */
+    .target_bar_bottom{
+        margin-top:0.6rem;
+    }
+    .graph_text{
+        margin-bottom:auto;
+        color:#404040;
+        font-size:14px;
+        font-weight:400;
+    }
+    .empty_graph{
+        background-color:#F2F2F2;
+        height:3.5rem;
+        border-radius:0.2rem;
+    }
+    .target_graph{
+        background-color:#B3D7FF;
+        height:3.5rem;
+        /* width:85%;  */
+        border-radius:0.2rem;
+        padding:0.2rem;
+        padding-left:0;
+        padding-right:0;
+    }
+    .fill_graph{
+        background-color:#0075F6;
+        width:80%;
+        border-radius:0.2rem;
+        height:3rem;
+        color:white;
+        display:flex;
+        align-items:center;
+        padding-left:0.3rem;
+    }
+    .graph_font{
+        font-weight:bold;
+        font-size:1.4rem;
+    }
+    .font_multi_drp{
+    font-family:'Roboto',sans-serif;
+      font-weight:500;
+      font-size:12px;
+      margin:auto;
+      user-select: none; 
+      -webkit-user-select: none;
+      -ms-user-select: none;
+    }
+    .reason_fill , .reason_fill2 ,.quality_reason_fill {
+        max-height:8rem;
+        min-height:4rem;
+        overflow-x:hidden;
+        overflow-y:scroll;
+    }
+    
+    
+    .filter_checkboxes_machine , .filter_checkboxes_machine1 ,.filter_checkboxes_machine2,.filter_checkboxes_machine3,.filter_checkboxes_machine4{
+        max-height:8rem;
+        min-height:4rem;
+        overflow-x:hidden;
+        overflow-y:scroll;
+    }
+    
+    .part_fill{
+        max-height:8rem;
+        min-height:4rem;
+        overflow-x:hidden;
+        overflow-y:scroll;
+    }
+    
+    /* chartjs div css */
+    .parent_div{
+        height:11rem;
+        overflow-y:hidden;
+    }
+    .prodcution_downtime_graph{
+        margin-bottom:0.6rem;
+    }
+    .marginScroll{
+        margin-left:1rem;
+        margin-right:1rem;
+    }
+    .child_div{
+        height:100%;
+        padding:0.5rem;    
+    }
+    
+    /* moddule first row div  style */
+    .first_row{
+        display:flex;
+        flex-direction:row;
+        margin-top:4.2rem;
+        padding:0.3rem;
+        padding-bottom:0;
+        justify-content:space-evenly;
+    }
+    .overall_div{
+        width:30%;
+        height:19.4rem;
+        border:1px solid #e6e6e6;
+        padding-bottom:1rem;
+        border-radius:0.5rem;
+        padding-left:1rem;
+        padding-right:0.5rem;
+    }
+    .oee_trend_div{
+        width:69%;
+        height:19.4rem;
+        border:1px solid #e6e6e6;
+        border-radius:0.5rem;
+        padding-left:1rem;
+    }
+    .second_row{
+        display:flex;
+        flex-direction:row;
+        margin-top:0.3rem;
+        justify-content:space-evenly;
+    }
+    .graph_filter_div{
+        display:flex;
+        flex-direction:row;
+        justify-content:flex-end;
+    }
+    /* machine wise oee% */
+    .icons_bottom{
+        display:flex;
+        flex-direction:row-reverse;
+    }
+    .align_icons{
+        width:15%;
+        display:flex;
+        flex-direction:row;
+    }
+    .align_machine_icons{
+        width:20%;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+    }
+    .graph_label_font{
+        font-size:12px;
+        font-weight:450;
+        color:#404040;
+    }
+    
+    .quality_circle{
+        background-color:#09BB9F;
+        height:0.5rem;
+        width:0.5rem;
+        border-radius:50%;
+    }
+    .performance_star{
+        color:#0075F6;
+        font-size:10px;
+    }
+    .availability_triangle{
+        width:0;
+        height:0;
+        border-left:5px solid transparent;
+        border-right:5px solid transparent;
+        border-bottom:10px solid #000000;
+    }
+    .oee_square{
+        background-color:#0075F6;
+        height:0.6rem;
+        width:0.6rem;
+    }
+    .each_row_split{
+        width:49.2%;
+        border-radius:0.5rem;
+        border:1px solid #e6e6e6;
+        height:19rem;
+    }
+    .graph_title_oee{
+        margin-bottom:auto;
+        color:#404040;
+        font-size:14px;
+        font-weight:450;
+    }
+    .title_div{
+       
+        display:flex;
+        flex-direction:column;
+        margin-top:1rem;
+        margin-left:1.3rem;
+        margin-bottom:0.6rem;
+    }
+    

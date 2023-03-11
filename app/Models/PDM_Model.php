@@ -165,6 +165,8 @@ class PDM_Model extends Model{
         $query->where('machine_id',$machine_id);
         $query->where('shift_date',$shift_date);
         $query->where('shift_id',$shift);
+        $query->orderBy('calendar_date');
+        $query->orderBy('start_time');
         $output = $query->get()->getResultArray();
         return $output;
     }  

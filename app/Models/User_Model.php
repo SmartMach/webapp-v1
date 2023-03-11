@@ -826,6 +826,15 @@ public function site_based_dropdown($user,$role){
     
 }
 
+// production quality model function
+public function getCreatedByDetails(){
+    $db = \Config\Database::connect('another_db');
+    $query = $db->table('user');
+    $query->select('user_id,first_name');
+    $res= $query->get()->getResultArray();
+    return $res;
+}
+
 }
 
 
