@@ -1629,6 +1629,9 @@ class OEE_Drill_Down_controller extends BaseController
 
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
+        $machine_arr = $this->request->getVar('machine_arr');
+        $quality_arr = $this->request->getVar('quality_arr');
+
         // $fromTime = "2023-03-04T19:00:00";
         // $toTime = "2023-03-010T18:00:00";
 
@@ -1655,8 +1658,12 @@ class OEE_Drill_Down_controller extends BaseController
                     //$temp = explode($total, $count);
                     // reason id 
                     $temp = $tt[1];
-                    $tmp = array("machine_id"=>$value['machine_id'],"part_id"=>$value['part_id'],"reject_count"=>$total,"reject_reason"=>$temp,"total_reject"=>$total,"total_correct"=>$value['corrections'],"total_production"=>$value['production'],"shot_count"=>$value['actual_shot_count'],"start_time"=>$value['start_time'],"end_time"=>$value['end_time']);
-                    array_push($ProductionDataExpand, $tmp);
+                    if (in_array($temp,$quality_arr)) {
+                       
+                        $tmp = array("machine_id"=>$value['machine_id'],"part_id"=>$value['part_id'],"reject_count"=>$total,"reject_reason"=>$temp,"total_reject"=>$total,"total_correct"=>$value['corrections'],"total_production"=>$value['production'],"shot_count"=>$value['actual_shot_count'],"start_time"=>$value['start_time'],"end_time"=>$value['end_time']);
+                        array_push($ProductionDataExpand, $tmp);
+                    }
+                   
                 }
 
                 // array_push($tmp_demo,$ProductionData[$key]);
@@ -1691,14 +1698,18 @@ class OEE_Drill_Down_controller extends BaseController
                   
                    
                 }
-                if (count($part_arr)>0) {
-                    $tmp_machine12 = array("machine_id"=>$val['machine_id'],"machine_name"=>$val['machine_name'],"part_data"=>$part_arr);
-                    array_push($reason_arr,$tmp_machine12);
-                }
-                else{
-                    $tmp_machine12 = array("machine_id"=>$val['machine_id'],"machine_name"=>$val['machine_name'],"part_data"=>array(array("total_reject"=>0)));
-                    array_push($reason_arr,$tmp_machine12);
-                }   
+
+                // if (in_array($val['machine_id'],$machine_arr)) {
+                    if (count($part_arr)>0) {
+                        $tmp_machine12 = array("machine_id"=>$val['machine_id'],"machine_name"=>$val['machine_name'],"part_data"=>$part_arr);
+                        array_push($reason_arr,$tmp_machine12);
+                    }
+                    else{
+                        $tmp_machine12 = array("machine_id"=>$val['machine_id'],"machine_name"=>$val['machine_name'],"part_data"=>array(array("total_reject"=>0)));
+                        array_push($reason_arr,$tmp_machine12);
+                    }    
+                // }
+               
                 // $reason_arr['machine_data'] = $machine_arr;
                 // $reason_arr['machine_id'] = $val['machine_id'];
             }
@@ -1712,7 +1723,7 @@ class OEE_Drill_Down_controller extends BaseController
 
 
         // machine wise total
-        // $machine_wise_total_arr = [];
+        // $temp_machine_arr = [];
         foreach ($machineDetails as $key => $value) {
             $tmp_total = 0;
             foreach ($ProductionDataExpand as $k1 => $val) {
@@ -1722,6 +1733,10 @@ class OEE_Drill_Down_controller extends BaseController
             }
             // $machine_wise_total_arr[$value['machine_id']] = $tmp_total;
             $machineDetails[$key]['total_rejects'] = $tmp_total;
+            // if (in_array($value['machine_id'],$machine_arr)) {
+            //     array_push($temp_machine_arr,$machineDetails[$Key]);
+
+            // }
         }
 
 

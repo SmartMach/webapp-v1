@@ -10,280 +10,10 @@
 <script src="<?php echo base_url(); ?>/assets/js/datetimepicker.js?version=<?php echo rand() ; ?>"></script>
 <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/jquery.datetimepicker.min.css?version=<?php echo rand() ; ?>">
 <script src="<?php echo base_url(); ?>/assets/js/jquery.datetimepicker.js?version=<?php echo rand() ; ?>"></script>
-   <!-- style css -->
+<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/oee_drill_down.css?version=<?php echo rand() ; ?>">
+
+<!-- style css -->
 <style>
-.multi_select_label{
-position:fixed;
-margin-top:0rem;
-margin-left:0.8rem;
-z-index:1;
-background:white;
-font-size:12px;
-color:#8c8c8c;
-font-family:'Roboto' sans-serif;
-}
-.filter_selectBox{
-height:2rem;
-/* margin-top:0.5rem; */
-position:relative;
-min-width:9rem;
-font-size:12px;
-font-weight:500;
-color:#8c8c8c;
-border:1px solid #ced4da;
-border-radius:0.25rem;
-}
-
-.filter_check_cate{
-display:flex;
-padding-left:0.1rem;
-padding-right:0.5rem;
-justify-content:center;
-align-items:center;
-min-height:2rem;
-max-height:3rem;
-}
-.cate_drp_check{
-width:20%;
-display:flex;
-justify-content:center;
-}
-.cate_drp_text{
-width:80%;
-}
-.multi_select_drp{
-height:2rem;
-position:relative;
-min-width:9rem;
-font-size:12px;
-font-weight:500;
-color:#8c8c8c;
-border:1px solid #ced4da;
-border-radius:0.25rem;
-padding-left:1rem;
-}
-
-.filter_overSelect {
-position: absolute;
-left: 0;
-right: 0;
-top: 0;
-bottom: 0;
-}
-.filter_checkboxes {
-display: none;
-border: 1px #dadada solid;
-z-index:250;
-position: absolute;
-background:white;
-/* padding:0.4rem; */
-border-radius:0.25rem;
-min-width:8.7rem;
-min-height:max-content;
-max-height:10rem;
-overflow:hidden;
-/* overflow-y:scroll;
-overflow-x:hidden; */
-}
-
-.filter_checkboxes label {
-display: block;
-}
-
-.filter_checkboxes div:hover {
-background-color: #E7F2FF;
-padding:0;
-/* cursor:context-menu; */
-/* width:100%; */
-}
-
-/* over all target graph css */
-.target_bar_bottom{
-    margin-top:0.6rem;
-}
-.graph_text{
-    margin-bottom:auto;
-    color:#404040;
-    font-size:14px;
-    font-weight:400;
-}
-.empty_graph{
-    background-color:#F2F2F2;
-    height:3.5rem;
-    border-radius:0.2rem;
-}
-.target_graph{
-    background-color:#B3D7FF;
-    height:3.5rem;
-    /* width:85%;  */
-    border-radius:0.2rem;
-    padding:0.2rem;
-    padding-left:0;
-    padding-right:0;
-}
-.fill_graph{
-    background-color:#0075F6;
-    width:80%;
-    border-radius:0.2rem;
-    height:3rem;
-    color:white;
-    display:flex;
-    align-items:center;
-    padding-left:0.3rem;
-}
-.graph_font{
-    font-weight:bold;
-    font-size:1.4rem;
-}
-.font_multi_drp{
-font-family:'Roboto',sans-serif;
-  font-weight:500;
-  font-size:12px;
-  margin:auto;
-  user-select: none; 
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
-.reason_fill , .reason_fill2 ,.quality_reason_fill {
-    max-height:8rem;
-    min-height:4rem;
-    overflow-x:hidden;
-    overflow-y:scroll;
-}
-
-
-.filter_checkboxes_machine , .filter_checkboxes_machine1 ,.filter_checkboxes_machine2,.filter_checkboxes_machine3,.filter_checkboxes_machine4{
-    max-height:8rem;
-    min-height:4rem;
-    overflow-x:hidden;
-    overflow-y:scroll;
-}
-
-.part_fill{
-    max-height:8rem;
-    min-height:4rem;
-    overflow-x:hidden;
-    overflow-y:scroll;
-}
-
-/* chartjs div css */
-.parent_div{
-    height:11rem;
-    overflow-y:hidden;
-}
-.prodcution_downtime_graph{
-    margin-bottom:0.6rem;
-}
-.marginScroll{
-    margin-left:1rem;
-    margin-right:1rem;
-}
-.child_div{
-    height:100%;
-    padding:0.5rem;    
-}
-
-/* moddule first row div  style */
-.first_row{
-    display:flex;
-    flex-direction:row;
-    margin-top:4.2rem;
-    padding:0.3rem;
-    padding-bottom:0;
-    justify-content:space-evenly;
-}
-.overall_div{
-    width:30%;
-    height:19.4rem;
-    border:1px solid #e6e6e6;
-    padding-bottom:1rem;
-    border-radius:0.5rem;
-    padding-left:1rem;
-    padding-right:0.5rem;
-}
-.oee_trend_div{
-    width:69%;
-    height:19.4rem;
-    border:1px solid #e6e6e6;
-    border-radius:0.5rem;
-    padding-left:1rem;
-}
-.second_row{
-    display:flex;
-    flex-direction:row;
-    margin-top:0.3rem;
-    justify-content:space-evenly;
-}
-.graph_filter_div{
-    display:flex;
-    flex-direction:row;
-    justify-content:flex-end;
-}
-/* machine wise oee% */
-.icons_bottom{
-    display:flex;
-    flex-direction:row-reverse;
-}
-.align_icons{
-    width:15%;
-    display:flex;
-    flex-direction:row;
-}
-.align_machine_icons{
-    width:20%;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-}
-.graph_label_font{
-    font-size:12px;
-    font-weight:450;
-    color:#404040;
-}
-
-.quality_circle{
-    background-color:#09BB9F;
-    height:0.5rem;
-    width:0.5rem;
-    border-radius:50%;
-}
-.performance_star{
-    color:#0075F6;
-    font-size:10px;
-}
-.availability_triangle{
-    width:0;
-    height:0;
-    border-left:5px solid transparent;
-    border-right:5px solid transparent;
-    border-bottom:10px solid #000000;
-}
-.oee_square{
-    background-color:#0075F6;
-    height:0.6rem;
-    width:0.6rem;
-}
-.each_row_split{
-    width:49.2%;
-    border-radius:0.5rem;
-    border:1px solid #e6e6e6;
-    height:19rem;
-}
-.graph_title_oee{
-    margin-bottom:auto;
-    color:#404040;
-    font-size:14px;
-    font-weight:450;
-}
-.title_div{
-   
-    display:flex;
-    flex-direction:column;
-    margin-top:1rem;
-    margin-left:1.3rem;
-    margin-bottom:0.6rem;
-}
 
 </style>
 
@@ -739,7 +469,7 @@ $session = \Config\Services::session();
     </div>
 
     <!-- third row -->
-    <div class="second_row" >
+    <div class="second_row" style="margin-bottom:1rem;">
         <div class="each_row_split" style="">
             <!-- graph title -->
             <div class="title_div" >
@@ -845,25 +575,25 @@ $session = \Config\Services::session();
     </div>
 </div>
 <!-- preloader end -->
-<!-- <script src="<?php echo base_url(); ?>/assets/js/Downtime_Production.js?version=<?php echo rand() ; ?>"></script> -->
+<script src="<?php echo base_url(); ?>/assets/js/oee_drill_down.js?version=<?php echo rand() ; ?>"></script>
 <script type="text/javascript">
 
-// from  date time 
-$('.fromDate').datetimepicker({  
-  format:'Y-m-d H:00:00',
-  // minDate : '0',
-  maxDate: new Date(),
-  onChangeDateTime:checkPastTime_F,
-  onShow:checkPastTime_F,
-});
+    // from  date time 
+    $('.fromDate').datetimepicker({  
+        format:'Y-m-d H:00:00',
+        // minDate : '0',
+        maxDate: new Date(),
+        onChangeDateTime:checkPastTime_F,
+        onShow:checkPastTime_F,
+    });
 
-// to date time
-$('.toDate').datetimepicker({
-  format:'Y-m-d H:00',
-  onChangeDateTime:checkPastTime,
-  onShow:checkPastTime,
-  maxDate: new Date()
-});
+    // to date time
+    $('.toDate').datetimepicker({
+        format:'Y-m-d H:00',
+        onChangeDateTime:checkPastTime,
+        onShow:checkPastTime,
+        maxDate: new Date()
+    });
 
 
 // this open code has default one week date selection 
@@ -923,6 +653,7 @@ $(document).on('blur','.toDate',function(event){
 
 
 });
+
 $(document).ready(function(){
 
     // overall target function
@@ -938,21 +669,14 @@ $(document).ready(function(){
     overallTarget();
 
     // graph filter
-   graph_func();
+    //    graph_func();
 
-   performance_opportunity();
-   quality_reason_machine();
+    //    performance_opportunity();
+    //    quality_reason_machine();
    fill_quality_reason_dropdown(); 
 
 });
 
-// graph functions 
-function graph_func(){
-    oeeTrendDay();
-    machineWiseOEE();
-    availabilityReason_machine();
-
-}
 
 // by day shift and month week
 function resetbyday_click(){
@@ -963,14 +687,14 @@ function resetbyday_click(){
     $('#by_day_checkbox').text('By Day');
 }
 
-// reset category
-// function reset_category(){
-//     var category_arr = $('.category_drp_checkbox');
-//     jQuery('.category_drp_checkbox').each(function(in2){
-//         category_arr[in2].checked=true;
-//     });
-//     $('#text_category_drp').text('All Category');
-// }
+    // reset category
+    // function reset_category(){
+    //     var category_arr = $('.category_drp_checkbox');
+    //     jQuery('.category_drp_checkbox').each(function(in2){
+    //         category_arr[in2].checked=true;
+    //     });
+    //     $('#text_category_drp').text('All Category');
+    // }
 
 // availability graph reset categroy
 function reset_category2(){
@@ -1016,7 +740,6 @@ function reset_machine1(){
 }
 
 // availability graph
-
 function reset_machine2(){
     var category_arr = $('.machine_checkbox2');
     jQuery('.machine_checkbox2').each(function(in2){
@@ -1059,6 +782,7 @@ function reset_all_data_field(){
     });
     $('#text_all_data_field').text('All Data Field');
 }
+
 
 // by day shift meek month
 var filter_expand_by_day = 0;
@@ -1138,7 +862,6 @@ function quality_reason_drp() {
 }
 
 // machine
-
 var filter_expanded_machine1 = false;
 function machine_drp1() {
  
@@ -1191,9 +914,6 @@ function machine_drp2() {
   }
 }
 
-
-
-
 var filter_expanded_machine3 = false;
 function machine_drp3() {
  
@@ -1210,8 +930,6 @@ function machine_drp3() {
       performance_opportunity();
   }
 }
-
-
 
 var filter_expanded_machine4 = false;
 function machine_drp4() {
@@ -1257,6 +975,8 @@ function all_data_field(){
         machineWiseOEE();
     } 
 }
+
+
 
 $(document).on('click','.byday_click',function(event){
     event.preventDefault();
@@ -1749,9 +1469,6 @@ $(document).on('click','.machine_click4',function(event){
     }
 });
 
-
-
-
 $(document).on('click','.all_data_field_click',function(event){
     event.preventDefault();
     var count_reason_gp1  = $('.all_data_field_click');
@@ -1800,73 +1517,6 @@ $(document).on('click','.all_data_field_click',function(event){
     }
 });
 
-// graph value for overallTarget
-function overallTarget(){
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
-    f = f.replace(" ","T");
-    t = t.replace(" ","T");
-    $.ajax({
-        //OEE check....
-        url: "<?php echo base_url('OEE_Drill_Down_controller/OverallOEETarget'); ?>",
-        type: "POST",
-        dataType: "json",
-        data:{
-        from:f,
-        to:t
-        },
-        success:function(res){
-            console.log("overall target");
-            console.log(res);
-        // res=res['OverallMonitoring'];
-          $('#teep_graph').css('width',''+parseInt(res.Overall_TEEP)+'%');
-          $('#ooe_graph').css('width',''+parseInt(res.Overall_OOE)+'%');
-          $('#oee_graph').css('width',''+parseInt(res.Overall_OEE)+'%');
-        
-          $('#text_teep').html(res.Overall_TEEP+'%');
-          $('#text_ooe').html(res.Overall_OOE+'%');
-          $('#text_oee').html(res.Overall_OEE+'%');
-
-        //   $('.ooeVal').html(res.Overall_OOE);
-        //   $('.oeeVal').html(res.Overall_OEE);
-        //   $('.teepVal').html(res.Overall_TEEP);
-
-        
-        },
-        error:function(res){
-            console.log("No Data Records!");
-            $('#teep_graph').css('width','0%');
-            $('#ooe_graph').css('width','0%');
-            $('#oee_graph').css('width','0%');
-        }
-    });
-}
-
-
-function fill_target_bar(){
-    $.ajax({
-        url: "<?php echo base_url('Financial_Metrics/getOverallTarget'); ?>",
-        type: "POST",
-        dataType: "json",
-        success:function(res){
-            console.log("graph target");
-            console.log(res);
-            $('#teep_target').css('width',''+res[0].overall_teep+'%');
-            $('#oee_target').css('width',''+res[0].overall_oee+'%');
-            $('#ooe_target').css('width',''+res[0].overall_ooe+'%');
-
-            // $('.teepTarget').html(res[0].overall_teep);
-            // $('.oeeTarget').html(res[0].overall_oee);
-            // $('.ooeTarget').html(res[0].overall_ooe);
-            
-        },
-        error:function(res){
-            $('#teep_target').css('width','0%');
-            $('#oee_target').css('width','0%');
-            $('#ooe_target').css('width','0%');
-        }
-    });
-}
 
 
 function fill_downtime_reason(){
@@ -2141,6 +1791,85 @@ function fill_part_drp(){
         },
         error:function(er){
             console.log("Error Try Again...");
+        }
+    });
+}
+
+
+
+// graph functions 
+function graph_func(){
+    oeeTrendDay();
+    machineWiseOEE();
+    availabilityReason_machine();
+
+}
+
+
+// graph value for overallTarget
+function overallTarget(){
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
+    $.ajax({
+        //OEE check....
+        url: "<?php echo base_url('OEE_Drill_Down_controller/OverallOEETarget'); ?>",
+        type: "POST",
+        dataType: "json",
+        data:{
+        from:f,
+        to:t
+        },
+        success:function(res){
+            console.log("overall target");
+            console.log(res);
+        // res=res['OverallMonitoring'];
+          $('#teep_graph').css('width',''+parseInt(res.Overall_TEEP)+'%');
+          $('#ooe_graph').css('width',''+parseInt(res.Overall_OOE)+'%');
+          $('#oee_graph').css('width',''+parseInt(res.Overall_OEE)+'%');
+        
+          $('#text_teep').html(res.Overall_TEEP+'%');
+          $('#text_ooe').html(res.Overall_OOE+'%');
+          $('#text_oee').html(res.Overall_OEE+'%');
+
+        //   $('.ooeVal').html(res.Overall_OOE);
+        //   $('.oeeVal').html(res.Overall_OEE);
+        //   $('.teepVal').html(res.Overall_TEEP);
+
+        
+        },
+        error:function(res){
+            console.log("No Data Records!");
+            $('#teep_graph').css('width','0%');
+            $('#ooe_graph').css('width','0%');
+            $('#oee_graph').css('width','0%');
+        }
+    });
+}
+
+
+function fill_target_bar(){
+    $.ajax({
+        url: "<?php echo base_url('Financial_Metrics/getOverallTarget'); ?>",
+        type: "POST",
+        dataType: "json",
+        success:function(res){
+            console.log("graph target");
+            console.log(res);
+            $('#teep_target').css('width',''+res[0].overall_teep+'%');
+            $('#oee_target').css('width',''+res[0].overall_oee+'%');
+            $('#ooe_target').css('width',''+res[0].overall_ooe+'%');
+
+            // $('.teepTarget').html(res[0].overall_teep);
+            // $('.oeeTarget').html(res[0].overall_oee);
+            // $('.ooeTarget').html(res[0].overall_ooe);
+            
+        },
+        error:function(res){
+            $('#teep_target').css('width','0%');
+            $('#oee_target').css('width','0%');
+            $('#ooe_target').css('width','0%');
         }
     });
 }
@@ -3197,7 +2926,7 @@ function performance_opportunity(){
     }); 
 }
 
-
+// tooltip function
 function performanceOpp(context){
     // console.log(context);
     let tooltipEl = document.getElementById('tooltip-machine_part_performance');
@@ -3300,164 +3029,294 @@ function performanceOpp(context){
 }
 
 function quality_reason_machine() {
-  f = $('.fromDate').val();
-  t = $('.toDate').val();
-  f = f.replace(" ","T");
-  t = t.replace(" ","T");
-  $.ajax({
-    url: "<?php echo base_url('OEE_Drill_Down_controller/qualityOpportunity'); ?>",
-    type: "POST",
-    dataType: "json",
-    data:{
-      from:f,
-      to:t
-    },
-    success:function(res){
-        $('#quality_reason_machine').remove();
-        $('.child_quality_reason_machine').append('<canvas id="quality_reason_machine"></canvas>');
-        $('.chartjs-hidden-iframe').remove();
+
+    var graph_quality_arr = [];
+    $('.quality_checkbox').each(function(){
+        if ($(this).is(':checked')) {
+            graph_quality_arr.push($(this).val().trim());
+        }
+    });
+
+    var machine_arr = [];
+    $('.machine_checkbox4').each(function(){
+        if ($(this).is(':checked')) {
+            machine_arr.push($(this).val().trim());
+        }
+    });
+
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
+
+    console.log("quality graph");
+    console.log(machine_arr);
+    console.log(graph_quality_arr);
+    $.ajax({
+        url: "<?php echo base_url('OEE_Drill_Down_controller/qualityOpportunity'); ?>",
+        type: "POST",
+        dataType: "json",
+        data:{
+        from:f,
+        to:t,
+        machine_arr:machine_arr,
+        quality_arr:graph_quality_arr,
+        },
+        success:function(res){
+            $('#quality_reason_machine').remove();
+            $('.child_quality_reason_machine').append('<canvas id="quality_reason_machine"></canvas>');
+            $('.chartjs-hidden-iframe').remove();
 
 
-        console.log("Quality Opportunity graph");
-        console.log(res);
-        color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
-            "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
-            "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
-            "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
-            "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
-            "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
-            "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
-            "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
-            "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
-            "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
-            "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
-        ];
+            console.log("Quality Opportunity graph");
+            console.log(res);
+            color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
+                "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
+                "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
+                "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
+                "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
+                "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
+                "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
+                "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
+                "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
+                "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
+                "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
+            ];
 
-        var machineName_arr = [];
-        var machine_total_arr = [];
-        var total_val = 0;
-        res['machine_data'].forEach(function(item){
-            machineName_arr.push(item.machine_name);
-            total_val = total_val + item.total_rejects;
-            machine_total_arr.push(item.total_rejects);
-        });
+            var machineName_arr = [];
+            var machine_total_arr = [];
+            var total_val = 0;
+            res['machine_data'].forEach(function(item){
+                machineName_arr.push(item.machine_name);
+                total_val = total_val + item.total_rejects;
+                machine_total_arr.push(item.total_rejects);
+            });
 
-        $('#total_machine_reason_quality').text(parseInt(total_val).toLocaleString("en-IN"));
-        quality_reason_arr = [
-            {
-                label:"Total" ,
-                type: "line",
-                backgroundColor: color[0],
-                borderColor: "#d9d9ff",  
-                borderWidth: 1, 
-                showLine : false,
-                fill: false, 
-                data:machine_total_arr,
-                percentage_data:machine_total_arr,
-                machine_wise_total:0,
-                // speedLoss:speedTotal,
-                pointRadius: 7,
-            }           
-        ];
-        var x=1;
-        var index=0;
-        res['graph_data'].forEach(function(item){
-            var part_arr = [];
-            var count_arr = [];
-            var reason_wise_data = [];
-            item['machine_data'].forEach(function(ele) {
-                var tmp_part_total = 0;
-                ele['part_data'].forEach(function(element){
-                    tmp_part_total = tmp_part_total + element['total_reject'];
+            $('#total_machine_reason_quality').text(parseInt(total_val).toLocaleString("en-IN"));
+            quality_reason_arr = [
+                {
+                    label:"Total" ,
+                    type: "line",
+                    backgroundColor: color[0],
+                    borderColor: "#d9d9ff",  
+                    borderWidth: 1, 
+                    showLine : false,
+                    fill: false, 
+                    data:machine_total_arr,
+                    percentage_data:machine_total_arr,
+                    machine_wise_total:0,
+                    // speedLoss:speedTotal,
+                    pointRadius: 7,
+                }           
+            ];
+            var x=1;
+            var index=0;
+            res['graph_data'].forEach(function(item){
+                var part_arr = [];
+                var count_arr = [];
+                var reason_wise_data = [];
+                var temp_machine_part_arr = [];
+                item['machine_data'].forEach(function(ele) {
+                    var tmp_part_total = 0;
+                    var temp_partname_arr = [];
+                    ele['part_data'].forEach(function(element){
+                        tmp_part_total = tmp_part_total + element['total_reject'];
+                        var temp_data = element['part_name']+'&'+element['total_reject'];
+                        temp_partname_arr.push(temp_data);
+                    });
+
+                    var tmp_arr_str = temp_partname_arr.join(',');
+                    temp_machine_part_arr.push(tmp_arr_str);
+                    reason_wise_data.push(tmp_part_total);
                 });
-                reason_wise_data.push(tmp_part_total);
+                quality_reason_arr.push({
+                    label:item['reason_name'],
+                    type: "bar",
+                    backgroundColor: color[x],
+                    borderColor: color[x],
+                    borderWidth: 1,
+                    fill: true,
+                    data: reason_wise_data,
+                    reason_arr:temp_machine_part_arr,
+                    percentage_data:0,
+                    categoryPercentage:1.0,
+                    barPercentage: 0.5, 
+                });
+                x=x+1;
+                index=index+1;
             });
-            quality_reason_arr.push({
-                label:item['reason_name'],
-                type: "bar",
-                backgroundColor: color[x],
-                borderColor: color[x],
-                borderWidth: 1,
-                fill: true,
-                data: reason_wise_data,
-                // speedLoss:speedLoss,
-                percentage_data:0,
-                categoryPercentage:1.0,
-                barPercentage: 0.5, 
-            });
-            x=x+1;
-            index=index+1;
-        });
 
 
-        // console.log(quality_reason_arr);
-        var bar_width = 0.6;
-        var bar_size = 0.7;
-        while(true){
-            var len= machineName_arr.length;
-            if (len < 8) {
-                machineName_arr.push("");
+            // console.log(quality_reason_arr);
+            var bar_width = 0.6;
+            var bar_size = 0.7;
+            while(true){
+                var len= machineName_arr.length;
+                if (len < 8) {
+                    machineName_arr.push("");
+                }
+                else if(len > 8){
+                    var l = parseInt(len)%parseInt(8);
+                    var w= parseInt($('.parent_quality_reason_machine').css("width"))+parseInt(l*18*16);
+                    $('.child_quality_reason_machine').css("width",w+"px");
+                    break;
+                }
+                else{
+                    break;
+                }
             }
-            else if(len > 8){
-                var l = parseInt(len)%parseInt(8);
-                var w= parseInt($('.parent_quality_reason_machine').css("width"))+parseInt(l*18*16);
-                $('.child_quality_reason_machine').css("width",w+"px");
-                break;
-            }
-            else{
-                break;
-            }
+            console.log("quality graph array");
+            console.log(quality_reason_arr);
+
+            var ctx = document.getElementById("quality_reason_machine").getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: machineName_arr,
+                        datasets:quality_reason_arr,
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,   
+                        scales: {
+                            y: {
+                                display:false,
+                                beginAtZero:true,
+                                stacked:true
+                            },
+                            x:{
+                                display:true,
+                                grid:{
+                                display:false
+                                },
+                                stacked:true,
+                            },
+                        },
+                        plugins: {
+                            legend: {
+                                display: false,
+                            },
+                            tooltip: {
+                                enabled: false,
+                               external: quality_reason_machine_tooltip,
+                            }
+                        },
+                    },            
+                });
+        
+        },
+        error:function(er){
+            console.log(er);
+            // console.log("Sorry!Try Agian!!!!");
+            // alert("Sorry!Try Agian!!!!");
+        }
+    }); 
+}
+
+// tooltip function
+function quality_reason_machine_tooltip(context){
+    let tooltipEl = document.getElementById('tooltip-quality_machine_reason');
+
+    // Create element on first render
+    if (!tooltipEl) {
+        tooltipEl = document.createElement('div');
+        tooltipEl.id = 'tooltip-quality_machine_reason';
+        document.body.appendChild(tooltipEl);
+    }
+    tooltipEl.classList.add("global");
+
+    // Hide if no tooltip
+    const tooltipModel = context.tooltip;
+    if (tooltipModel.opacity === 0) {
+        tooltipEl.style.opacity = 0;
+        return;
+    }
+
+    // Set caret Position
+    tooltipEl.classList.remove('above', 'below', 'no-transform');
+    if (tooltipModel.yAlign) {
+        tooltipEl.classList.add(tooltipModel.yAlign);
+        
+    } else {
+        tooltipEl.classList.add('no-transform');
+    }
+
+    function getBody(bodyItem) {
+        return bodyItem.lines;
+    }
+
+    // Set Text
+    if (tooltipModel.body) {
+        
+        const titleLines = tooltipModel.title || [];
+        const bodyLines = tooltipModel.body.map(getBody);
+
+        var performance = parseInt(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
+        var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].percentage_data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
+      
+        // console.log(percentage);
+        let innerHtml = '<div>';
+
+        innerHtml += '<div class="grid-container">';
+    
+        if (parseInt(percentage)>0) {
+            //innerHtml += '<div class="grid-container">';
+            innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            innerHtml += '<div class="content-text sub-title"><span></span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+           
+            innerHtml += '<div class="grid-item content-text margin-top"><span class="values-op">Total Rejection Count</span></div>';  
+            innerHtml += '<div class="grid-item title-bold-value margin-top"><span class="values-op">'+parseInt(percentage)+'</span></div>';       
+
+        }else{
+            //innerHtml += '<div class="grid-container">';
+            var parts_arr = context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].reason_arr[context.tooltip.dataPoints[0].dataIndex]
+            console.log("quality graph hovering");
+            console.log(parts_arr);
+            innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+            innerHtml += '<div class="grid-item title-bold"><span></span></div>';
+            innerHtml += '<div class="content-text sub-title margin-top"><span>'+context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label+'</span></div>';
+            innerHtml += '<div class="grid-item title-bold-value margin-top"><span class="values-op">'+parseInt(performance)+'</span></div>';
+            // innerHtml += '<div class="grid-item content-text"><span>Spped Loss</span></div>';  
+            // if (days>0) {
+            //     innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+days+"d"+" "+hours+"h"+" "+min+"m"+'</span></div>';
+            // }
+            // else{
+            //     innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+hours+"h"+" "+min+"m"+'</span></div>';
+            // }
+            const tmp_part_arr = parts_arr.split(',');
+            console.log("temporary part array");
+            console.log(tmp_part_arr);
+            tmp_part_arr.forEach(function(item){
+                // console.log(item);
+                var part_val = item.split('&');
+
+                innerHtml += '<div class="grid-item content-text"><span>'+part_val[0]+'</span></div>'; 
+                innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+part_val[1]+'</span></div>';
+
+            });
         }
 
-        var ctx = document.getElementById("quality_reason_machine").getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: machineName_arr,
-                    datasets:quality_reason_arr,
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,   
-                    scales: {
-                        y: {
-                            display:false,
-                            beginAtZero:true,
-                            stacked:true
-                        },
-                        x:{
-                            display:true,
-                            grid:{
-                            display:false
-                            },
-                            stacked:true,
-                        },
-                    },
-                    plugins: {
-                        legend: {
-                            display: false,
-                        },
-                        tooltip: {
-                            enabled: false,
-                        //    external: performanceOpp,
-                        }
-                    },
-                },            
-            });
+    
+        innerHtml += '</div>';
+        innerHtml += '</div>';
 
-
-
-       
-
-
-     
-    },
-    error:function(er){
-        console.log(er);
-        // console.log("Sorry!Try Agian!!!!");
-        // alert("Sorry!Try Agian!!!!");
+        tooltipEl.innerHTML = innerHtml;
+   
     }
-  }); 
+
+    const position = context.chart.canvas.getBoundingClientRect();
+    const bodyFont = Chart.helpers.toFont(tooltipModel.options.bodyFont);
+
+    // Display, position, and set styles for font
+    tooltipEl.style.opacity = 1;
+    tooltipEl.style.position = 'absolute';
+    tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px';
+    tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + 'px';
+    tooltipEl.style.font = bodyFont.string;
+    tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
+    tooltipEl.style.pointerEvents = 'none';
 }
 
 

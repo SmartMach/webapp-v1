@@ -897,7 +897,7 @@ function reason_wise_duration_tooltip(context){
             innerHtml += '<div class="content-text sub-title"><span></span></div>';
             innerHtml += '<div class="grid-item title-bold"><span></span></div>';
 
-            innerHtml += '<div class="grid-item content-text"><span>Percentage</span></div>';  
+            innerHtml += '<div class="grid-item content-text margin-top"><span>Percentage</span></div>';  
             innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+parseFloat(percentage).toLocaleString("en-IN")+'% </span></div>';
             
         }else{
@@ -988,7 +988,7 @@ function machine_wise_oppcost_tooltip(context){
             innerHtml += '<div class="content-text sub-title"><span></span></div>';
             innerHtml += '<div class="grid-item title-bold"><span></span></div>';
 
-            innerHtml += '<div class="grid-item content-text"><span>Percentage</span></div>';  
+            innerHtml += '<div class="grid-item content-text margin-top"><span>Percentage</span></div>';  
             innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+parseFloat(percentage).toLocaleString("en-IN")+'% </span></div>';
             
             
@@ -1080,7 +1080,7 @@ function machine_and_reason_wise_tooltip(context){
             innerHtml += '<div class="content-text sub-title"><span></span></div>';
             innerHtml += '<div class="grid-item title-bold"><span></span></div>';
 
-            innerHtml += '<div class="grid-item content-text"><span>Percentage</span></div>';  
+            innerHtml += '<div class="grid-item content-text margin-top"><span>Percentage</span></div>';  
             innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+parseFloat(percentage).toLocaleString("en-IN")+'% </span></div>';
             
 
