@@ -7,7 +7,6 @@
 
     <script src="<?php echo base_url(); ?>/assets/chartjs/package/dist/chart.min.js?version=<?php echo rand() ; ?>"></script>
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/all-fontawesome.css?version=<?php echo rand() ; ?>">
-    <script src="<?php echo base_url(); ?>/assets/js/current_shift_performance_live.js?version=<?php echo rand() ; ?>"></script>
 </head>
 <div style="margin-left: 4.5rem;">
   <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav_quality" style="z-index: 1001!important">

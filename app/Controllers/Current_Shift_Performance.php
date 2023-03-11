@@ -32,7 +32,7 @@ class Current_Shift_Performance extends BaseController{
     	// if ($this->request->isAJAX()) {
     		$shift_date = $this->request->getVar('shift_date');
     		$shift_id = $this->request->getVar('shift_id');
-    		// $shift_date = "2023-03-09";
+    		// $shift_date = "2023-03-11";
     		// $shift_id = "A";
 
     		// Current Shift OEE Target......
@@ -70,6 +70,7 @@ class Current_Shift_Performance extends BaseController{
 	        		$t_time = date("H:i:s",strtotime($t));	        		
 	        	}
 	        }
+
 
 	        // Machine-wise Production Data,...........
 	        $production_total = [];
@@ -141,7 +142,6 @@ class Current_Shift_Performance extends BaseController{
                         unset($output[$key]);
                     }
                     else{
-                        
                         //For remove the current data of inactive machines.........
                         foreach ($getInactiveMachine as $v) {
                             $t = explode(" ", $v['max(r.last_updated_on)']);
@@ -300,6 +300,17 @@ class Current_Shift_Performance extends BaseController{
             // Machine Wise Event....
             $machine_event = $this->datas->machine_events($shift_date,$shift_id);
 
+            $temp_ar = array('machine_id' => "","shift_date" => "", "start_time" => "","end_time" => "","shift_id" => "", "production" => 0,"part_id" => 0);
+            $len_data = sizeof($shiftList);
+            $len_ref = sizeof($machineWise[0]['production']);
+            $diff = $len_data - $len_ref;
+
+            foreach ($machineWise as $key => $value) {
+            	for ($i=0; $i < $diff; $i++) { 
+            		array_push($machineWise[$key]['production'],$temp_ar);
+            		array_push($machineWise[$key]['targets'],end($machineWise[$key]['targets']));
+            	}
+            }
 
 	       	$out['hours'] = $shiftList;
 	       	$out['data'] = $machineWise;
