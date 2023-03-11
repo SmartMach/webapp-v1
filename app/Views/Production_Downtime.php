@@ -1736,6 +1736,7 @@ var machineEventIdRef ="";
 var machineID_ref = "";
 var shift_date_ref = "";
 var shift_Ref ="";
+var live_graph="";
 var data_duration = new Array();
 var data_notes = new Array();
 var down_category = new Array();
@@ -1848,6 +1849,7 @@ $(document).on('click','#Production_shift_date',function(){
 
 // then if you change the machine dropdown to enable the date input
 $(document).on('change','#Production_MachineName',function(){
+  clearInterval(live_graph);
   $('#machineOFFTotal').text("00");
   $('#UnnamedTotal').text("00");
   var machinename = $('#Production_MachineName').val();
@@ -2677,9 +2679,17 @@ function getDownTimeGraph(){
                               st = new Date(model.calendar_date+" "+shift_etime);
                               et = new Date(model.calendar_date+" "+model.end_time);
                               if (st.getTime() !== et.getTime()) {
-                                graph_Data.push({name:model.event,data:[model.duration],color:colordemo,start:model.start_time,end:model.end_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:part_name_arr_pass,duration:model.duration});
+                                et_x = new Date();
+                                et = et_x;
+                                st = new Date(model.calendar_date+" "+model.start_time);
+                                var res_tmp = Math.abs(et - st) / 1000;
+                                duration_tmp=(Math.floor(res_tmp / 60))+"."+(Math.floor(res_tmp % 60));
+                                x_time = (et_x.getHours() > 9 ? et_x.getHours(): "0" + et_x.getHours())+":"+(et_x.getMinutes() > 9 ? et_x.getMinutes(): "0" + et_x.getMinutes())+":"+(et_x.getSeconds() > 9 ? et_x.getSeconds(): "0" + et_x.getSeconds());
+
+                                graph_Data.push({name:model.event,data:[duration_tmp],color:colordemo,start:model.start_time,end:x_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:part_name_arr_pass,duration:duration_tmp});
 
                                 noDataArray.push('slantedLines');
+                                st = new Date(model.calendar_date+" "+shift_etime);
                                 var res = Math.abs(et - st) / 1000;
                                 duration=(Math.floor(res / 60))+"."+(Math.floor(res % 60));
                                 colordemo = color_bar("No Data",model.reason_mapped);
@@ -2697,9 +2707,17 @@ function getDownTimeGraph(){
                           st = new Date(model.calendar_date+" "+shift_etime);
                           et = new Date(model.calendar_date+" "+model.end_time);
                           if (st.getTime() !== et.getTime()) {
-                            graph_Data.push({name:model.event,data:[model.duration],color:colordemo,start:model.start_time,end:model.end_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:part_name_arr_pass,duration:model.duration});
+                            et_x = new Date();
+                            et = et_x;
+                            st = new Date(model.calendar_date+" "+model.start_time);
+                            var res_tmp = Math.abs(et - st) / 1000;
+                            duration_tmp=(Math.floor(res_tmp / 60))+"."+(Math.floor(res_tmp % 60));
+                            x_time = (et_x.getHours() > 9 ? et_x.getHours(): "0" + et_x.getHours())+":"+(et_x.getMinutes() > 9 ? et_x.getMinutes(): "0" + et_x.getMinutes())+":"+(et_x.getSeconds() > 9 ? et_x.getSeconds(): "0" + et_x.getSeconds());
+
+                            graph_Data.push({name:model.event,data:[duration_tmp],color:colordemo,start:model.start_time,end:x_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:part_name_arr_pass,duration:duration_tmp});
 
                             noDataArray.push('slantedLines');
+                            st = new Date(model.calendar_date+" "+shift_etime);
                             var res = Math.abs(et - st) / 1000;
                             duration=(Math.floor(res / 60))+"."+(Math.floor(res % 60));
                             colordemo = color_bar("No Data",model.reason_mapped);
@@ -2743,123 +2761,136 @@ function getDownTimeGraph(){
                     },
                     events:{
                       click:function(event, chartContext, config){
-                       
-                        
-                        if (config.seriesIndex >= 0) {
+
+                        var l_l = config.globals.series.length;
+
+                        var production_shift_date = $('#Production_shift_date').val();
+                        var formattedDate = new Date(production_shift_date);
+                        var d = formattedDate.getDate();
+                        var m =  formattedDate.getMonth();
+                        m += 1;  
+                        var y = formattedDate.getFullYear();
+                        var c_date = new Date(y+"-"+(m > 9 ? m: "0" + m)+"-"+(d > 9 ? d: "0" + d)+" "+shift_stime);
+                        if ((config.seriesIndex == (l_l-2)) && (new Date() >= c_date)) {
                           $('.split_input').empty();
-                          //function for find the split records
-                          $("#overlay").fadeIn(300);
-                          $('.split_input').empty();  
-                          var access_control = <?php  echo $this->data['access'][0]['production_data_management']; ?>;
-                          // alert(parseInt(access_control));
-                          count_click = 0;
-                          index_arr.length=0;
-                          data_notes.length=0;
-                          //Commented for checking...........
-                          // DownReason();
-                          // DownTool(); 
-                          // DownPart();
-                                  
-                          //console.log(config);
-                          var inval = config.seriesIndex;
-                          var svalue = config.config.series[inval].data[config.dataPointIndex];
-                          var sname = config.config.series[inval].name;
-                          var start = config.config.series[inval].start;
-                          var end = config.config.series[inval].end;
-                          var machineEventRef = config.config.series[inval].machineEvent;
-                          var machine_Name_Tooltip = config.config.series[inval].machine_Name;
-                          var part_name_tooltip = config.config.series[inval].part_Name;
-                          machineEventIdRef = config.config.series[inval].machineEvent;
-                          var durationVal = config.config.series[inval].duration;
-                          overall_duration_value = svalue;
+                        }
+                        else{
+                          if (config.seriesIndex >= 0) {
+                            $('.split_input').empty();
+                            //function for find the split records
+                            $("#overlay").fadeIn(300);
+                            $('.split_input').empty();  
+                            var access_control = <?php  echo $this->data['access'][0]['production_data_management']; ?>;
+                            // alert(parseInt(access_control));
+                            count_click = 0;
+                            index_arr.length=0;
+                            data_notes.length=0;
+                            //Commented for checking...........
+                            // DownReason();
+                            // DownTool(); 
+                            // DownPart();
+                                    
+                            //console.log(config);
+                            var inval = config.seriesIndex;
+                            var svalue = config.config.series[inval].data[config.dataPointIndex];
+                            var sname = config.config.series[inval].name;
+                            var start = config.config.series[inval].start;
+                            var end = config.config.series[inval].end;
+                            var machineEventRef = config.config.series[inval].machineEvent;
+                            var machine_Name_Tooltip = config.config.series[inval].machine_Name;
+                            var part_name_tooltip = config.config.series[inval].part_Name;
+                            machineEventIdRef = config.config.series[inval].machineEvent;
+                            var durationVal = config.config.series[inval].duration;
+                            overall_duration_value = svalue;
 
-                          if ((parseInt(durationVal) >= 0) && (parseInt(access_control)>1) ) {
-                            $.ajax({
-                              url: "<?php echo base_url('PDM_controller/findSplit'); ?>",
-                              type: "POST",
-                              dataType: "json",
-                              data:{
-                                ref:machineEventRef, 
-                              },
-                              success:function(res){
-                                data_time=[];
-                                data_array=[];
-                                split_ref =[];
-                                data_notes = [];
-                                machineOFFTotal=0;
-                                UnnamedTotal=0;
-                                calendar_array = [];
-                                if (((res['value'].length > 0) && (sname == "Inactive")) || ((res['value'].length > 0) && (sname == "Machine OFF"))) {
-                                  
-                                  // bulk edit
-                                  $('.filter').css("display","none");
-                                  $('.bulk_edit_btn_case').css('display','inline');
-                                  // dipslay none in bulg edit submission
-                                  $('.bulg_edit_ui').css("display","none");
-                                  // bulg edit submission input value reset
-                                  $('#bulg_edit_drp').val('');
-                                  $('#bulg_edit_category_drp').val('');
+                            if ((parseInt(durationVal) >= 0) && (parseInt(access_control)>1) ) {
+                              $.ajax({
+                                url: "<?php echo base_url('PDM_controller/findSplit'); ?>",
+                                type: "POST",
+                                dataType: "json",
+                                data:{
+                                  ref:machineEventRef, 
+                                },
+                                success:function(res){
+                                  data_time=[];
+                                  data_array=[];
+                                  split_ref =[];
+                                  data_notes = [];
+                                  machineOFFTotal=0;
+                                  UnnamedTotal=0;
+                                  calendar_array = [];
+                                  if (((res['value'].length > 0) && (sname == "Inactive")) || ((res['value'].length > 0) && (sname == "Machine OFF"))) {
+                                    
+                                    // bulk edit
+                                    $('.filter').css("display","none");
+                                    $('.bulk_edit_btn_case').css('display','inline');
+                                    // dipslay none in bulg edit submission
+                                    $('.bulg_edit_ui').css("display","none");
+                                    // bulg edit submission input value reset
+                                    $('#bulg_edit_drp').val('');
+                                    $('#bulg_edit_category_drp').val('');
 
-                                  var z = 0;
-                                  res['value'].forEach(function(item){
-                                    calendar_array.push(item.calendar_date);
-                                    var notes = item.notes;
-                                    var downReason = item.downtime_reason_id;
-                                    // if ((sname != "Active")||(sname != "No Data")&&(item.split_duration >=1) ) {
+                                    var z = 0;
+                                    res['value'].forEach(function(item){
+                                      calendar_array.push(item.calendar_date);
+                                      var notes = item.notes;
+                                      var downReason = item.downtime_reason_id;
+                                      // if ((sname != "Active")||(sname != "No Data")&&(item.split_duration >=1) ) {
 
-                                    // if ((sname == "Inactive")) {
-                                      $('.downtimeHeader').css("display","block");
-                                      shiftStartTime = start ;
+                                      // if ((sname == "Inactive")) {
+                                        $('.downtimeHeader').css("display","block");
+                                        shiftStartTime = start ;
 
-                                      data_time.push(item.start_time);
-                                      data_time.push(item.end_time);
-                                      data_array.push(item.split_duration);
-                                      split_ref.push(item.split_id);
-                                      data_notes.push(item.notes);
+                                        data_time.push(item.start_time);
+                                        data_time.push(item.end_time);
+                                        data_array.push(item.split_duration);
+                                        split_ref.push(item.split_id);
+                                        data_notes.push(item.notes);
+                                        
+                                        var reason = findDownReason(item.downtime_reason_id);
+                                        //Draw Graph
+                                        partid = item.part_id;
+                                        toolid = item.tool_id;
+                                        downtime_reason_id = item.downtime_reason_id;
+                                        // console.log("tool id:\t"+toolid);
+                                        //var last_updated_by = res[]
                                       
-                                      var reason = findDownReason(item.downtime_reason_id);
-                                      //Draw Graph
-                                      partid = item.part_id;
-                                      toolid = item.tool_id;
-                                      downtime_reason_id = item.downtime_reason_id;
-                                      // console.log("tool id:\t"+toolid);
-                                      //var last_updated_by = res[]
-                                    
-                                      // alert(downtime_reason_id);
-                                      drawGraph(item.start_time,item.split_duration,item.end_time,item.machine_event_id,item.notes,reason,partid,toolid,item.split_id,item.last_updated_by,item.last_updated_on);
+                                        // alert(downtime_reason_id);
+                                        drawGraph(item.start_time,item.split_duration,item.end_time,item.machine_event_id,item.notes,reason,partid,toolid,item.split_id,item.last_updated_by,item.last_updated_on);
 
-                                      $(".delete-split:eq(0)").css("display","none");
-                                      $(".circleMatch:eq(0)").css("display","block");
-                                    
-                                      machineEventIdRef = item.machine_event_id ;
-                                      overall_value = svalue;
-                                    // }
-                                    // else {
-                                    //   $('.downtimeHeader').css("display","none");
-                                    // }
+                                        $(".delete-split:eq(0)").css("display","none");
+                                        $(".circleMatch:eq(0)").css("display","block");
+                                      
+                                        machineEventIdRef = item.machine_event_id ;
+                                        overall_value = svalue;
+                                      // }
+                                      // else {
+                                      //   $('.downtimeHeader').css("display","none");
+                                      // }
 
-                                    $('.select_item').css('display','none');
+                                      $('.select_item').css('display','none');
 
-                                    //function for retrive data......
-                                    DownReasonUpdate(z,reason,downtime_reason_id);
-                                    DownToolUpdate(z,toolid);
-                                    DownPartUpdate(z,partid,toolid);
-                                    z=parseInt(z)+1;
-                                    
-                                  });
+                                      //function for retrive data......
+                                      DownReasonUpdate(z,reason,downtime_reason_id);
+                                      DownToolUpdate(z,toolid);
+                                      DownPartUpdate(z,partid,toolid);
+                                      z=parseInt(z)+1;
+                                      
+                                    });
 
+                                  }
+                                  else {
+                                        $('.downtimeHeader').css("display","none");
+                                  }
+                                },
+                                error:function(res){
+                                    alert("Sorry!Try Agian!!");
                                 }
-                                else {
-                                      $('.downtimeHeader').css("display","none");
-                                }
-                              },
-                              error:function(res){
-                                  alert("Sorry!Try Agian!!");
-                              }
-                            });
+                              });
+                            }
+                            
+                            $("#overlay").fadeOut(300);
                           }
-                          
-                          $("#overlay").fadeOut(300);
                         }
                       } 
                     }

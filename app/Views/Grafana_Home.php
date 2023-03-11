@@ -56,7 +56,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <style>    
     .paddingm{
       padding: 0;
@@ -487,19 +486,17 @@
                             </ul>
                         </li>
 
-                        <!-- temporary hide this condition -->
-
-                        <!-- <li class="side-menu-li d-flex ">
+                        <li class="side-menu-li d-flex ">
                             <a href="<?= base_url('Home/load_option/Current_Shift_Performance')?>">
-                                <i class="fa fa-clock-o nav-icon nav-icon-hover " style="font-size: 30px;" dvalue="Current" alt="Current Shift"></i>
+                                <i class="fa fa-clock-o nav-icon nav-icon-hover" dvalue="Current" style="font-size: 29px;padding:9px" alt="Current Shift"></i>
                             </a>
-                            <i class="fa fa-ellipsis-v icons-menu icon-font_third icon-font-js" style=""></i>
+                            <!-- <i class="fa fa-ellipsis-v icons-menu icon-font_last icon-font-js" style=""></i> -->
                             <ul>
-                                 <nav style="border-bottom:1px solid #d9d9d9;">
-                                    <p class="nav-menu-title">CURRENT SHIFT PERFORMANCE</p> 
+                                <nav style="border-bottom:1px solid #d9d9d9;">
+                                    <p class="nav-menu-title">CURRENT SHIFT PERFORMANCE</p>
                                 </nav>
                             </ul>
-                        </li> -->
+                        </li>
 
                         <li class="side-menu-li d-flex ">
                             <a href="#">
@@ -559,13 +556,53 @@
                                 <i class="fa fa-bar-chart nav-icon nav-icon-hover prodcution_status_background" style="font-size: 26px;" dvalue="Daily" alt="Production Status"></i>
                             </a>
                             <!-- <i class="fa fa-ellipsis-v icons-menu icon-font_third icon-font-js" style=""></i> -->
-                            <!-- <ul>
+                            <ul>
                                 <nav style="border-bottom:1px solid #d9d9d9;">
-                                    <p class="nav-menu-title">Daily Production Data</p> 
+                                    <p class="nav-menu-title">DAILY PRODUCTION DATA</p> 
                                 </nav> 
-                            </ul> -->
+                            </ul>
                         </li>
                         <!-- daily production link end -->
+
+                        <!-- production Downtime New module -->
+                        <li class="side-menu-li d-flex">
+                            <a href="<?php echo base_url('Home/load_option/Downtime_Production'); ?>">
+                                <i class="fa fa-briefcase nav-icon nav-icon-hover production_downtime_background" style="font-size:26px;" dvalue="Downtime" alt="Downtime"></i>
+                            </a>
+                            <ul>
+                                <nav style="border-bottom:1px solid #d9d9d9;">
+                                    <p class="nav-menu-title">PRODUCTION DOWNTIME</p>
+                                </nav>
+                            </ul>
+                        </li>
+                        <!-- production downtime new module end -->
+
+                        <!-- production Downtime New module -->
+                        <li class="side-menu-li d-flex">
+                            <a href="<?php echo base_url('Home/load_option/Quality_Production'); ?>">
+                                <i class="fa fa-folder-open nav-icon nav-icon-hover production_downtime_background" style="font-size:26px;" dvalue="Quality" alt="Quality"></i>
+                            </a>
+
+                            <ul>
+                                <nav style="border-bottom:1px solid #d9d9d9;">
+                                    <p class="nav-menu-title">PRODUCTION QUALITY</p>
+                                </nav>
+                            </ul>
+                        </li>
+                        <!-- production downtime new module end -->
+
+                        <!-- oee drilldown new module -->
+                        <li class="side-menu-li d-flex">
+                            <a href="<?php echo base_url('Home/load_option/Oee_Drill_Down'); ?>">
+                                <i class="fa fa-television nav-icon nav-icon-hover production_downtime_background" style="font-size:26px;" dvalue="Oee" alt="Oee"></i>
+                            </a>
+                            <ul>
+                                <nav style="border-bottom:1px solid #d9d9d9;">
+                                    <p class="nav-menu-title">OEE DRILLDOWN</p> 
+                                </nav> 
+                            </ul>
+                        </li>
+                        <!-- oee drilldown new module end  -->
                 </ul>
             </div> 
             <div class="col-lg paddingm">        
@@ -616,8 +653,10 @@
         
         if(MenuSub[0] == x){
             var icon_name = listIcons[i].getAttribute("class");
-
+            // alert(listIcons[1]);
+            // console.log(MenuSub);
             const split_nav = icon_name.split(" ");
+            // console.log(split_nav[1]);
             if (split_nav[1] === "fa-line-chart") {
                 listIcons[i].style = "background-color:#005abc;color:white;font-size:23px;padding:9px;";
                 // actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 1px;font-weight:500;";
@@ -633,7 +672,15 @@
                 // alert('ok');
                 listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:27px;padding:9px;";
                 // actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 1px;font-weight:500;";
-               
+            }
+            else if(split_nav[1] === "fa-chart-pie"){
+                listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:27px;padding:9px;";
+            }
+            else if(split_nav[1]==="fa fa-chart-area"){
+                listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:27px;padding:9px;";
+            }
+            else if(split_nav[1]==="fa fa-television"){
+                listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:27px;padding:9px;";
             }
             else{
                 listIcons[i].style = "background-color:#005abc;color:white;font-size:29px;padding:9px;";

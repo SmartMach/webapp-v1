@@ -1,0 +1,206 @@
+/*Multiple Drop Down*/
+.filter_multiselect {
+    width: 10rem;
+    height: 2.3rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.3rem;
+}
+.filter_option{
+  height: 2rem !important;
+  position: relative;
+  z-index: 1001;
+}
+.graph-div-header{
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+}
+.dropdown-div{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.icon-style{
+  margin-right: 0.5rem;
+}
+.dropdown-arrow{
+  display: flex;
+  cursor: pointer;
+}
+.font-size-lable{
+  font-size: 12px;
+}
+.filter_div{
+  display: flex;
+  justify-content: flex-end;
+}
+.indexing{
+  z-index: 1000;
+}
+.filter_last{
+  margin-right: 0.5rem;
+}
+  .filter_selectBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+  .filter_checkboxes {
+    display: none;
+    border: 1px solid #dadada ;
+    max-height: 12rem;
+    overflow-y: scroll;
+    background-color: white;
+  }
+  .filter_checkboxes .inbox{
+    /*padding: 8px;*/
+    background-color: white;
+    height: 2.5rem;
+  }
+  .filter_checkboxes .inbox:hover{
+    background-color: #eff7ff;
+    cursor: pointer;
+  }
+  .inbox-span{
+    margin-left: 0.5rem;
+    font-size: 0.7rem;
+    width: 100%;
+  }
+  .center-align{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .center-align_cnt{
+    display: flex;
+    align-items: center;
+  }
+/**/
+.fixsubnav_quality{
+	top: 4rem;
+	position: sticky;
+  background-color: white;
+  z-index: 1000;
+}
+.logo-style{
+	height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.img-style{
+  height: 1.5rem;
+  width: 1.5rem;
+  margin: 0.5rem;
+}
+.img-div{
+  border-radius: 0.5rem;
+}
+.img-div:hover{
+  background-color: rgb(0, 90, 188);
+  transition: all .3s ease-in;
+}
+.grid-container_graph {
+  /*display: flex;*/
+  /*grid-template-columns: auto auto;*/
+  padding: 0;
+  /*height: 79vh;*/
+}
+.parent_graph_div{
+  overflow-x:scroll;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.parent-style{
+  /*height: 58.5%;*/
+  height: 70%;
+  width: 100%;
+  padding: 5px;
+  /*overflow: hidden;*/
+}
+.child-style{
+  height: 98%;
+}
+.grid-item_graph{
+  float: left;
+  width: 45.5%;
+	border-radius: 0.5rem;
+  border:1px solid #d9d9d9;
+}
+.mar-left_graph{
+	margin-left: 3rem;
+	margin-right: 0.25rem;
+}
+.mar-right_graph{
+	margin-right: 3rem;
+	margin-left: 0.5rem;
+}
+.rejection_color{
+  color: #c00000;
+  font-weight: bold;
+}
+.search_style{
+  font-weight: 450;
+  font-size: 12px;
+  color:#8c8c8c;
+}
+.font_color{
+  color: #a6a6a6;
+}
+.rejection_font_color{
+  color: #171b26;
+}
+.valueGraph{
+  font-size: 1rem;
+  font-weight: bold;
+  color: #004b9b;
+}
+.fixinnersubnav_quality{
+  top: 8rem;
+  z-index: 1;
+  white-space: nowrap;
+  background: #fff;
+  position: sticky;
+}
+.valueMarLeft{
+  margin-left: 5px;
+}
+
+.mar-top{
+	margin-top: 0.8rem;
+}
+.fontBold{
+  /*font-weight: bold;*/
+  margin-top:0.2rem;
+}
+.total-margin{
+  margin-left: 0.7rem;
+}
+
+.financial_font{
+  font-family: 'Roboto' , sans-serif;
+  color: #404040;
+  font-size: 12px;
+  margin-left: 1rem;
+}
+.headTitle{
+  font-size: 11px !important;
+}
+.graph-container{
+	margin: 5px;
+	height: 60%;
+  max-width: 40rem;
+  overflow: hidden;
+}
+.quality_canva{
+	display: block;
+  box-sizing: border-box;
+}
+.child-inner-div{
+  background-color: blue;
+  width: 200rem;
+}
+.parent-div{
+  /*max-width: 30rem;*/
+}
