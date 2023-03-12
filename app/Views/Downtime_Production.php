@@ -493,7 +493,7 @@ $session = \Config\Services::session();
             <div style="display:flex;flex-direction:row;height:3rem;align-items:center;">
                 <div style="width:10%;display:flex;flex-direction:row;">
                     <div style="margin-left:1rem;font-size:12px;color:#8c8c8c;">
-                        <input type="text" name="" id="pagination_val" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" onblur="pagination_filter()" style="width:2rem;text-align:center;height:2rem;border:1px solid #e6e6e6;border-radius:0.25rem;margin-right:0.4rem;"><span>of <span id="total_page"></span>Pages</span>
+                        <input type="text" name="" id="pagination_val" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" onblur="pagination_filter()" style="width:2rem;text-align:center;height:2rem;border:1px solid #e6e6e6;border-radius:0.25rem;margin-right:0.4rem;"><span>of <span id="total_page"></span>  Pages</span>
                     </div>
                 </div>
                 <div style="width:90%;display:flex;flex-direction:row-reverse;align-items:center;">
@@ -631,7 +631,7 @@ $session = \Config\Services::session();
                         </div>
 
                         <!-- keywords input -->
-                        <div class="box rightmar" style="margin-right:0.5rem;margin-top:2.2rem;">
+                        <div class="box rightmar" style="margin-right:0.5rem;margin-top:2.2rem;display:none;">
                             <div class="fieldStyle input-box">
                                 <input type="text" class="form-control font_weight" id="filterkeyword" style="font-size:12px;height:2.1rem;margin-top:0.5rem;" name="filterkeyword" placeholder="Search by Keyword">
                                 <label for="filterkeyword" class="input-padding">Search</label>
@@ -651,9 +651,8 @@ $session = \Config\Services::session();
                             <div class="fixed_col_width" >
                                 <div class="fixed_col_common alignflex header_fixed_col" style="border-radius:10px 0px 0px 10px;box-shadow:0px 2px 3px 0px #e6e6e6;width:100%;">
                                     <div class=" font alignflex" style="width:30%;height:100%"> <span style="margin-left:1rem;">MACHINE</span></div>
-                                    <div class="font alignflex"style="width:42%;height: 100%" > <span style="margin:auto;">FROM DATE & TO DATE</span></div>
-                                    <div class="font alignflex"style="width:28%;height:100%"><span style="margin-left:1rem;">DURATION
-                                        <br>(MIN)</span>
+                                    <div class="font alignflex"style="width:42%;height: 100%" > <span style="margin:auto;">FROM DATE & TIME</span></div>
+                                    <div class="font alignflex"style="width:28%;height:100%"><span style="margin-left:1rem;">DURATION</span>
                                     </div>
                                 </div>
                                 <!-- rows in table view -->
@@ -1226,9 +1225,9 @@ function date_formate_change(date_format){
     let hour_demo = d.toLocaleString('en-us',{hour12:false,hour:'2-digit'});
     let month_demo = d.toLocaleString('en-us',{month:'short'});
     let year_demo = d.toLocaleString('en-us',{year:'2-digit'});
-    let minute_demo = d.toLocaleString('en-us',{minute:'2-digit'});
+    let minute_demo = d.toLocaleString('en-us',{minute: '2-digit'});
 
-    var final_res = day_demo+' '+month_demo+' '+year_demo+' ,'+hour_demo+':'+minute_demo;
+    var final_res = day_demo+' '+month_demo+' '+year_demo+', '+hour_demo+':'+minute_demo;
     return final_res;
 }
 
@@ -1819,13 +1818,30 @@ function filter_after_filter(end_index,start_index){
 
                     var from_date = date_formate_change(from);
                     var to_date = date_formate_change(to);
-                    var updated_at = date_formate_change(val.last_updated_on)
+                    var updated_at = date_formate_change(val.last_updated_on);
+                    var tmp_duration  = val.split_duration.toString().split('.');
+                    var final_tmp_duration = " ";
+                    if (parseInt(tmp_duration[0])>0) {
+                        if (parseInt(tmp_duration[1])>0) {
+                            final_tmp_duration = tmp_duration[0]+'m'+' '+tmp_duration[1]+'s';
+                        }else{
+                            final_tmp_duration = tmp_duration[0]+'m'+' ';
+                        }
+                       
+                    }else{
+                        if (parseInt(tmp_duration[1])>0) {
+                            final_tmp_duration = tmp_duration[1]+'s';
+                        }else{
+                            final_tmp_duration = '0s';
+                        } 
+                    }
+
 
 
                     elements = elements.add('<div class="fixed_col_common alignflex" style="width:100%;">'
                         +'<div class="border-left font_row alignflex" style="width:30%;height: 100%;"><span style="margin-left:1rem;">'+val.machine_name+'</span></div>'
                         +'<div class="font_row alignflex"style="width:42%;height: 100%"><span style="margin:auto;">'+from_date+'</span></div>'
-                        +' <div  class="red alignflex" style="width:28%;height: 100%;justify-content:flex-end;"><span style="margin-right:1rem;">'+val.split_duration+'</span></div>'
+                        +' <div  class="red alignflex" style="width:28%;height: 100%;justify-content:flex-end;"><span style="margin-right:1rem;">'+final_tmp_duration+'</span></div>'
                     +'</div>');
 
 
