@@ -90,8 +90,9 @@
     .graph_text{
         margin-bottom:auto;
         color:#404040;
-        font-size:14px;
-        font-weight:400;
+        font-size:12px;
+        font-family: 'Roboto', sans-serif;
+        /* font-weight:400; */
     }
     .empty_graph{
         background-color:#F2F2F2;
@@ -259,8 +260,9 @@
     .graph_title_oee{
         margin-bottom:auto;
         color:#404040;
-        font-size:14px;
-        font-weight:450;
+        font-size:12px;
+        font-family: 'Roboto', sans-serif;
+        /* font-weight:450; */
     }
     .title_div{
        

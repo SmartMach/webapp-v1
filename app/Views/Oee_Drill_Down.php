@@ -106,14 +106,14 @@ $session = \Config\Services::session();
                         <!-- <input type="date" name="" class="form-control fromDate" id="from"> -->
                         <input type="text" class="form-control fromDate" value="" step="1">
                         <!-- <input type="datetime-local" class="form-control" value="2013-10-24T10:00:00" step="1"> -->
-                        <label for="inputSiteNameAdd" class="input-padding ">From Date</label>
+                        <label for="inputSiteNameAdd" class="input-padding ">From DateTime</label>
                     </div>
                 </div>
                 <div class="box rightmar" style="margin-right: 0.5rem;">
                     <div class="input-box">
                         <!-- <input type="date" name="" class="form-control toDate"> -->
                         <input type="text" class="form-control toDate" value="" step="1">
-                        <label for="inputSiteNameAdd" class="input-padding ">To Date</label>
+                        <label for="inputSiteNameAdd" class="input-padding ">To DateTime</label>
                     </div>
                 </div>
             </div>
@@ -189,7 +189,7 @@ $session = \Config\Services::session();
             </div>
             <div style="display:flex;flex-direction:row;justify-content:flex-end;">
                  <!-- category multi select dropdown -->
-                <div class="box rightmar" style="margin-right: 0.5rem;" >
+                <div class="box rightmar" style="margin-right: 0.5rem;display:none;" >
                     <div class="filter_selectBox" onclick="byday_click()">
                         <select  class="multi_select_drp" style="" >
                             <option id="text_category_drp" style="">By Day</option>
@@ -2173,7 +2173,7 @@ function machineWiseOEE() {
                     graph_demo_arr.push({
                         label: "Quality",
                         type: "line",
-                        backgroundColor: "#004b9b",
+                        backgroundColor: "#09BB9F",
                         pointStyle:"circle",
                         radius:"5",
                         borderWidth: 1,
@@ -2191,7 +2191,7 @@ function machineWiseOEE() {
                     graph_demo_arr.push({
                         label: "Performance",
                         type: "line",
-                        backgroundColor: "#004b9b",
+                        backgroundColor: "#0075F6",
                         pointStyle:"rectRot",
                         radius:"5", 
                         borderWidth: 1, 
@@ -2212,7 +2212,7 @@ function machineWiseOEE() {
                     graph_demo_arr.push({
                         label: "Availability",
                         type: "line",
-                        backgroundColor: "#004b9b",
+                        backgroundColor: "#000000",
                         pointStyle:"triangle",
                         // borderColor: "red",  
                         borderWidth: 1, 
@@ -2231,7 +2231,7 @@ function machineWiseOEE() {
                     graph_demo_arr.push({
                         label: "Machine OEE",
                         type: "bar",
-                        backgroundColor: "#004b9b",
+                        backgroundColor: "#0075F6",
                         borderColor: "#004b9b", 
                         borderWidth: 1,
                         fill: true,

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/financial_metrics.css?version=<?php echo rand() ; ?>">
 
     <script src="<?php echo base_url(); ?>/assets/chartjs/package/dist/chart.min.js?version=<?php echo rand() ; ?>"></script>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/all-fontawesome.css?version=<?php echo rand() ; ?>">
+    <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/all-fontawesome.css?version=<?php echo rand() ; ?>"> -->
 <style>
   /* filter css design */
   .filterbtnstyle{
@@ -25,6 +25,44 @@
     background-color:#005abc;
     opacity: 0.8;
   }
+
+   
+  .icon_img_wh{
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+    .icon_img_wh:hover{
+      width: 1.2rem;
+      height: 1.2rem;
+      color:red;
+    }
+    .notes_check{
+        height:1.8rem;
+        width:1.8rem;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        background-color:white;
+        border-radius:50%;
+    }
+    .notes_check:hover {
+    
+        cursor: pointer;
+        background-color:#e6e6e6;
+    }
+      /* notes display property */
+   .notes_display{
+    min-height:4.8rem;
+    max-width:10.9rem;
+    min-width:10rem;
+    background-color:white;
+    margin-left:-15rem; 
+    border:1px solid #e6e6e6;
+    padding:0.7rem;
+    border-radius:10px;
+    display:none;
+   }
+
 </style>
 <script type="text/javascript">
   var checkPastTime = function(inputDateTime) {
@@ -100,14 +138,14 @@
       <p class="float-start p3" id="logo">Production Quality</p>
       <div class="d-flex" style="display: flex;align-items: center;">
                 <div class="box rightmar" style="margin-right:0.5rem;">
-                    <div style="padding-left:10px;padding-right:10px;height:2.3rem;border:1px solid #e6e6e6;border-radius:0.25rem;display:flex;justify-content:center;align-items:center;color:#C00000;"><p style="text-align:center;margin:auto;font-size:15px;font-weight:bold;"><span id="total_rejection_header"></span> Rejects</p></div>
+                    <div style="padding-left:10px;padding-right:10px;height:2.3rem;border:1px solid #e6e6e6;border-radius:0.25rem;display:flex;justify-content:center;align-items:center;color:#C00000;"><p style="text-align:center;margin:auto;font-size:15px;font-weight:500;"><span id="total_rejection_header"></span> Rejects</p></div>
                 </div>
                 <ul class="nav nav-pills" id="pills-tab" role="tablist" style="border:1px solid #ced4ca;border-radius:0.25rem;padding:0.1rem;margin:auto;margin-right:0.5rem;">
                   <li class="nav-item" role="presentation"  >
                     <i class="fa fa-sitemap nav-link active"  id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" style="padding:0.4rem;font-size:1.3rem;"></i>
                   </li>
                   <li class="nav-item" role="presentation">
-                    <i class="fa fa-calculator nav-link"  id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" style="padding:0.4rem;font-size:1.3rem;width: 1.6rem;"></i>
+                    <i class="fa fa-calculator nav-link"  id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" style="padding:0.4rem;font-size:1.3rem;"></i>
                   </li>
                 </ul>
               <!-- </div> -->
@@ -116,14 +154,14 @@
                   <!-- <input type="date" name="" class="form-control fromDate" id="from"> -->
                   <input type="text" class="form-control fromDate" value="" step="1">
                   <!-- <input type="datetime-local" class="form-control" value="2013-10-24T10:00:00" step="1"> -->
-                  <label for="inputSiteNameAdd" class="input-padding ">From Date</label>
+                  <label for="inputSiteNameAdd" class="input-padding ">From DateTime</label>
                 </div>
               </div>
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box">
                   <!-- <input type="date" name="" class="form-control toDate"> -->
                   <input type="text" class="form-control toDate" value="" step="1">
-                  <label for="inputSiteNameAdd" class="input-padding ">To Date</label>
+                  <label for="inputSiteNameAdd" class="input-padding ">To DateTime</label>
                 </div>
               </div>
         </div>
@@ -152,7 +190,7 @@
                           <p class="paddingm" id="reason_text_copqp">All Reasons</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -171,7 +209,7 @@
                           <p class="paddingm" id="machine_text_copq">All Machines</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -190,7 +228,7 @@
                           <p class="paddingm" id="part_text_copq">All Parts</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -226,7 +264,7 @@
                           <p class="paddingm" id="reason_text_crpr">All Reasons</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -245,7 +283,7 @@
                           <p class="paddingm" id="machine_text_crpr">All Machines</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -264,7 +302,7 @@
                           <p class="paddingm" id="part_text_crpr">All Parts</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -302,7 +340,7 @@
                           <p class="paddingm" id="reason_text_copqm">All Reasons</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -321,7 +359,7 @@
                           <p class="paddingm" id="machine_text_copqm">All Machines</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -340,7 +378,7 @@
                           <p class="paddingm" id="part_text_copqm">All Parts</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -376,7 +414,7 @@
                           <p class="paddingm" id="reason_text_qrmr">All Reasons</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -395,7 +433,7 @@
                           <p class="paddingm" id="machine_text_qrmr">All Machines</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -414,7 +452,7 @@
                           <p class="paddingm" id="part_text_qrmr">All Parts</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -455,7 +493,7 @@
                           <p class="paddingm" id="reason_text_copqp">All Reasons</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -474,7 +512,7 @@
                           <p class="paddingm" id="machine_text_copqp">All Machines</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -493,7 +531,7 @@
                           <p class="paddingm" id="part_text_copqp">All Parts</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -529,7 +567,7 @@
                           <p class="paddingm" id="reason_text_qrpr">All Reasons</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -548,7 +586,7 @@
                           <p class="paddingm" id="machine_text_qrpr">All Machines</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -567,7 +605,7 @@
                           <p class="paddingm" id="part_text_qrpr">All Parts</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -616,7 +654,7 @@
                       <p class="paddingm" id="part_text">Select</p>
                     </div>
                     <div style="width: 80% !important;" class="dropdown-div">
-                      <i class="fa-solid fa-chevron-down icon-style"></i>
+                      <i class="fa fa-angle-down icon-style"></i>
                     </div>
                   </div>
                 </div>
@@ -636,7 +674,7 @@
                       <p class="paddingm" id="machine_text">Select</p>
                     </div>
                     <div style="width: 80% !important;" class="dropdown-div">
-                      <i class="fa-solid fa-chevron-down icon-style"></i>
+                      <i class="fa fa-angle-down icon-style"></i>
                     </div>
                   </div>
                 </div>
@@ -656,7 +694,7 @@
                       <p class="paddingm" id="reason_text">Select</p>
                     </div>
                     <div style="width: 80% !important;" class="dropdown-div">
-                      <i class="fa-solid fa-chevron-down icon-style"></i>
+                      <i class="fa fa-angle-down icon-style"></i>
                     </div>
                   </div>
                 </div>
@@ -676,7 +714,7 @@
                       <p class="paddingm" id="user_text">Select</p>
                     </div>
                     <div style="width: 80% !important;" class="dropdown-div">
-                      <i class="fa-solid fa-chevron-down icon-style"></i>
+                      <i class="fa fa-angle-down icon-style"></i>
                     </div>
                   </div>
                 </div>
@@ -2775,16 +2813,16 @@ function copqp() {
         {
           label:"Total",
           type: "bar",
-          backgroundColor: "#0077f6",
+          backgroundColor: "#0075F6",
           percentage_data: 0,
-          borderColor: "#0077f6",
+          borderColor: "#d9d9ff",
           borderWidth: 1,
           showLine : false,
           fill: false,
           // reject:totalReject, 
           data:totalVal,
           partName:partNameTotal,
-          categoryPercentage:1.0,
+          categoryPercentage:1.5,
           barPercentage:0.5,
           yAxisID: 'B',  
         }           
@@ -3098,9 +3136,9 @@ function qualitybyparts() {
         {
           label:"Total",
           type: "bar",
-          backgroundColor: "#0077f6",
+          backgroundColor: "#0075F6",
           percentage_data: 0,
-          borderColor: "#0077f6",
+          borderColor: "#d9d9ff",
           borderWidth: 1,
           showLine : false,
           fill: false,
@@ -3774,9 +3812,9 @@ function copqm() {
         {
           label: "partName",
           type: "bar",
-          backgroundColor: "#0077f6",
+          backgroundColor: "#0075F6",
           percentage_data: 0,
-          borderColor: "#0077f6",
+          borderColor: "#004b9b",
           borderWidth: 1,
           fill: true,
           // reject:a,
@@ -4104,9 +4142,9 @@ function qrbr() {
         {
           label:"Total",
           type: "bar",
-          backgroundColor: "#0077f6",
+          backgroundColor: "#0075F6",
           percentage_data: 0,
-          borderColor: "#0077f6",
+          borderColor: "#d9d9ff",
           borderWidth: 1,
           showLine : false,
           fill: false,
@@ -4812,8 +4850,10 @@ function filter_table_data(){
   filter_array.forEach(function(value, index) {
     if ((index > (x*pagination_length)-(pagination_length+1)) && (index < (x*pagination_length))) {
       var elements = $();
+     
+      
       elements = elements.add('<div id="settings_div">'
-                  +'<div class="row paddingm">'
+                  +'<div class="row paddingm" style="height:3.8rem;">'
                     +'<div class="col-sm-1 col marleft"><p class="rejection_font_color">'+value['from_date']+'</p></div>'
                     +'<div class="col-sm-1 col marleft"><p class="rejection_font_color">'+value['from_time']+'</p></div>'
                     +'<div class="col-sm-1 col marleft"><p class="rejection_font_color">'+value['to_time']+'</p></div>'
@@ -4823,7 +4863,11 @@ function filter_table_data(){
                     +'<div class="col-sm-1 col marleft"><p class="rejection_font_color">'+value['reason_name']+'</p></div>'
                     +'<div class="col-sm-1 col marleft"><p class="rejection_font_color">'+value['user_name']+'</p></div>'
                     +'<div class="col-sm-1 col marleft"><p class="rejection_font_color">'+value['updated_at']+'</p></div>'
-                    +'<div class="col-sm-1 col " style="justify-content:center;"><div class="rejection_font_color"><img src="<?php echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" style="height:1.4rem;width:1.4rem;"></div></div>'
+                    // +'<div class="col-sm-1 col " style="justify-content:center;"><div class="rejection_font_color"><img src="<?php echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" style="height:1.4rem;width:1.4rem;"></div></div>'
+                    +'<div class="col-sm-1 col " style="justify-content:center;"><div class="rejection_font_color notes_check"><img src="<?php echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" style="height:1.4rem;width:1.4rem;" onmouseover="notes_hover(this)"  onmouseout="mouse_out_check(this)"></div></div>'
+                    +'<div class="notes_display" style="">'
+                            +'<p >'+value['notes']+'</p>'
+                    +'</div>'
                   +'</div>'
                 +'</div>');
       $('.contentQualityFilter').append(elements);
@@ -5030,7 +5074,25 @@ function reset_created(){
 // Reason Filters......
 
 
+// notes hover function
+function notes_hover(ele){
+    var els = Array.prototype.slice.call( document.getElementsByClassName('icon_img_wh'), 0 );
+    var index_val = els.indexOf(event.currentTarget);
+    //   alert(index_val);
+    $('.notes_display:eq('+index_val+')').css('display','block');
+    //   console.log("notes index hovering"+index_val);
+}
+
+
+
+function mouse_out_check(ele1){
+  var els = Array.prototype.slice.call( document.getElementsByClassName('icon_img_wh'), 0 );
+  var index_val1 = els.indexOf(event.currentTarget);
+  $('.notes_display:eq('+index_val1+')').css("display","none");
+    //   console.log("notes index  hovering remove"+index_val1);
+
+}
 
 </script>
 
-<script src="<?php echo base_url(); ?>/assets/js/all-fontawesome.js?version=<?php echo rand() ; ?>"></script>
+<!-- <script src="<?php echo base_url(); ?>/assets/js/all-fontawesome.js?version=<?php echo rand() ; ?>"></script> -->
