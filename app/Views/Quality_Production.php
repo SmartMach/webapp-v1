@@ -138,14 +138,14 @@
       <p class="float-start p3" id="logo">Production Quality</p>
       <div class="d-flex" style="display: flex;align-items: center;">
                 <div class="box rightmar" style="margin-right:0.5rem;">
-                    <div style="padding-left:10px;padding-right:10px;height:2.3rem;border:1px solid #e6e6e6;border-radius:0.25rem;display:flex;justify-content:center;align-items:center;color:#C00000;"><p style="text-align:center;margin:auto;font-size:15px;font-weight:500;"><span id="total_rejection_header"></span> Rejects</p></div>
+                    <div style="padding-left:10px;padding-right:10px;height:2.3rem;border:1px solid #e6e6e6;border-radius:0.25rem;display:flex;justify-content:center;align-items:center;color:#C00000;"><p style="text-align:center;margin:auto;font-size:15px;font-weight:bold;"><span id="total_rejection_header"></span> Rejects</p></div>
                 </div>
                 <ul class="nav nav-pills" id="pills-tab" role="tablist" style="border:1px solid #ced4ca;border-radius:0.25rem;padding:0.1rem;margin:auto;margin-right:0.5rem;">
                   <li class="nav-item" role="presentation"  >
                     <i class="fa fa-sitemap nav-link active"  id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" style="padding:0.4rem;font-size:1.3rem;"></i>
                   </li>
                   <li class="nav-item" role="presentation">
-                    <i class="fa fa-calculator nav-link"  id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" style="padding:0.4rem;font-size:1.3rem;"></i>
+                    <i class="fa fa-calculator nav-link"  id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" style="padding:0.4rem;font-size:1.3rem;width: 1.6rem;"></i>
                   </li>
                 </ul>
               <!-- </div> -->
@@ -2449,7 +2449,7 @@ function qualitybyreasonparts() {
         }
         else if(len > 8){
           var l = parseInt(len)%parseInt(8);  
-          var w= parseInt($('.parent_graph_quality_part_reason').css("width"))+parseInt(10);
+          var w= parseInt($('.parent_graph_quality_part_reason').css("width"))+parseInt(l*5*16);
           $('.child_graph_quality_part_reason').css("width",w+"px");
           break;
         }
@@ -2555,7 +2555,7 @@ function qualitybyreasonparts() {
           });
         },
     error:function(res){
-        alert("Sorry!Try Agian!!!!");
+        // alert("Sorry!Try Agian!!!!");
     }
   }); 
 }
@@ -2822,7 +2822,7 @@ function copqp() {
           // reject:totalReject, 
           data:totalVal,
           partName:partNameTotal,
-          categoryPercentage:1.5,
+          categoryPercentage:1.0,
           barPercentage:0.5,
           yAxisID: 'B',  
         }           
@@ -2886,7 +2886,7 @@ function copqp() {
         },
     error:function(res){
       // console.log("Sorry!Try Agian!!!!");
-        alert("Sorry!Try Agian!!!!");
+        // alert("Sorry!Try Agian!!!!");
     }
   }); 
 }
@@ -3211,7 +3211,7 @@ function qualitybyparts() {
         },
     error:function(res){
       // console.log("Sorry!Try Agian!!!!");
-        alert("Sorry!Try Agian!!!!");
+        // alert("Sorry!Try Agian!!!!");
     }
   }); 
 }
@@ -3560,7 +3560,7 @@ function crbmr() {
         },
     error:function(res){
       // console.log("Sorry!Try Agian!!!!");
-        alert("Sorry!Try Agian!!!!");
+        // alert("Sorry!Try Agian!!!!");
     }
   }); 
 }
@@ -3885,7 +3885,7 @@ function copqm() {
         },
     error:function(res){
       // console.log("Sorry!Try Agian!!!!");
-        alert("Sorry!Try Agian!!!!");
+        // alert("Sorry!Try Agian!!!!");
     }
   }); 
 }
@@ -4235,7 +4235,7 @@ function qrbr() {
         },
     error:function(res){
       // console.log("Sorry!Try Agian!!!!");
-        alert("Sorry!Try Agian!!!!");
+        // alert("Sorry!Try Agian!!!!");
     }
   }); 
 
@@ -4806,7 +4806,7 @@ function getfilterdata() {
       $("#overlay").fadeOut(300);
     },
     error:function(res){
-      alert("Something went wrong!");
+      // alert("Something went wrong!");
     }
   });
 }
@@ -4830,7 +4830,7 @@ function getTableData(part,machine,reason,user){
       });
     },
     error:function(res){
-      alert("Something went wrong!");
+      // alert("Something went wrong!");
     }
   });
   $("#pagination_val").val(1);
