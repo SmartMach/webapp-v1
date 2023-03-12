@@ -185,9 +185,9 @@ $session = \Config\Services::session();
                                         </select>
                                         <div class="filter_overSelect_categorygp"></div>
                                     </div>
-                                    <div class="filter_checkboxes_categorygp" style="" >
+                                    <div class="filter_checkboxes_categorygp " style="" >
                                         <!-- options in progress -->
-                                        <div class="filter_check_categorygb" style="">
+                                        <div class="filter_check_categorygb reason_oppcost_common" style="">
                                             <div class="cate_drp_check" style="">
                                                 <input type="checkbox" id="one" class="categorygp_checkbox" value="all"/>
                                             </div>
@@ -196,7 +196,7 @@ $session = \Config\Services::session();
                                             </div>
                                         </div>
 
-                                        <div class="filter_check_categorygb" style="">
+                                        <div class="filter_check_categorygb reason_oppcost_common" style="">
                                             <div class="cate_drp_check" style="">
                                                 <input type="checkbox" id="one" class="categorygp_checkbox" value="Planned"/>
                                             </div>
@@ -205,7 +205,7 @@ $session = \Config\Services::session();
                                             </div>
                                         </div>
 
-                                        <div class="filter_check_categorygb" style="">
+                                        <div class="filter_check_categorygb reason_oppcost_common" style="">
                                             <div class="cate_drp_check" style="">
                                                 <input type="checkbox" id="one" class="categorygp_checkbox" value="Unplanned"/>
                                             </div>
@@ -274,7 +274,7 @@ $session = \Config\Services::session();
                                     </div>
                                     <div class="filter_checkboxes_categorygp1" style="" >
                                         <!-- options in progress -->
-                                        <div class="filter_check_categorygb1" style="">
+                                        <div class="filter_check_categorygb1 reason_duration_common" style="">
                                             <div class="cate_drp_check" style="">
                                                 <input type="checkbox" id="one" class="categorygp_checkbox1" value="all"/>
                                             </div>
@@ -283,7 +283,7 @@ $session = \Config\Services::session();
                                             </div>
                                         </div>
 
-                                        <div class="filter_check_categorygb1" style="">
+                                        <div class="filter_check_categorygb1 reason_duration_common" style="">
                                             <div class="cate_drp_check" style="">
                                                 <input type="checkbox" id="one" class="categorygp_checkbox1" value="Planned"/>
                                             </div>
@@ -292,7 +292,7 @@ $session = \Config\Services::session();
                                             </div>
                                         </div>
 
-                                        <div class="filter_check_categorygb1" style="">
+                                        <div class="filter_check_categorygb1 reason_duration_common" style="">
                                             <div class="cate_drp_check" style="">
                                                 <input type="checkbox" id="one" class="categorygp_checkbox1" value="Unplanned"/>
                                             </div>
@@ -363,7 +363,7 @@ $session = \Config\Services::session();
                                     </div>
                                     <div class="filter_checkboxes_categorygp2" style="" >
                                         <!-- options in progress -->
-                                        <div class="filter_check_categorygb2" style="">
+                                        <div class="filter_check_categorygb2 machine_oppcost_common" style="">
                                             <div class="cate_drp_check" style="">
                                                 <input type="checkbox" id="one" class="categorygp_checkbox2" value="all"/>
                                             </div>
@@ -372,7 +372,7 @@ $session = \Config\Services::session();
                                             </div>
                                         </div>
 
-                                        <div class="filter_check_categorygb2" style="">
+                                        <div class="filter_check_categorygb2 machine_oppcost_common" style="">
                                             <div class="cate_drp_check" style="">
                                                 <input type="checkbox" id="one" class="categorygp_checkbox2" value="Planned"/>
                                             </div>
@@ -381,7 +381,7 @@ $session = \Config\Services::session();
                                             </div>
                                         </div>
 
-                                        <div class="filter_check_categorygb2" style="">
+                                        <div class="filter_check_categorygb2 machine_oppcost_common" style="">
                                             <div class="cate_drp_check" style="">
                                                 <input type="checkbox" id="one" class="categorygp_checkbox2" value="Unplanned"/>
                                             </div>
@@ -450,7 +450,7 @@ $session = \Config\Services::session();
                                     </div>
                                     <div class="filter_checkboxes_categorygp3" style="" >
                                         <!-- options in progress -->
-                                        <div class="filter_check_categorygb3" style="">
+                                        <div class="filter_check_categorygb3 machine_reason_duration_common" style="">
                                             <div class="cate_drp_check" style="">
                                                 <input type="checkbox" id="one" class="categorygp_checkbox3" value="all"/>
                                             </div>
@@ -459,7 +459,7 @@ $session = \Config\Services::session();
                                             </div>
                                         </div>
 
-                                        <div class="filter_check_categorygb3" style="">
+                                        <div class="filter_check_categorygb3 machine_reason_duration_common" style="">
                                             <div class="cate_drp_check" style="">
                                                 <input type="checkbox" id="one" class="categorygp_checkbox3" value="Planned"/>
                                             </div>
@@ -468,7 +468,7 @@ $session = \Config\Services::session();
                                             </div>
                                         </div>
 
-                                        <div class="filter_check_categorygb3" style="">
+                                        <div class="filter_check_categorygb3 machine_reason_duration_common" style="">
                                             <div class="cate_drp_check" style="">
                                                 <input type="checkbox" id="one" class="categorygp_checkbox3" value="Unplanned"/>
                                             </div>
@@ -1258,7 +1258,7 @@ function fill_machine_dropdown(){
             +'</div>'
             +'</div>');
 
-            $('.filter_checkboxes_machinegp').append('<div class="filter_check_machinegp" style="">'
+            $('.filter_checkboxes_machinegp').append('<div class="filter_check_machinegp reason_oppcost_common" style="">'
             +'<div class="cate_drp_check" style="">'
             +'<input type="checkbox" id="one" class="machinegp_checkbox" value="all"/>'
             +'</div>'
@@ -1267,7 +1267,7 @@ function fill_machine_dropdown(){
             +'</div>'
             +'</div>');
 
-            $('.filter_checkboxes_machinegp1').append('<div class="filter_check_machinegp1" style="">'
+            $('.filter_checkboxes_machinegp1').append('<div class="filter_check_machinegp1 reason_duration_common" style="">'
             +'<div class="cate_drp_check" style="">'
             +'<input type="checkbox" id="one" class="machinegp_checkbox1" value="all"/>'
             +'</div>'
@@ -1276,7 +1276,7 @@ function fill_machine_dropdown(){
             +'</div>'
             +'</div>');
 
-            $('.filter_checkboxes_machinegp2').append('<div class="filter_check_machinegp2" style="">'
+            $('.filter_checkboxes_machinegp2').append('<div class="filter_check_machinegp2 machine_oppcost_common" style="">'
             +'<div class="cate_drp_check" style="">'
             +'<input type="checkbox" id="one" class="machinegp_checkbox2" value="all"/>'
             +'</div>'
@@ -1285,7 +1285,7 @@ function fill_machine_dropdown(){
             +'</div>'
             +'</div>');
 
-            $('.filter_checkboxes_machinegp3').append('<div class="filter_check_machinegp3" style="">'
+            $('.filter_checkboxes_machinegp3').append('<div class="filter_check_machinegp3 machine_reason_duration_common" style="">'
             +'<div class="cate_drp_check" style="">'
             +'<input type="checkbox" id="one" class="machinegp_checkbox3" value="all"/>'
             +'</div>'
@@ -1312,7 +1312,7 @@ function fill_machine_dropdown(){
                 +'</div>');
 
 
-                element = element.add('<div class="filter_check_machinegp" style="">'
+                element = element.add('<div class="filter_check_machinegp reason_oppcost_common" style="">'
                 +'<div class="cate_drp_check" style="">'
                 +'<input type="checkbox" id="one" class="machinegp_checkbox" value="'+val.machine_id+'"/>'
                 +'</div>'
@@ -1321,7 +1321,7 @@ function fill_machine_dropdown(){
                 +'</div>'
                 +'</div>');
 
-                ele = ele.add('<div class="filter_check_machinegp1" style="">'
+                ele = ele.add('<div class="filter_check_machinegp1 reason_duration_common" style="">'
                 +'<div class="cate_drp_check" style="">'
                 +'<input type="checkbox" id="one" class="machinegp_checkbox1" value="'+val.machine_id+'"/>'
                 +'</div>'
@@ -1330,7 +1330,7 @@ function fill_machine_dropdown(){
                 +'</div>'
                 +'</div>');
 
-                ele_1 = ele_1.add('<div class="filter_check_machinegp2" style="">'
+                ele_1 = ele_1.add('<div class="filter_check_machinegp2 machine_oppcost_common" style="">'
                 +'<div class="cate_drp_check" style="">'
                 +'<input type="checkbox" id="one" class="machinegp_checkbox2" value="'+val.machine_id+'"/>'
                 +'</div>'
@@ -1339,7 +1339,7 @@ function fill_machine_dropdown(){
                 +'</div>'
                 +'</div>');
 
-                ele_2 = ele_2.add('<div class="filter_check_machinegp3" style="">'
+                ele_2 = ele_2.add('<div class="filter_check_machinegp3 machine_reason_duration_common" style="">'
                 +'<div class="cate_drp_check" style="">'
                 +'<input type="checkbox" id="one" class="machinegp_checkbox3" value="'+val.machine_id+'"/>'
                 +'</div>'
@@ -1497,10 +1497,10 @@ function downtime_reason_filter(){
             var ele_2 = $();
 
             $('.filter_checkboxes_r').append('<div class="filter_check_r" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
-            $('.filter_checkboxes_reasongp').append('<div class="filter_check_reasongp" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
-            $('.filter_checkboxes_reasongp1').append('<div class="filter_check_reasongp1" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox1" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
-            $('.filter_checkboxes_reasongp2').append('<div class="filter_check_reasongp2" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox2" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
-            $('.filter_checkboxes_reasongp3').append('<div class="filter_check_reasongp3" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox3" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
+            $('.filter_checkboxes_reasongp').append('<div class="filter_check_reasongp reason_oppcost_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
+            $('.filter_checkboxes_reasongp1').append('<div class="filter_check_reasongp1 reason_duration_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox1" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
+            $('.filter_checkboxes_reasongp2').append('<div class="filter_check_reasongp2 machine_oppcost_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox2" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
+            $('.filter_checkboxes_reasongp3').append('<div class="filter_check_reasongp3 machine_reason_duration_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox3" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
 
 
             res.forEach(function(item){
@@ -1511,12 +1511,12 @@ function downtime_reason_filter(){
                     // element = element.add('<option value="'+item.downtime_reason+'">'+item.downtime_reason+'</option>');
                 element = element.add('<div class="filter_check_r" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
                 
-                elements = elements.add('<div class="filter_check_reasongp" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
+                elements = elements.add('<div class="filter_check_reasongp reason_oppcost_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
 
-                ele = ele.add('<div class="filter_check_reasongp1" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox1" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
+                ele = ele.add('<div class="filter_check_reasongp1 reason_duration_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox1" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
                 
-                ele_1 = ele_1.add('<div class="filter_check_reasongp2" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox2" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
-                ele_2 = ele_2.add('<div class="filter_check_reasongp3" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox3" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
+                ele_1 = ele_1.add('<div class="filter_check_reasongp2 machine_oppcost_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox2" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
+                ele_2 = ele_2.add('<div class="filter_check_reasongp3 machine_reason_duration_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox3" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
             
                 $('.filter_checkboxes_r').append(element);
                 $('.filter_checkboxes_reasongp').append(elements);
@@ -1690,25 +1690,75 @@ $(document).mouseup(function(event){
 
     // graph filter mouse out side click functions
     // category dropdown out side click hide
-    // var gp_category = $('.filter_checkboxes_categorygp');
-    // if (!gp_category.is(event.target) && gp_category.has(event.target).length==0) {
-    //     gp_category.hide();
-    //     // getfilter_oppcost_reason();
-    // }
+    var gp_category = $('.filter_checkboxes_categorygp');
+    if (!gp_category.is(event.target) && gp_category.has(event.target).length==0) {
+        gp_category.hide();
+        // getfilter_oppcost_reason();
+    }
 
     // // reasons dropdown outside click hide
-    // var gp_reason = $('.filter_checkboxes_reasongp');
-    // if (!gp_reason.is(event.target) && gp_reason.has(event.target).length==0) {
-    //     gp_reason.hide();
-    //     // getfilter_oppcost_reason();
-    // }
+    var gp_reason = $('.filter_checkboxes_reasongp');
+    if (!gp_reason.is(event.target) && gp_reason.has(event.target).length==0) {
+        gp_reason.hide();
+        // getfilter_oppcost_reason();
+    }
 
     // // machine dropdown outside click hide
-    // var gp_machine = $('.filter_checkboxes_machinegp');
-    // if (!gp_machine.is(event.target) && gp_machine.has(event.target).lenght==0) {
-    //     gp_machine.hide();
-    //     // getfilter_oppcost_reason();
-    // }
+    var gp_machine = $('.filter_checkboxes_machinegp');
+    if (!gp_machine.is(event.target) && gp_machine.has(event.target).length==0) {
+        gp_machine.hide();
+        // getfilter_oppcost_reason();
+    }
+
+    // reason wise duration dropdown close
+    var gp_category1 = $('.filter_checkboxes_categorygp1');
+    if (!gp_category1.is(event.target) && gp_category1.has(event.target).length==0) {
+        gp_category1.hide();
+    }
+
+    var gp_reason1 = $('.filter_checkboxes_reasongp1');
+    if (!gp_reason1.is(event.target) && gp_reason1.has(event.target).length==0) {
+        gp_reason1.hide();
+    }
+
+    var gp_machine1 = $('.filter_checkboxes_machinegp1');
+    if (!gp_machine1.is(event.target) && gp_machine1.has(event.target).length==0) {
+        gp_machine1.hide();
+    }
+
+    // machine wise oppcost dropdown close
+    var gp_category2 = $('.filter_checkboxes_categorygp2');
+    if (!gp_category2.is(event.target) && gp_category2.has(event.target).length==0) {
+        gp_category2.hide();
+    }
+
+    var gp_reason2 = $('.filter_checkboxes_reasongp2');
+    if (!gp_reason2.is(event.target) && gp_reason2.has(event.target).length==0) {
+        gp_reason2.hide();
+    }
+
+    var gp_machine2 = $('.filter_checkboxes_machinegp2');
+    if (!gp_machine2.is(event.target) && gp_machine2.has(event.target).length==0) {
+        gp_machine2.hide();
+    }
+
+    // machine reason duration dropdown close
+    var gp_category3 = $('.filter_checkboxes_categorygp3');
+    if (!gp_category3.is(event.target) && gp_category3.has(event.target).length==0) {
+        gp_category3.hide();
+    }
+
+    var gp_reason3 = $('.filter_checkboxes_reasongp3');
+    if (!gp_reason3.is(event.target) && gp_reason3.has(event.target).length==0) {
+        gp_reason3.hide();
+    }
+
+    var gp_machine3 = $('.filter_checkboxes_machinegp3');
+    if (!gp_machine3.is(event.target) && gp_machine3.has(event.target).length==0) {
+        gp_machine3.hide();
+    }
+
+
 });
 
 // filter onclick  function
@@ -1908,6 +1958,29 @@ $(document).on('click','.table_reset',function(event){
     
     filter_after_filter(end_index,start_index);
 
+
+});
+
+
+// graph onclick
+$(document).on('click','.reason_oppcost_common',function(event){
+    event.preventDefault();
+    getfilter_oppcost_reason();
+});
+$(document).on('click','.reason_duration_common',function(event){
+    event.preventDefault();
+    getfilter_duration_reason();
+
+});
+
+$(document).on('click','.machine_oppcost_common',function(event){
+    event.preventDefault();
+    getfilter_machine_oppcost();
+});
+
+$(document).on('click','.machine_reason_duration_common',function(event){
+    event.preventDefault();
+    getfilter_machine_reason_duration();
 
 });
 
