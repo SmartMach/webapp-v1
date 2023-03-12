@@ -100,14 +100,14 @@
       <p class="float-start p3" id="logo">Production Quality</p>
       <div class="d-flex" style="display: flex;align-items: center;">
                 <div class="box rightmar" style="margin-right:0.5rem;">
-                    <div style="padding-left:10px;padding-right:10px;height:2.3rem;border:1px solid #e6e6e6;border-radius:0.25rem;display:flex;justify-content:center;align-items:center;color:#C00000;"><p style="text-align:center;margin:auto;font-size:15px;font-weight:500;"><span id="total_rejection_header"></span> Rejects</p></div>
+                    <div style="padding-left:10px;padding-right:10px;height:2.3rem;border:1px solid #e6e6e6;border-radius:0.25rem;display:flex;justify-content:center;align-items:center;color:#C00000;"><p style="text-align:center;margin:auto;font-size:15px;font-weight:bold;"><span id="total_rejection_header"></span> Rejects</p></div>
                 </div>
                 <ul class="nav nav-pills" id="pills-tab" role="tablist" style="border:1px solid #ced4ca;border-radius:0.25rem;padding:0.1rem;margin:auto;margin-right:0.5rem;">
                   <li class="nav-item" role="presentation"  >
                     <i class="fa fa-sitemap nav-link active"  id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" style="padding:0.4rem;font-size:1.3rem;"></i>
                   </li>
                   <li class="nav-item" role="presentation">
-                    <i class="fa fa-calculator nav-link"  id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" style="padding:0.4rem;font-size:1.3rem;"></i>
+                    <i class="fa fa-calculator nav-link"  id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" style="padding:0.4rem;font-size:1.3rem;width: 1.6rem;"></i>
                   </li>
                 </ul>
               <!-- </div> -->
@@ -2775,16 +2775,16 @@ function copqp() {
         {
           label:"Total",
           type: "bar",
-          backgroundColor: "#004b9b",
+          backgroundColor: "#0077f6",
           percentage_data: 0,
-          borderColor: "#d9d9ff",
+          borderColor: "#0077f6",
           borderWidth: 1,
           showLine : false,
           fill: false,
           // reject:totalReject, 
           data:totalVal,
           partName:partNameTotal,
-          categoryPercentage:1.5,
+          categoryPercentage:1.0,
           barPercentage:0.5,
           yAxisID: 'B',  
         }           
@@ -3098,9 +3098,9 @@ function qualitybyparts() {
         {
           label:"Total",
           type: "bar",
-          backgroundColor: "#004b9b",
+          backgroundColor: "#0077f6",
           percentage_data: 0,
-          borderColor: "#d9d9ff",
+          borderColor: "#0077f6",
           borderWidth: 1,
           showLine : false,
           fill: false,
@@ -3774,9 +3774,9 @@ function copqm() {
         {
           label: "partName",
           type: "bar",
-          backgroundColor: "#004b9b",
+          backgroundColor: "#0077f6",
           percentage_data: 0,
-          borderColor: "#004b9b",
+          borderColor: "#0077f6",
           borderWidth: 1,
           fill: true,
           // reject:a,
@@ -4104,9 +4104,9 @@ function qrbr() {
         {
           label:"Total",
           type: "bar",
-          backgroundColor: "#004b9b",
+          backgroundColor: "#0077f6",
           percentage_data: 0,
-          borderColor: "#d9d9ff",
+          borderColor: "#0077f6",
           borderWidth: 1,
           showLine : false,
           fill: false,
