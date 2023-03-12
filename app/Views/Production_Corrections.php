@@ -381,7 +381,7 @@ function  gedt_correction_data(){
             (parseInt(count)>9 || (parseInt(count)<0 && parseInt(count)<(-9)))? ($('#corrects').html(count)):($('#corrects').html('0'+count));
         },
         error:function(res){
-            alert("Sorry!Try Agian!!");
+            // alert("Sorry!Try Agian!!");
         }
     });
 }
@@ -418,7 +418,7 @@ function datePick(date_shift){
                 });
             },
             error:function(res){
-                alert("Sorry!Try Agian!!");
+                // alert("Sorry!Try Agian!!");
             }
         });
 
@@ -525,7 +525,7 @@ function datePick(date_shift){
                     $("#shiftName").removeAttr("disabled");
                 },
                 error:function(res){
-                    alert("Sorry!Try Agian!!");
+                    // alert("Sorry!Try Agian!!");
                 }
             });
         });
@@ -613,7 +613,7 @@ function datePick(date_shift){
                 $('.EditCorrection').attr('production_count',production_count);
             },
             error:function(res){
-                alert("Sorry!Try Agian!!");
+                // alert("Sorry!Try Agian!!");
             }
         });
     });
@@ -668,7 +668,7 @@ function datePick(date_shift){
                     $("#overlay").fadeOut(300);                      
                 },
                 error:function(res){
-                    alert("Sorry!Try Agian!!");
+                    // alert("Sorry!Try Agian!!");
                     $("#overlay").fadeOut(300);
                 }
             });

@@ -604,7 +604,7 @@ $session = \Config\Services::session();
                         }
                     },
                     error:function(err){
-                        alert("Something went wrong!");
+                        // alert("Something went wrong!");
                         $("#overlay").fadeOut(300);
                     }
             });
@@ -690,7 +690,7 @@ $session = \Config\Services::session();
                 
                     },
                     error:function(res){
-                        alert("Sorry! Try Agian!!");
+                        // alert("Sorry! Try Agian!!");
                         $("#overlay").fadeOut(300);
                     }
                 });
@@ -734,7 +734,7 @@ $session = \Config\Services::session();
                         $("#overlay").fadeOut(300);
                     },
                     error:function(res){
-                        alert("Sorry! Try Agian!!");
+                        // alert("Sorry! Try Agian!!");
                         $("#overlay").fadeOut(300);
                     }
                 });
@@ -793,7 +793,7 @@ $session = \Config\Services::session();
                     $('#last_updated_on1').html(date_time);
                 },
                 error:function(res){
-                    alert("Sorry! Try Agian!!");
+                    // alert("Sorry! Try Agian!!");
                 }
             });
             $('#InfoMachineModal').modal('show');
@@ -851,7 +851,7 @@ $session = \Config\Services::session();
                     $('#last_updated_on1').html(date_time);
                 },
                 error:function(res){
-                    alert("Sorry! Try Agian!!");
+                    // alert("Sorry! Try Agian!!");
                 }
             });
             $('#InfoMachineModal').modal('show');
@@ -907,7 +907,7 @@ $session = \Config\Services::session();
                     
                 },
                 error:function(res){
-                    alert("Sorry!Try Agian!!");
+                    // alert("Sorry!Try Agian!!");
                 }
             });
             var check_error_show = "edit_machine";
@@ -970,7 +970,7 @@ $session = \Config\Services::session();
                         }
                     },
                     error:function(res){
-                        alert("Sorry!Try Agian!!");
+                        // alert("Sorry!Try Agian!!");
                         $("#overlay").fadeOut(300);
                     }
                 });
@@ -1033,7 +1033,7 @@ $session = \Config\Services::session();
                     }
                 },
                 error:function(res){
-                    alert('sorry Try Again...');
+                    // alert('sorry Try Again...');
                 }
             });
         }
@@ -1071,7 +1071,7 @@ $session = \Config\Services::session();
                         $("#overlay").fadeOut(300);
                     },
                     error:function(res){
-                        alert('sorry Try Again...');
+                        // alert('sorry Try Again...');
                         $("#overlay").fadeOut(300);
                     }
                 });
@@ -1236,7 +1236,7 @@ function get_machine_data(){
             });
         },
         error:function(err){
-            alert(err);
+            // alert(err);
         }
     });
 }
@@ -1266,7 +1266,7 @@ function get_count(){
             }   
         },
         error:function(res){
-            alert("Sorry!Try Agian!!");
+            // alert("Sorry!Try Agian!!");
         }
     });
 }

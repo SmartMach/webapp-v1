@@ -1132,12 +1132,12 @@ function pagination_filter(){
         if (parseInt(value_input)<=parseInt(limit_val)) {
             end_index = parseInt(value_input)*50;
             start_index = parseInt(end_index)-50;
-            console.log("start index"+start_index);
-            console.log("end index"+end_index);
+            // console.log("start index"+start_index);
+            // console.log("end index"+end_index);
             // pagination_filter_pass(start_index,end_index);
 
         }else{
-            console.log("invalid and more than limited value");
+            // console.log("invalid and more than limited value");
             $('#pagination_val').val('1');
             start_index = 0;
             end_index = 50;
@@ -1145,7 +1145,7 @@ function pagination_filter(){
 
         }
     }else{
-        console.log("invalid and more than limited value");
+        // console.log("invalid and more than limited value");
         $('#pagination_val').val('1');
         start_index = 0;
         end_index = 50;
@@ -1239,8 +1239,8 @@ function fill_machine_dropdown(){
         type:"POST",
         dataType: "json",
         success:function(res){
-            console.log("multi select dropdown machine");
-            console.log(res);
+            // console.log("multi select dropdown machine");
+            // console.log(res);
             
             $('.filter_checkboxes_machine').empty();
             $('.filter_checkboxes_machinegp').empty();
@@ -1392,8 +1392,8 @@ function fill_part_dropdown(){
         dataType: "json",
         // data:{from:from,to:to},
         success:function(res){
-            console.log("multi select dropdown part");
-            console.log(res);
+            // console.log("multi select dropdown part");
+            // console.log(res);
             
             $('.filter_checkboxes_part').empty();
             $('.filter_checkboxes_part').append('<div class="filter_check_part" style="">'
@@ -1438,8 +1438,8 @@ function fill_created_by(){
         dataType: "json",
         // data:{from:from,to:to},
         success:function(res){
-            console.log("multi select dropdown created by");
-            console.log(res);
+            // console.log("multi select dropdown created by");
+            // console.log(res);
             
             $('.filter_checkboxes_cb').empty();
             $('.filter_checkboxes_cb').append('<div class="filter_check_cb" style="">'
@@ -1487,8 +1487,8 @@ function downtime_reason_filter(){
             $('.filter_checkboxes_reasongp2').empty();
             $('.filter_checkboxes_reasongp3').empty();
 
-            console.log("reason dropdwon");
-            console.log(res);
+            // console.log("reason dropdwon");
+            // console.log(res);
 
             var element = $();
             var elements = $();
@@ -1573,8 +1573,8 @@ function category_based_reson(category_temp){
       success:function(res){
         // console.log("reason dropdwon");
         // console.log(res);
-        console.log("category selection ");
-        console.log(res);
+        // console.log("category selection ");
+        // console.log(res);
         var element = $();
         $('.filter_checkboxes_r').append('<div class="filter_check_r" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
         res.forEach(function(item){
@@ -1693,18 +1693,21 @@ $(document).mouseup(function(event){
     // var gp_category = $('.filter_checkboxes_categorygp');
     // if (!gp_category.is(event.target) && gp_category.has(event.target).length==0) {
     //     gp_category.hide();
+    //     // getfilter_oppcost_reason();
     // }
 
     // // reasons dropdown outside click hide
     // var gp_reason = $('.filter_checkboxes_reasongp');
     // if (!gp_reason.is(event.target) && gp_reason.has(event.target).length==0) {
     //     gp_reason.hide();
+    //     // getfilter_oppcost_reason();
     // }
 
     // // machine dropdown outside click hide
     // var gp_machine = $('.filter_checkboxes_machinegp');
     // if (!gp_machine.is(event.target) && gp_machine.has(event.target).lenght==0) {
     //     gp_machine.hide();
+    //     // getfilter_oppcost_reason();
     // }
 });
 
@@ -1797,8 +1800,8 @@ function filter_after_filter(end_index,start_index){
         },
         success:function(res){
             // console.log(res);
-            console.log("table data");
-            console.log(res);
+            // console.log("table data");
+            // console.log(res);
             $('.fixed_rows').empty();
             $('.scroll_rows').empty();
             // console.log("table key");
@@ -1947,12 +1950,12 @@ function getfilter_oppcost_reason(){
     t = $('.toDate').val();
     f = f.replace(" ","T");
     t = t.replace(" ","T");
-    console.log('reason oppcost graph filter');
-    console.log(graph_machine_arr);
-    console.log(graph_category_arr);
-    console.log(graph_reason_arr);
-    console.log(f);
-    console.log(t);
+    // console.log('reason oppcost graph filter');
+    // console.log(graph_machine_arr);
+    // console.log(graph_category_arr);
+    // console.log(graph_reason_arr);
+    // console.log(f);
+    // console.log(t);
 
     $.ajax({
         url:"<?php echo  base_url('Production_Downtime_controller/graph_filter_reason_wise_oppcost'); ?>",
@@ -1966,11 +1969,11 @@ function getfilter_oppcost_reason(){
             to:t,
         },
         success:function(res){
-            console.log("filter data reason oppcost");
-            console.log(res);
+            // console.log("filter data reason oppcost");
+            // console.log(res);
 
 
-            $('#reason_wise_oppcost_total').text(parseFloat(res['grandTotal']).toLocaleString("en-IN"));
+            $('#reason_wise_oppcost_total').text(parseInt(res['grandTotal']).toLocaleString("en-IN"));
             // total hour and minute
             var thour = parseInt(res['total_duration'])/60;
             var tminute = parseInt(res['total_duration']%60);
@@ -2117,10 +2120,10 @@ function getfilter_oppcost_reason(){
         }
 
     });
-   console.log('filter data');
-   console.log(graph_category_arr);
-   console.log(graph_reason_arr);
-   console.log(graph_machine_arr);
+    //    console.log('filter data');
+    //    console.log(graph_category_arr);
+    //    console.log(graph_reason_arr);
+    //    console.log(graph_machine_arr);
 }
 
 
@@ -2164,12 +2167,12 @@ function getfilter_duration_reason(){
     t = $('.toDate').val();
     f = f.replace(" ","T");
     t = t.replace(" ","T");
-    console.log('reason duration graph filter');
-    console.log(graph_machine_arr);
-    console.log(graph_category_arr);
-    console.log(graph_reason_arr);
-    console.log(f);
-    console.log(t);
+    // console.log('reason duration graph filter');
+    // console.log(graph_machine_arr);
+    // console.log(graph_category_arr);
+    // console.log(graph_reason_arr);
+    // console.log(f);
+    // console.log(t);
     $.ajax({
         url:"<?php echo base_url('Production_Downtime_controller/getdowntime_graph_filter_reason_duration'); ?>",
         type: "POST",
@@ -2182,8 +2185,8 @@ function getfilter_duration_reason(){
             category_arr:graph_category_arr
         },
         success:function(res){
-            console.log("Reason Wise duration graph filter");
-            console.log(res);
+            // console.log("Reason Wise duration graph filter");
+            // console.log(res);
 
             var hour_text = parseInt(parseInt(res['total_duration'])/60);
             var minute_text = parseInt(parseInt(res['total_duration'])%60);
@@ -2354,12 +2357,12 @@ function getfilter_machine_oppcost(){
     t = $('.toDate').val();
     f = f.replace(" ","T");
     t = t.replace(" ","T");
-    console.log('machine wise oppcost graph filter');
-    console.log(graph_machine_arr);
-    console.log(graph_category_arr);
-    console.log(graph_reason_arr);
-    console.log(f);
-    console.log(t);
+    // console.log('machine wise oppcost graph filter');
+    // console.log(graph_machine_arr);
+    // console.log(graph_category_arr);
+    // console.log(graph_reason_arr);
+    // console.log(f);
+    // console.log(t);
     $.ajax({
         url:'<?php echo base_url('Production_Downtime_controller/filter_machine_wise_oppcost') ?>',
         type: "POST",
@@ -2372,9 +2375,9 @@ function getfilter_machine_oppcost(){
             category_arr:graph_category_arr
         },
         success:function(res){
-            console.log('Machine wise oppcost');
-            console.log(res);
-            $('#machine_wise_oppcost_total').text(parseFloat(res['grant_total']).toLocaleString("en-IN"));
+            // console.log('Machine wise oppcost');
+            // console.log(res);
+            $('#machine_wise_oppcost_total').text(parseInt(res['grant_total']).toLocaleString("en-IN"));
             var machine_label = [];
             var oppcost_arr = [];
             var machine_id_arr = [];
@@ -2542,12 +2545,12 @@ function getfilter_machine_reason_duration(){
     t = $('.toDate').val();
     f = f.replace(" ","T");
     t = t.replace(" ","T");
-    console.log('machine and reason duration  graph filter');
-    console.log(graph_machine_arr);
-    console.log(graph_category_arr);
-    console.log(graph_reason_arr);
-    console.log("from date:\t"+f);
-    console.log("to date:\t"+t);
+    // console.log('machine and reason duration  graph filter');
+    // console.log(graph_machine_arr);
+    // console.log(graph_category_arr);
+    // console.log(graph_reason_arr);
+    // console.log("from date:\t"+f);
+    // console.log("to date:\t"+t);
     $.ajax({
         url:'<?php echo base_url('Production_Downtime_controller/filter_machine_reason_duration') ?>',
         type: "POST",
@@ -2560,8 +2563,8 @@ function getfilter_machine_reason_duration(){
             category_arr:graph_category_arr
         },
         success:function(res){
-            console.log('Machine and reason  wise duration');
-            console.log(res);
+            // console.log('Machine and reason  wise duration');
+            // console.log(res);
 
             $('#machine_reason_duration').remove();
             $('.child_machine_reason_duration').append('<canvas id="machine_reason_duration"></canvas>');
@@ -2714,9 +2717,6 @@ function getfilter_machine_reason_duration(){
         }
     });
 
-
-
-
 }
 
 
@@ -2849,6 +2849,5 @@ $(document).on('blur','.toDate',function(event){
     // filter function apply
     filter_after_filter(end_index,start_index);
 });
-
 
 </script>
