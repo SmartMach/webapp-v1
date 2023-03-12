@@ -376,7 +376,7 @@ function selection_data(){
             (parseInt(count)>9)? ($('#rejects').html(count)):($('#rejects').html('0'+count));
         },
         error:function(res){
-            alert("Sorry!Try Agian!!");
+            // alert("Sorry!Try Agian!!");
         }
     });
 }
@@ -435,7 +435,7 @@ $(document).ready(function(){
             });
         },
         error:function(res){
-            alert("Sorry!Try Agian!!");
+            // alert("Sorry!Try Agian!!");
         }
     });
         
@@ -482,7 +482,7 @@ $(document).ready(function(){
                 });
             },
             error:function(err){
-                alert("Sorry Try again");
+                // alert("Sorry Try again");
             }
         }); 
         $('.fixtabletitle').css("z-index","1");
@@ -543,7 +543,7 @@ $(document).ready(function(){
                 $("#RejectShift").removeAttr("disabled");
             },
             error:function(res){
-                alert("Sorry!Try Agian!!");
+                // alert("Sorry!Try Agian!!");
             }
         });
     });
@@ -693,7 +693,7 @@ $(document).ready(function(){
                 $('#EditQualityModal').modal('show');
             },
             error:function(err){
-                alert(err);
+                // alert(err);
             }
               
         }); 

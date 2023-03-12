@@ -1119,7 +1119,7 @@ $(document).on('click','#show_edit_financial_metrics',function(){
             $('#EOEE').val(res[0].oee_target);
         },
         error:function(res){
-            alert("Sorry!Try Agian!!");
+            // alert("Sorry!Try Agian!!");
         }
     });
     var financial_data = "financial_metrics";
@@ -1166,7 +1166,7 @@ $(document).on('click','#click_thresh_hold',function(){
             $('#Update_DThreshold').val(res[0].downtime_threshold);
         },
         error:function(res){
-            alert("Sorry!Try Agian!!");
+            // alert("Sorry!Try Agian!!");
         }
     });
     var thresh_hold_data = "downtime_thresh_hold";
@@ -1198,7 +1198,7 @@ $(document).on('click','#current_shift_click_pencil',function(){
             $('#current_shit_performance').modal('show');
        },
        error:function(err){
-        alert('something went wrong, try again !!');
+        // alert('something went wrong, try again !!');
        }
    });
 });  
@@ -1258,7 +1258,7 @@ $('#submit_downtime_reason').on('click',function(event){
                         }
                     },
                     error:function(er){
-                        alert("Something went wrong");
+                        // alert("Something went wrong");
                         $("#overlay").fadeOut(300);    
                     }
                 });   
@@ -1284,7 +1284,7 @@ $('#submit_downtime_reason').on('click',function(event){
                         }
                     },
                     error:function(er){
-                        alert("Something went wrong");
+                        // alert("Something went wrong");
                         $("#overlay").fadeOut(300);    
                     }
                 });   
@@ -1330,7 +1330,6 @@ $('#Update_Downtime_Reason').on('click',function(event){
             }
         },
         error:function(er){
-            alert("er");
             $("#overlay").fadeOut(300);    
         }
     }); 
@@ -1374,7 +1373,7 @@ $(document).on('click','#submit_quality_reasons',function(event){
                     }
                 },
                 error:function(er){
-                    alert("Something went wrong!");
+                    // alert("Something went wrong!");
                     $("#overlay").fadeOut(300);    
                 }
             });
@@ -1399,7 +1398,7 @@ $(document).on('click','#submit_quality_reasons',function(event){
                     }
                 },
                 error:function(er){
-                    alert("Something went wrong!");
+                    // alert("Something went wrong!");
                     $("#overlay").fadeOut(300);    
                 }
             });
@@ -1443,7 +1442,7 @@ $(document).on('click','#edit_quality_reasons',function(event){
                 }
             },
             error:function(er){
-                alert("Sorry Try again!");
+                // alert("Sorry Try again!");
                 $("#overlay").fadeOut(300);    
             }
         }); 
@@ -1484,7 +1483,7 @@ function get_financial_metrics(){
             $('#OEECalc').html(res[0].oee_target);
         },
         error:function(res){
-            alert("Sorry!Try Agian!!");
+            // alert("Sorry!Try Agian!!");
         }
     });
 }
@@ -1595,7 +1594,7 @@ $(document).on("click", ".updateSST", function(event){
             $("#overlay").fadeOut(300);    
         },
         error:function(res){
-            alert("Sorry!Try Agian!!");
+            // alert("Sorry!Try Agian!!");
             $("#overlay").fadeOut(300);    
         }
     });
@@ -1637,7 +1636,7 @@ function get_shift_data(){
             $('#get_hour_val').html(split_hour_shift[0]);
         },
         error:function(res){
-            alert("No current shift data*!!");
+            // alert("No current shift data*!!");
         }
     }); 
 } 
@@ -1691,7 +1690,7 @@ function get_shift_data(){
                     $("#overlay").fadeOut(300);    
                 },
                 error:function(res){
-                    alert("Sorry!Try Agian!!");
+                    // alert("Sorry!Try Agian!!");
                     $("#overlay").fadeOut(300);    
                 }
             });
@@ -1723,7 +1722,7 @@ function get_shift_data(){
                     }
                 },
                 error:function(res){
-                    alert("Sorry!Try Agian!!");
+                    // alert("Sorry!Try Agian!!");
                     $("#overlay").fadeOut(300);    
                 }
             });
@@ -1743,7 +1742,7 @@ function get_shift_data(){
                 $("#range").css("font-weight","1000");
             },
             error:function(res){
-                alert("Sorry!Try Agian!!");
+                //alert("Sorry!Try Agian!!");
             }
         });
     }
@@ -1822,7 +1821,7 @@ function get_shift_data(){
                }
             },
             error:function(res){
-                alert("Sorry!Try Agian!!");
+                // alert("Sorry!Try Agian!!");
             }
         });
     }
@@ -1869,7 +1868,7 @@ function get_shift_data(){
                }
             },
             error:function(res){
-                alert("Sorry!Try Agian!!");
+                // alert("Sorry!Try Agian!!");
             }
         });
     }
@@ -1901,7 +1900,7 @@ function get_shift_data(){
                 }
             },
             error:function(res){
-                alert("Sorry!Try Agian!!");
+                // alert("Sorry!Try Agian!!");
                 $("#overlay").fadeOut(300);    
             }
         });
@@ -1957,7 +1956,7 @@ function get_shift_data(){
                 $('#updateDRModal').modal('show');
             },
             error:function(res){
-                alert("Sorry!Try Agian!!");
+                // alert("Sorry!Try Agian!!");
             }
         });
     });
@@ -1999,7 +1998,7 @@ function get_shift_data(){
                 $('#updateQRModal').modal('show');
             },
             error:function(res){
-                alert("Sorry!Try Agian!!");
+                // alert("Sorry!Try Agian!!");
             }
         });
     });
@@ -2032,7 +2031,7 @@ function get_shift_data(){
                 
             },
             error:function(res){
-                alert("Sorry!Try Agian!!");
+                // alert("Sorry!Try Agian!!");
                 $("#overlay").fadeOut(300);    
             }
         });
@@ -2065,7 +2064,7 @@ $(document).on('click','#btn_current_shift',function(){
                             }
                         },
                         error:function(err){
-                            alert("something went wrong");
+                            // alert("something went wrong");
                             $("#overlay").fadeOut(300);    
                         }
                     });
@@ -2106,7 +2105,7 @@ function get_current_shift_data(){
             $('.green_value_edit').val(green_val);
         },
         error:function(err){
-            alert('something went wrong, try again !!');
+            // alert('something went wrong, try again !!');
         }
     });
 }

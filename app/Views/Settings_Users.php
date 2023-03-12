@@ -1253,7 +1253,7 @@
                                 }
                             },
                             error:function(res){
-                                alert("Sorry!Try Agian!!");
+                                // alert("Sorry!Try Agian!!");
                                 // document.body.classList.remove('demo_class');
                                 $("#overlay").fadeOut(300);
                             }
@@ -1309,7 +1309,7 @@
                                     }
                                 },
                                 error:function(res){
-                                    alert("Sorry!Try Agian!!");
+                                    // alert("Sorry!Try Agian!!");
                                     $("#overlay").fadeOut(300);
                                 }
                             });
@@ -1400,7 +1400,7 @@
                 });
             },
             error:function(res){
-                alert("Sorry!Try Agian SiteName!!");
+                // alert("Sorry!Try Agian SiteName!!");
             }
 
         });
@@ -1424,7 +1424,7 @@
                 });
             },
             error:function(res_err){
-                alert("Sorry Try Again");
+                // alert("Sorry Try Again");
             }
         });
     }
@@ -1448,7 +1448,7 @@
                 );   
             },
             error:function(res){
-                alert("Sorry! Try Agian!!");
+                // alert("Sorry! Try Agian!!");
             }
         });
     }
@@ -1506,7 +1506,7 @@ $(document).ready(function(){
                 );  
             },
             error:function(res){
-                alert("Sorry!Try Agian!!");
+                // alert("Sorry!Try Agian!!");
             }
         });
     }
@@ -1895,7 +1895,7 @@ $(document).ready(function(){
                 }
             },
             error:function(res){
-                alert("Sorry!Try Agian!!");
+                // alert("Sorry!Try Agian!!");
                 $("#overlay").fadeOut(300);
             }
         });
@@ -1954,7 +1954,7 @@ $(document).ready(function(){
                 }
             },
             error:function(res){
-                alert("Sorry!Try Agian!!");
+                // alert("Sorry!Try Agian!!");
                 $("#overlay").fadeOut(300);
             }
         });
@@ -2056,7 +2056,7 @@ $(document).ready(function(){
                                 
                         },
                         error:function(res){
-                            alert("Sorry!ifTry Agian!!");
+                            // alert("Sorry!ifTry Agian!!");
                         }
                     });
                     // getinfoaccess_control();
@@ -2065,7 +2065,7 @@ $(document).ready(function(){
                 $(".CreateUser").attr("disabled", true);
             },
             error:function(res){
-                alert("Sorry!Try Agian!! user info");
+                // alert("Sorry!Try Agian!! user info");
             }
         });
         $('.access-save').css("display","none");
@@ -2167,7 +2167,7 @@ $(document).ready(function(){
                             // $('#EditUserDepartment option[value="'+res_csp['user_data'][0]+'"]').attr('selected',true)             
                         },
                         error:function(res){
-                            alert("Sorry!Try Agian!!");
+                            // alert("Sorry!Try Agian!!");
                         }
                     });
                 // }
@@ -2309,7 +2309,7 @@ $(document).ready(function(){
                 $('.EditUserData').attr("data_val",id);
             },
             error:function(res){
-                alert("Sorry!Try Agian!!");
+                // alert("Sorry!Try Agian!!");
             }
         });
         var edit_data = "edit_user";
@@ -2369,7 +2369,7 @@ $(document).ready(function(){
                 }              
             },
             error:function(res){
-                alert("Sorry!Try Agian!!");
+                // alert("Sorry!Try Agian!!");
             }
         });
     }
@@ -2487,7 +2487,7 @@ $(document).ready(function(){
                                 }
                             },
                             error:function(res){
-                                alert("Sorry!Try Agian!!");
+                                // alert("Sorry!Try Agian!!");
                                 $("#overlay").fadeOut(300);
                             }
                         });
@@ -2528,7 +2528,7 @@ $(document).ready(function(){
                                 }
                             },
                             error:function(res){
-                                alert("Sorry!Try Agian!!");
+                                // alert("Sorry!Try Agian!!");
                                 $("#overlay").fadeOut(300);
                             }
                         });
@@ -2777,7 +2777,7 @@ function inputUserEMail(){
                     }
                 },
                 error:function(res){
-                    alert("Sorry!Try Agian!!");
+                    // alert("Sorry!Try Agian!!");
                 }
             });
          return "";
@@ -2833,7 +2833,7 @@ function inputOpUserID(){
                     }
                 },
                 error:function(res){
-                    alert("Sorry!Try Agian!!");
+                    // alert("Sorry!Try Agian!!");
                 }
             });
             return "";
@@ -3443,7 +3443,7 @@ $.ajax({
             }
     },
     error:function(res){
-        alert("Sorry!Try Agian!!");
+        // alert("Sorry!Try Agian!!");
     }
 });
 
@@ -3474,7 +3474,7 @@ function get_edit_access_control(userid,user_role){
             $("input[name=settings_user][value='"+res_role[0].settings_user_management+"']").prop("checked",true);
         },
         error:function(res){
-            alert("Sorry!Try Agian!!");
+            // alert("Sorry!Try Agian!!");
         }
     });
 }
@@ -3509,7 +3509,7 @@ function get_access_control(user){
                 $("input[name=settings_user][value='"+res_role.Settings_User_Management+"']").prop("checked",true);
             },
             error:function(res){
-                alert("Sorry!Try Agian!!");
+                // alert("Sorry!Try Agian!!");
             }
         });
     }

@@ -1561,7 +1561,7 @@ $(document).on('change','.select_item',function(event){
   }
   else{
     $('.select_item').removeAttr('checked');
-    alert("only on filter or graph ");
+    // alert("only on filter or graph ");
   }
 
   // $('.filter').css("display","none");
@@ -1695,13 +1695,13 @@ $(document).on('click','.bulg_edit_submit',function(event){
             getDownTimeGraph();
             getTotalCount();
 
-            alert("Bulk Updation SuccessFully");
+            // alert("Bulk Updation SuccessFully");
           }
           $("#overlay").fadeOut(300);
         },
         error:function(err){
           console.log(err);
-          alert("Sorry Try Again");
+          // alert("Sorry Try Again");
           $("#overlay").fadeOut(300);
         },
       });
@@ -1835,7 +1835,7 @@ $(document).ready(function(){
       });
     },
     error:function(err){
-      alert("Error while receiving machine records!");
+      // alert("Error while receiving machine records!");
     }
   });
      
@@ -1920,7 +1920,7 @@ $(document).on('change','#Production_MachineName',function(){
           $('.ui-datepicker').css("display","none");
       },
       error:function(err){
-        alert("Error while processing Machine active dates");
+        // alert("Error while processing Machine active dates");
       }
     });
     
@@ -1979,7 +1979,7 @@ $(document).on('change','#Production_shift_date',function(){
         $('#RejectShift').removeAttr('disabled');
       },
       error:function(err){
-        alert("Something went wrong!");
+        // alert("Something went wrong!");
       }
   });
     //To find the current part in Machine...................
@@ -2007,7 +2007,7 @@ function findPart(production_shift_date){
      
     },
     error:function(err){
-      alert("Something went wrong!");
+      // alert("Something went wrong!");
     }
   });
 }
@@ -2041,7 +2041,7 @@ function getTotalCount() {
       return;
     },
     error:function(err){
-      alert("Couldn't find the total count!");
+      // alert("Couldn't find the total count!");
     }
   });
 }
@@ -2175,7 +2175,7 @@ $(document).on("click", ".deleteRec", function(){
           Start_time:startTime,
         },
         success:function(res){
-          alert("Record removed!!");
+          // alert("Record removed!!");
           getSplittedData(machineEventIdRef,overall_duration_value);
           getDownTimeGraph();
           getTotalCount();
@@ -2184,7 +2184,7 @@ $(document).on("click", ".deleteRec", function(){
         
         },
         error:function(err){
-          alert("Something went wrong!!");
+          // alert("Something went wrong!!");
           getSplittedData(machineEventIdRef,overall_duration_value);
           getDownTimeGraph();
           getTotalCount();
@@ -2884,7 +2884,7 @@ function getDownTimeGraph(){
                                   }
                                 },
                                 error:function(res){
-                                    alert("Sorry!Try Agian!!");
+                                    // alert("Sorry!Try Agian!!");
                                 }
                               });
                             }
@@ -3282,7 +3282,7 @@ function getSplittedData(machineEventRef,svalue){
           }
     },
     error:function(res){  
-      alert(res);
+      // alert(res);
     }
   });
 }
@@ -3386,7 +3386,7 @@ $(document).on('click','.doneEdit',function(){
           alert("Updated Successfully!!");
         } 
         else{
-          alert("Something went wrong!");
+          // alert("Something went wrong!");
         }
         data_time=[];
         data_array=[];
@@ -3398,7 +3398,7 @@ $(document).on('click','.doneEdit',function(){
         $("#overlay").fadeOut(300);
       },
       error:function(res){
-        alert("Sorry!Try Agian!!");
+        // alert("Sorry!Try Agian!!");
         data_time=[];
         data_array=[];
         split_ref =[];     
@@ -3809,7 +3809,7 @@ function addDownPart(part,part_id){
           //$('.DownToolFirst').append(elements1);
       },
       error:function(res){
-          alert("Sorry!Try Agian!!");
+          // alert("Sorry!Try Agian!!");
       }
   });
   }
@@ -3848,7 +3848,7 @@ function addDownPart(part,part_id){
           $('.checkboxes:eq('+ref+')').append(elements);
       },
       error:function(res){
-          alert("Sorry!Try Agian!!");
+          // alert("Sorry!Try Agian!!");
       }
   });
   }  
@@ -3898,7 +3898,7 @@ function addDownPart(part,part_id){
           //alert(down_reason);
       },
       error:function(res){
-          alert("Sorry!Try Agian!!");
+          // alert("Sorry!Try Agian!!");
       }
     });
     // alert(down_reason);
@@ -3935,7 +3935,7 @@ function addDownPart(part,part_id){
           //$('.DownToolFirst').append(elements1);
       },
       error:function(res){
-          alert("Sorry!Try Agian!!");
+          // alert("Sorry!Try Agian!!");
       }
   });
   }
@@ -3973,7 +3973,7 @@ function addDownPart(part,part_id){
           $('.checkboxes').append(elements);
       },
       error:function(res){
-          alert("Sorry!Try Agian!!");
+          // alert("Sorry!Try Agian!!");
       }
   });
   }
@@ -4486,7 +4486,7 @@ function notes_submit(){
       // alert(res);
       // console.log(res);
       // if (res == true) {
-      alert('Notes Added Successfully');
+      // alert('Notes Added Successfully');
       // }
       $('.reasonInfo:eq('+inval+')').attr("onmouseover","check_info(this)");
       var de = $('.filter').css('display');
@@ -4515,7 +4515,7 @@ function notes_submit(){
 
     },
     error:function(er){
-      alert('Sorry TryAgain');
+      // alert('Sorry TryAgain');
       $("#overlay").fadeOut(100);
     },
   });

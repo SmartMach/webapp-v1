@@ -748,7 +748,7 @@
                 }
             },
             error:function(err){
-                alert(err);
+                // alert(err);
                 $("#overlay").fadeOut(300);
             }
         });
@@ -902,7 +902,7 @@
                         );
                     },
                     error:function(res){
-                        alert("Sorry!Try Agian!! this");
+                        // alert("Sorry!Try Agian!! this");
                     }
                 });
             }
@@ -969,7 +969,7 @@
                     $('#IUpdatedOn').html(date_time);
                 },
                 error:function(res){
-                    alert("Sorry!Try Agian!!");
+                    // alert("Sorry!Try Agian!!");
                 }
             });
             $('#InfoToolModal').modal('show');
@@ -1036,7 +1036,7 @@
                     $('#IUpdatedOn').html(date_time);
                 },
                 error:function(res){
-                    alert("Sorry!Try Agian!!");
+                    // alert("Sorry!Try Agian!!");
                 }
             });
             $('#InfoToolModal').modal('show');
@@ -1109,12 +1109,12 @@
                             $('#inputToolNameEdit').append(elements);
                         },
                         error:function(res){
-                            alert("Sorry!Try Agian!!");
+                            // alert("Sorry!Try Agian!!");
                         }
                     });
                 },
                 error:function(res){
-                    alert("Sorry!Try Agian!!");
+                    // alert("Sorry!Try Agian!!");
                 }
             });
             // temporary hide for this function because the tool name edit
@@ -1193,7 +1193,7 @@
                                 $("#overlay").fadeOut(300);
                             },
                             error:function(res){
-                                alert("Sorry!Try Agian!!");
+                                // alert("Sorry!Try Agian!!");
                                 $("#overlay").fadeOut(300);
                             }
                         });
@@ -1256,7 +1256,7 @@
                                     $("#overlay").fadeOut(300);
                                 },
                                 error:function(res){
-                                    alert("Sorry! Try again");
+                                    // alert("Sorry! Try again");
                                     $("#overlay").fadeOut(300);
                                 }
                             });
@@ -1313,7 +1313,7 @@
 
             },
             error:function(res){
-                alert("Sorry!Try Agian!!");
+                // alert("Sorry!Try Agian!!");
             }
         });
     }
@@ -1440,7 +1440,7 @@ function get_part_data(){
                 
         },
         error:function(err){
-            alert("Sorry Try again!");
+            // alert("Sorry Try again!");
         }
     });
 }
@@ -1466,7 +1466,7 @@ function status_find(id,status){
             $("#overlay").fadeOut(300);
         },
         error:function(res){
-            alert("Sorry!Try Agian!!");
+            // alert("Sorry!Try Agian!!");
             $("#overlay").fadeOut(300);
         }
     });
@@ -1496,7 +1496,7 @@ function get_count_data(){
                 }
             },
             error:function(res){
-                alert("Sorry!Try Agian!!");
+                // alert("Sorry!Try Agian!!");
             }
         });
 }
@@ -1612,7 +1612,7 @@ function tool_dropdown_retrive(){
             $("#inputNewToolName").attr("disabled", true);   
         },
         error:function(res){
-            alert("Sorry!Try Agian!!");
+            // alert("Sorry!Try Agian!!");
         }
     });
 }
