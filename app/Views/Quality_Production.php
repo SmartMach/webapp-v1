@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/financial_metrics.css?version=<?php echo rand() ; ?>">
 
     <script src="<?php echo base_url(); ?>/assets/chartjs/package/dist/chart.min.js?version=<?php echo rand() ; ?>"></script>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/all-fontawesome.css?version=<?php echo rand() ; ?>">
+    <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/all-fontawesome.css?version=<?php echo rand() ; ?>"> -->
 <style>
   /* filter css design */
   .filterbtnstyle{
@@ -116,14 +116,14 @@
                   <!-- <input type="date" name="" class="form-control fromDate" id="from"> -->
                   <input type="text" class="form-control fromDate" value="" step="1">
                   <!-- <input type="datetime-local" class="form-control" value="2013-10-24T10:00:00" step="1"> -->
-                  <label for="inputSiteNameAdd" class="input-padding ">From Date</label>
+                  <label for="inputSiteNameAdd" class="input-padding ">From DateTime</label>
                 </div>
               </div>
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box">
                   <!-- <input type="date" name="" class="form-control toDate"> -->
                   <input type="text" class="form-control toDate" value="" step="1">
-                  <label for="inputSiteNameAdd" class="input-padding ">To Date</label>
+                  <label for="inputSiteNameAdd" class="input-padding ">To DateTime</label>
                 </div>
               </div>
         </div>
@@ -152,7 +152,7 @@
                           <p class="paddingm" id="reason_text_copqp">All Reasons</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -171,7 +171,7 @@
                           <p class="paddingm" id="machine_text_copq">All Machines</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -190,7 +190,7 @@
                           <p class="paddingm" id="part_text_copq">All Parts</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -226,7 +226,7 @@
                           <p class="paddingm" id="reason_text_crpr">All Reasons</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -245,7 +245,7 @@
                           <p class="paddingm" id="machine_text_crpr">All Machines</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -264,7 +264,7 @@
                           <p class="paddingm" id="part_text_crpr">All Parts</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -302,7 +302,7 @@
                           <p class="paddingm" id="reason_text_copqm">All Reasons</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -321,7 +321,7 @@
                           <p class="paddingm" id="machine_text_copqm">All Machines</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -340,7 +340,7 @@
                           <p class="paddingm" id="part_text_copqm">All Parts</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -376,7 +376,7 @@
                           <p class="paddingm" id="reason_text_qrmr">All Reasons</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -395,7 +395,7 @@
                           <p class="paddingm" id="machine_text_qrmr">All Machines</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -414,7 +414,7 @@
                           <p class="paddingm" id="part_text_qrmr">All Parts</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -455,7 +455,7 @@
                           <p class="paddingm" id="reason_text_copqp">All Reasons</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -474,7 +474,7 @@
                           <p class="paddingm" id="machine_text_copqp">All Machines</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -493,7 +493,7 @@
                           <p class="paddingm" id="part_text_copqp">All Parts</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -529,7 +529,7 @@
                           <p class="paddingm" id="reason_text_qrpr">All Reasons</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -548,7 +548,7 @@
                           <p class="paddingm" id="machine_text_qrpr">All Machines</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -567,7 +567,7 @@
                           <p class="paddingm" id="part_text_qrpr">All Parts</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
-                          <i class="fa-solid fa-chevron-down icon-style"></i>
+                          <i class="fa fa-angle-down icon-style"></i>
                         </div>
                       </div>
                     </div>
@@ -616,7 +616,7 @@
                       <p class="paddingm" id="part_text">Select</p>
                     </div>
                     <div style="width: 80% !important;" class="dropdown-div">
-                      <i class="fa-solid fa-chevron-down icon-style"></i>
+                      <i class="fa fa-angle-down icon-style"></i>
                     </div>
                   </div>
                 </div>
@@ -636,7 +636,7 @@
                       <p class="paddingm" id="machine_text">Select</p>
                     </div>
                     <div style="width: 80% !important;" class="dropdown-div">
-                      <i class="fa-solid fa-chevron-down icon-style"></i>
+                      <i class="fa fa-angle-down icon-style"></i>
                     </div>
                   </div>
                 </div>
@@ -656,7 +656,7 @@
                       <p class="paddingm" id="reason_text">Select</p>
                     </div>
                     <div style="width: 80% !important;" class="dropdown-div">
-                      <i class="fa-solid fa-chevron-down icon-style"></i>
+                      <i class="fa fa-angle-down icon-style"></i>
                     </div>
                   </div>
                 </div>
@@ -676,7 +676,7 @@
                       <p class="paddingm" id="user_text">Select</p>
                     </div>
                     <div style="width: 80% !important;" class="dropdown-div">
-                      <i class="fa-solid fa-chevron-down icon-style"></i>
+                      <i class="fa fa-angle-down icon-style"></i>
                     </div>
                   </div>
                 </div>
@@ -2775,7 +2775,7 @@ function copqp() {
         {
           label:"Total",
           type: "bar",
-          backgroundColor: "#004b9b",
+          backgroundColor: "#0075F6",
           percentage_data: 0,
           borderColor: "#d9d9ff",
           borderWidth: 1,
@@ -3098,7 +3098,7 @@ function qualitybyparts() {
         {
           label:"Total",
           type: "bar",
-          backgroundColor: "#004b9b",
+          backgroundColor: "#0075F6",
           percentage_data: 0,
           borderColor: "#d9d9ff",
           borderWidth: 1,
@@ -3774,7 +3774,7 @@ function copqm() {
         {
           label: "partName",
           type: "bar",
-          backgroundColor: "#004b9b",
+          backgroundColor: "#0075F6",
           percentage_data: 0,
           borderColor: "#004b9b",
           borderWidth: 1,
@@ -4104,7 +4104,7 @@ function qrbr() {
         {
           label:"Total",
           type: "bar",
-          backgroundColor: "#004b9b",
+          backgroundColor: "#0075F6",
           percentage_data: 0,
           borderColor: "#d9d9ff",
           borderWidth: 1,
@@ -5033,4 +5033,4 @@ function reset_created(){
 
 </script>
 
-<script src="<?php echo base_url(); ?>/assets/js/all-fontawesome.js?version=<?php echo rand() ; ?>"></script>
+<!-- <script src="<?php echo base_url(); ?>/assets/js/all-fontawesome.js?version=<?php echo rand() ; ?>"></script> -->

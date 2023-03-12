@@ -10,6 +10,7 @@
                         if(($condition == "Smart Admin") || ($condition == "Smart Users")){
                             ?>
                             <div class="box site_based_header_visibility" style="margin-top:1.4rem;" >
+                            <label class="" style="margin-top:-0.5rem;position:fixed;margin-left:0.8rem;z-index:1;background:white;font-size:12px;color:#8c8c8c;">Site Name</label>
                                 <div class="input-box fieldStyle">
                                     <select name="site_id" id="site_id" class="form-select font_weight_modal" required="true">
                                        <!-- temporary aligning -->
