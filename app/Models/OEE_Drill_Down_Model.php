@@ -12,7 +12,7 @@ class OEE_Drill_Down_Model extends Model{
 
         $this->session = \Config\Services::session();
         $db_name = $this->session->get('active_site');
-       
+
         $this->site_connection = [
             'DSN'      => '',
             'hostname' => 'localhost',
@@ -257,6 +257,16 @@ class OEE_Drill_Down_Model extends Model{
         $res= $query->get()->getResultArray();
         return $res;
 
+    }
+
+    // temporary machine select using filter
+    public function getMachineDetails_temp_filter($machine_arr){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('settings_machine_current');
+        $query->select('machine_id,rate_per_hour,machine_offrate_per_hour,machine_name');
+        $query->WhereIn('machine_id',$machine_arr);
+        $res= $query->get()->getResultArray();
+        return $res;
     }
 
 
