@@ -600,7 +600,7 @@ $(document).on('click','.filter_check_reasongp',function(event){
             check_if[0].checked=false;
         }
     }
-
+    
     var reason_gp_select_count = 0;
     jQuery('.reasongp_checkbox').each(function(index){
       if (check_if[index].checked===true) {

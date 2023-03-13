@@ -285,8 +285,8 @@ $session = \Config\Services::session();
                         <div class="filter_overSelect"></div>
                     </div>
                     <div class="filter_checkboxes all_data_field_fill" style="" >
-                        <div class="filter_check_cate all_data_field_click" style="">
-                            <div class="cate_drp_check" style="">
+                        <div class="filter_check_cate all_data_field_click machine_oee_common" style="">
+                            <div class="cate_drp_check " style="">
                                 <input type="checkbox" id="one" class="all_data_field_checkbox" value="all"/>
                             </div>
                             <div class="cate_drp_text" style="">
@@ -294,7 +294,7 @@ $session = \Config\Services::session();
                             </div>
                         </div>
                         <!-- oee -->
-                        <div class="filter_check_cate all_data_field_click" style="">
+                        <div class="filter_check_cate all_data_field_click machine_oee_common" style="">
                             <div class="cate_drp_check" style="">
                                 <input type="checkbox" id="one" class="all_data_field_checkbox" value="oee"/>
                             </div>
@@ -303,7 +303,7 @@ $session = \Config\Services::session();
                             </div>
                         </div>
                         <!-- availability -->
-                        <div class="filter_check_cate all_data_field_click" style="">
+                        <div class="filter_check_cate all_data_field_click machine_oee_common" style="">
                             <div class="cate_drp_check" style="">
                                 <input type="checkbox" id="one" class="all_data_field_checkbox" value="availability"/>
                             </div>
@@ -312,7 +312,7 @@ $session = \Config\Services::session();
                             </div>
                         </div>
                         <!-- performance -->
-                        <div class="filter_check_cate all_data_field_click" style="">
+                        <div class="filter_check_cate all_data_field_click machine_oee_common" style="">
                             <div class="cate_drp_check" style="">
                                 <input type="checkbox" id="one" class="all_data_field_checkbox" value="performance"/>
                             </div>
@@ -321,7 +321,7 @@ $session = \Config\Services::session();
                             </div>
                         </div>
                         <!-- quality -->
-                        <div class="filter_check_cate all_data_field_click" style="">
+                        <div class="filter_check_cate all_data_field_click machine_oee_common" style="">
                             <div class="cate_drp_check" style="">
                                 <input type="checkbox" id="one" class="all_data_field_checkbox" value="quality"/>
                             </div>
@@ -403,8 +403,8 @@ $session = \Config\Services::session();
                             </select>
                             <div class="filter_overSelect"></div>
                         </div>
-                        <div class="filter_checkboxes category_fill2" style="" >
-                            <div class="filter_check_cate category_click2" style="">
+                        <div class="filter_checkboxes category_fill2 " style="" >
+                            <div class="filter_check_cate category_click2 machine_availability_common" style="">
                                 <div class="cate_drp_check" style="">
                                     <input type="checkbox" id="one" class="category_drp_checkbox2" value="all"/>
                                 </div>
@@ -413,7 +413,7 @@ $session = \Config\Services::session();
                                 </div>
                             </div>
 
-                            <div class="filter_check_cate category_click2" style="">
+                            <div class="filter_check_cate category_click2 machine_availability_common" style="">
                                 <div class="cate_drp_check" style="">
                                     <input type="checkbox" id="one" class="category_drp_checkbox2" value="Planned"/>
                                 </div>
@@ -422,7 +422,7 @@ $session = \Config\Services::session();
                                 </div>
                             </div>
 
-                            <div class="filter_check_cate category_click2" style="">
+                            <div class="filter_check_cate category_click2 machine_availability_common" style="">
                                 <div class="cate_drp_check" style="">
                                     <input type="checkbox" id="one" class="category_drp_checkbox2" value="Unplanned"/>
                                 </div>
@@ -1539,12 +1539,12 @@ function fill_downtime_reason(){
 
         // $('.reason_fill').append('<div class="filter_check_cate reason_click" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
       
-        $('.reason_fill2').append('<div class="filter_check_cate reason_click2" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox2" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
+        $('.reason_fill2').append('<div class="filter_check_cate reason_click2 machine_availability_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox2" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
         // $('.quality_reason_fill').append('<div class="filter_check_cate quality_click" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="quality_checkbox" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
         res.forEach(function(item){
             // element = element.add('<div class="filter_check_cate reason_click" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
           
-            elements = elements.add('<div class="filter_check_cate reason_click2" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox2" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
+            elements = elements.add('<div class="filter_check_cate reason_click2 machine_availability_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox2" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
 
             // element = element.add('<div class="filter_check_cate quality_click" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="quality_checkbox" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
 
@@ -1573,7 +1573,7 @@ function fill_quality_reason_dropdown(){
             // console.log(res);
 
             $('.quality_reason_fill').empty();
-            $('.quality_reason_fill').append('<div class="filter_check_cate quality_click" style="">'
+            $('.quality_reason_fill').append('<div class="filter_check_cate quality_click machine_quality_common" style="">'
             +'<div class="cate_drp_check" style="">'
             +'<input type="checkbox" id="one" class="quality_checkbox" value="all"/>'
             +'</div>'
@@ -1583,7 +1583,7 @@ function fill_quality_reason_dropdown(){
             +'</div>');
             res.forEach(function(val){
                 var elements = $();
-                elements = elements.add('<div class="filter_check_cate quality_click" style="">'
+                elements = elements.add('<div class="filter_check_cate quality_click machine_quality_common" style="">'
                 +'<div class="cate_drp_check" style="">'
                 +'<input type="checkbox" id="one" class="quality_checkbox" value="'+val.quality_reason_id+'"/>'
                 +'</div>'
@@ -1622,7 +1622,7 @@ function fill_machine_dropdown(){
             $('.filter_checkboxes_machine3').empty();
             $('.filter_checkboxes_machine4').empty();
 
-            $('.filter_checkboxes_machine').append('<div class="filter_check_cate machine_click" style="">'
+            $('.filter_checkboxes_machine').append('<div class="filter_check_cate machine_click oee_trend_common" style="">'
             +'<div class="cate_drp_check" style="">'
             +'<input type="checkbox" id="one" class="machine_checkbox" value="all"/>'
             +'</div>'
@@ -1631,7 +1631,7 @@ function fill_machine_dropdown(){
             +'</div>'
             +'</div>');
 
-            $('.filter_checkboxes_machine1').append('<div class="filter_check_cate machine_click1" style="">'
+            $('.filter_checkboxes_machine1').append('<div class="filter_check_cate machine_click1 machine_oee_common" style="">'
             +'<div class="cate_drp_check" style="">'
             +'<input type="checkbox" id="one" class="machine_checkbox1" value="all"/>'
             +'</div>'
@@ -1641,7 +1641,7 @@ function fill_machine_dropdown(){
             +'</div>');
 
 
-            $('.filter_checkboxes_machine2').append('<div class="filter_check_cate machine_click2" style="">'
+            $('.filter_checkboxes_machine2').append('<div class="filter_check_cate machine_click2 machine_availability_common" style="">'
             +'<div class="cate_drp_check" style="">'
             +'<input type="checkbox" id="one" class="machine_checkbox2" value="all"/>'
             +'</div>'
@@ -1651,7 +1651,7 @@ function fill_machine_dropdown(){
             +'</div>');
 
 
-            $('.filter_checkboxes_machine3').append('<div class="filter_check_cate machine_click3" style="">'
+            $('.filter_checkboxes_machine3').append('<div class="filter_check_cate machine_click3 machine_performance_common" style="">'
             +'<div class="cate_drp_check" style="">'
             +'<input type="checkbox" id="one" class="machine_checkbox3" value="all"/>'
             +'</div>'
@@ -1661,7 +1661,7 @@ function fill_machine_dropdown(){
             +'</div>');
 
 
-            $('.filter_checkboxes_machine4').append('<div class="filter_check_cate machine_click4" style="">'
+            $('.filter_checkboxes_machine4').append('<div class="filter_check_cate machine_click4 machine_quality_common" style="">'
             +'<div class="cate_drp_check" style="">'
             +'<input type="checkbox" id="one" class="machine_checkbox4" value="all"/>'
             +'</div>'
@@ -1677,7 +1677,7 @@ function fill_machine_dropdown(){
                 var eles = $();
                 var element1 = $();
              
-                elements = elements.add('<div class="filter_check_cate machine_click" style="">'
+                elements = elements.add('<div class="filter_check_cate machine_click oee_trend_common" style="">'
                 +'<div class="cate_drp_check" style="">'
                 +'<input type="checkbox" id="one" class="machine_checkbox" value="'+val.machine_id+'"/>'
                 +'</div>'
@@ -1687,7 +1687,7 @@ function fill_machine_dropdown(){
                 +'</div>');
 
 
-                element = element.add('<div class="filter_check_cate machine_click1" style="">'
+                element = element.add('<div class="filter_check_cate machine_click1 machine_oee_common" style="">'
                 +'<div class="cate_drp_check" style="">'
                 +'<input type="checkbox" id="one" class="machine_checkbox1" value="'+val.machine_id+'"/>'
                 +'</div>'
@@ -1696,7 +1696,7 @@ function fill_machine_dropdown(){
                 +'</div>'
                 +'</div>');
 
-                ele = ele.add('<div class="filter_check_cate machine_click2" style="">'
+                ele = ele.add('<div class="filter_check_cate machine_click2 machine_availability_common" style="">'
                 +'<div class="cate_drp_check" style="">'
                 +'<input type="checkbox" id="one" class="machine_checkbox2" value="'+val.machine_id+'"/>'
                 +'</div>'
@@ -1706,7 +1706,7 @@ function fill_machine_dropdown(){
                 +'</div>');
               
 
-                eles = eles.add('<div class="filter_check_cate machine_click3" style="">'
+                eles = eles.add('<div class="filter_check_cate machine_click3 machine_performance_common" style="">'
                 +'<div class="cate_drp_check" style="">'
                 +'<input type="checkbox" id="one" class="machine_checkbox3" value="'+val.machine_id+'"/>'
                 +'</div>'
@@ -1759,7 +1759,7 @@ function fill_part_drp(){
             console.log("multi select dropdown part");
             console.log(res);
             $('.part_fill').empty();
-            $('.part_fill').append('<div class="filter_check_cate part_click" style="">'
+            $('.part_fill').append('<div class="filter_check_cate part_click machine_performance_common" style="">'
             +'<div class="cate_drp_check" style="">'
             +'<input type="checkbox" id="one" class="part_checkbox" value="all"/>'
             +'</div>'
@@ -1769,7 +1769,7 @@ function fill_part_drp(){
             +'</div>');
             res.forEach(function(val){
                 var elements = $();
-                elements = elements.add('<div class="filter_check_cate part_click" style="">'
+                elements = elements.add('<div class="filter_check_cate part_click machine_performance_common" style="">'
                 +'<div class="cate_drp_check" style="">'
                 +'<input type="checkbox" id="one" class="part_checkbox" value="'+val.part_id+'"/>'
                 +'</div>'
@@ -1874,6 +1874,102 @@ function fill_target_bar(){
     });
 }
 
+
+// on mouse up function
+$(document).mouseup(function(event){
+
+    // oee trend graph
+    // machine multi select dropdown
+    var machine = $('.filter_checkboxes_machine');
+    if (!machine.is(event.target) && machine.has(event.target).length==0) {
+        machine.hide();
+    }
+
+    // machine wise OEE %
+    // all data field dropdown
+    var all_data_field = $('.all_data_field_fill');
+    if (!all_data_field.is(event.target) && all_data_field.has(event.target).length==0) {
+        all_data_field.hide();
+    }
+
+    // machine dropdown
+    var machine1 = $('.filter_checkboxes_machine1');
+    if (!machine1.is(event.target) && machine1.has(event.target).length==0) {
+        machine1.hide();
+    }
+
+    // machine wise availability 
+    // category dropdown
+    var category1 = $('.category_fill2');
+    if (!category1.is(event.target) && category1.has(event.target).length==0) {
+        category1.hide();
+    }
+    // reason dropdown
+    var reason1 = $('.reason_fill2');
+    if (!reason1.is(event.target) && reason1.has(event.target).length==0) {
+        reason1.hide();
+    }
+
+    // machine 
+    var machine2 = $('.filter_checkboxes_machine2');
+    if (!machine2.is(event.target) && machine2.has(event.target).length==0) {
+        machine2.hide();
+    }
+
+    // Machine-wise Performance with Parts
+    // parts
+    var part1 = $('.part_fill');
+    if (!part1.is(event.target) && part1.has(event.target).length==0) {
+        part1.hide();
+    }
+    // machine
+    var machine3 = $('.filter_checkboxes_machine3');
+    if (!machine3.is(event.target) && machine3.has(event.target).length==0) {
+        machine3.hide();
+    }
+
+    // machine quality with reasons
+    // machine
+    var machine4 = $('.filter_checkboxes_machine4');
+    if (!machine4.is(event.target) && machine4.has(event.target).length==0) {
+        machine4.hide();
+    }
+
+    // quality 
+    var quality = $('.quality_reason_fill');
+    if (!quality.is(event.target) && quality.has(event.target).length==0) {
+        quality.hide();
+    }
+
+
+
+
+});
+
+// graph onclick ajax function call
+$(document).on('click','.oee_trend_common',function(event){
+    event.preventDefault();
+    oeeTrendDay();
+});
+
+$(document).on('click','.machine_oee_common',function(event){
+    event.preventDefault();
+    machineWiseOEE();
+});
+
+$(document).on('click','.machine_availability_common',function(event){
+    event.preventDefault();
+    availabilityReason_machine();
+});
+
+$(document).on('click','.machine_performance_common',function(event){
+    event.preventDefault();
+    performance_opportunity();
+});
+$(document).on('click','.machine_quality_common',function(event){
+    event.preventDefault();
+    quality_reason_machine();
+});
 
 
 function oeeTrendDay() {
