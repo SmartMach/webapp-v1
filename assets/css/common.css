@@ -29,3 +29,15 @@
 .dotAccess1 i{
   font-size: 12px;
 }
+
+.icons-smart{
+  height: 1rem;
+  width: 1rem;
+}
+.icons-side-nav{
+  height: 3.2rem;
+  width: 3.2rem;
+}
+.nav-icon-align{
+  margin-right: 0.8rem;
+}
