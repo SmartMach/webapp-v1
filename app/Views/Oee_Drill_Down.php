@@ -937,14 +937,15 @@ function machine_drp4() {
   var checkboxes4 = document.getElementsByClassName("filter_checkboxes_machine4");
   if (!filter_expanded_machine4) {
    
-      $('.filter_checkboxes_machine4').css("display","block");
-      filter_expanded_machine4 = true;
+    $('.filter_checkboxes_machine4').css("display","block");
+    filter_expanded_machine4 = true;
+    
   } else  {
      
-      $('#text_machine4').text('All Machine');
-      $('.filter_checkboxes_machine4').css("display","none");
-      filter_expanded_machine4 = false;
-     
+    $('#text_machine4').text('All Machine');
+    $('.filter_checkboxes_machine4').css("display","none");
+    filter_expanded_machine4 = false;
+    quality_reason_machine();
   }
 }
 
@@ -1715,7 +1716,7 @@ function fill_machine_dropdown(){
                 +'</div>'
                 +'</div>');
 
-                element1 = element1.add('<div class="filter_check_cate machine_click4" style="">'
+                element1 = element1.add('<div class="filter_check_cate machine_click4 machine_quality_common" style="">'
                 +'<div class="cate_drp_check" style="">'
                 +'<input type="checkbox" id="one" class="machine_checkbox4" value="'+val.machine_id+'"/>'
                 +'</div>'

@@ -1673,7 +1673,7 @@ class OEE_Drill_Down_controller extends BaseController
 
         $partDetails = $this->data->getPartDetails();
 
-        $machineDetails = $this->data->getMachineDetails();
+        $machineDetails = $this->data->getMachineDetails_temp_filter($machine_arr);
  
         $final_arr = [];
         foreach ($qualityReason as $key => $value) {
@@ -1699,7 +1699,7 @@ class OEE_Drill_Down_controller extends BaseController
                    
                 }
 
-                // if (in_array($val['machine_id'],$machine_arr)) {
+                if (in_array($val['machine_id'],$machine_arr)) {
                     if (count($part_arr)>0) {
                         $tmp_machine12 = array("machine_id"=>$val['machine_id'],"machine_name"=>$val['machine_name'],"part_data"=>$part_arr);
                         array_push($reason_arr,$tmp_machine12);
@@ -1708,7 +1708,7 @@ class OEE_Drill_Down_controller extends BaseController
                         $tmp_machine12 = array("machine_id"=>$val['machine_id'],"machine_name"=>$val['machine_name'],"part_data"=>array(array("total_reject"=>0)));
                         array_push($reason_arr,$tmp_machine12);
                     }    
-                // }
+                }
                
                 // $reason_arr['machine_data'] = $machine_arr;
                 // $reason_arr['machine_id'] = $val['machine_id'];
@@ -1731,7 +1731,6 @@ class OEE_Drill_Down_controller extends BaseController
                     $tmp_total = $tmp_total + $val['total_reject'];
                 }
             }
-            // $machine_wise_total_arr[$value['machine_id']] = $tmp_total;
             $machineDetails[$key]['total_rejects'] = $tmp_total;
             // if (in_array($value['machine_id'],$machine_arr)) {
             //     array_push($temp_machine_arr,$machineDetails[$Key]);
