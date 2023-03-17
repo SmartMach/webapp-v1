@@ -32,8 +32,11 @@ class Current_Shift_Performance extends BaseController{
     	// if ($this->request->isAJAX()) {
     		$shift_date = $this->request->getVar('shift_date');
     		$shift_id = $this->request->getVar('shift_id');
-    		// $shift_date = "2023-03-11";
+            $filter = $this->request->getVar('filter');
+
+    		// $shift_date = "2023-03-15";
     		// $shift_id = "A";
+      //       $filter = 2;
 
     		// Current Shift OEE Target......
     		$oee_target = $this->datas->getOEETarget();
@@ -85,7 +88,11 @@ class Current_Shift_Performance extends BaseController{
 	        	$t = [];
 	        	$total =0;
 	        	$target=[];
-	        	foreach ($hourly_production as $p) {
+
+                $tar_per=[];
+                $track = 0;
+
+	        	foreach ($hourly_production as $key => $p) {
 	        		if ($m['machine_id'] == $p['machine_id']) {
 	        			array_push($t, $p);
 	        			$total =$total+$p['production'];
@@ -95,14 +102,28 @@ class Current_Shift_Performance extends BaseController{
 	        					$e_time = strtotime($p['shift_date']." ".$p['end_time']);
 	        					$temp_target = ($e_time-$s_time)/$part->NICT;
 	        					array_push($target, (int)$temp_target);
+
+                                date_default_timezone_set('Asia/Kolkata'); 
+
+                                if (date("H",$s_time) == date("H")) {
+                                    $e_time = strtotime($p['shift_date']." ".date("H:i:s"));
+                                    $temp_target = ($e_time-$s_time)/$part->NICT;
+                                    array_push($target, (int)$temp_target);
+                                    $track = 1;
+                                }elseif ($track == 0) {
+                                    array_push($tar_per, (int)$temp_target);
+                                }
 	        				}
 	        			}
 	        		}
 	        	}
-	        	$temp = array('machine' => $m['machine_id'],'production' => $t,"targets"=>$target);
+
+	        	$temp = array('machine' => $m['machine_id'],'production' => $t,"targets"=>$target,"target_per" => $tar_per);
 	        	array_push($machineWise, $temp);
-	        	array_push($production_total, $total);
-	        	array_push($machine_name, $m['machine_name']);
+                $t_t = array('machine_id' => $m['machine_id'], 'total' => $total);
+	        	array_push($production_total, $t_t);
+                $t = array('machine_id' => $m['machine_id'], 'machine_name' => $m['machine_name']);
+	        	array_push($machine_name, $t);
 	        }
 	        
 	        // OEE Calculation......
@@ -291,7 +312,12 @@ class Current_Shift_Performance extends BaseController{
                     $ooe = number_format(($performance*$quality*$availOOE),2);
 
                     //Store Machine wise Data......
-                    $tmp = array("Machine_Id"=>$down['Machine_ID'],"Availability"=>$availability*100,"Performance"=>$performance*100,"Quality"=>$quality*100,"Availability_TEEP"=>$availTEEP*100,"Availability_OOE"=>$availOOE*100,"OEE"=>$oee*100,"TEEP"=>$teep*100,"OOE"=>$ooe*100);
+                    $tmp = array("Machine_Id"=>$down['Machine_ID'],"Availability"=>$availability*100,"Performance"=>$performance*100,"Quality"=>$quality*100,"Availability_TEEP"=>$availTEEP*100,"Availability_OOE"=>$availOOE*100,"OEE"=>$oee*100,"TEEP"=>$teep*100);
+                    array_push($MachineWiseData, $tmp);
+                }
+                else{
+                    //Store Machine wise Data......
+                    $tmp = array("Machine_Id"=>$down['Machine_ID'],"Availability"=>0,"Performance"=>0,"Quality"=>0,"Availability_TEEP"=>0,"Availability_OOE"=>0,"OEE"=>0,"TEEP"=>0);
                     array_push($MachineWiseData, $tmp);
                 }
             }
@@ -312,6 +338,8 @@ class Current_Shift_Performance extends BaseController{
             	}
             }
 
+            $partList = $this->datas->part_list();
+
 	       	$out['hours'] = $shiftList;
 	       	$out['data'] = $machineWise;
 	       	$out['targets'] = $oee_target;
@@ -319,9 +347,99 @@ class Current_Shift_Performance extends BaseController{
 	       	$out['machine_name'] = $machine_name;
 	       	$out['oee'] = $MachineWiseData;
 	       	$out['latest_event'] = $machine_event;
+            $out['part_list'] = $partList;
 
-	       	return json_encode($out);
+            // Machine Wise Order
+            if ($filter == 0) {
+                return json_encode($out);
+            }
+            // OEE Low to High
+            else if ($filter == 1) {
+                $out = $this->sortbyoee($out);
+                return json_encode($out);
+            }
+            // Part Completion
+            else if ($filter == 2) {
+                $out = $this->sortbypartcompletion($out);
+                return json_encode($out);
+            }
+	       	
     	// }
+    }
+
+    public function sortbyoee($out){
+        $n= sizeof($out['oee']);
+        for ($i = 0; $i < $n-1; $i++)
+        {
+            // Find the minimum element in unsorted array
+            $min_idx = $i;
+            for ($j = $i+1; $j < $n; $j++){
+                if ($out['oee'][$j]['OEE'] < $out['oee'][$min_idx]['OEE']){
+                    $min_idx = $j;
+                }
+            }
+
+            $temp = $out['oee'][$i];
+            $out['oee'][$i] = $out['oee'][$min_idx];
+            $out['oee'][$min_idx] = $temp;
+
+            $temp1 = $out['machine_name'][$i];
+            $out['machine_name'][$i] = $out['machine_name'][$min_idx];
+            $out['machine_name'][$min_idx] = $temp1;
+
+            $temp2 = $out['latest_event'][$i];
+            $out['latest_event'][$i] = $out['latest_event'][$min_idx];
+            $out['latest_event'][$min_idx] = $temp2;
+
+
+            $temp3 = $out['production_total'][$i];
+            $out['production_total'][$i] = $out['production_total'][$min_idx];
+            $out['production_total'][$min_idx] = $temp3;
+
+            $temp4 = $out['data'][$i];
+            $out['data'][$i] = $out['data'][$min_idx];
+            $out['data'][$min_idx] = $temp4;            
+        }
+        return $out;
+    }
+
+    public function sortbypartcompletion($out){
+        $n= sizeof($out['oee']);
+        for ($i = 0; $i < $n-1; $i++)
+        {
+            // Find the minimum element in unsorted array
+            $min_idx = $i;
+            $target = 5000;
+            for ($j = $i+1; $j < $n; $j++){
+                $x_c = $out['production_total'][$j]['total']*$target;
+                $x_d = $out['production_total'][$min_idx]['total']*$target;
+                if ($x_c > $x_d){
+                    $min_idx = $j;
+                }
+            }
+
+            $temp = $out['oee'][$i];
+            $out['oee'][$i] = $out['oee'][$min_idx];
+            $out['oee'][$min_idx] = $temp;
+
+            $temp1 = $out['machine_name'][$i];
+            $out['machine_name'][$i] = $out['machine_name'][$min_idx];
+            $out['machine_name'][$min_idx] = $temp1;
+
+            $temp2 = $out['latest_event'][$i];
+            $out['latest_event'][$i] = $out['latest_event'][$min_idx];
+            $out['latest_event'][$min_idx] = $temp2;
+
+
+            $temp3 = $out['production_total'][$i];
+            $out['production_total'][$i] = $out['production_total'][$min_idx];
+            $out['production_total'][$min_idx] = $temp3;
+
+            $temp4 = $out['data'][$i];
+            $out['data'][$i] = $out['data'][$min_idx];
+            $out['data'][$min_idx] = $temp4;            
+        }
+        return $out;
     }
 
     public function storeData($rawData,$machine,$part)
@@ -548,7 +666,7 @@ class Current_Shift_Performance extends BaseController{
             $UnplannedDown = floatval($UnplannedDown) + floatval($UnplannedDownSec/60);
 
             $tempCalc = $MachineOFFDown + $UnplannedDown + $PlannedDown;
-            if ((int)$tempCalc>0) {
+            if ((int)$tempCalc>=0) {
                $tmpDown = array("Machine_ID"=>$MachineId,"Planned"=>$PlannedDown,"Unplanned"=>$UnplannedDown,"Machine_OFF"=>$MachineOFFDown,"All"=>$tempCalc,"Part_Wise"=>$PartWiseDowntime);
                 array_push($DowntimeTimeData, $tmpDown);
             }

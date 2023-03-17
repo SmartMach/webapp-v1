@@ -25,13 +25,14 @@
 .grid-container-cont{
   display: grid;
   grid-template-columns: auto auto auto auto;
-  column-gap: 80px;
+  column-gap: 40px;
   row-gap: 30px;
 }
 .production_completion{
 	font-family: 'Roboto',sans-serif;
 	color: #404040;
 	text-align: center;
+	font-weight: bold;
 }
 .partname_ref{
 	font-size: 12px;
@@ -57,8 +58,14 @@
 .oee-lable{
 	font-family: 'Roboto', sans-serif;
 	color: #7f7f7f;
-	font-weight: bold;
+	font-weight: 700;
 	margin-right: 8px;
+}
+.values_oee{
+	font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: #fff;
 }
 .cen-align{
 	display: flex;
@@ -88,12 +95,13 @@
 .fnt-color{
 	color: white;
 	font-family: 'Roboto', sans-serif;
+	font-weight: bold;
 }
 .machine_name_ref{
-	font-size: 16px;
+	font-size: 18px;
 }
 .current_event{
-	font-size: 14px;
+	font-size: 12px;
 }
 .item-circle{
 	height: 11rem;
@@ -115,15 +123,15 @@
 	overflow: hidden;
 }
 .FLayer{
-	width: 80%;
-	max-width: 80%;
+	width: 85%;
+	max-width: 85%;
 	/*background-color: #d9d9d9;*/
 	height: 100%;
 	display: flex;
 	align-items: center;
 	position: relative;
 	border: 1px solid #d9d9d9;
-	border-radius: 10px;
+	border-radius: 5px;
 	overflow: hidden;
 }
 .graph-content-div{
@@ -135,13 +143,12 @@
 .item-production-s{
 	position: relative;
 	height: 5.9rem;
-	background-color: rgba(251, 105, 129,0.1);
-	width: 80%
+	background-color: rgba(255, 255, 255,0.1);
+	/*width: 80%*/
 }
 .SLayer{
 	width: 100%;
 	max-width:100%;
-	/*background-color: #dc062a;*/
 	height: 2.5rem;
 	position: absolute;
 }
@@ -164,6 +171,14 @@
 }
 .inner-val{
 	margin-top: 0.5rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	padding-bottom: 0.5rem;
+	height: 6.5rem;
+	overflow: hidden;
+}
+.inner-val p{
+	text-overflow: ellipsis;
 }
 /*Circle Graph*/
 /*Circular Bar*/
