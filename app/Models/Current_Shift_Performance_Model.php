@@ -120,7 +120,7 @@ class Current_Shift_Performance_Model extends Model{
         $result=[];
         foreach ($machine_list as $m) {
             $query = $db->table('pdm_events');
-            $query->select('machine_id,event,duration');
+            $query->select('machine_id,event,duration,part_id');
             $query->where('shift_date',$shift_date);
             $query->where('shift_id',$shift_id);
             $query->where('machine_id',$m['machine_id']);
@@ -131,7 +131,14 @@ class Current_Shift_Performance_Model extends Model{
         }
         return $result;
     }
-
+    public function part_list()
+    {
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('settings_part_current');
+        $query->select('part_id,part_name'); 
+        $res= $query->distinct()->get()->getResultArray();
+        return $res;
+    }
     public function getMachineRecActive($shift_date,$shift_id)
     {
         $db = \Config\Database::connect($this->site_connection);
