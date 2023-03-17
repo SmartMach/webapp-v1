@@ -30,13 +30,13 @@ class Current_Shift_Performance extends BaseController{
     
     public function getLiveMode(){
     	// if ($this->request->isAJAX()) {
-    		// $shift_date = $this->request->getVar('shift_date');
-    		// $shift_id = $this->request->getVar('shift_id');
-      //       $filter = $this->request->getVar('filter');
+    		$shift_date = $this->request->getVar('shift_date');
+    		$shift_id = $this->request->getVar('shift_id');
+            $filter = $this->request->getVar('filter');
 
-    		$shift_date = "2023-03-15";
-    		$shift_id = "A";
-            $filter = 2;
+    		// $shift_date = "2023-03-15";
+    		// $shift_id = "A";
+      //       $filter = 2;
 
     		// Current Shift OEE Target......
     		$oee_target = $this->datas->getOEETarget();
@@ -96,22 +96,43 @@ class Current_Shift_Performance extends BaseController{
                 $tar_per=[];
                 $track = 0;
 
+                $check_array = [];
+
 	        	foreach ($hourly_production as $key => $p) {
 	        		if ($m['machine_id'] == $p['machine_id']) {
-	        			array_push($t, $p);
-	        			$total =$total+$p['production'];
-	        			foreach ($partsDetails as $part) {
-	        				if ($p['part_id'] == $part->part_id) {
-	        					$s_time =  strtotime($p['shift_date']." ".$p['start_time']);
-	        					$e_time = strtotime($p['shift_date']." ".$p['end_time']);
-	        					$temp_target = ($e_time-$s_time)/$part->NICT;
-	        					array_push($target, (int)$temp_target);
-
-                                // echo $p['machine_id']." ".$p['part_id']." ".$part->NICT." ".(int)$temp_target;
-                                // echo "<br>";
+                        $h_total=0;
+	        			$total =$total+$p['production']+$p['corrections'];
+                            $temp_target =0;		
+                            $tc=0;	
+                            foreach ($partsDetails as $part) {
+                                if ($p['part_id'] == $part->part_id and !in_array($key,$check_array)) {
+                                    $s_time =  strtotime($p['shift_date']." ".$p['start_time']);
+                                    $e_time = strtotime($p['shift_date']." ".$p['end_time']);
+                                    $temp_target = $temp_target + (($e_time-$s_time)/$part->NICT);
+                                    $tc=1;  
+                                    $h_total=$h_total+$p['production'];
+                                }
+                            }
+                            foreach ($hourly_production as $k => $multiple) {
+                                if ($multiple['machine_id'] == $p['machine_id'] and $multiple['start_time'] == $p['start_time'] and $multiple['part_id'] != $p['part_id'] and !in_array($k,$check_array)) {
+                                    foreach ($partsDetails as $part) {
+                                        if ($p['part_id'] == $part->part_id) {
+                                            $s_time =  strtotime($p['shift_date']." ".$p['start_time']);
+                                            $e_time = strtotime($p['shift_date']." ".$p['end_time']);
+                                            $temp_target = $temp_target + (($e_time-$s_time)/$part->NICT);
+                                            // unset($hourly_production[$k]);
+                                            array_push($check_array, $key);
+                                            array_push($check_array, $k);
+                                            $tc=1;  
+                                            $h_total=$h_total+$multiple['production'];
+                                        }
+                                    }
+                                }
+                            }
+        					if ($tc==1) {
+                                array_push($target, (int)$temp_target);
 
                                 date_default_timezone_set('Asia/Kolkata'); 
-
                                 if (date("H",$s_time) == date("H")) {
                                     $e_time = strtotime($p['shift_date']." ".date("H:i:s"));
                                     $temp_target = ($e_time-$s_time)/$part->NICT;
@@ -120,10 +141,11 @@ class Current_Shift_Performance extends BaseController{
                                 }elseif ($track == 0) {
                                     array_push($tar_per, (int)$temp_target);
                                 }
-	        				}
+                                $p['production'] = $h_total;
+                                array_push($t, $p);
+                            }
 	        			}
 	        		}
-	        	}
 
 	        	$temp = array('machine' => $m['machine_id'],'production' => $t,"targets"=>$target,"target_per" => $tar_per);
 	        	array_push($machineWise, $temp);

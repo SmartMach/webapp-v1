@@ -226,8 +226,8 @@ class Current_Shift_Performance_Model extends Model{
         $query->select('machine_id,shift_date,start_time,end_time,shift_id,production,corrections,part_id');
         $query->where('shift_date',$shift_date);
         $query->where('shift_id',$shift_id);
-        $query->groupby('machine_id');
-        $query->groupby('start_time');
+        // $query->groupby('machine_id');
+        // $query->groupby('start_time');
         $res= $query->get()->getResultArray();
         return $res;
     }
