@@ -223,7 +223,7 @@ class Current_Shift_Performance_Model extends Model{
     {
         $db = \Config\Database::connect($this->site_connection);
         $query = $db->table('pdm_production_info');
-        $query->select('machine_id,shift_date,start_time,end_time,shift_id,production,part_id');
+        $query->select('machine_id,shift_date,start_time,end_time,shift_id,production,corrections,part_id');
         $query->where('shift_date',$shift_date);
         $query->where('shift_id',$shift_id);
         $query->groupby('machine_id');

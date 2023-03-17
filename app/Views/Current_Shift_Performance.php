@@ -430,6 +430,7 @@ function getLiveMode(shift_date,shift_id){
                 fill: false,
                 data: production_target,
                 pointRadius: 0,
+                stepped: 'before',
               },
             ],
           },

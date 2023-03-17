@@ -30,19 +30,23 @@ class Current_Shift_Performance extends BaseController{
     
     public function getLiveMode(){
     	// if ($this->request->isAJAX()) {
-    		$shift_date = $this->request->getVar('shift_date');
-    		$shift_id = $this->request->getVar('shift_id');
-            $filter = $this->request->getVar('filter');
+    		// $shift_date = $this->request->getVar('shift_date');
+    		// $shift_id = $this->request->getVar('shift_id');
+      //       $filter = $this->request->getVar('filter');
 
-    		// $shift_date = "2023-03-15";
-    		// $shift_id = "A";
-            //       $filter = 2;
+    		$shift_date = "2023-03-15";
+    		$shift_id = "A";
+            $filter = 2;
 
     		// Current Shift OEE Target......
     		$oee_target = $this->datas->getOEETarget();
 
     		// Hourly Production.....
     		$hourly_production = $this->datas->getLiveProduction($shift_date,$shift_id );
+            foreach ($hourly_production as $key => $value) {
+                $hourly_production[$key]['production'] = ((int)$value['production']) + ((int)$value['corrections']);
+            }
+
     		// Machine Detailes.......
     		$machine_detailes = $this->datas->getMachineLive();
 
@@ -103,12 +107,15 @@ class Current_Shift_Performance extends BaseController{
 	        					$temp_target = ($e_time-$s_time)/$part->NICT;
 	        					array_push($target, (int)$temp_target);
 
+                                // echo $p['machine_id']." ".$p['part_id']." ".$part->NICT." ".(int)$temp_target;
+                                // echo "<br>";
+
                                 date_default_timezone_set('Asia/Kolkata'); 
 
                                 if (date("H",$s_time) == date("H")) {
                                     $e_time = strtotime($p['shift_date']." ".date("H:i:s"));
                                     $temp_target = ($e_time-$s_time)/$part->NICT;
-                                    array_push($target, (int)$temp_target);
+                                    array_push($tar_per, (int)$temp_target);
                                     $track = 1;
                                 }elseif ($track == 0) {
                                     array_push($tar_per, (int)$temp_target);
