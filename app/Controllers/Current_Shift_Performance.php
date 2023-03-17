@@ -36,7 +36,7 @@ class Current_Shift_Performance extends BaseController{
 
     		// $shift_date = "2023-03-15";
     		// $shift_id = "A";
-      //       $filter = 2;
+            //       $filter = 2;
 
     		// Current Shift OEE Target......
     		$oee_target = $this->datas->getOEETarget();
