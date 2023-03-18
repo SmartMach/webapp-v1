@@ -404,3 +404,37 @@
     font-weight:750;
     text-align:center;
 }
+
+.goals_div_text{
+    display:flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    margin-left:1rem;
+}
+.circle_graph_text{
+    width:25%;
+    display:flex;
+    flex-direction:row;
+    justify-content:end;
+    align-items:center;
+    font-size:1rem;
+    font-weight:800;
+    color:white;
+}
+.target_graph_text{
+    width:50%;
+    display:flex;
+    margin-left:1rem;
+    justify-content:flex-end;
+    font-size:1rem;
+    align-items:center;
+    color:white;
+    font-weight:800;
+}
+.header_text_nav{
+    display: flex;
+    max-width: max-content;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}

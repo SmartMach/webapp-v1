@@ -15,9 +15,17 @@
 <div style="margin-left: 4.5rem;">
   <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav_quality" style="z-index: 1001!important">
     <div class="container-fluid paddingm" style="margin-top:0.2rem;">
-      <p class="float-start p3" id="logo">Current Shift Performance</p>
+      <div class="header_text_nav">
+        <div class="oui_arrow_div">
+          <div class="dotAccessArrow dot-css acsControl marleftDot " style="margin-right:0.7rem;margin-left:0.4rem;">
+            <img src="<?php echo base_url('assets/img/oui_arrow.png'); ?>" class="img_font_wh dot-cont" style="height: 26px;transform: rotate(180deg);">
+          </div>
+        </div>
+        <p class="float-start p3" id="logo" style="margin-left:0.1rem;">Current Shift Performance</p>
+      </div>
+      
       <div class="d-flex" style="display: flex;align-items: center;">
-                <div class="box CurrentNav rightmar alignCenter">
+              <div class="box CurrentNav rightmar alignCenter visibility_div">
                   <div class="input-box paddingm">
                       <select class="form-select font-items" name="" id="Filter-values" style="width: 10rem;">
                         <option value="0">Machine Rank Order</option>
@@ -28,7 +36,7 @@
                       <label for="inputSiteNameAdd" class="input-padding titleTag">Sort</label>
                   </div>
               </div>
-              <div class="CurrentNav">
+              <div class="CurrentNav visibility_div">
                 <div class="dotAccessArrow dot-css acsControl marleftDot">
                     <img src="<?php echo base_url('assets/img/oui_arrow.png'); ?>" class="img_font_wh dot-cont" style="height: 26px;transform: rotate(180deg);">
                 </div>
@@ -61,7 +69,12 @@
   </nav>
 
   <div class="graph-content" style="margin-top:3.8rem;">
-    <div class="grid-container-cont">
+    <div style="display:flex;flex-direction:row-reverse;margin-bottom:0.4rem;">
+      <div style="width:max-content;">
+        <i class="fa-solid fa-expand" onclick="fullscreen_mode()"></i>
+      </div>
+    </div>
+    <div class="grid-container-cont" id="full_screen_cards">
       <!-- Machine Tiles -->
     </div>
   </div>
@@ -123,11 +136,11 @@
                   </div>
                 </div>
 
-                <div style="display:flex;flex-direction:row;justify-content:flex-start;margin-left:1rem;">
-                    <div style="width:25%;display:flex;flex-direction:row;justify-content:end;align-items:center;font-size:1rem;font-weight:800;color:white;">
+                <div class="goals_div_text" style="">
+                    <div class="circle_graph_text" style="">
                       <i class="fa-solid fa-clock-rotate-left" style="margin-right:1rem;"></i><span>112min</span>
                     </div>
-                    <div style="width:50%;display:flex;margin-left:1rem;justify-content:flex-end;font-size:1rem;align-items:center;color:white;font-weight:800;">
+                    <div class="target_graph_text" style="">
                       <i class="fa-solid fa-circle" style="margin-right:0.4rem;font-size:0.5rem;"></i><span style="">31 Jan 23,02:02 PM</span>
                     </div>
                 </div>
@@ -256,6 +269,9 @@
   var myChart = "";
   var myChartList=[];
   var i="";
+  $('.oui_arrow_div').css('display','none');
+  $('.visibility_div').css('display','inline');
+
 getMachineDataLive();
 function getMachineDataLive() {
   $.ajax({
@@ -741,6 +757,9 @@ function getLiveMode(shift_date,shift_id){
     $('.label_text_color').css('color',label_text);
     $('#machine_status').text(event);
     $('#machine_name_text').text(machine_name);
+
+    $('.oui_arrow_div').css('display','inline');
+    $('.visibility_div').css('display','none');
 
   });
 
@@ -1244,6 +1263,18 @@ function div_records(mid,shift_date,shift_id,card_header,card_body){
 
     }
   });
+}
+
+var full = document.getElementById("full_screen_cards");
+// full screen mode onclick
+function fullscreen_mode(){
+  if (full.requestFullscreen) {
+    full.requestFullscreen();
+  } else if (full.webkitRequestFullscreen) { /* Safari */
+    full.webkitRequestFullscreen();
+  } else if (full.msRequestFullscreen) { /* IE11 */
+    full.msRequestFullscreen();
+  }
 }
 
 </script>
