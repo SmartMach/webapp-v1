@@ -72,23 +72,23 @@
     <div class="oui_header_div" style="">
         <div class="oui_sub_header" style="">
             <div class="sub_header_first_row" style="">
-              <span class="first_row_header" style="">IM01</span>
-              <span class="first_row_body" style="" id="part_name_header">Part Name1</span>
+              <span class="first_row_header" id="machine_name_text" style=""></span>
+              <span class="first_row_body" style="" id="part_name_header"></span>
             </div>
             <div class="sub_header_second_row" style="">
               <p>DOWNTIME <br> <span class="downtime_second_val" style="">04:02</span></p>
               
             </div>
             <div class="sub_header_third_row" style="">
-              <span>INACTIVE</span>
+              <span id="machine_status"></span>
             </div>
         </div>
 
         <div class="first_row_div" style="">
           <div class="goal_div" style="">
-              <div class="goals_div" >
-                <p class="label_header" >GOALS</p>
-                <div style="display:flex;flex-direction:row;height:82%;justify-content:space-around;">
+              <div class="goals_div line_color_border" >
+                <p class="label_header label_text_color" >GOALS</p>
+                <div class="goal_height_div" style="">
                   <div style="width:60%;">
                       <!-- circle graph start -->
                       <div class="item-circle_oui">
@@ -112,11 +112,11 @@
                       <!-- circle graph end -->
                   </div>
                   <div style="width:38%;">
-                    <div style="display:flex;flex-direction:column;height:93%;">
+                    <div class="target_graph_div" style="">
                       <span>Target <span id="target_value">320</span></span>
-                      <div style="height:100%;width:6.5rem;background-color:#730316;padding-left:1rem;padding-right:1rem;display:flex;justify-content:center;align-items:end;">
-                        <div style="height:40%;width:4rem;background-color:#C55A11;display:flex;justify-content:center;align-items:flex-start;">
-                          <span id="target_value_inner" style="color:white;font-size:1.6rem;font-weight:750;text-align:center;">12</span>
+                      <div class="target_graph_parent_div" style="">
+                        <div class="target_graph_child_div" style="">
+                          <span id="target_value_inner" style="">12</span>
                         </div>
                       </div>
                     </div>
@@ -134,8 +134,8 @@
               </div>
           </div>
           <div class="timeline_part">
-            <div class="timeline_div" style="">
-              <p class="label_header" style="">TIMELINE</p>
+            <div class="timeline_div line_color_border" style="">
+              <p class="label_header label_text_color" style="">TIMELINE</p>
               <div id="downtime_chart" style="padding:0;margin:0;margin-left:1rem;margin-right:1rem"></div>
               <!-- downtime legend -->
               <div class="downtime_legend" style="margin-top:1rem;">
@@ -170,8 +170,8 @@
               </div>
 
             </div>
-            <div class="part_div" style="">
-              <p class="label_header" >PART WISE BY HOURS</p>
+            <div class="part_div line_color_border" style="">
+              <p class="label_header label_text_color" >PART WISE BY HOURS</p>
               <div class="parent_part_oui part_wise_alignment parent_div marginScroll">
                 <div class="child_div child_part_oui">
                   <canvas id="part_wise_graph_oui" class="part_wise_graph_oui_align" style="height:100%;width:100%;"></canvas>    
@@ -205,8 +205,8 @@
 
           </div>
           <div style="width:48%;">
-            <div class="efficiency_div">
-              <p class="label_header" >EFFICIENCY</p>
+            <div class="efficiency_div line_color_border">
+              <p class="label_header label_text_color" >EFFICIENCY</p>
               <div class="hide_card" style="">
                 
                 <div class="hide_card_div" style="">
@@ -298,6 +298,8 @@ function getLiveMode(shift_date,shift_id){
       filter:x,
     },
     success:function(res){
+      console.log("live cards");
+      console.log(res);
       $('.grid-container-cont').empty();
       res['latest_event'].forEach(function(machine){
         var machine_name = "";
@@ -322,7 +324,7 @@ function getLiveMode(shift_date,shift_id){
                 +'<p class="paddingm fnt-color machine_name_ref" mid_data="'+machine[0]['machine_id']+'"  id="Machine_name_'+machine[0]['machine_id']+'">'+machine_name+'</p>'
               +'</div>'
               +'<div class="cen-align">'
-                +'<p class="paddingm fnt-color current_event" id="latest_status_'+machine[0]['machine_id']+'"></p>'
+                +'<p class="paddingm fnt-color current_event"  id="latest_status_'+machine[0]['machine_id']+'"></p>'
               +'</div>'
             +'</div>'
           +'</div>'
@@ -372,6 +374,7 @@ function getLiveMode(shift_date,shift_id){
           
         // Latest Status........
         $('#latest_status_'+machine[0]['machine_id']+'').html(res['latest_event'][0][0].duration+"m "+res['latest_event'][0][0].event);
+        $('#latest_status_'+machine[0]['machine_id']+'').attr("event_data",machine[0]['event']);
 
         // Production Percentage.......
         var target_production=5000;
@@ -689,17 +692,56 @@ function getLiveMode(shift_date,shift_id){
     var tmp_mid = $('.machine_name_ref:eq('+index_val+')').attr('mid_data');
     var shift_date = $('#shift_date').text();
     var shift_id = $('#shift_id').text();
+    var event = $('.current_event:eq('+index_val+')').attr('event_data');
+    var machine_name = $('.machine_name_ref:eq('+index_val+')').text();
     // alert(shift_id.split(" "));
     const tmp = shift_id.split(" ")
     alert(shift_date);
     alert(tmp_mid);
+    alert(event);
+    var backgroundcolor = "";
+    var bar_color = "";
+    var card_body = "";
+    var line  = "";
+    var label_text = "";
+
+    if (event === "Active") {
+      backgroundcolor = "#01ab4e";
+      bar_color = "#007A37";
+      card_body = "#009644";
+      line = "#01a34a";
+      label_text="white";
+    }else if(event === "Inactive"){
+      backgroundcolor = "#d10527";
+      bar_color = "#730316";
+      card_body = "#BB0523";
+      line = "#730316";
+      label_text="black";
+    }else if(event === "Machine OFF"){
+      backgroundcolor = "#7f7f7f";
+      bar_color = "#404040";
+      card_body = "#565656";
+      line="#aaaaaa";
+      label_text="black";
+    }
     const shift_arr = [];
     shift_arr.push(tmp[1]);
+    // #009644 green header card body part graph  #007A37 card header
+
     getDownTimeGraph(tmp_mid,shift_date,shift_arr);
-    part_by_hour(tmp_mid,shift_date,tmp[1]);
-    div_records(tmp_mid,shift_date,tmp[1]);
+    part_by_hour(tmp_mid,shift_date,tmp[1],bar_color);
+    div_records(tmp_mid,shift_date,tmp[1],bar_color,card_body);
     $('.graph-content').css('display','none');
     $('.oui_screen_view').css('display','inline');
+    $('.oui_header_div').css('background-color',backgroundcolor);
+    $('.label_header').css('background-color',backgroundcolor);
+    $('.oui_sub_header').css('background-color',card_body);
+    $('.target_graph_parent_div').css('background-color',card_body);
+    $('.line_color_border').css('border','1px solid '+line);
+    $('.label_text_color').css('color',label_text);
+    $('#machine_status').text(event);
+    $('#machine_name_text').text(machine_name);
+
   });
 
 
@@ -1010,7 +1052,7 @@ function color_bar(color,reason){
 }
 
 // part wise graph by hours using oui screen
-function part_by_hour(mid,sdate,sid){
+function part_by_hour(mid,sdate,sid,bar_color){
   var x = 0;
   $.ajax({
     url: "<?php echo base_url('Current_Shift_Performance/getLiveMode'); ?>",
@@ -1079,7 +1121,7 @@ function part_by_hour(mid,sdate,sid){
             {
               label: "Production",
               type: "bar",
-              backgroundColor: "white",
+              backgroundColor: bar_color,
               borderColor: "white", 
               borderWidth: 1,
               fill: true,
@@ -1142,7 +1184,7 @@ function part_by_hour(mid,sdate,sid){
 }
 
 // div elements value assigning function
-function div_records(mid,shift_date,shift_id){
+function div_records(mid,shift_date,shift_id,card_header,card_body){
   $.ajax({
     url:"<?php echo base_url('Current_Shift_Performance/div_details'); ?>",
     type: "POST",
@@ -1190,6 +1232,11 @@ function div_records(mid,shift_date,shift_id){
       $('#part_name_circle').text(res['part_name']);
       $('#part_name_header').text(res['part_name']);
 
+      $('.card_header').css('background-color',card_header);
+      $('.card_small_div').css('background-color',card_body);
+      $('.shift_oee_header').css('background-color',card_header);
+      $('.shift_oee_div').css('background-color',card_body);
+      
     },
     error:function(er){
       console.log("error");
