@@ -250,8 +250,8 @@
 
 .hide_card_body{
     padding:0.3rem;
-    font-size:1.3rem;
-    font-weight:850;
+    font-size:0.8rem;
+    font-weight:450;
 }
 
 /* downtime  tooltip css */
@@ -284,4 +284,96 @@
 .leftAllign{
     margin-left: 0.5rem;
 }
-  
+.shift_oee_div{
+    width:30%;
+    height:max-content;
+    background-color:#BB0523;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+.shift_oee_header{
+    background-color:#730316;
+    width:100%;
+    padding:0.4rem;
+    text-align:center;
+    font-size:13px;
+}
+.shift_oee_body{
+    padding:0.3rem;
+    font-size:0.8rem;
+    font-weight:450;
+}
+.value_text{
+    font-size:1.3rem;
+    font-weight: 800;
+
+}
+
+/* goal header div */
+.oui_screen_view{
+    height: 100vh;
+}
+.goal_div{
+    width:48%;
+    display:flex;
+    flex-direction:column;
+}
+.first_row_div{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+    align-items:center;
+    margin-top:2rem;
+}
+.oui_header_div{
+    background-color:#d10527;
+    margin-top:4.2rem;
+    /* height: 100vh; */
+}
+.oui_sub_header{
+    display:flex;
+    flex-direction:row;
+    height:4rem;
+    background-color:rgba(190,5,35,255);
+}
+.sub_header_first_row{
+    width:33%;
+    display:flex;
+    flex-direction:column;
+    justify-content:end;
+    color:white;
+    font-family:'Roboto', sans-serif;
+    margin-left:1rem;
+}
+.first_row_header{
+    font-size:1.6rem;
+    font-weight:400;
+}
+.first_row_body{
+    font-weight:700;
+}
+.sub_header_second_row{
+    width:33%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    color:white;
+}
+.downtime_second_val{
+    font-size:1.6rem;
+    font-weight:600;
+}
+.sub_header_third_row{
+    width:33%;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:end;
+    color:white;
+    font-weight:600;
+    font-size:1rem;
+    margin-right:1rem;
+}

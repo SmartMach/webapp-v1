@@ -69,23 +69,23 @@
   <!-- oui screen start -->
   <!-- oui screen -->
   <div class="oui_screen_view" style="display:none;">
-    <div style="background-color:#d10527;margin-top:4.2rem;">
-        <div style="display:flex;flex-direction:row;height:4rem;background-color:rgba(190,5,35,255);">
-            <div style="width:33%;display:flex;flex-direction:column;justify-content:end;color:white;font-family:'Roboto', sans-serif;margin-left:1rem;">
-              <span style="font-size:1.6rem;font-weight:400;">IM01</span>
-              <span style="font-weight:700;">Part Name1</span>
+    <div class="oui_header_div" style="">
+        <div class="oui_sub_header" style="">
+            <div class="sub_header_first_row" style="">
+              <span class="first_row_header" style="">IM01</span>
+              <span class="first_row_body" style="" id="part_name_header">Part Name1</span>
             </div>
-            <div style="width:33%;display:flex;flex-direction:column;align-items:center;color:white;">
-              <p>DOWNTIME <br> <span style="font-size:1.6rem;font-weight:600;">04:02</span></p>
+            <div class="sub_header_second_row" style="">
+              <p>DOWNTIME <br> <span class="downtime_second_val" style="">04:02</span></p>
               
             </div>
-            <div style="width:33%;display:flex;flex-direction:row;align-items:center;justify-content:end;color:white;font-weight:600;font-size:1rem;margin-right:1rem;">
+            <div class="sub_header_third_row" style="">
               <span>INACTIVE</span>
             </div>
         </div>
 
-        <div style="display:flex;flex-direction:row;justify-content:space-around;align-items:center;margin-top:2rem;">
-          <div style="width:48%;display:flex;flex-direction:column;">
+        <div class="first_row_div" style="">
+          <div class="goal_div" style="">
               <div class="goals_div" >
                 <p class="label_header" >GOALS</p>
                 <div style="display:flex;flex-direction:row;height:82%;justify-content:space-around;">
@@ -96,7 +96,7 @@
                         <div class="inner-circle_oui">
                           <div class="inner-val_oui">
                             <p class="paddingm production_completion_oui"><span id="production_per_oui"></span>%</p>
-                            <p class="paddingm production_completion_oui partname_ref_oui" id="partname_MC1001_oui">Part Name 1</p>
+                            <p class="paddingm production_completion_oui partname_ref_oui" id="part_name_circle">Part Name 1</p>
                           </div>
                         </div>
                         <svg version="1.1" class="svg_oui">
@@ -188,18 +188,18 @@
             
             <div class="card_small_div" style="">
               <span class="card_header" style="">Downtime</span>
-              <span class="card_body" style="">4h 33m</span>
+              <span class="card_body" style="" id="downtime_val"></span>
             </div>
 
             <div class="card_small_div" >
               <span class="card_header">Cycle Time</span>
-              <span class="card_body">1m 2s</span>
+              <span class="card_body" id="nict_val"></span>
             </div>
 
 
             <div class="card_small_div" >
               <span class="card_header" >Rejects Counts</span>
-              <span class="card_body" >25</span>
+              <span class="card_body" id="reject_count"></span>
             </div>
 
 
@@ -211,23 +211,23 @@
                 
                 <div class="hide_card_div" style="">
                   <span class="hide_card_header" style="">Availability</span>
-                  <span class="hide_card_body" style="">92 %</span>
+                  <span class="hide_card_body" style=""><span id="availability_val" class="value_text"></span> %</span>
                 </div>
 
                 <div class="hide_card_div">
                   <span class="hide_card_header">Performance</span>
-                  <span  class="hide_card_body" >89 %</span>
+                  <span  class="hide_card_body" ><span id="performance_val" class="value_text"></span> %</span>
                 </div>
 
 
                 <div class="hide_card_div">
                   <span class="hide_card_header">Quality</span>
-                  <span class="hide_card_body">98 %</span>
+                  <span class="hide_card_body"><span id="quality_val" class="value_text"></span> %</span>
                 </div>
 
-                <div style="width:30%;height:max-content;background-color:#BB0523;display:flex;flex-direction:column;justify-content:center;align-items:center;color:white;">
-                  <span style="background-color:#730316;width:100%;padding:0.4rem;text-align:center;font-size:13px">SHIFT OEE</span>
-                  <span style="padding:0.3rem;font-size:1.3rem;font-weight:850;">82 %</span>
+                <div class="shift_oee_div" style="">
+                  <span class="shift_oee_header" style="">SHIFT OEE</span>
+                  <span class="shift_oee_body" style=""><span id="oee_val" class="value_text"></span> %</span>
                 </div>
 
 
@@ -697,6 +697,7 @@ function getLiveMode(shift_date,shift_id){
     shift_arr.push(tmp[1]);
     getDownTimeGraph(tmp_mid,shift_date,shift_arr);
     part_by_hour(tmp_mid,shift_date,tmp[1]);
+    div_records(tmp_mid,shift_date,tmp[1]);
     $('.graph-content').css('display','none');
     $('.oui_screen_view').css('display','inline');
   });
@@ -1024,7 +1025,7 @@ function part_by_hour(mid,sdate,sid){
     },
     success:function(res){
       console.log("part by hour graph");
-      console.log(res['data']);
+      console.log(res);
       var hourly = [];
       var hourList = [];
       var production_target = [];
@@ -1040,14 +1041,35 @@ function part_by_hour(mid,sdate,sid){
         }
       });
 
+
+      // availability performance and quality div records
+      var availability_assign = 0;
+      var performance_assign = 0;
+      var quality_assign = 0;
+      var oee_assign = 0;
+      res['oee'].forEach(function(item){
+        if (item['Machine_Id']===mid) {
+          availability_assign = item['Availability'];
+          performance_assign = item['Performance'];
+          quality_assign = item['Quality'];
+          oee_assign = item['OEE'];
+        }
+      });
+
+      $('#availability_val').text(parseInt(availability_assign));
+      $('#performance_val').text(parseInt(performance_assign));
+      $('#quality_val').text(parseInt(quality_assign));
+      $('#oee_val').text(parseInt(oee_assign));
+
+
       ChartDataLabels.defaults.color = "#ffffff";
       ChartDataLabels.defaults.font.size = "9px";
       ChartDataLabels.defaults.font.family = "'Roboto', sans-serif;";
       ChartDataLabels.defaults.anchor = "center";
 
-      console.log("graph");
-      console.log(hourly);
-      console.log(hourList);
+      // console.log("graph");
+      // console.log(hourly);
+      // console.log(hourList);
       var ctx = document.getElementById('part_wise_graph_oui').getContext('2d');
       myChartList[myChartList.length] = new Chart(ctx, {
         type: 'bar',
@@ -1116,6 +1138,64 @@ function part_by_hour(mid,sdate,sid){
       console.log(er);
     },
 
+  });
+}
+
+// div elements value assigning function
+function div_records(mid,shift_date,shift_id){
+  $.ajax({
+    url:"<?php echo base_url('Current_Shift_Performance/div_details'); ?>",
+    type: "POST",
+    dataType: "json",
+    cache: false,
+    async: false,
+    data:{
+      mid:mid,
+      shift_date:shift_date,
+      shift_id:shift_id,
+    },
+    success:function(res){
+      console.log("Div Records");
+      console.log(res);
+
+      var nict_min = res['nict']/60;
+      var tmp_nict = " ";
+      if (parseInt(nict_min)>0) {
+        var nict_second = res['nict']%60;
+        if (parseInt(nict_second)>0) {
+          tmp_nict = parseInt(nict_min)+"m"+" "+parseInt(nict_second)+"s";
+        }else{
+          tmp_nict = parseInt(nict_min)+"m";
+        }
+      }else{
+        tmp_nict = parseInt(res['nict'])+'s';
+      }
+
+      var temp_downtime = res['downtime']/60;
+      var downtime_val = " ";
+      if (parseInt(temp_downtime)>0) {
+        var downtime_hour = temp_downtime/60;
+        if (parseInt(downtime_hour)>0) {
+            downtime_val = parseInt(downtime_hour)+"h"+" "+parseInt(temp_downtime)+"m";
+        }else{
+          downtime_val = parseInt(temp_downtime)+"m";
+        }
+      }else{
+        downtime_val = parseInt(res['downtime'])+"s";
+      }
+
+      $('#downtime_val').text(downtime_val);
+      $('#nict_val').text(tmp_nict);
+      $('#reject_count').text(res['rejection_count']);
+      $('#part_name_circle').text(res['part_name']);
+      $('#part_name_header').text(res['part_name']);
+
+    },
+    error:function(er){
+      console.log("error");
+      console.log(er);
+
+    }
   });
 }
 

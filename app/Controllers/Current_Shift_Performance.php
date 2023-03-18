@@ -703,6 +703,68 @@ class Current_Shift_Performance extends BaseController{
         return $DowntimeTimeData;
     }
 
+
+
+     // div record for current shift performance oui screen
+     public function div_details(){
+        if ($this->request->isAJAX()) {
+            $mid = $this->request->getVar('mid');
+            $sdate = $this->request->getVar('shift_date');
+            $sid = $this->request->getVar('shift_id');
+
+            $downtime_records = $this->datas->getdowntime_records($mid,$sdate,$sid);
+            $getpart_nict = $this->datas->getpart_nict($mid,$sdate,$sid);
+            $rejection_record = $this->datas->getrejection_records($mid,$sdate,$sid);
+
+            // // total downtime durations
+            $total_downtime_seconds = 0;
+            foreach ($downtime_records as $key => $value) {
+                $tmp_duration = explode(".",$value['split_duration']);
+                if ($tmp_duration[0]>0) {
+                    $tmp_second = $tmp_duration[0]*60;
+                    $total_downtime_seconds = $total_downtime_seconds + $tmp_second;
+                    if ($tmp_duration[1]>0) {
+                       $total_downtime_seconds = $total_downtime_seconds + $tmp_duration[1];
+
+                    }else{
+                        $total_downtime_seconds = $total_downtime_seconds + 0;
+                    }
+
+                }
+                elseif ($tmp_duration[1]>0) {
+                    $total_downtime_seconds = $total_downtime_seconds + $tmp_duration[1];
+                }
+                else{
+                    $total_downtime_seconds = $total_downtime_seconds + 0;
+                }
+            }
+
+            // total production rejection
+            $total_reject_count = 0;
+            foreach ($rejection_record as $key => $value) {
+                if ($value['rejections']>0) {
+                   $total_reject_count = $total_reject_count + $value['rejections']; 
+                }
+            }
+
+            $tmp_partname_arr = [];
+            foreach ($getpart_nict as $key => $value) {
+                array_push($tmp_partname_arr,$value['part_name']);
+            }
+
+            // echo json_encode($total_downtime_seconds);
+            $div_record['downtime'] = $total_downtime_seconds;
+            $div_record['nict'] = $getpart_nict[0]['NICT'];
+            $div_record['rejection_count'] = $total_reject_count;
+            $div_record['part_name'] = implode(",",$tmp_partname_arr);
+
+            // $div_record['rejection_count'] = $total_reject_count;
+            // $div_record['part_name'] = implode(',',$tmp_partname_arr);
+            echo json_encode($div_record);
+        }
+    }
+
+
     
 }
 
