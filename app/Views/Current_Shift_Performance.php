@@ -308,8 +308,6 @@ function getMachineDataLive() {
 
 function getLiveMode(shift_date,shift_id){
   var x = $('#Filter-values').val();
-  console.log("normal filter");
-  console.log(x);
   $.ajax({
     url: "<?php echo base_url('Current_Shift_Performance/getLiveMode'); ?>",
     type: "POST",
@@ -322,8 +320,6 @@ function getLiveMode(shift_date,shift_id){
       filter:x,
     },
     success:function(res){
-      console.log("live cards");
-      console.log(res);
       $('.grid-container-cont').empty();
       res['latest_event'].forEach(function(machine){
         var machine_name = "";
@@ -348,7 +344,7 @@ function getLiveMode(shift_date,shift_id){
                 +'<p class="paddingm fnt-color machine_name_ref" mid_data="'+machine[0]['machine_id']+'"  id="Machine_name_'+machine[0]['machine_id']+'">'+machine_name+'</p>'
               +'</div>'
               +'<div class="cen-align">'
-                +'<p class="paddingm fnt-color current_event"  id="latest_status_'+machine[0]['machine_id']+'"></p>'
+                +'<p class="paddingm fnt-color current_event" id="latest_status_'+machine[0]['machine_id']+'"></p>'
               +'</div>'
             +'</div>'
           +'</div>'
@@ -413,7 +409,6 @@ function getLiveMode(shift_date,shift_id){
           
         // Latest Status........
         $('#latest_status_'+machine[0]['machine_id']+'').html(res['latest_event'][0][0].duration+"m "+res['latest_event'][0][0].event);
-        $('#latest_status_'+machine[0]['machine_id']+'').attr("event_data",machine[0]['event']);
 
         // Production Percentage.......
         var target_production=5000;
@@ -503,8 +498,6 @@ function getLiveMode(shift_date,shift_id){
           },
           plugins: {
             datalabels:{
-            tooltip: {
-              enabled: true,
               anchor:"end",
               align:"end",
               offset:-16,
@@ -527,7 +520,6 @@ function getLiveMode(shift_date,shift_id){
             tooltip: {
               enabled: false,
               external: productionTooltip,
-
             },
           },
         
