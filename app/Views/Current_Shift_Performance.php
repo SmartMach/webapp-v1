@@ -54,6 +54,7 @@
               <div class="">
                 <p class="paddingm titleTag">Start</p>
                 <p class="paddingm font-items" id="start_time"></p>
+                <input type="text" id="s_time_val" style="display: none;">
               </div>
               <div class="dot-cnt">
                 <div class="dotAccessCurrent">
@@ -63,6 +64,7 @@
               <div class="CurrentNav">
                 <p class="paddingm titleTag">End</p>
                 <p class="paddingm font-items" id="end_time"></p>
+                <input type="text" id="e_time_val" style="display: none;">
               </div>
       </div>
     </div>
@@ -115,8 +117,7 @@
                         <svg version="1.1" class="svg_oui">
                           <defs>
                               <linearGradient id="GradientColor_oui">
-                                  <stop offset="0%" stop-color="#C55A11" />
-                                  <stop offset="100%" stop-color="#C55A11"/>
+                                  <stop stop-color="#C55A11" />
                               </linearGradient>
                           </defs>
                           <circle class="circle_oui_anim" cx="120" cy="120" r="63" stroke-linecap="round"/>
@@ -135,7 +136,6 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="goals_div_text" style="">
                     <div class="circle_graph_text" style="">
                       <i class="fa-solid fa-clock-rotate-left" style="margin-right:1rem;"></i><span>112min</span>
@@ -271,7 +271,7 @@
   var i="";
   $('.oui_arrow_div').css('display','none');
   $('.visibility_div').css('display','inline');
-
+  var j="";
 getMachineDataLive();
 function getMachineDataLive() {
   $.ajax({
@@ -282,10 +282,18 @@ function getMachineDataLive() {
     async: false,
     contentType: "application/json; charset=utf-8",
     success:function(res){
-      $("#shift_date").html(res[0]['shift_date']);
-      $("#shift_id").html("Shift "+res[0]['shift_id']);            
-      $("#start_time").html(res[0]['start_time']);
-      $("#end_time").html(res[0]['end_time']);
+      var date = new Date(res[0]['shift_date'])
+      date = date.getDate()+" "+date.toLocaleString([], { month: 'short' })+" "+date.getFullYear();
+
+      $("#shift_date").html(date);
+      $("#shift_id").html("Shift "+res[0]['shift_id']);
+      var s_time = res[0]['start_time'].split(":");
+      var e_time = res[0]['end_time'].split(":");
+      $("#start_time").html(s_time[0]+":"+s_time[1]);
+      $("#end_time").html(e_time[0]+":"+e_time[1]);
+
+      $("#s_time_val").val(s_time[0]+":"+s_time[1]+":"+s_time[2]);
+      $("#e_time_val").val(e_time[0]+":"+e_time[1]+":"+s_time[2]);
 
       $("#s_date_ref").val(res[0]['shift_date']);
       $("#s_id_ref").val(res[0]['shift_id']);
@@ -348,20 +356,22 @@ function getLiveMode(shift_date,shift_id){
             +'<div class="inner-circle">'
               +'<div class="inner-val">'
                 +'<p class="paddingm production_completion"><span id="production_per'+machine[0]['machine_id']+'"></span>%</p>'
-                +'<p class="paddingm production_completion partname_ref" id="partname_'+machine[0]['machine_id']+'">Part Name 1</p>'
+                +'<p class="paddingm production_completion partname_ref" id="partname_'+machine[0]['machine_id']+'">Part Name</p>'
               +'</div>'
             +'</div>'
             +'<svg version="1.1" class="svg">'
               +'<defs>'
                   +'<linearGradient id="GradientColor">'
-                      +'<stop offset="0%" stop-color="#ffbf00" />'
-                      +'<stop offset="100%" stop-color="#ffbf00"/>'
+                      +'<stop id="circle_graph_colors_'+machine[0]['machine_id']+'" stop-color="#d10527" />'
                   +'</linearGradient>'
               +'</defs>'
               +'<circle class="circle" cx="120" cy="120" r="63" stroke-linecap="round"/>'
             +'</svg>'
           +'</div>'
-          +'<div class="item-oee" style="margin: 0.5rem;">'
+          // +'<div class="part_completion">'
+          //     +'<p>Part Completion</p>'
+          //   +'</div>'
+          +'<div class="item-oee hoverCardOEECurrent" style="margin: 0.5rem;">'
             +'<div style="width: 15%;display: flex;justify-content: flex-end;"><p class="paddingm oee-lable">OEE</p></div>'
             +'<div class="FLayer">'
               +'<div class="BLayer" id="Target_'+machine[0]['machine_id']+'"></div>'
@@ -371,6 +381,19 @@ function getLiveMode(shift_date,shift_id){
               +'</div>'
             +'</div>'
           +'</div>'
+
+          +'<div class="hoverOverallOEE_Current hoverOverall_current">'
+            +'<div style="display: flex;">'
+              +'<div style="width: 70%" id="title_overall">OEE%</div>'
+              +'<div style="width: 30%" class="val_color" ><p class="paddingm teepVal" style="width:max-content;" id="OEE_'+machine[0]['machine_id']+'">0%</p></div>'
+            +'</div>'
+            +'<div style="display: flex;">'
+              +'<div style="width: 70%">Target</div>'
+              +'<div style="width: 30%"><p class="paddingm teepTarget" id="OEETarget_'+machine[0]['machine_id']+'">0%</p></div>'
+            +'</div>'
+          +'</div>'
+
+
           +'<div class="item-production">'
             +'<div class="item-production-s" id="item_production_s_'+machine[0]['machine_id']+'"></div>'
             +'<div class="graph-content-div">'
@@ -407,11 +430,15 @@ function getLiveMode(shift_date,shift_id){
         var hourly = [];
         var hourList = [];
         var production_target = [];
+        var part_name_list=[];
+        var rejections_list =[];
         res['data'].forEach(function(items){
           if(items['machine'] == machine[0]['machine_id']){
             items['production'].forEach(function(i){
               hourly.push(i['production']);
               hourList.push(i['start_time']+" to "+i['end_time']);
+              part_name_list.push(i['part_name']);
+              rejections_list.push(i['rejections']);
             });
             items['targets'].forEach(function(i){
               production_target.push(i);
@@ -420,11 +447,9 @@ function getLiveMode(shift_date,shift_id){
         });
 
         ChartDataLabels.defaults.color = "#ffffff";
-        ChartDataLabels.defaults.font.size = "9px";
-        ChartDataLabels.defaults.font.family = "'Roboto', sans-serif;";
-        ChartDataLabels.defaults.anchor = "center";
-
-
+        // ChartDataLabels.defaults.font.size=8;
+        ChartDataLabels.defaults.font.family = "Roboto, sans-serif";
+        
         var ctx = document.getElementById('production-graph-'+machine[0]['machine_id']+'').getContext('2d');
         myChartList[myChartList.length] = new Chart(ctx, {
           type: 'bar',
@@ -435,10 +460,14 @@ function getLiveMode(shift_date,shift_id){
                 label: "Production",
                 type: "bar",
                 backgroundColor: "white",
-                borderColor: "white", 
+                borderColor: "rgba(0, 0, 0, 0)", 
                 borderWidth: 1,
                 fill: true,
                 data: hourly,
+                part_name:part_name_list,
+                rejections:rejections_list,
+                categoryPercentage:1.0,
+                barPercentage: 1.0, 
               },
               {
                 label: "Production Target",
@@ -448,6 +477,7 @@ function getLiveMode(shift_date,shift_id){
                 borderWidth: 1,
                 fill: false,
                 data: production_target,
+                part_name:part_name_list,
                 pointRadius: 0,
                 stepped: 'before',
               },
@@ -473,13 +503,31 @@ function getLiveMode(shift_date,shift_id){
           },
           plugins: {
             datalabels:{
-              formatter: (value,context) => context.datasetIndex === 0 ? value : ''
+            tooltip: {
+              enabled: true,
+              anchor:"end",
+              align:"end",
+              offset:-16,
+              color:"white",
+              font:{
+                size:8,
+              },
+              formatter: (value,context) => context.datasetIndex === 0 ? value : '',
+              
             },
             legend: {
               display: false,
+              labels: {
+                    // This more specific font property overrides the global property
+                    font: {
+                        size: 9
+                    }
+                }
             },
             tooltip: {
-              enabled: true,
+              enabled: false,
+              external: productionTooltip,
+
             },
           },
         
@@ -490,11 +538,152 @@ function getLiveMode(shift_date,shift_id){
     });
       // console.log(ChartDataLabels.defaults.color:"#32a852");
     live_graph(shift_date,shift_id);
+    live_target(shift_date);
     },
     error:function(res){
       // Error Occured!
     }
   });
+}
+
+$(document).on("mousemove",".item-circle",function(e){ 
+  var x = e.clientX;
+  var y = e.clientY;
+  var newposX = x-70;
+  var newposY = y-380;
+  $(this).siblings(".part_completion").css("transform","translate3d("+newposX+"px,"+newposY+"px,0px)"); 
+  // $(this).prevAll(".part_completion").css("transform","translate3d("+newposX+"px,"+newposY+"px,0px)");
+});
+
+function live_target_update(shift_date){
+    // $('#item_production_s_'+machine[0]['machine_id']+'').css("background-color",state_color_rgb);
+    var s_time= $("#s_time_val").val();
+    var e_time= $("#e_time_val").val();
+
+    var st_time = new Date(shift_date+" "+s_time);
+    var et_time = new Date(shift_date+" "+e_time);
+
+    s_time = new Date(shift_date+" "+s_time);
+    e_time = new Date(shift_date+" "+e_time);
+    var temp = new Date(shift_date+" "+s_time);
+
+    while(true){
+      st_time = new Date(st_time.setTime(st_time.getTime()+(60*1000)));
+      if (st_time.getHours() == et_time.getHours() && st_time.getMinutes() == et_time.getMinutes()) {
+        break;
+      }
+    }
+
+    var difference = (new Date(st_time).getTime() - new Date(s_time).getTime())/1000;
+
+    var st1_time = s_time;
+    var et1_time = new Date();
+
+    while(true){
+      st1_time = new Date(st1_time.setTime(st1_time.getTime()+(1000)));
+      if (st1_time.getHours() == et1_time.getHours() && st1_time.getMinutes() == et1_time.getMinutes() && st1_time.getSeconds() == et1_time.getSeconds()) {
+        break;
+      }
+    }
+
+    var temp_time = new Date(shift_date+" "+($("#s_time_val").val()));
+    var difference_current = (new Date(st1_time).getTime() - new Date(temp_time).getTime())/1000;
+
+    var w = parseFloat((difference_current/difference)*100).toFixed(2);
+    $('.item-production-s').css("width",String(w)+"%");
+    
+}
+
+function productionTooltip(context) {
+    // Tooltip Element
+    let tooltipEl = document.getElementById('chartjs-tooltip');
+
+    // Create element on first render
+    if (!tooltipEl) {
+        tooltipEl = document.createElement('div');
+        tooltipEl.id = 'chartjs-tooltip';
+        tooltipEl.innerHTML = '<table></table>';
+        document.body.appendChild(tooltipEl);
+    }
+    tooltipEl.classList.add("global");
+
+    // Hide if no tooltip
+    const tooltipModel = context.tooltip;
+    if (tooltipModel.opacity === 0) {
+        tooltipEl.style.opacity = 0;
+        return;
+    }
+
+    // Set caret Position
+    tooltipEl.classList.remove('above', 'below', 'no-transform');
+    if (tooltipModel.yAlign) {
+        tooltipEl.classList.add(tooltipModel.yAlign);
+        
+    } else {
+        tooltipEl.classList.add('no-transform');
+    }
+
+    function getBody(bodyItem) {
+        return bodyItem.lines;
+    }
+
+    // Set Text
+    if (tooltipModel.body) {
+        const titleLines = tooltipModel.title || [];
+        const bodyLines = tooltipModel.body.map(getBody);
+
+        // console.log(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex]);
+
+        // console.log(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex]);
+
+        let innerHtml = '<div>';
+
+        innerHtml += '<div class="grid-container">';
+          
+          innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+          innerHtml += '<div class="cost-value title-bold-value"><span></span></div>';
+
+          if (context.tooltip.dataPoints[0].datasetIndex == 0) {
+            innerHtml += '<div class="grid-item content-text margin-top"><span>'+context.tooltip.dataPoints[0].dataset.label+'</span></div>';
+            innerHtml += '<div class="grid-item content-text-val margin-top"><span class="values-op">'+(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex])+'</span></div>';
+            innerHtml += '<div class="grid-item content-text"><span>Part Name</span></div>';
+            innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].part_name[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+
+            if (context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].rejections[context.tooltip.dataPoints[0].dataIndex] == null) {
+              var r = 0;
+            }else{
+              var r = context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].rejections[context.tooltip.dataPoints[0].dataIndex];
+            }
+
+            innerHtml += '<div class="grid-item content-text"><span>Rejections</span></div>';
+            innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+r+'</span></div>';
+          }else{
+            innerHtml += '<div class="grid-item content-text margin-top"><span>'+context.tooltip.dataPoints[0].dataset.label+'</span></div>';
+            innerHtml += '<div class="grid-item content-text-val margin-top"><span class="values-op">'+(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex])+'</span></div>';
+
+            innerHtml += '<div class="grid-item content-text"><span>Part Name</span></div>';
+            innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].part_name[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+          }
+
+        innerHtml += '</div>';
+        innerHtml += '</div>';
+        
+
+        let tableRoot = tooltipEl.querySelector('table');
+        tableRoot.innerHTML = innerHtml;
+    }
+
+    const position = context.chart.canvas.getBoundingClientRect();
+    const bodyFont = Chart.helpers.toFont(tooltipModel.options.bodyFont);
+
+    // Display, position, and set styles for font
+    tooltipEl.style.opacity = 1;
+    tooltipEl.style.position = 'absolute';
+    tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px';
+    tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + 'px';
+    tooltipEl.style.font = bodyFont.string;
+    tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
+    tooltipEl.style.pointerEvents = 'none';
 }
 
   a = 470;
@@ -504,6 +693,10 @@ function getLiveMode(shift_date,shift_id){
   var shift_id="";
   function live_graph(s_date,s_id){
      i = setInterval(function() { live_MC1001(s_date,s_id); }, 2000);
+  }
+
+  function live_target(s_date){
+     j = setInterval(function() { live_target_update(s_date); }, 1000);
   }
 
   // $('#Filter-values').on('change', function(event) {
@@ -569,9 +762,19 @@ function getLiveMode(shift_date,shift_id){
             var time = duration.split(".");
             // Update Machine Current Status
             if(time.length > 1){
-              $('#latest_status_'+machine[0]['machine_id']+'').html(time[0]+"m "+time[1]+"s "+event);
+              var h = parseInt(time[0]/60);
+              var m = time[0]%60;
+              if (h>0) {
+                $('#latest_status_'+machine[0]['machine_id']+'').html(h+"h "+m+"m "+time[1]+"s "+event);
+              }else{
+                $('#latest_status_'+machine[0]['machine_id']+'').html(time[0]+"m "+time[1]+"s "+event);
+              }
             }else{
-              $('#latest_status_'+machine[0]['machine_id']+'').html(time[0]+"m "+event);
+              if(time[0]>0){
+                $('#latest_status_'+machine[0]['machine_id']+'').html(time[0]+"m "+event);
+              }else{
+                $('#latest_status_'+machine[0]['machine_id']+'').html(time[0]+"s "+event);
+              }
             }
 
             res['production_total'].forEach(function(m){
@@ -599,6 +802,9 @@ function getLiveMode(shift_date,shift_id){
                 // Update OEE
                 $('#SLayer_'+machine[0]['machine_id']+'').css("width",m['OEE']+"%");
                 $('#SLayer_val_'+machine[0]['machine_id']+'').html(parseInt(m['OEE']));
+
+
+                $('#OEE_'+machine[0]['machine_id']+'').html(m['OEE']+"%");
               }
             });
 
@@ -630,6 +836,7 @@ function getLiveMode(shift_date,shift_id){
 
             // Update OEE Target
             $('#Target_'+machine[0]['machine_id']+'').css("width",res['targets'][0].oee+"%");
+            $('#OEETarget_'+machine[0]['machine_id']+'').html(res['targets'][0].oee+"%");
 
             // Update Production Percentage
             var target_production=5000;
@@ -658,10 +865,6 @@ function getLiveMode(shift_date,shift_id){
               }
             });
 
-            var oee_target_per = (production_tar_per/total_target)*100;
-            // Update Production Target
-            $('#item_production_s_'+machine[0]['machine_id']+'').css("width",oee_target_per+"%");
-
             var myChart = myChartList[n];
 
             // Update Production
@@ -680,14 +883,34 @@ function getLiveMode(shift_date,shift_id){
 
             // Update Production color
             myChart.data.datasets[0].backgroundColor=state_color;
-            myChart.data.datasets[0].borderColor=state_color
+            myChart.data.datasets[0].borderColor="rgba(0, 0, 0, 0)";
             myChart.update();
 
             // Update Prodcution Percentage value
             var production_percent_val =470-(4.7*production_percent);
             const MyFSC_container = document.getElementsByClassName("circle");
             MyFSC_container[n].style.setProperty("--foo", production_percent_val);
-            // console.log(MyFSC_container[0]);
+
+            var color_code="";
+            if (production_percent > 75) {
+              color_code = "#c2fb05";
+            }
+            else if (production_percent > 50) {
+              color_code = "#fae910";
+            }
+            else if (production_percent > 25) {
+              color_code = "#c55911";
+            }
+            else{
+              color_code = "#d10527";
+            }
+
+            color_code = "#c2fb05";
+            document.getElementById('circle_graph_colors_'+machine[0]['machine_id']).attributes['stop-color'].value = color_code;
+            // console.log(document.getElementById('circle_graph_colors_MC1001').attributes['stop-color']);
+            // $('#circle_graph_colors_MC1001').attr("stop-color",''+color_code+'');
+            // $('.circle_graph_colors:eq('+1+')').attr("stop-color","#c55911");
+            // console.log($('.circle_graph_colors:eq('+n+')').attr("stop-color"));
 
             n = n+1;
         });
@@ -714,7 +937,6 @@ function getLiveMode(shift_date,shift_id){
     const tmp = shift_id.split(" ")
     alert(shift_date);
     alert(tmp_mid);
-    alert(event);
     var backgroundcolor = "";
     var bar_color = "";
     var card_body = "";
@@ -760,7 +982,6 @@ function getLiveMode(shift_date,shift_id){
 
     $('.oui_arrow_div').css('display','inline');
     $('.visibility_div').css('display','none');
-
   });
 
 
@@ -775,16 +996,6 @@ var down_notes = new Array();
 var machine_Name = "";
 var part_name_tooltip = new Array();
 function getDownTimeGraph(machine_id,shift_date,s){
-      // var machine_id = "MC1001";
-      // var shift_date = "2023-03-01";
-      // const s = ["A"];
-      // var shift = "A";
-      // var s = shift.split("");
-      console.log(machine_id);
-      console.log(shift_date);
-      console.log(s);
-      // var dateShift = new Date(shift_date_1);
-      // shift_date = dateShift.getFullYear()+'-'+((dateShift.getMonth() > 8) ? (dateShift.getMonth() + 1) : ('0' + (dateShift.getMonth() + 1))) + '-' + ((dateShift.getDate() > 9) ? dateShift.getDate() : ('0' + dateShift.getDate()));
       var url = "<?php echo base_url('PDM_controller/getDownGraph'); ?>";
       $.ajax({
            method: 'POST',
@@ -981,13 +1192,9 @@ function getDownTimeGraph(machine_id,shift_date,s){
                       var start_time = w.globals.initialSeries[seriesIndex].start;
                       var end_time = w.globals.initialSeries[seriesIndex].end;
                       var part_id = w.globals.initialSeries[seriesIndex].part_id;
-                      // console.log("part id");
-                      // console.log(part_id);
+
                       var machine_Name_Tooltip = w.globals.initialSeries[seriesIndex].machine_Name;
                       var part_name_tooltip = w.globals.initialSeries[seriesIndex].part_Name;
-                      // alert(part_id);
-                      //var machineEventRef = w.globals.initialSeries[seriesIndex].machineEvent;
-                      // alert(part_name_tooltip);
                       
                       return ('<div class="Tooltip_Container">'+'<div>'
                             +'<p class="paddingm nameHeader">'+sname+'</p>'
@@ -1085,8 +1292,6 @@ function part_by_hour(mid,sdate,sid,bar_color){
       filter:x,
     },
     success:function(res){
-      console.log("part by hour graph");
-      console.log(res);
       var hourly = [];
       var hourList = [];
       var production_target = [];
@@ -1101,8 +1306,6 @@ function part_by_hour(mid,sdate,sid,bar_color){
           });
         }
       });
-
-
       // availability performance and quality div records
       var availability_assign = 0;
       var performance_assign = 0;
@@ -1127,10 +1330,6 @@ function part_by_hour(mid,sdate,sid,bar_color){
       ChartDataLabels.defaults.font.size = "9px";
       ChartDataLabels.defaults.font.family = "'Roboto', sans-serif;";
       ChartDataLabels.defaults.anchor = "center";
-
-      // console.log("graph");
-      // console.log(hourly);
-      // console.log(hourList);
       var ctx = document.getElementById('part_wise_graph_oui').getContext('2d');
       myChartList[myChartList.length] = new Chart(ctx, {
         type: 'bar',

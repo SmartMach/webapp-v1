@@ -1,4 +1,13 @@
 
+.label_mar{
+    margin-top:-8px;
+    margin-left:16px;
+    background-color:#d10527;
+    width:max-content;
+    color:#030000;
+    font-weight:700;
+    font-size:11px;
+}
 
 .part_wise_alignment{
  margin-bottom:0.6rem;
@@ -438,3 +447,4 @@
     justify-content: space-around;
     align-items: center;
 }
+

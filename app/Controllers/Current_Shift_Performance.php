@@ -154,6 +154,9 @@ class Current_Shift_Performance extends BaseController{
                 $t = array('machine_id' => $m['machine_id'], 'machine_name' => $m['machine_name']);
 	        	array_push($machine_name, $t);
 	        }
+
+            // echo "<pre>";
+            // print_r($machineWise);
 	        
 	        // OEE Calculation......
 	        $output = $this->datas->getDataRaw($shift_date,$shift_id);
@@ -355,7 +358,7 @@ class Current_Shift_Performance extends BaseController{
             // Machine Wise Event....
             $machine_event = $this->datas->machine_events($shift_date,$shift_id);
 
-            $temp_ar = array('machine_id' => "","shift_date" => "", "start_time" => "","end_time" => "","shift_id" => "", "production" => 0,"part_id" => 0);
+            $temp_ar = array('machine_id' => "","shift_date" => "", "start_time" => "","end_time" => "","shift_id" => "", "production" => 0,"part_id" => 0,"part_name" =>"", "rejections"=>0);
             $len_data = sizeof($shiftList);
             $len_ref = sizeof($machineWise[0]['production']);
             $diff = $len_data - $len_ref;

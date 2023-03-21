@@ -20,7 +20,7 @@
 	border-radius: 10px;
 }
 .TTotal{
-	margin-left: 1rem;
+	margin-left: 0.5rem;
 }
 .grid-container-cont{
   display: grid;
@@ -63,9 +63,10 @@
 }
 .values_oee{
 	font-family: 'Roboto', sans-serif;
-    font-weight: 500;
+    font-weight: bold;
     font-size: 1.2rem;
     color: #fff;
+    margin-top: 0.2rem;
 }
 .cen-align{
 	display: flex;
@@ -192,16 +193,41 @@
     justify-content: center ;
     background-color: transparent;
 }
+.hoverOverallOEE_Current{
+	display: none;
+}
+.hoverCardOEECurrent:hover + .hoverOverallOEE_Current{
+    display: block;
+}
+.hoverOverall_current{
+	background-color: white;
+	border-radius: 5px 5px 5px 5px;
+	z-index: 1400;
+	position: fixed;
+	border: 0.5px solid #d9d9d9;
+	padding: 0.5rem;
+	color: #979a9a;
+	font-size: 0.8rem;
+	font-weight:500;
+	max-width:11rem;
+	min-width: 10rem; 
+	margin-top: -1rem;
+	margin-left: 2.9rem;
+	opacity: 100%;
+	font-family: 'Roboto', sans-serif;
+}
     .circle{
         fill: none;
         stroke: url(#GradientColor);
-        stroke-width: 1.3rem;
-        /*stroke-width: var(--fo);*/
+        stroke-width: 1rem;
         stroke-dasharray: 472;
         stroke-dashoffset: 472;
         animation: anim 2s linear forwards;
         transform-origin: center;
         transform: rotate(-90deg);
+    }
+    .part_completion{
+    	position: absolute;
     }
     .svg{
         position: absolute;
@@ -210,6 +236,7 @@
         height: 15rem;
         width: 15rem;
     }
+
     @keyframes anim{
         100%{
             stroke-dashoffset: var(--foo);
