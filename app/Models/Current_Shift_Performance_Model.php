@@ -222,12 +222,13 @@ class Current_Shift_Performance_Model extends Model{
     public function getLiveProduction($shift_date,$shift_id)
     {
         $db = \Config\Database::connect($this->site_connection);
-        $query = $db->table('pdm_production_info');
-        $query->select('machine_id,shift_date,start_time,end_time,shift_id,production,part_id');
+        $query = $db->table('pdm_production_info as p');
+        $query->select('p.machine_id,p.shift_date,p.start_time,p.end_time,p.shift_id,p.production,p.corrections,p.part_id,t.part_name,p.rejections');
         $query->where('shift_date',$shift_date);
         $query->where('shift_id',$shift_id);
-        $query->groupby('machine_id');
-        $query->groupby('start_time');
+        $query->join('settings_part_current as t', 'p.part_id = t.part_id');
+        // $query->groupby('machine_id');
+        // $query->groupby('start_time');
         $res= $query->get()->getResultArray();
         return $res;
     }

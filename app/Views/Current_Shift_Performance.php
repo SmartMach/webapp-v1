@@ -1,6 +1,10 @@
 <head>  
+  <!-- oui current shift performance adding -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/oui_current_shift_performance.css?version=<?php echo rand(); ?>">  
+  <!-- <script src="<?php echo base_url(); ?>/assets/apexchart/dist/apexcharts.js"></script> -->
+  <!-- oui current shift performance end -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/current_shift_performance.css?version=<?php echo rand() ; ?>">
-<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/styles_production_quality.css?version=<?php echo rand() ; ?>">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/styles_production_quality.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/financial_metrics.css?version=<?php echo rand() ; ?>">
 
     <script src="<?php echo base_url(); ?>/assets/chartjs/package/dist/chart.min.js?version=<?php echo rand() ; ?>"></script>
@@ -42,6 +46,7 @@
               <div class="">
                 <p class="paddingm titleTag">Start</p>
                 <p class="paddingm font-items" id="start_time"></p>
+                <input type="text" id="s_time_val" style="display: none;">
               </div>
               <div class="dot-cnt">
                 <div class="dotAccessCurrent">
@@ -51,15 +56,189 @@
               <div class="CurrentNav">
                 <p class="paddingm titleTag">End</p>
                 <p class="paddingm font-items" id="end_time"></p>
+                <input type="text" id="e_time_val" style="display: none;">
               </div>
       </div>
     </div>
   </nav>
+
   <div class="graph-content" style="margin-top:3.8rem;">
     <div class="grid-container-cont">
       <!-- Machine Tiles -->
     </div>
   </div>
+
+  <!-- oui screen start -->
+  <!-- oui screen -->
+  <div class="oui_screen_view" style="display:none;">
+    <div style="background-color:#d10527;margin-top:4.2rem;">
+        <div style="display:flex;flex-direction:row;height:4rem;background-color:rgba(190,5,35,255);">
+            <div style="width:33%;display:flex;flex-direction:column;justify-content:end;color:white;font-family:'Roboto', sans-serif;margin-left:1rem;">
+              <span style="font-size:1.6rem;font-weight:400;">IM01</span>
+              <span style="font-weight:700;">Part Name1</span>
+            </div>
+            <div style="width:33%;display:flex;flex-direction:column;align-items:center;color:white;">
+              <p>DOWNTIME <br> <span style="font-size:1.6rem;font-weight:600;">04:02</span></p>
+              
+            </div>
+            <div style="width:33%;display:flex;flex-direction:row;align-items:center;justify-content:end;color:white;font-weight:600;font-size:1rem;margin-right:1rem;">
+              <span>INACTIVE</span>
+            </div>
+        </div>
+
+        <div style="display:flex;flex-direction:row;justify-content:space-around;align-items:center;margin-top:2rem;">
+          <div style="width:48%;display:flex;flex-direction:column;">
+              <div class="goals_div" >
+                <p class="label_header" >GOALS</p>
+                <div style="display:flex;flex-direction:row;height:82%;justify-content:space-around;">
+                  <div style="width:60%;">
+                      <!-- circle graph start -->
+                      <div class="item-circle_oui">
+                        <!-- Circular Graph -->
+                        <div class="inner-circle_oui">
+                          <div class="inner-val_oui">
+                            <p class="paddingm production_completion_oui"><span id="production_per_oui"></span>%</p>
+                            <p class="paddingm production_completion_oui partname_ref_oui" id="partname_MC1001_oui">Part Name 1</p>
+                          </div>
+                        </div>
+                        <svg version="1.1" class="svg_oui">
+                          <defs>
+                              <linearGradient id="GradientColor_oui">
+                                  <stop stop-color="#C55A11" />
+                              </linearGradient>
+                          </defs>
+                          <circle class="circle_oui_anim" cx="120" cy="120" r="63" stroke-linecap="round"/>
+                        </svg>
+                      </div>
+                      <!-- circle graph end -->
+                  </div>
+                  <div style="width:38%;">
+                    <div style="display:flex;flex-direction:column;height:93%;">
+                      <span>Target <span id="target_value">320</span></span>
+                      <div style="height:100%;width:6.5rem;background-color:#730316;padding-left:1rem;padding-right:1rem;display:flex;justify-content:center;align-items:end;">
+                        <div style="height:40%;width:4rem;background-color:#C55A11;display:flex;justify-content:center;align-items:flex-start;">
+                          <span id="target_value_inner" style="color:white;font-size:1.6rem;font-weight:750;text-align:center;">12</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="display:flex;flex-direction:row;justify-content:flex-start;margin-left:1rem;">
+                    <div style="width:25%;display:flex;flex-direction:row;justify-content:end;align-items:center;font-size:1rem;font-weight:800;color:white;">
+                      <i class="fa-solid fa-clock-rotate-left" style="margin-right:1rem;"></i><span>112min</span>
+                    </div>
+                    <div style="width:50%;display:flex;margin-left:1rem;justify-content:flex-end;font-size:1rem;align-items:center;color:white;font-weight:800;">
+                      <i class="fa-solid fa-circle" style="margin-right:0.4rem;font-size:0.5rem;"></i><span style="">31 Jan 23,02:02 PM</span>
+                    </div>
+                </div>
+              </div>
+          </div>
+          <div class="timeline_part">
+            <div class="timeline_div" style="">
+              <p class="label_header" style="">TIMELINE</p>
+              <div id="downtime_chart" style="padding:0;margin:0;margin-left:1rem;margin-right:1rem"></div>
+              <!-- downtime legend -->
+              <div class="downtime_legend" style="margin-top:1rem;">
+                
+                <div class="legend_label" style="">
+                  <div style="width:20%;">
+                    <div class="label_div" style="background-color:#01BB55;"></div>
+                  </div>
+                  <div class="label_text" style="">
+                    <span>ACTIVE</span>
+                  </div>
+                </div>
+
+                <div class="legend_label" >
+                  <div style="width:20%;">
+                    <div class="label_div" style="background-color:#005ABC;"></div>
+                  </div>
+                  <div class="label_text" >
+                    <span>INACTIVE</span>
+                  </div>
+                </div>
+
+                <div class="legend_label" style="width:20%;">
+                  <div style="width:20%;">
+                    <div class="label_div" style="background-color:#595959;"></div>
+                  </div>
+                  <div class="label_text" >
+                    <span>MACHINE OFF</span>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+            <div class="part_div" style="">
+              <p class="label_header" >PART WISE BY HOURS</p>
+              <div class="parent_part_oui part_wise_alignment parent_div marginScroll">
+                <div class="child_div child_part_oui">
+                  <canvas id="part_wise_graph_oui" class="part_wise_graph_oui_align" style="height:100%;width:100%;"></canvas>    
+                </div>
+              </div>
+                <!-- <canvas id="part_wise_graph" style="height:10rem;width:10rem;"></canvas> -->
+            </div>
+          </div>
+        </div>
+
+        <!-- cards -->
+        <div class="cards_div" style="">
+          <div class="cards_div_left" style="">
+            
+            <div class="card_small_div" style="">
+              <span class="card_header" style="">Downtime</span>
+              <span class="card_body" style="">4h 33m</span>
+            </div>
+
+            <div class="card_small_div" >
+              <span class="card_header">Cycle Time</span>
+              <span class="card_body">1m 2s</span>
+            </div>
+
+
+            <div class="card_small_div" >
+              <span class="card_header" >Rejects Counts</span>
+              <span class="card_body" >25</span>
+            </div>
+
+
+          </div>
+          <div style="width:48%;">
+            <div class="efficiency_div">
+              <p class="label_header" >EFFICIENCY</p>
+              <div class="hide_card" style="">
+                
+                <div class="hide_card_div" style="">
+                  <span class="hide_card_header" style="">Availability</span>
+                  <span class="hide_card_body" style="">92 %</span>
+                </div>
+
+                <div class="hide_card_div">
+                  <span class="hide_card_header">Performance</span>
+                  <span  class="hide_card_body" >89 %</span>
+                </div>
+
+
+                <div class="hide_card_div">
+                  <span class="hide_card_header">Quality</span>
+                  <span class="hide_card_body">98 %</span>
+                </div>
+
+                <div style="width:30%;height:max-content;background-color:#BB0523;display:flex;flex-direction:column;justify-content:center;align-items:center;color:white;">
+                  <span style="background-color:#730316;width:100%;padding:0.4rem;text-align:center;font-size:13px">SHIFT OEE</span>
+                  <span style="padding:0.3rem;font-size:1.3rem;font-weight:850;">82 %</span>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <!-- oui screen end -->
 </div>
 
 <!-- preloader -->
@@ -71,12 +250,14 @@
 </div>
 <!-- preloader end -->
 
+<script src="<?php echo base_url(); ?>/assets/apexchart/dist/apexcharts.js"></script>
 <script src="<?php echo base_url(); ?>/assets/js/all-fontawesome.js?version=<?php echo rand() ; ?>"></script>
 
 <script type="text/javascript">
   var myChart = "";
   var myChartList=[];
   var i="";
+  var j="";
 getMachineDataLive();
 function getMachineDataLive() {
   $.ajax({
@@ -87,10 +268,18 @@ function getMachineDataLive() {
     async: false,
     contentType: "application/json; charset=utf-8",
     success:function(res){
-      $("#shift_date").html(res[0]['shift_date']);
-      $("#shift_id").html("Shift "+res[0]['shift_id']);            
-      $("#start_time").html(res[0]['start_time']);
-      $("#end_time").html(res[0]['end_time']);
+      var date = new Date(res[0]['shift_date'])
+      date = date.getDate()+" "+date.toLocaleString([], { month: 'short' })+" "+date.getFullYear();
+
+      $("#shift_date").html(date);
+      $("#shift_id").html("Shift "+res[0]['shift_id']);
+      var s_time = res[0]['start_time'].split(":");
+      var e_time = res[0]['end_time'].split(":");
+      $("#start_time").html(s_time[0]+":"+s_time[1]);
+      $("#end_time").html(e_time[0]+":"+e_time[1]);
+
+      $("#s_time_val").val(s_time[0]+":"+s_time[1]+":"+s_time[2]);
+      $("#e_time_val").val(e_time[0]+":"+e_time[1]+":"+s_time[2]);
 
       $("#s_date_ref").val(res[0]['shift_date']);
       $("#s_id_ref").val(res[0]['shift_id']);
@@ -138,7 +327,7 @@ function getLiveMode(shift_date,shift_id){
           +'<div class="item-header" id="item-header-'+machine[0]['machine_id']+'">'
             +'<div>'
               +'<div class="cen-align">'
-                +'<p class="paddingm fnt-color machine_name_ref" id="Machine_name_'+machine[0]['machine_id']+'">'+machine_name+'</p>'
+                +'<p class="paddingm fnt-color machine_name_ref" mid_data="'+machine[0]['machine_id']+'"  id="Machine_name_'+machine[0]['machine_id']+'">'+machine_name+'</p>'
               +'</div>'
               +'<div class="cen-align">'
                 +'<p class="paddingm fnt-color current_event" id="latest_status_'+machine[0]['machine_id']+'"></p>'
@@ -149,20 +338,22 @@ function getLiveMode(shift_date,shift_id){
             +'<div class="inner-circle">'
               +'<div class="inner-val">'
                 +'<p class="paddingm production_completion"><span id="production_per'+machine[0]['machine_id']+'"></span>%</p>'
-                +'<p class="paddingm production_completion partname_ref" id="partname_'+machine[0]['machine_id']+'">Part Name 1</p>'
+                +'<p class="paddingm production_completion partname_ref" id="partname_'+machine[0]['machine_id']+'">Part Name</p>'
               +'</div>'
             +'</div>'
             +'<svg version="1.1" class="svg">'
               +'<defs>'
                   +'<linearGradient id="GradientColor">'
-                      +'<stop offset="0%" stop-color="#ffbf00" />'
-                      +'<stop offset="100%" stop-color="#ffbf00"/>'
+                      +'<stop id="circle_graph_colors_'+machine[0]['machine_id']+'" stop-color="#d10527" />'
                   +'</linearGradient>'
               +'</defs>'
               +'<circle class="circle" cx="120" cy="120" r="63" stroke-linecap="round"/>'
             +'</svg>'
           +'</div>'
-          +'<div class="item-oee" style="margin: 0.5rem;">'
+          // +'<div class="part_completion">'
+          //     +'<p>Part Completion</p>'
+          //   +'</div>'
+          +'<div class="item-oee hoverCardOEECurrent" style="margin: 0.5rem;">'
             +'<div style="width: 15%;display: flex;justify-content: flex-end;"><p class="paddingm oee-lable">OEE</p></div>'
             +'<div class="FLayer">'
               +'<div class="BLayer" id="Target_'+machine[0]['machine_id']+'"></div>'
@@ -172,6 +363,19 @@ function getLiveMode(shift_date,shift_id){
               +'</div>'
             +'</div>'
           +'</div>'
+
+          +'<div class="hoverOverallOEE_Current hoverOverall_current">'
+            +'<div style="display: flex;">'
+              +'<div style="width: 70%" id="title_overall">OEE%</div>'
+              +'<div style="width: 30%" class="val_color" ><p class="paddingm teepVal" style="width:max-content;" id="OEE_'+machine[0]['machine_id']+'">0%</p></div>'
+            +'</div>'
+            +'<div style="display: flex;">'
+              +'<div style="width: 70%">Target</div>'
+              +'<div style="width: 30%"><p class="paddingm teepTarget" id="OEETarget_'+machine[0]['machine_id']+'">0%</p></div>'
+            +'</div>'
+          +'</div>'
+
+
           +'<div class="item-production">'
             +'<div class="item-production-s" id="item_production_s_'+machine[0]['machine_id']+'"></div>'
             +'<div class="graph-content-div">'
@@ -207,11 +411,15 @@ function getLiveMode(shift_date,shift_id){
         var hourly = [];
         var hourList = [];
         var production_target = [];
+        var part_name_list=[];
+        var rejections_list =[];
         res['data'].forEach(function(items){
           if(items['machine'] == machine[0]['machine_id']){
             items['production'].forEach(function(i){
               hourly.push(i['production']);
               hourList.push(i['start_time']+" to "+i['end_time']);
+              part_name_list.push(i['part_name']);
+              rejections_list.push(i['rejections']);
             });
             items['targets'].forEach(function(i){
               production_target.push(i);
@@ -220,11 +428,9 @@ function getLiveMode(shift_date,shift_id){
         });
 
         ChartDataLabels.defaults.color = "#ffffff";
-        ChartDataLabels.defaults.font.size = "9px";
-        ChartDataLabels.defaults.font.family = "'Roboto', sans-serif;";
-        ChartDataLabels.defaults.anchor = "center";
-
-
+        // ChartDataLabels.defaults.font.size=8;
+        ChartDataLabels.defaults.font.family = "Roboto, sans-serif";
+        
         var ctx = document.getElementById('production-graph-'+machine[0]['machine_id']+'').getContext('2d');
         myChartList[myChartList.length] = new Chart(ctx, {
           type: 'bar',
@@ -235,10 +441,14 @@ function getLiveMode(shift_date,shift_id){
                 label: "Production",
                 type: "bar",
                 backgroundColor: "white",
-                borderColor: "white", 
+                borderColor: "rgba(0, 0, 0, 0)", 
                 borderWidth: 1,
                 fill: true,
                 data: hourly,
+                part_name:part_name_list,
+                rejections:rejections_list,
+                categoryPercentage:1.0,
+                barPercentage: 1.0, 
               },
               {
                 label: "Production Target",
@@ -248,52 +458,210 @@ function getLiveMode(shift_date,shift_id){
                 borderWidth: 1,
                 fill: false,
                 data: production_target,
+                part_name:part_name_list,
                 pointRadius: 0,
+                stepped: 'before',
               },
             ],
           },
-        options: {
-          scalebeginAtZero:false,
-          responsive: true,
-          maintainAspectRatio: false,   
-          scales: {
-            y: {
-              display:false,
-              beginAtZero:true,
-              stacked:false,
-            },
-            x:{
-              display:false,
-              grid:{
-                display:false
+          options: {
+            scalebeginAtZero:false,
+            responsive: true,
+            maintainAspectRatio: false,   
+            scales: {
+              y: {
+                display:false,
+                beginAtZero:true,
+                stacked:false,
               },
-              stacked:true,
+              x:{
+                display:false,
+                grid:{
+                  display:false
+                },
+                stacked:true,
+            },
           },
-        },
-        plugins: {
-          datalabels:{
-            formatter: (value,context) => context.datasetIndex === 0 ? value : ''
+          plugins: {
+            datalabels:{
+              anchor:"end",
+              align:"end",
+              offset:-16,
+              color:"white",
+              font:{
+                size:8,
+              },
+              formatter: (value,context) => context.datasetIndex === 0 ? value : '',
+              
+            },
+            legend: {
+              display: false,
+              labels: {
+                    // This more specific font property overrides the global property
+                    font: {
+                        size: 9
+                    }
+                }
+            },
+            tooltip: {
+              enabled: false,
+              external: productionTooltip,
+            },
           },
-          legend: {
-            display: false,
-          },
-          tooltip: {
-            enabled: true,
-          },
-        },
         
-      },
+        },
       plugins: [ChartDataLabels],
     });
 
     });
       // console.log(ChartDataLabels.defaults.color:"#32a852");
     live_graph(shift_date,shift_id);
+    live_target(shift_date);
     },
     error:function(res){
       // Error Occured!
     }
   });
+}
+
+$(document).on("mousemove",".item-circle",function(e){ 
+  var x = e.clientX;
+  var y = e.clientY;
+  var newposX = x-70;
+  var newposY = y-380;
+  $(this).siblings(".part_completion").css("transform","translate3d("+newposX+"px,"+newposY+"px,0px)"); 
+  // $(this).prevAll(".part_completion").css("transform","translate3d("+newposX+"px,"+newposY+"px,0px)");
+});
+
+function live_target_update(shift_date){
+    // $('#item_production_s_'+machine[0]['machine_id']+'').css("background-color",state_color_rgb);
+    var s_time= $("#s_time_val").val();
+    var e_time= $("#e_time_val").val();
+
+    var st_time = new Date(shift_date+" "+s_time);
+    var et_time = new Date(shift_date+" "+e_time);
+
+    s_time = new Date(shift_date+" "+s_time);
+    e_time = new Date(shift_date+" "+e_time);
+    var temp = new Date(shift_date+" "+s_time);
+
+    while(true){
+      st_time = new Date(st_time.setTime(st_time.getTime()+(60*1000)));
+      if (st_time.getHours() == et_time.getHours() && st_time.getMinutes() == et_time.getMinutes()) {
+        break;
+      }
+    }
+
+    var difference = (new Date(st_time).getTime() - new Date(s_time).getTime())/1000;
+
+    var st1_time = s_time;
+    var et1_time = new Date();
+
+    while(true){
+      st1_time = new Date(st1_time.setTime(st1_time.getTime()+(1000)));
+      if (st1_time.getHours() == et1_time.getHours() && st1_time.getMinutes() == et1_time.getMinutes() && st1_time.getSeconds() == et1_time.getSeconds()) {
+        break;
+      }
+    }
+
+    var temp_time = new Date(shift_date+" "+($("#s_time_val").val()));
+    var difference_current = (new Date(st1_time).getTime() - new Date(temp_time).getTime())/1000;
+
+    var w = parseFloat((difference_current/difference)*100).toFixed(2);
+    $('.item-production-s').css("width",String(w)+"%");
+    
+}
+
+function productionTooltip(context) {
+    // Tooltip Element
+    let tooltipEl = document.getElementById('chartjs-tooltip');
+
+    // Create element on first render
+    if (!tooltipEl) {
+        tooltipEl = document.createElement('div');
+        tooltipEl.id = 'chartjs-tooltip';
+        tooltipEl.innerHTML = '<table></table>';
+        document.body.appendChild(tooltipEl);
+    }
+    tooltipEl.classList.add("global");
+
+    // Hide if no tooltip
+    const tooltipModel = context.tooltip;
+    if (tooltipModel.opacity === 0) {
+        tooltipEl.style.opacity = 0;
+        return;
+    }
+
+    // Set caret Position
+    tooltipEl.classList.remove('above', 'below', 'no-transform');
+    if (tooltipModel.yAlign) {
+        tooltipEl.classList.add(tooltipModel.yAlign);
+        
+    } else {
+        tooltipEl.classList.add('no-transform');
+    }
+
+    function getBody(bodyItem) {
+        return bodyItem.lines;
+    }
+
+    // Set Text
+    if (tooltipModel.body) {
+        const titleLines = tooltipModel.title || [];
+        const bodyLines = tooltipModel.body.map(getBody);
+
+        // console.log(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex]);
+
+        // console.log(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex]);
+
+        let innerHtml = '<div>';
+
+        innerHtml += '<div class="grid-container">';
+          
+          innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+          innerHtml += '<div class="cost-value title-bold-value"><span></span></div>';
+
+          if (context.tooltip.dataPoints[0].datasetIndex == 0) {
+            innerHtml += '<div class="grid-item content-text margin-top"><span>'+context.tooltip.dataPoints[0].dataset.label+'</span></div>';
+            innerHtml += '<div class="grid-item content-text-val margin-top"><span class="values-op">'+(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex])+'</span></div>';
+            innerHtml += '<div class="grid-item content-text"><span>Part Name</span></div>';
+            innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].part_name[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+
+            if (context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].rejections[context.tooltip.dataPoints[0].dataIndex] == null) {
+              var r = 0;
+            }else{
+              var r = context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].rejections[context.tooltip.dataPoints[0].dataIndex];
+            }
+
+            innerHtml += '<div class="grid-item content-text"><span>Rejections</span></div>';
+            innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+r+'</span></div>';
+          }else{
+            innerHtml += '<div class="grid-item content-text margin-top"><span>'+context.tooltip.dataPoints[0].dataset.label+'</span></div>';
+            innerHtml += '<div class="grid-item content-text-val margin-top"><span class="values-op">'+(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex])+'</span></div>';
+
+            innerHtml += '<div class="grid-item content-text"><span>Part Name</span></div>';
+            innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].part_name[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+          }
+
+        innerHtml += '</div>';
+        innerHtml += '</div>';
+        
+
+        let tableRoot = tooltipEl.querySelector('table');
+        tableRoot.innerHTML = innerHtml;
+    }
+
+    const position = context.chart.canvas.getBoundingClientRect();
+    const bodyFont = Chart.helpers.toFont(tooltipModel.options.bodyFont);
+
+    // Display, position, and set styles for font
+    tooltipEl.style.opacity = 1;
+    tooltipEl.style.position = 'absolute';
+    tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px';
+    tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + 'px';
+    tooltipEl.style.font = bodyFont.string;
+    tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
+    tooltipEl.style.pointerEvents = 'none';
 }
 
   a = 470;
@@ -303,6 +671,10 @@ function getLiveMode(shift_date,shift_id){
   var shift_id="";
   function live_graph(s_date,s_id){
      i = setInterval(function() { live_MC1001(s_date,s_id); }, 2000);
+  }
+
+  function live_target(s_date){
+     j = setInterval(function() { live_target_update(s_date); }, 1000);
   }
 
   // $('#Filter-values').on('change', function(event) {
@@ -368,9 +740,19 @@ function getLiveMode(shift_date,shift_id){
             var time = duration.split(".");
             // Update Machine Current Status
             if(time.length > 1){
-              $('#latest_status_'+machine[0]['machine_id']+'').html(time[0]+"m "+time[1]+"s "+event);
+              var h = parseInt(time[0]/60);
+              var m = time[0]%60;
+              if (h>0) {
+                $('#latest_status_'+machine[0]['machine_id']+'').html(h+"h "+m+"m "+time[1]+"s "+event);
+              }else{
+                $('#latest_status_'+machine[0]['machine_id']+'').html(time[0]+"m "+time[1]+"s "+event);
+              }
             }else{
-              $('#latest_status_'+machine[0]['machine_id']+'').html(time[0]+"m "+event);
+              if(time[0]>0){
+                $('#latest_status_'+machine[0]['machine_id']+'').html(time[0]+"m "+event);
+              }else{
+                $('#latest_status_'+machine[0]['machine_id']+'').html(time[0]+"s "+event);
+              }
             }
 
             res['production_total'].forEach(function(m){
@@ -398,6 +780,9 @@ function getLiveMode(shift_date,shift_id){
                 // Update OEE
                 $('#SLayer_'+machine[0]['machine_id']+'').css("width",m['OEE']+"%");
                 $('#SLayer_val_'+machine[0]['machine_id']+'').html(parseInt(m['OEE']));
+
+
+                $('#OEE_'+machine[0]['machine_id']+'').html(m['OEE']+"%");
               }
             });
 
@@ -429,6 +814,7 @@ function getLiveMode(shift_date,shift_id){
 
             // Update OEE Target
             $('#Target_'+machine[0]['machine_id']+'').css("width",res['targets'][0].oee+"%");
+            $('#OEETarget_'+machine[0]['machine_id']+'').html(res['targets'][0].oee+"%");
 
             // Update Production Percentage
             var target_production=5000;
@@ -457,10 +843,6 @@ function getLiveMode(shift_date,shift_id){
               }
             });
 
-            var oee_target_per = (production_tar_per/total_target)*100;
-            // Update Production Target
-            $('#item_production_s_'+machine[0]['machine_id']+'').css("width",oee_target_per+"%");
-
             var myChart = myChartList[n];
 
             // Update Production
@@ -479,14 +861,34 @@ function getLiveMode(shift_date,shift_id){
 
             // Update Production color
             myChart.data.datasets[0].backgroundColor=state_color;
-            myChart.data.datasets[0].borderColor=state_color
+            myChart.data.datasets[0].borderColor="rgba(0, 0, 0, 0)";
             myChart.update();
 
             // Update Prodcution Percentage value
             var production_percent_val =470-(4.7*production_percent);
             const MyFSC_container = document.getElementsByClassName("circle");
             MyFSC_container[n].style.setProperty("--foo", production_percent_val);
-            // console.log(MyFSC_container[0]);
+
+            var color_code="";
+            if (production_percent > 75) {
+              color_code = "#c2fb05";
+            }
+            else if (production_percent > 50) {
+              color_code = "#fae910";
+            }
+            else if (production_percent > 25) {
+              color_code = "#c55911";
+            }
+            else{
+              color_code = "#d10527";
+            }
+
+            color_code = "#c2fb05";
+            document.getElementById('circle_graph_colors_'+machine[0]['machine_id']).attributes['stop-color'].value = color_code;
+            // console.log(document.getElementById('circle_graph_colors_MC1001').attributes['stop-color']);
+            // $('#circle_graph_colors_MC1001').attr("stop-color",''+color_code+'');
+            // $('.circle_graph_colors:eq('+1+')').attr("stop-color","#c55911");
+            // console.log($('.circle_graph_colors:eq('+n+')').attr("stop-color"));
 
             n = n+1;
         });
@@ -496,4 +898,432 @@ function getLiveMode(shift_date,shift_id){
       }
     });
   }
+
+
+  // cards click function
+
+  $(document).on('click','.grid-item-cont',function(event){
+    event.preventDefault();
+    var find_index = $('.grid-item-cont');
+    var index_val = find_index.index($(this));
+    var tmp_mid = $('.machine_name_ref:eq('+index_val+')').attr('mid_data');
+    var shift_date = $('#shift_date').text();
+    var shift_id = $('#shift_id').text();
+    // alert(shift_id.split(" "));
+    const tmp = shift_id.split(" ")
+    alert(shift_date);
+    alert(tmp_mid);
+    const shift_arr = [];
+    shift_arr.push(tmp[1]);
+    getDownTimeGraph(tmp_mid,shift_date,shift_arr);
+    part_by_hour(tmp_mid,shift_date,tmp[1]);
+    $('.graph-content').css('display','none');
+    $('.oui_screen_view').css('display','inline');
+  });
+
+
+  // downtime graph global variables
+var event_ref= new Array();
+var machineID_ref = "";
+var shift_date_ref = "";
+var shift_Ref ="";
+var data_duration = new Array();
+var data_notes = new Array();
+var down_notes = new Array();
+var machine_Name = "";
+var part_name_tooltip = new Array();
+function getDownTimeGraph(machine_id,shift_date,s){
+      var url = "<?php echo base_url('PDM_controller/getDownGraph'); ?>";
+      $.ajax({
+           method: 'POST',
+           url: url,
+           dataType:'json',
+           // async:false,
+           data:{
+            machine_id:machine_id,  
+            shift_date:shift_date,
+            shift:s[0],
+           }
+      }).then(function(response){ 
+        console.log("graph downtime");
+        console.log(response);
+                response['shift']['shift'].forEach(function(item){
+                  var x = item.shifts.split("");
+                  if (x[0] == s[0]) {
+                    const downtime_start_time_split = item.start_time.split(':');
+                    const downtime_end_time_split = item.end_time.split(':');
+                  
+                    shift_stime = item.start_time;
+                    shift_etime = item.end_time;
+                  }
+                });
+                $('#downtime_chart').empty();
+                var graph_Data = [];
+                var machine_on_count=[];
+                var machine_off_count=[];
+                var tool_change_count=[];
+                var i=0;
+                var preview ="";
+                var val;
+                var x=0;
+                var noDataArray=[];
+                if (response['machineData'].length >0)
+                {
+                  $.each(response['machineData'],function(key,model){
+                  if(model.duration >= 0){ 
+                        if (model.event== "No Data") {
+                          noDataArray.push('slantedLines');
+                        }
+                        else{
+                          if (key == 0) {
+                            st = new Date(model.calendar_date+" "+shift_stime);
+                            et = new Date(model.calendar_date+" "+model.start_time);
+                            if (st.getTime() !== et.getTime()) {
+                              noDataArray.push('slantedLines');
+                            }
+                            else{
+                              noDataArray.push(undefined);
+                            }
+                          }else{
+                            noDataArray.push(undefined);
+                          }
+                        }
+                        down_notes.push(model.notes);
+                        data_duration.push(model.start_time);
+                        data_duration.push(model.end_time);
+
+                        // part_name_arr_pass = getpartnames_graph(model.part_id);
+                        part_name_arr_pass = model.part_id;
+                        var colordemo = "";
+                        machineID_ref = model.machine_id;
+                        shift_date_ref = model.shift_date;
+                        shift_Ref = model.shift_id;
+                        var duration = model.duration;
+
+                        colordemo = color_bar(model.event,model.reason_mapped);
+                        var machineEvent =model.machine_event_id;
+                        event_ref.push(model.machine_event_id);
+
+                        colordemo = color_bar(model.event,model.reason_mapped);
+
+                        if (key == 0) {
+                            st = new Date(model.calendar_date+" "+shift_stime);
+                            et = new Date(model.calendar_date+" "+model.start_time);
+                            if (st.getTime() !== et.getTime()) {
+                              var res = Math.abs(et - st) / 1000;
+                              duration=(Math.floor(res / 60))+"."+(Math.floor(res % 60));
+
+                              colordemo = color_bar("No Data",model.reason_mapped);
+                              graph_Data.push({name:"No Data",data:[duration],color:colordemo,start:shift_stime,end:model.start_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:"No Part",duration:duration});
+                            }
+                            else if (key == (response['machineData'].length -1)) {
+                              st = new Date(model.calendar_date+" "+shift_etime);
+                              et = new Date(model.calendar_date+" "+model.end_time);
+                              if (st.getTime() !== et.getTime()) {
+                                et_x = new Date();
+                                et = et_x;
+                                st = new Date(model.calendar_date+" "+model.start_time);
+                                var res_tmp = Math.abs(et - st) / 1000;
+                                duration_tmp=(Math.floor(res_tmp / 60))+"."+(Math.floor(res_tmp % 60));
+                                x_time = (et_x.getHours() > 9 ? et_x.getHours(): "0" + et_x.getHours())+":"+(et_x.getMinutes() > 9 ? et_x.getMinutes(): "0" + et_x.getMinutes())+":"+(et_x.getSeconds() > 9 ? et_x.getSeconds(): "0" + et_x.getSeconds());
+
+                                graph_Data.push({name:model.event,data:[duration_tmp],color:colordemo,start:model.start_time,end:x_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:part_name_arr_pass,duration:duration_tmp});
+
+                                noDataArray.push('slantedLines');
+                                st = new Date(model.calendar_date+" "+shift_etime);
+                                var res = Math.abs(et - st) / 1000;
+                                duration=(Math.floor(res / 60))+"."+(Math.floor(res % 60));
+                                colordemo = color_bar("No Data",model.reason_mapped);
+                                graph_Data.push({name:"No Data",data:[duration],color:colordemo,start:model.end_time,end:shift_etime,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:part_name_arr_pass,duration:duration});
+                              }
+                              else{
+                                graph_Data.push({name:model.event,data:[model.duration],color:colordemo,start:model.start_time,end:model.end_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:part_name_arr_pass,duration:model.duration});
+                              }
+                            } 
+                            else{
+                              graph_Data.push({name:model.event,data:[model.duration],color:colordemo,start:model.start_time,end:model.end_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:part_name_arr_pass,duration:model.duration});
+                            }
+                        }
+                        else if (key == (response['machineData'].length -1)) {
+                          st = new Date(model.calendar_date+" "+shift_etime);
+                          et = new Date(model.calendar_date+" "+model.end_time);
+                          if (st.getTime() !== et.getTime()) {
+                            et_x = new Date();
+                            et = et_x;
+                            st = new Date(model.calendar_date+" "+model.start_time);
+                            var res_tmp = Math.abs(et - st) / 1000;
+                            duration_tmp=(Math.floor(res_tmp / 60))+"."+(Math.floor(res_tmp % 60));
+                            x_time = (et_x.getHours() > 9 ? et_x.getHours(): "0" + et_x.getHours())+":"+(et_x.getMinutes() > 9 ? et_x.getMinutes(): "0" + et_x.getMinutes())+":"+(et_x.getSeconds() > 9 ? et_x.getSeconds(): "0" + et_x.getSeconds());
+
+                            graph_Data.push({name:model.event,data:[duration_tmp],color:colordemo,start:model.start_time,end:x_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:part_name_arr_pass,duration:duration_tmp});
+
+                            noDataArray.push('slantedLines');
+                            st = new Date(model.calendar_date+" "+shift_etime);
+                            var res = Math.abs(et - st) / 1000;
+                            duration=(Math.floor(res / 60))+"."+(Math.floor(res % 60));
+                            colordemo = color_bar("No Data",model.reason_mapped);
+                            graph_Data.push({name:"No Data",data:[duration],color:colordemo,start:model.end_time,end:shift_etime,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:part_name_arr_pass,duration:duration});
+                          }
+                          else{
+                            graph_Data.push({name:model.event,data:[model.duration],color:colordemo,start:model.start_time,end:model.end_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:part_name_arr_pass,duration:model.duration});
+                          }
+                        }  
+                        else{
+                          graph_Data.push({name:model.event,data:[model.duration],color:colordemo,start:model.start_time,end:model.end_time,machineEvent:machineEvent,down_notes:model.notes,machine_Name:machine_Name,part_Name:part_name_arr_pass,duration:model.duration});
+                        }
+                  }
+                  });
+                }
+                else{
+                  noDataArray.push('slantedLines');
+                  var colordemo = "";
+                  colordemo = color_bar("No Data",0);
+
+                  var du = response['shift']['duration'][0]['duration'].split(":");
+                  var d = parseFloat((parseInt(du[0])*60)+parseInt(du[1]));
+                  colordemo = color_bar("No Data",0);
+
+                  graph_Data.push({name:"No Data",data:[(d).toFixed(2)],color:colordemo,start:shift_stime,end:shift_etime,machineEvent:"No Event",down_notes:"No Notes",machine_Name:machine_Name,part_Name:"No Part",duration:d});
+                }
+                var options = {
+
+                    series: graph_Data,
+                    chart: {
+                    type: 'bar',
+                    height: 70,
+                    stacked: true,
+                    stackType: '100%',
+                    sparkline: {
+                      enabled: true
+                    },
+                    stroke: {
+                      width: 0,
+                      colors: ['#fff']
+                    },
+                  },
+                  plotOptions: {
+                    bar: {
+                      horizontal: true,
+                       barHeight: '100%',
+                    },
+                  },
+                  xaxis: {
+                    tickPlacement: 'on',
+                    labels: {
+                      show:false,
+                      formatter: function (val) {
+                        return val + "M"
+                      }
+                    }
+                  },
+                  yaxis: {
+                    title: {
+                      text: undefined
+                    },
+                  },
+                  
+                  tooltip: {
+                    custom: function({series, seriesIndex, dataPointIndex, w}) {
+                      var data = w.globals.initialSeries[seriesIndex].data[dataPointIndex];
+                      var sname = w.globals.initialSeries[seriesIndex].name;
+                      var start_time = w.globals.initialSeries[seriesIndex].start;
+                      var end_time = w.globals.initialSeries[seriesIndex].end;
+                      var part_id = w.globals.initialSeries[seriesIndex].part_id;
+                      // console.log("part id");
+                      // console.log(part_id);
+                      var machine_Name_Tooltip = w.globals.initialSeries[seriesIndex].machine_Name;
+                      var part_name_tooltip = w.globals.initialSeries[seriesIndex].part_Name;
+                      // alert(part_id);
+                      //var machineEventRef = w.globals.initialSeries[seriesIndex].machineEvent;
+                      // alert(part_name_tooltip);
+                      
+                      return ('<div class="Tooltip_Container">'+'<div>'
+                            +'<p class="paddingm nameHeader">'+sname+'</p>'
+                            +'<p class="paddingm contentName">'+part_name_tooltip+'</p>'
+                            +'<p class="paddingm contentName leftAllign"><span>'+start_time+' to </span><span>'+end_time+'</span></p>'
+                            +'<p class="paddingm durationVal leftAllign">'+data+'m</p>'
+                          +'</div>'
+                        +'</div>'
+                              
+                      );
+                    },
+
+
+                  },
+
+
+                  fill: {
+                    opacity: 1,
+                    type: 'pattern',
+                    pattern: {
+                      style: noDataArray,
+                    }
+                  },
+                  legend: {
+                    position: 'top',
+                    horizontalAlign: 'left',
+                    //offsetX: 10,
+                    offsetY: -10,
+                    show:false
+                  },
+                  annotations: {
+                      points:[
+                        {
+                          x: 30,
+                          y: 300,
+                          marker: {
+                            size: 8,
+                            fillColor: '#fff',
+                            strokeColor: 'red',
+                            radius: 2
+                          }
+                        }
+                      ]
+                },
+              };
+
+              var chart = new ApexCharts(document.querySelector("#downtime_chart"), options);
+              chart.render();
+             
+      }); 
+}
+      
+function color_bar(color,reason){
+  var colordemo = "";
+  if(color == "Machine OFF"){
+    if (reason == 1) {
+      colordemo = "#686868";
+    }
+    else{
+      colordemo = "#888888";
+    }
+  }
+  else if(color == "Inactive"){
+    if (reason == 1) {
+      colordemo = "#4F8DF2";
+    }
+    else{
+      colordemo = "#015BBC";
+    }     
+  }
+  else if(color == "Active"){
+    colordemo= "#01bb55";
+  }
+  else if(color == "Offline"){
+    colordemo="#f2f2f2";
+  }
+  else{
+    colordemo="#f2f2f2";
+  }
+  return colordemo;
+}
+
+// part wise graph by hours using oui screen
+function part_by_hour(mid,sdate,sid){
+  var x = 0;
+  $.ajax({
+    url: "<?php echo base_url('Current_Shift_Performance/getLiveMode'); ?>",
+    type: "POST",
+    dataType: "json",
+    cache: false,
+    async: false,
+    data:{
+      shift_date:sdate,
+      shift_id:sid,
+      filter:x,
+    },
+    success:function(res){
+      console.log("part by hour graph");
+      console.log(res['data']);
+      var hourly = [];
+      var hourList = [];
+      var production_target = [];
+      res['data'].forEach(function(items){
+        if(items['machine'] === mid){
+          items['production'].forEach(function(i){
+            hourly.push(i['production']);
+            hourList.push(i['start_time']+" to "+i['end_time']);
+          });
+          items['targets'].forEach(function(i){
+            production_target.push(i);
+          });
+        }
+      });
+
+      ChartDataLabels.defaults.color = "#ffffff";
+      ChartDataLabels.defaults.font.family = "'Roboto', sans-serif;";
+      // ChartDataLabels.defaults.anchor = "end";
+
+
+      var ctx = document.getElementById('part_wise_graph_oui').getContext('2d');
+      myChartList[myChartList.length] = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: hourList,
+          datasets: [
+            {
+              label: "Production",
+              type: "bar",
+              backgroundColor: "white",
+              borderColor: "rgba(0, 0, 0, 0)", 
+              borderWidth: 1,
+              fill: true,
+              data: hourly,
+            },
+            {
+              label: "Production Target",
+              type: "line",
+              backgroundColor: "#7f7f7f",
+              borderColor: "#00000", 
+              borderWidth: 1,
+              fill: false,
+              data: production_target,
+              pointRadius: 0,
+            },
+          ],
+        },
+        options: {
+          scalebeginAtZero:false,
+          responsive: true,
+          maintainAspectRatio: false,   
+          scales: {
+            y: {
+              display:false,
+              beginAtZero:true,
+              stacked:false,
+            },
+            x:{
+              display:false,
+              grid:{
+                display:false
+              },
+              stacked:true,
+            },
+          },
+          plugins: {
+            datalabels:{
+              formatter: (value,context) => context.datasetIndex === 0 ? value : ''
+            },
+            legend: {
+              display: false,
+            },
+            tooltip: {
+              enabled: true,
+            },
+          },
+        
+        },
+        plugins: [ChartDataLabels],
+      });
+
+
+    },
+    error:function(er){
+      console.log("error code");
+      console.log(er);
+    },
+
+  });
+}
+
 </script>

@@ -43,6 +43,10 @@ class Current_Shift_Performance extends BaseController{
 
     		// Hourly Production.....
     		$hourly_production = $this->datas->getLiveProduction($shift_date,$shift_id );
+            foreach ($hourly_production as $key => $value) {
+                $hourly_production[$key]['production'] = ((int)$value['production']) + ((int)$value['corrections']);
+            }
+
     		// Machine Detailes.......
     		$machine_detailes = $this->datas->getMachineLive();
 
@@ -92,31 +96,56 @@ class Current_Shift_Performance extends BaseController{
                 $tar_per=[];
                 $track = 0;
 
+                $check_array = [];
+
 	        	foreach ($hourly_production as $key => $p) {
 	        		if ($m['machine_id'] == $p['machine_id']) {
-	        			array_push($t, $p);
-	        			$total =$total+$p['production'];
-	        			foreach ($partsDetails as $part) {
-	        				if ($p['part_id'] == $part->part_id) {
-	        					$s_time =  strtotime($p['shift_date']." ".$p['start_time']);
-	        					$e_time = strtotime($p['shift_date']." ".$p['end_time']);
-	        					$temp_target = ($e_time-$s_time)/$part->NICT;
-	        					array_push($target, (int)$temp_target);
+                        $h_total=0;
+	        			$total =$total+$p['production']+$p['corrections'];
+                            $temp_target =0;		
+                            $tc=0;	
+                            foreach ($partsDetails as $part) {
+                                if ($p['part_id'] == $part->part_id and !in_array($key,$check_array)) {
+                                    $s_time =  strtotime($p['shift_date']." ".$p['start_time']);
+                                    $e_time = strtotime($p['shift_date']." ".$p['end_time']);
+                                    $temp_target = $temp_target + (($e_time-$s_time)/$part->NICT);
+                                    $tc=1;  
+                                    $h_total=$h_total+$p['production'];
+                                }
+                            }
+                            foreach ($hourly_production as $k => $multiple) {
+                                if ($multiple['machine_id'] == $p['machine_id'] and $multiple['start_time'] == $p['start_time'] and $multiple['part_id'] != $p['part_id'] and !in_array($k,$check_array)) {
+                                    foreach ($partsDetails as $part) {
+                                        if ($p['part_id'] == $part->part_id) {
+                                            $s_time =  strtotime($p['shift_date']." ".$p['start_time']);
+                                            $e_time = strtotime($p['shift_date']." ".$p['end_time']);
+                                            $temp_target = $temp_target + (($e_time-$s_time)/$part->NICT);
+                                            // unset($hourly_production[$k]);
+                                            array_push($check_array, $key);
+                                            array_push($check_array, $k);
+                                            $tc=1;  
+                                            $h_total=$h_total+$multiple['production'];
+                                        }
+                                    }
+                                }
+                            }
+        					if ($tc==1) {
+                                array_push($target, (int)$temp_target);
 
                                 date_default_timezone_set('Asia/Kolkata'); 
-
                                 if (date("H",$s_time) == date("H")) {
                                     $e_time = strtotime($p['shift_date']." ".date("H:i:s"));
                                     $temp_target = ($e_time-$s_time)/$part->NICT;
-                                    array_push($target, (int)$temp_target);
+                                    array_push($tar_per, (int)$temp_target);
                                     $track = 1;
                                 }elseif ($track == 0) {
                                     array_push($tar_per, (int)$temp_target);
                                 }
-	        				}
+                                $p['production'] = $h_total;
+                                array_push($t, $p);
+                            }
 	        			}
 	        		}
-	        	}
 
 	        	$temp = array('machine' => $m['machine_id'],'production' => $t,"targets"=>$target,"target_per" => $tar_per);
 	        	array_push($machineWise, $temp);
@@ -125,6 +154,9 @@ class Current_Shift_Performance extends BaseController{
                 $t = array('machine_id' => $m['machine_id'], 'machine_name' => $m['machine_name']);
 	        	array_push($machine_name, $t);
 	        }
+
+            // echo "<pre>";
+            // print_r($machineWise);
 	        
 	        // OEE Calculation......
 	        $output = $this->datas->getDataRaw($shift_date,$shift_id);
@@ -326,7 +358,7 @@ class Current_Shift_Performance extends BaseController{
             // Machine Wise Event....
             $machine_event = $this->datas->machine_events($shift_date,$shift_id);
 
-            $temp_ar = array('machine_id' => "","shift_date" => "", "start_time" => "","end_time" => "","shift_id" => "", "production" => 0,"part_id" => 0);
+            $temp_ar = array('machine_id' => "","shift_date" => "", "start_time" => "","end_time" => "","shift_id" => "", "production" => 0,"part_id" => 0,"part_name" =>"", "rejections"=>0);
             $len_data = sizeof($shiftList);
             $len_ref = sizeof($machineWise[0]['production']);
             $diff = $len_data - $len_ref;
