@@ -307,7 +307,7 @@ function getMachineDataLive() {
 }
 
 function getLiveMode(shift_date,shift_id){
-  var x = $('#Filter-values').val();
+  // var x = $('#Filter-values').val();
   $.ajax({
     url: "<?php echo base_url('Current_Shift_Performance/getLiveMode'); ?>",
     type: "POST",
@@ -317,7 +317,7 @@ function getLiveMode(shift_date,shift_id){
     data:{
       shift_date:shift_date,
       shift_id:shift_id,
-      filter:x,
+      // filter:x,
     },
     success:function(res){
       $('.grid-container-cont').empty();
@@ -339,41 +339,37 @@ function getLiveMode(shift_date,shift_id){
         var elements = $();
         elements = elements.add('<div class="grid-item-cont">'
           +'<div class="item-header" id="item-header-'+machine[0]['machine_id']+'">'
-            +'<div>'
-              +'<div class="cen-align">'
-                +'<p class="paddingm fnt-color machine_name_ref" mid_data="'+machine[0]['machine_id']+'"  id="Machine_name_'+machine[0]['machine_id']+'">'+machine_name+'</p>'
+              +'<div>'
+              +'<p class="paddingm pad-top cen-align fnt-color machine_name_ref" mid_data="'+machine[0]['machine_id']+'"  id="Machine_name_'+machine[0]['machine_id']+'" title="'+machine_name+'">'+machine_name+'</p>'
+              +'<p class="paddingm cen-align fnt-color current_event" id="latest_status_'+machine[0]['machine_id']+'"></p>'
               +'</div>'
-              +'<div class="cen-align">'
-                +'<p class="paddingm fnt-color current_event" id="latest_status_'+machine[0]['machine_id']+'"></p>'
-              +'</div>'
-            +'</div>'
           +'</div>'
           +'<div class="item-circle">'
             +'<div class="inner-circle">'
               +'<div class="inner-val">'
-                +'<p class="paddingm production_completion"><span id="production_per'+machine[0]['machine_id']+'"></span>%</p>'
+                +'<p class="paddingm production_completion production_completion_ref"><span id="production_per'+machine[0]['machine_id']+'"></span>%</p>'
                 +'<p class="paddingm production_completion partname_ref" id="partname_'+machine[0]['machine_id']+'">Part Name</p>'
               +'</div>'
             +'</div>'
             +'<svg version="1.1" class="svg">'
               +'<defs>'
-                  +'<linearGradient id="GradientColor">'
+                  +'<linearGradient id="GradientColor_'+machine[0]['machine_id']+'">'
                       +'<stop id="circle_graph_colors_'+machine[0]['machine_id']+'" stop-color="#d10527" />'
                   +'</linearGradient>'
               +'</defs>'
-              +'<circle class="circle" cx="120" cy="120" r="63" stroke-linecap="round"/>'
+              +'<circle class="circle" id="'+machine[0]['machine_id']+'" cx="120" cy="120" r="63" stroke-linecap="round"/>'
+              +'<div class="part_completion">'
+                +'<p class="paddingm">Part Completion</p>'
+              +'</div>'
             +'</svg>'
           +'</div>'
-          // +'<div class="part_completion">'
-          //     +'<p>Part Completion</p>'
-          //   +'</div>'
           +'<div class="item-oee hoverCardOEECurrent" style="margin: 0.5rem;">'
             +'<div style="width: 15%;display: flex;justify-content: flex-end;"><p class="paddingm oee-lable">OEE</p></div>'
             +'<div class="FLayer">'
               +'<div class="BLayer" id="Target_'+machine[0]['machine_id']+'"></div>'
               +'<div class="SLayer" id="SLayer_'+machine[0]['machine_id']+'"></div>'
               +'<div  class="TLayer TTotal" id="TTotal_'+machine[0]['machine_id']+'">'
-                +'<p class="values_oee paddingm val"><span id="SLayer_val_'+machine[0]['machine_id']+'"></span>%</p>'
+                +'<p class="values_oee paddingm val" id="SLayer_val_Color_'+machine[0]['machine_id']+'"><span id="SLayer_val_'+machine[0]['machine_id']+'"></span>%</p>'
               +'</div>'
             +'</div>'
           +'</div>'
@@ -538,13 +534,24 @@ function getLiveMode(shift_date,shift_id){
   });
 }
 
-$(document).on("mousemove",".item-circle",function(e){ 
-  var x = e.clientX;
-  var y = e.clientY;
-  var newposX = x-70;
-  var newposY = y-380;
-  $(this).siblings(".part_completion").css("transform","translate3d("+newposX+"px,"+newposY+"px,0px)"); 
-  // $(this).prevAll(".part_completion").css("transform","translate3d("+newposX+"px,"+newposY+"px,0px)");
+$(".circle").mouseover(function(){
+  var count = $('.circle');
+  var index_val = count.index($(this));
+  $('.part_completion:eq('+index_val+')').css("display","block");
+});
+$(".circle").mouseout(function(){
+  var count = $('.circle');
+  var index_val = count.index($(this));
+  $('.part_completion:eq('+index_val+')').css("display","none");
+});
+
+$(document).on("mousemove",".circle",function(e){ 
+  var relX = event.pageX - $(this).offset().left-10;
+  var relY = event.pageY - $(this).offset().top -50;
+  var relBoxCoords = "(" + relX + "," + relY + ")";
+  var count = $('.circle');
+  var index_val = count.index($(this));
+  $('.part_completion:eq('+index_val+')').css("transform","translate3d("+relX+"px,"+relY+"px,0px)");
 });
 
 function live_target_update(shift_date){
@@ -691,13 +698,87 @@ function productionTooltip(context) {
      j = setInterval(function() { live_target_update(s_date); }, 1000);
   }
 
-  // $('#Filter-values').on('change', function(event) {
-  //   clearInterval(i);
-  //   getLiveMode($("#s_date_ref").val(),$("#s_id_ref").val());
-  // });
+  $('#Filter-values').on('change', function(event) {
+    var option = $('#Filter-values').val();
+    var x = $('.values_oee');
+    var len = x.length;
+    var arr=[];
+    var val=[];
+    if (option == 1) { //Soritng based on OEE
+      for (var i = 0; i < len; i++) {
+        arr.push(i);
+        val.push(parseInt($('.values_oee:eq('+i+')').children('span').html()));
+      }
+      for (var i = 0; i < len-1; i++) {
+        var min=i;
+        for (var j = i+1; j<len; j++) {
+          if (val[j] < val[i]) {
+            min=j;
+          }
+        }
+
+        var temp = val[i];
+        val[i] = val[min];
+        val[min]=temp;
+
+        var temp_elem = $('.grid-item-cont:eq('+i+')');
+        var elem = $('.grid-item-cont:eq('+min+')');
+        elem.insertBefore($('.grid-item-cont:eq('+i+')')).fadeIn(3000); 
+        temp_elem.insertAfter($('.grid-item-cont:eq('+(min)+')')).fadeIn(3000)
+      }
+    }else if (option == 2){
+      for (var i = 0; i < len; i++) {
+        arr.push(i);
+        val.push(parseInt($('.production_completion_ref:eq('+i+')').children('span').html()));
+      }
+      for (var i = 0; i < len-1; i++) {
+        var min=i;
+        for (var j = i+1; j<len; j++) {
+          if (val[j] > val[i]) {
+            min=j;
+          }
+        }
+
+        var temp = val[i];
+        val[i] = val[min];
+        val[min]=temp;
+
+        var temp_elem = $('.grid-item-cont:eq('+i+')');
+        var elem = $('.grid-item-cont:eq('+min+')');
+        elem.insertBefore($('.grid-item-cont:eq('+i+')')).fadeIn(3000); 
+        temp_elem.insertAfter($('.grid-item-cont:eq('+(min)+')')).fadeIn(3000)
+      }
+    }else if (option == 0) {
+      for (var i = 0; i < len; i++) {
+        arr.push(i);
+        var ref = $('.production_completion_ref:eq('+i+')').children('span').attr("id");
+        ref = ref.split("_per");
+        val.push(ref[1]);
+      }
+      for (var i = 0; i < len-1; i++) {
+        var min=i;
+        for (var j = i+1; j<len; j++) {
+          var tempx = val[j].split("C");
+          var tempy = val[i].split("C");
+          if ((parseInt(tempx[1])-1000) < (parseInt(tempy[1])-1000)) {
+            min=j;
+          }
+        }
+
+        var temp = val[i];
+        val[i] = val[min];
+        val[min]=temp;
+
+        var temp_elem = $('.grid-item-cont:eq('+i+')');
+        var elem = $('.grid-item-cont:eq('+min+')');
+        elem.insertBefore($('.grid-item-cont:eq('+i+')')).fadeIn(3000); 
+        temp_elem.insertAfter($('.grid-item-cont:eq('+(min)+')')).fadeIn(3000)
+      }
+    }
+  });
   
   function live_MC1001(shift_date,shift_id) {
-    var x = $('#Filter-values').val();
+    // var x = $('#Filter-values').val();
     $.ajax({
       url: "<?php echo base_url('Current_Shift_Performance/getLiveMode'); ?>",
       type: "POST",
@@ -707,7 +788,7 @@ function productionTooltip(context) {
       data:{
         shift_date:shift_date,
         shift_id:shift_id,
-        filter:x,
+        // filter:x,
       },
       success:function(res){
         var n=0;
@@ -719,6 +800,7 @@ function productionTooltip(context) {
             var event="";
             var duration =0;
             var partList = "";
+            var val_color="";
             res['machine_name'].forEach(function(m){
               if(m['machine_id'] == machine[0]['machine_id']){
                 machine_name = m['machine_name'];
@@ -780,12 +862,15 @@ function productionTooltip(context) {
                 // Current OEE Status Update.....
                 if (res['targets'][0].yellow > m['OEE']) {
                   color="#dc062a";
+                  val_color ="white";
                 }
                 else if(res['targets'][0].green > m['OEE']){
                   color="#ffbf00";
+                  val_color ="black";
                 }
                 else{
                   color="#00b04f";
+                  val_color ="white";
                 }
 
                 // Update OEE Background
@@ -794,6 +879,7 @@ function productionTooltip(context) {
                 // Update OEE
                 $('#SLayer_'+machine[0]['machine_id']+'').css("width",m['OEE']+"%");
                 $('#SLayer_val_'+machine[0]['machine_id']+'').html(parseInt(m['OEE']));
+                $('#SLayer_val_Color_'+machine[0]['machine_id']+'').css("color",val_color);
 
 
                 $('#OEE_'+machine[0]['machine_id']+'').html(m['OEE']+"%");
@@ -880,8 +966,18 @@ function productionTooltip(context) {
 
             // Update Prodcution Percentage value
             var production_percent_val =470-(4.7*production_percent);
-            const MyFSC_container = document.getElementsByClassName("circle");
-            MyFSC_container[n].style.setProperty("--foo", production_percent_val);
+            var iterate = document.getElementsByClassName("circle");
+            var refcolor = 'url('+'#GradientColor_'+machine[0]['machine_id']+')';
+            // const MyFSC_container = document.getElementsByClassName("circle");
+            // MyFSC_container[n].style.setProperty("--foo", production_percent_val);
+            // MyFSC_container[n].style.setProperty("--ref_graph", refcolor);
+
+            for (val of iterate) {
+              if(val.getAttribute("id") == machine[0]['machine_id']){
+                val.style.setProperty("--foo", production_percent_val);
+                val.style.setProperty("--ref_graph", refcolor);
+              }
+            }
 
             var color_code="";
             if (production_percent > 75) {
@@ -897,13 +993,7 @@ function productionTooltip(context) {
               color_code = "#d10527";
             }
 
-            color_code = "#c2fb05";
             document.getElementById('circle_graph_colors_'+machine[0]['machine_id']).attributes['stop-color'].value = color_code;
-            // console.log(document.getElementById('circle_graph_colors_MC1001').attributes['stop-color']);
-            // $('#circle_graph_colors_MC1001').attr("stop-color",''+color_code+'');
-            // $('.circle_graph_colors:eq('+1+')').attr("stop-color","#c55911");
-            // console.log($('.circle_graph_colors:eq('+n+')').attr("stop-color"));
-
             n = n+1;
         });
       },
@@ -1000,8 +1090,6 @@ function getDownTimeGraph(machine_id,shift_date,s){
             shift:s[0],
            }
       }).then(function(response){ 
-        console.log("graph downtime");
-        console.log(response);
                 response['shift']['shift'].forEach(function(item){
                   var x = item.shifts.split("");
                   if (x[0] == s[0]) {

@@ -1,5 +1,6 @@
 :root {
   --foo: 471;
+  --ref_graph :url("#GradientColor");
 }
 
 .graph-content{
@@ -14,6 +15,7 @@
     font-size:14px;
     color: #595959;
 }
+
 .main-card{
 	height: 15rem;
 	border: 1px solid #d9d9d9;
@@ -48,12 +50,11 @@
   max-width: 17rem;
 }
 .item-header{
-	/*background-color: #a4041f;*/
 	border-radius: 10px 10px 0 0;
 	height: 4rem;
-	display: flex;
+	/*display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: center;*/
 }
 .oee-lable{
 	font-family: 'Roboto', sans-serif;
@@ -68,10 +69,16 @@
     color: #fff;
     margin-top: 0.2rem;
 }
+
 .cen-align{
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	text-align:center;
+	width:100%;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+.pad-top{
+	padding-top: 0.5rem;
+	padding-left: 0.1rem;
 }
 .dot-cnt{
 	margin-right: 0.5rem;
@@ -216,9 +223,10 @@
 	opacity: 100%;
 	font-family: 'Roboto', sans-serif;
 }
+
     .circle{
         fill: none;
-        stroke: url(#GradientColor);
+        stroke: var(--ref_graph);
         stroke-width: 1rem;
         stroke-dasharray: 472;
         stroke-dashoffset: 472;
@@ -227,8 +235,21 @@
         transform: rotate(-90deg);
     }
     .part_completion{
-    	position: absolute;
-    }
+		position: absolute;
+		border: 1px solid #d9d9d9;
+		border-radius: 3px;
+		padding-top: 0.1rem;
+		padding-bottom: 0.1rem;
+		padding-left: 0.2rem;
+		padding-right: 0.1rem;
+		background: white;
+		font-size: 11px;
+		color: #404040;
+		z-index: 1000;
+		display: none;
+		/*transform:translate3d(-50%,-50%,0);*/
+  		transition:transform 2s cubic-bezier(.02,1.23,.79,1.08);
+	}
     .svg{
         position: absolute;
         display: block;
