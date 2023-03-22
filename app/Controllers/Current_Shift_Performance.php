@@ -32,7 +32,7 @@ class Current_Shift_Performance extends BaseController{
     	// if ($this->request->isAJAX()) {
     		$shift_date = $this->request->getVar('shift_date');
     		$shift_id = $this->request->getVar('shift_id');
-            $filter = $this->request->getVar('filter');
+            // $filter = $this->request->getVar('filter');
 
     		// $shift_date = "2023-03-15";
     		// $shift_id = "A";
@@ -381,20 +381,22 @@ class Current_Shift_Performance extends BaseController{
 	       	$out['latest_event'] = $machine_event;
             $out['part_list'] = $partList;
 
-            // Machine Wise Order
-            if ($filter == 0) {
-                return json_encode($out);
-            }
-            // OEE Low to High
-            else if ($filter == 1) {
-                $out = $this->sortbyoee($out);
-                return json_encode($out);
-            }
-            // Part Completion
-            else if ($filter == 2) {
-                $out = $this->sortbypartcompletion($out);
-                return json_encode($out);
-            }
+            // // Machine Wise Order
+            // if ($filter == 0) {
+            //     return json_encode($out);
+            // }
+            // // OEE Low to High
+            // else if ($filter == 1) {
+            //     $out = $this->sortbyoee($out);
+            //     return json_encode($out);
+            // }
+            // // Part Completion
+            // else if ($filter == 2) {
+            //     $out = $this->sortbypartcompletion($out);
+            //     return json_encode($out);
+            // }
+
+            return json_encode($out);
 	       	
     	// }
     }
