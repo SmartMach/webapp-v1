@@ -222,15 +222,54 @@ class Current_Shift_Performance_Model extends Model{
     public function getLiveProduction($shift_date,$shift_id)
     {
         $db = \Config\Database::connect($this->site_connection);
-        $query = $db->table('pdm_production_info');
-        $query->select('machine_id,shift_date,start_time,end_time,shift_id,production,part_id');
+        $query = $db->table('pdm_production_info as p');
+        $query->select('p.machine_id,p.shift_date,p.start_time,p.end_time,p.shift_id,p.production,p.corrections,p.part_id,t.part_name,p.rejections');
         $query->where('shift_date',$shift_date);
         $query->where('shift_id',$shift_id);
-        $query->groupby('machine_id');
-        $query->groupby('start_time');
+        $query->join('settings_part_current as t', 'p.part_id = t.part_id');
         $res= $query->get()->getResultArray();
         return $res;
     }
+
+
+    
+    // this function get downtime record for particular shift in current shift performance oui screen
+    public function getdowntime_records($mid,$sdate,$sid){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('pdm_downtime_reason_mapping');
+        $query->select('*');
+        $query->where('shift_date',$sdate);
+        $query->where('Shift_id',$sid);
+        $query->where('machine_id',$mid);
+        $res = $query->get()->getResultArray();
+        return $res;
+    }
+
+    // this function get part nict for particular shift in current shift performance oui screen
+    public function getpart_nict($mid,$sdate,$sid){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('pdm_production_info as pd');
+        $query->select('DISTINCT(pd.part_id),p.*');
+        $query->where('pd.shift_date',$sdate);
+        $query->where('pd.shift_id',$sid);
+        $query->where('pd.machine_id',$mid);
+        $query->join('settings_part_current as p', 'p.part_id = pd.part_id');
+        $res = $query->get()->getResultArray();
+        return $res;
+    }
+
+    // this function  get production record for the partiulsr shift records
+    public function getrejection_records($mid,$sdate,$sid){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('pdm_production_info');
+        $query->select('*');
+        $query->where('shift_date',$sdate);
+        $query->where('machine_id',$mid);
+        $query->where('shift_id',$sid);
+        $res = $query->get()->getResultArray();
+        return $res;
+    }
+
 
 }
 
