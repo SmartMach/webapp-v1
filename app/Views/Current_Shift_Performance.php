@@ -18,7 +18,7 @@
       <div class="header_text_nav">
         <div class="oui_arrow_div">
           <div class="dotAccessArrow dot-css acsControl marleftDot " style="margin-right:0.7rem;margin-left:0.4rem;">
-            <img src="<?php echo base_url('assets/img/oui_arrow.png'); ?>" class="img_font_wh dot-cont" style="height: 26px;transform: rotate(180deg);">
+            <img src="<?php echo base_url('assets/img/oui_arrow.png'); ?>" class="img_font_wh dot-cont back_arrow_oui_normal" style="height: 26px;transform: rotate(180deg);">
           </div>
         </div>
         <p class="float-start p3" id="logo" style="margin-left:0.1rem;">Current Shift Performance</p>
@@ -1555,5 +1555,19 @@ function fullscreen_mode(){
     full.msRequestFullscreen();
   }
 }
+
+
+// oui to normal cards back
+$(document).on('click','.back_arrow_oui_normal',function(event){
+  event.preventDefault();
+  // alert('hi ');
+  $('#machine_status').text(" ");
+  $('#machine_name_text').text(" ");
+
+  $('.graph-content').css('display','inline');
+  $('.oui_screen_view').css('display','none');
+  $('.oui_arrow_div').css('display','none');
+  $('.visibility_div').css('display','inline');
+});
 
 </script>

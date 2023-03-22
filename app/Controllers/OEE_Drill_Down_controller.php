@@ -1128,6 +1128,10 @@ class OEE_Drill_Down_controller extends BaseController
             //Raw data from Reason mapping Table...........
             $rawData = $this->getDataRaw($ref,$fromTime,$toTime);
 
+            // machine wise records
+            $ref1 = "MachinewiseOEE"; 
+            $MachinewiseData = $this->getDataRaw($ref1,$fromTime,$toTime);
+
             //Difference between two dates......
             $diff = abs(strtotime($toTime) - strtotime($fromTime));
             $AllTime = (int)($diff/60);
@@ -1158,6 +1162,14 @@ class OEE_Drill_Down_controller extends BaseController
         // $MachineName = $this->convertMachineId($MachineName);
         // Downtime Reason.......
         $DowntimeReason = $this->data->downtimeReason();
+
+        // oee demo data
+        $oee_demo_arr = [];
+        foreach ($MachinewiseData as $k2 => $val) {
+            $oee_demo_arr[$val['Machine_Id']] = $val['OOE'];
+        }
+
+
         // Machine Data.........
         // $ReasonwiseData = $this->Financial->ReasonwiseData($FromDate,$ToDate);
 
@@ -1168,7 +1180,7 @@ class OEE_Drill_Down_controller extends BaseController
         $GrandTotal = 0;
         $finalArray=[];
 
-        foreach ($MachineName as $key => $machine) {
+        foreach ($MachineName as $key_m => $machine) {
             $ar=[];
             // if (in_array($machine['machine_id'],$machine_arr)) {
 
@@ -1219,7 +1231,9 @@ class OEE_Drill_Down_controller extends BaseController
                     array_push($ar,$t);
                     $GrandTotal = $GrandTotal+$reasonValue;        
                 }
+                $ar['oee'] = $oee_demo_arr[$machine['machine_id']];
                 array_push($finalArray,$ar);
+                $MachineName[$key_m]['oee'] = $oee_demo_arr[$machine['machine_id']];
             // }
         }
 
@@ -1251,6 +1265,7 @@ class OEE_Drill_Down_controller extends BaseController
         $res['grandTotal'] = (int)$GrandTotal;
         $res['machineName'] = $MachineName;
         $res['totalDuration'] = $durationTotal;
+        $res['oee_data'] = $MachinewiseData;
 
         //echo (int)$GrandTotal;
         //sorting in desending order......
@@ -1328,14 +1343,44 @@ class OEE_Drill_Down_controller extends BaseController
             $reason_arr = $this->request->getVar('reason_arr');
             $machine_arr = $this->request->getVar('machine_arr');
             $reason_arr = array_map( 'strtolower', $reason_arr);
-            // $fromTime = "2023-03-03T13:00:00";
-            // $toTime="2023-03-09T12:00:00";
+            
+            // $fromTime = "2023-03-14T16:00:00";
+            // $toTime="2023-03-20T15:00:00";
             // $category_arr = array('all','Planned','Unplanned');
             // $reason_arr = array('all_reason', 'apply spray', 'Break time', 'Colour change', 'door problem', 'ejection pin broken', 'ejection pin stuck up', 'Extra mould change', 'Facility', 'lunch break', 'Machine breakdown', 'Machine OFF', 'Mold Trial', 'Mould breakdown', 'mould change', 'Mould trail', 'no man power', 'No material In store', 'No material production', 'No packing', 'No plan', 'part catching', 'Preheating', 'Preventic maintenance', 'Preventive Maintanence', 'Process adjustment', 'QC approval', 'remove lumps', 'rib catch', 'Robot adjustment', 'runner catching', 'SEMIAUTO', 'Start up', 'Tool Changeover', 'Unnamed');
             // $machine_arr = array('all', 'MC1001', 'MC1002', 'MC1003', 'MC1004');
-           
+            
+            // $reason_arr = array_map( 'strtolower', $reason_arr);
+
             $res = $this->getAvailabilityReasonWise($fromTime,$toTime);
 
+             
+            // data array sorting concept
+            for($i=0;$i<count($res['data']);$i++){
+                for ($j=$i+1; $j <count($res['data']); $j++) { 
+                    // $index_min = 0;
+                    if ($res['data'][$i]['oee']>$res['data'][$j]['oee']) {
+                        $index_min = $j;
+                        $temp = $res['data'][$i];
+                        $res['data'][$i] = $res['data'][$index_min];
+                        $res['data'][$index_min] = $temp;
+                    }
+                   
+                }
+            }
+
+            // sorting machine name array
+            for ($i=0; $i <count($res['machineName']); $i++) { 
+                for ($j=$i+1; $j <count($res['machineName']); $j++) { 
+                    if ($res['machineName'][$i]['oee']>$res['machineName'][$j]['oee']) {
+                        $index_min = $j;
+                        $temp = $res['machineName'][$i];
+                        $res['machineName'][$i] = $res['machineName'][$index_min];
+                        $res['machineName'][$index_min] = $temp;
+                    }
+                }
+            }
+            
             foreach ($res['reason'] as $key => $value) {
                 if (in_array($value['downtime_category'],$category_arr)) {
                     if (in_array(strtolower($value['normal_reason']),$reason_arr)) {
@@ -1347,20 +1392,35 @@ class OEE_Drill_Down_controller extends BaseController
                    
             }
 
+          
+
+            // oee remove 
             $demo_arr = [];
             foreach ($res['data'] as $key => $value) {
-                if (in_array($value[0]['machine_id'],$machine_arr)) {
-                    
-                    array_push($demo_arr,$res['data'][$key]);
-                }
-                else{
-                    unset($res['data'][$key]);
-                }
+                // if ($value != "oee") {
+                    if (in_array($value[0]['machine_id'],$machine_arr)) {
+                        // foreach ($res['oee_data'] as $k1 => $val1) {
+                        //     if ($val1['Machine_Id']==$value[0]['machine_id']) {
+                        //         $res[$key]['oee'] = $val1['OEE'];
+                              
+                        //     }
+                        // }
+                        unset($res['data'][$key]['oee']);
+                        array_push($demo_arr,$res['data'][$key]);
+                    }
+                    else{
+                        unset($res['data'][$key]);
+                    }  
+                // }else{
+                //     unset($res['data'][$key]['oee']);
+                // }
+                
             }
             $res['data'] = $demo_arr;
 
             $demo_arr1 = [];
             foreach ($res['machineName'] as $key => $value) {
+                unset($res['machineName'][$key]['oee']);
                 if (in_array($value['machine_id'],$machine_arr)) {
                     array_push($demo_arr1,$res['machineName'][$key]);
                 }
@@ -1369,15 +1429,14 @@ class OEE_Drill_Down_controller extends BaseController
                 }
             }
             $res['machineName'] = $demo_arr1;
+ 
 
-           
-           
-                // $out['data'] = $temp_arr;
-                // $out['grandTotal'] = $res['grandTotal'];
-                // $out['machineName'] = $res['machineName'];
-                // $out['reason'] = $res['reason'];
-                // $out['total'] = $res['total'];
-                // $out['totalDuration'] = $res['totalDuration'];
+            // $out['data'] = $temp_arr;
+            // $out['grandTotal'] = $res['grandTotal'];
+            // $out['machineName'] = $res['machineName'];
+            // $out['reason'] = $res['reason'];
+            // $out['total'] = $res['total'];
+            // $out['totalDuration'] = $res['totalDuration'];
             echo json_encode($res);
             // echo "<pre>";
             // print_r($res);
@@ -1429,8 +1488,13 @@ class OEE_Drill_Down_controller extends BaseController
         $part_arr = $this->request->getVar('part_arr');
         $machine_arr = $this->request->getVar('machine_arr');
 
-        // $fromTime = "2023-03-02T10:00:00";
-        // $toTime = "2023-03-08T09:00:00";
+        // $fromTime = "2023-03-15T13:00:00";
+        // $toTime = "2023-03-21T12:00:00";
+        // $part_arr = array("all", "PT1001", "PT1002","PT1003","PT1004", "PT1005", "PT1006", "PT1007", "PT1008", "PT1009", "PT1010", "PT1011", "PT1012", "PT1013", "PT1014", "PT1015", "PT1016", "PT1017", "PT1018", "PT1019", "PT1020", "PT1021", "PT1022");
+        // $machine_arr = array("all","MC1001", "MC1002", "MC1003","MC1004");
+
+        $ref1 = "MachinewiseOEE"; 
+        $MachinewiseData = $this->getDataRaw($ref1,$fromTime,$toTime);
 
         // $url = "http://localhost:8080/graph/performanceOpportunity/".$fromTime."/".$toTime."/";
         // $ch = curl_init($url);
@@ -1445,6 +1509,12 @@ class OEE_Drill_Down_controller extends BaseController
 
         // new array machine data
         $get_new_machine = $this->data->getmachine_arr();
+
+
+        $oee_demo_arr = [];
+        foreach ($MachinewiseData as $k2 => $val) {
+            $oee_demo_arr[$val['Machine_Id']] = $val['OOE'];
+        }
 
         //Availability Opportunity.........
         $AvailabilityOpportunity=[];
@@ -1521,12 +1591,28 @@ class OEE_Drill_Down_controller extends BaseController
                     // $x = array("machine_id"=>$machine['Machine_ID'],"machineData"=>$tmpMachine);
                     // array_push($AvailabilityOpportunity, $x);
                     $m_name_tmp = $get_new_machine[$machine['Machine_ID']]['machine_name'];
-                    $z= array("machine_id"=>$machine['Machine_ID'],"machineData"=>$varData,"machine_name"=>$m_name_tmp);
+                    $z= array("machine_id"=>$machine['Machine_ID'],"machineData"=>$varData,"machine_name"=>$m_name_tmp,"oee"=>$oee_demo_arr[$machine['Machine_ID']]);
                     array_push($varDataMachine, $z);
                 }
                
             }
         }
+
+
+        // sorting data
+        for($i=0;$i<count($varDataMachine);$i++){
+            for ($j=$i+1; $j < count($varDataMachine); $j++) { 
+                if ($varDataMachine[$i]['oee']>$varDataMachine[$j]['oee']) {
+                    $index_min = $j;
+                    $tmp = $varDataMachine[$i];
+                    $varDataMachine[$i] = $varDataMachine[$j];
+                    $varDataMachine[$j] = $tmp;
+                }
+            }
+        }
+        // echo "<pre>";
+        // print_r($varDataMachine);
+
 
         $length = sizeof($varDataMachine);
         $l=sizeof($partDetails);
@@ -1554,7 +1640,12 @@ class OEE_Drill_Down_controller extends BaseController
 
         //sorting in desending order......
         $out = $this->selectionSortQuality($res,sizeof($res['Total']));
- 
+        
+        // $tmp['dataPart'] = $out['dataPart'];
+        // $tmp['Part'] = $out['Part'];
+        // $tmp['Total'] = $out['Total'];
+        // $tmp['SpeedLossTotal'] = $out['SpeedLossTotal'];
+        // $tmp['GrandTotal'] = $out['GrandTotal'];
         echo json_encode($out);
         // echo "<pre>";
         // print_r($out);
@@ -1565,37 +1656,37 @@ class OEE_Drill_Down_controller extends BaseController
         //int i, j, min_idx;
       
         // One by one move boundary of unsorted subarray
-        for ($i = 0; $i < $n-1; $i++)
-        {
-            // Find the minimum element in unsorted array
-            $min_idx = $i;
-            for ($j = $i+1; $j < $n; $j++){
-                if ($arr['Total'][$j] > $arr['Total'][$min_idx]){
-                    $min_idx = $j;
-                }
-            }
+        // for ($i = 0; $i < $n-1; $i++)
+        // {
+        //     // Find the minimum element in unsorted array
+        //     $min_idx = $i;
+        //     for ($j = $i+1; $j < $n; $j++){
+        //         if ($arr['Total'][$j] > $arr['Total'][$min_idx]){
+        //             $min_idx = $j;
+        //         }
+        //     }
 
-            $temp = $arr['Total'][$i];
-            $arr['Total'][$i] = $arr['Total'][$min_idx];
-            $arr['Total'][$min_idx] = $temp;
+        //     $temp = $arr['Total'][$i];
+        //     $arr['Total'][$i] = $arr['Total'][$min_idx];
+        //     $arr['Total'][$min_idx] = $temp;
 
 
-            $temp2 = $arr['Part'][$i];
-            $arr['Part'][$i] = $arr['Part'][$min_idx];
-            $arr['Part'][$min_idx] = $temp2;
+        //     $temp2 = $arr['Part'][$i];
+        //     $arr['Part'][$i] = $arr['Part'][$min_idx];
+        //     $arr['Part'][$min_idx] = $temp2;
 
-            $temp3 = $arr['SpeedLossTotal'][$i];
-            $arr['SpeedLossTotal'][$i] = $arr['SpeedLossTotal'][$min_idx];
-            $arr['SpeedLossTotal'][$min_idx] = $temp3;            
+        //     $temp3 = $arr['SpeedLossTotal'][$i];
+        //     $arr['SpeedLossTotal'][$i] = $arr['SpeedLossTotal'][$min_idx];
+        //     $arr['SpeedLossTotal'][$min_idx] = $temp3;            
             
 
-            $l = sizeof($arr['dataPart']);
-            for ($k=0; $k < $l; $k++) { 
-                $temp1 = $arr['dataPart'][$k]['machineData'][$i];
-                $arr['dataPart'][$k]['machineData'][$i] = $arr['dataPart'][$k]['machineData'][$min_idx];
-                $arr['dataPart'][$k]['machineData'][$min_idx] = $temp1;
-            }
-        }
+        //     $l = sizeof($arr['dataPart']);
+        //     for ($k=0; $k < $l; $k++) { 
+        //         $temp1 = $arr['dataPart'][$k]['machineData'][$i];
+        //         $arr['dataPart'][$k]['machineData'][$i] = $arr['dataPart'][$k]['machineData'][$min_idx];
+        //         $arr['dataPart'][$k]['machineData'][$min_idx] = $temp1;
+        //     }
+        // }
 
         for ($i = 0; $i < $n; $i++)
         {
@@ -1609,6 +1700,23 @@ class OEE_Drill_Down_controller extends BaseController
                 unset($arr['Part'][$i]);
             }
         }
+
+
+        foreach ($arr['dataPart'] as $key => $value) {
+            $tmp_arr = [];
+
+            foreach ($value['machineData'] as $k1 => $val1) {
+                array_push($tmp_arr,$value['machineData'][$k1]);
+            }
+            $arr['dataPart'][$key]['machineData'] = $tmp_arr;
+        }
+        $tmp_part = array_values($arr['Part']);
+        $arr['Part'] = $tmp_part;
+        $tmp_total = array_values($arr['Total']);
+        $arr['Total'] = $tmp_total;
+        $tmp_sploss = array_values($arr['SpeedLossTotal']);
+        $arr['SpeedLossTotal'] = $tmp_sploss;
+
         return $arr;
     }
 
@@ -1632,9 +1740,10 @@ class OEE_Drill_Down_controller extends BaseController
         $machine_arr = $this->request->getVar('machine_arr');
         $quality_arr = $this->request->getVar('quality_arr');
 
-        // $fromTime = "2023-03-04T19:00:00";
-        // $toTime = "2023-03-010T18:00:00";
-
+        // $fromTime = "2023-03-15T16:00:00";
+        // $toTime = "2023-03-21T15:00:00";
+        // $machine_arr = array("all","MC1001", "MC1002", "MC1003","MC1004");
+        // $quality_arr = array('all', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23');
         // $url = "http://localhost:8080/graph/qualityOpportunity/".$fromTime."/".$toTime."/";
         // $ch = curl_init($url);
         // curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
@@ -1645,6 +1754,14 @@ class OEE_Drill_Down_controller extends BaseController
         $qualityReason = $this->data->qualityReason();
 
         $ProductionData = $this->getDataRaw($ref,$fromTime,$toTime);
+
+        $ref1 = "MachinewiseOEE"; 
+        $MachinewiseData = $this->getDataRaw($ref1,$fromTime,$toTime);
+
+        $oee_demo_arr = [];
+        foreach ($MachinewiseData as $k2 => $val) {
+            $oee_demo_arr[$val['Machine_Id']] = $val['OOE'];
+        }
         
         $ProductionDataExpand = [];
         // $tmp_demo = [];
@@ -1701,11 +1818,11 @@ class OEE_Drill_Down_controller extends BaseController
 
                 if (in_array($val['machine_id'],$machine_arr)) {
                     if (count($part_arr)>0) {
-                        $tmp_machine12 = array("machine_id"=>$val['machine_id'],"machine_name"=>$val['machine_name'],"part_data"=>$part_arr);
+                        $tmp_machine12 = array("machine_id"=>$val['machine_id'],"machine_name"=>$val['machine_name'],"part_data"=>$part_arr,"oee"=>$oee_demo_arr[$val['machine_id']]);
                         array_push($reason_arr,$tmp_machine12);
                     }
                     else{
-                        $tmp_machine12 = array("machine_id"=>$val['machine_id'],"machine_name"=>$val['machine_name'],"part_data"=>array(array("total_reject"=>0)));
+                        $tmp_machine12 = array("machine_id"=>$val['machine_id'],"machine_name"=>$val['machine_name'],"part_data"=>array(array("total_reject"=>0)),"oee"=>$oee_demo_arr[$val['machine_id']] );
                         array_push($reason_arr,$tmp_machine12);
                     }    
                 }
@@ -1726,6 +1843,7 @@ class OEE_Drill_Down_controller extends BaseController
         // $temp_machine_arr = [];
         foreach ($machineDetails as $key => $value) {
             $tmp_total = 0;
+            $machineDetails[$key]['oee'] = $oee_demo_arr[$value['machine_id']];
             foreach ($ProductionDataExpand as $k1 => $val) {
                 if ($value['machine_id']==$val['machine_id']) {
                     $tmp_total = $tmp_total + $val['total_reject'];
@@ -1740,6 +1858,40 @@ class OEE_Drill_Down_controller extends BaseController
 
 
        
+        // machine data sorting
+        
+        for($i=0;$i<count($machineDetails);$i++){
+            for($j=$i+1;$j<count($machineDetails);$j++){
+                if ($machineDetails[$i]['oee']>$machineDetails[$j]['oee']) {
+                    $index_min = $j;
+                    $tmp = $machineDetails[$i];
+                    $machineDetails[$i] = $machineDetails[$j];
+                    $machineDetails[$j] = $tmp;            
+                }
+            }
+        }
+
+        
+       
+
+        // graph data sorting
+        foreach ($final_arr as $key => $value) {
+            for ($i=0; $i<count($value['machine_data']); $i++) { 
+                for ($j=$i+1; $j<count($value['machine_data']); $j++) { 
+                    if ($value['machine_data'][$i]['oee']>$value['machine_data'][$j]['oee']) {
+                        $index_min = $j;
+                        $tmp = $value['machine_data'][$i];
+                        $value['machine_data'][$i] = $value['machine_data'][$j];
+                        $value['machine_data'][$j] = $tmp;
+                    }
+                }
+
+            }
+            $final_arr[$key] = $value; 
+        //    echo "<pre>";
+        //    print_r($value['machine_data']);
+        }
+
         $output['machine_data'] = $machineDetails;
         $output['part_data'] = $partDetails;
         $output['graph_data'] = $final_arr;
@@ -1748,6 +1900,8 @@ class OEE_Drill_Down_controller extends BaseController
         echo  json_encode($output);
         // echo "<pre>";
         // print_r($output);
+
+        // echo count($final_arr);
         // echo  "count old".count($ProductionData);
         // echo "new count".count($ProductionDataExpand);
     }
