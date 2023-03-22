@@ -19,7 +19,7 @@
 
 
 
-   <script type="text/javascript">
+<script type="text/javascript">
   var checkPastTime = function(inputDateTime) {
       var current = new Date($('.fromDate').val());
       month = '' + (current.getMonth() + 1);
@@ -160,22 +160,22 @@ $session = \Config\Services::session();
             </div>
 
             <div class="target_bar_bottom">
-                <div style="display:flex;flex-direction:row;justify-content:flex-end;height:1.5rem;">
+                <div class="overall_label_flex" style="">
                     <div style="width:40%;"></div>
-                    <div style="width:max-content;display:flex;flex-direction:row;align-items:center;margin-right:1rem;">
+                    <div class="overall_div_label" style="">
                         <div style="width:20%;">
-                            <div style="height:0.7rem;width:0.7rem;background-color:#0075F6;"></div>                    
+                            <div class="actual_label_color" style=""></div>                    
                         </div>
                         <div style="width:80%;">
-                            <span style="margin-left:0.6rem;font-size:12px;color:#404040;">Actual</span>                    
+                            <span class="auctal_label_text" style="">Actual</span>                    
                         </div>
                     </div>
-                    <div style="width:max-content;display:flex;flex-direction:row;align-items:center;">
+                    <div class="overall_div_label" style="margin-right:0rem;">
                         <div style="width:20%;">
-                            <div style="height:0.7rem;width:0.7rem;background-color:#B3D7FF;"></div>                    
+                            <div class="target_label_color" style=""></div>                    
                         </div>
                         <div style="width:80%;">
-                            <span style="margin-left:0.6rem;font-size:12px;color:#404040;">Target</span>                    
+                            <span class="auctal_label_text" >Target</span>                    
                         </div>
                     </div>
                    
@@ -187,7 +187,7 @@ $session = \Config\Services::session();
             <div class="title_div" style="">
                 <p class="graph_title_oee" >OEE Trend</p>
             </div>
-            <div style="display:flex;flex-direction:row;justify-content:flex-end;">
+            <div  style="" class="marginScroll oee_trend_drp_div">
                  <!-- category multi select dropdown -->
                 <div class="box rightmar" style="margin-right: 0.5rem;display:none;" >
                     <div class="filter_selectBox" onclick="byday_click()">
@@ -244,10 +244,11 @@ $session = \Config\Services::session();
 
                
                 <!-- Machine multi select dropdown -->
-                <div class="box rightmar" style="margin-right: 2.4rem;" >
+                <div class="box " style="" >
+                    <label class="multi_select_label" style="">Machines</label>
                     <div class="filter_selectBox" onclick="machine_drp()">
                         <select  class="multi_select_drp" style="" >
-                            <option id="text_machine" style="">All Machine</option>
+                            <option id="text_machine" style="">All Machines</option>
                         </select>
                         <div class="filter_overSelect"></div>
                     </div>
@@ -274,10 +275,11 @@ $session = \Config\Services::session();
                 <p class="graph_title_oee" >Machine-wise OEE% BreakDown</p>
             </div>
             <!-- dropdowns -->
-            <div class="graph_filter_div" style="">
+            <div class="graph_filter_div marginScroll" style="">
                 
                 <!-- reason multi select dropdown -->
                 <div class="box rightmar" style="margin-right: 0.5rem;" >
+                    <label class="multi_select_label" style="">All Data Field</label>
                     <div class="filter_selectBox" onclick="all_data_field()">
                         <select  class="multi_select_drp" style="" >
                             <option id="text_all_data_field" style="">All Data Fields</option>
@@ -335,10 +337,11 @@ $session = \Config\Services::session();
                 </div>
                
                 <!-- Machine multi select dropdown -->
-                <div class="box rightmar" style="margin-right: 2.4rem;" >
+                <div class="box " style="" >
+                    <label class="multi_select_label" style="">Machine</label>
                     <div class="filter_selectBox" onclick="machine_drp1()">
                         <select  class="multi_select_drp" style="" >
-                            <option id="text_machine1" style="">All Machine</option>
+                            <option id="text_machine1" style="">All Machines</option>
                         </select>
                         <div class="filter_overSelect"></div>
                     </div>
@@ -389,14 +392,15 @@ $session = \Config\Services::session();
             </div>
 
              <!-- dropdowns -->
-            <div style="display:flex;flex-direction:row;justify-content:flex-start;">
-                <div style="width:max-content;margin-left:1rem;">
-                    <p style="font-size:11px;color:#A6A6A6;margin-bottom:0;">TOTAL</p>
-                    <span style="color:#005abc;font-size:1rem;font-weight:800;" id="total_duration_availability">0</span>
+            <div  style="" class="marginScroll machine_wise_availability_div">
+                <div style="width:max-content;">
+                    <p class="header_text_val" style="">TOTAL</p>
+                    <span class="header_value_pass" style="" id="total_duration_availability">0</span>
                 </div>
-                <div style="width:80%;display:flex;flex-direction:row;justify-content:flex-end;">
+                <div style="" class="availability_drp_div">
                     <!-- category multi select dropdown -->
                     <div class="box rightmar" style="margin-right: 0.5rem;" >
+                        <label class="multi_select_label" style="">Categorie</label>
                         <div class="filter_selectBox" onclick="category_drp2()">
                             <select  class="multi_select_drp" style="" >
                                 <option id="text_category_drp2" style="">All Categories</option>
@@ -434,10 +438,11 @@ $session = \Config\Services::session();
                     </div>
 
                     <!-- reason multi select dropdown -->
-                    <div class="box rightmar" style="margin-right: 0.5rem;" >
+                    <div class="box " style="margin-right:0.5rem;" >
+                        <label class="multi_select_label" style="">Reason</label>
                         <div class="filter_selectBox" onclick="reason_drp2()">
                             <select  class="multi_select_drp" style="" >
-                                <option id="text_reason2" style="">All Reason</option>
+                                <option id="text_reason2" style="">All Reasons</option>
                             </select>
                             <div class="filter_overSelect"></div>
                         </div>
@@ -445,10 +450,11 @@ $session = \Config\Services::session();
                     </div>
                 
                     <!-- Machine multi select dropdown -->
-                    <div class="box rightmar" style="margin-right: 2.4rem;" >
+                    <div class="box " style="" >
+                        <label class="multi_select_label" style="">Machine</label>
                         <div class="filter_selectBox" onclick="machine_drp2()">
                             <select  class="multi_select_drp" style="" >
-                                <option id="text_machine2" style="">All Machine</option>
+                                <option id="text_machine2" style="">All Machines</option>
                             </select>
                             <div class="filter_overSelect"></div>
                         </div>
@@ -476,14 +482,15 @@ $session = \Config\Services::session();
                 <p class="graph_title_oee" style="">Machine-wise Performance with Parts</p>
             </div>
             <!-- flex for dropdown and total -->
-            <div style="display:flex;flex-direction:row;justify-content:flex-start;">
-                <div style="width:20%;margin-left:1rem;">
-                    <p style="font-size:11px;color:#A6A6A6;margin-bottom:0;">TOTAL</p>
-                    <span style="color:#005abc;font-size:1rem;font-weight:800;" id="total_speed_loss">0</span>
+            <div class="marginScroll machine_wise_availability_div">
+                <div style="width:max-content;">
+                    <p class="header_text_val" >TOTAL</p>
+                    <span class="header_value_pass"  id="total_speed_loss">0</span>
                 </div>
-                <div style="width:80%;display:flex;flex-direction:row;justify-content:flex-end;">    
+                <div style="" class="performance_drp_div">    
                     <!-- reason multi select dropdown -->
                     <div class="box rightmar" style="margin-right: 0.5rem;" >
+                        <label class="multi_select_label" style="">Part</label>
                         <div class="filter_selectBox" onclick="part_drp()">
                             <select  class="multi_select_drp" style="" >
                                 <option id="text_part" style="">All Parts</option>
@@ -494,10 +501,11 @@ $session = \Config\Services::session();
                     </div>
                
                     <!-- Machine multi select dropdown -->
-                    <div class="box rightmar" style="margin-right: 2.4rem;" >
+                    <div class="box"  >
+                        <label class="multi_select_label" style="">Machine</label>
                         <div class="filter_selectBox" onclick="machine_drp3()">
                             <select  class="multi_select_drp" style="" >
-                                <option id="text_machine3" style="">All Machine</option>
+                                <option id="text_machine3" style="">All Machines</option>
                             </select>
                             <div class="filter_overSelect"></div>
                         </div>
@@ -522,14 +530,15 @@ $session = \Config\Services::session();
                 <p class="graph_title_oee" style="">Machine-wise Quality with Reasons</p>
             </div>
              <!-- flex for dropdown and total -->
-             <div style="display:flex;flex-direction:row;justify-content:flex-start;">
-                <div style="width:20%;margin-left:1rem;">
-                    <p style="font-size:11px;color:#A6A6A6;margin-bottom:0;">TOTAL</p>
-                    <span style="color:#005abc;font-size:1rem;font-weight:800;" id="total_machine_reason_quality">0</span>
+             <div  class="marginScroll machine_wise_availability_div">
+                <div style="width:20%;">
+                    <p class="header_text_val" >TOTAL</p>
+                    <span class="header_value_pass" id="total_machine_reason_quality">0</span>
                 </div>
-                <div style="width:80%;display:flex;flex-direction:row;justify-content:flex-end;">    
+                <div style="" class="quality_drp_div">    
                     <!-- reason multi select dropdown -->
                     <div class="box rightmar" style="margin-right: 0.5rem;" >
+                        <label class="multi_select_label" style="">Reason</label>
                         <div class="filter_selectBox" onclick="quality_reason_drp()">
                             <select  class="multi_select_drp" style="" >
                                 <option id="text_quality_reason" style="">All Reasons</option>
@@ -540,10 +549,11 @@ $session = \Config\Services::session();
                     </div>
                
                     <!-- Machine multi select dropdown -->
-                    <div class="box rightmar" style="margin-right: 2.4rem;" >
+                    <div class="box " >
+                        <label class="multi_select_label" style="">Machine</label>
                         <div class="filter_selectBox" onclick="machine_drp4()">
                             <select  class="multi_select_drp" style="" >
-                                <option id="text_machine4" style="">All Machine</option>
+                                <option id="text_machine4" style="">All Machines</option>
                             </select>
                             <div class="filter_overSelect"></div>
                         </div>
@@ -580,7 +590,7 @@ $session = \Config\Services::session();
 
     // from  date time 
     $('.fromDate').datetimepicker({  
-        format:'Y-m-d H:00:00',
+        format:'Y-m-d H:00',
         // minDate : '0',
         maxDate: new Date(),
         onChangeDateTime:checkPastTime_F,
@@ -702,7 +712,7 @@ function reset_category2(){
     jQuery('.category_drp_checkbox2').each(function(in2){
         category_arr[in2].checked=true;
     });
-    $('#text_category_drp2').text('All Category');
+    $('#text_category_drp2').text('All Categorys');
 }
 
 
@@ -712,7 +722,7 @@ function reset_reason2(){
     jQuery('.reason_checkbox2').each(function(in2){
         category_arr[in2].checked=true;
     });
-    $('#text_reason2').text('All Reason');
+    $('#text_reason2').text('All Reasons');
 }
 
 function reset_quality_reason(){
@@ -720,7 +730,7 @@ function reset_quality_reason(){
     jQuery('.quality_checkbox').each(function(in2){
         category_arr[in2].checked=true;
     });
-    $('#text_quality_reason').text('All Reason');
+    $('#text_quality_reason').text('All Reasons');
 }
 
 function reset_machine(){
@@ -728,7 +738,7 @@ function reset_machine(){
     jQuery('.machine_checkbox').each(function(in2){
         category_arr[in2].checked=true;
     });
-    $('#text_machine').text('All Machine');
+    $('#text_machine').text('All Machines');
 }
 
 function reset_machine1(){
@@ -736,7 +746,7 @@ function reset_machine1(){
     jQuery('.machine_checkbox1').each(function(in2){
         category_arr[in2].checked=true;
     });
-    $('#text_machine1').text('All Machine');
+    $('#text_machine1').text('All Machines');
 }
 
 // availability graph
@@ -745,7 +755,7 @@ function reset_machine2(){
     jQuery('.machine_checkbox2').each(function(in2){
         category_arr[in2].checked=true;
     });
-    $('#text_machine2').text('All Machine');
+    $('#text_machine2').text('All Machines');
 }
 
 
@@ -754,7 +764,7 @@ function reset_machine3(){
     jQuery('.machine_checkbox3').each(function(in2){
         category_arr[in2].checked=true;
     });
-    $('#text_machine3').text('All Machine');
+    $('#text_machine3').text('All Machines');
 }
 
 
@@ -763,7 +773,7 @@ function reset_machine4(){
     jQuery('.machine_checkbox4').each(function(in2){
         category_arr[in2].checked=true;
     });
-    $('#text_machine4').text('All Machine');
+    $('#text_machine4').text('All Machines');
 }
 
 function reset_part(){
@@ -771,7 +781,7 @@ function reset_part(){
     jQuery('.part_checkbox').each(function(in2){
         category_arr[in2].checked=true;
     });
-    $('#text_part').text('All Part');
+    $('#text_part').text('All Parts');
 }
 
 
@@ -780,7 +790,7 @@ function reset_all_data_field(){
     jQuery('.all_data_field_checkbox').each(function(in2){
         category_arr[in2].checked=true;
     });
-    $('#text_all_data_field').text('All Data Field');
+    $('#text_all_data_field').text('All Data Fields');
 }
 
 
@@ -872,7 +882,7 @@ function machine_drp1() {
       filter_expanded_machine1 = true;
   } else  {
      
-      $('#text_machine1').text('All Machine');
+    //   $('#text_machine1').text('All Machine');
       $('.filter_checkboxes_machine1').css("display","none");
       filter_expanded_machine1 = false;
       machineWiseOEE();
@@ -890,7 +900,7 @@ function machine_drp() {
       filter_expanded_machine = true;
   } else  {
      
-      $('#text_machine').text('All Machine');
+    //   $('#text_machine').text('All Machine');
       $('.filter_checkboxes_machine').css("display","none");
       filter_expanded_machine = false;
       oeeTrendDay();
@@ -907,7 +917,7 @@ function machine_drp2() {
       filter_expanded_machine2 = true;
   } else  {
      
-      $('#text_machine2').text('All Machine');
+    //   $('#text_machine2').text('All Machine');
       $('.filter_checkboxes_machine2').css("display","none");
       filter_expanded_machine2 = false;
       availabilityReason_machine();
@@ -924,7 +934,7 @@ function machine_drp3() {
       filter_expanded_machine3 = true;
   } else  {
      
-      $('#text_machine3').text('All Machine');
+    //   $('#text_machine3').text('All Machine');
       $('.filter_checkboxes_machine3').css("display","none");
       filter_expanded_machine3 = false;
       performance_opportunity();
@@ -942,7 +952,7 @@ function machine_drp4() {
     
   } else  {
      
-    $('#text_machine4').text('All Machine');
+    // $('#text_machine4').text('All Machine');
     $('.filter_checkboxes_machine4').css("display","none");
     filter_expanded_machine4 = false;
     quality_reason_machine();
@@ -970,7 +980,7 @@ function all_data_field(){
         $('.all_data_field_fill').css('display','block');
         all_data_field_expand = true;
     }else{
-        $('#text_all_data_field').text('All Data Field');
+        // $('#text_all_data_field').text('All Data Field');
         $('.all_data_field_fill').css('display','none');
         all_data_field_expand = false;
         machineWiseOEE();
@@ -1017,7 +1027,7 @@ $(document).on('click','.byday_click',function(event){
         }else{
             // check_if[0].checked=true;
             resetbyday_click();
-            $('#text_category_drp').text('All');
+            // $('#text_category_drp').text('All');
         }
     }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
         $('#text_category_drp').text(parseInt(reason_gp_select_count1)+' Selected');
@@ -1067,7 +1077,7 @@ $(document).on('click','.category_click2',function(event){
         }else{
             // check_if[0].checked=true;
             reset_category2();
-            $('#text_category_drp2').text('All');
+            // $('#text_category_drp2').text('All');
         }
     }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
         $('#text_category_drp2').text(parseInt(reason_gp_select_count1)+' Selected');
@@ -1116,7 +1126,7 @@ $(document).on('click','.reason_click2',function(event){
         }else{
             // check_if[0].checked=true;
             reset_reason2();
-            $('#text_reason2').text('All');
+            // $('#text_reason2').text('All');
         }
     }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
         $('#text_reason2').text(parseInt(reason_gp_select_count1)+' Selected');
@@ -1165,7 +1175,7 @@ $(document).on('click','.quality_click',function(event){
         }else{
             // check_if[0].checked=true;
             reset_quality_reason();
-            $('#text_quality_reason').text('All');
+            // $('#text_quality_reason').text('All');
         }
     }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
         $('#text_quality_reason').text(parseInt(reason_gp_select_count1)+' Selected');
@@ -1214,7 +1224,7 @@ $(document).on('click','.machine_click',function(event){
         }else{
             // check_if[0].checked=true;
             reset_machine();
-            $('#text_machine').text('All');
+            // $('#text_machine').text('All');
         }
     }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
         $('#text_machine').text(parseInt(reason_gp_select_count1)+' Selected');
@@ -1262,7 +1272,7 @@ $(document).on('click','.machine_click1',function(event){
         }else{
             // check_if[0].checked=true;
             reset_machine1();
-            $('#text_machine1').text('All');
+            // $('#text_machine1').text('All');
         }
     }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
         $('#text_machine1').text(parseInt(reason_gp_select_count1)+' Selected');
@@ -1311,7 +1321,7 @@ $(document).on('click','.machine_click2',function(event){
         }else{
             // check_if[0].checked=true;
             reset_machine2();
-            $('#text_machine2').text('All');
+            // $('#text_machine2').text('All');
         }
     }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
         $('#text_machine2').text(parseInt(reason_gp_select_count1)+' Selected');
@@ -1360,7 +1370,7 @@ $(document).on('click','.machine_click3',function(event){
         }else{
             // check_if[0].checked=true;
             reset_machine3();
-            $('#text_machine3').text('All');
+            // $('#text_machine3').text('All');
         }
     }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
         $('#text_machine3').text(parseInt(reason_gp_select_count1)+' Selected');
@@ -1410,7 +1420,7 @@ $(document).on('click','.part_click',function(event){
         }else{
             // check_if[0].checked=true;
             reset_part();
-            $('#text_part').text('All');
+            // $('#text_part').text('All');
         }
     }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
         $('#text_part').text(parseInt(reason_gp_select_count1)+' Selected');
@@ -1459,7 +1469,7 @@ $(document).on('click','.machine_click4',function(event){
         }else{
             // check_if[0].checked=true;
             reset_machine4();
-            $('#text_machine4').text('All');
+            // $('#text_machine4').text('All');
         }
     }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
         $('#text_machine4').text(parseInt(reason_gp_select_count1)+' Selected');
@@ -1507,7 +1517,7 @@ $(document).on('click','.all_data_field_click',function(event){
         }else{
             // check_if[0].checked=true;
             reset_all_data_field();
-            $('#text_all_data_field').text('All');
+            // $('#text_all_data_field').text('All');
         }
     }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
         $('#text_all_data_field').text(parseInt(reason_gp_select_count1)+' Selected');
@@ -1527,8 +1537,8 @@ function fill_downtime_reason(){
       dataType:"json",
       success:function(res){
 
-        console.log("reason dropdwon");
-        console.log(res);
+        // console.log("reason dropdwon");
+    //     console.log(res);
 
       
         $('.reason_fill2').empty();
@@ -1592,7 +1602,7 @@ function fill_quality_reason_dropdown(){
                 +'<p class="font_multi_drp" style="margin:auto;">'+val.quality_reason_name+'</p>'
                 +'</div>'
                 +'</div>');
-
+                // console.log(val.quality_reason_id);
 
 
                 $('.quality_reason_fill').append(elements);
@@ -1614,8 +1624,8 @@ function fill_machine_dropdown(){
         type:"POST",
         dataType: "json",
         success:function(res){
-            console.log("multi select dropdown machine");
-            console.log(res);
+            // console.log("multi select dropdown machine");
+            // console.log(res);
             
             $('.filter_checkboxes_machine').empty();
             $('.filter_checkboxes_machine1').empty();
@@ -1757,8 +1767,8 @@ function fill_part_drp(){
         type:"POST",
         dataType: "json",
         success:function(res){
-            console.log("multi select dropdown part");
-            console.log(res);
+            // console.log("multi select dropdown part");
+            // console.log(res);
             $('.part_fill').empty();
             $('.part_fill').append('<div class="filter_check_cate part_click machine_performance_common" style="">'
             +'<div class="cate_drp_check" style="">'
@@ -1823,8 +1833,8 @@ function overallTarget(){
         to:t
         },
         success:function(res){
-            console.log("overall target");
-            console.log(res);
+            // console.log("overall target");
+            // console.log(res);
         // res=res['OverallMonitoring'];
           $('#teep_graph').css('width',''+parseInt(res.Overall_TEEP)+'%');
           $('#ooe_graph').css('width',''+parseInt(res.Overall_OOE)+'%');
@@ -1856,8 +1866,8 @@ function fill_target_bar(){
         type: "POST",
         dataType: "json",
         success:function(res){
-            console.log("graph target");
-            console.log(res);
+            // console.log("graph target");
+            // console.log(res);
             $('#teep_target').css('width',''+res[0].overall_teep+'%');
             $('#oee_target').css('width',''+res[0].overall_oee+'%');
             $('#ooe_target').css('width',''+res[0].overall_ooe+'%');
@@ -2023,8 +2033,8 @@ function oeeTrendDay() {
         },
         success:function(res){
 
-            console.log("oee trend graph");
-            console.log(res);
+            // console.log("oee trend graph");
+            // console.log(res);
             
           $('#oee_trend').remove();
           $('.child_oee_trend').append('<canvas id="oee_trend"><canvas>');
@@ -2091,7 +2101,7 @@ function oeeTrendDay() {
             maintainAspectRatio: false,   
             scales: {
                 y: {
-                    display:false,
+                    display:true,
                     beginAtZero:true,  
                     stacked:true,
                 },
@@ -2223,9 +2233,9 @@ function machineWiseOEE() {
     t = $('.toDate').val();
     f = f.replace(" ","T");
     t = t.replace(" ","T");
-    console.log("machine wise oee");
-    console.log(graph_machine_arr);
-    console.log(all_data_field);
+    // console.log("machine wise oee");
+    // console.log(graph_machine_arr);
+    // console.log(all_data_field);
     $.ajax({
         url: "<?php echo base_url('OEE_Drill_Down_controller/getMachineWiseOEE');?>",
         type: "POST",
@@ -2240,8 +2250,8 @@ function machineWiseOEE() {
             $('#machine_wise_oee').remove();
             $('.child_machine_wise_oee').append('<canvas id="machine_wise_oee"></canvas>');
             $('.chartjs-hidden-iframe').remove();
-            console.log("machine wise oee");
-            console.log(res);
+            // console.log("machine wise oee");
+            // console.log(res);
             
             var category_percent = 1.0;
             var bar_space = 0.5;
@@ -2263,7 +2273,7 @@ function machineWiseOEE() {
                 }
             }
 
-            console.log("all data field array");
+            // console.log("all data field array");
             var graph_demo_arr = [];
             all_data_field.forEach(function(item){
                 if(item === "quality"){
@@ -2356,7 +2366,7 @@ function machineWiseOEE() {
                     maintainAspectRatio: false,   
                     scales: {
                         y: {
-                            display:false,
+                            display:true,
                             beginAtZero:true,
                             stacked:false,
                         },
@@ -2523,8 +2533,8 @@ function availabilityReason_machine() {
             category_arr:graph_category_arr,
         },
         success:function(res){
-            console.log("Availability reasons");
-            console.log(res);
+            // console.log("Availability reasons");
+            // console.log(res);
             //console.log(typeof res);
 
             $('#machine_reason_availability').remove();
@@ -2550,16 +2560,19 @@ function availabilityReason_machine() {
             // Find the Reason Names as Lables..........
             var machine_wise_total = [];
             res['data'].forEach(function(item){
+                // console.log("Availability ");
+                // console.log(item);
                 var tmp_total_duration = 0;
                 item.forEach(function(val){
                     tmp_total_duration = tmp_total_duration + val['duration'];
                 });
                 machine_wise_total.push(tmp_total_duration);
+    
             });
 
 
-            console.log("Availability graph total");
-            console.log(machine_wise_total);
+            // console.log("Availability graph total");
+            // console.log(machine_wise_total);
             var reasonList =[];
             res['reason'].forEach(function(reason){
                 reasonList.push(reason.downtime_reason);
@@ -2652,8 +2665,8 @@ function availabilityReason_machine() {
                 x=x+1;
                 index=index+1;
             });
-            console.log("machine array");
-            console.log(machine)
+            // console.log("machine array");
+            // console.log(machine)
             var avlOpp = document.getElementById("machine_reason_availability").getContext('2d');
             var avlOppChart = new Chart(avlOpp, {
                 type: 'bar',
@@ -2666,7 +2679,7 @@ function availabilityReason_machine() {
                 maintainAspectRatio: false,   
                 scales: {
                     y: {
-                        display: false,
+                        display: true,
                         stacked:true,
                         beginAtZero:true,
                     },
@@ -2846,8 +2859,8 @@ function performance_opportunity(){
         part_arr:part_arr,
         },
         success:function(res){
-            console.log("performance opportunity graph");
-            console.log(res);
+            // console.log("performance opportunity graph");
+            // console.log(res);
             color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
                 "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
                 "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
@@ -2877,8 +2890,8 @@ function performance_opportunity(){
                 var minute_text = parseInt(parseInt(sum)%60);
                 $('#total_speed_loss').text(hour_text+'h'+' '+minute_text+'m');
 
-                console.log("total speed loss");
-                console.log(sum);
+                // console.log("total speed loss");
+                // console.log(sum);
                 var partWiseLable = [];
                 res.Part.forEach(function(item){
                 partWiseLable.push(item.part_name);
@@ -2991,7 +3004,7 @@ function performance_opportunity(){
                     maintainAspectRatio: false,   
                     scales: {
                         y: {
-                            display:false,
+                            display:true,
                             beginAtZero:true,
                             stacked:true
                         },
@@ -3095,7 +3108,7 @@ function performanceOpp(context){
             innerHtml += '<div class="content-text sub-title"><span>'+context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label+'</span></div>';
             innerHtml += '<div class="grid-item title-bold"><span></span></div>';
 
-            innerHtml += '<div class="grid-item content-text"><span>Spped Loss</span></div>';  
+            innerHtml += '<div class="grid-item content-text"><span>Speed Loss</span></div>';  
             if (days>0) {
                 innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+days+"d"+" "+hours+"h"+" "+min+"m"+'</span></div>';
             }
@@ -3146,9 +3159,9 @@ function quality_reason_machine() {
     f = f.replace(" ","T");
     t = t.replace(" ","T");
 
-    console.log("quality graph");
-    console.log(machine_arr);
-    console.log(graph_quality_arr);
+    // console.log("quality graph");
+    // console.log(machine_arr);
+    // console.log(graph_quality_arr);
     $.ajax({
         url: "<?php echo base_url('OEE_Drill_Down_controller/qualityOpportunity'); ?>",
         type: "POST",
@@ -3165,8 +3178,8 @@ function quality_reason_machine() {
             $('.chartjs-hidden-iframe').remove();
 
 
-            console.log("Quality Opportunity graph");
-            console.log(res);
+            // console.log("Quality Opportunity graph");
+            // console.log(res);
             color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
                 "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
                 "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
@@ -3262,8 +3275,8 @@ function quality_reason_machine() {
                     break;
                 }
             }
-            console.log("quality graph array");
-            console.log(quality_reason_arr);
+            // console.log("quality graph array");
+            // console.log(quality_reason_arr);
 
             var ctx = document.getElementById("quality_reason_machine").getContext('2d');
                 var myChart = new Chart(ctx, {
@@ -3277,7 +3290,7 @@ function quality_reason_machine() {
                         maintainAspectRatio: false,   
                         scales: {
                             y: {
-                                display:false,
+                                display:true,
                                 beginAtZero:true,
                                 stacked:true
                             },
@@ -3369,8 +3382,8 @@ function quality_reason_machine_tooltip(context){
         }else{
             //innerHtml += '<div class="grid-container">';
             var parts_arr = context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].reason_arr[context.tooltip.dataPoints[0].dataIndex]
-            console.log("quality graph hovering");
-            console.log(parts_arr);
+            // console.log("quality graph hovering");
+            // console.log(parts_arr);
             innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
             innerHtml += '<div class="grid-item title-bold"><span></span></div>';
             innerHtml += '<div class="content-text sub-title margin-top"><span>'+context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label+'</span></div>';
@@ -3383,8 +3396,8 @@ function quality_reason_machine_tooltip(context){
             //     innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+hours+"h"+" "+min+"m"+'</span></div>';
             // }
             const tmp_part_arr = parts_arr.split(',');
-            console.log("temporary part array");
-            console.log(tmp_part_arr);
+            // console.log("temporary part array");
+            // console.log(tmp_part_arr);
             tmp_part_arr.forEach(function(item){
                 // console.log(item);
                 var part_val = item.split('&');
