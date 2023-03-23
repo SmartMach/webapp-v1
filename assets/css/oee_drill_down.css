@@ -1,8 +1,9 @@
 .multi_select_label{
-    position:fixed;
-    margin-top:0rem;
+    position:absolute;
+    margin-top:-0.5rem;
     margin-left:0.8rem;
     z-index:1;
+    overflow-y: scroll;
     background:white;
     font-size:12px;
     color:#8c8c8c;
@@ -205,6 +206,9 @@
         display:flex;
         flex-direction:row;
         justify-content:flex-end;
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10 and IE 11 */
+        user-select: none; /* Standard syntax */
     }
     /* machine wise oee% */
     .icons_bottom{
@@ -272,4 +276,75 @@
         margin-left:1.3rem;
         margin-bottom:0.6rem;
     }
-    
+    .overall_label_flex{
+        display:flex;
+        flex-direction:row;
+        justify-content:flex-end;
+        height:1.5rem;
+    }
+    .overall_div_label{
+        width:max-content;
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        margin-right:1rem;
+    }
+    .actual_label_color{
+        height:0.7rem;
+        width:0.7rem;
+        background-color:#0075F6;
+    }
+    .auctal_label_text{
+        margin-left:0.6rem;
+        font-size:12px;
+        color:#404040;
+    }
+    .target_label_color{
+        height:0.7rem;
+        width:0.7rem;
+        background-color:#B3D7FF;
+    }
+    .oee_trend_drp_div{
+        display:flex;
+        flex-direction:row;
+        justify-content:flex-end;
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10 and IE 11 */
+        user-select: none; /* Standard syntax */
+    }
+    .machine_wise_availability_div{
+        display:flex;
+        flex-direction:row;
+        justify-content:flex-start;
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10 and IE 11 */
+        user-select: none; /* Standard syntax */
+    }
+    .header_text_val{
+        font-size:11px;
+        color:#A6A6A6;
+        margin-bottom:0;
+    }
+    .header_value_pass{
+        color:#005abc;
+        font-size:1rem;
+        font-weight:800;
+    }
+    .availability_drp_div{
+        width:87.5%;
+        display:flex;
+        flex-direction:row;
+        justify-content:flex-end;
+    }
+    .performance_drp_div{
+        width:89.1%;
+        display:flex;
+        flex-direction:row;
+        justify-content:flex-end;
+    }
+    .quality_drp_div{
+        width:80%;
+        display:flex;
+        flex-direction:row;
+        justify-content:flex-end;
+    }
