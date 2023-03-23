@@ -139,17 +139,17 @@ $session = \Config\Services::session();
                     <div class="graph_01 border" style="">
                         <!-- reason wise opportunity cost graph-->
                         <p  class="font graph_mar_align"> Downtime opportunity Cost by Reasons</p>
-                        <div style="display:flex;flex-direction:row;padding-left:1rem;">
-                            <div style="width:max-content;">
+                        <div style="display:flex;flex-direction:row;" class="marginScroll">
+                            <div style="width:20%;">
                                 <div style="display:flex;flex-direction:column">
                                     <p style="color:#A6A6A6;font-size:11px;margin-bottom:0;">TOTAL</p>
                                     <p id="total_oppcost_by_reason" class="total_font_style"><i class="fa fa-inr inr-class"></i><span id="reason_wise_oppcost_total"></span></p>
                                 </div>
                             </div>
-                            <div style="width:84%;display:flex;flex-direction:row-reverse;">
+                            <div style="width:80%;display:flex;flex-direction:row-reverse;" >
                                 <!-- Machine Dropdown checkbox -->
-                                <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <!-- <label class="multi_select_label" style="">Machine</label> -->
+                                <div class="box " style="" >
+                                    <label class="multi_select_label" style="">Machine</label>
                                     <div class="filter_selectBox_machinegp" onclick="machine_multiselect_gp()">
                                         <select  class="multi_select_machinegp" style="" >
                                             <option id="text_machinegp" style="">All Machines</option>
@@ -163,7 +163,7 @@ $session = \Config\Services::session();
 
                                 <!-- Reasons Dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <!-- <label class="multi_select_label" style="">Reason</label> -->
+                                    <label class="multi_select_label" style="">Reason</label>
                                     <div class="filter_selectBox_reasongp" onclick="reason_multiselect_gp()">
                                         <select  class="multi_select_reasongp" style="" >
                                             <option id="text_reasongp" style="">All Reasons</option>
@@ -178,7 +178,7 @@ $session = \Config\Services::session();
 
                                 <!-- category dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <!-- <label class="multi_select_label" style="">Reason</label> -->
+                                    <label class="multi_select_label" style="">Category</label>
                                     <div class="filter_selectBox_categorygp" onclick="category_multiselect_gp()">
                                         <select  class="multi_select_categorygp" style="" >
                                             <option id="text_categorygp" style="">All Category</option>
@@ -226,17 +226,17 @@ $session = \Config\Services::session();
                     <div class="graph_02 border">
                     <!-- Reason wise duration graph-->
                         <p class="font graph_mar_align"> Downtime Duration by Reasons</p>
-                        <div style="display:flex;flex-direction:row;padding-left:1rem;">
-                            <div class="width:max-content;">
+                        <div style="display:flex;flex-direction:row;" class="marginScroll">
+                            <div style="width:20%;">
                                 <div style="display:flex;flex-direction:column">
                                     <p style="color:#A6A6A6;font-size:11px;margin-bottom:0;">TOTAL</p>
                                     <p id="total_oppcost_by_reason" class="total_font_style"><span id="reason_duration_text"></span></p>
                                 </div>
                             </div>
-                            <div style="width:88%;display:flex;flex-direction:row-reverse;">
+                            <div style="width:80%;display:flex;flex-direction:row-reverse;">
                                 <!-- Machine Dropdown checkbox -->
-                                <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <!-- <label class="multi_select_label" style="">Machine</label> -->
+                                <div class="box " style="" >
+                                    <label class="multi_select_label" style="">Machine</label>
                                     <div class="filter_selectBox_machinegp1" onclick="machine_multiselect_gp1()">
                                         <select  class="multi_select_machinegp1" style="" >
                                             <option id="text_machinegp1" style="">All Machines</option>
@@ -250,7 +250,7 @@ $session = \Config\Services::session();
 
                                 <!-- Reasons Dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <!-- <label class="multi_select_label" style="">Reason</label> -->
+                                    <label class="multi_select_label" style="">Reason</label>
                                     <div class="filter_selectBox_reasongp1" onclick="reason_multiselect_gp1();">
                                         <select  class="multi_select_reasongp1" style="" >
                                             <option id="text_reasongp1" style="">All Reasons</option>
@@ -265,7 +265,7 @@ $session = \Config\Services::session();
 
                                 <!-- category dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <!-- <label class="multi_select_label" style="">Reason</label> -->
+                                    <label class="multi_select_label" style="">Category</label>
                                     <div class="filter_selectBox_categorygp1" onclick="category_multiselect_gp1()">
                                         <select  class="multi_select_categorygp1" style="" >
                                             <option id="text_categorygp1" style="">All Category</option>
@@ -315,17 +315,17 @@ $session = \Config\Services::session();
                     <div class="graph_03 border">
                         <!-- Machine wise opportunity cost graph-->
                         <p class="font graph_mar_align">Downtime Opportunity Cost by Machines</p>
-                        <div style="display:flex;flex-direction:row;padding-left:1rem;">
-                            <div style="width:max-content;">
+                        <div style="display:flex;flex-direction:row;" class="marginScroll">
+                            <div style="width:20%;">
                                 <div style="display:flex;flex-direction:column">
                                     <p style="color:#A6A6A6;font-size:11px;margin-bottom:0;">TOTAL</p>
                                     <p id="total_oppcost_by_reason" class="total_font_style"><i class="fa fa-inr inr-class"></i><span id="machine_wise_oppcost_total"></span></p>
                                 </div>
                             </div>
-                            <div style="width:84%;display:flex;flex-direction:row-reverse;">
+                            <div style="width:80%;display:flex;flex-direction:row-reverse;">
                                 <!-- Machine Dropdown checkbox -->
-                                <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <!-- <label class="multi_select_label" style="">Machine</label> -->
+                                <div class="box " style="">
+                                    <label class="multi_select_label" style="">Machine</label>
                                     <div class="filter_selectBox_machinegp2" onclick="machine_multiselect_gp2()">
                                         <select  class="multi_select_machinegp2" style="" >
                                             <option id="text_machinegp2" style="">All Machines</option>
@@ -339,7 +339,7 @@ $session = \Config\Services::session();
 
                                 <!-- Reasons Dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <!-- <label class="multi_select_label" style="">Reason</label> -->
+                                    <label class="multi_select_label" style="">Reason</label>
                                     <div class="filter_selectBox_reasongp2" onclick="reason_multiselect_gp2();">
                                         <select  class="multi_select_reasongp2" style="" >
                                             <option id="text_reasongp2" style="">All Reasons</option>
@@ -354,7 +354,7 @@ $session = \Config\Services::session();
 
                                 <!-- category dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <!-- <label class="multi_select_label" style="">Reason</label> -->
+                                    <label class="multi_select_label" style="">Category</label>
                                     <div class="filter_selectBox_categorygp2" onclick="category_multiselect_gp2()">
                                         <select  class="multi_select_categorygp2" style="" >
                                             <option id="text_categorygp2" style="">All Category</option>
@@ -402,8 +402,8 @@ $session = \Config\Services::session();
                     <div class="graph_04 border">
                         <!-- graph 4 inner lables-->
                         <p class="font graph_mar_align">Downtime Duration by Machines With Reasons</p>
-                        <div style="display:flex;flex-direction:row;padding-left:1rem;">
-                            <div class="width:max-content;">
+                        <div style="display:flex;flex-direction:row;" class="marginScroll">
+                            <div style="width:20%;">
                                 <div style="display:flex;flex-direction:column">
                                     <p style="color:#A6A6A6;font-size:11px;margin-bottom:0;">TOTAL</p>
                                     <p id="total_oppcost_by_reason" class="total_font_style"><span id="machine_reason_duration_text"></span></p>
@@ -411,8 +411,8 @@ $session = \Config\Services::session();
                             </div>
                             <div style="width:88%;display:flex;flex-direction:row-reverse;">
                                 <!-- Machine Dropdown checkbox -->
-                                <div class="box rightmar" style="margin-right: 0.5rem;margin-right:2rem;" >
-                                    <!-- <label class="multi_select_label" style="">Machine</label> -->
+                                <div class="box " style="" >
+                                    <label class="multi_select_label" style="">Machine</label>
                                     <div class="filter_selectBox_machinegp3" onclick="machine_multiselect_gp3()">
                                         <select  class="multi_select_machinegp3" style="" >
                                             <option id="text_machinegp3" style="">All Machines</option>
@@ -426,7 +426,7 @@ $session = \Config\Services::session();
 
                                 <!-- Reasons Dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <!-- <label class="multi_select_label" style="">Reason</label> -->
+                                    <label class="multi_select_label" style="">Reason</label>
                                     <div class="filter_selectBox_reasongp3" onclick="reason_multiselect_gp3();">
                                         <select  class="multi_select_reasongp3" style="" >
                                             <option id="text_reasongp3" style="">All Reasons</option>
@@ -441,7 +441,7 @@ $session = \Config\Services::session();
 
                                 <!-- category dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <!-- <label class="multi_select_label" style="">Reason</label> -->
+                                    <label class="multi_select_label" style="">Category</label>
                                     <div class="filter_selectBox_categorygp3" onclick="category_multiselect_gp3()">
                                         <select  class="multi_select_categorygp3" style="" >
                                             <option id="text_categorygp3" style="">All Category</option>
