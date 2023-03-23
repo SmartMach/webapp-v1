@@ -202,14 +202,15 @@ font-weight:600;
 
 /* dropdown checkbox category */
 .multi_select_label{
-position:fixed;
-margin-top:0rem;
-margin-left:0.8rem;
-z-index:1;
-background:white;
-font-size:12px;
-color:#8c8c8c;
-font-family:'Roboto' sans-serif;
+    position:absolute;
+    margin-top:0.1rem;
+    margin-left:0.8rem;
+    z-index:1;
+    overflow-y: scroll;
+    background:white;
+    font-size:12px;
+    color:#8c8c8c;
+    font-family:'Roboto' sans-serif;
 }
 .filter_selectBox{
 height:2rem;
