@@ -4,7 +4,10 @@
 }
 
 .graph-content{
-	padding: 1rem;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
 }
 .CurrentNav{
   margin-right: 2rem;
@@ -24,50 +27,68 @@
 .TTotal{
 	margin-left: 0.5rem;
 }
-.grid-container-cont{
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  column-gap: 40px;
-  row-gap: 30px;
-}
+
 .production_completion{
 	font-family: 'Roboto',sans-serif;
 	color: #404040;
 	text-align: center;
 	font-weight: bold;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: 1.5em;
+	white-space: nowrap;
+	padding-left: 0.2rem;
+	padding-right: 0.2rem;
+}
+.production_completion_ref{
+	margin-top: 0.5rem;
 }
 .partname_ref{
-	font-size: 12px;
+	font-size: 11px;
 }
 .production_completion span{
-	font-size: 35px;
+	font-size: 22px;
+}
+.full-screen{
+    background: #f2f2f2;
+    height:3rem;
+    width: 3rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 .grid-item-cont {
   background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid #d9d9d9;
-  border-radius: 10px;
-  height: 26rem;
-  max-width: 17rem;
+  border-radius: 6px;
+  height: 18rem;
+  max-width: 12rem;
+  padding: 0;
+  margin-right: 1.5rem;
+  margin-left: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 .item-header{
-	border-radius: 10px 10px 0 0;
-	height: 4rem;
-	/*display: flex;
-	justify-content: center;
-	align-items: center;*/
+	border-radius: 6px 6px 0 0;
+	height: 3rem;
+	padding:0.2rem;
 }
 .oee-lable{
 	font-family: 'Roboto', sans-serif;
 	color: #7f7f7f;
 	font-weight: 700;
 	margin-right: 8px;
+	font-size: 14px;
 }
 .values_oee{
 	font-family: 'Roboto', sans-serif;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #fff;
-    margin-top: 0.2rem;
+    margin-top: 0.1rem;
 }
 
 .cen-align{
@@ -75,10 +96,13 @@
 	width:100%;
 	overflow:hidden;
 	text-overflow:ellipsis;
+	white-space: nowrap;
+	line-height: 1.4em;
 }
+
 .pad-top{
-	padding-top: 0.5rem;
-	padding-left: 0.1rem;
+	padding-top: 0.2rem;
+	padding-left: 0.2rem;
 }
 .dot-cnt{
 	margin-right: 0.5rem;
@@ -106,32 +130,32 @@
 	font-weight: bold;
 }
 .machine_name_ref{
-	font-size: 18px;
+	font-size: 14px;
 }
 .current_event{
 	font-size: 12px;
 }
 .item-circle{
-	height: 11rem;
+	height: 7.5rem;
 	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 .item-oee{
-	height: 4rem;
+	height: 2.5rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 .item-production{
-	height: 6rem;
-	border-radius: 0 0 10px 10px;
+	height: 3.9rem;
+	border-radius: 0 0 6px 6px;
 	position: relative;
 	overflow: hidden;
 }
 .FLayer{
-	width: 85%;
+	width: 81%;
 	max-width: 85%;
 	/*background-color: #d9d9d9;*/
 	height: 100%;
@@ -144,20 +168,20 @@
 }
 .graph-content-div{
 	position: relative;
-	margin-top: -5.7rem;
+	margin-top: -3.5rem;
 	overflow: hidden;
-	height: 5.7rem;
+	height: 3.7rem;
 }
 .item-production-s{
 	position: relative;
-	height: 5.9rem;
+	height: 3.9rem;
 	background-color: rgba(255, 255, 255,0.1);
 	/*width: 80%*/
 }
 .SLayer{
 	width: 100%;
 	max-width:100%;
-	height: 2.5rem;
+	height: 1.8rem;
 	position: absolute;
 }
 .BLayer{
@@ -178,21 +202,15 @@
 	width: 1.5rem;
 }
 .inner-val{
-	margin-top: 0.5rem;
-	padding-left: 1rem;
-	padding-right: 1rem;
-	padding-bottom: 0.5rem;
-	height: 6.5rem;
-	overflow: hidden;
+	height: 100%;
+	width: 100%;
 }
-.inner-val p{
-	text-overflow: ellipsis;
-}
+
 /*Circle Graph*/
 /*Circular Bar*/
 .inner-circle{
-	height: 8rem;
-	width: 8rem;
+	height: 6rem;
+	width: 6rem;
 	border: 2px solid #bfbfbf;
     border-radius: 50%;
     display: flex;
@@ -227,7 +245,7 @@
     .circle{
         fill: none;
         stroke: var(--ref_graph);
-        stroke-width: 1rem;
+        stroke-width: 0.7rem;
         stroke-dasharray: 472;
         stroke-dashoffset: 472;
         animation: anim 2s linear forwards;
