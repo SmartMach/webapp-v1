@@ -1079,6 +1079,7 @@ function productionTooltip(context) {
     var card_body = "";
     var line  = "";
     var label_text = "";
+    var downtime_display_property = "";
 
     if (event === "Active") {
       backgroundcolor = "#01ab4e";
@@ -1086,18 +1087,21 @@ function productionTooltip(context) {
       card_body = "#009644";
       line = "#01a34a";
       label_text="white";
+      downtime_display_property = "none";
     }else if(event === "Inactive"){
       backgroundcolor = "#d10527";
       bar_color = "#730316";
       card_body = "#BB0523";
       line = "#730316";
       label_text="black";
+      downtime_display_property = "inline";
     }else if(event === "Machine OFF"){
       backgroundcolor = "#7f7f7f";
       bar_color = "#404040";
       card_body = "#565656";
       line="#aaaaaa";
       label_text="black";
+      downtime_display_property="none";
     }
     const shift_arr = [];
     shift_arr.push(tmp[1]);
@@ -1117,6 +1121,7 @@ function productionTooltip(context) {
     $('#machine_status').text(event);
     $('#machine_name_text').text(machine_name);
 
+    $('.downtime_second_val').css('display',downtime_display_property);
     $('.oui_arrow_div').css('display','inline');
     $('.visibility_div').css('display','none');
   });
