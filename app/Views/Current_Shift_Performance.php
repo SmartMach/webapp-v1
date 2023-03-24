@@ -285,6 +285,7 @@ function getMachineDataLive() {
       date = date.getDate()+" "+date.toLocaleString([], { month: 'short' })+" "+date.getFullYear();
 
       $("#shift_date").html(date);
+      $('#shift_date').attr('sdate_format',res[0]['shift_date']);
       $("#shift_id").html("Shift "+res[0]['shift_id']);
       var s_time = res[0]['start_time'].split(":");
       var e_time = res[0]['end_time'].split(":");
@@ -1109,14 +1110,15 @@ function productionTooltip(context) {
     var find_index = $('.grid-item-cont');
     var index_val = find_index.index($(this));
     var tmp_mid = $('.machine_name_ref:eq('+index_val+')').attr('mid_data');
-    var shift_date = $('#shift_date').text();
+    var shift_date = $('#shift_date').attr("sdate_format");
     var shift_id = $('#shift_id').text();
     var event = $('.current_event:eq('+index_val+')').attr('event_data');
     var machine_name = $('.machine_name_ref:eq('+index_val+')').text();
     // alert(shift_id.split(" "));
-    const tmp = shift_id.split(" ")
-    alert(shift_date);
-    alert(tmp_mid);
+    const tmp = shift_id.split(" ");
+    // alert(shift_date);
+    // alert(tmp_mid);
+    // alert(event);
     var backgroundcolor = "";
     var bar_color = "";
     var card_body = "";
@@ -1145,6 +1147,13 @@ function productionTooltip(context) {
       line="#aaaaaa";
       label_text="black";
       downtime_display_property="none";
+    }else{
+      backgroundcolor = "#f7d263";
+      bar_color = "#b08600";
+      card_body = "#ffc50d";
+      line = "#efc84d";
+      label_text="black";
+      downtime_display_property = "inline";
     }
     const shift_arr = [];
     shift_arr.push(tmp[1]);
@@ -1155,6 +1164,7 @@ function productionTooltip(context) {
     div_records(tmp_mid,shift_date,tmp[1],bar_color,card_body);
     $('.graph-content').css('display','none');
     $('.oui_screen_view').css('display','inline');
+    //alert(backgroundcolor);
     $('.oui_header_div').css('background-color',backgroundcolor);
     $('.label_header').css('background-color',backgroundcolor);
     $('.oui_sub_header').css('background-color',card_body);
@@ -1546,12 +1556,12 @@ function part_by_hour(mid,sdate,sid,bar_color){
           maintainAspectRatio: false,   
           scales: {
             y: {
-              display:false,
+              display:true,
               beginAtZero:true,
               stacked:false,
             },
             x:{
-              display:false,
+              display:true,
               grid:{
                 display:false
               },
@@ -1586,6 +1596,10 @@ function part_by_hour(mid,sdate,sid,bar_color){
 
 // div elements value assigning function
 function div_records(mid,shift_date,shift_id,card_header,card_body){
+  console.log(mid);
+  console.log(shift_date);
+  console.log(shift_id);
+
   $.ajax({
     url:"<?php echo base_url('Current_Shift_Performance/div_details'); ?>",
     type: "POST",
