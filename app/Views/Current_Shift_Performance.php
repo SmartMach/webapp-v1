@@ -183,7 +183,7 @@
 
             </div>
             <div class="part_div line_color_border" style="">
-              <p class="label_header label_text_color" >PART WISE BY HOURS</p>
+              <p class="label_header label_text_color" >PARTS BY HOURS</p>
               <div class="parent_part_oui part_wise_alignment parent_div marginScroll">
                 <div class="child_div child_part_oui">
                   <canvas id="part_wise_graph_oui" class="part_wise_graph_oui_align" style="height:100%;width:100%;"></canvas>    
