@@ -119,12 +119,13 @@ class Current_Shift_Performance_Model extends Model{
 
         $result=[];
         foreach ($machine_list as $m) {
-            $query = $db->table('pdm_events');
-            $query->select('machine_id,event,duration,part_id');
-            $query->where('shift_date',$shift_date);
-            $query->where('shift_id',$shift_id);
-            $query->where('machine_id',$m['machine_id']);
-            $query->orderby('timestamp','DESC');
+            $query = $db->table('pdm_events as p');
+            $query->select('p.machine_id,p.event,p.duration,p.part_id,t.tool_id,t.tool_name');
+            $query->where('p.shift_date',$shift_date);
+            $query->where('p.shift_id',$shift_id);
+            $query->where('p.machine_id',$m['machine_id']);
+            $query->join('settings_tool_table as t', 't.tool_id = p.tool_id');
+            $query->orderby('p.timestamp','DESC');
             $query->limit(1);
             $res= $query->get()->getResultArray();
             array_push($result,$res);
@@ -157,6 +158,18 @@ class Current_Shift_Performance_Model extends Model{
         $query->where('shift_date',$shift_date);
         $query->where('shift_id',$shift_id); 
         $res= $query->distinct('part_id')->get()->getResultArray();
+        return $res;
+    }
+
+    public function getToolRec($shift_date,$shift_id){
+         $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('pdm_production_info as p');
+        $query->select('p.tool_id,t.tool_name');
+        $query->where('p.shift_date',$shift_date);
+        $query->where('p.shift_id',$shift_id); 
+        $query->distinct('p.tool_id');
+        $query->join('settings_tool_table as t', 't.tool_id = p.tool_id');
+        $res = $query->get()->getResultArray();
         return $res;
     }
 
@@ -223,10 +236,11 @@ class Current_Shift_Performance_Model extends Model{
     {
         $db = \Config\Database::connect($this->site_connection);
         $query = $db->table('pdm_production_info as p');
-        $query->select('p.machine_id,p.shift_date,p.start_time,p.end_time,p.shift_id,p.production,p.corrections,p.part_id,t.part_name,p.rejections');
+        $query->select('p.machine_id,p.shift_date,p.start_time,p.end_time,p.shift_id,p.production,p.corrections,p.part_id,t.part_name,p.rejections,pt.tool_name');
         $query->where('shift_date',$shift_date);
         $query->where('shift_id',$shift_id);
         $query->join('settings_part_current as t', 'p.part_id = t.part_id');
+        $query->join('settings_tool_table as pt', 'pt.tool_id = p.tool_id');
         $res= $query->get()->getResultArray();
         return $res;
     }

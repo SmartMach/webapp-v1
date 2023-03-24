@@ -30,12 +30,12 @@ class Current_Shift_Performance extends BaseController{
     
     public function getLiveMode(){
     	// if ($this->request->isAJAX()) {
-    		$shift_date = $this->request->getVar('shift_date');
-    		$shift_id = $this->request->getVar('shift_id');
+    		// $shift_date = $this->request->getVar('shift_date');
+    		// $shift_id = $this->request->getVar('shift_id');
             // $filter = $this->request->getVar('filter');
 
-    		// $shift_date = "2023-03-15";
-    		// $shift_id = "A";
+    		$shift_date = "2023-03-15";
+    		$shift_id = "A";
       //       $filter = 2;
 
     		// Current Shift OEE Target......
@@ -72,7 +72,9 @@ class Current_Shift_Performance extends BaseController{
 	        		// array_push($shiftList,$t_time);
 	        		break;
 	        	}else{
-	        		array_push($shiftList,$t_time);
+                    $x = explode(":", $t_time);
+                    $x = $x[0].":".$x[1];
+	        		array_push($shiftList,$x);
 	        		$t = date("Y-m-d H:i:s",strtotime($shift_date." ".$t_time.'+1 hours'));
 	        		$t_time = date("H:i:s",strtotime($t));	        		
 	        	}
@@ -142,6 +144,12 @@ class Current_Shift_Performance extends BaseController{
                                     array_push($tar_per, (int)$temp_target);
                                 }
                                 $p['production'] = $h_total;
+                                $sx = explode(":", $p['start_time']);
+                                $ex = explode(":", $p['end_time']);
+                                $sx = $sx[0].":".$sx[1];
+                                $ex = $ex[0].":".$ex[1];
+                                $p['start_time'] = $sx;
+                                $p['end_time'] = $ex;
                                 array_push($t, $p);
                             }
 	        			}
@@ -169,6 +177,8 @@ class Current_Shift_Performance extends BaseController{
             $machine = $this->datas->getMachineRecActive($shift_date,$shift_id);
 
             $part = $this->datas->getPartRec($shift_date,$shift_id);
+
+            $tool_list = $this->datas->getToolRec($shift_date,$shift_id);
 
             //Production Data for PDM_Production_Info Table......
             $production = $this->datas->getProductionRec($shift_date,$shift_id);
