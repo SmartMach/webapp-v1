@@ -357,8 +357,22 @@ function getLiveMode(shift_date,shift_id){
                   +'</linearGradient>'
               +'</defs>'
               +'<circle class="circle" id="'+machine[0]['machine_id']+'" cx="120" cy="120" r="47" stroke-linecap="round"/>'
-              +'<div class="part_completion">'
-                +'<p class="paddingm">Part Completion</p>'
+              // +'<div class="part_completion">'
+              //   +'<p class="paddingm">Part Completion</p>'
+              // +'</div>'
+              +'<div class="part_completion hoverOverallOEE_Current hoverOverall_current">'
+                +'<div style="display: flex;">'
+                  +'<div style="width: 70%" id="title_overall">Part Name</div>'
+                  +'<div style="width: 30%" class="val_color" ><p class="paddingm cen-align" id="part_name_hover_'+machine[0]['machine_id']+'"></p></div>'
+                +'</div>'
+                +'<div style="display: flex;">'
+                  +'<div style="width: 70%" id="title_overall">Tool Name</div>'
+                  +'<div style="width: 30%" class="val_color" ><p class="paddingm cen-align" id="tool_name_hover_'+machine[0]['machine_id']+'"></p></div>'
+                +'</div>'
+                +'<div style="display: flex;">'
+                  +'<div style="width: 70%" id="title_overall">Part Completion</div>'
+                  +'<div style="width: 30%" class="val_color" ><p class="paddingm" id="part_completion_hover_'+machine[0]['machine_id']+'"></p></div>'
+                +'</div>'
               +'</div>'
             +'</svg>'
           +'</div>'
@@ -381,6 +395,18 @@ function getLiveMode(shift_date,shift_id){
             +'<div style="display: flex;">'
               +'<div style="width: 70%">Target</div>'
               +'<div style="width: 30%"><p class="paddingm teepTarget" id="OEETarget_'+machine[0]['machine_id']+'">0%</p></div>'
+            +'</div>'
+            +'<div style="display: flex;" class="margin-top">'
+              +'<div style="width: 70%">Availability%</div>'
+              +'<div style="width: 30%"><p class="paddingm teepTarget" id="OEEAvail_'+machine[0]['machine_id']+'">0%</p></div>'
+            +'</div>'
+            +'<div style="display: flex;">'
+              +'<div style="width: 70%">Performance%</div>'
+              +'<div style="width: 30%"><p class="paddingm teepTarget" id="OEEPerf_'+machine[0]['machine_id']+'">0%</p></div>'
+            +'</div>'
+            +'<div style="display: flex;">'
+              +'<div style="width: 70%">Quality%</div>'
+              +'<div style="width: 30%"><p class="paddingm teepTarget" id="OEEQuali_'+machine[0]['machine_id']+'">0%</p></div>'
             +'</div>'
           +'</div>'
 
@@ -447,7 +473,7 @@ function getLiveMode(shift_date,shift_id){
             labels: hourList,
             datasets: [
               {
-                label: "Production",
+                label: "Total Parts",
                 type: "bar",
                 backgroundColor: "white",
                 borderColor: "rgba(0, 0, 0, 0)", 
@@ -550,8 +576,8 @@ $(".circle").mouseout(function(){
 });
 
 $(document).on("mousemove",".circle",function(e){ 
-  var relX = event.pageX - $(this).offset().left-10;
-  var relY = event.pageY - $(this).offset().top -50;
+  var relX = event.pageX - $(this).offset().left;
+  var relY = event.pageY - $(this).offset().top;
   var relBoxCoords = "(" + relX + "," + relY + ")";
   var count = $('.circle');
   var index_val = count.index($(this));
@@ -635,10 +661,6 @@ function productionTooltip(context) {
         const titleLines = tooltipModel.title || [];
         const bodyLines = tooltipModel.body.map(getBody);
 
-        // console.log(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex]);
-
-        // console.log(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex]);
-
         let innerHtml = '<div>';
 
         innerHtml += '<div class="grid-container">';
@@ -647,10 +669,11 @@ function productionTooltip(context) {
           innerHtml += '<div class="cost-value title-bold-value"><span></span></div>';
 
           if (context.tooltip.dataPoints[0].datasetIndex == 0) {
-            innerHtml += '<div class="grid-item content-text margin-top"><span>'+context.tooltip.dataPoints[0].dataset.label+'</span></div>';
-            innerHtml += '<div class="grid-item content-text-val margin-top"><span class="values-op">'+(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex])+'</span></div>';
-            innerHtml += '<div class="grid-item content-text"><span>Part Name</span></div>';
-            innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].part_name[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+            innerHtml += '<div class="grid-item content-text margin-top"><span>Part Name</span></div>';
+            innerHtml += '<div class="grid-item content-text-val margin-top"><span class="values-op">'+context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].part_name[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
+
+            innerHtml += '<div class="grid-item content-text"><span>'+context.tooltip.dataPoints[0].dataset.label+'</span></div>';
+            innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex])+'</span></div>';
 
             if (context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].rejections[context.tooltip.dataPoints[0].dataIndex] == null) {
               var r = 0;
@@ -845,12 +868,14 @@ function productionTooltip(context) {
             var duration =0;
             var partList = "";
             var val_color="";
+            var tool_name ="";
             res['machine_name'].forEach(function(m){
               if(m['machine_id'] == machine[0]['machine_id']){
                 machine_name = m['machine_name'];
                 event = machine[0]['event'];
                 duration = machine[0]['duration'];
                 partList = machine[0]['part_id'];
+                tool_name = machine[0]['tool_name']
               }
             });
 
@@ -875,6 +900,12 @@ function productionTooltip(context) {
             // Update Part Name 
             $('#partname_'+machine[0]['machine_id']+'').html(partname);
             $('#partname_'+machine[0]['machine_id']+'').attr("title",partname);
+
+            $('#part_name_hover_'+machine[0]['machine_id']+'').html(partname);
+
+            // Update Tool Name
+            $('#tool_name_hover_'+machine[0]['machine_id']+'').html(tool_name);
+
 
             // Update Machine Name
             $('#Machine_name_'+machine[0]['machine_id']+'').html(machine_name);
@@ -931,6 +962,15 @@ function productionTooltip(context) {
                 $('#SLayer_val_Color_'+machine[0]['machine_id']+'').css("color",val_color);
 
 
+                // Update OEE Availability
+                $('#OEEAvail_'+machine[0]['machine_id']+'').html(parseInt(m['Availability'])+"%");
+                // Update OEE Performance
+                $('#OEEPerf_'+machine[0]['machine_id']+'').html(parseInt(m['Performance'])+"%");
+
+                // Update OEE Quality
+                $('#OEEQuali_'+machine[0]['machine_id']+'').html(parseInt(m['Quality'])+"%");
+
+
                 $('#OEE_'+machine[0]['machine_id']+'').html(m['OEE']+"%");
               }
             });
@@ -970,10 +1010,13 @@ function productionTooltip(context) {
             $('#Target_'+machine[0]['machine_id']+'').css("width",res['targets'][0].oee+"%");
             $('#OEETarget_'+machine[0]['machine_id']+'').html(res['targets'][0].oee+"%");
 
+
             // Update Production Percentage
             var target_production=5000;
             var production_percent = parseInt((production_total/target_production)*100);
             $('#production_per'+machine[0]['machine_id']+'').html(production_percent);
+
+            $('#part_completion_hover_'+machine[0]['machine_id']+'').html(production_percent+"%");
 
             // Graph Portion
             var hourly = [];
