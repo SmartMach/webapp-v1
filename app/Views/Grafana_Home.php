@@ -512,6 +512,19 @@
                             </ul>
                         </li>
                         <!-- oee drilldown new module end  -->
+
+                        <!-- oee drilldown new module -->
+                        <li class="side-menu-li d-flex">
+                            <a href="<?php echo base_url('Home/load_option/Alert_Settings'); ?>">
+                                <i class="fa-solid fa-bell nav-icon nav-icon-hover" dvalue="Alert" style="font-size: 29px;padding:9px;height: 1.8rem;width: 1.8rem;margin-right: 0.8rem;" alt="Alert"></i>
+                            </a>
+                            <ul>
+                                <nav style="border-bottom:1px solid #d9d9d9;">
+                                    <p class="nav-menu-title">Alert Management</p> 
+                                </nav> 
+                            </ul>
+                        </li>
+                        <!-- oee drilldown new module end  -->
                 </ul>
             </div> 
             <div class="col-lg paddingm">        

@@ -287,3 +287,11 @@
         color: red;
         font-size: 2rem;
     }
+
+	.full_screen_div{
+		display: none;
+	}
+
+	.full_screen_id:fullscreen{
+		background-color:whitesmoke;
+	}
