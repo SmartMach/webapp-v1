@@ -22,6 +22,7 @@
     <!-- full screen script -->
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.fullscreen.min.js"></script>
 </head>
+<div class="hide_full_screen">
 <div style="margin-left: 4.5rem;">
     <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav_quality" style="z-index: 1001!important">
         <div class="container-fluid paddingm" style="margin-top:0.2rem;">
@@ -275,20 +276,23 @@
     <!-- oui screen end -->
 
 
-    <!-- full screen  mode  -->
-    <div class="full_screen_div" >
-        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+   
+</div>
+</div>
+
+
+
+ <!-- full screen  mode  -->
+    <div class="full_screen_div" id="full_screen_div" controls width="100%" style="background-color:white;">
+        <div class="close_header" style="">
+            <div class="close_div_circle" style="">
+                <i class="fa fa-close fa-2x"></i>
+            </div>
+        </div>
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" style="margin-top:1rem;">
             <div class="carousel-inner full_screen_content" >
-                <div class="carousel_content_item" id="full_screen_id" controls width="100%">
-                    <!-- <div class="carousel-item active">
-            <h2>First Slide</h2>
-          </div>
-          <div class="carousel-item">
-            <h2>Second Slide</h2>
-          </div>
-          <div class="carousel-item">
-            <h2>Third Slide</h2>
-          </div> -->
+                <div class="carousel_content_item" id="full_screen_id" >
+                   
                 </div>
 
             </div>
@@ -296,7 +300,7 @@
     </div>
 
     <!-- full screen mode end -->
-</div>
+
 
 <!-- preloader -->
 <div id="overlay">
@@ -2187,11 +2191,15 @@ function div_records(mid, shift_date, shift_id, card_header, card_body) {
 }
 
 // full screen mode onclick
-var full = document.getElementById("full_screen_id");
+var full = document.getElementById("full_screen_div");
 
 function fullscreen_mode() {
+
+    $('.left-sidebar').css('display','none');
+    $('.full_screen_mode_oui_disturb').css('display','none');
+    $('.hide_full_screen').css('display','none');
     $('.full_screen_div').css('display','inline');
-    $('.graph-content').css('display','none');
+    // $('.graph-content').css('display','none');
     if (full.requestFullscreen) {
       full.requestFullscreen();
     } else if (full.webkitRequestFullscreen) { /* Safari */
@@ -2217,5 +2225,17 @@ function fullscreen_mode() {
 //     // $(document).fullScreen(true);
 // }
 
+$(document).on('click','.close_div_circle',function(event){
+    event.preventDefault();
 
+    $('.left-sidebar').css('display','inline');
+    $('.full_screen_mode_oui_disturb').css('display','inline');
+    $('.hide_full_screen').css('display','inline');
+    $('.hide_full_screen').css('margin-left','4.5rem');
+    $('.full_screen_div').css('display','none');
+    // $('.graph-content').css('display','inline');
+
+
+
+});
 </script>
