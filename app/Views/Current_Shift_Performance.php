@@ -949,8 +949,8 @@ function getLiveMode(shift_date, shift_id) {
             // $('.grid-container-cont').append(e);
             // $('.grid-container-cont').append(e);
 
-            // live_graph(shift_date,shift_id);
-            // live_target(shift_date);
+            live_graph(shift_date,shift_id);
+            live_target(shift_date);
         },
         error: function(res) {
             // Error Occured!
