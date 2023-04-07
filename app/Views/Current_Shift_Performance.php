@@ -28,10 +28,8 @@
         <div class="container-fluid paddingm" style="margin-top:0.2rem;">
             <div class="header_text_nav">
                 <div class="oui_arrow_div">
-                    <div class="dotAccessArrow dot-css acsControl marleftDot "
-                        style="margin-right:0.7rem;margin-left:0.4rem;">
-                        <img src="<?php echo base_url('assets/img/oui_arrow.png'); ?>" class="img_font_wh dot-cont"
-                            style="height: 26px;transform: rotate(180deg);">
+                    <div class="dotAccessArrow dot-css acsControl marleftDot " style="margin-right:0.7rem;margin-left:0.4rem;">
+                        <img src="<?php echo base_url('assets/img/oui_arrow.png'); ?>" onclick="oui_arrow_to_card()" class="img_font_wh dot-cont" style="height: 26px;transform: rotate(180deg);">
                     </div>
                 </div>
                 <p class="float-start p3" id="logo">Current Shift Performance</p>
@@ -951,6 +949,9 @@ function getLiveMode(shift_date, shift_id) {
 
             live_graph(shift_date,shift_id);
             live_target(shift_date);
+            // live_MC1001(s_date, s_id);
+            // live_target_update(s_date);
+
         },
         error: function(res) {
             // Error Occured!
@@ -1571,10 +1572,10 @@ $(document).on('click', '.grid-item-cont', function(event) {
         label_text = "black";
         downtime_display_property = "none";
     } else {
-        backgroundcolor = "#f7d263";
-        bar_color = "#b08600";
-        card_body = "#ffc50d";
-        line = "#efc84d";
+        backgroundcolor = "#7f7f7f";
+        bar_color = "#404040";
+        card_body = "#565656";
+        line = "#aaaaaa";
         label_text = "black";
         downtime_display_property = "inline";
     }
@@ -2238,4 +2239,13 @@ $(document).on('click','.close_div_circle',function(event){
 
 
 });
+
+
+// this function return to oui to cards
+function oui_arrow_to_card(){
+    $('.graph-content').css('display', 'inline');
+    $('.oui_screen_view').css('display', 'none');
+    $('.graph-content').css('margin-top', '5rem');
+
+}
 </script>
