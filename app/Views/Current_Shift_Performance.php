@@ -371,8 +371,6 @@ function getLiveMode(shift_date, shift_id) {
             // filter:x,
         },
         success: function(res) {
-            console.log("cards div for result");
-            console.log(res);
             $('.grid-container-cont').empty();
             res['latest_event'].forEach(function(machine) {
                 var machine_name = "";
@@ -390,6 +388,7 @@ function getLiveMode(shift_date, shift_id) {
                 });
 
                 var elements = $();
+                // title="' + machine_name + '"
                 elements = elements.add('<div class="grid-item-cont">' +
                     '<div class="item-header" id="item-header-' + machine[0]['machine_id'] +
                     '">' +
@@ -642,10 +641,6 @@ function getLiveMode(shift_date, shift_id) {
             var tmp_count = total_count / 10;
             var loop_end = Math.ceil(tmp_count);
 
-            // console.log(total_count);
-            // console.log(tmp_count);
-            // console.log(loop_end);
-
             for (var i = 0; i < loop_end; i++) {
 
                 var carousel_ele = $();
@@ -663,10 +658,7 @@ function getLiveMode(shift_date, shift_id) {
                         '"  style="background-color:white;width:100%;padding:1rem;display:flex;flex-direction:row;"></div>'
                         );
                 }
-                console.log("start_index" + start_index);
-                console.log("end index" + end_index);
                 res['latest_event'].forEach(function(machine, index) {
-                    console.log(machine);
                     if (index >= start_index && index < end_index) {
 
                         var machine_name = "";
@@ -1129,15 +1121,15 @@ var shift_date = "";
 var shift_id = "";
 
 function live_graph(s_date, s_id) {
-    i = setInterval(function() {
+    // i = setInterval(function() {
         live_MC1001(s_date, s_id);
-    }, 2000);
+    // }, 2000);
 }
 
 function live_target(s_date) {
-    j = setInterval(function() {
+    // j = setInterval(function() {
         live_target_update(s_date);
-    }, 1000);
+    // }, 1000);
 }
 
 $('#Filter-values').on('change', function(event) {
@@ -2118,7 +2110,6 @@ function part_by_hour(mid, sdate, sid, bar_color) {
         },
         error: function(er) {
             console.log("error code");
-            console.log(er);
         },
 
     });
@@ -2126,10 +2117,6 @@ function part_by_hour(mid, sdate, sid, bar_color) {
 
 // div elements value assigning function
 function div_records(mid, shift_date, shift_id, card_header, card_body) {
-    console.log(mid);
-    console.log(shift_date);
-    console.log(shift_id);
-
     $.ajax({
         url: "<?php echo base_url('Current_Shift_Performance/div_details'); ?>",
         type: "POST",
@@ -2142,8 +2129,6 @@ function div_records(mid, shift_date, shift_id, card_header, card_body) {
             shift_id: shift_id,
         },
         success: function(res) {
-            console.log("Div Records");
-            console.log(res);
 
             var nict_min = res['nict'] / 60;
             var tmp_nict = " ";
@@ -2185,8 +2170,6 @@ function div_records(mid, shift_date, shift_id, card_header, card_body) {
         },
         error: function(er) {
             console.log("error");
-            console.log(er);
-
         }
     });
 }

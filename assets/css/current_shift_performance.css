@@ -3,6 +3,15 @@
   --ref_graph :url("#GradientColor");
 }
 
+.machine_name_ref {
+  font-size: 14px;
+}
+
+.partname_ref,.machine_name_ref{
+	position: relative;
+  	z-index: 1000;
+}
+
 .graph-content{
 	padding-top: 1rem;
 	padding-bottom: 1rem;
@@ -129,9 +138,7 @@
 	font-family: 'Roboto', sans-serif;
 	font-weight: bold;
 }
-.machine_name_ref{
-	font-size: 14px;
-}
+
 .current_event{
 	font-size: 12px;
 }
