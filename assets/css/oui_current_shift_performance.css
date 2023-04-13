@@ -8,7 +8,15 @@
     font-weight:700;
     font-size:11px;
 }
-
+.icon_img_wh {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+.full_screen_close{
+    width: 100%;
+    display: none;
+    flex-direction: row-reverse;
+}
 .part_wise_alignment{
  margin-bottom:0.6rem;
 }
