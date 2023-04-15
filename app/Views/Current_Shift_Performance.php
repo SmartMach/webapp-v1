@@ -280,31 +280,14 @@
     </div>
     <!-- oui screen end -->
 
-
+    <a class="prev slideControl" onclick="plusSlides(-1)">
+        <i class="fa fa-angle-left" style="font-size:36px"></i>
+    </a>
+    <a class="next slideControl" onclick="plusSlides(1)">
+        <i class="fa fa-angle-right" style="font-size:36px"></i>
+    </a>
    
 </div>
-
-
-
- <!-- full screen  mode  -->
-    <!-- <div class="full_screen_div" id="full_screen_div">
-        <div class="close_header">
-            <div class="close_div_circle" style="">
-                <i class="fa fa-close fa-2x"></i>
-            </div>
-        </div>
-        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" style="margin-top:1rem;">
-            <div class="carousel-inner full_screen_content" >
-                <div class="carousel_content_item" id="full_screen_id" >
-                   
-                </div>
-
-            </div>
-        </div>
-    </div> -->
-
-    <!-- full screen mode end -->
-
 
 <!-- preloader -->
 <div id="overlay">
@@ -319,6 +302,40 @@
 <script src="<?php echo base_url(); ?>/assets/js/all-fontawesome.js?version=<?php echo rand() ; ?>"></script>
 
 <script type="text/javascript">
+
+let slideIndex = 0;
+let slideIndexLimit = 0;
+function plusSlides(n) {
+  showSlides(n);
+}
+
+function showSlides(n) {
+    let i;
+    let j;
+    let slides = document.getElementsByClassName("grid-item-cont");
+
+    if (n == 1) {slideIndex = slideIndex+2}
+    if (n == -1) {slideIndex = slideIndex-2}
+    if (n == 0) {slideIndex = slideIndex}
+
+
+    if (slideIndex >= slides.length) {
+        slideIndex = 0;
+    }
+    if (slideIndex<0) {
+        slideIndex = slides.length-2;
+    }
+
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+    }
+    let l = slideIndex;
+    for (j = l; j < (slideIndex+2); j++) {
+        slides[j].style.display = "block";
+    }
+}
+
+
 var myChart = "";
 var myChartList = [];
 var i = "";
@@ -1127,15 +1144,15 @@ var shift_date = "";
 var shift_id = "";
 
 function live_graph(s_date, s_id) {
-    // i = setInterval(function() {
+    i = setInterval(function() {
         live_MC1001(s_date, s_id);
-    // }, 2000);
+    }, 2000);
 }
 
 function live_target(s_date) {
-    // j = setInterval(function() {
+    j = setInterval(function() {
         live_target_update(s_date);
-    // }, 1000);
+    }, 1000);
 }
 
 $('#Filter-values').on('change', function(event) {
@@ -2188,6 +2205,8 @@ function fullscreen_mode() {
     $('.full_screen_close').css('display','block');
     $('.full_screen_close').css('display','flex');
 
+    showSlides(0);
+
     const element = document.documentElement;
     if (element.requestFullscreen) {
       element.requestFullscreen();
@@ -2195,6 +2214,13 @@ function fullscreen_mode() {
       element.webkitRequestFullscreen();
     } else if (element.msRequestFullscreen) {
       element.msRequestFullscreen();
+    }
+
+    $('.prev').css('margin-left','-4.5rem');
+
+    let slides = document.getElementsByClassName("grid-item-cont");
+    if (slides.length > 2) {
+        $('.slideControl').css('display','block');
     }
 }
 
@@ -2208,14 +2234,22 @@ function fullscreen_mode_remove(){
     $('.graph-content').css('margin-top','4rem');
     $('.full_screen_close').css('display','none');
 
+    $('.prev').css('margin-left','0rem');
+    let slides = document.getElementsByClassName("grid-item-cont");
+    for (j = 0; j < slides.length; j++) {
+        slides[j].style.display = "block";
+    }
+
     const element = document.documentElement;
     if (document.exitFullscreen) {
       document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) { /* Safari */
+    } else if (document.webkitExitFullscreen) {
       document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { /* IE11 */
+    } else if (document.msExitFullscreen) {
       document.msExitFullscreen();
     }
+
+    $('.slideControl').css('display','none');
 }
 
 // var full = document.getElementById("full_screen_id");
