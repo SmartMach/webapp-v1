@@ -1,6 +1,7 @@
 <?php 
 namespace App\Models;
 use CodeIgniter\Model;
+
 class Settings_Model extends Model{
 	protected $site_connection;
     protected $session;

@@ -217,8 +217,7 @@ $session = \Config\Services::session();
             <h5 class="modal-title settings-machineAdd-model" id="ActiveMachineModal1" style="">CONFIRMATION MESSAGE</h5>
         </div>
         <div class="modal-body">
-            <label style="color: black;">Are you sure you want to activate this machine record?</label>
-            
+            <label style="color: black;">Are you sure you want to activate this machine record?</label>            
         </div>
         <div class="modal-footer" style="border:none;">
             <a class="btn fo bn  Status-active saveBtnStyle" name="Edit_Machine" value="SAVE" >Save</a>

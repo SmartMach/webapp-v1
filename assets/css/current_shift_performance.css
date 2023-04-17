@@ -3,6 +3,15 @@
   --ref_graph :url("#GradientColor");
 }
 
+.machine_name_ref {
+  font-size: 14px;
+}
+
+.partname_ref,.machine_name_ref{
+	position: relative;
+  	z-index: 1000;
+}
+
 .graph-content{
 	padding-top: 1rem;
 	padding-bottom: 1rem;
@@ -129,9 +138,7 @@
 	font-family: 'Roboto', sans-serif;
 	font-weight: bold;
 }
-.machine_name_ref{
-	font-size: 14px;
-}
+
 .current_event{
 	font-size: 12px;
 }
@@ -287,3 +294,41 @@
         color: red;
         font-size: 2rem;
     }
+
+	.full_screen_div{
+		display: none;
+	}
+
+	.full_screen_id:fullscreen{
+		background-color:whitesmoke;
+	}
+
+	/* carousel close icon */
+
+	.close_header{
+		display:flex;
+		flex-direction:row;
+		justify-content:end;
+		align-items:center;
+		margin-right:1rem;
+		margin-top:0.6rem;
+	}
+
+	.close_div_circle{
+		display:flex;
+		flex-direction:row;
+		justify-content:center;
+		align-items:center;
+		height:2rem;
+		width:2rem;
+		background-color:#f2f2f2;
+		font-size:12px;
+		border-radius:50%;
+		color:#7F7F7F;
+	}
+
+	.close_div_circle:hover{
+		background-color:#7F7F7F;
+		color:#f2f2f2;
+	}
+

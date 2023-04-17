@@ -1,3 +1,31 @@
+.prev, .next {
+  cursor: pointer;
+  text-decoration: none;
+  position: absolute;
+  width: auto;
+  padding: 10px;
+  font-weight: bold;
+  top: 50%;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  color: yellow;
+  margin-top: -22px;
+  color: rgba(0,0,0,0.8);
+}
+.slideControl{
+    display: none;
+}
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+  color: rgba(255,255,255,0.8);
+}
+
 
 .label_mar{
     margin-top:-8px;
@@ -8,7 +36,15 @@
     font-weight:700;
     font-size:11px;
 }
-
+.icon_img_wh {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+.full_screen_close{
+    width: 100%;
+    display: none;
+    flex-direction: row-reverse;
+}
 .part_wise_alignment{
  margin-bottom:0.6rem;
 }

@@ -512,6 +512,33 @@
                             </ul>
                         </li>
                         <!-- oee drilldown new module end  -->
+
+                        <!-- oee drilldown new module -->
+                        <li class="side-menu-li d-flex">
+                            <a href="<?php echo base_url('Home/load_option/Alert_Settings'); ?>">
+                                <img src="<?php echo base_url()?>/assets/icons/nav_icon_alert.png?version=<?php echo rand() ; ?>" dvalue="Alert" class="icons-side-nav fa-alert nav-icon nav-icon-hover nav-icon-align" dvalue="Alert">
+                            </a>
+                            <ul>
+                                <nav style="border-bottom:1px solid #d9d9d9;">
+                                    <p class="nav-menu-title">Alert Management</p> 
+                                </nav> 
+                            </ul>
+                        </li>
+                        <!-- oee drilldown new module end  -->
+
+                        <!-- Issue Management -->
+                        <li class="side-menu-li d-flex">
+                            <a href="<?php echo base_url('Home/load_option/Work_Order_Management'); ?>">
+                                <img src="<?php echo base_url()?>/assets/icons/nav_icon_issue.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-work nav-icon nav-icon-hover nav-icon-align" dvalue="Work">
+                            </a>
+                            <ul>
+                                <nav style="border-bottom:1px solid #d9d9d9;">
+                                    <p class="nav-menu-title">Work Order Management</p> 
+                                </nav> 
+                            </ul>
+                        </li>
+
+                        <!-- Issue Management End -->
                 </ul>
             </div> 
             <div class="col-lg paddingm">        
@@ -591,6 +618,14 @@
             // Current Shift Performance
             else if(split_nav[1]==="fa-current"){
                 img_side_name = "nav_icon_current_shift_active";
+                listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:27px;padding:9px;";
+            }
+            else if (split_nav[1] === "fa-work") {
+                img_side_name = "nav_icon_issue_active";
+                listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:27px;padding:9px;";
+            }
+            else if (split_nav[1] === "fa-alert") {
+                img_side_name = "nav_icon_alert_active";
                 listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:27px;padding:9px;";
             }
             else{

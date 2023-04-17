@@ -1,0 +1,151 @@
+textarea {
+  resize: none;
+}
+.center-align{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.square-div{
+	height: 0.7rem;
+	width: 0.7rem;
+}
+.circle-div{
+	height: 1.5rem;
+	width: 1.5rem;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 12px;
+}
+.circle-div-select{
+	height: 1.2rem;
+	width: 1.2rem;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 9px;
+}
+.circle-div-select p{
+	margin-top: 0.2rem;
+}
+.inbox-top{
+	margin-top: 1.5rem;
+}
+.stcode-up{
+	font-size: 14px !important;
+}
+
+.font-color{
+	color:#7f7f7f;
+}
+.unit-val{
+	padding-right: 0.2rem;
+}
+.Comments{
+	font-size: 12px;
+	color: #8c8c8c;
+}
+.attach-file{
+	background: #f2f2f2;
+	float: right;
+	padding-top: 0.2rem;
+	padding-bottom: 0.2rem;
+	padding-left: 0.4rem;
+	padding-right: 0.4rem;
+	border-radius: 0.3rem;
+	margin-top: 1rem;
+}
+.attach-file p{
+	font-size: 12px;
+	color: #7f7f7f;
+}
+.lable-bg{
+	padding-right: 0.4rem;
+	padding-left: 0.4rem;
+	padding-top: 0.1rem;
+	padding-bottom: 0.1rem;
+	color: white;
+	background: black;
+	margin-bottom:0.1rem;
+	font-size: 12px;
+	border-radius: 3px;
+	margin: 0.1rem;
+}
+.lable-bg-file{
+	padding-right: 0.4rem;
+	padding-left: 0.4rem;
+	padding-top: 0.1rem;
+	padding-bottom: 0.1rem;
+	color: #1355cd;
+	background: #f5f5f5;
+	margin-bottom:0.1rem;
+	font-size: 12px;
+	border-radius: 3px;
+	margin: 0.1rem;
+}
+.flex-wrap{
+	flex-wrap: wrap;
+}
+.lable-bg-more{
+	font-size: 12px;
+}
+.model-style{
+	/*max-height: 29rem;*/
+    overflow: auto;
+    height: 29rem;
+}
+
+.filter_multiselect_input{
+	width: 100% !important;
+}
+
+.display_visible{
+	display: block;
+}
+.display_hide{
+	display: none;
+}
+
+.reduce_width{
+	width: 90%;
+}
+
+.filter_checkboxes_issue{
+    border: 1px solid #dadada;
+    max-height: 12rem;
+    overflow-y: auto;
+    background-color: white;
+    position: absolute;
+    z-index: 1003;
+    width: 13.7rem;
+    border-radius: 5px;
+}
+.input-index{
+	position: absolute;
+	z-index: 1005;
+}
+.input-index span{
+	margin-left: 0.1rem;
+}
+.input-index-status span{
+	margin-left: 0.4rem;
+}
+.inbox{
+	padding: 0.5rem;
+	cursor: pointer;
+}
+.inbox:hover{
+	background: #eff7ff;
+}
+
+.radio-visible{
+	display: none;
+}
+
+
+
+
+
