@@ -780,6 +780,13 @@ class Current_Shift_Performance extends BaseController{
     }
 
 
+    // // full screen mode records
+    // public function full_screen_records(){
+    //     if ($this->request->isAJAX()) {
+    //         // echo json_encode("hi");
+    //     }
+    // }
+
     
 }
 

@@ -1,4 +1,4 @@
-<nav class="navbar sticky-top navbar-expand-lg topnav" style="top:0;position:fixed;width:100%;">
+<nav class="navbar sticky-top navbar-expand-lg topnav full_screen_mode_oui_disturb" style="top:0;position:fixed;width:100%;">
     <div class="container-fluid">
         <img id="smartlogo" src="<?php echo base_url()?>/assets/img/logo.png?version=<?php echo rand() ; ?>" alt="SmartMach Logo">
         <?php 
