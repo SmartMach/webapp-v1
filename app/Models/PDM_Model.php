@@ -165,6 +165,8 @@ class PDM_Model extends Model{
         $query->where('machine_id',$machine_id);
         $query->where('shift_date',$shift_date);
         $query->where('shift_id',$shift);
+        $query->orderBy('calendar_date');
+        $query->orderBy('start_time');
         $output = $query->get()->getResultArray();
         return $output;
     }  
@@ -3045,12 +3047,12 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
     // pdm model downtime graph shift date
      public function getMachineDate($machine){
         $db = \Config\Database::connect($this->site_creation);
-        $builder = $db->table('settings_machine_current'); 
+        $builder = $db->table('settings_machine_log'); 
         $builder->select('last_updated_on');
         $builder->where('machine_id', $machine);
         // $builder->where('production !=', "Null");
-        // $builder->orderBy('shift_date', 'ASC');
-        // $builder->limit(1);
+        $builder->orderBy('last_updated_on', 'ASC');
+        $builder->limit(1);
         $query = $builder->get()->getResult();     
         return $query;
     }

@@ -823,6 +823,9 @@ class Financial_Metrics extends BaseController
     public function getAvailabilityReasonWise(){
         $ref = "AvailabilityReasonWise";
 
+        // $fromTime = "2022-12-18T09:00:00";
+        // $toTime = "2022-12-18T21:00:00";
+
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
 
@@ -963,8 +966,7 @@ class Financial_Metrics extends BaseController
         $res['grandTotal'] = (int)$GrandTotal;
         $res['machineName'] = $MachineName;
         $res['totalDuration'] = $durationTotal;
-
-        echo (int)$GrandTotal;
+        
         //sorting in desending order......
         $out = $this->selectionSortAvailability($res,sizeof($res['total']));
         echo json_encode($out);   

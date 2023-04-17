@@ -1,0 +1,1381 @@
+#table_view_icon:hover{
+    cursor: pointer;
+}
+#graph_view_icon:hover{
+    cursor:pointer;
+}
+
+ /*if graph icon clicked then shown this heght width container for graph*/
+ .graphview_1{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items:center;
+ }
+  /*splited  halff container for 1st two graphs*/
+ .graph_1div{
+  display: flex;
+  flex-wrap: wrap;
+  align-items:center;
+  height:100%;
+  width:100%;   
+  margin-top:1rem;
+ }
+  /* rupees symbol sdujustment*/
+ .icon-margin{
+  margin-top: 0;
+  margin-left: 1rem;
+ } 
+ /* alignment  'total' text in inner graph */
+  .texttotal{
+  margin-bottom:0;
+  margin-left:1rem;
+  padding:0
+}     
+ /* spliting two graphs in first div*/
+ .graph_01,.graph_02{
+    width: 49%;
+    height: 19.5rem;
+    border:1px solid #000000; 
+    border-radius: 10px;
+    margin-left: 0.5%;
+    margin-top: 0.2rem;
+     }
+/* spliting two graphs in second div*/
+    .graph_03,.graph_04{
+    width: 49%;
+    height: 19.5rem;
+    border:1px solid #000000; 
+    border-radius: 10px;
+    margin-left: 0.5%;
+    margin-top: 0.2rem;
+     }
+
+     /* graph header margin align */
+.graph_mar_align{
+    margin-top:0.5rem;
+    margin-left:1rem;
+    color:#404040;
+}
+
+
+/* chartjs graph alignment css */
+.parent_div{
+    height:11rem;
+    overflow-y:hidden;
+}
+.prodcution_downtime_graph{
+    margin-bottom:0.6rem;
+}
+.marginScroll{
+    margin-left:1rem;
+    margin-right:1rem;
+}
+.child_div{
+    height:100%;
+    padding:0.5rem;    
+}
+
+
+/* table view design */
+.container_table{
+    min-height: 10rem;
+    width:102rem;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    box-sizing: border-box;
+}
+.table_row_flex{
+    display: flex;
+    flex-direction: row;
+}
+.fixed_col_class{
+    /* height: 25rem; */
+    width:23%;
+    margin-left: 0;
+    margin-top: 0;
+    float: left;
+    position: sticky;
+    left:0;
+    z-index:200;
+}
+.fixed_col_class2{
+    /* height: 27rem; */
+    float: left;
+    z-index:100;
+    width:70%;
+}
+.fixed_col_width{
+    margin-left: 0.5rem;
+    float:left;
+    width: 98%;
+}
+.fixed_col_common{
+    width:100%;
+    height: 3.5rem;
+    position:sticky;
+    background-color: white;
+    border-radius: 8px 0px 0px 8px ;
+    border:1px solid #d9d9d9;
+    border-right:0px;
+    margin-top: 0.2rem;
+}
+.alignflex{
+    display: flex;
+    align-items: center;
+}
+.fixed_col_common2{
+    width:100%;
+    height: 3.5rem;
+    background-color: white;
+    border-radius: 0px 8px 8px 0px ;
+    border:1px solid #d9d9d9;
+    margin-top: 0.2rem;
+    border-left: 0;
+}
+.header_fixed_col{
+    border-radius:10px 0px 0px 10px;
+    color:black;
+    box-shadow:3px 0px 4px #e6e6e6;
+    border:1px solid rgba(242,242,242);
+    border-right:0px;
+    margin-bottom:0.5rem;
+    background:#fff;
+    white-space:nowrap;
+}
+.red{
+    font-size:13px;
+    font-family:'Roboto' sans-serif;
+    font-weight:500;
+    color:#C00000;
+}
+.font_row{
+    font-size:12px;
+    font-family:'Roboto' sans-serif;
+    font-weight:450;
+    color:#404040;
+}
+
+/* notes height and width */
+
+.icon_img_wh{
+  width: 1.2rem;
+  height: 1.2rem;
+}
+.icon_img_wh:hover{
+  width: 1.2rem;
+  height: 1.2rem;
+  color:red;
+}
+.notes_check{
+    height:1.8rem;
+    width:1.8rem;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background-color:white;
+    border-radius:50%;
+}
+.notes_check:hover {
+
+    cursor: pointer;
+    background-color:#e6e6e6;
+}
+
+/* notes display property */
+.notes_display{
+min-height:4.8rem;
+max-width:10.9rem;
+min-width:10rem;
+background-color:white;
+margin-left:-14rem; 
+border:1px solid #e6e6e6;
+padding:0.7rem;
+border-radius:10px;
+display:none;
+}
+#total_duration_header{
+font-weight:600;    
+}
+
+/* dropdown checkbox category */
+.multi_select_label{
+    position:absolute;
+    margin-top:0.1rem;
+    margin-left:0.8rem;
+    z-index:1;
+    overflow-y: scroll;
+    background:white;
+    font-size:12px;
+    color:#8c8c8c;
+    font-family:'Roboto' sans-serif;
+}
+.filter_selectBox{
+height:2rem;
+margin-top:0.5rem;
+position:relative;
+min-width:9rem;
+font-size:12px;
+font-weight:500;
+color:#8c8c8c;
+border:1px solid #ced4da;
+border-radius:0.25rem;
+}
+
+.filter_check_cate{
+display:flex;
+padding-left:0.1rem;
+padding-right:0.5rem;
+justify-content:center;
+align-items:center;
+min-height:2rem;
+max-height:3rem;
+}
+.cate_drp_check{
+width:20%;
+display:flex;
+justify-content:center;
+}
+.cate_drp_text{
+width:80%;
+}
+.multi_select_drp{
+height:2rem;
+position:relative;
+min-width:9rem;
+font-size:12px;
+font-weight:500;
+color:#8c8c8c;
+border:1px solid #ced4da;
+border-radius:0.25rem;
+padding-left: 0.3rem;
+}
+
+.filter_overSelect {
+position: absolute;
+left: 0;
+right: 0;
+top: 0;
+bottom: 0;
+}
+.filter_checkboxes {
+display: none;
+border: 1px #dadada solid;
+z-index:250;
+position: absolute;
+background:white;
+/* padding:0.4rem; */
+border-radius:0.25rem;
+min-width:8.7rem;
+min-height:max-content;
+max-height:10rem;
+overflow:hidden;
+/* overflow-y:scroll;
+overflow-x:hidden; */
+}
+
+.filter_checkboxes label {
+display: block;
+}
+
+.filter_checkboxes div:hover {
+background-color: #E7F2FF;
+/* padding:0; */
+cursor:context-menu;
+/* width:100%; */
+}
+
+/* filter css design */
+.filterbtnstyle{
+color:white;
+background-color:#005abc;
+/* opacity: 0.7; */
+height:2.2rem;
+margin-top:0.5rem;
+margin-right:0.6rem;
+}
+.filterbtnstyle:hover{
+color:white;
+background-color:#005abc;
+opacity: 0.8;
+}
+
+/* dropdown checkbox created by */
+.filter_selectBox_cb{
+height:2rem;
+margin-top:0.5rem;
+position:relative;
+min-width:9rem;
+font-size:12px;
+font-weight:500;
+color:#8c8c8c;
+border:1px solid #ced4da;
+border-radius:0.25rem;
+}
+.multi_select_drp_cb{
+height:2rem;
+position:relative;
+min-width:9rem;
+font-size:12px;
+font-weight:500;
+color:#8c8c8c;
+border:1px solid #ced4da;
+border-radius:0.25rem;
+padding-left: 0.3rem;
+}
+.filter_overSelect_cb{
+position: absolute;
+left: 0;
+right: 0;
+top: 0;
+bottom: 0;
+}
+.filter_checkboxes_cb{
+display: none;
+border: 1px #dadada solid;
+z-index:250;
+position: absolute;
+background:white;
+/* padding:0.4rem; */
+border-radius:0.25rem;
+min-width:8.7rem;
+min-height:max-content;
+max-height:10rem;
+overflow:hidden;
+overflow-y:scroll;
+overflow-x:hidden;
+}
+.filter_checkboxes_cb label{
+display: block;
+}
+.filter_checkboxes_cb div:hover{
+background-color: #E7F2FF;
+/* padding:0; */
+cursor:context-menu;
+/* width:100%; */
+}
+.filter_check_cb{
+display:flex;
+padding-left:0.1rem;
+padding-right:0.5rem;
+justify-content:center;
+align-items:center;
+min-height:2rem;
+max-height:3rem;
+}
+
+/* reason dropdown checkbox */
+.filter_selectBox_drpr{
+height:2rem;
+margin-top:0.5rem;
+position:relative;
+min-width:9rem;
+font-size:12px;
+font-weight:500;
+color:#8c8c8c;
+border:1px solid #ced4da;
+border-radius:0.25rem;
+}
+.multi_select_drp_r{
+height:2rem;
+position:relative;
+min-width:9rem;
+font-size:12px;
+font-weight:500;
+color:#8c8c8c;
+border:1px solid #ced4da;
+border-radius:0.25rem;
+padding-left: 0.3rem;
+}
+.filter_overSelect_r{
+position: absolute;
+left: 0;
+right: 0;
+top: 0;
+bottom: 0; 
+}
+.filter_checkboxes_r{
+display: none;
+border: 1px #dadada solid;
+z-index:250;
+position: absolute;
+background:white;
+/* padding:0.4rem; */
+border-radius:0.25rem;
+min-width:8.7rem;
+min-height:max-content;
+max-height:10rem;
+overflow:hidden;
+overflow-y:scroll;
+overflow-x:hidden;
+}
+.filter_checkboxes_r label{
+display:block;
+}
+.filter_checkboxes_r div:hover{
+background-color: #E7F2FF;
+/* padding:0; */
+cursor:context-menu;
+/* width:100%; */
+}
+.filter_check_r{
+display:flex;
+padding-left:0.1rem;
+padding-right:0.5rem;
+justify-content:center;
+align-items:center;
+min-height:2rem;
+max-height:3rem;
+}
+
+
+/* multiselect dropdown part name  */
+.filter_selectBox_part{
+height:2rem;
+margin-top:0.5rem;
+position:relative;
+min-width:9rem;
+font-size:12px;
+font-weight:500;
+color:#8c8c8c;
+border:1px solid #ced4da;
+border-radius:0.25rem;
+}
+.multi_select_drp_part{
+height:2rem;
+position:relative;
+min-width:9rem;
+font-size:12px;
+font-weight:500;
+color:#8c8c8c;
+border:1px solid #ced4da;
+border-radius:0.25rem;
+padding-left: 0.3rem;
+}
+.filter_overSelect_part{
+position: absolute;
+left: 0;
+right: 0;
+top: 0;
+bottom: 0; 
+}
+.filter_checkboxes_part{
+display: none;
+border: 1px #dadada solid;
+z-index:250;
+position: absolute;
+background:white;
+/* padding:0.4rem; */
+border-radius:0.25rem;
+min-width:8.7rem; 
+min-height:max-content;
+max-height:10rem;
+overflow:hidden;
+overflow-y:scroll;
+overflow-x:hidden;
+}
+.filter_checkboxes_part label{
+display:block;
+}
+.filter_checkboxes_part div:hover{
+background-color: #E7F2FF;
+/* padding:0; */
+cursor:context-menu;
+/* width:100%; */
+}
+.filter_check_part{
+display:flex;
+padding-left:0.1rem;
+padding-right:0.5rem;
+justify-content:center;
+align-items:center;
+min-height:2rem;
+max-height:3rem;
+}
+
+/* multiselect dropdwon machine  */
+.filter_selectBox_machine{
+height:2rem;
+margin-top:0.5rem;
+position:relative;
+min-width:9rem;
+font-size:12px;
+font-weight:500;
+color:#8c8c8c;
+border:1px solid #ced4da;
+border-radius:0.25rem;
+}
+.multi_select_drp_machine{
+height:2rem;
+position:relative;
+min-width:9rem;
+font-size:12px;
+font-weight:500;
+color:#8c8c8c;
+border:1px solid #ced4da;
+border-radius:0.25rem;
+padding-left: 0.3rem;
+}
+.filter_overSelect_machine{
+position: absolute;
+left: 0;
+right: 0;
+top: 0;
+bottom: 0; 
+}
+.filter_checkboxes_machine{
+display: none;
+border: 1px #dadada solid;
+z-index:250;
+position: absolute;
+background:white;
+/* padding:0.4rem; */
+border-radius:0.25rem;
+min-width:8.7rem;
+min-height:max-content;
+max-height:10rem; 
+overflow:hidden;
+overflow-y:scroll;
+overflow-x:hidden;
+}
+.filter_checkboxes_machine label{
+display:block;
+}
+.filter_checkboxes_machine div:hover{
+background-color: #E7F2FF;
+/* padding:0; */
+cursor:context-menu;
+/* width:100%; */
+}
+.filter_check_machine{
+display:flex;
+padding-left:0.1rem;
+padding-right:0.5rem;
+justify-content:center;
+align-items:center;
+min-height:2rem;
+max-height:3rem;
+}
+
+/* graph font color and size */
+.total_font_style{
+color:#005abc;
+font-size:1rem;
+font-weight:800;
+}
+
+/* font for multi select dropdown */
+.font_multi_drp{
+font-family:'Roboto',sans-serif;
+  font-weight:500;
+  font-size:12px;
+  margin:auto;
+  user-select: none; 
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+/* graph multi select dropdown css */
+/* machine css graph filter multi select dropdown */
+.filter_selectBox_machinegp{
+height:2rem;
+margin-top:0.5rem;
+position:relative;
+min-width:9rem;
+font-size:12px;
+font-weight:500;
+color:#8c8c8c;
+border:1px solid #ced4da;
+border-radius:0.25rem;
+}
+.multi_select_machinegp{
+height:2rem;
+position:relative;
+min-width:9rem;
+font-size:12px;
+font-weight:500;
+color:#8c8c8c;
+border:1px solid #ced4da;
+border-radius:0.25rem; 
+padding-left: 0.3rem;
+}
+.filter_overSelect_machinegp{
+position: absolute;
+left: 0;
+right: 0;
+top: 0;
+bottom: 0;  
+}
+.filter_checkboxes_machinegp{
+display: none;
+border: 1px #dadada solid;
+z-index:250;
+position: absolute;
+background:white;
+/* padding:0.4rem; */
+border-radius:0.25rem;
+min-width:8.7rem;
+min-height:max-content;
+max-height:10rem; 
+overflow:hidden;
+overflow-y:scroll;
+overflow-x:hidden;
+}
+.filter_checkboxes_machinegp label{
+display:block;
+}
+.filter_checkboxes_machinegp div:hover{
+background-color: #E7F2FF;
+/* padding:0; */
+cursor:context-menu;
+/* width:100%; */
+}
+
+.filter_check_machinegp{
+display:flex;
+padding-left:0.1rem;
+padding-right:0.5rem;
+justify-content:center;
+align-items:center;
+min-height:2rem;
+max-height:3rem;
+}
+
+
+/* part css multi select dropdown */
+.filter_selectBox_reasongp{
+height:2rem;
+margin-top:0.5rem;
+position:relative;
+min-width:9rem;
+font-size:12px;
+font-weight:500;
+color:#8c8c8c;
+border:1px solid #ced4da;
+border-radius:0.25rem;
+}
+
+.multi_select_reasongp{
+height:2rem;
+position:relative;
+min-width:9rem;
+font-size:12px;
+font-weight:500;
+color:#8c8c8c;
+border:1px solid #ced4da;
+border-radius:0.25rem; 
+padding-left: 0.3rem;
+}
+.filter_overSelect_reasongp{
+position: absolute;
+left: 0;
+right: 0;
+top: 0;
+bottom: 0;  
+}
+.filter_checkboxes_reasongp{
+display: none;
+border: 1px #dadada solid;
+z-index:250;
+position: absolute;
+background:white;
+/* padding:0.4rem; */
+border-radius:0.25rem;
+min-width:8.7rem;
+min-height:max-content;
+max-height:10rem; 
+overflow:hidden;
+overflow-y:scroll;
+overflow-x:hidden;
+}
+.filter_checkboxes_reasongp label{
+display:block;
+}
+.filter_checkboxes_reasongp div:hover{
+background-color: #E7F2FF;
+/* padding:0; */
+cursor:context-menu;
+/* width:100%; */
+}
+
+.filter_check_reasongp{
+display:flex;
+padding-left:0.1rem;
+padding-right:0.5rem;
+justify-content:center;
+align-items:center;
+min-height:2rem;
+max-height:3rem;
+}
+
+/* category css */
+.filter_selectBox_categorygp{
+height:2rem;
+margin-top:0.5rem;
+position:relative;
+min-width:9rem;
+font-size:12px;
+font-weight:500;
+color:#8c8c8c;
+border:1px solid #ced4da;
+border-radius:0.25rem;
+}
+
+.multi_select_categorygp{
+height:2rem;
+position:relative;
+min-width:9rem;
+font-size:12px;
+font-weight:500;
+color:#8c8c8c;
+border:1px solid #ced4da;
+border-radius:0.25rem; 
+padding-left: 0.3rem;
+}
+.filter_overSelect_categorygp{
+position: absolute;
+left: 0;
+right: 0;
+top: 0;
+bottom: 0;  
+}
+
+.filter_checkboxes_categorygp{
+display: none;
+border: 1px #dadada solid;
+z-index:250;
+position: absolute;
+background:white;
+/* padding:0.4rem; */
+border-radius:0.25rem;
+min-width:8.7rem;
+min-height:max-content;
+max-height:10rem; 
+/* overflow:hidden;
+overflow-y:scroll;
+overflow-x:hidden; */
+}
+.filter_checkboxes_categorygp label{
+display:block;
+}
+.filter_checkboxes_categorygp div:hover{
+background-color: #E7F2FF;
+/* padding:0; */
+cursor:context-menu;
+/* width:100%; */
+}
+
+.filter_check_categorygb{
+display:flex;
+padding-left:0.1rem;
+padding-right:0.5rem;
+justify-content:center;
+align-items:center;
+height:2rem;
+
+}
+
+/* machine css graph filter multi select dropdown */
+.filter_selectBox_machinegp1{
+    height:2rem;
+    margin-top:0.5rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem;
+}
+.multi_select_machinegp1{
+    height:2rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem;
+    padding-left: 0.3rem; 
+}
+.filter_overSelect_machinegp1{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;  
+}
+.filter_checkboxes_machinegp1{
+    display: none;
+    border: 1px #dadada solid;
+    z-index:250;
+    position: absolute;
+    background:white;
+    /* padding:0.4rem; */
+    border-radius:0.25rem;
+    min-width:8.7rem;
+    min-height:max-content;
+    max-height:10rem; 
+    overflow:hidden;
+    overflow-y:scroll;
+    overflow-x:hidden;
+}
+.filter_checkboxes_machinegp1 label{
+    display:block;
+}
+.filter_checkboxes_machinegp1 div:hover{
+    background-color: #E7F2FF;
+    /* padding:0; */
+    cursor:context-menu;
+    /* width:100%; */
+}
+    
+.filter_check_machinegp1{
+    display:flex;
+    padding-left:0.1rem;
+    padding-right:0.5rem;
+    justify-content:center;
+    align-items:center;
+    min-height:2rem;
+    max-height:3rem;
+}
+
+
+/* category css */
+.filter_selectBox_categorygp1{
+    height:2rem;
+    margin-top:0.5rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem;
+}
+    
+.multi_select_categorygp1{
+    height:2rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem;
+    padding-left: 0.3rem; 
+}
+.filter_overSelect_categorygp1{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;  
+}
+.filter_checkboxes_categorygp1{
+    display: none;
+    border: 1px #dadada solid;
+    z-index:250;
+    position: absolute;
+    background:white;
+    /* padding:0.4rem; */
+    border-radius:0.25rem;
+    min-width:8.7rem;
+    min-height:max-content;
+    max-height:10rem; 
+    /* overflow:hidden;
+    overflow-y:scroll;
+    overflow-x:hidden; */
+}
+.filter_checkboxes_categorygp1 label{
+    display:block;
+}
+.filter_checkboxes_categorygp1 div:hover{
+    background-color: #E7F2FF;
+    /* padding:0; */
+    cursor:context-menu;
+    /* width:100%; */
+}
+    
+.filter_check_categorygb1{
+    display:flex;
+    padding-left:0.1rem;
+    padding-right:0.5rem;
+    justify-content:center;
+    align-items:center;
+    height:2rem;
+    
+}
+
+
+
+/* reason duration reason dropdown css multi select dropdown */
+.filter_selectBox_reasongp1{
+    height:2rem;
+    margin-top:0.5rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem;
+}
+    
+.multi_select_reasongp1{
+    height:2rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem; 
+    padding-left: 0.3rem;
+}
+.filter_overSelect_reasongp1{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;  
+}
+.filter_checkboxes_reasongp1{
+    display: none;
+    border: 1px #dadada solid;
+    z-index:250;
+    position: absolute;
+    background:white;
+    /* padding:0.4rem; */
+    border-radius:0.25rem;
+    min-width:8.7rem;
+    min-height:max-content;
+    max-height:10rem; 
+    overflow:hidden;
+    overflow-y:scroll;
+    overflow-x:hidden;
+}
+.filter_checkboxes_reasongp1 label{
+    display:block;
+}
+.filter_checkboxes_reasongp1 div:hover{
+    background-color: #E7F2FF;
+    /* padding:0; */
+    cursor:context-menu;
+    /* width:100%; */
+}
+    
+.filter_check_reasongp1{
+    display:flex;
+    padding-left:0.1rem;
+    padding-right:0.5rem;
+    justify-content:center;
+    align-items:center;
+    min-height:2rem;
+    max-height:3rem;
+}
+
+/* machine wise opportunity cost css multi select dropdown */
+.filter_selectBox_machinegp2{
+    height:2rem;
+    margin-top:0.5rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem;
+}
+.multi_select_machinegp2{
+    height:2rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem; 
+    padding-left: 0.3rem;
+}
+.filter_overSelect_machinegp2{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;  
+}
+.filter_checkboxes_machinegp2{
+    display: none;
+    border: 1px #dadada solid;
+    z-index:250;
+    position: absolute;
+    background:white;
+    /* padding:0.4rem; */
+    border-radius:0.25rem;
+    min-width:8.7rem;
+    min-height:max-content;
+    max-height:10rem; 
+    overflow:hidden;
+    overflow-y:scroll;
+    overflow-x:hidden;
+}
+.filter_checkboxes_machinegp2 label{
+    display:block;
+}
+.filter_checkboxes_machinegp2 div:hover{
+    background-color: #E7F2FF;
+    /* padding:0; */
+    cursor:context-menu;
+    /* width:100%; */
+}
+    
+.filter_check_machinegp2{
+    display:flex;
+    padding-left:0.1rem;
+    padding-right:0.5rem;
+    justify-content:center;
+    align-items:center;
+    min-height:2rem;
+    max-height:3rem;
+}
+
+
+/* reason multi select */
+
+.filter_selectBox_reasongp2{
+    height:2rem;
+    margin-top:0.5rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem;
+}
+    
+.multi_select_reasongp2{
+    height:2rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem; 
+    padding-left: 0.3rem;
+}
+.filter_overSelect_reasongp2{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;  
+}
+.filter_checkboxes_reasongp2{
+    display: none;
+    border: 1px #dadada solid;
+    z-index:250;
+    position: absolute;
+    background:white;
+    /* padding:0.4rem; */
+    border-radius:0.25rem;
+    min-width:8.7rem;
+    min-height:max-content;
+    max-height:10rem; 
+    overflow:hidden;
+    overflow-y:scroll;
+    overflow-x:hidden;
+}
+.filter_checkboxes_reasongp2 label{
+    display:block;
+}
+.filter_checkboxes_reasongp2 div:hover{
+    background-color: #E7F2FF;
+    /* padding:0; */
+    cursor:context-menu;
+    /* width:100%; */
+}
+    
+.filter_check_reasongp2{
+    display:flex;
+    padding-left:0.1rem;
+    padding-right:0.5rem;
+    justify-content:center;
+    align-items:center;
+    min-height:2rem;
+    max-height:3rem;
+}
+
+
+/* category multi select dropdown */
+.filter_selectBox_categorygp2{
+    height:2rem;
+    margin-top:0.5rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem;
+}
+    
+.multi_select_categorygp2{
+    height:2rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem; 
+    padding-left: 0.3rem;
+}
+.filter_overSelect_categorygp2{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;  
+}
+.filter_checkboxes_categorygp2{
+    display: none;
+    border: 1px #dadada solid;
+    z-index:250;
+    position: absolute;
+    background:white;
+    /* padding:0.4rem; */
+    border-radius:0.25rem;
+    min-width:8.7rem;
+    min-height:max-content;
+    max-height:10rem; 
+    /* overflow:hidden;
+    overflow-y:scroll;
+    overflow-x:hidden; */
+}
+.filter_checkboxes_categorygp2 label{
+    display:block;
+}
+.filter_checkboxes_categorygp2 div:hover{
+    background-color: #E7F2FF;
+    /* padding:0; */
+    cursor:context-menu;
+    /* width:100%; */
+}
+    
+.filter_check_categorygb2{
+    display:flex;
+    padding-left:0.1rem;
+    padding-right:0.5rem;
+    justify-content:center;
+    align-items:center;
+    height:2rem;
+    
+}
+
+/* machine and reason duration graph filter design */
+/* machine multi select dropdown */
+.filter_selectBox_machinegp3{
+    height:2rem;
+    margin-top:0.5rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem;
+}
+.multi_select_machinegp3{
+    height:2rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem; 
+    padding-left: 0.3rem;
+}
+.filter_overSelect_machinegp3{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;  
+}
+.filter_checkboxes_machinegp3{
+    display: none;
+    border: 1px #dadada solid;
+    z-index:250;
+    position: absolute;
+    background:white;
+    /* padding:0.4rem; */
+    border-radius:0.25rem;
+    min-width:8.7rem;
+    min-height:max-content;
+    max-height:10rem; 
+    overflow:hidden;
+    overflow-y:scroll;
+    overflow-x:hidden;
+}
+.filter_checkboxes_machinegp3 label{
+    display:block;
+}
+.filter_checkboxes_machinegp3 div:hover{
+    background-color: #E7F2FF;
+    /* padding:0; */
+    cursor:context-menu;
+    /* width:100%; */
+}
+    
+.filter_check_machinegp3{
+    display:flex;
+    padding-left:0.1rem;
+    padding-right:0.5rem;
+    justify-content:center;
+    align-items:center;
+    min-height:2rem;
+    max-height:3rem;
+}
+
+
+/* reason multi select */
+
+.filter_selectBox_reasongp3{
+    height:2rem;
+    margin-top:0.5rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem;
+}
+    
+.multi_select_reasongp3{
+    height:2rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem; 
+    padding-left: 0.3rem;
+}
+.filter_overSelect_reasongp3{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;  
+}
+.filter_checkboxes_reasongp3{
+    display: none;
+    border: 1px #dadada solid;
+    z-index:250;
+    position: absolute;
+    background:white;
+    /* padding:0.4rem; */
+    border-radius:0.25rem;
+    min-width:8.7rem;
+    min-height:max-content;
+    max-height:10rem; 
+    overflow:hidden;
+    overflow-y:scroll;
+    overflow-x:hidden;
+}
+.filter_checkboxes_reasongp3 label{
+    display:block;
+}
+.filter_checkboxes_reasongp3 div:hover{
+    background-color: #E7F2FF;
+    /* padding:0; */
+    cursor:context-menu;
+    /* width:100%; */
+}
+    
+.filter_check_reasongp3{
+    display:flex;
+    padding-left:0.1rem;
+    padding-right:0.5rem;
+    justify-content:center;
+    align-items:center;
+    min-height:2rem;
+    max-height:3rem;
+}
+
+
+/* category multi select dropdown */
+.filter_selectBox_categorygp3{
+    height:2rem;
+    margin-top:0.5rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem;
+}
+    
+.multi_select_categorygp3{
+    height:2rem;
+    position:relative;
+    min-width:9rem;
+    font-size:12px;
+    font-weight:500;
+    color:#8c8c8c;
+    border:1px solid #ced4da;
+    border-radius:0.25rem; 
+    padding-left: 0.3rem;
+}
+.filter_overSelect_categorygp3{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;  
+}
+.filter_checkboxes_categorygp3{
+    display: none;
+    border: 1px #dadada solid;
+    z-index:250;
+    position: absolute;
+    background:white;
+    /* padding:0.4rem; */
+    border-radius:0.25rem;
+    min-width:8.7rem;
+    min-height:max-content;
+    max-height:10rem; 
+    /* overflow:hidden;
+    overflow-y:scroll;
+    overflow-x:hidden; */
+}
+.filter_checkboxes_categorygp3 label{
+    display:block;
+}
+.filter_checkboxes_categorygp3 div:hover{
+    background-color: #E7F2FF;
+    /* padding:0; */
+    cursor:context-menu;
+    /* width:100%; */
+}
+    
+.filter_check_categorygb3{
+    display:flex;
+    padding-left:0.1rem;
+    padding-right:0.5rem;
+    justify-content:center;
+    align-items:center;
+    height:2rem;
+    
+}
+
+

@@ -1,4 +1,4 @@
-<nav class="navbar sticky-top navbar-expand-lg topnav" style="top:0;position:fixed;width:100%;">
+<nav class="navbar sticky-top navbar-expand-lg topnav full_screen_mode_oui_disturb" style="top:0;position:fixed;width:100%;">
     <div class="container-fluid">
         <img id="smartlogo" src="<?php echo base_url()?>/assets/img/logo.png?version=<?php echo rand() ; ?>" alt="SmartMach Logo">
         <?php 
@@ -10,6 +10,7 @@
                         if(($condition == "Smart Admin") || ($condition == "Smart Users")){
                             ?>
                             <div class="box site_based_header_visibility" style="margin-top:1.4rem;" >
+                            <label class="" style="margin-top:-0.5rem;position:fixed;margin-left:0.6rem;z-index:1;background:white;font-size:12px;color:#8c8c8c;">Site Name</label>
                                 <div class="input-box fieldStyle">
                                     <select name="site_id" id="site_id" class="form-select font_weight_modal" required="true">
                                        <!-- temporary aligning -->
@@ -40,6 +41,7 @@
                                     <option value=" " selected="true" disabled>Select Site</option>
                             </select> -->
                             <div class="box  site_based_header_visibility" style="margin-top:1.4rem;" >
+                            <label class="" style="margin-top:-0.5rem;position:fixed;margin-left:0.4rem;z-index:1;background:white;font-size:12px;color:#8c8c8c;">Site Name</label>
                                 <div class="input-box fieldStyle">
                                     <select name="site_id" id="site_id" class="form-select font_weight_modal" required="true">
                                         <option value=" " selected="true" disabled>Select Site</option>

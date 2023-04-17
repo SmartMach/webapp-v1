@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>OEE Monitoring!</title>
-    <!-- <link rel="shortcut icon" href="<?php echo  base_url(); ?>/assets/img/Myproject.png" type="image/x-icon" style="height:100%;width:100%;object-fit:contain;aspect-ratio:1/1;mix-blend-mode:color-burn;"> -->
+    <title>SmartMach!</title>
+
     <link rel="shortcut icon" href="<?php echo  base_url(); ?>/assets/img/Myproject.png" type="image/x-icon">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,28 +34,25 @@
 
     
     <!-- javascript link for date time -->
-<script type="text/javascript" src="<?php echo base_url() ?>/assets/js/custom_date_format.js"></script>
+    <script type="text/javascript" src="<?php echo base_url() ?>/assets/js/custom_date_format.js"></script>
 
 
-<!-- strategy current shift in general settings css -->
+    <!-- strategy current shift in general settings css -->
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/current_shift.css">
 
     <!--Link For FONTS-->
     <link href="<?php echo base_url()?>/assets/fonts/Roboto/Roboto-Black.ttf" rel="stylesheet">
 
-    <!--Script For Menu-Ellipsis Vertical Icon-->
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUC"></script> -->
 
+    <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/all-fontawesome.css">
+    <script type="text/javascript" src="<?php echo base_url() ?>/assets/js/all-fontawesome.js"></script>
 
 <style>    
     .paddingm{
@@ -135,17 +132,7 @@
         font-family:'Roboto' sans-serif;
 
     }
-    /* .after-industry:active:after{
-        background-color:white;
-        color:blue;
-        font-size:1.8rem;
-    }
-   */
-    /*@media only screen and (min-width: 960px) and (max-width: 1199px) {
-        .side-menu {
-            margin-left:10px;
-        }
-    }*/
+
     .font_weight_modal{
         font-family: 'Roboto' sans-serif;
         font-weight: 550;
@@ -158,13 +145,7 @@
     .img_round{
         border-radius:70%;
     }
-    /* preloader class */
-    /* .demo_class{
-        height:50%;
-        width:100%;
-        background-color:#f2f2f2;
-        opacity:0.6;
-    } */
+
     .fixtabletitle_rejection{
         top: 11.5rem;
         overflow:hidden;
@@ -180,103 +161,13 @@
         background: #fff;
     }
 
-    .nav-icon-hover:hover{
+    /*.nav-icon-hover:hover{
         padding: 0.4rem;
     }
     .nav-icon-hover{
        margin-right:0.2rem;
-    }
+    }*/
 
-    /* logout css */
-/* temporary previous tooltip hide
-    .logout_circle{
-        height:2.6rem;
-        width:2.6rem;
-        border-radius:50%;
-        background-color:green;
-        text-align:center;
-        justify-content:center;
-    }
-
-    .text_logout{
-        color:white;
-        padding-top:0.6rem;
-        font-weight:700;
-    }
-
-    .logout-icon{
-        color:grey;
-        font-weight:bold;
-        font-size:1.4rem;
-        width: 25%;
-        height:max-content;
-        text-align:center;   
-        
-    }
-    .logout-hover{
-        display:flex;
-        width:max-content;
-
-        /* border:1px solid grey; *
-    }
-
-    .logout-hover:hover{
-        color:grey;
-    }
-
-    #logout_click{
-        text-align:left;
-        width:70%;
-        height:max-content;
-        margin:auto;
-        /* padding:0.5rem; *
-    }
-    .logout_row{
-        display:flex;
-        /* height:max-content; *
-        width:12rem;
-        padding:0.6rem;
-        padding-bottom:0;
-    }
-    .popover-body{
-        padding:0;
-        height:7.2rem;
-        width:12rem;
-    }
-    .circle_col{
-        width:30%;
-        justify-content:center;
-        text-align:center;
-        height:max-content;
-        /* padding:0.3rem; *
-    }
-    .flex_row{
-        /* width:max-content; *
-       display:flex;
-       height:max-content;
-       justify-content:center;
-       text-align:center;
-       align-items:center;
-       width:100%;
-    }
-    .flex_row:hover{
-        color:#005CBC;
-        font-weight:600;
-        background-color:#E7F2FF;
-        padding:0;
-        height:max-content;
-    }
-    .flex_row:hover .logout-icon{
-        color:#005CBC;
-        /* height:rem; *
-    
-    }
-
-    .nav-icon-hover:hover{
-        margin-left:0.1rem;
-    }
-
-*/
     /* custome tooltip for css its new */
     .tooltip_logout{
         position: relative;
@@ -413,19 +304,21 @@
             <!-- side nav bar -->
              <div class="col-lg paddingm left-sidebar" style="top:4rem;">
                 <ul class="side-menu">
-                        <li class="side-menu-li d-flex" style="margin-top:2rem;">
+                        <li class="side-menu-li d-flex">
                             <a href="#">
-                                <i class="fa fa-line-chart nav-icon nav-icon-hover " style="font-size: 23px;padding:9px" dvalue="Financial" alt="Financial"></i>
+                                <!-- <i class="fa fa-line-chart nav-icon nav-icon-hover " style="font-size: 23px;padding:9px" dvalue="Financial" alt="Financial"></i> -->
+                                <img src="<?php echo base_url()?>/assets/icons/nav_icon_financial.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-line-chart nav-icon nav-icon-hover" dvalue="Financial">
                             </a>
                             <i class="fa fa-ellipsis-v icons-menu icon-font_first icon-font-js"></i>
                             <ul>
-                                 <nav style="border-bottom:1px solid #d9d9d9;">
-                                    <p class="nav-menu-title">FINANCIAL METRICS</p> 
+                                <nav style="border-bottom:1px solid #d9d9d9;">
+                                    <p class="nav-menu-title">FINANCIAL METRICS</p>
                                 </nav>
                                 <?php if($this->data['access'][0]['oee_financial_drill_down'] >=1){ ?>
                                 <li class="flex-container sidenave-hover">
                                     <div style="width: 10%;justify-content: center; " class="icon-align ">
-                                        <i class="fa  fa-angle-double-down paddingm icon-sub " style="font-style: 15px;"></i>
+                                        <!-- <i class="fa  fa-angle-double-down paddingm icon-sub " style="font-style: 15px;"></i> -->
+                                        <img src="<?php echo base_url()?>/assets/icons/nav_financial_oee.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
                                     </div>
                                     <div style="width: 90%;" >
                                         <a href="<?= base_url('Home/load_option/Financial_FOeeDrillDown')?>" id="active-demo" class="nav-sub " dvalue="FOeeDrillDown">OEE DRILL DOWN</a>
@@ -435,7 +328,8 @@
                                 <?php if($this->data['access'][0]['opportunity_insights'] >=1){ ?>
                                 <li class="flex-container sidenave-hover">
                                     <div style="width: 10%;justify-content: center;" class="icon-align">
-                                        <i class="fa fa-lightbulb-o paddingm color icon-sub" style="font-style: 15px;"></i>
+                                        <!-- <i class="fa fa-lightbulb paddingm color icon-sub" style="font-style: 15px;"></i> -->
+                                        <img src="<?php echo base_url()?>/assets/icons/nav_financial_opportunity.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
                                     </div>
                                     <div style="width: 90%;" class="">
                                         <a href="<?= base_url('Home/load_option/Financial_OpportunityInsights')?>"   dvalue="OpportunityInsights" class=" nav-sub">OPPORTUNITY INSIGHTS</a>
@@ -446,7 +340,8 @@
                         </li>
                         <li class="side-menu-li d-flex">
                             <a href="#">
-                                <i class="fa fa-industry nav-icon after-industry nav-icon-hover" dvalue="Production" style="font-size: 25px;padding:9px" alt="Production"></i>
+                                <!-- <i class="fa fa-industry nav-icon after-industry nav-icon-hover" dvalue="Production" style="font-size: 25px;padding:9px" alt="Production"></i> -->
+                                <img src="<?php echo base_url()?>/assets/icons/nav_icon_pdm.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-industry nav-icon nav-icon-hover" dvalue="Production">
                             </a>
                             <i class="fa fa-ellipsis-v icons-menu icon-font1 icon-font-js"></i>
                             <ul>
@@ -456,7 +351,8 @@
                                 <?php if($this->data['access'][0]['production_data_management'] >=1) ?>
                                 <li class="flex-container sidenave-hover">
                                     <div style="width: 10%;justify-content: center;" class="icon-align">
-                                        <i class="fa fa-clock-o paddingm icon-sub" style="font-style: 15px;"></i>
+                                        <!-- <i class="fa fa-clock-o paddingm icon-sub" style="font-style: 15px;"></i> -->
+                                        <img src="<?php echo base_url()?>/assets/icons/pdm_downtime.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
                                     </div>
                                     <div style="width: 90%;">
                                         <a href="<?= base_url('Home/load_option/Production_Downtime')?>" class="nav-sub " dvalue="Downtime">DOWNTIME</a>
@@ -467,7 +363,8 @@
                                 <?php if($this->data['access'][0]['production_data_management'] >=1){ ?>
                                 <li class="flex-container sidenave-hover">
                                     <div style="width: 10%;justify-content: center;" class="icon-align">
-                                        <i class="fa fa-ban paddingm icon-sub" style="font-style: 15px;"></i>
+                                        <!-- <i class="fa fa-ban paddingm icon-sub" style="font-style: 15px;"></i> -->
+                                        <img src="<?php echo base_url()?>/assets/icons/pdm_quality.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
                                     </div>
                                     <div style="width: 90%;">
                                         <a href="<?= base_url('Home/load_option/Production_Rejection')?>" class="nav-sub" dvalue="Rejection">QUALITY REJECTS</a>
@@ -477,7 +374,8 @@
                                 <?php if($this->data['access'][0]['production_data_management'] >=1){ ?>
                                 <li class="flex-container sidenave-hover">
                                     <div style="width: 10%;justify-content: center;" class="icon-align">
-                                        <i class="fa fa-check paddingm icon-sub" style="font-style: 15px;"></i>
+                                        <!-- <i class="fa fa-check paddingm icon-sub" style="font-style: 15px;"></i> -->
+                                        <img src="<?php echo base_url()?>/assets/icons/pdm_corrections.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
                                     </div>
                                     <div style="width: 90%;">
                                         <a href="<?= base_url('Home/load_option/Production_Corrections')?>" class="nav-sub " dvalue="Corrections">CORRECTIONS</a>
@@ -487,23 +385,23 @@
                             </ul>
                         </li>
 
-                        <!-- temporary hide this condition -->
-
-                        <!-- <li class="side-menu-li d-flex ">
+                        <li class="side-menu-li d-flex ">
                             <a href="<?= base_url('Home/load_option/Current_Shift_Performance')?>">
-                                <i class="fa fa-clock-o nav-icon nav-icon-hover " style="font-size: 30px;" dvalue="Current" alt="Current Shift"></i>
+                                <!-- <i class="fa fa-gear nav-icon nav-icon-hover" dvalue="Current" style="font-size: 29px;padding:9px" alt="Current Shift"></i> -->
+                                <img src="<?php echo base_url()?>/assets/icons/nav_icon_current_shift.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-current nav-icon nav-icon-hover nav-icon-align" dvalue="Current">
                             </a>
-                            <i class="fa fa-ellipsis-v icons-menu icon-font_third icon-font-js" style=""></i>
+
                             <ul>
-                                 <nav style="border-bottom:1px solid #d9d9d9;">
-                                    <p class="nav-menu-title">CURRENT SHIFT PERFORMANCE</p> 
+                                <nav style="border-bottom:1px solid #d9d9d9;">
+                                    <p class="nav-menu-title">CURRENT SHIFT PERFORMANCE</p>
                                 </nav>
                             </ul>
-                        </li> -->
+                        </li> 
 
                         <li class="side-menu-li d-flex ">
                             <a href="#">
-                                <i class="fa fa-gear nav-icon nav-icon-hover" dvalue="Settings" style="font-size: 29px;padding:9px" alt="Settings"></i>
+                                <!-- <i class="fa fa-gear nav-icon nav-icon-hover" dvalue="Settings" style="font-size: 29px;padding:9px" alt="Settings"></i> -->
+                                <img src="<?php echo base_url()?>/assets/icons/nav_icon_settings.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-gear nav-icon nav-icon-hover" dvalue="Settings">
                             </a>
                             <i class="fa fa-ellipsis-v icons-menu icon-font_last icon-font-js" style=""></i>
                             <ul>
@@ -513,17 +411,19 @@
                                 <?php if($this->data['access'][0]['settings_machine'] >= 1){ ?>
                                 <li class="flex-container sidenave-hover">
                                     <div style="width: 10%;justify-content: center;" class="icon-align">
-                                        <i class="fa fa-angle-double-down paddingm icon-sub" style="font-style: 15px;"></i>
+                                        <!-- <i class="fa fa-angle-double-down paddingm icon-sub" style="font-style: 15px;"></i> -->
+                                        <img src="<?php echo base_url()?>/assets/icons/nav_financial_oee.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
                                     </div>
                                     <div style="width: 90%;">
-                                         <a href="<?= base_url('Home/load_option/Settings_Machines')?>" class="nav-sub" dvalue="Machines">MACHINE</a>
+                                        <a href="<?= base_url('Home/load_option/Settings_Machines')?>" class="nav-sub" dvalue="Machines">MACHINE</a>
                                     </div>
                                 </li>
                                 <?php } ?>
                                 <?php if($this->data['access'][0]['settings_part'] >= 1){ ?>
                                 <li class="flex-container sidenave-hover">
                                     <div style="width: 10%;justify-content: center;" class="icon-align">
-                                        <i class="fa fa-lightbulb-o paddingm icon-sub" style="font-style: 15px;"></i>
+                                        <!-- <i class="fa fa-lightbulb-o paddingm icon-sub" style="font-style: 15px;"></i> -->
+                                        <img src="<?php echo base_url()?>/assets/icons/nav_financial_opportunity.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
                                     </div>
                                     <div style="width: 90%;">
                                          <a href="<?= base_url('Home/load_option/Settings_Tools')?>" class="nav-sub" dvalue="Tools">PARTS</a>
@@ -533,7 +433,9 @@
                                 <?php if ($this->data['access'][0]['settings_general']  >=1) {?>
                                 <li class="flex-container sidenave-hover">
                                     <div style="width: 10%;justify-content: center;" class="icon-align">
-                                        <i class="fa fa-bullseye paddingm icon-sub" style="font-style: 15px;"></i>
+                                        <!-- <i class="fa fa-bullseye paddingm icon-sub" style="font-style: 15px;"></i> -->
+                                        <img src="<?php echo base_url()?>/assets/icons/nav_settings_general.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
+                                        
                                     </div>
                                     <div style="width: 90%;">
                                         <a href="<?= base_url('Home/load_option/Settings_Goals_Others')?>" class="nav-sub " dvalue="Goals">GENERAL</a>
@@ -543,7 +445,8 @@
                                 <?php if ($this->data['access'][0]['settings_user_management']  >=1) {?>
                                 <li class="flex-container sidenave-hover">
                                     <div style="width: 10%;justify-content: center;" class="icon-align">
-                                        <i class="fa fa-user-circle-o paddingm icon-sub" style="font-style: 15px;"></i>
+                                        <!-- <i class="fa fa-user-circle-o paddingm icon-sub" style="font-style: 15px;"></i> -->
+                                        <img src="<?php echo base_url()?>/assets/icons/nav_settings_user.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
                                     </div>
                                     <div style="width: 90%;">
                                         <a href="<?= base_url('Home/load_option/Settings_Users')?>" class="nav-sub" dvalue="Users">USER ACCOUNT</a>
@@ -555,17 +458,87 @@
 
                         <!-- daily production link -->
                         <li class="side-menu-li d-flex ">
-                            <a href="<?= base_url('Home/load_option/Daily_Production_Status')?>">
-                                <i class="fa fa-bar-chart nav-icon nav-icon-hover prodcution_status_background" style="font-size: 26px;" dvalue="Daily" alt="Production Status"></i>
+                            <a href="<?php echo base_url('Home/load_option/Daily_Production_Status'); ?>">
+                                <i class="fa fa-calendar-day nav-icon nav-icon-hover" dvalue="Daily" style="font-size: 29px;padding:9px;height: 1.8rem;width: 1.8rem;margin-right: 0.8rem;" alt="Daily"></i>
                             </a>
-                            <!-- <i class="fa fa-ellipsis-v icons-menu icon-font_third icon-font-js" style=""></i> -->
-                            <!-- <ul>
+                            <ul>
                                 <nav style="border-bottom:1px solid #d9d9d9;">
-                                    <p class="nav-menu-title">Daily Production Data</p> 
+                                    <p class="nav-menu-title">DAILY PRODUCTION DATA</p> 
                                 </nav> 
-                            </ul> -->
+                            </ul>
                         </li>
                         <!-- daily production link end -->
+
+                        <!-- production Downtime New module -->
+                        <li class="side-menu-li d-flex">
+                            <a href="<?php echo base_url('Home/load_option/Downtime_Production'); ?>">
+                                <!-- <i class="fa fa-clock nav-icon nav-icon-hover" dvalue="Downtime" style="font-size: 29px;padding:9px;height: 1.8rem;width: 1.8rem;margin-right: 0.8rem;" alt="Downtime"></i> -->
+                                <img src="<?php echo base_url()?>/assets/icons/nav_icon_downtime.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-clock nav-icon nav-icon-hover nav-icon-align" dvalue="Downtime">
+                            </a>
+                            <ul>
+                                <nav style="border-bottom:1px solid #d9d9d9;">
+                                    <p class="nav-menu-title">PRODUCTION DOWNTIME</p>
+                                </nav>
+                            </ul>
+                        </li>
+                        <!-- production downtime new module end -->
+
+                        <!-- production Downtime New module -->
+                        <li class="side-menu-li d-flex">
+                            <a href="<?php echo base_url('Home/load_option/Quality_Production'); ?>">
+                                <!-- <i class="fa fa-award nav-icon nav-icon-hover" dvalue="Quality" style="font-size: 29px;padding:9px;height: 1.8rem;width: 1.8rem;margin-right: 0.8rem;" alt="Quality"></i> -->
+                                <img src="<?php echo base_url()?>/assets/icons/nav_icon_quality.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-quality nav-icon nav-icon-hover nav-icon-align" dvalue="Quality">
+                                
+                            </a>
+
+                            <ul>
+                                <nav style="border-bottom:1px solid #d9d9d9;">
+                                    <p class="nav-menu-title">PRODUCTION QUALITY</p>
+                                </nav>
+                            </ul>
+                        </li>
+                        <!-- <i class="fa-duotone fa-award-simple"></i> -->
+                        <!-- production downtime new module end -->
+
+                        <!-- oee drilldown new module -->
+                        <li class="side-menu-li d-flex">
+                            <a href="<?php echo base_url('Home/load_option/Oee_Drill_Down'); ?>">
+                                <i class="fa fa-bore-hole nav-icon nav-icon-hover" dvalue="Oee" style="font-size: 29px;padding:9px;height: 1.8rem;width: 1.8rem;margin-right: 0.8rem;" alt="Oee"></i>
+                            </a>
+                            <ul>
+                                <nav style="border-bottom:1px solid #d9d9d9;">
+                                    <p class="nav-menu-title">OEE DRILLDOWN</p> 
+                                </nav> 
+                            </ul>
+                        </li>
+                        <!-- oee drilldown new module end  -->
+
+                        <!-- oee drilldown new module -->
+                        <li class="side-menu-li d-flex">
+                            <a href="<?php echo base_url('Home/load_option/Alert_Settings'); ?>">
+                                <img src="<?php echo base_url()?>/assets/icons/nav_icon_alert.png?version=<?php echo rand() ; ?>" dvalue="Alert" class="icons-side-nav fa-alert nav-icon nav-icon-hover nav-icon-align" dvalue="Alert">
+                            </a>
+                            <ul>
+                                <nav style="border-bottom:1px solid #d9d9d9;">
+                                    <p class="nav-menu-title">Alert Management</p> 
+                                </nav> 
+                            </ul>
+                        </li>
+                        <!-- oee drilldown new module end  -->
+
+                        <!-- Issue Management -->
+                        <li class="side-menu-li d-flex">
+                            <a href="<?php echo base_url('Home/load_option/Work_Order_Management'); ?>">
+                                <img src="<?php echo base_url()?>/assets/icons/nav_icon_issue.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-work nav-icon nav-icon-hover nav-icon-align" dvalue="Work">
+                            </a>
+                            <ul>
+                                <nav style="border-bottom:1px solid #d9d9d9;">
+                                    <p class="nav-menu-title">Work Order Management</p> 
+                                </nav> 
+                            </ul>
+                        </li>
+
+                        <!-- Issue Management End -->
                 </ul>
             </div> 
             <div class="col-lg paddingm">        
@@ -590,20 +563,17 @@
 <!-- </div> -->
 </body>
 </html>
-<!-- <script src="<?php //echo base_url('assets/js') ?>js/popper.min.js"></script> -->
 <script>
 
     // document title
     let doc_title = document.title;
     window.addEventListener("blur",()=>{
-        document.title="SmartMach!";
+        document.title="SmartMach";
     });
 
     window.addEventListener("focus",()=>{
         document.title = doc_title;
     });
-
-
 
     var MenuOpt = '<?php echo $this->data['select_opt']; ?>';
     var MenuSub = MenuOpt.split("_");
@@ -618,46 +588,84 @@
             var icon_name = listIcons[i].getAttribute("class");
 
             const split_nav = icon_name.split(" ");
+            var img_side_name = "";
+
             if (split_nav[1] === "fa-line-chart") {
+                img_side_name = "nav_icon_financial_active";
                 listIcons[i].style = "background-color:#005abc;color:white;font-size:23px;padding:9px;";
-                // actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 1px;font-weight:500;";
-            }else if(split_nav[1] === "fa-gear"){
+            }
+            else if(split_nav[1] === "fa-gear"){
                 listIcons[i].style = "background-color:#005abc;color:white;font-size:29px;padding:9px;";
-                // actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 1px;font-weight:500;";
+                img_side_name = "nav_icon_settings_active";
             }else if(split_nav[1] === "fa-industry"){
+                img_side_name = "nav_icon_pdm_active";
                 listIcons[i].style = "background-color:#005abc;color:white;font-size:25px;padding:9px;";
-                // actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 1px;font-weight:500;";
             }
             // daily production status icon
             else if(split_nav[1] === "fa-bar-chart"){
-                // alert('ok');
                 listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:27px;padding:9px;";
-                // actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 1px;font-weight:500;";
-               
+            }
+            // Production Downtime
+            else if(split_nav[1] === "fa-clock"){
+                img_side_name = "nav_icon_downtime_active";
+                listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:27px;padding:9px;";
+            }
+            // Quality
+            else if(split_nav[1]==="fa-quality"){
+                img_side_name = "nav_icon_quality_active";
+                listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:27px;padding:9px;";
+            }
+            // Current Shift Performance
+            else if(split_nav[1]==="fa-current"){
+                img_side_name = "nav_icon_current_shift_active";
+                listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:27px;padding:9px;";
+            }
+            else if (split_nav[1] === "fa-work") {
+                img_side_name = "nav_icon_issue_active";
+                listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:27px;padding:9px;";
+            }
+            else if (split_nav[1] === "fa-alert") {
+                img_side_name = "nav_icon_alert_active";
+                listIcons[i].style = "background-color:#005abc;color:white;font-style:15px;font-size:27px;padding:9px;";
             }
             else{
                 listIcons[i].style = "background-color:#005abc;color:white;font-size:29px;padding:9px;";
-                // actionList[i].style="font-size:1.4rem;padding:1px 1px 1px 6px;font-weight:500;";
             }
+
+            listIcons[i].setAttribute('src', '<?php echo base_url()?>/assets/icons/'+img_side_name+'.png?version=<?php echo rand() ; ?>');
         }
       }
         for (var i = 0; i < listSubMenu.length; i++) {
          var y = listSubMenu[i].getAttribute("dvalue");
-        //  var file_name = listSubMenu[i].attr("href");
-        //  var file_name_arr = file_name.split("/");
-
-         //alert(y);
           if(MenuSub[1] == y){
-           
+            var img_name = "";
+            if (y == "OpportunityInsights") {
+                img_name = "nav_financial_opportunity_active";
+            }else if (y == "FOeeDrillDown") {
+                img_name = "nav_financial_oee_active";
+            }else if (y == "Downtime") {
+                img_name ="pdm_downtime_active";
+            }else if (y == "Rejection") {
+                img_name = "pdm_quality_active";
+            }else if (y == "Corrections") {
+                img_name = "pdm_corrections_active";
+            }else if (y == "Machines") {
+                img_name = "nav_financial_oee_active";
+            }else if (y == "Tools") {
+                img_name = "nav_financial_opportunity_active";   
+            }else if (y =="Goals") {
+                img_name = "nav_settings_general_active";
+            }else if (y == "Users") {
+                img_name = "nav_settings_user_active";
+            }
+
             listSubMenu[i].style = "color:#005abc;font-weight:bold";
             subicon[i].style = "color:#005abc;font-weight:bold;padding-left:0px;fonst-size:1rem;";
-            //listIcons[i].style = "color:#005abc;font-weight:bold";
+            subicon[i].setAttribute('src', '<?php echo base_url()?>/assets/icons/'+img_name+'.png?version=<?php echo rand() ; ?>');
             if (y == "Users") {
-                $('.site_based_header_visibility').css("display","none");
-                // alert('hi');   
+                $('.site_based_header_visibility').css("display","none");   
             }else{
                 $('.site_based_header_visibility').css("display","inline");
-                // alert('ji');
             }
           }
           
@@ -828,31 +836,6 @@ $(document).ready(function(){
     $('.circle_div').css("background-color",random_info_color);
     $('#get_text_info').html(first_letter+''+last_letter);
 
-/*
-temporary hide this type of tooltip 
-
-    $('[data-toggle="popover"]').popover({
-        placement : 'left',
-		trigger : 'click',
-        // title:'<div class="box_pop"><h2>Welcome Guys</h2></div>',
-        html : true,
-        content : '<div class="logout_row" style="padding:0.5rem;">'+
-                    '<div class="circle_col">'+
-                        '<div class="logout_circle"><p class="text_logout">'+first_letter+''+last_letter+'</p></div>'+
-                    '</div>'+
-                    '<div class="logout_col1" style="padding-left:0.2rem;padding:0;width:70%;">'+
-                        '<div class="media-body">'+
-                            '<b class="media-heading tooltip_name">'+fname+' '+lname+'</b><p class="text-left">'+role+'</p>'+
-                        '</div>'+
-                    '</div>'+
-                '</div>'+
-                '<div class="flex_row">'+
-                    '<i class="fa fa-power-off logout-icon"></i><p  class="unset_session" id="logout_click" >Logout</p>'
-                +'</div>'
-    });
-
-   
-*/
 });
 
 

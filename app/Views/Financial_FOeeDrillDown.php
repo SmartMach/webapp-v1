@@ -378,7 +378,7 @@
           var tmp = new Date()
           if (inputDateTime.getDate() == tmp.getDate()) {
               this.setOptions({
-                  maxTime: (tmp.getHours())+ ':00',
+                  maxTime: (tmp.getHours()+parseInt(1))+ ':00',
               });
           } else {
               this.setOptions({
@@ -706,7 +706,7 @@ $('.toDate').datetimepicker({
 
 var now = new Date();
 
-var fdate = now.getFullYear()+"-"+("0" + (parseInt(now.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + now.getDate()).slice(-2)+" "+("0" + (now.getHours()-1)).slice(-2)+":00";
+var fdate = now.getFullYear()+"-"+("0" + (parseInt(now.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + now.getDate()).slice(-2)+" "+("0" + (now.getHours())).slice(-2)+":00";
 
 //One week back
 now.setDate(now.getDate() - 6);
@@ -725,12 +725,11 @@ function myFun(){
 
     f = $('.fromDate').val();
     t = $('.toDate').val();
-
     if ((new Date(f) >= new Date(t)) || (t=="")) {
       var x = new Date(f)
       t = x.setHours(x.getHours() + 1);
       t= new Date(t);
-      var tdate = t.getFullYear()+"-"+("0" + (parseInt(t.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + t.getDate()).slice(-2)+" "+("0" + t.getHours()).slice(-2)+":00:00";
+      var tdate = t.getFullYear()+"-"+("0" + (parseInt(t.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + t.getDate()).slice(-2)+" "+("0" + t.getHours()).slice(-2)+":00";
       $('.toDate').val(tdate);
       t = $('.toDate').val();
     }
@@ -738,14 +737,23 @@ function myFun(){
     var f_t = new Date(f);
     var t_t = new Date(t);
     var c_t = new Date();
+
+    if (t_t >= c_t) {
+      var k = t_t.setHours(c_t.getHours());
+      k = new Date(k);
+      var tdate = k.getFullYear()+"-"+("0" + (parseInt(k.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + k.getDate()).slice(-2)+" "+("0" + k.getHours()).slice(-2)+":00";
+      $('.toDate').val(tdate);
+      var t_t = new Date(tdate);
+    }
+
     if (c_t.getFullYear()==f_t.getFullYear() && c_t.getMonth() == f_t.getMonth() && c_t.getDate()==f_t.getDate() && (f_t.getHours()+2) >= c_t.getHours()) {
-      var k = f_t.setHours(c_t.getHours()-2);
-      var y = f_t.setHours(c_t.getHours()-1);
+      var k = f_t.setHours(c_t.getHours()-1);
+      var y = f_t.setHours(c_t.getHours());
       k = new Date(k);
       y = new Date(y);
-      var fdate = k.getFullYear()+"-"+("0" + (parseInt(k.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + k.getDate()).slice(-2)+" "+("0" + k.getHours()).slice(-2)+":00:00";
+      var fdate = k.getFullYear()+"-"+("0" + (parseInt(k.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + k.getDate()).slice(-2)+" "+("0" + k.getHours()).slice(-2)+":00";
 
-      var tdate = k.getFullYear()+"-"+("0" + (parseInt(y.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + y.getDate()).slice(-2)+" "+("0" + y.getHours()).slice(-2)+":00:00";
+      var tdate = k.getFullYear()+"-"+("0" + (parseInt(y.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + y.getDate()).slice(-2)+" "+("0" + y.getHours()).slice(-2)+":00";
 
       $('.fromDate').val(fdate);
       $('.toDate').val(tdate);

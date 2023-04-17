@@ -90,12 +90,12 @@ label{
   background: #eff7ff;
 }
 .icons-menu{
-    font-size: 1.3rem;
+    font-size: 0.8rem;
     float: right;
     color: #005abc;
 }
 .side-menu-li{
-  height: 4rem;
+  height: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
