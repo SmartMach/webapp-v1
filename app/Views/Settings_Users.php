@@ -14,7 +14,7 @@
 .cen-align{
     display: flex;
     align-items: center;
-    height: 3rem
+    height: 3rem;
 }
  .img_font_wh{
         width: 1.9rem;
@@ -337,6 +337,7 @@
                                 </div>
                             </div>
                     </div>
+                    <div style="overflow: auto;height: 24rem;">
                     <div class="accessControlPaddinghead">
                             <div class="row paddingm mb-2">
                                 <div class="col-sm-4 fn fntTitle paddingm textCenterTitle">
@@ -481,6 +482,128 @@
                                 </div> -->
                             </div>
                         </div>
+                        <div class="accessControlPadding mb-3">
+                            <div class="row paddingm ">
+                                <div class="col-sm-4 fn fntTitle paddingm textCenterTitle">
+                                  <p style="margin-left: 0.5rem;">Daily Production Data</p>
+                                </div>
+                                <div class="col-sm-2 fn paddingm textCenter">
+                                    <?php if ($this->data['access'][0]['daily_production_data'] >= 1 or 2 or 3){?>
+                                        <input type="radio" id="html" name="dpd" value="0">
+                                    <?php } ?>
+                                </div>
+                                <div class="col-sm-2 fn paddingm textCenter">
+                                    <?php if ($this->data['access'][0]['daily_production_data'] >= 1){ ?>
+                                        <input type="radio" id="html" name="dpd" value="1">
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accessControlPadding mb-3">
+                            <div class="row paddingm ">
+                                <div class="col-sm-4 fn fntTitle paddingm textCenterTitle">
+                                  <p style="margin-left: 0.5rem;">Current Shift Performance</p>
+                                </div>
+                                <div class="col-sm-2 fn paddingm textCenter">
+                                    <?php if ($this->data['access'][0]['current_shift_performance'] >= 1 or 2 or 3){ ?>
+                                        <input type="radio" id="html" name="csp" value="0">
+                                    <?php } ?>
+                                </div>
+                                <div class="col-sm-2 fn paddingm textCenter">
+                                    <?php if ($this->data['access'][0]['current_shift_performance'] >= 1){ ?>
+                                        <input type="radio" id="html" name="csp" value="1">
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accessControlPadding mb-3">
+                            <div class="row paddingm ">
+                                <div class="col-sm-4 fn fntTitle paddingm textCenterTitle">
+                                  <p style="margin-left: 0.5rem;">Production Downtime</p>
+                                </div>
+                                <div class="col-sm-2 fn paddingm textCenter">
+                                    <?php if ($this->data['access'][0]['production_downtime'] >= 1 or 2 or 3){ ?>
+                                        <input type="radio" id="html" name="pd" value="0">
+                                    <?php } ?>
+                                </div>
+                                <div class="col-sm-2 fn paddingm textCenter">
+                                    <?php if ($this->data['access'][0]['production_downtime'] >= 1){ ?>
+                                        <input type="radio" id="html" name="pd" value="1">
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accessControlPadding mb-3">
+                            <div class="row paddingm ">
+                                <div class="col-sm-4 fn fntTitle paddingm textCenterTitle">
+                                  <p style="margin-left: 0.5rem;">Production Quality</p>
+                                </div>
+                                <div class="col-sm-2 fn paddingm textCenter">
+                                    <?php if ($this->data['access'][0]['production_quality'] >= 1 or 2 or 3){ ?>
+                                        <input type="radio" id="html" name="pq" value="0">
+                                    <?php } ?>
+                                </div>
+                                <div class="col-sm-2 fn paddingm textCenter">
+                                    <?php if ($this->data['access'][0]['production_quality'] >= 1){ ?>
+                                        <input type="radio" id="html" name="pq" value="1">
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accessControlPadding mb-3">
+                            <div class="row paddingm ">
+                                <div class="col-sm-4 fn fntTitle paddingm textCenterTitle">
+                                  <p style="margin-left: 0.5rem;">Work Order Management</p>
+                                </div>
+                                <div class="col-sm-2 fn paddingm textCenter">
+                                    <?php if ($this->data['access'][0]['work_order_management'] >= 1 or 2 or 3){ ?>
+                                        <input type="radio" id="html" name="wom" value="0">
+                                    <?php } ?>
+                                </div>
+                                <div class="col-sm-2 fn paddingm textCenter">
+                                    <?php if ($this->data['access'][0]['work_order_management'] >= 1){ ?>
+                                        <input type="radio" id="html" name="wom" value="1">
+                                    <?php } ?>
+                                </div>
+                                <div class="col-sm-2 fn paddingm textCenter">
+                                    <?php if ($this->data['access'][0]['work_order_management'] >= 2){ ?>
+                                        <input type="radio" id="html" name="wom" value="2">
+                                    <?php } ?>
+                                </div>
+                                <div class="col-sm-2 fn paddingm textCenter">
+                                    <?php if ($this->data['access'][0]['work_order_management'] == 3){ ?>
+                                        <input type="radio" id="html" name="wom" value="3">
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accessControlPadding mb-3">
+                            <div class="row paddingm ">
+                                <div class="col-sm-4 fn fntTitle paddingm textCenterTitle">
+                                  <p style="margin-left: 0.5rem;">Alert Management</p>
+                                </div>
+                                <div class="col-sm-2 fn paddingm textCenter">
+                                    <?php if ($this->data['access'][0]['alert_management'] >= 1 or 2 or 3){ ?>
+                                        <input type="radio" id="html" name="alm" value="0">
+                                    <?php } ?>
+                                </div>
+                                <div class="col-sm-2 fn paddingm textCenter">
+                                    <?php if ($this->data['access'][0]['alert_management'] >= 1){ ?>
+                                        <input type="radio" id="html" name="alm" value="1">
+                                    <?php } ?>
+                                </div>
+                                <div class="col-sm-2 fn paddingm textCenter">
+                                    <?php if ($this->data['access'][0]['alert_management'] >= 2){ ?>
+                                        <input type="radio" id="html" name="alm" value="2">
+                                    <?php } ?>
+                                </div>
+                                <div class="col-sm-2 fn paddingm textCenter">
+                                    <?php if ($this->data['access'][0]['alert_management'] == 3){ ?>
+                                        <input type="radio" id="html" name="alm" value="3">
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </div>
                         <div class="accessControlPaddinghead mb-2">
                             <div class="row paddingm ">
                                 <div class="col-sm-4 fn fntTitle paddingm">
@@ -598,7 +721,7 @@
                                 </div>
                             </div>   
                         </div>
-                        
+                        </div>
                     
                 </div>
                 <div class="modal-footer" style="border:none;">
@@ -1210,6 +1333,16 @@
                         var SPart = $('input[name="settings_part"]:checked').val();
                         var SGeneral = $('input[name="settings_general"]:checked').val();
                         var SUser = $('input[name="settings_user"]:checked').val();
+
+                        var DailyProduction = $('input[name="dpd"]:checked').val();
+                        var Current_Shift = $('input[name="csp"]:checked').val();
+                        var Production_Quality = $('input[name="pq"]:checked').val();
+                        var Production_Downtime = $('input[name="pd"]:checked').val();
+                        var Work_Order_Management = $('input[name="wom"]:checked').val();
+                        var Alert_Management = $('input[name="alm"]:checked').val();
+
+
+
                         User_First_Name = User_First_Name.trim();
                         User_Last_Name = User_Last_Name.trim();
                         $("#input_dept_err").html('');
@@ -1240,7 +1373,14 @@
                                 SGeneral:SGeneral,
                                 SUser:SUser,
                                 new_site_name:new_site_name,
-                                new_site_location:new_site_location
+                                new_site_location:new_site_location,
+
+                                DailyProduction:DailyProduction,
+                                Current_Shift:Current_Shift,
+                                Production_Quality:Production_Quality,
+                                Production_Downtime:Production_Downtime,
+                                Work_Order_Management:Work_Order_Management,
+                                Alert_Management:Alert_Management,
                             },
                             success:function(res){
                                 if (res == true) {
@@ -1478,7 +1618,7 @@ $(document).ready(function(){
     if(acsCon < 2){
         $('.edit-user').css("display","none");
         $('.activate-user').css("display","none");
-        $('.deactivate-user').css("display","none"); 
+        $('.deactivate-user').css("display","none");
         $('.info-user').css("display","block");
     }
     else{
@@ -2445,7 +2585,14 @@ $(document).ready(function(){
                     var SMachine = $('input[name="settings_macine"]:checked').val();
                     var SPart = $('input[name="settings_part"]:checked').val();
                     var SGeneral = $('input[name="settings_general"]:checked').val();
-                    var SUser = $('input[name="settings_user"]:checked').val();         
+                    var SUser = $('input[name="settings_user"]:checked').val();
+
+                    var DPD = $('input[name="dpd"]:checked').val();
+                    var CSP = $('input[name="csp"]:checked').val();         
+                    var PD = $('input[name="pd"]:checked').val();
+                    var PQ = $('input[name="pq"]:checked').val();
+                    var WOM = $('input[name="wom"]:checked').val();
+                    var ALM = $('input[name="alm"]:checked').val();
                 }
                 else{
                     var FDrillDown = "";
@@ -2457,6 +2604,12 @@ $(document).ready(function(){
                     var SPart = "";
                     var SGeneral = "";
                     var SUser = "";
+                    var DPD = "";
+                    var CSP = "";         
+                    var PD = "";
+                    var PQ = "";
+                    var WOM = "";
+                    var ALM = "";
                 }
                     var user_id_op = $('#EditOpUserID').val();
                     if (User_Role == "Operator") {
@@ -2517,6 +2670,13 @@ $(document).ready(function(){
                                 SPart:SPart,
                                 SGeneral:SGeneral,
                                 SUser:SUser,
+
+                                DPD:DPD,
+                                CSP:CSP,         
+                                PD:PD,
+                                PQ:PQ,
+                                WOM:WOM,
+                                ALM:ALM,
                             },
                             success:function(res){
                                 if (res == true) {            
@@ -3507,6 +3667,14 @@ function get_access_control(user){
                 $("input[name=settings_part][value='"+res_role.Settings_Parts+"']").prop("checked",true);
                 $("input[name=settings_general][value='"+res_role.Settings_General+"']").prop("checked",true);
                 $("input[name=settings_user][value='"+res_role.Settings_User_Management+"']").prop("checked",true);
+
+                $("input[name=dpd][value='"+res_role.Daily_Production_Data+"']").prop("checked",true);
+                $("input[name=csp][value='"+res_role.Current_Shift_Performance+"']").prop("checked",true);
+                $("input[name=pd][value='"+res_role.Production_Downtime+"']").prop("checked",true);
+                $("input[name=pq][value='"+res_role.Production_Quality+"']").prop("checked",true);
+                $("input[name=wom][value='"+res_role.Work_Order_Management+"']").prop("checked",true);
+                $("input[name=alm][value='"+res_role.Alert_Management+"']").prop("checked",true);
+
             },
             error:function(res){
                 // alert("Sorry!Try Agian!!");

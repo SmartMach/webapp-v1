@@ -287,9 +287,18 @@ $session = \Config\Services::session();
                         <img src="<?php echo base_url('assets/img/filter_reset.png'); ?>" class="undo" style="font-size:20px;color: #b5b8bc;cursor: pointer;width:1.3rem;height:1.3rem;">
                     </div>
 
+                    <?php 
+                        if($this->data['access'][0]['work_order_management'] == 3){ 
+                    ?>
+
                     <a style="background: #005abc;color: white;width:9rem;" class="settings_nav_anchor float-end" id="add_issue_button">
                         <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD ISSUE
                     </a>
+
+                    <?php 
+                         }
+                    ?>
+
                 </div>
             </div>
         </nav>
@@ -2916,6 +2925,15 @@ function getFilterData(){
             });
             var randomColor = user_color[Math.floor(Math.random()*user_color.length)];
 
+            var option="";
+            <?php 
+              if($this->data['access'][0]['work_order_management'] >= 2){ 
+            ?>
+              option = '<img class="img_font_wh edit-work-order"  edit-item="'+item['work_order_id']+'" src="<?php echo base_url('assets/img/pencil.png') ?>"><img class="img_font_wh deactivate-work-order" del-item="'+item['work_order_id']+'" src="<?php echo base_url('assets/img/delete.png') ?>">';
+            <?php 
+              }
+            ?>
+
             var elements = $();
             elements = elements.add('<div id="settings_div">'
                 +'<div class="row paddingm">'
@@ -2943,8 +2961,9 @@ function getFilterData(){
                         +'</div>'
                     +'</div>'
                     +'<div class="col-sm-1 col center-align">'
-                        +'<img class="img_font_wh edit-work-order"  edit-item="'+item['work_order_id']+'" src="<?php echo base_url('assets/img/pencil.png') ?>">'
-                        +'<img class="img_font_wh deactivate-work-order" del-item="'+item['work_order_id']+'" src="<?php echo base_url('assets/img/delete.png') ?>">'
+                        +option
+                        // +'<img class="img_font_wh edit-work-order"  edit-item="'+item['work_order_id']+'" src="<?php //echo base_url('assets/img/pencil.png') ?>">'
+                        // +'<img class="img_font_wh deactivate-work-order" del-item="'+item['work_order_id']+'" src="<?php //echo base_url('assets/img/delete.png') ?>">'
                     +'</div>'
                 +'</div>'
             +'</div>');

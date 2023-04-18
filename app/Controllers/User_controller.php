@@ -15,7 +15,6 @@ class User_controller extends BaseController
 	public function checkUser(){
       	if($this->request->isAJAX()){ 
             $user = $this->request->getVar('user_name');
-			//$user = "admin@gmail.com";
             $existUser = $this->data->checkUser($user);
             return json_encode($existUser);
        	}
@@ -34,7 +33,15 @@ class User_controller extends BaseController
                     "Settings_Machine" => "3", 
                     "Settings_Parts" => "3",
                     "Settings_General" => "3", 
-                    "Settings_User_Management" => "3"
+                    "Settings_User_Management" => "3",
+
+                    "Daily_Production_Data" => "1",
+                    "Current_Shift_Performance" => "1",
+                    "Production_Downtime" => "1",
+                    "Production_Quality" => "1",
+                    "Work_Order_Management" => "3",
+                    "Alert_Management" => "3"
+
                 );
                 return json_encode($role);
             }
@@ -48,7 +55,15 @@ class User_controller extends BaseController
                     "Settings_Machine" => "2", 
                     "Settings_Parts" => "3",
                     "Settings_General" => "3", 
-                    "Settings_User_Management" => "3"
+                    "Settings_User_Management" => "3",
+
+
+                    "Daily_Production_Data" => "1",
+                    "Current_Shift_Performance" => "1",
+                    "Production_Downtime" => "1",
+                    "Production_Quality" => "1",
+                    "Work_Order_Management" => "3",
+                    "Alert_Management" => "3"
                 );
                 return json_encode($role);
             }
@@ -62,7 +77,15 @@ class User_controller extends BaseController
                     "Settings_Machine" => "2",
                     "Settings_Parts" => "3",
                     "Settings_General" => "1", 
-                    "Settings_User_Management" => "0"
+                    "Settings_User_Management" => "0",
+
+
+                    "Daily_Production_Data" => "1",
+                    "Current_Shift_Performance" => "1",
+                    "Production_Downtime" => "1",
+                    "Production_Quality" => "1",
+                    "Work_Order_Management" => "3",
+                    "Alert_Management" => "3"
                 );
                 return json_encode($role);
             }
@@ -205,6 +228,13 @@ class User_controller extends BaseController
                 $user_access['settings_user_management'] = $this->request->getVar('SUser');
                 $user_access['last_updated_by'] = $this->request->getVar('User_Ref');
 
+                $user_access['daily_production_data'] = $this->request->getVar('DailyProduction');
+                $user_access['current_shift_performance'] = $this->request->getVar('Current_Shift');
+                $user_access['production_downtime'] = $this->request->getVar('Production_Quality');
+                $user_access['production_quality'] = $this->request->getVar('Production_Downtime');
+                $user_access['work_order_management'] = $this->request->getVar('Work_Order_Management');
+                $user_access['alert_management'] = $this->request->getVar('Alert_Management');
+
                 $emailSend = $this->sendMail($user['username'],$user['user_id'],$user['first_name'],$user['last_name'],$user['role']);
                 if($emailSend){
                     $res = $this->data->newUserAct($user,$user_credintials,$user_access);
@@ -234,7 +264,7 @@ class User_controller extends BaseController
                 // site and location insertion
                 if ($site_res == true) {
                     //echo "insertion success site and location";
-                     $record = $this->userRecordCountMngt();
+                    $record = $this->userRecordCountMngt();
                     $user['user_id'] = "UM".$record."";
                     $user['username'] = $this->request->getVar('User_Email');
                     $user['first_name'] = $this->request->getVar('User_First_Name');
@@ -472,6 +502,15 @@ class User_controller extends BaseController
                 $access['Settings_Parts'] = $this->request->getVar('SPart');
                 $access['Settings_General'] = $this->request->getVar('SGeneral');
                 $access['Settings_User_Management'] = $this->request->getVar('SUser');
+
+                $access['Daily_Production_Data'] = $this->request->getVar('DPD');
+                $access['Current_Shift_Performance'] = $this->request->getVar('CSP');
+                $access['Production_Downtime'] = $this->request->getVar('PD');
+                $access['Production_Quality'] = $this->request->getVar('PQ');
+                $access['Work_Order_Management'] = $this->request->getVar('WOM');
+                $access['Alert_Management'] = $this->request->getVar('ALM');
+
+
                 $access['Last_Updated_By'] = $this->request->getVar('Updated_By');
 
 
