@@ -12,7 +12,7 @@ function inputAlertName(data){
 		$(".Add_Machine_Data").attr("disabled", true);
 		$('#add_alert_name').val(val);
 		$('#edit_alert_name').val(val);
-        console.log('add_alert_name');
+        // console.log('add_alert_name');
 		return required;
        
 	}else{
@@ -69,7 +69,7 @@ function inputAlertRateHour(data){
 
 
 function inputAlertValue(data){
-	console.log('new');
+	// console.log('new');
 	var val = data;
 	// val = val.trim();
 	if (val==="" || val===null) {
@@ -194,7 +194,7 @@ function inputAlertlabel(data){
 		// if($(".parent_div_input_check_label li").length == 0)
 		if(parseInt(val)<=0)
 		{				
-			console.log('for label check');
+			// console.log('for label check');
 			return required;
 		}else{
 			// console.log('cccccccccc');
@@ -213,7 +213,7 @@ function inputAlertto(data){
 	// if (!val) {
 		if(parseInt(val)<=0)
 		{				
-			console.log('for to check');
+			// console.log('for to check');
 			return required;
 		}else{
 			// console.log('cccccccccc');
@@ -232,7 +232,7 @@ function inputAlertcc(data){
 		if(parseInt(val)<=0)
 		{	
 			
-			console.log('for cc check');
+			// console.log('for cc check');
 			return required;
 		}else{
 			// console.log('cccccccccc');
@@ -277,7 +277,7 @@ function inputAlert_email_note(data){
 function input_work_check(data){
 	
 	if (!$('#work_check_toggle:checked').length && !$('#email_check_toggle:checked').length) {
-			console.log('unchecked');
+			// console.log('unchecked');
 	 $(".add_alert_btn").attr("disabled", true);
 			return required;
 		}
@@ -289,7 +289,7 @@ function input_work_check(data){
 
 function input_work_edit_check(data){
 	if (!$('#work_edit_check_toggle:checked').length && !$('#edit_email_check_toggle:checked').length) {
-		console.log('unchecked');
+		// console.log('unchecked');
  	$(".edit_alert_btn_submit").attr("disabled", true);	
 		return required;
 	}
@@ -302,7 +302,7 @@ else{
 function input_work_check_new(data){
 
 	if (!$('#work_check_toggle:checked').length && !$('#email_check_toggle:checked').length) {
-		console.log('unchecked');
+		// console.log('unchecked');
 $(".add_alert_btn").attr("disabled", true);
 
 		return required;
@@ -314,14 +314,14 @@ else{
 }
 
 $('.input-box').on('change',function(){
-	console.log('nnnnnn');
+	// console.log('nnnnnn');
 	var x =input_work_check_new($(".input-box").val());
 	
 	$("#input_toggle_Err").html(x);
 });
 
 $('.form-control').on('change',function(){
-console.log('form_control');
+// console.log('form_control');
 var x=input_work_check_new($(".form-control").val());
 $("#input_toggle_Err").html(x);
 });
@@ -333,12 +333,16 @@ $('#work_check_toggle').on('change',function(){
 	$('#input_check_label_alert').val('');
 	$('.label_input_tags_txt').remove();
 	$('#add_alert_assignee').val('');
+	$('#assignee_val').text('Unassigned');
+	$('#assignee_val').attr('data-assignee-val','Unassigned');
 	$('#add_alert_deu_days').val('');
 	$('#inputAlertworktypeErr').html('');
 	$('#inputAlertworktitleErr').html('');
 	$('#inputlabelErr').html('');
 	$('#inputAlertdeudaysErr').html('');
    $("#input_toggle_Err").html(x);
+   $(".selectBtn3").html('<div class="option3" data-type="firstOption" onclick="icon_drop(this)" ><i class="fas fa-angle-double-down" style="font: size 18px; width:18px; color: #2196F3; margin-top: 5px;"></i>&nbsp;Low</div>');
+
 
 });
 
@@ -612,7 +616,7 @@ $("#edit_alert_mail_notes").on('blur',function(){
 });
 
 $(".edit_input_check_label").on('blur',function(){
-	console.log("edit onblur label");
+	//console.log("edit onblur label");
 	var length_edit_label = $('.edit_parent_div_input_check_label li').length;
 	var x = inputAlertlabel(length_edit_label);
 	$("#inputlabel_edit_Err").html(x);
