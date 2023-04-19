@@ -206,7 +206,7 @@ $session = \Config\Services::session();
                     <div class="box rightmar" style="margin-right: 0.5rem;">
                         <div class="input-box">
                           <div class="filter_multiselect">
-                            <div class="filter_selectBox" onclick="multiple_drp_status()">
+                            <div class="filter_selectBox status" onclick="multiple_drp_status()">
                               <div class="inbox-span fontStyle search_style dropdown-arrow">
                                 <div style="width: 80% !important;">
                                   <p class="paddingm" id="Filter_status_val">All Status</p>
@@ -298,7 +298,6 @@ $session = \Config\Services::session();
                     <?php 
                          }
                     ?>
-
                 </div>
             </div>
         </nav>
@@ -349,20 +348,22 @@ $session = \Config\Services::session();
                             <div class="input-box reduce_width fieldStyle">      
                                 <input type="text" class="form-control font_weight_modal" id="add_work_title" name="" >
                                 <label for="" class="input-padding">Title <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id=""></span> 
-                                <span class="float-end charCount" id=""></span> 
+                                <span class="paddingm float-start validate" id="inputwork_title_Err"></span>  
+                                
+                                <span class="float-end charCount" id="addworktitleCunt"></span> 
                             </div>
                             <div class="input-box reduce_width fieldStyle" style="height: 8.5rem !important;">      
                                 <!-- <input type="textarea" rows="4" class="form-control font_weight_modal" id="" name="" > -->
                                 <textarea class="form-control font_weight_modal" id="add_work_description" rows="4"></textarea>
                                 <label for="" class="input-padding">Description <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id=""></span> 
+                                <span class="paddingm float-start validate" id="input_description_Err"></span> 
                                 <span class="float-end charCount" id=""></span> 
                             </div>
                             
                             <div class="input-box reduce_width" style="display: none;" id="cause-add">      
-                                <input type="text" class="form-control font_weight_modal input-field-add" id="" name="" >
+                                <input type="text" class="form-control font_weight_modal input-field-add" id="add_cause" name="" >
                                 <label for="" class="input-padding">Cause<span class="paddingm validate">*</span></label>
+                                <span class="paddingm float-start validate" id="inputtypeErr"></span> 
                             </div>
                             <!-- Drop down Suggestion -->
                             <div class="filter_checkboxes_issue suggestion suggestion_width" id="dropdown-list-cause">
@@ -371,10 +372,13 @@ $session = \Config\Services::session();
                             <div class="items-container reduce_width items-container-cause"></div>
 
                             <div class="input-box center-align">      
-                                <input type="text" class="form-control reduce_width font_weight_modal input-field-action" id="" name="" >
+                                <input type="text" class="form-control reduce_width font_weight_modal input-field-action" id="add_filed_action" name="add_filed_action" >
                                 <label for="" class="input-padding">Action Taken <span class="paddingm validate">*</span></label>
                                 <img src="<?php echo base_url('assets/img/plus-icon.png'); ?>" class="dot-style dot-cont input-field-action-add">
                             </div>
+                            <span class="paddingm float-start validate" id="input_action_Err"></span> 
+                            <span class="float-end charCount" id="actiontakenCunt"></span> 
+                            
                             <!-- Drop down Suggestion -->
                             <div class="filter_checkboxes_issue suggestion suggestion_width" id="dropdown-list-action">
                             </div>
@@ -387,8 +391,9 @@ $session = \Config\Services::session();
                                     <div class="circle-div" style="background:#7f7f7f;color:white;"><p class="paddingm">MS</p></div>
                                 </div>
                                 <div class="input-box" style="width: 90%">      
-                                    <input type="text" class="form-control font_weight_modal input-field-comments" id="" name="" >
+                                    <input type="text" class="form-control font_weight_modal input-field-comments" id="add_input_comment" name="" >
                                 </div>
+                                <span class="paddingm float-start validate" id="input_comment_Err"></span> 
                             </div>
 
                             <div class="Comments-box reduce_width items-container-comments">
@@ -429,16 +434,17 @@ $session = \Config\Services::session();
                                 <div class="input-box indexing">
                                   <div class="filter_multiselect filter_multiselect_input">
                                     <span class="multi_select_label" style="">Priority <span class="paddingm validate">*</span></span>
-                                    <div class="filter_selectBox" onclick="multiple_priority(this)">
+                                    <div class="filter_selectBox priority" onclick="multiple_priority(this)">
                                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                                         <div style="width: 80% !important">
                                           <p class="paddingm input-index" id="priority_val_lable">Select</p>
                                         </div>
                                         <div class="dropdown-div" style=" width: 20% !important">
                                           <i class="fa fa-angle-down icon-style"></i>
-                                        </div>
+                                        </div>                                        
                                       </div>
                                     </div>
+                                    <span id="inputpriorityErr" class="validate"></span>
                                   </div>
                                 </div>
                                 <div class="filter_checkboxes_issue display_hide filter_priority">
@@ -480,13 +486,14 @@ $session = \Config\Services::session();
                                         <div style="width: 80% !important">
                                             <div class="lable-div lable-div-add">
                                             </div>
-                                            <input type="text" class="form-control font_weight_modal input-field-lable input-field-lable-add" id="" name="" >
+                                            <input type="text" class="form-control font_weight_modal input-field-lable input-field-lable-add" id="input_field_label" name="" >
                                         </div>
                                         <div class="dropdown-div" style=" width: 20% !important">
                                           <i class="fa fa-angle-down icon-style"></i>
                                         </div>
                                       </div>
                                     </div>
+                                    <span class="paddingm float-start validate" id="label_action_Err"></span> 
                                   </div>
                                 </div>
                                 <!-- Drop down Suggestion -->
@@ -497,7 +504,7 @@ $session = \Config\Services::session();
                                 <div class="input-box indexing">
                                   <div class="filter_multiselect filter_multiselect_input">
                                     <span class="multi_select_label" style="">Assignee <span class="paddingm validate">*</span></span>
-                                    <div class="filter_selectBox" onclick="multiple_assignee(this)">
+                                    <div class="filter_selectBox assignee" onclick="multiple_assignee(this)">
                                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                                         <div style="width: 80% !important">
                                           <p class="paddingm input-index" id="assignee_val">Select</p>
@@ -508,6 +515,7 @@ $session = \Config\Services::session();
                                       </div>
                                     </div>
                                   </div>
+                                  <span class="paddingm float-start validate" id="inputassignErr"></span>
                                 </div>
                                 <div class="filter_checkboxes_issue add_record_assignee display_hide filter_assignee">
                                     <!--  -->
@@ -515,16 +523,17 @@ $session = \Config\Services::session();
                             </div>
                             <div class="box inbox-top">
                                 <div class="input-box">
-                                    <input type="date" class="form-control font_weight_modal" id="add_due_date" name="" >
+                                    <input type="date" class="form-control font_weight_modal" id="add_due_date" name="" value="">
                                     <label for="" class="input-padding">Due Date <span class="paddingm validate">*</span></label>
                                     <span id="" class="validate"></span>
+                                  <span class="paddingm float-start validate" id="inputdateErr"></span>
                                 </div>
                             </div>
                             <div class="box inbox-top">
                                 <div class="input-box indexing">
                                   <div class="filter_multiselect filter_multiselect_input">
                                     <span class="multi_select_label" style="">Status <span class="paddingm validate">*</span></span>
-                                    <div class="filter_selectBox" onclick="multiple_status(this)">
+                                    <div class="filter_selectBox status" onclick="multiple_status(this)">
                                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                                         <div style="width: 80% !important">
                                           <p class="paddingm input-index" id="status_val_lable">Select</p>
@@ -535,6 +544,7 @@ $session = \Config\Services::session();
                                       </div>
                                     </div>
                                   </div>
+                                  <span class="paddingm float-start validate" id="inputstatusErr"></span>
                                 </div>
                                 <div class="filter_checkboxes_issue display_hide filter_status">
                                     <div class="inbox inbox_status" style="display: flex;">
@@ -597,19 +607,20 @@ $session = \Config\Services::session();
                             <div class="input-box reduce_width fieldStyle">      
                                 <input type="text" class="form-control font_weight_modal" id="edit_work_title" name="" >
                                 <label for="" class="input-padding">Title <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id=""></span> 
-                                <span class="float-end charCount" id=""></span> 
+                                <span class="paddingm float-start validate" id="edit_work_title_Err"></span> 
+                                <span class="float-end charCount" id="edit_work_title_cout"></span> 
                             </div>
                             <div class="input-box reduce_width fieldStyle" style="height: 8.5rem !important;">      
                                 <textarea class="form-control font_weight_modal" id="edit_work_description" rows="4"></textarea>
                                 <label for="" class="input-padding">Description <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id=""></span> 
+                                <span class="paddingm float-start validate" id="edit_description_Err"></span> 
                                 <span class="float-end charCount" id=""></span> 
                             </div>
                             
                             <div class="input-box reduce_width" style="display: none;" id="cause-edit">      
-                                <input type="text" class="form-control font_weight_modal input-field-edit" id="" name="" >
+                                <input type="text" class="form-control font_weight_modal input-field-edit" id="edit_cause" name="" >
                                 <label for="" class="input-padding">Cause<span class="paddingm validate">*</span></label>
+                                <span class="paddingm float-start validate" id="edittypeErr"></span> 
                             </div>
                             <!-- Drop down Suggestion -->
                             <div class="filter_checkboxes_issue suggestion suggestion_width" id="dropdown-list-cause-edit">
@@ -618,16 +629,18 @@ $session = \Config\Services::session();
                             <div class="items-container reduce_width items-container-edit-cause"></div>
 
                             <div class="input-box center-align">      
-                                <input type="text" class="form-control reduce_width font_weight_modal input-field-action-edit" id="" name="" >
+                                <input type="text" class="form-control reduce_width font_weight_modal input-field-action-edit" id="edit_field_action" name="" >
                                 <label for="" class="input-padding">Action Taken <span class="paddingm validate">*</span></label>
                                 <img src="<?php echo base_url('assets/img/plus-icon.png'); ?>" class="dot-style dot-cont input-field-action-edit-add">
                             </div>
                             <!-- Drop down Suggestion -->
                             <div class="filter_checkboxes_issue suggestion suggestion_width" id="dropdown-list-action-edit">
                             </div>
+                            <span class="paddingm float-start validate" id="edit_action_Err"></span> 
+                            <span class="float-end charCount" id="editactiontakenCunt"></span> 
+
                             <!-- Action Content -->
                             <div class="items-container reduce_width items-container-edit-action"></div>
-
                             <p class="Comments">Comments</p>
                             <div class="center-align reduce_width">
                                 <div style="float: left;width: 10%;" class="center-align">
@@ -683,13 +696,15 @@ $session = \Config\Services::session();
                                         <div style="width: 80% !important">
                                             <div class="lable-div lable-div-edit">
                                             </div>
-                                            <input type="text" class="form-control font_weight_modal input-field-lable input-field-lable-edit" id="" name="" >
+                                            <input type="text" class="form-control font_weight_modal input-field-lable input-field-lable-edit" id="input-field-lable-edit" name="" >
                                         </div>
                                         <div class="dropdown-div" style=" width: 20% !important">
                                           <i class="fa fa-angle-down icon-style"></i>
                                         </div>
                                       </div>
                                     </div>
+                                    <span class="paddingm float-start validate" id="label_edit_Err"></span> 
+
                                   </div>
                                 </div>
                                 <!-- Drop down Suggestion -->
@@ -700,7 +715,7 @@ $session = \Config\Services::session();
                                 <div class="input-box indexing">
                                   <div class="filter_multiselect filter_multiselect_input">
                                     <span class="multi_select_label" style="">Assignee <span class="paddingm validate">*</span></span>
-                                    <div class="filter_selectBox" onclick="multiple_assignee(this)">
+                                    <div class="filter_selectBox assignee" onclick="multiple_assignee(this)">
                                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                                         <div style="width: 80% !important">
                                           <p class="paddingm input-index" id="assignee_edit_val">Select</p>
@@ -795,10 +810,15 @@ $session = \Config\Services::session();
 
     function change_type(item){
         if (item.value == "task") {
+
+            console.log('none');
             document.getElementById("cause-add").style.display = "none";
-        }
+            $(".item-cause").css('display','none');
+        }   
         else{
+            console.log('block');
             document.getElementById("cause-add").style.display = "block";
+            $(".item-cause").css('display','block');
         }
     }
 
@@ -816,6 +836,8 @@ $session = \Config\Services::session();
     });
 
     function multiple_priority(t) {
+        console.log('priority check');
+
       $(".filter_checkboxes_issue").addClass("display_hide");
       if ($('.filter_priority').css("display") == "none") {
           $(".filter_priority").removeClass("display_hide");
@@ -824,6 +846,11 @@ $session = \Config\Services::session();
           $(".filter_priority").removeClass("display_visible");
           $(".filter_priority").addClass("display_hide");
       }
+      $('.filter_priority ').click(function(){
+        console.log('hide');
+        $(".filter_priority").removeClass("display_visible");
+          $(".filter_priority").addClass("display_hide");
+      })
     }
 
     function multiple_assignee(t) {
@@ -835,6 +862,11 @@ $session = \Config\Services::session();
           $(".filter_assignee").removeClass("display_visible");
           $(".filter_assignee").addClass("display_hide");
       }
+      $('.filter_assignee ').click(function(){
+        console.log('hide');
+        $(".filter_assignee").removeClass("display_visible");
+          $(".filter_assignee").addClass("display_hide");
+      });
     }
 
     function multiple_status(t) {
@@ -846,6 +878,11 @@ $session = \Config\Services::session();
           $(".filter_status").removeClass("display_visible");
           $(".filter_status").addClass("display_hide");
       }
+      $('.filter_status ').click(function(){
+        console.log('hide');
+        $(".filter_status").removeClass("display_visible");
+          $(".filter_status").addClass("display_hide");
+      });
     }
 
 function multiple_drp_status() {
@@ -1352,6 +1389,7 @@ $(document).on("click", ".item-remove-attach-edit", function(event){
     var countr = $('.item-remove-attach-edit');
     var indx = countr.index($(this));
     $(this).parent('.lable-bg-file').remove();
+    
 });
 
 
@@ -3023,9 +3061,208 @@ function getWorkOrderRecords(status,lables,priority,assignee){
 }
 
 // Add Work Order
-$(".Add_Work_Data").click(function(event){
+// $(".Add_Work_Data").click(function(event){
 
-    var formData = new FormData();
+//     var formData = new FormData();
+
+//     formData.append('title', $('#add_work_title').val());
+//     formData.append('type', $('#type-add').val());
+//     formData.append('description', $('#add_work_description').val());
+//     formData.append('priority', $('input[name="priority_val"]:checked').val());
+//     formData.append('due_date', $('#add_due_date').val());
+//     formData.append('status', $('input[name="status_val"]:checked').val());
+//     formData.append('assignee', $('input[name="assignee_val"]:checked').val());
+
+//     var cause_list=[];
+//     var element_cause = $('.items-container-cause').children('.item-cause').children('.item-id');
+//     $.each(element_cause, function(key,valueObj){
+//         cause_list.push(valueObj.getAttribute('cause_list_id'));
+//     });
+
+//     formData.append('cause_list', cause_list);
+
+//     var action_list =[];
+//     var element_action = $('.items-container-action').children('.item-cause').children('.item-text');
+//     $.each(element_action, function(key,valueObj){
+//         action_list.push(valueObj.getAttribute('action_list_id'));
+//     });
+
+//     formData.append('action_list', action_list);
+
+//     var comments_list = $('.input-field-comments').val();
+//     formData.append('comments_list', comments_list);
+
+//     var lable_list = [];
+//     var lable = $('.lable-div-add').children('.lable-bg').children('.lable_items');
+//     $.each(lable, function(key,valueObj){
+//         lable_list.push(valueObj.getAttribute('lable_list_id'));
+//     });
+
+//     formData.append('lable_list', lable_list);
+
+    
+//     var file_list_collection = [];
+//     var files = $('.attached_file_list');
+//     $.each(files, function(key,valueObj){
+//         file_list_collection.push(valueObj.getAttribute('attach_list_id'));
+//     });
+
+//     formData.append('file_list_collection', file_list_collection);
+
+
+
+//     $.ajax({
+//         url:"<?php echo base_url('Work_Order_Management_controller/save_work_order_data') ?>",
+//         method:"POST",
+//         async:false,  
+//         cache: false, 
+//         data:formData,
+//         processData:false,
+//         contentType: false,
+//         // dataType:"json",
+//         success:function(data){
+//             callALL();
+//             // Close the Acknowledge ................
+//             $('#AddIssueModal').modal('hide');
+//         },
+//         error:function(err){
+
+//         }
+//     });
+
+// });
+
+// Edit Work Order
+// $(".Edit_Work_Data").click(function(event){
+
+//     var formData = new FormData();
+
+//     formData.append('title', $('#edit_work_title').val());
+//     formData.append('type', $('#type-edit').val());
+//     formData.append('description', $('#edit_work_description').val());
+//     formData.append('priority', $('input[name="priority_edit"]:checked').val());
+//     formData.append('due_date', $('#edit_due_date').val());
+//     formData.append('status', $('input[name="status_edit_val"]:checked').val());
+//     formData.append('assignee', $('input[name="assignee_edit_val"]:checked').val());
+
+//     var cause_list=[];
+//     var element_cause = $('.items-container-edit-cause').children('.item-cause').children('.item-id');
+//     $.each(element_cause, function(key,valueObj){
+//         cause_list.push(valueObj.getAttribute('cause_list_id'));
+//     });
+
+//     formData.append('cause_list', cause_list);
+
+//     // for (var pair of formData.entries()) {
+//     //     console.log(pair[0]+ ', ' + pair[1]); 
+//     // }
+
+//     var action_list =[];
+//     var element_action = $('.items-container-edit-action').children('.item-cause').children('.item-text');
+//     $.each(element_action, function(key,valueObj){
+//         action_list.push(valueObj.getAttribute('action_list_id'));
+//     });
+
+//     formData.append('action_list', action_list);
+
+//     var comments_list = $('.input-field-comments-edit').val();
+//     formData.append('comments_list', comments_list);
+
+//     var lable_list = [];
+//     var lable = $('.lable-div-edit').children('.lable-bg').children('.lable_items');
+//     $.each(lable, function(key,valueObj){
+//         lable_list.push(valueObj.getAttribute('lable_list_id'));
+//     });
+
+//     formData.append('lable_list', lable_list);
+    
+//     var file_list_collection = [];
+//     var files = $('.attached_file_list_edit');
+//     $.each(files, function(key,valueObj){
+//         file_list_collection.push(valueObj.getAttribute('attach_list_id'));
+//     });
+
+//     formData.append('file_list_collection', file_list_collection);
+
+//     formData.append('work_order_id', $('.Edit_Work_Data').attr('status_data'));
+
+//     // for (var pair of formData.entries()) {
+//     //     console.log(pair[0]+ ', ' + pair[1]); 
+//     // }
+
+//     $.ajax({
+//         url:"<?php echo base_url('Work_Order_Management_controller/update_work_order_data') ?>",
+//         method:"POST",
+//         async:false,  
+//         cache: false, 
+//         data:formData,
+//         processData:false,
+//         contentType: false,
+//         // dataType:"json",
+//         success:function(data){
+//             callALL();
+//             // Close the Acknowledge ................
+//             $('#EditIssueModal').modal('hide');
+//         },
+//         error:function(err){
+
+//         }
+//     });
+
+// });
+
+
+// for work order management form submit
+$(document).on('click','.Add_Work_Data',function(event){
+        event.preventDefault();
+        console.log('save btn click');
+        $("#overlay").fadeIn(300);
+        var add_title_name = $('#add_work_title').val();
+        var add_description = $('#add_work_description').val();
+        var add_field = $('.items-container-action .item-cause').length;
+       // var add_comment = $('#add_input_comment').val();
+        var add_type = $('#type-add').val();
+        var add_priority = $("#priority_val_lable").text();
+        var add_label = $('.lable-div-add .lable-bg').length;
+        var add_assignee = $("#assignee_val").text();
+        var add_status = $("#status_val_lable").text();
+        var add_date = $('#add_due_date').val();
+        var check_cause = ($('.items-container-cause .item-cause').length);
+        var add_type = $('#type-add').val();
+        console.log(add_type);
+        var a = inputAlertName(add_title_name);
+        var b = inputdescription(add_description);
+        console.log(add_description);
+        var c = inputaction(add_field);
+        var d = inputlabel(add_label);
+        var f = input_priority(add_priority);
+       // var e = input_field_comment(add_comment);
+        var g = input_assignee(add_assignee);
+        var h = input_status(add_status);
+        // var i = input_date(add_date);
+        // var x = work_type(check_cause);
+        
+
+        if (a!="" || b!="" || d!="" || c!="" || f!="" || g!="" || h!="") {
+            console.log('if condition');
+            $('#inputwork_title_Err').html(a);
+            $('#label_action_Err').html(d);
+             //$('#input_comment_Err').html(e);
+            $('#input_action_Err').html(c);
+            $('#input_description_Err').html(b);
+            $('#inputpriorityErr').html(f); 
+            $('#inputassignErr').html(g);
+            $('#inputstatusErr').html(h);
+            // $('#inputdateErr').html(i);
+            // $('#inputtypeErr').html(x);
+
+
+
+        }
+        
+        else{
+            console.log('else condition')
+                var formData = new FormData();
 
     formData.append('title', $('#add_work_title').val());
     formData.append('type', $('#type-add').val());
@@ -3071,6 +3308,8 @@ $(".Add_Work_Data").click(function(event){
 
     formData.append('file_list_collection', file_list_collection);
 
+
+    console.log('else condition ok....')
     $.ajax({
         url:"<?php echo base_url('Work_Order_Management_controller/save_work_order_data') ?>",
         method:"POST",
@@ -3090,10 +3329,65 @@ $(".Add_Work_Data").click(function(event){
         }
     });
 
+            // console.log('else condition');
+            // var notify_as = " ";
+        }
 });
 
-// Edit Work Order
+
+// work for workorder edit submit
 $(".Edit_Work_Data").click(function(event){
+    console.log('edit clicked');
+    event.preventDefault();
+        console.log('save btn click');
+        $("#overlay").fadeIn(300);
+        var add_title_name = $('#edit_work_title').val();
+        var add_description = $('#edit_work_description').val();
+        var add_field = $('.items-container-edit-cause .item-cause').length;
+       // var add_comment = $('#add_input_comment').val();
+        var add_type = $('#type-edit').val();
+        var add_action = $('.items-container-edit-action .item-cause').length;
+        var add_label = $('.lable-div-edit .lable-bg').length;
+        var add_assignee = $("#assignee_edit_val").text();
+        var add_status = $("#status_val_edit_lable").text();
+        var add_date = $('#edit_due_date').val();
+        // var check_cause = ($('.items-container-cause .item-cause').length);
+        var add_type = $('#type-edit').val();
+        console.log(add_type);
+        var a = inputAlertName(add_title_name);
+        var b = inputdescription(add_description);
+        console.log(add_description);
+        var c = inputaction(add_action);
+        var d = inputlabel(add_label);
+       
+       // var e = input_field_comment(add_comment);
+        var g = input_assignee(add_assignee);
+        var h = input_status(add_status);
+        // var i = input_date(add_date);
+        // var x = work_type(check_cause);
+        if(add_type == "issue"){
+            console.log('issuesssssss');
+            var f = work_type(add_field);
+        }
+
+        if (a!="" || b!="" || d!="" || c!="" || f!="") {
+            console.log('if condition');
+            $('#edit_work_title_Err').html(a);
+            $('#label_edit_Err').html(d);
+             //$('#input_comment_Err').html(e);
+            $('#edit_action_Err').html(c);
+            $('#edit_description_Err').html(b);
+            $('#edittypeErr').html(f); 
+            // $('#inputassignErr').html(g);
+            // $('#inputstatusErr').html(h);
+            // $('#inputdateErr').html(i);
+            // $('#inputtypeErr').html(x);
+
+
+
+        }else{
+            console.log('editelse conditionn');
+          
 
     var formData = new FormData();
 
@@ -3169,5 +3463,8 @@ $(".Edit_Work_Data").click(function(event){
         }
     });
 
+        }
 });
 </script>
+<script src="<?php echo base_url()?>/assets/js/work_order_validation.js?version=<?php echo rand(); ?>"></script>
+
