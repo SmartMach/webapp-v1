@@ -167,7 +167,7 @@
                     <!-- part -->
                     <div class="inner_div_align">
                         <div class="box rightmar" style="margin-right: 0.5rem;">
-                            <label class="multi_select_label" style="">Part</label>
+                            <label class="multi_select_label" style="margin-top:0.1rem;">Part</label>
                             <div class="filter_selectBox_categorygp" onclick="alert_filter_part()">
                                 <select class="multi_select_categorygp" style="">
                                     <option id="filter_txt_part" style="">All Parts</option>
@@ -184,7 +184,7 @@
                     <!-- Machine -->
                     <div class="inner_div_align">
                         <div class="box rightmar" style="margin-right: 0.5rem;">
-                            <label class="multi_select_label" style="">Machine</label>
+                            <label class="multi_select_label" style="margin-top:0.1rem;">Machine</label>
                             <div class="filter_selectBox_categorygp" onclick="alert_filter_machine()">
                                 <select class="multi_select_categorygp" style="">
                                     <option id="filter_txt_machine" style="">All Machine</option>
@@ -200,7 +200,7 @@
                     <!-- Criteria -->
                     <div class="inner_div_align">
                         <div class="box rightmar" style="margin-right: 0.5rem;">
-                            <label class="multi_select_label" style="">Work Order Type</label>
+                            <label class="multi_select_label" style="margin-top:0.1rem;">Work Order Type</label>
                             <div class="filter_selectBox_categorygp" onclick="alert_filter_work()">
                                 <select class="multi_select_categorygp" style="">
                                     <option id="text_filter_work" style="">All </option>
@@ -242,7 +242,7 @@
                     <!-- updated by -->
                     <div class="inner_div_align">
                         <div class="box rightmar" style="margin-right: 0.5rem;">
-                            <label class="multi_select_label" style="">LastUpdated By</label>
+                            <label class="multi_select_label" style="margin-top:0.1rem;">LastUpdated By</label>
                             <div class="filter_selectBox_categorygp" onclick="alert_filter_assignee()">
                                 <select class="multi_select_categorygp" style="">
                                     <option id="txt_filter_last_updated_by" style="">All Users</option>

@@ -103,7 +103,9 @@ class Alert_Settings_Controller extends BaseController{
     public function generate_alert_id(){
         $res = $this->data->get_alert_id();
         $tmpsplit = $this->session->get('active_site');
-        $split_arr_site = explode("S",$tmpsplit);
+        $split_arr_site = explode("S",strtoupper($tmpsplit));
+        // 
+        // print_r($split_arr_site);
         $tmp = $split_arr_site[1]-1000;
         $tmp_site_id = 'S'.$tmp;
         $alert_id = $tmp_site_id.'-A'.$res;
