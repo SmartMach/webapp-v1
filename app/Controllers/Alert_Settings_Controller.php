@@ -103,7 +103,9 @@ class Alert_Settings_Controller extends BaseController{
     public function generate_alert_id(){
         $res = $this->data->get_alert_id();
         $tmpsplit = $this->session->get('active_site');
-        $split_arr_site = explode("S",$tmpsplit);
+        $split_arr_site = explode("S",strtoupper($tmpsplit));
+        // 
+        // print_r($split_arr_site);
         $tmp = $split_arr_site[1]-1000;
         $tmp_site_id = 'S'.$tmp;
         $alert_id = $tmp_site_id.'-A'.$res;
@@ -215,8 +217,13 @@ class Alert_Settings_Controller extends BaseController{
     public function get_particular_record(){
         if ($this->request->isAJAX()) {
             $alert_id = $this->request->getvar('alert_id');
+            $notify_as = $this->request->getvar('get_notify');
 
-            $result = $this->data->getparticular_rec($alert_id);
+            $result = $this->data->getparticular_rec($alert_id,$notify_as);
+
+            foreach ($result as $key => $value) {
+                $result[$key]['user_name'] = $this->get_user_data($value['assignee']);
+            }
 
             echo json_encode($result);
         }

@@ -172,13 +172,26 @@ class Alert_Settings_Model extends Model{
     }
 
     // before edit retrive data
-    public function getparticular_rec($alert_id){
+    public function getparticular_rec($alert_id,$notify_as){
         $db = \Config\Database::connect($this->site_connection);
-        $query = $db->table('alert_settings');
-        $query->select('*');
-        $query->where('alert_id',$alert_id);
-        $res = $query->get()->getResultArray();
+        if (($notify_as!="all") && ($notify_as!="work")) {
+            $query = $db->table('alert_settings as t');
+            $query->select('t.*');
+            // $query->join('work_order_management_priority as p','p.priority_id = t.priority');
+            $query->where('t.alert_id',$alert_id);
+            $res = $query->get()->getResultArray();
+    
+        }else{
+            $query = $db->table('alert_settings as t');
+            $query->select('t.*,p.priority,p.priority_id');
+            $query->join('work_order_management_priority as p','p.priority_id = t.priority');
+            $query->where('t.alert_id',$alert_id);
+            $res = $query->get()->getResultArray();
 
+            
+    
+        }
+       
         return $res;
     }
 
