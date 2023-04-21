@@ -53,7 +53,9 @@
     .readonly-input{
       background-color: #dddddd;
     }
-    
+    .action_count{
+      margin-right: 3rem;
+    }
 
 
 
@@ -280,7 +282,7 @@ $session = \Config\Services::session();
                         </div>
                     </div>
 
-                    <a style="background: #005abc;color: white;width:5rem;" class="settings_nav_anchor center-align" onclick="getFilterval()" id="">APPLY
+                    <a style="background: #005abc;color: white;width:5rem;" class="settings_nav_anchor center-align" onclick="getFilterval(true)" id="">APPLY
                     </a>
 
                     <div class="box rightmar" style="margin-right: 0.5rem;display: flex;justify-content: center;">
@@ -350,37 +352,37 @@ $session = \Config\Services::session();
                                 <label for="" class="input-padding">Title <span class="paddingm validate">*</span></label>
                                 <span class="paddingm float-start validate" id="inputwork_title_Err"></span>  
                                 
-                                <span class="float-end charCount" id="addworktitleCunt"></span> 
+                                <!-- <span class="float-end charCount" id="addworktitleCunt"></span>  -->
                             </div>
                             <div class="input-box reduce_width fieldStyle" style="height: 8.5rem !important;">      
                                 <!-- <input type="textarea" rows="4" class="form-control font_weight_modal" id="" name="" > -->
                                 <textarea class="form-control font_weight_modal" id="add_work_description" rows="4"></textarea>
-                                <label for="" class="input-padding">Description <span class="paddingm validate">*</span></label>
+                                <label for="" class="input-padding">Description</label>
                                 <span class="paddingm float-start validate" id="input_description_Err"></span> 
                                 <span class="float-end charCount" id=""></span> 
                             </div>
                             
                             <div class="input-box reduce_width" style="display: none;" id="cause-add">      
                                 <input type="text" class="form-control font_weight_modal input-field-add" id="add_cause" name="" >
-                                <label for="" class="input-padding">Cause<span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id="inputtypeErr"></span> 
+                                <label for="" class="input-padding">Cause</label>
+                                <!-- <span class="paddingm float-start validate" id="inputtypeErr"></span>  -->
                             </div>
                             <!-- Drop down Suggestion -->
-                            <div class="filter_checkboxes_issue suggestion suggestion_width" id="dropdown-list-cause">
+                            <div class="filter_checkboxes_issue suggestion suggession_box suggestion_width" id="dropdown-list-cause">
                             </div>
                             <!-- Cause Content -->
                             <div class="items-container reduce_width items-container-cause"></div>
 
                             <div class="input-box center-align">      
                                 <input type="text" class="form-control reduce_width font_weight_modal input-field-action" id="add_filed_action" name="add_filed_action" >
-                                <label for="" class="input-padding">Action Taken <span class="paddingm validate">*</span></label>
+                                <label for="" class="input-padding">Action Taken</label>
                                 <img src="<?php echo base_url('assets/img/plus-icon.png'); ?>" class="dot-style dot-cont input-field-action-add">
                             </div>
                             <span class="paddingm float-start validate" id="input_action_Err"></span> 
-                            <span class="float-end charCount" id="actiontakenCunt"></span> 
+                            <!-- <span class="float-end charCount action_count" id="actiontakenCunt"></span>  -->
                             
                             <!-- Drop down Suggestion -->
-                            <div class="filter_checkboxes_issue suggestion suggestion_width" id="dropdown-list-action">
+                            <div class="filter_checkboxes_issue suggestion suggession_box suggestion_width" id="dropdown-list-action">
                             </div>
                             <!-- Action Taken content -->
                             <div class="items-container reduce_width items-container-action"></div>
@@ -397,25 +399,7 @@ $session = \Config\Services::session();
                             </div>
 
                             <div class="Comments-box reduce_width items-container-comments">
-                                <!-- <div class="Comments-list">
-                                    <div class="center-align">
-                                        <div style="float: left;width: 10%;" class="center-align">
-                                            <div class="circle-div" style="background:#7f7f7f;color:white;"><p class="paddingm">MS</p></div>
-                                        </div>
-                                        <div class="input-box" style="width: 90%">
-                                            <div class="center-align-center">
-                                                <p class="paddingm font-size font-fam">Manikandan</p>
-                                                <p class="paddingm marleftalign font-fam font-size font-color"> <span>26 Feb 2023 </span>at <span>13:03</span></p>
-                                                <img class="img_font_wh marleftalign edit-cmd" src="<?php echo base_url('assets/img/pencil.png') ?>">
-                                                <img class="img_font_wh marleftalign delete-cmd" src="<?php echo base_url('assets/img/delete.png') ?>">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="center-align-center cmd-cnt">
-                                        <p class="paddingm Comments-cnt font-fam font-size font-color">Comments added </p>
-                                        <input type="text" style="display:none" class="form-control font_weight_modal cmd-input" id="" name="">
-                                    </div>
-                                </div> -->
+
                             </div>
 
                         </div>
@@ -433,7 +417,7 @@ $session = \Config\Services::session();
                             <div class="box inbox-top">
                                 <div class="input-box indexing">
                                   <div class="filter_multiselect filter_multiselect_input">
-                                    <span class="multi_select_label" style="">Priority <span class="paddingm validate">*</span></span>
+                                    <span class="multi_select_label" style="">Priority</span>
                                     <div class="filter_selectBox priority" onclick="multiple_priority(this)">
                                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                                         <div style="width: 80% !important">
@@ -444,43 +428,17 @@ $session = \Config\Services::session();
                                         </div>                                        
                                       </div>
                                     </div>
-                                    <span id="inputpriorityErr" class="validate"></span>
+                                    <!-- <span id="inputpriorityErr" class="validate"></span> -->
                                   </div>
                                 </div>
                                 <div class="filter_checkboxes_issue display_hide filter_priority">
-                                    <div class="inbox inbox_priority" style="display: flex;">
-                                        <div style="float: left;width: 20%;" class="center-align">
-                                          <i class="fa fa-angle-double-right" style="rotate:270deg;color: #ff5630"></i>
-                                        </div>
-                                        <div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">
-                                            <p class="inbox-span paddingm">High</p>
-                                        </div>
-                                        <input type="radio" class="priority_add radio-visible" name="priority_val" value="1">
-                                    </div>
-                                    <div class="inbox inbox_priority" style="display: flex;">
-                                        <div style="float: left;width: 20%;" class="center-align">
-                                          <i class="fa-solid fa-equals" style="color: #ffaa00"></i>
-                                        </div>
-                                        <div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">
-                                            <p class="inbox-span paddingm">Medium</p>
-                                        </div>
-                                        <input type="radio" class="priority_add radio-visible" name="priority_val" value="2">
-                                    </div>
-                                    <div class="inbox inbox_priority" style="display: flex;">
-                                        <div style="float: left;width: 20%;" class="center-align">
-                                          <i class="fa fa-angle-double-right" style="rotate:90deg;color: #0066ff"></i>
-                                        </div>
-                                        <div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">
-                                            <p class="inbox-span paddingm">Low</p>
-                                        </div>
-                                        <input type="radio" class="priority_add radio-visible" name="priority_val" value="3">
-                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="box inbox-top">
                                 <div class="input-box indexing">
                                   <div class="filter_multiselect_lable filter_multiselect_input">
-                                    <span class="multi_select_label" style="">Lable <span class="paddingm validate">*</span></span>
+                                    <span class="multi_select_label" style="">Lable</span>
                                     <div class="filter_selectBox">
                                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                                         <div style="width: 80% !important">
@@ -497,13 +455,13 @@ $session = \Config\Services::session();
                                   </div>
                                 </div>
                                 <!-- Drop down Suggestion -->
-                                <div class="filter_checkboxes_issue suggestion" id="dropdown-list-lables">
+                                <div class="filter_checkboxes_issue suggession_box suggestion" id="dropdown-list-lables">
                                 </div>
                             </div>
                             <div class="box inbox-top">
                                 <div class="input-box indexing">
                                   <div class="filter_multiselect filter_multiselect_input">
-                                    <span class="multi_select_label" style="">Assignee <span class="paddingm validate">*</span></span>
+                                    <span class="multi_select_label" style="">Assignee</span>
                                     <div class="filter_selectBox assignee" onclick="multiple_assignee(this)">
                                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                                         <div style="width: 80% !important">
@@ -532,7 +490,7 @@ $session = \Config\Services::session();
                             <div class="box inbox-top">
                                 <div class="input-box indexing">
                                   <div class="filter_multiselect filter_multiselect_input">
-                                    <span class="multi_select_label" style="">Status <span class="paddingm validate">*</span></span>
+                                    <span class="multi_select_label" style="">Status</span>
                                     <div class="filter_selectBox status" onclick="multiple_status(this)">
                                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                                         <div style="width: 80% !important">
@@ -547,33 +505,7 @@ $session = \Config\Services::session();
                                   <span class="paddingm float-start validate" id="inputstatusErr"></span>
                                 </div>
                                 <div class="filter_checkboxes_issue display_hide filter_status">
-                                    <div class="inbox inbox_status" style="display: flex;">
-                                        <div style="float: left;width: 20%;" class="center-align">
-                                          <div class="square-div" style="background:#7f7f7f;color:white;"></div>
-                                        </div>
-                                        <div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">
-                                            <p class="inbox-span paddingm" style="color: #7f7f7f">OPEN</p>
-                                        </div>
-                                        <input type="radio" class="status_add radio-visible" name="status_val" value="1">
-                                    </div>
-                                    <div class="inbox inbox_status" style="display: flex;">
-                                        <div style="float: left;width: 20%;" class="center-align">
-                                          <div class="square-div" style="background:#4195f6;color:white;"></div>
-                                        </div>
-                                        <div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">
-                                            <p class="inbox-span paddingm" style="color: #4195f6">IN PROGRESS</p>
-                                        </div>
-                                        <input type="radio" class="status_add radio-visible" name="status_val" value="2">
-                                    </div>
-                                    <div class="inbox inbox_status" style="display: flex;">
-                                        <div style="float: left;width: 20%;" class="center-align">
-                                          <div class="square-div" style="background:#6ac950;color:white;"></div>
-                                        </div>
-                                        <div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">
-                                            <p class="inbox-span paddingm" style="color: #6ac950">CLOSED</p>
-                                        </div>
-                                        <input type="radio" class="status_add radio-visible" name="status_val" value="3">
-                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="attach-file">
@@ -608,36 +540,36 @@ $session = \Config\Services::session();
                                 <input type="text" class="form-control font_weight_modal" id="edit_work_title" name="" >
                                 <label for="" class="input-padding">Title <span class="paddingm validate">*</span></label>
                                 <span class="paddingm float-start validate" id="edit_work_title_Err"></span> 
-                                <span class="float-end charCount" id="edit_work_title_cout"></span> 
+                                <!-- <span class="float-end charCount" id="edit_work_title_cout"></span>  -->
                             </div>
                             <div class="input-box reduce_width fieldStyle" style="height: 8.5rem !important;">      
                                 <textarea class="form-control font_weight_modal" id="edit_work_description" rows="4"></textarea>
-                                <label for="" class="input-padding">Description <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id="edit_description_Err"></span> 
+                                <label for="" class="input-padding">Description</label>
+                                <!-- <span class="paddingm float-start validate" id="edit_description_Err"></span>  -->
                                 <span class="float-end charCount" id=""></span> 
                             </div>
                             
                             <div class="input-box reduce_width" style="display: none;" id="cause-edit">      
                                 <input type="text" class="form-control font_weight_modal input-field-edit" id="edit_cause" name="" >
-                                <label for="" class="input-padding">Cause<span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id="edittypeErr"></span> 
+                                <label for="" class="input-padding">Cause</label>
+                                <!-- <span class="paddingm float-start validate" id="edittypeErr"></span>  -->
                             </div>
                             <!-- Drop down Suggestion -->
-                            <div class="filter_checkboxes_issue suggestion suggestion_width" id="dropdown-list-cause-edit">
+                            <div class="filter_checkboxes_issue suggession_box suggestion suggestion_width" id="dropdown-list-cause-edit">
                             </div>
                             <!-- Cause Container -->
                             <div class="items-container reduce_width items-container-edit-cause"></div>
 
                             <div class="input-box center-align">      
                                 <input type="text" class="form-control reduce_width font_weight_modal input-field-action-edit" id="edit_field_action" name="" >
-                                <label for="" class="input-padding">Action Taken <span class="paddingm validate">*</span></label>
+                                <label for="" class="input-padding">Action Taken</label>
                                 <img src="<?php echo base_url('assets/img/plus-icon.png'); ?>" class="dot-style dot-cont input-field-action-edit-add">
                             </div>
                             <!-- Drop down Suggestion -->
-                            <div class="filter_checkboxes_issue suggestion suggestion_width" id="dropdown-list-action-edit">
+                            <div class="filter_checkboxes_issue suggession_box suggestion suggestion_width" id="dropdown-list-action-edit">
                             </div>
-                            <span class="paddingm float-start validate" id="edit_action_Err"></span> 
-                            <span class="float-end charCount" id="editactiontakenCunt"></span> 
+                            <!-- <span class="paddingm float-start validate" id="edit_action_Err"></span>  -->
+                            <!-- <span class="float-end charCount action_count" id="editactiontakenCunt"></span>  -->
 
                             <!-- Action Content -->
                             <div class="items-container reduce_width items-container-edit-action"></div>
@@ -670,7 +602,7 @@ $session = \Config\Services::session();
                             <div class="box inbox-top">
                                 <div class="input-box indexing">
                                   <div class="filter_multiselect filter_multiselect_input">
-                                    <span class="multi_select_label" style="">Priority <span class="paddingm validate">*</span></span>
+                                    <span class="multi_select_label" style="">Priority</span>
                                     <div class="filter_selectBox" onclick="multiple_priority(this)">
                                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                                         <div style="width: 80% !important">
@@ -690,7 +622,7 @@ $session = \Config\Services::session();
                             <div class="box inbox-top">
                                 <div class="input-box indexing">
                                   <div class="filter_multiselect_lable filter_multiselect_input">
-                                    <span class="multi_select_label" style="">Lable <span class="paddingm validate">*</span></span>
+                                    <span class="multi_select_label" style="">Lable</span>
                                     <div class="filter_selectBox">
                                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                                         <div style="width: 80% !important">
@@ -708,13 +640,13 @@ $session = \Config\Services::session();
                                   </div>
                                 </div>
                                 <!-- Drop down Suggestion -->
-                                <div class="filter_checkboxes_issue suggestion" id="dropdown-list-lables-edit">
+                                <div class="filter_checkboxes_issue suggession_box suggestion" id="dropdown-list-lables-edit">
                                 </div>
                             </div>
                             <div class="box inbox-top">
                                 <div class="input-box indexing">
                                   <div class="filter_multiselect filter_multiselect_input">
-                                    <span class="multi_select_label" style="">Assignee <span class="paddingm validate">*</span></span>
+                                    <span class="multi_select_label" style="">Assignee</span>
                                     <div class="filter_selectBox assignee" onclick="multiple_assignee(this)">
                                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                                         <div style="width: 80% !important">
@@ -734,14 +666,16 @@ $session = \Config\Services::session();
                             <div class="box inbox-top">
                                 <div class="input-box">
                                     <input type="date" class="form-control font_weight_modal" id="edit_due_date" name="" >
-                                    <label for="" class="input-padding">Due Date <span class="paddingm validate">*</span></label>
+                                    <label for="" class="input-padding">Due Date<span class="paddingm validate">*</span></label>
                                     <span id="" class="validate"></span>
+                                    <span class="paddingm float-start validate" id="inputdateErrEdit"></span>
+                                    
                                 </div>
                             </div>
                             <div class="box inbox-top">
                                 <div class="input-box indexing">
                                   <div class="filter_multiselect filter_multiselect_input">
-                                    <span class="multi_select_label" style="">Status <span class="paddingm validate">*</span></span>
+                                    <span class="multi_select_label" style="">Status </span>
                                     <div class="filter_selectBox" onclick="multiple_status(this)">
                                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                                         <div style="width: 80% !important">
@@ -810,13 +744,10 @@ $session = \Config\Services::session();
 
     function change_type(item){
         if (item.value == "task") {
-
-            console.log('none');
             document.getElementById("cause-add").style.display = "none";
             $(".item-cause").css('display','none');
         }   
         else{
-            console.log('block');
             document.getElementById("cause-add").style.display = "block";
             $(".item-cause").css('display','block');
         }
@@ -832,12 +763,41 @@ $session = \Config\Services::session();
     }
 
     $(document).on('click','#add_issue_button',function(event){
+
+        $(".suggession_box").css("display","none");
+
+        $("#add_work_title").val('');
+        $("#add_work_description").val('');
+        $("#add_filed_action").val('');
+        $('.items-container-action .item-cause').remove();
+        $('#add_input_comment').val('');
+        $("#assignee_val").text('Select');
+        $("#add_due_date").val('');
+          
+        $('#priority_val_lable').html('<i class="fa-solid fa-equals" style="color: #ffaa00"></i> <span>Medium</span>');
+        $('.priority_add:eq(1)').prop('checked', true);
+
+        $('#input_field_label').val('');
+        $('.lable-bg').remove();
+        $('#inputassignErr').html("");
+        $('#inputstatusErr').html("");
+        $("#label_action_Err").html("");
+        $('#inputpriorityErr').html("");
+        $("#input_comment_Err").html("");
+        $("#input_description_Err").html("");
+        $('#inputwork_title_Err').html("");
+        $('#input_action_Err').html("");
+        $('#inputdateErr').html("");
+        
+        $('#status_val_lable').html('<i class="fa fa-stop" style="color: #7f7f7f"></i> <span style="color: #7f7f7f">OPEN</span>');
+        // $('.status_add:eq(0)').prop('checked', true);
+        $('.inbox_status').children("input[name=status_val]").attr('checked', false);
+        $('.inbox_status:eq(0)').children("input[name=status_val]").attr('checked', true);
+
         $('#AddIssueModal').modal('show');
     });
 
     function multiple_priority(t) {
-        console.log('priority check');
-
       $(".filter_checkboxes_issue").addClass("display_hide");
       if ($('.filter_priority').css("display") == "none") {
           $(".filter_priority").removeClass("display_hide");
@@ -847,7 +807,6 @@ $session = \Config\Services::session();
           $(".filter_priority").addClass("display_hide");
       }
       $('.filter_priority ').click(function(){
-        console.log('hide');
         $(".filter_priority").removeClass("display_visible");
           $(".filter_priority").addClass("display_hide");
       })
@@ -863,7 +822,6 @@ $session = \Config\Services::session();
           $(".filter_assignee").addClass("display_hide");
       }
       $('.filter_assignee ').click(function(){
-        console.log('hide');
         $(".filter_assignee").removeClass("display_visible");
           $(".filter_assignee").addClass("display_hide");
       });
@@ -879,7 +837,6 @@ $session = \Config\Services::session();
           $(".filter_status").addClass("display_hide");
       }
       $('.filter_status ').click(function(){
-        console.log('hide');
         $(".filter_status").removeClass("display_visible");
           $(".filter_status").addClass("display_hide");
       });
@@ -940,6 +897,33 @@ $(document).mouseup(function(event){
         filter_assignee.hide();
     }
 
+    // Suggession...
+    var cause = $('#dropdown-list-cause');
+    if (!cause.is(event.target) && cause.has(event.target).length==0) {
+        cause.hide();
+    }
+    var action = $('#dropdown-list-action');
+    if (!action.is(event.target) && action.has(event.target).length==0) {
+        action.hide();
+    }
+    var lables = $('#dropdown-list-lables');
+    if (!lables.is(event.target) && lables.has(event.target).length==0) {
+        lables.hide();
+    }
+
+    var cause_edit = $('#dropdown-list-cause-edit');
+    if (!cause_edit.is(event.target) && cause_edit.has(event.target).length==0) {
+        cause_edit.hide();
+    }
+    var action_edit = $('#dropdown-list-action-edit');
+    if (!action_edit.is(event.target) && action_edit.has(event.target).length==0) {
+        action_edit.hide();
+    }
+    var lables_edit = $('#dropdown-list-lables-edit');
+    if (!lables_edit.is(event.target) && lables_edit.has(event.target).length==0) {
+        lables_edit.hide();
+    }
+
 
 
     var part_check = $('.filter_priority');
@@ -998,19 +982,17 @@ $(document).on('click','.inbox_priority_edit',function(event){
 
 $(document).on('click','.inbox_status',function(event){
     var index = $('.inbox_status').index(this);
+
     $('.inbox_status').children("input[name=status_val]").attr('checked', false);
     $('.inbox_status:eq('+index+')').children("input[name=status_val]").attr('checked', true);
 
     if (index == 0) {
         $('#status_val_lable').html('<i class="fa fa-stop" style="color: #7f7f7f"></i> <span style="color: #7f7f7f">OPEN</span>');
-        // $('#status_val').html('<div style="display:flex" class="input-index-status"><div class="square-div" style="background:#7f7f7f;"></div><span class="paddingm" style="color: #7f7f7f">OPEN</span></div>');
     }
     else if (index ==1) {
         $('#status_val_lable').html('<i class="fa fa-stop" style="color: #4195f6"></i> <span style="color: #4195f6">IN PROGRESS</span>');
-        // $('#status_val').html('<div style="display:flex" class="input-index-status"><div class="square-div" style="background:#4195f6;"></div><span class="paddingm" style="color: #4195f6">IN PROGRESS</span></div>');
     }
     else{
-        //$('#status_val').html('<div style="display:flex" class="input-index-status"><div class="square-div" style="background:#6ac950;"></div><span class="paddingm" style="color: #6ac950">CLOSED</span></div>');
          $('#status_val_lable').html('<i class="fa fa-stop" style="color: #6ac950"></i> <span style="color: #6ac950">CLOSED</span>');
     }    
 });
@@ -1061,6 +1043,9 @@ $(document).on('click','.inbox_assignee_edit',function(event){
 
 //  Edit Work Order Acknowledge ........... 
 $(document).on("click", ".edit-work-order", function(event){
+
+    $(".suggession_box").css("display","none");
+
     event.preventDefault();
     event.stopPropagation();
     var id = $(this).attr("edit-item");
@@ -1076,13 +1061,16 @@ $(document).on("click", ".edit-work-order", function(event){
         },
         dataType: "json",
         success:function(res){
+            $('#edit_work_title_Err').html("");
+            $('#inputdateErrEdit').html("");
+
             $('#EditIssueModal1').text(res[0]['work_order_id']);
             $('#edit_work_title').val(res[0]['title']);
             $('#edit_work_description').val(res[0]['description']);
             $('#type-edit').val(res[0]['type']);
 
             // Previous Action....
-            const value = res[0]['action_id'].split(",");
+            const value = String(res[0]['action_id']).split(",");
             $(".items-container-edit-action").empty();
             value.forEach(function(ac){
                 action_list_globle.forEach(function(action_item){
@@ -1102,7 +1090,7 @@ $(document).on("click", ".edit-work-order", function(event){
                 $('#cause-edit').css("display","block");
                 $(".items-container-edit-cause").empty();
                 if (res[0]['cause_id'] != null) {
-                    var issue = res[0]['cause_id'].split(",");
+                    var issue = String(res[0]['cause_id']).split(",");
                     issue.forEach(function(issue){
                         issue_list_globle.forEach(function(issue_item){
                             if (issue == issue_item['cause_id']) {
@@ -1174,7 +1162,7 @@ $(document).on("click", ".edit-work-order", function(event){
 
             // Privious Lables....
             $(".lable-div-edit").empty();
-            const value_lable = res[0]['lable_id'].split(",");
+            const value_lable = String(res[0]['lable_id']).split(",");
             value_lable.forEach(function(lable){
                 lable_list_globle.forEach(function(lable_item){
                     var itemsContainerlable = $();
@@ -1279,7 +1267,7 @@ $(document).on("click", ".edit-work-order", function(event){
 
 
             // Previouse File....
-            var attach_file = res[0]['attachment_id'].split(",");
+            var attach_file = String(res[0]['attachment_id']).split(",");
             $('.attached_file_edit').empty();
             attach_file.forEach(function(im){
                 attach_list_globle.forEach(function(image){
@@ -1301,7 +1289,7 @@ $(document).on("click", ".edit-work-order", function(event){
 
             // Previous Comments....
             $('.items-container-edit-comments').empty();
-            var comment = res[0]['comment_id'].split(",");
+            var comment = String(res[0]['comment_id']).split(",");
             comment.forEach(function(cm){
                 comments_list_globle.forEach(function(comment_item){
                     var elements = $();
@@ -1539,6 +1527,11 @@ const inputField = document.getElementsByClassName("input-field-add")[0];
 const itemsContainer = document.getElementsByClassName("items-container-cause")[0];
 // Add event listener to the input field
 inputField.addEventListener("keyup", function (event) {
+
+    // $('#dropdown-list-cause').css("display","none");
+    // $('#dropdown-list-lables').css("display","none");
+    // $('#dropdown-list-action').css("display","none");
+
     var inputValue = inputField.value;
     if (inputValue.length>0) {
         document.getElementById("dropdown-list-cause").style.display="block";
@@ -1557,12 +1550,19 @@ inputField.addEventListener("keyup", function (event) {
             }
         });
         // Add as Final
-        $('#dropdown-list-cause').append('<div class="inbox suggession-cause-items" style="display: flex;">'
-                +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
-                    +'<p class="inbox-span paddingm"><span class="suggession-cause-val">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
-                +'</div>'
-                +'<input type="text" class="cause-input-suggession radio-visible" value="'+inputValue.trim()+'">'
-            +'</div>');
+        var inputVal = inputValue.trim().toUpperCase();
+        var option = suggession_list.find(function (item_val) {
+          return item_val['lable'].toUpperCase() === inputVal;
+        });
+
+        if (!option) {
+          $('#dropdown-list-cause').append('<div class="inbox suggession-cause-items" style="display: flex;">'
+                  +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
+                      +'<p class="inbox-span paddingm"><span class="suggession-cause-val">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
+                  +'</div>'
+                  +'<input type="text" class="cause-input-suggession radio-visible" value="'+inputValue.trim()+'">'
+              +'</div>');
+        }
 
     }else{
         $('#dropdown-list-cause').empty();
@@ -1575,6 +1575,8 @@ const inputFieldEdit = document.getElementsByClassName("input-field-edit")[0];
 const itemsContainerEdit = document.getElementsByClassName("items-container-edit-cause")[0];
 // Add event listener to the input field
 inputFieldEdit.addEventListener("keyup", function (event) { 
+
+
    var inputValue = inputFieldEdit.value;
     if (inputValue.length>0) {
         document.getElementById("dropdown-list-cause-edit").style.display="block";
@@ -1593,12 +1595,19 @@ inputFieldEdit.addEventListener("keyup", function (event) {
             }
         });
         // Add as Final
-        $('#dropdown-list-cause-edit').append('<div class="inbox suggession-cause-items-edit" style="display: flex;">'
-                +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
-                    +'<p class="inbox-span paddingm"><span class="suggession-cause-val-edit">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
-                +'</div>'
-                +'<input type="text" class="cause-input-suggession-edit radio-visible" value="'+inputValue.trim()+'">'
-            +'</div>');
+        var inputVal = inputValue.trim().toUpperCase();
+        var option = suggession_list.find(function (item_val) {
+          return item_val['lable'].toUpperCase() === inputVal;
+        });
+
+        if (!option) {
+          $('#dropdown-list-cause-edit').append('<div class="inbox suggession-cause-items-edit" style="display: flex;">'
+                  +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
+                      +'<p class="inbox-span paddingm"><span class="suggession-cause-val-edit">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
+                  +'</div>'
+                  +'<input type="text" class="cause-input-suggession-edit radio-visible" value="'+inputValue.trim()+'">'
+              +'</div>');
+        }
     }else{
         $('#dropdown-list-cause-edit').empty();
         document.getElementById("dropdown-list-cause-edit").style.display="none";
@@ -1677,7 +1686,7 @@ itemsFieldAdd.addEventListener("click", function (event) {
 
       // Clear the input field
       inputFieldaction.value = "";
-      inputFieldaction.placeholder = "Add an action taken to solve the problem...";
+      // inputFieldaction.placeholder = "Add an action taken to solve the problem...";
       // Add event listener to the remove icon
       itemRemove.addEventListener("click", function () {
         itemsContaineraction.removeChild(item);
@@ -1766,7 +1775,7 @@ itemsFieldEdit.addEventListener("click", function (event) {
 
       // Clear the input field
       inputFieldactionEdit.value = "";
-      inputFieldactionEdit.placeholder = "Add an action taken to solve the problem...";
+      // inputFieldactionEdit.placeholder = "Add an action taken to solve the problem...";
     }
 
     action_list_globle=[];
@@ -1839,13 +1848,20 @@ inputFieldlables.addEventListener("keyup", function (event) {
                 +'</div>');
             }
         });
-        // Add as Final
-        $('#dropdown-list-lables').append('<div class="inbox inbox_priority suggession-lable-items" style="display: flex;">'
-                +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
-                    +'<p class="inbox-span paddingm"><span class="suggession-lable-val">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
-                +'</div>'
-                +'<input type="text" class="lable-input-suggession radio-visible" value="'+inputValue.trim()+'">'
-            +'</div>');
+
+        var inputVal = inputValue.trim().toUpperCase();
+        var option = suggession_list.find(function (item_val) {
+          return item_val['lable'].toUpperCase() === inputVal;
+        });
+
+        if (!option) {
+          $('#dropdown-list-lables').append('<div class="inbox inbox_priority suggession-lable-items" style="display: flex;">'
+                      +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
+                          +'<p class="inbox-span paddingm"><span class="suggession-lable-val">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
+                      +'</div>'
+                      +'<input type="text" class="lable-input-suggession radio-visible" value="'+inputValue.trim()+'">'
+                  +'</div>');
+        }
 
     }else{
         $('#dropdown-list-lables').empty();
@@ -2087,12 +2103,19 @@ inputFieldlablesEdit.addEventListener("keyup", function (event) {
             }
         });
         // Add as Final
-        $('#dropdown-list-lables-edit').append('<div class="inbox suggession-lable-items-edit" style="display: flex;">'
-                +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
-                    +'<p class="inbox-span paddingm"><span class="suggession-lable-val-edit">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
-                +'</div>'
-                +'<input type="text" class="lable-input-suggession-edit radio-visible" value="'+inputValue.trim()+'">'
-            +'</div>');
+        var inputVal = inputValue.trim().toUpperCase();
+        var option = suggession_list.find(function (item_val) {
+          return item_val['lable'].toUpperCase() === inputVal;
+        });
+
+        if (!option) {
+          $('#dropdown-list-lables-edit').append('<div class="inbox suggession-lable-items-edit" style="display: flex;">'
+                  +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
+                      +'<p class="inbox-span paddingm"><span class="suggession-lable-val-edit">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
+                  +'</div>'
+                  +'<input type="text" class="lable-input-suggession-edit radio-visible" value="'+inputValue.trim()+'">'
+              +'</div>');
+        }
 
     }else{
         $('#dropdown-list-lables-edit').empty();
@@ -2285,7 +2308,10 @@ function displaySelectedFilesEdit() {
   }
 }
 
-callALL();
+$( document ).ready(function() {
+  callALL();
+});
+
 function callALL(){
     // Reset
     $('.contentWorkOrder').empty();
@@ -2364,7 +2390,7 @@ function getAssigneeList(){
     });
 }
 
-function getFilterval(){
+function getFilterval(filter=false){
     var status=[];
     var lables=[];
     var priority =[];
@@ -2446,7 +2472,7 @@ function getFilterval(){
     });
     }
 
-    getWorkOrderRecords(status,lables,priority,assignee);
+    getWorkOrderRecords(status,lables,priority,assignee,filter);
   }
 
 function getActionList(){
@@ -2556,6 +2582,45 @@ function getStatusList(){
                         +'<p class="inbox-span paddingm">'+item['status']+'</p>'
                     +'</div>'
                 +'</div>');
+
+
+                var status_color = "";
+                var status_val_rec = "";
+                if (item['status_id'] == 1) {
+                    status_color = "#7f7f7f";
+                    status_val_rec = "OPEN";
+                }else if (item['status_id'] == 2) {
+                    status_color = "#4195f6";
+                    status_val_rec = "IN PROGRESS";
+                }else{
+                    status_color = "#6ac950";
+                    status_val_rec = "CLOSED";
+                }
+
+                if (item['status_id'] == 1) {
+                  $('.filter_status').append('<div class="inbox inbox_status" style="display: flex;">'
+                      +'<div style="float: left;width: 20%;" class="center-align">'
+                        +'<div class="square-div" style="background:'+status_color+';color:white;"></div>'
+                      +'</div>'
+                      +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                        +'<p class="inbox-span paddingm" style="color: '+status_color+'">'+status_val_rec+'</p>'
+                      +'</div>'
+                      +'<input type="radio" class="status_add radio-visible" name="status_val" value="'+item['status_id']+'">'
+                  +'</div>');
+
+                  $('#status_val_lable').html('<i class="fa fa-stop" style="color: '+status_color+'"></i> <span style="color: '+status_color+'">'+status_val_rec+'</span>');
+                }
+                else{
+                  $('.filter_status').append('<div class="inbox inbox_status" style="display: flex;">'
+                      +'<div style="float: left;width: 20%;" class="center-align">'
+                        +'<div class="square-div" style="background:'+status_color+';color:white;"></div>'
+                      +'</div>'
+                      +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                        +'<p class="inbox-span paddingm" style="color: '+status_color+'">'+status_val_rec+'</p>'
+                      +'</div>'
+                      +'<input type="radio" class="status_add radio-visible" name="status_val" value="'+item['status_id']+'">'
+                  +'</div>');
+                }
             });
         },
         error:function(err){
@@ -2835,7 +2900,51 @@ function getPriorityList(){
                         +'<p class="inbox-span paddingm">'+item['priority']+'</p>'
                     +'</div>'
                 +'</div>');
+
+                var priority_img_color = "";
+                var priority_img_rotate="";
+                var priority_img="";
+                if (item['priority_id'] == 1) {
+                    priority_img_color = "#ff5630";
+                    priority_img_rotate = "270deg";
+                    priority_img="fa-angle-double-right";
+                }else if (item['priority_id'] == 2) {
+                    priority_img_color = "#ffaa00";
+                    priority_img_rotate="180deg";
+                    priority_img="fa-equals";
+                }else{
+                    priority_img_color = "#0066ff";
+                    priority_img_rotate = "90deg";
+                    priority_img="fa-angle-double-right";
+                }
+ 
+                if (item['priority_id'] == 2) {
+                  $('.filter_priority').append('<div class="inbox inbox_priority" style="display: flex;">'
+                      +'<div style="float: left;width: 20%;" class="center-align">'
+                        +'<i class="fa '+priority_img+'" style="rotate:'+priority_img_rotate+';color: '+priority_img_color+'"></i>'
+                      +'</div>'
+                      +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                          +'<p class="inbox-span paddingm">'+item['priority']+'</p>'
+                      +'</div>'
+                      +'<input type="radio" class="priority_add radio-visible" name="priority_val" value="'+item['priority_id']+'" checked>'
+                  +'</div>');
+
+                  $('#priority_val_lable').html('<i class="fa '+priority_img+'" style="rotate:'+priority_img_rotate+';color: '+priority_img_color+'"></i> <span>'+item['priority']+'</span>');
+
+                }else{
+                  $('.filter_priority').append('<div class="inbox inbox_priority" style="display: flex;">'
+                      +'<div style="float: left;width: 20%;" class="center-align">'
+                        +'<i class="fa '+priority_img+'" style="rotate:'+priority_img_rotate+';color: '+priority_img_color+'"></i>'
+                      +'</div>'
+                      +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                          +'<p class="inbox-span paddingm">'+item['priority']+'</p>'
+                      +'</div>'
+                      +'<input type="radio" class="priority_add radio-visible" name="priority_val" value="'+item['priority_id']+'">'
+                  +'</div>');
+                }
+                
             });
+                                    
         },
         error:function(err){
             // alert("Something went wrong!");
@@ -2889,7 +2998,8 @@ $('#pagination_val').on('change', function(event) {
   getFilterData();
 });
 
-function getFilterData(){   
+function getFilterData(){
+
     $('.contentWorkOrder').empty();
 
     var pagination_length=50;
@@ -2901,10 +3011,17 @@ function getFilterData(){
             var due_date_color="";
             var due_date = new Date(item['due_date']);
             due_date = ("0" +due_date.getDate()).slice(-2)+" "+due_date.toLocaleString([], { month: 'short' });
-            if (new Date(item['due_date']) == new Date()) {
+
+            var c_date = new Date();
+            var d_date = new Date(item['due_date']);
+            
+            c_date = `${c_date.getFullYear()}-${c_date.getMonth()+1}-${c_date.getDate()}`;
+            d_date = `${d_date.getFullYear()}-${d_date.getMonth()+1}-${d_date.getDate()}`;
+
+            if (c_date == d_date) {
                 due_date_color = "#4195f6";
                 due_date = "Today";
-            }else if (new Date(item['due_date']) < new Date()) {
+            }else if (new Date(d_date) < new Date(c_date)) {
                 due_date_color = "#black";
             }else{
                 due_date_color = "#ff0000";
@@ -2953,19 +3070,28 @@ function getFilterData(){
             var user_id="";
             var user_first="";
             var user_last="";
-            var assignee="";
+            // var assignee="";
             var user_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
+
+            var assignee_option = "";
             assignee_list.forEach(function(u){
-                if (item['assignee'] = u['user_id']) {
+                if (item['assignee'] == u['user_id']) {
                     user_first = u['first_name'];
                     user_last = u['last_name'];
+
+                    assignee_option = ('<div style="width: 25%">'
+                            +'<div class="dotUser" style="background:'+randomColor+';color:white;"><p class="paddingm">'+user_first.trim().slice(0,1).toUpperCase()+''+user_last.trim().slice(0,1).toUpperCase()+'</p></div>'
+                        +'</div>'
+                        +'<div style="width: 75%">'
+                            +'<p class="paddingm"><span>'+user_first+' '+user_last+'</span></p>' 
+                        +'</div>');
                 }
             });
             var randomColor = user_color[Math.floor(Math.random()*user_color.length)];
 
             var option="";
             <?php 
-              if($this->data['access'][0]['work_order_management'] >= 2){ 
+              if($this->data['access'][0]['work_order_management'] >= 2){
             ?>
               option = '<img class="img_font_wh edit-work-order"  edit-item="'+item['work_order_id']+'" src="<?php echo base_url('assets/img/pencil.png') ?>"><img class="img_font_wh deactivate-work-order" del-item="'+item['work_order_id']+'" src="<?php echo base_url('assets/img/delete.png') ?>">';
             <?php 
@@ -2982,12 +3108,13 @@ function getFilterData(){
                         +'<i class="fa '+priority_img+'" style="rotate:'+priority_img_rotate+';color: '+priority_img_color+'"></i>'
                     +'</div>'
                     +'<div class="col-sm-2 col">'
-                        +'<div style="width: 25%">'
-                            +'<div class="dotUser" style="background:'+randomColor+';color:white;"><p class="paddingm">'+user_first.trim().slice(0,1).toUpperCase()+''+user_last.trim().slice(0,1).toUpperCase()+'</p></div>'
-                        +'</div>'
-                        +'<div style="width: 75%">'
-                            +'<p class="paddingm"><span>'+user_first+' '+user_last+'</span><span class="LastNameMarg">S</span></p>' 
-                        +'</div>'
+                        +assignee_option
+                        // +'<div style="width: 25%">'
+                        //     +'<div class="dotUser" style="background:'+randomColor+';color:white;"><p class="paddingm">'+user_first.trim().slice(0,1).toUpperCase()+''+user_last.trim().slice(0,1).toUpperCase()+'</p></div>'
+                        // +'</div>'
+                        // +'<div style="width: 75%">'
+                        //     +'<p class="paddingm"><span>'+user_first+' '+user_last+'</span></p>' 
+                        // +'</div>'
                     +'</div>'
                     +'<div class="col-sm-2 col marleft"><p class="paddingm" style="color:'+due_date_color+'">'+due_date+'</p></div>'
                     +'<div class="col-sm-1 col">'
@@ -3010,8 +3137,7 @@ function getFilterData(){
     });
 }
 
-function getWorkOrderRecords(status,lables,priority,assignee){
-
+function getWorkOrderRecords(status,lables,priority,assignee,filter){
     $.ajax({
         url:"<?php echo base_url('Work_Order_Management_controller/get_work_order_data') ?>",
         method:"POST",
@@ -3023,14 +3149,15 @@ function getWorkOrderRecords(status,lables,priority,assignee){
             lables:lables,
             priority:priority,
             assignee:assignee,
+            filter:filter,
         },
-        success:function(data){
+        success:function(data_res){
             $('.contentWorkOrder').empty();
             filter_array=[];
             var open=0;
             var in_progress=0;
             var overdue =0;
-            data.forEach(function(item){
+            data_res.forEach(function(item){
                 filter_array.push(item);
                 if (item['status_id'] == 1) {
                     open = parseInt(open) + 1;
@@ -3050,7 +3177,9 @@ function getWorkOrderRecords(status,lables,priority,assignee){
             $("#open_total").html(("0" +open).slice(-2));
             $("#inprogress_total").html(("0" +in_progress).slice(-2));
             $("#overdue_total").html(("0" +overdue).slice(-2));
-            
+
+            // console.log(filter_array);
+
             getFilterData();
         },
         error:function(err){
@@ -3215,7 +3344,7 @@ function getWorkOrderRecords(status,lables,priority,assignee){
 // for work order management form submit
 $(document).on('click','.Add_Work_Data',function(event){
         event.preventDefault();
-        console.log('save btn click');
+
         $("#overlay").fadeIn(300);
         var add_title_name = $('#add_work_title').val();
         var add_description = $('#add_work_description').val();
@@ -3229,40 +3358,35 @@ $(document).on('click','.Add_Work_Data',function(event){
         var add_date = $('#add_due_date').val();
         var check_cause = ($('.items-container-cause .item-cause').length);
         var add_type = $('#type-add').val();
-        console.log(add_type);
+
         var a = inputAlertName(add_title_name);
-        var b = inputdescription(add_description);
-        console.log(add_description);
-        var c = inputaction(add_field);
-        var d = inputlabel(add_label);
-        var f = input_priority(add_priority);
-       // var e = input_field_comment(add_comment);
-        var g = input_assignee(add_assignee);
-        var h = input_status(add_status);
-        // var i = input_date(add_date);
+        // var b = inputdescription(add_description);
+        // var c = inputaction(add_field);
+        // var d = inputlabel(add_label);
+        // var f = input_priority(add_priority);
+        // var e = input_field_comment(add_comment);
+        // var g = input_assignee(add_assignee);
+        // var h = input_status(add_status);
+        var i = input_date(add_date);
         // var x = work_type(check_cause);
         
 
-        if (a!="" || b!="" || d!="" || c!="" || f!="" || g!="" || h!="") {
-            console.log('if condition');
+        // if (a!="" || b!="" || d!="" || c!="" || f!="" || g!="" || h!="") {
+        if (a!="" || i!="") {
             $('#inputwork_title_Err').html(a);
-            $('#label_action_Err').html(d);
+            $('#inputdateErr').html(i);
+            // $('#label_action_Err').html(d);
              //$('#input_comment_Err').html(e);
-            $('#input_action_Err').html(c);
-            $('#input_description_Err').html(b);
-            $('#inputpriorityErr').html(f); 
-            $('#inputassignErr').html(g);
-            $('#inputstatusErr').html(h);
-            // $('#inputdateErr').html(i);
+            // $('#input_action_Err').html(c);
+            // $('#input_description_Err').html(b);
+            // $('#inputpriorityErr').html(f); 
+            // $('#inputassignErr').html(g);
+            //$('#inputstatusErr').html(h);
             // $('#inputtypeErr').html(x);
-
-
-
         }
         
         else{
-            console.log('else condition')
-                var formData = new FormData();
+          var formData = new FormData();
 
     formData.append('title', $('#add_work_title').val());
     formData.append('type', $('#type-add').val());
@@ -3270,7 +3394,11 @@ $(document).on('click','.Add_Work_Data',function(event){
     formData.append('priority', $('input[name="priority_val"]:checked').val());
     formData.append('due_date', $('#add_due_date').val());
     formData.append('status', $('input[name="status_val"]:checked').val());
-    formData.append('assignee', $('input[name="assignee_val"]:checked').val());
+    if (!$('input[name="assignee_val"]:checked').val()) {
+      formData.append('assignee', "");
+    }else{
+      formData.append('assignee', $('input[name="assignee_val"]:checked').val());
+    }
 
     var cause_list=[];
     var element_cause = $('.items-container-cause').children('.item-cause').children('.item-id');
@@ -3279,7 +3407,6 @@ $(document).on('click','.Add_Work_Data',function(event){
     });
 
     formData.append('cause_list', cause_list);
-
     var action_list =[];
     var element_action = $('.items-container-action').children('.item-cause').children('.item-text');
     $.each(element_action, function(key,valueObj){
@@ -3298,7 +3425,6 @@ $(document).on('click','.Add_Work_Data',function(event){
     });
 
     formData.append('lable_list', lable_list);
-
     
     var file_list_collection = [];
     var files = $('.attached_file_list');
@@ -3308,38 +3434,36 @@ $(document).on('click','.Add_Work_Data',function(event){
 
     formData.append('file_list_collection', file_list_collection);
 
+      // for (var pair of formData.entries()) {
+      //     console.log(pair[0]+ ', ' + pair[1]); 
+      // }
 
-    console.log('else condition ok....')
-    $.ajax({
-        url:"<?php echo base_url('Work_Order_Management_controller/save_work_order_data') ?>",
-        method:"POST",
-        async:false,  
-        cache: false, 
-        data:formData,
-        processData:false,
-        contentType: false,
-        // dataType:"json",
-        success:function(data){
-            callALL();
-            // Close the Acknowledge ................
-            $('#AddIssueModal').modal('hide');
-        },
-        error:function(err){
+          $.ajax({
+              url:"<?php echo base_url('Work_Order_Management_controller/save_work_order_data') ?>",
+              method:"POST",
+              async:false,  
+              cache: false, 
+              data:formData,
+              processData:false,
+              contentType: false,
+              // dataType:"json",
+              success:function(data){
+                  callALL();
+                  // Close the Acknowledge ................
+                  $('#AddIssueModal').modal('hide');
+              },
+              error:function(err){
 
-        }
-    });
-
-            // console.log('else condition');
-            // var notify_as = " ";
+              }
+          });
         }
 });
 
 
 // work for workorder edit submit
 $(".Edit_Work_Data").click(function(event){
-    console.log('edit clicked');
+
     event.preventDefault();
-        console.log('save btn click');
         $("#overlay").fadeIn(300);
         var add_title_name = $('#edit_work_title').val();
         var add_description = $('#edit_work_description').val();
@@ -3353,42 +3477,36 @@ $(".Edit_Work_Data").click(function(event){
         var add_date = $('#edit_due_date').val();
         // var check_cause = ($('.items-container-cause .item-cause').length);
         var add_type = $('#type-edit').val();
-        console.log(add_type);
+
         var a = inputAlertName(add_title_name);
-        var b = inputdescription(add_description);
-        console.log(add_description);
-        var c = inputaction(add_action);
-        var d = inputlabel(add_label);
+        // var b = inputdescription(add_description);
+        // var c = inputaction(add_action);
+        // var d = inputlabel(add_label);
        
        // var e = input_field_comment(add_comment);
-        var g = input_assignee(add_assignee);
-        var h = input_status(add_status);
-        // var i = input_date(add_date);
+        // var g = input_assignee(add_assignee);
+        // var h = input_status(add_status);
+        var i = input_date(add_date);
         // var x = work_type(check_cause);
         if(add_type == "issue"){
-            console.log('issuesssssss');
             var f = work_type(add_field);
         }
 
-        if (a!="" || b!="" || d!="" || c!="" || f!="") {
-            console.log('if condition');
+        // if (a!="" || b!="" || d!="" || c!="" || f!="") {
+        if (a!="" || i!="") {
             $('#edit_work_title_Err').html(a);
-            $('#label_edit_Err').html(d);
-             //$('#input_comment_Err').html(e);
-            $('#edit_action_Err').html(c);
-            $('#edit_description_Err').html(b);
-            $('#edittypeErr').html(f); 
+            $('#inputdateErrEdit').html(i);
+            // $('#label_edit_Err').html(d);
+            // $('#edit_action_Err').html(c);
+            // $('#edit_description_Err').html(b);
+            // $('#edittypeErr').html(f); 
+
+            //$('#input_comment_Err').html(e);
             // $('#inputassignErr').html(g);
             // $('#inputstatusErr').html(h);
-            // $('#inputdateErr').html(i);
             // $('#inputtypeErr').html(x);
 
-
-
         }else{
-            console.log('editelse conditionn');
-          
-
     var formData = new FormData();
 
     formData.append('title', $('#edit_work_title').val());

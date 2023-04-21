@@ -135,6 +135,13 @@ class Work_Order_Management_controller extends BaseController{
             $lables = $this->request->getVar('lables');
             $priority = $this->request->getVar('priority');
             $assignee= $this->request->getVar('assignee');
+            $filter= $this->request->getVar('filter');
+
+            // $status = ['1', '2', '3'];
+            // $lables = ['S1-L0', 'S1-L1', 'S1-L2', 'S1-L3', 'S1-L4', 'S1-L5', 'S1-L6', 'S1-L7', 'S1-L8', 'S1-L9', 'S1-L10', 'S1-L11', 'S1-L12', 'S1-L13', 'S1-L14', 'S1-L15', 'S1-L16', 'S1-L17', 'S1-L18', 'S1-L19', 'S1-L20', 'S1-L21', 'S1-L22', 'S1-L23', 'S1-L24', 'S1-L25', 'S1-L26', 'S1-L27', 'S1-L28', 'S1-L29', 'S1-L30', 'S1-L31', 'S1-L32', 'S1-L33', 'S1-L34', 'S1-L35', 'S1-L36', 'S1-L37', 'S1-L38', 'S1-L39', 'S1-L40', 'S1-L41', 'S1-L42', 'S1-L43', 'S1-L44', 'S1-L45', 'S1-L46', 'S1-L47', 'S1-L48', 'S1-L49', 'S1-L50', 'S1-L51', 'S1-L52', 'S1-L53', 'S1-L54', 'S1-L55'];
+            // $priority = ['1', '2', '3'];
+            // $assignee= ['UM1002', 'UM1003', 'UM1004', 'UM1006', 'UM1007', 'UM1008', 'UO1001', 'UO1002', 'UO1003'];
+            // $filter=false;
 
             $res = $this->datas->get_work_order_data();
 
@@ -152,8 +159,32 @@ class Work_Order_Management_controller extends BaseController{
                     }
                 }
             }
-            echo json_encode($final_list);
-            // echo json_encode($res);    
+
+            if ($filter == false) {
+                foreach ($res as $value) {
+                    $temp=0;
+                    if (($value['assignee']=="" || !$value['assignee'] || $value['assignee']==null) and $temp==0) {
+                        array_push($final_list, $value);
+                        $temp=1;
+                    }
+                    if (($value['priority_id']=="" || !$value['priority_id'] || $value['priority_id']==null) and $temp==0) {
+                        array_push($final_list, $value);
+                        $temp=1;
+                    }
+                    if (($value['lable_id']=="" || !$value['lable_id'] || $value['lable_id']==null) and $temp==0) {
+                        array_push($final_list, $value);
+                        $temp=1;
+                    }
+                    if (($value['status_id']=="" || !$value['status_id'] || $value['status_id']==null) and $temp==0) {
+                        array_push($final_list, $value);
+                        $temp=1;
+                    }
+                }
+            }
+
+            // echo "<pre>";
+            // print_r($final_list);
+            echo json_encode($final_list); 
         }
     }
 
