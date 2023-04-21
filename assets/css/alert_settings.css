@@ -429,6 +429,8 @@
              outline:none;
 
           }
+
+          /* priority dropdwon css  */
           
           .lang-select{
             position: sticky;
@@ -689,7 +691,7 @@
     .content_label ul{
       display: flex;
       flex-wrap: wrap;
-      padding: 7px;
+      padding: 5px;
       margin: 12px 0;
       border-radius: 5px;
       border: 1px solid #ced4da;
@@ -919,3 +921,286 @@
                 user-select: none; /* Non-prefixed version, currently
                                       supported by Chrome, Edge, Opera and Firefox */
     }
+
+
+    /* assignee dropdown css */
+    
+.display_visible{
+	display: block;
+}
+.display_hide{
+	display: none;
+}
+.center-align{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.circle-div{
+	height: 1.5rem;
+	width: 1.5rem;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 12px;
+}
+
+.radio-visible{
+	display: none;
+}
+
+.filter_checkboxes_issue{
+  border: 1px solid #dadada;
+  max-height: 12rem;
+  overflow-y: auto; 
+  background-color: white;
+  /* position: absolute; */
+  z-index: 1003;
+  max-width: 12rem;
+  border-radius: 5px;
+}
+
+.inbox{
+	padding: 0.5rem;
+	cursor: pointer;
+}
+.inbox:hover{
+	background: #eff7ff;
+}
+
+.radio-visible{
+	display: none;
+}
+
+.circle-div-select{
+	height: 1.2rem;
+	width: 1.2rem;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 9px;
+}
+.circle-div-select p{
+	/* margin-top: 0.2rem; */
+}
+
+
+/* priority dropdown */
+
+/* add alert priority dropdown */
+.select3 {
+  /* margin-top: 10px; */
+  margin: auto;
+  width: 100%;
+  max-width: 350px;
+  height: 2.5rem;
+  border-radius: 5px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  padding-left: 2px;
+}
+.select3:hover {
+  background-color: #F4F3F3;
+  border: 1px solid transparent;
+  box-shadow: inset 0 0px 0px 1px #ccc;
+}
+.selectBtn3 br{
+  display: none;
+}
+.select3 .selectBtn3 {
+background: var(--bg1);
+padding: 10px;
+box-sizing: border-box;
+border-radius: 3px;
+width: 100%;
+cursor: pointer;
+position: relative;
+-webkit-user-select: none;
+   -moz-user-select: none;
+    -ms-user-select: none;
+        user-select: none;
+/* background: #fff; */
+}
+.select3 .selectBtn3:after {
+content: "";
+position: absolute;
+top: 45%;
+right: 15px;
+width: 6px;
+height: 6px;
+-webkit-transform: translateY(-50%) rotate(45deg);
+        transform: translateY(-50%) rotate(45deg);
+border-right: 2px solid #666;
+border-bottom: 2px solid #666;
+transition: 0.2s ease;
+}
+.select3 .selectDropdown3 {
+position: absolute;
+top: 100%;
+/* width: 100%; */
+border-radius: 0 0 3px 3px;
+overflow: hidden;
+background: var(--bg1);
+border-top: 1px solid #eee;
+z-index: 1;
+background: #fff;
+-webkit-transform: scale(1, 0);
+        transform: scale(1, 0);
+-webkit-transform-origin: top center;
+        transform-origin: top center;
+visibility: hidden;
+transition: 0.2s ease;
+box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+.select3 .selectDropdown3 .option3 {
+padding: 10px;
+box-sizing: border-box;
+cursor: pointer;
+float: left;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  height: 45px;
+}
+.select3 .selectDropdown3 .option3 .letter3 {
+  margin-top: 0px;
+  margin-left: 10px;
+}
+.select3 .selectDropdown3 .option3:hover {
+background: #f8f8f8;
+}
+.select3 .selectDropdown3.new_4 {
+visibility: visible;
+-webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+}
+.selectDropdown3.new_4{
+  display:block
+}
+.selectDropdown3{
+  display: none;
+}
+.select3 .selectBtn3 .letter3{
+  margin-top: 0px;
+  margin-left: 10px;
+}
+.selectBtn3 i{
+  width: 20px;
+}
+
+
+/* edit priority dropdown */
+.select_edit_priority {
+  /* margin-top: 10px; */
+  margin: auto;
+  width: 100%;
+  max-width: 350px;
+  height: 2.5rem;
+  border-radius: 5px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  padding-left: 2px;
+}
+.select_edit_priority:hover {
+  background-color: #F4F3F3;
+  border: 1px solid transparent;
+  box-shadow: inset 0 0px 0px 1px #ccc;
+}
+.select_edit_priority_btn br{
+  display: none;
+}
+.select_edit_priority .select_edit_priority_btn {
+background: var(--bg1);
+padding: 10px;
+box-sizing: border-box;
+border-radius: 3px;
+width: 100%;
+cursor: pointer;
+position: relative;
+-webkit-user-select: none;
+   -moz-user-select: none;
+    -ms-user-select: none;
+        user-select: none;
+/* background: #fff; */
+}
+.select_edit_priority .select_edit_priority_btn:after {
+content: "";
+position: absolute;
+top: 45%;
+right: 15px;
+width: 6px;
+height: 6px;
+-webkit-transform: translateY(-50%) rotate(45deg);
+        transform: translateY(-50%) rotate(45deg);
+border-right: 2px solid #666;
+border-bottom: 2px solid #666;
+transition: 0.2s ease;
+}
+.select_edit_priority .select_edit_drp_priority {
+position: absolute;
+top: 100%;
+/* width: 100%; */
+border-radius: 0 0 3px 3px;
+overflow: hidden;
+background: var(--bg1);
+border-top: 1px solid #eee;
+z-index: 1;
+background: #fff;
+-webkit-transform: scale(1, 0);
+        transform: scale(1, 0);
+-webkit-transform-origin: top center;
+        transform-origin: top center;
+visibility: hidden;
+transition: 0.2s ease;
+box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+.select_edit_priority .select_edit_drp_priority .select_edit_priority_option {
+padding: 10px;
+box-sizing: border-box;
+cursor: pointer;
+float: left;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  height: 45px;
+}
+.select_edit_priority .select_edit_drp_priority .select_edit_priority_option .select_edit_priority_letter {
+  margin-top: 0px;
+  margin-left: 10px;
+}
+.select_edit_priority .select_edit_drp_priority .select_edit_priority_option:hover {
+background: #f8f8f8;
+}
+.select_edit_priority .select_edit_drp_priority.select_new_edit_priority {
+visibility: visible;
+-webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+}
+.select_edit_drp_priority.select_new_edit_priority{
+  display:block
+}
+.select_edit_drp_priority{
+  display: none;
+}
+.select_edit_priority .select_edit_priority_btn .select_edit_priority_letter{
+  margin-top: 0px;
+  margin-left: 10px;
+}
+.select_edit_priority_btn i{
+  width: 20px;
+}
+
+.email_checkeck_edit.checked{
+  z-index: -1;
+}

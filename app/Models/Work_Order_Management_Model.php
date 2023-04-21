@@ -62,7 +62,9 @@ class Work_Order_Management_Model extends Model{
         $db = \Config\Database::connect($this->site_connection_assignee);
         $query = $db->table('user');
         $query->select('user_id,first_name,last_name,site_id');
-        $query->where('site_id',$site);
+        if ($site != "smartories") {
+            $query->where('site_id',$site);
+        }
         $res = $query->get()->getResultArray();
         return $res;
     }

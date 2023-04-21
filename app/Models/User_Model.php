@@ -559,7 +559,7 @@ class User_Model extends Model{
 
         $db = \Config\Database::connect('another_db');
         $builder = $db->table('user_access_control');
-       
+        
         $update_data = [
             'oee_financial_drill_down' => $roles['Financial_Drill_Down'],
             'opportunity_insights' => $roles['Financial_Opportunity_Insights'],
@@ -570,6 +570,14 @@ class User_Model extends Model{
             'settings_part' => $roles['Settings_Parts'],
             'settings_general' => $roles['Settings_General'],
             'settings_user_management' => $roles['Settings_User_Management'],
+
+            'daily_production_data' => $roles['Daily_Production_Data'],
+            'current_shift_performance' => $roles['Current_Shift_Performance'],
+            'production_downtime' => $roles['Production_Downtime'],
+            'production_quality' => $roles['Production_Quality'],
+            'work_order_management' => $roles['Work_Order_Management'],
+            'alert_management' => $roles['Alert_Management'],
+
             'last_updated_by' => $roles['Last_Updated_By'],
         ];
 

@@ -457,6 +457,7 @@
                         </li>
 
                         <!-- daily production link -->
+                        <?php if ($this->data['access'][0]['daily_production_data']  >=1) {?>
                         <li class="side-menu-li d-flex ">
                             <a href="<?php echo base_url('Home/load_option/Daily_Production_Status'); ?>">
                                 <i class="fa fa-calendar-day nav-icon nav-icon-hover" dvalue="Daily" style="font-size: 29px;padding:9px;height: 1.8rem;width: 1.8rem;margin-right: 0.8rem;" alt="Daily"></i>
@@ -467,9 +468,11 @@
                                 </nav> 
                             </ul>
                         </li>
+                        <?php } ?>
                         <!-- daily production link end -->
 
                         <!-- production Downtime New module -->
+                        <?php if ($this->data['access'][0]['production_downtime']  >=1) {?>
                         <li class="side-menu-li d-flex">
                             <a href="<?php echo base_url('Home/load_option/Downtime_Production'); ?>">
                                 <!-- <i class="fa fa-clock nav-icon nav-icon-hover" dvalue="Downtime" style="font-size: 29px;padding:9px;height: 1.8rem;width: 1.8rem;margin-right: 0.8rem;" alt="Downtime"></i> -->
@@ -481,9 +484,11 @@
                                 </nav>
                             </ul>
                         </li>
+                        <?php } ?>
                         <!-- production downtime new module end -->
 
                         <!-- production Downtime New module -->
+                        <?php if ($this->data['access'][0]['production_quality']  >=1) {?>
                         <li class="side-menu-li d-flex">
                             <a href="<?php echo base_url('Home/load_option/Quality_Production'); ?>">
                                 <!-- <i class="fa fa-award nav-icon nav-icon-hover" dvalue="Quality" style="font-size: 29px;padding:9px;height: 1.8rem;width: 1.8rem;margin-right: 0.8rem;" alt="Quality"></i> -->
@@ -497,10 +502,12 @@
                                 </nav>
                             </ul>
                         </li>
+                        <?php } ?>
                         <!-- <i class="fa-duotone fa-award-simple"></i> -->
                         <!-- production downtime new module end -->
 
                         <!-- oee drilldown new module -->
+                        <?php if ($this->data['access'][0]['oee_drill_down']  >=1) {?>
                         <li class="side-menu-li d-flex">
                             <a href="<?php echo base_url('Home/load_option/Oee_Drill_Down'); ?>">
                                 <i class="fa fa-bore-hole nav-icon nav-icon-hover" dvalue="Oee" style="font-size: 29px;padding:9px;height: 1.8rem;width: 1.8rem;margin-right: 0.8rem;" alt="Oee"></i>
@@ -511,9 +518,11 @@
                                 </nav> 
                             </ul>
                         </li>
+                        <?php } ?>
                         <!-- oee drilldown new module end  -->
 
                         <!-- oee drilldown new module -->
+                        <?php if ($this->data['access'][0]['alert_management']  >=1) {?>
                         <li class="side-menu-li d-flex">
                             <a href="<?php echo base_url('Home/load_option/Alert_Settings'); ?>">
                                 <img src="<?php echo base_url()?>/assets/icons/nav_icon_alert.png?version=<?php echo rand() ; ?>" dvalue="Alert" class="icons-side-nav fa-alert nav-icon nav-icon-hover nav-icon-align" dvalue="Alert">
@@ -524,9 +533,11 @@
                                 </nav> 
                             </ul>
                         </li>
+                        <?php } ?>
                         <!-- oee drilldown new module end  -->
 
                         <!-- Issue Management -->
+                        <?php if ($this->data['access'][0]['work_order_management']  >=1) {?>
                         <li class="side-menu-li d-flex">
                             <a href="<?php echo base_url('Home/load_option/Work_Order_Management'); ?>">
                                 <img src="<?php echo base_url()?>/assets/icons/nav_icon_issue.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-work nav-icon nav-icon-hover nav-icon-align" dvalue="Work">
@@ -537,6 +548,7 @@
                                 </nav> 
                             </ul>
                         </li>
+                        <?php } ?>
 
                         <!-- Issue Management End -->
                 </ul>

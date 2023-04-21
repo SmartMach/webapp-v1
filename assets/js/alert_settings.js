@@ -415,7 +415,7 @@ function reset_filter_last_updated_by(){
 // edit machine arr particular value selection list
 function edit_machine_drp_set(data) {
     var tmp_edit_machine_arr = $('.edit_drp_machine_checkbox');
-    console.log(data);
+    // console.log(data);
     if (data==null) {
         jQuery('.edit_drp_machine_checkbox').each(function(ind1){
             tmp_edit_machine_arr[ind1].checked=true;
@@ -441,7 +441,7 @@ function edit_machine_drp_set(data) {
 // edit part arr particular value selection list
 function edit_part_drp_set(data){
     var tmp_edit_part_arr = $('.editpart_drp_checkbox');
-    console.log(data);
+    // console.log(data);
     if (data==null) {
         jQuery('.editpart_drp_checkbox').each(function(ind1){
             tmp_edit_part_arr[ind1].checked=true;
