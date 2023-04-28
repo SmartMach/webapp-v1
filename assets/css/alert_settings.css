@@ -1016,7 +1016,7 @@
 }
 .select3 .selectBtn3 {
 background: var(--bg1);
-padding: 10px;
+/* padding: 10px; */
 box-sizing: border-box;
 border-radius: 3px;
 width: 100%;

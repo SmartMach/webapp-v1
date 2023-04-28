@@ -130,15 +130,15 @@ class Alert_Settings_Controller extends BaseController{
         if ($this->request->isAJAX()) {
             // echo json_encode("ajax ok");
 
-            // $machine_arr_get = $this->request->getvar('machine_arr');
-            // $part_arr_get = $this->request->getvar('part_arr');
-            // $last_updated_arr = $this->request->getvar('last_updated_arr');
-            // $work_type_arr = $this->request->getvar('work_order_arr');
+            $machine_arr_get = $this->request->getvar('machine_arr');
+            $part_arr_get = $this->request->getvar('part_arr');
+            $last_updated_arr = $this->request->getvar('last_updated_arr');
+            $work_type_arr = $this->request->getvar('work_order_arr');
 
-            $machine_arr_get = array('all', 'MC1001', 'MC1002', 'MC1003', 'MC1004', 'MC1005', 'MC1006');
-            $part_arr_get = array('all', 'PT1001', 'PT1002', 'PT1003', 'PT1004', 'PT1005', 'PT1006', 'PT1007', 'PT1008', 'PT1009', 'PT1010', 'PT1011', 'PT1012', 'PT1013', 'PT1014', 'PT1015', 'PT1016', 'PT1017', 'PT1018', 'PT1019', 'PT1020', 'PT1021', 'PT1022', 'PT1023', 'PT1024', 'PT1025', 'PT1026', 'PT1027', 'PT1028', 'PT1029', 'PT1030', 'PT1031', 'PT1032', 'PT1033', 'PT1034', 'PT1035', 'PT1036', 'PT1037', 'PT1038', 'PT1039', 'PT1040', 'PT1041', 'PT1042', 'PT1043', 'PT1044', 'PT1045');
-            $work_type_arr = array('all', 'issue', 'task');
-            $last_updated_arr = array('all', 'UM1001','UM1002', 'UM1003', 'UM1004', 'UM1005', 'UM1008', 'UO1001', 'UO1002', 'UO1003', 'UO1004');
+            // $machine_arr_get = array('all', 'MC1001', 'MC1002', 'MC1003', 'MC1004', 'MC1005', 'MC1006');
+            // $part_arr_get = array('all', 'PT1001', 'PT1002', 'PT1003', 'PT1004', 'PT1005', 'PT1006', 'PT1007', 'PT1008', 'PT1009', 'PT1010', 'PT1011', 'PT1012', 'PT1013', 'PT1014', 'PT1015', 'PT1016', 'PT1017', 'PT1018', 'PT1019', 'PT1020', 'PT1021', 'PT1022', 'PT1023', 'PT1024', 'PT1025', 'PT1026', 'PT1027', 'PT1028', 'PT1029', 'PT1030', 'PT1031', 'PT1032', 'PT1033', 'PT1034', 'PT1035', 'PT1036', 'PT1037', 'PT1038', 'PT1039', 'PT1040', 'PT1041', 'PT1042', 'PT1043', 'PT1044', 'PT1045');
+            // $work_type_arr = array('all', 'issue', 'task');
+            // $last_updated_arr = array('all', 'UM1001','UM1002', 'UM1003', 'UM1004', 'UM1005', 'UM1008', 'UO1001', 'UO1002', 'UO1003', 'UO1004');
 
             $res = $this->data->get_alert_data();
 

@@ -555,7 +555,7 @@
                                 <div class="lang-select">
                                     <span class="priority_label_txt" style="">Priority  <span class="paddingm validate">*</span></span>
                                     <div class="select3">
-                                        <div class="selectBtn3 priority_get_data_add" data-type="firstOption"> <i class='fas fa-angle-double-down' style='font: size 18px; width:18px; color: #2196F3; margin-top: 5px;'></i>&nbsp;Low</div>
+                                        <div class="selectBtn3 priority_get_data_add" data-type="firstOption"></div>
                                         <div class="selectDropdown3">
                                             <div class="option3" data-type="firstOption" onclick="icon_drop(this)"><i class='fas fa-angle-double-down' style='font: size 18px;; width:20px; margin-top: 5px; color: #2196F3;'></i>&nbsp;Low</div>
                                             <div class="option3" data-type="secondOption" onclick="icon_drop(this)"><i style='font: size 18px;; color:#FBB80F; margin-top: 5px;' class='fas'>&#xf52c;</i>&nbsp;Medium</div>
@@ -1105,9 +1105,10 @@ function add_assignee(t) {
 
     // add modal click function 
     function show_modal_add_alert(){
-        reset_add_alert_machine();
-        reset_add_alert_part();
+       
         // $('.selectDropdown3').toggleClass('new_4');
+        var data_txt = "insert";
+        reset_all_input(data_txt);
         $('#addAlert_modal').modal('show');
     }
 
@@ -1934,8 +1935,8 @@ function add_assignee(t) {
             console.log("add alert submit");
             console.log(deu_days);
             var add_label = $('.lable-div-add .lable-bg').length;
-            var la = inputlabel(add_label);
-            // console.log(add_label+"......");
+            // var la = inputlabel(add_label);
+            console.log(add_label+"...label length...");
 
             // email
             var i = inputAlert_mail_sub(add_alert_subject);
@@ -1948,16 +1949,16 @@ function add_assignee(t) {
             var pc = inputAlertcc(cc_tmp_email);
             var note_error = 0; 
             if (notify_as==="all") { 
-                if (f!="" || g!="" || h!="" || i!="" || j!="" || nt!="" || pc!="" || la!="") {
+                if (f!="" || g!="" || h!="" || i!="" || j!="" || nt!="" || pc!="") {
                     $('#inputAlertworktypeErr').html(f);
                     $('#inputAlertworktitleErr').html(g);
                     $('#inputAlertdeudaysErr').html(h);
                     $('#input_email_sub_Err').html(i);
                     $('#input_email_note_Err').html(j);
-                    // $('#inputlabelErr').html(ml);
+                    // $('#label_action_Err').html(ml);
                     $('#input_check_cc_Err').html(pc);
                     $('#input_check_to_Err').html(nt);
-                    $('#label_action_Err').html(la);
+                    // $('#label_action_Err').html(la);
 
                 }else{
                     console.log("email and work");
@@ -1977,15 +1978,20 @@ function add_assignee(t) {
             }
             else if(notify_as==="work"){
                 console.log(h);
-                if (f!="" || g!="" || h!="" || la!="") {
+                if (f!="" || g!="" || h!="") {
                     $('#inputAlertworktypeErr').html(f);
                     $('#inputAlertworktitleErr').html(g);
                     $('#inputAlertdeudaysErr').html(h);
-                    $('#label_action_Err').html(la);
+                    // $('#label_action_Err').html(la);
                 }else{
                     console.log("email");
                     note_error = 1;
                 }
+            }
+
+            // after no label input fill submit empty
+            if (parseInt(lable_list.length)<=0) {
+                lable_list.push("empty");
             }
             
             console.log("priority");
@@ -2245,7 +2251,7 @@ function add_assignee(t) {
         console.log(get_alert_id);
         console.log("alert id");
         // alert(get_alert_id);
-
+        reset_all_input("edit");
         $.ajax({
             url:"<?php echo base_url('Alert_Settings_Controller/get_particular_record'); ?>",
             method:"POST",
@@ -2611,7 +2617,7 @@ function add_assignee(t) {
             var h = inputAlertdue_days(deu_days);
             
             // var m = inputAlertlabel(work_label);
-            var lae = inputlabel(add_label);
+            // var lae = inputlabel(add_label);
 
 
             console.log(deu_days);
@@ -2626,7 +2632,7 @@ function add_assignee(t) {
 
             var note_error = 0; 
             if (notify_as==="all") { 
-                if (f!="" || g!="" || h!="" || i!="" || j!="" || k!="" || l!="" || lae!="") {
+                if (f!="" || g!="" || h!="" || i!="" || j!="" || k!="" || l!="") {
                     $('#inputAlert_edit_worktypeErr').html(f);
                     $('#inputAlert_edit_worktitleErr').html(g);
                     $('#inputAlert_edit_deudaysErr').html(h);
@@ -2634,7 +2640,7 @@ function add_assignee(t) {
                     $('#input_email_edit_note_Err').html(j);
                     $('#input_check_to_edit_Err').html(k);
                     $('#input_check_cc_edit_Err').html(l);
-                    $('#label_edit_Err').html(lae);
+                    // $('#label_edit_Err').html(lae);
                 }else{
                   
                     note_error = 1;
@@ -2654,12 +2660,12 @@ function add_assignee(t) {
             }
             else if(notify_as==="work"){
                 console.log(h);
-                if (f!="" || g!="" || h!="" || lae!="") {
+                if (f!="" || g!="" || h!="") {
                     console.log('only for work');
                     $('#inputAlert_edit_worktypeErr').html(f);
                     $('#inputAlert_edit_worktitleErr').html(g);
                     $('#inputAlert_edit_deudaysErr').html(h);
-                    $('#label_edit_Err').html(lae);
+                    // $('#label_edit_Err').html(lae);
 
                 }else{
                     console.log("email");
@@ -2673,6 +2679,9 @@ function add_assignee(t) {
             console.log("priority");
             console.log(priority);
             console.log(assignee);
+            if (parseInt(lable_list.length)<=0) {
+                lable_list.push("empty");
+            }
             // console.log(lable_list+"...edit");
             // alert('ji');
            
@@ -3107,5 +3116,60 @@ $(document).on("click", ".item-remove-lable-edit", function(event){
     var indx = countr.index($(this));
     $(this).parent('.lable-bg').remove();
 });
+
+
+// reset all inputs
+function reset_all_input(data_txt){
+    if(data_txt==="insert"){
+        $('#add_alert_name').val('');
+        $('#add_alert_metrics').val('');
+        $('#add_alert_relation').val('');
+        $('#add_alert_val').val('');
+        $('#add_alert_past_hour').val('');
+        reset_add_alert_machine();
+        reset_add_alert_part();
+        $('#work_check_toggle').prop('checked',false);
+        $('#email_check_toggle').prop('checked',false);
+        $('#add_alert_work_type').val('');
+        $('#add_alert_work_title').val('');
+        $('.selectBtn3').html('<div class="selectBtn3 priority_get_data_add" data-type="firstOption"> <i class="fas fa-angle-double-down" style="font: size 18px; width:18px; color: #2196F3; margin-top: 5px;"></i>&nbsp;Low</div>');
+        $('.selectBtn3').attr('data-val', '0');
+        $('.lable-div-add').empty();
+        $('#add_alert_deu_days').val('');
+        $('#assignee_val').text('Unassigned');
+        $('#assignee_val').attr('data-assignee-val','Unassigned');
+        $('.to_email_txt_tags_arr').empty();
+        $('.cc_email_txt_arr').empty();
+        $('#add_alert_mail_subject').val('');
+        $('#add_alert_mail_notes').val('');
+        $('.toggle_work_div').css('display','none');
+        $('.email_div_visibility').css('display','none');
+    }
+    else if(data_txt==="edit"){
+        $('#edit_alert_name').val('');
+        $('#edit_alert_metrics').val('');
+        $('#edit_alert_relation').val('');
+        $('#edit_alert_val').val('');
+        $('#edit_alert_past_hour').val('');
+        $('#work_edit_check_toggle').prop('checked',false);
+        $('#edit_email_check_toggle').prop('checked',false);
+        $('#edit_alert_work_type').val('');
+        $('#edit_alert_work_title').val('');
+        // $('.select_edit_priority_btn ').val('');
+        $('.select_edit_priority_btn').html('<div class="select_edit_priority_option" data-type="secondOption" onclick="icon_drop_edit_priority(this)"><i class="fas fa-angle-double-down" style="font: size 18px;; width:20px; margin-top: 5px; color:#2196F3;"></i>&nbsp;Low</div>');
+        $('.select_edit_priority_btn').attr('data-val', '0');
+        $('.lable-div-edit').empty();
+        $('#edit_assignee_val').text('Unassigned');
+        $('#edit_alert_deu_days').val('');
+        $('.to_email_input_tags_txt_edit').empty();
+        $('.cc_email_input_tags_txt_edit').empty();
+        $('#edit_alert_mail_subject').val('');
+        $('#edit_alert_mail_notes').val('');
+
+    }
+
+
+
+}
 
 </script>
