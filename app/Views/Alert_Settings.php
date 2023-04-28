@@ -136,6 +136,40 @@
 .assigne_drp_btn i{
     width: 20px;
 }
+.filter_multiselect_lable{
+    width: 10rem;
+    min-height: 2.6rem;
+    max-height: 10rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.3rem;
+}
+.lable-div{
+    display: flex;
+    /*min-height: 2.3rem !important;*/
+    max-height: 10rem !important;
+    margin-top:10px;
+    overflow: auto;
+    flex-wrap: wrap;
+}
+.input-field-lable{
+    width: 100px;
+    height: 28px;
+    margin: 0.4rem;
+    border: 0.1rem solid #faf7f7;
+}
+.lable-bg{
+    background-color:black;
+    color:white;
+    margin-left:5px;
+    margin-top:5px;
+    border-radius:3px;
+}
+.item-remove{
+    margin:2px 2.5px; 
+}
+.lable_items{
+    margin:2px 2.5px;
+}
 </style>
 <br>
 <br>
@@ -209,30 +243,30 @@
                             </div>
                             <div class="filter_checkboxes_categorygp alert_filter_work_order_dive" style="">
                                 <!-- options in progress -->
-                                <div class="add_alert_box_flex alert_filter_work_click" style="">
-                                    <div class="add_alert_checkbox_div" style="">
-                                        <input type="checkbox" id="one" class="filter_alert_work_checkbox" value="all" />
+                                <div class="add_alert_box_flex alert_filter_work_click" style="position: relative;">
+                                    <div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">
+                                        <input type="checkbox" id="one" class="filter_alert_work_checkbox" value="all" style="margin-right:100px;margin-top:12px"/>
                                     </div>
-                                    <div class="add_alert_text_div" style="">
-                                        <p class="font_multi_drp" style="margin:auto;">All </p>
-                                    </div>
-                                </div>
-
-                                <div class="add_alert_box_flex alert_filter_work_click" style="">
-                                    <div class="add_alert_checkbox_div" style="">
-                                        <input type="checkbox" id="one" class="filter_alert_work_checkbox" value="issue" />
-                                    </div>
-                                    <div class="add_alert_text_div" style="">
-                                        <p class="font_multi_drp" style="margin:auto;">Issue </p>
+                                    <div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">
+                                        <p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">All </p>
                                     </div>
                                 </div>
 
-                                <div class="add_alert_box_flex alert_filter_work_click" style="">
-                                    <div class="add_alert_checkbox_div" style="">
-                                        <input type="checkbox" id="one" class="filter_alert_work_checkbox" value="task" />
+                                <div class="add_alert_box_flex alert_filter_work_click" style="position: relative;">
+                                    <div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">
+                                        <input type="checkbox" id="one" class="filter_alert_work_checkbox" value="issue" style="margin-right:100px;margin-top:12px"/>
                                     </div>
-                                    <div class="add_alert_text_div" style="">
-                                        <p class="font_multi_drp" style="margin:auto;">Work </p>
+                                    <div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">
+                                        <p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">Issue </p>
+                                    </div>
+                                </div>
+
+                                <div class="add_alert_box_flex alert_filter_work_click" style="position: relative;">
+                                    <div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">
+                                        <input type="checkbox" id="one" class="filter_alert_work_checkbox" value="task" style="margin-right:100px;margin-top:12px"/>
+                                    </div>
+                                    <div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">
+                                        <p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">Work </p>
                                     </div>
                                 </div>
                             </div>
@@ -269,7 +303,7 @@
 
                 </div>
                 <a style="background: #005abc;color: white;width:max-content;" class="settings_nav_anchor float-end"
-                    id="add_machine_button" onclick="show_modal_add_alert()">
+                    id="add_alert_button" onclick="show_modal_add_alert()">
                     <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD ALERT
                 </a>
             </div>
@@ -330,7 +364,7 @@
 
 <!-- add lert model -->
 
-<div class="modal fade" id="addAlert" tabindex="-1" aria-labelledby="addAlert" aria-hidden="true">
+<div class="modal fade" id="addAlert_modal" tabindex="-1" aria-labelledby="addAlert_modal" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered rounded ">
         <div class="container modal-content bodercss">
             <div class="modal-header" style="border:none; ">
@@ -361,12 +395,12 @@
                                         <option value="unplanned_downtime">Unplanned Downtime</option>
                                         <option value="planned_machine_off">Planned Machine Off</option>
                                         <option value="unplanned_machine_off">Unplanned Machine Off</option>
-                                        <option value="opportunity">OPPORTUNITY</option>
-                                        <option value="performance">PERFORMANCE</option>
-                                        <option value="downtime">DOWNTIME</option>
-                                        <option value="unamed">UNAMED</option>
-                                        <option value="nodata">NODATA</option>
-                                        <option value="offline">OFFLINE</option>
+                                        <option value="total_downtime">Total Downtime</option>
+                                        <option value="total_unamed">Total Unamed</option>
+                                        <option value="no_of_rejection">No Of Rejection</option>
+                                        <option value="oee">OEE</option>
+                                        <option value="teep">TEEP</option>
+                                        <option value="ooe">OOE</option>
                                         
                                     </select>
                                     <label for="add_alert_metrics" class="input-padding ">Metrics  <span class="paddingm validate">*</span></label>
@@ -531,7 +565,7 @@
                                 </div>  
                             </div>
                             <div class="col-lg-4">
-                                <div class="box rightmar" style="margin-right: 0.5rem;">
+                                <!-- <div class="box rightmar" style="margin-right: 0.5rem;">
                                     <div class="input-box wrapper_label">
                                     
                                         <div class="content_label">
@@ -542,6 +576,27 @@
                                         <span class="paddingm float-start validate" id="inputlabelErr"></span>
                                         
                                     </div>
+                                </div> -->
+                                <div class="input-box indexing">
+                                  <div class="filter_multiselect_lable filter_multiselect_input">
+                                    <span class="multi_select_label" style="">Lable <span class="paddingm validate">*</span></span>
+                                    <div class="filter_selectBox">
+                                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                        <div style="width: 80% !important">
+                                            <div class="lable-div lable-div-add">
+                                            </div>
+                                            <input type="text" class="form-control font_weight_modal input-field-lable input-field-lable-add" id="input_field_label" name="" >
+                                        </div>
+                                        <div class="dropdown-div" style=" width: 20% !important">
+                                          <i class="fa fa-angle-down icon-style"></i>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <span class="paddingm float-start validate" id="label_action_Err"></span> 
+                                  </div>
+                                </div>
+                                <!-- Drop down Suggestion -->
+                                <div class="filter_checkboxes_issue suggestion" id="dropdown-list-lables">
                                 </div>
                             </div>
                             <div class="col-lg-3" style="margin:auto;">
@@ -605,7 +660,7 @@
                             <div class="col-lg-6">
                                 <div class="wrapper">
                                     <div class="content">
-                                        <ul class="parent_div_input_check"><input type="text" class="input_check_to" id="input_check_to" placeholder="TO" spellcheck="false"></ul>
+                                        <ul class="parent_div_input_check" style="position:relative;"><input type="email" class="input_check_to" id="input_check_to" placeholder="TO" spellcheck="false"><span style="position:absolute;margin-top:-1rem;font-size:12px;color:#8c8c8c;background:white;padding:1px;margin-left:1rem;">To Email</span></ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_check_to_Err"></span>
                                 </div>
@@ -615,7 +670,7 @@
                                
                                 <div class="wrapper_cc">
                                     <div class="content_cc">
-                                        <ul class="parent_div_input_check_cc"><input type="text" class="input_check_cc" id="input_check_cc" placeholder="CC" spellcheck="false"></ul>
+                                        <ul class="parent_div_input_check_cc" style="position:relative;"><input type="email" class="input_check_cc" id="input_check_cc" placeholder="CC" spellcheck="false"><span style="position:absolute;margin-top:-1rem;font-size:12px;color:#8c8c8c;background:white;padding:1px;margin-left:1rem;">Cc Email</span></ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_check_cc_Err"></span>
                                 </div>
@@ -687,17 +742,17 @@
                             <div class="box" >
                                 <div class="input-box">
                                     <select class="form-select font_weight" name="edit_alert_metrics" id="edit_alert_metrics" style="width: 100%;">
-                                    <option value="" disabled selected>Choose Metrics</option>
+                                        <option value="" disabled selected>Choose Metrics</option>
                                         <option value="planned_downtime">Planned Downtime</option>    
                                         <option value="unplanned_downtime">Unplanned Downtime</option>
                                         <option value="planned_machine_off">Planned Machine Off</option>
                                         <option value="unplanned_machine_off">Unplanned Machine Off</option>
-                                        <option value="opportunity">OPPORTUNITY</option>
-                                        <option value="performance">PERFORMANCE</option>
-                                        <option value="downtime">DOWNTIME</option>
-                                        <option value="unamed">UNAMED</option>
-                                        <option value="nodata">NODATA</option>
-                                        <option value="offline">OFFLINE</option>
+                                        <option value="total_downtime">Total Downtime</option>
+                                        <option value="total_unamed">Total Unamed</option>
+                                        <option value="no_of_rejection">No Of Rejection</option>
+                                        <option value="oee">OEE</option>
+                                        <option value="teep">TEEP</option>
+                                        <option value="ooe">OOE</option>
                                     </select>
                                     <label for="edit_alert_metrics" class="input-padding ">Metrics  <span class="paddingm validate">*</span></label>
                                     <span class="paddingm float-start validate" id="inputAlertEditmetricserr"></span>
@@ -860,11 +915,33 @@
                                 </div>  
                             </div>
                             <div class="col-lg-4">
-                                <div class="edit_wrapper_label">
+                                <!-- <div class="edit_wrapper_label">
                                     <div class="edit_content_label">
                                         <ul class="edit_parent_div_input_check_label"><input type="text" class="edit_input_check_label" placeholder="Label" spellcheck="false"></ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="inputlabel_edit_Err"></span>
+                                </div> -->
+                                <div class="input-box indexing">
+                                  <div class="filter_multiselect_lable filter_multiselect_input">
+                                    <span class="multi_select_label" style="">Lable <span class="paddingm validate">*</span></span>
+                                    <div class="filter_selectBox">
+                                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                        <div style="width: 80% !important">
+                                            <div class="lable-div lable-div-edit">
+                                            </div>
+                                            <input type="text" class="form-control font_weight_modal input-field-lable input-field-lable-edit" id="input-field-lable-edit" name="" >
+                                        </div>
+                                        <div class="dropdown-div" style=" width: 20% !important">
+                                          <i class="fa fa-angle-down icon-style"></i>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <span class="paddingm float-start validate" id="label_edit_Err"></span> 
+
+                                  </div>
+                                </div>
+                                <!-- Drop down Suggestion -->
+                                <div class="filter_checkboxes_issue suggestion" id="dropdown-list-lables-edit">
                                 </div>
                             </div>
                             <div class="col-lg-3" style="margin:auto;">
@@ -1031,7 +1108,7 @@ function add_assignee(t) {
         reset_add_alert_machine();
         reset_add_alert_part();
         // $('.selectDropdown3').toggleClass('new_4');
-        $('#addAlert').modal('show');
+        $('#addAlert_modal').modal('show');
     }
 
 
@@ -1174,22 +1251,22 @@ function add_assignee(t) {
                 var edit_part_drp_ele = $();
                 var edit_alert_assignee = $();
 
-                $('.add_alert_machine_drp').append('<div class="add_alert_box_flex add_alert_machine_click">'
-                    +'<div class="add_alert_checkbox_div" style="">'
-                        +'<input type="checkbox" id="one" class="add_alert_machine1" value="all" />'
+                $('.add_alert_machine_drp').append('<div class="add_alert_box_flex add_alert_machine_click" style="position: relative;padding: 12px 0;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
+                        +'<input type="checkbox" id="one" class="add_alert_machine1" value="all"/>'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                        +'<p class="font_multi_drp" style="margin:auto;">All Machines</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                        +'<p class="font_multi_drp" style="margin-left:27px">All Machines</p>'
                     +'</div>'
                     +'</div>');
 
 
-                $('.add_alert_part_drp').append('<div class="add_alert_box_flex add_alert_part_click" style="">'
-                    +'<div class="add_alert_checkbox_div" style="">'
+                $('.add_alert_part_drp').append('<div class="add_alert_box_flex add_alert_part_click" style="position: relative;padding: 12px 0;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
                         +'<input type="checkbox" id="one" class="add_alert_part1" value="all" />'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                        +'<p class="font_multi_drp" style="margin:auto;">All Parts</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                        +'<p class="font_multi_drp" style="margin-left:27px">All Parts</p>'
                     +'</div>'
                 +'</div>');
 
@@ -1198,78 +1275,78 @@ function add_assignee(t) {
 
                 $('#edit_alert_assignee').append('<option value="unassigned" selected>Unassigned</option>');
 
-                $('.alert_file_part_div').append('<div class="add_alert_box_flex filter_drp_part" style="">'
-                    +'<div class="add_alert_checkbox_div" style="">'
+                $('.alert_file_part_div').append('<div class="add_alert_box_flex filter_drp_part" style="position: relative;padding: 12px 0;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
                     +'<input type="checkbox" id="one" class="filter_Drp_part_checkbox" value="all" />'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                    +'<p class="font_multi_drp" style="margin:auto;">All Parts</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                    +'<p class="font_multi_drp" style="margin-left:27px">All Parts</p>'
                     +'</div>'
                     +'</div>');
 
-                $('.alert_filter_machine_div').append('<div class="add_alert_box_flex filter_drp_machine_click" style="">'
-                    +'<div class="add_alert_checkbox_div" style="">'
+                $('.alert_filter_machine_div').append('<div class="add_alert_box_flex filter_drp_machine_click" style="position: relative;padding: 12px 0;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
                     +'<input type="checkbox" id="one" class="filter_drp_machine_checkbox" value="all" />'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                    +'<p class="font_multi_drp" style="margin:auto;">All Machines</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                    +'<p class="font_multi_drp" style="margin-left:27px">All Machines</p>'
                     +'</div>'
                     +'</div>');
 
 
-                $('.edit_alert_machine_drp').append('<div class="add_alert_box_flex edit_drp_machine_click" style="">'
-                    +'<div class="add_alert_checkbox_div" style="">'
+                $('.edit_alert_machine_drp').append('<div class="add_alert_box_flex edit_drp_machine_click" style="position: relative;padding: 12px 0;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
                     +'<input type="checkbox" id="one" class="edit_drp_machine_checkbox" value="all" />'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                    +'<p class="font_multi_drp" style="margin:auto;">All Machines</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                    +'<p class="font_multi_drp" style="margin-left:27px">All Machines</p>'
                     +'</div>'
                     +'</div>');
                 
-                $('.filter_alert_assignee_div').append('<div class="add_alert_box_flex filter_drp_last_updated_click" style="">'
-                    +'<div class="add_alert_checkbox_div" style="">'
+                $('.filter_alert_assignee_div').append('<div class="add_alert_box_flex filter_drp_last_updated_click" style="position: relative;padding: 12px 0;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
                     +'<input type="checkbox" id="one" class="filter_drp_last_updated_checkbox" value="all" />'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                    +'<p class="font_multi_drp" style="margin:auto;">All Users</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                    +'<p class="font_multi_drp" style="margin-left:27px">All Users</p>'
                     +'</div>'
                     +'</div>');
 
 
-                $('.edit_alert_part_drp').append('<div class="add_alert_box_flex edit_part_drp_click" style="">'
-                    +'<div class="add_alert_checkbox_div" style="">'
+                $('.edit_alert_part_drp').append('<div class="add_alert_box_flex edit_part_drp_click" style="position: relative;padding: 12px 0;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
                     +'<input type="checkbox" id="one" class="editpart_drp_checkbox" value="all" />'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                    +'<p class="font_multi_drp" style="margin:auto;">All Parts</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                    +'<p class="font_multi_drp" style="margin-left:27px">All Parts</p>'
                     +'</div>'
                 +'</div>');
 
                 res['machine_arr'].forEach(function(item){
-                    element = element.add('<div class="add_alert_box_flex add_alert_machine_click">'
-                    +'<div class="add_alert_checkbox_div" style="">'
+                    element = element.add('<div class="add_alert_box_flex add_alert_machine_click" style="position: relative;margin:0;top:50%;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;top:30%;">'
                         +'<input type="checkbox" id="one" class="add_alert_machine1" value="'+item.machine_id+'" />'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                        +'<p class="font_multi_drp" style="margin:auto;">'+item.machine_name+'</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                        +'<p class="font_multi_drp" style="margin-left:27px;margin-bottom:0px;">'+item.machine_name+'</p>'
                     +'</div>'
                     +'</div>');
 
-                    filter_drp_machine = filter_drp_machine.add('<div class="add_alert_box_flex filter_drp_machine_click" style="">'
-                    +'<div class="add_alert_checkbox_div" style="">'
-                    +'<input type="checkbox" id="one" class="filter_drp_machine_checkbox" value="'+item.machine_id+'" />'
+                    filter_drp_machine = filter_drp_machine.add('<div class="add_alert_box_flex filter_drp_machine_click" style="position: relative;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
+                    +'<input type="checkbox" id="one" class="filter_drp_machine_checkbox" value="'+item.machine_id+'" style="margin-right:100px;margin-top:12px"/>'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                    +'<p class="font_multi_drp" style="margin:auto;">'+item.machine_name+'</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                    +'<p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">'+item.machine_name+'</p>'
                     +'</div>'
                     +'</div>');
 
-                    edit_machine_drp_ele = edit_machine_drp_ele.add('<div class="add_alert_box_flex edit_drp_machine_click" style="">'
-                    +'<div class="add_alert_checkbox_div" style="">'
-                    +'<input type="checkbox" id="one" class="edit_drp_machine_checkbox" value="'+item.machine_id+'" />'
+                    edit_machine_drp_ele = edit_machine_drp_ele.add('<div class="add_alert_box_flex edit_drp_machine_click" style="position: relative;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
+                    +'<input type="checkbox" id="one" class="edit_drp_machine_checkbox" value="'+item.machine_id+'" style="margin-right:100px;margin-top:12px"/>'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                    +'<p class="font_multi_drp edit_txt_machine_drp" style="margin:auto;">'+item.machine_name+'</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                    +'<p class="font_multi_drp edit_txt_machine_drp" style="margin-left:25px;margin-top:11px;">'+item.machine_name+'</p>'
                     +'</div>'
                     +'</div>');
 
@@ -1281,31 +1358,31 @@ function add_assignee(t) {
 
 
                 res['part_arr'].forEach(function(item){
-                    ele_part = ele_part.add('<div class="add_alert_box_flex  add_alert_part_click" style="">'
-                        +'<div class="add_alert_checkbox_div " style="">'
-                            +'<input type="checkbox" id="one" class="add_alert_part1" value="'+item.part_id+'" />'
+                    ele_part = ele_part.add('<div class="add_alert_box_flex  add_alert_part_click" style="position: relative;">'
+                        +'<div class="add_alert_checkbox_div " style="z-index:1;position: absolute;">'
+                            +'<input type="checkbox" id="one" class="add_alert_part1" value="'+item.part_id+'" style="margin-right:100px;margin-top:12px"/>'
                         +'</div>'
-                        +'<div class="add_alert_text_div" style="">'
-                            +'<p class="font_multi_drp" style="margin:auto;">'+item.part_name+'</p>'
+                        +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                            +'<p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">'+item.part_name+'</p>'
                         +'</div>'
                     +'</div>');
 
-                    filter_drp_part = filter_drp_part.add('<div class="add_alert_box_flex filter_drp_part" style="">'
-                    +'<div class="add_alert_checkbox_div" style="">'
-                    +'<input type="checkbox" id="one" class="filter_Drp_part_checkbox" value="'+item.part_id+'" />'
+                    filter_drp_part = filter_drp_part.add('<div class="add_alert_box_flex filter_drp_part" style="position: relative;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
+                    +'<input type="checkbox" id="one" class="filter_Drp_part_checkbox" value="'+item.part_id+'" style="margin-right:100px;margin-top:12px"/>'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                    +'<p class="font_multi_drp" style="margin:auto;">'+item.part_name+'</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                    +'<p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">'+item.part_name+'</p>'
                     +'</div>'
                     +'</div>');
 
 
-                    edit_part_drp_ele = edit_part_drp_ele.add('<div class="add_alert_box_flex edit_part_drp_click" style="">'
-                    +'<div class="add_alert_checkbox_div" style="">'
-                    +'<input type="checkbox" id="one" class="editpart_drp_checkbox" value="'+item.part_id+'" />'
+                    edit_part_drp_ele = edit_part_drp_ele.add('<div class="add_alert_box_flex edit_part_drp_click" style="position: relative;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
+                    +'<input type="checkbox" id="one" class="editpart_drp_checkbox" value="'+item.part_id+'" style="margin-right:100px;margin-top:12px"/>'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                    +'<p class="font_multi_drp" style="margin:auto;">'+item.part_name+'</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                    +'<p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">'+item.part_name+'</p>'
                     +'</div>'
                     +'</div>');
 
@@ -1368,12 +1445,12 @@ function add_assignee(t) {
 
                 // last updated by filter array
                 res['last_updated_by_arr'].forEach(function(item) {
-                    filter_drp_assignee = filter_drp_assignee.add('<div class="add_alert_box_flex filter_drp_last_updated_click" style="">'
-                    +'<div class="add_alert_checkbox_div" style="">'
-                    +'<input type="checkbox" id="one" class="filter_drp_last_updated_checkbox" value="'+item.user_id+'" />'
+                    filter_drp_assignee = filter_drp_assignee.add('<div class="add_alert_box_flex filter_drp_last_updated_click" style="position: relative;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
+                    +'<input type="checkbox" id="one" class="filter_drp_last_updated_checkbox" value="'+item.user_id+'" style="margin-right:100px;margin-top:12px"/>'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                    +'<p class="font_multi_drp" style="margin:auto;">'+item.first_name+' '+item.last_name+'</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                    +'<p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">'+item.first_name+' '+item.last_name+'</p>'
                     +'</div>'
                     +'</div>');
 
@@ -1701,7 +1778,7 @@ function add_assignee(t) {
                 part_arr.push($(this).val());
             }
         });
-        const label_txt_arr = [];
+        var lable_list = [];
         const to_email_arr = [];
         const cc_email_arr = [];
 
@@ -1731,10 +1808,14 @@ function add_assignee(t) {
                 
                 notify_as = "all";
             
-                $('.label_input_tags_txt').each(function(){
-                    if ($(this).text()) {
-                        label_txt_arr.push($(this).text());
-                    }
+                // $('.label_input_tags_txt').each(function(){
+                //     if ($(this).text()) {
+                //         label_txt_arr.push($(this).text());
+                //     }
+                // });
+                var lable = $('.lable-div-add').children('.lable-bg').children('.lable_items');
+                $.each(lable, function(key,valueObj){
+                    lable_list.push(valueObj.getAttribute('lable_list_id'));
                 });
             
                 $('.to_email_txt_tags_arr').each(function(){
@@ -1763,8 +1844,6 @@ function add_assignee(t) {
                 // var priority = n.split(/\s(.+)/)[1];
                 // console.log(m);
                 // console.log("priority text");
-               
-
 
                 
             }
@@ -1772,10 +1851,14 @@ function add_assignee(t) {
                 notify_as = "work";
             
                 // const label_txt_arr = [];
-                $('.label_input_tags_txt').each(function(){
-                    if ($(this).text()) {
-                        label_txt_arr.push($(this).text());
-                    }
+                // $('.label_input_tags_txt').each(function(){
+                //     if ($(this).text()) {
+                //         label_txt_arr.push($(this).text());
+                //     }
+                // });
+                var lable = $('.lable-div-add').children('.lable-bg').children('.lable_items');
+                $.each(lable, function(key,valueObj){
+                    lable_list.push(valueObj.getAttribute('lable_list_id'));
                 });
                 // var priority = $('.btn-select .priority_txt').text().toLowerCase();
                 var priority = $('.selectBtn3').attr('data-val');
@@ -1817,7 +1900,7 @@ function add_assignee(t) {
 
                 var add_alert_subject = $('#add_alert_mail_subject').val();
                 var add_alert_notes = $('#add_alert_mail_notes').val();
-                label_txt_arr.push("empty");
+                lable_list.push("empty");
                 var work_type = null;
                 var work_title = null;
                 var assignee = null;
@@ -1832,7 +1915,7 @@ function add_assignee(t) {
                 var assignee = null;
                 var priority = null;
                 var deu_days = null;
-                label_txt_arr.push("empty");
+                lable_list.push("empty");
                 to_email_arr.push("empty");
                 cc_email_arr.push("empty");
                 var add_alert_subject = null;
@@ -1850,27 +1933,31 @@ function add_assignee(t) {
             var h = inputAlertdue_days(deu_days);
             console.log("add alert submit");
             console.log(deu_days);
+            var add_label = $('.lable-div-add .lable-bg').length;
+            var la = inputlabel(add_label);
+            // console.log(add_label+"......");
 
             // email
             var i = inputAlert_mail_sub(add_alert_subject);
             var j = inputAlert_email_note(add_alert_notes);
-            var work_label_tmp = $('.parent_div_input_check_label li').length;
+            // var work_label_tmp = $('.parent_div_input_check_label li').length;
             var to_tmp_email = $('.parent_div_input_check li').length;
             var cc_tmp_email = $('.parent_div_input_check_cc li').length;
-            var ml = inputAlertlabel(work_label_tmp);
+            // var ml = inputAlertlabel(work_label_tmp);
             var nt = inputAlertto(to_tmp_email);
             var pc = inputAlertcc(cc_tmp_email);
             var note_error = 0; 
             if (notify_as==="all") { 
-                if (f!="" || g!="" || h!="" || i!="" || j!="" || ml!="" || nt!="" || pc!="") {
+                if (f!="" || g!="" || h!="" || i!="" || j!="" || nt!="" || pc!="" || la!="") {
                     $('#inputAlertworktypeErr').html(f);
                     $('#inputAlertworktitleErr').html(g);
                     $('#inputAlertdeudaysErr').html(h);
                     $('#input_email_sub_Err').html(i);
                     $('#input_email_note_Err').html(j);
-                    $('#inputlabelErr').html(ml);
+                    // $('#inputlabelErr').html(ml);
                     $('#input_check_cc_Err').html(pc);
                     $('#input_check_to_Err').html(nt);
+                    $('#label_action_Err').html(la);
 
                 }else{
                     console.log("email and work");
@@ -1890,21 +1977,22 @@ function add_assignee(t) {
             }
             else if(notify_as==="work"){
                 console.log(h);
-                if (f!="" || g!="" || h!="" || ml!="") {
+                if (f!="" || g!="" || h!="" || la!="") {
                     $('#inputAlertworktypeErr').html(f);
                     $('#inputAlertworktitleErr').html(g);
                     $('#inputAlertdeudaysErr').html(h);
-                    $('#inputlabelErr').html(ml);
+                    $('#label_action_Err').html(la);
                 }else{
                     console.log("email");
                     note_error = 1;
                 }
             }
-
+            
             console.log("priority");
             console.log(priority);
             console.log(note_error);
             console.log(notify_as); 
+            console.log(lable_list+"...list name ")
             if (parseInt(note_error)>=1) {
                 console.log("ok");
                 $.ajax({
@@ -1918,7 +2006,7 @@ function add_assignee(t) {
                             past_hour:past_hour,
                             machine_arr:machine_arr,
                             part_arr:part_arr,
-                            label_txt_arr:label_txt_arr,
+                            lable_list:lable_list,
                             to_email_arr:to_email_arr,
                             cc_email_arr:cc_email_arr,
                             work_type:work_type,
@@ -1940,8 +2028,9 @@ function add_assignee(t) {
                                 var end_index = 50;
                                 $('.pagination_onchange').val('1');
                                 retrive_alert_data(start_index,end_index);
-                                $('#addAlert').modal('hide');
+                                $('#addAlert_modal').modal('hide');
                                 $("#overlay").fadeOut(300);
+                                console.log(res);
                             }
                         
                             
@@ -2168,7 +2257,7 @@ function add_assignee(t) {
             success:function(res){
                 console.log("Alert settings");
                 console.log(res);
-                alert(res);
+                // alert(res);
                
                 $('#title_alert_id').text(res[0]['alert_id']);
                 $('#edit_alert_name').val(res[0]['alert_name']);
@@ -2190,13 +2279,35 @@ function add_assignee(t) {
                     $('#edit_alert_work_title').val(res[0]['work_title']);
                     $('.edit_toggle_work_div').css('display','inline');
                     $('.edit_email_div_visibility').css('display','inline');
-                    var label_arr = res[0]['label_txt_arr'].split(',');
-                    console.log(label_arr);
-                    label_get_arr(label_arr);
+                    // var label_arr = res[0]['label_txt_arr'].split(',');
+                    // console.log(label_arr);
+                    // label_get_arr(label_arr);
+                    $(".lable-div-edit").empty();
+                    const value_lable = res[0]['lable_id'].split(',');
+                    // console.log(value_lable);
+                    value_lable.forEach(function(lable){
+                        lable_list_globle.forEach(function(lable_item){
+                            var itemsContainerlable = $();
+                            if (lable_item['lable_id'] == lable) {
+                                itemsContainerlable = itemsContainerlable.add('<div class="lable-bg">'
+                                    +'<span lable_list_id="'+lable_item['lable_id']+'" class="lable_items">'+lable_item['lable']+'</span>'
+                                    +'<span class="item-remove item-remove-lable-edit marleftalign">'
+                                        +'<i class="fa fa-times" aria-hidden="true"></i>'
+                                    +'</span>'
+                                +'</div>');
+                                $(".lable-div-edit").append(itemsContainerlable);
+                            }
+                        });
+                    });
+                    $(".lable-div-edit").addClass("margtop");
+
+
                     // $('#edit_alert_assignee').val(res[0]['assignee']);
                     $('#edit_alert_deu_days').val(res[0]['deu_days']);
                     var to_email_arr = res[0]['to_email_arr'].split(',');
                     var cc_email_arr = res[0]['cc_email_arr'].split(',');
+                    console.log(to_email_arr);
+                    console.log(cc_email_arr);
                     to_email_get_arr(to_email_arr);
                     cc_email_get_arr(cc_email_arr);
                     $('#edit_alert_mail_subject').val(res[0]['add_alert_subject']);
@@ -2231,10 +2342,30 @@ function add_assignee(t) {
                     $('#edit_alert_work_title').val(res[0]['work_title']);
                     $('.edit_toggle_work_div').css('display','inline');
                     $('.edit_email_div_visibility').css('display','none');
-                    var label_arr = res[0]['label_txt_arr'].split(',');
-                    console.log(label_arr);
-                    label_get_arr(label_arr);
+                    // var label_arr = res[0]['label_txt_arr'].split(',');
+                    // label_get_arr(label_arr);
                     // $('#edit_alert_assignee').val(res[0]['assignee']);
+
+
+                    $(".lable-div-edit").empty();
+                    const value_lable = res[0]['lable_id'].split(',');
+                    // console.log(value_lable);
+                    value_lable.forEach(function(lable){
+                        lable_list_globle.forEach(function(lable_item){
+                            var itemsContainerlable = $();
+                            if (lable_item['lable_id'] == lable) {
+                                itemsContainerlable = itemsContainerlable.add('<div class="lable-bg">'
+                                    +'<span lable_list_id="'+lable_item['lable_id']+'" class="lable_items">'+lable_item['lable']+'</span>'
+                                    +'<span class="item-remove item-remove-lable-edit marleftalign">'
+                                        +'<i class="fa fa-times" aria-hidden="true"></i>'
+                                    +'</span>'
+                                +'</div>');
+                                $(".lable-div-edit").append(itemsContainerlable);
+                            }
+                        });
+                    });
+                    $(".lable-div-edit").addClass("margtop");
+
                     $('#edit_alert_deu_days').val(res[0]['deu_days']);
 
                     // assginee
@@ -2270,7 +2401,7 @@ function add_assignee(t) {
                     var to_email_arr = res[0]['to_email_arr'].split(',');
                     var cc_email_arr = res[0]['cc_email_arr'].split(',');
                     to_email_get_arr(to_email_arr);
-                    cc_email_get_arr(cc_email_arr);
+                       cc_email_get_arr(cc_email_arr);
                 }
                 else{
                     checkbox_work.checked=false;
@@ -2341,6 +2472,7 @@ function add_assignee(t) {
         const label_txt_arr = [];
         const to_email_arr = [];
         const cc_email_arr = [];
+        var lable_list = [];
 
         var checkbox_work = document.querySelector('#work_edit_check_toggle');
         var checkbox_email = document.querySelector('#edit_email_check_toggle');
@@ -2364,10 +2496,14 @@ function add_assignee(t) {
             var notify_as = " ";
             if ((checkbox_work.checked===true) && (checkbox_email.checked===true)) {
                 notify_as = "all";
-                $('.label_input_tags_txt_edit').each(function(){
-                    if ($(this).text()) {
-                        label_txt_arr.push($(this).text());
-                    }
+                // $('.label_input_tags_txt_edit').each(function(){
+                //     if ($(this).text()) {
+                //         label_txt_arr.push($(this).text());
+                //     }
+                // });
+                var lable = $('.lable-div-edit').children('.lable-bg').children('.lable_items');
+                $.each(lable, function(key,valueObj){
+                    lable_list.push(valueObj.getAttribute('lable_list_id'));
                 });
 
             
@@ -2401,10 +2537,14 @@ function add_assignee(t) {
                 notify_as = "work";
             
                 // const label_txt_arr = [];
-                $('.label_input_tags_txt_edit').each(function(){
-                    if ($(this).text()) {
-                        label_txt_arr.push($(this).text());
-                    }
+                // $('.label_input_tags_txt_edit').each(function(){
+                //     if ($(this).text()) {
+                //         label_txt_arr.push($(this).text());
+                //     }
+                // });
+                var lable = $('.lable-div-edit').children('.lable-bg').children('.lable_items');
+                $.each(lable, function(key,valueObj){
+                    lable_list.push(valueObj.getAttribute('lable_list_id'));
                 });
                 // var priority = $('.btn-select_edit .priority_txt_edit').text().toLowerCase();
                 var priority = $('.select_edit_priority_btn').attr('data-val');
@@ -2464,12 +2604,14 @@ function add_assignee(t) {
             }
 
              // work
-            var work_label = $('.edit_parent_div_input_check_label li').length;
+            // var work_label = $('.edit_parent_div_input_check_label li').length;
+            var add_label = $('.lable-div-edit .lable-bg').length;
             var f = inputAlertworktype(work_type);
             var g = inputAlertworktitle(work_title);
             var h = inputAlertdue_days(deu_days);
             
-            var m = inputAlertlabel(work_label);
+            // var m = inputAlertlabel(work_label);
+            var lae = inputlabel(add_label);
 
 
             console.log(deu_days);
@@ -2484,7 +2626,7 @@ function add_assignee(t) {
 
             var note_error = 0; 
             if (notify_as==="all") { 
-                if (f!="" || g!="" || h!="" || i!="" || j!="" || k!="" || l!="" || m!="") {
+                if (f!="" || g!="" || h!="" || i!="" || j!="" || k!="" || l!="" || lae!="") {
                     $('#inputAlert_edit_worktypeErr').html(f);
                     $('#inputAlert_edit_worktitleErr').html(g);
                     $('#inputAlert_edit_deudaysErr').html(h);
@@ -2492,7 +2634,7 @@ function add_assignee(t) {
                     $('#input_email_edit_note_Err').html(j);
                     $('#input_check_to_edit_Err').html(k);
                     $('#input_check_cc_edit_Err').html(l);
-                    $('#inputlabel_edit_Err').html(m);
+                    $('#label_edit_Err').html(lae);
                 }else{
                   
                     note_error = 1;
@@ -2512,12 +2654,12 @@ function add_assignee(t) {
             }
             else if(notify_as==="work"){
                 console.log(h);
-                if (f!="" || g!="" || h!="" || m!="") {
+                if (f!="" || g!="" || h!="" || lae!="") {
                     console.log('only for work');
                     $('#inputAlert_edit_worktypeErr').html(f);
                     $('#inputAlert_edit_worktitleErr').html(g);
                     $('#inputAlert_edit_deudaysErr').html(h);
-                    $('#inputlabel_edit_Err').html(m);
+                    $('#label_edit_Err').html(lae);
 
                 }else{
                     console.log("email");
@@ -2531,6 +2673,7 @@ function add_assignee(t) {
             console.log("priority");
             console.log(priority);
             console.log(assignee);
+            // console.log(lable_list+"...edit");
             // alert('ji');
            
             if (parseInt(note_error)>=1) {
@@ -2548,7 +2691,7 @@ function add_assignee(t) {
                         alert_past_hour:alert_past_hour,
                         machine_arr:machine_arr,
                         part_arr:part_arr,
-                        label_txt_arr:label_txt_arr,
+                        lable_list:lable_list,
                         to_email_arr:to_email_arr,
                         cc_email_arr:cc_email_arr,
                         work_type:work_type,
@@ -2737,6 +2880,232 @@ $(document).on('click','.inbox_edit_assignee',function(event){
         +'</div>');
         
     $('#edit_assignee_val').attr('data-assignee-val',tmpassignee_id);
+});
+
+$(document).on('click','.suggession-lable-items',function(event){
+    var countr = $('.suggession-lable-items');
+    var indx = countr.index($(this));
+    var value = $('.lable-input-suggession:eq('+indx+')').val();
+    const itemsContainerlables = document.getElementsByClassName("lable-div-add")[0];
+
+    const item = document.createElement("div");
+
+    const itemText = document.createElement("span");
+    getLableID(itemText,value);
+    item.appendChild(itemText);
+    itemText.classList.add("lable_items");
+
+    const itemRemove = document.createElement("span");
+    itemRemove.classList.add("item-remove");
+    itemRemove.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i>';
+    itemRemove.classList.add("marleftalign");
+    item.appendChild(itemRemove);
+
+    item.classList.add("lable-bg");
+    
+    itemsContainerlables.classList.add("margtop");
+    itemsContainerlables.appendChild(item);
+
+    inputFieldlables.value = "";
+
+    itemRemove.addEventListener("click", function () {
+        itemsContainerlables.removeChild(item);
+    });
+
+    $('#dropdown-list-lables').empty();
+    document.getElementById("dropdown-list-lables").style.display="none";
+
+    lable_list_globle=[];
+    getLableList();
+});
+
+const inputFieldlables = document.getElementsByClassName("input-field-lable-add")[0];
+const itemsContainerlables = document.getElementsByClassName("lable-div-add")[0];
+inputFieldlables.addEventListener("keyup", function (event) {
+    var inputValue = inputFieldlables.value;
+    if (inputValue.length>0) {
+        document.getElementById("dropdown-list-lables").style.display="block";
+        var suggession_list = lable_list_globle.filter(item => item['lable'].toUpperCase().includes(inputValue.trim().toUpperCase()));
+        
+        $('#dropdown-list-lables').empty();
+
+        suggession_list.forEach((item,index)=>{
+            if (index < 3) {
+                $('#dropdown-list-lables').append('<div class="inbox inbox_priority suggession-lable-items" style="display: flex;">'
+                    +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
+                        +'<p class="inbox-span paddingm"><span class="suggession-lable-val">'+item['lable']+'</span></p>'
+                    +'</div>'
+                    +'<input type="text" class="lable-input-suggession radio-visible" value="'+item['lable']+'">'
+                +'</div>');
+            }
+        });
+        // Add as Final
+        $('#dropdown-list-lables').append('<div class="inbox inbox_priority suggession-lable-items" style="display: flex;">'
+                +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
+                    +'<p class="inbox-span paddingm"><span class="suggession-lable-val">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
+                +'</div>'
+                +'<input type="text" class="lable-input-suggession radio-visible" value="'+inputValue.trim()+'">'
+            +'</div>');
+
+    }else{
+        $('#dropdown-list-lables').empty();
+        document.getElementById("dropdown-list-lables").style.display="none";
+    }
+});
+
+callALL();
+function callALL(){
+    // Reset
+    lable_list_globle = [];
+
+    getLableList();
+}
+function getLableID(item,value){
+    console.log('id'+value);
+    $.ajax({
+        url:"<?php echo base_url('Alert_Settings_Controller/getLableID') ?>",
+        method:"POST",
+        cache: false,
+        async:false,
+        dataType:"json",
+        data:{
+            lable:value
+        },
+        success:function(res){
+            item.setAttribute("lable_list_id", res);
+            item.innerText=value;
+        },
+        error:function(err){
+            // alert("Something went wrong!");
+            // $("#overlay").fadeOut(300);
+        }
+    });
+}
+function getLableList(){
+    console.log('Value');
+    $.ajax({
+        url:"<?php echo base_url('Alert_Settings_Controller/getLable') ?>",
+        method:"POST",
+        cache: false,
+        async:false,
+        dataType:"json",
+        success:function(res){
+            // res.forEach(function(item){
+            //   lable_list_globle.push(item);  
+            // });
+
+            // Filter Status.........
+            $('.Filter_lables_div').append('<div class="inbox inbox_filter_lables" style="display: flex;">'
+                +'<div style="float: left;width: 20%;" class="center-align">'
+                    +'<input class="filter_val_lables" name="filter_val_lables_name" value="all" type="checkbox" checked/>'
+                +'</div>'
+                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                    +'<p class="inbox-span paddingm">All</p>'
+                +'</div>'
+            +'</div>');
+            res.forEach(function(item){
+                lable_list_globle.push(item);
+
+                $('.Filter_lables_div').append('<div class="inbox inbox_filter_lables" style="display: flex;">'
+                    +'<div style="float: left;width: 20%;" class="center-align">'
+                        +'<input class="filter_val_lables" name="filter_val_lables_name" value="'+item['lable_id']+'" type="checkbox" checked/>'
+                    +'</div>'
+                    +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                        +'<p class="inbox-span paddingm">'+item['lable']+'</p>'
+                    +'</div>'
+                +'</div>');
+            });
+        },
+        error:function(err){
+            // alert("Something went wrong!");
+            // $("#overlay").fadeOut(300);
+        }
+    });
+}
+
+
+//Lable edit
+
+$(document).on('click','.suggession-lable-items-edit',function(event){
+    var countr = $('.suggession-lable-items-edit');
+    var indx = countr.index($(this));
+    var value = $('.lable-input-suggession-edit:eq('+indx+')').val();
+    const itemsContainerlables = document.getElementsByClassName("lable-div-edit")[0];
+
+    const item = document.createElement("div");
+
+    const itemText = document.createElement("span");
+    getLableID(itemText,value);
+    item.appendChild(itemText);
+    itemText.classList.add("lable_items");
+
+    const itemRemove = document.createElement("span");
+    itemRemove.classList.add("item-remove");
+    itemRemove.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i>';
+    itemRemove.classList.add("marleftalign");
+    item.appendChild(itemRemove);
+
+    item.classList.add("lable-bg");
+    
+    itemsContainerlables.classList.add("margtop");
+    itemsContainerlables.appendChild(item);
+
+    const inputFieldEdit = document.getElementsByClassName("input-field-lable-edit")[0];
+    inputFieldEdit.value = "";
+
+    itemRemove.addEventListener("click", function () {
+        itemsContainerlables.removeChild(item);
+    });
+
+    $('#dropdown-list-lables-edit').empty();
+    document.getElementById("dropdown-list-lables-edit").style.display="none";
+
+    lable_list_globle=[];
+    getLableList();
+});
+
+
+
+// edit label function
+const inputFieldlablesEdit = document.getElementsByClassName("input-field-lable-edit")[0];
+const itemsContainerlablesEdit = document.getElementsByClassName("lable-div-edit")[0];
+inputFieldlablesEdit.addEventListener("keyup", function (event) {
+    var inputValue = inputFieldlablesEdit.value;
+    if (inputValue.length>0) {
+        document.getElementById("dropdown-list-lables-edit").style.display="block";
+        var suggession_list = lable_list_globle.filter(item => item['lable'].toUpperCase().includes(inputValue.trim().toUpperCase()));
+        
+        $('#dropdown-list-lables-edit').empty();
+
+        suggession_list.forEach((item,index)=>{
+            if (index < 3) {
+                $('#dropdown-list-lables-edit').append('<div class="inbox suggession-lable-items-edit" style="display: flex;">'
+                    +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
+                        +'<p class="inbox-span paddingm"><span class="suggession-lable-val-edit">'+item['lable']+'</span></p>'
+                    +'</div>'
+                    +'<input type="text" class="lable-input-suggession-edit radio-visible" value="'+item['lable']+'">'
+                +'</div>');
+            }
+        });
+        // Add as Final
+        $('#dropdown-list-lables-edit').append('<div class="inbox suggession-lable-items-edit" style="display: flex;">'
+                +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
+                    +'<p class="inbox-span paddingm"><span class="suggession-lable-val-edit">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
+                +'</div>'
+                +'<input type="text" class="lable-input-suggession-edit radio-visible" value="'+inputValue.trim()+'">'
+            +'</div>');
+
+    }else{
+        $('#dropdown-list-lables-edit').empty();
+        document.getElementById("dropdown-list-lables-edit").style.display="none";
+    }
+
+});
+
+$(document).on("click", ".item-remove-lable-edit", function(event){
+    var countr = $('.item-remove-lable-edit');
+    var indx = countr.index($(this));
+    $(this).parent('.lable-bg').remove();
 });
 
 </script>

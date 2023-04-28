@@ -107,7 +107,7 @@ class Alert_Settings_Model extends Model{
             "past_hour" =>  $temp['past_hour'],
             "machine_arr"   =>  $temp['machine_arr'],
             "part_arr"  =>  $temp['part_arr'],
-            "label_txt_arr" =>  $temp['label_txt_arr'],
+            "lable_id" =>  $temp['lable_id'],
             "to_email_arr"    =>    $temp['to_email_arr'],
             "cc_email_arr"  =>  $temp['cc_email_arr'],
             "work_type" =>  $temp['work_type'],
@@ -208,7 +208,7 @@ class Alert_Settings_Model extends Model{
             'past_hour' =>  $mydata['past_hour'],
             'machine_arr'  => $mydata['machine_Arr'],
             'part_arr'  =>  $mydata['part_arr'],
-            'label_txt_arr' =>  $mydata['label_arr'],
+            'lable_id' =>  $mydata['lable_list'],
             'to_email_arr'  =>  $mydata['to_email_arr'],
             'cc_email_arr'  =>  $mydata['cc_email_arr'],
             'work_type' =>  $mydata['work_type'],
@@ -229,7 +229,7 @@ class Alert_Settings_Model extends Model{
             return false;
         }
 
-        return $mydata;
+        // return $mydata;
 
 
     }
@@ -245,6 +245,31 @@ class Alert_Settings_Model extends Model{
         }else{
             return false;
         }
+    }
+    public function insertLable($data){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('work_order_management_lable');
+        
+        if ($query->insert($data)) {
+            return true;
+        }else{
+            return false;   
+        }
+    }
+    public function getLableData(){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('work_order_management_lable');
+        $query->select('lable_id,lable');
+        $query->where('status',1);
+        $res = $query->get()->getResultArray();
+        return $res;
+    }
+    public function getLableId(){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('work_order_management_lable');
+        $query->selectCount('lable_id');
+        $res = $query->get()->getResultArray();
+        return $res[0];
     }
 }
 
