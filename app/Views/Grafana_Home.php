@@ -464,7 +464,7 @@
                             </a>
                             <ul>
                                 <nav style="border-bottom:1px solid #d9d9d9;">
-                                    <p class="nav-menu-title">DAILY PRODUCTION DATA</p> 
+                                    <p class="nav-menu-title">DAILY PRODUCTION STATUS</p> 
                                 </nav> 
                             </ul>
                         </li>
