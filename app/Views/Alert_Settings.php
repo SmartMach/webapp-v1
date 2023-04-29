@@ -397,7 +397,7 @@
                                         <option value="unplanned_machine_off">Unplanned Machine Off</option>
                                         <option value="total_downtime">Total Downtime</option>
                                         <option value="total_unamed">Total Unamed</option>
-                                        <option value="no_of_rejection">No Of Rejection</option>
+                                        <option value="total_rejection">No Of Rejection</option>
                                         <option value="oee">OEE</option>
                                         <option value="teep">TEEP</option>
                                         <option value="ooe">OOE</option>
@@ -749,7 +749,7 @@
                                         <option value="unplanned_machine_off">Unplanned Machine Off</option>
                                         <option value="total_downtime">Total Downtime</option>
                                         <option value="total_unamed">Total Unamed</option>
-                                        <option value="no_of_rejection">No Of Rejection</option>
+                                        <option value="total_rejection">No Of Rejection</option>
                                         <option value="oee">OEE</option>
                                         <option value="teep">TEEP</option>
                                         <option value="ooe">OOE</option>
