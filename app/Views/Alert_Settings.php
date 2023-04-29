@@ -375,7 +375,7 @@
                     <div class="row mb-2 " style="margin-top:3rem;">
                         <div class="box" style="">
                             <div class="input-box" >
-                                <input type="text" class="form-control font_weight_modal" id="add_alert_name"    name="add_alert_name">
+                                <input type="text" class="form-control alert_font_css" id="add_alert_name"    name="add_alert_name">
                                 <label for="add_alert_name" class="input-padding">Alert Name <span class="paddingm validate">*</span></label>
                                 <span class="paddingm float-start validate" id="inputAlertNameErr"></span> 
                             </div>
@@ -389,7 +389,7 @@
                         <div class="col-lg-6">
                             <div class="box" >
                                 <div class="input-box">
-                                    <select class="form-select font_weight" name="add_alert_metrics" id="add_alert_metrics" style="width: 100%;">
+                                    <select class="form-select alert_font_css" name="add_alert_metrics" id="add_alert_metrics" style="width: 100%;">
                                         <option value="" disabled selected>Choose Metrics</option>
                                         <option value="planned_downtime">Planned Downtime</option>    
                                         <option value="unplanned_downtime">Unplanned Downtime</option>
@@ -411,7 +411,7 @@
                         <div class="col-lg-3">
                             <div class="box rightmar" style="margin-right: 0.5rem;">
                                 <div class="input-box">
-                                    <select class="form-select font_weight" name="add_alert_relation" id="add_alert_relation" style="width: 10rem;">
+                                    <select class="form-select alert_font_css" name="add_alert_relation" id="add_alert_relation" style="width: 10rem;">
                                         <option value="" disabled selected>Choose Relation</option>
                                         <option value="<"><</option>
                                         <option value=">">></option>
@@ -427,7 +427,7 @@
                         <div class="col-lg-2">
                             <div class="box" style="padding:0;">
                                 <div class="input-box" >
-                                    <input type="text" class="form-control font_weight_modal" id="add_alert_val" name="add_alert_val" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                    <input type="text" class="form-control alert_font_css" id="add_alert_val" name="add_alert_val" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                     <label for="add_alert_val" class="input-padding">Value <span class="paddingm validate">*</span></label>
                                 </div>
                                 <span class="paddingm float-start validate" id="inputAlertValueErr"></span> 
@@ -445,7 +445,7 @@
                             <!-- <label for="">In the Past</label> -->
                             <div class="input-group mb-3">
                                 <span class="label_txt_hour" style="">In The Past <span class="paddingm validate">*</span></span>
-                                <input type="text" class="form-control"  aria-label="Recipient's username" id="add_alert_past_hour" name="add_alert_past_hour" aria-describedby="basic-addon2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                <input type="text" class="form-control alert_font_css"  aria-label="Recipient's username" id="add_alert_past_hour" name="add_alert_past_hour" aria-describedby="basic-addon2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                 <div class="input-group-append  bg-white text-primary">
                                     <span class="input-group-text bg-white" style="font-size:12px;height:2.4rem;" id="basic-addon2">Hours</span>
                                 </div>
@@ -460,7 +460,7 @@
 
                     <div class="row">
                         <div class="col-lg-3">
-                            <div class="box rightmar" style="margin-right: 0.5rem;">
+                            <div class="box rightmar" style="margin-right: 0.5rem;position:relative;">
                                 <label class="multi_select_model_drp_label" style="">Machine <span class="paddingm validate">*</span></label>
                                 <div class="filter_select_box_add_alert" onclick="add_alert_machine()">
                                     <select class="multi_select_drp_model" style="">
@@ -477,7 +477,7 @@
                             <span class="text-muted" style="font-size:12px;">and</span>
                         </div>
                         <div class="col-lg-3">
-                            <div class="box rightmar" style="margin-right: 0.5rem;">
+                            <div class="box rightmar" style="margin-right: 0.5rem;position:relative;">
                                 <label class="multi_select_model_drp_label" style="">Part <span class="paddingm validate">*</span></label>
                                 <div class="filter_select_box_add_alert" onclick="add_alert_part()">
                                     <select class="multi_select_drp_model" style="">
@@ -512,7 +512,7 @@
                             <div class="col-lg-6">
                                 <div class="box rightmar" style="margin-right: 0.5rem;">
                                     <div class="input-box">
-                                        <select class="form-select font_weight" name="add_alert_work_type" id="add_alert_work_type" style="font-size:15px;">
+                                        <select class="form-select alert_font_css" name="add_alert_work_type" id="add_alert_work_type" style="font-size:15px;">
                                             <option value="" disabled selected>Choose Work Type</option>
                                             <option value="issue">Issue</option>
                                             <option value="task">Task</option>
@@ -525,7 +525,7 @@
                             <div class="col-lg-6">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control font_weight_modal" id="add_alert_work_title"   name="add_alert_work_title">
+                                        <input type="text" class="form-control alert_font_css" id="add_alert_work_title"   name="add_alert_work_title">
                                         <label for="add_alert_work_title" class="input-padding">Title <span class="paddingm validate">*</span></label>
                                     </div>
                                     <span class="paddingm float-start validate" id="inputAlertworktitleErr"></span>
@@ -585,7 +585,7 @@
                                         <div style="width: 80% !important">
                                             <div class="lable-div lable-div-add">
                                             </div>
-                                            <input type="text" class="form-control font_weight_modal input-field-lable input-field-lable-add" id="input_field_label" name="" >
+                                            <input type="text" class="form-control alert_font_css input-field-lable input-field-lable-add" id="input_field_label" name="" >
                                         </div>
                                         <div class="dropdown-div" style=" width: 20% !important">
                                           <i class="fa fa-angle-down icon-style"></i>
@@ -596,7 +596,7 @@
                                   </div>
                                 </div>
                                 <!-- Drop down Suggestion -->
-                                <div class="filter_checkboxes_issue suggestion" id="dropdown-list-lables">
+                                <div class="filter_checkboxes_issue suggestion" id="dropdown-list-lables" style="position:relative;">
                                 </div>
                             </div>
                             <div class="col-lg-3" style="margin:auto;">
@@ -609,7 +609,7 @@
                                         <span class="paddingm float-start validate" id="input_alert_assign_Err"></span>
                                     </div>
                                 </div> -->
-                                <div class="box inbox-top">
+                                <div class="box inbox-top" style="position:relative;">
                                     <div class="input-box indexing">
                                         <div class="filter_multiselect filter_multiselect_input">
                                             <span class="multi_select_label" style="margin-top:-0.7rem;">Assignee <span class="paddingm validate">*</span></span>
@@ -635,7 +635,7 @@
                             <div class="col-lg-2" style="margin:auto;">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control font_weight_modal" id="add_alert_deu_days"
+                                        <input type="text" class="form-control alert_font_css" id="add_alert_deu_days"
                                             name="add_alert_deu_days" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                         <label for="add_alert_deu_days" class="input-padding">Due Days </label>
                                     </div>
@@ -660,7 +660,7 @@
                             <div class="col-lg-6">
                                 <div class="wrapper">
                                     <div class="content">
-                                        <ul class="parent_div_input_check" style="position:relative;"><input type="email" class="input_check_to" id="input_check_to" placeholder="TO" spellcheck="false"><span style="position:absolute;margin-top:-1rem;font-size:12px;color:#8c8c8c;background:white;padding:1px;margin-left:1rem;">To Email</span></ul>
+                                        <ul class="parent_div_input_check" style="position:relative;"><input type="email" class="input_check_to alert_font_css" id="input_check_to" placeholder="TO" spellcheck="false"><span style="position:absolute;margin-top:-1rem;font-size:12px;color:#8c8c8c;background:white;padding:1px;margin-left:1rem;">To Email</span></ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_check_to_Err"></span>
                                 </div>
@@ -670,7 +670,7 @@
                                
                                 <div class="wrapper_cc">
                                     <div class="content_cc">
-                                        <ul class="parent_div_input_check_cc" style="position:relative;"><input type="email" class="input_check_cc" id="input_check_cc" placeholder="CC" spellcheck="false"><span style="position:absolute;margin-top:-1rem;font-size:12px;color:#8c8c8c;background:white;padding:1px;margin-left:1rem;">Cc Email</span></ul>
+                                        <ul class="parent_div_input_check_cc" style="position:relative;"><input type="email" class="input_check_cc alert_font_css" id="input_check_cc" placeholder="CC" spellcheck="false"><span style="position:absolute;margin-top:-1rem;font-size:12px;color:#8c8c8c;background:white;padding:1px;margin-left:1rem;">Cc Email</span></ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_check_cc_Err"></span>
                                 </div>
@@ -682,7 +682,7 @@
                                 <div class="input-group">
                                     <span class="label_txt_font" style="">Subject <span class="paddingm validate">*</span></span>
                                     <span class="input-group-text bg-white text-muted" style="font-size:13px;">SmartMach Alert! </span>
-                                    <input type="text" class="form-control" id="add_alert_mail_subject" name="add_alert_mail_subject">
+                                    <input type="text" class="form-control alert_font_css" id="add_alert_mail_subject" name="add_alert_mail_subject">
                                 </div>
                                 <span class="paddingm float-start validate" id="input_email_sub_Err"></span>
                             </div>
@@ -690,7 +690,7 @@
                             <div class="col-lg-6">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control font_weight_modal" id="add_alert_mail_notes"
+                                        <input type="text" class="form-control alert_font_css" id="add_alert_mail_notes"
                                             name="add_alert_mail_notes">
                                         <label for="add_alert_mail_notes" class="input-padding">Notes</label>
                                     </div>
@@ -725,7 +725,7 @@
                     <div class="row mb-2 " style="margin-top:3rem;">
                         <div class="box" style="">
                             <div class="input-box" >
-                                <input type="text" class="form-control font_weight_modal" id="edit_alert_name"    name="edit_alert_name">
+                                <input type="text" class="form-control alert_font_css" id="edit_alert_name"    name="edit_alert_name">
                                 <label for="edit_alert_name" class="input-padding">Alert Name <span class="paddingm validate">*</span></label>
                             </div>
                             <span class="paddingm float-start validate" id="inputedit_alertNameErr"></span> 
@@ -741,7 +741,7 @@
                         <div class="col-lg-6">
                             <div class="box" >
                                 <div class="input-box">
-                                    <select class="form-select font_weight" name="edit_alert_metrics" id="edit_alert_metrics" style="width: 100%;">
+                                    <select class="form-select alert_font_css" name="edit_alert_metrics" id="edit_alert_metrics" style="width: 100%;">
                                         <option value="" disabled selected>Choose Metrics</option>
                                         <option value="planned_downtime">Planned Downtime</option>    
                                         <option value="unplanned_downtime">Unplanned Downtime</option>
@@ -762,7 +762,7 @@
                         <div class="col-lg-3">
                             <div class="box rightmar" style="margin-right: 0.5rem;">
                                 <div class="input-box">
-                                    <select class="form-select font_weight" name="edit_alert_relation" id="edit_alert_relation" style="width: 10rem;">
+                                    <select class="form-select alert_font_css" name="edit_alert_relation" id="edit_alert_relation" style="width: 10rem;">
                                         <option value="" disabled selected>Choose Relation</option>
                                         <option value="<"><</option>
                                         <option value=">">></option>
@@ -778,7 +778,7 @@
                         <div class="col-lg-2">
                             <div class="box" style="padding:0;">
                                 <div class="input-box" >
-                                    <input type="text" class="form-control font_weight_modal" id="edit_alert_val" name="edit_alert_val">
+                                    <input type="text" class="form-control alert_font_css" id="edit_alert_val" name="edit_alert_val">
                                     <label for="" class="input-padding">Value <span class="paddingm validate">*</span></label>
                                 </div>
                                 <span class="paddingm float-start validate" id="inputAlert_edit_ValueErr"></span>
@@ -794,7 +794,7 @@
                             <!-- <label for="">In the Past</label> -->
                             <div class="input-group mb-3">
                                 <span class="label_txt_hour" style="">In The Past <span class="paddingm validate">*</span></span>
-                                <input type="text" class="form-control"  aria-label="Recipient's username" id="edit_alert_past_hour" name="edit_alert_past_hour" aria-describedby="basic-addon2">
+                                <input type="text" class="form-control alert_font_css"  aria-label="Recipient's username" id="edit_alert_past_hour" name="edit_alert_past_hour" aria-describedby="basic-addon2">
                                 <div class="input-group-append  bg-white text-primary">
                                     <span class="input-group-text bg-white" style="font-size:12px;height:2.4rem;" id="basic-addon2">Hours</span>
                                 </div>
@@ -809,7 +809,7 @@
 
                     <div class="row">
                         <div class="col-lg-3">
-                            <div class="box rightmar" style="margin-right: 0.5rem;">
+                            <div class="box rightmar" style="margin-right: 0.5rem;position:relative;">
                                 <label class="multi_select_model_drp_label" style="">Machine <span class="paddingm validate">*</span></label>
                                 <div class="filter_select_box_add_alert" onclick="edit_alert_machine()">
                                     <select class="multi_select_drp_model" style="">
@@ -826,7 +826,7 @@
                             <span class="text-muted" style="font-size:12px;">and</span>
                         </div>
                         <div class="col-lg-3">
-                            <div class="box rightmar" style="margin-right: 0.5rem;">
+                            <div class="box rightmar" style="margin-right: 0.5rem;position:relative;">
                                 <label class="multi_select_model_drp_label" style="">Part <span class="paddingm validate">*</span></label>
                                 <div class="filter_select_box_add_alert" onclick="edit_alert_part()">
                                     <select class="multi_select_drp_model" style="">
@@ -861,7 +861,7 @@
                             <div class="col-lg-6">
                                 <div class="box rightmar" style="margin-right: 0.5rem;">
                                     <div class="input-box">
-                                        <select class="form-select font_weight" name="edit_alert_work_type" id="edit_alert_work_type" style="font-size:15px;">
+                                        <select class="form-select alert_font_css" name="edit_alert_work_type" id="edit_alert_work_type" style="font-size:15px;">
                                             <option value=" " disabled selected>Choose Work Type</option>
                                             <option value="issue">Issue</option>
                                             <option value="task">Task</option>
@@ -874,7 +874,7 @@
                             <div class="col-lg-6">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control font_weight_modal" id="edit_alert_work_title"   name="edit_alert_work_title">
+                                        <input type="text" class="form-control alert_font_css" id="edit_alert_work_title"   name="edit_alert_work_title">
                                         <label for="edit_alert_work_title" class="input-padding">Title <span class="paddingm validate">*</span></label>
                                     </div>
                                     <span class="paddingm float-start validate" id="inputAlert_edit_worktitleErr"></span>
@@ -929,7 +929,7 @@
                                         <div style="width: 80% !important">
                                             <div class="lable-div lable-div-edit">
                                             </div>
-                                            <input type="text" class="form-control font_weight_modal input-field-lable input-field-lable-edit" id="input-field-lable-edit" name="" >
+                                            <input type="text" class="form-control alert_font_css input-field-lable input-field-lable-edit" id="input-field-lable-edit" name="" >
                                         </div>
                                         <div class="dropdown-div" style=" width: 20% !important">
                                           <i class="fa fa-angle-down icon-style"></i>
@@ -941,7 +941,7 @@
                                   </div>
                                 </div>
                                 <!-- Drop down Suggestion -->
-                                <div class="filter_checkboxes_issue suggestion" id="dropdown-list-lables-edit">
+                                <div class="filter_checkboxes_issue suggestion" id="dropdown-list-lables-edit" style="position:relative;">
                                 </div>
                             </div>
                             <div class="col-lg-3" style="margin:auto;">
@@ -953,7 +953,7 @@
                                         <label for="edit_alert_assignee" class="input-padding ">Assignee  <span class="paddingm validate">*</span></label>
                                     </div>
                                 </div> -->
-                                <div class="box inbox-top">
+                                <div class="box inbox-top" style="position:relative;">
                                     <div class="input-box indexing">
                                         <div class="filter_multiselect filter_multiselect_input">
                                             <span class="multi_select_label" style="margin-top:-0.7rem;">Assignee <span class="paddingm validate">*</span></span>
@@ -979,7 +979,7 @@
                             <div class="col-lg-2" style="margin:auto;">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control font_weight_modal" id="edit_alert_deu_days"
+                                        <input type="text" class="form-control alert_font_css" id="edit_alert_deu_days"
                                             name="edit_alert_deu_days">
                                         <label for="edit_alert_deu_days" class="input-padding">Due Days </label>
                                     </div>
@@ -1004,7 +1004,7 @@
                             <div class="col-lg-6">
                                 <div class="wrapper_edit">
                                     <div class="content_edit">
-                                        <ul class="edit_parent_div_input_check"><input type="text" class="input_check_to_edit" placeholder="TO" spellcheck="false"></ul>
+                                        <ul class="edit_parent_div_input_check"><input type="text" class="input_check_to_edit alert_font_css" placeholder="TO" spellcheck="false"></ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_check_to_edit_Err"></span>
                                 </div>
@@ -1014,7 +1014,7 @@
                                
                                 <div class="wrapper_cc_edit">
                                     <div class="content_cc_edit">
-                                        <ul class="edit_parent_div_input_check_cc"><input type="text" class="input_check_cc_edit" placeholder="CC" spellcheck="false"></ul>
+                                        <ul class="edit_parent_div_input_check_cc"><input type="text" class="input_check_cc_edit alert_font_css" placeholder="CC" spellcheck="false"></ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_check_cc_edit_Err"></span>
                                 </div>
@@ -1026,7 +1026,7 @@
                                 <div class="input-group">
                                     <span class="label_txt_font" style="">Subject <span class="paddingm validate">*</span></span>
                                     <span class="input-group-text bg-white text-muted" style="font-size:13px;">SmartMach Alert! </span>
-                                    <input type="text" class="form-control" id="edit_alert_mail_subject" name="edit_alert_mail_subject">
+                                    <input type="text" class="form-control alert_font_css" id="edit_alert_mail_subject" name="edit_alert_mail_subject">
                                 </div>
                                 <span class="paddingm float-start validate" id="input_email_edit_sub_Err"></span>
                             </div>
@@ -1034,7 +1034,7 @@
                             <div class="col-lg-6">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control font_weight_modal" id="edit_alert_mail_notes"
+                                        <input type="text" class="form-control alert_font_css" id="edit_alert_mail_notes"
                                             name="edit_alert_mail_notes">
                                         <label for="edit_alert_mail_notes" class="input-padding">Notes</label>
                                     </div>
@@ -1067,8 +1067,8 @@
             <div class="modal-header" style="border:none; ">
                 <h5 class="modal-title settings-machineAdd-model" id="alert_delete_confirmation_box" style="">CONFIRMATION MESSAGE</h5>
             </div>
-            <div class="modal-body" style="max-width:max-content;">
-                <label style="color: black;">Are you sure you want to delete this Alert record?</label>
+            <div class="modal-body alert_font_css" style="max-width:max-content;">
+                <label style="" class="alert_font_css" >Are you sure you want to delete this Alert record?</label>
             </div>
             <div class="modal-footer" style="border:none;">
                 <a class="btn fo bn  alert_delete_confirmation_submit saveBtnStyle" name="alert_delete_confirmation_submit" value="SAVE" >Confirm</a>
@@ -1472,7 +1472,7 @@ function add_assignee(t) {
                 reset_add_alert_machine();
                 reset_add_alert_part();
                 reset_filter_part();
-
+                reset_work_order_drp();
                 var start_index = 0;
                 var end_index = 50;
                 $('.pagination_onchange').val('1');
