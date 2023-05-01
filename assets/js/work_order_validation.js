@@ -349,16 +349,12 @@ function work_type(data){
 	if (!val) {
         console.log('work cause');
 		return required;
-       
 	}else{
-        if (val.length > 200) {
-			
+        if (val.length > 200) {	
 			return "*Length should less than 200";
 		}
-		
 		else{
-			
-			return sucess;
+			return success;
 		}
 		return success;
 	}
