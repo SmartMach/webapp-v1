@@ -159,7 +159,7 @@ class Work_Order_Management_controller extends BaseController{
                 }
             }
 
-            if ($filter == false) {
+            if ($filter == "false") {
                 foreach ($res as $value) {
                     $temp=0;
                     if (($value['assignee']=="" || !$value['assignee'] || $value['assignee']==null) and $temp==0) {
