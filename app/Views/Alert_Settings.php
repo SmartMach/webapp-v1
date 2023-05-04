@@ -1004,7 +1004,10 @@
                             <div class="col-lg-6">
                                 <div class="wrapper_edit">
                                     <div class="content_edit">
-                                        <ul class="edit_parent_div_input_check"><input type="text" class="input_check_to_edit alert_font_css" placeholder="TO" spellcheck="false"></ul>
+                                        <ul class="edit_parent_div_input_check" style="position:relative;">
+                                            <input type="text" class="input_check_to_edit alert_font_css" placeholder="TO" spellcheck="false">
+                                            <span style="position:absolute;margin-top:-1rem;font-size:12px;padding:1px;margin-left:1rem;background:white;color:#8c8c8c;">To Email</span>
+                                        </ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_check_to_edit_Err"></span>
                                 </div>
@@ -1014,7 +1017,10 @@
                                
                                 <div class="wrapper_cc_edit">
                                     <div class="content_cc_edit">
-                                        <ul class="edit_parent_div_input_check_cc"><input type="text" class="input_check_cc_edit alert_font_css" placeholder="CC" spellcheck="false"></ul>
+                                        <ul class="edit_parent_div_input_check_cc" style="position:relative;">
+                                            <input type="text" class="input_check_cc_edit alert_font_css" placeholder="CC" spellcheck="false">
+                                            <span style="position:absolute;margin-top:-1rem;font-size:12px;padding:1px;margin-left:1rem;background:white;color:#8c8c8c;">Cc Email</span>
+                                        </ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_check_cc_edit_Err"></span>
                                 </div>
