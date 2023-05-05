@@ -73,7 +73,10 @@ class Operator extends \CodeIgniter\Controller{
                 elseif ($res == "password_mismatched") {
                     $data['result'] = "password_mismatched";
                     return view("Operator/operator_login",["result"=>"password_mismatched"]);
+                }elseif ($res == "inactive_user") {
+                    return view("Operator/operator_login",["result"=>"inactive_user"]);
                 }
+
                 else{
                     $data['result'] = "new_user";
 

@@ -204,17 +204,34 @@
         $(document).ready(function(){
             var demo = "<?php echo  $result; ?>";
             demo = demo.trim();
+            console.log("opertor alert msg");
+            console.log(demo);
             if (demo!="") {
-                $('#alert_check').removeClass('d-none');
-                $('#alert_check').addClass('d-inline');
-                var err ="";
-                if (demo === "new_user") {
-                    err = "New User Please Register";
-                }
-                else if(demo === "password_mismatched"){
-                    err = "Password Mismatched";
-                }
-                $('#alert_msg').html(err);
+                if (demo === "method_error") {
+                    $('#alert_check').removeClass('d-inline');
+                    $('#alert_check').addClass('d-none');
+                }else{
+                    $('#alert_check').removeClass('d-none');
+                    $('#alert_check').addClass('d-inline');
+                    var err ="";
+                    if (demo === "new_user") {
+                        err = "New User Please Register";
+                    }
+                    else if(demo === "password_mismatched"){
+                        err = "Password Mismatched";
+                    }
+                    else if(demo === "method_error"){
+                    
+                    }
+                    else if (demo === "inactive_user") {
+                        err = "Inactive User Please conduct your Site user";
+                    }
+
+                    $('#alert_msg').html(err);
+                } 
+            }else{
+                $('#alert_check').removeClass('d-inline');
+                $('#alert_check').addClass('d-none'); 
             }
            
             // alert(demo);

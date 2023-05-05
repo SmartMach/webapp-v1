@@ -24,25 +24,21 @@ class Operator_model extends Model{
         $query = $builder->get()->getResultArray();
         if (count($query)>0) {
             $existing_pass = $query[0]['password'];
-            if (password_verify($pass,$existing_pass)) {
-                $this->session->set('op_id', $query[0]['user_id']);
-                $this->session->set('op_user_name', $query[0]["username"]);
-                return "password_matched";
-
+            if ($query[0]['status']==1) {
+                if (password_verify($pass,$existing_pass)) {
+                    $this->session->set('op_id', $query[0]['user_id']);
+                    $this->session->set('op_user_name', $query[0]["username"]);
+                    return "password_matched";
+                }else{
+                    return "password_mismatched";
+                }
             }else{
-
-                return "password_mismatched";
-
+                return "inactive_user";
             }
-
         }else{
             return "New_User";
         }
-        // if () {
-        //     # code...
-        // }
-        // $this->session->set('oui_site_id',$site_id);
-        // return $query;
+       
 
     }
 
