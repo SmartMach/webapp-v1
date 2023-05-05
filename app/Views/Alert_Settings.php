@@ -596,7 +596,7 @@
                                   </div>
                                 </div>
                                 <!-- Drop down Suggestion -->
-                                <div class="filter_checkboxes_issue suggestion" id="dropdown-list-lables" style="position:relative;">
+                                <div class="filter_checkboxes_issue suggestion display_hide" id="dropdown-list-lables" style="position:relative;">
                                 </div>
                             </div>
                             <div class="col-lg-3" style="margin:auto;">
@@ -941,7 +941,7 @@
                                   </div>
                                 </div>
                                 <!-- Drop down Suggestion -->
-                                <div class="filter_checkboxes_issue suggestion" id="dropdown-list-lables-edit" style="position:relative;">
+                                <div class="filter_checkboxes_issue suggestion display_hide" id="dropdown-list-lables-edit" style="position:relative;">
                                 </div>
                             </div>
                             <div class="col-lg-3" style="margin:auto;">
@@ -979,8 +979,7 @@
                             <div class="col-lg-2" style="margin:auto;">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control alert_font_css" id="edit_alert_deu_days"
-                                            name="edit_alert_deu_days">
+                                        <input type="text" class="form-control alert_font_css" id="edit_alert_deu_days" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" name="edit_alert_deu_days">
                                         <label for="edit_alert_deu_days" class="input-padding">Due Days </label>
                                     </div>
                                     <span class="paddingm float-start validate" id="inputAlert_edit_deudaysErr"></span>
@@ -1095,8 +1094,8 @@
 
 
 function add_assignee(t) {
-    console.log("ok");
-      $(".filter_checkboxes_issue").addClass("display_hide");
+    console.log($(this).children());
+      $(".filter_checkboxes_issue ").addClass("display_hide");
       console.log($('.filter_assignee').css("display"));
       if ($('.filter_assignee').css("display") === "none") {
         console.log("select");
@@ -1659,6 +1658,13 @@ function add_assignee(t) {
         if (!assignee_check.is(event.target) && assignee_check.has(event.target).length==0) {
             $(".filter_assignee").removeClass("display_visible");
             $(".filter_assignee").addClass("display_hide");
+        }
+
+        // priority dropdown
+        var add_alert_priority = $('.selectDropdown3');
+        if (!add_alert_priority.is(event.target) && add_alert_priority.has(event.target).length==0) {
+            $('.selectDropdown3').removeClass('new_4');
+            $('.email_che').removeClass('checked');   
         }
 
 
@@ -2794,10 +2800,20 @@ function add_assignee(t) {
 
 // priority dropdown
 // for select2 priority dropdown
+var  clicks_count = 0;
 $(".selectBtn3").click(function(){
     // console.log('selectbtn3');
-    $('.selectDropdown3').toggleClass('new_4');
-    $('.email_che').toggleClass('checked');
+    // var class_Arr = $('.selectDropdown3').attr('class');
+    clicks_count = clicks_count+1;
+    // console.log(clicks_count);
+    if (parseInt(clicks_count)%2==0) {
+        $('.selectDropdown3').removeClass('new_4');
+        $('.email_che').removeClass('checked');
+    }else{
+        $('.selectDropdown3').toggleClass('new_4');
+        $('.email_che').toggleClass('checked');
+    }
+   
 });
 
 
@@ -3150,6 +3166,22 @@ function reset_all_input(data_txt){
         $('#add_alert_mail_notes').val('');
         $('.toggle_work_div').css('display','none');
         $('.email_div_visibility').css('display','none');
+
+        // error message showing remove
+        $('#inputAlertNameErr').text('');
+        $('#inputAlertmetricsErr').text('');
+        $('#inputAlertrelationsErr').text('');
+        $('#inputAlertValueErr').text('');
+        $('#inputAlertpastHourErr').text('');
+        $('#input_toggle_Err').text('');
+        $('#inputAlertworktypeErr').text('');
+        $('#inputAlertworktitleErr').text('');
+        $('#inputAlertdeudaysErr').text('');
+        $('#input_check_to_Err').text('');
+        $('#input_check_cc_Err').text('');
+        $('#input_email_sub_Err').text('');
+        $('#input_email_note_Err').text('');
+
     }
     else if(data_txt==="edit"){
         $('#edit_alert_name').val('');
@@ -3171,6 +3203,22 @@ function reset_all_input(data_txt){
         $('.cc_email_input_tags_txt_edit').empty();
         $('#edit_alert_mail_subject').val('');
         $('#edit_alert_mail_notes').val('');
+
+
+        // error message showing
+        $('#inputedit_alertNameErr').text('');
+        $('#inputAlertEditmetricserr').text('');
+        $('#inputeditAlertrelationerr').text('');
+        $('#inputAlert_edit_ValueErr').text('');
+        $('#inputAlert_edit_pastHourErr').text('');
+        $('#inputAlert_edit_worktypeErr').text('');
+        $('#inputAlert_edit_worktitleErr').text('');
+        $('#inputAlert_edit_deudaysErr').text('');
+        $('#input_check_to_edit_Err').text('');
+        $('#input_check_cc_edit_Err').text('');
+        $('#input_email_edit_sub_Err').text('');
+        $('#input_email_edit_note_Err').text('');
+
 
     }
 
