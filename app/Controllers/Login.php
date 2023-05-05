@@ -97,7 +97,6 @@ class Login extends BaseController
                 $verify['password']= $this->request->getVar('userpassword');
                 $verifyUser = $this->datasLog->verifyUser($verify);
                 
-                
                 // echo "<pre>";
                 // print_r($verifyUser);
                 // echo "</pre>";
@@ -121,9 +120,7 @@ class Login extends BaseController
                         $this->session->set('access_control', $access);
                         $this->session->set('user_details', $verifyUser['users']);
                         $this->session->set('location',$verifyUser['location']);
-                        //    echo "<pre>";
-                        // print_r($this->session->get('access_control'));
-                        //    echo "</pre>";
+                       
                         return redirect()->to('Home/dashboard///');
                     }
                 }

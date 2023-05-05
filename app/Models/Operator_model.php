@@ -7,7 +7,7 @@ class Operator_model extends Model{
     protected $db;
     protected $session;
     function __construct(){
-        $this->db      = \Config\Database::connect();
+        $this->db      = \Config\Database::connect("another_db");
        $this->session = \Config\Services::session();
     }
     public function login($username,$pass){
@@ -15,17 +15,34 @@ class Operator_model extends Model{
 
         // return $dmeo;
         
-        $builder = $this->db->table('users_operator');
-        $builder->select('*');
-        $builder->where('User_Name', $username);
-        $builder->where('Password', $pass);
-        $query = $builder->get()->getResult();
-        foreach($query as $row){
-            $site_id = $row->Site_ID;
+        $builder = $this->db->table('user as u');
+        $builder->select('u.*,p.*');
+        $builder->join('user_credintials as p','u.user_id=p.user_id');
+        $builder->where('u.username', $username);
+
+        // $builder->where('Password', $pass);
+        $query = $builder->get()->getResultArray();
+        if (count($query)>0) {
+            $existing_pass = $query[0]['password'];
+            if (password_verify($pass,$existing_pass)) {
+                $this->session->set('op_id', $query[0]['user_id']);
+                $this->session->set('op_user_name', $query[0]["username"]);
+                return "password_matched";
+
+            }else{
+
+                return "password_mismatched";
+
+            }
+
+        }else{
+            return "New_User";
         }
-       
-        $this->session->set('oui_site_id',$site_id);
-        return $query;
+        // if () {
+        //     # code...
+        // }
+        // $this->session->set('oui_site_id',$site_id);
+        // return $query;
 
     }
 
