@@ -15,39 +15,41 @@ class Operator extends \CodeIgniter\Controller{
 
     public function index(){
         //$opertor_model = new Operator_model();
-        $data = [];
-        $rules = [
-            'UserName' => 'required',
-            'UserPassword' => 'required',
-        ];
-        if ($this->request->getMethod() == 'post') {
-            if ($this->validate($rules)) {
-                // echo "validation ok";
-                $username = $this->request->getVar("op_username");
-                $pass = $this->request->getVar("op_pass");
-                // $res = $this->opertor_model->login($username,$pass);
-                // if ($res == true) {
-                //     $session = \Config\Services::session();
-                //     $site_id =  $session->get('oui_site_id');
-                //     $output = $this->opertor_model->getmachine_part($site_id);
-                //     if ($output == true) {
-                //         return view('Operator/operator_view'); 
-                //     }
-                // }
-                // else{
-                //     echo "login failed";
-                // }
-                echo "<pre>";
-                echo $username;
-                echo $pass;
+        // $data = [];
+        // $rules = [
+        //     'UserName' => 'required',
+        //     'UserPassword' => 'required',
+        // ];
+        // if ($this->request->getMethod() == 'post') {
+        //     if ($this->validate($rules)) {
+        //         // echo "validation ok";
+        //         $username = $this->request->getVar("op_username");
+        //         $pass = $this->request->getVar("op_pass");
+        //         // $res = $this->opertor_model->login($username,$pass);
+        //         // if ($res == true) {
+        //         //     $session = \Config\Services::session();
+        //         //     $site_id =  $session->get('oui_site_id');
+        //         //     $output = $this->opertor_model->getmachine_part($site_id);
+        //         //     if ($output == true) {
+        //         //         return view('Operator/operator_view'); 
+        //         //     }
+        //         // }
+        //         // else{
+        //         //     echo "login failed";
+        //         // }
+        //         echo "<pre>";
+        //         echo $username;
+        //         echo $pass;
                 
-            }else{
-                $data['validation'] = $this->validator;
-            }
-        }
+        //     }else{
+        //         $data['validation'] = $this->validator;
+        //     }
+        // }else{
+
+        // }
         
        // echo "welcome to all";
-        echo view('Operator/operator_login',$data);
+        echo view('Operator/operator_login',["result"=>""]);
 
 
     //    echo view('Operator/operator_view'); 
