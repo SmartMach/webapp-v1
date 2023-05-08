@@ -6,9 +6,38 @@ use CodeIgniter\Model;
 class Operator_model extends Model{
     protected $db;
     protected $session;
+    protected $site_creation;
     function __construct(){
         $this->db      = \Config\Database::connect("another_db");
        $this->session = \Config\Services::session();
+
+       $db_name = $this->session->get('active_site');
+
+        $this->site_creation = [
+                    'DSN'      => '',
+                    // 'hostname' => '165.22.208.52',
+                    // 'username' => 'smartAd',
+                    // 'password' => 'WaDl@#smat1!',
+                    'hostname' => 'localhost',
+                    'username' => 'root',
+                    'password' => '',
+                    
+                    // 'database' => 'S1001',
+                    'database' => ''.$db_name.'',
+
+                    'DBDriver' => 'MySQLi',
+                    'DBPrefix' => '',
+                    'pConnect' => false,
+                    'DBDebug'  => (ENVIRONMENT !== 'production'),
+                    'charset'  => 'utf8',
+                    'DBCollat' => 'utf8_general_ci',
+                    'swapPre'  => '',
+                    'encrypt'  => false,
+                    'compress' => false,
+                    'strictOn' => false,
+                    'failover' => [],
+                    'port'     => 3306,
+                ];
     }
     public function login($username,$pass){
         // $dmeo =  "username".$username."password:".$pass;
@@ -28,6 +57,7 @@ class Operator_model extends Model{
                 if (password_verify($pass,$existing_pass)) {
                     $this->session->set('op_id', $query[0]['user_id']);
                     $this->session->set('op_user_name', $query[0]["username"]);
+                    $this->session->set('active_site',$query[0]['site_id']);
                     return "password_matched";
                 }else{
                     return "password_mismatched";
@@ -69,6 +99,56 @@ class Operator_model extends Model{
         return $output;
         
     }
+
+
+    // get dropdown machine data
+    public function getmachine_data(){
+        $db = \Config\Database::connect($this->site_creation);
+        $builder = $db->table('settings_machine_current');
+        $builder->select('*');
+        $res = $builder->get()->getResultArray();
+        return $res;
+    }
+
+    // get live shift 
+    public function  getshift_live(){
+        $db = \Config\Database::connect($this->site_creation);
+	    $query = $db->table('pdm_production_info');
+	    $query->select('shift_date,shift_id');
+        $query->orderby('shift_date','desc');
+        $query->orderby('shift_id','desc');
+        $query->limit(1);
+	    $res = $query->get()->getResultArray();
+
+        return $res;
+    }
+
+    // get exact shift 
+    public function getShiftExact($date){
+        $db = \Config\Database::connect($this->site_creation);
+        $build = $db->table('settings_shift_management');
+        $build->select('*');
+        $build->where('last_updated_on <=', $date);
+        $build->orderBy('last_updated_on', 'DESC');
+        $build->limit(1);
+        $res = $build->get()->getResultArray();
+        $output['duration'] = $res;
+        if (!empty($res)) {
+            $shift_id = $res[0]['shift_log_id'];
+            // $builder = $db->table($shift_id);
+            $temp =explode("f", $shift_id);
+
+            $sql = "SELECT * FROM `settings_shift_table` WHERE `shifts` REGEXP '$temp[1]$'";
+            $builder = $db->query($sql);
+            $output['shift'] = $builder->getResultArray();
+            return $output;
+        }else{
+            return false;
+        }
+    }
+
+
+
 }
 
 

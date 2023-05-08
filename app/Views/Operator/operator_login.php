@@ -70,7 +70,9 @@
 </head>
 <body>
 <?php $validation =  \Config\Services::validation(); ?>
-
+<?php 
+    $session = \Config\Services::session();
+?>
 <div class="container main-container">
         <div class="img-div">
             <img id="login-mach" src="<?php echo base_url()?>/assets/img/logo.png?version=<?php echo rand(); ?>" alt="SmartTech Logo">
@@ -128,6 +130,10 @@
             document.title = doc_title;
         });
 
+        // var tmp_site_id = "<?php echo $session->get('active_site'); ?>";
+        // console.log("site id");
+        // console.log(tmp_site_id);
+        // alert(tmp_site_id);
 
         // password validation function definition
         function login_pass(){

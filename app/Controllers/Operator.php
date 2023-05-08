@@ -6,9 +6,11 @@ use App\Models\Operator_model;
 
 class Operator extends \CodeIgniter\Controller{
     protected $opertor_model;
+    protected $session;
     public function __construct(){
         helper("form");
         $this->opertor_model = new Operator_model();
+        $this->session = \Config\Services::session();
     }
 
     public function index(){
@@ -91,6 +93,26 @@ class Operator extends \CodeIgniter\Controller{
         }else{
             $data['result'] = "post_method";
             return view("Operator/operator_login",["result"=>"method_error"]);
+        }
+    }
+
+
+    public function header_live_records(){
+        if ($this->request->isAJAX()) {
+            $res = $this->opertor_model->getmachine_data();
+            $shift_record = $this->opertor_model->getshift_live();
+            $shift_res = $this->opertor_model->getShiftExact($shift_record[0]['shift_date']." 23:59:59");
+            foreach ($shift_res['shift'] as $key => $value) {
+                if (str_split($value['shifts'])[0] == $shift_record[0]['shift_id']) {
+                    $shift_record[0]['start_time'] = $value['start_time'];
+                    $shift_record[0]['end_time'] = $value['end_time'];
+                }
+            }
+
+            $final_res['machine'] = $res;
+            $final_res['shift'] = $shift_record;
+
+            echo json_encode($final_res);
         }
     }
 

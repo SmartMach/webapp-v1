@@ -7,7 +7,7 @@
     <title>Operator View</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="<?php echo base_url();?>/assets/css/operatorcss.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>/assets/css/operatorcss.css?version=<?php echo rand(); ?>">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     
      <!--Link For CSS-->
@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/model.css">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/main.css">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/common.css">
-    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/financial_metrics_new.css">
+    <!-- <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/financial_metrics_new.css"> -->
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -60,7 +60,7 @@
 
 }
 .text-small{
-    font-size:1rem;
+    font-size:0.8rem;
     color:white;
 }
 .text2{
@@ -436,6 +436,7 @@ $session = \Config\Services::session();
 $machine_id =  $session->get('machine_id');
 $part_id = $session->get('part_id');
 $part_name = $session->get('part_name');
+$site_id = $session->get('active_site');
 
 ?>
 <body class="parallax">  
@@ -461,17 +462,18 @@ $part_name = $session->get('part_name');
     </div>
     <br>
 
-    <div id="DowntimeChart1"></div>
+    <!-- <div id="DowntimeChart1"></div> -->
 
     <div class="mainOpCss">
-        <div class="flexDiv">
-            <div class="outer" style="width: 35%;">
+        <!-- first column -->
+        <div class="flexDiv" style="display:felx;flex-direction:row;align-items:center;justify-content:space-around;">
+            <div class="outer" style="width:48%;display:flex;flex-direction:column;">
                 <div class="div-box">
                     <label>GOALS</label>
                     <div class="flexDiv">
-                        <div class="" style="width: 65%;margin-top: 1rem;">
-                            <div class="skill">
-                                <div class="inner">
+                        <div class="" style="width: 60%;margin-top: 1rem;">
+                            <!-- <div class="skill">
+                                <div class="inner" style="position:relative;">
                                     <div id="number">
                                         Part Completion    
                                     </div>
@@ -483,11 +485,11 @@ $part_name = $session->get('part_name');
                                             <stop offset="100%" stop-color="#ffbf00"/>
                                         </linearGradient>
                                     </defs>
-                                    <circle class="circle" cx="167" cy="110" r="95" stroke-linecap="round"/>
+                                    <circle class="circle" cx="167" cy="150" r="95" stroke-linecap="round"/>
                                 </svg>
-                            </div>
+                            </div> -->
                         </div>
-                        <div class="center-align" style="width: 35%;margin-top: 1rem;">
+                        <div class="center-align" style="width: 38%;margin-top: 1rem;">
                             <div class="">
                                 <p class="paddingm" style="">
                                     <span class="text-small">Target</span>
@@ -495,22 +497,25 @@ $part_name = $session->get('part_name');
                                 </p>
                                 <div class="target_bar target_outline" style="width: 100%;">
                                     <div class="target_inline">
-                                        <p class="paddingm target_inline_Cont">240</p>
+                                        <p class="paddingm target_inline_Cont" style="font-weight:600;">240</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="center-align">
-                        <p class="text-small paddingm" style="margin: 1rem">
-                            <span></span>
+                        <div class="text-small paddingm" style="width:100%;padding:0.8rem;font-size:1rem;font-weight:650;display:flex;flex-direction:row;">
+                            <!-- <span></span>
                             <span>1h 52m</span>
-                            <span>31 Jan 22, 02:01 PM</span>
-                        </p>
+                            <span>31 Jan 22, 02:01 PM</span> -->
+                            <div style="width:40%;display:flex;flex-direction:row;font-size:1rem;font-weight:600;color:white;justify-content:center;"><i class="fa fa-history" style="margin-right:0.3rem;color:white;font-size:0.9rem;display:flex;flex-direction:row:justify-content:center;align-items:center;"></i>112 min</div>
+                            <div style="width:60%;display:flex;flex-direction:row;font-size:1rem;font-weight:600;color:white;"><i class="fa fa-circle" style="color:white;font-size:0.6rem;display:flex;flex-direction:row;justify-content:center;align-items:center;margin-right:0.3rem;"></i>31 jan 23, 02:02PM</div>
+
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="outer" style="width: 65%;">
+            <div class="outer" style="width:48%;">
                 <div class="div-box">
                     <label>TIMELINE</label>
                     <div>
@@ -524,6 +529,7 @@ $part_name = $session->get('part_name');
                 </div>
             </div>
         </div>
+        <!-- second column -->
         <div class="flexDiv">
             <div class="outer-bottom" style="width: 35%;">
                 <div class="outer-bottom-con">
@@ -569,7 +575,8 @@ $part_name = $session->get('part_name');
             </div>
         </div>
     </div>
-    
+   
+<!-- correction modal -->
 <div class="modal fade" id="CorrectionPartsModal" tabindex="-1" aria-labelledby="CorrectionPartsModal1" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered rounded ">
         <div class="container modal-content bodercss">
@@ -749,6 +756,7 @@ $part_name = $session->get('part_name');
     </div>
 </div>
 
+<!-- rejection modal -->
 <div class="modal fade" id="RejectPartsModal" tabindex="-1" aria-labelledby="RejectPartsModal1" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered rounded ">
         <div class="container modal-content bodercss">
@@ -972,7 +980,7 @@ $part_name = $session->get('part_name');
         </div>
     </div>
 </div> 
-
+<!-- downtime modal -->
 <div class="modal fade" id="DowntimePartsModal" tabindex="-1" aria-labelledby="DowntimePartsModal" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered rounded ">
         <div class="container modal-content bodercss">
@@ -1331,7 +1339,41 @@ $part_name = $session->get('part_name');
     </div>
   </div>
 </div>
+<!-- <script src="<?php echo base_url(); ?>/assets/js/opertor_header.js?version=<?php echo  rand(); ?>"></script> -->
 <script type="text/javascript">
+
+    fill_operator_header();
+    function fill_operator_header(){
+        $.ajax({
+            url:"<?php echo  base_url('Operator/header_live_records'); ?>",
+            method:"POST",
+            dataType:"JSON",
+            success:function(res){
+                console.log("Operator header Success response");
+                console.log(res);
+                $('#op_machine_drp').empty();
+                res['machine'].forEach(function(item) {
+                    var ele = $();
+                    if (item.machine_id==="MC1001") {
+                        ele = ele.add('<option value="'+item.machine_id+'" selected="true">'+item.machine_name+'-'+item.machine_id+'</option>');
+                    }else{
+                        ele = ele.add('<option value="'+item.machine_id+'">'+item.machine_name+'-'+item.machine_id+'</option>');
+                    }
+                    $('#op_machine_drp').append(ele);
+                    
+                });
+
+                $('#op_header_sdate').text(res['shift'][0]['shift_date']);
+                $('#op_header_sid').text('Shift '+res['shift'][0]['shift_id']);
+                $('#op_header_start_time').text(res['shift'][0]['start_time']);
+                $('#op_header_end_time').text(res['shift'][0]['end_time']);
+            },
+            error:function(er){
+                console.log("Sorry Try Again Operator header");
+                console.log(er);
+            }
+        });
+    }
 
     $(document).on("click", ".delete-split", function(){
       $('#DeleteSPlit').modal('show');
@@ -1494,12 +1536,12 @@ $part_name = $session->get('part_name');
 
     
 </script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     $('#RejectPartsModal').modal('show');
-</script>
+</script> --> 
 
 <script>
-    <?php include "circularscripts.php"; ?>
+    <?php //include "circularscripts.php"; ?>
 </script>
 
 
@@ -1521,355 +1563,3 @@ $part_name = $session->get('part_name');
 
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<script>
-        var url = "<?php echo base_url()?>/test_demo/Data.json";
-        $.ajax({
-             method: 'GET',
-             url: url,
-        }).then(function(response){
-              var month = [];
-              var machine_on_count=[];
-              var machine_off_count=[];
-              var tool_change_count=[];
-              var i=0;
-              var preview ="";
-              var val;
-              $.each(response,function(key,model){
-               var colordemo = "";
-                  if(key == 0){
-                    preview = model.name;
-                    val = model.data;
-                  }
-                  else if(preview == model.name){
-                      val = val + model.data;
-                    //alert(preview +""+ val);
-                  }else{
-                    colordemo = color_bar(preview);
-                    month.push({name:preview,data:[val],color:colordemo});
-                    preview = model.name;
-                    val = model.data;                  
-                  }
-              });  
-              var colordemo = color_bar(preview);
-              month.push({name:preview,data:[val],color:colordemo});              
-              var options = {
-
-                  series: month,
-                  chart: {
-                  type: 'bar',
-                  height: 70,
-                  stacked: true,
-                  sparkline: {
-                    enabled: true
-                  },
-                },
-                plotOptions: {
-                  bar: {
-                    horizontal: true,
-                  },
-                },
-                grid: {
-                  padding: {
-                    left: 0,
-                  },
-                },
-                stroke: {
-                  width: 1,
-                  colors: ['#fff']
-                },
-                xaxis: {
-                  // categories: ["Downtime"],
-                  tickPlacement: 'on',
-                  labels: {
-                    show:false,
-                    formatter: function (val) {
-                      return val + "K"
-                    }
-                  }
-                },
-                yaxis: {
-                  title: {
-                    text: undefined
-                  },
-                },
-                tooltip: {
-                  y: {
-                    formatter: function (val) {
-                      return val + "K"
-                    }
-                  }
-                },
-                fill: {
-                  opacity: 1               
-                },
-                legend: {
-                  // position: 'top',
-                  // horizontalAlign: 'left',
-                  // // offsetX: 10,
-                  // offsetY: -10,
-                  show:false  
-                },
-                annotations: {
-                    points:[
-                      {
-                        x: 30,
-                        y: 300,
-                        marker: {
-                          fillColor: "#FFF",
-                          size:6
-                        }
-                      },
-                      {
-                        x: "tool change",
-                        y: 10,
-                        marker: {
-                          fillColor: "#FFF",
-                          size:6
-                        }
-                      },{
-                        x: 300,
-                        y: 300,
-                        marker: {
-                          fillColor: "#FFF",
-                          size:6
-                        }
-                      }
-                    ]
-              },
-            };
-            var chart = new ApexCharts(document.querySelector("#chartOp"), options);
-            chart.render();
-      }); 
-      
-      function color_bar(color){
-        var colordemo = "";
-        if(color == "Machine OFF"){
-          colordemo = "#595959";
-         
-        }
-        else if(color == "Active"){
-          colordemo= "#01bb55";
-          
-        }
-        else{
-          colordemo = "#005bbc";
-          
-        }
-        return colordemo;
-      }
-  </script>
-
-<script>
-    $('#DowntimePartsModal').on('shown.bs.modal', function (e) {
-        var url = "<?php echo base_url()?>/test_demo/Data.json";
-        $.ajax({
-             method: 'GET',
-             url: url,
-        }).then(function(response){
-              var month = [];
-              var machine_on_count=[];
-              var machine_off_count=[];
-              var tool_change_count=[];
-              var i=0;
-              var preview ="";
-              var val;
-              $.each(response,function(key,model){
-               var colordemo = "";
-                  if(key == 0){
-                    preview = model.name;
-                    val = model.data;
-                  }
-                  else if(preview == model.name){
-                      val = val + model.data;
-                    //alert(preview +""+ val);
-                  }else{
-                    colordemo = color_bar(preview);
-                    month.push({name:preview,data:[val],color:colordemo});
-                    preview = model.name;
-                    val = model.data;                  
-                  }
-              });  
-              var colordemo = color_bar(preview);
-              month.push({name:preview,data:[val],color:colordemo}); 
-
-              //alert(month);
-
-              var options = {
-                  series: month,
-                  // series:[{
-                  //   name:preview,
-                  //   data:[20,20,20,20,20,20],
-                  // },{
-                  //   name:preview,
-                  //   data:[20,30,30,30,30,30],
-                  // }],
-                  chart: {
-                  type: 'bar',
-                  height: 70,
-                  stacked: true,
-                  sparkline: {
-                    enabled: true
-                  },
-                },
-                plotOptions: {
-                  bar: {
-                    horizontal: true,
-                  },
-                },
-                grid: {
-                  padding: {
-                    left: 0,
-                  },
-                },
-                stroke: {
-                  width: 1,
-                  colors: ['#fff']
-                },
-                xaxis: {
-                  // categories: ["Downtime"],
-                  tickPlacement: 'on',
-                  labels: {
-                    show:false,
-                    formatter: function (val) {
-                      return val + "K"
-                    }
-                  }
-                },
-                yaxis: {
-                  title: {
-                    text: undefined
-                  },
-                },
-                tooltip: {
-                  y: {
-                    formatter: function (val) {
-                      return val + "K"
-                    }
-                  }
-                },
-                fill: {
-                  opacity: 1               
-                },
-                legend: {
-                  // position: 'top',
-                  // horizontalAlign: 'left',
-                  // // offsetX: 10,
-                  // offsetY: -10,
-                  show:false  
-                },
-                annotations: {
-                    points:[
-                      {
-                        x: 30,
-                        y: 300,
-                        marker: {
-                          fillColor: "#FFF",
-                          size:6
-                        }
-                      },
-                      {
-                        x: "tool change",
-                        y: 10,
-                        marker: {
-                          fillColor: "#FFF",
-                          size:6
-                        }
-                      },{
-                        x: 300,
-                        y: 300,
-                        marker: {
-                          fillColor: "#FFF",
-                          size:6
-                        }
-                      }
-                    ]
-              },
-            };
-            var chartDown = new ApexCharts(document.querySelector("#DowntimeChart"), options);
-            chartDown.render();
-      }); 
-      
-      function color_bar(color){
-        var colordemo = "";
-        if(color == "Machine OFF"){
-          colordemo = "#595959";
-         
-        }
-        else if(color == "Active"){
-          colordemo= "#01bb55";
-          
-        }
-        else{
-          colordemo = "#005bbc";
-          
-        }
-        return colordemo;
-      }
-    });
-</script>
-
-
- <script>
-    const arr = ['chartBarLive'];
-    var options = {
-    series: [{
-        name: 'Hours',
-        type: 'column',
-        data: [440, 505, 414, 671, 227],
-        color: "#007a37",
-    }, {
-        name: 'Tool Changeover',
-        type: 'line',
-        data: [25,22,25,22,22]
-      }],
-    chart: {
-        height:300,
-        type: 'line',
-        toolbar: {
-            show: false,
-        },
-    },
-    stroke: {
-        width: [0, 4],
-        curve:'stepline'
-    },
-    title: {
-    //   text: 'Traffic Sources'
-    },
-    dataLabels: {
-        enabled: false,
-        enabledOnSeries: [1]
-    },
-    legend: {
-        show: false,
-    },
-    labels: ['01 Jan 2001', '02 Jan 2001', '03 Jan 2001', '04 Jan 2001', '05 Jan 2001'],
-    xaxis: {
-        labels: {
-            show: false,
-        },
-    //   type: 'datetime'
-    },
-    yaxis: [{
-        labels:{
-            show:false
-        },
-        title: {
-        // text: 'Website Blog',
-        },
-        lines: {
-            show: false
-        }
-    },    
-    {opposite: false,
-        title: {
-            // text: 'Social Media'
-        },
-        labels:{
-            show:false
-        },
-    }]
-};
-var chart = new ApexCharts(document.querySelector("#chartBarLive"), options);
-chart.render();
-</script>
