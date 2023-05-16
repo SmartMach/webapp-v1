@@ -1161,13 +1161,13 @@ var shift_id = "";
 
 function live_graph(s_date, s_id) {
     i = setInterval(function() {
-        // live_MC1001(s_date, s_id);
+        live_MC1001(s_date, s_id);
     }, 2000);
 }
 
 function live_target(s_date) {
     j = setInterval(function() {
-        // live_target_update(s_date);
+        live_target_update(s_date);
     }, 1000);
 }
 
