@@ -788,11 +788,15 @@ class Current_Shift_Performance extends BaseController{
             $shift_date=$this->request->getvar('sdate');
             $mid = $this->request->getvar('mid');
             $tid = $this->request->getvar('tid');
+            // $shift_date="2023-05-16";
+            // $mid="MC1001";
+            // $tid="TL1005";
             $res_tool = $this->datas->get_target_tool_changeover($shift_date,$mid,$tid);
 
             // echo "<pre>";
             $final_arr = [];
-            if ($res_tool>0) {
+            $tmp_target = $res_tool[0]['target'];
+            if ($tmp_target>0) {
                 $tmp['target'] = $res_tool[0]['target'];
                 $tdate = $res_tool[0]['shift_date'];
                 $sdate = $shift_date;

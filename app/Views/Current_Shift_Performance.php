@@ -1161,7 +1161,7 @@ var shift_id = "";
 
 function live_graph(s_date, s_id) {
     i = setInterval(function() {
-        live_MC1001(s_date, s_id);
+        live_MC1001(s_date, s_id); 
     }, 2000);
 }
 
