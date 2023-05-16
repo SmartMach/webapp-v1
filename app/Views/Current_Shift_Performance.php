@@ -408,6 +408,8 @@ function getLiveMode(shift_date, shift_id) {
             // filter:x,
         },
         success: function(res) {
+            console.log("get Live Mode data");
+            console.log(res);
             $('.grid-container-cont').empty();
             res['latest_event'].forEach(function(machine) {
                 var machine_name = "";
@@ -430,7 +432,7 @@ function getLiveMode(shift_date, shift_id) {
                     '<div class="item-header" id="item-header-' + machine[0]['machine_id'] +
                     '">' +
                     '<div>' +
-                    '<p class="paddingm pad-top cen-align fnt-color machine_name_ref" mid_data="' +
+                    '<p class="paddingm pad-top cen-align fnt-color machine_name_ref" tid_data="'+machine[0]['tool_id']+'" mid_data="' +
                     machine[0]['machine_id'] + '"  id="Machine_name_' + machine[0][
                     'machine_id'] + '" title="' + machine_name + '">' + machine_name + '</p>' +
                     '<p class="paddingm cen-align fnt-color current_event" event="" duration="" id="latest_status_' +
@@ -718,7 +720,7 @@ function getLiveMode(shift_date, shift_id) {
                                 'machine_id'
                             ] + '">' +
                             '<div>' +
-                            '<p class="paddingm pad-top cen-align fnt-color machine_name_ref" mid_data="' +
+                            '<p class="paddingm pad-top cen-align fnt-color machine_name_ref" tid_data="'+machine[0]['tool_id']+'" mid_data="' +
                             machine[0]['machine_id'] + '"  id="Machine_name1_' + machine[0][
                                 'machine_id'
                             ] + '" title="' + machine_name + '">' + machine_name + '</p>' +
@@ -1159,13 +1161,13 @@ var shift_id = "";
 
 function live_graph(s_date, s_id) {
     i = setInterval(function() {
-        live_MC1001(s_date, s_id);
+        // live_MC1001(s_date, s_id);
     }, 2000);
 }
 
 function live_target(s_date) {
     j = setInterval(function() {
-        live_target_update(s_date);
+        // live_target_update(s_date);
     }, 1000);
 }
 
@@ -1302,8 +1304,8 @@ function live_MC1001(shift_date, shift_id) {
             // filter:x,
         },
         success: function(res) {
-            // console.log("live mode data circle graph");
-            // console.log(res);
+            console.log("live mode data circle graph");
+            console.log(res);
             var n = 0;
             res['latest_event'].forEach(function(machine) {
 
@@ -1568,6 +1570,7 @@ $(document).on('click', '.grid-item-cont', function(event) {
     var find_index = $('.grid-item-cont');
     var index_val = find_index.index($(this));
     var tmp_mid = $('.machine_name_ref:eq(' + index_val + ')').attr('mid_data');
+    var tid_data = $('.machine_name_ref:eq('+index_val+')').attr('tid_data');
     var shift_date = $('#shift_date').attr("sdate_format");
     var shift_id = $('#shift_id').text();
     var event = $('.current_event:eq(' + index_val + ')').attr('event_data');
@@ -1583,6 +1586,7 @@ $(document).on('click', '.grid-item-cont', function(event) {
     var line = "";
     var label_text = "";
     var downtime_display_property = "";
+    var circle_target_color = "";
 
     if (event === "Active") {
         backgroundcolor = "#01ab4e";
@@ -1591,6 +1595,8 @@ $(document).on('click', '.grid-item-cont', function(event) {
         line = "#01a34a";
         label_text = "white";
         downtime_display_property = "none";
+        circle_target_color="#FFC000";
+
     } else if (event === "Inactive") {
         backgroundcolor = "#d10527";
         bar_color = "#730316";
@@ -1598,6 +1604,8 @@ $(document).on('click', '.grid-item-cont', function(event) {
         line = "#730316";
         label_text = "black";
         downtime_display_property = "inline";
+        circle_target_color= "#C55A11";
+
     } else if (event === "Machine OFF") {
         backgroundcolor = "#7f7f7f";
         bar_color = "#404040";
@@ -1605,6 +1613,8 @@ $(document).on('click', '.grid-item-cont', function(event) {
         line = "#aaaaaa";
         label_text = "black";
         downtime_display_property = "none";
+        circle_target_color="#C55A11";
+
     } else {
         backgroundcolor = "#7f7f7f";
         bar_color = "#404040";
@@ -1612,15 +1622,19 @@ $(document).on('click', '.grid-item-cont', function(event) {
         line = "#aaaaaa";
         label_text = "black";
         downtime_display_property = "inline";
+        circle_target_color="#C55A11";
     }
     const shift_arr = [];
     shift_arr.push(tmp[1]);
     // #009644 green header card body part graph  #007A37 card header
 
     getDownTimeGraph(tmp_mid, shift_date, shift_arr);
+    target_oui_graph(tmp_mid,tid_data,shift_date);
     part_by_hour(tmp_mid, shift_date, tmp[1], bar_color);
     div_records(tmp_mid, shift_date, tmp[1], bar_color, card_body);
     circle_data_oui(tmp_mid,shift_date,tmp[1]);
+    $('.target_graph_child_div').css('background-color',circle_target_color);
+    $('#oui_circle_graph_color').attr('stop-color',circle_target_color);
     $('.graph-content').css('display', 'none');
     $('.oui_screen_view').css('display', 'inline');
     //alert(backgroundcolor);
@@ -1639,6 +1653,33 @@ $(document).on('click', '.grid-item-cont', function(event) {
     $('.visibility_div').css('display', 'none');
     $('#full_screen_btn_visibility').css('visibility','hidden');
 });
+
+// target graph oui screen
+function target_oui_graph(mid,tid,sdate){
+    $.ajax({
+        url:"<?php echo base_url('Current_Shift_Performance/get_target_graph'); ?>",
+        method:"POST",
+        data:{
+            mid:mid,
+            sdate:sdate,
+            tid:tid,
+        },
+        dataType:"JSON",
+        success:function(res){
+            console.log("Oui Target graph");
+            console.log(res[0]['percentage_target']);
+            $('.target_graph_child_div').css('height',res[0]['percentage_target']+'%');
+            $('#target_value_inner').text(res[0]['percentage_target']);
+            $('#target_value').text(res[0]['target']);
+
+        },
+        error:function(er){
+            console.log("Sorry TryAgain.. oui target graph");
+            console.log(er);
+        }
+    });
+}
+
 
 // circle graph data alignment oui screen graph 
 function circle_data_oui(mid,sdate,sid){

@@ -446,7 +446,7 @@
     background-color:#C55A11;
     display:flex;
     justify-content:center;
-    align-items:flex-start;
+    align-items:flex-end;
 }
 #target_value_inner{
     color:white;

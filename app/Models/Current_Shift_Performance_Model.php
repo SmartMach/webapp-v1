@@ -285,6 +285,35 @@ class Current_Shift_Performance_Model extends Model{
     }
 
 
+    // target graph get tool chnageover records
+    public function get_target_tool_changeover($sdate,$mid,$tid){
+        $db = \Config\Database::connect($this->site_connection);
+        $build = $db->table('pdm_tool_changeover');
+        $build->select('*');
+        $build->where('shift_date<=',$sdate);
+        $build->where('machine_id',$mid);
+        $build->where('tool_id',$tid);
+        $build->orderBy('shift_date','DESC');
+        $build->limit(1);
+        $res = $build->get()->getResultArray();
+        return $res;
+
+    }
+
+    // that particular tool chnageover production count
+    public function getproduction_target_count($tdate,$sdate,$mid,$tid){
+        $db = \Config\Database::connect($this->site_connection);
+        $build = $db->table('pdm_production_info');
+        $build->select('SUM(production) as target_production');
+        $build->where('shift_date>=',$tdate);
+        $build->where('shift_date<=',$sdate);
+        $build->where('machine_id',$mid);
+        $build->where('tool_id',$tid);
+        $res = $build->get()->getResultArray();
+        return $res;
+    }
+
+
 }
 
 ?>
