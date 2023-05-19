@@ -100,13 +100,25 @@ class Operator_model extends Model{
         
     }
 
-
     // get dropdown machine data
     public function getmachine_data(){
         $db = \Config\Database::connect($this->site_creation);
         $builder = $db->table('settings_machine_current');
         $builder->select('*');
         $res = $builder->get()->getResultArray();
+        return $res;
+    }
+
+    public function getProductionDetails($production_event_id){
+        $db = \Config\Database::connect($this->site_creation);
+        $builder = $db->table('pdm_production_info');
+        $builder->select('machine_id,part_id,production,correction_min_counts,corrections,rejection_max_counts,rejections,correction_notes');
+        $builder->where('production_event_id',$production_event_id);
+        $res = $builder->get()->getResultArray();
+
+        $builder = $db->table('settings_quality_reasons');
+        $builder->select('quality_reason_id,quality_reason_name');
+        $res[0]['reasons'] = $builder->get()->getResultArray();
         return $res;
     }
 
@@ -147,8 +159,125 @@ class Operator_model extends Model{
         }
     }
 
+    public function settings_machine()
+    {
+        $db = \Config\Database::connect($this->site_creation);
+        $query = $db->table('settings_machine_current');
+        $query->select('*');
+        $res = $query->get()->getResultArray();
+        return $res;
+    }
 
+    public function getLiveDowntime($machine,$shift,$shift_date)
+    {
+        $db = \Config\Database::connect($this->site_creation);
+        $query = $db->table('pdm_events');
+        $query->select('duration');
+        $query->where('machine_id',$machine);
+        $query->where('shift_id',$shift);
+        $query->where('shift_date',$shift_date);
+        $res = $query->get()->getResultArray();
+        return $res;
+    }
 
+    public function getLiveRejectCount($machine,$shift,$shift_date)
+    {
+        $db = \Config\Database::connect($this->site_creation);
+        $query = $db->table('pdm_production_info');
+        $query->select('SUM(rejections) as rejections');
+        $query->where('machine_id',$machine);
+        $query->where('shift_id',$shift);
+        $query->where('shift_date',$shift_date);
+        $res = $query->get()->getResultArray();
+        return $res;
+    }
+
+    public function getPartCycleTime($machine)
+    {
+        $db = \Config\Database::connect($this->site_creation);
+        $query = $db->table('pdm_tool_changeover');
+        $query->select('*');
+        $query->where('machine_id',$machine);
+        $query->orderBy('shift_date','DESC');
+        $query->orderBy('calendar_date','DESC');
+        $query->orderBy('event_start_time','DESC');
+        $query->orderBy('last_updated_on','DESC');
+        $query->limit(1);
+        $res = $query->get()->getResultArray();
+
+        $db = \Config\Database::connect($this->site_creation);
+        $query = $db->table('tool_changeover as p');
+        $query->select('p.part_id,r.NICT,r.part_name');
+        $query->where('p.id',$res[0]['tool_changeover_id']);
+        $query->limit(1);
+        $query->join('settings_part_current as r', 'r.part_id = p.part_id');
+        $result = $query->get()->getResultArray();
+        return $result;
+    }
+
+    public function retirve_production_hours($machine,$shift,$shift_date,$part_id)
+    {
+        $db = \Config\Database::connect($this->site_creation);
+        $query = $db->table('pdm_production_info');
+        $query->select('production_event_id,start_time,end_time');
+        $query->where('machine_id',$machine);
+        $query->where('shift_id',$shift);
+        $query->where('shift_date',$shift_date);
+        $query->where('part_id',$part_id);
+        $res = $query->get()->getResultArray();
+        return $res;
+    }
+
+    public function getLiveProduction($machine,$shift,$shift_date)
+    {
+        $db = \Config\Database::connect($this->site_creation);
+        $query = $db->table('pdm_production_info');
+        $query->select('SUM(production) as production');
+        $query->where('machine_id',$machine);
+        $query->where('shift_id',$shift);
+        $query->where('shift_date',$shift_date);
+        $res = $query->get()->getResultArray();
+        return $res;
+    }
+
+    public function updateCorrectionData($arr){
+        $db = \Config\Database::connect($this->site_creation);
+        $con = $db->table('pdm_production_info');
+        $con->set('corrections',$arr['correction_count']);
+        $con->set('correction_notes',$arr['correction_notes']);
+        $con->set('rejection_max_counts',$arr['max_reject']);
+
+        $con->where('production_event_id', $arr['production_id']);
+        if ($con->update()) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function updateRejectionData($arr){
+        $db = \Config\Database::connect($this->site_creation);
+        $con = $db->table('pdm_production_info');
+        $con->set('rejections',$arr['rejection']);
+        $con->set('correction_min_counts',$arr['min_count']);
+
+        $con->where('production_event_id', $arr['production_id']);
+        if ($con->update()) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function  reject_dropdown(){
+        $db = \Config\Database::connect($this->site_creation);
+        $builder = $db->table('settings_quality_reasons');
+        $builder->select('*');
+        $builder->where('Status !=',0);
+        $query   = $builder->get()->getResultArray();
+
+        return $query;
+    }
 }
 
 

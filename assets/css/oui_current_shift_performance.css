@@ -217,8 +217,7 @@
     width:100%;
     /* border:1px solid #730316; */
     border-radius:0.5rem;
-    /* height:6.8rem; */
-    padding-bottom: 10px;
+    height:6.8rem;
     margin-bottom:10px;
 }
 
@@ -235,7 +234,6 @@
     flex-direction:row;
     justify-content:space-around;
     align-items:center;
-    margin-top: 10px;
 }
 
 .card_small_div{
@@ -253,8 +251,7 @@
     width:100%;
     padding:0.4rem;
     text-align:center;
-    font-size:15px;
-    font-weight:650;
+    font-size:13px;
 }
 
 .card_body{
@@ -284,8 +281,7 @@
     width:100%;
     padding:0.4rem;
     text-align:center;
-    font-size:15px;
-    font-weight:650;
+    font-size:13px
 }
 
 .hide_card_body{
@@ -339,8 +335,7 @@
     width:100%;
     padding:0.4rem;
     text-align:center;
-    font-size:15px;
-    font-weight: 650;
+    font-size:13px;
 }
 .shift_oee_body{
     padding:0.3rem;
@@ -446,7 +441,7 @@
     background-color:#C55A11;
     display:flex;
     justify-content:center;
-    align-items:flex-end;
+    align-items:flex-start;
 }
 #target_value_inner{
     color:white;
@@ -489,30 +484,3 @@
     align-items: center;
 }
 
-/* cycle time div */
-
-.cycle_time_oui_div{
-    display:flex;
-    flex-direction:row;
-    width:100%;
-    margin:0.8rem;
-}
-
-.cycle_time_val_div{
-    width:70%;
-    display:flex;
-    flex-direction:row;
-    justify-content:end;
-    /* background-color:#7F7F7F; */
-}
-
-
-.cycle_time_sval{
-    width:30%;
-    display:flex;
-    flex-direction:row;
-    justify-content:start;
-    align-items:end;
-    font-size:0.8rem;
-    padding-left: 0.4rem;
-}
