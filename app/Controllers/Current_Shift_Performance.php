@@ -790,6 +790,44 @@ class Current_Shift_Performance extends BaseController{
     }
 
 
+    
+    // target graph function
+    public function get_target_graph(){
+        if ($this->request->isAJAX()) {
+        
+        
+            $shift_date=$this->request->getvar('sdate');
+            $mid = $this->request->getvar('mid');
+            $tid = $this->request->getvar('tid');
+            // $shift_date="2023-05-16";
+            // $mid="MC1001";
+            // $tid="TL1004";
+            $res_tool = $this->datas->get_target_tool_changeover($shift_date,$mid,$tid);
+
+            // echo "<pre>";
+            $final_arr = [];
+            $tmp_target = $res_tool[0]['target'];
+            if ($tmp_target>0) {
+                $tmp['target'] = $res_tool[0]['target'];
+                $tdate = $res_tool[0]['shift_date'];
+                $sdate = $shift_date;
+                $res_production = $this->datas->getproduction_target_count($tdate,$sdate,$mid,$tid);
+                $tmp['percentage_target'] = $res_production[0]['target_production']/$res_tool[0]['target']*100;
+                array_push($final_arr,$tmp);
+            }else{
+                $tmp['target'] = 0;
+                $tmp['percentage_target'] = 0;
+                array_push($final_arr,$tmp);
+            }
+            // print_r($final_arr);
+            echo json_encode($final_arr);
+            // $final_ar['target_production'] = $res_production;
+            // $final_ar['target'] = $res_tool;
+            // echo "<pre>";
+            // print_r($final_ar);
+
+        }
+    }
     // // full screen mode records
     // public function full_screen_records(){
     //     if ($this->request->isAJAX()) {

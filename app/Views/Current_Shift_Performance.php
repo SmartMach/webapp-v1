@@ -234,8 +234,8 @@
 
                     <div class="card_small_div">
                         <span class="card_header">Cycle Time</span>
-                        <div class="cycle_time_oui_div" style="">
-                            <div class="cycle_time_val_div" style="">
+                        <div class="cycle_time_oui_div" style="width:100%;display:flex;flex-direction:row;height:3.5rem;justify-content:flex-start;align-items:center;">
+                            <div class="cycle_time_val_div" style="width:60%;height:max-content;text-align:end;">
                                 <span class="card_body" id="nict_val" style="padding:0;margin:0;"></span>
                             </div>
                             <div class="cycle_time_sval" style="">
@@ -1161,13 +1161,13 @@ var shift_id = "";
 
 function live_graph(s_date, s_id) {
     i = setInterval(function() {
-        live_MC1001(s_date, s_id); 
+        // live_MC1001(s_date, s_id); 
     }, 2000);
 }
 
 function live_target(s_date) {
     j = setInterval(function() {
-        live_target_update(s_date);
+        // live_target_update(s_date);
     }, 1000);
 }
 
@@ -1656,6 +1656,9 @@ $(document).on('click', '.grid-item-cont', function(event) {
 
 // target graph oui screen
 function target_oui_graph(mid,tid,sdate){
+    console.log(mid);
+    console.log(sdate);
+    console.log(tid);
     $.ajax({
         url:"<?php echo base_url('Current_Shift_Performance/get_target_graph'); ?>",
         method:"POST",
@@ -1667,8 +1670,15 @@ function target_oui_graph(mid,tid,sdate){
         dataType:"JSON",
         success:function(res){
             console.log("Oui Target graph");
-            console.log(res[0]['percentage_target']);
-            $('.target_graph_child_div').css('height',res[0]['percentage_target']+'%');
+            console.log(res);
+            var target_percentage = 0;
+            if (parseInt(res[0]['percentage_target'])>100) {
+                // target_percentage = res[0]['percentage_target'];
+                target_percentage = 100;
+            }else{
+                target_percentage = res[0]['percentage_target'];
+            }
+            $('.target_graph_child_div').css('height',target_percentage+'%');
             $('#target_value_inner').text(res[0]['percentage_target']);
             $('#target_value').text(res[0]['target']);
 
