@@ -8,6 +8,7 @@
     <!-- <title>Smartories Login Page</title> -->
     <title>OEE Monitoring!</title>
     <link rel="shortcut icon" href="<?php echo base_url() ?>/assets/img/Myproject.png" type="image/x-icon">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--Link For Bootstrap -->
     <link href="<?php echo base_url()?>/bootstrap_5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -72,7 +73,7 @@
 <body>
 
     <?php $validation =  \Config\Services::validation(); ?>
-   <div class="container main-container">
+    <div class="container main-container">
   
         <div class="img-div">
             <img id="login-mach" src="<?php echo base_url()?>/assets/img/logo.png?version=<?php echo rand() ; ?>" alt="SmartMach Logo">
@@ -136,6 +137,8 @@
     window.addEventListener("focus",()=>{
         document.title = doc_title;
     });
+
+    
 
 
 

@@ -174,12 +174,13 @@
     align-items: center;
     justify-content: center;
     float: right;
-
-    
+    cursor: pointer;
 }
 .mainOpCss{
-    margin-left: 2rem;
-    margin-right: 2rem;
+    /* margin-left: 2rem;
+    margin-right: 2rem; */
+    display: flex;
+    flex-direction: column;
  }
  .margn{
     margin: 1rem;

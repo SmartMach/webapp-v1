@@ -37,11 +37,14 @@
             </div>
 
             <div class="d-flex" style="display: flex;align-items: center;">
-                <div class="full-screen" onclick="fullscreen_mode()">
-                    <div style="width:max-content;">
-                        <i class="fa-solid fa-expand dot-cont"></i>
+                <div id="full_screen_btn_visibility">
+                    <div class="full-screen"  onclick="fullscreen_mode()">
+                        <div style="width:max-content;">
+                            <i class="fa-solid fa-expand dot-cont"></i>
+                        </div>
                     </div>
                 </div>
+                
                 <div class="box CurrentNav rightmar alignCenter visibility_div">
                     <div class="input-box paddingm">
                         <select class="form-select font-items" name="" id="Filter-values" style="width: 10rem;">
@@ -138,10 +141,10 @@
                                     <svg version="1.1" class="svg_oui">
                                         <defs>
                                             <linearGradient id="GradientColor_oui">
-                                                <stop stop-color="#C55A11" />
+                                                <stop id="oui_circle_graph_color" stop-color="#C55A11" />
                                             </linearGradient>
                                         </defs>
-                                        <circle class="circle_oui_anim" cx="120" cy="120" r="63"
+                                        <circle id="circle_oui_anim" class="circle_oui_anim" cx="120" cy="120" r="63"
                                             stroke-linecap="round" />
                                     </svg>
                                 </div>
@@ -165,7 +168,7 @@
                             </div>
                             <div class="target_graph_text" style="">
                                 <i class="fa-solid fa-circle" style="margin-right:0.4rem;font-size:0.5rem;"></i><span
-                                    style="">31 Jan 23,02:02 PM</span>
+                                    style="" id="shift_date_oui_graph"></span>
                             </div>
                         </div>
                     </div>
@@ -226,18 +229,25 @@
 
                     <div class="card_small_div" style="">
                         <span class="card_header" style="">Downtime</span>
-                        <span class="card_body" style="" id="downtime_val"></span>
+                        <span class="card_body" style="margin:0.5rem;" id="downtime_val"></span>
                     </div>
 
                     <div class="card_small_div">
                         <span class="card_header">Cycle Time</span>
-                        <span class="card_body" id="nict_val"></span>
+                        <div class="cycle_time_oui_div" style="width:100%;display:flex;flex-direction:row;height:3.5rem;justify-content:flex-start;align-items:center;">
+                            <div class="cycle_time_val_div" style="width:60%;height:max-content;text-align:end;">
+                                <span class="card_body" id="nict_val" style="padding:0;margin:0;"></span>
+                            </div>
+                            <div class="cycle_time_sval" style="">
+                                50s
+                            </div>
+                        </div>
                     </div>
 
 
                     <div class="card_small_div">
                         <span class="card_header">Rejects Counts</span>
-                        <span class="card_body" id="reject_count"></span>
+                        <span class="card_body" id="reject_count" style="margin:0.5rem;"></span>
                     </div>
 
 
@@ -249,25 +259,25 @@
 
                             <div class="hide_card_div" style="">
                                 <span class="hide_card_header" style="">Availability</span>
-                                <span class="hide_card_body" style=""><span id="availability_val"
+                                <span class="hide_card_body" style="margin:0.5rem"><span id="availability_val"
                                         class="value_text"></span> %</span>
                             </div>
 
                             <div class="hide_card_div">
                                 <span class="hide_card_header">Performance</span>
-                                <span class="hide_card_body"><span id="performance_val" class="value_text"></span>
+                                <span class="hide_card_body" style="margin:0.5rem;"><span id="performance_val" class="value_text"></span>
                                     %</span>
                             </div>
 
 
                             <div class="hide_card_div">
                                 <span class="hide_card_header">Quality</span>
-                                <span class="hide_card_body"><span id="quality_val" class="value_text"></span> %</span>
+                                <span class="hide_card_body" style="margin:0.5rem;"><span id="quality_val" class="value_text"></span> %</span>
                             </div>
 
                             <div class="shift_oee_div" style="">
                                 <span class="shift_oee_header" style="">SHIFT OEE</span>
-                                <span class="shift_oee_body" style=""><span id="oee_val" class="value_text"></span>
+                                <span class="shift_oee_body" style="margin:0.5rem;"><span id="oee_val" class="value_text"></span>
                                     %</span>
                             </div>
 
@@ -373,6 +383,10 @@ function getMachineDataLive() {
             $("#s_id_ref").val(res[0]['shift_id']);
 
             getLiveMode(res[0]['shift_date'], res[0]['shift_id']);
+
+
+            var target_graph_date_time_val = date+","+e_time[0] + ":" + e_time[1] + ":" + s_time[2];
+            $('#shift_date_oui_graph').text(target_graph_date_time_val);
         },
         error: function(res) {
             // Error Occured!
@@ -394,6 +408,8 @@ function getLiveMode(shift_date, shift_id) {
             // filter:x,
         },
         success: function(res) {
+            console.log("get Live Mode data");
+            console.log(res);
             $('.grid-container-cont').empty();
             res['latest_event'].forEach(function(machine) {
                 var machine_name = "";
@@ -416,7 +432,7 @@ function getLiveMode(shift_date, shift_id) {
                     '<div class="item-header" id="item-header-' + machine[0]['machine_id'] +
                     '">' +
                     '<div>' +
-                    '<p class="paddingm pad-top cen-align fnt-color machine_name_ref" mid_data="' +
+                    '<p class="paddingm pad-top cen-align fnt-color machine_name_ref" tid_data="'+machine[0]['tool_id']+'" mid_data="' +
                     machine[0]['machine_id'] + '"  id="Machine_name_' + machine[0][
                     'machine_id'] + '" title="' + machine_name + '">' + machine_name + '</p>' +
                     '<p class="paddingm cen-align fnt-color current_event" event="" duration="" id="latest_status_' +
@@ -704,7 +720,7 @@ function getLiveMode(shift_date, shift_id) {
                                 'machine_id'
                             ] + '">' +
                             '<div>' +
-                            '<p class="paddingm pad-top cen-align fnt-color machine_name_ref" mid_data="' +
+                            '<p class="paddingm pad-top cen-align fnt-color machine_name_ref" tid_data="'+machine[0]['tool_id']+'" mid_data="' +
                             machine[0]['machine_id'] + '"  id="Machine_name1_' + machine[0][
                                 'machine_id'
                             ] + '" title="' + machine_name + '">' + machine_name + '</p>' +
@@ -1145,13 +1161,13 @@ var shift_id = "";
 
 function live_graph(s_date, s_id) {
     i = setInterval(function() {
-        live_MC1001(s_date, s_id);
+        // live_MC1001(s_date, s_id); 
     }, 2000);
 }
 
 function live_target(s_date) {
     j = setInterval(function() {
-        live_target_update(s_date);
+        // live_target_update(s_date);
     }, 1000);
 }
 
@@ -1288,6 +1304,8 @@ function live_MC1001(shift_date, shift_id) {
             // filter:x,
         },
         success: function(res) {
+            console.log("live mode data circle graph");
+            console.log(res);
             var n = 0;
             res['latest_event'].forEach(function(machine) {
 
@@ -1513,7 +1531,9 @@ function live_MC1001(shift_date, shift_id) {
 
                 // 230
                 for (val of iterate) {
+                    // mahince_id ===machine_id
                     if (val.getAttribute("id") == machine[0]['machine_id']) {
+                        // 471 to 300
                         val.style.setProperty("--foo", production_percent_val);
                         val.style.setProperty("--ref_graph", refcolor);
                     }
@@ -1546,9 +1566,11 @@ function live_MC1001(shift_date, shift_id) {
 
 $(document).on('click', '.grid-item-cont', function(event) {
     event.preventDefault();
+    fullscreen_mode_remove();
     var find_index = $('.grid-item-cont');
     var index_val = find_index.index($(this));
     var tmp_mid = $('.machine_name_ref:eq(' + index_val + ')').attr('mid_data');
+    var tid_data = $('.machine_name_ref:eq('+index_val+')').attr('tid_data');
     var shift_date = $('#shift_date').attr("sdate_format");
     var shift_id = $('#shift_id').text();
     var event = $('.current_event:eq(' + index_val + ')').attr('event_data');
@@ -1564,6 +1586,7 @@ $(document).on('click', '.grid-item-cont', function(event) {
     var line = "";
     var label_text = "";
     var downtime_display_property = "";
+    var circle_target_color = "";
 
     if (event === "Active") {
         backgroundcolor = "#01ab4e";
@@ -1572,6 +1595,8 @@ $(document).on('click', '.grid-item-cont', function(event) {
         line = "#01a34a";
         label_text = "white";
         downtime_display_property = "none";
+        circle_target_color="#FFC000";
+
     } else if (event === "Inactive") {
         backgroundcolor = "#d10527";
         bar_color = "#730316";
@@ -1579,6 +1604,8 @@ $(document).on('click', '.grid-item-cont', function(event) {
         line = "#730316";
         label_text = "black";
         downtime_display_property = "inline";
+        circle_target_color= "#C55A11";
+
     } else if (event === "Machine OFF") {
         backgroundcolor = "#7f7f7f";
         bar_color = "#404040";
@@ -1586,6 +1613,8 @@ $(document).on('click', '.grid-item-cont', function(event) {
         line = "#aaaaaa";
         label_text = "black";
         downtime_display_property = "none";
+        circle_target_color="#C55A11";
+
     } else {
         backgroundcolor = "#7f7f7f";
         bar_color = "#404040";
@@ -1593,17 +1622,23 @@ $(document).on('click', '.grid-item-cont', function(event) {
         line = "#aaaaaa";
         label_text = "black";
         downtime_display_property = "inline";
+        circle_target_color="#C55A11";
     }
     const shift_arr = [];
     shift_arr.push(tmp[1]);
     // #009644 green header card body part graph  #007A37 card header
 
     getDownTimeGraph(tmp_mid, shift_date, shift_arr);
+    target_oui_graph(tmp_mid,tid_data,shift_date);
     part_by_hour(tmp_mid, shift_date, tmp[1], bar_color);
     div_records(tmp_mid, shift_date, tmp[1], bar_color, card_body);
+    circle_data_oui(tmp_mid,shift_date,tmp[1]);
+    $('.target_graph_child_div').css('background-color',circle_target_color);
+    $('#oui_circle_graph_color').attr('stop-color',circle_target_color);
     $('.graph-content').css('display', 'none');
     $('.oui_screen_view').css('display', 'inline');
     //alert(backgroundcolor);
+    $('.cycle_time_val_div').css('background-color',backgroundcolor);
     $('.oui_header_div').css('background-color', backgroundcolor);
     $('.label_header').css('background-color', backgroundcolor);
     $('.oui_sub_header').css('background-color', card_body);
@@ -1616,7 +1651,91 @@ $(document).on('click', '.grid-item-cont', function(event) {
     $('.downtime_second_val').css('display', downtime_display_property);
     $('.oui_arrow_div').css('display', 'inline');
     $('.visibility_div').css('display', 'none');
+    $('#full_screen_btn_visibility').css('visibility','hidden');
 });
+
+// target graph oui screen
+function target_oui_graph(mid,tid,sdate){
+    console.log(mid);
+    console.log(sdate);
+    console.log(tid);
+    $.ajax({
+        url:"<?php echo base_url('Current_Shift_Performance/get_target_graph'); ?>",
+        method:"POST",
+        data:{
+            mid:mid,
+            sdate:sdate,
+            tid:tid,
+        },
+        dataType:"JSON",
+        success:function(res){
+            console.log("Oui Target graph");
+            console.log(res);
+            var target_percentage = 0;
+            if (parseInt(res[0]['percentage_target'])>100) {
+                // target_percentage = res[0]['percentage_target'];
+                target_percentage = 100;
+            }else{
+                target_percentage = res[0]['percentage_target'];
+            }
+            $('.target_graph_child_div').css('height',target_percentage+'%');
+            $('#target_value_inner').text(res[0]['percentage_target']);
+            $('#target_value').text(res[0]['target']);
+
+        },
+        error:function(er){
+            console.log("Sorry TryAgain.. oui target graph");
+            console.log(er);
+        }
+    });
+}
+
+
+// circle graph data alignment oui screen graph 
+function circle_data_oui(mid,sdate,sid){
+    $.ajax({
+        url: "<?php echo base_url('Current_Shift_Performance/getLiveMode'); ?>",
+        type: "POST",
+        dataType: "json",
+        cache: false,
+        async: false,
+        data: {
+            shift_date: sdate,
+            shift_id: sid,
+            // filter:x,
+        },
+        success: function(res) {
+            console.log("Circle graph oui screen value settings");
+            console.log(res);
+
+            var production_total = 0;
+            res['production_total'].forEach(function(item){
+                if (mid===item.machine_id) {
+                    production_total = item.total;
+                }
+            });
+
+            console.log(production_total);
+            var target_production = 5000;
+            var production_percent = parseInt((production_total / target_production) * 100);
+            var production_percent_val = 470 - (2.4 * production_percent);
+            var color_id = "GradientColor_oui";
+            //console.log(production_percent_val);
+            var refcolor = 'url('+'#'+color_id+')';
+            var iterate = document.getElementById("circle_oui_anim");
+            iterate.style.setProperty("--foo_oui", production_percent_val);
+            iterate.style.setProperty("--ref_graph", refcolor);
+            document.getElementById('oui_circle_graph_color').attributes['stop-color'].value = "#C55A11";
+            $('#production_per_oui').text(production_percent);
+
+
+        },
+        error:function(er){
+            console.log('Sorry TryAgain.. circle graph');
+            console.log(er);
+        }
+    });
+}
 
 
 // downtime graph global variables
@@ -2031,6 +2150,8 @@ function part_by_hour(mid, sdate, sid, bar_color) {
             filter: x,
         },
         success: function(res) {
+            // console.log("get lievmode data");
+            // console.log(res);
             var hourly = [];
             var hourList = [];
             var production_target = [];
@@ -2068,7 +2189,7 @@ function part_by_hour(mid, sdate, sid, bar_color) {
             ChartDataLabels.defaults.color = "#ffffff";
             ChartDataLabels.defaults.font.size = "9px";
             ChartDataLabels.defaults.font.family = "'Roboto', sans-serif;";
-            ChartDataLabels.defaults.anchor = "center";
+            ChartDataLabels.defaults.anchor = "bottom";
             var ctx = document.getElementById('part_wise_graph_oui').getContext('2d');
             myChartList[myChartList.length] = new Chart(ctx, {
                 type: 'bar',
@@ -2101,7 +2222,7 @@ function part_by_hour(mid, sdate, sid, bar_color) {
                     maintainAspectRatio: false,
                     scales: {
                         y: {
-                            display: true,
+                            display: false,
                             beginAtZero: true,
                             stacked: false,
                         },
@@ -2153,6 +2274,9 @@ function div_records(mid, shift_date, shift_id, card_header, card_body) {
         },
         success: function(res) {
 
+            // console.log("div tag records");
+            // console.log(res);
+
             var nict_min = res['nict'] / 60;
             var tmp_nict = " ";
             if (parseInt(nict_min) > 0) {
@@ -2166,20 +2290,14 @@ function div_records(mid, shift_date, shift_id, card_header, card_body) {
                 tmp_nict = parseInt(res['nict']) + 's';
             }
 
-            var temp_downtime = res['downtime'] / 60;
-            var downtime_val = " ";
-            if (parseInt(temp_downtime) > 0) {
-                var downtime_hour = temp_downtime / 60;
-                if (parseInt(downtime_hour) > 0) {
-                    downtime_val = parseInt(downtime_hour) + "h" + " " + parseInt(temp_downtime) + "m";
-                } else {
-                    downtime_val = parseInt(temp_downtime) + "m";
-                }
-            } else {
-                downtime_val = parseInt(res['downtime']) + "s";
-            }
+            var temp_downtime_hour = res['downtime'] / 3600;
+            var temp_total_hour_second = parseInt(temp_downtime_hour)*3600;
+            var temp_downtime_minute =  parseInt(res['downtime']) - parseInt(temp_total_hour_second);
+            temp_downtime_minute = parseInt(temp_downtime_minute) /60
+            var downtime_val = parseInt(temp_downtime_hour)+" h"+" "+parseInt(temp_downtime_minute)+" m";
 
             $('#downtime_val').text(downtime_val);
+            // $('.cycle_time_sval').text(downtime_second_val);
             $('#nict_val').text(tmp_nict);
             $('#reject_count').text(res['rejection_count']);
             $('#part_name_circle').text(res['part_name']);
@@ -2201,7 +2319,8 @@ function fullscreen_mode() {
     $('.left-sidebar').css('display','none');
     $('.topnav').css('display','none');
     $('.fixsubnav_quality').css('display','none');
-    $('.graph-content').css('margin-top','0rem');
+    // $('.graph-content').css('margin-top','0rem');
+    $('.grid-container-cont').css('margin-top', '0rem');
     $('.full_screen_close').css('display','block');
     $('.full_screen_close').css('display','flex');
 
@@ -2280,9 +2399,15 @@ $(document).on('click','.close_div_circle',function(event){
 
 // this function return to oui to cards
 function oui_arrow_to_card(){
+    $('#full_screen_btn_visibility').css('visibility','visible');
+    $('.visibility_div').css("display",'inline');
     $('.graph-content').css('display', 'inline');
     $('.oui_screen_view').css('display', 'none');
-    $('.graph-content').css('margin-top', '5rem');
+    $('.grid-container-cont').css('margin-top', '5rem');
+    $('.oui_arrow_div').css("display",'none');
+    // $('#full_screen_cards').empty();
+    // fullscreen_mode_remove();
+   
 
 }
 </script>

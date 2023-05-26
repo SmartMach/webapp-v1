@@ -55,7 +55,7 @@ class Alert_Settings_Controller extends BaseController{
             $past_hour = $this->request->getvar('past_hour');
             $machine_arr = $this->request->getvar('machine_arr');
             $part_arr = $this->request->getvar('part_arr');
-            $label_txt_arr = $this->request->getvar('label_txt_arr');
+            $lable_list = $this->request->getvar('lable_list');
             $to_email_arr = $this->request->getvar('to_email_arr');
             $cc_email_arr = $this->request->getvar('cc_email_arr');
             $work_type = $this->request->getvar('work_type');
@@ -76,7 +76,7 @@ class Alert_Settings_Controller extends BaseController{
             $temp['past_hour'] = $past_hour;
             $temp['machine_arr'] = implode(",",$machine_arr);
             $temp['part_arr'] = implode(",",$part_arr);
-            $temp['label_txt_arr'] = implode(",",$label_txt_arr);
+            $temp['lable_id'] = implode(",",$lable_list);
             $temp['to_email_arr'] = implode(",",$to_email_arr);
             $temp['cc_email_arr'] = implode(",",$cc_email_arr);
             $temp['work_type'] = $work_type;
@@ -244,7 +244,7 @@ class Alert_Settings_Controller extends BaseController{
             $work_type = $this->request->getvar('work_type');
             $work_title = $this->request->getvar('work_title');
             $priority = $this->request->getvar('priority');
-            $label_arr = $this->request->getvar('label_txt_arr');
+            $lable_list = $this->request->getvar('lable_list');
             $assignee = $this->request->getvar('assignee');
             $deu_days = $this->request->getvar('deu_days');
             $to_email_arr = $this->request->getvar('to_email_arr');
@@ -265,7 +265,7 @@ class Alert_Settings_Controller extends BaseController{
             $mydata['work_type']  =   $work_type;
             $mydata['work_title'] =   $work_title;
             $mydata['priority']   =   $priority;
-            $mydata['label_arr']  =   implode(',',$label_arr);
+            $mydata['lable_list']  =   implode(',',$lable_list);
             $mydata['assignee']   =   $assignee;
             $mydata['due_days']   =   $deu_days;
             $mydata['to_email_arr']   =  implode(',',$to_email_arr);
@@ -288,6 +288,35 @@ class Alert_Settings_Controller extends BaseController{
     //         echo json_encode("heeelo wrold".$r.' '.$d);
     //     // }
     // }
+    public function getLable(){  //get
+        if ($this->request->isAJAX()) {
+            $lable = $this->data->getLableData();
+            echo json_encode($lable);
+        }
+    }
+    public function getLableID(){  //post
+        if ($this->request->isAJAX()) {
+            $cause = $this->request->getVar('lable');
+            $cause_count = $this->data->getLableId();
+            $cause_count = $cause_count['lable_id'];
+            $db_name = $this->session->get('active_site');
+            $db_name = str_split($db_name);
+            $id_gen = strtoupper($db_name[0]).$db_name[1]."-L".(string)$cause_count;
+
+             // Insert Action
+            $data1['lable_id'] = $id_gen;
+            $data1['lable'] = $cause;
+            $data1['status'] = 1;
+            $data1['last_updated_by'] = $this->session->get('user_name');
+            $res = $this->data->insertLable($data1);
+            if ($res == true) {
+                echo json_encode($id_gen);
+            }else{
+                echo json_encode($data);
+            }
+                
+        }
+    }
 }
 
 

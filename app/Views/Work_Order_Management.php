@@ -23,8 +23,8 @@
         padding-left:1.5rem;
     }
      .img_font_wh{
-        width: 1.9rem;
-        height: 1.4rem;
+        width: 1.7rem;
+        height: 1.3rem;
         padding-right: 0.6rem;
         cursor: pointer;
     }
@@ -168,6 +168,24 @@
     width: 26.5rem !important;
 }
 
+.doth {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.doth:hover{
+  cursor: pointer;
+  background: #cccccc;
+}
+.icon_img_wh {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
 
 
 </style>
@@ -230,7 +248,7 @@ $session = \Config\Services::session();
                             <div class="filter_selectBox" onclick="multiple_drp_lables()">
                               <div class="inbox-span fontStyle search_style dropdown-arrow">
                                 <div style="width: 80% !important;">
-                                  <p class="paddingm" id="Filter_lables_val">All Lables</p>
+                                  <p class="paddingm" id="Filter_lables_val">All Labels</p>
                                 </div>
                                 <div style="width: 80% !important;" class="dropdown-div">
                                   <i class="fa fa-angle-down icon-style"></i>
@@ -240,7 +258,7 @@ $session = \Config\Services::session();
                             <div class="filter_checkboxes_issue filter_checkboxes_filter Filter_lables_div display_hide">
                             </div>
                           </div>
-                          <label class="input-padding ">Lables</label>
+                          <label class="input-padding ">Labels</label>
                         </div>
                     </div>
                     <div class="box rightmar" style="margin-right: 0.5rem;">
@@ -293,7 +311,7 @@ $session = \Config\Services::session();
                         if($this->data['access'][0]['work_order_management'] == 3){ 
                     ?>
 
-                    <a style="background: #005abc;color: white;width:9rem;" class="settings_nav_anchor float-end" id="add_issue_button">
+                    <a style="background: #005abc;color: white;" class="settings_nav_anchor float-end" id="add_issue_button">
                         <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD ISSUE
                     </a>
 
@@ -307,13 +325,13 @@ $session = \Config\Services::session();
             <div class="settings_machine_header sticky-top fixtabletitle">
                 <div class="row paddingm">
                     <div class="col-sm-1 p3 paddingm">
-                      <p class="basic_header">WORK ID</p>
+                      <p class="basic_header">ID</p>
                     </div>
                     <div class="col-sm-2 p3 paddingm">
                       <p class="basic_header">TITLE</p>
                     </div>
                     <div class="col-sm-2 p3 paddingm">
-                      <p class="basic_header">LABLE</p>
+                      <p class="basic_header">LABEL</p>
                     </div>
                     <div class="col-sm-1 p3 paddingm ">
                       <p class="basic_right">PRIORITY</p>
@@ -343,7 +361,7 @@ $session = \Config\Services::session();
     <div class="container modal-content bodercss">
             <div class="modal-header" style="border:none; ">
                 <h5 class="modal-title settings-machineAdd-model" id="AddIssueModal1" style="">ADD WORK</h5>
-            </div> 
+            </div>
                 <div class="modal-body model-style">
                     <div class="row">
                         <div class="col-lg-8 box">
@@ -387,7 +405,7 @@ $session = \Config\Services::session();
                             <!-- Action Taken content -->
                             <div class="items-container reduce_width items-container-action"></div>
 
-                            <p class="Comments">Comments</p>
+                            <!-- <p class="Comments">Comments</p>
                             <div class="center-align reduce_width">
                                 <div style="float: left;width: 10%;" class="center-align">
                                     <div class="circle-div" style="background:#7f7f7f;color:white;"><p class="paddingm">MS</p></div>
@@ -400,7 +418,7 @@ $session = \Config\Services::session();
 
                             <div class="Comments-box reduce_width items-container-comments">
 
-                            </div>
+                            </div> -->
 
                         </div>
                         <div class="col-lg-4 box">
@@ -438,7 +456,7 @@ $session = \Config\Services::session();
                             <div class="box inbox-top">
                                 <div class="input-box indexing">
                                   <div class="filter_multiselect_lable filter_multiselect_input">
-                                    <span class="multi_select_label" style="">Lable</span>
+                                    <span class="multi_select_label" style="">Label</span>
                                     <div class="filter_selectBox">
                                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                                         <div style="width: 80% !important">
@@ -522,7 +540,7 @@ $session = \Config\Services::session();
 
                 <div class="modal-footer" style="border:none;">
                     <input type="submit" class="btn fo bn Add_Work_Data saveBtnStyle" name="Add_Machine" value="Save">
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
                 </div>
     </div>
   </div>
@@ -576,14 +594,14 @@ $session = \Config\Services::session();
                             <p class="Comments">Comments</p>
                             <div class="center-align reduce_width">
                                 <div style="float: left;width: 10%;" class="center-align">
-                                    <div class="circle-div" style="background:#7f7f7f;color:white;"><p class="paddingm">MS</p></div>
+                                    <div class="circle-div" style="background:#7f7f7f;color:white;"><p class="paddingm Edit_Current_User"></p></div>
                                 </div>
                                 <div class="input-box" style="width: 90%">      
                                     <input type="text" class="form-control font_weight_modal input-field-comments-edit" id="" name="" >
                                 </div>
                             </div>
 
-                            <div class="Comments-box reduce_width items-container-edit-comments">
+                            <div class="Comments-box items-container-edit-comments">
 
                             </div>
 
@@ -622,7 +640,7 @@ $session = \Config\Services::session();
                             <div class="box inbox-top">
                                 <div class="input-box indexing">
                                   <div class="filter_multiselect_lable filter_multiselect_input">
-                                    <span class="multi_select_label" style="">Lable</span>
+                                    <span class="multi_select_label" style="">Label</span>
                                     <div class="filter_selectBox">
                                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                                         <div style="width: 80% !important">
@@ -711,6 +729,90 @@ $session = \Config\Services::session();
   </div>
 </div>
 
+<div class="modal fade" id="InfoIssueModal" tabindex="-1" aria-labelledby="InfoIssueModal1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered rounded ">
+    <div class="container modal-content bodercss">
+            <div class="modal-header" style="border:none; ">
+                <h5 class="modal-title settings-machineAdd-model" id="InfoIssueModal1" style=""></h5>
+            </div> 
+                <div class="modal-body model-style">
+                    <div class="row">
+                        <div class="col-lg-8 box">
+                            <div class="box">
+                              <label for="" class="input-padding col-form-label headTitle">Title</label>
+                              <p><span id="info_title" class="font_weight_modal"></span></p>
+                            </div>
+                            <div class="box">
+                              <label for="" class="input-padding col-form-label headTitle">Description</label>
+                              <p><span id="info_description" class="font_weight_modal"></span></p>
+                            </div>
+                            
+                            <div class="box" id="cause-info" style="display: none;">
+                              <label for="" class="input-padding col-form-label headTitle">Cause</label>
+                              <div class="items-container reduce_width items-container-cause-info"></div>
+                            </div>
+                            <!-- Cause Container -->
+                            <div class="items-container reduce_width items-container-info-cause"></div>
+
+                            <div class="box">
+                              <label for="" class="input-padding col-form-label headTitle">Action Taken</label>
+                              <div class="items-container reduce_width items-container-info"></div>
+                            </div>
+
+                            <!-- Action Content -->
+                            <!-- <div class="items-container reduce_width items-container-info-action"></div> -->
+                            <div class="box">
+                              <label for="" class="input-padding col-form-label headTitle">Comments</label>
+                            </div>
+
+                            <div class="Comments-box reduce_width items-container-info-comments">
+
+                            </div>
+
+                        </div>
+                        <div class="col-lg-4 box">
+                            <div class="box">
+                              <label for="" class="input-padding col-form-label headTitle">Type</label>
+                              <p><span id="info_type" class="font_weight_modal"></span></p>
+                            </div>
+                            <div class="box">
+                              <label for="" class="input-padding col-form-label headTitle">Priority</label>
+                              <p>
+                                <span id="info_priority" class="font_weight_modal"></span>
+                              </p>
+                            </div>
+                            <div class="box">
+                              <label for="" class="input-padding col-form-label headTitle">Label</label>
+                              <div class="lable-div lable-div-info"></div>
+                            </div>
+                            <div class="box">
+                              <label for="" class="input-padding col-form-label headTitle">Assignee</label>
+                              <span id="info_assignee" class="font_weight_modal"></span>
+                            </div>
+                            <div class="box">
+                              <label for="" class="input-padding col-form-label headTitle">Due Date</label>
+                              <p><span id="info_due_date" class="font_weight_modal"></span></p>
+                            </div>
+                            <div class="box">
+                              <label for="" class="input-padding col-form-label headTitle">Status</label>
+                              <p>
+                                <span id="info_status" class="font_weight_modal"></span>
+                              </p>
+                            </div>
+                            <div class="box">
+                              <label for="" class="input-padding col-form-label headTitle">Attachments</label>
+                              <div class="attached_file attached_file_info" style="margin-top:0rem;"></div>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+
+                <div class="modal-footer" style="border:none;">
+                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                </div>
+    </div>
+  </div>
+</div>
 
 <div class="modal fade" id="DeactiveWorkOrderModal" tabindex="-1" aria-labelledby="DeactiveWorkOrderModal1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered rounded">
@@ -742,29 +844,50 @@ $session = \Config\Services::session();
     var comments_list_globle =[];
     var filter_array = [];
 
+    var action_list_globle_unique=[];
+    var cause_list_globle_unique=[];
+    var lable_list_globle_unique=[];
+
     function change_type(item){
         if (item.value == "task") {
-            document.getElementById("cause-add").style.display = "none";
-            $(".item-cause").css('display','none');
-        }   
+          document.getElementById("cause-add").style.display = "none";
+          $(".item-cause").css('display','none');
+          $(".items-container-cause").css("margin-bottom","0rem");
+        }
         else{
-            document.getElementById("cause-add").style.display = "block";
-            $(".item-cause").css('display','block');
+          $(".items-container-cause").css("margin-bottom","1.5rem");
+          document.getElementById("cause-add").style.display = "block";
+          $(".item-cause").css('display','block');
         }
     }
 
     function change_type_edit(item){
         if (item.value == "task") {
-            document.getElementById("cause-edit").style.display = "none";
+          document.getElementById("cause-edit").style.display = "none";
         }
         else{
-            document.getElementById("cause-edit").style.display = "block";
+          document.getElementById("cause-edit").style.display = "block";
         }
     }
 
     $(document).on('click','#add_issue_button',function(event){
 
+        action_list_globle_unique=[];
+        cause_list_globle_unique=[];
+        lable_list_globle_unique=[];
+
         $(".suggession_box").css("display","none");
+        $(".items-container-cause").empty();
+        $(".items-container-action").empty();
+        $(".lable-div-add").css("display","none");
+        $(".lable-div-add").empty();
+
+        $('#type-add').val("task");
+
+        $(".item-cause").css('display','none');
+        $("#cause-add").css('display','none');
+        
+        $(".items-container-cause").css("margin-bottom","0rem");
 
         $("#add_work_title").val('');
         $("#add_work_description").val('');
@@ -1042,9 +1165,219 @@ $(document).on('click','.inbox_assignee_edit',function(event){
 
 
 //  Edit Work Order Acknowledge ........... 
+$(document).on("click", ".info-work-order", function(event){
+  event.preventDefault();
+  event.stopPropagation();
+  var id = $(this).attr("edit-item");
+  $('.Edit_Work_Data').attr('status_data',id);
+
+  $.ajax({
+        url: "<?php echo base_url('Work_Order_Management_controller/getEditRec'); ?>",
+        type: "POST",
+        cache: false,
+        async:false,
+        data: {
+          order_id : id,
+        },
+        dataType: "json",
+        success:function(res){
+            $('#info_title').html(res[0]['title']);
+            $('#info_description').html(res[0]['description']);
+            $('#info_type').html(res[0]['type']);
+            $('#InfoIssueModal1').text(res[0]['work_order_id']);
+
+            var priority_img_color = "";
+            var priority_img_rotate="";
+            var priority_img="";
+            var priority_val = "";
+            if (res[0]['priority_id'] == 1) {
+                priority_img_color = "#ff5630";
+                priority_img_rotate = "270deg";
+                priority_img="fa-angle-double-right";
+                priority_val="High";
+            }else if (res[0]['priority_id'] == 2) {
+                priority_img_color = "#ffaa00";
+                priority_img_rotate="180deg";
+                priority_img="fa-equals";
+                priority_val="Medium";
+            }else{
+                priority_img_color = "#0066ff";
+                priority_img_rotate = "90deg";
+                priority_img="fa-angle-double-right";
+                priority_val="Low";
+            }
+
+            $('#info_priority').html('<i class="fa '+priority_img+'" style="rotate:'+priority_img_rotate+';color: '+priority_img_color+'"></i> <span>'+priority_val+'</span>');
+
+            assignee_list.forEach(function(item){
+                var elements = $();
+                if (item['user_id'] == res[0]['assignee']) {
+                    $('#info_assignee').html('<div style="float: left;width: 100%;display:flex">'
+                      +'<div class="circle-div-select" style="background:#7f7f7f;color:white;">'
+                        +'<p class="paddingm">'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p>'
+                      +'</div>'
+                      +'<span style="color: #7f7f7f;margin-left:0.5rem;">'+item['first_name']+' '+item['last_name']+'</span>'
+                    +'</div>');
+                }
+            });
+
+            // Due Date....
+            var due_date = new Date(res[0]['due_date']);
+            $('#info_due_date').html(due_date.toISOString().substr(0, 10));
+
+            // Privious Status....
+            status_list_globle.forEach(function(st){
+                var background_color ="";
+                var val="";
+                if (st['status_id'] == 1) {
+                    val = "OPEN";
+                    background_color = "#7f7f7f";
+                }
+                else if (st['status_id'] ==2) {
+                    val = "IN PROGRESS";
+                    background_color = "#4195f6";
+                }
+                else{
+                    val = "CLOSED";
+                    background_color = "#6ac950";
+                }
+                var elements = $();
+                if (st['status_id'] == res[0]['status_id']) {
+                  $('#info_status').html('<i class="fa fa-stop" style="color: '+background_color+'"></i> <span style="color: '+background_color+'">'+val+'</span>');
+                }
+            });
+
+            $(".lable-div-info").empty();
+            const value_lable = String(res[0]['lable_id']).split(",");
+            value_lable.forEach(function(lable){
+                lable_list_globle.forEach(function(lable_item){
+                    var itemsContainerlable = $();
+                    if (lable_item['lable_id'] == lable) {
+                        itemsContainerlable = itemsContainerlable.add('<div class="lable-bg">'
+                            +'<span lable_list_id="'+lable_item['lable_id']+'" class="lable_items">'+lable_item['lable']+'</span>'
+                        +'</div>');
+                        $(".lable-div-info").append(itemsContainerlable);
+                    }
+                });
+            });
+
+            var attach_file = String(res[0]['attachment_id']).split(",");
+            $('.attached_file_info').empty();
+            attach_file.forEach(function(im){
+                attach_list_globle.forEach(function(image){
+                    var elements = $();
+                    if (image['attach_file_id'] == im) {
+                        elements = elements.add('<div class="fit-width lable-bg-file">'
+                            +'<span attach_list_id="'+im+'" class="attached_file_list_edit download-file">'+image['original_file_name']+'</span>'
+                            +'</div>');
+                    }
+                    $('.attached_file_info').append(elements);
+                }); 
+            });
+
+            // Previous Action....
+            const value = String(res[0]['action_id']).split(",");
+            $(".items-container-info").empty();
+            value.forEach(function(ac){
+                action_list_globle.forEach(function(action_item){
+                    if (action_item['action_id'] == ac) {
+                        var itemsContaineraction = $();
+                        itemsContaineraction = itemsContaineraction.add('<div class="item-cause">'
+                            +'<span class="item-text font_weight_modal font-fam item-text-action stcode-up" action_list_id="'+action_item['action_id']+'">'+action_item['action']+'</span>'
+                            +'</div>');
+                        $(".items-container-info").append(itemsContaineraction);
+                    }
+                });
+            });
+
+            if (res[0]['type'] == "issue") {
+              $('#cause-info').css("display","block");
+              $(".items-container-cause-info").empty();
+              if (res[0]['cause_id'] != null) {
+                var issue = String(res[0]['cause_id']).split(",");
+                issue.forEach(function(issue){
+                    issue_list_globle.forEach(function(issue_item){
+                        if (issue == issue_item['cause_id']) {
+                            var itemsContaineraction = $();
+                            itemsContaineraction = itemsContaineraction.add('<div class="item-cause">'
+                                +'<span class="item-id font_weight_modal font-fam stcode-up font-color" cause_list_id="'+issue+'">'+issue+'</span>'
+                                +'<span class="item-text font_weight_modal font-fam stcode-up">'+issue_item['cause']+'</span>'
+                            +'</div>');
+                            $(".items-container-cause-info").append(itemsContaineraction);
+                        }
+                    });
+                });
+              }
+            }else{
+              $('#cause-info').css("display","none");
+            }
+            
+            // Previous Comments....
+            $('.items-container-info-comments').empty();
+            var comment = String(res[0]['comment_id']).split(",");
+            comment.forEach(function(cm){
+                comments_list_globle.forEach(function(comment_item){
+                    var elements = $();
+                    if (cm == comment_item['comment_id']) {
+                        var u_name = "";
+                        var u_logo="";
+                        assignee_list.forEach(function(item){
+                            if (item['user_id'] == comment_item['last_updated_by']) {
+                                u_logo = item['first_name'].trim().slice(0,1).toUpperCase()+''+item['last_name'].trim().slice(0,1).toUpperCase();
+                                u_name = item['first_name']+" "+item['last_name'];
+                            }
+                        });
+
+                        var display_option="none";
+                        if (user_id_ref == comment_item['last_updated_by']) {
+                            display_option = "block";
+                        }
+
+                        var date = new Date(res[0]['last_updated_on']);
+                        var x_date = ("0" +date.getDate()).slice(-2)+" "+(date.toLocaleString([], { month: 'short' })+" "+(date.getFullYear()))+" at "+("0" +date.getHours()).slice(-2)+":"+("0" +date.getMinutes()).slice(-2);
+                        elements = elements.add('<div class="Comments-list">'
+                            +'<div class="center-align">'
+                                +'<div style="float: left;width: 10%;" class="center-align">'
+                                    +'<div class="circle-div" style="background:#7f7f7f;color:white;"><p class="paddingm">'+u_logo+'</p></div>'
+                                +'</div>'
+                                +'<div class="input-box" style="width: 90%">'
+                                    +'<div class="center-align-center">'
+                                        +'<p class="paddingm font_weight_modal font-size font-fam">'+u_name+'</p>'
+                                        +'<p class="paddingm font_weight_modal marleftalign font-fam font-size font-color"> <span>'+x_date+'</span></p>'
+                                    +'</div>'
+                                +'</div>'
+                            +'</div>'
+                            +'<div class="center-align-center cmd-cnt">'
+                                +'<p class="paddingm font_weight_modal Comments-cnt font-fam font-size font-color">'+comment_item['comment']+'</p>'
+                                +'<input type="text" style="display:none" class="form-control font_weight_modal cmd-input" id="" name="">'
+                            +'</div>'
+                        +'</div>');
+                        $('.items-container-info-comments').append(elements);
+                    }
+                });
+            });
+
+            // Close the Acknowledge ................
+            $('#InfoIssueModal').modal('show');
+            // $("#overlay").fadeOut(300);
+    
+        },
+        error:function(res){
+            // alert("Sorry! Try Agian!!");
+            $("#overlay").fadeOut(300);
+        }
+    });
+  
+});
+
+//  Edit Work Order Acknowledge ........... 
 $(document).on("click", ".edit-work-order", function(event){
 
     $(".suggession_box").css("display","none");
+    $(".input-field-comments-edit").val("");
+    $(".input-field-action-edit").val("");
+    $(".input-field-edit").val("");
+    $(".input-field-lable-edit").val("");
 
     event.preventDefault();
     event.stopPropagation();
@@ -1072,22 +1405,27 @@ $(document).on("click", ".edit-work-order", function(event){
             // Previous Action....
             const value = String(res[0]['action_id']).split(",");
             $(".items-container-edit-action").empty();
+            action_list_globle_unique = [];
             value.forEach(function(ac){
                 action_list_globle.forEach(function(action_item){
                     if (action_item['action_id'] == ac) {
-                        var itemsContaineraction = $();
-                        itemsContaineraction = itemsContaineraction.add('<div class="item-cause">'
-                            +'<span class="item-text font-fam item-text-action stcode-up" action_list_id="'+action_item['action_id']+'">'+action_item['action']+'</span>'
-                            +'<span class="item-remove item-remove-action-edit item-remove-action font-fam stcode-up font-color"><i class="fa fa-times" aria-hidden="true"></i></span>'
-                            +'</div>');
-                        $(".items-container-edit-action").append(itemsContaineraction);
+                      var itemsContaineraction = $();
+                      itemsContaineraction = itemsContaineraction.add('<div class="item-cause">'
+                          +'<span class="item-text font-fam item-text-action stcode-up" action_list_id="'+action_item['action_id']+'">'+action_item['action']+'</span>'
+                          +'<span class="item-remove item-remove-action-edit item-remove-action font-fam stcode-up font-color"><i class="fa fa-times" aria-hidden="true"></i></span>'
+                          +'</div>');
+                      $(".items-container-edit-action").append(itemsContaineraction);
+                      action_list_globle_unique.push(action_item['action']);
                     }
                 });
             });
 
             // Previous Cause.....
+            cause_list_globle_unique = [];
             if (res[0]['type'] == "issue") {
                 $('#cause-edit').css("display","block");
+                $(".items-container-edit-cause").css("display","block");
+
                 $(".items-container-edit-cause").empty();
                 if (res[0]['cause_id'] != null) {
                     var issue = String(res[0]['cause_id']).split(",");
@@ -1103,10 +1441,15 @@ $(document).on("click", ".edit-work-order", function(event){
                                     +'</span>'
                                 +'</div>');
                                 $(".items-container-edit-cause").append(itemsContaineraction);
+
+                                cause_list_globle_unique.push(issue_item['cause']);
                             }
                         });
                     });
                 }
+            }else{
+              $('#cause-edit').css("display","none");
+              $(".items-container-edit-cause").css("display","none");
             }
             
 
@@ -1162,6 +1505,7 @@ $(document).on("click", ".edit-work-order", function(event){
 
             // Privious Lables....
             $(".lable-div-edit").empty();
+            lable_list_globle_unique = [];
             const value_lable = String(res[0]['lable_id']).split(",");
             value_lable.forEach(function(lable){
                 lable_list_globle.forEach(function(lable_item){
@@ -1173,6 +1517,7 @@ $(document).on("click", ".edit-work-order", function(event){
                                 +'<i class="fa fa-times" aria-hidden="true"></i>'
                             +'</span>'
                         +'</div>');
+                        lable_list_globle_unique.push(lable_item['lable']);
                         $(".lable-div-edit").append(itemsContainerlable);
                     }
                 });
@@ -1196,7 +1541,10 @@ $(document).on("click", ".edit-work-order", function(event){
                         +'</div>'
                         +'<input type="radio" class="assignee_edit radio-visible" name="assignee_edit_val" value="'+item['user_id']+'" checked>'
                     +'</div>');
-                    $('.edit_record_assignee').append(elements);
+
+                    if(item['site_id'] != "smartories"){
+                      $('.edit_record_assignee').append(elements);
+                    }
 
                     $('#assignee_edit_val').html('<div style="float: left;width: 100%;" class="center-align">'
                         +'<div class="circle-div-select" style="background:#7f7f7f;color:white;">'
@@ -1216,7 +1564,9 @@ $(document).on("click", ".edit-work-order", function(event){
                         +'</div>'
                         +'<input type="radio" class="assignee_edit radio-visible" name="assignee_edit_val" value="'+item['user_id']+'">'
                     +'</div>');
-                    $('.edit_record_assignee').append(elements);
+                    if(item['site_id'] != "smartories"){
+                      $('.edit_record_assignee').append(elements);
+                    }
                 }
             });
             
@@ -1286,6 +1636,13 @@ $(document).on("click", ".edit-work-order", function(event){
             var due_date = new Date(res[0]['due_date']);
             $('#edit_due_date').val(due_date.toISOString().substr(0, 10));
 
+            // Logged user
+            assignee_list.forEach(function(item){
+              if (item['user_id'] == user_id_ref) {
+                  u_logo = item['first_name'].trim().slice(0,1).toUpperCase()+''+item['last_name'].trim().slice(0,1).toUpperCase();
+                  $('.Edit_Current_User').text(u_logo);
+              }
+            });
 
             // Previous Comments....
             $('.items-container-edit-comments').empty();
@@ -1310,32 +1667,37 @@ $(document).on("click", ".edit-work-order", function(event){
 
                         var date = new Date(res[0]['last_updated_on']);
                         var x_date = ("0" +date.getDate()).slice(-2)+" "+(date.toLocaleString([], { month: 'short' })+" "+(date.getFullYear()))+" at "+("0" +date.getHours()).slice(-2)+":"+("0" +date.getMinutes()).slice(-2);
-                        elements = elements.add('<div class="Comments-list">'
-                            +'<div class="center-align">'
-                                +'<div style="float: left;width: 10%;" class="center-align">'
-                                    +'<div class="circle-div" style="background:#7f7f7f;color:white;"><p class="paddingm">'+u_logo+'</p></div>'
-                                +'</div>'
-                                +'<div class="input-box" style="width: 90%">'
-                                    +'<div class="center-align-center">'
-                                        +'<p class="paddingm font-size font-fam">'+u_name+'</p>'
-                                        +'<p class="paddingm marleftalign font-fam font-size font-color"> <span>'+x_date+'</span></p>'
-                                        +'<img class="img_font_wh marleftalign edit-cmd" style="display:'+display_option+'" src="<?php echo base_url('assets/img/pencil.png') ?>">'
-                                        +'<img class="img_font_wh marleftalign delete-cmd" style="display:'+display_option+'" src="<?php echo base_url('assets/img/delete.png') ?>">'
-                                        +'<img class="img_font_wh marleftalign done-cmd" style="display:none" woi="'+res[0]['work_order_id']+'" ref="'+comment_item['comment_id']+'" src="<?php echo base_url('assets/img/tick.png') ?>">'
-                                    +'</div>'
-                                +'</div>'
+                        elements = elements.add('<div style="display:flex"><div class="reduce_width">'
+                            +'<div class="Comments-list">'
+                              +'<div class="center-align">'
+                                  +'<div style="float: left;width: 10%;" class="center-align">'
+                                      +'<div class="circle-div" style="background:#7f7f7f;color:white;"><p class="paddingm">'+u_logo+'</p></div>'
+                                  +'</div>'
+                                  +'<div class="input-box" style="width: 90%">'
+                                      +'<div class="center-align-center">'
+                                          +'<p class="paddingm font-size font-fam">'+u_name+'</p>'
+                                          +'<p class="paddingm marleftalign font-fam font-size font-color"> <span>'+x_date+'</span></p>'
+                                          +'<img class="img_font_wh marleftalign edit-cmd" style="display:'+display_option+'" src="<?php echo base_url('assets/img/pencil.png') ?>">'
+                                          +'<img class="img_font_wh delete-cmd" style="display:'+display_option+'" src="<?php echo base_url('assets/img/delete.png') ?>">'
+                                      +'</div>'
+                                  +'</div>'
+                              +'</div>'
+                              +'<div class="center-align-center cmd-cnt">'
+                                  +'<p class="paddingm Comments-cnt font-fam font-size font-color">'+comment_item['comment']+'</p>'
+                                  +'<input type="text" style="display:none" class="form-control font_weight_modal cmd-input" id="" name="">'
+                              +'</div>' 
                             +'</div>'
-                            +'<div class="center-align-center cmd-cnt">'
-                                +'<p class="paddingm Comments-cnt font-fam font-size font-color">'+comment_item['comment']+'</p>'
-                                +'<input type="text" style="display:none" class="form-control font_weight_modal cmd-input" id="" name="">'
                             +'</div>'
-                        +'</div>');
+                            +'<div style="width:10%" class="center-align">'
+                              +'<img class="img_font_wh done-cmd" style="display:none" woi="'+res[0]['work_order_id']+'" ref="'+comment_item['comment_id']+'" src="<?php echo base_url('assets/img/tick.png') ?>">'
+                            +'</div>'
+                            +'</div>');
                         $('.items-container-edit-comments').append(elements);
                     }
                 });
             });
 
-            // Close the Acknowledge ................
+            // Close the AckEnowledge ................
             $('#EditIssueModal').modal('show');
             // $("#overlay").fadeOut(300);
     
@@ -1528,10 +1890,6 @@ const itemsContainer = document.getElementsByClassName("items-container-cause")[
 // Add event listener to the input field
 inputField.addEventListener("keyup", function (event) {
 
-    // $('#dropdown-list-cause').css("display","none");
-    // $('#dropdown-list-lables').css("display","none");
-    // $('#dropdown-list-action').css("display","none");
-
     var inputValue = inputField.value;
     if (inputValue.length>0) {
         document.getElementById("dropdown-list-cause").style.display="block";
@@ -1539,8 +1897,14 @@ inputField.addEventListener("keyup", function (event) {
         
         $('#dropdown-list-cause').empty();
 
+        var inputVal = inputValue.trim().toUpperCase();
+
+        var present = cause_list_globle_unique.find(function (item_val) {
+          return item_val.toUpperCase() === inputVal;
+        });
+
         suggession_list.forEach((item,index)=>{
-            if (index < 3) {
+            if (index < 3 && !present) {
                 $('#dropdown-list-cause').append('<div class="inbox suggession-cause-items" style="display: flex;">'
                     +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
                         +'<p class="inbox-span paddingm"><span class="suggession-cause-val">'+item['cause']+'</span></p>'
@@ -1549,13 +1913,13 @@ inputField.addEventListener("keyup", function (event) {
                 +'</div>');
             }
         });
+
         // Add as Final
-        var inputVal = inputValue.trim().toUpperCase();
         var option = suggession_list.find(function (item_val) {
-          return item_val['lable'].toUpperCase() === inputVal;
+          return item_val['cause'].toUpperCase() === inputVal;
         });
 
-        if (!option) {
+        if (!option && !present) {
           $('#dropdown-list-cause').append('<div class="inbox suggession-cause-items" style="display: flex;">'
                   +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
                       +'<p class="inbox-span paddingm"><span class="suggession-cause-val">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
@@ -1563,7 +1927,6 @@ inputField.addEventListener("keyup", function (event) {
                   +'<input type="text" class="cause-input-suggession radio-visible" value="'+inputValue.trim()+'">'
               +'</div>');
         }
-
     }else{
         $('#dropdown-list-cause').empty();
         document.getElementById("dropdown-list-cause").style.display="none";
@@ -1574,18 +1937,22 @@ inputField.addEventListener("keyup", function (event) {
 const inputFieldEdit = document.getElementsByClassName("input-field-edit")[0];
 const itemsContainerEdit = document.getElementsByClassName("items-container-edit-cause")[0];
 // Add event listener to the input field
-inputFieldEdit.addEventListener("keyup", function (event) { 
-
-
-   var inputValue = inputFieldEdit.value;
+inputFieldEdit.addEventListener("keyup", function (event) {
+    var inputValue = inputFieldEdit.value;
     if (inputValue.length>0) {
         document.getElementById("dropdown-list-cause-edit").style.display="block";
         var suggession_list = issue_list_globle.filter(item => item['cause'].toUpperCase().includes(inputValue.trim().toUpperCase()));
         
         $('#dropdown-list-cause-edit').empty();
 
+        var inputVal = inputValue.trim().toUpperCase();
+
+        var present = cause_list_globle_unique.find(function (item_val) {
+          return item_val.toUpperCase() === inputVal;
+        });
+
         suggession_list.forEach((item,index)=>{
-            if (index < 3) {
+            if (index < 3 && !present) {
                 $('#dropdown-list-cause-edit').append('<div class="inbox suggession-cause-items-edit" style="display: flex;">'
                     +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
                         +'<p class="inbox-span paddingm"><span class="suggession-cause-val-edit">'+item['cause']+'</span></p>'
@@ -1600,7 +1967,7 @@ inputFieldEdit.addEventListener("keyup", function (event) {
           return item_val['lable'].toUpperCase() === inputVal;
         });
 
-        if (!option) {
+        if (!option && !present) {
           $('#dropdown-list-cause-edit').append('<div class="inbox suggession-cause-items-edit" style="display: flex;">'
                   +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
                       +'<p class="inbox-span paddingm"><span class="suggession-cause-val-edit">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
@@ -1625,11 +1992,16 @@ inputFieldaction.addEventListener("keyup", function (event) {
     if (inputValue.length>0) {
         document.getElementById("dropdown-list-action").style.display="block";
         var suggession_list = action_list_globle.filter(item => item['action'].toUpperCase().includes(inputValue.trim().toUpperCase()));
-        
+
         $('#dropdown-list-action').empty();
+        var inputVal = inputValue.trim().toUpperCase();
+
+        var present = action_list_globle_unique.find(function (item_val) {
+          return item_val.toUpperCase() === inputVal;
+        });
 
         suggession_list.forEach((item,index)=>{
-            if (index < 3) {
+            if (index < 3 && !present) {
                 $('#dropdown-list-action').append('<div class="inbox suggession-action-items" style="display: flex;">'
                     +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
                         +'<p class="inbox-span paddingm"><span class="suggession-action-val">'+item['action']+'</span></p>'
@@ -1639,12 +2011,19 @@ inputFieldaction.addEventListener("keyup", function (event) {
             }
         });
         // Add as Final
-        $('#dropdown-list-action').append('<div class="inbox suggession-action-items" style="display: flex;">'
-                +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
-                    +'<p class="inbox-span paddingm"><span class="suggession-action-val">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
-                +'</div>'
-                +'<input type="text" class="action-input-suggession radio-visible" value="'+inputValue.trim()+'">'
-            +'</div>');
+        
+        var option = suggession_list.find(function (item_val) {
+          return item_val['action'].toUpperCase() === inputVal;
+        });
+
+        if (!option && !present) {
+          $('#dropdown-list-action').append('<div class="inbox suggession-action-items" style="display: flex;">'
+                  +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
+                      +'<p class="inbox-span paddingm"><span class="suggession-action-val">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
+                  +'</div>'
+                  +'<input type="text" class="action-input-suggession radio-visible" value="'+inputValue.trim()+'">'
+              +'</div>');
+        }
 
     }else{
         $('#dropdown-list-action').empty();
@@ -1656,9 +2035,27 @@ inputFieldaction.addEventListener("keyup", function (event) {
 itemsFieldAdd.addEventListener("click", function (event) {
     // Get the value from the input field
     const value = inputFieldaction.value.trim();
+    action_list_globle_unique.push(value);
+
+    var inputVal = value.trim().toUpperCase();
+    var present = action_list_globle_unique.find(function (item_val) {
+      return item_val.toUpperCase() === inputVal;
+    });
+
+    // if (!present) {
+    // }else{
+    //   $('.input-field-action-add').css({
+    //     "pointer-events": "none",
+    //   });
+    // }
 
     // If the value is not empty, create a new item and append it to the container
-    if (value !== "") {
+    if (value !== "" && present) {
+
+      $('.input-field-action-add').css({
+        "pointer-events": "initial",
+      });
+
       const item = document.createElement("div");
       item.classList.add("item-cause");
 
@@ -1715,8 +2112,14 @@ inputFieldactionEdit.addEventListener("keyup", function (event) {
         
         $('#dropdown-list-action-edit').empty();
 
+        var inputVal = inputValue.trim().toUpperCase();
+
+        var present = action_list_globle_unique.find(function (item_val) {
+          return item_val.toUpperCase() === inputVal;
+        });
+
         suggession_list.forEach((item,index)=>{
-            if (index < 3) {
+            if (index < 3 && !present) {
                 $('#dropdown-list-action-edit').append('<div class="inbox suggession-action-items-edit" style="display: flex;">'
                     +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
                         +'<p class="inbox-span paddingm"><span class="suggession-action-val-edit">'+item['action']+'</span></p>'
@@ -1726,13 +2129,14 @@ inputFieldactionEdit.addEventListener("keyup", function (event) {
             }
         });
         // Add as Final
-        $('#dropdown-list-action-edit').append('<div class="inbox suggession-action-items-edit" style="display: flex;">'
+        if (!present) {
+          $('#dropdown-list-action-edit').append('<div class="inbox suggession-action-items-edit" style="display: flex;">'
                 +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
                     +'<p class="inbox-span paddingm"><span class="suggession-action-val-edit">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
                 +'</div>'
                 +'<input type="text" class="action-input-suggession-edit radio-visible" value="'+inputValue.trim()+'">'
             +'</div>');
-
+        }
     }else{
         $('#dropdown-list-action-edit').empty();
         document.getElementById("dropdown-list-action-edit").style.display="none";
@@ -1786,44 +2190,44 @@ itemsFieldEdit.addEventListener("click", function (event) {
 
 
 // Comments
-const inputFieldcomments = document.getElementsByClassName("input-field-comments")[0];
-const itemsContainercomments = document.getElementsByClassName("items-container-comments")[0];
-// Add event listener to the input field
-inputFieldcomments.addEventListener("keyup", function (event) {
-  // Check if the key pressed is "Enter"
-  if (event.keyCode === 13) {
-    // Get the value from the input field
-    const value = inputFieldcomments.value.trim();
+// const inputFieldcomments = document.getElementsByClassName("input-field-comments")[0];
+// const itemsContainercomments = document.getElementsByClassName("items-container-comments")[0];
+// // Add event listener to the input field
+// inputFieldcomments.addEventListener("keyup", function (event) {
+//   // Check if the key pressed is "Enter"
+//   if (event.keyCode === 13) {
+//     // Get the value from the input field
+//     const value = inputFieldcomments.value.trim();
 
-    // If the value is not empty, create a new item and append it to the container
-    if (value !== "") {
-        // var element = $();
-        // element = element.add('<div class="Comments-list">'
-        //                 +'<div class="center-align">'
-        //                     +'<div style="float: left;width: 10%;" class="center-align">'
-        //                         +'<div class="circle-div" style="background:#7f7f7f;color:white;"><p class="paddingm">MS</p></div>'
-        //                         +'</div>'
-        //                         +'<div class="input-box" style="width: 90%">'
-        //                             +'<div class="center-align-center">'
-        //                                 +'<p class="paddingm font-size font-fam">Manikandan</p>'
-        //                                 +'<p class="paddingm marleftalign font-fam font-size font-color"> <span>26 Feb 2023 </span>at <span>13:03</span></p>'
-        //                                 +'<img class="edit-cmd img_font_wh marleftalign" src="<?php echo base_url('assets/img/pencil.png') ?>">'
-        //                                 +'<img class="delete-cmd img_font_wh delete marleftalign" src="<?php echo base_url('assets/img/delete.png') ?>">'
-        //                             +'</div>'
-        //                         +'</div>'
-        //                     +'</div>'
-        //                     +'<div class="center-align-center cmd-cnt">'
-        //                         +'<p class="paddingm Comments-cnt font-fam font-size font-color">'+value+'</p>'
-        //                         +'<input type="text" style="display:none" class="form-control font_weight_modal cmd-input" id="" name="" >'
-        //                     +'</div>'
-        //                 +'</div>');
+//     // If the value is not empty, create a new item and append it to the container
+//     if (value !== "") {
+//         // var element = $();
+//         // element = element.add('<div class="Comments-list">'
+//         //                 +'<div class="center-align">'
+//         //                     +'<div style="float: left;width: 10%;" class="center-align">'
+//         //                         +'<div class="circle-div" style="background:#7f7f7f;color:white;"><p class="paddingm">MS</p></div>'
+//         //                         +'</div>'
+//         //                         +'<div class="input-box" style="width: 90%">'
+//         //                             +'<div class="center-align-center">'
+//         //                                 +'<p class="paddingm font-size font-fam">Manikandan</p>'
+//         //                                 +'<p class="paddingm marleftalign font-fam font-size font-color"> <span>26 Feb 2023 </span>at <span>13:03</span></p>'
+//         //                                 +'<img class="edit-cmd img_font_wh marleftalign" src="<?php echo base_url('assets/img/pencil.png') ?>">'
+//         //                                 +'<img class="delete-cmd img_font_wh delete marleftalign" src="<?php echo base_url('assets/img/delete.png') ?>">'
+//         //                             +'</div>'
+//         //                         +'</div>'
+//         //                     +'</div>'
+//         //                     +'<div class="center-align-center cmd-cnt">'
+//         //                         +'<p class="paddingm Comments-cnt font-fam font-size font-color">'+value+'</p>'
+//         //                         +'<input type="text" style="display:none" class="form-control font_weight_modal cmd-input" id="" name="" >'
+//         //                     +'</div>'
+//         //                 +'</div>');
 
-        // $('.items-container-comments').append(element);
-        // inputFieldcomments.value = "";
-        // inputFieldcomments.placeholder = "Add a comment...";
-    }
-  }
-});
+//         // $('.items-container-comments').append(element);
+//         // inputFieldcomments.value = "";
+//         // inputFieldcomments.placeholder = "Add a comment...";
+//     }
+//   }
+// });
 
 
 // Lables...........
@@ -1832,6 +2236,11 @@ const inputFieldlables = document.getElementsByClassName("input-field-lable-add"
 const itemsContainerlables = document.getElementsByClassName("lable-div-add")[0];
 inputFieldlables.addEventListener("keyup", function (event) {
     var inputValue = inputFieldlables.value;
+    var inputVal = inputValue.trim().toUpperCase();
+    var present = lable_list_globle_unique.find(function (item_val) {
+      return item_val.toUpperCase() === inputVal;
+    });
+
     if (inputValue.length>0) {
         document.getElementById("dropdown-list-lables").style.display="block";
         var suggession_list = lable_list_globle.filter(item => item['lable'].toUpperCase().includes(inputValue.trim().toUpperCase()));
@@ -1839,8 +2248,8 @@ inputFieldlables.addEventListener("keyup", function (event) {
         $('#dropdown-list-lables').empty();
 
         suggession_list.forEach((item,index)=>{
-            if (index < 3) {
-                $('#dropdown-list-lables').append('<div class="inbox inbox_priority suggession-lable-items" style="display: flex;">'
+            if (index < 3 && !present) {
+                $('#dropdown-list-lables').append('<div class="inbox suggession-lable-items" style="display: flex;">'
                     +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
                         +'<p class="inbox-span paddingm"><span class="suggession-lable-val">'+item['lable']+'</span></p>'
                     +'</div>'
@@ -1854,7 +2263,7 @@ inputFieldlables.addEventListener("keyup", function (event) {
           return item_val['lable'].toUpperCase() === inputVal;
         });
 
-        if (!option) {
+        if (!option && !present) {
           $('#dropdown-list-lables').append('<div class="inbox inbox_priority suggession-lable-items" style="display: flex;">'
                       +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
                           +'<p class="inbox-span paddingm"><span class="suggession-lable-val">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
@@ -1877,9 +2286,23 @@ $(document).on('click','.suggession-action-items',function(event){
     const inputField = document.getElementsByClassName("input-field-action")[0];
     inputField.value = val;
 
+    var inputVal = val.trim().toUpperCase();
+    var present = action_list_globle_unique.find(function (item_val) {
+      return item_val.toUpperCase() === inputVal;
+    });
+
+    if (!present) {
+      $('.input-field-action-add').css({
+        "pointer-events": "initial",
+      });
+    }else{
+      $('.input-field-action-add').css({
+        "pointer-events": "none",
+      });
+    }
+
     $('#dropdown-list-action').empty();
     document.getElementById("dropdown-list-action").style.display="none";
-
 });
 
 $(document).on('click','.suggession-action-items-edit',function(event){
@@ -1890,9 +2313,23 @@ $(document).on('click','.suggession-action-items-edit',function(event){
     const inputField = document.getElementsByClassName("input-field-action-edit")[0];
     inputField.value = val;
 
+    var inputVal = val.trim().toUpperCase();
+    var present = action_list_globle_unique.find(function (item_val) {
+      return item_val.toUpperCase() === inputVal;
+    });
+
+    if (!present) {
+      $('.input-field-action-edit-add').css({
+        "pointer-events": "initial",
+      });
+    }else{
+      $('.input-field-action-edit-add').css({
+        "pointer-events": "none",
+      });
+    }
+
     $('#dropdown-list-action-edit').empty();
     document.getElementById("dropdown-list-action-edit").style.display="none";
-
 });
 
 
@@ -1902,6 +2339,17 @@ $(document).on('click','.suggession-lable-items',function(event){
     var value = $('.lable-input-suggession:eq('+indx+')').val();
     const itemsContainerlables = document.getElementsByClassName("lable-div-add")[0];
 
+    $(".lable-div-add").css("display","block");
+    $(".lable-div-add").css("display","flex");
+
+    var inputVal = value.trim().toUpperCase();
+    var present = lable_list_globle_unique.find(function (item_val) {
+      return item_val.toUpperCase() === inputVal;
+    });
+
+    lable_list_globle_unique.push(value.trim());
+
+    if (!present) {
     const item = document.createElement("div");
 
     const itemText = document.createElement("span");
@@ -1931,6 +2379,7 @@ $(document).on('click','.suggession-lable-items',function(event){
 
     lable_list_globle=[];
     getLableList();
+    }
 });
 
 $(document).on('click','.suggession-cause-items',function(event){
@@ -1938,9 +2387,15 @@ $(document).on('click','.suggession-cause-items',function(event){
     var indx = countr.index($(this));
     var value = $('.cause-input-suggession:eq('+indx+')').val();
     const itemsContainer = document.getElementsByClassName("items-container-cause")[0];
+    cause_list_globle_unique.push(value.trim());
+
+    var inputVal = value.trim().toUpperCase();
+    var present = cause_list_globle_unique.find(function (item_val) {
+      return item_val.toUpperCase() === inputVal;
+    });
       
       // If the value is not empty, create a new item and append it to the container
-        if (value !== "") {
+        if (value !== "" && present) {
           const item = document.createElement("div");
           item.classList.add("item-cause");
 
@@ -1995,8 +2450,13 @@ $(document).on('click','.suggession-cause-items-edit',function(event){
     var value = $('.cause-input-suggession-edit:eq('+indx+')').val();
     const itemsContainer = document.getElementsByClassName("items-container-edit-cause")[0];
 
+    var inputVal = value.trim().toUpperCase();
+    var present = cause_list_globle_unique.find(function (item_val) {
+      return item_val.toUpperCase() === inputVal;
+    });
+
     // If the value is not empty, create a new item and append it to the container
-    if (value !== "") {
+    if (value !== "" && !present) {
       const item = document.createElement("div");
       item.classList.add("item-cause");
 
@@ -2055,29 +2515,38 @@ $(document).on('click','.suggession-lable-items-edit',function(event){
     item.appendChild(itemText);
     itemText.classList.add("lable_items");
 
-    const itemRemove = document.createElement("span");
-    itemRemove.classList.add("item-remove");
-    itemRemove.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i>';
-    itemRemove.classList.add("marleftalign");
-    item.appendChild(itemRemove);
-
-    item.classList.add("lable-bg");
-    
-    itemsContainerlables.classList.add("margtop");
-    itemsContainerlables.appendChild(item);
-
-    const inputFieldEdit = document.getElementsByClassName("input-field-lable-edit")[0];
-    inputFieldEdit.value = "";
-
-    itemRemove.addEventListener("click", function () {
-        itemsContainerlables.removeChild(item);
+    var inputVal = value.trim().toUpperCase();
+    var present = lable_list_globle_unique.find(function (item_val) {
+      return item_val.toUpperCase() === inputVal;
     });
 
-    $('#dropdown-list-lables-edit').empty();
-    document.getElementById("dropdown-list-lables-edit").style.display="none";
+    lable_list_globle_unique.push(value.trim());
 
-    lable_list_globle=[];
-    getLableList();
+    if (!present) {
+      const itemRemove = document.createElement("span");
+      itemRemove.classList.add("item-remove");
+      itemRemove.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i>';
+      itemRemove.classList.add("marleftalign");
+      item.appendChild(itemRemove);
+
+      item.classList.add("lable-bg");
+      
+      itemsContainerlables.classList.add("margtop");
+      itemsContainerlables.appendChild(item);
+
+      const inputFieldEdit = document.getElementsByClassName("input-field-lable-edit")[0];
+      inputFieldEdit.value = "";
+
+      itemRemove.addEventListener("click", function () {
+          itemsContainerlables.removeChild(item);
+      });
+
+      $('#dropdown-list-lables-edit').empty();
+      document.getElementById("dropdown-list-lables-edit").style.display="none";
+
+      lable_list_globle=[];
+      getLableList();
+    }
 });
 
 
@@ -2086,6 +2555,10 @@ const inputFieldlablesEdit = document.getElementsByClassName("input-field-lable-
 const itemsContainerlablesEdit = document.getElementsByClassName("lable-div-edit")[0];
 inputFieldlablesEdit.addEventListener("keyup", function (event) {
     var inputValue = inputFieldlablesEdit.value;
+    var inputVal = inputValue.trim().toUpperCase();
+    var present = lable_list_globle_unique.find(function (item_val) {
+      return item_val.toUpperCase() === inputVal;
+    });
     if (inputValue.length>0) {
         document.getElementById("dropdown-list-lables-edit").style.display="block";
         var suggession_list = lable_list_globle.filter(item => item['lable'].toUpperCase().includes(inputValue.trim().toUpperCase()));
@@ -2093,7 +2566,7 @@ inputFieldlablesEdit.addEventListener("keyup", function (event) {
         $('#dropdown-list-lables-edit').empty();
 
         suggession_list.forEach((item,index)=>{
-            if (index < 3) {
+            if (index < 3 && !present) {
                 $('#dropdown-list-lables-edit').append('<div class="inbox suggession-lable-items-edit" style="display: flex;">'
                     +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
                         +'<p class="inbox-span paddingm"><span class="suggession-lable-val-edit">'+item['lable']+'</span></p>'
@@ -2108,7 +2581,7 @@ inputFieldlablesEdit.addEventListener("keyup", function (event) {
           return item_val['lable'].toUpperCase() === inputVal;
         });
 
-        if (!option) {
+        if (!option && !present) {
           $('#dropdown-list-lables-edit').append('<div class="inbox suggession-lable-items-edit" style="display: flex;">'
                   +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
                       +'<p class="inbox-span paddingm"><span class="suggession-lable-val-edit">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
@@ -2345,6 +2818,8 @@ function getAssigneeList(){
         dataType:"json",
         success:function(res){
             $('.add_record_assignee').empty();
+
+            $('.Filter_assignee_div').empty();
             // Filter Status.........
                 $('.Filter_assignee_div').append('<div class="inbox inbox_filter_assignee" style="display: flex;">'
                     +'<div style="float: left;width: 20%;" class="center-align">'
@@ -2357,6 +2832,7 @@ function getAssigneeList(){
             res.forEach(function(item){
                 assignee_list.push(item);
                 var elements = $();
+                if(item['site_id'] != "smartories"){
                 elements = elements.add('<div class="inbox inbox_assignee" style="display: flex;">'
                     +'<div style="float: left;width: 20%;" class="center-align circle-div-root">'
                         +'<div class="circle-div" style="background:#7f7f7f;color:white;">'
@@ -2370,7 +2846,6 @@ function getAssigneeList(){
                 +'</div>');
                 $('.add_record_assignee').append(elements);
 
-
                     $('.Filter_assignee_div').append('<div class="inbox inbox_filter_assignee" style="display: flex;">'
                         +'<div style="float: left;width: 20%;" class="center-align">'
                             +'<input class="filter_val_assignee" name="filter_val_assignee_name" value="'+item['user_id']+'" type="checkbox" checked/>'
@@ -2379,7 +2854,7 @@ function getAssigneeList(){
                             +'<p class="inbox-span paddingm">'+item['first_name']+' '+item['last_name']+'</p>'
                         +'</div>'
                     +'</div>');
-        
+                  }
             });
             
         },
@@ -2562,6 +3037,8 @@ function getStatusList(){
             // res.forEach(function(item){
             //     status_list_globle.push(item);
             // });
+            $('.Filter_status_div').empty();
+            $('.filter_status').empty();
 
             // Filter Status.........
             $('.Filter_status_div').append('<div class="inbox inbox_filter_status" style="display: flex;">'
@@ -2879,6 +3356,8 @@ function getPriorityList(){
             // res.forEach(function(item){
             //     priority_list_globle.push(item);
             // });
+            $('.Filter_priority_div').empty();
+            $('.Filter_priority').empty();
 
             // Filter Status.........
             $('.Filter_priority_div').append('<div class="inbox inbox_filter_priority" style="display: flex;">'
@@ -2964,6 +3443,7 @@ function getLableList(){
             // res.forEach(function(item){
             //   lable_list_globle.push(item);  
             // });
+            $('.Filter_lables_div').empty();
 
             // Filter Status.........
             $('.Filter_lables_div').append('<div class="inbox inbox_filter_lables" style="display: flex;">'
@@ -3022,9 +3502,9 @@ function getFilterData(){
                 due_date_color = "#4195f6";
                 due_date = "Today";
             }else if (new Date(d_date) < new Date(c_date)) {
-                due_date_color = "#black";
-            }else{
                 due_date_color = "#ff0000";
+            }else{
+                due_date_color = "#black";
             }
 
             var priority_img_color = "";
@@ -3074,6 +3554,7 @@ function getFilterData(){
             var user_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
 
             var assignee_option = "";
+            var randomColor = user_color[Math.floor(Math.random()*user_color.length)];
             assignee_list.forEach(function(u){
                 if (item['assignee'] == u['user_id']) {
                     user_first = u['first_name'];
@@ -3087,19 +3568,18 @@ function getFilterData(){
                         +'</div>');
                 }
             });
-            var randomColor = user_color[Math.floor(Math.random()*user_color.length)];
 
             var option="";
             <?php 
               if($this->data['access'][0]['work_order_management'] >= 2){
             ?>
-              option = '<img class="img_font_wh edit-work-order"  edit-item="'+item['work_order_id']+'" src="<?php echo base_url('assets/img/pencil.png') ?>"><img class="img_font_wh deactivate-work-order" del-item="'+item['work_order_id']+'" src="<?php echo base_url('assets/img/delete.png') ?>">';
+              option = '<span class="doth"><img class="icon_img_wh edit-work-order"  edit-item="'+item['work_order_id']+'" src="<?php echo base_url('assets/img/pencil.png') ?>"></span><span class="doth"><img class="icon_img_wh deactivate-work-order" del-item="'+item['work_order_id']+'" src="<?php echo base_url('assets/img/delete.png') ?>"></span>';
             <?php 
               }
             ?>
 
             var elements = $();
-            elements = elements.add('<div id="settings_div">'
+            elements = elements.add('<div id="settings_div" class="info-work-order" edit-item="'+item['work_order_id']+'">'
                 +'<div class="row paddingm">'
                     +'<div class="col-sm-1 col marleft"><p class="paddingm">'+item['work_order_id']+'</p></div>'
                     +'<div class="col-sm-2 col marleft"><p class="paddingm">'+item['title']+'</p></div>'   
@@ -3168,6 +3648,13 @@ function getWorkOrderRecords(status,lables,priority,assignee,filter){
 
                 ac_date = new Date(item['due_date']);
                 c_date = new Date();
+            
+                c_date = `${c_date.getFullYear()}-${c_date.getMonth()+1}-${c_date.getDate()}`;
+                ac_date = `${ac_date.getFullYear()}-${ac_date.getMonth()+1}-${ac_date.getDate()}`;
+
+                c_date = new Date(c_date);
+                ac_date = new Date(ac_date);
+
                 if (item['status_id'] != 3 && ac_date<c_date) {
                     overdue = parseInt(overdue) + 1;
                 }
@@ -3188,157 +3675,6 @@ function getWorkOrderRecords(status,lables,priority,assignee,filter){
     });
     
 }
-
-// Add Work Order
-// $(".Add_Work_Data").click(function(event){
-
-//     var formData = new FormData();
-
-//     formData.append('title', $('#add_work_title').val());
-//     formData.append('type', $('#type-add').val());
-//     formData.append('description', $('#add_work_description').val());
-//     formData.append('priority', $('input[name="priority_val"]:checked').val());
-//     formData.append('due_date', $('#add_due_date').val());
-//     formData.append('status', $('input[name="status_val"]:checked').val());
-//     formData.append('assignee', $('input[name="assignee_val"]:checked').val());
-
-//     var cause_list=[];
-//     var element_cause = $('.items-container-cause').children('.item-cause').children('.item-id');
-//     $.each(element_cause, function(key,valueObj){
-//         cause_list.push(valueObj.getAttribute('cause_list_id'));
-//     });
-
-//     formData.append('cause_list', cause_list);
-
-//     var action_list =[];
-//     var element_action = $('.items-container-action').children('.item-cause').children('.item-text');
-//     $.each(element_action, function(key,valueObj){
-//         action_list.push(valueObj.getAttribute('action_list_id'));
-//     });
-
-//     formData.append('action_list', action_list);
-
-//     var comments_list = $('.input-field-comments').val();
-//     formData.append('comments_list', comments_list);
-
-//     var lable_list = [];
-//     var lable = $('.lable-div-add').children('.lable-bg').children('.lable_items');
-//     $.each(lable, function(key,valueObj){
-//         lable_list.push(valueObj.getAttribute('lable_list_id'));
-//     });
-
-//     formData.append('lable_list', lable_list);
-
-    
-//     var file_list_collection = [];
-//     var files = $('.attached_file_list');
-//     $.each(files, function(key,valueObj){
-//         file_list_collection.push(valueObj.getAttribute('attach_list_id'));
-//     });
-
-//     formData.append('file_list_collection', file_list_collection);
-
-
-
-//     $.ajax({
-//         url:"<?php echo base_url('Work_Order_Management_controller/save_work_order_data') ?>",
-//         method:"POST",
-//         async:false,  
-//         cache: false, 
-//         data:formData,
-//         processData:false,
-//         contentType: false,
-//         // dataType:"json",
-//         success:function(data){
-//             callALL();
-//             // Close the Acknowledge ................
-//             $('#AddIssueModal').modal('hide');
-//         },
-//         error:function(err){
-
-//         }
-//     });
-
-// });
-
-// Edit Work Order
-// $(".Edit_Work_Data").click(function(event){
-
-//     var formData = new FormData();
-
-//     formData.append('title', $('#edit_work_title').val());
-//     formData.append('type', $('#type-edit').val());
-//     formData.append('description', $('#edit_work_description').val());
-//     formData.append('priority', $('input[name="priority_edit"]:checked').val());
-//     formData.append('due_date', $('#edit_due_date').val());
-//     formData.append('status', $('input[name="status_edit_val"]:checked').val());
-//     formData.append('assignee', $('input[name="assignee_edit_val"]:checked').val());
-
-//     var cause_list=[];
-//     var element_cause = $('.items-container-edit-cause').children('.item-cause').children('.item-id');
-//     $.each(element_cause, function(key,valueObj){
-//         cause_list.push(valueObj.getAttribute('cause_list_id'));
-//     });
-
-//     formData.append('cause_list', cause_list);
-
-//     // for (var pair of formData.entries()) {
-//     //     console.log(pair[0]+ ', ' + pair[1]); 
-//     // }
-
-//     var action_list =[];
-//     var element_action = $('.items-container-edit-action').children('.item-cause').children('.item-text');
-//     $.each(element_action, function(key,valueObj){
-//         action_list.push(valueObj.getAttribute('action_list_id'));
-//     });
-
-//     formData.append('action_list', action_list);
-
-//     var comments_list = $('.input-field-comments-edit').val();
-//     formData.append('comments_list', comments_list);
-
-//     var lable_list = [];
-//     var lable = $('.lable-div-edit').children('.lable-bg').children('.lable_items');
-//     $.each(lable, function(key,valueObj){
-//         lable_list.push(valueObj.getAttribute('lable_list_id'));
-//     });
-
-//     formData.append('lable_list', lable_list);
-    
-//     var file_list_collection = [];
-//     var files = $('.attached_file_list_edit');
-//     $.each(files, function(key,valueObj){
-//         file_list_collection.push(valueObj.getAttribute('attach_list_id'));
-//     });
-
-//     formData.append('file_list_collection', file_list_collection);
-
-//     formData.append('work_order_id', $('.Edit_Work_Data').attr('status_data'));
-
-//     // for (var pair of formData.entries()) {
-//     //     console.log(pair[0]+ ', ' + pair[1]); 
-//     // }
-
-//     $.ajax({
-//         url:"<?php echo base_url('Work_Order_Management_controller/update_work_order_data') ?>",
-//         method:"POST",
-//         async:false,  
-//         cache: false, 
-//         data:formData,
-//         processData:false,
-//         contentType: false,
-//         // dataType:"json",
-//         success:function(data){
-//             callALL();
-//             // Close the Acknowledge ................
-//             $('#EditIssueModal').modal('hide');
-//         },
-//         error:function(err){
-
-//         }
-//     });
-
-// });
 
 
 // for work order management form submit
@@ -3415,8 +3751,8 @@ $(document).on('click','.Add_Work_Data',function(event){
 
     formData.append('action_list', action_list);
 
-    var comments_list = $('.input-field-comments').val();
-    formData.append('comments_list', comments_list);
+    // var comments_list = $('.input-field-comments').val();
+    // formData.append('comments_list', comments_list);
 
     var lable_list = [];
     var lable = $('.lable-div-add').children('.lable-bg').children('.lable_items');
@@ -3525,14 +3861,10 @@ $(".Edit_Work_Data").click(function(event){
 
     formData.append('cause_list', cause_list);
 
-    // for (var pair of formData.entries()) {
-    //     console.log(pair[0]+ ', ' + pair[1]); 
-    // }
-
     var action_list =[];
     var element_action = $('.items-container-edit-action').children('.item-cause').children('.item-text');
     $.each(element_action, function(key,valueObj){
-        action_list.push(valueObj.getAttribute('action_list_id'));
+      action_list.push(valueObj.getAttribute('action_list_id'));
     });
 
     formData.append('action_list', action_list);
@@ -3559,7 +3891,7 @@ $(".Edit_Work_Data").click(function(event){
     formData.append('work_order_id', $('.Edit_Work_Data').attr('status_data'));
 
     // for (var pair of formData.entries()) {
-    //     console.log(pair[0]+ ', ' + pair[1]); 
+    //   console.log(pair[0]+ ', ' + pair[1]); 
     // }
 
     $.ajax({
