@@ -618,74 +618,90 @@ $('.toDate').val(fdate);
 $('.fromDate').val(tdate);
 
 
+// from date on blur function
 $(document).on('blur','.fromDate',function(event){
     event.preventDefault();
-    fill_downtime_reason();
-    fill_machine_dropdown();
-    fill_part_drp();
-    resetbyday_click();
-    reset_category2();
-    reset_all_data_field();
+    //     fill_downtime_reason();
+    //     fill_machine_dropdown();
+    //     fill_part_drp();
+    //     resetbyday_click();
+    //     reset_category2();
+    //     reset_all_data_field();
 
-    fill_target_bar();
-    overallTarget();
+    //     fill_target_bar();
+    //     overallTarget();
 
-    // graph filter
-   graph_func();
-
-   performance_opportunity();
-   quality_reason_machine();
-   fill_quality_reason_dropdown();
-    
-});
-
-$(document).on('blur','.toDate',function(event){
-    event.preventDefault();
-     // overall target function
-    // target fill width function
-    fill_downtime_reason();
-    fill_machine_dropdown();
-    fill_part_drp();
-    resetbyday_click();
-    reset_category2();
-    reset_all_data_field();
-
-    fill_target_bar();
-    overallTarget();
-
-    // graph filter
-   graph_func();
-
-   performance_opportunity();
-   quality_reason_machine();
-   fill_quality_reason_dropdown(); 
-
-
-
-});
-
-$(document).ready(function(){
-
-    // overall target function
-    // target fill width function
-    fill_downtime_reason();
-    fill_machine_dropdown();
-    fill_part_drp();
-    resetbyday_click();
-    reset_category2();
-    reset_all_data_field();
-
-    fill_target_bar();
-    overallTarget();
-
-    // graph filter
+    //     // graph filter
     //    graph_func();
 
     //    performance_opportunity();
     //    quality_reason_machine();
-   fill_quality_reason_dropdown(); 
+    //    fill_quality_reason_dropdown();
+    // $('#overlay').fadeIn(3000);
+    filter_drpfun();
+});
+
+// todate onblur function
+$(document).on('blur','.toDate',function(event){
+    event.preventDefault();
+    //     fill_downtime_reason();
+    //     fill_machine_dropdown();
+    //     fill_part_drp();
+    //     resetbyday_click();
+    //     reset_category2();
+    //     reset_all_data_field();
+
+    //     fill_target_bar();
+    //     overallTarget();
+
+    //     // graph filter
+    //    graph_func();
+
+    //    performance_opportunity();
+    //    quality_reason_machine();
+    //    fill_quality_reason_dropdown(); 
+    // $('#overlay').fadeIn(3000);
+    filter_drpfun();
+
 
 });
+
+// in Document ready function calling
+$(document).ready(function(){
+    // $('#overlay').fadeIn(3000);
+    filter_drpfun();
+    // $('#overlay').fadeOut(300);
+});
+
+// all dropdowns and graph functions calling
+function filter_drpfun(){
+    fill_downtime_reason();
+    fill_machine_dropdown();
+    fill_part_drp();
+    resetbyday_click();
+    reset_category2();
+    reset_all_data_field();
+    fill_quality_reason_dropdown(); 
+
+    // callback function
+    setTimeout(() => {
+        all_graph_fun();
+        console.log("graph function cALLING");
+    }, 1000);
+   
+}
+
+// All graph functions
+function all_graph_fun(){
+    fill_target_bar();
+    overallTarget();
+    oeeTrendDay();
+    machineWiseOEE();
+    availabilityReason_machine();
+    performance_opportunity();
+    quality_reason_machine();
+  
+}
 
 
 // by day shift and month week
@@ -1530,6 +1546,7 @@ $(document).on('click','.all_data_field_click',function(event){
 
 
 
+// downtime dropdown funciton
 function fill_downtime_reason(){
     $.ajax({
       url:"<?php echo base_url(); ?>/OEE_Drill_Down_controller/downtime_reason_filter_con",
@@ -1545,11 +1562,7 @@ function fill_downtime_reason(){
         // $('.quality_reason_fill').empty();
         var element = $();
         var elements = $();
-        
-       
-
         // $('.reason_fill').append('<div class="filter_check_cate reason_click" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
-      
         $('.reason_fill2').append('<div class="filter_check_cate reason_click2 machine_availability_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox2" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
         // $('.quality_reason_fill').append('<div class="filter_check_cate quality_click" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="quality_checkbox" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
         res.forEach(function(item){
@@ -1574,6 +1587,8 @@ function fill_downtime_reason(){
     });
 }
 
+
+// quality reason dropdown function
 function fill_quality_reason_dropdown(){
     $.ajax({
         url:"<?php echo base_url(); ?>/OEE_Drill_Down_controller/dropdown_quality_reject",
@@ -1582,7 +1597,6 @@ function fill_quality_reason_dropdown(){
         success:function(res){
             // console.log("Quality reject reason");
             // console.log(res);
-
             $('.quality_reason_fill').empty();
             $('.quality_reason_fill').append('<div class="filter_check_cate quality_click machine_quality_common" style="">'
             +'<div class="cate_drp_check" style="">'
@@ -1608,7 +1622,7 @@ function fill_quality_reason_dropdown(){
                 $('.quality_reason_fill').append(elements);
             });
             reset_quality_reason();
-            quality_reason_machine();
+            // quality_reason_machine();
         },
         error:function(err){
             console.log(err);
@@ -1616,7 +1630,7 @@ function fill_quality_reason_dropdown(){
     });
 }
 
-// fill machine 
+// fill machine dropdown function
 function fill_machine_dropdown(){
     // console.log("machine dropdown records filling function");
     $.ajax({
@@ -1749,9 +1763,9 @@ function fill_machine_dropdown(){
             reset_machine3();
             reset_machine4();
 
-            oeeTrendDay();
-            machineWiseOEE();
-            availabilityReason_machine();
+            // oeeTrendDay();
+            // machineWiseOEE();
+            // availabilityReason_machine();
             
         },
         error:function(er){
@@ -1760,7 +1774,7 @@ function fill_machine_dropdown(){
     });
 }
 
-// fill part 
+// fill part  dropdown function
 function fill_part_drp(){
     $.ajax({
         url:"<?php echo base_url('OEE_Drill_Down_controller/getpart_data'); ?>",
@@ -1794,8 +1808,8 @@ function fill_part_drp(){
                 $('.part_fill').append(elements);
             });
             reset_part();
-            performance_opportunity();
-            availabilityReason_machine();
+            // performance_opportunity();
+            // availabilityReason_machine();
 
          
            
@@ -1809,15 +1823,16 @@ function fill_part_drp(){
 
 
 // graph functions 
+/* temporary hide this function
 function graph_func(){
     oeeTrendDay();
     machineWiseOEE();
     availabilityReason_machine();
 
 }
+*/
 
-
-// graph value for overallTarget
+// graph value for overallTarget function
 function overallTarget(){
     f = $('.fromDate').val();
     t = $('.toDate').val();
@@ -1836,9 +1851,27 @@ function overallTarget(){
             // console.log("overall target");
             // console.log(res);
         // res=res['OverallMonitoring'];
-          $('#teep_graph').css('width',''+parseInt(res.Overall_TEEP)+'%');
-          $('#ooe_graph').css('width',''+parseInt(res.Overall_OOE)+'%');
-          $('#oee_graph').css('width',''+parseInt(res.Overall_OEE)+'%');
+        if (parseInt(res.Overall_TEEP)>100) {
+            $('#teep_graph').css('width',''+parseInt(133)+'%');
+          
+        }else{
+            $('#teep_graph').css('width',''+parseInt(res.Overall_TEEP)+'%');
+        }
+
+        if (parseInt(res.Overall_OOE)>100) {
+            $('#ooe_graph').css('width',''+parseInt(117)+'%');
+        }else{
+            $('#ooe_graph').css('width',''+parseInt(res.Overall_OOE)+'%');
+        }
+
+        if (parseInt(res.Overall_OEE)>100) {
+            $('#oee_graph').css('width',''+parseInt(111)+'%');
+        }else{
+            $('#oee_graph').css('width',''+parseInt(res.Overall_OEE)+'%');
+        }
+
+
+         
         
           $('#text_teep').html(res.Overall_TEEP+'%');
           $('#text_ooe').html(res.Overall_OOE+'%');
@@ -1859,7 +1892,7 @@ function overallTarget(){
     });
 }
 
-
+// target bar value loading funciton
 function fill_target_bar(){
     $.ajax({
         url: "<?php echo base_url('Financial_Metrics/getOverallTarget'); ?>",
