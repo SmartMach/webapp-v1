@@ -490,8 +490,7 @@ class PDM_Model extends Model{
                 }
                 else{
                     
-                    //  return $previous_reason;
-                    
+                    //  return $previous_reason; 
                     if ($previous_reason == 2 OR $previous_reason == 3) {
                         $data =[
                             "shift_date" =>$data[7],

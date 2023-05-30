@@ -579,7 +579,7 @@
                                 </div> -->
                                 <div class="input-box indexing">
                                   <div class="filter_multiselect_lable filter_multiselect_input">
-                                    <span class="multi_select_label" style="">Lable <span class="paddingm validate">*</span></span>
+                                    <span class="multi_select_label" style="">Label <span class="paddingm validate">*</span></span>
                                     <div class="filter_selectBox">
                                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                                         <div style="width: 80% !important">
@@ -923,7 +923,7 @@
                                 </div> -->
                                 <div class="input-box indexing">
                                   <div class="filter_multiselect_lable filter_multiselect_input">
-                                    <span class="multi_select_label" style="">Lable <span class="paddingm validate">*</span></span>
+                                    <span class="multi_select_label" style="">Label <span class="paddingm validate">*</span></span>
                                     <div class="filter_selectBox">
                                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                                         <div style="width: 80% !important">
