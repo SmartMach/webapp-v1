@@ -58,21 +58,21 @@ class Work_Order_Management_controller extends BaseController{
 
             $data['work_order_id'] = strtoupper($db_name[0]).$db_name[1]."-W".(string)$id_gen;
 
-            $comment = $this->request->getVar('comments_list');
-            if ($comment != "") {
-                $id_gen_comment = $this->generateCommentsId();
-                $data['comment_id'] = strtoupper($db_name[0]).$db_name[1]."-CO".(string)$id_gen_comment;
+            // $comment = $this->request->getVar('comments_list');
+            // if ($comment != "") {
+            //     $id_gen_comment = $this->generateCommentsId();
+            //     $data['comment_id'] = strtoupper($db_name[0]).$db_name[1]."-CO".(string)$id_gen_comment;
 
-                $c['comment_id'] = $data['comment_id'];
-                $c['comment'] = $comment;
-                $c['status'] = 1;
-                $c['last_updated_by'] = $this->session->get('user_name');
+            //     $c['comment_id'] = $data['comment_id'];
+            //     $c['comment'] = $comment;
+            //     $c['status'] = 1;
+            //     $c['last_updated_by'] = $this->session->get('user_name');
 
-                $r =  $this->datas->insertComments($c);
-                if ($r != true) {
-                    echo json_encode(false);
-                }
-            }
+            //     $r =  $this->datas->insertComments($c);
+            //     if ($r != true) {
+            //         echo json_encode(false);
+            //     }
+            // }
 
 
             // $data['site_id'] = $this->session->get('active_site');
@@ -102,8 +102,7 @@ class Work_Order_Management_controller extends BaseController{
             $data['last_updated_by'] = $this->session->get('user_name');
 
             $comment = $this->request->getVar('comments_list');
-
-            $data['comment_id']="";
+            $data['comment_id'] = "";
             if ($comment != "") {
                 $id_gen_comment = $this->generateCommentsId();
                 $db_name = $this->session->get('active_site');
@@ -160,7 +159,7 @@ class Work_Order_Management_controller extends BaseController{
                 }
             }
 
-            if ($filter == false) {
+            if ($filter == "false") {
                 foreach ($res as $value) {
                     $temp=0;
                     if (($value['assignee']=="" || !$value['assignee'] || $value['assignee']==null) and $temp==0) {

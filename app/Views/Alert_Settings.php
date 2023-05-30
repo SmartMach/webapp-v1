@@ -136,6 +136,40 @@
 .assigne_drp_btn i{
     width: 20px;
 }
+.filter_multiselect_lable{
+    width: 10rem;
+    min-height: 2.6rem;
+    max-height: 10rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.3rem;
+}
+.lable-div{
+    display: flex;
+    /*min-height: 2.3rem !important;*/
+    max-height: 10rem !important;
+    margin-top:10px;
+    overflow: auto;
+    flex-wrap: wrap;
+}
+.input-field-lable{
+    width: 100px;
+    height: 28px;
+    margin: 0.4rem;
+    border: 0.1rem solid #faf7f7;
+}
+.lable-bg{
+    background-color:black;
+    color:white;
+    margin-left:5px;
+    margin-top:5px;
+    border-radius:3px;
+}
+.item-remove{
+    margin:2px 2.5px; 
+}
+.lable_items{
+    margin:2px 2.5px;
+}
 </style>
 <br>
 <br>
@@ -209,30 +243,30 @@
                             </div>
                             <div class="filter_checkboxes_categorygp alert_filter_work_order_dive" style="">
                                 <!-- options in progress -->
-                                <div class="add_alert_box_flex alert_filter_work_click" style="">
-                                    <div class="add_alert_checkbox_div" style="">
-                                        <input type="checkbox" id="one" class="filter_alert_work_checkbox" value="all" />
+                                <div class="add_alert_box_flex alert_filter_work_click" style="position: relative;">
+                                    <div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">
+                                        <input type="checkbox" id="one" class="filter_alert_work_checkbox" value="all" style="margin-right:100px;margin-top:12px"/>
                                     </div>
-                                    <div class="add_alert_text_div" style="">
-                                        <p class="font_multi_drp" style="margin:auto;">All </p>
-                                    </div>
-                                </div>
-
-                                <div class="add_alert_box_flex alert_filter_work_click" style="">
-                                    <div class="add_alert_checkbox_div" style="">
-                                        <input type="checkbox" id="one" class="filter_alert_work_checkbox" value="issue" />
-                                    </div>
-                                    <div class="add_alert_text_div" style="">
-                                        <p class="font_multi_drp" style="margin:auto;">Issue </p>
+                                    <div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">
+                                        <p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">All </p>
                                     </div>
                                 </div>
 
-                                <div class="add_alert_box_flex alert_filter_work_click" style="">
-                                    <div class="add_alert_checkbox_div" style="">
-                                        <input type="checkbox" id="one" class="filter_alert_work_checkbox" value="task" />
+                                <div class="add_alert_box_flex alert_filter_work_click" style="position: relative;">
+                                    <div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">
+                                        <input type="checkbox" id="one" class="filter_alert_work_checkbox" value="issue" style="margin-right:100px;margin-top:12px"/>
                                     </div>
-                                    <div class="add_alert_text_div" style="">
-                                        <p class="font_multi_drp" style="margin:auto;">Work </p>
+                                    <div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">
+                                        <p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">Issue </p>
+                                    </div>
+                                </div>
+
+                                <div class="add_alert_box_flex alert_filter_work_click" style="position: relative;">
+                                    <div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">
+                                        <input type="checkbox" id="one" class="filter_alert_work_checkbox" value="task" style="margin-right:100px;margin-top:12px"/>
+                                    </div>
+                                    <div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">
+                                        <p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">Work </p>
                                     </div>
                                 </div>
                             </div>
@@ -269,7 +303,7 @@
 
                 </div>
                 <a style="background: #005abc;color: white;width:max-content;" class="settings_nav_anchor float-end"
-                    id="add_machine_button" onclick="show_modal_add_alert()">
+                    id="add_alert_button" onclick="show_modal_add_alert()">
                     <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD ALERT
                 </a>
             </div>
@@ -330,7 +364,7 @@
 
 <!-- add lert model -->
 
-<div class="modal fade" id="addAlert" tabindex="-1" aria-labelledby="addAlert" aria-hidden="true">
+<div class="modal fade" id="addAlert_modal" tabindex="-1" aria-labelledby="addAlert_modal" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered rounded ">
         <div class="container modal-content bodercss">
             <div class="modal-header" style="border:none; ">
@@ -341,7 +375,7 @@
                     <div class="row mb-2 " style="margin-top:3rem;">
                         <div class="box" style="">
                             <div class="input-box" >
-                                <input type="text" class="form-control font_weight_modal" id="add_alert_name"    name="add_alert_name">
+                                <input type="text" class="form-control alert_font_css" id="add_alert_name"    name="add_alert_name">
                                 <label for="add_alert_name" class="input-padding">Alert Name <span class="paddingm validate">*</span></label>
                                 <span class="paddingm float-start validate" id="inputAlertNameErr"></span> 
                             </div>
@@ -355,18 +389,18 @@
                         <div class="col-lg-6">
                             <div class="box" >
                                 <div class="input-box">
-                                    <select class="form-select font_weight" name="add_alert_metrics" id="add_alert_metrics" style="width: 100%;">
+                                    <select class="form-select alert_font_css" name="add_alert_metrics" id="add_alert_metrics" style="width: 100%;">
                                         <option value="" disabled selected>Choose Metrics</option>
                                         <option value="planned_downtime">Planned Downtime</option>    
                                         <option value="unplanned_downtime">Unplanned Downtime</option>
                                         <option value="planned_machine_off">Planned Machine Off</option>
                                         <option value="unplanned_machine_off">Unplanned Machine Off</option>
-                                        <option value="opportunity">OPPORTUNITY</option>
-                                        <option value="performance">PERFORMANCE</option>
-                                        <option value="downtime">DOWNTIME</option>
-                                        <option value="unamed">UNAMED</option>
-                                        <option value="nodata">NODATA</option>
-                                        <option value="offline">OFFLINE</option>
+                                        <option value="total_downtime">Total Downtime</option>
+                                        <option value="total_unamed">Total Unamed</option>
+                                        <option value="total_rejection">No Of Rejection</option>
+                                        <option value="oee">OEE</option>
+                                        <option value="teep">TEEP</option>
+                                        <option value="ooe">OOE</option>
                                         
                                     </select>
                                     <label for="add_alert_metrics" class="input-padding ">Metrics  <span class="paddingm validate">*</span></label>
@@ -377,7 +411,7 @@
                         <div class="col-lg-3">
                             <div class="box rightmar" style="margin-right: 0.5rem;">
                                 <div class="input-box">
-                                    <select class="form-select font_weight" name="add_alert_relation" id="add_alert_relation" style="width: 10rem;">
+                                    <select class="form-select alert_font_css" name="add_alert_relation" id="add_alert_relation" style="width: 10rem;">
                                         <option value="" disabled selected>Choose Relation</option>
                                         <option value="<"><</option>
                                         <option value=">">></option>
@@ -393,7 +427,7 @@
                         <div class="col-lg-2">
                             <div class="box" style="padding:0;">
                                 <div class="input-box" >
-                                    <input type="text" class="form-control font_weight_modal" id="add_alert_val" name="add_alert_val" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                    <input type="text" class="form-control alert_font_css" id="add_alert_val" name="add_alert_val" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                     <label for="add_alert_val" class="input-padding">Value <span class="paddingm validate">*</span></label>
                                 </div>
                                 <span class="paddingm float-start validate" id="inputAlertValueErr"></span> 
@@ -411,7 +445,7 @@
                             <!-- <label for="">In the Past</label> -->
                             <div class="input-group mb-3">
                                 <span class="label_txt_hour" style="">In The Past <span class="paddingm validate">*</span></span>
-                                <input type="text" class="form-control"  aria-label="Recipient's username" id="add_alert_past_hour" name="add_alert_past_hour" aria-describedby="basic-addon2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                <input type="text" class="form-control alert_font_css"  aria-label="Recipient's username" id="add_alert_past_hour" name="add_alert_past_hour" aria-describedby="basic-addon2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                 <div class="input-group-append  bg-white text-primary">
                                     <span class="input-group-text bg-white" style="font-size:12px;height:2.4rem;" id="basic-addon2">Hours</span>
                                 </div>
@@ -426,7 +460,7 @@
 
                     <div class="row">
                         <div class="col-lg-3">
-                            <div class="box rightmar" style="margin-right: 0.5rem;">
+                            <div class="box rightmar" style="margin-right: 0.5rem;position:relative;">
                                 <label class="multi_select_model_drp_label" style="">Machine <span class="paddingm validate">*</span></label>
                                 <div class="filter_select_box_add_alert" onclick="add_alert_machine()">
                                     <select class="multi_select_drp_model" style="">
@@ -443,7 +477,7 @@
                             <span class="text-muted" style="font-size:12px;">and</span>
                         </div>
                         <div class="col-lg-3">
-                            <div class="box rightmar" style="margin-right: 0.5rem;">
+                            <div class="box rightmar" style="margin-right: 0.5rem;position:relative;">
                                 <label class="multi_select_model_drp_label" style="">Part <span class="paddingm validate">*</span></label>
                                 <div class="filter_select_box_add_alert" onclick="add_alert_part()">
                                     <select class="multi_select_drp_model" style="">
@@ -478,7 +512,7 @@
                             <div class="col-lg-6">
                                 <div class="box rightmar" style="margin-right: 0.5rem;">
                                     <div class="input-box">
-                                        <select class="form-select font_weight" name="add_alert_work_type" id="add_alert_work_type" style="font-size:15px;">
+                                        <select class="form-select alert_font_css" name="add_alert_work_type" id="add_alert_work_type" style="font-size:15px;">
                                             <option value="" disabled selected>Choose Work Type</option>
                                             <option value="issue">Issue</option>
                                             <option value="task">Task</option>
@@ -491,7 +525,7 @@
                             <div class="col-lg-6">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control font_weight_modal" id="add_alert_work_title"   name="add_alert_work_title">
+                                        <input type="text" class="form-control alert_font_css" id="add_alert_work_title"   name="add_alert_work_title">
                                         <label for="add_alert_work_title" class="input-padding">Title <span class="paddingm validate">*</span></label>
                                     </div>
                                     <span class="paddingm float-start validate" id="inputAlertworktitleErr"></span>
@@ -521,7 +555,7 @@
                                 <div class="lang-select">
                                     <span class="priority_label_txt" style="">Priority  <span class="paddingm validate">*</span></span>
                                     <div class="select3">
-                                        <div class="selectBtn3 priority_get_data_add" data-type="firstOption"> <i class='fas fa-angle-double-down' style='font: size 18px; width:18px; color: #2196F3; margin-top: 5px;'></i>&nbsp;Low</div>
+                                        <div class="selectBtn3 priority_get_data_add" data-type="firstOption"></div>
                                         <div class="selectDropdown3">
                                             <div class="option3" data-type="firstOption" onclick="icon_drop(this)"><i class='fas fa-angle-double-down' style='font: size 18px;; width:20px; margin-top: 5px; color: #2196F3;'></i>&nbsp;Low</div>
                                             <div class="option3" data-type="secondOption" onclick="icon_drop(this)"><i style='font: size 18px;; color:#FBB80F; margin-top: 5px;' class='fas'>&#xf52c;</i>&nbsp;Medium</div>
@@ -531,7 +565,7 @@
                                 </div>  
                             </div>
                             <div class="col-lg-4">
-                                <div class="box rightmar" style="margin-right: 0.5rem;">
+                                <!-- <div class="box rightmar" style="margin-right: 0.5rem;">
                                     <div class="input-box wrapper_label">
                                     
                                         <div class="content_label">
@@ -542,6 +576,27 @@
                                         <span class="paddingm float-start validate" id="inputlabelErr"></span>
                                         
                                     </div>
+                                </div> -->
+                                <div class="input-box indexing">
+                                  <div class="filter_multiselect_lable filter_multiselect_input">
+                                    <span class="multi_select_label" style="">Label <span class="paddingm validate">*</span></span>
+                                    <div class="filter_selectBox">
+                                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                        <div style="width: 80% !important">
+                                            <div class="lable-div lable-div-add">
+                                            </div>
+                                            <input type="text" class="form-control alert_font_css input-field-lable input-field-lable-add" id="input_field_label" name="" >
+                                        </div>
+                                        <div class="dropdown-div" style=" width: 20% !important">
+                                          <i class="fa fa-angle-down icon-style"></i>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <span class="paddingm float-start validate" id="label_action_Err"></span> 
+                                  </div>
+                                </div>
+                                <!-- Drop down Suggestion -->
+                                <div class="filter_checkboxes_issue suggestion display_hide" id="dropdown-list-lables" style="position:relative;">
                                 </div>
                             </div>
                             <div class="col-lg-3" style="margin:auto;">
@@ -554,7 +609,7 @@
                                         <span class="paddingm float-start validate" id="input_alert_assign_Err"></span>
                                     </div>
                                 </div> -->
-                                <div class="box inbox-top">
+                                <div class="box inbox-top" style="position:relative;">
                                     <div class="input-box indexing">
                                         <div class="filter_multiselect filter_multiselect_input">
                                             <span class="multi_select_label" style="margin-top:-0.7rem;">Assignee <span class="paddingm validate">*</span></span>
@@ -580,7 +635,7 @@
                             <div class="col-lg-2" style="margin:auto;">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control font_weight_modal" id="add_alert_deu_days"
+                                        <input type="text" class="form-control alert_font_css" id="add_alert_deu_days"
                                             name="add_alert_deu_days" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                         <label for="add_alert_deu_days" class="input-padding">Due Days </label>
                                     </div>
@@ -605,7 +660,7 @@
                             <div class="col-lg-6">
                                 <div class="wrapper">
                                     <div class="content">
-                                        <ul class="parent_div_input_check"><input type="text" class="input_check_to" id="input_check_to" placeholder="TO" spellcheck="false"></ul>
+                                        <ul class="parent_div_input_check" style="position:relative;"><input type="email" class="input_check_to alert_font_css" id="input_check_to" placeholder="TO" spellcheck="false"><span style="position:absolute;margin-top:-1rem;font-size:12px;color:#8c8c8c;background:white;padding:1px;margin-left:1rem;">To Email</span></ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_check_to_Err"></span>
                                 </div>
@@ -615,7 +670,7 @@
                                
                                 <div class="wrapper_cc">
                                     <div class="content_cc">
-                                        <ul class="parent_div_input_check_cc"><input type="text" class="input_check_cc" id="input_check_cc" placeholder="CC" spellcheck="false"></ul>
+                                        <ul class="parent_div_input_check_cc" style="position:relative;"><input type="email" class="input_check_cc alert_font_css" id="input_check_cc" placeholder="CC" spellcheck="false"><span style="position:absolute;margin-top:-1rem;font-size:12px;color:#8c8c8c;background:white;padding:1px;margin-left:1rem;">Cc Email</span></ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_check_cc_Err"></span>
                                 </div>
@@ -627,7 +682,7 @@
                                 <div class="input-group">
                                     <span class="label_txt_font" style="">Subject <span class="paddingm validate">*</span></span>
                                     <span class="input-group-text bg-white text-muted" style="font-size:13px;">SmartMach Alert! </span>
-                                    <input type="text" class="form-control" id="add_alert_mail_subject" name="add_alert_mail_subject">
+                                    <input type="text" class="form-control alert_font_css" id="add_alert_mail_subject" name="add_alert_mail_subject">
                                 </div>
                                 <span class="paddingm float-start validate" id="input_email_sub_Err"></span>
                             </div>
@@ -635,7 +690,7 @@
                             <div class="col-lg-6">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control font_weight_modal" id="add_alert_mail_notes"
+                                        <input type="text" class="form-control alert_font_css" id="add_alert_mail_notes"
                                             name="add_alert_mail_notes">
                                         <label for="add_alert_mail_notes" class="input-padding">Notes</label>
                                     </div>
@@ -670,7 +725,7 @@
                     <div class="row mb-2 " style="margin-top:3rem;">
                         <div class="box" style="">
                             <div class="input-box" >
-                                <input type="text" class="form-control font_weight_modal" id="edit_alert_name"    name="edit_alert_name">
+                                <input type="text" class="form-control alert_font_css" id="edit_alert_name"    name="edit_alert_name">
                                 <label for="edit_alert_name" class="input-padding">Alert Name <span class="paddingm validate">*</span></label>
                             </div>
                             <span class="paddingm float-start validate" id="inputedit_alertNameErr"></span> 
@@ -686,18 +741,18 @@
                         <div class="col-lg-6">
                             <div class="box" >
                                 <div class="input-box">
-                                    <select class="form-select font_weight" name="edit_alert_metrics" id="edit_alert_metrics" style="width: 100%;">
-                                    <option value="" disabled selected>Choose Metrics</option>
+                                    <select class="form-select alert_font_css" name="edit_alert_metrics" id="edit_alert_metrics" style="width: 100%;">
+                                        <option value="" disabled selected>Choose Metrics</option>
                                         <option value="planned_downtime">Planned Downtime</option>    
                                         <option value="unplanned_downtime">Unplanned Downtime</option>
                                         <option value="planned_machine_off">Planned Machine Off</option>
                                         <option value="unplanned_machine_off">Unplanned Machine Off</option>
-                                        <option value="opportunity">OPPORTUNITY</option>
-                                        <option value="performance">PERFORMANCE</option>
-                                        <option value="downtime">DOWNTIME</option>
-                                        <option value="unamed">UNAMED</option>
-                                        <option value="nodata">NODATA</option>
-                                        <option value="offline">OFFLINE</option>
+                                        <option value="total_downtime">Total Downtime</option>
+                                        <option value="total_unamed">Total Unamed</option>
+                                        <option value="total_rejection">No Of Rejection</option>
+                                        <option value="oee">OEE</option>
+                                        <option value="teep">TEEP</option>
+                                        <option value="ooe">OOE</option>
                                     </select>
                                     <label for="edit_alert_metrics" class="input-padding ">Metrics  <span class="paddingm validate">*</span></label>
                                     <span class="paddingm float-start validate" id="inputAlertEditmetricserr"></span>
@@ -707,7 +762,7 @@
                         <div class="col-lg-3">
                             <div class="box rightmar" style="margin-right: 0.5rem;">
                                 <div class="input-box">
-                                    <select class="form-select font_weight" name="edit_alert_relation" id="edit_alert_relation" style="width: 10rem;">
+                                    <select class="form-select alert_font_css" name="edit_alert_relation" id="edit_alert_relation" style="width: 10rem;">
                                         <option value="" disabled selected>Choose Relation</option>
                                         <option value="<"><</option>
                                         <option value=">">></option>
@@ -723,7 +778,7 @@
                         <div class="col-lg-2">
                             <div class="box" style="padding:0;">
                                 <div class="input-box" >
-                                    <input type="text" class="form-control font_weight_modal" id="edit_alert_val" name="edit_alert_val">
+                                    <input type="text" class="form-control alert_font_css" id="edit_alert_val" name="edit_alert_val">
                                     <label for="" class="input-padding">Value <span class="paddingm validate">*</span></label>
                                 </div>
                                 <span class="paddingm float-start validate" id="inputAlert_edit_ValueErr"></span>
@@ -739,7 +794,7 @@
                             <!-- <label for="">In the Past</label> -->
                             <div class="input-group mb-3">
                                 <span class="label_txt_hour" style="">In The Past <span class="paddingm validate">*</span></span>
-                                <input type="text" class="form-control"  aria-label="Recipient's username" id="edit_alert_past_hour" name="edit_alert_past_hour" aria-describedby="basic-addon2">
+                                <input type="text" class="form-control alert_font_css"  aria-label="Recipient's username" id="edit_alert_past_hour" name="edit_alert_past_hour" aria-describedby="basic-addon2">
                                 <div class="input-group-append  bg-white text-primary">
                                     <span class="input-group-text bg-white" style="font-size:12px;height:2.4rem;" id="basic-addon2">Hours</span>
                                 </div>
@@ -754,7 +809,7 @@
 
                     <div class="row">
                         <div class="col-lg-3">
-                            <div class="box rightmar" style="margin-right: 0.5rem;">
+                            <div class="box rightmar" style="margin-right: 0.5rem;position:relative;">
                                 <label class="multi_select_model_drp_label" style="">Machine <span class="paddingm validate">*</span></label>
                                 <div class="filter_select_box_add_alert" onclick="edit_alert_machine()">
                                     <select class="multi_select_drp_model" style="">
@@ -771,7 +826,7 @@
                             <span class="text-muted" style="font-size:12px;">and</span>
                         </div>
                         <div class="col-lg-3">
-                            <div class="box rightmar" style="margin-right: 0.5rem;">
+                            <div class="box rightmar" style="margin-right: 0.5rem;position:relative;">
                                 <label class="multi_select_model_drp_label" style="">Part <span class="paddingm validate">*</span></label>
                                 <div class="filter_select_box_add_alert" onclick="edit_alert_part()">
                                     <select class="multi_select_drp_model" style="">
@@ -806,7 +861,7 @@
                             <div class="col-lg-6">
                                 <div class="box rightmar" style="margin-right: 0.5rem;">
                                     <div class="input-box">
-                                        <select class="form-select font_weight" name="edit_alert_work_type" id="edit_alert_work_type" style="font-size:15px;">
+                                        <select class="form-select alert_font_css" name="edit_alert_work_type" id="edit_alert_work_type" style="font-size:15px;">
                                             <option value=" " disabled selected>Choose Work Type</option>
                                             <option value="issue">Issue</option>
                                             <option value="task">Task</option>
@@ -819,7 +874,7 @@
                             <div class="col-lg-6">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control font_weight_modal" id="edit_alert_work_title"   name="edit_alert_work_title">
+                                        <input type="text" class="form-control alert_font_css" id="edit_alert_work_title"   name="edit_alert_work_title">
                                         <label for="edit_alert_work_title" class="input-padding">Title <span class="paddingm validate">*</span></label>
                                     </div>
                                     <span class="paddingm float-start validate" id="inputAlert_edit_worktitleErr"></span>
@@ -860,11 +915,33 @@
                                 </div>  
                             </div>
                             <div class="col-lg-4">
-                                <div class="edit_wrapper_label">
+                                <!-- <div class="edit_wrapper_label">
                                     <div class="edit_content_label">
                                         <ul class="edit_parent_div_input_check_label"><input type="text" class="edit_input_check_label" placeholder="Label" spellcheck="false"></ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="inputlabel_edit_Err"></span>
+                                </div> -->
+                                <div class="input-box indexing">
+                                  <div class="filter_multiselect_lable filter_multiselect_input">
+                                    <span class="multi_select_label" style="">Label <span class="paddingm validate">*</span></span>
+                                    <div class="filter_selectBox">
+                                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                        <div style="width: 80% !important">
+                                            <div class="lable-div lable-div-edit">
+                                            </div>
+                                            <input type="text" class="form-control alert_font_css input-field-lable input-field-lable-edit" id="input-field-lable-edit" name="" >
+                                        </div>
+                                        <div class="dropdown-div" style=" width: 20% !important">
+                                          <i class="fa fa-angle-down icon-style"></i>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <span class="paddingm float-start validate" id="label_edit_Err"></span> 
+
+                                  </div>
+                                </div>
+                                <!-- Drop down Suggestion -->
+                                <div class="filter_checkboxes_issue suggestion display_hide" id="dropdown-list-lables-edit" style="position:relative;">
                                 </div>
                             </div>
                             <div class="col-lg-3" style="margin:auto;">
@@ -876,7 +953,7 @@
                                         <label for="edit_alert_assignee" class="input-padding ">Assignee  <span class="paddingm validate">*</span></label>
                                     </div>
                                 </div> -->
-                                <div class="box inbox-top">
+                                <div class="box inbox-top" style="position:relative;">
                                     <div class="input-box indexing">
                                         <div class="filter_multiselect filter_multiselect_input">
                                             <span class="multi_select_label" style="margin-top:-0.7rem;">Assignee <span class="paddingm validate">*</span></span>
@@ -902,8 +979,7 @@
                             <div class="col-lg-2" style="margin:auto;">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control font_weight_modal" id="edit_alert_deu_days"
-                                            name="edit_alert_deu_days">
+                                        <input type="text" class="form-control alert_font_css" id="edit_alert_deu_days" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" name="edit_alert_deu_days">
                                         <label for="edit_alert_deu_days" class="input-padding">Due Days </label>
                                     </div>
                                     <span class="paddingm float-start validate" id="inputAlert_edit_deudaysErr"></span>
@@ -927,7 +1003,10 @@
                             <div class="col-lg-6">
                                 <div class="wrapper_edit">
                                     <div class="content_edit">
-                                        <ul class="edit_parent_div_input_check"><input type="text" class="input_check_to_edit" placeholder="TO" spellcheck="false"></ul>
+                                        <ul class="edit_parent_div_input_check" style="position:relative;">
+                                            <input type="text" class="input_check_to_edit alert_font_css" placeholder="TO" spellcheck="false">
+                                            <span style="position:absolute;margin-top:-1rem;font-size:12px;padding:1px;margin-left:1rem;background:white;color:#8c8c8c;">To Email</span>
+                                        </ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_check_to_edit_Err"></span>
                                 </div>
@@ -937,7 +1016,10 @@
                                
                                 <div class="wrapper_cc_edit">
                                     <div class="content_cc_edit">
-                                        <ul class="edit_parent_div_input_check_cc"><input type="text" class="input_check_cc_edit" placeholder="CC" spellcheck="false"></ul>
+                                        <ul class="edit_parent_div_input_check_cc" style="position:relative;">
+                                            <input type="text" class="input_check_cc_edit alert_font_css" placeholder="CC" spellcheck="false">
+                                            <span style="position:absolute;margin-top:-1rem;font-size:12px;padding:1px;margin-left:1rem;background:white;color:#8c8c8c;">Cc Email</span>
+                                        </ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_check_cc_edit_Err"></span>
                                 </div>
@@ -949,7 +1031,7 @@
                                 <div class="input-group">
                                     <span class="label_txt_font" style="">Subject <span class="paddingm validate">*</span></span>
                                     <span class="input-group-text bg-white text-muted" style="font-size:13px;">SmartMach Alert! </span>
-                                    <input type="text" class="form-control" id="edit_alert_mail_subject" name="edit_alert_mail_subject">
+                                    <input type="text" class="form-control alert_font_css" id="edit_alert_mail_subject" name="edit_alert_mail_subject">
                                 </div>
                                 <span class="paddingm float-start validate" id="input_email_edit_sub_Err"></span>
                             </div>
@@ -957,7 +1039,7 @@
                             <div class="col-lg-6">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control font_weight_modal" id="edit_alert_mail_notes"
+                                        <input type="text" class="form-control alert_font_css" id="edit_alert_mail_notes"
                                             name="edit_alert_mail_notes">
                                         <label for="edit_alert_mail_notes" class="input-padding">Notes</label>
                                     </div>
@@ -990,8 +1072,8 @@
             <div class="modal-header" style="border:none; ">
                 <h5 class="modal-title settings-machineAdd-model" id="alert_delete_confirmation_box" style="">CONFIRMATION MESSAGE</h5>
             </div>
-            <div class="modal-body" style="max-width:max-content;">
-                <label style="color: black;">Are you sure you want to delete this Alert record?</label>
+            <div class="modal-body alert_font_css" style="max-width:max-content;">
+                <label style="" class="alert_font_css" >Are you sure you want to delete this Alert record?</label>
             </div>
             <div class="modal-footer" style="border:none;">
                 <a class="btn fo bn  alert_delete_confirmation_submit saveBtnStyle" name="alert_delete_confirmation_submit" value="SAVE" >Confirm</a>
@@ -1012,8 +1094,8 @@
 
 
 function add_assignee(t) {
-    console.log("ok");
-      $(".filter_checkboxes_issue").addClass("display_hide");
+    console.log($(this).children());
+      $(".filter_checkboxes_issue ").addClass("display_hide");
       console.log($('.filter_assignee').css("display"));
       if ($('.filter_assignee').css("display") === "none") {
         console.log("select");
@@ -1028,10 +1110,11 @@ function add_assignee(t) {
 
     // add modal click function 
     function show_modal_add_alert(){
-        reset_add_alert_machine();
-        reset_add_alert_part();
+       
         // $('.selectDropdown3').toggleClass('new_4');
-        $('#addAlert').modal('show');
+        var data_txt = "insert";
+        reset_all_input(data_txt);
+        $('#addAlert_modal').modal('show');
     }
 
 
@@ -1174,22 +1257,22 @@ function add_assignee(t) {
                 var edit_part_drp_ele = $();
                 var edit_alert_assignee = $();
 
-                $('.add_alert_machine_drp').append('<div class="add_alert_box_flex add_alert_machine_click">'
-                    +'<div class="add_alert_checkbox_div" style="">'
-                        +'<input type="checkbox" id="one" class="add_alert_machine1" value="all" />'
+                $('.add_alert_machine_drp').append('<div class="add_alert_box_flex add_alert_machine_click" style="position: relative;padding: 12px 0;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
+                        +'<input type="checkbox" id="one" class="add_alert_machine1" value="all"/>'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                        +'<p class="font_multi_drp" style="margin:auto;">All Machines</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                        +'<p class="font_multi_drp" style="margin-left:27px">All Machines</p>'
                     +'</div>'
                     +'</div>');
 
 
-                $('.add_alert_part_drp').append('<div class="add_alert_box_flex add_alert_part_click" style="">'
-                    +'<div class="add_alert_checkbox_div" style="">'
+                $('.add_alert_part_drp').append('<div class="add_alert_box_flex add_alert_part_click" style="position: relative;padding: 12px 0;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
                         +'<input type="checkbox" id="one" class="add_alert_part1" value="all" />'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                        +'<p class="font_multi_drp" style="margin:auto;">All Parts</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                        +'<p class="font_multi_drp" style="margin-left:27px">All Parts</p>'
                     +'</div>'
                 +'</div>');
 
@@ -1198,78 +1281,78 @@ function add_assignee(t) {
 
                 $('#edit_alert_assignee').append('<option value="unassigned" selected>Unassigned</option>');
 
-                $('.alert_file_part_div').append('<div class="add_alert_box_flex filter_drp_part" style="">'
-                    +'<div class="add_alert_checkbox_div" style="">'
+                $('.alert_file_part_div').append('<div class="add_alert_box_flex filter_drp_part" style="position: relative;padding: 12px 0;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
                     +'<input type="checkbox" id="one" class="filter_Drp_part_checkbox" value="all" />'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                    +'<p class="font_multi_drp" style="margin:auto;">All Parts</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                    +'<p class="font_multi_drp" style="margin-left:27px">All Parts</p>'
                     +'</div>'
                     +'</div>');
 
-                $('.alert_filter_machine_div').append('<div class="add_alert_box_flex filter_drp_machine_click" style="">'
-                    +'<div class="add_alert_checkbox_div" style="">'
+                $('.alert_filter_machine_div').append('<div class="add_alert_box_flex filter_drp_machine_click" style="position: relative;padding: 12px 0;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
                     +'<input type="checkbox" id="one" class="filter_drp_machine_checkbox" value="all" />'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                    +'<p class="font_multi_drp" style="margin:auto;">All Machines</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                    +'<p class="font_multi_drp" style="margin-left:27px">All Machines</p>'
                     +'</div>'
                     +'</div>');
 
 
-                $('.edit_alert_machine_drp').append('<div class="add_alert_box_flex edit_drp_machine_click" style="">'
-                    +'<div class="add_alert_checkbox_div" style="">'
+                $('.edit_alert_machine_drp').append('<div class="add_alert_box_flex edit_drp_machine_click" style="position: relative;padding: 12px 0;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
                     +'<input type="checkbox" id="one" class="edit_drp_machine_checkbox" value="all" />'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                    +'<p class="font_multi_drp" style="margin:auto;">All Machines</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                    +'<p class="font_multi_drp" style="margin-left:27px">All Machines</p>'
                     +'</div>'
                     +'</div>');
                 
-                $('.filter_alert_assignee_div').append('<div class="add_alert_box_flex filter_drp_last_updated_click" style="">'
-                    +'<div class="add_alert_checkbox_div" style="">'
+                $('.filter_alert_assignee_div').append('<div class="add_alert_box_flex filter_drp_last_updated_click" style="position: relative;padding: 12px 0;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
                     +'<input type="checkbox" id="one" class="filter_drp_last_updated_checkbox" value="all" />'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                    +'<p class="font_multi_drp" style="margin:auto;">All Users</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                    +'<p class="font_multi_drp" style="margin-left:27px">All Users</p>'
                     +'</div>'
                     +'</div>');
 
 
-                $('.edit_alert_part_drp').append('<div class="add_alert_box_flex edit_part_drp_click" style="">'
-                    +'<div class="add_alert_checkbox_div" style="">'
+                $('.edit_alert_part_drp').append('<div class="add_alert_box_flex edit_part_drp_click" style="position: relative;padding: 12px 0;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
                     +'<input type="checkbox" id="one" class="editpart_drp_checkbox" value="all" />'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                    +'<p class="font_multi_drp" style="margin:auto;">All Parts</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                    +'<p class="font_multi_drp" style="margin-left:27px">All Parts</p>'
                     +'</div>'
                 +'</div>');
 
                 res['machine_arr'].forEach(function(item){
-                    element = element.add('<div class="add_alert_box_flex add_alert_machine_click">'
-                    +'<div class="add_alert_checkbox_div" style="">'
+                    element = element.add('<div class="add_alert_box_flex add_alert_machine_click" style="position: relative;margin:0;top:50%;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;top:30%;">'
                         +'<input type="checkbox" id="one" class="add_alert_machine1" value="'+item.machine_id+'" />'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                        +'<p class="font_multi_drp" style="margin:auto;">'+item.machine_name+'</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                        +'<p class="font_multi_drp" style="margin-left:27px;margin-bottom:0px;">'+item.machine_name+'</p>'
                     +'</div>'
                     +'</div>');
 
-                    filter_drp_machine = filter_drp_machine.add('<div class="add_alert_box_flex filter_drp_machine_click" style="">'
-                    +'<div class="add_alert_checkbox_div" style="">'
-                    +'<input type="checkbox" id="one" class="filter_drp_machine_checkbox" value="'+item.machine_id+'" />'
+                    filter_drp_machine = filter_drp_machine.add('<div class="add_alert_box_flex filter_drp_machine_click" style="position: relative;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
+                    +'<input type="checkbox" id="one" class="filter_drp_machine_checkbox" value="'+item.machine_id+'" style="margin-right:100px;margin-top:12px"/>'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                    +'<p class="font_multi_drp" style="margin:auto;">'+item.machine_name+'</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                    +'<p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">'+item.machine_name+'</p>'
                     +'</div>'
                     +'</div>');
 
-                    edit_machine_drp_ele = edit_machine_drp_ele.add('<div class="add_alert_box_flex edit_drp_machine_click" style="">'
-                    +'<div class="add_alert_checkbox_div" style="">'
-                    +'<input type="checkbox" id="one" class="edit_drp_machine_checkbox" value="'+item.machine_id+'" />'
+                    edit_machine_drp_ele = edit_machine_drp_ele.add('<div class="add_alert_box_flex edit_drp_machine_click" style="position: relative;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
+                    +'<input type="checkbox" id="one" class="edit_drp_machine_checkbox" value="'+item.machine_id+'" style="margin-right:100px;margin-top:12px"/>'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                    +'<p class="font_multi_drp edit_txt_machine_drp" style="margin:auto;">'+item.machine_name+'</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                    +'<p class="font_multi_drp edit_txt_machine_drp" style="margin-left:25px;margin-top:11px;">'+item.machine_name+'</p>'
                     +'</div>'
                     +'</div>');
 
@@ -1281,31 +1364,31 @@ function add_assignee(t) {
 
 
                 res['part_arr'].forEach(function(item){
-                    ele_part = ele_part.add('<div class="add_alert_box_flex  add_alert_part_click" style="">'
-                        +'<div class="add_alert_checkbox_div " style="">'
-                            +'<input type="checkbox" id="one" class="add_alert_part1" value="'+item.part_id+'" />'
+                    ele_part = ele_part.add('<div class="add_alert_box_flex  add_alert_part_click" style="position: relative;">'
+                        +'<div class="add_alert_checkbox_div " style="z-index:1;position: absolute;">'
+                            +'<input type="checkbox" id="one" class="add_alert_part1" value="'+item.part_id+'" style="margin-right:100px;margin-top:12px"/>'
                         +'</div>'
-                        +'<div class="add_alert_text_div" style="">'
-                            +'<p class="font_multi_drp" style="margin:auto;">'+item.part_name+'</p>'
+                        +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                            +'<p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">'+item.part_name+'</p>'
                         +'</div>'
                     +'</div>');
 
-                    filter_drp_part = filter_drp_part.add('<div class="add_alert_box_flex filter_drp_part" style="">'
-                    +'<div class="add_alert_checkbox_div" style="">'
-                    +'<input type="checkbox" id="one" class="filter_Drp_part_checkbox" value="'+item.part_id+'" />'
+                    filter_drp_part = filter_drp_part.add('<div class="add_alert_box_flex filter_drp_part" style="position: relative;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
+                    +'<input type="checkbox" id="one" class="filter_Drp_part_checkbox" value="'+item.part_id+'" style="margin-right:100px;margin-top:12px"/>'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                    +'<p class="font_multi_drp" style="margin:auto;">'+item.part_name+'</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                    +'<p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">'+item.part_name+'</p>'
                     +'</div>'
                     +'</div>');
 
 
-                    edit_part_drp_ele = edit_part_drp_ele.add('<div class="add_alert_box_flex edit_part_drp_click" style="">'
-                    +'<div class="add_alert_checkbox_div" style="">'
-                    +'<input type="checkbox" id="one" class="editpart_drp_checkbox" value="'+item.part_id+'" />'
+                    edit_part_drp_ele = edit_part_drp_ele.add('<div class="add_alert_box_flex edit_part_drp_click" style="position: relative;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
+                    +'<input type="checkbox" id="one" class="editpart_drp_checkbox" value="'+item.part_id+'" style="margin-right:100px;margin-top:12px"/>'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                    +'<p class="font_multi_drp" style="margin:auto;">'+item.part_name+'</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                    +'<p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">'+item.part_name+'</p>'
                     +'</div>'
                     +'</div>');
 
@@ -1368,12 +1451,12 @@ function add_assignee(t) {
 
                 // last updated by filter array
                 res['last_updated_by_arr'].forEach(function(item) {
-                    filter_drp_assignee = filter_drp_assignee.add('<div class="add_alert_box_flex filter_drp_last_updated_click" style="">'
-                    +'<div class="add_alert_checkbox_div" style="">'
-                    +'<input type="checkbox" id="one" class="filter_drp_last_updated_checkbox" value="'+item.user_id+'" />'
+                    filter_drp_assignee = filter_drp_assignee.add('<div class="add_alert_box_flex filter_drp_last_updated_click" style="position: relative;">'
+                    +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
+                    +'<input type="checkbox" id="one" class="filter_drp_last_updated_checkbox" value="'+item.user_id+'" style="margin-right:100px;margin-top:12px"/>'
                     +'</div>'
-                    +'<div class="add_alert_text_div" style="">'
-                    +'<p class="font_multi_drp" style="margin:auto;">'+item.first_name+' '+item.last_name+'</p>'
+                    +'<div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">'
+                    +'<p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">'+item.first_name+' '+item.last_name+'</p>'
                     +'</div>'
                     +'</div>');
 
@@ -1394,7 +1477,7 @@ function add_assignee(t) {
                 reset_add_alert_machine();
                 reset_add_alert_part();
                 reset_filter_part();
-
+                reset_work_order_drp();
                 var start_index = 0;
                 var end_index = 50;
                 $('.pagination_onchange').val('1');
@@ -1577,6 +1660,13 @@ function add_assignee(t) {
             $(".filter_assignee").addClass("display_hide");
         }
 
+        // priority dropdown
+        var add_alert_priority = $('.selectDropdown3');
+        if (!add_alert_priority.is(event.target) && add_alert_priority.has(event.target).length==0) {
+            $('.selectDropdown3').removeClass('new_4');
+            $('.email_che').removeClass('checked');   
+        }
+
 
     });
 
@@ -1701,7 +1791,7 @@ function add_assignee(t) {
                 part_arr.push($(this).val());
             }
         });
-        const label_txt_arr = [];
+        var lable_list = [];
         const to_email_arr = [];
         const cc_email_arr = [];
 
@@ -1731,10 +1821,14 @@ function add_assignee(t) {
                 
                 notify_as = "all";
             
-                $('.label_input_tags_txt').each(function(){
-                    if ($(this).text()) {
-                        label_txt_arr.push($(this).text());
-                    }
+                // $('.label_input_tags_txt').each(function(){
+                //     if ($(this).text()) {
+                //         label_txt_arr.push($(this).text());
+                //     }
+                // });
+                var lable = $('.lable-div-add').children('.lable-bg').children('.lable_items');
+                $.each(lable, function(key,valueObj){
+                    lable_list.push(valueObj.getAttribute('lable_list_id'));
                 });
             
                 $('.to_email_txt_tags_arr').each(function(){
@@ -1763,8 +1857,6 @@ function add_assignee(t) {
                 // var priority = n.split(/\s(.+)/)[1];
                 // console.log(m);
                 // console.log("priority text");
-               
-
 
                 
             }
@@ -1772,10 +1864,14 @@ function add_assignee(t) {
                 notify_as = "work";
             
                 // const label_txt_arr = [];
-                $('.label_input_tags_txt').each(function(){
-                    if ($(this).text()) {
-                        label_txt_arr.push($(this).text());
-                    }
+                // $('.label_input_tags_txt').each(function(){
+                //     if ($(this).text()) {
+                //         label_txt_arr.push($(this).text());
+                //     }
+                // });
+                var lable = $('.lable-div-add').children('.lable-bg').children('.lable_items');
+                $.each(lable, function(key,valueObj){
+                    lable_list.push(valueObj.getAttribute('lable_list_id'));
                 });
                 // var priority = $('.btn-select .priority_txt').text().toLowerCase();
                 var priority = $('.selectBtn3').attr('data-val');
@@ -1817,7 +1913,7 @@ function add_assignee(t) {
 
                 var add_alert_subject = $('#add_alert_mail_subject').val();
                 var add_alert_notes = $('#add_alert_mail_notes').val();
-                label_txt_arr.push("empty");
+                lable_list.push("empty");
                 var work_type = null;
                 var work_title = null;
                 var assignee = null;
@@ -1832,7 +1928,7 @@ function add_assignee(t) {
                 var assignee = null;
                 var priority = null;
                 var deu_days = null;
-                label_txt_arr.push("empty");
+                lable_list.push("empty");
                 to_email_arr.push("empty");
                 cc_email_arr.push("empty");
                 var add_alert_subject = null;
@@ -1850,27 +1946,31 @@ function add_assignee(t) {
             var h = inputAlertdue_days(deu_days);
             console.log("add alert submit");
             console.log(deu_days);
+            var add_label = $('.lable-div-add .lable-bg').length;
+            // var la = inputlabel(add_label);
+            console.log(add_label+"...label length...");
 
             // email
             var i = inputAlert_mail_sub(add_alert_subject);
             var j = inputAlert_email_note(add_alert_notes);
-            var work_label_tmp = $('.parent_div_input_check_label li').length;
+            // var work_label_tmp = $('.parent_div_input_check_label li').length;
             var to_tmp_email = $('.parent_div_input_check li').length;
             var cc_tmp_email = $('.parent_div_input_check_cc li').length;
-            var ml = inputAlertlabel(work_label_tmp);
+            // var ml = inputAlertlabel(work_label_tmp);
             var nt = inputAlertto(to_tmp_email);
             var pc = inputAlertcc(cc_tmp_email);
             var note_error = 0; 
             if (notify_as==="all") { 
-                if (f!="" || g!="" || h!="" || i!="" || j!="" || ml!="" || nt!="" || pc!="") {
+                if (f!="" || g!="" || h!="" || i!="" || j!="" || nt!="" || pc!="") {
                     $('#inputAlertworktypeErr').html(f);
                     $('#inputAlertworktitleErr').html(g);
                     $('#inputAlertdeudaysErr').html(h);
                     $('#input_email_sub_Err').html(i);
                     $('#input_email_note_Err').html(j);
-                    $('#inputlabelErr').html(ml);
+                    // $('#label_action_Err').html(ml);
                     $('#input_check_cc_Err').html(pc);
                     $('#input_check_to_Err').html(nt);
+                    // $('#label_action_Err').html(la);
 
                 }else{
                     console.log("email and work");
@@ -1890,21 +1990,27 @@ function add_assignee(t) {
             }
             else if(notify_as==="work"){
                 console.log(h);
-                if (f!="" || g!="" || h!="" || ml!="") {
+                if (f!="" || g!="" || h!="") {
                     $('#inputAlertworktypeErr').html(f);
                     $('#inputAlertworktitleErr').html(g);
                     $('#inputAlertdeudaysErr').html(h);
-                    $('#inputlabelErr').html(ml);
+                    // $('#label_action_Err').html(la);
                 }else{
                     console.log("email");
                     note_error = 1;
                 }
             }
 
+            // after no label input fill submit empty
+            if (parseInt(lable_list.length)<=0) {
+                lable_list.push("empty");
+            }
+            
             console.log("priority");
             console.log(priority);
             console.log(note_error);
             console.log(notify_as); 
+            console.log(lable_list+"...list name ")
             if (parseInt(note_error)>=1) {
                 console.log("ok");
                 $.ajax({
@@ -1918,7 +2024,7 @@ function add_assignee(t) {
                             past_hour:past_hour,
                             machine_arr:machine_arr,
                             part_arr:part_arr,
-                            label_txt_arr:label_txt_arr,
+                            lable_list:lable_list,
                             to_email_arr:to_email_arr,
                             cc_email_arr:cc_email_arr,
                             work_type:work_type,
@@ -1940,8 +2046,9 @@ function add_assignee(t) {
                                 var end_index = 50;
                                 $('.pagination_onchange').val('1');
                                 retrive_alert_data(start_index,end_index);
-                                $('#addAlert').modal('hide');
+                                $('#addAlert_modal').modal('hide');
                                 $("#overlay").fadeOut(300);
+                                console.log(res);
                             }
                         
                             
@@ -2156,7 +2263,7 @@ function add_assignee(t) {
         console.log(get_alert_id);
         console.log("alert id");
         // alert(get_alert_id);
-
+        reset_all_input("edit");
         $.ajax({
             url:"<?php echo base_url('Alert_Settings_Controller/get_particular_record'); ?>",
             method:"POST",
@@ -2168,7 +2275,7 @@ function add_assignee(t) {
             success:function(res){
                 console.log("Alert settings");
                 console.log(res);
-                alert(res);
+                // alert(res);
                
                 $('#title_alert_id').text(res[0]['alert_id']);
                 $('#edit_alert_name').val(res[0]['alert_name']);
@@ -2190,13 +2297,35 @@ function add_assignee(t) {
                     $('#edit_alert_work_title').val(res[0]['work_title']);
                     $('.edit_toggle_work_div').css('display','inline');
                     $('.edit_email_div_visibility').css('display','inline');
-                    var label_arr = res[0]['label_txt_arr'].split(',');
-                    console.log(label_arr);
-                    label_get_arr(label_arr);
+                    // var label_arr = res[0]['label_txt_arr'].split(',');
+                    // console.log(label_arr);
+                    // label_get_arr(label_arr);
+                    $(".lable-div-edit").empty();
+                    const value_lable = res[0]['lable_id'].split(',');
+                    // console.log(value_lable);
+                    value_lable.forEach(function(lable){
+                        lable_list_globle.forEach(function(lable_item){
+                            var itemsContainerlable = $();
+                            if (lable_item['lable_id'] == lable) {
+                                itemsContainerlable = itemsContainerlable.add('<div class="lable-bg">'
+                                    +'<span lable_list_id="'+lable_item['lable_id']+'" class="lable_items">'+lable_item['lable']+'</span>'
+                                    +'<span class="item-remove item-remove-lable-edit marleftalign">'
+                                        +'<i class="fa fa-times" aria-hidden="true"></i>'
+                                    +'</span>'
+                                +'</div>');
+                                $(".lable-div-edit").append(itemsContainerlable);
+                            }
+                        });
+                    });
+                    $(".lable-div-edit").addClass("margtop");
+
+
                     // $('#edit_alert_assignee').val(res[0]['assignee']);
                     $('#edit_alert_deu_days').val(res[0]['deu_days']);
                     var to_email_arr = res[0]['to_email_arr'].split(',');
                     var cc_email_arr = res[0]['cc_email_arr'].split(',');
+                    console.log(to_email_arr);
+                    console.log(cc_email_arr);
                     to_email_get_arr(to_email_arr);
                     cc_email_get_arr(cc_email_arr);
                     $('#edit_alert_mail_subject').val(res[0]['add_alert_subject']);
@@ -2231,10 +2360,30 @@ function add_assignee(t) {
                     $('#edit_alert_work_title').val(res[0]['work_title']);
                     $('.edit_toggle_work_div').css('display','inline');
                     $('.edit_email_div_visibility').css('display','none');
-                    var label_arr = res[0]['label_txt_arr'].split(',');
-                    console.log(label_arr);
-                    label_get_arr(label_arr);
+                    // var label_arr = res[0]['label_txt_arr'].split(',');
+                    // label_get_arr(label_arr);
                     // $('#edit_alert_assignee').val(res[0]['assignee']);
+
+
+                    $(".lable-div-edit").empty();
+                    const value_lable = res[0]['lable_id'].split(',');
+                    // console.log(value_lable);
+                    value_lable.forEach(function(lable){
+                        lable_list_globle.forEach(function(lable_item){
+                            var itemsContainerlable = $();
+                            if (lable_item['lable_id'] == lable) {
+                                itemsContainerlable = itemsContainerlable.add('<div class="lable-bg">'
+                                    +'<span lable_list_id="'+lable_item['lable_id']+'" class="lable_items">'+lable_item['lable']+'</span>'
+                                    +'<span class="item-remove item-remove-lable-edit marleftalign">'
+                                        +'<i class="fa fa-times" aria-hidden="true"></i>'
+                                    +'</span>'
+                                +'</div>');
+                                $(".lable-div-edit").append(itemsContainerlable);
+                            }
+                        });
+                    });
+                    $(".lable-div-edit").addClass("margtop");
+
                     $('#edit_alert_deu_days').val(res[0]['deu_days']);
 
                     // assginee
@@ -2270,7 +2419,7 @@ function add_assignee(t) {
                     var to_email_arr = res[0]['to_email_arr'].split(',');
                     var cc_email_arr = res[0]['cc_email_arr'].split(',');
                     to_email_get_arr(to_email_arr);
-                    cc_email_get_arr(cc_email_arr);
+                       cc_email_get_arr(cc_email_arr);
                 }
                 else{
                     checkbox_work.checked=false;
@@ -2341,6 +2490,7 @@ function add_assignee(t) {
         const label_txt_arr = [];
         const to_email_arr = [];
         const cc_email_arr = [];
+        var lable_list = [];
 
         var checkbox_work = document.querySelector('#work_edit_check_toggle');
         var checkbox_email = document.querySelector('#edit_email_check_toggle');
@@ -2364,10 +2514,14 @@ function add_assignee(t) {
             var notify_as = " ";
             if ((checkbox_work.checked===true) && (checkbox_email.checked===true)) {
                 notify_as = "all";
-                $('.label_input_tags_txt_edit').each(function(){
-                    if ($(this).text()) {
-                        label_txt_arr.push($(this).text());
-                    }
+                // $('.label_input_tags_txt_edit').each(function(){
+                //     if ($(this).text()) {
+                //         label_txt_arr.push($(this).text());
+                //     }
+                // });
+                var lable = $('.lable-div-edit').children('.lable-bg').children('.lable_items');
+                $.each(lable, function(key,valueObj){
+                    lable_list.push(valueObj.getAttribute('lable_list_id'));
                 });
 
             
@@ -2401,10 +2555,14 @@ function add_assignee(t) {
                 notify_as = "work";
             
                 // const label_txt_arr = [];
-                $('.label_input_tags_txt_edit').each(function(){
-                    if ($(this).text()) {
-                        label_txt_arr.push($(this).text());
-                    }
+                // $('.label_input_tags_txt_edit').each(function(){
+                //     if ($(this).text()) {
+                //         label_txt_arr.push($(this).text());
+                //     }
+                // });
+                var lable = $('.lable-div-edit').children('.lable-bg').children('.lable_items');
+                $.each(lable, function(key,valueObj){
+                    lable_list.push(valueObj.getAttribute('lable_list_id'));
                 });
                 // var priority = $('.btn-select_edit .priority_txt_edit').text().toLowerCase();
                 var priority = $('.select_edit_priority_btn').attr('data-val');
@@ -2464,12 +2622,14 @@ function add_assignee(t) {
             }
 
              // work
-            var work_label = $('.edit_parent_div_input_check_label li').length;
+            // var work_label = $('.edit_parent_div_input_check_label li').length;
+            var add_label = $('.lable-div-edit .lable-bg').length;
             var f = inputAlertworktype(work_type);
             var g = inputAlertworktitle(work_title);
             var h = inputAlertdue_days(deu_days);
             
-            var m = inputAlertlabel(work_label);
+            // var m = inputAlertlabel(work_label);
+            // var lae = inputlabel(add_label);
 
 
             console.log(deu_days);
@@ -2484,7 +2644,7 @@ function add_assignee(t) {
 
             var note_error = 0; 
             if (notify_as==="all") { 
-                if (f!="" || g!="" || h!="" || i!="" || j!="" || k!="" || l!="" || m!="") {
+                if (f!="" || g!="" || h!="" || i!="" || j!="" || k!="" || l!="") {
                     $('#inputAlert_edit_worktypeErr').html(f);
                     $('#inputAlert_edit_worktitleErr').html(g);
                     $('#inputAlert_edit_deudaysErr').html(h);
@@ -2492,7 +2652,7 @@ function add_assignee(t) {
                     $('#input_email_edit_note_Err').html(j);
                     $('#input_check_to_edit_Err').html(k);
                     $('#input_check_cc_edit_Err').html(l);
-                    $('#inputlabel_edit_Err').html(m);
+                    // $('#label_edit_Err').html(lae);
                 }else{
                   
                     note_error = 1;
@@ -2512,12 +2672,12 @@ function add_assignee(t) {
             }
             else if(notify_as==="work"){
                 console.log(h);
-                if (f!="" || g!="" || h!="" || m!="") {
+                if (f!="" || g!="" || h!="") {
                     console.log('only for work');
                     $('#inputAlert_edit_worktypeErr').html(f);
                     $('#inputAlert_edit_worktitleErr').html(g);
                     $('#inputAlert_edit_deudaysErr').html(h);
-                    $('#inputlabel_edit_Err').html(m);
+                    // $('#label_edit_Err').html(lae);
 
                 }else{
                     console.log("email");
@@ -2531,6 +2691,10 @@ function add_assignee(t) {
             console.log("priority");
             console.log(priority);
             console.log(assignee);
+            if (parseInt(lable_list.length)<=0) {
+                lable_list.push("empty");
+            }
+            // console.log(lable_list+"...edit");
             // alert('ji');
            
             if (parseInt(note_error)>=1) {
@@ -2548,7 +2712,7 @@ function add_assignee(t) {
                         alert_past_hour:alert_past_hour,
                         machine_arr:machine_arr,
                         part_arr:part_arr,
-                        label_txt_arr:label_txt_arr,
+                        lable_list:lable_list,
                         to_email_arr:to_email_arr,
                         cc_email_arr:cc_email_arr,
                         work_type:work_type,
@@ -2636,10 +2800,20 @@ function add_assignee(t) {
 
 // priority dropdown
 // for select2 priority dropdown
+var  clicks_count = 0;
 $(".selectBtn3").click(function(){
     // console.log('selectbtn3');
-    $('.selectDropdown3').toggleClass('new_4');
-    $('.email_che').toggleClass('checked');
+    // var class_Arr = $('.selectDropdown3').attr('class');
+    clicks_count = clicks_count+1;
+    // console.log(clicks_count);
+    if (parseInt(clicks_count)%2==0) {
+        $('.selectDropdown3').removeClass('new_4');
+        $('.email_che').removeClass('checked');
+    }else{
+        $('.selectDropdown3').toggleClass('new_4');
+        $('.email_che').toggleClass('checked');
+    }
+   
 });
 
 
@@ -2738,5 +2912,318 @@ $(document).on('click','.inbox_edit_assignee',function(event){
         
     $('#edit_assignee_val').attr('data-assignee-val',tmpassignee_id);
 });
+
+$(document).on('click','.suggession-lable-items',function(event){
+    var countr = $('.suggession-lable-items');
+    var indx = countr.index($(this));
+    var value = $('.lable-input-suggession:eq('+indx+')').val();
+    const itemsContainerlables = document.getElementsByClassName("lable-div-add")[0];
+
+    const item = document.createElement("div");
+
+    const itemText = document.createElement("span");
+    getLableID(itemText,value);
+    item.appendChild(itemText);
+    itemText.classList.add("lable_items");
+
+    const itemRemove = document.createElement("span");
+    itemRemove.classList.add("item-remove");
+    itemRemove.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i>';
+    itemRemove.classList.add("marleftalign");
+    item.appendChild(itemRemove);
+
+    item.classList.add("lable-bg");
+    
+    itemsContainerlables.classList.add("margtop");
+    itemsContainerlables.appendChild(item);
+
+    inputFieldlables.value = "";
+
+    itemRemove.addEventListener("click", function () {
+        itemsContainerlables.removeChild(item);
+    });
+
+    $('#dropdown-list-lables').empty();
+    document.getElementById("dropdown-list-lables").style.display="none";
+
+    lable_list_globle=[];
+    getLableList();
+});
+
+const inputFieldlables = document.getElementsByClassName("input-field-lable-add")[0];
+const itemsContainerlables = document.getElementsByClassName("lable-div-add")[0];
+inputFieldlables.addEventListener("keyup", function (event) {
+    var inputValue = inputFieldlables.value;
+    if (inputValue.length>0) {
+        document.getElementById("dropdown-list-lables").style.display="block";
+        var suggession_list = lable_list_globle.filter(item => item['lable'].toUpperCase().includes(inputValue.trim().toUpperCase()));
+        
+        $('#dropdown-list-lables').empty();
+
+        suggession_list.forEach((item,index)=>{
+            if (index < 3) {
+                $('#dropdown-list-lables').append('<div class="inbox inbox_priority suggession-lable-items" style="display: flex;">'
+                    +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
+                        +'<p class="inbox-span paddingm"><span class="suggession-lable-val">'+item['lable']+'</span></p>'
+                    +'</div>'
+                    +'<input type="text" class="lable-input-suggession radio-visible" value="'+item['lable']+'">'
+                +'</div>');
+            }
+        });
+        // Add as Final
+        $('#dropdown-list-lables').append('<div class="inbox inbox_priority suggession-lable-items" style="display: flex;">'
+                +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
+                    +'<p class="inbox-span paddingm"><span class="suggession-lable-val">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
+                +'</div>'
+                +'<input type="text" class="lable-input-suggession radio-visible" value="'+inputValue.trim()+'">'
+            +'</div>');
+
+    }else{
+        $('#dropdown-list-lables').empty();
+        document.getElementById("dropdown-list-lables").style.display="none";
+    }
+});
+
+callALL();
+function callALL(){
+    // Reset
+    lable_list_globle = [];
+
+    getLableList();
+}
+function getLableID(item,value){
+    console.log('id'+value);
+    $.ajax({
+        url:"<?php echo base_url('Alert_Settings_Controller/getLableID') ?>",
+        method:"POST",
+        cache: false,
+        async:false,
+        dataType:"json",
+        data:{
+            lable:value
+        },
+        success:function(res){
+            item.setAttribute("lable_list_id", res);
+            item.innerText=value;
+        },
+        error:function(err){
+            // alert("Something went wrong!");
+            // $("#overlay").fadeOut(300);
+        }
+    });
+}
+function getLableList(){
+    console.log('Value');
+    $.ajax({
+        url:"<?php echo base_url('Alert_Settings_Controller/getLable') ?>",
+        method:"POST",
+        cache: false,
+        async:false,
+        dataType:"json",
+        success:function(res){
+            // res.forEach(function(item){
+            //   lable_list_globle.push(item);  
+            // });
+
+            // Filter Status.........
+            $('.Filter_lables_div').append('<div class="inbox inbox_filter_lables" style="display: flex;">'
+                +'<div style="float: left;width: 20%;" class="center-align">'
+                    +'<input class="filter_val_lables" name="filter_val_lables_name" value="all" type="checkbox" checked/>'
+                +'</div>'
+                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                    +'<p class="inbox-span paddingm">All</p>'
+                +'</div>'
+            +'</div>');
+            res.forEach(function(item){
+                lable_list_globle.push(item);
+
+                $('.Filter_lables_div').append('<div class="inbox inbox_filter_lables" style="display: flex;">'
+                    +'<div style="float: left;width: 20%;" class="center-align">'
+                        +'<input class="filter_val_lables" name="filter_val_lables_name" value="'+item['lable_id']+'" type="checkbox" checked/>'
+                    +'</div>'
+                    +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                        +'<p class="inbox-span paddingm">'+item['lable']+'</p>'
+                    +'</div>'
+                +'</div>');
+            });
+        },
+        error:function(err){
+            // alert("Something went wrong!");
+            // $("#overlay").fadeOut(300);
+        }
+    });
+}
+
+
+//Lable edit
+
+$(document).on('click','.suggession-lable-items-edit',function(event){
+    var countr = $('.suggession-lable-items-edit');
+    var indx = countr.index($(this));
+    var value = $('.lable-input-suggession-edit:eq('+indx+')').val();
+    const itemsContainerlables = document.getElementsByClassName("lable-div-edit")[0];
+
+    const item = document.createElement("div");
+
+    const itemText = document.createElement("span");
+    getLableID(itemText,value);
+    item.appendChild(itemText);
+    itemText.classList.add("lable_items");
+
+    const itemRemove = document.createElement("span");
+    itemRemove.classList.add("item-remove");
+    itemRemove.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i>';
+    itemRemove.classList.add("marleftalign");
+    item.appendChild(itemRemove);
+
+    item.classList.add("lable-bg");
+    
+    itemsContainerlables.classList.add("margtop");
+    itemsContainerlables.appendChild(item);
+
+    const inputFieldEdit = document.getElementsByClassName("input-field-lable-edit")[0];
+    inputFieldEdit.value = "";
+
+    itemRemove.addEventListener("click", function () {
+        itemsContainerlables.removeChild(item);
+    });
+
+    $('#dropdown-list-lables-edit').empty();
+    document.getElementById("dropdown-list-lables-edit").style.display="none";
+
+    lable_list_globle=[];
+    getLableList();
+});
+
+
+
+// edit label function
+const inputFieldlablesEdit = document.getElementsByClassName("input-field-lable-edit")[0];
+const itemsContainerlablesEdit = document.getElementsByClassName("lable-div-edit")[0];
+inputFieldlablesEdit.addEventListener("keyup", function (event) {
+    var inputValue = inputFieldlablesEdit.value;
+    if (inputValue.length>0) {
+        document.getElementById("dropdown-list-lables-edit").style.display="block";
+        var suggession_list = lable_list_globle.filter(item => item['lable'].toUpperCase().includes(inputValue.trim().toUpperCase()));
+        
+        $('#dropdown-list-lables-edit').empty();
+
+        suggession_list.forEach((item,index)=>{
+            if (index < 3) {
+                $('#dropdown-list-lables-edit').append('<div class="inbox suggession-lable-items-edit" style="display: flex;">'
+                    +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
+                        +'<p class="inbox-span paddingm"><span class="suggession-lable-val-edit">'+item['lable']+'</span></p>'
+                    +'</div>'
+                    +'<input type="text" class="lable-input-suggession-edit radio-visible" value="'+item['lable']+'">'
+                +'</div>');
+            }
+        });
+        // Add as Final
+        $('#dropdown-list-lables-edit').append('<div class="inbox suggession-lable-items-edit" style="display: flex;">'
+                +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
+                    +'<p class="inbox-span paddingm"><span class="suggession-lable-val-edit">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
+                +'</div>'
+                +'<input type="text" class="lable-input-suggession-edit radio-visible" value="'+inputValue.trim()+'">'
+            +'</div>');
+
+    }else{
+        $('#dropdown-list-lables-edit').empty();
+        document.getElementById("dropdown-list-lables-edit").style.display="none";
+    }
+
+});
+
+$(document).on("click", ".item-remove-lable-edit", function(event){
+    var countr = $('.item-remove-lable-edit');
+    var indx = countr.index($(this));
+    $(this).parent('.lable-bg').remove();
+});
+
+
+// reset all inputs
+function reset_all_input(data_txt){
+    if(data_txt==="insert"){
+        $('#add_alert_name').val('');
+        $('#add_alert_metrics').val('');
+        $('#add_alert_relation').val('');
+        $('#add_alert_val').val('');
+        $('#add_alert_past_hour').val('');
+        reset_add_alert_machine();
+        reset_add_alert_part();
+        $('#work_check_toggle').prop('checked',false);
+        $('#email_check_toggle').prop('checked',false);
+        $('#add_alert_work_type').val('');
+        $('#add_alert_work_title').val('');
+        $('.selectBtn3').html('<div class="selectBtn3 priority_get_data_add" data-type="firstOption"> <i class="fas fa-angle-double-down" style="font: size 18px; width:18px; color: #2196F3; margin-top: 5px;"></i>&nbsp;Low</div>');
+        $('.selectBtn3').attr('data-val', '0');
+        $('.lable-div-add').empty();
+        $('#add_alert_deu_days').val('');
+        $('#assignee_val').text('Unassigned');
+        $('#assignee_val').attr('data-assignee-val','Unassigned');
+        $('.to_email_txt_tags_arr').empty();
+        $('.cc_email_txt_arr').empty();
+        $('#add_alert_mail_subject').val('');
+        $('#add_alert_mail_notes').val('');
+        $('.toggle_work_div').css('display','none');
+        $('.email_div_visibility').css('display','none');
+
+        // error message showing remove
+        $('#inputAlertNameErr').text('');
+        $('#inputAlertmetricsErr').text('');
+        $('#inputAlertrelationsErr').text('');
+        $('#inputAlertValueErr').text('');
+        $('#inputAlertpastHourErr').text('');
+        $('#input_toggle_Err').text('');
+        $('#inputAlertworktypeErr').text('');
+        $('#inputAlertworktitleErr').text('');
+        $('#inputAlertdeudaysErr').text('');
+        $('#input_check_to_Err').text('');
+        $('#input_check_cc_Err').text('');
+        $('#input_email_sub_Err').text('');
+        $('#input_email_note_Err').text('');
+
+    }
+    else if(data_txt==="edit"){
+        $('#edit_alert_name').val('');
+        $('#edit_alert_metrics').val('');
+        $('#edit_alert_relation').val('');
+        $('#edit_alert_val').val('');
+        $('#edit_alert_past_hour').val('');
+        $('#work_edit_check_toggle').prop('checked',false);
+        $('#edit_email_check_toggle').prop('checked',false);
+        $('#edit_alert_work_type').val('');
+        $('#edit_alert_work_title').val('');
+        // $('.select_edit_priority_btn ').val('');
+        $('.select_edit_priority_btn').html('<div class="select_edit_priority_option" data-type="secondOption" onclick="icon_drop_edit_priority(this)"><i class="fas fa-angle-double-down" style="font: size 18px;; width:20px; margin-top: 5px; color:#2196F3;"></i>&nbsp;Low</div>');
+        $('.select_edit_priority_btn').attr('data-val', '0');
+        $('.lable-div-edit').empty();
+        $('#edit_assignee_val').text('Unassigned');
+        $('#edit_alert_deu_days').val('');
+        $('.to_email_input_tags_txt_edit').empty();
+        $('.cc_email_input_tags_txt_edit').empty();
+        $('#edit_alert_mail_subject').val('');
+        $('#edit_alert_mail_notes').val('');
+
+
+        // error message showing
+        $('#inputedit_alertNameErr').text('');
+        $('#inputAlertEditmetricserr').text('');
+        $('#inputeditAlertrelationerr').text('');
+        $('#inputAlert_edit_ValueErr').text('');
+        $('#inputAlert_edit_pastHourErr').text('');
+        $('#inputAlert_edit_worktypeErr').text('');
+        $('#inputAlert_edit_worktitleErr').text('');
+        $('#inputAlert_edit_deudaysErr').text('');
+        $('#input_check_to_edit_Err').text('');
+        $('#input_check_cc_edit_Err').text('');
+        $('#input_email_edit_sub_Err').text('');
+        $('#input_email_edit_note_Err').text('');
+
+
+    }
+
+
+
+}
 
 </script>

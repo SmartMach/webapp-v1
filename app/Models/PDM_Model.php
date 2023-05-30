@@ -313,7 +313,7 @@ class PDM_Model extends Model{
         return $res[0]['tool_changeover_id'];
     }
 
-    public function updateDownGraph($data,$machineRef,$splitRef,$timeArray,$durationArray,$last_updated_by,$split_array,$date_array){
+    public function updateDownGraph($data,$machineRef,$splitRef,$timeArray,$durationArray,$last_updated_by,$split_array,$date_array,$target){
 
         $db = \Config\Database::connect($this->site_creation);
         $builder = $db->table('pdm_downtime_reason_mapping');
@@ -455,6 +455,7 @@ class PDM_Model extends Model{
                         "event_start_time"=>$sstart,
                         "shift_id"=>$data[8],
                         "machine_event_id"=>$machineRef,
+                        "target"=>$target,
                         "last_updated_by" => $last_updated_by,
                     ];
 
@@ -489,8 +490,7 @@ class PDM_Model extends Model{
                 }
                 else{
                     
-                    //  return $previous_reason;
-                    
+                    //  return $previous_reason; 
                     if ($previous_reason == 2 OR $previous_reason == 3) {
                         $data =[
                             "shift_date" =>$data[7],

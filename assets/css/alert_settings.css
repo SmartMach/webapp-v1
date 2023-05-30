@@ -51,7 +51,7 @@
     font-size:12px;
     font-weight:500;
     color:#8c8c8c;
-    border:1px solid #ced4da;
+    /* border:1px solid #ced4da; */
     border-radius:0.25rem;
 }
 
@@ -114,7 +114,10 @@
         width:2rem;
         border-radius:0.2rem;
         border:1px solid #A6A6A6; 
-        padding:0.6rem;
+        /* padding:0.6rem; */
+        font-weight:600;
+        font-size: 0.8rem;
+        text-align: center;
     }
     .pagination_text_div{
         font-size:12px;
@@ -276,17 +279,18 @@
       .filter_checkbox_option_div{
         display: none;
         border: 1px #dadada solid;
-        z-index:250;
+        z-index:1100;
         position: relative;
         background:white;
         /* padding:0.4rem; */
         border-radius:0.25rem;
-        min-width:8.7rem;
+        min-width:9rem;
         min-height:max-content;
         max-height:10rem; 
         overflow:hidden;
         overflow-y:scroll;
         overflow-x:hidden;
+        position: absolute;
       }
 
 
@@ -309,7 +313,7 @@
             font-size:12px;
             font-weight:500;
             color:#8c8c8c;
-            border:1px solid #ced4da;
+            /* border:1px solid #ced4da; */
             border-radius:0.25rem;
         }
 
@@ -956,7 +960,7 @@
   max-height: 12rem;
   overflow-y: auto; 
   background-color: white;
-  /* position: absolute; */
+  position: absolute;
   z-index: 1003;
   max-width: 12rem;
   border-radius: 5px;
@@ -1016,7 +1020,7 @@
 }
 .select3 .selectBtn3 {
 background: var(--bg1);
-padding: 10px;
+/* padding: 10px; */
 box-sizing: border-box;
 border-radius: 3px;
 width: 100%;
@@ -1203,4 +1207,11 @@ visibility: visible;
 
 .email_checkeck_edit.checked{
   z-index: -1;
+}
+
+
+.alert_font_css{
+  font-size: 1rem;
+  font-family: 'Roboto' sans-serif;
+  font-style: normal;
 }

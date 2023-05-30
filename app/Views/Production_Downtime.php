@@ -812,13 +812,19 @@ input[type=number] {
                   <div class="col-sm-1 p3 paddingm">
                     <p class="basic_header">CATEGORY</p>
                   </div>
-                  <div class="col-sm-2 p3 paddingm" style="width:15%;">
+                  <div class="col-sm-2 p3 paddingm reason_header" style="width:15%;">
                     <p class="basic_header">REASON</p>
                   </div>
-                  <div class="col-sm-2 p3 paddingm" style="width:15%;">
+                  <!-- target header -->
+                  <div class="col-sm-2 p3 paddingm target_header" style="width:10%;display:none;">
+                    <p class="basic_header" style="margin:auto;margin-block-start:revert;margin-top:1rem;">Target</p>
+                  </div>
+                  <!-- target header end -->
+
+                  <div class="col-sm-2 p3 paddingm tool_name_header" style="width:15%;">
                     <p class="basic_header">TOOL NAME</p>
                   </div>
-                  <div class="col-sm-2 p3 paddingm" style="width:15%;">
+                  <div class="col-sm-2 p3 paddingm part_name_header" style="width:15%;">
                     <p class="basic_header">PART NAME</p>
                   </div>
                   <div class="col-sm-2 p3 paddingm" style="justify-content: center;width:15%;">
@@ -964,6 +970,9 @@ function filter_show_hide(){
   $('.edit_display4').css('display','inline');
   $('.doneEdit').css('display','none');
   $('.reasonInfo').css('display','inline');
+
+  target_input_function_handle("remove",0);
+
 }
 
 // reset category dropdwon
@@ -1935,7 +1944,7 @@ $(document).on('change','#Production_shift_date',function(){
     var production_machine_name = $('#Production_MachineName').val();
     var production_shift_date = $('#Production_shift_date').val();
     // $('#RejectShift').empty();
-  
+    
     $('#chart').empty();
     $('#RejectShift').empty();
     $('.startTimeVal').css("display","none");
@@ -1984,6 +1993,7 @@ $(document).on('change','#Production_shift_date',function(){
   });
     //To find the current part in Machine...................
   findPart(production_shift_date);
+ 
 });
 
 function findPart(production_shift_date){
@@ -2094,7 +2104,7 @@ $(document).on('change','#RejectShift',function(){
     
     var category_tmp = null;
     downtime_reason_filter(category_tmp);
-
+    target_input_function_handle("remove",0);
 
     // $('.category_drp_checkbox').attr('checked',true);
 
@@ -2249,6 +2259,7 @@ $(document).on("click", ".deleteRec", function(){
       var elements = $();
       var id = 0;
       $('.DownReason:eq('+index_value+')').empty();
+      target_input_function_handle("remove",0);
       // console.log(down_reason_collection);
       down_reason_collection.forEach(function(item){
         if (val == item[1]) {
@@ -2293,7 +2304,7 @@ $(document).on("click", ".deleteRec", function(){
       var index_value = count.index($(this));
       for (var i = 1 ; i <= down_reason.length; i++) {
         if (i == val) {
-          $(this).siblings('.ReasonName').text(down_reason[i-1]);;
+          $(this).siblings('.ReasonName').text(down_reason[i-1]);
         }
       }
       if (val==2 || val==3) {
@@ -2302,6 +2313,9 @@ $(document).on("click", ".deleteRec", function(){
         $('.edit_input4:eq('+index_value+')').css("display","inline");
         $('.edit_display3:eq('+index_value+')').css("display","none");
         $('.edit_display4:eq('+index_value+')').css("display","none");
+        // target 
+        target_input_function_handle("add",index_value);
+      
         // document.getElementsByClassName('edit_input3')[index_value].style.display="inline";
         // document.getElementsByClassName('edit_input4')[index_value].style.display="inline";
         // document.getElementsByClassName('edit_display3')[index_value].style.display="none";
@@ -2313,6 +2327,10 @@ $(document).on("click", ".deleteRec", function(){
         $('.edit_input4:eq('+index_value+')').css("display","none");
         $('.edit_display3:eq('+index_value+')').css("display","inline");
         $('.edit_display4:eq('+index_value+')').css("display","inline");
+
+        // target display none
+        target_input_function_handle("remove",0);
+        
         // document.getElementsByClassName('edit_input3')[index_value].style.display="none";
         // document.getElementsByClassName('edit_input4')[index_value].style.display="none";
         // document.getElementsByClassName('edit_display3')[index_value].style.display="inline";
@@ -2466,14 +2484,17 @@ $(document).on("click", ".deleteRec", function(){
                   +'</select>'
                   +'<p class="paraEdit ReasonName edit_display2" id="ReasonName">'+reason+'</p>'
                 +'</div>'
-                +'<div class="col-sm-2 col marleft" style="width:14.8%;">'
+                +'<div class="col-sm-2 col marleft Downtime_target" style="width:10%;display:none;padding:0.3rem;">'
+                +'<input type="text" class="form-control target_input_cl" id="target_input" style="width:100%;" value="0">'
+                +'</div>'
+                +'<div class="col-sm-2 col marleft downtime_tool_name_div" style="width:14.8%;">'
                   +'<select class="form-select inEditValue marginlr DownTool edit_input3 font-size">'
                       // +'<option>Tool Name1</option>'
                       // +'<option>Tool Name2</option>'
                   +'</select>'
                   +'<p class="paraEditValue  edit_display3 ToolName">'+toolName+'</p>'
                 +'</div>'
-                +'<div class="col-sm-2 col marleft" style="width:14.9%;">'
+                +'<div class="col-sm-2 col marleft downtime_part_name_div" style="width:14.9%;">'
 
                   // +'<select class="form-select inEditValue marginlr DownPart edit_input4 font-size">'
                   //     // +'<option>Part Name1</option>'
@@ -2761,7 +2782,7 @@ function getDownTimeGraph(){
                     },
                     events:{
                       click:function(event, chartContext, config){
-
+                        target_input_function_handle("remove",0);
                         var l_l = config.globals.series.length;
 
                         var production_shift_date = $('#Production_shift_date').val();
@@ -3339,6 +3360,9 @@ $(document).on('click','.doneEdit',function(){
       var category = document.getElementsByClassName('DownCategoryValue')[index].value;
       var reason = document.getElementsByClassName('DownReasonValue')[index].value;
       var toolname = document.getElementsByClassName('DownTool')[index].value;
+      var target = document.getElementsByClassName('target_input_cl')[index].value;
+      console.log(target);
+      console.log("top target input");
       // var partname = document.getElementsByClassName('DownPart')[index].value;
 
       // one tool multi part
@@ -3367,6 +3391,7 @@ $(document).on('click','.doneEdit',function(){
     // console.log(calendar_array);
 
     // Ajax function for update particular splitted value in database
+    
     $.ajax({
       url: "<?php echo base_url('PDM_controller/updateDownGraph'); ?>",
       type: "POST",
@@ -3378,7 +3403,8 @@ $(document).on('click','.doneEdit',function(){
           DurationArray:data_array,
           Data:dataArray,
           split_arr:split_ref,
-          date_array:calendar_array
+          date_array:calendar_array,
+          target:target,
       },
       success:function(res_Site){
         // console.log(res_Site);
@@ -3409,6 +3435,7 @@ $(document).on('click','.doneEdit',function(){
         $("#overlay").fadeOut(300);
       }
     });
+    
 });
 
   $(document).on('change','.sval',function(){
@@ -4530,5 +4557,30 @@ function notes_submit(){
 //   alert('hi');
 // });
 
+
+// target input ui display visibility control function 
+function target_input_function_handle(var_str,index_value){
+  if (var_str==="add") {
+    $('.target_header').css('display','inline');
+    $('.reason_header').css('width','11%');
+    $('.tool_name_header').css('width','13.4%');
+    $('.part_name_header').css('width','13.4%');
+    $('.DownReasonDiv:eq('+index_value+')').css("width",'11%');
+    $('.Downtime_target:eq('+index_value+')').css('display','inline');
+    $('.downtime_part_name_div:eq('+index_value+')').css("width",'13.2%');
+    $('.downtime_tool_name_div:eq('+index_value+')').css("width",'13.4%');
+    $('.action_div:eq('+index_value+')').css('width','14%');
+  }else if(var_str==="remove"){
+    $('.target_header').css('display','none');
+    $('.reason_header').css('width','15%');
+    $('.tool_name_header').css('width','15%');
+    $('.part_name_header').css('width','15%');
+    $('.DownReasonDiv').css("width",'15%');
+    $('.Downtime_target').css('display','none');
+    $('.downtime_part_name_div').css("width",'14.8%');
+    $('.downtime_tool_name_div').css("width",'14.8%');
+    $('.action_div').css('width','18%');
+  }
+}
 
 </script>
