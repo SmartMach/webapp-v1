@@ -2833,7 +2833,7 @@ function filter_drp_graph_all(){
 
     setTimeout(() => {
        graph_all_fun(); 
-    }, 1000);
+    }, 500);
 }
 
 // graph all functions
