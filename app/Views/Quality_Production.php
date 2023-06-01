@@ -172,15 +172,15 @@
     <div class="grid-container_graph">
       <div class="row paddingm" style="height:max-content;width:100%;display:flex;flex-direction:row;justify-content:space-evenly;align-items:center;margin-bottom:0.3rem;">
         <div class="grid-item_graph  paddingm" style="margin-top: 1.5rem;width:49%;margin-left:0.5rem;height:18rem;">
-          <div class="graph-div-header">
-            <p class="paddingm fontBold financial_font">Cost of Poor Quality (COPQ) by Reason</p>
+          <div class="graph-div-header" style="margin-left:1rem;">
+            <p class="paddingm fontBold financial_font" style="margin-left:0;">Cost of Poor Quality (COPQ) by Reason</p>
           </div>
-          <div class="valueMarLeft">
-            <div style="float: left;width: 10%">
-              <p class="paddingm headTitle total-margin">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0.8rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft COPQP" ></span></p>
+          <div class="valueMarLeft" style="margin-left:1rem;">
+            <div style="float: left;width: 17%;">
+              <p class="paddingm headTitle total-margin" style="margin-left:0rem;">TOTAL</p>
+              <p class="paddingm valueGraph" style="margin-left:0rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm COPQP" ></span></p>
             </div>
-            <div style="float: left;width:90%;" class="filter_div">
+            <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing Reasons_COPQP">
 
@@ -243,22 +243,22 @@
               </div>
             </div>
           </div>
-          <div class="parent_graph_quality_opportunity parent_graph_div parent-style">
+          <div class="parent_graph_quality_opportunity parent_graph_div parent-style" style="padding-left:1rem;padding-right:1rem;">
             <div class="child_graph_quality_opportunity child-style">
               <canvas id="COPQP" height="110"></canvas>
             </div>
           </div>
         </div>
         <div class="grid-item_graph  paddingm" style="margin-top: 1.5rem;width:49%;margin-right:0.5rem;height:18rem;">
-          <div class="graph-div-header">
-            <p class="paddingm fontBold financial_font">Quality Rejection by Reason</p>
+          <div class="graph-div-header" style="margin-left:1rem;">
+            <p class="paddingm fontBold financial_font" style="margin-left:0;">Quality Rejection by Reason</p>
           </div> 
-          <div class="valueMarLeft">
-            <div style="float: left;width: 10%">
-              <p class="paddingm headTitle total-margin">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0.4rem;"><span class="paddingm valueMarLeft CRBR" ></span></p>
+          <div class="valueMarLeft" style="margin-left:1rem;">
+            <div style="float: left;width: 17%">
+              <p class="paddingm headTitle total-margin" style="margin-left:0rem;">TOTAL</p>
+              <p class="paddingm valueGraph" style="margin-left:0rem;"><span class="paddingm  CRBR" ></span></p>
             </div>
-            <div style="float: left;width:90%;" class="filter_div">
+            <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
@@ -320,7 +320,7 @@
               </div>
             </div>
           </div>
-          <div class="parent_graph_quality_reason_wise parent_graph_div parent-style">
+          <div class="parent_graph_quality_reason_wise parent_graph_div parent-style" style="padding-left:1rem;padding-right:1rem;">
             <div class="child_graph_quality_reason_wise child-style">
               <canvas id="QRBR" height="110"></canvas>
             </div>
@@ -329,15 +329,15 @@
       </div>
       <div class="row paddingm" style="height: max-content;width:100%;display:flex;flex-direction:row;justify-content:space-evenly;alig-items:center;margin-bottom:0.3rem;">
         <div class="grid-item_graph  paddingm" style="width:49%;margin-left:0.5rem;height:18rem;">
-          <div class="graph-div-header">
-            <p class="paddingm fontBold financial_font">Cost of Poor Quality (COPQ) by Machines</p>
+          <div class="graph-div-header" style="margin-left:1rem;">
+            <p class="paddingm fontBold financial_font" style="margin-left:0rem;">Cost of Poor Quality (COPQ) by Machines</p>
           </div>
-          <div class="valueMarLeft">
-            <div style="float: left;width: 10%">
-              <p class="paddingm headTitle total-margin">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0.8rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft COPQM" ></span></p>
+          <div class="valueMarLeft" style="margin-left:1rem;">
+            <div style="float: left;width: 17%;">
+              <p class="paddingm headTitle total-margin" style="margin-left:0;">TOTAL</p>
+              <p class="paddingm valueGraph" style="margin-left:0rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm  COPQM" ></span></p>
             </div>
-            <div style="float: left;width:90%;" class="filter_div">
+            <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
@@ -399,22 +399,22 @@
               </div>
             </div>
           </div>
-          <div class="parent_graph_quality_machine_wise parent_graph_div parent-style">
+          <div class="parent_graph_quality_machine_wise parent_graph_div parent-style" style="padding-left:1rem;padding-right:1rem;">
             <div class="child_graph_quality_machine_wise child-style">
               <canvas id="COPQM" height="110"></canvas>
             </div>  
           </div>
         </div>
         <div class="grid-item_graph   paddingm" style="width:49%;margin-right:0.5rem;height:18rem;">
-          <div class="graph-div-header">
-            <p class="paddingm fontBold financial_font">Quality Rejection by Machines with Reasons</p>
+          <div class="graph-div-header" style="margin-left:1rem;">
+            <p class="paddingm fontBold financial_font" style="margin-left:0rem;">Quality Rejection by Machines with Reasons</p>
           </div>
-          <div class="valueMarLeft">
-            <div style="float: left;width: 10%">
-              <p class="paddingm headTitle total-margin">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0.4rem;"><span class="paddingm valueMarLeft CRBMR" ></span></p>
+          <div class="valueMarLeft" style="margin-left:1rem;">
+            <div style="float: left;width: 17%;">
+              <p class="paddingm headTitle total-margin" style="margin-left:0;">TOTAL</p>
+              <p class="paddingm valueGraph" style="margin-left:0rem;"><span class="paddingm  CRBMR" ></span></p>
             </div>
-            <div style="float: left;width:90%;" class="filter_div">
+            <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
@@ -478,7 +478,7 @@
 
 
           </div>
-          <div class="parent_graph_quality_machine_reason parent_graph_div parent-style">
+          <div class="parent_graph_quality_machine_reason parent_graph_div parent-style" style="padding-left:1rem;padding-right:1rem;">
             <div class="child_graph_quality_machine_reason child-style">
               <canvas id="CRBMR" height="110"></canvas>
             </div>
@@ -488,15 +488,15 @@
       
       <div class="row paddingm" style="height:max-content;width:100%;display:flex;flex-direction:row;justify-content:space-evenly;align-items:center;margin-bottom:0.5rem">
         <div class="grid-item_graph  paddingm" style="width:49%;margin-left:0.5rem;height:18rem;">
-          <div class="graph-div-header">
-            <p class="paddingm fontBold financial_font">Cost of Poor Quality (COPQ) by Parts</p>
+          <div class="graph-div-header" style="margin-left:1rem;">
+            <p class="paddingm fontBold financial_font" style="margin-left:0rem;">Cost of Poor Quality (COPQ) by Parts</p>
           </div>
-          <div class="valueMarLeft">
-            <div style="float: left;width: 10%">
-              <p class="paddingm headTitle total-margin">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0.8rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft CQRP" ></span></p>
+          <div class="valueMarLeft" style="margin-left:1rem;">
+            <div style="float: left;width: 17%;">
+              <p class="paddingm headTitle total-margin" style="margin:0;">TOTAL</p>
+              <p class="paddingm valueGraph" style="margin-left:0rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm  CQRP" ></span></p>
             </div>
-            <div style="float: left;width:90%;" class="filter_div">
+            <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
@@ -558,22 +558,22 @@
               </div>
             </div>
           </div>
-          <div class="parent_graph_quality_parts parent_graph_div parent-style">
+          <div class="parent_graph_quality_parts parent_graph_div parent-style" style="padding-left:1rem;padding-right:1rem;">
             <div class="child_graph_quality_parts child-style">
               <canvas id="CQRP" height="110"></canvas>
             </div>
           </div>
         </div>
         <div class="grid-item_graph  paddingm" style="width:49%;margin-right:0.5rem;height:18rem;">
-          <div class="graph-div-header">
-            <p class="paddingm fontBold financial_font">Quality Rejection by Parts with Reasons</p>
+          <div class="graph-div-header" style="margin-left:1rem;">
+            <p class="paddingm fontBold financial_font" style="margin-left:0rem;">Quality Rejection by Parts with Reasons</p>
           </div>
-          <div class="valueMarLeft">
-            <div style="float: left;width: 10%">
-              <p class="paddingm headTitle total-margin">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0.4rem;"><span class="paddingm valueMarLeft CQRPR" ></span></p>
+          <div class="valueMarLeft" style="margin-left:1rem;">
+            <div style="float: left;width: 17%;">
+              <p class="paddingm headTitle total-margin" style="margin-left:0;">TOTAL</p>
+              <p class="paddingm valueGraph" style="margin-left:0rem;"><span class="paddingm  CQRPR" ></span></p>
             </div>
-            <div style="float: left;width:90%;" class="filter_div">
+            <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
@@ -635,7 +635,7 @@
               </div>
             </div>
           </div>
-          <div class="parent_graph_quality_part_reason parent_graph_div parent-style">
+          <div class="parent_graph_quality_part_reason parent_graph_div parent-style" style="padding-left:1rem;padding-right:1rem;">
             <div class="child_graph_quality_part_reason child-style">
               <canvas id="CQRPR" height="110"></canvas>
             </div>
@@ -648,9 +648,9 @@
     <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav">
       <div class="container-fluid paddingm ">
         <div class="box rightmar" style="margin-left: 0.5rem;width: 10rem;">
-            <div class="input-box" style="display: flex;">
-              <input type="number" class="form-control font_weight font_color" name="" id="pagination_val" style="width: 3.5rem;">
-              <div class="box rightmar center-align font_color font-size-lable" style="margin-left: 0.5rem;">
+            <div class="input-box" style="display: flex;font-size:12px;">
+              <input type="number" class="form-control font_weight font_color" name="" id="pagination_val" style="width: 2rem;height:2rem;margin-right:0.5rem;padding:0;font-size:12px;text-align:center;">
+              <div class="box rightmar center-align font_color font-size-lable" >
                 <p class="paddingm">of <span id="total_pagination"></span> pages</p>
               </div>
             </div>
@@ -4862,15 +4862,25 @@ $('#pagination_val').on('change', function(event) {
 
 function filter_table_data(){
   $('.contentQualityFilter').empty();
-  var pagination_length=10;
+  var pagination_length=50;
   total_pagination = Math.ceil((filter_array.length)/(pagination_length));
   $("#total_pagination").html(total_pagination);
   var x = $("#pagination_val").val();
   filter_array.forEach(function(value, index) {
     if ((index > (x*pagination_length)-(pagination_length+1)) && (index < (x*pagination_length))) {
       var elements = $();
-     
       
+      console.log(value['notes']);
+      console.log(typeof value['notes']);
+      var notes_msg = "";
+      if (value['notes']===undefined) {
+        notes_msg = " ";
+      }else if(value['notes'] === ""){
+        notes_msg = " ";
+      }
+      else{
+        notes_msg = value['notes'];
+      }
       elements = elements.add('<div id="settings_div">'
                   +'<div class="row paddingm" style="height:3.8rem;">'
                     +'<div class="col-sm-1 col marleft"><p class="rejection_font_color">'+value['from_date']+'</p></div>'
@@ -4885,7 +4895,7 @@ function filter_table_data(){
                     // +'<div class="col-sm-1 col " style="justify-content:center;"><div class="rejection_font_color"><img src="<?php echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" style="height:1.4rem;width:1.4rem;"></div></div>'
                     +'<div class="col-sm-1 col " style="justify-content:center;"><div class="rejection_font_color notes_check"><img src="<?php echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" style="height:1.4rem;width:1.4rem;" onmouseover="notes_hover(this)"  onmouseout="mouse_out_check(this)"></div></div>'
                     +'<div class="notes_display" style="">'
-                            +'<p >'+value['notes']+'</p>'
+                            +'<p >'+notes_msg+'</p>'
                     +'</div>'
                   +'</div>'
                 +'</div>');

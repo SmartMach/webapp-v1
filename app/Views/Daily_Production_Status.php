@@ -198,13 +198,11 @@
               <div class="d-flex" style="margin-top:0.5rem;">
                 <!-- calendar box -->
                   <div class="float-end " style="display:flex;flex-direction:row-reverse;">
-                    <!-- <div class="" style="display:flex;flex:wrap;flex-direction:row;padding:5px 10px 5px;padding-left:1px;">
-                      <i class="fa fa-calendar-alt date_selection_icon" style="color:#a6a6a6;align-self:center;padding-right:1rem;font-size:x-large;"></i> 
-                      <span style="color:grey;font-size:14px;text-align:center;margin:auto;margin-bottom:unset;margin-right:1.4rem;" id="change_date">2022-12-05</span>
-                    </div> -->
-                    <div class="fontuser" style="width:83%;">
-                        <input type="text" class="form-control container-input" id="changed_date">
-                        <i class="fa fa-calendar click_font" ></i>
+                   
+                    <div class="fontuser" style="width:100%;">
+                    <i class="fa fa-calendar click_font" style="position:absolute;z-index:100;margin-left:1rem;margin-top:0.7rem;"></i>
+                        <input type="text" class="form-control container-input" id="changed_date" style="position:relative;">
+                      
                     </div>
                   </div>
               </div>

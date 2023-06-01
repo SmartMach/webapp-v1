@@ -1365,16 +1365,16 @@ function fill_machine_dropdown(){
           
 
             // reason oppcost graph
-            getfilter_oppcost_reason();
+            // getfilter_oppcost_reason();
 
-            // reason duration graph
-            getfilter_duration_reason();
+            // // reason duration graph
+            // getfilter_duration_reason();
 
-            // machine wise oppcost
-            getfilter_machine_oppcost();
+            // // machine wise oppcost
+            // getfilter_machine_oppcost();
 
-            // machine wise and duration wise graph filter function
-            getfilter_machine_reason_duration();
+            // // machine wise and duration wise graph filter function
+            // getfilter_machine_reason_duration();
 
             
         },
@@ -1544,16 +1544,16 @@ function downtime_reason_filter(){
 
             // graph 
             // reason oppcost graph
-            getfilter_oppcost_reason();
+            // getfilter_oppcost_reason();
 
-            // // reason duration graph
-            getfilter_duration_reason();
+            // // // reason duration graph
+            // getfilter_duration_reason();
 
-            // // machine wise oppcost
-            getfilter_machine_oppcost();
+            // // // machine wise oppcost
+            // getfilter_machine_oppcost();
 
-            // // machine wise and duration wise graph filter function
-            getfilter_machine_reason_duration();
+            // // // machine wise and duration wise graph filter function
+            // getfilter_machine_reason_duration();
 
         
         },
@@ -2804,28 +2804,50 @@ $(document).ready(function(){
     // load function
     // myfun_load();
     // machine dropdown record filling function
-    fill_machine_dropdown();
+  
 
     // part dropdown record filling
-    fill_part_dropdown();
+   
 
   
     // created by dropdown record filling
-    fill_created_by();
+  
 
     // downtime reasons function
     // var temp1 = null;
-    downtime_reason_filter();
+   
    
 
-   
-   
+    filter_drp_graph_all();
+  
+
+});
+
+
+// all functions filter drp and graph function calling main function
+function filter_drp_graph_all(){
+    fill_machine_dropdown();
+    fill_part_dropdown();
+    fill_created_by();
+    downtime_reason_filter();
+
+    setTimeout(() => {
+       graph_all_fun(); 
+    }, 500);
+}
+
+// graph all functions
+function graph_all_fun(){
+    getfilter_oppcost_reason();
+    getfilter_duration_reason();
+    getfilter_machine_oppcost();
+    getfilter_machine_reason_duration();
+     
     var end_index = 50;
     var start_index = 0;
     // filter function apply
     filter_after_filter(end_index,start_index);
-
-});
+}
 
 
 // onblur function change input filter
@@ -2842,36 +2864,40 @@ $(document).on('blur','.fromDate',function(event){
     // load function
     // myfun_load();
     // machine dropdown record filling function
-    fill_machine_dropdown();
+    // fill_machine_dropdown();
 
-    // part dropdown record filling
-    fill_part_dropdown();
+    // // part dropdown record filling
+    // fill_part_dropdown();
 
   
-    // created by dropdown record filling
-    fill_created_by();
+    // // created by dropdown record filling
+    // fill_created_by();
 
-    // downtime reasons function
-    // var temp = null;
-    downtime_reason_filter();
+    // // downtime reasons function
+    // // var temp = null;
+    // downtime_reason_filter();
 
-    // // reason oppcost graph
-    // getfilter_oppcost_reason();
+    // // // reason oppcost graph
+    // // getfilter_oppcost_reason();
 
-    // // reason duration graph
-    // getfilter_duration_reason();
+    // // // reason duration graph
+    // // getfilter_duration_reason();
 
-    // // machine wise oppcost
-    // getfilter_machine_oppcost();
+    // // // machine wise oppcost
+    // // getfilter_machine_oppcost();
 
-    // // machine wise and duration wise graph filter function
-    // getfilter_machine_reason_duration();
+    // // // machine wise and duration wise graph filter function
+    // // getfilter_machine_reason_duration();
 
 
-    var end_index = 50;
-    var start_index = 0;
-    // filter function apply
-    filter_after_filter(end_index,start_index);
+    // var end_index = 50;
+    // var start_index = 0;
+    // // filter function apply
+    // filter_after_filter(end_index,start_index);
+
+    
+    filter_drp_graph_all();
+  
 });
 
 // to date onblur function
@@ -2879,48 +2905,51 @@ $(document).on('blur','.toDate',function(event){
 
     event.preventDefault();  
 
-    // preloader function on load
+    // // preloader function on load
     $("#overlay").fadeIn(400);
 
-    // load function
-    // myfun_load();
-    // machine dropdown record filling function
-    fill_machine_dropdown();
+    // // load function
+    // // myfun_load();
+    // // machine dropdown record filling function
+    // fill_machine_dropdown();
 
-    // part dropdown record filling
-    fill_part_dropdown();
+    // // part dropdown record filling
+    // fill_part_dropdown();
 
   
-    // created by dropdown record filling
-    fill_created_by();
+    // // created by dropdown record filling
+    // fill_created_by();
 
-    // downtime reasons function
-    // var temp = null;
-    downtime_reason_filter();
+    // // downtime reasons function
+    // // var temp = null;
+    // downtime_reason_filter();
 
-    //graph filter reset category dropdown
+    // //graph filter reset category dropdown
         
-    // // reason oppcost graph
-    // getfilter_oppcost_reason();
+    // // // reason oppcost graph
+    // // getfilter_oppcost_reason();
 
-    // // reason duration graph
-    // getfilter_duration_reason();
+    // // // reason duration graph
+    // // getfilter_duration_reason();
 
-    // // machine wise oppcost
-    // getfilter_machine_oppcost();
+    // // // machine wise oppcost
+    // // getfilter_machine_oppcost();
 
-    // // machine wise and duration wise graph filter function
-    // getfilter_machine_reason_duration();
+    // // // machine wise and duration wise graph filter function
+    // // getfilter_machine_reason_duration();
 
 
 
 
     $('#pagination_val').val('1');
 
-    var end_index = 50;
-    var start_index = 0;
-    // filter function apply
-    filter_after_filter(end_index,start_index);
+    // var end_index = 50;
+    // var start_index = 0;
+    // // filter function apply
+    // filter_after_filter(end_index,start_index);
+    
+    filter_drp_graph_all();
+  
 });
 
 </script>

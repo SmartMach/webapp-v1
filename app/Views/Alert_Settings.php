@@ -208,7 +208,7 @@
                                 </select>
                                 <div class="filter_overSelect_categorygp"></div>
                             </div>
-                            <div class="filter_checkboxes_categorygp alert_file_part_div" style="overflow-y:auto;">
+                            <div class="filter_checkboxes_categorygp alert_file_part_div" style="overflow-y:auto;overflow-x:hidden;">
                                 <!-- options in progress -->
                                
                             </div>
@@ -283,7 +283,7 @@
                                 </select>
                                 <div class="filter_overSelect_categorygp"></div>
                             </div>
-                            <div class="filter_checkboxes_categorygp filter_alert_assignee_div" style="overflow-y:auto;">
+                            <div class="filter_checkboxes_categorygp filter_alert_assignee_div" style="overflow-y:auto;overflow-x:hidden;">
                                
                             </div>
                         </div>
@@ -1329,7 +1329,7 @@ function add_assignee(t) {
                 +'</div>');
 
                 res['machine_arr'].forEach(function(item){
-                    element = element.add('<div class="add_alert_box_flex add_alert_machine_click" style="position: relative;margin:0;top:50%;">'
+                    element = element.add('<div class="add_alert_box_flex add_alert_machine_click" style="position: relative;margin:0;top:50%;display:flex;flex-direction:row;align-items:center;">'
                     +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;top:30%;">'
                         +'<input type="checkbox" id="one" class="add_alert_machine1" value="'+item.machine_id+'" />'
                     +'</div>'
@@ -1624,6 +1624,18 @@ function add_assignee(t) {
         var part_add_alert = $('.add_alert_part_drp');
         if (!part_add_alert.is(event.target) && part_add_alert.has(event.target).length==0) {
             part_add_alert.hide();
+        }
+
+        // machine multi select dropdown edit alert
+        var machine_reason_edit = $('.edit_alert_machine_drp');
+        if (!machine_reason_edit.is(event.target) && machine_reason_edit.has(event.target).length==0) {
+            machine_reason_edit.hide();
+        }
+
+        // part multi select dropdown edit alert
+        var part_reason_edit = $('.edit_alert_part_drp');
+        if (!part_reason_edit.is(event.target) && part_reason_edit.has(event.target).length==0) {
+            part_reason_edit.hide();
         }
 
 
