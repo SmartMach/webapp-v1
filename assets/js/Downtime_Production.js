@@ -340,7 +340,13 @@ $(document).on('click','.filter_check_cb',function(event){
     var index_val = count1.index($(this));
     var check_if = $('.created_by_checkbox');
     if (parseInt(index_val)===0) {
-        reset_created_by();
+       
+        if (check_if[0].checked==false) {
+            reset_created_by();
+
+        }else{
+            $('.created_by_checkbox').removeAttr('checked');
+        }
     }else if(parseInt(index_val)>0){
         if (check_if[index_val].checked === false) {
         check_if[index_val].checked=true;
@@ -385,7 +391,13 @@ $(document).on('click','.filter_check_r',function(event){
     var index_reason = count_reason.index($(this));
     var check_if = $('.reason_checkbox');
     if (parseInt(index_reason)==0) {
-        reset_reason();
+       
+        if (check_if[0].checked==false) {
+            reset_reason();
+
+        }else{
+            $('.reason_checkbox').removeAttr('checked');
+        }
     }else{
         if (check_if[index_reason].checked=== false) {
             check_if[index_reason].checked=true;
@@ -989,7 +1001,7 @@ $(document).on('click','.filter_check_reasongp3',function(event){
             reset_reason_gp3();
 
         }else{
-            $('.reasongp_checkbox2').removeAttr('checked');
+            $('.reasongp_checkbox3').removeAttr('checked');
         }
     }else{
         if (check_if3[index_reason_gp3].checked==false) {

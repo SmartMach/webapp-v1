@@ -14,7 +14,6 @@
 
 <!-- style css -->
 <style>
-
 </style>
 
 
@@ -124,37 +123,98 @@ $session = \Config\Services::session();
     <div class="first_row" style="">
         <div class="overall_div" style="">
             <!-- overall teep div -->
-            <div style="" class="target_bar_bottom">
+            
+            <div style="position:inherit;" class="target_bar_bottom">
                 <p class="graph_text" style="">Overall TEEP%</p>
-                <div class="empty_graph" >
+                <div class="empty_graph teep_graph_hover" >
                     <div class="target_graph" id="teep_target" style="">
                         <div class="fill_graph" id="teep_graph" style="">
                             <span class="graph_font"  id="text_teep"></span>
                         </div>
                     </div>
                 </div>
+                <div class="target_hover_div" style="">
+                    <div class="hover_flex" style="">
+                        <div class="hover_text_div" style="">
+                            <div class="hover_text_color_div" style="">
+                                <div class="val_color_div" style=""></div>
+                            </div>
+                            TEEP
+                        </div>
+                        <div style="width:50%;text-align:end;"><span id="teep_val_hover">30</span>%</div>
+                    </div>
+                    <div class="hover_flex">
+                        <div class="hover_flex" >
+                            <div class="hover_text_color_div" >
+                                <div class="target_color_div" style=""></div>
+                            </div>
+                            Target
+                        </div>
+                        <div style="width:50%;text-align:end;"><span id="target_teep_val_hover">30</span></div>
+                    </div>
+                </div>
             </div>
 
             <!--  Overall OOE% -->
-            <div style="" class="target_bar_bottom">
+            <div style="position:inherit;" class="target_bar_bottom">
                 <p class="graph_text" >Overall OOE%</p>
-                <div class="empty_graph" >
+                <div class="empty_graph ooe_graph_hover" >
                     <div class="target_graph" id="ooe_target" style="">
                         <div class="fill_graph" id="ooe_graph">
                             <span class="graph_font" id="text_ooe"></span>
                         </div>
                     </div>
                 </div>
+                <div class="target_hover_div" style="">
+                    <div class="hover_flex" style="">
+                        <div class="hover_text_div" style="">
+                            <div class="hover_text_color_div" style="">
+                                <div class="val_color_div" style=""></div>
+                            </div>
+                            OOE
+                        </div>
+                        <div style="width:50%;text-align:end;"><span id="ooe_val_hover">30</span>%</div>
+                    </div>
+                    <div class="hover_flex">
+                        <div class="hover_flex" >
+                            <div class="hover_text_color_div" >
+                                <div class="target_color_div" style=""></div>
+                            </div>
+                            Target
+                        </div>
+                        <div style="width:50%;text-align:end;"><span id="target_ooe_val_hover">30</span></div>
+                    </div>
+                </div>
             </div>
 
             <!-- overall OEE% -->
-            <div style="" class="target_bar_bottom">
+            <div style="position:inherit;" class="target_bar_bottom">
                 <p class="graph_text" >Overall OEE%</p>
-                <div class="empty_graph">
+                <div class="empty_graph oee_graph_hover">
                     <div class="target_graph" style="" id="oee_target">
                         <div class="fill_graph" id="oee_graph" >
                             <span class="graph_font" id="text_oee"></span>
                         </div>
+                    </div>
+                </div>
+                <div class="target_hover_div" style="">
+                    <div class="hover_flex" style="">
+                        <div class="hover_text_div" style="">
+                            <div class="hover_text_color_div" style="">
+                                <div class="val_color_div" style=""></div>
+                            </div>
+                            OOE
+                        </div>
+                        <div style="width:50%;text-align:end;"><span id="oee_val_hover">30</span>%</div>
+                    </div>
+                    <div class="hover_flex">
+                        <div class="hover_flex" >
+                            <div class="hover_text_color_div" >
+                                <div class="target_color_div" style=""></div>
+                            </div>
+                            Target
+                        </div>
+                        <div style="width:50%;text-align:end;"><span id="target_oee_val_hover">30</span></div>
                     </div>
                 </div>
             </div>
@@ -621,46 +681,14 @@ $('.fromDate').val(tdate);
 // from date on blur function
 $(document).on('blur','.fromDate',function(event){
     event.preventDefault();
-    //     fill_downtime_reason();
-    //     fill_machine_dropdown();
-    //     fill_part_drp();
-    //     resetbyday_click();
-    //     reset_category2();
-    //     reset_all_data_field();
-
-    //     fill_target_bar();
-    //     overallTarget();
-
-    //     // graph filter
-    //    graph_func();
-
-    //    performance_opportunity();
-    //    quality_reason_machine();
-    //    fill_quality_reason_dropdown();
-    // $('#overlay').fadeIn(3000);
+   
     filter_drpfun();
 });
 
 // todate onblur function
 $(document).on('blur','.toDate',function(event){
     event.preventDefault();
-    //     fill_downtime_reason();
-    //     fill_machine_dropdown();
-    //     fill_part_drp();
-    //     resetbyday_click();
-    //     reset_category2();
-    //     reset_all_data_field();
 
-    //     fill_target_bar();
-    //     overallTarget();
-
-    //     // graph filter
-    //    graph_func();
-
-    //    performance_opportunity();
-    //    quality_reason_machine();
-    //    fill_quality_reason_dropdown(); 
-    // $('#overlay').fadeIn(3000);
     filter_drpfun();
 
 
@@ -668,7 +696,7 @@ $(document).on('blur','.toDate',function(event){
 
 // in Document ready function calling
 $(document).ready(function(){
-    // $('#overlay').fadeIn(3000);
+    $('#overlay').fadeIn(100);
     filter_drpfun();
     // $('#overlay').fadeOut(300);
 });
@@ -700,7 +728,7 @@ function all_graph_fun(){
     availabilityReason_machine();
     performance_opportunity();
     quality_reason_machine();
-  
+    $('#overlay').fadeOut(3000);
 }
 
 
@@ -1848,38 +1876,26 @@ function overallTarget(){
         to:t
         },
         success:function(res){
-            // console.log("overall target");
+            // console.log("overall graph value");
             // console.log(res);
-        // res=res['OverallMonitoring'];
-        if (parseInt(res.Overall_TEEP)>100) {
-            $('#teep_graph').css('width',''+parseInt(133)+'%');
-          
-        }else{
-            $('#teep_graph').css('width',''+parseInt(res.Overall_TEEP)+'%');
-        }
+            // res=res['OverallMonitoring'];
 
-        if (parseInt(res.Overall_OOE)>100) {
-            $('#ooe_graph').css('width',''+parseInt(117)+'%');
-        }else{
-            $('#ooe_graph').css('width',''+parseInt(res.Overall_OOE)+'%');
-        }
+            var teep_graph_width = parseInt(res.Overall_TEEP)>100? parseInt(133) : parseInt(res.Overall_TEEP);
+            var oee_graph_width = parseInt(res.Overall_OEE)>100? parseInt(111) : parseInt(res.Overall_OEE);
+            var ooe_graph_width = parseInt(res.Overall_OOE)>100? parseInt(117) : parseInt(res.Overall_OEE);
 
-        if (parseInt(res.Overall_OEE)>100) {
-            $('#oee_graph').css('width',''+parseInt(111)+'%');
-        }else{
-            $('#oee_graph').css('width',''+parseInt(res.Overall_OEE)+'%');
-        }
+            $('#teep_graph').css('width',''+teep_graph_width+'%');
+            $('#ooe_graph').css('width',''+ooe_graph_width+'%');
+            $('#oee_graph').css('width',''+oee_graph_width+'%');
+            
+            
+            $('#text_teep').html(res.Overall_TEEP+'%');
+            $('#text_ooe').html(res.Overall_OOE+'%');
+            $('#text_oee').html(res.Overall_OEE+'%');
 
-
-         
-        
-          $('#text_teep').html(res.Overall_TEEP+'%');
-          $('#text_ooe').html(res.Overall_OOE+'%');
-          $('#text_oee').html(res.Overall_OEE+'%');
-
-        //   $('.ooeVal').html(res.Overall_OOE);
-        //   $('.oeeVal').html(res.Overall_OEE);
-        //   $('.teepVal').html(res.Overall_TEEP);
+            $('#teep_val_hover').html(res.Overall_OOE);
+            $('#ooe_val_hover').html(res.Overall_OEE);
+            $('#oee_val_hover').html(res.Overall_TEEP);
 
         
         },
@@ -1899,11 +1915,36 @@ function fill_target_bar(){
         type: "POST",
         dataType: "json",
         success:function(res){
-            // console.log("graph target");
-            // console.log(res);
+            console.log("graph target");
+            console.log(res);
+           
+          
             $('#teep_target').css('width',''+res[0].overall_teep+'%');
-            $('#oee_target').css('width',''+res[0].overall_oee+'%');
             $('#ooe_target').css('width',''+res[0].overall_ooe+'%');
+            $('#oee_target').css('width',''+res[0].overall_oee+'%');
+
+            $('#target_ooe_val_hover').html(res[0].overall_ooe);
+            $('#target_oee_val_hover').html(res[0].overall_oee);
+            $('#target_teep_val_hover').html(res[0].overall_teep);
+
+            // if (parseInt(res[0].overall_teep)>100) {
+            //     $('#teep_graph').css('width',''+parseInt(133)+'%');
+            // }else{
+              
+            // }
+
+            // if (parseInt(res[0].overall_ooe)>100) {
+            //     $('#ooe_graph').css('width',''+parseInt(117)+'%');
+            // }else{
+              
+            // }
+
+            // if (parseInt(res[0].overall_oee)>100) {
+            //     $('#oee_graph').css('width',''+parseInt(111)+'%');
+            // }else{
+               
+            // }
+
 
             // $('.teepTarget').html(res[0].overall_teep);
             // $('.oeeTarget').html(res[0].overall_oee);
