@@ -715,7 +715,7 @@ function filter_drpfun(){
     setTimeout(() => {
         all_graph_fun();
         console.log("graph function cALLING");
-    }, 500);
+    }, 1000);
    
 }
 
