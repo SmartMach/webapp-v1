@@ -465,8 +465,8 @@ $(document).on('click','.filter_check_part',function(event){
         }
     });
     var part_len = $('.partname_checkbox').length;
-    console.log("part length:\t"+part_len);
-    console.log("part select count:\t"+part_select_count);
+    // console.log("part length:\t"+part_len);
+    // console.log("part select count:\t"+part_select_count);
     part_len = parseInt(part_len)-1;
     if (parseInt(part_select_count)>=parseInt(part_len)) {
         if (check_if[0].checked==true) {
@@ -517,8 +517,8 @@ $(document).on('click','.filter_check_machine',function(event){
     });
     var machine_len = $('.machine_checkbox').length;
     machine_len = parseInt(machine_len)-1;
-    console.log("total machine:\t"+machine_len);
-    console.log('select machine:\t'+machine_select_count);
+    // console.log("total machine:\t"+machine_len);
+    // console.log('select machine:\t'+machine_select_count);
     if (parseInt(machine_select_count)>=parseInt(machine_len)) {
         if(check_if[0].checked===true){
             check_if[0].checked=true;
@@ -549,9 +549,10 @@ $(document).on('click','.filter_check_categorygb',function(event){
         if (check_if[0].checked==false) {
             reset_category_gp();
 
-        }else{
-            $('.categorygp_checkbox').removeAttr('checked');
         }
+        // else{
+        //     $('.categorygp_checkbox').removeAttr('checked');
+        // }
     }else{
         if (check_if[index_category_gp].checked==false) {
             check_if[index_category_gp].checked=true;
@@ -600,9 +601,10 @@ $(document).on('click','.filter_check_reasongp',function(event){
         if (check_if[0].checked==false) {
             reset_reason_gp();
 
-        }else{
-            $('.reasongp_checkbox').removeAttr('checked');
         }
+        // else{
+        //     $('.reasongp_checkbox').removeAttr('checked');
+        // }
     }else{
         if (check_if[index_reason_gp].checked==false) {
             check_if[index_reason_gp].checked=true;
@@ -650,9 +652,10 @@ $(document).on('click','.filter_check_machinegp',function(event){
         if (check_if[0].checked==false) {
             reset_machine_gp();
 
-        }else{
-            $('.machinegp_checkbox').removeAttr('checked');
         }
+        // else{
+        //     $('.machinegp_checkbox').removeAttr('checked');
+        // }
     }else{
         if (check_if[index_machine_gp].checked==false) {
             check_if[index_machine_gp].checked=true;
@@ -703,9 +706,10 @@ $(document).on('click','.filter_check_reasongp1',function(event){
         if (check_if1[0].checked==false) {
             reset_reason_gp1();
 
-        }else{
-            $('.reasongp_checkbox1').removeAttr('checked');
         }
+        // else{
+        //     $('.reasongp_checkbox1').removeAttr('checked');
+        // }
     }else{
         if (check_if1[index_reason_gp1].checked==false) {
             check_if1[index_reason_gp1].checked=true;
@@ -752,9 +756,10 @@ $(document).on('click','.filter_check_categorygb1',function(event){
         if (check_if1[0].checked==false) {
             reset_category_gp1();
 
-        }else{
-            $('.categorygp_checkbox1').removeAttr('checked');
         }
+        // else{
+        //     $('.categorygp_checkbox1').removeAttr('checked');
+        // }
     }else{
         if (check_if1[index_category_gp1].checked==false) {
             check_if1[index_category_gp1].checked=true;
@@ -804,9 +809,10 @@ $(document).on('click','.filter_check_machinegp2',function(event){
         if (check_if2[0].checked==false) {
             reset_machine_gp2();
 
-        }else{
-            $('.machinegp_checkbox2').removeAttr('checked');
         }
+        // else{
+        //     $('.machinegp_checkbox2').removeAttr('checked');
+        // }
     }else{
         if (check_if2[index_machine_gp2].checked==false) {
             check_if2[index_machine_gp2].checked=true;
@@ -852,9 +858,10 @@ $(document).on('click','.filter_check_reasongp2',function(event){
         if (check_if2[0].checked==false) {
             reset_reason_gp2();
 
-        }else{
-            $('.reasongp_checkbox2').removeAttr('checked');
         }
+        // else{
+        //     $('.reasongp_checkbox2').removeAttr('checked');
+        // }
     }else{
         if (check_if2[index_reason_gp2].checked==false) {
             check_if2[index_reason_gp2].checked=true;
@@ -900,9 +907,10 @@ $(document).on('click','.filter_check_categorygb2',function(event){
         if (check_if2[0].checked==false) {
             reset_category_gp2();
 
-        }else{
-            $('.categorygp_checkbox2').removeAttr('checked');
         }
+        // else{
+        //     $('.categorygp_checkbox2').removeAttr('checked');
+        // }
     }else{
         if (check_if2[index_category_gp2].checked==false) {
             check_if2[index_category_gp2].checked=true;
@@ -952,9 +960,10 @@ $(document).on('click','.filter_check_machinegp3',function(event){
         if (check_if3[0].checked==false) {
             reset_machine_gp3();
 
-        }else{
-            $('.machinegp_checkbox3').removeAttr('checked');
         }
+        // else{
+        //     $('.machinegp_checkbox3').removeAttr('checked');
+        // }
     }else{
         if (check_if3[index_machine_gp3].checked==false) {
             check_if3[index_machine_gp3].checked=true;
@@ -1000,9 +1009,10 @@ $(document).on('click','.filter_check_reasongp3',function(event){
         if (check_if3[0].checked==false) {
             reset_reason_gp3();
 
-        }else{
-            $('.reasongp_checkbox3').removeAttr('checked');
         }
+        // else{
+        //     $('.reasongp_checkbox3').removeAttr('checked');
+        // }
     }else{
         if (check_if3[index_reason_gp3].checked==false) {
             check_if3[index_reason_gp3].checked=true;
@@ -1048,9 +1058,10 @@ $(document).on('click','.filter_check_categorygb3',function(event){
         if (check_if3[0].checked==false) {
             reset_category_gp3();
 
-        }else{
-            $('.categorygp_checkbox3').removeAttr('checked');
         }
+        // else{
+        //     $('.categorygp_checkbox3').removeAttr('checked');
+        // }
     }else{
         if (check_if3[index_category_gp3].checked==false) {
             check_if3[index_category_gp3].checked=true;
@@ -1253,9 +1264,10 @@ $(document).on('click','.filter_check_machinegp1',function(event){
         if (check_if1[0].checked==false) {
             reset_machine_gp1();
 
-        }else{
-            $('.machinegp_checkbox1').removeAttr('checked');
         }
+        // else{
+        //     $('.machinegp_checkbox1').removeAttr('checked');
+        // }
     }else{
         if (check_if1[index_machine_gp1].checked==false) {
             check_if1[index_machine_gp1].checked=true;

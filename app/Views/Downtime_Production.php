@@ -1764,14 +1764,26 @@ $(document).mouseup(function(event){
 // filter onclick  function
 $(document).on('click','#apply_filter_btn',function(event){
     event.preventDefault();
-    $('#pagination_val').val('1');
-    $("#overlay").fadeIn(400);
-    var start_index = 0;
-    var end_index = 50;
-    filter_after_filter(end_index,start_index);
+    
+    var get_category_data = getcategory_arr();
+    var machine_arr = getmachine_arr();
+    var part_arr = getpart_arr();
+    var reason_arr = getreason_arr();
+    var created_by = getcreated_by_arr();
+    if ((parseInt(get_category_data.length)>0) && (parseInt(machine_arr.length)>0) && (parseInt(part_arr.length)>0) && (parseInt(reason_arr.length)>0) && (parseInt(created_by.length)>0)) {
+            $('#pagination_val').val('1');
+        $("#overlay").fadeIn(400);
+        var start_index = 0;
+        var end_index = 50;
+        filter_after_filter(end_index,start_index);
    
-   
-    // alert('ji');
+    }else{
+        $('#pagination_val').val('1');
+        $('.fixed_rows').empty();
+        $('.scroll_rows').empty();
+        $('#total_page').html("1");
+        $('.fixed_rows').append("No Records Found");
+    }
 
 });
 // after click filter and document ready function and after pagination uusing filter
@@ -2833,7 +2845,7 @@ function filter_drp_graph_all(){
 
     setTimeout(() => {
        graph_all_fun(); 
-    }, 500);
+    }, 1000);
 }
 
 // graph all functions
