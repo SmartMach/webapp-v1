@@ -615,40 +615,10 @@ class Production_Downtime_controller extends BaseController{
     }
 
 
-    // machine dropdown function 
-    public function getmachine_data(){
-        if ($this->request->isAJAX()) {
-            $res = $this->data->getmachine_record_data();
 
-            echo json_encode($res);
-        }
-    }
 
-    // part data in multi select dropdown 
-    public function getpart_data_drp(){
-        if ($this->request->isAJAX()) {
-            $result = $this->data->getpart_data_drp();
 
-            echo json_encode($result);
-        }
-    }
-
-    // created by data in multi select dropdown 
-    public function getcreated_by_drp(){
-        if ($this->request->isAJAX()) {
-            $sid = $this->session->get('active_site');        
-            $res = $this->data->created_by_drp($sid);
-            echo json_encode($res);
-        }
-    }
-
-    // reason data in multi seelct dropdown
-    public function downtime_reason_filter_con(){
-        if ($this->request->isAJAX()) {
-            $output = $this->data->downtime_reason_filter_con();
-            echo json_encode($output);
-        }
-    }
+ 
 
     // category based reason 
     public function category_based_reason(){
@@ -658,6 +628,9 @@ class Production_Downtime_controller extends BaseController{
             echo json_encode($res);
         }
     }
+
+
+    
 
 
     // filter records getting
@@ -1523,6 +1496,26 @@ class Production_Downtime_controller extends BaseController{
         }
 
         return $arr;
+    }
+
+
+    // all filter dropdown win one function 
+    public function getall_filter_arr(){
+        if ($this->request->isAJAX()) {
+            $machine_drp = $this->data->getmachine_record_data();
+            $part_drp = $this->data->getpart_data_drp();
+            $sid = $this->session->get('active_site');        
+            $created_drp = $this->data->created_by_drp($sid);
+            $downtime_reason_drp = $this->data->downtime_reason_filter_con();
+
+            $res['machine'] = $machine_drp;
+            $res['part'] = $part_drp;
+            $res['created_by'] = $created_drp;
+            $res['downtime_reason'] = $downtime_reason_drp;
+
+            echo json_encode($res); 
+        }
+       
     }
     
 }

@@ -20,10 +20,10 @@ class Financial_Metrics extends BaseController
 
     public function OverallOEETarget(){
         $ref="Overall";
-        // $fromTime = $this->request->getVar("from");
-        // $toTime = $this->request->getVar("to");
-        $fromTime = "2023-05-16T09:00:00";
-        $toTime = "2023-05-16T21:00:00";
+        $fromTime = $this->request->getVar("from");
+        $toTime = $this->request->getVar("to");
+        // $fromTime = "2023-05-16T09:00:00";
+        // $toTime = "2023-05-16T21:00:00";
 
         // $url = "http://localhost:8080/graph/overallMonitoringValues/".$fromTime."/".$toTime."/";
         // $ch = curl_init($url);
@@ -154,7 +154,7 @@ class Financial_Metrics extends BaseController
                     $e_time_range =  strtotime($value['shift_date']." ".$value['end_time']);
 
                     if ($s_time_range <= $s_time_range_limit && $e_time_range >= $s_time_range_limit) {
-                        $output[$key]['start_time'] = $FromTime;
+                        $getAllTimeValues[$key]['start_time'] = $FromTime;
                         if ($e_time_range >= $e_time_range_limit) {
                             $getAllTimeValues[$key]['end_time'] = $ToTime;
                         }
@@ -204,10 +204,10 @@ class Financial_Metrics extends BaseController
                 }
             }
 
-            foreach ($output as $v) {
-                echo "<pre>";
-                print_r($v);
-            }
+            // foreach ($output as $v) {
+            //     echo "<pre>";
+            //     print_r($v);
+            // }
 
             //Downtime reasons data ordering.....
             $MachineWiseDataRaw = $this->storeData($output,$machine,$part);

@@ -96,36 +96,137 @@ class Daily_production_controller extends BaseController{
         return $tmp_machine_details;
     }
 
+
+    // get tool chnageover data
+    public function get_tool_changeover($machine_arr,$sdate,$shift_arr,$duration){
+        $machine_based_arr = [];
+        foreach($machine_arr as $key => $val){
+            $shift_based_array = [];
+            // return $shift_arr;
+            foreach($shift_arr as $k => $v){
+                // return $v;
+                $tool_ids = $this->get_tool_id_data($val['machine_id'],$v,$sdate,$duration);
+                $shift_based_array[$v] = $tool_ids; 
+                // return $tool_ids;
+            }
+            $machine_based_arr[$val['machine_id']] = $shift_based_array;
+        }
+        return $machine_based_arr;
+    }
+
+    public function get_tool_id_data($mid,$v,$sdate,$duration){
+
+        $res = $this->datas->get_tool_id($mid,$v,$sdate,$duration);
+        
+        $part_based_array = [];
+        foreach ($res as $key => $value) {
+           $tmpass_arr = [];
+            //    tool changeover time get function
+           $get_timestamp = $this->datas->get_tool_changeovertime($mid,$v,$sdate,$value['part_id'],$value['tool_id']);
+            // get thats time durations    
+            // $getpart_duration = $this->get_time_seconds($machine_id,$shiftid,$shift_date,$value['part_id'],$value['tool_id']);
+            // get downtime for that time durations    
+           $getpart_downtime_duration = $this->datas->getalldowntime($mid,$sdate,$v,$value['part_id'],$value['tool_id']); 
+           $getpart_count = $this->datas->all_time_part_count($mid,$v,$sdate,$value['tool_id']);
+           $final_duration = $getpart_downtime_duration/$getpart_count;
+
+           array_push($tmpass_arr,$value['tool_id']);
+           $getppc = $this->datas->getpart_details($value['part_id']);
+           array_push($tmpass_arr,$getppc[0]['part_produced_cycle']);
+           array_push($tmpass_arr,$getppc[0]['NICT']);
+           
+           try {
+            if ($getppc[0]['NICT'] == 0) throw new Exception("Divide by zero");
+            $target = $final_duration / $getppc[0]['NICT'];
+            array_push($tmpass_arr,$target);
+           } catch (\Throwable $e) {
+                array_push($tmpass_arr,0);
+           }
+           
+
+           array_push($tmpass_arr,$get_timestamp);
+           $part_based_array[$value['part_id']] = $tmpass_arr;
+        }
+        return $part_based_array;
+    }
+
+    // downtime graph data for downtime reason wise 
+    public function getdowntimegraph($machine_a,$sdate,$shift_a){
+        $reason = $this->datas->getmachine_wise_downtime_reason($machine_a,$sdate);
+        // $reason = $this->getDowntimereason();
+        
+        // macine wise array
+       $get_downtime_machine_array = [];
+        foreach($machine_a as $k => $val){
+            // shift wise array
+            $get_downtime_shift_array = [];
+            foreach($shift_a as $k1 => $v1){
+                // reason wise array
+                $get_downtime_array = [];
+                foreach($reason as $key => $value){
+                    $getcount = $this->datas->getdowntimecount($val['machine_id'],$v1,$sdate,$key);
+                    $get_downtime_array[$key] = $getcount;
+                }
+                $get_downtime_shift_array[$v1] = $get_downtime_array;
+            }
+            $get_downtime_machine_array[$val['machine_id']] = $get_downtime_shift_array;
+
+        }
+       
+        return $get_downtime_machine_array;
+        // return $reason;
+    }
+
+    // get downtime value
+    public function getdowntimevalue($getmachine_arr,$date,$shift_arr){
+        
+        // get machine wise array 
+        $get_downtime_count_machine = [];
+        foreach ($getmachine_arr as $key => $value) {
+            // get shift wise array
+            $getdowntimecount_shift = [];
+            foreach ($shift_arr as $k => $val) {
+                $getdowntimecount = $this->datas->getdowntime_total_count($value['machine_id'],$val,$date);
+                // return $getdowntimecount;
+                $getdowntimecount_shift[$val] = $getdowntimecount; 
+            }
+            $get_downtime_count_machine[$value['machine_id']] = $getdowntimecount_shift;
+        }
+        return $get_downtime_count_machine;
+        
+    }
+
     // get machine records
     public function getMachine_data(){
         if ($this->request->isAJAX()) {
-            // $date = "2023-01-10";
+            // $date = "2023-05-31";
             $date = $this->request->getVar('date');
             $getmachine_data = $this->datas->getmachine_data($date);
-           
+            
             // get machine all details for example machine brand tonnage
             $getmachine_details = $this->machine_data_details($date);
-    
+           
             // machine based shift based tool changeover
             $getshiftid = $this->getshift($date);
             // echo json_encode($getshiftid);
             $getsid = $getshiftid['shifts'];
             $duration = $getshiftid['shift_management'][0]['duration'];
             // echo  "get all shifts id in particular date";
-            $get_toolchangeover = $this->datas->get_tool_changeover($getmachine_data,$date,$getsid,$duration);
+            $get_toolchangeover = $this->get_tool_changeover($getmachine_data,$date,$getsid,$duration);
+          
             // echo "<pre>";
             // print_r($get_toolchangeover);
             // echo "</pre>";
             // echo "machine wise and shift wise and part wise  array";           
-            $getdowntime_graph = $this->datas->getdowntimegraph($getmachine_data,$date,$getsid);
+            $getdowntime_graph = $this->getdowntimegraph($getmachine_data,$date,$getsid);
             // down time reasons based graph count
             // echo "Downtime reasons based graph count";
-            
+          
             // get downtime json value
             // echo "get downtime value";
-            $getdowntime_val = $this->datas->getdowntimevalue($getmachine_data,$date,$getsid);
-            
-    
+            $getdowntime_val = $this->getdowntimevalue($getmachine_data,$date,$getsid);
+           
+           
             // get quality rejection reason
             // echo "get Quality rejection reason ";
             $getquality_reject_reason = $this->datas->getquality_reject_reason($getmachine_data,$date,$getsid);
@@ -138,7 +239,7 @@ class Daily_production_controller extends BaseController{
             // echo "<pre>";
             // print_r($get_part_production_details);
             // echo "</pre>";
-    
+         
             // machine array
             $machine_array_tmp = [];
             foreach($getmachine_data as $key => $value){
@@ -161,6 +262,7 @@ class Daily_production_controller extends BaseController{
     
             // final records for single json
             // echo "Final Json File:\t";
+            
             $data['Shifts'] = $getsid;
             $data['Machines'] = $machine_array_tmp;
             $data['quality_reasons'] = $this->getQualityreason();
@@ -181,7 +283,7 @@ class Daily_production_controller extends BaseController{
             
             // ui purpose just remove future shift id records
             $data['shift_wise_time'] = $get_shift_wise_time_arr;
-           
+          
             // echo "<pre>";
             // print_r($data);
             // echo "</pre>";

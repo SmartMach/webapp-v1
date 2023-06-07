@@ -215,7 +215,7 @@ $session = \Config\Services::session();
           <div class="container-fluid paddingm ">
             <div class="box rightmar" style="margin-left: 0.5rem;width: 10rem;">
                 <div class="input-box" style="display: flex;">
-                  <input type="number" class="form-control font_weight font_color" name="" id="pagination_val" style="width: 3.5rem;">
+                  <input type="number" class="form-control font_weight font_color" name="" id="pagination_val" style="width:2rem;height:2rem;border-radius:0.2rem;border:1px solid #A6A6A6;color:black;font-size:0.8rem;font-weight:500;">
                   <div class="box rightmar center-align font_color font-size-lable" style="margin-left: 0.5rem;">
                     <p class="paddingm">of <span id="total_pagination"></span> pages</p>
                   </div>
@@ -3486,6 +3486,8 @@ function getFilterData(){
     total_pagination = Math.ceil((filter_array.length)/(pagination_length));
     $("#total_pagination").html(total_pagination);
     var x = $("#pagination_val").val();
+    console.log("work order filter array");
+    console.log(filter_array);
     filter_array.forEach(function(item, index) {
         if ((index > (x*pagination_length)-(pagination_length+1)) && (index < (x*pagination_length))) {
             var due_date_color="";
@@ -3632,6 +3634,8 @@ function getWorkOrderRecords(status,lables,priority,assignee,filter){
             filter:filter,
         },
         success:function(data_res){
+          console.log("work order records");
+          console.log(data_res);
             $('.contentWorkOrder').empty();
             filter_array=[];
             var open=0;
@@ -3722,6 +3726,8 @@ $(document).on('click','.Add_Work_Data',function(event){
         }
         
         else{
+          console.log("Work order insertion priroity input ");
+          console.log($('input[name="priority_val"]:checked').val());
           var formData = new FormData();
 
     formData.append('title', $('#add_work_title').val());

@@ -693,22 +693,8 @@ class OEE_Drill_Down_controller extends BaseController
         return json_encode($Targets);
     }
 
-     // reason data in multi seelct dropdown
-     public function downtime_reason_filter_con(){
-        if ($this->request->isAJAX()) {
-            $output = $this->data->downtime_reason_filter_con();
-            echo json_encode($output);
-        }
-    }
+   
 
-    // machine dropdown
-    public function getmachine_data(){
-        if ($this->request->isAJAX()) {
-            $res = $this->data->getmachine_record_data();
-
-            echo json_encode($res);
-        }
-    }
 
     // oee trend graph 
     public function oeeTrendDay(){
@@ -1721,13 +1707,6 @@ class OEE_Drill_Down_controller extends BaseController
     }
 
 
-    public function getpart_data(){
-        if ($this->request->isAJAX()) {
-            $res = $this->data->getpart_data();
-
-            echo  json_encode($res);
-        }
-    }
 
     // quality graph machine with reasons
     public function qualityOpportunity(){
@@ -1907,13 +1886,27 @@ class OEE_Drill_Down_controller extends BaseController
     }
 
 
-    // quality rejection reason
-    public function dropdown_quality_reject(){
+   
+
+
+    // get all filter dropdown function
+    public function get_all_dilter_drp_fun(){
         if ($this->request->isAJAX()) {
-            $res = $this->data->get_quality_reject();
+            $downtime_drp = $this->data->downtime_reason_filter_con();
+            $machine_drp = $this->data->getmachine_record_data();
+            $part_drp = $this->data->getpart_data();
+            $quality_drp = $this->data->get_quality_reject();
+    
+            $res['machine'] = $machine_drp;
+            $res['downtime'] = $downtime_drp;
+            $res['part'] = $part_drp;
+            $res['quality'] = $quality_drp;
 
             echo json_encode($res);
         }
+       
+
+        
     }
 
 }

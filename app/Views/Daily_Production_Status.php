@@ -318,7 +318,7 @@ $('#changed_date').datetimepicker({
         load_allfiles();
         color_change_value();
     });
-
+    
       // get final json records
       function load_allfiles(){
             // $("#overlay").fadeIn(300);

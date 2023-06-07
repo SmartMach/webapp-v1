@@ -41,6 +41,20 @@ class Daily_production_Model extends Model{
     }
 
 
+    public function getmachine_wise_downtime_reason($machine_ar,$sdate){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('pdm_downtime_reason_mapping as m');
+        $query->select('DISTINCT(m.downtime_reason_id),s.downtime_reason');
+        $query->join('settings_downtime_reasons  as s','m.downtime_reason_id=s.downtime_reason_id');
+        $query->where('m.shift_date',$sdate);
+        $res = $query->get()->getResultArray();
+        $machine_downtime_reason = [];
+        foreach ($res as $key => $value) {
+            $machine_downtime_reason[$value['downtime_reason_id']] = $value['downtime_reason'];
+        }
+
+        return $machine_downtime_reason;
+    }
 
     // get downtime reasons function 
     public function getDowntimereason(){
@@ -212,6 +226,7 @@ class Daily_production_Model extends Model{
     }
 
     // get machine wise and shift wise tool changeover
+    /* temporary hide this function move on controller
     public function get_tool_changeover($machine_arr,$sdate,$shift_arr,$duration){
         $db =  \Config\Database::connect($this->site_connection);
         // machine array
@@ -229,7 +244,7 @@ class Daily_production_Model extends Model{
         }
         return $machine_based_arr;
     }
-
+    */
     
     // get date wise and machine wise and shift id wise array
     public function get_tool_id($machine_id,$shiftid,$shift_date,$duration){
@@ -242,59 +257,37 @@ class Daily_production_Model extends Model{
         $query->where('shift_id',$shiftid);
         $res = $query->get()->getResultArray();
 
-        // madhan sir instruction is full changed for formula in target  so its temporary hide
-        /*
-        $duration_split = explode(":",$duration);
+        return $res;
+        // $part_based_array = [];
+        // foreach ($res as $key => $value) {
+        //    $tmpass_arr = [];
+        //     //    tool changeover time get function
+        //    $get_timestamp = $this->get_tool_changeovertime($machine_id,$shiftid,$shift_date,$value['part_id'],$value['tool_id']);
+        //     // get thats time durations    
+        //     // $getpart_duration = $this->get_time_seconds($machine_id,$shiftid,$shift_date,$value['part_id'],$value['tool_id']);
+        //     // get downtime for that time durations    
+        //    $getpart_downtime_duration = $this->getalldowntime($machine_id,$shift_date,$shiftid,$value['part_id'],$value['tool_id']); 
+        //    $getpart_count = $this->all_time_part_count($machine_id,$shiftid,$shift_date,$value['tool_id']);
+        //    $final_duration = $getpart_downtime_duration/$getpart_count;
 
-        $seconds_val = $duration_split[0] * 3600;
-        $seconds_val = $seconds_val + ($duration_split[1]*60);
-        $seconds_val = $seconds_val + $duration_split[2];
-      
-        $getplanned_second = $this->getalldowntime($machine_id,$shift_date,$shiftid);
-        // $getplanned_split = explode(".",$getplanned_downtime);
-        // $getplanned_second = 0;
-        // if ($getplanned_split[1]>0) {
-        //     $getplanned_second = $getplanned_split[1]+$getplanned_second;
+        //    array_push($tmpass_arr,$value['tool_id']);
+        //    $getppc = $this->getpart_details($value['part_id']);
+        //    array_push($tmpass_arr,$getppc[0]['part_produced_cycle']);
+        //    array_push($tmpass_arr,$getppc[0]['NICT']);
+           
+        //    try {
+        //     if ($getppc[0]['NICT'] == 0) throw new Exception("Divide by zero");
+        //     $target = $final_duration / $getppc[0]['NICT'];
+        //     array_push($tmpass_arr,$target);
+        //    } catch (\Throwable $e) {
+        //         array_push($tmpass_arr,0);
+        //    }
+           
+
+        //    array_push($tmpass_arr,$get_timestamp);
+        //    $part_based_array[$value['part_id']] = $tmpass_arr;
         // }
-        // $tmp_ps = $getplanned_split[0] * 60;
-
-        // $getplanned_second = (int)$getplanned_second + (int)$tmp_ps;
-
-        $final_duration = $seconds_val - $getplanned_second;
-        */
-        // return $seconds_val."-".$getplanned_second."=".$final_duration;
-        // return $seconds_val;
-        // return $getplanned_downtime;
-        $part_based_array = [];
-        foreach ($res as $key => $value) {
-           $tmpass_arr = [];
-            //    tool changeover time get function
-           $get_timestamp = $this->get_tool_changeovertime($machine_id,$shiftid,$shift_date,$value['part_id'],$value['tool_id']);
-            // get thats time durations    
-            // $getpart_duration = $this->get_time_seconds($machine_id,$shiftid,$shift_date,$value['part_id'],$value['tool_id']);
-            // get downtime for that time durations    
-           $getpart_downtime_duration = $this->getalldowntime($machine_id,$shift_date,$shiftid,$value['part_id'],$value['tool_id']); 
-           $getpart_count = $this->all_time_part_count($machine_id,$shiftid,$shift_date,$value['tool_id']);
-           $final_duration = $getpart_downtime_duration/$getpart_count;
-
-           array_push($tmpass_arr,$value['tool_id']);
-           $getppc = $this->getpart_details($value['part_id']);
-           array_push($tmpass_arr,$getppc[0]['part_produced_cycle']);
-           array_push($tmpass_arr,$getppc[0]['NICT']);
-           
-           try {
-            if ($getppc[0]['NICT'] == 0) throw new Exception("Divide by zero");
-            $target = $final_duration / $getppc[0]['NICT'];
-            array_push($tmpass_arr,$target);
-           } catch (\Throwable $e) {
-                array_push($tmpass_arr,0);
-           }
-           
-
-           array_push($tmpass_arr,$get_timestamp);
-           $part_based_array[$value['part_id']] = $tmpass_arr;
-        }
-        return $part_based_array;
+        // return $part_based_array;
     }
 
     
@@ -460,6 +453,7 @@ class Daily_production_Model extends Model{
 
 
     //  downtime graph wise array
+    /* temporary hide this function move controller
     public function getdowntimegraph($machine_a,$sdate,$shift_a){
         $reason = $this->getDowntimereason();
         
@@ -484,6 +478,7 @@ class Daily_production_Model extends Model{
         return $get_downtime_machine_array;
         
     }
+    */
 
     // get downtime graph count function
     public function getdowntimecount($machine_id,$shiftid,$shiftdate,$reasonid){
@@ -520,6 +515,7 @@ class Daily_production_Model extends Model{
     }
 
     // get downtime value function
+    /* temporary hide this function is move on controller 
     public function getdowntimevalue($getmachine_arr,$date,$shift_arr){
         
         // get machine wise array 
@@ -537,7 +533,7 @@ class Daily_production_Model extends Model{
         return $get_downtime_count_machine;
         
     }
-
+    */
     // get machine wise and shift wise duration count
     public function getdowntime_total_count($machine_id,$sid,$sdate){
         $db =  \Config\Database::connect($this->site_connection);
