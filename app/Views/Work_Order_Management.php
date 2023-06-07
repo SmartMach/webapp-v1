@@ -2264,7 +2264,7 @@ inputFieldlables.addEventListener("keyup", function (event) {
         });
 
         if (!option && !present) {
-          $('#dropdown-list-lables').append('<div class="inbox inbox_priority suggession-lable-items" style="display: flex;">'
+          $('#dropdown-list-lables').append('<div class="inbox  suggession-lable-items" style="display: flex;">'
                       +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
                           +'<p class="inbox-span paddingm"><span class="suggession-lable-val">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
                       +'</div>'
@@ -3727,7 +3727,13 @@ $(document).on('click','.Add_Work_Data',function(event){
         
         else{
           console.log("Work order insertion priroity input ");
-          console.log($('input[name="priority_val"]:checked').val());
+          var priority_tmp = " ";
+          $('.priority_add').each(function(){
+            if ($(this).is(':checked')) {
+              priority_tmp = $(this).val();
+            }
+          });
+          console.log(priority_tmp);
           var formData = new FormData();
 
     formData.append('title', $('#add_work_title').val());
