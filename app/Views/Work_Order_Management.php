@@ -3357,7 +3357,7 @@ function getPriorityList(){
             //     priority_list_globle.push(item);
             // });
             $('.Filter_priority_div').empty();
-            $('.Filter_priority').empty();
+            $('.filter_priority').empty();
 
             // Filter Status.........
             $('.Filter_priority_div').append('<div class="inbox inbox_filter_priority" style="display: flex;">'
@@ -3405,7 +3405,7 @@ function getPriorityList(){
                       +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
                           +'<p class="inbox-span paddingm">'+item['priority']+'</p>'
                       +'</div>'
-                      +'<input type="radio" class="priority_add radio-visible" name="priority_val" value="'+item['priority_id']+'" checked>'
+                      +'<input type="radio" class="priority_add radio-visible" name="priority_val" value="'+item['priority_id']+'" checked="true">'
                   +'</div>');
 
                   $('#priority_val_lable').html('<i class="fa '+priority_img+'" style="rotate:'+priority_img_rotate+';color: '+priority_img_color+'"></i> <span>'+item['priority']+'</span>');
@@ -3742,6 +3742,8 @@ $(document).on('click','.Add_Work_Data',function(event){
       formData.append('assignee', $('input[name="assignee_val"]:checked').val());
     }
 
+    console.log("Priority value");
+    console.log($('input[name="priority_val"]:checked').val())
     var cause_list=[];
     var element_cause = $('.items-container-cause').children('.item-cause').children('.item-id');
     $.each(element_cause, function(key,valueObj){
