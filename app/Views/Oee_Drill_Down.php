@@ -1018,9 +1018,9 @@ $(document).on('click','.byday_click',function(event){
             resetbyday_click();
 
         }
-        // else{
-        //     $('.by_day_checkbox').removeAttr('checked');
-        // }
+        else{
+            $('.by_day_checkbox').removeAttr('checked');
+        }
     }else{
         if (check_if1[index_reason_gp1].checked==false) {
             check_if1[index_reason_gp1].checked=true;
@@ -1069,9 +1069,9 @@ $(document).on('click','.category_click2',function(event){
             reset_category2();
 
         }
-        // else{
-        //     $('.category_drp_checkbox2').removeAttr('checked');
-        // }
+        else{
+            $('.category_drp_checkbox2').removeAttr('checked');
+        }
     }else{
         if (check_if1[index_reason_gp1].checked==false) {
             check_if1[index_reason_gp1].checked=true;
@@ -1116,12 +1116,12 @@ $(document).on('click','.reason_click2',function(event){
     var check_if1 = $('.reason_checkbox2');
     if (index_reason_gp1 === 0) {
         if (check_if1[0].checked==false) {
-            reset_reason();
+            reset_reason2();
 
         }
-        // else{
-        //     $('.reason_checkbox2').removeAttr('checked');
-        // }
+        else{
+            $('.reason_checkbox2').removeAttr('checked');
+        }
     }else{
         if (check_if1[index_reason_gp1].checked==false) {
             check_if1[index_reason_gp1].checked=true;
@@ -1169,9 +1169,9 @@ $(document).on('click','.quality_click',function(event){
             reset_quality_reason();
 
         }
-        // else{
-        //     $('.quality_checkbox').removeAttr('checked');
-        // }
+        else{
+            $('.quality_checkbox').removeAttr('checked');
+        }
     }else{
         if (check_if1[index_reason_gp1].checked==false) {
             check_if1[index_reason_gp1].checked=true;
@@ -1219,9 +1219,9 @@ $(document).on('click','.machine_click',function(event){
             reset_machine();
 
         }
-        // else{
-        //     $('.machine_checkbox').removeAttr('checked');
-        // }
+        else{
+            $('.machine_checkbox').removeAttr('checked');
+        }
     }else{
         if (check_if1[index_reason_gp1].checked==false) {
             check_if1[index_reason_gp1].checked=true;
@@ -1268,9 +1268,9 @@ $(document).on('click','.machine_click1',function(event){
             reset_machine1();
 
         }
-        // else{
-        //     $('.machine_checkbox1').removeAttr('checked');
-        // }
+        else{
+            $('.machine_checkbox1').removeAttr('checked');
+        }
     }else{
         if (check_if1[index_reason_gp1].checked==false) {
             check_if1[index_reason_gp1].checked=true;
@@ -1318,9 +1318,9 @@ $(document).on('click','.machine_click2',function(event){
             reset_machine2();
 
         }
-        // else{
-        //     $('.machine_checkbox2').removeAttr('checked');
-        // }
+        else{
+            $('.machine_checkbox2').removeAttr('checked');
+        }
     }else{
         if (check_if1[index_reason_gp1].checked==false) {
             check_if1[index_reason_gp1].checked=true;
@@ -1368,9 +1368,9 @@ $(document).on('click','.machine_click3',function(event){
             reset_machine3();
 
         }
-        // else{
-        //     $('.machine_checkbox3').removeAttr('checked');
-        // }
+        else{
+            $('.machine_checkbox3').removeAttr('checked');
+        }
     }else{
         if (check_if1[index_reason_gp1].checked==false) {
             check_if1[index_reason_gp1].checked=true;
@@ -1419,9 +1419,9 @@ $(document).on('click','.part_click',function(event){
             reset_part();
 
         }
-        // else{
-        //     $('.part_checkbox').removeAttr('checked');
-        // }
+        else{
+            $('.part_checkbox').removeAttr('checked');
+        }
     }else{
         if (check_if1[index_reason_gp1].checked==false) {
             check_if1[index_reason_gp1].checked=true;
@@ -1469,9 +1469,9 @@ $(document).on('click','.machine_click4',function(event){
             reset_machine4();
 
         }
-        // else{
-        //     $('.machine_checkbox4').removeAttr('checked');
-        // }
+        else{
+            $('.machine_checkbox4').removeAttr('checked');
+        }
     }else{
         if (check_if1[index_reason_gp1].checked==false) {
             check_if1[index_reason_gp1].checked=true;
@@ -1518,9 +1518,9 @@ $(document).on('click','.all_data_field_click',function(event){
             reset_all_data_field();
 
         }
-        // else{
-        //     $('.all_data_field_checkbox').removeAttr('checked');
-        // }
+        else{
+            $('.all_data_field_checkbox').removeAttr('checked');
+        }
     }else{
         if (check_if1[index_reason_gp1].checked==false) {
             check_if1[index_reason_gp1].checked=true;

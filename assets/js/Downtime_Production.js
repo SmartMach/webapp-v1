@@ -92,7 +92,21 @@ function machine_multiselect_gp(){
         $('.filter_checkboxes_machinegp').css('display','none');
         filter_machinegp = false;
         // temporary hide this function
-        getfilter_oppcost_reason();
+
+        var oppcost_machine_drp = [];
+        $('.machinegp_checkbox').each(function(){
+            if ($(this).is(':checked')) {
+                oppcost_machine_drp.push($(this).val());
+            }
+        });
+
+        if (parseInt(oppcost_machine_drp.length)>0) {
+            getfilter_oppcost_reason();
+        }else{
+            reset_machine_gp();
+            getfilter_oppcost_reason();
+        }
+       
     }
 }
 
@@ -108,7 +122,21 @@ function machine_multiselect_gp1(){
         $('.filter_checkboxes_machinegp1').css('display','none');
         filter_machinegp1 = false;
         // temporary hide this function
-        getfilter_duration_reason();
+        
+        var duration_reason_machine_drp = [];
+        $('.machinegp_checkbox1').each(function(){
+            if ($(this).is('checked')) {
+                duration_reason_machine_drp.push($(this).val());
+            }
+        });
+
+        if (parseInt(duration_reason_machine_drp.length)>0) {
+            getfilter_duration_reason();
+        }else{
+            reset_machine_gp1();
+            getfilter_duration_reason();
+        }
+       
         
     }
 }
@@ -124,7 +152,21 @@ function reason_multiselect_gp(){
     }else{
         $('.filter_checkboxes_reasongp').css('display','none');
         filter_machinegp = false;
-        getfilter_oppcost_reason();
+
+        var oppcost_reason_drp = [];
+        $('.reasongp_checkbox').each(function(){
+            if ($(this).is('checked')) {
+                oppcost_reason_drp.push($(this).val());
+            }
+        });
+
+        if (parseInt(oppcost_reason_drp.length)>0) {
+            getfilter_oppcost_reason();
+        }else{
+            reset_reason_gp();
+            getfilter_oppcost_reason();
+        }
+        
     }
 }
 
@@ -138,7 +180,23 @@ function category_multiselect_gp(){
     }else{
         $('.filter_checkboxes_categorygp').css('display','none');
         filter_machinegp = false;
-        getfilter_oppcost_reason();
+       
+        var category_arr_tmp = [];
+        $('.categorygp_checkbox').each(function(){
+            if ($(this).is(':checked')) {
+                category_arr_tmp.push($(this).val());
+            }
+        });
+
+        console.log(category_arr_tmp);
+        console.log("filter checkbox category");
+        if (parseInt(category_arr_tmp.length)>0) {
+            getfilter_oppcost_reason();
+        }else{
+            reset_category_gp();
+            getfilter_oppcost_reason();
+           
+        }
     }
 }
 
@@ -154,7 +212,21 @@ function reason_multiselect_gp1(){
     }else{
         $('.filter_checkboxes_reasongp1').css('display','none');
         filter_machinegp1 = false;
-        getfilter_duration_reason();
+
+        var duration_reason_reason_drp = [];
+        $('.reasongp_checkbox1').each(function(){
+            if ($(this).is('checked')) {
+                duration_reason_reason_drp.push($(this).val());
+            }
+        });
+
+        if (parseInt(duration_reason_reason_drp.length)>0) {
+            getfilter_duration_reason();
+        }else{
+            reset_reason_gp1();
+            getfilter_duration_reason();
+        }
+       
     }
 }
 
@@ -170,7 +242,21 @@ function category_multiselect_gp1(){
     }else{
         $('.filter_checkboxes_categorygp1').css('display','none');
         filter_machinegp1 = false;
-        getfilter_duration_reason();
+
+        var duration_reason_cat_drp = [];
+        $('.categorygp_checkbox1').each(function(){
+            if ($(this).is(':checked')) {
+                duration_reason_cat_drp.push($(this).val());
+            }
+        });
+
+        if (parseInt(duration_reason_cat_drp.length)>0) {
+            getfilter_duration_reason();
+        }else{
+            reset_category_gp1();
+            getfilter_duration_reason();
+        }
+       
     }
 }
 
@@ -187,7 +273,20 @@ function machine_multiselect_gp2(){
         $('.filter_checkboxes_machinegp2').css('display','none');
         filter_machinegp2 = false;
         // temporary hide this function
-        getfilter_machine_oppcost();
+
+        var opp_machine_machine_drp = [];
+        $('.machinegp_checkbox2').each(function(){
+            if ($(this).is(':checked')) {
+                opp_machine_machine_drp.push($(this).val());
+            }
+        });
+
+        if (parseInt(opp_machine_machine_drp.length)>0) {
+            getfilter_machine_oppcost();
+        }else{
+            reset_machine_gp2();
+            getfilter_machine_oppcost();
+        }
         
     }
 }
@@ -201,7 +300,21 @@ function reason_multiselect_gp2(){
     }else{
         $('.filter_checkboxes_reasongp2').css('display','none');
         filter_machinegp2 = false;
-        getfilter_machine_oppcost();
+
+        var opp_machine_reason_drp = [];
+        $('.reasongp_checkbox2').each(function(){
+            if ($(this).is(':checked')) {
+                opp_machine_reason_drp.push($(this).val());
+            }
+        });
+
+        if (parseInt(opp_machine_reason_drp.length)>0) {
+            getfilter_machine_oppcost();
+        }else{
+            reset_reason_gp2();
+            getfilter_machine_oppcost();
+        }
+      
     }
 }
 
@@ -214,7 +327,21 @@ function category_multiselect_gp2(){
     }else{
         $('.filter_checkboxes_categorygp2').css('display','none');
         filter_machinegp2 = false;
-        getfilter_machine_oppcost();
+
+        var opp_machine_cate_drp = [];
+        $('.categorygp_checkbox2').each(function(){
+            if ($(this).is(":checked")) {
+                opp_machine_cate_drp.push($(this).val());
+            }
+        });
+
+        if (parseInt(opp_machine_cate_drp.length)>0) {
+            getfilter_machine_oppcost();
+        }else{
+            reset_category_gp2();
+            getfilter_machine_oppcost();
+        }
+      
     }
 }
 
@@ -232,7 +359,20 @@ function machine_multiselect_gp3(){
         $('.filter_checkboxes_machinegp3').css('display','none');
         filter_machinegp3 = false;
         // temporary hide this function
-        getfilter_machine_reason_duration();
+
+        var duration_mr_machine_drp = [];
+        $('.machinegp_checkbox3').each(function(){
+            if ($(this).is(':checked')) {
+                duration_mr_machine_drp.push($(this).val());
+            }
+        });
+
+        if (parseInt(duration_mr_machine_drp.length)>0) {
+            getfilter_machine_reason_duration();
+        }else{
+            reset_machine_gp3();
+            getfilter_machine_reason_duration();
+        }
         
     }
 }
@@ -246,7 +386,20 @@ function reason_multiselect_gp3(){
     }else{
         $('.filter_checkboxes_reasongp3').css('display','none');
         filter_machinegp3 = false;
-        getfilter_machine_reason_duration();
+
+        var duration_mr_reason_drp = [];
+        $('.reasongp_checkbox3').each(function(){
+            if ($(this).is(':checked')) {
+                duration_mr_reason_drp.push($(this).val());
+            }
+        });
+
+        if (parseInt(duration_mr_reason_drp.length)>0) {
+            getfilter_machine_reason_duration();
+        }else{
+            reset_reason_gp3();
+            getfilter_machine_reason_duration();
+        }
     }
 }
 
@@ -259,7 +412,20 @@ function category_multiselect_gp3(){
     }else{
         $('.filter_checkboxes_categorygp3').css('display','none');
         filter_machinegp3 = false;
-        getfilter_machine_reason_duration();
+
+        var duration_mr_cate_drp = [];
+        $('.categorygp_checkbox3').each(function(){
+            if ($(this).is(':checked')) {
+                duration_mr_cate_drp.push($(this).val());
+            }
+        });
+
+        if (parseInt(duration_mr_cate_drp.length)>0) {
+            getfilter_machine_reason_duration();
+        }else{
+            reset_category_gp3();
+            getfilter_machine_reason_duration();
+        }
     }
 }
 
@@ -550,9 +716,9 @@ $(document).on('click','.filter_check_categorygb',function(event){
             reset_category_gp();
 
         }
-        // else{
-        //     $('.categorygp_checkbox').removeAttr('checked');
-        // }
+        else{
+            $('.categorygp_checkbox').removeAttr('checked');
+        }
     }else{
         if (check_if[index_category_gp].checked==false) {
             check_if[index_category_gp].checked=true;
@@ -602,9 +768,9 @@ $(document).on('click','.filter_check_reasongp',function(event){
             reset_reason_gp();
 
         }
-        // else{
-        //     $('.reasongp_checkbox').removeAttr('checked');
-        // }
+        else{
+            $('.reasongp_checkbox').removeAttr('checked');
+        }
     }else{
         if (check_if[index_reason_gp].checked==false) {
             check_if[index_reason_gp].checked=true;
@@ -653,9 +819,9 @@ $(document).on('click','.filter_check_machinegp',function(event){
             reset_machine_gp();
 
         }
-        // else{
-        //     $('.machinegp_checkbox').removeAttr('checked');
-        // }
+        else{
+            $('.machinegp_checkbox').removeAttr('checked');
+        }
     }else{
         if (check_if[index_machine_gp].checked==false) {
             check_if[index_machine_gp].checked=true;
@@ -707,9 +873,9 @@ $(document).on('click','.filter_check_reasongp1',function(event){
             reset_reason_gp1();
 
         }
-        // else{
-        //     $('.reasongp_checkbox1').removeAttr('checked');
-        // }
+        else{
+            $('.reasongp_checkbox1').removeAttr('checked');
+        }
     }else{
         if (check_if1[index_reason_gp1].checked==false) {
             check_if1[index_reason_gp1].checked=true;
@@ -757,9 +923,9 @@ $(document).on('click','.filter_check_categorygb1',function(event){
             reset_category_gp1();
 
         }
-        // else{
-        //     $('.categorygp_checkbox1').removeAttr('checked');
-        // }
+        else{
+            $('.categorygp_checkbox1').removeAttr('checked');
+        }
     }else{
         if (check_if1[index_category_gp1].checked==false) {
             check_if1[index_category_gp1].checked=true;
@@ -810,9 +976,9 @@ $(document).on('click','.filter_check_machinegp2',function(event){
             reset_machine_gp2();
 
         }
-        // else{
-        //     $('.machinegp_checkbox2').removeAttr('checked');
-        // }
+        else{
+            $('.machinegp_checkbox2').removeAttr('checked');
+        }
     }else{
         if (check_if2[index_machine_gp2].checked==false) {
             check_if2[index_machine_gp2].checked=true;
@@ -859,9 +1025,9 @@ $(document).on('click','.filter_check_reasongp2',function(event){
             reset_reason_gp2();
 
         }
-        // else{
-        //     $('.reasongp_checkbox2').removeAttr('checked');
-        // }
+        else{
+            $('.reasongp_checkbox2').removeAttr('checked');
+        }
     }else{
         if (check_if2[index_reason_gp2].checked==false) {
             check_if2[index_reason_gp2].checked=true;
@@ -908,9 +1074,9 @@ $(document).on('click','.filter_check_categorygb2',function(event){
             reset_category_gp2();
 
         }
-        // else{
-        //     $('.categorygp_checkbox2').removeAttr('checked');
-        // }
+        else{
+            $('.categorygp_checkbox2').removeAttr('checked');
+        }
     }else{
         if (check_if2[index_category_gp2].checked==false) {
             check_if2[index_category_gp2].checked=true;
@@ -961,9 +1127,9 @@ $(document).on('click','.filter_check_machinegp3',function(event){
             reset_machine_gp3();
 
         }
-        // else{
-        //     $('.machinegp_checkbox3').removeAttr('checked');
-        // }
+        else{
+            $('.machinegp_checkbox3').removeAttr('checked');
+        }
     }else{
         if (check_if3[index_machine_gp3].checked==false) {
             check_if3[index_machine_gp3].checked=true;
@@ -1010,9 +1176,9 @@ $(document).on('click','.filter_check_reasongp3',function(event){
             reset_reason_gp3();
 
         }
-        // else{
-        //     $('.reasongp_checkbox3').removeAttr('checked');
-        // }
+        else{
+            $('.reasongp_checkbox3').removeAttr('checked');
+        }
     }else{
         if (check_if3[index_reason_gp3].checked==false) {
             check_if3[index_reason_gp3].checked=true;
@@ -1059,9 +1225,9 @@ $(document).on('click','.filter_check_categorygb3',function(event){
             reset_category_gp3();
 
         }
-        // else{
-        //     $('.categorygp_checkbox3').removeAttr('checked');
-        // }
+        else{
+            $('.categorygp_checkbox3').removeAttr('checked');
+        }
     }else{
         if (check_if3[index_category_gp3].checked==false) {
             check_if3[index_category_gp3].checked=true;
@@ -1265,9 +1431,9 @@ $(document).on('click','.filter_check_machinegp1',function(event){
             reset_machine_gp1();
 
         }
-        // else{
-        //     $('.machinegp_checkbox1').removeAttr('checked');
-        // }
+        else{
+            $('.machinegp_checkbox1').removeAttr('checked');
+        }
     }else{
         if (check_if1[index_machine_gp1].checked==false) {
             check_if1[index_machine_gp1].checked=true;

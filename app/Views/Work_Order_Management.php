@@ -2695,7 +2695,7 @@ function displaySelectedFiles() {
   const itemsContainerlables = document.getElementsByClassName("attached_file_add")[0];
   // const file_list = document.getElementsByClassName("attached_file_list")[0];
 
-
+  
   for (let i = 0; i < files.length; i++) {
     const file = files[i];
     const fileName = file.name;

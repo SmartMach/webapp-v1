@@ -314,7 +314,7 @@
 <script type="text/javascript">
 
 let slideIndex = 0;
-let slideIndexLimit = 0;
+let slideIndexLimit = 10;
 function plusSlides(n) {
   showSlides(n);
 }
@@ -2319,7 +2319,6 @@ function fullscreen_mode() {
     $('.left-sidebar').css('display','none');
     $('.topnav').css('display','none');
     $('.fixsubnav_quality').css('display','none');
-    // $('.graph-content').css('margin-top','0rem');
     $('.grid-container-cont').css('margin-top', '0rem');
     $('.full_screen_close').css('display','block');
     $('.full_screen_close').css('display','flex');
@@ -2338,7 +2337,7 @@ function fullscreen_mode() {
     $('.prev').css('margin-left','-4.5rem');
 
     let slides = document.getElementsByClassName("grid-item-cont");
-    if (slides.length > 2) {
+    if (slides.length > 0) {
         $('.slideControl').css('display','block');
     }
 }
@@ -2355,6 +2354,8 @@ function fullscreen_mode_remove(){
 
     $('.prev').css('margin-left','0rem');
     let slides = document.getElementsByClassName("grid-item-cont");
+    console.log("slides length");
+    console.log(slides.length);
     for (j = 0; j < slides.length; j++) {
         slides[j].style.display = "block";
     }

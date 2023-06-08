@@ -1329,7 +1329,7 @@ $(document).mouseup(function(event){
     var gp_category = $('.filter_checkboxes_categorygp');
     if (!gp_category.is(event.target) && gp_category.has(event.target).length==0) {
         gp_category.hide();
-        // getfilter_oppcost_reason();
+      
     }
 
     // // reasons dropdown outside click hide
@@ -1337,6 +1337,7 @@ $(document).mouseup(function(event){
     if (!gp_reason.is(event.target) && gp_reason.has(event.target).length==0) {
         gp_reason.hide();
         // getfilter_oppcost_reason();
+       
     }
 
     // // machine dropdown outside click hide
