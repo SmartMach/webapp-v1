@@ -418,6 +418,7 @@ input[type=number] {
     padding-right:0.5rem;
     justify-content:center;
     align-items:center;
+    height:2rem;
   }
   .cate_drp_check{
     width:20%;
@@ -476,6 +477,7 @@ input[type=number] {
     padding-right:0.5rem; */
     justify-content:center;
     align-items:center;
+    height:2rem;
   }
   .reason_drp_check{
     width:20%;
@@ -2066,7 +2068,7 @@ $(document).on('change','#RejectShift',function(){
   var dateShift = new Date(shift_date_1);
     shift_date = dateShift.getFullYear()+'-'+((dateShift.getMonth() > 8) ? (dateShift.getMonth() + 1) : ('0' + (dateShift.getMonth() + 1))) + '-' + ((dateShift.getDate() > 9) ? dateShift.getDate() : ('0' + dateShift.getDate()));
 
-// Line hiding for checking..
+  // Line hiding for checking..
   // var tmp = shift_date_1.split("/");
   // var shift_date = ""+tmp[2]+"-"+tmp[0]+"-"+tmp[1]+"";
   

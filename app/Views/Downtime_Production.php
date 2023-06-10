@@ -1231,371 +1231,7 @@ function date_formate_change(date_format){
     return final_res;
 }
 
-//  machine multi select dropdown function 
-function fill_machine_dropdown(){
-    // console.log("machine dropdown records filling function");
-    $.ajax({
-        url:"<?php echo base_url('Production_Downtime_controller/getmachine_data'); ?>",
-        type:"POST",
-        dataType: "json",
-        success:function(res){
-            // console.log("multi select dropdown machine");
-            // console.log(res);
-            
-            $('.filter_checkboxes_machine').empty();
-            $('.filter_checkboxes_machinegp').empty();
-            $('.filter_checkboxes_machinegp1').empty();
-            $('.filter_checkboxes_machinegp2').empty();
-            $('.filter_checkboxes_machinegp3').empty();
 
-
-            $('.filter_checkboxes_machine').append('<div class="filter_check_machine" style="">'
-            +'<div class="cate_drp_check" style="">'
-            +'<input type="checkbox" id="one" class="machine_checkbox" value="all"/>'
-            +'</div>'
-            +'<div class="cate_drp_text" style="">'
-            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
-            +'</div>'
-            +'</div>');
-
-            $('.filter_checkboxes_machinegp').append('<div class="filter_check_machinegp reason_oppcost_common" style="">'
-            +'<div class="cate_drp_check" style="">'
-            +'<input type="checkbox" id="one" class="machinegp_checkbox" value="all"/>'
-            +'</div>'
-            +'<div class="cate_drp_text" style="">'
-            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
-            +'</div>'
-            +'</div>');
-
-            $('.filter_checkboxes_machinegp1').append('<div class="filter_check_machinegp1 reason_duration_common" style="">'
-            +'<div class="cate_drp_check" style="">'
-            +'<input type="checkbox" id="one" class="machinegp_checkbox1" value="all"/>'
-            +'</div>'
-            +'<div class="cate_drp_text" style="">'
-            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
-            +'</div>'
-            +'</div>');
-
-            $('.filter_checkboxes_machinegp2').append('<div class="filter_check_machinegp2 machine_oppcost_common" style="">'
-            +'<div class="cate_drp_check" style="">'
-            +'<input type="checkbox" id="one" class="machinegp_checkbox2" value="all"/>'
-            +'</div>'
-            +'<div class="cate_drp_text" style="">'
-            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
-            +'</div>'
-            +'</div>');
-
-            $('.filter_checkboxes_machinegp3').append('<div class="filter_check_machinegp3 machine_reason_duration_common" style="">'
-            +'<div class="cate_drp_check" style="">'
-            +'<input type="checkbox" id="one" class="machinegp_checkbox3" value="all"/>'
-            +'</div>'
-            +'<div class="cate_drp_text" style="">'
-            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
-            +'</div>'
-            +'</div>');
-            res.forEach(function(val){
-                var elements = $();
-                var element = $();
-                var ele = $();
-                var ele_1 = $();
-                var ele_2 = $();
-
-
-
-                elements = elements.add('<div class="filter_check_machine" style="">'
-                +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="machine_checkbox" value="'+val.machine_id+'"/>'
-                +'</div>'
-                +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
-                +'</div>'
-                +'</div>');
-
-
-                element = element.add('<div class="filter_check_machinegp reason_oppcost_common" style="">'
-                +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="machinegp_checkbox" value="'+val.machine_id+'"/>'
-                +'</div>'
-                +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
-                +'</div>'
-                +'</div>');
-
-                ele = ele.add('<div class="filter_check_machinegp1 reason_duration_common" style="">'
-                +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="machinegp_checkbox1" value="'+val.machine_id+'"/>'
-                +'</div>'
-                +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
-                +'</div>'
-                +'</div>');
-
-                ele_1 = ele_1.add('<div class="filter_check_machinegp2 machine_oppcost_common" style="">'
-                +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="machinegp_checkbox2" value="'+val.machine_id+'"/>'
-                +'</div>'
-                +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
-                +'</div>'
-                +'</div>');
-
-                ele_2 = ele_2.add('<div class="filter_check_machinegp3 machine_reason_duration_common" style="">'
-                +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="machinegp_checkbox3" value="'+val.machine_id+'"/>'
-                +'</div>'
-                +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
-                +'</div>'
-                +'</div>');
-
-                $('.filter_checkboxes_machine').append(elements);
-                $('.filter_checkboxes_machinegp').append(element);
-                $('.filter_checkboxes_machinegp1').append(ele);
-                $('.filter_checkboxes_machinegp2').append(ele_1);
-                $('.filter_checkboxes_machinegp3').append(ele_2);
-
-            });
-
-            reset_machine();
-            reset_machine_gp();
-            reset_machine_gp1();
-            reset_machine_gp2();
-            reset_machine_gp3();
-
-          
-
-            // reason oppcost graph
-            // getfilter_oppcost_reason();
-
-            // // reason duration graph
-            // getfilter_duration_reason();
-
-            // // machine wise oppcost
-            // getfilter_machine_oppcost();
-
-            // // machine wise and duration wise graph filter function
-            // getfilter_machine_reason_duration();
-
-            
-        },
-        error:function(er){
-            console.log("Error Try Again...");
-        }
-    });
-}
-
-// part name multi select dropdown
-function fill_part_dropdown(){
-    $.ajax({
-        url:"<?php echo base_url('Production_Downtime_controller/getpart_data_drp'); ?>",
-        type:"POST",
-        dataType: "json",
-        // data:{from:from,to:to},
-        success:function(res){
-            // console.log("multi select dropdown part");
-            // console.log(res);
-            
-            $('.filter_checkboxes_part').empty();
-            $('.filter_checkboxes_part').append('<div class="filter_check_part" style="">'
-            +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="partname_checkbox" value="all"/>'
-            +'</div>'
-            +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">All</p>'
-            +'</div>'
-            +'</div>');
-            res.forEach(function(val){
-                var elements = $();
-                elements = elements.add('<div class="filter_check_part" style="">'
-                +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="partname_checkbox" value="'+val.part_id+'"/>'
-                +'</div>'
-                +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">'+val.part_name+'</p>'
-                +'</div>'
-                +'</div>');
-
-                $('.filter_checkboxes_part').append(elements);
-            });
-            reset_part();
-            reset_category();
-
-            
-        },
-        error:function(er){
-            console.log("Error Try Again...");
-        }
-        
-    });
-    
-}
-
-// function created by select dropdown
-function fill_created_by(){
-    $.ajax({
-        url:"<?php echo base_url('Production_Downtime_controller/getcreated_by_drp'); ?>",
-        type:"POST",
-        dataType: "json",
-        // data:{from:from,to:to},
-        success:function(res){
-            // console.log("multi select dropdown created by");
-            // console.log(res);
-            
-            $('.filter_checkboxes_cb').empty();
-            $('.filter_checkboxes_cb').append('<div class="filter_check_cb" style="">'
-            +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="created_by_checkbox" value="all"/>'
-            +'</div>'
-            +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">All</p>'
-            +'</div>'
-            +'</div>')
-            res.forEach(function(val){
-                var elements = $();
-                elements = elements.add('<div class="filter_check_cb" style="">'
-                +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="created_by_checkbox" value="'+val.user_id+'"/>'
-                +'</div>'
-                +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">'+val.first_name+''+val.last_name+'</p>'
-                +'</div>'
-                +'</div>');
-
-                $('.filter_checkboxes_cb').append(elements);
-            });
-            reset_created_by();
-            
-        },
-        error:function(er){
-            console.log("Error Try Again...");
-        }
-        
-    }); 
-}
-
-// filter downtime reasons dropdwon function
-function downtime_reason_filter(){
-    $.ajax({
-        url:"<?php echo base_url(); ?>/Production_Downtime_controller/downtime_reason_filter_con",
-        method:"POST",
-        dataType:"json",
-        success:function(res){
-
-            $('.filter_checkboxes_r').empty();
-            $('.filter_checkboxes_reasongp').empty();
-            $('.filter_checkboxes_reasongp1').empty();
-            $('.filter_checkboxes_reasongp2').empty();
-            $('.filter_checkboxes_reasongp3').empty();
-
-            // console.log("reason dropdwon");
-            // console.log(res);
-
-            var element = $();
-            var elements = $();
-            var ele = $();
-            var ele_1 = $();
-            var ele_2 = $();
-
-            $('.filter_checkboxes_r').append('<div class="filter_check_r" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
-            $('.filter_checkboxes_reasongp').append('<div class="filter_check_reasongp reason_oppcost_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
-            $('.filter_checkboxes_reasongp1').append('<div class="filter_check_reasongp1 reason_duration_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox1" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
-            $('.filter_checkboxes_reasongp2').append('<div class="filter_check_reasongp2 machine_oppcost_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox2" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
-            $('.filter_checkboxes_reasongp3').append('<div class="filter_check_reasongp3 machine_reason_duration_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox3" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
-
-
-            res.forEach(function(item){
-                // console.log(item.downtime_reason_id);
-                //   if (item.downtime_reason==="Tool Changeover") {
-                    
-                //   }else{
-                    // element = element.add('<option value="'+item.downtime_reason+'">'+item.downtime_reason+'</option>');
-                element = element.add('<div class="filter_check_r" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
-                
-                elements = elements.add('<div class="filter_check_reasongp reason_oppcost_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
-
-                ele = ele.add('<div class="filter_check_reasongp1 reason_duration_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox1" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
-                
-                ele_1 = ele_1.add('<div class="filter_check_reasongp2 machine_oppcost_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox2" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
-                ele_2 = ele_2.add('<div class="filter_check_reasongp3 machine_reason_duration_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox3" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
-            
-                $('.filter_checkboxes_r').append(element);
-                $('.filter_checkboxes_reasongp').append(elements);
-                $('.filter_checkboxes_reasongp1').append(ele);
-                $('.filter_checkboxes_reasongp2').append(ele_1);
-                $('.filter_checkboxes_reasongp3').append(ele_2);
-
-
-
-                //   }
-            
-            });
-            // downtime reasons all reasons selection funciton [reset the multiselect dropdwon]
-            reset_reason();
-            reset_reason_gp();
-            reset_reason_gp1();
-            reset_reason_gp2();
-            reset_reason_gp3();
-
-            //graph filter reset category dropdown
-            reset_category_gp();
-            reset_category_gp1();
-            reset_category_gp2();
-            reset_category_gp3();
-
-            // graph 
-            // reason oppcost graph
-            // getfilter_oppcost_reason();
-
-            // // // reason duration graph
-            // getfilter_duration_reason();
-
-            // // // machine wise oppcost
-            // getfilter_machine_oppcost();
-
-            // // // machine wise and duration wise graph filter function
-            // getfilter_machine_reason_duration();
-
-        
-        },
-        error:function(err){
-            console.log(err);
-        },
-    });
-}
-
-// category based reason
-function category_based_reson(category_temp){
-    $.ajax({
-      url:"<?php echo base_url(); ?>/Production_Downtime_controller/category_based_reason",
-      method:"POST",
-      dataType:"json",
-      data:{category_temp:category_temp},
-      success:function(res){
-        // console.log("reason dropdwon");
-        // console.log(res);
-        // console.log("category selection ");
-        // console.log(res);
-        var element = $();
-        $('.filter_checkboxes_r').append('<div class="filter_check_r" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
-        res.forEach(function(item){
-          // console.log(item.downtime_reason_id);
-          if (item.downtime_reason==="Tool Changeover") {
-            
-          }else{
-            // element = element.add('<option value="'+item.downtime_reason+'">'+item.downtime_reason+'</option>');
-            element = element.add('<div class="filter_check_r" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
-            $('.filter_checkboxes_r').append(element);
-          }
-        
-        });
-        // downtime reasons all reasons selection funciton [reset the multiselect dropdwon]
-        reset_reason();
-      },
-      error:function(err){
-        console.log(err);
-      },
-    });  
-}
 
 // this function get category value 
 function getcategory_arr(){
@@ -1693,7 +1329,7 @@ $(document).mouseup(function(event){
     var gp_category = $('.filter_checkboxes_categorygp');
     if (!gp_category.is(event.target) && gp_category.has(event.target).length==0) {
         gp_category.hide();
-        // getfilter_oppcost_reason();
+      
     }
 
     // // reasons dropdown outside click hide
@@ -1701,6 +1337,7 @@ $(document).mouseup(function(event){
     if (!gp_reason.is(event.target) && gp_reason.has(event.target).length==0) {
         gp_reason.hide();
         // getfilter_oppcost_reason();
+       
     }
 
     // // machine dropdown outside click hide
@@ -1764,14 +1401,26 @@ $(document).mouseup(function(event){
 // filter onclick  function
 $(document).on('click','#apply_filter_btn',function(event){
     event.preventDefault();
-    $('#pagination_val').val('1');
-    $("#overlay").fadeIn(400);
-    var start_index = 0;
-    var end_index = 50;
-    filter_after_filter(end_index,start_index);
+    
+    var get_category_data = getcategory_arr();
+    var machine_arr = getmachine_arr();
+    var part_arr = getpart_arr();
+    var reason_arr = getreason_arr();
+    var created_by = getcreated_by_arr();
+    if ((parseInt(get_category_data.length)>0) && (parseInt(machine_arr.length)>0) && (parseInt(part_arr.length)>0) && (parseInt(reason_arr.length)>0) && (parseInt(created_by.length)>0)) {
+            $('#pagination_val').val('1');
+        $("#overlay").fadeIn(400);
+        var start_index = 0;
+        var end_index = 50;
+        filter_after_filter(end_index,start_index);
    
-   
-    // alert('ji');
+    }else{
+        $('#pagination_val').val('1');
+        $('.fixed_rows').empty();
+        $('.scroll_rows').empty();
+        $('#total_page').html("1");
+        $('.fixed_rows').append("No Records Found");
+    }
 
 });
 // after click filter and document ready function and after pagination uusing filter
@@ -1970,6 +1619,7 @@ $(document).on('click','.reason_oppcost_common',function(event){
 $(document).on('click','.reason_duration_common',function(event){
     event.preventDefault();
     getfilter_duration_reason();
+    // console.log("click reason duration common");
 
 });
 
@@ -2201,7 +1851,6 @@ function getfilter_oppcost_reason(){
 
 
 // Downtime Duration by Reasons
-
 function getfilter_duration_reason(){
      
     $('#reason_wise_duration').remove();
@@ -2799,56 +2448,11 @@ $(document).ready(function(){
     // preloader on function
     $("#overlay").fadeIn(500);
 
-    $('#pagination_val').val('1');
+    // filter_drp_graph_all and graph always calling this function();
+    getall_filter_arr();
 
-    // load function
-    // myfun_load();
-    // machine dropdown record filling function
-  
-
-    // part dropdown record filling
-   
-
-  
-    // created by dropdown record filling
-  
-
-    // downtime reasons function
-    // var temp1 = null;
-   
-   
-
-    filter_drp_graph_all();
-  
 
 });
-
-
-// all functions filter drp and graph function calling main function
-function filter_drp_graph_all(){
-    fill_machine_dropdown();
-    fill_part_dropdown();
-    fill_created_by();
-    downtime_reason_filter();
-
-    setTimeout(() => {
-       graph_all_fun(); 
-    }, 500);
-}
-
-// graph all functions
-function graph_all_fun(){
-    getfilter_oppcost_reason();
-    getfilter_duration_reason();
-    getfilter_machine_oppcost();
-    getfilter_machine_reason_duration();
-     
-    var end_index = 50;
-    var start_index = 0;
-    // filter function apply
-    filter_after_filter(end_index,start_index);
-}
-
 
 // onblur function change input filter
 // from date on blur function
@@ -2857,46 +2461,9 @@ $(document).on('blur','.fromDate',function(event){
 
     // preloader function on load
     $("#overlay").fadeIn(400);
+     // filter_drp_graph_all and graph always calling this function();
+     getall_filter_arr();
 
-    $('#pagination_val').val('1');
-
-    
-    // load function
-    // myfun_load();
-    // machine dropdown record filling function
-    // fill_machine_dropdown();
-
-    // // part dropdown record filling
-    // fill_part_dropdown();
-
-  
-    // // created by dropdown record filling
-    // fill_created_by();
-
-    // // downtime reasons function
-    // // var temp = null;
-    // downtime_reason_filter();
-
-    // // // reason oppcost graph
-    // // getfilter_oppcost_reason();
-
-    // // // reason duration graph
-    // // getfilter_duration_reason();
-
-    // // // machine wise oppcost
-    // // getfilter_machine_oppcost();
-
-    // // // machine wise and duration wise graph filter function
-    // // getfilter_machine_reason_duration();
-
-
-    // var end_index = 50;
-    // var start_index = 0;
-    // // filter function apply
-    // filter_after_filter(end_index,start_index);
-
-    
-    filter_drp_graph_all();
   
 });
 
@@ -2907,49 +2474,268 @@ $(document).on('blur','.toDate',function(event){
 
     // // preloader function on load
     $("#overlay").fadeIn(400);
+     // filter_drp_graph_all and graph always calling this function();
+     getall_filter_arr();
 
-    // // load function
-    // // myfun_load();
-    // // machine dropdown record filling function
-    // fill_machine_dropdown();
-
-    // // part dropdown record filling
-    // fill_part_dropdown();
-
-  
-    // // created by dropdown record filling
-    // fill_created_by();
-
-    // // downtime reasons function
-    // // var temp = null;
-    // downtime_reason_filter();
-
-    // //graph filter reset category dropdown
-        
-    // // // reason oppcost graph
-    // // getfilter_oppcost_reason();
-
-    // // // reason duration graph
-    // // getfilter_duration_reason();
-
-    // // // machine wise oppcost
-    // // getfilter_machine_oppcost();
-
-    // // // machine wise and duration wise graph filter function
-    // // getfilter_machine_reason_duration();
-
-
-
-
-    $('#pagination_val').val('1');
-
-    // var end_index = 50;
-    // var start_index = 0;
-    // // filter function apply
-    // filter_after_filter(end_index,start_index);
-    
-    filter_drp_graph_all();
-  
 });
+
+// all dropdwon functions 
+function getall_filter_arr(){
+    $.ajax({
+        url:"<?php echo base_url('Production_Downtime_controller/getall_filter_arr') ?>",
+        method:"POST",
+        dataType:"json",
+        success:function(res){
+            console.log("All dropdown function");
+            console.log(res);
+
+            // machine
+            $('.filter_checkboxes_machine').empty();
+            $('.filter_checkboxes_machinegp').empty();
+            $('.filter_checkboxes_machinegp1').empty();
+            $('.filter_checkboxes_machinegp2').empty();
+            $('.filter_checkboxes_machinegp3').empty();
+
+
+            $('.filter_checkboxes_machine').append('<div class="filter_check_machine" style="">'
+            +'<div class="cate_drp_check" style="">'
+            +'<input type="checkbox" id="one" class="machine_checkbox" value="all"/>'
+            +'</div>'
+            +'<div class="cate_drp_text" style="">'
+            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+            +'</div>'
+            +'</div>');
+
+            $('.filter_checkboxes_machinegp').append('<div class="filter_check_machinegp reason_oppcost_common" style="">'
+            +'<div class="cate_drp_check" style="">'
+            +'<input type="checkbox" id="one" class="machinegp_checkbox" value="all"/>'
+            +'</div>'
+            +'<div class="cate_drp_text" style="">'
+            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+            +'</div>'
+            +'</div>');
+
+            $('.filter_checkboxes_machinegp1').append('<div class="filter_check_machinegp1 reason_duration_common" style="">'
+            +'<div class="cate_drp_check" style="">'
+            +'<input type="checkbox" id="one" class="machinegp_checkbox1" value="all"/>'
+            +'</div>'
+            +'<div class="cate_drp_text" style="">'
+            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+            +'</div>'
+            +'</div>');
+
+            $('.filter_checkboxes_machinegp2').append('<div class="filter_check_machinegp2 machine_oppcost_common" style="">'
+            +'<div class="cate_drp_check" style="">'
+            +'<input type="checkbox" id="one" class="machinegp_checkbox2" value="all"/>'
+            +'</div>'
+            +'<div class="cate_drp_text" style="">'
+            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+            +'</div>'
+            +'</div>');
+
+            $('.filter_checkboxes_machinegp3').append('<div class="filter_check_machinegp3 machine_reason_duration_common" style="">'
+            +'<div class="cate_drp_check" style="">'
+            +'<input type="checkbox" id="one" class="machinegp_checkbox3" value="all"/>'
+            +'</div>'
+            +'<div class="cate_drp_text" style="">'
+            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+            +'</div>'
+            +'</div>');
+
+            res['machine'].forEach(function(val){
+                var elements_mdrp = $();
+                var element_mdrp = $();
+                var ele_mdrp = $();
+                var ele_1_mdrp = $();
+                var ele_2_mdrp = $();
+
+
+
+                elements_mdrp = elements_mdrp.add('<div class="filter_check_machine" style="">'
+                +'<div class="cate_drp_check" style="">'
+                +'<input type="checkbox" id="one" class="machine_checkbox" value="'+val.machine_id+'"/>'
+                +'</div>'
+                +'<div class="cate_drp_text" style="">'
+                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
+                +'</div>'
+                +'</div>');
+
+
+                element_mdrp = element_mdrp.add('<div class="filter_check_machinegp reason_oppcost_common" style="">'
+                +'<div class="cate_drp_check" style="">'
+                +'<input type="checkbox" id="one" class="machinegp_checkbox" value="'+val.machine_id+'"/>'
+                +'</div>'
+                +'<div class="cate_drp_text" style="">'
+                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
+                +'</div>'
+                +'</div>');
+
+                ele_mdrp = ele_mdrp.add('<div class="filter_check_machinegp1 reason_duration_common" style="">'
+                +'<div class="cate_drp_check" style="">'
+                +'<input type="checkbox" id="one" class="machinegp_checkbox1" value="'+val.machine_id+'"/>'
+                +'</div>'
+                +'<div class="cate_drp_text" style="">'
+                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
+                +'</div>'
+                +'</div>');
+
+                ele_1_mdrp = ele_1_mdrp.add('<div class="filter_check_machinegp2 machine_oppcost_common" style="">'
+                +'<div class="cate_drp_check" style="">'
+                +'<input type="checkbox" id="one" class="machinegp_checkbox2" value="'+val.machine_id+'"/>'
+                +'</div>'
+                +'<div class="cate_drp_text" style="">'
+                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
+                +'</div>'
+                +'</div>');
+
+                ele_2_mdrp = ele_2_mdrp.add('<div class="filter_check_machinegp3 machine_reason_duration_common" style="">'
+                +'<div class="cate_drp_check" style="">'
+                +'<input type="checkbox" id="one" class="machinegp_checkbox3" value="'+val.machine_id+'"/>'
+                +'</div>'
+                +'<div class="cate_drp_text" style="">'
+                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
+                +'</div>'
+                +'</div>');
+
+                $('.filter_checkboxes_machine').append(elements_mdrp);
+                $('.filter_checkboxes_machinegp').append(element_mdrp);
+                $('.filter_checkboxes_machinegp1').append(ele_mdrp);
+                $('.filter_checkboxes_machinegp2').append(ele_1_mdrp);
+                $('.filter_checkboxes_machinegp3').append(ele_2_mdrp);
+
+            });
+
+
+            // part 
+            $('.filter_checkboxes_part').empty();
+            $('.filter_checkboxes_part').append('<div class="filter_check_part" style="">'
+            +'<div class="cate_drp_check" style="">'
+                +'<input type="checkbox" id="one" class="partname_checkbox" value="all"/>'
+            +'</div>'
+            +'<div class="cate_drp_text" style="">'
+                +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+            +'</div>'
+            +'</div>');
+            res['part'].forEach(function(val){
+                var elements_pdrp = $();
+                elements_pdrp = elements_pdrp.add('<div class="filter_check_part" style="">'
+                +'<div class="cate_drp_check" style="">'
+                +'<input type="checkbox" id="one" class="partname_checkbox" value="'+val.part_id+'"/>'
+                +'</div>'
+                +'<div class="cate_drp_text" style="">'
+                +'<p class="font_multi_drp" style="margin:auto;">'+val.part_name+'</p>'
+                +'</div>'
+                +'</div>');
+
+                $('.filter_checkboxes_part').append(elements_pdrp);
+            });
+
+
+            // created by dropdown
+            $('.filter_checkboxes_cb').empty();
+            $('.filter_checkboxes_cb').append('<div class="filter_check_cb" style="">'
+            +'<div class="cate_drp_check" style="">'
+                +'<input type="checkbox" id="one" class="created_by_checkbox" value="all"/>'
+            +'</div>'
+            +'<div class="cate_drp_text" style="">'
+                +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+            +'</div>'
+            +'</div>')
+            res['created_by'].forEach(function(val){
+                var elements_cdrp = $();
+                elements_cdrp = elements_cdrp.add('<div class="filter_check_cb" style="">'
+                +'<div class="cate_drp_check" style="">'
+                +'<input type="checkbox" id="one" class="created_by_checkbox" value="'+val.user_id+'"/>'
+                +'</div>'
+                +'<div class="cate_drp_text" style="">'
+                +'<p class="font_multi_drp" style="margin:auto;">'+val.first_name+''+val.last_name+'</p>'
+                +'</div>'
+                +'</div>');
+
+                $('.filter_checkboxes_cb').append(elements_cdrp);
+            });
+
+            // downtime reason
+            $('.filter_checkboxes_r').empty();
+            $('.filter_checkboxes_reasongp').empty();
+            $('.filter_checkboxes_reasongp1').empty();
+            $('.filter_checkboxes_reasongp2').empty();
+            $('.filter_checkboxes_reasongp3').empty();
+
+            // console.log("reason dropdwon");
+            // console.log(res);
+
+            var element_ddrp = $();
+            var elements_ddrp = $();
+            var ele_ddrp = $();
+            var ele_1_ddrp = $();
+            var ele_2_ddrp = $();
+
+            $('.filter_checkboxes_r').append('<div class="filter_check_r" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
+            $('.filter_checkboxes_reasongp').append('<div class="filter_check_reasongp reason_oppcost_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
+            $('.filter_checkboxes_reasongp1').append('<div class="filter_check_reasongp1 reason_duration_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox1" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
+            $('.filter_checkboxes_reasongp2').append('<div class="filter_check_reasongp2 machine_oppcost_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox2" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
+            $('.filter_checkboxes_reasongp3').append('<div class="filter_check_reasongp3 machine_reason_duration_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox3" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
+
+
+            res['downtime_reason'].forEach(function(item){
+                
+                element_ddrp = element_ddrp.add('<div class="filter_check_r" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
+                
+                elements_ddrp = elements_ddrp.add('<div class="filter_check_reasongp reason_oppcost_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
+
+                ele_ddrp = ele_ddrp.add('<div class="filter_check_reasongp1 reason_duration_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox1" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
+                
+                ele_1_ddrp = ele_1_ddrp.add('<div class="filter_check_reasongp2 machine_oppcost_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox2" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
+                ele_2_ddrp = ele_2_ddrp.add('<div class="filter_check_reasongp3 machine_reason_duration_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox3" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
+            
+                $('.filter_checkboxes_r').append(element_ddrp);
+                $('.filter_checkboxes_reasongp').append(elements_ddrp);
+                $('.filter_checkboxes_reasongp1').append(ele_ddrp);
+                $('.filter_checkboxes_reasongp2').append(ele_1_ddrp);
+                $('.filter_checkboxes_reasongp3').append(ele_2_ddrp);             
+            });
+            // downtime reasons all reasons selection funciton [reset the multiselect dropdwon]
+            reset_reason();
+            reset_reason_gp();
+            reset_reason_gp1();
+            reset_reason_gp2();
+            reset_reason_gp3();
+            //graph filter reset category dropdown
+            reset_category_gp();
+            reset_category_gp1();
+            reset_category_gp2();
+            reset_category_gp3();
+            reset_created_by();
+            reset_part();
+            reset_category();
+            reset_machine();
+            reset_machine_gp();
+            reset_machine_gp1();
+            reset_machine_gp2();
+            reset_machine_gp3();
+
+
+            // all graph 
+            $('#pagination_val').val('1');
+            getfilter_oppcost_reason();
+            getfilter_duration_reason();
+            getfilter_machine_oppcost();
+            getfilter_machine_reason_duration();
+            
+            var end_index = 50;
+            var start_index = 0;
+            // filter function apply
+            filter_after_filter(end_index,start_index);
+            
+
+
+        },
+        error:function(er){
+            console.log("All dropdown ajax error");
+            console.log(er);
+        }
+    });
+}
 
 </script>

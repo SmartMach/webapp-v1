@@ -23,8 +23,8 @@ class Daily_production_Model extends Model{
             'hostname' => 'localhost',
             'username' => 'root',
             'password' => '',
-            // 'database' => 's1001',
-            'database' => ''.$db_name.'',
+            'database' => 's1001',
+            // 'database' => ''.$db_name.'',
             'DBDriver' => 'MySQLi',
             'DBPrefix' => '',
             'pConnect' => false,
@@ -41,6 +41,62 @@ class Daily_production_Model extends Model{
     }
 
 
+    public function getmachine_wise_downtime_reason($machine_ar,$sdate){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('pdm_downtime_reason_mapping as m');
+        $query->select('DISTINCT(m.downtime_reason_id),s.downtime_reason');
+        $query->join('settings_downtime_reasons  as s','m.downtime_reason_id=s.downtime_reason_id');
+        $query->where('m.shift_date',$sdate);
+        $res = $query->get()->getResultArray();
+        $machine_downtime_reason = [];
+        foreach ($res as $key => $value) {
+            $machine_downtime_reason[$value['downtime_reason_id']] = $value['downtime_reason'];
+        }
+
+        return $machine_downtime_reason;
+    }
+
+    public function getdowntime_data($date){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('pdm_downtime_reason_mapping');
+        $query->select('machine_id,shift_date,Shift_id,downtime_reason_id,split_duration,tool_id,part_id');
+        $query->where('shift_date',$date);
+        $res = $query->get()->getResultArray();
+        return $res;
+    }
+    public function get_active_data($date){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('pdm_events');
+        $query->select('machine_id,shift_date,shift_id,start_time,end_time,duration,tool_id,part_id');
+        $query->where('shift_date',$date);
+        $query->where('event',"Active");
+        $res = $query->get()->getResultArray();
+        return $res;
+    }
+    public function getproduction_data($date){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('pdm_production_info');
+        $query->select('machine_id,shift_date,shift_id,production,corrections,rejections,tool_id,part_id,reject_reason,start_time,end_time');
+        $query->where('shift_date',$date);
+        $query->orderBy('start_time','ASC');
+        $res = $query->get()->getResultArray();
+        return $res;
+    }
+    public function getdowntime_reason_data(){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('settings_downtime_reasons');
+        $query->select('downtime_reason_id,downtime_reason');
+        $res = $query->get()->getResultArray();
+        return $res;
+    }
+    public function getquality_reason_data(){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('settings_quality_reasons');
+        $query->select('quality_reason_id,quality_reason_name');
+        $res = $query->get()->getResultArray();
+
+        return $res;
+    }
 
     // get downtime reasons function 
     public function getDowntimereason(){
@@ -56,7 +112,6 @@ class Daily_production_Model extends Model{
             // return $value->downtime_reason_id;
            //$tmp_a[$value->downtime_reason_id] = $value->downtime_reason;
         }
-
         return $ta;
     }
 
@@ -127,11 +182,7 @@ class Daily_production_Model extends Model{
         }
         $duration_mtotal_count = $duration_mtotal_count * 60;
         $duration_total_minute_count = $duration_mtotal_count + $duration_stotal_count;
-        // $tmp['machine_id'] = $mid;
-        // $tmp['part_id'] = $pid;
-        // $tmp['tool id'] = $tid;
-        // $tmp['sdate'] = $sdate;
-        // $tmp['shift id'] = $sid;
+
         return $duration_total_minute_count;
     }
 
@@ -177,41 +228,45 @@ class Daily_production_Model extends Model{
     }
 
     // get the current machine shift  based machine status
-    public function getmachine_data($date){
+    public function getmachine_data(){
         $db =  \Config\Database::connect($this->site_connection);
-        // all machines get record
-        // SELECT DISTINCT(machine_id) FROM `pdm_production_info` WHERE calendar_date='2022-11-25';
-        $query = $db->table('pdm_production_info');
-        $query->select('DISTINCT(machine_id)');
-        $query->where('shift_date',$date);
+        $query = $db->table('settings_machine_current');
+        $query->select('machine_id,machine_name,machine_brand,tonnage');
+        $query->where('machine_id!=','MC1005');
         $resm = $query->get()->getResultArray();
-
         return $resm;
+    }
 
-       
+    public function getpart_data(){
+        $db =  \Config\Database::connect($this->site_connection);
+        $query = $db->table('settings_part_current');
+        $query->select('part_id,part_name,NICT,part_produced_cycle');
+        $resm = $query->get()->getResultArray();
+        return $resm;
     } 
 
     // get machine details for machine 1 and machine n full details tonnage and brand name
-    public function getmachine_details($machine_ar){
-        // date based macine details
+    // public function getmachine_details($machine_ar){
+    //     // date based macine details
 
-        $db =  \Config\Database::connect($this->site_connection);
-        // machine details in machine current direct get value
-        // $machine_details = [];
-        foreach($machine_ar as $key => $val){
-            $query = $db->table('settings_machine_current');
-            $query->select('*');
-            $query->where('machine_id',$val['machine_id']);
-            $res1 = $query->get()->getResultArray();
-            $machine_details[$key]=$res1[0];
+    //     $db =  \Config\Database::connect($this->site_connection);
+    //     // machine details in machine current direct get value
+    //     // $machine_details = [];
+    //     foreach($machine_ar as $key => $val){
+    //         $query = $db->table('settings_machine_current');
+    //         $query->select('*');
+    //         $query->where('machine_id',$val['machine_id']);
+    //         $res1 = $query->get()->getResultArray();
+    //         $machine_details[$key]=$res1[0];
             
 
-        }
+    //     }
 
-        return $machine_details;
-    }
+    //     return $machine_details;
+    // }
 
     // get machine wise and shift wise tool changeover
+    /* temporary hide this function move on controller
     public function get_tool_changeover($machine_arr,$sdate,$shift_arr,$duration){
         $db =  \Config\Database::connect($this->site_connection);
         // machine array
@@ -229,72 +284,17 @@ class Daily_production_Model extends Model{
         }
         return $machine_based_arr;
     }
-
+    */
     
     // get date wise and machine wise and shift id wise array
-    public function get_tool_id($machine_id,$shiftid,$shift_date,$duration){
+    public function get_tool_id(){
         $db =  \Config\Database::connect($this->site_connection);
 
-        $query = $db->table('pdm_production_info');
-        $query->select('DISTINCT(tool_id),part_id');
-        $query->where('machine_id',$machine_id);
-        $query->where('shift_date',$shift_date);
-        $query->where('shift_id',$shiftid);
+        $query = $db->table('settings_part_current');
+        $query->select('tool_id,part_id');
         $res = $query->get()->getResultArray();
 
-        // madhan sir instruction is full changed for formula in target  so its temporary hide
-        /*
-        $duration_split = explode(":",$duration);
-
-        $seconds_val = $duration_split[0] * 3600;
-        $seconds_val = $seconds_val + ($duration_split[1]*60);
-        $seconds_val = $seconds_val + $duration_split[2];
-      
-        $getplanned_second = $this->getalldowntime($machine_id,$shift_date,$shiftid);
-        // $getplanned_split = explode(".",$getplanned_downtime);
-        // $getplanned_second = 0;
-        // if ($getplanned_split[1]>0) {
-        //     $getplanned_second = $getplanned_split[1]+$getplanned_second;
-        // }
-        // $tmp_ps = $getplanned_split[0] * 60;
-
-        // $getplanned_second = (int)$getplanned_second + (int)$tmp_ps;
-
-        $final_duration = $seconds_val - $getplanned_second;
-        */
-        // return $seconds_val."-".$getplanned_second."=".$final_duration;
-        // return $seconds_val;
-        // return $getplanned_downtime;
-        $part_based_array = [];
-        foreach ($res as $key => $value) {
-           $tmpass_arr = [];
-            //    tool changeover time get function
-           $get_timestamp = $this->get_tool_changeovertime($machine_id,$shiftid,$shift_date,$value['part_id'],$value['tool_id']);
-            // get thats time durations    
-            // $getpart_duration = $this->get_time_seconds($machine_id,$shiftid,$shift_date,$value['part_id'],$value['tool_id']);
-            // get downtime for that time durations    
-           $getpart_downtime_duration = $this->getalldowntime($machine_id,$shift_date,$shiftid,$value['part_id'],$value['tool_id']); 
-           $getpart_count = $this->all_time_part_count($machine_id,$shiftid,$shift_date,$value['tool_id']);
-           $final_duration = $getpart_downtime_duration/$getpart_count;
-
-           array_push($tmpass_arr,$value['tool_id']);
-           $getppc = $this->getpart_details($value['part_id']);
-           array_push($tmpass_arr,$getppc[0]['part_produced_cycle']);
-           array_push($tmpass_arr,$getppc[0]['NICT']);
-           
-           try {
-            if ($getppc[0]['NICT'] == 0) throw new Exception("Divide by zero");
-            $target = $final_duration / $getppc[0]['NICT'];
-            array_push($tmpass_arr,$target);
-           } catch (\Throwable $e) {
-                array_push($tmpass_arr,0);
-           }
-           
-
-           array_push($tmpass_arr,$get_timestamp);
-           $part_based_array[$value['part_id']] = $tmpass_arr;
-        }
-        return $part_based_array;
+        return $res;
     }
 
     
@@ -321,6 +321,51 @@ class Daily_production_Model extends Model{
         $result = $query->get()->getResultArray();
         return $result;
     }
+
+    public function get_tool_changeover_range($sdate){
+        $db =  \Config\Database::connect($this->site_connection);
+        $query = $db->table('pdm_tool_changeover as tp');
+        $query->select('tp.tool_changeover_id,tp.machine_id,tp.tool_id,tp.shift_date,tp.shift_id,tp.event_start_time,tp.target');
+        $query->where('tp.shift_date <',$sdate);
+        $query->orderBy('tp.machine_id','ASC');
+        $query->orderBy('tp.shift_date','DESC');
+        $query->orderBy('tp.event_start_time','DESC');
+        $res = $query->get()->getResultArray();
+        return $res;
+    }
+
+    public function get_tool_changeover_range_before($sdate){
+        $db =  \Config\Database::connect($this->site_connection);
+        $query = $db->table('pdm_tool_changeover as tp');
+        $query->select('tp.tool_changeover_id,tp.machine_id,tp.tool_id,tp.shift_date,tp.shift_id,tp.event_start_time,tp.target');
+        $query->where('tp.shift_date <',$sdate);
+        $query->orderBy('tp.machine_id','ASC');
+        $query->orderBy('tp.shift_date','DESC');
+        $query->orderBy('tp.event_start_time','DESC');
+        $res = $query->get()->getResultArray();
+        return $res;
+    }
+    public function get_tool_changeover_range_after($sdate){
+        $db =  \Config\Database::connect($this->site_connection);
+        $query = $db->table('pdm_tool_changeover as tp');
+        $query->select('tp.tool_changeover_id,tp.machine_id,tp.tool_id,tp.shift_date,tp.shift_id,tp.event_start_time,tp.target');
+        $query->where('tp.shift_date >',$sdate);
+        $query->orderBy('tp.machine_id','ASC');
+        $query->orderBy('tp.shift_date','ASC');
+        $query->orderBy('tp.event_start_time','ASC');
+        $res = $query->get()->getResultArray();
+        return $res;
+    }
+
+    public function get_tool_changeover_part($tool_changeover_id){
+        $db =  \Config\Database::connect($this->site_connection);
+        $query = $db->table('tool_changeover');
+        $query->select('*');
+        $query->where('id',$tool_changeover_id);
+        $res = $query->get()->getResultArray();
+        return $res;
+    }
+
 
     // get part wise tool changeover timestamp
     public function get_tool_changeovertime($mid,$sid,$sdate,$pid,$tid){
@@ -460,6 +505,7 @@ class Daily_production_Model extends Model{
 
 
     //  downtime graph wise array
+    /* temporary hide this function move controller
     public function getdowntimegraph($machine_a,$sdate,$shift_a){
         $reason = $this->getDowntimereason();
         
@@ -484,6 +530,7 @@ class Daily_production_Model extends Model{
         return $get_downtime_machine_array;
         
     }
+    */
 
     // get downtime graph count function
     public function getdowntimecount($machine_id,$shiftid,$shiftdate,$reasonid){
@@ -520,6 +567,7 @@ class Daily_production_Model extends Model{
     }
 
     // get downtime value function
+    /* temporary hide this function is move on controller 
     public function getdowntimevalue($getmachine_arr,$date,$shift_arr){
         
         // get machine wise array 
@@ -537,7 +585,7 @@ class Daily_production_Model extends Model{
         return $get_downtime_count_machine;
         
     }
-
+    */
     // get machine wise and shift wise duration count
     public function getdowntime_total_count($machine_id,$sid,$sdate){
         $db =  \Config\Database::connect($this->site_connection);
@@ -876,6 +924,19 @@ class Daily_production_Model extends Model{
         $tmp_str = $tmptimearr[0].":".$tmptimearr[1];
         return $tmp_str;
 
+    }
+
+
+    // get all part names details
+    public function getpart_details_name(){
+        $db =  \Config\Database::connect($this->site_connection);
+        $build = $db->table('settings_part_current as p');
+        $build->select('p.*,t.tool_name');
+        $build->join('settings_tool_table as t','t.tool_id=p.tool_id');
+        $build->where('t.tool_status!=',0);
+        $res = $build->get()->getResultArray();
+
+        return $res;
     }
     
 

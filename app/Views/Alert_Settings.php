@@ -2189,7 +2189,7 @@ function add_assignee(t) {
                                 +' <div class="col-sm-2 col marleft" style="">'
                                 +'<div class="circle_div_out" style="">'+chnage_letter_sm_up.toUpperCase()+'</div><span class="small_txt_out" style="">'+item.user_data.full_name+'</span>'
                                 +'</div>'
-                                +'<div class="col-sm-1 col marleft img_action_out" style="width:9%;">'
+                                +'<div class="col-sm-1 col marleft img_action_out" style="width:9%;justify-content:center;">'
                                 +'<div class="action_hover"> <img src="<?php echo base_url('assets/img/pencil.png'); ?>" alt="" class="img_action_icon edit_click" style="" data_id="'+item.alert_id+'" data_notify="'+item.notify_as+'"></div>'
                                 +'<div class="action_hover"><img src="<?php echo base_url('assets/img/delete.png'); ?>" alt="" class="img_action_icon del_click alert_del_modal"  data_id="'+item.alert_id+'"style=""></div>'
                                 +'</div>'

@@ -215,7 +215,7 @@ $session = \Config\Services::session();
           <div class="container-fluid paddingm ">
             <div class="box rightmar" style="margin-left: 0.5rem;width: 10rem;">
                 <div class="input-box" style="display: flex;">
-                  <input type="number" class="form-control font_weight font_color" name="" id="pagination_val" style="width: 3.5rem;">
+                  <input type="number" class="form-control font_weight font_color" name="" id="pagination_val" style="width:2rem;height:2rem;border-radius:0.2rem;border:1px solid #A6A6A6;color:black;font-size:0.8rem;font-weight:500;">
                   <div class="box rightmar center-align font_color font-size-lable" style="margin-left: 0.5rem;">
                     <p class="paddingm">of <span id="total_pagination"></span> pages</p>
                   </div>
@@ -2264,7 +2264,7 @@ inputFieldlables.addEventListener("keyup", function (event) {
         });
 
         if (!option && !present) {
-          $('#dropdown-list-lables').append('<div class="inbox inbox_priority suggession-lable-items" style="display: flex;">'
+          $('#dropdown-list-lables').append('<div class="inbox  suggession-lable-items" style="display: flex;">'
                       +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
                           +'<p class="inbox-span paddingm"><span class="suggession-lable-val">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
                       +'</div>'
@@ -2695,7 +2695,7 @@ function displaySelectedFiles() {
   const itemsContainerlables = document.getElementsByClassName("attached_file_add")[0];
   // const file_list = document.getElementsByClassName("attached_file_list")[0];
 
-
+  
   for (let i = 0; i < files.length; i++) {
     const file = files[i];
     const fileName = file.name;
@@ -3357,7 +3357,7 @@ function getPriorityList(){
             //     priority_list_globle.push(item);
             // });
             $('.Filter_priority_div').empty();
-            $('.Filter_priority').empty();
+            $('.filter_priority').empty();
 
             // Filter Status.........
             $('.Filter_priority_div').append('<div class="inbox inbox_filter_priority" style="display: flex;">'
@@ -3405,7 +3405,7 @@ function getPriorityList(){
                       +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
                           +'<p class="inbox-span paddingm">'+item['priority']+'</p>'
                       +'</div>'
-                      +'<input type="radio" class="priority_add radio-visible" name="priority_val" value="'+item['priority_id']+'" checked>'
+                      +'<input type="radio" class="priority_add radio-visible" name="priority_val" value="'+item['priority_id']+'" checked="true">'
                   +'</div>');
 
                   $('#priority_val_lable').html('<i class="fa '+priority_img+'" style="rotate:'+priority_img_rotate+';color: '+priority_img_color+'"></i> <span>'+item['priority']+'</span>');
@@ -3486,6 +3486,8 @@ function getFilterData(){
     total_pagination = Math.ceil((filter_array.length)/(pagination_length));
     $("#total_pagination").html(total_pagination);
     var x = $("#pagination_val").val();
+    console.log("work order filter array");
+    console.log(filter_array);
     filter_array.forEach(function(item, index) {
         if ((index > (x*pagination_length)-(pagination_length+1)) && (index < (x*pagination_length))) {
             var due_date_color="";
@@ -3632,6 +3634,8 @@ function getWorkOrderRecords(status,lables,priority,assignee,filter){
             filter:filter,
         },
         success:function(data_res){
+          console.log("work order records");
+          console.log(data_res);
             $('.contentWorkOrder').empty();
             filter_array=[];
             var open=0;
@@ -3722,6 +3726,14 @@ $(document).on('click','.Add_Work_Data',function(event){
         }
         
         else{
+          console.log("Work order insertion priroity input ");
+          var priority_tmp = " ";
+          $('.priority_add').each(function(){
+            if ($(this).is(':checked')) {
+              priority_tmp = $(this).val();
+            }
+          });
+          console.log(priority_tmp);
           var formData = new FormData();
 
     formData.append('title', $('#add_work_title').val());
@@ -3736,6 +3748,8 @@ $(document).on('click','.Add_Work_Data',function(event){
       formData.append('assignee', $('input[name="assignee_val"]:checked').val());
     }
 
+    console.log("Priority value");
+    console.log($('input[name="priority_val"]:checked').val())
     var cause_list=[];
     var element_cause = $('.items-container-cause').children('.item-cause').children('.item-id');
     $.each(element_cause, function(key,valueObj){
