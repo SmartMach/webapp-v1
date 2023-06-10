@@ -3,11 +3,13 @@
     margin-top:-0.5rem;
     margin-left:0.8rem;
     z-index:1;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     background:white;
     font-size:12px;
     color:#8c8c8c;
     font-family:'Roboto' sans-serif;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
     }
     .filter_selectBox{
     height:2rem;

@@ -318,13 +318,13 @@ $('#changed_date').datetimepicker({
         load_allfiles();
         color_change_value();
     });
-
+    
       // get final json records
       function load_allfiles(){
             // $("#overlay").fadeIn(300);
             var date =$('#changed_date').val();
             $.ajax({
-                url:"<?php echo base_url('Daily_production_controller/getMachine_data') ?>",
+                url:"<?php echo base_url('Daily_production_controller/getMachine_data'); ?>",
                 method:"POST",
                 dataType:"json",
                 data:{
@@ -484,12 +484,14 @@ $('#changed_date').datetimepicker({
 
                           // part wise record alignment
                           $.each(res['Part_details'][k][k1],function(k2,v2){
+
                             var part_count_pershift = Object.keys(res['Part_details'][k][k1]).length;
-                            //console.log("part count pershift:\t"+part_count_pershift);
+                            console.log("part count pershift:\t"+res['Part_production_details'][k][k1][k2][0]);
+                            console.log(typeof res['Part_production_details'][k][k1][k2][0]);
                             var el = $();
                             var part_name = res['part_names'][k2][0];
                             var tool_name = res['part_names'][k2][1];
-                            var rejection = res['Part_production_details'][k][k1][k2][0];
+                            var trejection = res['Part_production_details'][k][k1][k2][0];
                             // percentage conditions 
                             var percentage = res['Part_production_details'][k][k1][k2][3].toFixed(1);
                             var tmp_percentage = 0;
@@ -510,14 +512,17 @@ $('#changed_date').datetimepicker({
 
 
                             // rejection count condition
-                            if (rejection === null) {
+                            if (trejection === null) {
                               rejection = 0;
+                            }else{
+                              rejection = parseInt(trejection);
                             }
                             var part_count_find = 0;
+                            console.log(part_count_pershift);
                             if (parseInt(part_count_pershift)>1) {
                               // multiple parts pershift
                               part_count_find = parseInt(part_count_find) +1;
-                             
+                             console.log("multiple parts");
                               el = el.add('<div class="row_'+k+'_'+k1+'" style="display:grid;gap:3px;"><div class="machine_header_production_status" style="width:100%;gird-column:1;display:flex;min-height:7rem;">'
                                 +'<div class="mar_right" style="width:12%;margin-block:auto;display:flex;flex-direction:column;padding:0.3rem;">'
                                   +'<p id="partname_pds" title="'+part_name+'" style="margin-bottom:0;">'+part_name +'</p>'
@@ -552,6 +557,7 @@ $('#changed_date').datetimepicker({
                              
                               
                             }else{
+                              console.log("single parts");
                               // single parts per shift
                               el = el.add('<div class="machine_header_production_status row_'+k+'_'+k1+'" style="width:100%;display:flex;min-height:7rem;">'
                               +'<div class="mar_right" style="width:11.89%;margin-block:auto;display:flex;flex-direction:column;padding:0.3rem;">'
@@ -741,6 +747,7 @@ $('#changed_date').datetimepicker({
       var y = current_date.getFullYear();
       var today_date = y+"-"+m+"-"+d;
 
+      // return "2023-06-09";
       return today_date;
     }
 

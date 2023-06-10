@@ -1594,6 +1594,7 @@ $(document).on('click','.inbox_part_crpr',function(event){
   }
 
 });
+
 $(document).on('click','.inbox_machine_crpr',function(event){
   var index = $('.inbox_machine_crpr').index(this);
   if(index==0 && $( ".filter_machine_val_crpr:eq('"+index+"')").prop( "checked")==true){

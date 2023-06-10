@@ -22,8 +22,8 @@ class Financial_Metrics extends BaseController
         $ref="Overall";
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
-        // $fromTime = "2022-12-18T09:00:00";
-        // $toTime = "2022-12-18T21:00:00";
+        // $fromTime = "2023-05-16T09:00:00";
+        // $toTime = "2023-05-16T21:00:00";
 
         // $url = "http://localhost:8080/graph/overallMonitoringValues/".$fromTime."/".$toTime."/";
         // $ch = curl_init($url);
@@ -85,6 +85,16 @@ class Financial_Metrics extends BaseController
 
             // Date Filte for PDM Reason Mapping Data........
             $len_id = sizeof($getOfflineId);
+            $s_time_range_limit =  strtotime($FromDate." ".$FromTime);
+            $e_time_range_limit =  strtotime($ToDate." ".$ToTime);
+
+            // foreach ($getOfflineId as $key => $v) {
+            //     if ($v['machine_id'] == "MC1001") {
+            //         echo "<pre>";
+            //         print_r($v);
+            //     }
+            // }
+
             foreach ($output as $key => $value) {
                 $check_no = 0;
                 for($i=0;$i<$len_id;$i++){
@@ -99,26 +109,25 @@ class Financial_Metrics extends BaseController
                         unset($output[$key]);
                     }
                     else{
-                        if ($value['shift_date'] == $FromDate && $value['start_time'] <= $FromTime && $value['end_time'] >= $FromTime) {
+                        $s_time_range =  strtotime($value['shift_date']." ".$value['start_time']);
+                        $e_time_range =  strtotime($value['shift_date']." ".$value['end_time']);
+
+                        if ($s_time_range <= $s_time_range_limit && $e_time_range >= $s_time_range_limit) {
                             $output[$key]['start_time'] = $FromTime;
-                            if ($value['end_time']>= $ToTime) {
+                            if ($e_time_range >= $e_time_range_limit) {
                                 $output[$key]['end_time'] = $ToTime;
                             }
                             $output[$key]['split_duration'] = $this->getDuration($value['calendar_date']." ".$output[$key]['start_time'],$value['calendar_date']." ".$output[$key]['end_time']);
                         }
-                        else if (($value['shift_date'] == $ToDate && $value['start_time']>=$value['end_time']) || $value['shift_date'] == $ToDate && $value['end_time'] >= $ToTime) {
+                        else if ($s_time_range < $e_time_range_limit && $e_time_range > $e_time_range_limit) {
                             $output[$key]['end_time'] = $ToTime;
                             $output[$key]['split_duration'] = $this->getDuration($value['calendar_date']." ".$output[$key]['start_time'],$value['calendar_date']." ".$output[$key]['end_time']);
                         }
                         else{
-                            if ($value['shift_date'] == $FromDate  && strtotime($value['start_time']) < strtotime($FromTime)){
+                            if ($e_time_range <= $s_time_range_limit){
                                 unset($output[$key]);
                             }
-                            if ($value['shift_date'] == $FromDate  && $value['start_time'] >= $ToTime){
-                                unset($output[$key]);
-                            }
-
-                            if ($value['shift_date'] == $ToDate  && strtotime($value['start_time']) > strtotime($ToTime)) {
+                            if ($s_time_range >= $e_time_range_limit){
                                 unset($output[$key]);
                             }
                         }
@@ -126,8 +135,8 @@ class Financial_Metrics extends BaseController
                         //For remove the current data of inactive machines.........
                         foreach ($getInactiveMachine as $v) {
                             $t = explode(" ", $v['max(r.last_updated_on)']);
-
-                            if ($value['shift_date'] >= $t[0]  && $value['start_time'] > $t[1] && $value['machine_id'] == $v['machine_id']){
+                            $start_time_range =  strtotime($v['max(r.last_updated_on)']);
+                            if ($s_time_range_limit > $start_time_range && $value['machine_id'] == $v['machine_id']){
                                 unset($output[$key]);
                             }
                         }
@@ -141,35 +150,33 @@ class Financial_Metrics extends BaseController
                     unset($getAllTimeValues[$key]);
                 }
                 else{
-                    if ($value['shift_date'] == $FromDate && $value['start_time'] <= $FromTime && $value['end_time'] >= $FromTime) {
+                    $s_time_range =  strtotime($value['shift_date']." ".$value['start_time']);
+                    $e_time_range =  strtotime($value['shift_date']." ".$value['end_time']);
+
+                    if ($s_time_range <= $s_time_range_limit && $e_time_range >= $s_time_range_limit) {
                         $getAllTimeValues[$key]['start_time'] = $FromTime;
-                        if ($value['end_time']>= $ToTime) {
+                        if ($e_time_range >= $e_time_range_limit) {
                             $getAllTimeValues[$key]['end_time'] = $ToTime;
                         }
                         $getAllTimeValues[$key]['duration'] = $this->getDuration($value['calendar_date']." ".$getAllTimeValues[$key]['start_time'],$value['calendar_date']." ".$getAllTimeValues[$key]['end_time']);
                     }
-                    else if (($value['shift_date'] == $ToDate && $value['start_time']>=$value['end_time']) || $value['shift_date'] == $ToDate && $value['end_time'] >= $ToTime) {
+                    else if ($s_time_range < $e_time_range_limit && $e_time_range > $e_time_range_limit) {
                         $getAllTimeValues[$key]['end_time'] = $ToTime;
                         $getAllTimeValues[$key]['duration'] = $this->getDuration($value['calendar_date']." ".$getAllTimeValues[$key]['start_time'],$value['calendar_date']." ".$getAllTimeValues[$key]['end_time']);
                     }
                     else{
-                        if ($value['shift_date'] == $FromDate  && $value['start_time'] < $FromTime){
+                        if ($e_time_range <= $s_time_range_limit){
                             unset($getAllTimeValues[$key]);
                         }
-                        if ($value['shift_date'] == $ToDate  && strtotime($value['end_time']) > strtotime($ToTime)) {
-                            unset($getAllTimeValues[$key]);
-                        }
-
-                        if ($value['shift_date'] == $FromDate  && $value['start_time'] >= $ToTime){
+                        if ($s_time_range >= $e_time_range_limit){
                             unset($getAllTimeValues[$key]);
                         }
                     }
 
                     //For remove the current data of inactive machines.........
                     foreach ($getInactiveMachine as $v) {
-                        $t = explode(" ", $v['max(r.last_updated_on)']);
-
-                        if ($value['shift_date'] >= $t[0]  && $value['start_time'] > $t[1] && $value['machine_id'] == $v['machine_id']){
+                        $start_time_range =  strtotime($v['max(r.last_updated_on)']);
+                        if ($s_time_range_limit > $start_time_range && $value['machine_id'] == $v['machine_id']){
                             unset($getAllTimeValues[$key]);
                         }
                     }
@@ -178,24 +185,29 @@ class Financial_Metrics extends BaseController
 
             // Filter for Production Info Table Data..........
             foreach ($production as $key => $value) {   
-                if ($value['shift_date'] == $FromDate  && $value['start_time'] < $FromTime) {
+                $s_time_range =  strtotime($value['shift_date']." ".$value['start_time']);
+                $e_time_range =  strtotime($value['shift_date']." ".$value['end_time']);
+                
+                if ($s_time_range < $s_time_range_limit) {
                     unset($production[$key]);
                 }
-                if ($value['shift_date'] == $FromDate  && $value['start_time'] >= $ToTime){
-                        unset($production[$key]);
-                    }
+                if ($e_time_range >= $e_time_range_limit){
+                    unset($production[$key]);
+                }
 
-                if (strtotime($value['shift_date']) == strtotime($ToDate)  && ($value['start_time']) >= ($ToTime)) {
-                    unset($production[$key]);
-                }
                 //For remove the current data of inactive machines.........
                 foreach ($getInactiveMachine as $v) {
-                    $t = explode(" ", $v['max(r.last_updated_on)']);
-                    if ($value['shift_date'] == $t[0]  && $value['start_time'] > $t[1] && $value['machine_id'] == $v['machine_id'] OR $value['shift_date'] > $t[0] && $value['machine_id'] == $v['machine_id']){
+                    $start_time_range =  strtotime($v['max(r.last_updated_on)']);
+                    if ($s_time_range_limit > $start_time_range && $value['machine_id'] == $v['machine_id']){
                         unset($production[$key]);
                     }
                 }
             }
+
+            // foreach ($output as $v) {
+            //     echo "<pre>";
+            //     print_r($v);
+            // }
 
             //Downtime reasons data ordering.....
             $MachineWiseDataRaw = $this->storeData($output,$machine,$part);
@@ -683,7 +695,7 @@ class Financial_Metrics extends BaseController
                             $st[0]=$st[0]/sizeof($part_count);
                             if (sizeof($st) > 1) {
                                 $st[1]=$st[1]/sizeof($part_count);
-                            }   
+                            }
 
                             $noplan = trim($DTR['downtime_reason']);
                             $noplan = strtolower(str_replace(" ","",$noplan));
