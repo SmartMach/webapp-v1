@@ -1527,12 +1527,15 @@ $(document).on("click", ".edit-work-order", function(event){
             // Privious Assignee....
             $('.edit_record_assignee').empty();
             assignee_list.forEach(function(item){
+                var user_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
+                var randomColor = user_color[Math.floor(Math.random()*user_color.length)];
+
                 var elements = $();
                 if (item['user_id'] == res[0]['assignee']) {
                     
                     elements = elements.add('<div class="inbox inbox_assignee_edit" style="display: flex;">'
                         +'<div style="float: left;width: 20%;" class="center-align circle-div-root">'
-                            +'<div class="circle-div" style="background:#7f7f7f;color:white;">'
+                            +'<div class="circle-div" style="background:'+randomColor+';color:white;">'
                                 +'<p class="paddingm">'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p>'
                             +'</div>'
                         +'</div>'
@@ -1547,7 +1550,7 @@ $(document).on("click", ".edit-work-order", function(event){
                     }
 
                     $('#assignee_edit_val').html('<div style="float: left;width: 100%;" class="center-align">'
-                        +'<div class="circle-div-select" style="background:#7f7f7f;color:white;">'
+                        +'<div class="circle-div-select" style="background:'+randomColor+';color:white;">'
                             +'<p class="paddingm">'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p>'
                         +'</div>'
                         +'<span style="color: #7f7f7f">'+item['first_name']+' '+item['last_name']+'</span>'
@@ -1555,7 +1558,7 @@ $(document).on("click", ".edit-work-order", function(event){
                 }else{
                     elements = elements.add('<div class="inbox inbox_assignee_edit" style="display: flex;">'
                         +'<div style="float: left;width: 20%;" class="center-align circle-div-root">'
-                            +'<div class="circle-div" style="background:#7f7f7f;color:white;">'
+                            +'<div class="circle-div" style="background:'+randomColor+';color:white;">'
                                 +'<p class="paddingm">'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p>'
                             +'</div>'
                         +'</div>'
@@ -1572,6 +1575,7 @@ $(document).on("click", ".edit-work-order", function(event){
             
         
             // Privious Status....
+            $('.edit-status').empty();
             status_list_globle.forEach(function(st){
                 var background_color ="";
                 var val="";
@@ -2830,12 +2834,15 @@ function getAssigneeList(){
                     +'</div>'
                 +'</div>');
             res.forEach(function(item){
+                var user_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
+                var randomColor = user_color[Math.floor(Math.random()*user_color.length)];
+
                 assignee_list.push(item);
                 var elements = $();
                 if(item['site_id'] != "smartories"){
                 elements = elements.add('<div class="inbox inbox_assignee" style="display: flex;">'
                     +'<div style="float: left;width: 20%;" class="center-align circle-div-root">'
-                        +'<div class="circle-div" style="background:#7f7f7f;color:white;">'
+                        +'<div class="circle-div" style="background:'+randomColor+';color:white;">'
                             +'<p class="paddingm">'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p>'
                         +'</div>'
                     +'</div>'
@@ -2856,7 +2863,6 @@ function getAssigneeList(){
                     +'</div>');
                   }
             });
-            
         },
         error:function(err){
             // alert("Something went wrong!");

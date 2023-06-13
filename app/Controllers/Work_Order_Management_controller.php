@@ -92,12 +92,33 @@ class Work_Order_Management_controller extends BaseController{
             $data['priority_id'] = $this->request->getVar('priority');
             $data['due_date'] = $this->request->getVar('due_date');
             $data['status_id'] = $this->request->getVar('status');
-            $data['assignee'] = $this->request->getVar('assignee');
-            if ($data['type'] == "issue") {
-                $data['cause_id'] = $this->request->getVar('cause_list');
+            
+            if (strval($this->request->getVar('assignee')) == "undefined") {
+                $data['assignee'] = "";
+            }else{
+                $data['assignee'] = $this->request->getVar('assignee');
             }
-            $data['action_id'] = $this->request->getVar('action_list');
-            $data['lable_id'] = $this->request->getVar('lable_list');
+            
+            if ($data['type'] == "issue") {
+                if (strval($this->request->getVar('cause_list')) == "undefined") {
+                    $data['cause_id'] = "";
+                }else{
+                    $data['cause_id'] = $this->request->getVar('cause_list');
+                }
+            }
+
+            if (strval($this->request->getVar('action_list')) == "undefined") {
+                $data['action_id'] = "";
+            }else{
+                $data['action_id'] = $this->request->getVar('action_list');
+            }
+            
+            if (strval($this->request->getVar('lable_list')) == "undefined") {
+                $data['lable_id'] = "";
+            }else{
+                $data['lable_id'] = $this->request->getVar('lable_list');
+            }
+
             $data['attachment_id'] = $this->request->getVar('file_list_collection');
             $data['last_updated_by'] = $this->session->get('user_name');
 
@@ -162,19 +183,19 @@ class Work_Order_Management_controller extends BaseController{
             if ($filter == "false") {
                 foreach ($res as $value) {
                     $temp=0;
-                    if (($value['assignee']=="" || !$value['assignee'] || $value['assignee']==null) and $temp==0) {
+                    if (($value['assignee']=="" || !$value['assignee'] || $value['assignee']==null || $value['assignee']=="undefined") and $temp==0) {
                         array_push($final_list, $value);
                         $temp=1;
                     }
-                    if (($value['priority_id']=="" || !$value['priority_id'] || $value['priority_id']==null) and $temp==0) {
+                    if (($value['priority_id']=="" || !$value['priority_id'] || $value['priority_id']==null || $value['priority_id']=="undefined") and $temp==0) {
                         array_push($final_list, $value);
                         $temp=1;
                     }
-                    if (($value['lable_id']=="" || !$value['lable_id'] || $value['lable_id']==null) and $temp==0) {
+                    if (($value['lable_id']=="" || !$value['lable_id'] || $value['lable_id']==null || $value['lable_id']=="undefined") and $temp==0) {
                         array_push($final_list, $value);
                         $temp=1;
                     }
-                    if (($value['status_id']=="" || !$value['status_id'] || $value['status_id']==null) and $temp==0) {
+                    if (($value['status_id']=="" || !$value['status_id'] || $value['status_id']==null || $value['status_id']=="undefined") and $temp==0) {
                         array_push($final_list, $value);
                         $temp=1;
                     }
