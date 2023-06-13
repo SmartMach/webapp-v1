@@ -1311,8 +1311,24 @@ $(document).on("click", ".info-work-order", function(event){
             }else{
               $('#cause-info').css("display","none");
             }
+
+            previous_comments(res);
             
-            // Previous Comments....
+            // Close the Acknowledge ................
+            $('#InfoIssueModal').modal('show');
+            // $("#overlay").fadeOut(300);
+    
+        },
+        error:function(res){
+            // alert("Sorry! Try Agian!!");
+            $("#overlay").fadeOut(300);
+        }
+    });
+  
+});
+
+function previous_comments(res){
+  // Previous Comments....
             $('.items-container-info-comments').empty();
             var comment = String(res[0]['comment_id']).split(",");
             comment.forEach(function(cm){
@@ -1357,18 +1373,7 @@ $(document).on("click", ".info-work-order", function(event){
                 });
             });
 
-            // Close the Acknowledge ................
-            $('#InfoIssueModal').modal('show');
-            // $("#overlay").fadeOut(300);
-    
-        },
-        error:function(res){
-            // alert("Sorry! Try Agian!!");
-            $("#overlay").fadeOut(300);
-        }
-    });
-  
-});
+}
 
 //  Edit Work Order Acknowledge ........... 
 $(document).on("click", ".edit-work-order", function(event){
@@ -1649,7 +1654,24 @@ $(document).on("click", ".edit-work-order", function(event){
             });
 
             // Previous Comments....
-            $('.items-container-edit-comments').empty();
+            previous_comments_edit(res);
+
+            // Close the AckEnowledge ................
+            $('#EditIssueModal').modal('show');
+            // $("#overlay").fadeOut(300);
+    
+        },
+        error:function(res){
+            // alert("Sorry! Try Agian!!");
+            $("#overlay").fadeOut(300);
+        }
+    });
+
+    // $('#EditIssueModal').modal('show');
+});
+
+function previous_comments_edit(res){
+  $('.items-container-edit-comments').empty();
             var comment = String(res[0]['comment_id']).split(",");
             comment.forEach(function(cm){
                 comments_list_globle.forEach(function(comment_item){
@@ -1700,20 +1722,7 @@ $(document).on("click", ".edit-work-order", function(event){
                     }
                 });
             });
-
-            // Close the AckEnowledge ................
-            $('#EditIssueModal').modal('show');
-            // $("#overlay").fadeOut(300);
-    
-        },
-        error:function(res){
-            // alert("Sorry! Try Agian!!");
-            $("#overlay").fadeOut(300);
-        }
-    });
-
-    // $('#EditIssueModal').modal('show');
-});
+}
 
 //  Deactivate Work Order Acknowledge ........... 
 $(document).on("click", ".deactivate-work-order", function(event){
@@ -2145,6 +2154,36 @@ inputFieldactionEdit.addEventListener("keyup", function (event) {
         $('#dropdown-list-action-edit').empty();
         document.getElementById("dropdown-list-action-edit").style.display="none";
     }
+});
+
+
+
+const itemsCommentsEditVal = document.getElementsByClassName("input-field-comments-edit")[0];
+itemsCommentsEditVal.addEventListener("keyup", function (event) {
+  if (event.code === 'Enter')
+  {
+    var comments_list = $('.input-field-comments-edit').val();
+    var ref = $('.Edit_Work_Data').attr('status_data');
+
+    $.ajax({
+        url:"<?php echo base_url('Work_Order_Management_controller/update_comments_data') ?>",
+        method:"POST",
+        async:false,  
+        cache: false, 
+        data:{
+          ref:ref,
+          comment:comments_list,
+        },
+        dataType:"json",
+        success:function(data){
+          getComments();
+          previous_comments_edit(data);
+        },
+        error:function(err){
+          // alert("Something went wrong!");
+        }
+    });
+  }
 });
 
 
@@ -3021,6 +3060,7 @@ function getComments(){
         async:false,
         dataType:"json",
         success:function(res){
+            comments_list_globle=[];
             res.forEach(function(item){
                 comments_list_globle.push(item);
             });
@@ -3492,8 +3532,6 @@ function getFilterData(){
     total_pagination = Math.ceil((filter_array.length)/(pagination_length));
     $("#total_pagination").html(total_pagination);
     var x = $("#pagination_val").val();
-    console.log("work order filter array");
-    console.log(filter_array);
     filter_array.forEach(function(item, index) {
         if ((index > (x*pagination_length)-(pagination_length+1)) && (index < (x*pagination_length))) {
             var due_date_color="";
@@ -3640,8 +3678,6 @@ function getWorkOrderRecords(status,lables,priority,assignee,filter){
             filter:filter,
         },
         success:function(data_res){
-          console.log("work order records");
-          console.log(data_res);
             $('.contentWorkOrder').empty();
             filter_array=[];
             var open=0;
@@ -3732,14 +3768,12 @@ $(document).on('click','.Add_Work_Data',function(event){
         }
         
         else{
-          console.log("Work order insertion priroity input ");
           var priority_tmp = " ";
           $('.priority_add').each(function(){
             if ($(this).is(':checked')) {
               priority_tmp = $(this).val();
             }
           });
-          console.log(priority_tmp);
           var formData = new FormData();
 
     formData.append('title', $('#add_work_title').val());
@@ -3754,8 +3788,6 @@ $(document).on('click','.Add_Work_Data',function(event){
       formData.append('assignee', $('input[name="assignee_val"]:checked').val());
     }
 
-    console.log("Priority value");
-    console.log($('input[name="priority_val"]:checked').val())
     var cause_list=[];
     var element_cause = $('.items-container-cause').children('.item-cause').children('.item-id');
     $.each(element_cause, function(key,valueObj){

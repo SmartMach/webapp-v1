@@ -149,6 +149,37 @@ class Work_Order_Management_controller extends BaseController{
             }
     }
 
+    public function update_comments_data(){
+        if ($this->request->isAJAX()) {
+            $ref = $this->request->getVar('ref');
+            $comment = $this->request->getVar('comment');
+
+            $data['last_updated_by'] = $this->session->get('user_name');
+            $data['id'] = $ref;
+
+            $id_gen_comment = $this->generateCommentsId();
+            $db_name = $this->session->get('active_site');
+            $db_name = str_split($db_name);
+            $data['comment_id'] = strtoupper($db_name[0]).$db_name[1]."-CO".(string)$id_gen_comment;
+
+            $c['comment_id'] = $data['comment_id'];
+            $c['comment'] = $comment;
+            $c['status'] = 1;
+            $c['last_updated_by'] = $this->session->get('user_name');
+
+
+            if ($this->datas->insertComments($c) == true) {
+                if ($res = $this->datas->update_comments_data($data)) {
+                    echo json_encode($res);
+                }else{
+                    echo json_encode(false);
+                }
+            }else{
+                echo json_encode(false);
+            }
+        }
+    }
+
     public function get_work_order_data(){
         if ($this->request->isAJAX()) {
             $status = $this->request->getVar('status');
