@@ -1212,8 +1212,11 @@ $(document).on("click", ".info-work-order", function(event){
             assignee_list.forEach(function(item){
                 var elements = $();
                 if (item['user_id'] == res[0]['assignee']) {
+                    var user_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
+                    var randomColor = user_color[Math.floor(Math.random()*user_color.length)];
+
                     $('#info_assignee').html('<div style="float: left;width: 100%;display:flex">'
-                      +'<div class="circle-div-select" style="background:#7f7f7f;color:white;">'
+                      +'<div class="circle-div-select" style="background:'+randomColor+';color:white;">'
                         +'<p class="paddingm">'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p>'
                       +'</div>'
                       +'<span style="color: #7f7f7f;margin-left:0.5rem;">'+item['first_name']+' '+item['last_name']+'</span>'
@@ -2044,9 +2047,8 @@ inputFieldaction.addEventListener("keyup", function (event) {
     }
 });
 
-// Add event listener to the input field
-itemsFieldAdd.addEventListener("click", function (event) {
-    // Get the value from the input field
+function add_action_val(){
+  // Get the value from the input field
     const value = inputFieldaction.value.trim();
     action_list_globle_unique.push(value);
 
@@ -2099,6 +2101,15 @@ itemsFieldAdd.addEventListener("click", function (event) {
       // inputFieldaction.placeholder = "Add an action taken to solve the problem...";
       // Add event listener to the remove icon
       itemRemove.addEventListener("click", function () {
+        
+  
+        const parentElement = document.querySelector('.items-container-action');
+        const spanElement = parentElement.querySelector('.item-text');
+        const index = action_list_globle_unique.indexOf(spanElement.textContent);
+        if (index > -1) {
+          action_list_globle_unique.splice(index, 1);
+        }
+        
         itemsContaineraction.removeChild(item);
         inputFieldaction.value = "";
       });
@@ -2108,9 +2119,12 @@ itemsFieldAdd.addEventListener("click", function (event) {
     getActionList();
     $('#dropdown-list-action').empty();
     document.getElementById("dropdown-list-action").style.display="none";
+}
+
+// Add event listener to the input field
+itemsFieldAdd.addEventListener("click", function (event) {
+    add_action_val();
 });
-
-
 
 // Action Taken........
 const inputFieldactionEdit = document.getElementsByClassName("input-field-action-edit")[0];
@@ -2186,9 +2200,7 @@ itemsCommentsEditVal.addEventListener("keyup", function (event) {
   }
 });
 
-
-// Add event listener to the input field
-itemsFieldEdit.addEventListener("click", function (event) {
+function edit_action_add(){
     // Get the value from the input field
     const value = inputFieldactionEdit.value.trim();
 
@@ -2229,6 +2241,14 @@ itemsFieldEdit.addEventListener("click", function (event) {
     getActionList();
     $('#dropdown-list-action').empty();
     document.getElementById("dropdown-list-action").style.display="none";
+
+}
+
+// Add event listener to the input field
+itemsFieldEdit.addEventListener("click", function (event) {
+
+  edit_action_add();
+  
 });
 
 
@@ -2338,7 +2358,22 @@ $(document).on('click','.suggession-action-items',function(event){
       $('.input-field-action-add').css({
         "pointer-events": "initial",
       });
+      add_action_val();
     }else{
+      const parentElement = document.querySelector('.items-container-action');
+      const childElements = parentElement.children;
+      let ck=0;
+      for (let i = 0; i < childElements.length; i++) {
+        const childElement = childElements[i];
+        const spanElement = childElement.querySelector('.item-text');
+        if (inputVal == spanElement.textContent) {
+          ck=1;
+          break;
+        }
+      }
+
+      console.log("CK = "+ck);
+
       $('.input-field-action-add').css({
         "pointer-events": "none",
       });
@@ -2365,6 +2400,7 @@ $(document).on('click','.suggession-action-items-edit',function(event){
       $('.input-field-action-edit-add').css({
         "pointer-events": "initial",
       });
+      edit_action_add();
     }else{
       $('.input-field-action-edit-add').css({
         "pointer-events": "none",
