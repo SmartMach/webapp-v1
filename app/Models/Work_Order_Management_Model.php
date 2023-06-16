@@ -212,6 +212,34 @@ class Work_Order_Management_Model extends Model{
         return $res;
     }
 
+    public function update_comments_data($data){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('work_order_management');
+        $query->select('comment_id');
+        $query->where('work_order_id',$data['id']);
+        $res = $query->get()->getResultArray();
+
+        $val = "";
+        if ($res[0]['comment_id'] != "" || $res[0]['comment_id'] != NULL || strval($res[0]['comment_id']) != "undefined" ) {
+            $val = $res[0]['comment_id'].",".$data['comment_id'];
+        }else{
+            $val = $data['comment_id'];
+        }
+
+        $query1 = $db->table('work_order_management');
+        $query->set('comment_id',$val);
+        $query->where('work_order_id',$data['id']);
+        if ($query->update()) {
+            $query2 = $db->table('work_order_management');
+            $query2->select('*');
+            $query2->where('work_order_id',$data['id']);
+            $res1 = $query2->get()->getResultArray();
+            return $res1;
+        }else{
+            return false;
+        }
+    }
+
     public function getActionId(){
         $db = \Config\Database::connect($this->site_connection);
         $query = $db->table('work_order_management_action_taken');

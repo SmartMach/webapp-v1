@@ -845,6 +845,7 @@ $session = \Config\Services::session();
     var filter_array = [];
 
     var action_list_globle_unique=[];
+    var action_id_list_globle_unique=[];
     var cause_list_globle_unique=[];
     var lable_list_globle_unique=[];
 
@@ -873,6 +874,7 @@ $session = \Config\Services::session();
     $(document).on('click','#add_issue_button',function(event){
 
         action_list_globle_unique=[];
+        action_id_list_globle_unique=[];
         cause_list_globle_unique=[];
         lable_list_globle_unique=[];
 
@@ -1212,8 +1214,11 @@ $(document).on("click", ".info-work-order", function(event){
             assignee_list.forEach(function(item){
                 var elements = $();
                 if (item['user_id'] == res[0]['assignee']) {
+                    var user_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
+                    var randomColor = user_color[Math.floor(Math.random()*user_color.length)];
+
                     $('#info_assignee').html('<div style="float: left;width: 100%;display:flex">'
-                      +'<div class="circle-div-select" style="background:#7f7f7f;color:white;">'
+                      +'<div class="circle-div-select" style="background:'+randomColor+';color:white;">'
                         +'<p class="paddingm">'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p>'
                       +'</div>'
                       +'<span style="color: #7f7f7f;margin-left:0.5rem;">'+item['first_name']+' '+item['last_name']+'</span>'
@@ -1311,8 +1316,24 @@ $(document).on("click", ".info-work-order", function(event){
             }else{
               $('#cause-info').css("display","none");
             }
+
+            previous_comments(res);
             
-            // Previous Comments....
+            // Close the Acknowledge ................
+            $('#InfoIssueModal').modal('show');
+            // $("#overlay").fadeOut(300);
+    
+        },
+        error:function(res){
+            // alert("Sorry! Try Agian!!");
+            $("#overlay").fadeOut(300);
+        }
+    });
+  
+});
+
+function previous_comments(res){
+  // Previous Comments....
             $('.items-container-info-comments').empty();
             var comment = String(res[0]['comment_id']).split(",");
             comment.forEach(function(cm){
@@ -1357,18 +1378,7 @@ $(document).on("click", ".info-work-order", function(event){
                 });
             });
 
-            // Close the Acknowledge ................
-            $('#InfoIssueModal').modal('show');
-            // $("#overlay").fadeOut(300);
-    
-        },
-        error:function(res){
-            // alert("Sorry! Try Agian!!");
-            $("#overlay").fadeOut(300);
-        }
-    });
-  
-});
+}
 
 //  Edit Work Order Acknowledge ........... 
 $(document).on("click", ".edit-work-order", function(event){
@@ -1416,6 +1426,7 @@ $(document).on("click", ".edit-work-order", function(event){
                           +'</div>');
                       $(".items-container-edit-action").append(itemsContaineraction);
                       action_list_globle_unique.push(action_item['action']);
+                      action_id_list_globle_unique.push(action_item['action']);
                     }
                 });
             });
@@ -1527,12 +1538,15 @@ $(document).on("click", ".edit-work-order", function(event){
             // Privious Assignee....
             $('.edit_record_assignee').empty();
             assignee_list.forEach(function(item){
+                var user_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
+                var randomColor = user_color[Math.floor(Math.random()*user_color.length)];
+
                 var elements = $();
                 if (item['user_id'] == res[0]['assignee']) {
                     
                     elements = elements.add('<div class="inbox inbox_assignee_edit" style="display: flex;">'
                         +'<div style="float: left;width: 20%;" class="center-align circle-div-root">'
-                            +'<div class="circle-div" style="background:#7f7f7f;color:white;">'
+                            +'<div class="circle-div" style="background:'+randomColor+';color:white;">'
                                 +'<p class="paddingm">'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p>'
                             +'</div>'
                         +'</div>'
@@ -1547,7 +1561,7 @@ $(document).on("click", ".edit-work-order", function(event){
                     }
 
                     $('#assignee_edit_val').html('<div style="float: left;width: 100%;" class="center-align">'
-                        +'<div class="circle-div-select" style="background:#7f7f7f;color:white;">'
+                        +'<div class="circle-div-select" style="background:'+randomColor+';color:white;">'
                             +'<p class="paddingm">'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p>'
                         +'</div>'
                         +'<span style="color: #7f7f7f">'+item['first_name']+' '+item['last_name']+'</span>'
@@ -1555,7 +1569,7 @@ $(document).on("click", ".edit-work-order", function(event){
                 }else{
                     elements = elements.add('<div class="inbox inbox_assignee_edit" style="display: flex;">'
                         +'<div style="float: left;width: 20%;" class="center-align circle-div-root">'
-                            +'<div class="circle-div" style="background:#7f7f7f;color:white;">'
+                            +'<div class="circle-div" style="background:'+randomColor+';color:white;">'
                                 +'<p class="paddingm">'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p>'
                             +'</div>'
                         +'</div>'
@@ -1572,6 +1586,7 @@ $(document).on("click", ".edit-work-order", function(event){
             
         
             // Privious Status....
+            $('.edit-status').empty();
             status_list_globle.forEach(function(st){
                 var background_color ="";
                 var val="";
@@ -1645,7 +1660,24 @@ $(document).on("click", ".edit-work-order", function(event){
             });
 
             // Previous Comments....
-            $('.items-container-edit-comments').empty();
+            previous_comments_edit(res);
+
+            // Close the AckEnowledge ................
+            $('#EditIssueModal').modal('show');
+            // $("#overlay").fadeOut(300);
+    
+        },
+        error:function(res){
+            // alert("Sorry! Try Agian!!");
+            $("#overlay").fadeOut(300);
+        }
+    });
+
+    // $('#EditIssueModal').modal('show');
+});
+
+function previous_comments_edit(res){
+  $('.items-container-edit-comments').empty();
             var comment = String(res[0]['comment_id']).split(",");
             comment.forEach(function(cm){
                 comments_list_globle.forEach(function(comment_item){
@@ -1696,20 +1728,7 @@ $(document).on("click", ".edit-work-order", function(event){
                     }
                 });
             });
-
-            // Close the AckEnowledge ................
-            $('#EditIssueModal').modal('show');
-            // $("#overlay").fadeOut(300);
-    
-        },
-        error:function(res){
-            // alert("Sorry! Try Agian!!");
-            $("#overlay").fadeOut(300);
-        }
-    });
-
-    // $('#EditIssueModal').modal('show');
-});
+}
 
 //  Deactivate Work Order Acknowledge ........... 
 $(document).on("click", ".deactivate-work-order", function(event){
@@ -1840,24 +1859,35 @@ function getAttachFileIDEdit(item){
 }
 
 function getActionID(item,value){
-    $.ajax({
-        url:"<?php echo base_url('Work_Order_Management_controller/getActionID') ?>",
-        method:"POST",
-        cache: false,
-        async:false,
-        dataType:"json",
-        data:{
-            action:value
-        },
-        success:function(res){
-            item.setAttribute("action_list_id", res);
-            item.innerText=value;
-        },
-        error:function(err){
-            // alert("Something went wrong!");
-            // $("#overlay").fadeOut(300);
-        }
+    var previous=0;
+    action_list_globle.forEach(function(ele){
+      if (ele['action'].trim().toUpperCase() == inputVal) {
+        item.setAttribute("action_list_id", ele['action_id']);
+        item.innerText=value;
+        previous=1;
+      }
     });
+    if (previous==0) {
+      $.ajax({
+          url:"<?php echo base_url('Work_Order_Management_controller/getActionID') ?>",
+          method:"POST",
+          cache: false,
+          async:false,
+          dataType:"json",
+          data:{
+              action:value
+          },
+          success:function(res){
+              action_id_list_globle_unique.push(res);
+              item.setAttribute("action_list_id", res);
+              item.innerText=value;
+          },
+          error:function(err){
+              // alert("Something went wrong!");
+              // $("#overlay").fadeOut(300);
+          }
+      });
+    }
 }
 
 
@@ -2024,30 +2054,28 @@ inputFieldaction.addEventListener("keyup", function (event) {
                   +'<input type="text" class="action-input-suggession radio-visible" value="'+inputValue.trim()+'">'
               +'</div>');
         }
-
     }else{
         $('#dropdown-list-action').empty();
         document.getElementById("dropdown-list-action").style.display="none";
     }
+
+    $('.input-field-action-add').css({
+      "pointer-events": "initial",
+    });
 });
 
-// Add event listener to the input field
-itemsFieldAdd.addEventListener("click", function (event) {
-    // Get the value from the input field
+
+function add_action_val(ack){
+  // Get the value from the input field
     const value = inputFieldaction.value.trim();
-    action_list_globle_unique.push(value);
+    if (ack==true) {
+      action_list_globle_unique.push(value);
+    }
 
     var inputVal = value.trim().toUpperCase();
     var present = action_list_globle_unique.find(function (item_val) {
       return item_val.toUpperCase() === inputVal;
     });
-
-    // if (!present) {
-    // }else{
-    //   $('.input-field-action-add').css({
-    //     "pointer-events": "none",
-    //   });
-    // }
 
     // If the value is not empty, create a new item and append it to the container
     if (value !== "" && present) {
@@ -2065,8 +2093,14 @@ itemsFieldAdd.addEventListener("click", function (event) {
       itemText.classList.add("font-fam");
       itemText.classList.add("item-text-action");
       itemText.classList.add("stcode-up");
-      getActionID(itemText,value);
-      // itemText.innerText = value;
+
+      if (ack == true) {
+        getActionID(itemText,value);
+      }else{
+        itemText.setAttribute("action_list_id", action_id_list_globle_unique[present]);
+        itemText.innerText=value;
+      }
+
       item.appendChild(itemText);
       
       // Cause Remove
@@ -2083,9 +2117,17 @@ itemsFieldAdd.addEventListener("click", function (event) {
 
       // Clear the input field
       inputFieldaction.value = "";
-      // inputFieldaction.placeholder = "Add an action taken to solve the problem...";
       // Add event listener to the remove icon
-      itemRemove.addEventListener("click", function () {
+      itemRemove.addEventListener("click", function () {        
+        
+        // const parentElement = document.querySelector('.items-container-action');
+        // const spanElement = parentElement.querySelector('.item-text');
+        // const index = action_list_globle_unique.indexOf(spanElement.textContent);
+        // if (index > -1) {
+        //   action_list_globle_unique.splice(index, 1);
+        //   action_id_list_globle_unique.splice(index, 1);
+        // }
+
         itemsContaineraction.removeChild(item);
         inputFieldaction.value = "";
       });
@@ -2095,9 +2137,43 @@ itemsFieldAdd.addEventListener("click", function (event) {
     getActionList();
     $('#dropdown-list-action').empty();
     document.getElementById("dropdown-list-action").style.display="none";
+}
+
+// Add event listener to the input field
+itemsFieldAdd.addEventListener("click", function (event) {
+  var inputVal = inputFieldaction.value.trim().toUpperCase();
+  const parentElement = document.querySelector('.items-container-action');
+  const childElements = parentElement.children;
+
+  var ck=0;
+  for (let i = 0; i < childElements.length; i++) {
+    const childElement = childElements[i];
+    const spanElement = childElement.querySelector('.item-text');
+    if (inputVal == spanElement.textContent.trim().toUpperCase()) {
+      ck=1;
+      break;
+    }
+  }
+  var present = action_list_globle_unique.find(function (item_val) {
+    return item_val.toUpperCase() === inputVal;
+  });
+  if (!present && ck==0) {
+    $('.input-field-action-add').css({
+        "pointer-events": "initial",
+    });
+    add_action_val(true);
+  }else if (present && ck==0) {
+    $('.input-field-action-add').css({
+        "pointer-events": "initial",
+    });
+    add_action_val(false);
+  }
+  else if (present && ck==1) {
+    $('.input-field-action-add').css({
+        "pointer-events": "none",
+    });
+  }
 });
-
-
 
 // Action Taken........
 const inputFieldactionEdit = document.getElementsByClassName("input-field-action-edit")[0];
@@ -2141,13 +2217,53 @@ inputFieldactionEdit.addEventListener("keyup", function (event) {
         $('#dropdown-list-action-edit').empty();
         document.getElementById("dropdown-list-action-edit").style.display="none";
     }
+
+    $('.input-field-action-edit-add').css({
+      "pointer-events": "initial",
+    });
 });
 
 
-// Add event listener to the input field
-itemsFieldEdit.addEventListener("click", function (event) {
+
+const itemsCommentsEditVal = document.getElementsByClassName("input-field-comments-edit")[0];
+itemsCommentsEditVal.addEventListener("keyup", function (event) {
+  if (event.code === 'Enter')
+  {
+    var comments_list = $('.input-field-comments-edit').val();
+    var ref = $('.Edit_Work_Data').attr('status_data');
+
+    $.ajax({
+        url:"<?php echo base_url('Work_Order_Management_controller/update_comments_data') ?>",
+        method:"POST",
+        async:false,  
+        cache: false, 
+        data:{
+          ref:ref,
+          comment:comments_list,
+        },
+        dataType:"json",
+        success:function(data){
+          getComments();
+          previous_comments_edit(data);
+        },
+        error:function(err){
+          // alert("Something went wrong!");
+        }
+    });
+  }
+});
+
+function edit_action_add(ack){
     // Get the value from the input field
     const value = inputFieldactionEdit.value.trim();
+    if (ack==true) {
+      action_list_globle_unique.push(value);
+    }
+
+    var inputVal = value.trim().toUpperCase();
+    var present = action_list_globle_unique.find(function (item_val) {
+      return item_val.toUpperCase() === inputVal;
+    });
 
     // If the value is not empty, create a new item and append it to the container
     if (value !== "") {
@@ -2160,8 +2276,14 @@ itemsFieldEdit.addEventListener("click", function (event) {
       itemText.classList.add("font-fam");
       itemText.classList.add("item-text-action");
       itemText.classList.add("stcode-up");
-      getActionID(itemText,value);
-      // itemText.innerText = value;
+
+      if (ack == true) {
+        getActionID(itemText,value);
+      }else{
+        itemText.setAttribute("action_list_id", action_id_list_globle_unique[present]);
+        itemText.innerText=value;
+      }
+      
       item.appendChild(itemText);
       
       // Cause Remove
@@ -2186,6 +2308,43 @@ itemsFieldEdit.addEventListener("click", function (event) {
     getActionList();
     $('#dropdown-list-action').empty();
     document.getElementById("dropdown-list-action").style.display="none";
+}
+
+// Add event listener to the input field
+itemsFieldEdit.addEventListener("click", function (event) {
+
+  var inputVal = inputFieldactionEdit.value.trim().toUpperCase();
+  const parentElement = document.querySelector('.items-container-edit-action');
+  const childElements = parentElement.children;
+
+  var ck=0;
+  for (let i = 0; i < childElements.length; i++) {
+    const childElement = childElements[i];
+    const spanElement = childElement.querySelector('.item-text');
+    if (inputVal == spanElement.textContent.trim().toUpperCase()) {
+      ck=1;
+      break;
+    }
+  }
+  var present = action_list_globle_unique.find(function (item_val) {
+    return item_val.toUpperCase() === inputVal;
+  });
+  if (!present && ck==0) {
+    $('.input-field-action-edit-add').css({
+        "pointer-events": "initial",
+    });
+    edit_action_add(true);
+  }else if (present && ck==0) {
+    $('.input-field-action-edit-add').css({
+        "pointer-events": "initial",
+    });
+    edit_action_add(false);
+  }
+  else if (present && ck==1) {
+    $('.input-field-action-edit-add').css({
+        "pointer-events": "none",
+    });
+  }  
 });
 
 
@@ -2291,13 +2450,32 @@ $(document).on('click','.suggession-action-items',function(event){
       return item_val.toUpperCase() === inputVal;
     });
 
-    if (!present) {
+    const parentElement = document.querySelector('.items-container-action');
+    const childElements = parentElement.children;
+    let ck=0;
+    for (let i = 0; i < childElements.length; i++) {
+      const childElement = childElements[i];
+      const spanElement = childElement.querySelector('.item-text');
+      if (inputVal == spanElement.textContent.trim().toUpperCase()) {
+        ck=1;
+        break;
+      }
+    }
+
+    if (!present && ck==0) {
       $('.input-field-action-add').css({
-        "pointer-events": "initial",
+          "pointer-events": "initial",
       });
-    }else{
+      add_action_val(true);
+    }else if (present && ck==0) {
       $('.input-field-action-add').css({
-        "pointer-events": "none",
+          "pointer-events": "initial",
+      });
+      add_action_val(false);
+    }
+    else if (present && ck==1) {
+      $('.input-field-action-add').css({
+          "pointer-events": "none",
       });
     }
 
@@ -2318,13 +2496,35 @@ $(document).on('click','.suggession-action-items-edit',function(event){
       return item_val.toUpperCase() === inputVal;
     });
 
-    if (!present) {
+    const parentElement = document.querySelector('.items-container-edit-action');
+    const childElements = parentElement.children;
+    let ck=0;
+    for (let i = 0; i < childElements.length; i++) {
+      const childElement = childElements[i];
+      const spanElement = childElement.querySelector('.item-text');
+      if (inputVal == spanElement.textContent.trim().toUpperCase()) {
+        ck=1;
+        break;
+      }
+    }
+
+    console.log("CK"+ck+"Present"+present);
+    console.log("List"+action_list_globle_unique);
+
+    if (!present && ck==0) {
       $('.input-field-action-edit-add').css({
-        "pointer-events": "initial",
+          "pointer-events": "initial",
       });
-    }else{
+      edit_action_add(true);
+    }else if (present && ck==0) {
       $('.input-field-action-edit-add').css({
-        "pointer-events": "none",
+          "pointer-events": "initial",
+      });
+      edit_action_add(false);
+    }
+    else if (present && ck==1) {
+      $('.input-field-action-edit-add').css({
+          "pointer-events": "none",
       });
     }
 
@@ -2830,12 +3030,15 @@ function getAssigneeList(){
                     +'</div>'
                 +'</div>');
             res.forEach(function(item){
+                var user_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
+                var randomColor = user_color[Math.floor(Math.random()*user_color.length)];
+
                 assignee_list.push(item);
                 var elements = $();
                 if(item['site_id'] != "smartories"){
                 elements = elements.add('<div class="inbox inbox_assignee" style="display: flex;">'
                     +'<div style="float: left;width: 20%;" class="center-align circle-div-root">'
-                        +'<div class="circle-div" style="background:#7f7f7f;color:white;">'
+                        +'<div class="circle-div" style="background:'+randomColor+';color:white;">'
                             +'<p class="paddingm">'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p>'
                         +'</div>'
                     +'</div>'
@@ -2856,7 +3059,6 @@ function getAssigneeList(){
                     +'</div>');
                   }
             });
-            
         },
         error:function(err){
             // alert("Something went wrong!");
@@ -3015,6 +3217,7 @@ function getComments(){
         async:false,
         dataType:"json",
         success:function(res){
+            comments_list_globle=[];
             res.forEach(function(item){
                 comments_list_globle.push(item);
             });
@@ -3486,8 +3689,6 @@ function getFilterData(){
     total_pagination = Math.ceil((filter_array.length)/(pagination_length));
     $("#total_pagination").html(total_pagination);
     var x = $("#pagination_val").val();
-    console.log("work order filter array");
-    console.log(filter_array);
     filter_array.forEach(function(item, index) {
         if ((index > (x*pagination_length)-(pagination_length+1)) && (index < (x*pagination_length))) {
             var due_date_color="";
@@ -3634,8 +3835,6 @@ function getWorkOrderRecords(status,lables,priority,assignee,filter){
             filter:filter,
         },
         success:function(data_res){
-          console.log("work order records");
-          console.log(data_res);
             $('.contentWorkOrder').empty();
             filter_array=[];
             var open=0;
@@ -3726,14 +3925,12 @@ $(document).on('click','.Add_Work_Data',function(event){
         }
         
         else{
-          console.log("Work order insertion priroity input ");
           var priority_tmp = " ";
           $('.priority_add').each(function(){
             if ($(this).is(':checked')) {
               priority_tmp = $(this).val();
             }
           });
-          console.log(priority_tmp);
           var formData = new FormData();
 
     formData.append('title', $('#add_work_title').val());
@@ -3748,8 +3945,6 @@ $(document).on('click','.Add_Work_Data',function(event){
       formData.append('assignee', $('input[name="assignee_val"]:checked').val());
     }
 
-    console.log("Priority value");
-    console.log($('input[name="priority_val"]:checked').val())
     var cause_list=[];
     var element_cause = $('.items-container-cause').children('.item-cause').children('.item-id');
     $.each(element_cause, function(key,valueObj){
