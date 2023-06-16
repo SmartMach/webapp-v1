@@ -376,7 +376,6 @@ class Work_Order_Management_controller extends BaseController{
                 
         }
     }
-
     public function getAttachFileID(){
         if ($this->request->isAJAX()) {
             helper(['filesystem']);

@@ -845,6 +845,7 @@ $session = \Config\Services::session();
     var filter_array = [];
 
     var action_list_globle_unique=[];
+    var action_id_list_globle_unique=[];
     var cause_list_globle_unique=[];
     var lable_list_globle_unique=[];
 
@@ -873,6 +874,7 @@ $session = \Config\Services::session();
     $(document).on('click','#add_issue_button',function(event){
 
         action_list_globle_unique=[];
+        action_id_list_globle_unique=[];
         cause_list_globle_unique=[];
         lable_list_globle_unique=[];
 
@@ -1424,6 +1426,7 @@ $(document).on("click", ".edit-work-order", function(event){
                           +'</div>');
                       $(".items-container-edit-action").append(itemsContaineraction);
                       action_list_globle_unique.push(action_item['action']);
+                      action_id_list_globle_unique.push(action_item['action']);
                     }
                 });
             });
@@ -1856,24 +1859,35 @@ function getAttachFileIDEdit(item){
 }
 
 function getActionID(item,value){
-    $.ajax({
-        url:"<?php echo base_url('Work_Order_Management_controller/getActionID') ?>",
-        method:"POST",
-        cache: false,
-        async:false,
-        dataType:"json",
-        data:{
-            action:value
-        },
-        success:function(res){
-            item.setAttribute("action_list_id", res);
-            item.innerText=value;
-        },
-        error:function(err){
-            // alert("Something went wrong!");
-            // $("#overlay").fadeOut(300);
-        }
+    var previous=0;
+    action_list_globle.forEach(function(ele){
+      if (ele['action'].trim().toUpperCase() == inputVal) {
+        item.setAttribute("action_list_id", ele['action_id']);
+        item.innerText=value;
+        previous=1;
+      }
     });
+    if (previous==0) {
+      $.ajax({
+          url:"<?php echo base_url('Work_Order_Management_controller/getActionID') ?>",
+          method:"POST",
+          cache: false,
+          async:false,
+          dataType:"json",
+          data:{
+              action:value
+          },
+          success:function(res){
+              action_id_list_globle_unique.push(res);
+              item.setAttribute("action_list_id", res);
+              item.innerText=value;
+          },
+          error:function(err){
+              // alert("Something went wrong!");
+              // $("#overlay").fadeOut(300);
+          }
+      });
+    }
 }
 
 
@@ -2040,29 +2054,28 @@ inputFieldaction.addEventListener("keyup", function (event) {
                   +'<input type="text" class="action-input-suggession radio-visible" value="'+inputValue.trim()+'">'
               +'</div>');
         }
-
     }else{
         $('#dropdown-list-action').empty();
         document.getElementById("dropdown-list-action").style.display="none";
     }
+
+    $('.input-field-action-add').css({
+      "pointer-events": "initial",
+    });
 });
 
-function add_action_val(){
+
+function add_action_val(ack){
   // Get the value from the input field
     const value = inputFieldaction.value.trim();
-    action_list_globle_unique.push(value);
+    if (ack==true) {
+      action_list_globle_unique.push(value);
+    }
 
     var inputVal = value.trim().toUpperCase();
     var present = action_list_globle_unique.find(function (item_val) {
       return item_val.toUpperCase() === inputVal;
     });
-
-    // if (!present) {
-    // }else{
-    //   $('.input-field-action-add').css({
-    //     "pointer-events": "none",
-    //   });
-    // }
 
     // If the value is not empty, create a new item and append it to the container
     if (value !== "" && present) {
@@ -2080,8 +2093,14 @@ function add_action_val(){
       itemText.classList.add("font-fam");
       itemText.classList.add("item-text-action");
       itemText.classList.add("stcode-up");
-      getActionID(itemText,value);
-      // itemText.innerText = value;
+
+      if (ack == true) {
+        getActionID(itemText,value);
+      }else{
+        itemText.setAttribute("action_list_id", action_id_list_globle_unique[present]);
+        itemText.innerText=value;
+      }
+
       item.appendChild(itemText);
       
       // Cause Remove
@@ -2098,18 +2117,17 @@ function add_action_val(){
 
       // Clear the input field
       inputFieldaction.value = "";
-      // inputFieldaction.placeholder = "Add an action taken to solve the problem...";
       // Add event listener to the remove icon
-      itemRemove.addEventListener("click", function () {
+      itemRemove.addEventListener("click", function () {        
         
-  
-        const parentElement = document.querySelector('.items-container-action');
-        const spanElement = parentElement.querySelector('.item-text');
-        const index = action_list_globle_unique.indexOf(spanElement.textContent);
-        if (index > -1) {
-          action_list_globle_unique.splice(index, 1);
-        }
-        
+        // const parentElement = document.querySelector('.items-container-action');
+        // const spanElement = parentElement.querySelector('.item-text');
+        // const index = action_list_globle_unique.indexOf(spanElement.textContent);
+        // if (index > -1) {
+        //   action_list_globle_unique.splice(index, 1);
+        //   action_id_list_globle_unique.splice(index, 1);
+        // }
+
         itemsContaineraction.removeChild(item);
         inputFieldaction.value = "";
       });
@@ -2123,7 +2141,38 @@ function add_action_val(){
 
 // Add event listener to the input field
 itemsFieldAdd.addEventListener("click", function (event) {
-    add_action_val();
+  var inputVal = inputFieldaction.value.trim().toUpperCase();
+  const parentElement = document.querySelector('.items-container-action');
+  const childElements = parentElement.children;
+
+  var ck=0;
+  for (let i = 0; i < childElements.length; i++) {
+    const childElement = childElements[i];
+    const spanElement = childElement.querySelector('.item-text');
+    if (inputVal == spanElement.textContent.trim().toUpperCase()) {
+      ck=1;
+      break;
+    }
+  }
+  var present = action_list_globle_unique.find(function (item_val) {
+    return item_val.toUpperCase() === inputVal;
+  });
+  if (!present && ck==0) {
+    $('.input-field-action-add').css({
+        "pointer-events": "initial",
+    });
+    add_action_val(true);
+  }else if (present && ck==0) {
+    $('.input-field-action-add').css({
+        "pointer-events": "initial",
+    });
+    add_action_val(false);
+  }
+  else if (present && ck==1) {
+    $('.input-field-action-add').css({
+        "pointer-events": "none",
+    });
+  }
 });
 
 // Action Taken........
@@ -2168,6 +2217,10 @@ inputFieldactionEdit.addEventListener("keyup", function (event) {
         $('#dropdown-list-action-edit').empty();
         document.getElementById("dropdown-list-action-edit").style.display="none";
     }
+
+    $('.input-field-action-edit-add').css({
+      "pointer-events": "initial",
+    });
 });
 
 
@@ -2200,9 +2253,17 @@ itemsCommentsEditVal.addEventListener("keyup", function (event) {
   }
 });
 
-function edit_action_add(){
+function edit_action_add(ack){
     // Get the value from the input field
     const value = inputFieldactionEdit.value.trim();
+    if (ack==true) {
+      action_list_globle_unique.push(value);
+    }
+
+    var inputVal = value.trim().toUpperCase();
+    var present = action_list_globle_unique.find(function (item_val) {
+      return item_val.toUpperCase() === inputVal;
+    });
 
     // If the value is not empty, create a new item and append it to the container
     if (value !== "") {
@@ -2215,8 +2276,14 @@ function edit_action_add(){
       itemText.classList.add("font-fam");
       itemText.classList.add("item-text-action");
       itemText.classList.add("stcode-up");
-      getActionID(itemText,value);
-      // itemText.innerText = value;
+
+      if (ack == true) {
+        getActionID(itemText,value);
+      }else{
+        itemText.setAttribute("action_list_id", action_id_list_globle_unique[present]);
+        itemText.innerText=value;
+      }
+      
       item.appendChild(itemText);
       
       // Cause Remove
@@ -2241,14 +2308,43 @@ function edit_action_add(){
     getActionList();
     $('#dropdown-list-action').empty();
     document.getElementById("dropdown-list-action").style.display="none";
-
 }
 
 // Add event listener to the input field
 itemsFieldEdit.addEventListener("click", function (event) {
 
-  edit_action_add();
-  
+  var inputVal = inputFieldactionEdit.value.trim().toUpperCase();
+  const parentElement = document.querySelector('.items-container-edit-action');
+  const childElements = parentElement.children;
+
+  var ck=0;
+  for (let i = 0; i < childElements.length; i++) {
+    const childElement = childElements[i];
+    const spanElement = childElement.querySelector('.item-text');
+    if (inputVal == spanElement.textContent.trim().toUpperCase()) {
+      ck=1;
+      break;
+    }
+  }
+  var present = action_list_globle_unique.find(function (item_val) {
+    return item_val.toUpperCase() === inputVal;
+  });
+  if (!present && ck==0) {
+    $('.input-field-action-edit-add').css({
+        "pointer-events": "initial",
+    });
+    edit_action_add(true);
+  }else if (present && ck==0) {
+    $('.input-field-action-edit-add').css({
+        "pointer-events": "initial",
+    });
+    edit_action_add(false);
+  }
+  else if (present && ck==1) {
+    $('.input-field-action-edit-add').css({
+        "pointer-events": "none",
+    });
+  }  
 });
 
 
@@ -2354,28 +2450,32 @@ $(document).on('click','.suggession-action-items',function(event){
       return item_val.toUpperCase() === inputVal;
     });
 
-    if (!present) {
-      $('.input-field-action-add').css({
-        "pointer-events": "initial",
-      });
-      add_action_val();
-    }else{
-      const parentElement = document.querySelector('.items-container-action');
-      const childElements = parentElement.children;
-      let ck=0;
-      for (let i = 0; i < childElements.length; i++) {
-        const childElement = childElements[i];
-        const spanElement = childElement.querySelector('.item-text');
-        if (inputVal == spanElement.textContent) {
-          ck=1;
-          break;
-        }
+    const parentElement = document.querySelector('.items-container-action');
+    const childElements = parentElement.children;
+    let ck=0;
+    for (let i = 0; i < childElements.length; i++) {
+      const childElement = childElements[i];
+      const spanElement = childElement.querySelector('.item-text');
+      if (inputVal == spanElement.textContent.trim().toUpperCase()) {
+        ck=1;
+        break;
       }
+    }
 
-      console.log("CK = "+ck);
-
+    if (!present && ck==0) {
       $('.input-field-action-add').css({
-        "pointer-events": "none",
+          "pointer-events": "initial",
+      });
+      add_action_val(true);
+    }else if (present && ck==0) {
+      $('.input-field-action-add').css({
+          "pointer-events": "initial",
+      });
+      add_action_val(false);
+    }
+    else if (present && ck==1) {
+      $('.input-field-action-add').css({
+          "pointer-events": "none",
       });
     }
 
@@ -2396,14 +2496,35 @@ $(document).on('click','.suggession-action-items-edit',function(event){
       return item_val.toUpperCase() === inputVal;
     });
 
-    if (!present) {
+    const parentElement = document.querySelector('.items-container-edit-action');
+    const childElements = parentElement.children;
+    let ck=0;
+    for (let i = 0; i < childElements.length; i++) {
+      const childElement = childElements[i];
+      const spanElement = childElement.querySelector('.item-text');
+      if (inputVal == spanElement.textContent.trim().toUpperCase()) {
+        ck=1;
+        break;
+      }
+    }
+
+    console.log("CK"+ck+"Present"+present);
+    console.log("List"+action_list_globle_unique);
+
+    if (!present && ck==0) {
       $('.input-field-action-edit-add').css({
-        "pointer-events": "initial",
+          "pointer-events": "initial",
       });
-      edit_action_add();
-    }else{
+      edit_action_add(true);
+    }else if (present && ck==0) {
       $('.input-field-action-edit-add').css({
-        "pointer-events": "none",
+          "pointer-events": "initial",
+      });
+      edit_action_add(false);
+    }
+    else if (present && ck==1) {
+      $('.input-field-action-edit-add').css({
+          "pointer-events": "none",
       });
     }
 
