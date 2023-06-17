@@ -352,6 +352,8 @@ var i = "";
 $('.oui_arrow_div').css('display', 'none');
 $('.visibility_div').css('display', 'inline');
 var j = "";
+
+$("#overlay").fadeIn(300);
 getMachineDataLive();
 
 function getMachineDataLive() {
@@ -387,6 +389,8 @@ function getMachineDataLive() {
 
             var target_graph_date_time_val = date+","+e_time[0] + ":" + e_time[1] + ":" + s_time[2];
             $('#shift_date_oui_graph').text(target_graph_date_time_val);
+
+
         },
         error: function(res) {
             // Error Occured!
@@ -978,10 +982,9 @@ function getLiveMode(shift_date, shift_id) {
             // $('.grid-container-cont').append(e);
             // $('.grid-container-cont').append(e);
 
+
             live_graph(shift_date,shift_id);
             live_target(shift_date);
-            // live_MC1001(s_date, s_id);
-            // live_target_update(s_date);
 
         },
         error: function(res) {
@@ -1172,6 +1175,7 @@ function live_target(s_date) {
 }
 
 $('#Filter-values').on('change', function(event) {
+    $("#overlay").fadeIn(300);
     var option = $('#Filter-values').val();
     var x = $('.values_oee');
     var len = x.length;
@@ -1288,6 +1292,7 @@ $('#Filter-values').on('change', function(event) {
             }
         }
     }
+    $("#overlay").fadeOut(300);
 });
 
 function live_MC1001(shift_date, shift_id) {
@@ -1554,6 +1559,8 @@ function live_MC1001(shift_date, shift_id) {
                     .attributes['stop-color'].value = color_code;
                 n = n + 1;
             });
+
+            $("#overlay").fadeOut(300);
         },
         error: function(res) {
 
@@ -1656,9 +1663,6 @@ $(document).on('click', '.grid-item-cont', function(event) {
 
 // target graph oui screen
 function target_oui_graph(mid,tid,sdate){
-    console.log(mid);
-    console.log(sdate);
-    console.log(tid);
     $.ajax({
         url:"<?php echo base_url('Current_Shift_Performance/get_target_graph'); ?>",
         method:"POST",
