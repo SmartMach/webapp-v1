@@ -65,11 +65,10 @@ class Production_Quality extends BaseController
             $_ftime = strtotime($fromTime);
             $_ttime = strtotime($toTime);
 
+            $s_time_range_limit =  strtotime($FromDate." ".$FromTime);
+            $e_time_range_limit =  strtotime($ToDate." ".$ToTime);
+
             foreach ($output as $key => $value) {
-
-                $time_temp_start = strtotime($value['shift_date']." ".$value['start_time']);
-                $time_temp_end = strtotime($value['shift_date']." ".$value['end_time']);
-
                 $check_no = 0;
                 for($i=0;$i<$len_id;$i++){
                     if ($getOfflineId[$i]['machine_event_id'] == $value['machine_event_id']) {
@@ -83,26 +82,25 @@ class Production_Quality extends BaseController
                         unset($output[$key]);
                     }
                     else{
-                        if ($value['shift_date'] == $FromDate && $value['start_time'] <= $FromTime && $value['end_time'] >= $FromTime) {
+                        $s_time_range =  strtotime($value['shift_date']." ".$value['start_time']);
+                        $e_time_range =  strtotime($value['shift_date']." ".$value['end_time']);
+
+                        if ($s_time_range <= $s_time_range_limit && $e_time_range >= $s_time_range_limit) {
                             $output[$key]['start_time'] = $FromTime;
-                            if ($value['end_time']>= $ToTime) {
+                            if ($e_time_range >= $e_time_range_limit) {
                                 $output[$key]['end_time'] = $ToTime;
                             }
                             $output[$key]['split_duration'] = $this->getDuration($value['calendar_date']." ".$output[$key]['start_time'],$value['calendar_date']." ".$output[$key]['end_time']);
                         }
-                        else if (($value['shift_date'] == $ToDate && $value['start_time']>=$value['end_time']) || $value['shift_date'] == $ToDate && $value['end_time'] >= $ToTime) {
+                        else if ($s_time_range < $e_time_range_limit && $e_time_range > $e_time_range_limit) {
                             $output[$key]['end_time'] = $ToTime;
                             $output[$key]['split_duration'] = $this->getDuration($value['calendar_date']." ".$output[$key]['start_time'],$value['calendar_date']." ".$output[$key]['end_time']);
                         }
                         else{
-                            if ($value['shift_date'] == $FromDate  && strtotime($value['start_time']) < strtotime($FromTime)){
+                            if ($e_time_range <= $s_time_range_limit){
                                 unset($output[$key]);
                             }
-                            if ($value['shift_date'] == $FromDate  && $value['start_time'] >= $ToTime){
-                                unset($output[$key]);
-                            }
-
-                            if ($value['shift_date'] == $ToDate  && strtotime($value['start_time']) > strtotime($ToTime)) {
+                            if ($s_time_range >= $e_time_range_limit){
                                 unset($output[$key]);
                             }
                         }
@@ -110,13 +108,14 @@ class Production_Quality extends BaseController
                         //For remove the current data of inactive machines.........
                         foreach ($getInactiveMachine as $v) {
                             $t = explode(" ", $v['max(r.last_updated_on)']);
-
-                            if ($value['shift_date'] >= $t[0]  && $value['start_time'] > $t[1] && $value['machine_id'] == $v['machine_id']){
+                            $start_time_range =  strtotime($v['max(r.last_updated_on)']);
+                            if ($s_time_range_limit > $start_time_range && $value['machine_id'] == $v['machine_id']){
                                 unset($output[$key]);
                             }
                         }
                     }
                 }
+                
             }
 
             // Filter for Find the All Time.............
@@ -125,63 +124,60 @@ class Production_Quality extends BaseController
                     unset($getAllTimeValues[$key]);
                 }
                 else{
-                    if ($value['shift_date'] == $FromDate && $value['start_time'] <= $FromTime && $value['end_time'] >= $FromTime) {
+                    $s_time_range =  strtotime($value['shift_date']." ".$value['start_time']);
+                    $e_time_range =  strtotime($value['shift_date']." ".$value['end_time']);
+
+                    if ($s_time_range <= $s_time_range_limit && $e_time_range >= $s_time_range_limit) {
                         $getAllTimeValues[$key]['start_time'] = $FromTime;
-                        if ($value['end_time']>= $ToTime) {
+                        if ($e_time_range >= $e_time_range_limit) {
                             $getAllTimeValues[$key]['end_time'] = $ToTime;
                         }
                         $getAllTimeValues[$key]['duration'] = $this->getDuration($value['calendar_date']." ".$getAllTimeValues[$key]['start_time'],$value['calendar_date']." ".$getAllTimeValues[$key]['end_time']);
                     }
-                    else if (($value['shift_date'] == $ToDate && $value['start_time']>=$value['end_time']) || $value['shift_date'] == $ToDate && $value['end_time'] >= $ToTime) {
+                    else if ($s_time_range < $e_time_range_limit && $e_time_range > $e_time_range_limit) {
                         $getAllTimeValues[$key]['end_time'] = $ToTime;
                         $getAllTimeValues[$key]['duration'] = $this->getDuration($value['calendar_date']." ".$getAllTimeValues[$key]['start_time'],$value['calendar_date']." ".$getAllTimeValues[$key]['end_time']);
                     }
                     else{
-                        if ($value['shift_date'] == $FromDate  && $value['start_time'] < $FromTime){
+                        if ($e_time_range <= $s_time_range_limit){
                             unset($getAllTimeValues[$key]);
                         }
-                        if ($value['shift_date'] == $ToDate  && strtotime($value['end_time']) > strtotime($ToTime)) {
-                            unset($getAllTimeValues[$key]);
-                        }
-
-                        if ($value['shift_date'] == $FromDate  && $value['start_time'] >= $ToTime){
+                        if ($s_time_range >= $e_time_range_limit){
                             unset($getAllTimeValues[$key]);
                         }
                     }
 
                     //For remove the current data of inactive machines.........
                     foreach ($getInactiveMachine as $v) {
-                        $t = explode(" ", $v['max(r.last_updated_on)']);
-
-                        if ($value['shift_date'] >= $t[0]  && $value['start_time'] > $t[1] && $value['machine_id'] == $v['machine_id']){
+                        $start_time_range =  strtotime($v['max(r.last_updated_on)']);
+                        if ($s_time_range_limit > $start_time_range && $value['machine_id'] == $v['machine_id']){
                             unset($getAllTimeValues[$key]);
                         }
                     }
                 }
-            }   
+            }
 
             // Filter for Production Info Table Data..........
             foreach ($production as $key => $value) {   
-                if ($value['shift_date'] == $FromDate  && $value['start_time'] < $FromTime) {
+                $s_time_range =  strtotime($value['shift_date']." ".$value['start_time']);
+                $e_time_range =  strtotime($value['shift_date']." ".$value['end_time']);
+                
+                if ($s_time_range < $s_time_range_limit) {
                     unset($production[$key]);
                 }
-                if ($value['shift_date'] == $FromDate  && $value['start_time'] >= $ToTime){
-                        unset($production[$key]);
-                    }
+                if ($e_time_range >= $e_time_range_limit){
+                    unset($production[$key]);
+                }
 
-                if (strtotime($value['shift_date']) == strtotime($ToDate)  && ($value['start_time']) >= ($ToTime)) {
-                    unset($production[$key]);
-                }
                 //For remove the current data of inactive machines.........
                 foreach ($getInactiveMachine as $v) {
-                    $t = explode(" ", $v['max(r.last_updated_on)']);
-                    if ($value['shift_date'] == $t[0]  && $value['start_time'] > $t[1] && $value['machine_id'] == $v['machine_id'] OR $value['shift_date'] > $t[0] && $value['machine_id'] == $v['machine_id']){
+                    $start_time_range =  strtotime($v['max(r.last_updated_on)']);
+                    if ($s_time_range_limit > $start_time_range && $value['machine_id'] == $v['machine_id']){
                         unset($production[$key]);
                     }
                 }
             }
-
-        
+    
             //Function return for qualityOpportunity graph........
             if ($graphRef == "qualityOpportunity") {
                 return $production;
@@ -205,8 +201,8 @@ class Production_Quality extends BaseController
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
 
-        // $fromTime = "2023-02-12T09:00:00";
-        // $toTime = "2023-02-28T21:00:00";
+        // $fromTime = "2023-06-13T12:00:00";
+        // $toTime = "2023-06-19T11:00:00";
 
         // $url = "http://localhost:8080/graph/qualityOpportunity/".$fromTime."/".$toTime."/";
         // $ch = curl_init($url);
@@ -217,13 +213,13 @@ class Production_Quality extends BaseController
 
         $qualityReason_filter = $this->Financial->qualityReason();
         $qualityReason = $this->request->getVar("reason");
-        // $qualityReason = ["3","4","5","6","7"];
+        // $qualityReason = ['4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25'];
 
         $ProductionData = $this->getDataRaw($ref,$fromTime,$toTime);
 
         $partDetails_filter = $this->Financial->getPartDetails();
         $partDetails = $this->request->getVar("part");
-        // $partDetails = ["PT1001","PT1002","PT1003","PT1004"];
+        // $partDetails = ['PT1001', 'PT1002', 'PT1003', 'PT1004', 'PT1005', 'PT1006', 'PT1007', 'PT1008', 'PT1009', 'PT1010', 'PT1011', 'PT1012', 'PT1013', 'PT1014', 'PT1015', 'PT1016', 'PT1017', 'PT1018', 'PT1019', 'PT1020', 'PT1021', 'PT1022', 'PT1023'];
 
         $machineDetails_filter = $this->Financial->getMachineDetails();
         $machineDetails = $this->request->getVar("machine");
@@ -237,8 +233,9 @@ class Production_Quality extends BaseController
                     $m=1;
                 }
             }
-            if ($m==1) {
-                if (trim($value['reject_reason']) !="" or trim($value['reject_reason']) !=null) {
+            if ($m==1) { 
+
+                if (trim($value['reject_reason']) !="" and trim($value['reject_reason']) !=null) {
                     $reasons =  explode("&&", $value['reject_reason']);
                     foreach ($reasons as $count) {
                         $tt = explode("&", $count);
@@ -253,6 +250,8 @@ class Production_Quality extends BaseController
                 unset($ProductionData[$k]);
             }
         }
+
+
 
         // Part wise quality reason........
         $QualityAvailabilityData=[];
