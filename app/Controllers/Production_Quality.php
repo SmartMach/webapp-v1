@@ -235,7 +235,7 @@ class Production_Quality extends BaseController
             }
             if ($m==1) { 
 
-                if (trim($value['reject_reason']) !="" and trim($value['reject_reason']) !=null) {
+                if (trim($value['reject_reason']) !="" or trim($value['reject_reason']) !=null) {
                     $reasons =  explode("&&", $value['reject_reason']);
                     foreach ($reasons as $count) {
                         $tt = explode("&", $count);
