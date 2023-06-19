@@ -412,8 +412,6 @@ function getLiveMode(shift_date, shift_id) {
             // filter:x,
         },
         success: function(res) {
-            console.log("get Live Mode data");
-            console.log(res);
             $('.grid-container-cont').empty();
             res['latest_event'].forEach(function(machine) {
                 var machine_name = "";
@@ -971,7 +969,6 @@ function getLiveMode(shift_date, shift_id) {
                     }
 
                 });
-                // console.log("loop"+i);
                 // carousel_ele = carousel_ele.add('</div>');
                 // $('.carousel_content_item').append(carousel_ele);
             }
@@ -1182,18 +1179,18 @@ $('#Filter-values').on('change', function(event) {
     var arr = [];
     var val = [];
     if (option == 1) { //Soritng based on OEE
-        for (var i = 0; i < len; i++) {
-            arr.push(i);
-            val.push(parseInt($('.values_oee:eq(' + i + ')').children('span').html()));
+        for (var p = 0; p < len; p++) {
+            arr.push(p);
+            val.push(parseInt($('.values_oee:eq(' + p + ')').children('span').html()));
         }
-        for (var i = 0; i < len - 1; i++) {
+        
+        for (var i = 0; i < len; i++) {
             var min = i;
-            for (var j = i + 1; j < len; j++) {
-                if (val[j] < val[i]) {
+            for (var j = i; j < len; j++) {
+                if (parseFloat(val[j]) <= parseFloat(val[min])) {
                     min = j;
                 }
-            }
-
+            } 
             var temp = val[i];
             val[i] = val[min];
             val[min] = temp;
@@ -1211,7 +1208,7 @@ $('#Filter-values').on('change', function(event) {
         for (var i = 0; i < len - 1; i++) {
             var min = i;
             for (var j = i + 1; j < len; j++) {
-                if (val[j] > val[i]) {
+                if (val[j] > val[min]) {
                     min = j;
                 }
             }
@@ -1236,7 +1233,7 @@ $('#Filter-values').on('change', function(event) {
             var min = i;
             for (var j = i + 1; j < len; j++) {
                 var tempx = val[j].split("C");
-                var tempy = val[i].split("C");
+                var tempy = val[min].split("C");
                 if ((parseInt(tempx[1]) - 1000) < (parseInt(tempy[1]) - 1000)) {
                     min = j;
                 }
@@ -1263,10 +1260,10 @@ $('#Filter-values').on('change', function(event) {
         for (var i = 0; i < len - 1; i++) {
             var min = i;
             for (var j = i + 1; j < len; j++) {
-                if (up_time[i] < up_time[j]) {
+                if (up_time[min] < up_time[j]) {
                     min = j;
                 }
-            }
+            }   
             var temp = up_time[i];
             up_time[i] = up_time[min];
             up_time[min] = temp;
@@ -1309,8 +1306,6 @@ function live_MC1001(shift_date, shift_id) {
             // filter:x,
         },
         success: function(res) {
-            console.log("live mode data circle graph");
-            console.log(res);
             var n = 0;
             res['latest_event'].forEach(function(machine) {
 
@@ -1673,8 +1668,6 @@ function target_oui_graph(mid,tid,sdate){
         },
         dataType:"JSON",
         success:function(res){
-            console.log("Oui Target graph");
-            console.log(res);
             var target_percentage = 0;
             if (parseInt(res[0]['percentage_target'])>100) {
                 // target_percentage = res[0]['percentage_target'];
@@ -1688,8 +1681,7 @@ function target_oui_graph(mid,tid,sdate){
 
         },
         error:function(er){
-            console.log("Sorry TryAgain.. oui target graph");
-            console.log(er);
+            // 
         }
     });
 }
@@ -1709,8 +1701,6 @@ function circle_data_oui(mid,sdate,sid){
             // filter:x,
         },
         success: function(res) {
-            console.log("Circle graph oui screen value settings");
-            console.log(res);
 
             var production_total = 0;
             res['production_total'].forEach(function(item){
@@ -1719,12 +1709,10 @@ function circle_data_oui(mid,sdate,sid){
                 }
             });
 
-            console.log(production_total);
             var target_production = 5000;
             var production_percent = parseInt((production_total / target_production) * 100);
             var production_percent_val = 470 - (2.4 * production_percent);
             var color_id = "GradientColor_oui";
-            //console.log(production_percent_val);
             var refcolor = 'url('+'#'+color_id+')';
             var iterate = document.getElementById("circle_oui_anim");
             iterate.style.setProperty("--foo_oui", production_percent_val);
@@ -1735,8 +1723,7 @@ function circle_data_oui(mid,sdate,sid){
 
         },
         error:function(er){
-            console.log('Sorry TryAgain.. circle graph');
-            console.log(er);
+            // 
         }
     });
 }
@@ -2154,8 +2141,6 @@ function part_by_hour(mid, sdate, sid, bar_color) {
             filter: x,
         },
         success: function(res) {
-            // console.log("get lievmode data");
-            // console.log(res);
             var hourly = [];
             var hourList = [];
             var production_target = [];
@@ -2257,7 +2242,7 @@ function part_by_hour(mid, sdate, sid, bar_color) {
 
         },
         error: function(er) {
-            console.log("error code");
+            // 
         },
 
     });
@@ -2277,10 +2262,6 @@ function div_records(mid, shift_date, shift_id, card_header, card_body) {
             shift_id: shift_id,
         },
         success: function(res) {
-
-            // console.log("div tag records");
-            // console.log(res);
-
             var nict_min = res['nict'] / 60;
             var tmp_nict = " ";
             if (parseInt(nict_min) > 0) {
@@ -2358,8 +2339,6 @@ function fullscreen_mode_remove(){
 
     $('.prev').css('margin-left','0rem');
     let slides = document.getElementsByClassName("grid-item-cont");
-    console.log("slides length");
-    console.log(slides.length);
     for (j = 0; j < slides.length; j++) {
         slides[j].style.display = "block";
     }
