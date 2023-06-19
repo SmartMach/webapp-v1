@@ -22,8 +22,20 @@
 .apply_btn_style{
     background: #005abc;
     color: white;
-    width:6rem;
-    text-align:center;
+    /* width:6rem;
+    text-align:center; */
+    margin-top: 0.5rem;
+    margin-right: 0.6rem;
+    height: 2.2rem;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    font-size: 15px;
+    padding: 5px 25px;
+    opacity: 1;
+    font-weight: 500;
+    border: 1px solid transparent;
+    
+
 }
 
 .apply_btn_style:hover{

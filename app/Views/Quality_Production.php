@@ -670,7 +670,7 @@
                 <div class="filter_selectBox" onclick="multiple_drp()">
                   <div class="inbox-span fontStyle search_style dropdown-arrow">
                     <div style="width: 80% !important;">
-                      <p class="paddingm" id="part_text">Select</p>
+                      <p class="paddingm" id="part_text">All Parts</p>
                     </div>
                     <div style="width: 80% !important;" class="dropdown-div">
                       <i class="fa fa-angle-down icon-style"></i>
@@ -690,7 +690,7 @@
                 <div class="filter_selectBox" onclick="multiple_drp_machine()">
                   <div class="inbox-span fontStyle search_style dropdown-arrow">
                     <div style="width: 80% !important;">
-                      <p class="paddingm" id="machine_text">Select</p>
+                      <p class="paddingm" id="machine_text">All Machines</p>
                     </div>
                     <div style="width: 80% !important;" class="dropdown-div">
                       <i class="fa fa-angle-down icon-style"></i>
@@ -710,7 +710,7 @@
                 <div class="filter_selectBox" onclick="multiple_drp_reason()">
                   <div class="inbox-span fontStyle search_style dropdown-arrow">
                     <div style="width: 80% !important;">
-                      <p class="paddingm" id="reason_text">Select</p>
+                      <p class="paddingm" id="reason_text">All Reasons</p>
                     </div>
                     <div style="width: 80% !important;" class="dropdown-div">
                       <i class="fa fa-angle-down icon-style"></i>
@@ -730,7 +730,7 @@
                 <div class="filter_selectBox" onclick="multiple_drp_user()">
                   <div class="inbox-span fontStyle search_style dropdown-arrow">
                     <div style="width: 80% !important;">
-                      <p class="paddingm" id="user_text">Select</p>
+                      <p class="paddingm" id="user_text">All Users</p>
                     </div>
                     <div style="width: 80% !important;" class="dropdown-div">
                       <i class="fa fa-angle-down icon-style"></i>
@@ -745,7 +745,7 @@
           </div> 
 
           <!-- <div class="box rightmar" style="margin-right: 0.5rem;"> -->
-          <button class="btn fo bn filterbtnstyle settings_nav_anchor float-end" style="margin-right:0.5rem;margin-left: 0;margin-top: 0;margin-bottom: 0;" id="add_machine_button" onclick="getFilterval()">Apply Filter</button>
+          <button class="btn fo bn filterbtnstyle settings_nav_anchor float-end" style="margin-right:0.5rem;border-radius:0.25rem;margin-left: 0;margin-top: 0;margin-bottom: 0;" id="add_machine_button" onclick="getFilterval()">Apply Filter</button>
           <!-- </div> -->
           <div class="box rightmar" style="margin-right: 0.5rem;display: flex;justify-content: center;">
             <img src="<?php echo base_url('assets/img/filter_reset.png'); ?>" class="undo" style="font-size:20px;color: #b5b8bc;cursor: pointer;width:1.3rem;height:1.3rem;">
@@ -3077,6 +3077,8 @@ function qualitybyparts() {
       machine:machine
     },
     success:function(res){
+      console.log("quality by parts");
+      console.log(res);
       // $('#qualityOpportunity').remove();
       // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
       // $('.chartjs-hidden-iframe').remove();
@@ -3230,7 +3232,7 @@ function qualitybyparts() {
           });
         },
     error:function(res){
-      // console.log("Sorry!Try Agian!!!!");
+      console.log("Sorry!Try Agian!!!!");
         // alert("Sorry!Try Agian!!!!");
     }
   }); 
@@ -3401,6 +3403,8 @@ function crbmr() {
       reason:reason
     },
     success:function(res){
+      console.log("crbmr");
+      console.log(res);
       // $('#qualityOpportunity').remove();
       // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
       // $('.chartjs-hidden-iframe').remove();
@@ -3579,7 +3583,7 @@ function crbmr() {
           });
         },
     error:function(res){
-      // console.log("Sorry!Try Agian!!!!");
+      console.log("Sorry!Try Agian!!!!");
         // alert("Sorry!Try Agian!!!!");
     }
   }); 
@@ -3752,6 +3756,8 @@ function copqm() {
       reason:reason
     },
     success:function(res){
+      console.log("copqm graph");
+      console.log(res);
       // $('#qualityOpportunity').remove();
       // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
       // $('.chartjs-hidden-iframe').remove();
@@ -3904,7 +3910,8 @@ function copqm() {
           });
         },
     error:function(res){
-      // console.log("Sorry!Try Agian!!!!");
+      console.log("Sorry!Try Agian!!!!");
+      console.log(res);
         // alert("Sorry!Try Agian!!!!");
     }
   }); 
@@ -4079,6 +4086,8 @@ function qrbr() {
       machine:machine
     },
     success:function(res){
+      console.log("qrbr");
+      console.log(res);
       // $('#qualityOpportunity').remove();
       // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
       // $('.chartjs-hidden-iframe').remove();
@@ -4254,7 +4263,7 @@ function qrbr() {
           });
         },
     error:function(res){
-      // console.log("Sorry!Try Agian!!!!");
+      console.log("Sorry!Try Agian!!!!");
         // alert("Sorry!Try Agian!!!!");
     }
   }); 
