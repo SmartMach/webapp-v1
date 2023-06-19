@@ -355,8 +355,12 @@ var j = "";
 
 $("#overlay").fadeIn(300);
 getMachineDataLive();
+ 
+var mx = setInterval(function() {
+    getMachineDataLiveUpdate();
+}, 1000);
 
-function getMachineDataLive() {
+function getMachineDataLiveUpdate(){
     $.ajax({
         url: "<?php echo base_url('Current_Shift_Performance/getLive'); ?>",
         type: "POST",
@@ -365,32 +369,55 @@ function getMachineDataLive() {
         async: false,
         contentType: "application/json; charset=utf-8",
         success: function(res) {
-            var date = new Date(res[0]['shift_date'])
-            date = date.getDate() + " " + date.toLocaleString([], {
-                month: 'short'
-            }) + " " + date.getFullYear();
+            var date =   $("#s_date_ref").val();
+            var shift =   $("#s_id_ref").val();
 
-            $("#shift_date").html(date);
-            $('#shift_date').attr('sdate_format', res[0]['shift_date']);
-            $("#shift_id").html("Shift " + res[0]['shift_id']);
-            var s_time = res[0]['start_time'].split(":");
-            var e_time = res[0]['end_time'].split(":");
-            $("#start_time").html(s_time[0] + ":" + s_time[1]);
-            $("#end_time").html(e_time[0] + ":" + e_time[1]);
+            if (date == res[0]['shift_date'] && shift == res[0]['shift_id']) {
+                // Same sift Maintaine..
+            }else{
+                getTileupdate(res);
+            }
+        },
+        error: function(res) {
+            // Error Occured!
+        }
+    });
+}
+function getTileupdate(res){
+    var date = new Date(res[0]['shift_date'])
+    date = date.getDate() + " " + date.toLocaleString([], {
+        month: 'short'
+    }) + " " + date.getFullYear();
 
-            $("#s_time_val").val(s_time[0] + ":" + s_time[1] + ":" + s_time[2]);
-            $("#e_time_val").val(e_time[0] + ":" + e_time[1] + ":" + s_time[2]);
+    $("#shift_date").html(date);
+    $('#shift_date').attr('sdate_format', res[0]['shift_date']);
+    $("#shift_id").html("Shift " + res[0]['shift_id']);
+    var s_time = res[0]['start_time'].split(":");
+    var e_time = res[0]['end_time'].split(":");
+    $("#start_time").html(s_time[0] + ":" + s_time[1]);
+    $("#end_time").html(e_time[0] + ":" + e_time[1]);
 
-            $("#s_date_ref").val(res[0]['shift_date']);
-            $("#s_id_ref").val(res[0]['shift_id']);
+    $("#s_time_val").val(s_time[0] + ":" + s_time[1] + ":" + s_time[2]);
+    $("#e_time_val").val(e_time[0] + ":" + e_time[1] + ":" + s_time[2]);
 
-            getLiveMode(res[0]['shift_date'], res[0]['shift_id']);
+    $("#s_date_ref").val(res[0]['shift_date']);
+    $("#s_id_ref").val(res[0]['shift_id']);
 
+    getLiveMode(res[0]['shift_date'], res[0]['shift_id']);
 
-            var target_graph_date_time_val = date+","+e_time[0] + ":" + e_time[1] + ":" + s_time[2];
-            $('#shift_date_oui_graph').text(target_graph_date_time_val);
-
-
+    var target_graph_date_time_val = date+","+e_time[0] + ":" + e_time[1] + ":" + s_time[2];
+    $('#shift_date_oui_graph').text(target_graph_date_time_val);
+}
+function getMachineDataLive(res) {
+    $.ajax({
+        url: "<?php echo base_url('Current_Shift_Performance/getLive'); ?>",
+        type: "POST",
+        dataType: "json",
+        cache: false,
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function(res) {
+            getTileupdate(res);
         },
         error: function(res) {
             // Error Occured!
@@ -884,88 +911,6 @@ function getLiveMode(shift_date, shift_id) {
                         // ChartDataLabels.defaults.font.size=8;
                         ChartDataLabels.defaults.font.family = "Roboto, sans-serif";
 
-                        // var ctx = document.getElementById('production-graph1123-'+machine[0]['machine_id']+'').getContext('2d');
-                        // myChartList[myChartList.length] = new Chart(ctx, {
-                        //   type: 'bar',
-                        //   data: {
-                        //     labels: hourList,
-                        //     datasets: [
-                        //       {
-                        //         label: "Total Parts",
-                        //         type: "bar",
-                        //         backgroundColor: "white",
-                        //         borderColor: "rgba(0, 0, 0, 0)", 
-                        //         borderWidth: 1,
-                        //         fill: true,
-                        //         data: hourly,
-                        //         part_name:part_name_list,
-                        //         rejections:rejections_list,
-                        //         categoryPercentage:1.0,
-                        //         barPercentage: 1.0, 
-                        //       },
-                        //       {
-                        //         label: "Production Target",
-                        //         type: "line",
-                        //         backgroundColor: "#7f7f7f",
-                        //         borderColor: "#00000", 
-                        //         borderWidth: 1,
-                        //         fill: false,
-                        //         data: production_target,
-                        //         part_name:part_name_list,
-                        //         pointRadius: 0,
-                        //         stepped: 'before',
-                        //       },
-                        //     ],
-                        //   },
-                        //   options: {
-                        //     scalebeginAtZero:false,
-                        //     responsive: true,
-                        //     maintainAspectRatio: false,   
-                        //     scales: {
-                        //       y: {
-                        //         display:false,
-                        //         beginAtZero:true,
-                        //         stacked:false,
-                        //       },
-                        //       x:{
-                        //         display:false,
-                        //         grid:{
-                        //           display:false
-                        //         },
-                        //         stacked:true,
-                        //     },
-                        //   },
-                        //   plugins: {
-                        //     datalabels:{
-                        //       anchor:"end",
-                        //       align:"end",
-                        //       offset:-16,
-                        //       color:"white",
-                        //       font:{
-                        //         size:8,
-                        //       },
-                        //       formatter: (value,context) => context.datasetIndex === 0 ? value : '',
-
-                        //     },
-                        //     legend: {
-                        //       display: false,
-                        //       labels: {
-                        //             // This more specific font property overrides the global property
-                        //             font: {
-                        //                 size: 9
-                        //             }
-                        //         }
-                        //     },
-                        //     tooltip: {
-                        //       enabled: false,
-                        //       external: productionTooltip,
-                        //     },
-                        //   },
-
-                        //   },
-                        //   plugins: [ChartDataLabels],
-                        // });
-
                     }
 
                 });
@@ -973,16 +918,8 @@ function getLiveMode(shift_date, shift_id) {
                 // $('.carousel_content_item').append(carousel_ele);
             }
 
-            // var e = '<div class="grid-item-cont">';
-            // $('.grid-container-cont').append(e);
-            // $('.grid-container-cont').append(e);
-            // $('.grid-container-cont').append(e);
-            // $('.grid-container-cont').append(e);
-
-
             live_graph(shift_date,shift_id);
             live_target(shift_date);
-
         },
         error: function(res) {
             // Error Occured!
