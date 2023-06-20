@@ -2528,8 +2528,8 @@ class OEE_Drill_Down_controller extends BaseController
             // $machine_arr = $this->request->getVar('machine_arr');
             // $quality_arr = $this->request->getVar('quality_arr');
     
-            // $fromTime = "2023-06-11T19:00:00";
-            // $toTime = "2023-06-17T18:00:00";
+            // $fromTime = "2023-06-01T19:00:00";
+            // $toTime = "2023-06-20T18:00:00";
           
     
             $qualityReason = $this->data->qualityReason();
@@ -2556,11 +2556,11 @@ class OEE_Drill_Down_controller extends BaseController
                         //$temp = explode($total, $count);
                         // reason id 
                         $temp = $tt[1];
-                        if (in_array($temp,$quality_arr)) {
+                        // if (in_array($temp,$quality_arr)) {
                            
                             $tmp = array("machine_id"=>$value['machine_id'],"part_id"=>$value['part_id'],"reject_count"=>$total,"reject_reason"=>$temp,"total_reject"=>$total,"total_correct"=>$value['corrections'],"total_production"=>$value['production'],"shot_count"=>$value['actual_shot_count'],"start_time"=>$value['start_time'],"end_time"=>$value['end_time']);
                             array_push($ProductionDataExpand, $tmp);
-                        }
+                        // }
                        
                     }
     

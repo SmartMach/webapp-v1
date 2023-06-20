@@ -1285,9 +1285,9 @@ function date_formate_change(date_format){
     let year_demo = d.toLocaleString('en-us',{year:'2-digit'});
     let minute_demo = d.toLocaleString('en-us',{minute:'2-digit'});
 
-    var tmp_minute = parseInt(minute_demo)>9?minute_demo:'0'+minute_demo;
-    var tmp_hour = parseInt(hour_demo)>9?hour_demo:'0'+hour_demo;
-    var tmp_day = parseInt(day_demo)>9?day_demo:'0'+day_demo;
+    var tmp_minute = parseInt(minute_demo)>9?parseInt(minute_demo):'0'+parseInt(minute_demo);
+    var tmp_hour = parseInt(hour_demo)>9?parseInt(hour_demo):'0'+parseInt(hour_demo);
+    var tmp_day = parseInt(day_demo)>9?parseInt(day_demo):'0'+parseInt(day_demo);
 
     var final_res = tmp_day+' '+month_demo+' '+year_demo+', '+tmp_hour+':'+tmp_minute;
     return final_res;
@@ -2575,12 +2575,10 @@ $(document).ready(function(){
 // onblur function change input filter
 // from date on blur function
 $(document).on('blur','.fromDate',function(event){
-    event.preventDefault();
+    // event.preventDefault();
 
     // preloader function on load
     $("#overlay").fadeIn(400);
-     // filter_drp_graph_all and graph always calling this function();
-    //  getall_filter_arr();
     graph_loader();
   
 });
@@ -2588,12 +2586,10 @@ $(document).on('blur','.fromDate',function(event){
 // to date onblur function
 $(document).on('blur','.toDate',function(event){
 
-    event.preventDefault();  
+    // event.preventDefault();  
 
     // // preloader function on load
     $("#overlay").fadeIn(400);
-     // filter_drp_graph_all and graph always calling this function();
-    //  getall_filter_arr();
     graph_loader();
 
 });
@@ -2869,11 +2865,15 @@ function getall_filter_arr(){
     });
 }
 
-function graph_loader(){
-    first_load_reason_oppcost();
-    first_load_reason_duration();
-    first_load_machine_oppcost();
-    first_load_machine_duration();
+async function graph_loader(){
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
+    await first_load_reason_oppcost(f,t);
+    await first_load_reason_duration(f,t);
+    await first_load_machine_oppcost(f,t);
+    await first_load_machine_duration(f,t);
 
     getall_filter_arr();
 
@@ -2881,630 +2881,124 @@ function graph_loader(){
 }
 
 // first loader functions
-function first_load_reason_oppcost(){
+function first_load_reason_oppcost(f,t){
+    return  new Promise(function (resolve,reject){
+        $('#reason_wise_oppcost').remove();
+        $('.child_reason_wise_oppcost').append('<canvas id="reason_wise_oppcost"></canvas>');
+        $('.chartjs-hidden-iframe').remove();
 
-    $('#reason_wise_oppcost').remove();
-    $('.child_reason_wise_oppcost').append('<canvas id="reason_wise_oppcost"></canvas>');
-    $('.chartjs-hidden-iframe').remove();
+       
+        $.ajax({
+            url:"<?php echo base_url('Production_Downtime_controller/first_reason_oppcost'); ?>",
+            method:"POST",
+            dataType:"json",
+            data:{
+                from:f,
+                to:t
+            },
+            success:function(res){
+                console.log("loader forst graph reason oppcost");
+                console.log(res);
+                resolve(res);
+                $('#reason_wise_oppcost_total').text(parseInt(res['grandTotal']).toLocaleString("en-IN"));
+                // total hour and minute
+                var thour = parseInt(res['total_duration'])/60;
+                var tminute = parseInt(res['total_duration']%60);
+                $('#total_duration_header').html(parseInt(thour)+'h'+' '+parseInt(tminute)+'m');
 
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
-    f = f.replace(" ","T");
-    t = t.replace(" ","T");
-    $.ajax({
-        url:"<?php echo base_url('Production_Downtime_controller/first_reason_oppcost'); ?>",
-        method:"POST",
-        dataType:"json",
-        data:{
-            from:f,
-            to:t
-        },
-        success:function(res){
-            console.log("loader forst graph reason oppcost");
-            console.log(res);
+                var category_percent = 1.0;
+                var bar_space = 0.5;
 
-
+                var reason_label = [];
+                var oppcost_arr = [];
+                var reason_id_arr = [];
             
-            $('#reason_wise_oppcost_total').text(parseInt(res['grandTotal']).toLocaleString("en-IN"));
-            // total hour and minute
-            var thour = parseInt(res['total_duration'])/60;
-            var tminute = parseInt(res['total_duration']%60);
-            $('#total_duration_header').html(parseInt(thour)+'h'+' '+parseInt(tminute)+'m');
 
-            var category_percent = 1.0;
-            var bar_space = 0.5;
+                var oppcost_percent_arr = [];
+                var temp_cost_ini = 0;
+                res['graph'].forEach(function(val){
+                    reason_label.push(val.downtime_reason);
+                    var tempcost = parseInt(val.opportunity_cost);
+                    oppcost_arr.push(tempcost);
+                    reason_id_arr.push(val.downtime_reason_id);
+                    temp_cost_ini = parseInt(temp_cost_ini)+parseInt(tempcost);
+                    oppcost_percent_arr.push(temp_cost_ini);
+                });
 
-            var reason_label = [];
-            var oppcost_arr = [];
-            var reason_id_arr = [];
-           
+                // calculate percentage array
+                var percentage_arr = [];
+                oppcost_percent_arr.forEach(function(item){
+                    var temp_data = parseFloat(parseInt(item)/parseInt(res['grandTotal'])*100).toFixed(2);
+                    percentage_arr.push(temp_data);
+                });
 
-            var oppcost_percent_arr = [];
-            var temp_cost_ini = 0;
-            res['graph'].forEach(function(val){
-                reason_label.push(val.downtime_reason);
-                var tempcost = parseInt(val.opportunity_cost);
-                // console.log(typeof tempcost);
-                oppcost_arr.push(tempcost);
-                reason_id_arr.push(val.downtime_reason_id);
-                // console.log(val.downtime_reason);
-                // console.log('tempcost'+tempcost);
-                // console.log('ex temp cost'+temp_cost_ini);
-                // console.log(res['grandTotal']);
-                temp_cost_ini = parseInt(temp_cost_ini)+parseInt(tempcost);
-                oppcost_percent_arr.push(temp_cost_ini);
-            });
-
-            // calculate percentage array
-            var percentage_arr = [];
-            oppcost_percent_arr.forEach(function(item){
-                // console.log(item);
-                // console.log(res['grandTotal']);
-                var temp_data = parseFloat(parseInt(item)/parseInt(res['grandTotal'])*100).toFixed(2);
-                // temp_data = temp_data*100;
-                percentage_arr.push(temp_data);
-            });
-
-            console.log("temporary cost array");
-            console.log(percentage_arr);
-            var bar_width = 0.6;
-            var bar_size = 0.7;
-        
-            while(true){
-                var len= reason_label.length;
-                if (len < 8) {
-                    reason_label.push("");
-                }
-                else if(len > 8){
-                var l = parseInt(len)%parseInt(8);
-                var w= parseInt($('.parent_reason_wise_oppcost').css("width"))+parseInt(l*18*16);
-                // console.log("Reason Mapping");
-                // console.log(w);
-                $('.child_reason_wise_oppcost').css("width",w+"px");
-                break;
-                }
-                else{
-                break;
-                }
-            }
-          
-           
-            // console.log(oppcost_percent_arr);
-            // console.log(percentage_arr);
-            var ctx = document.getElementById("reason_wise_oppcost").getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: reason_label,
-                    datasets:[{
-                        type: 'line',
-                        label: 'Total',
-                        data: percentage_arr,
-                        percentage_data:percentage_arr,
-                        backgroundColor: 'white',
-                        borderColor: "#7f7f7f", 
-                        pointBorderColor: "#d9d9ff",  
-                        borderWidth: 1, 
-                        showLine : true,
-                        fill: false,
-                        lineColor:"black",
-                        pointRadius:7,
-                        yAxisID: 'A',  
-                       
-                    }
-                    ,{
-                        type: 'bar',
-                        label:reason_label ,
-                        data: oppcost_arr,
-                        percentage_data:0,
-                        // borderColor: 'rgb(255, 99, 132)',
-                        backgroundColor: '#0075F6',
-                        categoryPercentage:category_percent,
-                        barPercentage: bar_space,
-                        yAxisID: 'B',
-                    }
-                ],
-                },
-                // borderColor: "#004b9b", 
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,   
-                    scales: {
-                        // y: {
-                        //     display:false,
-                        //     beginAtZero:true,
-                        //     stacked:true
-                        // },
-                        A:{
-                          type: 'linear',
-                          position: 'right',
-                          // beginAtZero: true,
-                          suggestedMin: 0,
-                          suggestedMax: 100,
-                          display:true,
-                          grid:{
-                            display:false
-                          },
-                        },
-                        B:{
-                          type: 'linear',
-                          position: 'left',
-                          beginAtZero: true,
-                          display:true,
-                          grid:{
-                            display:false
-                          },
-                        },
-                        x:{
-                            display:true,
-                            grid:{
-                            display:false
-                            },
-                            stacked:true,
-                        },
-                    },
-                    plugins: {
-                    legend: {
-                        display: false,
-                    },
-                    tooltip: {
-                        enabled: false,
-                        external: reason_oppcost_tooltip,
-                    }
-                    },
-                },            
-            });
-        },
-        error:function(er){
-            console.log("error for reason oppcost");
-        }
-    });
-}
-
-// reason duration graph
-function first_load_reason_duration(){
-    $('#reason_wise_duration').remove();
-    $('.child_reason_wise_duration').append('<canvas id="reason_wise_duration"></canvas>');
-    $('.chartjs-hidden-iframe').remove();
-
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
-    f = f.replace(" ","T");
-    t = t.replace(" ","T");
-
-    $.ajax({
-        url:"<?php echo base_url('Production_Downtime_controller/first_reason_duration'); ?>",
-        method:"POST",
-        dataType:"json",
-        data:{
-            from:f,
-            to:t,
-        },
-        success:function(res){
-            console.log("first loader production downtime")
-            console.log(res);
-
-            var hour_text = parseInt(parseInt(res['total_duration'])/60);
-            var minute_text = parseInt(parseInt(res['total_duration'])%60);
-            $('#reason_duration_text').text(hour_text+'h'+' '+minute_text+'m');
-
-            var category_percent = 1.0;
-            var bar_space = 0.5;
-
-            var reason_label = [];
-            var duration_arr = [];
-            var reason_id_arr = [];
-
-            var duration_percentage_arr = [];
-            var duration_arr_cumulative = [];
-            var total_duration = 0;
-            res['graph'].forEach(function(val){
-                reason_label.push(val.downtime_reason);
-                var tempcost = parseInt(val.duration);
-                // console.log(typeof tempcost);
-                duration_arr.push(tempcost);
-                reason_id_arr.push(val.downtime_reason_id);
-                // console.log(val.downtime_reason);
-                total_duration = parseInt(total_duration) + parseInt(tempcost);
-                duration_arr_cumulative.push(total_duration);
-                var temp_data = parseFloat(parseInt(total_duration)/parseInt(res['total_duration'])*100).toFixed(2);
-                duration_percentage_arr.push(temp_data);
-            });
-
-            var bar_width = 0.6;
-            var bar_size = 0.7;
+                console.log("temporary cost array");
+                console.log(percentage_arr);
+                var bar_width = 0.6;
+                var bar_size = 0.7;
             
-            while(true){
-                var len= reason_label.length;
-                if (len < 8) {
-                    reason_label.push("");
-                }
-                else if(len > 8){
-                var l = parseInt(len)%parseInt(8);
-                var w= parseInt($('.parent_reason_wise_duration').css("width"))+parseInt(l*18*16);
-                $('.child_reason_wise_duration').css("width",w+"px");
-                break;
-                }
-                else{
-                break;
-                }
-            }
-            // console.log("duration by reasons");
-            // console.log(duration_percentage_arr);
-            var ctx = document.getElementById("reason_wise_duration").getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: reason_label,
-                    datasets: [{
-
-                        type: 'line',
-                        label: 'Percentage',
-                        data:duration_percentage_arr,
-                        percentage_data: duration_percentage_arr,
-                        backgroundColor: 'white',
-                        borderColor: "#7f7f7f", 
-                        pointBorderColor: "#d9d9ff",  
-                        borderWidth: 1, 
-                        showLine : true,
-                        fill: false,
-                        lineColor:"black",
-                        pointRadius:7,
-                        yAxisID: 'A',
-
-                      
-
-                    },{
-                        type:'bar',
-                        label:reason_label,
-                        data:duration_arr,
-                        percentage_data:0,
-                        backgroundColor: "#0075F6",
-                        categoryPercentage:category_percent,
-                        barPercentage: bar_space,
-                        yAxisID: 'B',  
-                    }],
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,   
-                    scales: {
-                        // y: {
-                        //     display:false,
-                        //     beginAtZero:true,
-                        //     stacked:true
-                        // },
-                        A:{
-                          type: 'linear',
-                          position: 'right',
-                          // beginAtZero: true,
-                          suggestedMin: 0,
-                          suggestedMax: 100,
-                          display:true,
-                          grid:{
-                            display:false
-                          },
-                        },
-                        B:{
-                          type: 'linear',
-                          position: 'left',
-                          beginAtZero: true,
-                          display:true,
-                          grid:{
-                            display:false
-                          },
-                        },
-                        x:{
-                            display:true,
-                            grid:{
-                            display:false
-                            },
-                            stacked:true,
-                        },
-                    },
-                    plugins: {
-                    legend: {
-                        display: false,
-                    },
-                    tooltip: {
-                        enabled: false,
-                        external: reason_wise_duration_tooltip,
+                while(true){
+                    var len= reason_label.length;
+                    if (len < 8) {
+                        reason_label.push("");
                     }
-                    },
-                },            
-            });
-
-
-        },
-        error:function(er){
-            console.log("first loder reason duration graph error");
-        }
-    });
-}
-
-//  downtime oppcost by machine 
-function first_load_machine_oppcost(){
-    $('#machine_wise_oppcost').remove();
-    $('.child_machine_wise_oppcost').append('<canvas id="machine_wise_oppcost"></canvas>');
-    $('.chartjs-hidden-iframe').remove();
-
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
-    f = f.replace(" ","T");
-    t = t.replace(" ","T");
-
-    $.ajax({
-        url:"<?php echo  base_url('Production_Downtime_controller/first_machine_oppcost'); ?>",
-        method:"POST",
-        dataType:"json",
-        data:{
-            from:f,
-            to:t
-        },
-        success:function(res){
-            console.log("first loder machine oppcost");
-            console.log(res);
-
-            $('#machine_wise_oppcost_total').text(parseInt(res['grant_total']).toLocaleString("en-IN"));
-            var machine_label = [];
-            var oppcost_arr = [];
-            var machine_id_arr = [];
-
-            var category_percent = 1.0;
-            var bar_space = 0.5;
-            
-            var machine_duration_percentage = 0;
-            var mdarr = [];
-            var oppcost_arr_cumulative = [];
-            res['graph'].forEach(function(val){
-                machine_label.push(val.machine_name);
-                var tempcost = parseInt(val.oppcost);
-                // console.log(typeof tempcost);
-                oppcost_arr.push(tempcost);
-                machine_id_arr.push(val.machine_id);
-                // console.log(val.downtime_reason);
-                machine_duration_percentage = parseInt(machine_duration_percentage)+parseInt(tempcost);
-                oppcost_arr_cumulative.push(machine_duration_percentage);
-                var temp_d = parseFloat(parseInt(machine_duration_percentage)/parseInt(res['grant_total'])*100).toFixed(2);
-                mdarr.push(temp_d);
-                
-            });
-
-            var bar_width = 0.6;
-            var bar_size = 0.7;
-        
-            while(true){
-                var len= machine_label.length;
-                if (len < 8) {
-                    machine_label.push("");
-                }
-                else if(len > 8){
-                var l = parseInt(len)%parseInt(8);
-                var w= parseInt($('.parent_machine_wise_oppcost').css("width"))+parseInt(l*18*16);
-                $('.child_machine_wise_oppcost').css("width",w+"px");
-                break;
-                }
-                else{
-                break;
-                }
-            }
-
-            var ctx = document.getElementById("machine_wise_oppcost").getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: machine_label,
-                    datasets: [{
-                        type: 'line',
-                        label: 'Percentage',
-                        // data: oppcost_arr_cumulative,
-                        percentage_data:mdarr,
-                        data:mdarr,
-                        backgroundColor: 'white',
-                        borderColor: "#7f7f7f", 
-                        pointBorderColor: "#d9d9ff",  
-                        borderWidth: 1, 
-                        showLine : true,
-                        fill: false,
-                        lineColor:"black", 
-                        pointRadius:7,
-                        yAxisID: 'A',  
-
-                       
-                    },{
-                        label:machine_label,
-                        data:oppcost_arr,
-                        backgroundColor: "#0075F6",
-                        percentage_data:0,
-                        categoryPercentage:category_percent,
-                        barPercentage: bar_space,
-                        yAxisID: 'B',
-                    }],
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,   
-                    scales: {
-                        // y: {
-                        //     id: 'A',
-                        //     type:'linear',
-                        //     position:'left',
-                        //     display:true,
-                        //     // beginAtZero:true,
-                        //     stacked:true
-                        // },
-                        A:{
-                          type: 'linear',
-                          position: 'right',
-                          // beginAtZero: true,
-                          suggestedMin: 0,
-                          suggestedMax: 100,
-                          display:true,
-                          grid:{
-                            display:false
-                          },
-                        },
-                        B:{
-                          type: 'linear',
-                          position: 'left',
-                          beginAtZero: true,
-                          display:true,
-                          grid:{
-                            display:false
-                          },
-                        },
-                        x:{
-                            display:true,
-                            grid:{
-                            display:false
-                            },
-                            stacked:true,
-                        },
-                    },
-                    plugins: {
-                        legend: {
-                            display: false,
-                        },
-                        tooltip: {
-                            enabled: false,
-                            external: machine_wise_oppcost_tooltip,
-                        }
-                    },
-                },            
-            });
-        },
-        error:function(er){
-            console.log("machine wise oppcost first loader issue");
-            console.log(er);
-        }
-    });
-}
-
-// downtime duration by machine 
-function first_load_machine_duration(){
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
-    f = f.replace(" ","T");
-    t = t.replace(" ","T");
-
-    $.ajax({
-        url:"<?php echo  base_url('Production_Downtime_controller/first_machine_duration'); ?>",
-        method:"POST",
-        dataType:"JSON",
-        data:{
-            from:f,
-            to:t
-        },
-        success:function(res){
-            console.log("first loder machine duration graph");
-            console.log(res);
-
-            
-            $('#machine_reason_duration').remove();
-            $('.child_machine_reason_duration').append('<canvas id="machine_reason_duration"></canvas>');
-            $('.chartjs-hidden-iframe').remove();
-    
-           
-            var hour_text = parseInt(parseInt(res['total_duration'])/60);
-            var minute_text = parseInt(parseInt(res['total_duration'])%60);
-            $('#machine_reason_duration_text').text(hour_text+'h'+' '+minute_text+'m');
-
-
-            var color = ["white","#004591","#0071EE","#97C9FF","#595959","#A6A6A6","#D9D9D9","#09BB9F","#39F3BB"];
-            var demo = [];
-            var x= 1;
-            var machineName = [];
-            var category_percent = 1.0;
-            var bar_space = 0.5;
-            var percentage_arr = [];
-            var temp_duration = 0;
-            res['data'].forEach(function(value){
-                machineName.push(value.machine_name);
-                temp_duration = parseInt(temp_duration)+parseInt(value.total);
-                var temp_data =  parseFloat(parseInt(temp_duration)/parseInt(res['total_duration'])*100).toFixed(2);
-                percentage_arr.push(temp_data);
-            });
-
-            demo.push({
-                label:"Total",
-                type: "line",
-                backgroundColor: 'white',
-                borderColor: "#7f7f7f", 
-                pointBorderColor: "#d9d9ff",  
-                borderWidth: 1, 
-                showLine : true,
-                fill: false,
-                lineColor:"black", 
-                percentage_data:percentage_arr,
-                data:percentage_arr,
-                pointRadius: 7,
-                yAxisID: 'A',  
-            });
-
-            res['reason'].forEach(function(k,val) {
-                var arr_1 =[];
-                var rname = [];
-                res['data'].forEach(function(item){
-                    arr_1.push(item.reason_duration[val]);
-                    rname.push(item.reason_name[val]);
+                    else if(len > 8){
+                        var l = parseInt(len)%parseInt(8);
+                        var w= parseInt($('.parent_reason_wise_oppcost').css("width"))+parseInt(l*18*16);
                     
-                });
-                demo.push({
-                    label:res['reason'][val]['downtime_reason'],
-                    type: "bar",
-                    backgroundColor: color[x],
-                    borderColor: color[x],
-                    borderWidth: 1,
-                    fill: true,
-                    data: arr_1,
-                    reasonid:val,
-                    percentage_data:0,
-                    // reject:machineWiseReject,
-                    categoryPercentage:category_percent,
-                    barPercentage: bar_space,
-                    yAxisID: 'B',
-                });
-                x = x+1;
-            });
-
-            // console.log("graph data graph4");
-            // console.log(demo);
-
-        
-            while(true){
-                var len= machineName.length;
-                if (len < 8) {
-                machineName.push("");
+                        $('.child_reason_wise_oppcost').css("width",w+"px");
+                        break;
+                    }
+                    else{
+                        break;
+                    }
                 }
-                else if(len > 8){
-                var l = parseInt(len)%parseInt(8);
-                var w= parseInt($('.parent_machine_reason_duration').css("width"))+parseInt(l*18*16);
-                $('.child_machine_reason_duration').css("width",w+"px");
-                break;
-                }
-                else{
-                break;
-                }
-                
-            }
-
-            var ctx = document.getElementById("machine_reason_duration").getContext('2d');
-            var myChart = new Chart(ctx, {
-            type: 'bar',
-                data: {
-                    labels: machineName,
-                    datasets: demo,
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,   
-                    scales: {
-                        // y: {
-                        //     display:false,
-                        //     beginAtZero:true,
-                        //     stacked:true,
-                        // },
-                        A:{
+            
+                var ctx = document.getElementById("reason_wise_oppcost").getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: reason_label,
+                        datasets:[{
+                            type: 'line',
+                            label: 'Total',
+                            data: percentage_arr,
+                            percentage_data:percentage_arr,
+                            backgroundColor: 'white',
+                            borderColor: "#7f7f7f", 
+                            pointBorderColor: "#d9d9ff",  
+                            borderWidth: 1, 
+                            showLine : true,
+                            fill: false,
+                            lineColor:"black",
+                            pointRadius:7,
+                            yAxisID: 'A',  
+                        
+                        }
+                        ,{
+                            type: 'bar',
+                            label:reason_label ,
+                            data: oppcost_arr,
+                            percentage_data:0,
+                            // borderColor: 'rgb(255, 99, 132)',
+                            backgroundColor: '#0075F6',
+                            categoryPercentage:category_percent,
+                            barPercentage: bar_space,
+                            yAxisID: 'B',
+                        }
+                    ],
+                    },
+                    // borderColor: "#004b9b", 
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,   
+                        scales: {
+                            // y: {
+                            //     display:false,
+                            //     beginAtZero:true,
+                            //     stacked:true
+                            // },
+                            A:{
                             type: 'linear',
                             position: 'right',
                             // beginAtZero: true,
@@ -3524,32 +3018,521 @@ function first_load_machine_duration(){
                                 display:false
                             },
                             },
-                        x:{
+                            x:{
+                                display:true,
+                                grid:{
+                                display:false
+                                },
+                                stacked:true,
+                            },
+                        },
+                        plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        tooltip: {
+                            enabled: false,
+                            external: reason_oppcost_tooltip,
+                        }
+                        },
+                    },            
+                });
+            },
+            error:function(er){
+                console.log("error for reason oppcost");
+                reject(er);
+            }
+        });
+    });  
+}
+
+// reason duration graph
+function first_load_reason_duration(f,t){
+    return  new Promise(function (resolve,reject){
+        $('#reason_wise_duration').remove();
+        $('.child_reason_wise_duration').append('<canvas id="reason_wise_duration"></canvas>');
+        $('.chartjs-hidden-iframe').remove();
+
+      
+        $.ajax({
+            url:"<?php echo base_url('Production_Downtime_controller/first_reason_duration'); ?>",
+            method:"POST",
+            dataType:"json",
+            data:{
+                from:f,
+                to:t,
+            },
+            success:function(res){
+                console.log("first loader production downtime")
+                console.log(res);
+                resolve(res);
+
+                var hour_text = parseInt(parseInt(res['total_duration'])/60);
+                var minute_text = parseInt(parseInt(res['total_duration'])%60);
+                $('#reason_duration_text').text(hour_text+'h'+' '+minute_text+'m');
+
+                var category_percent = 1.0;
+                var bar_space = 0.5;
+
+                var reason_label = [];
+                var duration_arr = [];
+                var reason_id_arr = [];
+
+                var duration_percentage_arr = [];
+                var duration_arr_cumulative = [];
+                var total_duration = 0;
+                res['graph'].forEach(function(val){
+                    reason_label.push(val.downtime_reason);
+                    var tempcost = parseInt(val.duration);
+                    // console.log(typeof tempcost);
+                    duration_arr.push(tempcost);
+                    reason_id_arr.push(val.downtime_reason_id);
+                    // console.log(val.downtime_reason);
+                    total_duration = parseInt(total_duration) + parseInt(tempcost);
+                    duration_arr_cumulative.push(total_duration);
+                    var temp_data = parseFloat(parseInt(total_duration)/parseInt(res['total_duration'])*100).toFixed(2);
+                    duration_percentage_arr.push(temp_data);
+                });
+
+                var bar_width = 0.6;
+                var bar_size = 0.7;
+                
+                while(true){
+                    var len= reason_label.length;
+                    if (len < 8) {
+                        reason_label.push("");
+                    }
+                    else if(len > 8){
+                        var l = parseInt(len)%parseInt(8);
+                        var w= parseInt($('.parent_reason_wise_duration').css("width"))+parseInt(l*18*16);
+                        $('.child_reason_wise_duration').css("width",w+"px");
+                        break;
+                    }
+                    else{
+                        break;
+                    }
+                }
+            
+                var ctx = document.getElementById("reason_wise_duration").getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: reason_label,
+                        datasets: [{
+
+                            type: 'line',
+                            label: 'Percentage',
+                            data:duration_percentage_arr,
+                            percentage_data: duration_percentage_arr,
+                            backgroundColor: 'white',
+                            borderColor: "#7f7f7f", 
+                            pointBorderColor: "#d9d9ff",  
+                            borderWidth: 1, 
+                            showLine : true,
+                            fill: false,
+                            lineColor:"black",
+                            pointRadius:7,
+                            yAxisID: 'A',
+
+                        
+
+                        },{
+                            type:'bar',
+                            label:reason_label,
+                            data:duration_arr,
+                            percentage_data:0,
+                            backgroundColor: "#0075F6",
+                            categoryPercentage:category_percent,
+                            barPercentage: bar_space,
+                            yAxisID: 'B',  
+                        }],
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,   
+                        scales: {
+                            // y: {
+                            //     display:false,
+                            //     beginAtZero:true,
+                            //     stacked:true
+                            // },
+                            A:{
+                            type: 'linear',
+                            position: 'right',
+                            // beginAtZero: true,
+                            suggestedMin: 0,
+                            suggestedMax: 100,
                             display:true,
                             grid:{
-                            display:false
+                                display:false
                             },
-                            stacked:true
+                            },
+                            B:{
+                            type: 'linear',
+                            position: 'left',
+                            beginAtZero: true,
+                            display:true,
+                            grid:{
+                                display:false
+                            },
+                            },
+                            x:{
+                                display:true,
+                                grid:{
+                                display:false
+                                },
+                                stacked:true,
+                            },
+                        },
+                        plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        tooltip: {
+                            enabled: false,
+                            external: reason_wise_duration_tooltip,
+                        }
+                        },
+                    },            
+                });
+
+
+            },
+            error:function(er){
+                console.log("first loder reason duration graph error");
+                reject(er);
+            }
+        });
+    });
+}
+
+//  downtime oppcost by machine 
+function first_load_machine_oppcost(f,t){
+    return  new Promise(function (resolve,reject){
+        $('#machine_wise_oppcost').remove();
+        $('.child_machine_wise_oppcost').append('<canvas id="machine_wise_oppcost"></canvas>');
+        $('.chartjs-hidden-iframe').remove();
+
+        // f = $('.fromDate').val();
+        // t = $('.toDate').val();
+        // f = f.replace(" ","T");
+        // t = t.replace(" ","T");
+
+        $.ajax({
+            url:"<?php echo  base_url('Production_Downtime_controller/first_machine_oppcost'); ?>",
+            method:"POST",
+            dataType:"json",
+            data:{
+                from:f,
+                to:t
+            },
+            success:function(res){
+                console.log("first loder machine oppcost");
+                console.log(res);
+                resolve(res);
+                $('#machine_wise_oppcost_total').text(parseInt(res['grant_total']).toLocaleString("en-IN"));
+                var machine_label = [];
+                var oppcost_arr = [];
+                var machine_id_arr = [];
+
+                var category_percent = 1.0;
+                var bar_space = 0.5;
+                
+                var machine_duration_percentage = 0;
+                var mdarr = [];
+                var oppcost_arr_cumulative = [];
+                res['graph'].forEach(function(val){
+                    machine_label.push(val.machine_name);
+                    var tempcost = parseInt(val.oppcost);
+                    // console.log(typeof tempcost);
+                    oppcost_arr.push(tempcost);
+                    machine_id_arr.push(val.machine_id);
+                    // console.log(val.downtime_reason);
+                    machine_duration_percentage = parseInt(machine_duration_percentage)+parseInt(tempcost);
+                    oppcost_arr_cumulative.push(machine_duration_percentage);
+                    var temp_d = parseFloat(parseInt(machine_duration_percentage)/parseInt(res['grant_total'])*100).toFixed(2);
+                    mdarr.push(temp_d);
+                    
+                });
+
+                var bar_width = 0.6;
+                var bar_size = 0.7;
+            
+                while(true){
+                    var len= machine_label.length;
+                    if (len < 8) {
+                        machine_label.push("");
+                    }
+                    else if(len > 8){
+                    var l = parseInt(len)%parseInt(8);
+                    var w= parseInt($('.parent_machine_wise_oppcost').css("width"))+parseInt(l*18*16);
+                    $('.child_machine_wise_oppcost').css("width",w+"px");
+                    break;
+                    }
+                    else{
+                    break;
+                    }
+                }
+
+                var ctx = document.getElementById("machine_wise_oppcost").getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: machine_label,
+                        datasets: [{
+                            type: 'line',
+                            label: 'Percentage',
+                            // data: oppcost_arr_cumulative,
+                            percentage_data:mdarr,
+                            data:mdarr,
+                            backgroundColor: 'white',
+                            borderColor: "#7f7f7f", 
+                            pointBorderColor: "#d9d9ff",  
+                            borderWidth: 1, 
+                            showLine : true,
+                            fill: false,
+                            lineColor:"black", 
+                            pointRadius:7,
+                            yAxisID: 'A',  
+
+                        
+                        },{
+                            label:machine_label,
+                            data:oppcost_arr,
+                            backgroundColor: "#0075F6",
+                            percentage_data:0,
+                            categoryPercentage:category_percent,
+                            barPercentage: bar_space,
+                            yAxisID: 'B',
+                        }],
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,   
+                        scales: {
+                            // y: {
+                            //     id: 'A',
+                            //     type:'linear',
+                            //     position:'left',
+                            //     display:true,
+                            //     // beginAtZero:true,
+                            //     stacked:true
+                            // },
+                            A:{
+                            type: 'linear',
+                            position: 'right',
+                            // beginAtZero: true,
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            display:true,
+                            grid:{
+                                display:false
+                            },
+                            },
+                            B:{
+                            type: 'linear',
+                            position: 'left',
+                            beginAtZero: true,
+                            display:true,
+                            grid:{
+                                display:false
+                            },
+                            },
+                            x:{
+                                display:true,
+                                grid:{
+                                display:false
+                                },
+                                stacked:true,
+                            },
+                        },
+                        plugins: {
+                            legend: {
+                                display: false,
+                            },
+                            tooltip: {
+                                enabled: false,
+                                external: machine_wise_oppcost_tooltip,
+                            }
+                        },
+                    },            
+                });
+            },
+            error:function(er){
+                console.log("machine wise oppcost first loader issue");
+                console.log(er);
+                reject(er);
+            }
+        });
+    });
+}
+
+// downtime duration by machine 
+function first_load_machine_duration(f,t){
+    return  new Promise(function (resolve,reject){
+        // f = $('.fromDate').val();
+        // t = $('.toDate').val();
+        // f = f.replace(" ","T");
+        // t = t.replace(" ","T");
+
+        $.ajax({
+            url:"<?php echo  base_url('Production_Downtime_controller/first_machine_duration'); ?>",
+            method:"POST",
+            dataType:"JSON",
+            data:{
+                from:f,
+                to:t
+            },
+            success:function(res){
+                console.log("first loder machine duration graph");
+                console.log(res);
+                resolve(res);
+                
+                $('#machine_reason_duration').remove();
+                $('.child_machine_reason_duration').append('<canvas id="machine_reason_duration"></canvas>');
+                $('.chartjs-hidden-iframe').remove();           
+                var hour_text = parseInt(parseInt(res['total_duration'])/60);
+                var minute_text = parseInt(parseInt(res['total_duration'])%60);
+                $('#machine_reason_duration_text').text(hour_text+'h'+' '+minute_text+'m');
+
+                var color = ["white","#004591","#0071EE","#97C9FF","#595959","#A6A6A6","#D9D9D9","#09BB9F","#39F3BB"];
+                var demo = [];
+                var x= 1;
+                var machineName = [];
+                var category_percent = 1.0;
+                var bar_space = 0.5;
+                var percentage_arr = [];
+                var temp_duration = 0;
+                res['data'].forEach(function(value){
+                    machineName.push(value.machine_name);
+                    temp_duration = parseInt(temp_duration)+parseInt(value.total);
+                    var temp_data =  parseFloat(parseInt(temp_duration)/parseInt(res['total_duration'])*100).toFixed(2);
+                    percentage_arr.push(temp_data);
+                });
+
+                demo.push({
+                    label:"Total",
+                    type: "line",
+                    backgroundColor: 'white',
+                    borderColor: "#7f7f7f", 
+                    pointBorderColor: "#d9d9ff",  
+                    borderWidth: 1, 
+                    showLine : true,
+                    fill: false,
+                    lineColor:"black", 
+                    percentage_data:percentage_arr,
+                    data:percentage_arr,
+                    pointRadius: 7,
+                    yAxisID: 'A',  
+                });
+
+                res['reason'].forEach(function(k,val) {
+                    var arr_1 =[];
+                    var rname = [];
+                    res['data'].forEach(function(item){
+                        arr_1.push(item.reason_duration[val]);
+                        rname.push(item.reason_name[val]);
+                        
+                    });
+                    demo.push({
+                        label:res['reason'][val]['downtime_reason'],
+                        type: "bar",
+                        backgroundColor: color[x],
+                        borderColor: color[x],
+                        borderWidth: 1,
+                        fill: true,
+                        data: arr_1,
+                        reasonid:val,
+                        percentage_data:0,
+                        // reject:machineWiseReject,
+                        categoryPercentage:category_percent,
+                        barPercentage: bar_space,
+                        yAxisID: 'B',
+                    });
+                    x = x+1;
+                });
+
+                while(true){
+                    var len= machineName.length;
+                    if (len < 8) {
+                        machineName.push("");
+                    }
+                    else if(len > 8){
+                        var l = parseInt(len)%parseInt(8);
+                        var w= parseInt($('.parent_machine_reason_duration').css("width"))+parseInt(l*18*16);
+                        $('.child_machine_reason_duration').css("width",w+"px");
+                        break;
+                    }
+                    else{
+                        break;
+                    }
+                    
+                }
+
+                var ctx = document.getElementById("machine_reason_duration").getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: machineName,
+                        datasets: demo,
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,   
+                        scales: {
+                            // y: {
+                            //     display:false,
+                            //     beginAtZero:true,
+                            //     stacked:true,
+                            // },
+                            A:{
+                                type: 'linear',
+                                position: 'right',
+                                // beginAtZero: true,
+                                suggestedMin: 0,
+                                suggestedMax: 100,
+                                display:true,
+                                grid:{
+                                    display:false
+                                },
+                                },
+                                B:{
+                                type: 'linear',
+                                position: 'left',
+                                beginAtZero: true,
+                                display:true,
+                                grid:{
+                                    display:false
+                                },
+                                },
+                            x:{
+                                display:true,
+                                grid:{
+                                display:false
+                                },
+                                stacked:true
+                            },
+                        },
+                        plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        tooltip: {
+                            enabled: false,
+                            external: machine_and_reason_wise_tooltip,
+                        }
                         },
                     },
-                    plugins: {
-                    legend: {
-                        display: false,
-                    },
-                    tooltip: {
-                        enabled: false,
-                        external: machine_and_reason_wise_tooltip,
-                    }
-                    },
-                },
-            });
+                });
 
-            // $('#overlay').fadeOut(300);
-        },
-        error:function(er){
-            console.log('first loader machine duration error');
-            console.log(er);
-        }
-    });
+                // $('#overlay').fadeOut(300);
+            },
+            error:function(er){
+                console.log('first loader machine duration error');
+                console.log(er);
+                reject(er);
+            }
+        });
+    });  
 }
 </script>

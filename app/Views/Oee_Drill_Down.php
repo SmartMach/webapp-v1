@@ -680,7 +680,7 @@ $('.fromDate').val(tdate);
 
 // from date on blur function
 $(document).on('blur','.fromDate',function(event){
-    event.preventDefault();
+   // event.preventDefault();
     $('#overlay').fadeIn(400);
     //    overall dropdown values and graph visible this function only
     // get_all_filter_drp_fill();
@@ -689,7 +689,7 @@ $(document).on('blur','.fromDate',function(event){
 
 // todate onblur function
 $(document).on('blur','.toDate',function(event){
-    event.preventDefault();
+    //event.preventDefault();
 
     $('#overlay').fadeIn(400);
     //    overall dropdown values and graph visible this function only
@@ -697,6 +697,19 @@ $(document).on('blur','.toDate',function(event){
     all_graph_fun();
 
 });
+
+// async function all_graph_blur_fromdate(){
+//     console.log("on blur to date filter");
+//     await fill_target_bar.then(x=>console.log(x));
+//     await over_all_target_graph.then(x=>console.log(x));
+//     await first_load_oee_trend_day.then(x=>console.log(x));
+//     await first_load_quality
+//     await first_machine_wise_oee
+//     await first_loader_performance
+//     await first_load_availability
+//     await get_all_filter_drp_fill
+//     $('#overlay').fadeOut(500);
+// }
 
 // in Document ready function calling
 $(document).ready(function(){
@@ -1565,20 +1578,20 @@ $(document).on('click','.all_data_field_click',function(event){
 
 
 // graph value for overallTarget function
-// function overallTarget(){
-    const over_all_target_graph = new Promise(function(resolve,reject){
-        f = $('.fromDate').val();
-        t = $('.toDate').val();
-        f = f.replace(" ","T");
-        t = t.replace(" ","T");
+function overallTarget(f,t){
+    return  new Promise(function(resolve,reject){
+        // f = $('.fromDate').val();
+        // t = $('.toDate').val();
+        // f = f.replace(" ","T");
+        // t = t.replace(" ","T");
         $.ajax({
             //OEE check....
             url: "<?php echo base_url('OEE_Drill_Down_controller/OverallOEETarget'); ?>",
             type: "POST",
             dataType: "json",
             data:{
-            from:f,
-            to:t
+                from:f,
+                to:t
             },
             success:function(res){
                 // console.log("overall graph value");
@@ -1614,7 +1627,7 @@ $(document).on('click','.all_data_field_click',function(event){
         });
     });
    
-// }
+}
 
 // target bar value loading funciton
 // function fill_target_bar(){
@@ -2369,12 +2382,12 @@ function availabilityReason_machine() {
             var minute_text = parseInt(parseInt(sum)%60);
             $('#total_duration_availability').text(hour_text+'h'+' '+minute_text+'m');
 
-            var category_percent =0.6;
-            var bar_space=0.4;
+            var category_percent =1.0;
+            var bar_space=0.5;
             while(true){
-                var len= reasonList.length;
+                var len= machineName.length;
                 if (len < 8) {
-                reasonList.push("");
+                    machineName.push("");
                 }
                 else if(len > 8){
                 var l = parseInt(len)%parseInt(8);
@@ -2731,7 +2744,7 @@ function performance_opportunity(){
                         data: speedLoss,
                        // speedLoss:speedLoss,
                         percentage_data:0,
-                        categoryPercentage:0.5,
+                        categoryPercentage:1.0,
                         barPercentage: 0.5, 
                     });
                     x=x+1;
@@ -2746,9 +2759,9 @@ function performance_opportunity(){
                 var bar_size = 0.7;
 
                 while(true){
-                    var len= partWiseLable.length;
+                    var len= mname_arr.length;
                     if (len < 8) {
-                        partWiseLable.push("");
+                        mname_arr.push("");
                     }
                     else if(len > 8){
                         var l = parseInt(len)%parseInt(8);
@@ -3426,13 +3439,23 @@ async function all_graph_fun(){
     // fill_target_bar();
     // overallTarget();
     // oee_trend_first_load();
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
+
+    console.log("function calling");
     await fill_target_bar
-    await over_all_target_graph
-    await first_load_oee_trend_day
-    await first_load_quality
-    await first_machine_wise_oee
-    await first_loader_performance
-    await first_load_availability
+    await overallTarget(f,t);
+    await oee_trend_first_load(f,t);
+    await first_loader_machine_oee(f,t);
+    await first_loader_availability(f,t);
+    await first_loader_performance(f,t);
+    await first_loader_quality(f,t);
+    // await first_load_quality
+    // await first_machine_wise_oee
+    // await first_loader_performance
+    // await first_load_availability
     await get_all_filter_drp_fill
     $('#overlay').fadeOut(500);
    
@@ -3440,14 +3463,10 @@ async function all_graph_fun(){
 }
 
 // function first loader function 
-// function oee_trend_first_load(){
+function oee_trend_first_load(f,t){
 
-    const first_load_oee_trend_day = new Promise(function (resolve,reject){
-        f = $('.fromDate').val();
-        t = $('.toDate').val();
-        f = f.replace(" ","T");
-        t = t.replace(" ","T");
-
+    return  new Promise(function (resolve,reject){
+       
         $.ajax({
             url:"<?php echo  base_url('OEE_Drill_Down_controller/first_load_oee_trend'); ?>",
             method:"POST",
@@ -3458,8 +3477,8 @@ async function all_graph_fun(){
                 to:t
             },
             success:function(res){
-                // console.log("oee drill down graph first loader");
-                // console.log(res);
+                console.log("oee drill down graph first loader");
+                console.log(res);
                 resolve(res);
                 
                 $('#oee_trend').remove();
@@ -3562,21 +3581,14 @@ async function all_graph_fun(){
             }
         });
     });
-  
-
-    // first_loader_machine_oee();
-  
-// }
+    
+}
 
 // first loader machine wise oee
-// function first_loader_machine_oee(){
+function first_loader_machine_oee(f,t){
 
-    const first_machine_wise_oee = new Promise(function(resolve,reject){
-        f = $('.fromDate').val();
-        t = $('.toDate').val();
-        f = f.replace(" ","T");
-        t = t.replace(" ","T");
-
+    return  new Promise(function(resolve,reject){
+       
         $.ajax({
             url:"<?php echo  base_url('OEE_Drill_Down_controller/first_loader_machine_oee'); ?>",
             method:"POST",
@@ -3746,19 +3758,13 @@ async function all_graph_fun(){
         });
     });
    
-    //     first_loader_availability();
     
-    // }
+}
 
 // first loader availability graph function
-// function first_loader_availability(){
-    const first_load_availability = new Promise(function (resolve,reject){
-        f = $('.fromDate').val();
-        t = $('.toDate').val();
-        f = f.replace(" ","T");
-        t = t.replace(" ","T");
-        
-
+function first_loader_availability(f,t){
+    return  new Promise(function (resolve,reject){
+       
         $.ajax({
             url:"<?php echo  base_url('OEE_Drill_Down_Controller/first_load_availability'); ?>",
             method:"POST",
@@ -3836,21 +3842,21 @@ async function all_graph_fun(){
                 var minute_text = parseInt(parseInt(sum)%60);
                 $('#total_duration_availability').text(hour_text+'h'+' '+minute_text+'m');
 
-                var category_percent =0.6;
-                var bar_space=0.4;
+                var category_percent = 1.0;
+                var bar_space = 0.5;
                 while(true){
-                    var len= reasonList.length;
+                    var len= machineName.length;
                     if (len < 8) {
-                    reasonList.push("");
+                        machineName.push("");
                     }
                     else if(len > 8){
-                    var l = parseInt(len)%parseInt(8);
-                    var w= parseInt($('.parent_machine_reason_availability').css("width"))+parseInt(l*18*16);
-                    $('.child_machine_reason_availability').css("width",w+"px");
-                    break;
+                        var l = parseInt(len)%parseInt(8);
+                        var w= parseInt($('.parent_machine_reason_availability').css("width"))+parseInt(l*18*16);
+                        $('.child_machine_reason_availability').css("width",w+"px");
+                        break;
                     }
                     else{
-                    break;
+                        break;
                     }
                 }
 
@@ -3946,20 +3952,16 @@ async function all_graph_fun(){
         });
     });
    
-    // first_loader_performance();
  
-// }
+}
 
 // first loader performance graph function
-// function first_loader_performance(){
-    const first_loader_performance = new Promise(function (resolve,reject){
+function first_loader_performance(f,t){
+    return  new Promise(function (resolve,reject){
         $('#performanceOpportunity').remove();
         $('.child_graph_performance_opportunity').append('<canvas id="performanceOpportunity"></canvas>');
         $('.chartjs-hidden-iframe').remove();
-        f = $('.fromDate').val();
-        t = $('.toDate').val();
-        f = f.replace(" ","T");
-        t = t.replace(" ","T");
+      
         $.ajax({
             url:"<?php echo base_url('OEE_Drill_Down_controller/first_loader_performance') ?>",
             method:"POST",
@@ -4041,7 +4043,8 @@ async function all_graph_fun(){
 
                 var x=1;
                 var index=0;
-                
+                var category_percent = 1.0;
+                var bar_space = 0.5;
             // var machine_total_arr = [];
                 res.Part.forEach(function(item){
                     var performancePart=[];
@@ -4073,8 +4076,8 @@ async function all_graph_fun(){
                         data: speedLoss,
                         // speedLoss:speedLoss,
                         percentage_data:0,
-                        categoryPercentage:0.5,
-                        barPercentage: 0.5, 
+                        categoryPercentage:category_percent,
+                        barPercentage: bar_space, 
                     });
                     x=x+1;
                     index=index+1;
@@ -4088,9 +4091,9 @@ async function all_graph_fun(){
                 var bar_size = 0.7;
 
                 while(true){
-                    var len= partWiseLable.length;
+                    var len= mname_arr.length;
                     if (len < 8) {
-                        partWiseLable.push("");
+                        mname_arr.push("");
                     }
                     else if(len > 8){
                         var l = parseInt(len)%parseInt(8);
@@ -4149,17 +4152,12 @@ async function all_graph_fun(){
         });
     });
    
-    // first_loader_quality();
-// }
+}
 
 
-// function first_loader_quality(){
-    const first_load_quality = new Promise(function (resolve,reject){
-        f = $('.fromDate').val();
-        t = $('.toDate').val();
-        f = f.replace(" ","T");
-        t = t.replace(" ","T");
-
+function first_loader_quality(f,t){
+    return new Promise(function (resolve,reject){
+       
         $.ajax({
             url:"<?php echo  base_url('OEE_Drill_Down_controller/first_loader_quality'); ?>",
             method:"POST",
@@ -4322,6 +4320,5 @@ async function all_graph_fun(){
     });
    
 
-    // $('#overlay').fadeOut(500);
-// }
+}
 </script>
