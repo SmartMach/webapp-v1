@@ -29,7 +29,7 @@
         <div class="container-fluid paddingm" style="margin-top:0.2rem;">
             <div class="header_text_nav">
                 <div class="oui_arrow_div">
-                    <div class="dotAccessArrow dot-css acsControl marleftDot " style="margin-right:0.7rem;margin-left:0.4rem;">
+                    <div class="dotAccessArrow dot-css acsControl marleftDot" style="margin-right:0.7rem;margin-left:0.4rem;" id="">
                         <img src="<?php echo base_url('assets/img/oui_arrow.png'); ?>" onclick="oui_arrow_to_card()" class="img_font_wh dot-cont" style="height: 26px;transform: rotate(180deg);">
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="CurrentNav visibility_div">
-                    <div class="dotAccessArrow dot-css acsControl marleftDot">
+                    <div class="dotAccessArrow dot-css acsControl marleftDot Previous_Shift_Live" status="">
                         <img src="<?php echo base_url('assets/img/oui_arrow.png'); ?>" class="img_font_wh dot-cont"
                             style="height: 26px;transform: rotate(180deg);">
                     </div>
@@ -348,17 +348,39 @@ function showSlides(n) {
 
 var myChart = "";
 var myChartList = [];
-var i = "";
+var i_global = "";
 $('.oui_arrow_div').css('display', 'none');
 $('.visibility_div').css('display', 'inline');
-var j = "";
+var j_global = "";
+var mx_global="";
 
 $("#overlay").fadeIn(300);
 getMachineDataLive();
  
-var mx = setInterval(function() {
+mx_global = setInterval(function() {
     getMachineDataLiveUpdate();
 }, 1000);
+
+$(document).on('click','.Previous_Shift_Live',function(event){
+    $(".Previous_Shift_Live").attr("status",1);
+    $.ajax({
+        url: "<?php echo base_url('Current_Shift_Performance/getPreviousShiftLive'); ?>",
+        type: "POST",
+        dataType: "json",
+        cache: false,
+        async: false,
+        success: function(res) {
+            // clearInterval(mx_global);
+            clearInterval(i_global);
+            clearInterval(j_global);
+            getTileupdate(res);
+        },
+        error: function(res) {
+            // Error Occured!
+        }
+    });
+    
+});
 
 function getMachineDataLiveUpdate(){
     $.ajax({
@@ -371,9 +393,12 @@ function getMachineDataLiveUpdate(){
         success: function(res) {
             var date =   $("#s_date_ref").val();
             var shift =   $("#s_id_ref").val();
+            var s = $(".Previous_Shift_Live").attr("status");
 
-            if (date == res[0]['shift_date'] && shift == res[0]['shift_id']) {
+            if (date == res[0]['shift_date'] && shift == res[0]['shift_id'] && s=="") {
                 // Same sift Maintaine..
+            }else if (s == 1) {
+                // Previous sift, So no need to change anything..
             }else{
                 getTileupdate(res);
             }
@@ -384,7 +409,7 @@ function getMachineDataLiveUpdate(){
     });
 }
 function getTileupdate(res){
-    var date = new Date(res[0]['shift_date'])
+    var date = new Date(res[0]['shift_date']);
     date = date.getDate() + " " + date.toLocaleString([], {
         month: 'short'
     }) + " " + date.getFullYear();
@@ -1097,13 +1122,13 @@ var shift_date = "";
 var shift_id = "";
 
 function live_graph(s_date, s_id) {
-    i = setInterval(function() {
+    i_global = setInterval(function() {
         live_MC1001(s_date, s_id); 
     }, 2000);
 }
 
 function live_target(s_date) {
-    j = setInterval(function() {
+    j_global = setInterval(function() {
         live_target_update(s_date);
     }, 1000);
 }
