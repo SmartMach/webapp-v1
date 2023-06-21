@@ -1530,6 +1530,7 @@ function live_MC1001(shift_date, shift_id) {
 
 $(document).on('click', '.grid-item-cont', function(event) {
     event.preventDefault();
+    $("#overlay").fadeIn(300);
     fullscreen_mode_remove();
     var find_index = $('.grid-item-cont');
     var index_val = find_index.index($(this));
@@ -1537,13 +1538,13 @@ $(document).on('click', '.grid-item-cont', function(event) {
     var tid_data = $('.machine_name_ref:eq('+index_val+')').attr('tid_data');
     var shift_date = $('#shift_date').attr("sdate_format");
     var shift_id = $('#shift_id').text();
-    var event = $('.current_event:eq(' + index_val + ')').attr('event_data');
+    var event_status = $('.current_event:eq(' + index_val + ')').attr('event');
     var machine_name = $('.machine_name_ref:eq(' + index_val + ')').text();
     // alert(shift_id.split(" "));
     const tmp = shift_id.split(" ");
     // alert(shift_date);
     // alert(tmp_mid);
-    // alert(event);
+    alert(event_status);
     var backgroundcolor = "";
     var bar_color = "";
     var card_body = "";
@@ -1552,7 +1553,7 @@ $(document).on('click', '.grid-item-cont', function(event) {
     var downtime_display_property = "";
     var circle_target_color = "";
 
-    if (event === "Active") {
+    if (event_status === "Active") {
         backgroundcolor = "#01ab4e";
         bar_color = "#007A37";
         card_body = "#009644";
@@ -1561,7 +1562,7 @@ $(document).on('click', '.grid-item-cont', function(event) {
         downtime_display_property = "none";
         circle_target_color="#FFC000";
 
-    } else if (event === "Inactive") {
+    } else if (event_status === "Inactive") {
         backgroundcolor = "#d10527";
         bar_color = "#730316";
         card_body = "#BB0523";
@@ -1570,7 +1571,7 @@ $(document).on('click', '.grid-item-cont', function(event) {
         downtime_display_property = "inline";
         circle_target_color= "#C55A11";
 
-    } else if (event === "Machine OFF") {
+    } else if (event_status === "Machine OFF") {
         backgroundcolor = "#7f7f7f";
         bar_color = "#404040";
         card_body = "#565656";
@@ -1606,16 +1607,18 @@ $(document).on('click', '.grid-item-cont', function(event) {
     $('.oui_header_div').css('background-color', backgroundcolor);
     $('.label_header').css('background-color', backgroundcolor);
     $('.oui_sub_header').css('background-color', card_body);
-    $('.target_graph_parent_div').css('background-color', card_body);
+    $('.target_graph_parent_div').css('background-color', bar_color);
     $('.line_color_border').css('border', '1px solid ' + line);
     $('.label_text_color').css('color', label_text);
-    $('#machine_status').text(event);
+    $('#machine_status').text(event_status);
     $('#machine_name_text').text(machine_name);
 
     $('.downtime_second_val').css('display', downtime_display_property);
     $('.oui_arrow_div').css('display', 'inline');
     $('.visibility_div').css('display', 'none');
     $('#full_screen_btn_visibility').css('visibility','hidden');
+    
+    $("#overlay").fadeOut(300);
 });
 
 // target graph oui screen
@@ -1686,6 +1689,8 @@ function circle_data_oui(mid,sdate,sid){
         },
         error:function(er){
             // 
+            console.log("Current shift Performance oui graph");
+            console.log(er);
         }
     });
 }
@@ -2103,6 +2108,8 @@ function part_by_hour(mid, sdate, sid, bar_color) {
             filter: x,
         },
         success: function(res) {
+            console.log("bar color");
+            console.log(bar_color);
             var hourly = [];
             var hourList = [];
             var production_target = [];
@@ -2205,6 +2212,7 @@ function part_by_hour(mid, sdate, sid, bar_color) {
         },
         error: function(er) {
             // 
+            console.log("Current shift performance part by hour graph");
         },
 
     });
@@ -2257,7 +2265,7 @@ function div_records(mid, shift_date, shift_id, card_header, card_body) {
 
         },
         error: function(er) {
-            console.log("error");
+            console.log("Current shift performance div records oui");
         }
     });
 }
