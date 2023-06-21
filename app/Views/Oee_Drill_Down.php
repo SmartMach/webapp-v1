@@ -3766,7 +3766,7 @@ function first_loader_availability(f,t){
     return  new Promise(function (resolve,reject){
        
         $.ajax({
-            url:"<?php echo  base_url('OEE_Drill_Down_Controller/first_load_availability'); ?>",
+            url:"<?php echo base_url('OEE_Drill_Down_controller/first_load_availability'); ?>",
             method:"POST",
             dataType:"JSON",
             // async:false,

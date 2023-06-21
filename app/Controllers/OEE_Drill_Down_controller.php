@@ -1920,8 +1920,8 @@ class OEE_Drill_Down_controller extends BaseController
           
             // $machine_arr = $this->request->getVar('machine_arr');
           
-            $fromTime = "2023-06-11T18:00:00";
-            $toTime = "2023-06-17T19:00:00";
+            // $fromTime = "2023-06-11T18:00:00";
+            // $toTime = "2023-06-17T19:00:00";
 
             // $filter_data['reason_arr'] = $reason_arr;
             // $filter_data['category_arr'] = $category_arr;
@@ -2259,8 +2259,8 @@ class OEE_Drill_Down_controller extends BaseController
             $fromTime = $this->request->getVar("from");
             $toTime = $this->request->getVar("to");
 
-            // $fromTime = "2023-06-11T19:00:00";
-            // $toTime = "2023-06-17T18:00:00";
+            // $fromTime = "2023-06-15T19:00:00";
+            // $toTime = "2023-06-21T18:00:00";
 
             // $category_arr = $this->request->getVar('category_arr');
             // $reason_arr = $this->request->getVar('reason_arr');
