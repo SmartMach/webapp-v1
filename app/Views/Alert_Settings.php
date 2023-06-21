@@ -291,20 +291,20 @@
 
                     <!-- apply button -->
                     <div class="inner_div_align">
-                        <a style="" class="settings_nav_anchor float-end apply_btn_style"
-                            id="apply_filter_btn">APPLY</a>
+                        <a style="" class="btn apply_btn_style"
+                            id="apply_filter_btn">Apply Filter</a>
                     </div>
 
                     <!-- filter reset button -->
                     <div class="inner_div_align">
                         <img src="<?php echo base_url('assets/img/filter_reset.png'); ?>" onclick="alert_settings_filter_reset()" class="filter_reset_style"
-                            style="" alt="">
+                            style="margin-top:0.5rem;" alt="">
                     </div>
 
                 </div>
-                <a style="background: #005abc;color: white;width:max-content;" class="settings_nav_anchor float-end"
+                <a style="background: #005abc;color: white;width:max-content;" class="btn apply_btn_style"
                     id="add_alert_button" onclick="show_modal_add_alert()">
-                    <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD ALERT
+                    <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>Add Alert
                 </a>
             </div>
             <div class="pagination_div" style="">
@@ -314,7 +314,7 @@
         </div>
     </nav>
     <div class="tableContent">
-        <div class="settings_machine_header sticky-top fixtabletitle" style="margin-top:1rem;">
+        <div class="settings_machine_header sticky-top fixtabletitle" style="margin-top:1rem;top:11.5rem;">
             <div class="row paddingm">
                 <div class="col-sm-1 p3 paddingm" style="width:6%;">
                     <p class="basic_header">ID</p>

@@ -29,7 +29,7 @@
         <div class="container-fluid paddingm" style="margin-top:0.2rem;">
             <div class="header_text_nav">
                 <div class="oui_arrow_div">
-                    <div class="dotAccessArrow dot-css acsControl marleftDot " style="margin-right:0.7rem;margin-left:0.4rem;">
+                    <div class="dotAccessArrow dot-css acsControl marleftDot" style="margin-right:0.7rem;margin-left:0.4rem;" id="">
                         <img src="<?php echo base_url('assets/img/oui_arrow.png'); ?>" onclick="oui_arrow_to_card()" class="img_font_wh dot-cont" style="height: 26px;transform: rotate(180deg);">
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="CurrentNav visibility_div">
-                    <div class="dotAccessArrow dot-css acsControl marleftDot">
+                    <div class="dotAccessArrow dot-css acsControl marleftDot Previous_Shift_Live" status="">
                         <img src="<?php echo base_url('assets/img/oui_arrow.png'); ?>" class="img_font_wh dot-cont"
                             style="height: 26px;transform: rotate(180deg);">
                     </div>
@@ -348,13 +348,41 @@ function showSlides(n) {
 
 var myChart = "";
 var myChartList = [];
-var i = "";
+var i_global = "";
 $('.oui_arrow_div').css('display', 'none');
 $('.visibility_div').css('display', 'inline');
-var j = "";
-getMachineDataLive();
+var j_global = "";
+var mx_global="";
 
-function getMachineDataLive() {
+$("#overlay").fadeIn(300);
+getMachineDataLive();
+ 
+mx_global = setInterval(function() {
+    getMachineDataLiveUpdate();
+}, 1000);
+
+$(document).on('click','.Previous_Shift_Live',function(event){
+    $(".Previous_Shift_Live").attr("status",1);
+    $.ajax({
+        url: "<?php echo base_url('Current_Shift_Performance/getPreviousShiftLive'); ?>",
+        type: "POST",
+        dataType: "json",
+        cache: false,
+        async: false,
+        success: function(res) {
+            // clearInterval(mx_global);
+            clearInterval(i_global);
+            clearInterval(j_global);
+            getTileupdate(res);
+        },
+        error: function(res) {
+            // Error Occured!
+        }
+    });
+    
+});
+
+function getMachineDataLiveUpdate(){
     $.ajax({
         url: "<?php echo base_url('Current_Shift_Performance/getLive'); ?>",
         type: "POST",
@@ -363,30 +391,58 @@ function getMachineDataLive() {
         async: false,
         contentType: "application/json; charset=utf-8",
         success: function(res) {
-            var date = new Date(res[0]['shift_date'])
-            date = date.getDate() + " " + date.toLocaleString([], {
-                month: 'short'
-            }) + " " + date.getFullYear();
+            var date =   $("#s_date_ref").val();
+            var shift =   $("#s_id_ref").val();
+            var s = $(".Previous_Shift_Live").attr("status");
 
-            $("#shift_date").html(date);
-            $('#shift_date').attr('sdate_format', res[0]['shift_date']);
-            $("#shift_id").html("Shift " + res[0]['shift_id']);
-            var s_time = res[0]['start_time'].split(":");
-            var e_time = res[0]['end_time'].split(":");
-            $("#start_time").html(s_time[0] + ":" + s_time[1]);
-            $("#end_time").html(e_time[0] + ":" + e_time[1]);
+            if (date == res[0]['shift_date'] && shift == res[0]['shift_id'] && s=="") {
+                // Same sift Maintaine..
+            }else if (s == 1) {
+                // Previous sift, So no need to change anything..
+            }else{
+                getTileupdate(res);
+            }
+        },
+        error: function(res) {
+            // Error Occured!
+        }
+    });
+}
+function getTileupdate(res){
+    var date = new Date(res[0]['shift_date']);
+    date = date.getDate() + " " + date.toLocaleString([], {
+        month: 'short'
+    }) + " " + date.getFullYear();
 
-            $("#s_time_val").val(s_time[0] + ":" + s_time[1] + ":" + s_time[2]);
-            $("#e_time_val").val(e_time[0] + ":" + e_time[1] + ":" + s_time[2]);
+    $("#shift_date").html(date);
+    $('#shift_date').attr('sdate_format', res[0]['shift_date']);
+    $("#shift_id").html("Shift " + res[0]['shift_id']);
+    var s_time = res[0]['start_time'].split(":");
+    var e_time = res[0]['end_time'].split(":");
+    $("#start_time").html(s_time[0] + ":" + s_time[1]);
+    $("#end_time").html(e_time[0] + ":" + e_time[1]);
 
-            $("#s_date_ref").val(res[0]['shift_date']);
-            $("#s_id_ref").val(res[0]['shift_id']);
+    $("#s_time_val").val(s_time[0] + ":" + s_time[1] + ":" + s_time[2]);
+    $("#e_time_val").val(e_time[0] + ":" + e_time[1] + ":" + s_time[2]);
 
-            getLiveMode(res[0]['shift_date'], res[0]['shift_id']);
+    $("#s_date_ref").val(res[0]['shift_date']);
+    $("#s_id_ref").val(res[0]['shift_id']);
 
+    getLiveMode(res[0]['shift_date'], res[0]['shift_id']);
 
-            var target_graph_date_time_val = date+","+e_time[0] + ":" + e_time[1] + ":" + s_time[2];
-            $('#shift_date_oui_graph').text(target_graph_date_time_val);
+    var target_graph_date_time_val = date+","+e_time[0] + ":" + e_time[1] + ":" + s_time[2];
+    $('#shift_date_oui_graph').text(target_graph_date_time_val);
+}
+function getMachineDataLive(res) {
+    $.ajax({
+        url: "<?php echo base_url('Current_Shift_Performance/getLive'); ?>",
+        type: "POST",
+        dataType: "json",
+        cache: false,
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function(res) {
+            getTileupdate(res);
         },
         error: function(res) {
             // Error Occured!
@@ -408,8 +464,6 @@ function getLiveMode(shift_date, shift_id) {
             // filter:x,
         },
         success: function(res) {
-            console.log("get Live Mode data");
-            console.log(res);
             $('.grid-container-cont').empty();
             res['latest_event'].forEach(function(machine) {
                 var machine_name = "";
@@ -882,107 +936,15 @@ function getLiveMode(shift_date, shift_id) {
                         // ChartDataLabels.defaults.font.size=8;
                         ChartDataLabels.defaults.font.family = "Roboto, sans-serif";
 
-                        // var ctx = document.getElementById('production-graph1123-'+machine[0]['machine_id']+'').getContext('2d');
-                        // myChartList[myChartList.length] = new Chart(ctx, {
-                        //   type: 'bar',
-                        //   data: {
-                        //     labels: hourList,
-                        //     datasets: [
-                        //       {
-                        //         label: "Total Parts",
-                        //         type: "bar",
-                        //         backgroundColor: "white",
-                        //         borderColor: "rgba(0, 0, 0, 0)", 
-                        //         borderWidth: 1,
-                        //         fill: true,
-                        //         data: hourly,
-                        //         part_name:part_name_list,
-                        //         rejections:rejections_list,
-                        //         categoryPercentage:1.0,
-                        //         barPercentage: 1.0, 
-                        //       },
-                        //       {
-                        //         label: "Production Target",
-                        //         type: "line",
-                        //         backgroundColor: "#7f7f7f",
-                        //         borderColor: "#00000", 
-                        //         borderWidth: 1,
-                        //         fill: false,
-                        //         data: production_target,
-                        //         part_name:part_name_list,
-                        //         pointRadius: 0,
-                        //         stepped: 'before',
-                        //       },
-                        //     ],
-                        //   },
-                        //   options: {
-                        //     scalebeginAtZero:false,
-                        //     responsive: true,
-                        //     maintainAspectRatio: false,   
-                        //     scales: {
-                        //       y: {
-                        //         display:false,
-                        //         beginAtZero:true,
-                        //         stacked:false,
-                        //       },
-                        //       x:{
-                        //         display:false,
-                        //         grid:{
-                        //           display:false
-                        //         },
-                        //         stacked:true,
-                        //     },
-                        //   },
-                        //   plugins: {
-                        //     datalabels:{
-                        //       anchor:"end",
-                        //       align:"end",
-                        //       offset:-16,
-                        //       color:"white",
-                        //       font:{
-                        //         size:8,
-                        //       },
-                        //       formatter: (value,context) => context.datasetIndex === 0 ? value : '',
-
-                        //     },
-                        //     legend: {
-                        //       display: false,
-                        //       labels: {
-                        //             // This more specific font property overrides the global property
-                        //             font: {
-                        //                 size: 9
-                        //             }
-                        //         }
-                        //     },
-                        //     tooltip: {
-                        //       enabled: false,
-                        //       external: productionTooltip,
-                        //     },
-                        //   },
-
-                        //   },
-                        //   plugins: [ChartDataLabels],
-                        // });
-
                     }
 
                 });
-                // console.log("loop"+i);
                 // carousel_ele = carousel_ele.add('</div>');
                 // $('.carousel_content_item').append(carousel_ele);
             }
 
-            // var e = '<div class="grid-item-cont">';
-            // $('.grid-container-cont').append(e);
-            // $('.grid-container-cont').append(e);
-            // $('.grid-container-cont').append(e);
-            // $('.grid-container-cont').append(e);
-
             live_graph(shift_date,shift_id);
             live_target(shift_date);
-            // live_MC1001(s_date, s_id);
-            // live_target_update(s_date);
-
         },
         error: function(res) {
             // Error Occured!
@@ -1160,36 +1122,37 @@ var shift_date = "";
 var shift_id = "";
 
 function live_graph(s_date, s_id) {
-    i = setInterval(function() {
+    i_global = setInterval(function() {
         live_MC1001(s_date, s_id); 
     }, 2000);
 }
 
 function live_target(s_date) {
-    j = setInterval(function() {
+    j_global = setInterval(function() {
         live_target_update(s_date);
     }, 1000);
 }
 
 $('#Filter-values').on('change', function(event) {
+    $("#overlay").fadeIn(300);
     var option = $('#Filter-values').val();
     var x = $('.values_oee');
     var len = x.length;
     var arr = [];
     var val = [];
     if (option == 1) { //Soritng based on OEE
-        for (var i = 0; i < len; i++) {
-            arr.push(i);
-            val.push(parseInt($('.values_oee:eq(' + i + ')').children('span').html()));
+        for (var p = 0; p < len; p++) {
+            arr.push(p);
+            val.push(parseInt($('.values_oee:eq(' + p + ')').children('span').html()));
         }
-        for (var i = 0; i < len - 1; i++) {
+        
+        for (var i = 0; i < len; i++) {
             var min = i;
-            for (var j = i + 1; j < len; j++) {
-                if (val[j] < val[i]) {
+            for (var j = i; j < len; j++) {
+                if (parseFloat(val[j]) <= parseFloat(val[min])) {
                     min = j;
                 }
-            }
-
+            } 
             var temp = val[i];
             val[i] = val[min];
             val[min] = temp;
@@ -1207,7 +1170,7 @@ $('#Filter-values').on('change', function(event) {
         for (var i = 0; i < len - 1; i++) {
             var min = i;
             for (var j = i + 1; j < len; j++) {
-                if (val[j] > val[i]) {
+                if (val[j] > val[min]) {
                     min = j;
                 }
             }
@@ -1232,7 +1195,7 @@ $('#Filter-values').on('change', function(event) {
             var min = i;
             for (var j = i + 1; j < len; j++) {
                 var tempx = val[j].split("C");
-                var tempy = val[i].split("C");
+                var tempy = val[min].split("C");
                 if ((parseInt(tempx[1]) - 1000) < (parseInt(tempy[1]) - 1000)) {
                     min = j;
                 }
@@ -1259,10 +1222,10 @@ $('#Filter-values').on('change', function(event) {
         for (var i = 0; i < len - 1; i++) {
             var min = i;
             for (var j = i + 1; j < len; j++) {
-                if (up_time[i] < up_time[j]) {
+                if (up_time[min] < up_time[j]) {
                     min = j;
                 }
-            }
+            }   
             var temp = up_time[i];
             up_time[i] = up_time[min];
             up_time[min] = temp;
@@ -1288,6 +1251,7 @@ $('#Filter-values').on('change', function(event) {
             }
         }
     }
+    $("#overlay").fadeOut(300);
 });
 
 function live_MC1001(shift_date, shift_id) {
@@ -1304,8 +1268,6 @@ function live_MC1001(shift_date, shift_id) {
             // filter:x,
         },
         success: function(res) {
-            console.log("live mode data circle graph");
-            console.log(res);
             var n = 0;
             res['latest_event'].forEach(function(machine) {
 
@@ -1554,6 +1516,8 @@ function live_MC1001(shift_date, shift_id) {
                     .attributes['stop-color'].value = color_code;
                 n = n + 1;
             });
+
+            $("#overlay").fadeOut(300);
         },
         error: function(res) {
 
@@ -1656,9 +1620,6 @@ $(document).on('click', '.grid-item-cont', function(event) {
 
 // target graph oui screen
 function target_oui_graph(mid,tid,sdate){
-    console.log(mid);
-    console.log(sdate);
-    console.log(tid);
     $.ajax({
         url:"<?php echo base_url('Current_Shift_Performance/get_target_graph'); ?>",
         method:"POST",
@@ -1669,8 +1630,6 @@ function target_oui_graph(mid,tid,sdate){
         },
         dataType:"JSON",
         success:function(res){
-            console.log("Oui Target graph");
-            console.log(res);
             var target_percentage = 0;
             if (parseInt(res[0]['percentage_target'])>100) {
                 // target_percentage = res[0]['percentage_target'];
@@ -1684,8 +1643,7 @@ function target_oui_graph(mid,tid,sdate){
 
         },
         error:function(er){
-            console.log("Sorry TryAgain.. oui target graph");
-            console.log(er);
+            // 
         }
     });
 }
@@ -1705,8 +1663,6 @@ function circle_data_oui(mid,sdate,sid){
             // filter:x,
         },
         success: function(res) {
-            console.log("Circle graph oui screen value settings");
-            console.log(res);
 
             var production_total = 0;
             res['production_total'].forEach(function(item){
@@ -1715,12 +1671,10 @@ function circle_data_oui(mid,sdate,sid){
                 }
             });
 
-            console.log(production_total);
             var target_production = 5000;
             var production_percent = parseInt((production_total / target_production) * 100);
             var production_percent_val = 470 - (2.4 * production_percent);
             var color_id = "GradientColor_oui";
-            //console.log(production_percent_val);
             var refcolor = 'url('+'#'+color_id+')';
             var iterate = document.getElementById("circle_oui_anim");
             iterate.style.setProperty("--foo_oui", production_percent_val);
@@ -1731,8 +1685,7 @@ function circle_data_oui(mid,sdate,sid){
 
         },
         error:function(er){
-            console.log('Sorry TryAgain.. circle graph');
-            console.log(er);
+            // 
         }
     });
 }
@@ -2150,8 +2103,6 @@ function part_by_hour(mid, sdate, sid, bar_color) {
             filter: x,
         },
         success: function(res) {
-            // console.log("get lievmode data");
-            // console.log(res);
             var hourly = [];
             var hourList = [];
             var production_target = [];
@@ -2253,7 +2204,7 @@ function part_by_hour(mid, sdate, sid, bar_color) {
 
         },
         error: function(er) {
-            console.log("error code");
+            // 
         },
 
     });
@@ -2273,10 +2224,6 @@ function div_records(mid, shift_date, shift_id, card_header, card_body) {
             shift_id: shift_id,
         },
         success: function(res) {
-
-            // console.log("div tag records");
-            // console.log(res);
-
             var nict_min = res['nict'] / 60;
             var tmp_nict = " ";
             if (parseInt(nict_min) > 0) {
@@ -2354,8 +2301,6 @@ function fullscreen_mode_remove(){
 
     $('.prev').css('margin-left','0rem');
     let slides = document.getElementsByClassName("grid-item-cont");
-    console.log("slides length");
-    console.log(slides.length);
     for (j = 0; j < slides.length; j++) {
         slides[j].style.display = "block";
     }

@@ -13,7 +13,16 @@
    <!-- style css -->
 <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/Downtime_production.css?version=<?php echo rand(); ?>">
 <style type="text/css">
+.fixed_scroll:eq(0) .fixed_s:nth-child(1){
+    position: sticky;
+    left:100px;
+}
 
+.contentAlert, .fixed_header_check{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 2rem;
+}
 
 </style>
 <script type="text/javascript">
@@ -90,8 +99,8 @@ $session = \Config\Services::session();
 ?>
 <br>
 <br>
-<div style="margin-left: 4.5rem;margin-top:1rem; overflow-x:hidden;overflow-y:scroll;">
-    <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav" style="position:fixed;margin-top:0;width:94%;">
+<div class="tmp_header" style="margin-left: 4.5rem;margin-top:1rem;overflow:hidden; ">
+    <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav" style="position:fixed;margin-top:0;width:95%;">
         <div class="container-fluid paddingm">
             <p class="float-start" id="logo">Production Downtime</p>
             <div class="d-flex">
@@ -131,7 +140,7 @@ $session = \Config\Services::session();
         </div>
     </nav>
   
-    <div class="tab-content" id="pills-tabContent" style="margin-top:3.8rem;">
+    <div class="tab-content" id="pills-tabContent" style="margin-top:4rem;">
         <div class="tab-pane fade show active" id="pills-graph" role="tabpanel" aria-labelledby="pills-graph-tab" tabindex="0">
             <!-- tamil design graph design -->
             <!-- <div id="graphview" class="graphview_1" style="margin-top:1rem;"> -->
@@ -490,13 +499,13 @@ $session = \Config\Services::session();
             <!-- </div> -->
         </div>
         <div class="tab-pane fade" id="pills-table" role="tabpanel" aria-labelledby="pills-table-tab" tabindex="0">
-            <div style="display:flex;flex-direction:row;height:3rem;align-items:center;">
+            <div class="tb_fl_header" style="display:flex;flex-direction:row;height:3rem;align-items:center;">
                 <div style="width:10%;display:flex;flex-direction:row;">
                     <div style="margin-left:1rem;font-size:12px;color:#8c8c8c;">
                         <input type="text" name="" id="pagination_val" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" onblur="pagination_filter()" style="width:2rem;text-align:center;height:2rem;border:1px solid #e6e6e6;border-radius:0.25rem;margin-right:0.4rem;"><span>of <span id="total_page"></span>  Pages</span>
                     </div>
                 </div>
-                <div style="width:90%;display:flex;flex-direction:row-reverse;align-items:center;">
+                <div style="width:90%;display:flex;flex-direction:row-reverse;align-items:center;margin-right:0.6rem;">
                     <!-- <div style=""> -->
                         <!-- reset -->
                         <div class="" style="margin-top:0.5rem;">
@@ -642,10 +651,10 @@ $session = \Config\Services::session();
                 </div>
             </div>
             <!-- table tamil code -->
-            <div id="container_table" class="container_table" >
-                <!--scroll sett-->
+            <!-- <div id="container_table" class="container_table" >
+               
                 <div style="width: 110rem;">
-                    <!--first div for stiky start-->
+                    
                     <div class="table_row_flex">
                         <div class="fixed_col_class" >
                             <div class="fixed_col_width" >
@@ -655,18 +664,13 @@ $session = \Config\Services::session();
                                     <div class="font alignflex"style="width:28%;height:100%"><span style="margin-left:1rem;">DURATION</span>
                                     </div>
                                 </div>
-                                <!-- rows in table view -->
+                               
                                 <div class="fixed_rows">
-                                    <!-- <div class="fixed_col_common alignflex" style="width:100%;">
-                                        <div class="border-left font_row alignflex" style="width:30%;height: 100%;"><span style="margin-left:1rem;">Machine Name 1</span></div>
-                                        <div class="font_row alignflex"style="width:42%;height: 100%"><span style="margin:auto;">15 Dec21,12:00</span></div>
-                                        <div  class="red alignflex" style="width:28%;height: 100%;justify-content:flex-end;"><span style="margin-right:1rem;">35</span></div>
-                                    </div> -->
+                                  
                                 </div>
                             </div>   
                         </div>
-                        <!--first div for stiky end-->
-                        <div class="fixed_col_class2" style="">
+                                              <div class="fixed_col_class2" style="">
                             <div style="margin-left:0rem;margin-right:1rem;width:98%;">
                                 <div  class="fixed_col_common2 alignflex header_fixed_col" style="border-radius:0px 10px 10px 0px;box-shadow:0px 2px 3px 0px #e6e6e6;border-left:0px;width:83%;">
                                     <div class="font alignflex " style="height:100%;width:15%;"> <span style="margin:auto   ;">TO DATE & TIME </span> </div>
@@ -678,27 +682,65 @@ $session = \Config\Services::session();
                                     <div class="font alignflex" style="height:100%;width:15%;"><span style="margin-left:1rem;">UPDATED AT</span></div>
                                     <div class="font alignflex" style="height:100%;width: 8%;"><span style="margin:auto;">NOTES</span></div>
                                 </div>
-                                <!-- rows in table view -->
                                 <div class="scroll_rows">
-                                    <!-- <div class="alignflex fixed_col_common2"  style="width:83%;">
-                                        <div class="font_row alignflex " style="height:100%;width:15.1%;"><span style="margin:auto;"> 15 DEC 21,12:35</span></div>
-                                        <div class="font_row alignflex" style="height:100%;width:10%;"><span style="margin-left:1rem;"> Unplanned </span></div>
-                                        <div class="font_row alignflex" style="height:100%;width:15%;"><span style="margin-left:1rem;"> No Manpower</span></div>
-                                        <div class="font_row alignflex" style="height:100%;width:12%"><span style="margin-left:1rem;"> Tool Name 1</span></div>
-                                        <div class="font_row alignflex" style="height:100%;width:15%;"><span style="margin-left:1rem;">Part Name 1</span></div>
-                                        <div class="font_row alignflex" style="height:100%;width:10%;"><span style="margin-left:1rem;"> Naveen</span></div>
-                                        <div class="font_row alignflex" style="height:100%;width: 15%;"><span style="margin-left:1rem;">21 Dec 21,13:31</span></div>
-                                        <div class="font_row alignflex" style="height:100%;width: 8%;justify-content:center;"><i class="fa fa-info fa-2x" ></i></div>
-                                    </div> -->
+                                  
                                 </div>
                                
                             </div>
                             
                         </div>
                     </div>
+
                 </div > 
-                <!--scroll sett end-->
-            </div> 
+             
+            </div>  -->
+            <div class="table_height_width" style="width:100%;height:10rem;margin-top:0.2rem;overflow:scroll;padding-left:0.2rem;padding-right:0.2rem;">
+                <div style="width:90rem;">
+                    <div class="header_fixed_col" style="">
+                        <div class="font alignflex" style="width:10%;position: sticky;height:100%;left:0px;border-radius:10px 0px 0px 10px;background:white;">
+                            <span style="margin-left:1rem;">MACHINE</span>
+                        </div>
+                        <div class="font alignflex" style="width:15%;position: sticky;left:120px;background:white;height:100%;">
+                            <span style="margin: auto;">FROM DATE & TIME</span>
+                        </div>
+                        <div class="font alignflex" style="width:10%;position: sticky;left:295px;background:white;height:100%;">
+                            <span style="margin: auto;">DURATION</span>
+                        </div>
+                        <div class="font alignflex" style="width:15%;height:100%;">
+                            <span style="margin: auto;">TO DATE & TIME</span>
+                        </div>
+                        <div class="font alignflex" style="width:10%;height:100%;">
+                            <span style="margin-left: 1rem;">CATEGORY</span>
+                        </div>
+                        <div class="font alignflex" style="width:13%;height:100%;">
+                            <span style="margin-left: 1rem;">REASON</span>
+                        </div>
+                        <div class="font alignflex" style="width:11%;height:100%;">
+                            <span style="margin-left: 1rem;">TOOL NAME</span>
+                        </div>
+
+                        <div class="font alignflex" style="width:11%;height:100%;">
+                            <span style="margin-left: 1rem;">PART NAME</span>
+                        </div>
+
+                        <div class="font alignflex" style="width:10%;height:100%;">
+                            <span style="margin-left: 1rem;">UPDATED BY</span>
+                        </div>
+
+                        <div class="font alignflex" style="width:10%;height:100%;">
+                            <span style="margin-left: 1rem;">UPDATED AT</span>
+                        </div>
+
+                        <div class="font alignflex" style="width:7%;height:100%;">
+                            <span style="margin-left: 1rem;">NOTES</span>
+                        </div>
+
+                    </div>
+
+                    <div class="alert_content">    </div>
+                </div>
+            </div>
+           
 
         </div>
     </div>
@@ -1158,11 +1200,25 @@ function pagination_filter(){
 // table onclick 
 function table_onclick(){
     // alert('hi');
-    var demo = $('.fixed_col_common').length;
+    // var demo = $('.fixed_col_common').length;
     // console.log("onclick");
     // console.log(demo);
-    demo = parseInt(parseInt(demo)*4);
-    $('#container_table').css('max-height',parseInt(demo)+'rem');
+    // demo = parseInt(parseInt(demo)*4);
+    // $('#container_table').css('max-height',parseInt(demo)+'rem');
+
+    var tmp_h = $('.full_screen_mode_oui_disturb').height();
+    var nav_h = $('.tb_fl_header').height();
+    var sub_header = $('.fixsubnav').height();
+    var my_height = parseInt(tmp_h)+parseInt(nav_h)+parseInt(sub_header)+48;
+    var overall_height = $(window).height();
+    console.log("get overall height"+overall_height);
+    console.log(tmp_h+"\n"+nav_h+"\n"+"\n"+sub_header);
+    console.log('myheight'+my_height);
+    var get_height = parseInt(overall_height) - parseInt(my_height);
+    $('.table_height_width').css('height',parseInt(get_height)+'px');    
+
+
+
 }
 
 // graph view click align width
@@ -1205,6 +1261,7 @@ function notes_hover(ele){
     var index_val = els.indexOf(event.currentTarget);
     //   alert(index_val);
     $('.notes_display:eq('+index_val+')').css('display','block');
+    // $('.hover_check_index:eq('+index_val+')').css('margin-left','-10rem');
     //   console.log("notes index hovering"+index_val);
 }
 
@@ -1213,21 +1270,26 @@ function mouse_out_check(ele1){
   var els = Array.prototype.slice.call( document.getElementsByClassName('icon_img_wh'), 0 );
   var index_val1 = els.indexOf(event.currentTarget);
   $('.notes_display:eq('+index_val1+')').css("display","none");
+//   $('.hover_check_index:eq('+index_val+')').css('margin-left','0');
     //   console.log("notes index  hovering remove"+index_val1);
 
 }
 
 // date formate change function
 function date_formate_change(date_format){
-    const d = new Date(date_format);
+    var d = new Date(date_format);
 
     let day_demo = d.toLocaleString('en-us',{day:'2-digit'});
     let hour_demo = d.toLocaleString('en-us',{hour12:false,hour:'2-digit'});
     let month_demo = d.toLocaleString('en-us',{month:'short'});
     let year_demo = d.toLocaleString('en-us',{year:'2-digit'});
-    let minute_demo = d.toLocaleString('en-us',{minute: '2-digit'});
+    let minute_demo = d.toLocaleString('en-us',{minute:'2-digit'});
 
-    var final_res = day_demo+' '+month_demo+' '+year_demo+', '+hour_demo+':'+minute_demo;
+    var tmp_minute = parseInt(minute_demo)>9?parseInt(minute_demo):'0'+parseInt(minute_demo);
+    var tmp_hour = parseInt(hour_demo)>9?parseInt(hour_demo):'0'+parseInt(hour_demo);
+    var tmp_day = parseInt(day_demo)>9?parseInt(day_demo):'0'+parseInt(day_demo);
+
+    var final_res = tmp_day+' '+month_demo+' '+year_demo+', '+tmp_hour+':'+tmp_minute;
     return final_res;
 }
 
@@ -1423,6 +1485,7 @@ $(document).on('click','#apply_filter_btn',function(event){
     }
 
 });
+
 // after click filter and document ready function and after pagination uusing filter
 function filter_after_filter(end_index,start_index){
 
@@ -1432,52 +1495,59 @@ function filter_after_filter(end_index,start_index){
     var reason_arr = getreason_arr();
     var created_by = getcreated_by_arr();
 
-    var machine_len = $('.machine_checkbox').length;
-    var part_len = $('.partname_checkbox').length;
-    var category_len = $('.category_drp_checkbox').length;
-    var reason_len = $('.reason_checkbox').length;
-    var created_by_len = $('.created_by_checkbox').length;
+    // var machine_len = $('.machine_checkbox').length;
+    // var part_len = $('.partname_checkbox').length;
+    // var category_len = $('.category_drp_checkbox').length;
+    // var reason_len = $('.reason_checkbox').length;
+    // var created_by_len = $('.created_by_checkbox').length;
 
-    // machine condition 
-    var pass_machine = "";
-    if (parseInt(machine_len)===parseInt(machine_arr.length)) {
-        pass_machine = null;
-    }else{
+  
+
+    // // machine condition 
+    // var pass_machine = "";
+    // if (parseInt(machine_len)===parseInt(machine_arr.length)) {
+    //     pass_machine = null;
+    // }else{
         pass_machine = machine_arr;
-    }
+    // }
 
-    // part condition
-    var pass_part = "";
-    if (parseInt(part_len)===parseInt(part_arr.length)) {
-        pass_part = null;
-    }else{
+    // // part condition
+    // var pass_part = "";
+    // if (parseInt(part_len)===parseInt(part_arr.length)) {
+    //     pass_part = null;
+    // }else{
         pass_part = part_arr;
-    }
+    // }
 
-    // category_arr
-    var pass_cate = "";
-    if (parseInt(category_len)===parseInt(get_category_data.length)) {
-        pass_cate = null;
-    }else{
+    // // category_arr
+    // var pass_cate = "";
+    // if (parseInt(category_len)===parseInt(get_category_data.length)) {
+    //     pass_cate = null;
+    // }else{
         pass_cate = get_category_data;
-    }
+    // }
 
-    // reason condition
-    var pass_reason = "";
-    if (parseInt(reason_len)===parseInt(reason_arr.length)) {
-        pass_reason = null;
-    }else{
+    // // reason condition
+    // var pass_reason = "";
+    // if (parseInt(reason_len)===parseInt(reason_arr.length)) {
+    //     pass_reason = null;
+    // }else{
         pass_reason = reason_arr;
-    }
+    // }
 
-    // created by condition
-    var pass_created_by = "";
-    if (parseInt(created_by_len)===parseInt(created_by.length)) {
-        pass_created_by = null;
-    }else{
+    // // created by condition
+    // var pass_created_by = "";
+    // if (parseInt(created_by_len)===parseInt(created_by.length)) {
+    //     pass_created_by = null;
+    // }else{
         pass_created_by = created_by;
-    }
+    // }
 
+    // console.log(pass_machine);
+    // console.log(pass_part);
+    // console.log(pass_cate);
+    // console.log(pass_reason);
+    // console.log(pass_created_by);
     // from date and to date
     f = $('.fromDate').val();
     t = $('.toDate').val();
@@ -1498,11 +1568,11 @@ function filter_after_filter(end_index,start_index){
             to:to,   
         },
         success:function(res){
-            // console.log(res);
-            // console.log("table data");
-            // console.log(res);
-            $('.fixed_rows').empty();
-            $('.scroll_rows').empty();
+            console.log(res);
+            console.log("table data");
+            console.log(res);
+            $('.alert_content').empty();
+            // $('.scroll_rows').empty();
             // console.log("table key");
             // console.log(res['total']);
             var from_len = 0;
@@ -1538,33 +1608,66 @@ function filter_after_filter(end_index,start_index){
                         } 
                     }
 
-
-
-                    elements = elements.add('<div class="fixed_col_common alignflex" style="width:100%;">'
-                        +'<div class="border-left font_row alignflex" style="width:30%;height: 100%;"><span style="margin-left:1rem;">'+val.machine_name+'</span></div>'
-                        +'<div class="font_row alignflex"style="width:42%;height: 100%"><span style="margin:auto;">'+from_date+'</span></div>'
-                        +' <div  class="red alignflex" style="width:28%;height: 100%;justify-content:flex-end;"><span style="margin-right:1rem;">'+final_tmp_duration+'</span></div>'
-                    +'</div>');
-
-
-                    element = element.add('<div class="alignflex fixed_col_common2"  style="width:83%;">'
-                        +'<div class="font_row alignflex " style="height:100%;width:15.1%;"><span style="margin:auto;">'+to_date+'</span></div>'
-                        +'<div class="font_row alignflex" style="height:100%;width:10%;"><span style="margin-left:1rem;">'+val.downtime_category+'</span></div>'
-                        +' <div class="font_row alignflex" style="height:100%;width:15%;"><span style="margin-left:1rem;">'+val.downtime_reason+'</span></div>'
-                        +' <div class="font_row alignflex" style="height:100%;width:12%"><span style="margin-left:1rem;">'+val.tool_name+'</span></div>'
-                        +'<div class="font_row alignflex" style="height:100%;width:15%;"><span style="margin-left:1rem;">'+val.part_name+'</span></div>'
-                        +'<div class="font_row alignflex" style="height:100%;width:10%;"><span style="margin-left:1rem;">'+val.last_updated_by+'</span></div>'
-                        +'<div class="font_row alignflex" style="height:100%;width: 15%;"><span style="margin-left:1rem;">'+updated_at+'</span></div>'
-                        +'<div class="font_row alignflex "  style="height:100%;width: 8%;justify-content:center;"><div class="notes_check"><img src="<?php  echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" onmouseover="notes_hover(this)"  onmouseout="mouse_out_check(this)"/></div></div>'
+                    elements = elements.add('<div style="display:flex;flex-direction:row;border:1px solid rgba(242,242,242);border-radius:10px;margin-bottom:0.5rem;height:3.5rem;width:100%;">'
+                        +'<div class="font_row alignflex" style="width:9.5%;position: sticky;left:0px;background:white;height:100%;border-radius:10px 0px 0px 10px;">'
+                            +'<span style="margin: auto;">'+val.machine_name+'</span>'
+                        +' </div>'
+                        +'<div class="font_row alignflex" style="width:14%;position: sticky;left:118px;background:white;height:100%">'
+                            +'<span style="margin: auto;">'+from_date+'</span>'
+                        +'</div>'
+                        +'<div class="red alignflex" style="width:9.6%;position: sticky;left:290px;background:white;height:100%;">'
+                            +'<span style="margin: auto;">'+val.split_duration+'</span>'
+                        +'</div>'
+                        +'<div class="font_row alignflex" style="width:14.8%;">'
+                            +'<span style="margin: auto;">'+to_date+'</span>'
+                        +' </div>'
+                        +'<div class="font_row alignflex" style="width:9.5%;">'
+                            +'<span style="margin: auto;">'+val.downtime_category+'</span>'
+                        +'</div>'
+                        +' <div class="font_row alignflex" style="width:12.4%;">'
+                            +'<span style="margin: auto;">'+val.downtime_reason+'</span>'
+                        +'</div>'
+                        +'<div class="font_row alignflex" style="width:10.6%;">'
+                            +'<span style="margin: auto;">'+val.tool_name+'</span>'
+                        +'</div>'
+                        +'<div class="font_row alignflex" style="width:10.5%;">'
+                            +'<span style="margin:auto;">'+val.part_name+'</span>'
+                        +'</div>'
+                        +'<div class="font_row alignflex" style="width:9.5%;">'
+                            +'<span style="margin:auto;">'+val.last_updated_by+'</span>'
+                        +'</div>'
+                        +'<div class="font_row alignflex" style="width:9.6%;">'
+                            +'<span style="margin:auto;">'+updated_at+'</span>'
+                        +'</div>'
+                        +'<div class="font_row alignflex " style="width:6.5%;">'
+                            +'<div class="notes_check"><img src="<?php  echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" onmouseover="notes_hover(this)"  onmouseout="mouse_out_check(this)"/></div>'
+                        +'</div>'
                         +'<div class="notes_display" style="">'
                             +'<p >'+val.notes+'</p>'
                         +'</div>'
                     +'</div>');
 
-                    $('.fixed_rows').append(elements);
-                    $('.scroll_rows').append(element);
+
+                    // element = element.add('<div class="alignflex fixed_col_common2"  style="width:83%;">'
+                    //     +'<div class="font_row alignflex " style="height:100%;width:15.1%;"><span style="margin:auto;">'+to_date+'</span></div>'
+                    //     +'<div class="font_row alignflex" style="height:100%;width:10%;"><span style="margin-left:1rem;">'+val.downtime_category+'</span></div>'
+                    //     +' <div class="font_row alignflex" style="height:100%;width:15%;"><span style="margin-left:1rem;">'+val.downtime_reason+'</span></div>'
+                    //     +' <div class="font_row alignflex" style="height:100%;width:12%"><span style="margin-left:1rem;">'+val.tool_name+'</span></div>'
+                    //     +'<div class="font_row alignflex" style="height:100%;width:15%;"><span style="margin-left:1rem;">'+val.part_name+'</span></div>'
+                    //     +'<div class="font_row alignflex" style="height:100%;width:10%;"><span style="margin-left:1rem;">'+val.last_updated_by+'</span></div>'
+                    //     +'<div class="font_row alignflex" style="height:100%;width: 15%;"><span style="margin-left:1rem;">'+updated_at+'</span></div>'
+                    //     +'<div class="font_row alignflex "  style="height:100%;width: 8%;justify-content:center;"><div class="notes_check"><img src="<?php  echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" onmouseover="notes_hover(this)"  onmouseout="mouse_out_check(this)"/></div></div>'
+                    //     +'<div class="notes_display" style="">'
+                    //         +'<p >'+val.notes+'</p>'
+                    //     +'</div>'
+                    // +'</div>');
+
+                    $('.alert_content').append(elements);
+                    // $('.scroll_rows').append(element);
                     // console.log("Table Data");
                     // console.log(val);
+
+                  
                 }
                 
             });
@@ -1692,8 +1795,8 @@ function getfilter_oppcost_reason(){
             to:t,
         },
         success:function(res){
-            // console.log("filter data reason oppcost");
-            // console.log(res);
+            console.log("filter data reason oppcost");
+            console.log(res);
 
 
             $('#reason_wise_oppcost_total').text(parseInt(res['grandTotal']).toLocaleString("en-IN"));
@@ -1701,6 +1804,9 @@ function getfilter_oppcost_reason(){
             var thour = parseInt(res['total_duration'])/60;
             var tminute = parseInt(res['total_duration']%60);
             $('#total_duration_header').html(parseInt(thour)+'h'+' '+parseInt(tminute)+'m');
+
+            var category_percent = 1.0;
+            var bar_space = 0.5;
 
             var reason_label = [];
             var oppcost_arr = [];
@@ -1728,13 +1834,13 @@ function getfilter_oppcost_reason(){
             oppcost_percent_arr.forEach(function(item){
                 // console.log(item);
                 // console.log(res['grandTotal']);
-                var temp_data = parseFloat(parseInt(item)/parseInt(res['grandTotal'])).toFixed(2)*100;
+                var temp_data = parseFloat(parseInt(item)/parseInt(res['grandTotal'])*100).toFixed(2);
                 // temp_data = temp_data*100;
                 percentage_arr.push(temp_data);
             });
 
-            // console.log("temporary cost array");
-            // console.log(oppcost_percent_arr);
+            console.log("temporary cost array");
+            console.log(percentage_arr);
             var bar_width = 0.6;
             var bar_size = 0.7;
         
@@ -1787,6 +1893,8 @@ function getfilter_oppcost_reason(){
                         percentage_data:0,
                         // borderColor: 'rgb(255, 99, 132)',
                         backgroundColor: '#0075F6',
+                        categoryPercentage:category_percent,
+                        barPercentage: bar_space,
                         yAxisID: 'B',
                     }
                 ],
@@ -1914,6 +2022,9 @@ function getfilter_duration_reason(){
             var minute_text = parseInt(parseInt(res['total_duration'])%60);
             $('#reason_duration_text').text(hour_text+'h'+' '+minute_text+'m');
 
+            var category_percent = 1.0;
+            var bar_space = 0.5;
+
             var reason_label = [];
             var duration_arr = [];
             var reason_id_arr = [];
@@ -1930,7 +2041,7 @@ function getfilter_duration_reason(){
                 // console.log(val.downtime_reason);
                 total_duration = parseInt(total_duration) + parseInt(tempcost);
                 duration_arr_cumulative.push(total_duration);
-                var temp_data = parseFloat(parseInt(total_duration)/parseInt(res['total_duration'])).toFixed(2)*100;
+                var temp_data = parseFloat(parseInt(total_duration)/parseInt(res['total_duration'])*100).toFixed(2);
                 duration_percentage_arr.push(temp_data);
             });
 
@@ -1983,6 +2094,8 @@ function getfilter_duration_reason(){
                         data:duration_arr,
                         percentage_data:0,
                         backgroundColor: "#0075F6",
+                        categoryPercentage:category_percent,
+                        barPercentage: bar_space,
                         yAxisID: 'B',  
                     }],
                 },
@@ -2097,13 +2210,16 @@ function getfilter_machine_oppcost(){
             category_arr:graph_category_arr
         },
         success:function(res){
-            // console.log('Machine wise oppcost');
-            // console.log(res);
+            console.log('Machine wise oppcost');
+            console.log(res);
             $('#machine_wise_oppcost_total').text(parseInt(res['grant_total']).toLocaleString("en-IN"));
             var machine_label = [];
             var oppcost_arr = [];
             var machine_id_arr = [];
 
+            var category_percent = 1.0;
+            var bar_space = 0.5;
+            
             var machine_duration_percentage = 0;
             var mdarr = [];
             var oppcost_arr_cumulative = [];
@@ -2116,7 +2232,7 @@ function getfilter_machine_oppcost(){
                 // console.log(val.downtime_reason);
                 machine_duration_percentage = parseInt(machine_duration_percentage)+parseInt(tempcost);
                 oppcost_arr_cumulative.push(machine_duration_percentage);
-                var temp_d = parseFloat(parseInt(machine_duration_percentage)/parseInt(res['grant_total'])).toFixed(2)*100;
+                var temp_d = parseFloat(parseInt(machine_duration_percentage)/parseInt(res['grant_total'])*100).toFixed(2);
                 mdarr.push(temp_d);
                 
             });
@@ -2167,6 +2283,8 @@ function getfilter_machine_oppcost(){
                         data:oppcost_arr,
                         backgroundColor: "#0075F6",
                         percentage_data:0,
+                        categoryPercentage:category_percent,
+                        barPercentage: bar_space,
                         yAxisID: 'B',
                     }],
                 },
@@ -2285,8 +2403,8 @@ function getfilter_machine_reason_duration(){
             category_arr:graph_category_arr
         },
         success:function(res){
-            // console.log('Machine and reason  wise duration');
-            // console.log(res);
+            console.log('Machine and reason  wise duration');
+            console.log(res);
 
             $('#machine_reason_duration').remove();
             $('.child_machine_reason_duration').append('<canvas id="machine_reason_duration"></canvas>');
@@ -2309,7 +2427,7 @@ function getfilter_machine_reason_duration(){
             res['data'].forEach(function(value){
                 machineName.push(value.machine_name);
                 temp_duration = parseInt(temp_duration)+parseInt(value.total);
-                var temp_data =  parseFloat(parseInt(temp_duration)/parseInt(res['total_duration'])).toFixed(2)*100;
+                var temp_data =  parseFloat(parseInt(temp_duration)/parseInt(res['total_duration'])*100).toFixed(2);
                 percentage_arr.push(temp_data);
             });
 
@@ -2449,33 +2567,30 @@ $(document).ready(function(){
     $("#overlay").fadeIn(500);
 
     // filter_drp_graph_all and graph always calling this function();
-    getall_filter_arr();
-
+    // getall_filter_arr();
+    graph_loader();
 
 });
 
 // onblur function change input filter
 // from date on blur function
 $(document).on('blur','.fromDate',function(event){
-    event.preventDefault();
+    // event.preventDefault();
 
     // preloader function on load
     $("#overlay").fadeIn(400);
-     // filter_drp_graph_all and graph always calling this function();
-     getall_filter_arr();
-
+    graph_loader();
   
 });
 
 // to date onblur function
 $(document).on('blur','.toDate',function(event){
 
-    event.preventDefault();  
+    // event.preventDefault();  
 
     // // preloader function on load
     $("#overlay").fadeIn(400);
-     // filter_drp_graph_all and graph always calling this function();
-     getall_filter_arr();
+    graph_loader();
 
 });
 
@@ -2499,22 +2614,23 @@ function getall_filter_arr(){
 
             $('.filter_checkboxes_machine').append('<div class="filter_check_machine" style="">'
             +'<div class="cate_drp_check" style="">'
-            +'<input type="checkbox" id="one" class="machine_checkbox" value="all"/>'
+            +'<input type="checkbox" id="one" class="machine_checkbox"  value="all"/>'
             +'</div>'
             +'<div class="cate_drp_text" style="">'
             +'<p class="font_multi_drp" style="margin:auto;">All</p>'
             +'</div>'
             +'</div>');
 
-            $('.filter_checkboxes_machinegp').append('<div class="filter_check_machinegp reason_oppcost_common" style="">'
-            +'<div class="cate_drp_check" style="">'
-            +'<input type="checkbox" id="one" class="machinegp_checkbox" value="all"/>'
-            +'</div>'
-            +'<div class="cate_drp_text" style="">'
-            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
-            +'</div>'
+            $('.filter_checkboxes_machinegp').append('<div class="filter_check_machinegp reason_oppcost_common"  style="">'
+                +'<div class="cate_drp_check" style="">'
+                +'<input type="checkbox" id="one" class="machinegp_checkbox" value="all"/>'
+                +'</div>'
+                +'<div class="cate_drp_text" style="">'
+                +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+                +'</div>'
             +'</div>');
 
+       
             $('.filter_checkboxes_machinegp1').append('<div class="filter_check_machinegp1 reason_duration_common" style="">'
             +'<div class="cate_drp_check" style="">'
             +'<input type="checkbox" id="one" class="machinegp_checkbox1" value="all"/>'
@@ -2551,8 +2667,17 @@ function getall_filter_arr(){
 
 
 
-                elements_mdrp = elements_mdrp.add('<div class="filter_check_machine" style="">'
-                +'<div class="cate_drp_check" style="">'
+                // elements_mdrp = elements_mdrp.add('<div class="filter_check_machine" style="">'
+                // +'<div class="cate_drp_check " style="">'
+                // +'<input type="checkbox" id="one" class="machine_checkbox" value="'+val.machine_id+'"/>'
+                // +'</div>'
+                // +'<div class="cate_drp_text" style="">'
+                // +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
+                // +'</div>'
+                // +'</div>');
+
+                elements_mdrp = elements_mdrp.add('<div class="filter_check_machine" style="display:flex;flex-direction:row;height:2.3rem;position:relative;padding:12px 0;">'
+                +'<div class="cate_drp_check " style="">'
                 +'<input type="checkbox" id="one" class="machine_checkbox" value="'+val.machine_id+'"/>'
                 +'</div>'
                 +'<div class="cate_drp_text" style="">'
@@ -2562,13 +2687,15 @@ function getall_filter_arr(){
 
 
                 element_mdrp = element_mdrp.add('<div class="filter_check_machinegp reason_oppcost_common" style="">'
-                +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="machinegp_checkbox" value="'+val.machine_id+'"/>'
-                +'</div>'
-                +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
-                +'</div>'
+                    +'<div class="cate_drp_check" style="">'
+                    +'<input type="checkbox" id="one" class="machinegp_checkbox" value="'+val.machine_id+'"/>'
+                    +'</div>'
+                    +'<div class="cate_drp_text" style="">'
+                    +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
+                    +'</div>'
                 +'</div>');
+
+
 
                 ele_mdrp = ele_mdrp.add('<div class="filter_check_machinegp1 reason_duration_common" style="">'
                 +'<div class="cate_drp_check" style="">'
@@ -2680,7 +2807,7 @@ function getall_filter_arr(){
 
             res['downtime_reason'].forEach(function(item){
                 
-                element_ddrp = element_ddrp.add('<div class="filter_check_r" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
+                element_ddrp = element_ddrp.add('<div class="filter_check_r" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="'+item.downtime_reason_id+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
                 
                 elements_ddrp = elements_ddrp.add('<div class="filter_check_reasongp reason_oppcost_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
 
@@ -2718,10 +2845,10 @@ function getall_filter_arr(){
 
             // all graph 
             $('#pagination_val').val('1');
-            getfilter_oppcost_reason();
-            getfilter_duration_reason();
-            getfilter_machine_oppcost();
-            getfilter_machine_reason_duration();
+            // getfilter_oppcost_reason();
+            // getfilter_duration_reason();
+            // getfilter_machine_oppcost();
+            // getfilter_machine_reason_duration();
             
             var end_index = 50;
             var start_index = 0;
@@ -2738,4 +2865,674 @@ function getall_filter_arr(){
     });
 }
 
+async function graph_loader(){
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
+    await first_load_reason_oppcost(f,t);
+    await first_load_reason_duration(f,t);
+    await first_load_machine_oppcost(f,t);
+    await first_load_machine_duration(f,t);
+
+    getall_filter_arr();
+
+    // $('#overlay').fadeOut(300);
+}
+
+// first loader functions
+function first_load_reason_oppcost(f,t){
+    return  new Promise(function (resolve,reject){
+        $('#reason_wise_oppcost').remove();
+        $('.child_reason_wise_oppcost').append('<canvas id="reason_wise_oppcost"></canvas>');
+        $('.chartjs-hidden-iframe').remove();
+
+       
+        $.ajax({
+            url:"<?php echo base_url('Production_Downtime_controller/first_reason_oppcost'); ?>",
+            method:"POST",
+            dataType:"json",
+            data:{
+                from:f,
+                to:t
+            },
+            success:function(res){
+                console.log("loader forst graph reason oppcost");
+                console.log(res);
+                resolve(res);
+                $('#reason_wise_oppcost_total').text(parseInt(res['grandTotal']).toLocaleString("en-IN"));
+                // total hour and minute
+                var thour = parseInt(res['total_duration'])/60;
+                var tminute = parseInt(res['total_duration']%60);
+                $('#total_duration_header').html(parseInt(thour)+'h'+' '+parseInt(tminute)+'m');
+
+                var category_percent = 1.0;
+                var bar_space = 0.5;
+
+                var reason_label = [];
+                var oppcost_arr = [];
+                var reason_id_arr = [];
+            
+
+                var oppcost_percent_arr = [];
+                var temp_cost_ini = 0;
+                res['graph'].forEach(function(val){
+                    reason_label.push(val.downtime_reason);
+                    var tempcost = parseInt(val.opportunity_cost);
+                    oppcost_arr.push(tempcost);
+                    reason_id_arr.push(val.downtime_reason_id);
+                    temp_cost_ini = parseInt(temp_cost_ini)+parseInt(tempcost);
+                    oppcost_percent_arr.push(temp_cost_ini);
+                });
+
+                // calculate percentage array
+                var percentage_arr = [];
+                oppcost_percent_arr.forEach(function(item){
+                    var temp_data = parseFloat(parseInt(item)/parseInt(res['grandTotal'])*100).toFixed(2);
+                    percentage_arr.push(temp_data);
+                });
+
+                console.log("temporary cost array");
+                console.log(percentage_arr);
+                var bar_width = 0.6;
+                var bar_size = 0.7;
+            
+                while(true){
+                    var len= reason_label.length;
+                    if (len < 8) {
+                        reason_label.push("");
+                    }
+                    else if(len > 8){
+                        var l = parseInt(len)%parseInt(8);
+                        var w= parseInt($('.parent_reason_wise_oppcost').css("width"))+parseInt(l*18*4);
+                    
+                        $('.child_reason_wise_oppcost').css("width",w+"px");
+                        break;
+                    }
+                    else{
+                        break;
+                    }
+                }
+            
+                var ctx = document.getElementById("reason_wise_oppcost").getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: reason_label,
+                        datasets:[{
+                            type: 'line',
+                            label: 'Total',
+                            data: percentage_arr,
+                            percentage_data:percentage_arr,
+                            backgroundColor: 'white',
+                            borderColor: "#7f7f7f", 
+                            pointBorderColor: "#d9d9ff",  
+                            borderWidth: 1, 
+                            showLine : true,
+                            fill: false,
+                            lineColor:"black",
+                            pointRadius:7,
+                            yAxisID: 'A',  
+                        
+                        }
+                        ,{
+                            type: 'bar',
+                            label:reason_label ,
+                            data: oppcost_arr,
+                            percentage_data:0,
+                            // borderColor: 'rgb(255, 99, 132)',
+                            backgroundColor: '#0075F6',
+                            categoryPercentage:category_percent,
+                            barPercentage: bar_space,
+                            yAxisID: 'B',
+                        }
+                    ],
+                    },
+                    // borderColor: "#004b9b", 
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,   
+                        scales: {
+                            // y: {
+                            //     display:false,
+                            //     beginAtZero:true,
+                            //     stacked:true
+                            // },
+                            A:{
+                            type: 'linear',
+                            position: 'right',
+                            // beginAtZero: true,
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            display:true,
+                            grid:{
+                                display:false
+                            },
+                            },
+                            B:{
+                            type: 'linear',
+                            position: 'left',
+                            beginAtZero: true,
+                            display:true,
+                            grid:{
+                                display:false
+                            },
+                            },
+                            x:{
+                                display:true,
+                                grid:{
+                                display:false
+                                },
+                                stacked:true,
+                            },
+                        },
+                        plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        tooltip: {
+                            enabled: false,
+                            external: reason_oppcost_tooltip,
+                        }
+                        },
+                    },            
+                });
+            },
+            error:function(er){
+                console.log("error for reason oppcost");
+                reject(er);
+            }
+        });
+    });  
+}
+
+// reason duration graph
+function first_load_reason_duration(f,t){
+    return  new Promise(function (resolve,reject){
+        $('#reason_wise_duration').remove();
+        $('.child_reason_wise_duration').append('<canvas id="reason_wise_duration"></canvas>');
+        $('.chartjs-hidden-iframe').remove();
+
+      
+        $.ajax({
+            url:"<?php echo base_url('Production_Downtime_controller/first_reason_duration'); ?>",
+            method:"POST",
+            dataType:"json",
+            data:{
+                from:f,
+                to:t,
+            },
+            success:function(res){
+                console.log("first loader production downtime")
+                console.log(res);
+                resolve(res);
+
+                var hour_text = parseInt(parseInt(res['total_duration'])/60);
+                var minute_text = parseInt(parseInt(res['total_duration'])%60);
+                $('#reason_duration_text').text(hour_text+'h'+' '+minute_text+'m');
+
+                var category_percent = 1.0;
+                var bar_space = 0.5;
+
+                var reason_label = [];
+                var duration_arr = [];
+                var reason_id_arr = [];
+
+                var duration_percentage_arr = [];
+                var duration_arr_cumulative = [];
+                var total_duration = 0;
+                res['graph'].forEach(function(val){
+                    reason_label.push(val.downtime_reason);
+                    var tempcost = parseInt(val.duration);
+                    // console.log(typeof tempcost);
+                    duration_arr.push(tempcost);
+                    reason_id_arr.push(val.downtime_reason_id);
+                    // console.log(val.downtime_reason);
+                    total_duration = parseInt(total_duration) + parseInt(tempcost);
+                    duration_arr_cumulative.push(total_duration);
+                    var temp_data = parseFloat(parseInt(total_duration)/parseInt(res['total_duration'])*100).toFixed(2);
+                    duration_percentage_arr.push(temp_data);
+                });
+
+                var bar_width = 0.6;
+                var bar_size = 0.7;
+                
+                while(true){
+                    var len= reason_label.length;
+                    if (len < 8) {
+                        reason_label.push("");
+                    }
+                    else if(len > 8){
+                        var l = parseInt(len)%parseInt(8);
+                        var w= parseInt($('.parent_reason_wise_duration').css("width"))+parseInt(l*18*4);
+                        $('.child_reason_wise_duration').css("width",w+"px");
+                        break;
+                    }
+                    else{
+                        break;
+                    }
+                }
+            
+                var ctx = document.getElementById("reason_wise_duration").getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: reason_label,
+                        datasets: [{
+
+                            type: 'line',
+                            label: 'Percentage',
+                            data:duration_percentage_arr,
+                            percentage_data: duration_percentage_arr,
+                            backgroundColor: 'white',
+                            borderColor: "#7f7f7f", 
+                            pointBorderColor: "#d9d9ff",  
+                            borderWidth: 1, 
+                            showLine : true,
+                            fill: false,
+                            lineColor:"black",
+                            pointRadius:7,
+                            yAxisID: 'A',
+
+                        
+
+                        },{
+                            type:'bar',
+                            label:reason_label,
+                            data:duration_arr,
+                            percentage_data:0,
+                            backgroundColor: "#0075F6",
+                            categoryPercentage:category_percent,
+                            barPercentage: bar_space,
+                            yAxisID: 'B',  
+                        }],
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,   
+                        scales: {
+                            // y: {
+                            //     display:false,
+                            //     beginAtZero:true,
+                            //     stacked:true
+                            // },
+                            A:{
+                            type: 'linear',
+                            position: 'right',
+                            // beginAtZero: true,
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            display:true,
+                            grid:{
+                                display:false
+                            },
+                            },
+                            B:{
+                            type: 'linear',
+                            position: 'left',
+                            beginAtZero: true,
+                            display:true,
+                            grid:{
+                                display:false
+                            },
+                            },
+                            x:{
+                                display:true,
+                                grid:{
+                                display:false
+                                },
+                                stacked:true,
+                            },
+                        },
+                        plugins: {
+                            legend: {
+                                display: false,
+                            },
+                            tooltip: {
+                                enabled: false,
+                                external: reason_wise_duration_tooltip,
+                            }
+                        },
+                    },            
+                });
+
+
+            },
+            error:function(er){
+                console.log("first loder reason duration graph error");
+                reject(er);
+            }
+        });
+    });
+}
+
+//  downtime oppcost by machine 
+function first_load_machine_oppcost(f,t){
+    return  new Promise(function (resolve,reject){
+        $('#machine_wise_oppcost').remove();
+        $('.child_machine_wise_oppcost').append('<canvas id="machine_wise_oppcost"></canvas>');
+        $('.chartjs-hidden-iframe').remove();
+
+        // f = $('.fromDate').val();
+        // t = $('.toDate').val();
+        // f = f.replace(" ","T");
+        // t = t.replace(" ","T");
+
+        $.ajax({
+            url:"<?php echo  base_url('Production_Downtime_controller/first_machine_oppcost'); ?>",
+            method:"POST",
+            dataType:"json",
+            data:{
+                from:f,
+                to:t
+            },
+            success:function(res){
+                console.log("first loder machine oppcost");
+                console.log(res);
+                resolve(res);
+                $('#machine_wise_oppcost_total').text(parseInt(res['grant_total']).toLocaleString("en-IN"));
+                var machine_label = [];
+                var oppcost_arr = [];
+                var machine_id_arr = [];
+
+                var category_percent = 1.0;
+                var bar_space = 0.5;
+                
+                var machine_duration_percentage = 0;
+                var mdarr = [];
+                var oppcost_arr_cumulative = [];
+                res['graph'].forEach(function(val){
+                    machine_label.push(val.machine_name);
+                    var tempcost = parseInt(val.oppcost);
+                    // console.log(typeof tempcost);
+                    oppcost_arr.push(tempcost);
+                    machine_id_arr.push(val.machine_id);
+                    // console.log(val.downtime_reason);
+                    machine_duration_percentage = parseInt(machine_duration_percentage)+parseInt(tempcost);
+                    oppcost_arr_cumulative.push(machine_duration_percentage);
+                    var temp_d = parseFloat(parseInt(machine_duration_percentage)/parseInt(res['grant_total'])*100).toFixed(2);
+                    mdarr.push(temp_d);
+                    
+                });
+
+                var bar_width = 0.6;
+                var bar_size = 0.7;
+            
+                while(true){
+                    var len= machine_label.length;
+                    if (len < 8) {
+                        machine_label.push("");
+                    }
+                    else if(len > 8){
+                    var l = parseInt(len)%parseInt(8);
+                    var w= parseInt($('.parent_machine_wise_oppcost').css("width"))+parseInt(l*18*16);
+                    $('.child_machine_wise_oppcost').css("width",w+"px");
+                    break;
+                    }
+                    else{
+                    break;
+                    }
+                }
+
+                var ctx = document.getElementById("machine_wise_oppcost").getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: machine_label,
+                        datasets: [{
+                            type: 'line',
+                            label: 'Percentage',
+                            // data: oppcost_arr_cumulative,
+                            percentage_data:mdarr,
+                            data:mdarr,
+                            backgroundColor: 'white',
+                            borderColor: "#7f7f7f", 
+                            pointBorderColor: "#d9d9ff",  
+                            borderWidth: 1, 
+                            showLine : true,
+                            fill: false,
+                            lineColor:"black", 
+                            pointRadius:7,
+                            yAxisID: 'A',  
+
+                        
+                        },{
+                            label:machine_label,
+                            data:oppcost_arr,
+                            backgroundColor: "#0075F6",
+                            percentage_data:0,
+                            categoryPercentage:category_percent,
+                            barPercentage: bar_space,
+                            yAxisID: 'B',
+                        }],
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,   
+                        scales: {
+                            // y: {
+                            //     id: 'A',
+                            //     type:'linear',
+                            //     position:'left',
+                            //     display:true,
+                            //     // beginAtZero:true,
+                            //     stacked:true
+                            // },
+                            A:{
+                            type: 'linear',
+                            position: 'right',
+                            // beginAtZero: true,
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            display:true,
+                            grid:{
+                                display:false
+                            },
+                            },
+                            B:{
+                            type: 'linear',
+                            position: 'left',
+                            beginAtZero: true,
+                            display:true,
+                            grid:{
+                                display:false
+                            },
+                            },
+                            x:{
+                                display:true,
+                                grid:{
+                                display:false
+                                },
+                                stacked:true,
+                            },
+                        },
+                        plugins: {
+                            legend: {
+                                display: false,
+                            },
+                            tooltip: {
+                                enabled: false,
+                                external: machine_wise_oppcost_tooltip,
+                            }
+                        },
+                    },            
+                });
+            },
+            error:function(er){
+                console.log("machine wise oppcost first loader issue");
+                console.log(er);
+                reject(er);
+            }
+        });
+    });
+}
+
+// downtime duration by machine 
+function first_load_machine_duration(f,t){
+    return  new Promise(function (resolve,reject){
+        // f = $('.fromDate').val();
+        // t = $('.toDate').val();
+        // f = f.replace(" ","T");
+        // t = t.replace(" ","T");
+
+        $.ajax({
+            url:"<?php echo  base_url('Production_Downtime_controller/first_machine_duration'); ?>",
+            method:"POST",
+            dataType:"JSON",
+            data:{
+                from:f,
+                to:t
+            },
+            success:function(res){
+                console.log("first loder machine duration graph");
+                console.log(res);
+                resolve(res);
+                
+                $('#machine_reason_duration').remove();
+                $('.child_machine_reason_duration').append('<canvas id="machine_reason_duration"></canvas>');
+                $('.chartjs-hidden-iframe').remove();           
+                var hour_text = parseInt(parseInt(res['total_duration'])/60);
+                var minute_text = parseInt(parseInt(res['total_duration'])%60);
+                $('#machine_reason_duration_text').text(hour_text+'h'+' '+minute_text+'m');
+
+                var color = ["white","#004591","#0071EE","#97C9FF","#595959","#A6A6A6","#D9D9D9","#09BB9F","#39F3BB"];
+                var demo = [];
+                var x= 1;
+                var machineName = [];
+                var category_percent = 1.0;
+                var bar_space = 0.5;
+                var percentage_arr = [];
+                var temp_duration = 0;
+                res['data'].forEach(function(value){
+                    machineName.push(value.machine_name);
+                    temp_duration = parseInt(temp_duration)+parseInt(value.total);
+                    var temp_data =  parseFloat(parseInt(temp_duration)/parseInt(res['total_duration'])*100).toFixed(2);
+                    percentage_arr.push(temp_data);
+                });
+
+                demo.push({
+                    label:"Total",
+                    type: "line",
+                    backgroundColor: 'white',
+                    borderColor: "#7f7f7f", 
+                    pointBorderColor: "#d9d9ff",  
+                    borderWidth: 1, 
+                    showLine : true,
+                    fill: false,
+                    lineColor:"black", 
+                    percentage_data:percentage_arr,
+                    data:percentage_arr,
+                    pointRadius: 7,
+                    yAxisID: 'A',  
+                });
+
+                res['reason'].forEach(function(k,val) {
+                    var arr_1 =[];
+                    var rname = [];
+                    res['data'].forEach(function(item){
+                        arr_1.push(item.reason_duration[val]);
+                        rname.push(item.reason_name[val]);
+                        
+                    });
+                    demo.push({
+                        label:res['reason'][val]['downtime_reason'],
+                        type: "bar",
+                        backgroundColor: color[x],
+                        borderColor: color[x],
+                        borderWidth: 1,
+                        fill: true,
+                        data: arr_1,
+                        reasonid:val,
+                        percentage_data:0,
+                        // reject:machineWiseReject,
+                        categoryPercentage:category_percent,
+                        barPercentage: bar_space,
+                        yAxisID: 'B',
+                    });
+                    x = x+1;
+                });
+
+                while(true){
+                    var len= machineName.length;
+                    if (len < 8) {
+                        machineName.push("");
+                    }
+                    else if(len > 8){
+                        var l = parseInt(len)%parseInt(8);
+                        var w= parseInt($('.parent_machine_reason_duration').css("width"))+parseInt(l*18*16);
+                        $('.child_machine_reason_duration').css("width",w+"px");
+                        break;
+                    }
+                    else{
+                        break;
+                    }
+                    
+                }
+
+                var ctx = document.getElementById("machine_reason_duration").getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: machineName,
+                        datasets: demo,
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,   
+                        scales: {
+                            // y: {
+                            //     display:false,
+                            //     beginAtZero:true,
+                            //     stacked:true,
+                            // },
+                            A:{
+                                type: 'linear',
+                                position: 'right',
+                                // beginAtZero: true,
+                                suggestedMin: 0,
+                                suggestedMax: 100,
+                                display:true,
+                                grid:{
+                                    display:false
+                                },
+                                },
+                                B:{
+                                type: 'linear',
+                                position: 'left',
+                                beginAtZero: true,
+                                display:true,
+                                grid:{
+                                    display:false
+                                },
+                                },
+                            x:{
+                                display:true,
+                                grid:{
+                                display:false
+                                },
+                                stacked:true
+                            },
+                        },
+                        plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        tooltip: {
+                            enabled: false,
+                            external: machine_and_reason_wise_tooltip,
+                        }
+                        },
+                    },
+                });
+
+                // $('#overlay').fadeOut(300);
+            },
+            error:function(er){
+                console.log('first loader machine duration error');
+                console.log(er);
+                reject(er);
+            }
+        });
+    });  
+}
 </script>

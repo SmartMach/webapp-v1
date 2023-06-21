@@ -670,7 +670,7 @@
                 <div class="filter_selectBox" onclick="multiple_drp()">
                   <div class="inbox-span fontStyle search_style dropdown-arrow">
                     <div style="width: 80% !important;">
-                      <p class="paddingm" id="part_text">Select</p>
+                      <p class="paddingm" id="part_text">All Parts</p>
                     </div>
                     <div style="width: 80% !important;" class="dropdown-div">
                       <i class="fa fa-angle-down icon-style"></i>
@@ -690,7 +690,7 @@
                 <div class="filter_selectBox" onclick="multiple_drp_machine()">
                   <div class="inbox-span fontStyle search_style dropdown-arrow">
                     <div style="width: 80% !important;">
-                      <p class="paddingm" id="machine_text">Select</p>
+                      <p class="paddingm" id="machine_text">All Machines</p>
                     </div>
                     <div style="width: 80% !important;" class="dropdown-div">
                       <i class="fa fa-angle-down icon-style"></i>
@@ -710,7 +710,7 @@
                 <div class="filter_selectBox" onclick="multiple_drp_reason()">
                   <div class="inbox-span fontStyle search_style dropdown-arrow">
                     <div style="width: 80% !important;">
-                      <p class="paddingm" id="reason_text">Select</p>
+                      <p class="paddingm" id="reason_text">All Reasons</p>
                     </div>
                     <div style="width: 80% !important;" class="dropdown-div">
                       <i class="fa fa-angle-down icon-style"></i>
@@ -730,7 +730,7 @@
                 <div class="filter_selectBox" onclick="multiple_drp_user()">
                   <div class="inbox-span fontStyle search_style dropdown-arrow">
                     <div style="width: 80% !important;">
-                      <p class="paddingm" id="user_text">Select</p>
+                      <p class="paddingm" id="user_text">All Users</p>
                     </div>
                     <div style="width: 80% !important;" class="dropdown-div">
                       <i class="fa fa-angle-down icon-style"></i>
@@ -745,7 +745,7 @@
           </div> 
 
           <!-- <div class="box rightmar" style="margin-right: 0.5rem;"> -->
-          <button class="btn fo bn filterbtnstyle settings_nav_anchor float-end" style="margin-right:0.5rem;margin-left: 0;margin-top: 0;margin-bottom: 0;" id="add_machine_button" onclick="getFilterval()">Apply Filter</button>
+          <button class="btn fo bn filterbtnstyle settings_nav_anchor float-end" style="margin-right:0.5rem;border-radius:0.25rem;margin-left: 0;margin-top: 0;margin-bottom: 0;" id="add_machine_button" onclick="getFilterval()">Apply Filter</button>
           <!-- </div> -->
           <div class="box rightmar" style="margin-right: 0.5rem;display: flex;justify-content: center;">
             <img src="<?php echo base_url('assets/img/filter_reset.png'); ?>" class="undo" style="font-size:20px;color: #b5b8bc;cursor: pointer;width:1.3rem;height:1.3rem;">
@@ -965,7 +965,7 @@
       f = $('.fromDate').val();
       t = $('.toDate').val();
     }
-    
+
     copqp();
     qrbr();
     copqm();
@@ -2618,8 +2618,7 @@ function quality_oppcost_reaosn_part_tooltip(context){
     const bodyLines = tooltipModel.body.map(getBody);
     var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
     var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].percentage_data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
-    //console.log(oppcost);
-    //console.log(mname);
+
     let innerHtml = '<div>';
 
       innerHtml += '<div class="grid-container">';
@@ -2737,6 +2736,7 @@ function copqp() {
   t = $('.toDate').val();
   f = f.replace(" ","T");
   t = t.replace(" ","T");
+
   $.ajax({
     url: "<?php echo base_url('Production_Quality/qualityOpportunity'); ?>",
     type: "POST",
@@ -2749,6 +2749,7 @@ function copqp() {
       reason:reason
     },
     success:function(res){
+
       // $('#qualityOpportunity').remove();
       // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
       // $('.chartjs-hidden-iframe').remove();
@@ -2905,15 +2906,13 @@ function copqp() {
           });
         },
     error:function(res){
-      // console.log("Sorry!Try Agian!!!!");
-        // alert("Sorry!Try Agian!!!!");
+      // alert("Sorry!Try Agian!!!!");
     }
   }); 
 }
 
 // Cost of Poor Quality (COPQ) by Reason
 function quality_opportunity_tooltip(context){
-  //console.log(context);
   let tooltipEl = document.getElementById('tooltip-rejection__reason_oppcost');
 
     // Create element on first render
@@ -2950,8 +2949,6 @@ function quality_opportunity_tooltip(context){
         const bodyLines = tooltipModel.body.map(getBody);
         var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
         var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].percentage_data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
-        //console.log(oppcost);
-        //console.log(mname);
      
         let innerHtml = '<div>';
         if (parseInt(percentage)>0) {
@@ -3230,7 +3227,6 @@ function qualitybyparts() {
           });
         },
     error:function(res){
-      // console.log("Sorry!Try Agian!!!!");
         // alert("Sorry!Try Agian!!!!");
     }
   }); 
@@ -3273,8 +3269,6 @@ function quality_part_wise_cost_tooltip(context){
         const bodyLines = tooltipModel.body.map(getBody);
         var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
         var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].percentage_data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
-        //console.log(oppcost);
-        //console.log(mname);
      
         let innerHtml = '<div>';
         if (parseInt(percentage)>0) {
@@ -3579,7 +3573,6 @@ function crbmr() {
           });
         },
     error:function(res){
-      // console.log("Sorry!Try Agian!!!!");
         // alert("Sorry!Try Agian!!!!");
     }
   }); 
@@ -3622,9 +3615,7 @@ function quality_opportuntiycost_reason_machine_tooltip(context){
         const bodyLines = tooltipModel.body.map(getBody);
         var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
         var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].percentage_data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
-        //console.log(oppcost);
-        //console.log(mname);
-     
+
         let innerHtml = '<div>';
           innerHtml += '<div class="grid-container">';
           if (parseInt(percentage)>0) {
@@ -3904,14 +3895,12 @@ function copqm() {
           });
         },
     error:function(res){
-      // console.log("Sorry!Try Agian!!!!");
         // alert("Sorry!Try Agian!!!!");
     }
   }); 
 }
 // Cost of Poor Quality (COPQ) by Machines tooltip function
 function quality_machine_oppcost(context){
-  //console.log(context);
     // Tooltip Element
     let tooltipEl = document.getElementById('tooltip-rejection_machine_reason_oppcost');
 
@@ -3949,8 +3938,6 @@ function quality_machine_oppcost(context){
         const bodyLines = tooltipModel.body.map(getBody);
         var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
         var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].percentage_data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
-       // console.log(oppcost);
-        //console.log(mname);
      
         let innerHtml = '<div>';
         if (parseInt(percentage)>0) {
@@ -4254,7 +4241,6 @@ function qrbr() {
           });
         },
     error:function(res){
-      // console.log("Sorry!Try Agian!!!!");
         // alert("Sorry!Try Agian!!!!");
     }
   }); 
@@ -4262,7 +4248,6 @@ function qrbr() {
 }
 // Quality Rejection by Reason tooltip function
 function  quality_rejection_reason_cost(context){
-   //console.log(context);
     // Tooltip Element
     let tooltipEl = document.getElementById('tooltip-rejection_reason_oppcost');
 
@@ -4300,8 +4285,6 @@ function  quality_rejection_reason_cost(context){
         const bodyLines = tooltipModel.body.map(getBody);
         var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
         var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].percentage_data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
-       // console.log(oppcost);
-        //console.log(mname);
      
         let innerHtml = '<div>';
           // innerHtml += '<div class="grid-container">';
@@ -4870,9 +4853,7 @@ function filter_table_data(){
   filter_array.forEach(function(value, index) {
     if ((index > (x*pagination_length)-(pagination_length+1)) && (index < (x*pagination_length))) {
       var elements = $();
-      
-      console.log(value['notes']);
-      console.log(typeof value['notes']);
+
       var notes_msg = "";
       if (value['notes']===undefined) {
         notes_msg = " ";
@@ -5110,7 +5091,6 @@ function notes_hover(ele){
     var index_val = els.indexOf(event.currentTarget);
     //   alert(index_val);
     $('.notes_display:eq('+index_val+')').css('display','block');
-    //   console.log("notes index hovering"+index_val);
 }
 
 
@@ -5119,8 +5099,6 @@ function mouse_out_check(ele1){
   var els = Array.prototype.slice.call( document.getElementsByClassName('icon_img_wh'), 0 );
   var index_val1 = els.indexOf(event.currentTarget);
   $('.notes_display:eq('+index_val1+')').css("display","none");
-    //   console.log("notes index  hovering remove"+index_val1);
-
 }
 
 </script>

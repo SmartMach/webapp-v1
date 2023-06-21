@@ -1,10 +1,10 @@
 
 <head>
     <!-- Google Chart link -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script><!-- 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script> 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>  -->
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/model.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/financial_metrics.css?version=<?php echo rand() ; ?>">
 
@@ -13,6 +13,10 @@
     <!-- Datetimepicker -->
     <script src="<?php echo base_url(); ?>/assets/js/datetimepicker.js?version=<?php echo rand() ; ?>"></script>
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/jquery.datetimepicker.min.css?version=<?php echo rand() ; ?>">
+
+    <!-- Pre Loader -->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/standard/pre-loader.css?version=<?php echo rand() ; ?>">
+
     <script src="<?php echo base_url(); ?>/assets/js/jquery.datetimepicker.js?version=<?php echo rand() ; ?>"></script>
 
       <style>
@@ -658,6 +662,14 @@
         </div>
 </div>
 
+<!-- preloader Start-->
+<div id="overlay">
+      <div class="cv-spinner">
+        <span class="spinner"></span>
+        <span class="loading">Awaiting Completion...</span>
+      </div>
+</div>
+<!-- preloader end -->
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
@@ -689,13 +701,19 @@ $('.toDate').datetimepicker({
   $('.toDate').val(fdate);
   $('.fromDate').val(tdate);
 
-  myFun();
+  // Pre-Loader On
+  $("#overlay").fadeIn(300);
+  setTimeout(myFun, 500);
 
   $(document).on('blur','.fromDate',function(){
-    myFun();
+    // Pre-Loader On
+    $("#overlay").fadeIn(300);
+    setTimeout(myFun, 500);
   });
   $(document).on('blur','.toDate',function(){
-    myFun();
+    // Pre-Loader On
+    $("#overlay").fadeIn(300);
+    setTimeout(myFun, 500);
   });
   function myFun(){
       f = $('.fromDate').val(); 
@@ -728,16 +746,14 @@ $('.toDate').datetimepicker({
       t = $('.toDate').val();
     }
 
-      // f = f.replace(" ","T");
-      // t = t.replace(" ","T");
-
-      // if(f != "" && t !=""){
         plopportunity();
         machineplopportunity();
         partplopportunity();
         opportunityTrendDay();
         opportunitydrilldown();
-      // }
+
+        // Pre-Loader Off
+        $("#overlay").fadeOut(300);
   }
 
   //overallTarget();
@@ -760,6 +776,7 @@ function plopportunity(){
         url: "<?php echo base_url('Financial_Metrics/plopportunity'); ?>",
         type: "POST",
         dataType: "json",
+        async:false,
         data:{
           from:f,
           to:t
@@ -1010,6 +1027,7 @@ function machineplopportunity() {
     url: "<?php echo base_url('Financial_Metrics/machineplopportunity'); ?>",
     type: "POST",
     dataType: "json",
+    async:false,
     data:{
       from:f,
       to:t
@@ -1249,6 +1267,7 @@ function partplopportunity(){
     url: "<?php echo base_url('Financial_Metrics/partplopportunity'); ?>",
     type: "POST",
     dataType: "json",
+    async:false,
     data:{
           from:f,
           to:t
@@ -1482,6 +1501,7 @@ function opportunitydrilldown(){
     url: "<?php echo base_url('Financial_Metrics/opportunitydrilldown'); ?>",
     type: "POST",
     dataType: "json",
+    async:false,
     data:{
       from:f,
       to:t
@@ -1669,6 +1689,7 @@ function opportunityTrendDay(){
     url: "<?php echo base_url('Financial_Metrics/opportunityTrendDay'); ?>",
     type: "POST",
     dataType: "json",
+    async:false,
     data:{
           from:f,
           to:t
