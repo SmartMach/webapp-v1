@@ -82,7 +82,7 @@
     .filter_checkboxes div:hover {
     background-color: #E7F2FF;
     padding:0;
-    /* cursor:context-menu; */
+    cursor:context-menu;
     /* width:100%; */
     }
     
@@ -105,7 +105,7 @@
     .target_graph{
         background-color:#B3D7FF;
         height:3.5rem;
-        /* width:85%;  */
+        width:10%; 
         border-radius:0.2rem;
         padding:0.2rem;
         padding-left:0;

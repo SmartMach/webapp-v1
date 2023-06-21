@@ -40,6 +40,20 @@ class Current_Shift_Performance_Model extends Model{
                 ];
     }
 
+    public function getPreviousShiftLive()
+    {
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('pdm_production_info');
+        $query->select('shift_date,shift_id');
+        $query->orderby('shift_date','desc');
+        $query->orderby('shift_id','desc');
+        $query->groupby('shift_date');
+        $query->groupby('shift_id');
+        $query->limit(2);
+        $res= $query->get()->getResultArray();
+        return $res;
+    }
+
 	public function getShiftLive()
 	{
 	    $db = \Config\Database::connect($this->site_connection);

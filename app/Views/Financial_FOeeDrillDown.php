@@ -1,9 +1,5 @@
 <head>
-    <!-- Google Chart link -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css"> -->
-    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script> -->
-    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>     -->
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/model.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/main.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/financial_metrics.css?version=<?php echo rand() ; ?>">
@@ -13,7 +9,13 @@
     <!-- Datetimepicker -->
     <script src="<?php echo base_url(); ?>/assets/js/datetimepicker.js?version=<?php echo rand() ; ?>"></script>
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/jquery.datetimepicker.min.css?version=<?php echo rand() ; ?>">
+
+    <!-- Pre Loader -->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/standard/pre-loader.css?version=<?php echo rand() ; ?>">
+
     <script src="<?php echo base_url(); ?>/assets/js/jquery.datetimepicker.js?version=<?php echo rand() ; ?>"></script>
+
+
       <style>
         #area-chart,
         #line-chart,
@@ -685,6 +687,16 @@
         </div>
 </div>
 
+<!-- preloader Start-->
+<div id="overlay">
+      <div class="cv-spinner">
+        <span class="spinner"></span>
+        <span class="loading">Awaiting Completion...</span>
+      </div>
+</div>
+<!-- preloader end -->
+
+
 <script type="text/javascript">
 
 // fromdate using date time picker
@@ -714,15 +726,25 @@ var tdate = now.getFullYear()+"-"+("0" + (parseInt(now.getMonth())+parseInt(1)))
 $('.toDate').val(fdate);
 $('.fromDate').val(tdate);
 
-myFun();
+
+// Pre-Loader On
+$("#overlay").fadeIn(300);
+setTimeout(myFun, 500);
+
+
 $(document).on('blur','.fromDate',function(){
-  myFun();
+  // Pre-Loader On
+  $("#overlay").fadeIn(300);
+  setTimeout(myFun, 500);
+
 });
 $(document).on('blur','.toDate',function(){
-  myFun();
+  // Pre-Loader On
+  $("#overlay").fadeIn(300);
+  setTimeout(myFun, 500);
 });
 function myFun(){
-
+        
     f = $('.fromDate').val();
     t = $('.toDate').val();
     if ((new Date(f) >= new Date(t)) || (t=="")) {
@@ -767,6 +789,9 @@ function myFun(){
       qualityOpportunity();
       performanceOpportunity();
       oeeTrendDay();
+
+  // Pre-Loader Off
+  $("#overlay").fadeOut(300);
 }
 
 //Target Values.......
@@ -795,15 +820,19 @@ $.ajax({
 //Overall TEEP,OOE,OEE.......
 //overallTarget();
 function overallTarget(){
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
-    f = f.replace(" ","T");
+  // Pre-Loader On
+  // $("#overlay").fadeIn(300);
+
+  f = $('.fromDate').val();
+  t = $('.toDate').val();
+  f = f.replace(" ","T");
   t = t.replace(" ","T");
   $.ajax({
     //OEE check....
     url: "<?php echo base_url('Financial_Metrics/OverallOEETarget'); ?>",
     type: "POST",
     dataType: "json",
+    async:false,
     data:{
       from:f,
       to:t
@@ -822,43 +851,26 @@ function overallTarget(){
       $('.oeeVal').html(res.Overall_OEE);
       $('.teepVal').html(res.Overall_TEEP);
 
-      // //Code for value get from Spring.....
-      // $('#viewTEEP').css('width',''+parseInt(res['TEEP'])+'%');
-      // $('#viewOOE').css('width',''+parseInt(res['OOE'])+'%');
-      // $('#viewOEE').css('width',''+parseInt(res['OEE'])+'%');
-      
-      // $('#valueTEEP').html(res['TEEP']);
-      // $('#valueOOE').html(res['OOE']);
-      // $('#valueOEE').html(res['OEE']);
-
-      // $('.ooeVal').html(res['OOE']);
-      // $('.oeeVal').html(res['OEE']);
-      // $('.teepVal').html(res['TEEP']);
-
-      // //Targets.....
-      // $('#ViewOverallTEEP').css('width',''+res['Target_TEEP']+'%');
-      // $('#ViewOverallOEE').css('width',''+res['Target_OEE']+'%');
-      // $('#ViewOverallOOE').css('width',''+res['Target_OOE']+'%');
-
-      // $('.teepTarget').html(res['Target_TEEP']);
-      // $('.oeeTarget').html(res['Target_OEE']);
-      // $('.ooeTarget').html(res['Target_OOE']);
-      // console.log(res);
+        // Pre-Loader Off
+        // $("#overlay").fadeOut(300);
     },
     error:function(res){
-        // alert("No Data Records!");
-        console.log("No Data Records!");
-        //$('#viewOEE').css('width','0%');
 
       $('#ViewOverallTEEP').css('width','0%');
       $('#ViewOverallOEE').css('width','0%');
       $('#ViewOverallOOE').css('width','0%');
+
+        // Pre-Loader Off
+        // $("#overlay").fadeOut(300);
     }
   });
 }
 
 //Machine Wise OEE......
 function machineWiseOEE() {
+  // Pre-Loader On
+  // $("#overlay").fadeIn(300);
+
   f = $('.fromDate').val();
   t = $('.toDate').val();
   f = f.replace(" ","T");
@@ -867,6 +879,7 @@ function machineWiseOEE() {
     url: "<?php echo base_url('Financial_Metrics/getMachineWiseOEE');?>",
     type: "POST",
     dataType: "json",
+    async:false,
     data:{
       from:f,
       to:t
@@ -1001,10 +1014,14 @@ function machineWiseOEE() {
                 },
               },
               });  
+
+        // Pre-Loader Off
+        // $("#overlay").fadeOut(300);
     },
     error:function(res){
+        // Pre-Loader Off
+        // $("#overlay").fadeOut(300);
         // alert("No Data Records!");
-        console.log("No Data Records!");
     }
   });
   // return;
@@ -1095,6 +1112,10 @@ function machineWiseOEETooltip(context) {
 //Reason wise availability........
 //availabilityReason();
 function availabilityReason() {
+
+  // Pre-Loader On
+  // $("#overlay").fadeIn(300);
+
   f = $('.fromDate').val();
   t = $('.toDate').val();
   f = f.replace(" ","T");
@@ -1103,6 +1124,7 @@ function availabilityReason() {
     url: "<?php echo base_url('Financial_Metrics/getAvailabilityReasonWise'); ?>",
     type: "POST",
     dataType: "json",
+    async:false,
     data:{
       from:f,
       to:t
@@ -1236,10 +1258,13 @@ function availabilityReason() {
         },
       });
 
+        // Pre-Loader Off
+        // $("#overlay").fadeOut(300);
     },
     error:function(res){
+        // Pre-Loader Off
+        // $("#overlay").fadeOut(300);
         // alert("Sorry!Try Agian!!!!");
-        // console.log("Sorry!Try Agian!!!!");
     }
   }); 
 }
@@ -1328,6 +1353,9 @@ function availabilityOpp(context) {
 //Quality Opportunity........
 //qualityOpportunity();
 function qualityOpportunity() {
+  // Pre-Loader On
+  // $("#overlay").fadeIn(300);
+
   f = $('.fromDate').val();
   t = $('.toDate').val();
   f = f.replace(" ","T");
@@ -1336,6 +1364,7 @@ function qualityOpportunity() {
     url: "<?php echo base_url('Financial_Metrics/qualityOpportunity'); ?>",
     type: "POST",
     dataType: "json",
+    async:false,
     data:{
       from:f,
       to:t
@@ -1500,9 +1529,13 @@ function qualityOpportunity() {
               },
             },
           });
+
+          // Pre-Loader Off
+          // $("#overlay").fadeOut(300);
         },
     error:function(res){
-      // console.log("Sorry!Try Agian!!!!");
+        // Pre-Loader Off
+        // $("#overlay").fadeOut(300);
         // alert("Sorry!Try Agian!!!!");
     }
   }); 
@@ -1588,6 +1621,9 @@ function performanceOpportunity() {
   $('.child_graph_performance_opportunity').append('<canvas id="performanceOpportunity"><canvas>');
   $('.chartjs-hidden-iframe').remove();
 
+  // Pre-Loader On
+  // $("#overlay").fadeIn(300);
+
 
   f = $('.fromDate').val();
   t = $('.toDate').val();
@@ -1597,6 +1633,7 @@ function performanceOpportunity() {
     url: "<?php echo base_url('Financial_Metrics/performanceOpportunity'); ?>",
     type: "POST",
     dataType: "json",
+    async:false,
     data:{
       from:f,
       to:t
@@ -1718,8 +1755,13 @@ function performanceOpportunity() {
                 },
               },            
             });
+
+        // Pre-Loader Off
+        // $("#overlay").fadeOut(300);
     },
     error:function(res){
+        // Pre-Loader Off
+        // $("#overlay").fadeOut(300);
         // alert("Sorry!Try Agian!!!!");
     }
   }); 
@@ -1805,7 +1847,11 @@ function performanceOpp(context) {
     tooltipEl.style.pointerEvents = 'none';
 }
 
+
 function oeeTrendDay() {
+  // Pre-Loader On
+  // $("#overlay").fadeIn(300);
+
   f = $('.fromDate').val();
   t = $('.toDate').val();
   f = f.replace(" ","T");
@@ -1815,6 +1861,7 @@ function oeeTrendDay() {
         url: "<?php echo base_url('Financial_Metrics/oeeTrendDay'); ?>",
         type: "POST",
         dataType: "json",
+        async:false,
         data:{
           from:f,
           to:t
@@ -1909,9 +1956,14 @@ function oeeTrendDay() {
             },
           },
           });
+
+          // Pre-Loader Off
+          // $("#overlay").fadeOut(300);
         },
         error:function(res){
-            // alert("Sorry!Try Agian!!");
+          // Pre-Loader Off
+          // $("#overlay").fadeOut(300);
+          // alert("Sorry!Try Agian!!");
         }
     });
   }
@@ -1989,31 +2041,5 @@ function oeeTrendDay() {
     tooltipEl.style.pointerEvents = 'none';
 }
 
-
-  // $(document).ready(function(){
-  //     $.ajax({
-  //       url:"<?php echo base_url('Financial_Metrics/test_function') ?>",
-  //       method:"POST",
-  //       dataType:"json",
-  //       success:function(data){
-  //         alert(data);
-  //         console.log('checking data'+data[0].machine_id);
-  //       },
-  //       error:function(er){
-  //         alert(er);
-  //       }
-  //     });
-  // });
 </script>
 
-<script  type="text/javascript">
-
-
-
-/*var legend = myChart.generateLegend();
-document.getElementById("legend").innerHTML = legend; */
-
-
-
-
-</script>

@@ -27,6 +27,23 @@ class Current_Shift_Performance extends BaseController{
         }
         return json_encode($shift_detailes);
     }
+
+    public function getPreviousShiftLive(){
+        $shift_detailes =  $this->datas->getPreviousShiftLive();
+
+        $shift = $this->datas->getShiftExact($shift_detailes[1]['shift_date']." 23:59:59");
+
+        foreach ($shift['shift'] as $key => $value) {
+            if (str_split($value['shifts'])[0] == $shift_detailes[1]['shift_id']) {
+                $shift_detailes[1]['start_time'] = $value['start_time'];
+                $shift_detailes[1]['end_time'] = $value['end_time'];
+            }
+        }
+        $shift_data = [];
+        array_push($shift_data,$shift_detailes[1]);
+
+        return json_encode($shift_data);
+    }
     
     public function getLiveMode(){
     	if ($this->request->isAJAX()) {

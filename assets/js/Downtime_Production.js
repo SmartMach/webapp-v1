@@ -100,12 +100,12 @@ function machine_multiselect_gp(){
             }
         });
 
-        if (parseInt(oppcost_machine_drp.length)>0) {
-            getfilter_oppcost_reason();
-        }else{
-            reset_machine_gp();
-            getfilter_oppcost_reason();
-        }
+        // if (parseInt(oppcost_machine_drp.length)>0) {
+        //     getfilter_oppcost_reason();
+        // }else{
+        //     reset_machine_gp();
+        //     getfilter_oppcost_reason();
+        // }
        
     }
 }
@@ -130,12 +130,12 @@ function machine_multiselect_gp1(){
             }
         });
 
-        if (parseInt(duration_reason_machine_drp.length)>0) {
-            getfilter_duration_reason();
-        }else{
-            reset_machine_gp1();
-            getfilter_duration_reason();
-        }
+        // if (parseInt(duration_reason_machine_drp.length)>0) {
+        //     getfilter_duration_reason();
+        // }else{
+        //     reset_machine_gp1();
+        //     getfilter_duration_reason();
+        // }
        
         
     }
@@ -160,12 +160,12 @@ function reason_multiselect_gp(){
             }
         });
 
-        if (parseInt(oppcost_reason_drp.length)>0) {
-            getfilter_oppcost_reason();
-        }else{
-            reset_reason_gp();
-            getfilter_oppcost_reason();
-        }
+        // if (parseInt(oppcost_reason_drp.length)>0) {
+        //     getfilter_oppcost_reason();
+        // }else{
+        //     reset_reason_gp();
+        //     getfilter_oppcost_reason();
+        // }
         
     }
 }
@@ -190,13 +190,13 @@ function category_multiselect_gp(){
 
         console.log(category_arr_tmp);
         console.log("filter checkbox category");
-        if (parseInt(category_arr_tmp.length)>0) {
-            getfilter_oppcost_reason();
-        }else{
-            reset_category_gp();
-            getfilter_oppcost_reason();
+        // if (parseInt(category_arr_tmp.length)>0) {
+        //     getfilter_oppcost_reason();
+        // }else{
+        //     reset_category_gp();
+        //     getfilter_oppcost_reason();
            
-        }
+        // }
     }
 }
 
@@ -220,12 +220,12 @@ function reason_multiselect_gp1(){
             }
         });
 
-        if (parseInt(duration_reason_reason_drp.length)>0) {
-            getfilter_duration_reason();
-        }else{
-            reset_reason_gp1();
-            getfilter_duration_reason();
-        }
+        // if (parseInt(duration_reason_reason_drp.length)>0) {
+        //     getfilter_duration_reason();
+        // }else{
+        //     reset_reason_gp1();
+        //     getfilter_duration_reason();
+        // }
        
     }
 }
@@ -250,12 +250,12 @@ function category_multiselect_gp1(){
             }
         });
 
-        if (parseInt(duration_reason_cat_drp.length)>0) {
-            getfilter_duration_reason();
-        }else{
-            reset_category_gp1();
-            getfilter_duration_reason();
-        }
+        // if (parseInt(duration_reason_cat_drp.length)>0) {
+        //     getfilter_duration_reason();
+        // }else{
+        //     reset_category_gp1();
+        //     getfilter_duration_reason();
+        // }
        
     }
 }
@@ -281,12 +281,12 @@ function machine_multiselect_gp2(){
             }
         });
 
-        if (parseInt(opp_machine_machine_drp.length)>0) {
-            getfilter_machine_oppcost();
-        }else{
-            reset_machine_gp2();
-            getfilter_machine_oppcost();
-        }
+        // if (parseInt(opp_machine_machine_drp.length)>0) {
+        //     getfilter_machine_oppcost();
+        // }else{
+        //     reset_machine_gp2();
+        //     getfilter_machine_oppcost();
+        // }
         
     }
 }
@@ -308,12 +308,12 @@ function reason_multiselect_gp2(){
             }
         });
 
-        if (parseInt(opp_machine_reason_drp.length)>0) {
-            getfilter_machine_oppcost();
-        }else{
-            reset_reason_gp2();
-            getfilter_machine_oppcost();
-        }
+        // if (parseInt(opp_machine_reason_drp.length)>0) {
+        //     getfilter_machine_oppcost();
+        // }else{
+        //     reset_reason_gp2();
+        //     getfilter_machine_oppcost();
+        // }
       
     }
 }
@@ -335,12 +335,12 @@ function category_multiselect_gp2(){
             }
         });
 
-        if (parseInt(opp_machine_cate_drp.length)>0) {
-            getfilter_machine_oppcost();
-        }else{
-            reset_category_gp2();
-            getfilter_machine_oppcost();
-        }
+        // if (parseInt(opp_machine_cate_drp.length)>0) {
+        //     getfilter_machine_oppcost();
+        // }else{
+        //     reset_category_gp2();
+        //     getfilter_machine_oppcost();
+        // }
       
     }
 }
@@ -367,12 +367,12 @@ function machine_multiselect_gp3(){
             }
         });
 
-        if (parseInt(duration_mr_machine_drp.length)>0) {
-            getfilter_machine_reason_duration();
-        }else{
-            reset_machine_gp3();
-            getfilter_machine_reason_duration();
-        }
+        // if (parseInt(duration_mr_machine_drp.length)>0) {
+        //     getfilter_machine_reason_duration();
+        // }else{
+        //     reset_machine_gp3();
+        //     getfilter_machine_reason_duration();
+        // }
         
     }
 }
@@ -394,12 +394,12 @@ function reason_multiselect_gp3(){
             }
         });
 
-        if (parseInt(duration_mr_reason_drp.length)>0) {
-            getfilter_machine_reason_duration();
-        }else{
-            reset_reason_gp3();
-            getfilter_machine_reason_duration();
-        }
+        // if (parseInt(duration_mr_reason_drp.length)>0) {
+        //     getfilter_machine_reason_duration();
+        // }else{
+        //     reset_reason_gp3();
+        //     getfilter_machine_reason_duration();
+        // }
     }
 }
 
@@ -420,12 +420,12 @@ function category_multiselect_gp3(){
             }
         });
 
-        if (parseInt(duration_mr_cate_drp.length)>0) {
-            getfilter_machine_reason_duration();
-        }else{
-            reset_category_gp3();
-            getfilter_machine_reason_duration();
-        }
+        // if (parseInt(duration_mr_cate_drp.length)>0) {
+        //     getfilter_machine_reason_duration();
+        // }else{
+        //     reset_category_gp3();
+        //     getfilter_machine_reason_duration();
+        // }
     }
 }
 
