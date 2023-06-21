@@ -175,9 +175,9 @@ class Daily_production_controller extends BaseController{
 
     // get machine records
     public function getMachine_data(){
-        if ($this->request->isAJAX()) {
-            // $date = "2023-06-10";
-            $date = $this->request->getVar('date');
+        // if ($this->request->isAJAX()) {
+            $date = "2023-06-10";
+            // $date = $this->request->getVar('date');
 
            $getmachine_data = $this->datas->getmachine_data();
             $getdowntime_reason_data = $this->datas->getdowntime_reason_data();
@@ -569,11 +569,11 @@ class Daily_production_controller extends BaseController{
 
             // $data['dummy'] = $getshiftid;
            
-            echo json_encode($data);
-            // echo "<pre>";
-            // print_r($data);
+            // echo json_encode($data);
+            echo "<pre>";
+            print_r($data);
 
-        }
+        // }
       
     }   
 

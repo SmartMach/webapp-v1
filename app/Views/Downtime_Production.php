@@ -2944,7 +2944,7 @@ function first_load_reason_oppcost(f,t){
                     }
                     else if(len > 8){
                         var l = parseInt(len)%parseInt(8);
-                        var w= parseInt($('.parent_reason_wise_oppcost').css("width"))+parseInt(l*18*16);
+                        var w= parseInt($('.parent_reason_wise_oppcost').css("width"))+parseInt(l*18*4);
                     
                         $('.child_reason_wise_oppcost').css("width",w+"px");
                         break;
@@ -3104,7 +3104,7 @@ function first_load_reason_duration(f,t){
                     }
                     else if(len > 8){
                         var l = parseInt(len)%parseInt(8);
-                        var w= parseInt($('.parent_reason_wise_duration').css("width"))+parseInt(l*18*16);
+                        var w= parseInt($('.parent_reason_wise_duration').css("width"))+parseInt(l*18*4);
                         $('.child_reason_wise_duration').css("width",w+"px");
                         break;
                     }
@@ -3185,13 +3185,13 @@ function first_load_reason_duration(f,t){
                             },
                         },
                         plugins: {
-                        legend: {
-                            display: false,
-                        },
-                        tooltip: {
-                            enabled: false,
-                            external: reason_wise_duration_tooltip,
-                        }
+                            legend: {
+                                display: false,
+                            },
+                            tooltip: {
+                                enabled: false,
+                                external: reason_wise_duration_tooltip,
+                            }
                         },
                     },            
                 });
