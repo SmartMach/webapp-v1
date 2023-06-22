@@ -389,7 +389,7 @@
                         <div class="col-lg-6">
                             <div class="box" >
                                 <div class="input-box">
-                                    <select class="form-select alert_font_css" name="add_alert_metrics" id="add_alert_metrics" style="width: 100%;">
+                                    <select class="form-select alert_font_css add_alert_metrics_change_text" name="add_alert_metrics" id="add_alert_metrics" style="width: 100%;">
                                         <option value="" disabled selected>Choose Metrics</option>
                                         <option value="planned_downtime">Planned Downtime</option>    
                                         <option value="unplanned_downtime">Unplanned Downtime</option>
@@ -434,7 +434,7 @@
                             </div>
                         </div>
                         <div class="col-lg-1" style="display:flex;flex-direction:row;padding:0;justify-content:center;align-items:end;font-size:12px">
-                            <span style="font-size:12px;">Units</span>
+                            <span style="font-size:12px;padding-top:10px;" id="add_alert_change_txt_metrics">Units</span>
                         </div>
                     
                     </div>
@@ -741,7 +741,7 @@
                         <div class="col-lg-6">
                             <div class="box" >
                                 <div class="input-box">
-                                    <select class="form-select alert_font_css" name="edit_alert_metrics" id="edit_alert_metrics" style="width: 100%;">
+                                    <select class="form-select alert_font_css edit_alert_metrics_change_text" name="edit_alert_metrics" id="edit_alert_metrics" style="width: 100%;">
                                         <option value="" disabled selected>Choose Metrics</option>
                                         <option value="planned_downtime">Planned Downtime</option>    
                                         <option value="unplanned_downtime">Unplanned Downtime</option>
@@ -785,7 +785,7 @@
                             </div>
                         </div>
                         <div class="col-lg-1" style="display:flex;flex-direction:row;padding:0;justify-content:center;align-items:end;font-size:12px">
-                            <span style="font-size:12px;">Units</span>
+                            <span style="font-size:12px;" id="edit_metrics_val_limit_txt">Units</span>
                         </div>
                     </div>
 
@@ -1093,20 +1093,84 @@
 
 
 
+// add  alert settings module if change metrics change text 
+$(document).on('change','.add_alert_metrics_change_text',function(event){
+    event.preventDefault();
+    // alert('ji');
+    var get_metrics = $('.add_alert_metrics_change_text').val();
+    var get_metrics_value_limit = get_metrics_limit_val(get_metrics);
+    // alert(get_metrics);
+    $('#add_alert_change_txt_metrics').text(get_metrics_value_limit);
+});
+
+// edit alert settings module if change metrics change text val
+$(document).on('change','.edit_alert_metrics_change_text',function(event){
+    event.preventDefault();
+    var get_edit_metrics = $('.edit_alert_metrics_change_text').val();
+    var get_edit_metrics_val_limit = get_metrics_limit_val(get_edit_metrics);
+    $('#edit_metrics_val_limit_txt').text(get_edit_metrics_val_limit);
+});
+
+function get_metrics_limit_val(metrics_val){
+    var res = "";
+    switch (metrics_val) {
+        case 'planned_downtime':
+            res = "Hours";
+            break;
+    
+        case 'unplanned_downtime':
+            res = "Hours";
+            break;
+
+        case 'planned_machine_off':
+            res = "Hours";
+            break;
+        
+        case 'unplanned_machine_off':
+            res = "Hours";
+            break;
+        
+        case 'total_downtime':
+            res = "Hours";
+            break;
+        
+        case 'total_unamed':
+            res = "Hours";
+            break;
+        
+        case 'total_rejection':
+            res = "Count";
+            break;
+
+        case 'oee':
+            res ="Percentage";
+            break;
+        
+        case 'teep':
+            res = "Percentage";
+            break;
+
+        case 'ooe':
+            res = "Percentage";
+            break;
+    }
+    return res;
+}
+
 function add_assignee(t) {
     console.log($(this).children());
-      $(".filter_checkboxes_issue ").addClass("display_hide");
-      console.log($('.filter_assignee').css("display"));
-      if ($('.filter_assignee').css("display") === "none") {
+    $(".filter_checkboxes_issue ").addClass("display_hide");
+    console.log($('.filter_assignee').css("display"));
+    if ($('.filter_assignee').css("display") === "none") {
         console.log("select");
-          $(".filter_assignee").removeClass("display_hide");
-          $(".filter_assignee").addClass("display_visible");
-      } else {
+        $(".filter_assignee").removeClass("display_hide");
+        $(".filter_assignee").addClass("display_visible");
+    } else {
         console.log("non select");
-          $(".filter_assignee").removeClass("display_visible");
-          $(".filter_assignee").addClass("display_hide");
-      }
+        $(".filter_assignee").removeClass("display_visible");
+        $(".filter_assignee").addClass("display_hide");
     }
+}
 
     // add modal click function 
     function show_modal_add_alert(){
@@ -2053,7 +2117,7 @@ function add_assignee(t) {
                             console.log("alert settings success message");
                             console.log(res);
                             if (res) {
-                                alert('Alert Insertion SuccessFully');
+                                // alert('Alert Insertion SuccessFully');
                                 var start_index = 0;
                                 var end_index = 50;
                                 $('.pagination_onchange').val('1');
@@ -2300,6 +2364,9 @@ function add_assignee(t) {
               
                 var checkbox_work = document.querySelector('#work_edit_check_toggle');
                 var checkbox_email = document.querySelector('#edit_email_check_toggle');
+
+                var metrics_val_limit = get_metrics_limit_val(res[0]['metrics']);
+                $('#edit_metrics_val_limit_txt').text(metrics_val_limit);
                 
                 if (res[0]['notify_as']==="all") {
                     
@@ -2740,7 +2807,7 @@ function add_assignee(t) {
                         console.log("Edit alert Settings module success ");
                         // console.log(datasss);
                         if (datasss == true) {
-                            alert('Updation SuccessFully');
+                            // alert('Updation SuccessFully');
                             var start_index = 0;
                             var end_index = 50;
                             $('.pagination_onchange').val('1');
@@ -2791,7 +2858,7 @@ function add_assignee(t) {
                 console.log("Delete click function final result");
                 console.log(res);
                 if (res) {
-                    alert('Deletion Successfully');
+                    // alert('Deletion Successfully');
                     var start_index = 0;
                     var end_index = 50;
                     $('.pagination_onchange').val('1');

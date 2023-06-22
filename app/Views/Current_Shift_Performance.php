@@ -1530,10 +1530,18 @@ function live_MC1001(shift_date, shift_id) {
 
 $(document).on('click', '.grid-item-cont', function(event) {
     event.preventDefault();
-    $("#overlay").fadeIn(300);
-    fullscreen_mode_remove();
+   
     var find_index = $('.grid-item-cont');
     var index_val = find_index.index($(this));
+    $("#overlay").fadeIn(300);
+    // #009644 green header card body part graph  #007A37 card header
+    oui_functions_call(index_val);
+});
+
+async function oui_functions_call(index_val){
+    
+    fullscreen_mode_remove();
+   
     var tmp_mid = $('.machine_name_ref:eq(' + index_val + ')').attr('mid_data');
     var tid_data = $('.machine_name_ref:eq('+index_val+')').attr('tid_data');
     var shift_date = $('#shift_date').attr("sdate_format");
@@ -1544,7 +1552,7 @@ $(document).on('click', '.grid-item-cont', function(event) {
     const tmp = shift_id.split(" ");
     // alert(shift_date);
     // alert(tmp_mid);
-    alert(event_status);
+    // alert(event_status);
     var backgroundcolor = "";
     var bar_color = "";
     var card_body = "";
@@ -1591,13 +1599,11 @@ $(document).on('click', '.grid-item-cont', function(event) {
     }
     const shift_arr = [];
     shift_arr.push(tmp[1]);
-    // #009644 green header card body part graph  #007A37 card header
-
-    getDownTimeGraph(tmp_mid, shift_date, shift_arr);
-    target_oui_graph(tmp_mid,tid_data,shift_date);
-    part_by_hour(tmp_mid, shift_date, tmp[1], bar_color);
-    div_records(tmp_mid, shift_date, tmp[1], bar_color, card_body);
-    circle_data_oui(tmp_mid,shift_date,tmp[1]);
+    await getDownTimeGraph(tmp_mid, shift_date, shift_arr);
+    await target_oui_graph(tmp_mid,tid_data,shift_date);
+    await part_by_hour(tmp_mid, shift_date, tmp[1], bar_color);
+    await div_records(tmp_mid, shift_date, tmp[1], bar_color, card_body);
+    await circle_data_oui(tmp_mid,shift_date,tmp[1]);
     $('.target_graph_child_div').css('background-color',circle_target_color);
     $('#oui_circle_graph_color').attr('stop-color',circle_target_color);
     $('.graph-content').css('display', 'none');
@@ -1617,81 +1623,89 @@ $(document).on('click', '.grid-item-cont', function(event) {
     $('.oui_arrow_div').css('display', 'inline');
     $('.visibility_div').css('display', 'none');
     $('#full_screen_btn_visibility').css('visibility','hidden');
-    
     $("#overlay").fadeOut(300);
-});
+}
 
 // target graph oui screen
 function target_oui_graph(mid,tid,sdate){
-    $.ajax({
-        url:"<?php echo base_url('Current_Shift_Performance/get_target_graph'); ?>",
-        method:"POST",
-        data:{
-            mid:mid,
-            sdate:sdate,
-            tid:tid,
-        },
-        dataType:"JSON",
-        success:function(res){
-            var target_percentage = 0;
-            if (parseInt(res[0]['percentage_target'])>100) {
-                // target_percentage = res[0]['percentage_target'];
-                target_percentage = 100;
-            }else{
-                target_percentage = res[0]['percentage_target'];
-            }
-            $('.target_graph_child_div').css('height',target_percentage+'%');
-            $('#target_value_inner').text(res[0]['percentage_target']);
-            $('#target_value').text(res[0]['target']);
+    return new Promise(function(resolve,reject){
+        $.ajax({
+            url:"<?php echo base_url('Current_Shift_Performance/get_target_graph'); ?>",
+            method:"POST",
+            data:{
+                mid:mid,
+                sdate:sdate,
+                tid:tid,
+            },
+            dataType:"JSON",
+            success:function(res){
+                resolve(res);
+                var target_percentage = 0;
+                if (parseInt(res[0]['percentage_target'])>100) {
+                    // target_percentage = res[0]['percentage_target'];
+                    target_percentage = 100;
+                }else{
+                    target_percentage = res[0]['percentage_target'];
+                }
+                $('.target_graph_child_div').css('height',target_percentage+'%');
+                $('#target_value_inner').text(res[0]['percentage_target']);
+                $('#target_value').text(res[0]['target']);
 
-        },
-        error:function(er){
-            // 
-        }
+            },
+            error:function(er){
+                // 
+                console.log("oui tool changeover target graph issue ajax");
+                console.log(er);
+                reject(er);
+            }
+        });
     });
 }
 
 
 // circle graph data alignment oui screen graph 
 function circle_data_oui(mid,sdate,sid){
-    $.ajax({
-        url: "<?php echo base_url('Current_Shift_Performance/getLiveMode'); ?>",
-        type: "POST",
-        dataType: "json",
-        cache: false,
-        async: false,
-        data: {
-            shift_date: sdate,
-            shift_id: sid,
-            // filter:x,
-        },
-        success: function(res) {
+    return new Promise(function(resolve,reject){
+        $.ajax({
+            url: "<?php echo base_url('Current_Shift_Performance/getLiveMode'); ?>",
+            type: "POST",
+            dataType: "json",
+            cache: false,
+            async: false,
+            data: {
+                shift_date: sdate,
+                shift_id: sid,
+                // filter:x,
+            },
+            success: function(res) {
+                resolve(res);
+                var production_total = 0;
+                res['production_total'].forEach(function(item){
+                    if (mid===item.machine_id) {
+                        production_total = item.total;
+                    }
+                });
 
-            var production_total = 0;
-            res['production_total'].forEach(function(item){
-                if (mid===item.machine_id) {
-                    production_total = item.total;
-                }
-            });
-
-            var target_production = 5000;
-            var production_percent = parseInt((production_total / target_production) * 100);
-            var production_percent_val = 470 - (2.4 * production_percent);
-            var color_id = "GradientColor_oui";
-            var refcolor = 'url('+'#'+color_id+')';
-            var iterate = document.getElementById("circle_oui_anim");
-            iterate.style.setProperty("--foo_oui", production_percent_val);
-            iterate.style.setProperty("--ref_graph", refcolor);
-            document.getElementById('oui_circle_graph_color').attributes['stop-color'].value = "#C55A11";
-            $('#production_per_oui').text(production_percent);
+                var target_production = 5000;
+                var production_percent = parseInt((production_total / target_production) * 100);
+                var production_percent_val = 470 - (2.4 * production_percent);
+                var color_id = "GradientColor_oui";
+                var refcolor = 'url('+'#'+color_id+')';
+                var iterate = document.getElementById("circle_oui_anim");
+                iterate.style.setProperty("--foo_oui", production_percent_val);
+                iterate.style.setProperty("--ref_graph", refcolor);
+                document.getElementById('oui_circle_graph_color').attributes['stop-color'].value = "#C55A11";
+                $('#production_per_oui').text(production_percent);
 
 
-        },
-        error:function(er){
-            // 
-            console.log("Current shift Performance oui graph");
-            console.log(er);
-        }
+            },
+            error:function(er){
+                // 
+                console.log("Current shift Performance oui graph ajax issue ");
+                console.log(er);
+                reject(er);
+            }
+        });
     });
 }
 
@@ -1707,140 +1721,229 @@ var down_notes = new Array();
 var machine_Name = "";
 var part_name_tooltip = new Array();
 
-function getDownTimeGraph(machine_id, shift_date, s) {
-    var url = "<?php echo base_url('PDM_controller/getDownGraph'); ?>";
-    $.ajax({
-        method: 'POST',
-        url: url,
-        dataType: 'json',
-        // async:false,
-        data: {
-            machine_id: machine_id,
-            shift_date: shift_date,
-            shift: s[0],
-        }
-    }).then(function(response) {
-        response['shift']['shift'].forEach(function(item) {
-            var x = item.shifts.split("");
-            if (x[0] == s[0]) {
-                const downtime_start_time_split = item.start_time.split(':');
-                const downtime_end_time_split = item.end_time.split(':');
+function getDownTimeGraph(machine_id, shift_date, s) { 
+    return  new Promise(function(resolve,reject){
+        var url = "<?php echo base_url('PDM_controller/getDownGraph'); ?>";
+        $.ajax({
+            method: 'POST',
+            url: url,
+            dataType: 'json',
+            // async:false,
+            data: {
+                machine_id: machine_id,
+                shift_date: shift_date,
+                shift: s[0],
+            },
+            success:function(response){
+                resolve(response);
+                response['shift']['shift'].forEach(function(item) {
+                    var x = item.shifts.split("");
+                    if (x[0] == s[0]) {
+                        const downtime_start_time_split = item.start_time.split(':');
+                        const downtime_end_time_split = item.end_time.split(':');
 
-                shift_stime = item.start_time;
-                shift_etime = item.end_time;
-            }
-        });
-        $('#downtime_chart').empty();
-        var graph_Data = [];
-        var machine_on_count = [];
-        var machine_off_count = [];
-        var tool_change_count = [];
-        var i = 0;
-        var preview = "";
-        var val;
-        var x = 0;
-        var noDataArray = [];
-        if (response['machineData'].length > 0) {
-            $.each(response['machineData'], function(key, model) {
-                if (model.duration >= 0) {
-                    if (model.event == "No Data") {
-                        noDataArray.push('slantedLines');
-                    } else {
-                        if (key == 0) {
-                            st = new Date(model.calendar_date + " " + shift_stime);
-                            et = new Date(model.calendar_date + " " + model.start_time);
-                            if (st.getTime() !== et.getTime()) {
+                        shift_stime = item.start_time;
+                        shift_etime = item.end_time;
+                    }
+                });
+                $('#downtime_chart').empty();
+                var graph_Data = [];
+                var machine_on_count = [];
+                var machine_off_count = [];
+                var tool_change_count = [];
+                var i = 0;
+                var preview = "";
+                var val;
+                var x = 0;
+                var noDataArray = [];
+                if (response['machineData'].length > 0) {
+                    $.each(response['machineData'], function(key, model) {
+                        if (model.duration >= 0) {
+                            if (model.event == "No Data") {
                                 noDataArray.push('slantedLines');
                             } else {
-                                noDataArray.push(undefined);
+                                if (key == 0) {
+                                    st = new Date(model.calendar_date + " " + shift_stime);
+                                    et = new Date(model.calendar_date + " " + model.start_time);
+                                    if (st.getTime() !== et.getTime()) {
+                                        noDataArray.push('slantedLines');
+                                    } else {
+                                        noDataArray.push(undefined);
+                                    }
+                                } else {
+                                    noDataArray.push(undefined);
+                                }
                             }
-                        } else {
-                            noDataArray.push(undefined);
-                        }
-                    }
-                    down_notes.push(model.notes);
-                    data_duration.push(model.start_time);
-                    data_duration.push(model.end_time);
+                            down_notes.push(model.notes);
+                            data_duration.push(model.start_time);
+                            data_duration.push(model.end_time);
 
-                    // part_name_arr_pass = getpartnames_graph(model.part_id);
-                    part_name_arr_pass = model.part_id;
-                    var colordemo = "";
-                    machineID_ref = model.machine_id;
-                    shift_date_ref = model.shift_date;
-                    shift_Ref = model.shift_id;
-                    var duration = model.duration;
+                            // part_name_arr_pass = getpartnames_graph(model.part_id);
+                            part_name_arr_pass = model.part_id;
+                            var colordemo = "";
+                            machineID_ref = model.machine_id;
+                            shift_date_ref = model.shift_date;
+                            shift_Ref = model.shift_id;
+                            var duration = model.duration;
 
-                    colordemo = color_bar(model.event, model.reason_mapped);
-                    var machineEvent = model.machine_event_id;
-                    event_ref.push(model.machine_event_id);
+                            colordemo = color_bar(model.event, model.reason_mapped);
+                            var machineEvent = model.machine_event_id;
+                            event_ref.push(model.machine_event_id);
 
-                    colordemo = color_bar(model.event, model.reason_mapped);
+                            colordemo = color_bar(model.event, model.reason_mapped);
 
-                    if (key == 0) {
-                        st = new Date(model.calendar_date + " " + shift_stime);
-                        et = new Date(model.calendar_date + " " + model.start_time);
-                        if (st.getTime() !== et.getTime()) {
-                            var res = Math.abs(et - st) / 1000;
-                            duration = (Math.floor(res / 60)) + "." + (Math.floor(res % 60));
+                            if (key == 0) {
+                                st = new Date(model.calendar_date + " " + shift_stime);
+                                et = new Date(model.calendar_date + " " + model.start_time);
+                                if (st.getTime() !== et.getTime()) {
+                                    var res = Math.abs(et - st) / 1000;
+                                    duration = (Math.floor(res / 60)) + "." + (Math.floor(res % 60));
 
-                            colordemo = color_bar("No Data", model.reason_mapped);
-                            graph_Data.push({
-                                name: "No Data",
-                                data: [duration],
-                                color: colordemo,
-                                start: shift_stime,
-                                end: model.start_time,
-                                machineEvent: machineEvent,
-                                down_notes: model.notes,
-                                machine_Name: machine_Name,
-                                part_Name: "No Part",
-                                duration: duration
-                            });
-                        } else if (key == (response['machineData'].length - 1)) {
-                            st = new Date(model.calendar_date + " " + shift_etime);
-                            et = new Date(model.calendar_date + " " + model.end_time);
-                            if (st.getTime() !== et.getTime()) {
-                                et_x = new Date();
-                                et = et_x;
-                                st = new Date(model.calendar_date + " " + model.start_time);
-                                var res_tmp = Math.abs(et - st) / 1000;
-                                duration_tmp = (Math.floor(res_tmp / 60)) + "." + (Math.floor(res_tmp %
-                                    60));
-                                x_time = (et_x.getHours() > 9 ? et_x.getHours() : "0" + et_x
-                                .getHours()) + ":" + (et_x.getMinutes() > 9 ? et_x.getMinutes() : "0" +
-                                        et_x.getMinutes()) + ":" + (et_x.getSeconds() > 9 ? et_x
-                                        .getSeconds() : "0" + et_x.getSeconds());
+                                    colordemo = color_bar("No Data", model.reason_mapped);
+                                    graph_Data.push({
+                                        name: "No Data",
+                                        data: [duration],
+                                        color: colordemo,
+                                        start: shift_stime,
+                                        end: model.start_time,
+                                        machineEvent: machineEvent,
+                                        down_notes: model.notes,
+                                        machine_Name: machine_Name,
+                                        part_Name: "No Part",
+                                        duration: duration
+                                    });
+                                } else if (key == (response['machineData'].length - 1)) {
+                                    st = new Date(model.calendar_date + " " + shift_etime);
+                                    et = new Date(model.calendar_date + " " + model.end_time);
+                                    if (st.getTime() !== et.getTime()) {
+                                        et_x = new Date();
+                                        et = et_x;
+                                        st = new Date(model.calendar_date + " " + model.start_time);
+                                        var res_tmp = Math.abs(et - st) / 1000;
+                                        duration_tmp = (Math.floor(res_tmp / 60)) + "." + (Math.floor(res_tmp %
+                                            60));
+                                        x_time = (et_x.getHours() > 9 ? et_x.getHours() : "0" + et_x
+                                        .getHours()) + ":" + (et_x.getMinutes() > 9 ? et_x.getMinutes() : "0" +
+                                                et_x.getMinutes()) + ":" + (et_x.getSeconds() > 9 ? et_x
+                                                .getSeconds() : "0" + et_x.getSeconds());
 
-                                graph_Data.push({
-                                    name: model.event,
-                                    data: [duration_tmp],
-                                    color: colordemo,
-                                    start: model.start_time,
-                                    end: x_time,
-                                    machineEvent: machineEvent,
-                                    down_notes: model.notes,
-                                    machine_Name: machine_Name,
-                                    part_Name: part_name_arr_pass,
-                                    duration: duration_tmp
-                                });
+                                        graph_Data.push({
+                                            name: model.event,
+                                            data: [duration_tmp],
+                                            color: colordemo,
+                                            start: model.start_time,
+                                            end: x_time,
+                                            machineEvent: machineEvent,
+                                            down_notes: model.notes,
+                                            machine_Name: machine_Name,
+                                            part_Name: part_name_arr_pass,
+                                            duration: duration_tmp
+                                        });
 
-                                noDataArray.push('slantedLines');
+                                        noDataArray.push('slantedLines');
+                                        st = new Date(model.calendar_date + " " + shift_etime);
+                                        var res = Math.abs(et - st) / 1000;
+                                        duration = (Math.floor(res / 60)) + "." + (Math.floor(res % 60));
+                                        colordemo = color_bar("No Data", model.reason_mapped);
+                                        graph_Data.push({
+                                            name: "No Data",
+                                            data: [duration],
+                                            color: colordemo,
+                                            start: model.end_time,
+                                            end: shift_etime,
+                                            machineEvent: machineEvent,
+                                            down_notes: model.notes,
+                                            machine_Name: machine_Name,
+                                            part_Name: part_name_arr_pass,
+                                            duration: duration
+                                        });
+                                    } else {
+                                        graph_Data.push({
+                                            name: model.event,
+                                            data: [model.duration],
+                                            color: colordemo,
+                                            start: model.start_time,
+                                            end: model.end_time,
+                                            machineEvent: machineEvent,
+                                            down_notes: model.notes,
+                                            machine_Name: machine_Name,
+                                            part_Name: part_name_arr_pass,
+                                            duration: model.duration
+                                        });
+                                    }
+                                } else {
+                                    graph_Data.push({
+                                        name: model.event,
+                                        data: [model.duration],
+                                        color: colordemo,
+                                        start: model.start_time,
+                                        end: model.end_time,
+                                        machineEvent: machineEvent,
+                                        down_notes: model.notes,
+                                        machine_Name: machine_Name,
+                                        part_Name: part_name_arr_pass,
+                                        duration: model.duration
+                                    });
+                                }
+                            } else if (key == (response['machineData'].length - 1)) {
                                 st = new Date(model.calendar_date + " " + shift_etime);
-                                var res = Math.abs(et - st) / 1000;
-                                duration = (Math.floor(res / 60)) + "." + (Math.floor(res % 60));
-                                colordemo = color_bar("No Data", model.reason_mapped);
-                                graph_Data.push({
-                                    name: "No Data",
-                                    data: [duration],
-                                    color: colordemo,
-                                    start: model.end_time,
-                                    end: shift_etime,
-                                    machineEvent: machineEvent,
-                                    down_notes: model.notes,
-                                    machine_Name: machine_Name,
-                                    part_Name: part_name_arr_pass,
-                                    duration: duration
-                                });
+                                et = new Date(model.calendar_date + " " + model.end_time);
+                                if (st.getTime() !== et.getTime()) {
+                                    et_x = new Date();
+                                    et = et_x;
+                                    st = new Date(model.calendar_date + " " + model.start_time);
+                                    var res_tmp = Math.abs(et - st) / 1000;
+                                    duration_tmp = (Math.floor(res_tmp / 60)) + "." + (Math.floor(res_tmp %
+                                    60));
+                                    x_time = (et_x.getHours() > 9 ? et_x.getHours() : "0" + et_x.getHours()) +
+                                        ":" + (et_x.getMinutes() > 9 ? et_x.getMinutes() : "0" + et_x
+                                            .getMinutes()) + ":" + (et_x.getSeconds() > 9 ? et_x.getSeconds() :
+                                            "0" + et_x.getSeconds());
+
+                                    graph_Data.push({
+                                        name: model.event,
+                                        data: [duration_tmp],
+                                        color: colordemo,
+                                        start: model.start_time,
+                                        end: x_time,
+                                        machineEvent: machineEvent,
+                                        down_notes: model.notes,
+                                        machine_Name: machine_Name,
+                                        part_Name: part_name_arr_pass,
+                                        duration: duration_tmp
+                                    });
+
+                                    noDataArray.push('slantedLines');
+                                    st = new Date(model.calendar_date + " " + shift_etime);
+                                    var res = Math.abs(et - st) / 1000;
+                                    duration = (Math.floor(res / 60)) + "." + (Math.floor(res % 60));
+                                    colordemo = color_bar("No Data", model.reason_mapped);
+                                    graph_Data.push({
+                                        name: "No Data",
+                                        data: [duration],
+                                        color: colordemo,
+                                        start: model.end_time,
+                                        end: shift_etime,
+                                        machineEvent: machineEvent,
+                                        down_notes: model.notes,
+                                        machine_Name: machine_Name,
+                                        part_Name: part_name_arr_pass,
+                                        duration: duration
+                                    });
+                                } else {
+                                    graph_Data.push({
+                                        name: model.event,
+                                        data: [model.duration],
+                                        color: colordemo,
+                                        start: model.start_time,
+                                        end: model.end_time,
+                                        machineEvent: machineEvent,
+                                        down_notes: model.notes,
+                                        machine_Name: machine_Name,
+                                        part_Name: part_name_arr_pass,
+                                        duration: model.duration
+                                    });
+                                }
                             } else {
                                 graph_Data.push({
                                     name: model.event,
@@ -1855,217 +1958,136 @@ function getDownTimeGraph(machine_id, shift_date, s) {
                                     duration: model.duration
                                 });
                             }
-                        } else {
-                            graph_Data.push({
-                                name: model.event,
-                                data: [model.duration],
-                                color: colordemo,
-                                start: model.start_time,
-                                end: model.end_time,
-                                machineEvent: machineEvent,
-                                down_notes: model.notes,
-                                machine_Name: machine_Name,
-                                part_Name: part_name_arr_pass,
-                                duration: model.duration
-                            });
                         }
-                    } else if (key == (response['machineData'].length - 1)) {
-                        st = new Date(model.calendar_date + " " + shift_etime);
-                        et = new Date(model.calendar_date + " " + model.end_time);
-                        if (st.getTime() !== et.getTime()) {
-                            et_x = new Date();
-                            et = et_x;
-                            st = new Date(model.calendar_date + " " + model.start_time);
-                            var res_tmp = Math.abs(et - st) / 1000;
-                            duration_tmp = (Math.floor(res_tmp / 60)) + "." + (Math.floor(res_tmp %
-                            60));
-                            x_time = (et_x.getHours() > 9 ? et_x.getHours() : "0" + et_x.getHours()) +
-                                ":" + (et_x.getMinutes() > 9 ? et_x.getMinutes() : "0" + et_x
-                                    .getMinutes()) + ":" + (et_x.getSeconds() > 9 ? et_x.getSeconds() :
-                                    "0" + et_x.getSeconds());
+                    });
+                } else {
+                    noDataArray.push('slantedLines');
+                    var colordemo = "";
+                    colordemo = color_bar("No Data", 0);
 
-                            graph_Data.push({
-                                name: model.event,
-                                data: [duration_tmp],
-                                color: colordemo,
-                                start: model.start_time,
-                                end: x_time,
-                                machineEvent: machineEvent,
-                                down_notes: model.notes,
-                                machine_Name: machine_Name,
-                                part_Name: part_name_arr_pass,
-                                duration: duration_tmp
-                            });
+                    var du = response['shift']['duration'][0]['duration'].split(":");
+                    var d = parseFloat((parseInt(du[0]) * 60) + parseInt(du[1]));
+                    colordemo = color_bar("No Data", 0);
 
-                            noDataArray.push('slantedLines');
-                            st = new Date(model.calendar_date + " " + shift_etime);
-                            var res = Math.abs(et - st) / 1000;
-                            duration = (Math.floor(res / 60)) + "." + (Math.floor(res % 60));
-                            colordemo = color_bar("No Data", model.reason_mapped);
-                            graph_Data.push({
-                                name: "No Data",
-                                data: [duration],
-                                color: colordemo,
-                                start: model.end_time,
-                                end: shift_etime,
-                                machineEvent: machineEvent,
-                                down_notes: model.notes,
-                                machine_Name: machine_Name,
-                                part_Name: part_name_arr_pass,
-                                duration: duration
-                            });
-                        } else {
-                            graph_Data.push({
-                                name: model.event,
-                                data: [model.duration],
-                                color: colordemo,
-                                start: model.start_time,
-                                end: model.end_time,
-                                machineEvent: machineEvent,
-                                down_notes: model.notes,
-                                machine_Name: machine_Name,
-                                part_Name: part_name_arr_pass,
-                                duration: model.duration
-                            });
+                    graph_Data.push({
+                        name: "No Data",
+                        data: [(d).toFixed(2)],
+                        color: colordemo,
+                        start: shift_stime,
+                        end: shift_etime,
+                        machineEvent: "No Event",
+                        down_notes: "No Notes",
+                        machine_Name: machine_Name,
+                        part_Name: "No Part",
+                        duration: d
+                    });
+                }
+                var options = {
+
+                    series: graph_Data,
+                    chart: {
+                        type: 'bar',
+                        height: 70,
+                        stacked: true,
+                        stackType: '100%',
+                        sparkline: {
+                            enabled: true
+                        },
+                        stroke: {
+                            width: 0,
+                            colors: ['#fff']
+                        },
+                    },
+                    plotOptions: {
+                        bar: {
+                            horizontal: true,
+                            barHeight: '100%',
+                        },
+                    },
+                    xaxis: {
+                        tickPlacement: 'on',
+                        labels: {
+                            show: false,
+                            formatter: function(val) {
+                                return val + "M"
+                            }
                         }
-                    } else {
-                        graph_Data.push({
-                            name: model.event,
-                            data: [model.duration],
-                            color: colordemo,
-                            start: model.start_time,
-                            end: model.end_time,
-                            machineEvent: machineEvent,
-                            down_notes: model.notes,
-                            machine_Name: machine_Name,
-                            part_Name: part_name_arr_pass,
-                            duration: model.duration
-                        });
-                    }
-                }
-            });
-        } else {
-            noDataArray.push('slantedLines');
-            var colordemo = "";
-            colordemo = color_bar("No Data", 0);
+                    },
+                    yaxis: {
+                        title: {
+                            text: undefined
+                        },
+                    },
 
-            var du = response['shift']['duration'][0]['duration'].split(":");
-            var d = parseFloat((parseInt(du[0]) * 60) + parseInt(du[1]));
-            colordemo = color_bar("No Data", 0);
+                    tooltip: {
+                        custom: function({
+                            series,
+                            seriesIndex,
+                            dataPointIndex,
+                            w
+                        }) {
+                            var data = w.globals.initialSeries[seriesIndex].data[dataPointIndex];
+                            var sname = w.globals.initialSeries[seriesIndex].name;
+                            var start_time = w.globals.initialSeries[seriesIndex].start;
+                            var end_time = w.globals.initialSeries[seriesIndex].end;
+                            var part_id = w.globals.initialSeries[seriesIndex].part_id;
 
-            graph_Data.push({
-                name: "No Data",
-                data: [(d).toFixed(2)],
-                color: colordemo,
-                start: shift_stime,
-                end: shift_etime,
-                machineEvent: "No Event",
-                down_notes: "No Notes",
-                machine_Name: machine_Name,
-                part_Name: "No Part",
-                duration: d
-            });
-        }
-        var options = {
+                            var machine_Name_Tooltip = w.globals.initialSeries[seriesIndex].machine_Name;
+                            var part_name_tooltip = w.globals.initialSeries[seriesIndex].part_Name;
 
-            series: graph_Data,
-            chart: {
-                type: 'bar',
-                height: 70,
-                stacked: true,
-                stackType: '100%',
-                sparkline: {
-                    enabled: true
-                },
-                stroke: {
-                    width: 0,
-                    colors: ['#fff']
-                },
+                            return ('<div class="Tooltip_Container">' + '<div>' +
+                                '<p class="paddingm nameHeader">' + sname + '</p>' +
+                                '<p class="paddingm contentName">' + part_name_tooltip + '</p>' +
+                                '<p class="paddingm contentName leftAllign"><span>' + start_time +
+                                ' to </span><span>' + end_time + '</span></p>' +
+                                '<p class="paddingm durationVal leftAllign">' + data + 'm</p>' +
+                                '</div>' +
+                                '</div>'
+
+                            );
+                        },
+
+
+                    },
+
+
+                    fill: {
+                        opacity: 1,
+                        type: 'pattern',
+                        pattern: {
+                            style: noDataArray,
+                        }
+                    },
+                    legend: {
+                        position: 'top',
+                        horizontalAlign: 'left',
+                        //offsetX: 10,
+                        offsetY: -10,
+                        show: false
+                    },
+                    annotations: {
+                        points: [{
+                            x: 30,
+                            y: 300,
+                            marker: {
+                                size: 8,
+                                fillColor: '#fff',
+                                strokeColor: 'red',
+                                radius: 2
+                            }
+                        }]
+                    },
+                };
+
+                var chart = new ApexCharts(document.querySelector("#downtime_chart"), options);
+                chart.render();
             },
-            plotOptions: {
-                bar: {
-                    horizontal: true,
-                    barHeight: '100%',
-                },
-            },
-            xaxis: {
-                tickPlacement: 'on',
-                labels: {
-                    show: false,
-                    formatter: function(val) {
-                        return val + "M"
-                    }
-                }
-            },
-            yaxis: {
-                title: {
-                    text: undefined
-                },
-            },
-
-            tooltip: {
-                custom: function({
-                    series,
-                    seriesIndex,
-                    dataPointIndex,
-                    w
-                }) {
-                    var data = w.globals.initialSeries[seriesIndex].data[dataPointIndex];
-                    var sname = w.globals.initialSeries[seriesIndex].name;
-                    var start_time = w.globals.initialSeries[seriesIndex].start;
-                    var end_time = w.globals.initialSeries[seriesIndex].end;
-                    var part_id = w.globals.initialSeries[seriesIndex].part_id;
-
-                    var machine_Name_Tooltip = w.globals.initialSeries[seriesIndex].machine_Name;
-                    var part_name_tooltip = w.globals.initialSeries[seriesIndex].part_Name;
-
-                    return ('<div class="Tooltip_Container">' + '<div>' +
-                        '<p class="paddingm nameHeader">' + sname + '</p>' +
-                        '<p class="paddingm contentName">' + part_name_tooltip + '</p>' +
-                        '<p class="paddingm contentName leftAllign"><span>' + start_time +
-                        ' to </span><span>' + end_time + '</span></p>' +
-                        '<p class="paddingm durationVal leftAllign">' + data + 'm</p>' +
-                        '</div>' +
-                        '</div>'
-
-                    );
-                },
-
-
-            },
-
-
-            fill: {
-                opacity: 1,
-                type: 'pattern',
-                pattern: {
-                    style: noDataArray,
-                }
-            },
-            legend: {
-                position: 'top',
-                horizontalAlign: 'left',
-                //offsetX: 10,
-                offsetY: -10,
-                show: false
-            },
-            annotations: {
-                points: [{
-                    x: 30,
-                    y: 300,
-                    marker: {
-                        size: 8,
-                        fillColor: '#fff',
-                        strokeColor: 'red',
-                        radius: 2
-                    }
-                }]
-            },
-        };
-
-        var chart = new ApexCharts(document.querySelector("#downtime_chart"), options);
-        chart.render();
-
+            error:function(er){
+                console.log("oui downtime graph ajax issue ");
+                console.log(er);
+                reject(er);
+            }
+        });
     });
 }
 
@@ -2095,178 +2117,189 @@ function color_bar(color, reason) {
 
 // part wise graph by hours using oui screen
 function part_by_hour(mid, sdate, sid, bar_color) {
-    var x = 0;
-    $.ajax({
-        url: "<?php echo base_url('Current_Shift_Performance/getLiveMode'); ?>",
-        type: "POST",
-        dataType: "json",
-        cache: false,
-        async: false,
-        data: {
-            shift_date: sdate,
-            shift_id: sid,
-            filter: x,
-        },
-        success: function(res) {
-            console.log("bar color");
-            console.log(bar_color);
-            var hourly = [];
-            var hourList = [];
-            var production_target = [];
-            res['data'].forEach(function(items) {
-                if (items['machine'] === mid) {
-                    items['production'].forEach(function(i) {
-                        hourly.push(i['production']);
-                        hourList.push(i['start_time'] + " to " + i['end_time']);
-                    });
-                    items['targets'].forEach(function(i) {
-                        production_target.push(i);
-                    });
-                }
-            });
-            // availability performance and quality div records
-            var availability_assign = 0;
-            var performance_assign = 0;
-            var quality_assign = 0;
-            var oee_assign = 0;
-            res['oee'].forEach(function(item) {
-                if (item['Machine_Id'] === mid) {
-                    availability_assign = item['Availability'];
-                    performance_assign = item['Performance'];
-                    quality_assign = item['Quality'];
-                    oee_assign = item['OEE'];
-                }
-            });
+    return new Promise(function(resolve,reject){
 
-            $('#availability_val').text(parseInt(availability_assign));
-            $('#performance_val').text(parseInt(performance_assign));
-            $('#quality_val').text(parseInt(quality_assign));
-            $('#oee_val').text(parseInt(oee_assign));
+        var x = 0;
+        $.ajax({
+            url: "<?php echo base_url('Current_Shift_Performance/getLiveMode'); ?>",
+            type: "POST",
+            dataType: "json",
+            cache: false,
+            async: false,
+            data: {
+                shift_date: sdate,
+                shift_id: sid,
+                filter: x,
+            },
+            success: function(res) {
+                resolve(res);
+                console.log("bar color");
+                console.log(bar_color);
+                var hourly = [];
+                var hourList = [];
+                var production_target = [];
+                res['data'].forEach(function(items) {
+                    if (items['machine'] === mid) {
+                        items['production'].forEach(function(i) {
+                            hourly.push(i['production']);
+                            hourList.push(i['start_time'] + " to " + i['end_time']);
+                        });
+                        items['targets'].forEach(function(i) {
+                            production_target.push(i);
+                        });
+                    }
+                });
+                // availability performance and quality div records
+                var availability_assign = 0;
+                var performance_assign = 0;
+                var quality_assign = 0;
+                var oee_assign = 0;
+                res['oee'].forEach(function(item) {
+                    if (item['Machine_Id'] === mid) {
+                        availability_assign = item['Availability'];
+                        performance_assign = item['Performance'];
+                        quality_assign = item['Quality'];
+                        oee_assign = item['OEE'];
+                    }
+                });
+
+                $('#availability_val').text(parseInt(availability_assign));
+                $('#performance_val').text(parseInt(performance_assign));
+                $('#quality_val').text(parseInt(quality_assign));
+                $('#oee_val').text(parseInt(oee_assign));
 
 
-            ChartDataLabels.defaults.color = "#ffffff";
-            ChartDataLabels.defaults.font.size = "9px";
-            ChartDataLabels.defaults.font.family = "'Roboto', sans-serif;";
-            ChartDataLabels.defaults.anchor = "bottom";
-            var ctx = document.getElementById('part_wise_graph_oui').getContext('2d');
-            myChartList[myChartList.length] = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: hourList,
-                    datasets: [{
-                            label: "Production",
-                            type: "bar",
-                            backgroundColor: bar_color,
-                            borderColor: "white",
-                            borderWidth: 1,
-                            fill: true,
-                            data: hourly,
-                        },
-                        {
-                            label: "Production Target",
-                            type: "line",
-                            backgroundColor: "#7f7f7f",
-                            borderColor: "#00000",
-                            borderWidth: 1,
-                            fill: false,
-                            data: production_target,
-                            pointRadius: 0,
-                        },
-                    ],
-                },
-                options: {
-                    scalebeginAtZero: false,
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            display: false,
-                            beginAtZero: true,
-                            stacked: false,
-                        },
-                        x: {
-                            display: true,
-                            grid: {
-                                display: false
+                ChartDataLabels.defaults.color = "#ffffff";
+                ChartDataLabels.defaults.font.size = "9px";
+                ChartDataLabels.defaults.font.family = "'Roboto', sans-serif;";
+                ChartDataLabels.defaults.anchor = "bottom";
+                var ctx = document.getElementById('part_wise_graph_oui').getContext('2d');
+                myChartList[myChartList.length] = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: hourList,
+                        datasets: [{
+                                label: "Production",
+                                type: "bar",
+                                backgroundColor: bar_color,
+                                borderColor: "white",
+                                borderWidth: 1,
+                                fill: true,
+                                data: hourly,
                             },
-                            stacked: true,
-                        },
+                            {
+                                label: "Production Target",
+                                type: "line",
+                                backgroundColor: "#7f7f7f",
+                                borderColor: "#00000",
+                                borderWidth: 1,
+                                fill: false,
+                                data: production_target,
+                                pointRadius: 0,
+                            },
+                        ],
                     },
-                    plugins: {
-                        datalabels: {
-                            formatter: (value, context) => context.datasetIndex === 0 ? value : ''
+                    options: {
+                        scalebeginAtZero: false,
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                display: false,
+                                beginAtZero: true,
+                                stacked: false,
+                            },
+                            x: {
+                                display: true,
+                                grid: {
+                                    display: false
+                                },
+                                stacked: true,
+                            },
                         },
-                        legend: {
-                            display: false,
+                        plugins: {
+                            datalabels: {
+                                formatter: (value, context) => context.datasetIndex === 0 ? value : ''
+                            },
+                            legend: {
+                                display: false,
+                            },
+                            tooltip: {
+                                enabled: true,
+                            },
                         },
-                        tooltip: {
-                            enabled: true,
-                        },
+
                     },
-
-                },
-                plugins: [ChartDataLabels],
-            });
+                    plugins: [ChartDataLabels],
+                });
 
 
-        },
-        error: function(er) {
-            // 
-            console.log("Current shift performance part by hour graph");
-        },
+            },
+            error: function(er) {
+                // 
+                console.log("Current shift performance part by hour graph");
+                console.log(er);
+                reject(er);
+            },
 
+        });
     });
 }
 
 // div elements value assigning function
 function div_records(mid, shift_date, shift_id, card_header, card_body) {
-    $.ajax({
-        url: "<?php echo base_url('Current_Shift_Performance/div_details'); ?>",
-        type: "POST",
-        dataType: "json",
-        cache: false,
-        async: false,
-        data: {
-            mid: mid,
-            shift_date: shift_date,
-            shift_id: shift_id,
-        },
-        success: function(res) {
-            var nict_min = res['nict'] / 60;
-            var tmp_nict = " ";
-            if (parseInt(nict_min) > 0) {
-                var nict_second = res['nict'] % 60;
-                if (parseInt(nict_second) > 0) {
-                    tmp_nict = parseInt(nict_min) + "m" + " " + parseInt(nict_second) + "s";
+    return new Promise(function(resolve,reject){
+        $.ajax({
+            url: "<?php echo base_url('Current_Shift_Performance/div_details'); ?>",
+            type: "POST",
+            dataType: "json",
+            cache: false,
+            async: false,
+            data: {
+                mid: mid,
+                shift_date: shift_date,
+                shift_id: shift_id,
+            },
+            success: function(res) {
+                resolve(res);
+                var nict_min = res['nict'] / 60;
+                var tmp_nict = " ";
+                if (parseInt(nict_min) > 0) {
+                    var nict_second = res['nict'] % 60;
+                    if (parseInt(nict_second) > 0) {
+                        tmp_nict = parseInt(nict_min) + "m" + " " + parseInt(nict_second) + "s";
+                    } else {
+                        tmp_nict = parseInt(nict_min) + "m";
+                    }
                 } else {
-                    tmp_nict = parseInt(nict_min) + "m";
+                    tmp_nict = parseInt(res['nict']) + 's';
                 }
-            } else {
-                tmp_nict = parseInt(res['nict']) + 's';
+
+                var temp_downtime_hour = res['downtime'] / 3600;
+                var temp_total_hour_second = parseInt(temp_downtime_hour)*3600;
+                var temp_downtime_minute =  parseInt(res['downtime']) - parseInt(temp_total_hour_second);
+                temp_downtime_minute = parseInt(temp_downtime_minute) /60
+                var downtime_val = parseInt(temp_downtime_hour)+" h"+" "+parseInt(temp_downtime_minute)+" m";
+
+                $('#downtime_val').text(downtime_val);
+                // $('.cycle_time_sval').text(downtime_second_val);
+                $('#nict_val').text(tmp_nict);
+                $('#reject_count').text(res['rejection_count']);
+                $('#part_name_circle').text(res['part_name']);
+                $('#part_name_header').text(res['part_name']);
+
+                $('.card_header').css('background-color', card_header);
+                $('.card_small_div').css('background-color', card_body);
+                $('.shift_oee_header').css('background-color', card_header);
+                $('.shift_oee_div').css('background-color', card_body);
+
+            },
+            error: function(er) {
+                console.log("Current shift performance div records oui");
+                console.log(er);
+                reject(er);
             }
-
-            var temp_downtime_hour = res['downtime'] / 3600;
-            var temp_total_hour_second = parseInt(temp_downtime_hour)*3600;
-            var temp_downtime_minute =  parseInt(res['downtime']) - parseInt(temp_total_hour_second);
-            temp_downtime_minute = parseInt(temp_downtime_minute) /60
-            var downtime_val = parseInt(temp_downtime_hour)+" h"+" "+parseInt(temp_downtime_minute)+" m";
-
-            $('#downtime_val').text(downtime_val);
-            // $('.cycle_time_sval').text(downtime_second_val);
-            $('#nict_val').text(tmp_nict);
-            $('#reject_count').text(res['rejection_count']);
-            $('#part_name_circle').text(res['part_name']);
-            $('#part_name_header').text(res['part_name']);
-
-            $('.card_header').css('background-color', card_header);
-            $('.card_small_div').css('background-color', card_body);
-            $('.shift_oee_header').css('background-color', card_header);
-            $('.shift_oee_div').css('background-color', card_body);
-
-        },
-        error: function(er) {
-            console.log("Current shift performance div records oui");
-        }
+        });
     });
 }
 
@@ -2299,6 +2332,9 @@ function fullscreen_mode() {
 
 function fullscreen_mode_remove(){
 
+    // return new Promise(function(resolve,reject){
+
+   
     $('.left-sidebar').css('display','block');
     $('.topnav').css('display','block');
     $('.fixsubnav_quality').css('display','block');
@@ -2323,6 +2359,8 @@ function fullscreen_mode_remove(){
     }
 
     $('.slideControl').css('display','none');
+
+// });
 }
 
 // var full = document.getElementById("full_screen_id");
