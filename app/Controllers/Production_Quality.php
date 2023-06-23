@@ -1140,15 +1140,27 @@ class Production_Quality extends BaseController
 
     public function gettablefilterdata(){
         if ($this->request->isAJAX()) {
+      
+            $fdate = explode("T",$this->request->getVar('from'));
+            $tdate = explode("T", $this->request->getVar('to'));
+            $fromdate = $fdate[0]." ".$fdate[1];
+            $todate = $tdate[0]." ".$tdate[1];
             $arr['part'] = $this->request->getVar('part');
             $arr['machine'] = $this->request->getVar('machine');
             $arr['user'] = $this->request->getVar('user');
             $arr['reason'] = $this->request->getVar('reason');
+            $arr['from_date'] = $fdate[0];
+            $arr['to_date'] = $tdate[0];
+
 
             // $arr['machine'] = ['MC1001','MC1002','MC1003','MC1004'];
             // $arr['part'] = ['PT1001', 'PT1002','PT1003','PT1004','PT1005','PT1006','PT1007','PT1008','PT1009'];
             // $arr['user'] = ['UM1002','UM1001'];
             // $arr['reason'] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14'];
+            // $arr['from_date'] = "2023-06-01";
+            // $arr['to_date'] = "2023-06-22";
+            // $fromdate = "2023-06-01 09:00:00";
+            // $todate = "2023-06-22 10:00:00";
 
 
             $ProductionData = $this->Financial->getProductionDetailsFilter($arr);
@@ -1158,48 +1170,56 @@ class Production_Quality extends BaseController
             $ProductionDataExpand = [];
             foreach ($ProductionData as $value) {
                 // Machine Filter.......
-                if (in_array($value['machine_id'], $arr['machine'])) {
-                    // Part Filter/
-                    if (in_array($value['part_id'], $arr['part'])) {
-                        if (trim($value['reject_reason']) !="" or trim($value['reject_reason']) !=null) {
-                            $reasons =  explode("&&", $value['reject_reason']);
-                            foreach ($reasons as $count) {
-                                $tt = explode("&", $count);
-                                $total = $tt[0];
-                                //$temp = explode($total, $count);
-                                $temp = $tt[1];
-                                // Rejection reason and Last updated by filter......
-                                if (in_array($temp, $arr['reason'])){ 
-                                    if(in_array($value['last_updated_by'], $arr['user'])) {
-                                        $dr = $temp;
-                                        $un = $value['last_updated_by'];
-                                        foreach ($reasonData as $r) {
-                                            if ($r['quality_reason_id'] == $temp) {
-                                                $dr = $r['quality_reason_name'];    
+                $shift_stime = $value['shift_date']." ".$value['start_time'];
+                // $shift_etime = $value['shift_date']." ".$value['start_time']; 
+                if ($shift_stime>=$fromdate && $shift_stime<=$todate) {
+                    if (in_array($value['machine_id'], $arr['machine'])) {
+                        // Part Filter/
+                        if (in_array($value['part_id'], $arr['part'])) {
+                            if (trim($value['reject_reason']) !="" or trim($value['reject_reason']) !=null) {
+                                $reasons =  explode("&&", $value['reject_reason']);
+                                foreach ($reasons as $count) {
+                                    $tt = explode("&", $count);
+                                    $total = $tt[0];
+                                    //$temp = explode($total, $count);
+                                    $temp = $tt[1];
+                                    // Rejection reason and Last updated by filter......
+                                    if (in_array($temp, $arr['reason'])){ 
+                                        if(in_array($value['last_updated_by'], $arr['user'])) {
+                                            $dr = $temp;
+                                            $un = $value['last_updated_by'];
+                                            foreach ($reasonData as $r) {
+                                                if ($r['quality_reason_id'] == $temp) {
+                                                    $dr = $r['quality_reason_name'];    
+                                                }
                                             }
-                                        }
-
-                                        foreach ($userData as $u) {
-                                            if ($u['user_id'] == $value['last_updated_by']) {
-                                                $un = $u['first_name']." ".$u['last_name'];    
+    
+                                            foreach ($userData as $u) {
+                                                if ($u['user_id'] == $value['last_updated_by']) {
+                                                    $un = $u['first_name']." ".$u['last_name'];    
+                                                }
                                             }
+    
+                                            $time = strtotime($value['shift_date']);
+                                            $time_stamp = strtotime($value['last_updated_on']);
+                                            $tmp = array("machine_id"=>$value['machine_id'],"part_id"=>$value['part_id'],"reject_count"=>$total,"reject_reason"=>$temp,"total_reject"=>$total,"from_time"=>$value['start_time'],"to_time"=>$value['end_time'],"from_date"=>date('d M y',$time),"updated_by"=>$value['last_updated_by'],"updated_at"=>date('d M y, h:i',$time_stamp),"part_name"=>$value['part_name'],"machine_name"=>$value['machine_name'],"reason_name"=>$dr,"user_name" => $un);
+                                            array_push($ProductionDataExpand, $tmp);
                                         }
-
-                                        $time = strtotime($value['shift_date']);
-                                        $time_stamp = strtotime($value['last_updated_on']);
-                                        $tmp = array("machine_id"=>$value['machine_id'],"part_id"=>$value['part_id'],"reject_count"=>$total,"reject_reason"=>$temp,"total_reject"=>$total,"from_time"=>$value['start_time'],"to_time"=>$value['end_time'],"from_date"=>date('d M y',$time),"updated_by"=>$value['last_updated_by'],"updated_at"=>date('d M y, h:i',$time_stamp),"part_name"=>$value['part_name'],"machine_name"=>$value['machine_name'],"reason_name"=>$dr,"user_name" => $un);
-                                        array_push($ProductionDataExpand, $tmp);
                                     }
                                 }
                             }
                         }
                     }
                 }
+              
             }
 
             // echo sizeof($ProductionDataExpand);
             // echo "<pre>";
             // print_r($ProductionDataExpand);
+                // $tmp['arr'] = $arr;
+                // $tmp['fdate'] = $fromdate;
+                // $tmp['todate'] = $todate;
 
             echo json_encode($ProductionDataExpand);
         }
