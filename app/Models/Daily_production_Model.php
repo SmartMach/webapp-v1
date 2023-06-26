@@ -23,8 +23,8 @@ class Daily_production_Model extends Model{
             'hostname' => 'localhost',
             'username' => 'root',
             'password' => '',
-            'database' => 's1001',
-            // 'database' => ''.$db_name.'',
+            // 'database' => 's1001',
+            'database' => ''.$db_name.'',
             'DBDriver' => 'MySQLi',
             'DBPrefix' => '',
             'pConnect' => false,
@@ -938,10 +938,154 @@ class Daily_production_Model extends Model{
 
         return $res;
     }
+
+
+    // public function get tool change over data
+    public function get_tool_changeover_data_current($sdate){
+        $db =  \Config\Database::connect($this->site_connection);
+        $build = $db->table('pdm_production_info');
+        $build->select('distinct(machine_id)');
+        $build->where('shift_date',$sdate);
+        $res = $build->get()->getResultArray();
+        return $res;
+
+    }
+
+    // get production shift 
+    public function get_toolchangeover_shift_arr($sdate,$mid){
+        $db =  \Config\Database::connect($this->site_connection);
+        $build = $db->table('pdm_production_info');
+        $build->select('distinct(shift_id)');
+        $build->where('shift_date',$sdate);
+        $build->where('machine_id',$mid);
+        $res = $build->get()->getResultArray();
+        return $res;
+    }
     
 
-    
+    // get production tool for shit wise
+    public function get_production_tool($sdate,$mid,$sid){
+        $db =  \Config\Database::connect($this->site_connection);
+        $build = $db->table('pdm_production_info');
+        $build->select('distinct(tool_id),part_id');
+        $build->where('shift_date',$sdate);
+        $build->where('machine_id',$mid);
+        $build->where('shift_id',$sid);
+        $res = $build->get()->getResultArray();
+        return $res;
+    }
  
+    // get tool changeover time 
+    public function get_final_tool_changeover_time($sdate,$mid,$sid,$tid,$pid){
+        // $t_arr = [];
+        // $p_arr = [];
+        $db =  \Config\Database::connect($this->site_connection);
+        $query = $db->table('pdm_tool_changeover as tp');
+        $query->select('tp.*,pd.*');
+        $query->join('tool_changeover as pd','tp.tool_changeover_id  = pd.id');
+        $query->where('tp.machine_id',$mid);
+        $query->where('tp.tool_id',$tid);
+        $query->where('tp.shift_date',$sdate);
+        $query->where('tp.shift_id',$sid);
+        $query->where('pd.part_id',$pid);
+        $query->orderBy('tp.machine_event_id','ASC');
+        $res = $query->get()->getResultArray();
+
+        if (count($res)>0) {
+            $tmp_tcho_time = [];
+            // tool changeover based time array pushing
+            $machine_event_id = 0;
+            foreach ($res as $key => $value) {
+                array_push($tmp_tcho_time,$value['event_start_time']);
+                $machine_event_id = $value['machine_event_id'];
+            }
+
+            $tool_end_time = $this->next_tool_changeover_record($mid,$sid,$sdate,$machine_event_id);
+            if ($tool_end_time !=" ") {
+                array_push($tmp_tcho_time,$tool_end_time);
+
+            }else{
+                $getshift_time_tmp = $this->getcurrentshift_record($sdate);
+                foreach ($getshift_time_tmp['shift_ids'] as $key => $value) {
+                    // return $value;
+                    if (strcmp($value,$sid)==0) {
+                        date_default_timezone_set("Asia/Kolkata");
+                        $tmpdate_time = explode(" ",date("Y-m-d h:i"));
+                        if (strcmp($tmpdate_time[0],$sdate)==0) {
+                            $tmpcmp_time = explode(":",$getshift_time['shifts'][$k]['end_time']);
+                            $tmpcmp_time1 = explode(":",$tmpdate_time[1]);
+                            if ($tmpcmp_time1[0] ===  $tmpcmp_time[0]) {
+                                array_push($tmp_tcho_time,$getshift_time_tmp['shifts'][$key]['end_time']);
+                            }else{
+                                $last_record_time = $this->getlast_record_time($mid,$pid,$tid,$sdate,$sid);
+                                // array_push($tmp_time_arr,$tmpcmp_time1[0]);
+                                array_push($tmp_tcho_time,$last_record_time);
+                            }
+                        }else{
+                            array_push($tmp_tcho_time,$getshift_time_tmp['shifts'][$key]['end_time']);
+                        }
+                    }
+                }
+            }
+            
+
+            return $tmp_tcho_time;
+
+            // return array("true","true");
+        }else{
+            $tmp_time_arr = [];
+            $getshift_time = $this->getcurrentshift_record($sdate);
+            foreach($getshift_time['shift_ids'] as $k => $v){
+                if (strcmp($v,$sid)==0) {
+                    // start time
+                    array_push($tmp_time_arr,$getshift_time['shifts'][$k]['start_time']);
+                    $end_time = $this->gettool_endtime($mid,$sid,$sdate,$getshift_time['shifts'][$k]['start_time']);
+                    // end time
+                    if ($end_time !=" ") {
+                        array_push($tmp_time_arr,$end_time);
+ 
+                    }else{
+                        date_default_timezone_set("Asia/Kolkata");
+                        $tmp_date_time_ar = explode(" ",date("Y-m-d h:i"));
+
+                        if (strcmp($tmp_date_time_ar[0],$sdate)==0) {
+                            $tmp_cmp_time = explode(":",$getshift_time['shifts'][$k]['end_time']);
+                            $tmp_cmp_time1 = explode(":",$tmp_date_time_ar[1]);
+                            if ($tmp_cmp_time[0] ===  $tmp_cmp_time1[0]) {
+                                array_push($tmp_time_arr,$getshift_time['shifts'][$k]['end_time']);
+                            }else{
+                                $last_updated_time = $this->getlast_record_time($mid,$pid,$tid,$sdate,$sid);
+                                // array_push($tmp_time_arr,$tmp_date_time_ar[1]);
+                                array_push($tmp_time_arr,$last_updated_time);
+                            }
+                            // array_push($tmp_time_arr,"smae date");
+                        }else{
+                            // array_push($tmp_time_arr,"not same date".$sdate." ".$tmp_date_time_ar[0]);
+                            array_push($tmp_time_arr,$getshift_time['shifts'][$k]['end_time']);
+                        }
+
+                        // array_push($tmp_time_arr,$getshift_time['shifts'][$k]['end_time']);
+                    }
+                }
+            }
+            return $tmp_time_arr;
+            //return array("false","false");
+        }
+        // foreach ($get_arr as $key => $value) {
+        //     array_push($t_arr,$value['tool_id']);
+        //     array_push($p_arr,$value['part_id']);
+        // }
+
+        // if (count(array_unique($t_arr))>1) {
+            
+        // }else{
+        //     if (count(array_unique($p_arr))>1) {
+                
+        //     }else{
+
+        //     }
+        // }
+    }
 
 }
 
