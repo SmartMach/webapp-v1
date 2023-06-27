@@ -195,6 +195,8 @@ class Production_Quality extends BaseController
 
     public function qualityOpportunity(){
 
+        log_message("info","\n\n production quality COPQP graph function calling !!");
+        $start_time_logger_COPQP = microtime(true);
         //Function call for production data............
         $ref = "qualityOpportunity";
 
@@ -344,6 +346,12 @@ class Production_Quality extends BaseController
         $result['Total']=$ReasonWiseTotal;
 
         $out = $this->selectionSortQualityOpp($result,sizeof($result['Total']));
+
+        $end_time_logger_COPQP = microtime(true);
+        $execution_time_logger_copqp = ($end_time_logger_COPQP - $start_time_logger_COPQP);
+        log_message("info","production quality copqp function execution duration is :\t".$execution_time_logger_copqp);
+
+
         echo json_encode($out);
     }
 
@@ -383,6 +391,9 @@ class Production_Quality extends BaseController
     }
 
     public function qualityOpportunitypartsreason(){
+
+        log_message("info","\n\nproduction quality CQRP graph function calling !!");
+        $start_time_logger_CQRP = microtime(true);
 
         //Function call for production data............
         $ref = "qualityOpportunity";
@@ -507,6 +518,12 @@ class Production_Quality extends BaseController
         $result['Total']=$total;
 
         $out = $this->selectionSortQualityPartsReason($result,sizeof($result['Total']));
+
+        $end_time_logger_CQRP = microtime(true);
+        $execution_time_logger_cqrp = ($end_time_logger_CQRP - $start_time_logger_CQRP);
+        log_message("info","prodcution quality cqrp graph function execution duration :\t".$execution_time_logger_cqrp);
+
+
         echo json_encode($out);
         // echo "<pre>";
         // print_r($out);
@@ -570,6 +587,9 @@ class Production_Quality extends BaseController
     }
 
     public function qualityOpportunityparts(){
+
+        log_message("info","\n\n production quality qualityOpportunityparts grpah function calling !!");
+        $start_time_logger_qualityOpportunityparts = microtime(true);
 
         //Function call for production data............
         $ref = "qualityOpportunity";
@@ -658,6 +678,12 @@ class Production_Quality extends BaseController
         $result['GrandTotal']=$totalPart;
 
         $out = $this->selectionSortQualityParts($result,sizeof($result['Part']));
+
+        $end_Time_logger_qualityOpportunityparts = microtime(true);
+        $execution_time_logger_qualityOpportunityparts = ($end_Time_logger_qualityOpportunityparts - $start_time_logger_qualityOpportunityparts);
+        log_message("info","production quality qualityOpportunityparts graph execution duration is :\t".$execution_time_logger_qualityOpportunityparts);
+
+
         echo json_encode($out);
         // echo "<pre>";
         // print_r($out);
@@ -692,6 +718,9 @@ class Production_Quality extends BaseController
     }
 
     public function qualityOpportunityRejectionWise(){
+
+        log_message("info","\n\n Production quality QRBR graph function calling !!");
+        $start_time_logger_QRBR = microtime(true);
 
         //Function call for production data............
         $ref = "qualityOpportunity";
@@ -776,6 +805,11 @@ class Production_Quality extends BaseController
         $result['GrandTotal']=$GrandTotal;
 
         $out = $this->selectionSortQualityRejection($result,sizeof($result['Reason']));
+
+        $end_time_logger_QRBR = microtime(true);
+        $execution_time_logger_QRBR = ($end_time_logger_QRBR - $start_time_logger_QRBR);
+        log_message("info","production quality QRBR graph execution duration is :\t".$execution_time_logger_QRBR);
+
         echo json_encode($out);
     }
 
@@ -816,6 +850,9 @@ class Production_Quality extends BaseController
     }
 
     public function qualityOpportunityMachine(){
+
+        log_message("info","\n\nproduction quality graph COPQM function calling !!");
+        $start_time_logger_COPQM = microtime(true);
 
         //Function call for production data............
         $ref = "qualityOpportunity";
@@ -904,6 +941,12 @@ class Production_Quality extends BaseController
         $result['GrandTotal']=$GrandTotal;
 
         $out = $this->selectionSortByMachine($result,sizeof($result['Machine']));
+
+        $end_time_logger_COPQM = microtime(true);
+        $execution_time_logger_COPQM = ($end_time_logger_COPQM - $start_time_logger_COPQM);
+        log_message("info","production quality COPQM graph execution duration is :\t".$execution_time_logger_COPQM);
+
+
         echo json_encode($out);
     }
 
@@ -952,6 +995,9 @@ class Production_Quality extends BaseController
     public function qualityOpportunityMachineReason(){
 
         //Function call for production data............
+        log_message("info","\n\n production quality module CRBMR graph function calling !!");
+        $start_time_logger_CRBMR = microtime(true);
+
         $ref = "qualityOpportunity";
 
         $fromTime = $this->request->getVar("from");
@@ -1064,6 +1110,10 @@ class Production_Quality extends BaseController
        $out = $this->selectionSortByMachineReason($result,sizeof($result['Total']));
         // echo"<pre>";
         // print_r($result);
+        $end_time_logger_CRBMR = microtime(true);
+        $execution_time_logger_CRBMR = ($end_time_logger_CRBMR - $start_time_logger_CRBMR);
+        log_message("info","production quality grpah CRBMR execution duraiton is :\t".$execution_time_logger_CRBMR);
+
 
         echo json_encode($out);
     }
@@ -1129,10 +1179,19 @@ class Production_Quality extends BaseController
     public function getfilterdata()
     {
         if ($this->request->isAJAX()) {
+
+            log_message("info","\n\n Production Quality Module Dropdown function calling!!");
+            $start_time_drp_logger = microtime(true);
+
             $arr['Part'] = $this->Financial->getPartDetailsFilter();
             $arr['Machine'] = $this->Financial->getMachineDetailsFilter();
             $arr['Reason'] = $this->Financial->getQualityReasonDetails();
             $arr['Created_By'] = $this->User->getCreatedByDetails();
+
+            $end_time_drp_logger = microtime(true);
+            $execution_time_drp_logger = ($end_time_drp_logger - $start_time_drp_logger);
+            log_message("info","production quality module dropdown function duration is:\t".$execution_time_drp_logger);
+
             echo json_encode($arr);
         }
     }
@@ -1141,6 +1200,9 @@ class Production_Quality extends BaseController
     public function gettablefilterdata(){
         if ($this->request->isAJAX()) {
       
+            log_message("info","\n\nprodcution quality module table function calling!!");
+            $start_time_table_logger = microtime(true);
+
             $fdate = explode("T",$this->request->getVar('from'));
             $tdate = explode("T", $this->request->getVar('to'));
             $fromdate = $fdate[0]." ".$fdate[1];
@@ -1221,6 +1283,10 @@ class Production_Quality extends BaseController
                 // $tmp['fdate'] = $fromdate;
                 // $tmp['todate'] = $todate;
 
+            $end_time_table_logger = microtime(true);
+            $execution_time_table_logger = ($end_time_table_logger - $start_time_table_logger);
+            log_message("info","production quality table function execution duration is :\t".$execution_time_table_logger);
+            
             echo json_encode($ProductionDataExpand);
         }
     }

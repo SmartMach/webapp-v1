@@ -177,6 +177,11 @@ class Daily_production_controller extends BaseController{
     public function getMachine_data(){
         if ($this->request->isAJAX()) {
             // $date = "2023-06-10";
+
+            log_message("info","\n\ndaily production status function calling log");
+            log_message("info","\n\ndaily production status function calling log");
+            $start_time_logger_dps = microtime(true);
+
             $date = $this->request->getVar('date');
 
            $getmachine_data = $this->datas->getmachine_data();
@@ -597,6 +602,9 @@ class Daily_production_controller extends BaseController{
             $data['shift_wise_time'] = $shift_wise_time_arr;
 
             // $data['dummy'] = $getshiftid;
+            $end_time_logger_dps = microtime(true);
+            $execution_duration_logger_dps = ($end_time_logger_dps - $start_time_logger_dps);
+            log_message("info","dps execution duration is :\t".$execution_duration_logger_dps."sec");
            
             echo json_encode($data);
             // echo "<pre>";
