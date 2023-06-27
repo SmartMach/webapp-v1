@@ -300,7 +300,7 @@ $session = \Config\Services::session();
                         </div>
                     </div>
 
-                    <a style="border-radius:0.25rem;padding:5px 25px;height:2.2rem;opacity:1;font-size:15px;cursor:pointer;font-weight:500;background: #005abc;color: white;" class="settings_nav_anchor center-align" onclick="getFilterval(true)" id="">Apply Filter
+                    <a style="border-radius:0.25rem;padding:5px 25px;height:2.2rem;opacity:1;font-size:15px;cursor:pointer;font-weight:500;" class="settings_nav_anchor saveBtnStyle center-align" onclick="getFilterval(true)" id="">Apply Filter
                     </a>
 
                     <div class="box rightmar" style="margin-right: 0.5rem;display: flex;justify-content: center;">
@@ -311,7 +311,7 @@ $session = \Config\Services::session();
                         if($this->data['access'][0]['work_order_management'] == 3){ 
                     ?>
 
-                    <a style="background: #005abc;color: white;border-radius:0.25rem;padding:5px 25px;cursor:pointer;font-size:15px;font-weight:500;height:2.2rem;" class="settings_nav_anchor float-end" id="add_issue_button">
+                    <a style="border-radius:0.25rem;padding:5px 25px;cursor:pointer;font-size:15px;font-weight:500;height:2.2rem;" class="settings_nav_anchor saveBtnStyle float-end" id="add_issue_button">
                         <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>Add Issue
                     </a>
 

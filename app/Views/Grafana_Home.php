@@ -40,6 +40,8 @@
     <!-- strategy current shift in general settings css -->
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/current_shift.css">
 
+    <!-- css configuration file -->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/config.css?version=<?php echo rand(); ?>">
     <!--Link For FONTS-->
     <link href="<?php echo base_url()?>/assets/fonts/Roboto/Roboto-Black.ttf" rel="stylesheet">
 

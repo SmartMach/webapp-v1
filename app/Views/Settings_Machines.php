@@ -71,7 +71,7 @@ $session = \Config\Services::session();
                         if($this->data['access'][0]['settings_machine'] == 3){ 
                     ?>
 
-                    <a style="background: #005abc;color: white;width:9rem;" class="settings_nav_anchor float-end" id="add_machine_button">
+                    <a style="" class="settings_nav_anchor saveBtnStyle float-end" id="add_machine_button">
                         <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD MACHINE
                     </a>  
 

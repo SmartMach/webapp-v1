@@ -14,6 +14,11 @@
 }
 .saveBtnStyle:hover{
 	color: var(--save_btn_font_color);
-	background: var(--save_btn_background_color);
-	opacity: 0.8;
+	background: var(--save_btn_hover_background_color);
+	/* opacity: 0.8; */
+}
+.cancelBtnStyle:hover{
+	color: var(--cancel_btn_hover_font_color);
+	background: var(--cancel_btn_hover_background_color);
+	/* opacity: 0.8; */
 }

@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/model.css">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/main.css">
 
+    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/config.css?version=<?php echo rand(); ?>">
+
     <!--Link For FONTS-->
     <link href="<?php echo base_url()?>/assets/fonts/Roboto/Roboto-Black.ttf" rel="stylesheet">
 
@@ -45,11 +47,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
      .savebtn:hover{
-        color:black;
+        color:var(--save_btn_font_color);
         font-weight:495;
+        background:var(--save_btn_hover_background_color);
      }
      .required_design{
-        color:red;
+        color:var(--required_font_color);
         margin-bottom:100px;
         padding-left:1px;
      }

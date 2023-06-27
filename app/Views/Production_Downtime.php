@@ -288,8 +288,8 @@ input[type=number] {
 
 /* filter button hovering style */
 .filterbtnstyle:hover{
-  color:white;
-  background-color:#005abc;
+  color:var(--save_btn_font_color);
+  background-color:var(--save_btn_hover_background_color);
   opacity: 0.9;
 
 }
@@ -299,7 +299,7 @@ input[type=number] {
   top:19rem;
   left:4.6rem;
   right:0;
-  background-color:white;
+  background-color:var(--save_btn_font_color);
   z-index:1000;
   position: fixed;
   /* margin-top:8rem; */
@@ -375,7 +375,7 @@ input[type=number] {
     border: 1px #dadada solid;
     z-index:2000;
     position: absolute;
-    background:white;
+    background:var(--save_btn_font_color);
     /* padding:0.4rem; */
     border-radius:0.25rem;
     min-width:8.7rem;
@@ -453,7 +453,7 @@ input[type=number] {
     border: 1px #dadada solid;
     z-index:2000;
     position: absolute;
-    background:white;
+    background:var(--save_btn_font_color);
     /* padding:0.4rem; */
     border-radius:0.25rem;
     min-width:8.7rem;
