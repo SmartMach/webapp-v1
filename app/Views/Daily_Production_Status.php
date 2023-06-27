@@ -312,10 +312,11 @@ $('#changed_date').datetimepicker({
     // document ready function its get color change for tpp record font color
     $(document).ready(function(){
         const current_date = getcurrent_date();
-        // console.log("current date"+current_date);
+        console.log("current date"+current_date);
         $('#changed_date').val(current_date);
         $("#overlay").fadeIn(300);
         load_allfiles();
+        console.log("after function calling");
         color_change_value();
     });
     
@@ -747,7 +748,7 @@ $('#changed_date').datetimepicker({
       var y = current_date.getFullYear();
       var today_date = y+"-"+m+"-"+d;
 
-      // return "2023-06-09";
+      // return "2023-06-10";
       return today_date;
     }
 

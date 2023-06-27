@@ -136,7 +136,7 @@ class Production_Downtime_controller extends BaseController{
     }
 
     public function getAvailabilityReasonWise($fromTime,$toTime){
-    // public function getAvailabilityReasonWise(){
+        // public function getAvailabilityReasonWise(){
         // $ref = "AvailabilityReasonWise";
 
         // $fromTime = $this->request->getVar("from");
@@ -636,6 +636,10 @@ class Production_Downtime_controller extends BaseController{
     // filter records getting
     public function filter_records(){
         if ($this->request->isAJAX()) {
+
+            log_message("info","\n\nproduction downtime table records function calling ");
+            $start_time_logger_tb = microtime(true);
+
             $machine_arr = $this->request->getVar('pass_machine');
             $part_arr = $this->request->getVar('pass_part');
             $reason_arr = $this->request->getVar('pass_reason');
@@ -689,6 +693,11 @@ class Production_Downtime_controller extends BaseController{
             // $tmp['category'] = $category_arr;
             // $tmp['reason'] = $reason_arr;
             // $tmp['created'] = $created_by_arr;
+            $end_time_logger_tb = microtime(true);
+            $execution_time_logger_tb = ($end_time_logger_tb - $start_time_logger_tb);
+            log_message("info","production downtime table records function execution duration is :\t".$execution_time_logger_tb);
+
+
             echo  json_encode($final1);
             /*
             if (($machine_arr==null)&&($machine_arr=="")) {
@@ -1550,6 +1559,9 @@ class Production_Downtime_controller extends BaseController{
     // all filter dropdown win one function 
     public function getall_filter_arr(){
         if ($this->request->isAJAX()) {
+            log_message("info","\n\nproduction downtime graph filter dropdown function calling ");
+            $start_time_logger_drp = microtime(true);
+
             $machine_drp = $this->data->getmachine_record_data();
             $part_drp = $this->data->getpart_data_drp();
             $sid = $this->session->get('active_site');        
@@ -1561,6 +1573,10 @@ class Production_Downtime_controller extends BaseController{
             $res['created_by'] = $created_drp;
             $res['downtime_reason'] = $downtime_reason_drp;
 
+            $end_time_logger_drp = microtime(true);
+            $execution_time_logger_drp = ($end_time_logger_drp - $start_time_logger_drp);
+            log_message("info","production downtime graph filter dorpdown function execution duration is :\t".$execution_time_logger_drp);
+
             echo json_encode($res); 
         }
        
@@ -1571,6 +1587,9 @@ class Production_Downtime_controller extends BaseController{
     public function first_reason_oppcost(){
 
         if ($this->request->isAJAX()) {
+            log_message("info","\n\nproduction downtime graph reason wise oppcost graph calling");
+            $start_time_pd_logger_rc = microtime(true); 
+
             
             // $FromDate = "2023-06-10T12:00:00";
             // $todate = "2023-06-16T11:00:00";
@@ -1601,6 +1620,11 @@ class Production_Downtime_controller extends BaseController{
             // echo "<pre>";
             // print_r($temp);
             $out = $this->cost_based_sorting($temp);
+
+            $end_time_pd_logger_rc = microtime(true);
+            $execution_time_logger_rc = ($end_time_pd_logger_rc - $start_time_pd_logger_rc);
+            log_message("info","production downtime reason wise oppcost duration is :\t".$execution_time_logger_rc); 
+
             echo json_encode($out);
             
         }
@@ -1611,6 +1635,10 @@ class Production_Downtime_controller extends BaseController{
     // production downtime loader reason wise duration graph
     public function first_reason_duration(){
         if ($this->request->isAJAX()) {
+
+            log_message("info","\n\nproduction downtime reason wise duration graph calling ");
+            $start_time_pd_logger_rd = microtime(true);
+
             $fromdate = $this->request->getVar('from');
             $todate = $this->request->getVar('to');
             // $fromdate = "2023-06-10T14:00:00";
@@ -1637,6 +1665,12 @@ class Production_Downtime_controller extends BaseController{
             $temp['grandTotal'] = $res['grandTotal'];
             $temp['total_duration'] = array_sum($total_duration_arr);
             $out = $this->sort_duration_based($temp);
+
+            $end_time_pd_logger_rd = microtime(true);
+            $execution_time_logger_rd = ($end_time_pd_logger_rd - $start_time_pd_logger_rd);
+            log_message("info","production downtime reason wise duration graph execution duration is:\t".$execution_time_logger_rd);
+
+
             echo  json_encode($out);
             // echo "<pre>";
             // print_r($out);
@@ -1648,6 +1682,9 @@ class Production_Downtime_controller extends BaseController{
     public function first_machine_oppcost(){
 
         if($this->request->isAJAX()){
+            log_message("info","\n\nproduction downtime machine wise oppcost graph calling");
+            $start_time_pd_logger_mc = microtime(true);
+
             $fromdate = $this->request->getVar('from');
             $todate = $this->request->getVar('to');
             // $fromdate = "2023-06-10T14:00:00";
@@ -1693,6 +1730,10 @@ class Production_Downtime_controller extends BaseController{
             $out = $this->machine_wise_oppcost_sort($final_arr);
             // echo "<pre>";
             // print_r($out);
+            $end_time_pd_logger_mc = microtime(true);
+            $execution_time_logger_mc = ($end_time_pd_logger_mc - $start_time_pd_logger_mc);
+            log_message("info","production downtime machine wise oppcost graph execution duration is : \t".$execution_time_logger_mc);
+           
             echo json_encode($out);
         }
        
@@ -1701,6 +1742,9 @@ class Production_Downtime_controller extends BaseController{
 
     public function first_machine_duration(){
         if ($this->request->isAJAX()) {
+            log_message("info","\n\nproduction downtime machine wise duration  graph calling");
+            $start_time_pd_logger_md = microtime(true);
+
             $fromdate = $this->request->getVar('from');
             $todate = $this->request->getVar('to');
             // $fromdate = "2023-06-10T14:00:00";
@@ -1742,6 +1786,10 @@ class Production_Downtime_controller extends BaseController{
             $final = $this->getmachine_reason_sorting($out);
             // echo "<pre>";
             // print_r($final);
+            $end_time_pd_logger_md = microtime(true);
+            $execution_time_logger_md = ($end_time_pd_logger_md - $start_time_pd_logger_md);
+            log_message("info","production downtime machine wise duration graph execution duration is : \t".$execution_time_logger_md);
+            
             echo json_encode($final);
 
         }        

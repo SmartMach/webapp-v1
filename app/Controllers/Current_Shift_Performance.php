@@ -16,6 +16,9 @@ class Current_Shift_Performance extends BaseController{
     }
 
     public function getLive(){
+        log_message("info","\n\n current shift performance get live machine function calling !!");
+        $start_time_logger_live = microtime(true);
+
         $shift_detailes =  $this->datas->getShiftLive();
         $shift = $this->datas->getShiftExact($shift_detailes[0]['shift_date']." 23:59:59");
 
@@ -25,10 +28,19 @@ class Current_Shift_Performance extends BaseController{
         		$shift_detailes[0]['end_time'] = $value['end_time'];
         	}
         }
+
+        $end_time_logger_live = microtime(true);
+        $execution_time_logger_live = ($end_time_logger_live - $start_time_logger_live);
+        log_message("info","current shift performance get live execution duration is :\t".$execution_time_logger_live);
+
+
         return json_encode($shift_detailes);
     }
 
     public function getPreviousShiftLive(){
+        log_message("info","\n\n current shift performance module previous shift function calling !!");
+        $start_time_logger_prev_shift = microtime(true);
+
         $shift_detailes =  $this->datas->getPreviousShiftLive();
 
         $shift = $this->datas->getShiftExact($shift_detailes[1]['shift_date']." 23:59:59");
@@ -42,11 +54,19 @@ class Current_Shift_Performance extends BaseController{
         $shift_data = [];
         array_push($shift_data,$shift_detailes[1]);
 
+        $end_time_logger_prev_shift = microtime(true);
+        $execution_time_logger_prev_shift = ($end_time_logger_prev_shift - $start_time_logger_prev_shift);
+        log_message("info","current shift performance previous shift function execution duration is:\t".$execution_time_logger_prev_shift);
+        
         return json_encode($shift_data);
     }
     
     public function getLiveMode(){
     	if ($this->request->isAJAX()) {
+
+            log_message("info","\n\ncurrent shift performance getlivemode graph function calling !!!");
+            $start_time_logger_getlive_mode = microtime(true);
+
     		$shift_date = $this->request->getVar('shift_date');
     		$shift_id = $this->request->getVar('shift_id');
             $filter = $this->request->getVar('filter');
@@ -433,6 +453,10 @@ class Current_Shift_Performance extends BaseController{
             //     return json_encode($out);
             // }
 
+            $end_time_logger_getlive_mode = microtime(true);
+            $execution_time_logger_gerlive_mode = ($end_time_logger_getlive_mode - $start_time_logger_getlive_mode);
+            log_message("info","current shift peformance getlive mode graph execution duration is :\t".$execution_time_logger_gerlive_mode);
+
             return json_encode($out);
 	       	
     	}
@@ -750,6 +774,10 @@ class Current_Shift_Performance extends BaseController{
      // div record for current shift performance oui screen
      public function div_details(){
         if ($this->request->isAJAX()) {
+            log_message("info","\n\n current shift performance oui screen div records ");
+            $start_time_logger_div_record = microtime(true);
+
+
             $mid = $this->request->getVar('mid');
             $sdate = $this->request->getVar('shift_date');
             $sid = $this->request->getVar('shift_id');
@@ -802,6 +830,11 @@ class Current_Shift_Performance extends BaseController{
 
             // $div_record['rejection_count'] = $total_reject_count;
             // $div_record['part_name'] = implode(',',$tmp_partname_arr);
+            $end_time_logger_div_record = microtime(true);
+            $execution_time_logger_dive_record = ($end_time_logger_div_record - $start_time_logger_div_record);
+            log_message("info","current shift peroformance execution duration is :\t".$execution_time_logger_dive_record);
+
+
             echo json_encode($div_record);
         }
     }
@@ -812,6 +845,8 @@ class Current_Shift_Performance extends BaseController{
     public function get_target_graph(){
         if ($this->request->isAJAX()) {
         
+            log_message("info","\n\n current shift performance oui screen get target graph");
+            $start_time_logger_oui_target = microtime(true);
         
             $shift_date=$this->request->getvar('sdate');
             $mid = $this->request->getvar('mid');
@@ -837,6 +872,11 @@ class Current_Shift_Performance extends BaseController{
                 array_push($final_arr,$tmp);
             }
             // print_r($final_arr);
+            $end_time_logger_oui_target = microtime(true);
+            $execution_time_logger_oui_target = ($end_time_logger_oui_target - $start_time_logger_oui_target);
+            log_message("info","current shift performance oui screen target graph execution duration is :\t".$execution_time_logger_oui_target);
+
+            
             echo json_encode($final_arr);
             // $final_ar['target_production'] = $res_production;
             // $final_ar['target'] = $res_tool;

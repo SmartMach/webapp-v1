@@ -662,6 +662,9 @@ class OEE_Drill_Down_controller extends BaseController
     public function OverallOEETarget(){
 
         if ($this->request->isAJAX()) {
+            log_message("info","\n\n oee drill down over all graph function calling !!");
+            $start_time_logger_overall_g = microtime(true);
+
            $ref="Overall";
             $fromTime = $this->request->getVar("from");
             $toTime = $this->request->getVar("to");
@@ -679,6 +682,11 @@ class OEE_Drill_Down_controller extends BaseController
             // $end_time = microtime(true);
             // $execution_time = ($end_time - $start_time);
             // echo " Execution time of script = ".$execution_time." sec";
+            $end_time_logger_overall_g = microtime(true);
+            $execution_time_logger_overall_g = ($end_time_logger_overall_g - $start_time_logger_overall_g);
+            log_message("info","oee drill down overall graph execution duration is :\t".$execution_time_logger_overall_g);
+
+
             echo json_encode($Overall);
 
             // echo "<pre>";
@@ -689,7 +697,15 @@ class OEE_Drill_Down_controller extends BaseController
     }
 
     public function getOverallTarget(){
+        log_message("oee drill down graph overall graph function calling !!");
+        $start_time_logger_oa = microtime(true);
+
         $Targets =  $this->data->getGoalsFinancialData();
+
+        $end_time_logger_oa = microtime(true);
+        $execution_time_logger_oa = ($end_time_logger_oa - $start_time_logger_oa);
+        log_message("info","\n\n oee drill down over all graph execution duration is :\t".$execution_time_logger_oa);
+       
         return json_encode($Targets);
     }
 
@@ -1892,6 +1908,10 @@ class OEE_Drill_Down_controller extends BaseController
     // get all filter dropdown function
     public function get_all_dilter_drp_fun(){
         if ($this->request->isAJAX()) {
+
+            log_message("info","\n\n oee drill down dropdown funciton calling !!");
+            $start_time_logger_drp  = microtime(true);
+
             $downtime_drp = $this->data->downtime_reason_filter_con();
             $machine_drp = $this->data->getmachine_record_data();
             $part_drp = $this->data->getpart_data();
@@ -1901,6 +1921,10 @@ class OEE_Drill_Down_controller extends BaseController
             $res['downtime'] = $downtime_drp;
             $res['part'] = $part_drp;
             $res['quality'] = $quality_drp;
+
+            $end_time_logger_drp = microtime(true);
+            $execution_time_logger_drp = ($end_time_logger_drp - $start_time_logger_drp);
+            log_message("info","oee drill down drp function execution duration is :\t".$execution_time_logger_drp);
 
             echo json_encode($res);
         }
@@ -1912,6 +1936,10 @@ class OEE_Drill_Down_controller extends BaseController
     // first loader function
     public function first_load_oee_trend(){
         if ($this->request->isAJAX()) {
+            log_message("info","\n\n oee drill down oee trend day graph function calling !!");
+            $start_time_logger_oee_trend = microtime(true);
+
+
             $ref = "OpportunityTrendDay";
 
             $fromTime = $this->request->getVar("from");
@@ -1920,8 +1948,8 @@ class OEE_Drill_Down_controller extends BaseController
           
             // $machine_arr = $this->request->getVar('machine_arr');
           
-            $fromTime = "2023-06-11T18:00:00";
-            $toTime = "2023-06-17T19:00:00";
+            // $fromTime = "2023-06-11T18:00:00";
+            // $toTime = "2023-06-17T19:00:00";
 
             // $filter_data['reason_arr'] = $reason_arr;
             // $filter_data['category_arr'] = $category_arr;
@@ -2092,6 +2120,12 @@ class OEE_Drill_Down_controller extends BaseController
                 array_push($data,$t);
             }
             $out = $data;
+
+            
+            $end_time_logger_oee_trend = microtime(true);
+            $execution_time_logger_oee_trend = ($end_time_logger_oee_trend - $start_time_logger_oee_trend);
+            log_message("info"," oee drill down oee trend day graph execution duration is:\t".$execution_time_logger_oee_trend);
+
             echo json_encode($out);
             // echo "<pre>";
             // print_r($out);
@@ -2184,7 +2218,8 @@ class OEE_Drill_Down_controller extends BaseController
     // first loader function machine wise oee
     public function first_loader_machine_oee(){
         if ($this->request->isAJAX()) {
-            
+            log_message("info","\n\n oee drill down machine wise oee graph function calling !!");
+            $start_time_logger_machine_wise_oee = microtime(true);
             
             $ref = "MachinewiseOEE";
 
@@ -2247,6 +2282,12 @@ class OEE_Drill_Down_controller extends BaseController
             $graphData['OEETarget'] = $OEETarget;
 
             $out = $this->selectionSortOEE($graphData,sizeof($graphData['OEE']));
+
+            $end_time_logger_machine_wise_oee = microtime(true);
+            $execution_time_logger_machine_wise_oee = ($end_time_logger_machine_wise_oee - $start_time_logger_machine_wise_oee);
+            log_message("info","oee drill down machine wise oee execution duratio is :\t".$execution_time_logger_machine_wise_oee);
+
+
             echo json_encode($out);
             // echo "<pre>";
             // print_r($out);
@@ -2256,11 +2297,15 @@ class OEE_Drill_Down_controller extends BaseController
     // first loader function availability graph
     public function first_load_availability(){
         if ($this->request->isAJAX()) {
+
+            log_message("info","\n\n oee drill down availabilit graph function calling !!");
+            $start_time_logger_availability = microtime(true);
+
             $fromTime = $this->request->getVar("from");
             $toTime = $this->request->getVar("to");
 
-            // $fromTime = "2023-06-11T19:00:00";
-            // $toTime = "2023-06-17T18:00:00";
+            // $fromTime = "2023-06-15T19:00:00";
+            // $toTime = "2023-06-21T18:00:00";
 
             // $category_arr = $this->request->getVar('category_arr');
             // $reason_arr = $this->request->getVar('reason_arr');
@@ -2323,6 +2368,11 @@ class OEE_Drill_Down_controller extends BaseController
 
             // echo "<pre>";
             // print_r($res);
+            
+            $end_time_logger_availability = microtime(true);
+            $execution_time_logger_availability = ($end_time_logger_availability - $start_time_logger_availability);
+            log_message("info","oee drill down availability graph execution duration is :\t".$execution_time_logger_availability);
+
             echo json_encode($res);
         }
     }
@@ -2362,6 +2412,10 @@ class OEE_Drill_Down_controller extends BaseController
     // first loader performance opportunity function
     public function first_loader_performance(){
         if ($this->request->isAJAX()) {
+            log_message("info","\n\n oee drill down performance grpah calling !!");
+            $start_time_logger_performance = microtime(true);
+
+
             $ref = "PerformanceOpportunity";
 
             $fromTime = $this->request->getVar("from");
@@ -2511,6 +2565,12 @@ class OEE_Drill_Down_controller extends BaseController
     
             //sorting in desending order......
             $out = $this->selectionSortQuality($res,sizeof($res['Total']));
+
+            $end_Time_logger_performance  = microtime(true);
+            $execution_time_logger_performance = ($end_Time_logger_performance - $start_time_logger_performance);
+            log_message("info","oee drill down graph function execution duration is :\t".$execution_time_logger_performance);
+
+
             echo json_encode($out);
             // echo "<pre>";
             // print_r($out);     
@@ -2521,6 +2581,11 @@ class OEE_Drill_Down_controller extends BaseController
     // first loader quality graph fucntion
     public function first_loader_quality(){
         if ($this->request->isAJAX()) {
+
+            log_message("info","\n\n oee drill down module quality graph function calling !!");
+            $start_time_logger_quality = microtime(true);
+
+
             $ref = "qualityOpportunity";
 
             $fromTime = $this->request->getVar("from");
@@ -2678,6 +2743,12 @@ class OEE_Drill_Down_controller extends BaseController
             $output['graph_data'] = $final_arr;
             $output['quality_data'] = $qualityReason;
             // $output['machine_wise_total'] = $machine_wise_total_arr;
+
+            $end_time_logger_quality = microtime(true);
+            $execution_time_logger_quality = ($end_time_logger_quality - $start_time_logger_quality);
+            log_message("info","oee drill down quality grpah execution duration is :\t".$execution_time_logger_quality);
+
+
             echo  json_encode($output);
             // echo "<pre>";
             // print_r($output);

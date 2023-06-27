@@ -322,7 +322,7 @@ $session = \Config\Services::session();
             </div>
         </nav>
         <div class="tableContent" style="margin-top: 4rem;">
-            <div class="settings_machine_header sticky-top fixtabletitle">
+            <div class="settings_machine_header sticky-top fixtabletitle" style="top:11.1rem;">
                 <div class="row paddingm">
                     <div class="col-sm-1 p3 paddingm">
                       <p class="basic_header">ID</p>

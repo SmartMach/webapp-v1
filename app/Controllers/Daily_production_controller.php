@@ -175,9 +175,14 @@ class Daily_production_controller extends BaseController{
 
     // get machine records
     public function getMachine_data(){
-        // if ($this->request->isAJAX()) {
-            $date = "2023-06-10";
-            // $date = $this->request->getVar('date');
+        if ($this->request->isAJAX()) {
+            // $date = "2023-06-10";
+
+            log_message("info","\n\ndaily production status function calling log");
+            log_message("info","\n\ndaily production status function calling log");
+            $start_time_logger_dps = microtime(true);
+
+            $date = $this->request->getVar('date');
 
            $getmachine_data = $this->datas->getmachine_data();
             $getdowntime_reason_data = $this->datas->getdowntime_reason_data();
@@ -351,7 +356,31 @@ class Daily_production_controller extends BaseController{
             // print_r($getsid);
 
 
-            $quality_part_production_wise=[];
+            // $quality_part_production_wise=$this->get_current_tool_chnageover_records($active_time_data,$getpart_data,$date);
+            $quality_part_production_wise = [];
+            $res = $this->datas->get_tool_changeover_data_current($date);
+            foreach ($res as $key => $value) {
+                $shift_arr = $this->datas->get_toolchangeover_shift_arr($date,$value['machine_id']);
+                $tmp_s = [];
+                foreach ($shift_arr as $k1 => $val) {
+                    // $tmp = [];
+                    // array_push($tmp_s,$val['shift_id']);
+                    $get_tools_tc = $this->datas->get_production_tool($date,$value['machine_id'],$val['shift_id']);
+                
+    
+                    // $get_time_arr = $this->datas->get_final_tool_changeover_time($sdate,$value['machine_id'],$val['shift_id'],$get_tools_tc);
+                    $time_arr = [];
+                    foreach ($get_tools_tc as $k1 => $val1) {
+                        $record = $this->datas->get_final_tool_changeover_time($date,$value['machine_id'],$val['shift_id'],$val1['tool_id'],$val1['part_id']);
+                        $tool_arr = $this->final_duration_data($active_time_data,$value['machine_id'],$date,$val['shift_id'],$val1['tool_id'],$val1['part_id'],sizeof($get_tools_tc),$record[0],$record[1],$getpart_data);
+                        array_push($tool_arr,$record);
+                        $time_arr[$val1['part_id']] = $tool_arr;
+                    }
+                    $tmp_s[$val['shift_id']] = $time_arr;
+                }
+                $quality_part_production_wise[$value['machine_id']] = $tmp_s;    
+            }
+            /*
             foreach ($getmachine_data as $key => $m) {
                 $tmp_machine=[];
                 foreach ($getsid as $key_shift => $s) {
@@ -516,6 +545,11 @@ class Daily_production_controller extends BaseController{
                 }
                 $quality_part_production_wise[$m['machine_id']]= $tmp_machine;
             }
+            */
+
+            // $quality_part_production_wise['before_tool_changeover'] = $tool_changeover_data_before;
+            // $quality_part_production_wise['after tool_changeover'] = $tool_changeover_data_after;
+            // $quality_part_production_wise['tool_changeover_data'] = $tool_changeover_data;
             
             // quality reasons array
             $quality_reasons_org_data=[];
@@ -568,12 +602,15 @@ class Daily_production_controller extends BaseController{
             $data['shift_wise_time'] = $shift_wise_time_arr;
 
             // $data['dummy'] = $getshiftid;
+            $end_time_logger_dps = microtime(true);
+            $execution_duration_logger_dps = ($end_time_logger_dps - $start_time_logger_dps);
+            log_message("info","dps execution duration is :\t".$execution_duration_logger_dps."sec");
            
-            // echo json_encode($data);
-            echo "<pre>";
-            print_r($data);
+            echo json_encode($data);
+            // echo "<pre>";
+            // print_r($data);
 
-        // }
+        }
       
     }   
 
@@ -799,8 +836,38 @@ class Daily_production_controller extends BaseController{
         print_r($demo_arr);
         echo "</pre>";
     }
+   
+    // tool changeover time function for the part details array
     
-    
+    // public function get_current_tool_chnageover_records(){
+    //     $sdate = "2023-06-10";
+
+    //     $final_arr = [];
+    //     $res = $this->datas->get_tool_changeover_data_current($sdate);
+    //     foreach ($res as $key => $value) {
+    //         $shift_arr = $this->datas->get_toolchangeover_shift_arr($sdate,$value['machine_id']);
+    //         $tmp_s = [];
+    //         foreach ($shift_arr as $k1 => $val) {
+    //             // $tmp = [];
+    //             // array_push($tmp_s,$val['shift_id']);
+    //             $get_tools_tc = $this->datas->get_production_tool($sdate,$value['machine_id'],$val['shift_id']);
+            
+
+    //             // $get_time_arr = $this->datas->get_final_tool_changeover_time($sdate,$value['machine_id'],$val['shift_id'],$get_tools_tc);
+    //             $time_arr = [];
+    //             foreach ($get_tools_tc as $k1 => $val1) {
+    //                 $record = $this->datas->get_final_tool_changeover_time($sdate,$value['machine_id'],$val['shift_id'],$val1['tool_id'],$val1['part_id']);
+    //                 $time_arr[$val1['part_id']] = $record;
+    //             }
+    //             $tmp_s[$val['shift_id']] = $get_tools_tc;
+    //         }
+    //         $final_arr[$value['machine_id']] = $tmp_s;
+            
+    //     }
+    //     echo  "<pre>";
+    //     print_r($final_arr);
+    // }
+
 }
 
 
