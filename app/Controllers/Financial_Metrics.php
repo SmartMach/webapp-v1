@@ -14,11 +14,23 @@ class Financial_Metrics extends BaseController
     } 
     
     public function getOverallTarget(){
+        log_message("info","\n\n financial oee drill down  metrics overall function calling !!");
+        $start_time_logger_overall = microtime(true);
+
         $Targets =  $this->Financial->getGoalsFinancialData();
+
+        $end_time_logger_overall = microtime(true);
+        $execution_time_logger_overall = ($start_time_logger_overall - $end_time_logger_overall);
+        log_message("info","\n\n financial oee drill down metrics overall function duration is:\t".$execution_time_logger_overall);
+
+
         return json_encode($Targets);
     }
 
     public function OverallOEETarget(){
+        log_message("info","\n\n financial oee drill down  metrics overalltarget function calling !!");
+        $start_time_logger_overall_target = microtime(true);
+
         $ref="Overall";
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
@@ -36,6 +48,11 @@ class Financial_Metrics extends BaseController
         // $end_time = microtime(true);
         // $execution_time = ($end_time - $start_time);
         // echo " Execution time of script = ".$execution_time." sec";
+        $end_time_logger_overall_target = microtime(true);
+        $execution_time_logger_overall_target = ($end_time_logger_overall_target - $start_time_logger_overall_target);
+        log_message("info","current shift performance overall target function duration is :\t".$execution_time_logger_overall_target);
+
+
         echo json_encode($Overall);
     }
 
@@ -521,6 +538,10 @@ class Financial_Metrics extends BaseController
 
     public function getMachineWiseOEE(){
 
+        log_message("info","\n\n financial foee drill down machine wise oee");
+        $start_time_logger_machine_oee = microtime(true);
+
+
         $ref = "MachinewiseOEE";
 
         // $fromTime = "2022-12-18T09:00:00";
@@ -585,6 +606,12 @@ class Financial_Metrics extends BaseController
         $graphData['OEETarget'] = $OEETarget;
 
         $out = $this->selectionSortOEE($graphData,sizeof($graphData['OEE']));
+
+        $end_time_logger_machine_oee = microtime(true);
+        $execution_time_logger_machine_oee = ($end_time_logger_machine_oee - $start_time_logger_machine_oee);
+        log_message("info","financial oee drill down machine wise oee function duration is :\t".$execution_time_logger_machine_oee);
+
+
         echo json_encode($out);
     }
 
@@ -833,6 +860,10 @@ class Financial_Metrics extends BaseController
     }
 
     public function getAvailabilityReasonWise(){
+        log_message("info","\n\n financial oee drill down availability reason wise function calling !!");
+        $start_time_logger_availability = microtime(true);
+
+
         $ref = "AvailabilityReasonWise";
 
         // $fromTime = "2022-12-18T09:00:00";
@@ -981,6 +1012,12 @@ class Financial_Metrics extends BaseController
         
         //sorting in desending order......
         $out = $this->selectionSortAvailability($res,sizeof($res['total']));
+
+        $end_time_logger_availability = microtime(true);
+        $execution_time_logger_availability = ($end_time_logger_availability - $start_time_logger_availability);
+        log_message("info","\n\n financial oee drill down availability duration is :\t".$execution_time_logger_availability);
+
+
         echo json_encode($out);   
     }
     public function selectionSortAvailability($arr, $n)
@@ -1042,6 +1079,9 @@ class Financial_Metrics extends BaseController
     public function qualityOpportunity(){
 
         //Function call for production data............
+        log_message("info","financial oee drill down quality opportunity graph function calling !!");
+        $start_time_logger_quality = microtime(true);
+
         $ref = "qualityOpportunity";
 
         $fromTime = $this->request->getVar("from");
@@ -1151,6 +1191,12 @@ class Financial_Metrics extends BaseController
         $result['Total']=$ReasonWiseTotal;
 
         $out = $this->selectionSortQualityOpp($result,sizeof($result['Total']));
+
+        $end_time_logger_quality = microtime(true);
+        $execution_time_logger_quality = ($start_time_logger_quality - $end_time_logger_quality);
+        log_message("info","financial oee drill down quality graph function duration is :\t".$execution_time_logger_quality);
+
+
         echo json_encode($out);
     }
 
@@ -1201,6 +1247,9 @@ class Financial_Metrics extends BaseController
 
     public function performanceOpportunity(){
         
+        log_message("info","\n\n financial oee drill down performance opportunity graph function calling !!");
+        $start_time_logger_performance_oppcost= microtime(true);
+
         $ref = "PerformanceOpportunity";
 
         $fromTime = $this->request->getVar("from");
@@ -1322,6 +1371,11 @@ class Financial_Metrics extends BaseController
 
         //sorting in desending order......
         $out = $this->selectionSortQuality($res,sizeof($res['Total']));
+
+        $end_time_logger_performance_oppcost= microtime(true);
+        $execution_time_logger_performance_oppcost = ($end_time_logger_performance_oppcost - $start_time_logger_performance_oppcost);
+        log_message("info","financial metrics performance opportunity duraiton is :\t".$execution_time_logger_performance_oppcost);
+
  
         echo json_encode($out);
     }
@@ -1379,6 +1433,10 @@ class Financial_Metrics extends BaseController
     }
 
     public function plopportunity(){
+
+        log_message("info","\n\n financial metrics oppcost ploppcost grpah function calling !!");
+        $start_time_logger_ploppcost = microtime(true);
+
         $ref = "PLOpportunity";
 
         $fromTime = $this->request->getVar("from");
@@ -1492,11 +1550,21 @@ class Financial_Metrics extends BaseController
         $out['unplannedDuration']=(floatval($UnplannedDuration));
         $out['performanceDuration']=(floatval($PerformanceDuration));
         $out['qualityDuration']=(floatval($QualityDuration));
+
+        $end_time_logger_ploppcost = microtime(true);
+        $execution_time_logger_ploppcost = ($end_time_logger_ploppcost - $start_time_logger_ploppcost);
+        log_message("info","financial metrics opportunity graph function diration is :\t".$execution_time_logger_ploppcost);
+
+
         echo json_encode($out);
     }
 
 
     public function machineplopportunity(){
+
+        log_message("info","\n\n financial metrics machine_wise_pl_oppcost graph function calling !!");
+        $start_time_logger_machine_ploppcost = microtime(true);
+
         $ref = "PLOpportunity";
 
         $fromTime = $this->request->getVar("from");
@@ -1662,6 +1730,12 @@ class Financial_Metrics extends BaseController
         //sorting in desending order......
         $out = $this->selectionSort($out,sizeof($out['total']));
         $out['grand_total'] = (int)$GrantTotalPL;
+
+        $end_time_logger_machine_ploppcost = microtime(true);
+        $execution_time_logger_machine_oppcost = ($end_time_logger_machine_ploppcost - $start_time_logger_machine_ploppcost);
+        log_message("info","financial metrics machine wise ploppcost duration is :\t".$execution_time_logger_machine_oppcost);
+
+
         echo json_encode($out);
     }
 
@@ -1736,6 +1810,10 @@ class Financial_Metrics extends BaseController
 
 
     public function partplopportunity(){
+
+        log_message("info","\n\n financial matrics part wise ploppcost");
+        $start_time_part_wise_ploppcost = microtime(true);
+
         $ref = "PartPLOpportunity";
 
         $fromTime = $this->request->getVar("from");
@@ -1886,6 +1964,11 @@ class Financial_Metrics extends BaseController
         $out = $this->selectionSortPL($out,sizeof($out['data']));
         $out['total'] = (int)$GrandTotal;
 
+        $end_time_part_wise_ploppcost = microtime(true);
+        $execution_time_part_wise_ploppcost = ($end_time_part_wise_ploppcost - $start_time_part_wise_ploppcost);
+        log_message("info"," financial metrics part wise pl oppcost function duration is :\t ".$execution_time_part_wise_ploppcost);
+
+
         echo json_encode($out);
 
     }
@@ -1941,6 +2024,10 @@ class Financial_Metrics extends BaseController
 
 
     public function opportunityTrendDay(){
+
+        log_message("info","\n\n financial metrics opportunity trend day function calling !!");
+        $start_time_opp_trend = microtime(true);
+
         $ref = "OpportunityTrendDay";
 
         $fromTime = $this->request->getVar("from");
@@ -2103,6 +2190,12 @@ class Financial_Metrics extends BaseController
         // print_r($opportunityTrendDay);
         $out['data']=$opportunityTrendDay;
         $out['grand_total'] = (int)$GrantTotalPL;
+
+        $end_time_opp_trend = microtime(true);
+        $execution_time_opp_trend = ($end_time_opp_trend - $start_time_opp_trend);
+        log_message("info","financial metrics opportunity trend function duration is :\t".$execution_time_opp_trend);
+
+
         echo json_encode($out);
 
     }
@@ -2184,6 +2277,9 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days,$noplan=false)
     }
 
     public function oeeTrendDay(){
+        log_message("info","\n\n financial metrics oee drill down oee trend function calling !!");
+        $start_time_logger_oee_trend = microtime(true);
+
         $ref = "OpportunityTrendDay";
 
         $fromTime = $this->request->getVar("from");
@@ -2361,10 +2457,18 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days,$noplan=false)
             array_push($data,$t);
         }
         $out = $data;
+
+        $end_time_logger_oee_trend = microtime(true);
+        $execution_time_logger_oee_trend = ($end_time_logger_oee_trend - $start_time_logger_oee_trend);
+        log_message("info","financial metrics oee drill down oee trend duration is :\t".$execution_time_logger_oee_trend);
+
         echo json_encode($out);
     }
 
     public function opportunitydrilldown(){
+
+        log_message("info","\n\n financial metrics opportunity drill down graph functin calling !!");
+        $start_time_opp_drill_down = microtime(true);
 
         $totalvalues=[];
         $totalreasons=[];
@@ -2709,6 +2813,12 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days,$noplan=false)
         $out['Duration'] = $durationTotal;
         
         $res = $this->selectionSortDrillDown($out,sizeof($totalreasons));
+
+        $end_time_opp_drill_down = microtime(true);
+        $execution_time_opp_drill_down = ($end_time_opp_drill_down - $start_time_opp_drill_down);
+        log_message("info","financial metrics function opportunity drill down duration is :\t".$execution_time_opp_drill_down);
+
+
         echo json_encode($res);
     }
 
