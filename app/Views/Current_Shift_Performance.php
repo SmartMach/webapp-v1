@@ -997,19 +997,26 @@ function live_target_update(shift_date) {
     var st1_time = s_time;
     var et1_time = new Date();
 
-    while (true) {
-        st1_time = new Date(st1_time.setTime(st1_time.getTime() + (1000)));
-        if (st1_time.getHours() == et1_time.getHours() && st1_time.getMinutes() == et1_time.getMinutes() && st1_time
-            .getSeconds() == et1_time.getSeconds()) {
-            break;
+    if (st_time >= et1_time) {
+
+        while (true) {
+            st1_time = new Date(st1_time.setTime(st1_time.getTime() + (1000)));
+            if (st1_time.getHours() == et1_time.getHours() && st1_time.getMinutes() == et1_time.getMinutes() && st1_time
+                .getSeconds() == et1_time.getSeconds()) {
+                break;
+            }
         }
+
+        var temp_time = new Date(shift_date + " " + ($("#s_time_val").val()));
+        
+
+        var difference_current = (new Date(st1_time).getTime() - new Date(temp_time).getTime()) / 1000;
+
+        var w = parseFloat((difference_current / difference) * 100).toFixed(2);
+        $('.item-production-s').css("width", String(w) + "%");
+    }else{
+        $('.item-production-s').css("width", "100%");
     }
-
-    var temp_time = new Date(shift_date + " " + ($("#s_time_val").val()));
-    var difference_current = (new Date(st1_time).getTime() - new Date(temp_time).getTime()) / 1000;
-
-    var w = parseFloat((difference_current / difference) * 100).toFixed(2);
-    $('.item-production-s').css("width", String(w) + "%");
 
 }
 
@@ -1122,15 +1129,15 @@ var shift_date = "";
 var shift_id = "";
 
 function live_graph(s_date, s_id) {
-    i_global = setInterval(function() {
+    // i_global = setInterval(function() {
         live_MC1001(s_date, s_id); 
-    }, 2000);
+    // }, 2000);
 }
 
 function live_target(s_date) {
-    j_global = setInterval(function() {
+    // j_global = setInterval(function() {
         live_target_update(s_date);
-    }, 1000);
+    // }, 1000);
 }
 
 $('#Filter-values').on('change', function(event) {
@@ -1219,10 +1226,11 @@ $('#Filter-values').on('change', function(event) {
             up.push($('.current_event:eq(' + i + ')').attr("event"));
             up_time.push($('.current_event:eq(' + i + ')').attr("duration"));
         }
+
         for (var i = 0; i < len - 1; i++) {
             var min = i;
             for (var j = i + 1; j < len; j++) {
-                if (up_time[min] < up_time[j]) {
+                if (parseInt(up_time[j]) > parseInt(up_time[min])) {
                     min = j;
                 }
             }   
@@ -1335,15 +1343,16 @@ function live_MC1001(shift_date, shift_id) {
                         time[0] * 60) + parseInt(time[1])));
                 } else {
                     var h = parseInt(time[0] / 60);
-                    if (time[0] > 0) {
-                        $('#latest_status_' + machine[0]['machine_id'] + '').html(time[0] + "m " +
-                            event);
+                    var m = time[0] % 60;
+                    if (h > 0) {
+                        $('#latest_status_' + machine[0]['machine_id'] + '').html(h + "h " + m +
+                            "m "  + event);
                     } else {
-                        $('#latest_status_' + machine[0]['machine_id'] + '').html(time[0] + "s " +
+                        $('#latest_status_' + machine[0]['machine_id'] + '').html(time[0] + "m " +
                             event);
                     }
                     $('#latest_status_' + machine[0]['machine_id'] + '').attr("duration", (parseInt(
-                        time[0] * 60) + parseInt(time[1])));
+                        time[0] * 60)));
                 }
                 $('#latest_status_' + machine[0]['machine_id'] + '').attr("event", event);
 
@@ -1516,7 +1525,6 @@ function live_MC1001(shift_date, shift_id) {
                     .attributes['stop-color'].value = color_code;
                 n = n + 1;
             });
-
             $("#overlay").fadeOut(300);
         },
         error: function(res) {
@@ -1653,9 +1661,6 @@ function target_oui_graph(mid,tid,sdate){
 
             },
             error:function(er){
-                // 
-                console.log("oui tool changeover target graph issue ajax");
-                console.log(er);
                 reject(er);
             }
         });
@@ -1700,9 +1705,6 @@ function circle_data_oui(mid,sdate,sid){
 
             },
             error:function(er){
-                // 
-                console.log("Current shift Performance oui graph ajax issue ");
-                console.log(er);
                 reject(er);
             }
         });
@@ -2083,8 +2085,6 @@ function getDownTimeGraph(machine_id, shift_date, s) {
                 chart.render();
             },
             error:function(er){
-                console.log("oui downtime graph ajax issue ");
-                console.log(er);
                 reject(er);
             }
         });
@@ -2133,8 +2133,6 @@ function part_by_hour(mid, sdate, sid, bar_color) {
             },
             success: function(res) {
                 resolve(res);
-                console.log("bar color");
-                console.log(bar_color);
                 var hourly = [];
                 var hourList = [];
                 var production_target = [];
@@ -2236,9 +2234,6 @@ function part_by_hour(mid, sdate, sid, bar_color) {
 
             },
             error: function(er) {
-                // 
-                console.log("Current shift performance part by hour graph");
-                console.log(er);
                 reject(er);
             },
 
@@ -2295,8 +2290,6 @@ function div_records(mid, shift_date, shift_id, card_header, card_body) {
 
             },
             error: function(er) {
-                console.log("Current shift performance div records oui");
-                console.log(er);
                 reject(er);
             }
         });
@@ -2341,6 +2334,7 @@ function fullscreen_mode_remove(){
     $('.topnav').css('display','flex');
     $('.fixsubnav_quality').css('display','flex');
     $('.graph-content').css('margin-top','4rem');
+    $('.graph-content').css('display','block');
     $('.full_screen_close').css('display','none');
 
     $('.prev').css('margin-left','0rem');
@@ -2394,12 +2388,12 @@ function oui_arrow_to_card(){
     $('#full_screen_btn_visibility').css('visibility','visible');
     $('.visibility_div').css("display",'inline');
     $('.graph-content').css('display', 'inline');
+    $('.graph-content').css('margin-top', '4rem');
+    $('.graph-content').css('display', 'block');
     $('.oui_screen_view').css('display', 'none');
-    $('.grid-container-cont').css('margin-top', '5rem');
+    // $('.grid-container-cont').css('margin-top', '5rem');
     $('.oui_arrow_div').css("display",'none');
     // $('#full_screen_cards').empty();
     // fullscreen_mode_remove();
-   
-
 }
 </script>
