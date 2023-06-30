@@ -135,7 +135,7 @@
                                             <p class="paddingm production_completion_oui"><span
                                                     id="production_per_oui"></span>%</p>
                                             <p class="paddingm production_completion_oui partname_ref_oui"
-                                                id="part_name_circle">Part Name 1</p>
+                                                id="part_name_circle"></p>
                                         </div>
                                     </div>
                                     <svg version="1.1" class="svg_oui">
@@ -239,17 +239,15 @@
                                 <span class="card_body" id="nict_val" style="padding:0;margin:0;"></span>
                             </div>
                             <div class="cycle_time_sval" style="">
-                                50s
+                                
                             </div>
                         </div>
                     </div>
-
 
                     <div class="card_small_div">
                         <span class="card_header">Rejects Counts</span>
                         <span class="card_body" id="reject_count" style="margin:0.5rem;"></span>
                     </div>
-
 
                 </div>
                 <div style="width:48%;">
@@ -2258,30 +2256,40 @@ function div_records(mid, shift_date, shift_id, card_header, card_body) {
             success: function(res) {
                 resolve(res);
                 var nict_min = res['nict'] / 60;
-                var tmp_nict = " ";
-                if (parseInt(nict_min) > 0) {
-                    var nict_second = res['nict'] % 60;
-                    if (parseInt(nict_second) > 0) {
-                        tmp_nict = parseInt(nict_min) + "m" + " " + parseInt(nict_second) + "s";
+
+                var tmp_nict = res['nict'].split(".");
+                // Update Machine Current Status
+                if (tmp_nict.length > 1) {
+                    var m = parseInt(tmp_nict[0] / 60);
+                    var s = tmp_nict[0] % 60;
+                    if (m > 0) {
+                        $('#nict_val').html(m + "m " + s +
+                            "s " + tmp_nict[1] + "ms");
                     } else {
-                        tmp_nict = parseInt(nict_min) + "m";
+                        $('#nict_val').html(tmp_nict[0] + "s " +
+                            tmp_nict[1] + "ms");
                     }
                 } else {
-                    tmp_nict = parseInt(res['nict']) + 's';
+                    var s = parseInt(tmp_nict[0] / 60);
+                    var ms = tmp_nict[0] % 60;
+                    if (s > 0) {
+                        $('#nict_val').html(s + "s " + ms +
+                            "ms");
+                    } else {
+                        $('#nict_val').html(tmp_nict[0] + "s");
+                    }
                 }
 
                 var temp_downtime_hour = res['downtime'] / 3600;
                 var temp_total_hour_second = parseInt(temp_downtime_hour)*3600;
                 var temp_downtime_minute =  parseInt(res['downtime']) - parseInt(temp_total_hour_second);
                 temp_downtime_minute = parseInt(temp_downtime_minute) /60
-                var downtime_val = parseInt(temp_downtime_hour)+" h"+" "+parseInt(temp_downtime_minute)+" m";
+                var downtime_val = parseInt(temp_downtime_hour)+"h"+" "+parseInt(temp_downtime_minute)+"m";
 
                 $('#downtime_val').text(downtime_val);
-                // $('.cycle_time_sval').text(downtime_second_val);
-                $('#nict_val').text(tmp_nict);
                 $('#reject_count').text(res['rejection_count']);
-                $('#part_name_circle').text(res['part_name']);
-                $('#part_name_header').text(res['part_name']);
+                $('#part_name_circle').text(res['part_name'].replace(",",", "));
+                $('#part_name_header').text(res['part_name'].replace(",",", "));
 
                 $('.card_header').css('background-color', card_header);
                 $('.card_small_div').css('background-color', card_body);
