@@ -338,7 +338,7 @@ function showSlides(n) {
         slides[i].style.display = "none";  
     }
     let l = slideIndex;
-    for (j = l; j < (slideIndex+2); j++) {
+    for (j = l; j < (10); j++) {
         slides[j].style.display = "block";
     }
 }
