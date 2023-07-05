@@ -1,0 +1,195 @@
+:root{
+
+	/*********GLOBAL VARIABLES FOR SOFTWARE*********/
+		--font_family : 'Roboto', sans-serif;
+		--mr_left_content_sec : 4.5rem;
+		--position_sk :"sticky";
+		--overflow_h : hidden;
+		--btn_save_color :#FFFFFF;
+		--btn_save_color_bg :#005abc;
+
+		/*INR LEFT*/
+		--mr_left_inr: 5px;
+
+	/*********GLOBAL VARIABLES FOR SOFTWARE END*********/
+
+
+	/******** GLOBAL VARIABLES FOR TOP NAVIGATION MENU ********/
+		/*Height*/
+		--height_top_nav:4em;
+		/*Background Color*/
+		--background_top_nav:white;
+		/*Border Bottom*/
+		--border_btm_top_nav:1px solid #d9d9d9;
+		/*Box Shadow*/
+		--shadow_top_nav: 3px 3px 5px 0px #d9d9d9;
+		/*Top*/
+		--top_top_nav:0;
+		/*Index*/
+		--index_top_nav:1020;
+		/*Padding Top*/
+		--pd_top_top_nav:0.5rem;
+		/*Padding Bottom*/
+		--pd_botm_top_nav:0.5rem;
+	/******** GLOBAL VARIABLES FOR TOP NAVIGATION MENU END ********/
+
+	/******** GLOBAL VARIABLES FOR SIDE NAVIGATION MENU ********/
+		--top_side_nav:4em;
+		--left_side_nav:0;
+		--border_right_side_nav: 1px solid #d9d9d9;
+		--max_width_side_nav:4.5rem;
+		--height_side_nav:100%;
+		--index_side_nav:1040;
+	/******** GLOBAL VARIABLES FOR SIDE NAVIGATION MENU END ********/
+
+	/******** GLOBAL VARIABLES FOR SECONDARY NAVIGATION MENU ********/
+		/*Sectione Height*/
+		--height_secondary_nav:3.8rem;
+		/*Box Shadow*/
+		--shadow_secondary_nav:4px 4px 5px 0px #f2f2f2;
+		/*Border Bottom*/
+		--border_btm_secondary_nav:0.5px solid rgba(217,217,217,0.5);
+		/*Top Position*/
+		--top_secondary_nav:3.98rem;
+		/*Background*/
+		--background_secondary_nav:white;
+		/*Z-Index*/
+		--index_secondary_nav:1010;
+		/*Padding*/
+		--pd_top_secondary_nav:0.5rem;
+		--pd_botm_secondary_nav:0.5rem;
+
+	/******** GLOBAL VARIABLES FOR SECONDARY NAVIGATION MENU END ********/
+
+
+	/******** GLOBAL VARIABLES FOR INNER NAVIGATION MENU ********/
+		/*Sectione Height*/
+		--height_inner_nav:3rem;
+		/*Top Position*/
+		--top_inner_nav:7.8rem;
+		/*Background*/
+		--background_inner_nav:white;
+		/*Z-Index*/
+		--index_inner_nav:1000;
+		/*Padding*/
+		--pd_top_inner_nav:0.5rem;
+		--pd_botm_inner_nav:0.5rem;
+		
+	/******** GLOBAL VARIABLES FOR INNER NAVIGATION MENU END ********/
+
+
+
+	/******** GLOBAL VARIABLES FOR LABLES ********/
+		/*Count - Labels*/
+		--active_count_color : #005CBC;
+		--inactive_count_color : #C00000;
+
+		/*Font Size - Labels*/
+		--font_size_label : 1.1rem;
+
+		/*Font Border Color - Label*/
+		--border_color_label : #d9d9d9;
+		--border_radius_label : 10px;
+		--border_size_label : 1.5px;
+
+		/*Element Alignment - Label*/
+		--padding_label : 1px 10px;
+		--margin_right : 0.5rem;
+	/******** GLOBAL VARIABLES FOR LABLES END********/
+
+
+	/******** GLOBAL VARIABLES FOR MODULE HEADER ********/
+		--font_size_module_header : 1rem;
+		--font_color_module_header : #a6a6a6;
+		--opacity_module_header : 78%;
+		--font_weight_module_header : 360;
+		--font_mr_left_module_header : 1.1em;
+	/******** GLOBAL VARIABLES FOR MODULE HEADER END********/
+
+
+
+	/******** GLOBAL VARIABLES FOR TABLE HEADER ********/
+		--border_radius_table_header : 10px 10px 10px 10px;
+		--border_table_header : 1px solid rgba(242,242,242);
+		--box_shadow_table_header : 3px 3px 4px 0px #e6e6e6;
+		--margin_btom_table_header : 0.5rem;
+		--top_table_header : 10.8rem;
+		--index_table_header : 990;
+		--height_table_header : 3.5rem;
+	/******** GLOBAL VARIABLES FOR TABLE HEADER END********/
+
+	/******** GLOBAL VARIABLES FOR TABLE DATA SECTION********/
+		--mr_top_table_data : 1rem;
+
+		/*Data Space*/
+		--border_table_data : 1px solid #d9d9d9;
+		--mr_top_table_data : 5px;
+		--border_radius_table_data: 10px;
+
+		--height_table_data : 3.5rem;
+
+		/*Data Element*/
+		--font_size_table_data : 0.75rem;
+		--width_table_data:100%;
+		--mr_botm_table_data: 0;
+	/******** GLOBAL VARIABLES FOR TABLE DATA SECTION END********/	
+
+
+	/******** GLOBAL VARIABLES FOR ADD BUTTONS ********/
+		--border_radius_add_btn:10px;
+		--mar_btom_add_btn:0px;
+		--mar_right_add_btn:0.5rem;
+		--padding_add_btn:10px 14px;
+		--font_size_add_btn:0.8rem;
+	/******** GLOBAL VARIABLES FOR ADD BUTTONS END********/
+
+
+	/******** GLOBAL VARIABLES FOR POP-UP MODEL ********/
+		/*HEADER*/
+		--font_color_header_pop_up : #b5b8bc;
+		--font_size_header_pop_up : 15px;
+		--font_weight_header_pop_up : medium;
+
+		/*SAVE BUTTON*/
+		--font_color_save_pop_up : #FFFFFF;
+		--bg_color_save_pop_up : #005abc;
+
+		/*SAVE BUTTON HOVER*/
+		--font_color_save_hover_pop_up : #FFFFFF;
+		--bg_color_save_hover_pop_up : #406EB4;
+
+		/*CANCEL BUTTON*/
+		--font_color_cancel_pop_up : #989fac;
+		--bg_color_cancel_pop_up : #d9d9d9;
+
+		/*CANCEL BUTTON HOVER*/
+		--font_color_cancel_hover_pop_up : #5a5b5d;
+		--bg_color_cancel_hover_pop_up : #B0B0B0;
+	/******** GLOBAL VARIABLES FOR POP-UP MODEL END********/
+
+	/******** GLOBAL VARIABLES FOR INPUT BOX ********/
+		/*INPUT BOX LABLE*/
+		    --position_input_lable : absolute;
+		    --top_input_lable : -8px;
+		    --left_input_lable : 15px;
+		    --color_input_lable : #999;
+		    --bg_color_input_lable :white;
+		    --transition_input_lable : 0.5s;
+		    --font_size_input_lable : 12px;
+		    --color_input_lable : #8c8c8c;
+		    --mr_botm_input_lable : 0px;
+		    --mr_top_input_lable : 0px;
+	/******** GLOBAL VARIABLES FOR INPUT BOX END********/
+
+
+	/******** GLOBAL VARIABLES FOR GRAPH SECTION ********/
+		/*GRAPH LABLE HEADER*/
+			--font_weight_graph_lable : 689;
+			--font_color_graph_lable : #A6A6A6;
+			--font_size_graph_lable : 1rem;
+			--opacity_graph_lable : 0.7;
+			--mr_left_graph_lable : 1.1rem;
+			--mr_top_graph_lable : 0;
+	/******** GLOBAL VARIABLES FOR GRAPH SECTION END********/
+
+}

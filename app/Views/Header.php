@@ -1,5 +1,5 @@
-<nav class="navbar sticky-top navbar-expand-lg topnav full_screen_mode_oui_disturb" style="top:0;position:fixed;width:100%;">
-    <div class="container-fluid">
+<nav class="nav_top  navbar-expand-lg top_nav_c display_f align_c justify_c full_screen_mode_oui_disturb">
+    <div class="container-fluid display_f justify_sb align_c">
         <div style="width:50%;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;">
             <img id="smartlogo" src="<?php echo base_url()?>/assets/img/logo.png?version=<?php echo rand() ; ?>" alt="SmartMach Logo">
         </div>

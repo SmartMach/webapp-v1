@@ -10,6 +10,13 @@
     <link href="<?php echo base_url()?>/bootstrap_5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="<?php echo base_url() ?>/bootstrap_5.1.3/dist/js/bootstrap.min.js?version=<?php echo rand() ; ?>"></script>
     <script src="<?php echo base_url() ?>/bootstrap_5.1.3/dist/js/bootstrap.bundle.min.js?version=<?php echo rand() ; ?>"></script>
+
+    <!-- CSS STANDARDS START-->
+    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/standard/config.css?version=<?php echo rand() ; ?>">
+    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/standard/template.css?version=<?php echo rand() ; ?>">
+    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/standard/layout.css?version=<?php echo rand() ; ?>">
+
+    <!-- CSS STANDARDS END-->
     
     <!--Link For CSS-->
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/config.css?version=<?php echo rand() ; ?>">
@@ -31,6 +38,8 @@
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/pre_loader.css">
     <!-- temporary for strategy wait for part settings input alignment changes -->
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/css_demo1.css">
+
+
 
     
     <!-- javascript link for date time -->
@@ -295,16 +304,15 @@
         padding: 0;
         margin-top: 1.2rem;
       }
-
 </style>
 </head>
 
 <body >
-<!-- <div> -->  
+<!-- <div> -->
         <?php require_once 'Header.php' ?>
-        <div class="row paddingm"  >
+        <div class="row paddingm">
             <!-- side nav bar -->
-             <div class="col-lg paddingm left-sidebar" style="top:4rem;">
+             <div class="col-lg paddingm side_nav side_nav_c">
                 <ul class="side-menu">
                         <li class="side-menu-li d-flex">
                             <a href="#">

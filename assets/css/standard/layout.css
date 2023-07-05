@@ -1,0 +1,92 @@
+
+/******* TOP NAVIGATION MENU ********/
+.nav_top{ 
+    white-space: nowrap;
+    background: var(--background_top_nav) !important;
+    border-bottom: var(--border_btm_top_nav) !important;
+    box-shadow: var(--shadow_top_nav) !important;
+    height: var(--height_top_nav) !important;
+    padding-top: var(--pd_top_top_nav)!important;
+    padding-bottom: var(--pd_botm_top_nav)!important;
+    top: var(--top_top_nav) !important;
+    z-index: var(--index_top_nav) !important;
+    width: 100% !important;
+}
+.top_nav_c{
+	position: fixed;
+}
+/******* TOP NAVIGATION MENU END********/
+
+/*CONTENT SECTION*/
+.mr_left_content_sec{
+	margin-left: var(--mr_left_content_sec) !important;
+	top: 4rem !important;
+	position: relative !important;
+}
+
+/*CONTENT SECTION END*/
+
+/******** SIDE NAVIGATION MENU ********/
+.side_nav{
+    height: var(--height_side_nav) !important;
+    top: var(--top_side_nav) !important;
+    z-index: var(--index_side_nav) !important;
+    left: var(--left_side_nav) !important;
+    max-width: var(--max_width_side_nav) !important;
+    border-right: var(--border_right_side_nav) !important;
+}
+.side_nav_c{
+	position: fixed;
+}
+/******** SIDE NAVIGATION MENU END ********/
+
+/******** SECONDARY NAVIGATION MENU ********/
+.sec_nav{ 
+    white-space: nowrap;
+    background: var(--background_secondary_nav) !important;
+    border-bottom: var(--border_btm_secondary_nav) !important;
+    box-shadow: var(--shadow_secondary_nav) !important;
+    height: var(--height_secondary_nav) !important;
+    overflow: var(--overflow_h)!important;
+    padding-top: var(--pd_top_secondary_nav)!important;
+    padding-bottom: var(--pd_botm_secondary_nav)!important;
+    top: var(--top_secondary_nav) !important;
+    z-index: var(--index_secondary_nav) !important;
+}
+.sec_nav_c{
+	position: sticky;
+}
+/******** SECONDARY NAVIGATION MENU END ********/
+
+
+/******** INNER NAVIGATION MENU ********/
+.inner_nav{
+    white-space: nowrap;
+    background: var(--background_inner_nav) !important;
+    height: var(--height_inner_nav) !important;
+    overflow: var(--overflow_h)!important;
+    padding-top: var(--pd_top_inner_nav)!important;
+    padding-bottom: var(--pd_botm_inner_nav)!important;
+    top: var(--top_inner_nav) !important;
+    z-index: var(--index_inner_nav) !important;
+}
+
+.inner_nav_c{
+	position: sticky;
+}
+/******** INNER NAVIGATION MENU END ********/
+
+/*GRAPH SECTIONS*/
+.card {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-width: 0 !important;
+    word-wrap: break-word !important;
+    background-color: #fff !important;
+    background-clip: border-box !important;
+    border: 1px solid rgba(0,0,0,.125) !important;
+    border-radius: 15px 15px 15px 15px !important;
+}
+
+/*GRAPH SECTIONS END*/
