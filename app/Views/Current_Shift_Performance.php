@@ -24,19 +24,19 @@
 
 </head>
 
-<div style="margin-left: 4.5rem;">
-    <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav_quality" style="z-index: 1001!important">
-        <div class="container-fluid paddingm" style="margin-top:0.2rem;">
+<div class="mr_left_content_sec">
+    <nav class="sec_nav display_f align_c justify_c sec_nav_c navbar-expand-lg fixsubnav_quality">
+        <div class="container-fluid paddingm display_f justify_sb align_c">
             <div class="header_text_nav">
                 <div class="oui_arrow_div">
                     <div class="dotAccessArrow dot-css acsControl marleftDot" style="margin-right:0.7rem;margin-left:0.4rem;" id="">
                         <img src="<?php echo base_url('assets/img/oui_arrow.png'); ?>" onclick="oui_arrow_to_card()" class="img_font_wh dot-cont" style="height: 26px;transform: rotate(180deg);">
                     </div>
                 </div>
-                <p class="float-start p3" id="logo">Current Shift Performance</p>
+                <p class="float-start fnt_fam mdl_header p3">Current Shift Performance</p>
             </div>
 
-            <div class="d-flex" style="display: flex;align-items: center;">
+            <div class="d-flex display_f align_c">
                 <div id="full_screen_btn_visibility">
                     <div class="full-screen"  onclick="fullscreen_mode()">
                         <div style="width:max-content;">
@@ -92,7 +92,7 @@
         </div>
     </nav>
 
-    <div class="graph-content" style="margin-top:4rem;">
+    <div class="graph-content">
         <div class="full_screen_close" onclick="fullscreen_mode_remove();">
             <div class="full-screen">
                 <img src="<?php echo base_url('assets/icons/cancel1.png'); ?>" class="icon_img_wh">
@@ -2306,6 +2306,10 @@ function fullscreen_mode() {
     $('.left-sidebar').css('display','none');
     $('.topnav').css('display','none');
     $('.fixsubnav_quality').css('display','none');
+
+    $('.mr_left_content_sec').css('top', '0rem');
+    $('.mr_left_content_sec').css('margin-left', '0rem');
+
     $('.grid-container-cont').css('margin-top', '0rem');
     $('.full_screen_close').css('display','block');
     $('.full_screen_close').css('display','flex');
@@ -2337,9 +2341,12 @@ function fullscreen_mode_remove(){
     $('.left-sidebar').css('display','block');
     $('.topnav').css('display','block');
     $('.fixsubnav_quality').css('display','block');
+
+    $('.mr_left_content_sec').css('margin-left', '4.5rem');
+    $('.mr_left_content_sec').css('top', '4rem');
+
     $('.topnav').css('display','flex');
     $('.fixsubnav_quality').css('display','flex');
-    $('.graph-content').css('margin-top','4rem');
     $('.graph-content').css('display','block');
     $('.full_screen_close').css('display','none');
 

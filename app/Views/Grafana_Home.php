@@ -312,7 +312,7 @@
         <?php require_once 'Header.php' ?>
         <div class="row paddingm">
             <!-- side nav bar -->
-             <div class="col-lg paddingm side_nav side_nav_c">
+             <div class="col-lg paddingm side_nav side_nav_c left-sidebar">
                 <ul class="side-menu">
                         <li class="side-menu-li d-flex">
                             <a href="#">

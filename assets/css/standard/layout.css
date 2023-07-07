@@ -19,8 +19,8 @@
 
 /*CONTENT SECTION*/
 .mr_left_content_sec{
-	margin-left: var(--mr_left_content_sec) !important;
-	top: 4rem !important;
+	margin-left: var(--mr_left_content_sec);
+	top: 4rem;
 	position: relative !important;
 }
 
@@ -29,9 +29,9 @@
 /******** SIDE NAVIGATION MENU ********/
 .side_nav{
     height: var(--height_side_nav) !important;
-    top: var(--top_side_nav) !important;
+    top: var(--top_side_nav) ;
     z-index: var(--index_side_nav) !important;
-    left: var(--left_side_nav) !important;
+    left: var(--left_side_nav);
     max-width: var(--max_width_side_nav) !important;
     border-right: var(--border_right_side_nav) !important;
 }

@@ -120,7 +120,7 @@
                             </label>
                         </div> -->
                     </div>
-                    <input type="submit" name="Login_Verify" class="btn fnt_fam btn_fnt_size btn_padd btn_save submit float-end" value="Login" id="login_submit">  
+                    <input type="submit" name="Login_Verify" class="btn fnt_fam btn_fnt_size btn_padd btn_save mr_login submit float-end" value="Login" id="login_submit">  
                 </form>
             </div>
         </div>

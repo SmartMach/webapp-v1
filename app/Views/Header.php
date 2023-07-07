@@ -1,4 +1,4 @@
-<nav class="nav_top  navbar-expand-lg top_nav_c display_f align_c justify_c full_screen_mode_oui_disturb">
+<nav class="nav_top topnav navbar-expand-lg top_nav_c display_f align_c justify_c full_screen_mode_oui_disturb">
     <div class="container-fluid display_f justify_sb align_c">
         <div style="width:50%;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;">
             <img id="smartlogo" src="<?php echo base_url()?>/assets/img/logo.png?version=<?php echo rand() ; ?>" alt="SmartMach Logo">
