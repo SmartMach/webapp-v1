@@ -360,6 +360,7 @@ mx_global = setInterval(function() {
 }, 1000);
 
 $(document).on('click','.Previous_Shift_Live',function(event){
+    myChartList =[];
     $(".Previous_Shift_Live").attr("status",1);
     $.ajax({
         url: "<?php echo base_url('Current_Shift_Performance/getPreviousShiftLive'); ?>",
@@ -1494,9 +1495,6 @@ function live_MC1001(shift_date, shift_id) {
                 var production_percent_val = 470 - (2.4 * production_percent);
                 var iterate = document.getElementsByClassName("circle");
                 var refcolor = 'url(' + '#GradientColor_' + machine[0]['machine_id'] + ')';
-                // const MyFSC_container = document.getElementsByClassName("circle");
-                // MyFSC_container[n].style.setProperty("--foo", production_percent_val);
-                // MyFSC_container[n].style.setProperty("--ref_graph", refcolor);
 
                 // 230
                 for (val of iterate) {

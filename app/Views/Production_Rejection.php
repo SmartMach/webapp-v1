@@ -446,6 +446,9 @@ $(document).ready(function(){
     $("#RejectShift").attr("disabled", true);
     // if you cselect part name and upload data in shift date records
     $(document).on("change", "#RejectPartName", function(){
+        
+        $('#rejects').html('');
+
         $('#RejectShiftDate').prop('selectedIndex',0);
         var part = $('#RejectPartName').val();       
         $('#RejectShiftDate').val('');
@@ -500,6 +503,9 @@ $(document).ready(function(){
 
     // change shift date retrive  shift name function
     $(document).on("change", "#RejectShiftDate", function(){
+        
+        $('#rejects').html('');
+
         var part_name = $('#RejectPartName').val();
         var sdate = $('#RejectShiftDate').val();
         $('#RejectShift').empty();
