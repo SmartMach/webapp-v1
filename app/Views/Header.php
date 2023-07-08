@@ -1,6 +1,9 @@
-<nav class="navbar sticky-top navbar-expand-lg topnav full_screen_mode_oui_disturb" style="top:0;position:fixed;width:100%;">
-    <div class="container-fluid">
-        <img id="smartlogo" src="<?php echo base_url()?>/assets/img/logo.png?version=<?php echo rand() ; ?>" alt="SmartMach Logo">
+<nav class="nav_top topnav navbar-expand-lg top_nav_c display_f align_c justify_c full_screen_mode_oui_disturb">
+    <div class="container-fluid display_f justify_sb align_c">
+        <div style="width:50%;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;">
+            <img id="smartlogo" src="<?php echo base_url()?>/assets/img/logo.png?version=<?php echo rand() ; ?>" alt="SmartMach Logo">
+        </div>
+        <div style="width:50%;display:flex;flex-direction:row;align-items:center;justify-content:flex-end;">
         <?php 
                 $condition = $this->data['user_details'][0]['role'];
                 $condition1 = $this->data['user_details'][0]['site_id'];
@@ -9,9 +12,9 @@
                     if($session->get('active_site')){
                         if(($condition == "Smart Admin") || ($condition == "Smart Users")){
                             ?>
-                            <div class="box site_based_header_visibility" style="margin-top:1.4rem;" >
+                            <div class="box site_based_header_visibility" style="margin-right:1.8rem;" >
                             <label class="" style="margin-top:-0.5rem;position:fixed;margin-left:0.6rem;z-index:1;background:white;font-size:12px;color:#8c8c8c;">Site Name</label>
-                                <div class="input-box fieldStyle">
+                                <div class="input-box fieldStyle" style="height:max-content;">
                                     <select name="site_id" id="site_id" class="form-select font_weight_modal" required="true">
                                        <!-- temporary aligning -->
                                         <option value="<?php echo $session->get('active_site').'-'.$session->get('active_site_name'); ?>" selected="selected" disabled="true"><?php echo $session->get('active_site_name').'-'.$session->get('active_site'); ?></option>
@@ -40,9 +43,9 @@
                             <!-- <select name="site_id" id="site_id" required="true">
                                     <option value=" " selected="true" disabled>Select Site</option>
                             </select> -->
-                            <div class="box  site_based_header_visibility" style="margin-top:1.4rem;" >
+                            <div class="box  site_based_header_visibility" style="margin-right:1.8rem;" >
                             <label class="" style="margin-top:-0.5rem;position:fixed;margin-left:0.4rem;z-index:1;background:white;font-size:12px;color:#8c8c8c;">Site Name</label>
-                                <div class="input-box fieldStyle">
+                                <div class="input-box fieldStyle" style="height:max-content;">
                                     <select name="site_id" id="site_id" class="form-select font_weight_modal" required="true">
                                         <option value=" " selected="true" disabled>Select Site</option>
                                     </select>
@@ -61,7 +64,7 @@
                     <?php
                 }
                 
-            ?>
+        ?>
         <div class="d-flex" onfocus="myFunction(event);">
             <div class="tooltip_logout ">
                 <div id="info_circle_color">
@@ -90,6 +93,8 @@
             </div>
             
         </div>
+        </div>
+       
         <!-- <div class="d-flex mx-auto"> -->
        
         <!-- </div> -->

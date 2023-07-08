@@ -85,7 +85,7 @@
                        <!--  <a style="background: #005abc;color: white;width:8rem;justify-content:center;text-align:center;" class="settings_nav_anchor float-end " data-bs-toggle="modal" data-bs-target="#AddUserModal">
                             <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD USER
                         </a>   -->
-                        <a style="background: #005abc;color: white;width:8rem;justify-content:center;text-align:center;" class="settings_nav_anchor float-end " id="add_user_model">
+                        <a style="width:8rem;justify-content:center;text-align:center;" class="settings_nav_anchor saveBtnStyle float-end " id="add_user_model">
                             <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD USER
                         </a> 
 

@@ -76,13 +76,7 @@
     display: flex;
     align-items: center;
   }
-/**/
-.fixsubnav_quality{
-	top: 4rem;
-	position: sticky;
-  background-color: white;
-  z-index: 1000;
-}
+
 .logo-style{
 	height: 2.5rem;
   display: flex;

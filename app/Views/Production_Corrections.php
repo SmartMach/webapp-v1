@@ -377,8 +377,10 @@ function  gedt_correction_data(){
                 }       
                 $('.contentCorrection').append(elements);
             });
-    
-            (parseInt(count)>9 || (parseInt(count)<0 && parseInt(count)<(-9)))? ($('#corrects').html(count)):($('#corrects').html('0'+count));
+            
+            const absNumber = Math.abs(count);
+            const convertedNumber = absNumber.toString().padStart(2, '0');
+            count < 0 ? $('#corrects').html('-' + convertedNumber) : $('#corrects').html(convertedNumber);
         },
         error:function(res){
             // alert("Sorry!Try Agian!!");
@@ -430,6 +432,9 @@ function datePick(date_shift){
         // this function if you change part dropdown then retrive the shift date for the dropdown and enable the shifts
 
         $(document).on("change", "#correctionPart", function(){
+
+            $('#corrects').html("");
+
             $('#shiftDate').prop('selectedIndex',0);
             var part = $('#correctionPart').val();
             $('.contentCorrection').empty();
@@ -480,6 +485,9 @@ function datePick(date_shift){
 
         // after select shift date retrive that particular date  shifts retrive funciton
         $(document).on("change", "#shiftDate", function(){
+
+            $('#corrects').html("");
+            
             var sdate = $('#shiftDate').val();
             var part_name = $('#correctionPart').val();
             const date_arr = sdate.split('/');

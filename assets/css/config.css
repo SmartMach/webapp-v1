@@ -7,4 +7,12 @@
   	/*Properties for cancel button*/
   	--cancel_btn_background_color: #d9d9d9;
   	--cancel_btn_font_color: #989fac;
+
+	/* save button hovering  background color */
+	--save_btn_hover_background_color : #406EB4;
+	--cancel_btn_hover_background_color:#B0B0B0;
+	--cancel_btn_hover_font_color: #5a5b5d;
+
+	/* required field color */
+	--required_font_color:red;
 }
