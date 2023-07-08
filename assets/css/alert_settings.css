@@ -39,7 +39,8 @@
 }
 
 .apply_btn_style:hover{
-  color:white;
+  color:var(--save_btn_font_color);
+  background-color: var(--save_btn_hover_background_color);
 }
 
 

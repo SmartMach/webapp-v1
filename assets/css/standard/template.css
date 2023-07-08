@@ -1,0 +1,284 @@
+/*GLOBAL FOR SOFTWARE*/
+p{
+	font-family: var(--font_family) !important;
+}
+span{
+	font-family: var(--font_family) !important;
+}
+.fnt_fam{
+	font-family: var(--font_family) !important;
+}
+.fnt_active{
+	color: var(--active_count_color) !important;
+}
+.fnt_inactive{
+	color: var(--inactive_count_color) !important;
+}
+.display_f{
+	display: flex;
+}
+.align_c{
+	align-items: center !important;
+}
+.justify_c{
+	justify-content: center !important;
+}
+.justify_l{
+	justify-content: left !important;
+}
+.justify_sb{
+	justify-content: space-between !important;
+}
+.text_align_c{
+	text-align: center;
+}
+.h_mar_l{
+	margin-left: 1rem !important;
+}
+.h_mar_r{
+	margin-right: 1rem !important;
+}
+.paddingm{
+	padding: 0;
+	margin: 0;
+}
+.cursor{
+	cursor: pointer !important;
+}
+.fnt_bold{
+	font-weight: bold !important;
+}
+.none_dec{
+	text-decoration: none !important;
+}
+.mar_right_logo{
+	margin-right: var(--mr_left_inr) !important;
+}
+.active_dot{
+	font-size:9px;
+	margin-right:5px;
+	margin-top:5px;
+}
+.font_weight_modal {
+    font-weight: 550 !important;
+}
+.mr_login{
+    margin: 20px;
+}
+
+
+
+/*BUTTONS*/
+.btn_fnt_size{
+	font-size: 15px !important;
+}
+.btn_padd{
+	padding:5px 25px !important;
+}
+.btn_save{
+	color: var(--font_color_save_pop_up) !important;
+	background: var(--bg_color_save_pop_up) !important;
+}
+.btn_save:hover{
+	color: var(--font_color_save_hover_pop_up) !important;
+	background: var(--bg_color_save_hover_pop_up) !important;
+	/*opacity: 0.8;*/
+}
+.btn_cancel{
+	color: var(--font_color_cancel_pop_up) !important;
+	background: var(--bg_color_cancel_pop_up) !important;
+}
+.btn_cancel:hover{
+	color: var(--font_color_cancel_hover_pop_up) !important;
+	background: var(--bg_color_cancel_hover_pop_up) !important;
+	/*opacity: 0.8;*/
+}
+
+/*GLOBAL FOR SOFTWARE END*/
+
+/*GLOBAL CLASS FOR LABELS*/
+.style_label{
+    border-radius: var(--border_radius_label)!important;
+    border:var(--border_size_label) solid var(--border_color_label)!important;
+    font-size: var(--font_size_label) !important;
+    font-weight: bold;
+    margin: 0px;
+    padding: var(--padding_label)!important;
+    margin-right: var(--margin_right) !important;
+}
+.style_label span{
+  	font-size: 1.5rem;
+  	margin-right:0.5rem !important;
+}
+/*GLOBAL CLASS FOR LABELS END*/
+
+
+/*GLOBAL CLASS FOR MODULE HEADER*/
+.mdl_header{
+	font-size: var(--font_size_module_header)!important;
+    font-weight: var(--font_weight_module_header)!important;
+    color: var(--font_color_module_header)!important;
+    margin-bottom: 0px;
+    margin-left: var(--font_mr_left_module_header)!important;
+    opacity: var(--opacity_module_header)!important;
+}
+/*GLOBAL CLASS FOR MODULE HEADER END*/
+
+
+/*GLOBAL CLASS FOR DATA SECTION START*/
+.data_section{
+	margin-left: 0.5rem !important;
+	margin-bottom: 0.5rem !important;
+    margin-right: 0.5rem !important;
+}
+/*GLOBAL CLASS FOR DATA SECTION END*/
+
+
+/*GLOBAL CLASS FOR TABLE HEADER START*/
+.table_header{
+	white-space: nowrap;
+    background: #fff;
+    overflow: hidden;
+    margin-bottom: 0.5rem !important;
+	border-radius: var(--border_radius_table_header) !important;
+    border: var(--border_table_header) !important;
+    box-shadow: var(--box_shadow_table_header) !important;
+    top: var(--top_table_header) !important;
+    z-index: var(--index_table_header) !important;
+}
+.table_header_p{
+	position: sticky !important;
+}
+.table_header_sec{
+    height: var(--height_table_header) !important;
+    padding: 0px;
+}
+/*GLOBAL CLASS FOR TABLE HEADER END*/ 
+
+
+/*GLOBAL CLASS FOR TABLE TABLE DATA*/ 
+.tableDataContainer{
+	margin-top: 0.9rem;
+}
+
+.table_data{
+	border-radius: var(--border_radius_table_data) !important;
+	margin-top: var(--mr_top_table_data) !important;
+	border: var(--border_table_data) !important;
+}
+.table_data_section{
+	height: var(--height_table_data) !important;
+}
+
+.table_data_element{
+	font-size: var(--font_size_table_data) !important;
+	width: var(--width_table_data) !important;
+	margin-bottom: var(--mr_botm_table_data) !important;
+}
+/*GLOBAL CLASS FOR TABLE TABLE DATA END*/ 
+
+/*GLOBAL CLASS FOR ADD BUTTON*/
+.add_btn{
+	border-radius: var(--border_radius_add_btn) !important;
+    margin-bottom: var(--mar_btom_add_btn) !important;
+    margin-right: var(--mar_right_add_btn) !important;
+    padding: var(--padding_add_btn) !important;
+    font-size: var(--font_size_add_btn) !important;
+    color: var(--btn_save_color) !important;
+    background: var(--btn_save_color_bg) !important;
+}
+/*GLOBAL CLASS FOR ADD BUTTON END*/
+
+/*GLOBAL CLASS FOR POPUP MODEL*/
+.header_popup{
+	font-weight: var(--font_weight_header_pop_up) !important;
+	font-size: var(--font_size_header_pop_up) !important;
+	color: var(--font_color_header_pop_up) !important;
+}
+/*GLOBAL CLASS FOR POPUP MODEL END*/
+
+/*GLOBAL CLASS FOR INPUT LABLE*/
+.input_lable{
+	position: var(--position_input_lable) !important;
+    top: var(--top_input_lable) !important;
+    left: var(--left_input_lable) !important; 
+    color: var(--color_input_lable) !important;
+    background-color: var(--bg_color_input_lable) !important;
+    transition: var(--transition_input_lable) !important;
+    pointer-events: none;
+    font-size: var(--font_size_input_lable) !important;
+    margin-bottom: var(--mr_botm_input_lable) !important;
+    margin-top: var(--mr_top_input_lable) !important;
+    padding-left: 3px !important;
+    padding-right: 3px !important;
+}
+
+.headTitle {
+    font-size: 12px !important;
+    color: #8c8c8c !important;
+}
+
+.validate{
+	font-size: 12px !important;
+	color: red !important;
+}
+/*GLOBAL CLASS FOR INPUT LABLE END*/
+
+
+/*GLOBAL CLASS FOR GRAPH SECTIONS*/
+.graph_lable_header{
+    font-weight: var(--font_weight_graph_lable) !important;
+    color: var(--font_color_graph_lable) !important;
+    font-size: var(--font_size_graph_lable) !important;
+    opacity: var(--opacity_graph_lable) !important;
+    margin-left: var(--mr_left_graph_lable) !important;
+    margin-top: var(--mr_top_graph_lable) !important;
+}
+.graph_lable_header_top{
+	margin-top: 0.8rem !important;
+}
+.headTitle{
+    font-size: 12px !important;
+    color: #8c8c8c !important;
+}
+
+.valueGraph {
+    font-size: 1.5rem !important;
+    font-weight: bold !important;
+    color: #004b9b !important;
+}
+
+.valueMarLeft{
+	margin-left: 5px !important;
+}
+
+.divMarLeft{
+	margin-left: 1rem !important;
+}
+
+.graph_lable {
+    margin-left: 2rem !important;
+    margin-top: 0.9rem !important;
+    margin-bottom: 0.6rem !important;
+}
+
+.divSpace {
+    margin-right: 1.5rem !important;
+    height: 2rem !important;
+}
+/*GLOBAL CLASS FOR GRAPH SECTIONS END*/
+
+
+/*GLOBAL CLASS FOR CURRENT SHIFT PERFORMANCE */
+.graph-content{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
+/*GLOBAL CLASS FOR CURRENT SHIFT PERFORMANCE END*/
+
+
+
+
+

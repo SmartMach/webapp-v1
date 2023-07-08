@@ -304,9 +304,9 @@ margin-top:0.5rem;
 margin-right:0.6rem;
 }
 .filterbtnstyle:hover{
-color:white;
-background-color:#005abc;
-opacity: 0.8;
+color:var(--save_btn_font_color);
+background-color:var(--save_btn_hover_background_color);
+/* opacity: 0.8; */
 }
 
 /* dropdown checkbox created by */

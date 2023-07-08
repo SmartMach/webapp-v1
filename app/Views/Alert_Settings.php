@@ -302,7 +302,7 @@
                     </div>
 
                 </div>
-                <a style="background: #005abc;color: white;width:max-content;" class="btn apply_btn_style"
+                <a style="width:max-content;" class="btn apply_btn_style"
                     id="add_alert_button" onclick="show_modal_add_alert()">
                     <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>Add Alert
                 </a>

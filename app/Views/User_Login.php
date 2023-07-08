@@ -15,6 +15,13 @@
     <script src="<?php echo base_url() ?>/bootstrap_5.1.3/dist/js/bootstrap.min.js"></script>
     
     <!--Link For CSS-->
+    
+    <!-- CSS STANDARDS START-->
+    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/standard/config.css?version=<?php echo rand() ; ?>">
+    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/standard/template.css?version=<?php echo rand() ; ?>">
+    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/standard/layout.css?version=<?php echo rand() ; ?>">
+    <!-- CSS STANDARDS END-->
+
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/login.css">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/production.css">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/user_management_sub.css">
@@ -26,6 +33,8 @@
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/model_sub.css">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/model.css">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/main.css">
+
+    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/config.css?version=<?php echo rand(); ?>">
 
     <!--Link For FONTS-->
     <link href="<?php echo base_url()?>/assets/fonts/Roboto/Roboto-Black.ttf" rel="stylesheet">
@@ -44,12 +53,8 @@
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-     .savebtn:hover{
-        color:black;
-        font-weight:495;
-     }
      .required_design{
-        color:red;
+        color:var(--required_font_color);
         margin-bottom:100px;
         padding-left:1px;
      }
@@ -115,7 +120,7 @@
                             </label>
                         </div> -->
                     </div>
-                    <input type="submit" name="Login_Verify" class="btn submit savebtn float-end" value="Login" id="login_submit">  
+                    <input type="submit" name="Login_Verify" class="btn fnt_fam btn_fnt_size btn_padd btn_save mr_login submit float-end" value="Login" id="login_submit">  
                 </form>
             </div>
         </div>
