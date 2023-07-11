@@ -57,7 +57,7 @@ class Database extends Config
         'DSN'      => '',
         'hostname' => 'localhost',
         'username' => 'root',
-        'password' => '',
+        'password' => 'quantanics123',
         //'database' => 'S10011',
         'database' => 'smartories_roof',
         'DBDriver' => 'MySQLi',
