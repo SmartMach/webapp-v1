@@ -17,12 +17,9 @@ class Current_Shift_Performance_Model extends Model{
         // echo($db_name);
         $this->site_connection = [
                     'DSN'      => '',
-                    // 'hostname' => '165.22.208.52',
-                    // 'username' => 'smartAd',
-                    // 'password' => 'WaDl@#smat1!',
                     'hostname' => 'localhost',
                     'username' => 'root',
-                    'password' => '',
+                    'password' => 'quantanics123',
                     //'database' => 'S1001',
                     'database' => ''.$db_name.'',
                     'DBDriver' => 'MySQLi',
