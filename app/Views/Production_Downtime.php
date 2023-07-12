@@ -107,7 +107,7 @@
     }
     .doneEdit img{
       position: absolute;
-      top: 20%;
+      top: 15%;
       left: 17%;
     }
     /*.split_input:nth-child(1) #settings_div div div .delete-split{

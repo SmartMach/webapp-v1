@@ -326,7 +326,7 @@
                                 </nav>
                                 <?php if($this->data['access'][0]['oee_financial_drill_down'] >=1){ ?>
                                 <li class="flex-container sidenave-hover">
-                                    <div style="width: 10%;justify-content: center; " class="icon-align ">
+                                    <div style="width: 10%;justify-content: center; margin-left:5px;" class="icon-align ">
                                         <!-- <i class="fa  fa-angle-double-down paddingm icon-sub " style="font-style: 15px;"></i> -->
                                         <img src="<?php echo base_url()?>/assets/icons/nav_financial_oee.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
                                     </div>
@@ -337,7 +337,7 @@
                                 <?php }?>
                                 <?php if($this->data['access'][0]['opportunity_insights'] >=1){ ?>
                                 <li class="flex-container sidenave-hover">
-                                    <div style="width: 10%;justify-content: center;" class="icon-align">
+                                    <div style="width: 10%;justify-content: center;margin-left:5px;" class="icon-align">
                                         <!-- <i class="fa fa-lightbulb paddingm color icon-sub" style="font-style: 15px;"></i> -->
                                         <img src="<?php echo base_url()?>/assets/icons/nav_financial_opportunity.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
                                     </div>
@@ -360,7 +360,7 @@
                                 </nav>
                                 <?php if($this->data['access'][0]['production_data_management'] >=1) ?>
                                 <li class="flex-container sidenave-hover">
-                                    <div style="width: 10%;justify-content: center;" class="icon-align">
+                                    <div style="width: 10%;justify-content: center;margin-left:5px;" class="icon-align">
                                         <!-- <i class="fa fa-clock-o paddingm icon-sub" style="font-style: 15px;"></i> -->
                                         <img src="<?php echo base_url()?>/assets/icons/pdm_downtime.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
                                     </div>
@@ -372,7 +372,7 @@
                                 </li>
                                 <?php if($this->data['access'][0]['production_data_management'] >=1){ ?>
                                 <li class="flex-container sidenave-hover">
-                                    <div style="width: 10%;justify-content: center;" class="icon-align">
+                                    <div style="width: 10%;justify-content: center;margin-left:5px;" class="icon-align">
                                         <!-- <i class="fa fa-ban paddingm icon-sub" style="font-style: 15px;"></i> -->
                                         <img src="<?php echo base_url()?>/assets/icons/pdm_quality.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
                                     </div>
@@ -383,7 +383,7 @@
                                 <?php } ?>
                                 <?php if($this->data['access'][0]['production_data_management'] >=1){ ?>
                                 <li class="flex-container sidenave-hover">
-                                    <div style="width: 10%;justify-content: center;" class="icon-align">
+                                    <div style="width: 10%;justify-content: center;margin-left:5px;" class="icon-align">
                                         <!-- <i class="fa fa-check paddingm icon-sub" style="font-style: 15px;"></i> -->
                                         <img src="<?php echo base_url()?>/assets/icons/pdm_corrections.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
                                     </div>
@@ -420,7 +420,7 @@
                                 </nav>
                                 <?php if($this->data['access'][0]['settings_machine'] >= 1){ ?>
                                 <li class="flex-container sidenave-hover">
-                                    <div style="width: 10%;justify-content: center;" class="icon-align">
+                                    <div style="width: 10%;justify-content: center;margin-left:5px;" class="icon-align">
                                         <!-- <i class="fa fa-angle-double-down paddingm icon-sub" style="font-style: 15px;"></i> -->
                                         <img src="<?php echo base_url()?>/assets/icons/nav_financial_oee.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
                                     </div>
@@ -431,7 +431,7 @@
                                 <?php } ?>
                                 <?php if($this->data['access'][0]['settings_part'] >= 1){ ?>
                                 <li class="flex-container sidenave-hover">
-                                    <div style="width: 10%;justify-content: center;" class="icon-align">
+                                    <div style="width: 10%;justify-content: center;margin-left:5px;" class="icon-align">
                                         <!-- <i class="fa fa-lightbulb-o paddingm icon-sub" style="font-style: 15px;"></i> -->
                                         <img src="<?php echo base_url()?>/assets/icons/nav_financial_opportunity.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
                                     </div>
@@ -442,7 +442,7 @@
                                 <?php } ?>
                                 <?php if ($this->data['access'][0]['settings_general']  >=1) {?>
                                 <li class="flex-container sidenave-hover">
-                                    <div style="width: 10%;justify-content: center;" class="icon-align">
+                                    <div style="width: 10%;justify-content: center;margin-left:5px;" class="icon-align">
                                         <!-- <i class="fa fa-bullseye paddingm icon-sub" style="font-style: 15px;"></i> -->
                                         <img src="<?php echo base_url()?>/assets/icons/nav_settings_general.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
                                         
@@ -454,7 +454,7 @@
                                 <?php }?>
                                 <?php if ($this->data['access'][0]['settings_user_management']  >=1) {?>
                                 <li class="flex-container sidenave-hover">
-                                    <div style="width: 10%;justify-content: center;" class="icon-align">
+                                    <div style="width: 10%;justify-content: center;margin-left:5px;" class="icon-align">
                                         <!-- <i class="fa fa-user-circle-o paddingm icon-sub" style="font-style: 15px;"></i> -->
                                         <img src="<?php echo base_url()?>/assets/icons/nav_settings_user.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
                                     </div>

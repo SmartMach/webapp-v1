@@ -332,7 +332,7 @@ $session = \Config\Services::session();
         <div class="each_row_split" >
             <!-- title -->
             <div class="title_div" style="">
-                <p class="graph_title_oee" >Machine-wise OEE% BreakDown</p>
+                <p class="graph_title_oee" >Machine-wise OEE% Breakdown</p>
             </div>
             <!-- dropdowns -->
             <div class="graph_filter_div marginScroll" style="">
@@ -2152,6 +2152,7 @@ function machineWiseOEE() {
                             display:true,
                             beginAtZero:true,
                             stacked:false,
+                           
                         },
                         x:{
                             display:true,

@@ -500,12 +500,12 @@ $session = \Config\Services::session();
         </div>
         <div class="tab-pane fade" id="pills-table" role="tabpanel" aria-labelledby="pills-table-tab" tabindex="0">
             <div class="tb_fl_header" style="display:flex;flex-direction:row;height:3rem;align-items:center;">
-                <div style="width:10%;display:flex;flex-direction:row;">
+                <div style="width:20%;display:flex;flex-direction:row;">
                     <div style="margin-left:1rem;font-size:12px;color:#8c8c8c;">
                         <input type="text" name="" id="pagination_val" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" onblur="pagination_filter()" style="width:2rem;text-align:center;height:2rem;border:1px solid #e6e6e6;border-radius:0.25rem;margin-right:0.4rem;"><span>of <span id="total_page"></span>  Pages</span>
                     </div>
                 </div>
-                <div style="width:90%;display:flex;flex-direction:row-reverse;align-items:center;margin-right:0.6rem;">
+                <div style="width:80%;display:flex;flex-direction:row-reverse;align-items:center;margin-right:0.6rem;">
                     <!-- <div style=""> -->
                         <!-- reset -->
                         <div class="" style="margin-top:0.5rem;">
@@ -1588,8 +1588,8 @@ function filter_after_filter(end_index,start_index){
                     var elements = $();
                     var element = $();
 
-                    var from_date = date_formate_change(from);
-                    var to_date = date_formate_change(to);
+                    var from_date = date_formate_change(val.shift_date+'T'+val.start_time);
+                    var to_date = date_formate_change(val.shift_date+'T'+val.end_time);
                     var updated_at = date_formate_change(val.last_updated_on);
                     var tmp_duration  = val.split_duration.toString().split('.');
                     var final_tmp_duration = " ";

@@ -482,7 +482,7 @@
             </nav> 
               <div class="divMarLeft">
                 <p class="paddingm headTitle fnt_fam">TOTAL</p>
-                <p class="paddingm valueGraph"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft TotalAvail"></span></p>
+                <p class="paddingm valueGraph"><i style="font-size:1.2rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft TotalAvail"></span></p>
               </div>
               <div class="parent_graph_availability_opportunity financial_drill_down_graph_bottom parent_div marginScroll">
                 <div class="child_div child_graph_availability_opportunity">
@@ -511,7 +511,7 @@
             </nav> 
             <div class="divMarLeft">
                 <p class="paddingm headTitle fnt_fam">TOTAL</p>
-                <p class="paddingm valueGraph"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft PerformanceGrand"></span></p>
+                <p class="paddingm valueGraph"><i style="font-size:1.2rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft PerformanceGrand"></span></p>
             </div>
             <div class="parent_graph_performance_opportunity financial_drill_down_graph_bottom parent_div marginScroll">
               <div class="child_div child_graph_performance_opportunity">
@@ -540,7 +540,7 @@
             </nav> 
             <div class="divMarLeft">
                 <p class="paddingm headTitle fnt_fam">TOTAL</p>
-                <p class="paddingm valueGraph" style="margin-left:0.4rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft OppCostTotal" ></span></p>
+                <p class="paddingm valueGraph" style="margin-left:0.4rem;"><i style="font-size:1.2rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft OppCostTotal" ></span></p>
             </div>
             <div class="parent_graph_quality_opportunity financial_drill_down_graph_bottom parent_div marginScroll">
               <div class="child_div child_graph_quality_opportunity">
