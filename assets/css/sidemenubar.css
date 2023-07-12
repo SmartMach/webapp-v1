@@ -61,7 +61,7 @@
       background: #eff7ff;
     }
     .side-menu li ul li{
-      /* border-bottom: 1px solid #EEE; */
+      border-bottom: 1px solid #EEE;
     }
     .side-menu li ul .nav-menu-title{
       font-family: 'Roboto', sans-serif;

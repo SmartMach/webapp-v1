@@ -17,6 +17,18 @@ span{
 .display_f{
 	display: flex;
 }
+.flex_f{
+    flex-flow: column;
+}
+.white_s{
+    white-space: nowrap;
+}
+.over_h{
+    overflow: hidden;
+}
+.text_e{
+    text-overflow: ellipsis;
+}
 .align_c{
 	align-items: center !important;
 }
@@ -28,6 +40,9 @@ span{
 }
 .justify_sb{
 	justify-content: space-between !important;
+}
+.justify_sa{
+    justify-content: space-around !important;
 }
 .text_align_c{
 	text-align: center;
@@ -65,8 +80,14 @@ span{
 .mr_login{
     margin: 20px;
 }
+.po_relative{
+    position: relative;
+}
 
 
+/*INPUT LABLES*/
+
+/*INPUT LABLES END*/
 
 /*BUTTONS*/
 .btn_fnt_size{
