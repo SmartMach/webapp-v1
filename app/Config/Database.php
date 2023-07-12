@@ -34,7 +34,7 @@ class Database extends Config
         'DSN'      => '',
         'hostname' => 'localhost',
         'username' => 'root',
-        'password' => '',
+        'password' => 'quantanics123',
         'database' => 's1002',
         //'database' => 'dub1',
         'DBDriver' => 'MySQLi',
