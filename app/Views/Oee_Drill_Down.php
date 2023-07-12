@@ -127,7 +127,7 @@ $session = \Config\Services::session();
             <div style="position:inherit;" class="target_bar_bottom">
                 <p class="graph_text" style="">Overall TEEP%</p>
                 <div class="empty_graph teep_graph_hover" >
-                    <div class="target_graph" id="teep_target" style="">
+                    <div class="target_graph" id="teep_target" style="display:flex;flex-direction:row;justify-content:start;align-items:center;">
                         <div class="fill_graph" id="teep_graph" style="">
                             <span class="graph_font"  id="text_teep"></span>
                         </div>
@@ -159,7 +159,7 @@ $session = \Config\Services::session();
             <div style="position:inherit;" class="target_bar_bottom">
                 <p class="graph_text" >Overall OOE%</p>
                 <div class="empty_graph ooe_graph_hover" >
-                    <div class="target_graph" id="ooe_target" style="">
+                    <div class="target_graph" id="ooe_target" style="display:flex;flex-direction:row;justify-content:start;align-items:center;">
                         <div class="fill_graph" id="ooe_graph">
                             <span class="graph_font" id="text_ooe"></span>
                         </div>
@@ -191,7 +191,7 @@ $session = \Config\Services::session();
             <div style="position:inherit;" class="target_bar_bottom">
                 <p class="graph_text" >Overall OEE%</p>
                 <div class="empty_graph oee_graph_hover">
-                    <div class="target_graph" style="" id="oee_target">
+                    <div class="target_graph"  id="oee_target" style="display:flex;flex-direction:row;justify-content:start;align-items:center;">
                         <div class="fill_graph" id="oee_graph" >
                             <span class="graph_font" id="text_oee"></span>
                         </div>
