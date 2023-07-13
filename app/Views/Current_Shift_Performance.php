@@ -1513,39 +1513,59 @@ $(document).on('click', '.grid-item-cont', function(event) {
 function oui_functions_call(index_val){
     fullscreen_mode_remove();
 
+    var tmp_mid = $('.machine_name_ref:eq(' + index_val + ')').attr('mid_data');
+    var tid_data = $('.machine_name_ref:eq('+index_val+')').attr('tid_data');
+    var shift_date = $('#shift_date').attr("sdate_format");
+    var shift_id = $('#shift_id').text();
+    var event_status = $('.current_event:eq(' + index_val + ')').attr('event');
+    var machine_name = $('.machine_name_ref:eq(' + index_val + ')').text();
+    // alert(shift_id.split(" "));
+    const tmp = shift_id.split(" ");
+
+    console.log("oui \t"+tmp_mid);
+    console.log("oui \t"+tid_data);
+    console.log("oui \t"+shift_date);
+    console.log("oui \t"+shift_id);
+    console.log("oui \t"+machine_name);
+    console.log("oui \t"+tmp);
+    console.log("oui \t"+event_status);
     // OUI FUNCTIONS...........
     var backgroundcolor = "";
     var background_title_color="";
     var background_light_color="";
     var border_color="";
     var production_bar_color="";
+    var sub_header = "";
 
-
-    event_status = "Inactive";
+    // event_status = "Inactive";
 
     if (event_status === "Active") {
         backgroundcolor = "#01ab4e";
         background_title_color="#007a37";
         background_light_color="#009a46";
         border_color = "#01a149";
+        sub_header = "#01ab4e";
 
     } else if (event_status === "Inactive") {
         backgroundcolor = "#d10527";
         background_title_color="#730316";
         background_light_color="#bb0523";
         border_color = "#9e041e";
+        sub_header = "#ffffff";
 
     } else if (event_status === "Machine OFF") {
         backgroundcolor = "#7f7f7f";
         background_title_color="#404040";
         background_light_color="#565656";
         border_color = "#bfbfbf";
+        sub_header = "#ffffff";
 
     } else {
         backgroundcolor = "#ffd966";
         background_title_color="#b08600";
         background_light_color="#ffc50d";
         border_color = "#d0a61b";
+        sub_header = "#ffffff";
     }
 
     
@@ -1554,18 +1574,22 @@ function oui_functions_call(index_val){
     $('.bg_title').css('background-color', background_title_color);
     $('.bg_light').css('background-color', background_light_color);
     $('.outer').css('border-color', border_color);
+    $('.second_header').css('background-color',sub_header);
     
     
-    getProductionGraph("MC1001","2023-07-04","A",background_title_color,border_color);
-    getDownTimeGraph("MC1001","2023-07-04","A");
-    getLiveOEE("MC1001","2023-07-04","A");
-    getDowntimeDuration("MC1001","2023-07-04","A");
-    getLiveProduction("MC1001","2023-07-04","A");
-    getPartCycleTime("MC1001");
-    getRejectCounts("MC1001","2023-07-04","A");
+    getProductionGraph(tmp_mid,shift_date,tmp[1],background_title_color,border_color);
+    getDownTimeGraph(tmp_mid,shift_date,tmp[1]);
+    getLiveOEE(tmp_mid,shift_date,tmp[1]);
+    getDowntimeDuration(tmp_mid,shift_date,tmp[1]);
+    getLiveProduction(tmp_mid,shift_date,tmp[1]);
+    getPartCycleTime(tmp_mid);
+    getRejectCounts(tmp_mid,shift_date,tmp[1]);
 
     $('.graph-content').css('display', 'none');
     $('.oui_screen_view').css('display', 'block');
+    $('.oui_arrow_div').css('display', 'inline');
+    $('.visibility_div').css('display', 'none');
+    $('#full_screen_btn_visibility').css('visibility','hidden');
 }
     
 
