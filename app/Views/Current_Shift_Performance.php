@@ -115,8 +115,12 @@
                 <p class="paddingm machine_name text_align_c"> Downtime </p>
                 <P class="paddingm part_name text_align_c" id="event_duration_machine"> </P>
             </div>
-            <div class="right_margin">
-                <p class="paddingm machine_name" id="latest_event_machine"> Event </p>
+            <div class="right_margin" style="display:flex;">
+                <div class="oui_duration_only_active">
+                    <i class="fa fa-circle" style="font-size:10px;color:white;"></i>
+                    <span class="active_duration_oui" style="margin:0;padding:0;margin-right:1rem;font-size:1.4rem;font-family:'Roboto',sans-serif;color:white;font-weight:bold;"></span>
+                </div>
+                 <p class="paddingm machine_name" id="latest_event_machine"> Event </p>
             </div> 
         </div>
 
@@ -147,14 +151,14 @@
                                 </div>
                             </div>
                             <div class="display_f justify_c align_c" style="width: 35%;margin-top: 1rem;">
-                                <div class="">
+                                <div class="" style="width:65%;">
                                     <p class="paddingm" style="">
                                         <span class="text-small">Target</span>
-                                        <span class="text2">320</span>
+                                        <span class="target_text2">0</span>
                                     </p>
                                     <div class="target_bar bg_title target_outline" style="width: 100%;">
                                         <div class="target_inline">
-                                            <p class="paddingm target_inline_Cont">240</p>
+                                            <p class="paddingm target_inline_Cont">0</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1551,21 +1555,21 @@ function oui_functions_call(index_val){
         background_title_color="#730316";
         background_light_color="#bb0523";
         border_color = "#9e041e";
-        sub_header = "#ffffff";
+        sub_header = "";
 
     } else if (event_status === "Machine OFF") {
         backgroundcolor = "#7f7f7f";
         background_title_color="#404040";
         background_light_color="#565656";
         border_color = "#bfbfbf";
-        sub_header = "#ffffff";
+        sub_header = "";
 
     } else {
         backgroundcolor = "#ffd966";
         background_title_color="#b08600";
         background_light_color="#ffc50d";
         border_color = "#d0a61b";
-        sub_header = "#ffffff";
+        sub_header = "";
     }
 
     
@@ -1584,7 +1588,7 @@ function oui_functions_call(index_val){
     getLiveProduction(tmp_mid,shift_date,tmp[1]);
     getPartCycleTime(tmp_mid);
     getRejectCounts(tmp_mid,shift_date,tmp[1]);
-
+    target_oui_graph(tmp_mid,tid_data,shift_date);
     $('.graph-content').css('display', 'none');
     $('.oui_screen_view').css('display', 'block');
     $('.oui_arrow_div').css('display', 'inline');
@@ -2231,36 +2235,36 @@ function getDownTimeGraph(machine_id, shift_date, s) {
                         },
                     },
 
-                    // tooltip: {
-                    //     custom: function({
-                    //         series,
-                    //         seriesIndex,
-                    //         dataPointIndex,
-                    //         w
-                    //     }) {
-                    //         var data = w.globals.initialSeries[seriesIndex].data[dataPointIndex];
-                    //         var sname = w.globals.initialSeries[seriesIndex].name;
-                    //         var start_time = w.globals.initialSeries[seriesIndex].start;
-                    //         var end_time = w.globals.initialSeries[seriesIndex].end;
-                    //         var part_id = w.globals.initialSeries[seriesIndex].part_id;
+                    tooltip: {
+                        custom: function({
+                            series,
+                            seriesIndex,
+                            dataPointIndex,
+                            w
+                        }) {
+                            var data = w.globals.initialSeries[seriesIndex].data[dataPointIndex];
+                            var sname = w.globals.initialSeries[seriesIndex].name;
+                            var start_time = w.globals.initialSeries[seriesIndex].start;
+                            var end_time = w.globals.initialSeries[seriesIndex].end;
+                            var part_id = w.globals.initialSeries[seriesIndex].part_id;
 
-                    //         var machine_Name_Tooltip = w.globals.initialSeries[seriesIndex].machine_Name;
-                    //         var part_name_tooltip = w.globals.initialSeries[seriesIndex].part_Name;
+                            var machine_Name_Tooltip = w.globals.initialSeries[seriesIndex].machine_Name;
+                            var part_name_tooltip = w.globals.initialSeries[seriesIndex].part_Name;
 
-                    //         return ('<div class="Tooltip_Container">' + '<div>' +
-                    //             '<p class="paddingm nameHeader">' + sname + '</p>' +
-                    //             '<p class="paddingm contentName">' + part_name_tooltip + '</p>' +
-                    //             '<p class="paddingm contentName leftAllign"><span>' + start_time +
-                    //             ' to </span><span>' + end_time + '</span></p>' +
-                    //             '<p class="paddingm durationVal leftAllign">' + data + 'm</p>' +
-                    //             '</div>' +
-                    //             '</div>'
+                            return ('<div class="Tooltip_Container">' + '<div>' +
+                                '<p class="paddingm nameHeader">' + sname + '</p>' +
+                                '<p class="paddingm contentName">' + part_name_tooltip + '</p>' +
+                                '<p class="paddingm contentName leftAllign"><span>' + start_time +
+                                ' to </span><span>' + end_time + '</span></p>' +
+                                '<p class="paddingm durationVal leftAllign">' + data + 'm</p>' +
+                                '</div>' +
+                                '</div>'
 
-                    //         );
-                    //     },
+                            );
+                        },
 
 
-                    // },
+                    },
 
 
                     fill: {
@@ -2301,7 +2305,7 @@ function getDownTimeGraph(machine_id, shift_date, s) {
     
 }
 
-function getLiveOEE(machine_id,shift_date,shift){
+    function getLiveOEE(machine_id,shift_date,shift){
         $.ajax({
             url: "<?php echo base_url('Current_Shift_Performance/getLiveMode');?>",
             type: "POST",
@@ -2312,6 +2316,9 @@ function getLiveOEE(machine_id,shift_date,shift){
                 filter:2,
             },
             success: function(res){
+
+                console.log("live record in current shift performance oui screen");
+                console.log(res['latest_event']);
                 res['oee'].forEach(function(machine) {
                     if (machine['Machine_Id'] == machine_id) {
                         $('#oui_availability').text(parseInt(machine['Availability'])+"%");
@@ -2332,7 +2339,16 @@ function getLiveOEE(machine_id,shift_date,shift){
                     if (machine[0]['machine_id'] == machine_id) {
                         $('#latest_event_machine').text(machine[0]['event']);
                         var t = machine[0]['duration'].split(".");
-                        $('#event_duration_machine').text(t[0]+"m");
+                        if (machine[0]['event']==="Active") {
+                            $('#event_duration_machine').css("display",'none');
+                            $('.oui_duration_only_active').css("display",'inline');
+                            $('.active_duration_oui').text(t[0]+"m");
+                        }else{
+                            $('#event_duration_machine').css("display",'inline');
+                            $('.oui_duration_only_active').css("display",'none');
+                            $('#event_duration_machine').text(t[0]+"m");
+                        }
+                        
                     }
                 });
             },
@@ -2439,5 +2455,43 @@ function getLiveOEE(machine_id,shift_date,shift){
                 // Error Occured!
             }
         });
+    }
+
+
+
+    function target_oui_graph(mid,tid,sdate){
+        // return new Promise(function(resolve,reject){
+        $.ajax({
+            url:"<?php echo base_url('Current_Shift_Performance/get_target_graph'); ?>",
+            method:"POST",
+            data:{
+                mid:mid,
+                sdate:sdate,
+                tid:tid,
+            },
+            dataType:"JSON",
+            success:function(res){
+                // resolve(res);
+                console.log("current shift performance oui screen target graph value");
+                console.log(res[0]['percentage_target']);
+                var target_percentage = 0;
+                if (parseInt(res[0]['percentage_target'])>100) {
+                    // target_percentage = res[0]['percentage_target'];
+                    target_percentage = 100;
+                }else{
+
+                    target_percentage = res[0]['percentage_target'];
+                }
+                $('.target_inline').css('height',target_percentage+'%');
+                $('.target_inline_Cont').text(res[0]['percentage_target']);
+                $('.target_text2').text(res[0]['target']);
+
+            },
+            error:function(er){
+                // reject(er);
+                console.log("current shift performance oui screen target graph error\t"+er);
+            }
+        });
+        // });
     }
 </script>
