@@ -38,6 +38,80 @@
 .side_nav_c{
 	position: fixed;
 }
+
+.side-menu-area{
+    list-style: none;
+}
+.side-menu-li{
+    z-index: 1040;
+}
+.side-menu-element{
+    color: #595959;
+}
+.icons-menu-ellipsis{
+    font-size: 1.35rem;
+    float: right;
+    color: #005abc;
+    padding: 1px 1px 1px 1px;
+}
+.mr_right_side_nav{
+    margin-right: 0.5rem;
+}
+.side-nav-hover-content{
+  list-style: none;
+  height: auto;
+  width: fit-content;
+  white-space: nowrap;
+  background: #FFF;
+  opacity: 0;
+  visibility: hidden;
+  border-radius: 10px 10px 10px 10px;
+  border:1px solid #d9d9d9;
+  font-size: 13px;
+  transition: all 300ms linear;
+  -o-transition: all 300ms linear;
+  -ms-transition: all 300ms linear;
+  -moz-transition: all 300ms linear;
+  -webkit-transition: all 300ms linear;
+  z-index: 1040;
+  left:4rem;
+  top: 0px;
+}
+.side-menu-li:hover > .side-nav-hover-content{
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    left:4.8rem;
+    box-shadow: 3px 3px 4px 0px #d9d9d9;
+    color: #9d9d9d;
+    z-index: 1040;
+}
+.side-menu-li-header{
+    border-bottom:1px solid #d9d9d9;
+}
+.side-menu-title{
+    font-size: 13px;
+    font-weight: bold;
+    color: #595959;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+.side-menu-hover-btom{
+    border-bottom: 1px solid #EEE;
+}
+
+.icon-option{
+    width: 2rem;
+    pointer-events: none;
+    cursor: pointer;
+}
+.lable-option{
+    width: fit-content;
+}
+.lable-option-val{
+    color: #595959;
+    margin-right: 10px;
+}
 /******** SIDE NAVIGATION MENU END ********/
 
 /******** SECONDARY NAVIGATION MENU ********/

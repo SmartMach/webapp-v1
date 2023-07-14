@@ -14,6 +14,12 @@ span{
 .fnt_inactive{
 	color: var(--inactive_count_color) !important;
 }
+.float_l{
+    float: left;
+}
+.display_b{
+    display: block;
+}
 .display_f{
 	display: flex;
 }
@@ -83,7 +89,20 @@ span{
 .po_relative{
     position: relative;
 }
+.po_fixed{
+    position: fixed;
+}
+.po_absolute{
+    position: absolute;
+}
+.hover_elem_height{
+    height: 2rem;
+}
 
+.icons-smart {
+    height: 1rem !important;
+    width: 1rem !important;
+}
 
 /*INPUT LABLES*/
 
