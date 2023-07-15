@@ -3434,7 +3434,7 @@ function error_show_remove(data){
 
  // retrive all users function
 
- function get_all_user(){
+function get_all_user(){
 
 // retrive all users for rows
 var SiteUserRef = "<?php echo($this->data['user_details'][0]['user_id']); ?>";

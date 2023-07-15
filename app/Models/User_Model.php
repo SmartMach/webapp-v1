@@ -298,6 +298,7 @@ class User_Model extends Model{
 
     // get site name records function
     public function getsit_name_user_record($site_id){
+        
         $db = \Config\Database::connect("another_db");
         $build = $db->table('sites');
         $build->select('site_name');
@@ -738,7 +739,7 @@ public function import_db($db_name){
                     'DSN'      => '',
                     'hostname' => 'localhost',
                     'username' => 'root',
-                    'password' => 'quantanics123',
+                    'password' => '',
                     //'database' => 'S10011',
                     'database' => ''.$db_name.'',
                     'DBDriver' => 'MySQLi',

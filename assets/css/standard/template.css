@@ -98,6 +98,9 @@ span{
 .hover_elem_height{
     height: 2rem;
 }
+.bg_white{
+    background:white;
+}
 
 .icons-smart {
     height: 1rem !important;
@@ -132,6 +135,21 @@ span{
 	color: var(--font_color_cancel_hover_pop_up) !important;
 	background: var(--bg_color_cancel_hover_pop_up) !important;
 	/*opacity: 0.8;*/
+}
+
+
+/*EVENT BACKGROUND*/
+.active_bg{
+    background: var(--active_color) !important;
+}
+.inactive_bg{
+    background: var(--inactive_color) !important;
+}
+.machine_off_bg{
+    background: var(--machine_off_color) !important;
+}
+.offline_bg{
+    background: var(--offline-color) !important;
 }
 
 /*GLOBAL FOR SOFTWARE END*/
@@ -318,7 +336,25 @@ span{
 }
 /*GLOBAL CLASS FOR CURRENT SHIFT PERFORMANCE END*/
 
+/*GLOBAL CLASS FOR SELECT INPUT*/
+.select_input_width{
+    width: var(--input_select_width) !important;
+    height: var(--input_select_height) !important;
+}
+.input_padd{
+    padding-left: 0.7rem;
+    padding-right: 0.25rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    /*padding: var(--inpust_select_padding) !important;*/
+}
+/*GLOBAL CLASS FOR SELECT INPUT END*/
 
-
+/*PDM - DOWNTIME*/
+.labelGraph {
+    height: 10px !important;
+    width: 10px !important;
+    margin-right: 0.5rem !important;
+}
 
 
