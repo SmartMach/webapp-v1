@@ -566,69 +566,65 @@ input[type=number] {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.14.0/jquery.timepicker.js" integrity="sha512-v84GNWs/NREzyztDm0s2NCXR9tIXH4aD/pe3uktyJeCWICr+/J38obdjXx1wxPRzTXHY54Hf0zBD5fbuRSNvGw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- timepicker end -->
 
-<div style="margin-left: 4.5rem;">
-        <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav">
-          <div class="container-fluid paddingm" style="margin-top:0.2rem;">
-            <p class="float-start p3" id="logo">Downtime</p>
+<div class="mr_left_content_sec">
+      <nav class="sec_nav display_f align_c justify_c sec_nav_c navbar-expand-lg">
+        <div class="container-fluid paddingm display_f justify_sb align_c">
+          <p class="float-start fnt_fam mdl_header">Downtime</p>
             <div class="d-flex">
-                    <p class="float-end stcode" style="color:#005CBC;font-size:1rem; ">
-                        <span  id="machineOFFTotal">00</span> Machine OFF
-                    </p>
-                    <p class="float-end stcode" style="color: #C00000;font-size:1rem;">
-                        <span  id="UnnamedTotal">00</span> Unnamed
-                    </p>
-              </div>
-          </div>
-        </nav>
-        <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav_downtime">
-          <div class="container-fluid paddingm " style="margin-top:2.2rem;">
-              <div>
-                <span class="float-start paddingm labelAlign center-align p4"><div class="labelGraph" style="background: #01bb55"></div><p class="paddingm p3">Active</p></span>
-                <span class="float-start paddingm labelAlign center-align  p4"><div class="labelGraph" style="background: #005abc"></div><p class="paddingm p3">Inactive</p></span>
-                <span class="float-start paddingm labelAlign center-align p4"><div class="labelGraph" style="background: #595959"></div><p class="paddingm p3">Machine OFF</p></span>
-                <!-- <span class="float-start paddingm labelAlign center-align p4"><div class="labelGraph1" style="background: #f2f2f2"></div><p class="paddingm p3">No Data</p></span> -->
-                <span class="float-start paddingm labelAlign center-align p4"><div class="labelGraph" style="background: #f2f2f2"></div><p class="paddingm p3">No Data</p></span>
-              </div>
-              <div class="d-flex innerNav">
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
-                        <div class="input-box">
-                            <select class="form-select font_weight" name="" id="Production_MachineName" style="width: 10rem;">
-                            </select>
-                            <label for="inputSiteNameAdd" class="input-padding ">Machine Name</label>
-                        </div>
-                    </div>
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
-                        <div class="input-box">
-                            <!-- <input  type="date" class="form-control font_weight" name="" id="Production_shift_date" style="width: 10rem;"> -->
-                            <input type="datepicker" class="form-control font_weight datepicker" id="Production_shift_date" style="width: 10rem;" placeholder="dd-mm-yyyy" autocomplete="off">
-                            <label for="inputSiteNameAdd" class="input-padding ">Shift Date</label>
-                        </div>
-                    </div>
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
-                        <div class="input-box">
-                            <select class="form-select font_weight" name="" id="RejectShift" style="width: 10rem;">
-                             <!--  <option value="1">shift1</option>
-                              <option value="2">shift2</option> -->
-                            </select>
-                            <label for="inputSiteNameAdd" class="input-padding ">Shift</label>
-                        </div>
-                    </div> 
-              </div>
-          </div>
-        </nav>
-      <br>
-      <br>
+                  <p class="float-end fnt_fam style_label active_click fnt_active">
+                      <span  id="machineOFFTotal">0</span>Machine OFF 
+                  </p>
+                  <p class="float-end fnt_fam style_label fnt_inactive">
+                      <span  id="UnnamedTotal">0</span>Unnamed
+                  </p>
+            </div>
+        </div>
+      </nav>
 
-        <!-- Downtime Graph -->
-        <div class="chart-div" style="position:fixed;left:4.5rem;right:0;background-color:white;z-index:150;">
-          <div id="chart"></div>
-          <div class="text-label-graph" style="width: 50%;float: left;">
-            <p  id="shift_start_time_label" class="startTimeVal"></p>
+      <nav class="inner_nav inner_nav_c display_f align_c justify_sb navbar-expand-lg">
+        <div class="container-fluid paddingm display_f justify_sb align_c">
+          <div>
+            <span class="float-start paddingm labelAlign display_f justify_c align_c"><div class="labelGraph active_bg"></div><p class="paddingm p3">Active</p></span>
+            <span class="float-start paddingm labelAlign  display_f justify_c align_c"><div class="labelGraph inactive_bg"></div><p class="paddingm p3">Inactive</p></span>
+            <span class="float-start paddingm labelAlign  display_f justify_c align_c"><div class="labelGraph machine_off_bg"></div><p class="paddingm p3">Machine OFF</p></span>
+            <span class="float-start paddingm labelAlign  display_f justify_c align_c"><div class="labelGraph offline_bg"></div><p class="paddingm p3">No Data</p></span>
           </div>
-          <div class="text-label-graph-end" style="width: 50%;float: left;">
-            <p  id="shift_end_time_label" class="endTimeVal"></p>
+          <div class="d-flex innerNav">
+            <div class="box display_f align_c" style="margin-right: 0.5rem;">
+              <div class="input-box">
+                  <select class="form-select font_weight select_input_width input_padd" name="" id="Production_MachineName" style="width: 10rem;">
+                  </select>
+                  <label for="inputSiteNameAdd" class="input-padding ">Machine Name</label>
+              </div>
+            </div>
+            <div class="box display_f align_c" style="margin-right: 0.5rem;">
+              <div class="input-box">
+                  <input type="datepicker" class="form-control select_input_width input_padd font_weight datepicker" id="Production_shift_date" style="width: 10rem;" placeholder="dd-mm-yyyy" autocomplete="off">
+                  <label for="inputSiteNameAdd" class="input-padding ">Shift Date</label>
+              </div>
+            </div>
+            <div class="box display_f align_c" style="margin-right: 0.5rem;">
+              <div class="input-box">
+                  <select class="form-select select_input_width input_padd font_weight" name="" id="RejectShift" style="width: 10rem;">
+                  </select>
+                  <label for="inputSiteNameAdd" class="input-padding ">Shift</label>
+              </div>
+            </div>
+                 
           </div>
         </div>
+      </nav>
+
+      <!-- Downtime Graph -->
+      <div class="chart-div po_fixed bg_white" style="left:4.5rem;right:0;z-index:1500;">
+        <div id="chart"></div>
+        <div class="text-label-graph" style="width: 50%;float: left;">
+          <p  id="shift_start_time_label" class="startTimeVal"></p>
+        </div>
+        <div class="text-label-graph-end" style="width: 50%;float: left;">
+          <p  id="shift_end_time_label" class="endTimeVal"></p>
+        </div>
+      </div>
 
         <!-- filter option bulg edit -->
         <!-- filter downtime -->

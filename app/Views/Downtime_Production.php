@@ -1919,6 +1919,12 @@ function getfilter_oppcost_reason(){
                           grid:{
                             display:false
                           },
+                          // For Percentage.....
+                          ticks: {
+                            callback: function(value, index, values) {
+                              return value + '%';
+                            }
+                          },
                         },
                         B:{
                           type: 'linear',
@@ -1927,6 +1933,12 @@ function getfilter_oppcost_reason(){
                           display:true,
                           grid:{
                             display:false
+                          },
+                          // For Rupee Symbol.....
+                          ticks: {
+                            callback: function(value, index, values) {
+                              return '₹' + value;
+                            }
                           },
                         },
                         x:{
@@ -2118,6 +2130,12 @@ function getfilter_duration_reason(){
                           grid:{
                             display:false
                           },
+                          // For Percentage.....
+                          ticks: {
+                            callback: function(value, index, values) {
+                              return value + '%';
+                            }
+                          },
                         },
                         B:{
                           type: 'linear',
@@ -2126,6 +2144,12 @@ function getfilter_duration_reason(){
                           display:true,
                           grid:{
                             display:false
+                          },
+                          // For Rupee Symbol.....
+                          ticks: {
+                            callback: function(value, index, values) {
+                              return '₹' + value;
+                            }
                           },
                         },
                         x:{
@@ -2310,6 +2334,12 @@ function getfilter_machine_oppcost(){
                           grid:{
                             display:false
                           },
+                          // For Percentage.....
+                          ticks: {
+                            callback: function(value, index, values) {
+                              return value + '%';
+                            }
+                          },
                         },
                         B:{
                           type: 'linear',
@@ -2318,6 +2348,12 @@ function getfilter_machine_oppcost(){
                           display:true,
                           grid:{
                             display:false
+                          },
+                          // For Rupee Symbol.....
+                          ticks: {
+                            callback: function(value, index, values) {
+                              return '₹' + value;
+                            }
                           },
                         },
                         x:{
@@ -2520,6 +2556,12 @@ function getfilter_machine_reason_duration(){
                             grid:{
                                 display:false
                             },
+                            // For Percentage.....
+                            ticks: {
+                              callback: function(value, index, values) {
+                                return value + '%';
+                              }
+                            },
                             },
                             B:{
                             type: 'linear',
@@ -2528,6 +2570,12 @@ function getfilter_machine_reason_duration(){
                             display:true,
                             grid:{
                                 display:false
+                            },
+                            // For Rupee Symbol.....
+                            ticks: {
+                              callback: function(value, index, values) {
+                                return '₹' + value;
+                              }
                             },
                             },
                         x:{
@@ -3008,6 +3056,12 @@ function first_load_reason_oppcost(f,t){
                             grid:{
                                 display:false
                             },
+                            // For Percentage.....
+                            ticks: {
+                              callback: function(value, index, values) {
+                                return value + '%';
+                              }
+                            },
                             },
                             B:{
                             type: 'linear',
@@ -3016,6 +3070,12 @@ function first_load_reason_oppcost(f,t){
                             display:true,
                             grid:{
                                 display:false
+                            },
+                            // For Rupee Symbol.....
+                            ticks: {
+                              callback: function(value, index, values) {
+                                return '₹' + value;
+                              }
                             },
                             },
                             x:{
@@ -3166,6 +3226,12 @@ function first_load_reason_duration(f,t){
                             grid:{
                                 display:false
                             },
+                            // For Percentage.....
+                            ticks: {
+                              callback: function(value, index, values) {
+                                return value + '%';
+                              }
+                            },
                             },
                             B:{
                             type: 'linear',
@@ -3174,6 +3240,12 @@ function first_load_reason_duration(f,t){
                             display:true,
                             grid:{
                                 display:false
+                            },
+                            // For Rupee Symbol.....
+                            ticks: {
+                              callback: function(value, index, values) {
+                                return '₹' + value;
+                              }
                             },
                             },
                             x:{
@@ -3328,6 +3400,12 @@ function first_load_machine_oppcost(f,t){
                             grid:{
                                 display:false
                             },
+                            // For Percentage.....
+                            ticks: {
+                              callback: function(value, index, values) {
+                                return value + '%';
+                              }
+                            },
                             },
                             B:{
                             type: 'linear',
@@ -3336,6 +3414,12 @@ function first_load_machine_oppcost(f,t){
                             display:true,
                             grid:{
                                 display:false
+                            },
+                            // For Rupee Symbol.....
+                            ticks: {
+                              callback: function(value, index, values) {
+                                return '₹' + value;
+                              }
                             },
                             },
                             x:{
@@ -3495,6 +3579,12 @@ function first_load_machine_duration(f,t){
                                 grid:{
                                     display:false
                                 },
+                                // For Percentage.....
+                                ticks: {
+                                  callback: function(value, index, values) {
+                                    return value + '%';
+                                  }
+                                },
                                 },
                                 B:{
                                 type: 'linear',
@@ -3503,6 +3593,12 @@ function first_load_machine_duration(f,t){
                                 display:true,
                                 grid:{
                                     display:false
+                                },
+                                // For Rupee Symbol.....
+                                ticks: {
+                                  callback: function(value, index, values) {
+                                    return '₹' + value;
+                                  }
                                 },
                                 },
                             x:{

@@ -10,6 +10,19 @@
 
 		/*INR LEFT*/
 		--mr_left_inr: 5px;
+		--font_size_inr : 1.2rem;
+
+		/*INPUT SELECT BOX*/
+		--input_select_width :10rem;
+		--input_select_height :2rem;
+		--inpust_select_padding: 0.25rem;
+
+		/***** EVENT COLOR *****/
+		--active_color:#01bb55;
+		--inactive_color:#005abc;
+		--machine_off_color:#595959;
+		--offline-color:#f2f2f2;
+
 
 	/*********GLOBAL VARIABLES FOR SOFTWARE END*********/
 

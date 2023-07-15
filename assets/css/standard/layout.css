@@ -112,6 +112,9 @@
     color: #595959;
     margin-right: 10px;
 }
+.lable-option-val:hover{
+  color: #595959;
+}
 /******** SIDE NAVIGATION MENU END ********/
 
 /******** SECONDARY NAVIGATION MENU ********/

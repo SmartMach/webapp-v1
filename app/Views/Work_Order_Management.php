@@ -3148,7 +3148,6 @@ function getFilterval(filter=false){
       }
     });
     }
-
     getWorkOrderRecords(status,lables,priority,assignee,filter);
   }
 
