@@ -10,6 +10,7 @@
 
 		/*INR LEFT*/
 		--mr_left_inr: 5px;
+		--font_size_inr : 1.2rem;
 
 		/*INPUT SELECT BOX*/
 		--input_select_width :10rem;

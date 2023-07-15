@@ -75,6 +75,9 @@ span{
 .mar_right_logo{
 	margin-right: var(--mr_left_inr) !important;
 }
+.inr_font{
+    font-size: var(--font_size_inr);
+}
 .active_dot{
 	font-size:9px;
 	margin-right:5px;

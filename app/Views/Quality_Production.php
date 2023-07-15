@@ -178,7 +178,7 @@
           <div class="valueMarLeft" style="margin-left:1rem;">
             <div style="float: left;width: 17%;">
               <p class="paddingm headTitle total-margin" style="margin-left:0rem;">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm COPQP" ></span></p>
+              <p class="paddingm valueGraph"><i class="fa fa-inr inr_font" aria-hidden="true"></i><span class="paddingm COPQP"></span></p>
             </div>
             <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
               <div class="box rightmar" style="margin-right: 0.5rem;">
@@ -335,7 +335,7 @@
           <div class="valueMarLeft" style="margin-left:1rem;">
             <div style="float: left;width: 17%;">
               <p class="paddingm headTitle total-margin" style="margin-left:0;">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm  COPQM" ></span></p>
+              <p class="paddingm valueGraph"><i class="fa fa-inr inr_font" aria-hidden="true"></i><span class="paddingm COPQM"></span></p>
             </div>
             <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
               <div class="box rightmar" style="margin-right: 0.5rem;">
@@ -494,7 +494,7 @@
           <div class="valueMarLeft" style="margin-left:1rem;">
             <div style="float: left;width: 17%;">
               <p class="paddingm headTitle total-margin" style="margin:0;">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm  CQRP" ></span></p>
+              <p class="paddingm valueGraph"><i class="fa fa-inr inr_font" aria-hidden="true"></i><span class="paddingm CQRP"></span></p>
             </div>
             <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
               <div class="box rightmar" style="margin-right: 0.5rem;">
@@ -2414,8 +2414,6 @@ function qualitybyreasonparts() {
         part:part
       },
       success:function(res){
-        console.log("ajax graph cqrpr");
-        console.log(res);
         resolve(res);
         // $('#qualityOpportunity').remove();
         // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
@@ -2551,12 +2549,17 @@ function qualitybyreasonparts() {
                     A:{
                         type: 'linear',
                         position: 'right',
-                        // beginAtZero: true,
                         suggestedMin: 0,
                         suggestedMax: 100,
                         display:true,
                         grid:{
                           display:false
+                        },
+                        // For Percentage.....
+                        ticks: {
+                          callback: function(value, index, values) {
+                            return value + '%';
+                          }
                         },
                       },
                     B:{
@@ -2567,7 +2570,13 @@ function qualitybyreasonparts() {
                         grid:{
                           display:false
                         },
-                        stacked:true
+                        stacked:true,
+                        // For Rupee Symbol.....
+                        ticks: {
+                          callback: function(value, index, values) {
+                            return '₹' + value;
+                          }
+                        },
                       },
                     x:{
                         display:true,
@@ -2591,8 +2600,7 @@ function qualitybyreasonparts() {
             });
           },
       error:function(er){
-        console.log("ajax graph issue");
-        console.log(er);
+
         reject(er);
           // alert("Sorry!Try Agian!!!!");
       }
@@ -2774,8 +2782,6 @@ function copqp() {
         reason:reason
       },
       success:function(res){
-        console.log("copqp result");
-        console.log(res);
         resolve(res);
         // $('#qualityOpportunity').remove();
         // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
@@ -2897,6 +2903,12 @@ function copqp() {
                       grid:{
                         display:false
                       },
+                      // For Percentage.....
+                      ticks: {
+                        callback: function(value, index, values) {
+                          return value + '%';
+                        }
+                      },
                     },
                     B:{
                       type: 'linear',
@@ -2906,6 +2918,12 @@ function copqp() {
                       grid:{
                         display:false
                       },
+                      // For Rupee Symbol.....
+                        ticks: {
+                          callback: function(value, index, values) {
+                            return '₹' + value;
+                          }
+                        },
                     },
                     x:{
                         display:true,
@@ -2934,8 +2952,6 @@ function copqp() {
           },
       error:function(er){
         // alert("Sorry!Try Agian!!!!");
-        console.log("ajax graph issue copqp");
-        console.log(er);
         reject(er);
       }
     }); 
@@ -3109,8 +3125,6 @@ function qualitybyparts() {
         machine:machine
       },
       success:function(res){
-        console.log("graph ajax cqrp");
-        console.log(res);
         resolve(res);
         // $('#qualityOpportunity').remove();
         // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
@@ -3229,6 +3243,12 @@ function qualitybyparts() {
                         grid:{
                           display:false
                         },
+                      // For Percentage.....
+                        ticks: {
+                          callback: function(value, index, values) {
+                            return value + '%';
+                          }
+                        },
                       },
                       B:{
                         type: 'linear',
@@ -3237,6 +3257,12 @@ function qualitybyparts() {
                         display:true,
                         grid:{
                           display:false
+                        },
+                        // For Rupee Symbol.....
+                        ticks: {
+                          callback: function(value, index, values) {
+                            return '₹' + value;
+                          }
                         },
                       },
                     x:{
@@ -3267,8 +3293,6 @@ function qualitybyparts() {
       error:function(er){
         reject(er);
         // alert("Sorry!Try Agian!!!!");
-        console.log("graph ajax issue cqrp");
-        console.log(er);
       }
     }); 
   });
@@ -3440,8 +3464,6 @@ function crbmr() {
         reason:reason
       },
       success:function(res){
-        console.log("ajax graph crbmr");
-        console.log(res);
         resolve(res);
         // $('#qualityOpportunity').remove();
         // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
@@ -3584,6 +3606,12 @@ function crbmr() {
                         grid:{
                           display:false
                         },
+                        // For Percentage.....
+                        ticks: {
+                          callback: function(value, index, values) {
+                            return value + '%';
+                          }
+                        },
                       },
                     B:{
                         type: 'linear',
@@ -3594,6 +3622,12 @@ function crbmr() {
                           display:false
                         },
                         stacked:true,
+                        // For Rupee Symbol.....
+                        ticks: {
+                          callback: function(value, index, values) {
+                            return '₹' + value;
+                          }
+                        },
                       },
                     x:{
                         display:true,
@@ -3622,8 +3656,6 @@ function crbmr() {
           },
       error:function(er){
           // alert("Sorry!Try Agian!!!!");
-          console.log("ajax graph issue crbmr");
-          console.log(er);
           reject(er);
       }
     }); 
@@ -3797,8 +3829,6 @@ function copqm() {
         reason:reason
       },
       success:function(res){
-        console.log("graph ajax copqm");
-        console.log(res);
         resolve(res);
         // $('#qualityOpportunity').remove();
         // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
@@ -3916,6 +3946,12 @@ function copqm() {
                       grid:{
                         display:false
                       },
+                      // For Percentage.....
+                      ticks: {
+                        callback: function(value, index, values) {
+                          return value + '%';
+                        }
+                      },
                     },
                     B:{
                       type: 'linear',
@@ -3925,6 +3961,12 @@ function copqm() {
                       grid:{
                         display:false
                       },
+                      // For Rupee Symbol.....
+                        ticks: {
+                          callback: function(value, index, values) {
+                            return '₹' + value;
+                          }
+                        },
                     },
                     x:{
                         display:true,
@@ -3952,8 +3994,6 @@ function copqm() {
             });
           },
       error:function(er){
-        console.log("ajax graph issue copqm");
-        console.log(er);
         reject(er);
           // alert("Sorry!Try Agian!!!!");
       }
@@ -4130,8 +4170,6 @@ function qrbr() {
         machine:machine
       },
       success:function(res){
-        console.log("ajax graph qrbr");
-        console.log(res);
         resolve(res);
         // $('#qualityOpportunity').remove();
         // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
@@ -4272,6 +4310,12 @@ function qrbr() {
                       grid:{
                         display:false
                       },
+                      // For Percentage.....
+                      ticks: {
+                        callback: function(value, index, values) {
+                          return value + '%';
+                        }
+                      },
                     },
                     B:{
                       type: 'linear',
@@ -4281,6 +4325,12 @@ function qrbr() {
                       grid:{
                         display:false
                       },
+                      // For Rupee Symbol.....
+                        ticks: {
+                          callback: function(value, index, values) {
+                            return '₹' + value;
+                          }
+                        },
                     },
                     x:{
                         display:true,
@@ -4308,8 +4358,6 @@ function qrbr() {
             });
           },
       error:function(er){
-        console.log("graph ajax issue qrbr");
-        console.log(er);
         reject(er);
           // alert("Sorry!Try Agian!!!!");
       }
@@ -4449,8 +4497,6 @@ $(document).on('click','#table-cont',function(event){
       type: "POST",
       dataType: "json",
       success:function(res){
-        console.log("dropdown ajax ");
-        console.log(res);
         resolve(res);
         // Part Filter
         var elements = $();
@@ -4905,8 +4951,6 @@ $(document).on('click','#table-cont',function(event){
       },
       error:function(er){
         // alert("Something went wrong!");
-        console.log("dropdown ajax issue ");
-        console.log(er);
         reject(er);
       }
     });
@@ -4919,8 +4963,6 @@ function getTableData(part,machine,reason,user){
     t = $('.toDate').val();
     f = f.replace(" ","T");
     t = t.replace(" ","T");
-    console.log("from date:\t"+f);
-    console.log("to date:\t"+t);
     filter_array =[];
     $.ajax({
       url: "<?php echo base_url('Production_Quality/gettablefilterdata'); ?>",
@@ -4936,8 +4978,6 @@ function getTableData(part,machine,reason,user){
         to:t,
       },
       success:function(res){
-        console.log("table data");
-        console.log(res);
         res.forEach(function(value, index) {
           filter_array.push(value);
         });
@@ -4953,8 +4993,6 @@ function getTableData(part,machine,reason,user){
         
       },
       error:function(er){
-        console.log("table ajax issue");
-        console.log(er);
         // alert("Something went wrong!");
       }
     });
