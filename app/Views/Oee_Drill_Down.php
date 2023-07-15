@@ -3552,6 +3552,11 @@ function oee_trend_first_load(f,t){
                                 display:true,
                                 beginAtZero:true,  
                                 stacked:true,
+                                ticks:{
+                                    callback:function(value){
+                                        return value+"%";
+                                    }
+                                }
                             },
                             x:{
                                 display:true,
@@ -3707,6 +3712,7 @@ function first_loader_machine_oee(f,t){
                             oeeTarget:res['OEETarget'],
                             categoryPercentage:category_percent,
                             barPercentage: bar_space, 
+                            // yAxisID:'ypercentage',
                         });
                     }
                 });
@@ -3724,9 +3730,15 @@ function first_loader_machine_oee(f,t){
                         maintainAspectRatio: false,   
                         scales: {
                             y: {
+                                //type:"bar",
                                 display:true,
                                 beginAtZero:true,
                                 stacked:false,
+                                ticks:{
+                                    callback:function(value){
+                                        return value+"%";
+                                    }
+                                }
                             },
                             x:{
                                 display:true,

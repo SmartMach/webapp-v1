@@ -1809,9 +1809,20 @@ function opportunityTrendDay(){
           maintainAspectRatio: false,   
           scales: {
               y: {
-                  display:false,
+                  display:true,
                   beginAtZero:true,
-                  stacked:true
+                  stacked:true,
+                  ticks:{
+                    callback:function(value){
+                      var tmp_val = parseInt(value)/1000;
+                      if (parseInt(tmp_val)>0) {
+                        return "₹"+tmp_val+"k";
+                      }else{
+                        return "₹"+value;
+                      }
+                      
+                    }
+                  }
               },
               x:{
                   display:true,

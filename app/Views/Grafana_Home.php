@@ -541,7 +541,7 @@
                         //echo $this->data['access'][0]['Settings_Machine'];
                     }
                     elseif($select_opt != null && $select_sub_opt == null)
-                    {
+                    {                  
                         echo view(''. $this->data['select_opt'].'',$this->data);
                     }
                     else{
@@ -574,7 +574,7 @@
     var actionList = document.getElementsByClassName('icon-font-js');
       for (var i = 0; i < listIcons.length; i++) {
         var x = listIcons[i].getAttribute("dvalue");
-        
+
         if(MenuSub[0] == x){
             var icon_name = listIcons[i].getAttribute("class");
 
@@ -668,7 +668,7 @@ var site_id = "<?php echo($this->data['user_details'][0]['site_id']); ?>";
 //alert(site_id);
 
     $(document).ready(function(){
-
+        
         // logout click event controller
        $(document).on('click','.unset_session',function(event){
             event.preventDefault();
@@ -828,8 +828,4 @@ $(document).ready(function(){
     $('#get_text_info').html(first_letter+''+last_letter);
 
 });
-
-
-
- 
 </script>

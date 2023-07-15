@@ -1818,9 +1818,15 @@ function oeeTrendDay() {
             maintainAspectRatio: false,   
             scales: {
                 y: {
-                    display:false,
+                    display:true,
                     beginAtZero:true,  
                     stacked:true,
+                    ticks:{
+                      callback:function(value){
+                        return value+"%";
+                      },
+                    }
+                    
                 },
                 x:{
                     display:true,
