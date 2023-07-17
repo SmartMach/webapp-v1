@@ -139,11 +139,11 @@ a{
                         <div class="col-sm-2 p3 paddingm">
                           <p class="basic_header">PART NAME</p>
                         </div>
-                        <div class="col-sm-2 p3 paddingm marleft" >
-                          <p class="basic_header">MAX REJECTS <i class="fa fa-info-circle"></i></p>
+                        <div class="col-sm-2 p3 paddingm " style="justify-content:end;">
+                          <p class="basic_header" style="margin-right:1rem;">MAX REJECTS <i class="fa fa-info-circle"></i></p>
                         </div>
-                        <div class="col-sm-2 p3 paddingm marleft">
-                          <p class="basic_header">REJECT COUNTS</p>
+                        <div class="col-sm-2 p3 paddingm" style="justify-content:end;">
+                          <p class="basic_header" style="margin-right:1rem;">REJECT COUNTS</p>
                         </div>
                         <div class="col-sm-1 p3 paddingm">
                           <p class="basic_header">REASON</p>
@@ -345,10 +345,10 @@ function selection_data(){
                         +'<div class="col-sm-2 col marleft" >'
                             +'<p id="pname">'+item.part_name+'</p>'
                         +'</div>'
-                        +'<div class="col-sm-2 col marleft" >'
+                        +'<div class="col-sm-2 col marright" >'
                             +'<p id="mreject">'+max_reject+'</p>'
                         +'</div>'
-                        +'<div class="col-sm-2 col marleft">'
+                        +'<div class="col-sm-2 col marright">'
                             +'<p id="rcount" style="color: #e2062c;">'+reject_count+'</p>'
                         +'</div>'
                         +'<div class="col-sm-1 col marleft">'

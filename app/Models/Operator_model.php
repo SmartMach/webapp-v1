@@ -15,16 +15,10 @@ class Operator_model extends Model{
 
         $this->site_creation = [
                     'DSN'      => '',
-                    // 'hostname' => '165.22.208.52',
-                    // 'username' => 'smartAd',
-                    // 'password' => 'WaDl@#smat1!',
                     'hostname' => 'localhost',
                     'username' => 'root',
                     'password' => '',
-                    
-                    // 'database' => 'S1001',
                     'database' => ''.$db_name.'',
-
                     'DBDriver' => 'MySQLi',
                     'DBPrefix' => '',
                     'pConnect' => false,

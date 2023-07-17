@@ -19,7 +19,6 @@ class OEE_Drill_Down_Model extends Model{
             'username' => 'root',
             'password' => '',
             'database' => ''.$db_name.'',
-            // 'database' => 's1002',
             'DBDriver' => 'MySQLi',
             'DBPrefix' => '',
             'pConnect' => false,

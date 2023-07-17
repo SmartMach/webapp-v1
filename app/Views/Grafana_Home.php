@@ -14,6 +14,7 @@
     <!-- CSS STANDARDS START-->
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/standard/config.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/standard/template.css?version=<?php echo rand() ; ?>">
+    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/standard/template_oui.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/standard/layout.css?version=<?php echo rand() ; ?>">
 
     <!-- CSS STANDARDS END-->
@@ -26,7 +27,7 @@
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/user_management_sub.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/model_size_css.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/user_management.css?version=<?php echo rand() ; ?>">
-    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/sidemenubar.css?version=<?php echo rand() ; ?>">
+    <!-- <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/sidemenubar.css?version=<?php echo rand() ; ?>"> -->
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/general_settings_sub.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/general_settings.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/model_sub_test.css?version=<?php echo rand() ; ?>">
@@ -312,257 +313,225 @@
         <?php require_once 'Header.php' ?>
         <div class="row paddingm">
             <!-- side nav bar -->
-             <div class="col-lg paddingm side_nav side_nav_c left-sidebar">
-                <ul class="side-menu">
-                        <li class="side-menu-li d-flex">
-                            <a href="#">
-                                <!-- <i class="fa fa-line-chart nav-icon nav-icon-hover " style="font-size: 23px;padding:9px" dvalue="Financial" alt="Financial"></i> -->
-                                <img src="<?php echo base_url()?>/assets/icons/nav_icon_financial.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-line-chart nav-icon nav-icon-hover" dvalue="Financial">
-                            </a>
-                            <i class="fa fa-ellipsis-v icons-menu icon-font_first icon-font-js"></i>
-                            <ul>
-                                <nav style="border-bottom:1px solid #d9d9d9;">
-                                    <p class="nav-menu-title">FINANCIAL METRICS</p>
-                                </nav>
-                                <?php if($this->data['access'][0]['oee_financial_drill_down'] >=1){ ?>
-                                <li class="flex-container sidenave-hover">
-                                    <div style="width: 10%;justify-content: center; " class="icon-align ">
-                                        <!-- <i class="fa  fa-angle-double-down paddingm icon-sub " style="font-style: 15px;"></i> -->
-                                        <img src="<?php echo base_url()?>/assets/icons/nav_financial_oee.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
-                                    </div>
-                                    <div style="width: 90%;" >
-                                        <a href="<?= base_url('Home/load_option/Financial_FOeeDrillDown')?>" id="active-demo" class="nav-sub " dvalue="FOeeDrillDown">OEE DRILL DOWN</a>
-                                    </div>
-                                </li>
-                                <?php }?>
-                                <?php if($this->data['access'][0]['opportunity_insights'] >=1){ ?>
-                                <li class="flex-container sidenave-hover">
-                                    <div style="width: 10%;justify-content: center;" class="icon-align">
-                                        <!-- <i class="fa fa-lightbulb paddingm color icon-sub" style="font-style: 15px;"></i> -->
-                                        <img src="<?php echo base_url()?>/assets/icons/nav_financial_opportunity.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
-                                    </div>
-                                    <div style="width: 90%;" class="">
-                                        <a href="<?= base_url('Home/load_option/Financial_OpportunityInsights')?>"   dvalue="OpportunityInsights" class=" nav-sub">OPPORTUNITY INSIGHTS</a>
-                                    </div>
-                                </li>
-                                <?php } ?>
-                            </ul>
-                        </li>
-                        <li class="side-menu-li d-flex">
-                            <a href="#">
-                                <!-- <i class="fa fa-industry nav-icon after-industry nav-icon-hover" dvalue="Production" style="font-size: 25px;padding:9px" alt="Production"></i> -->
-                                <img src="<?php echo base_url()?>/assets/icons/nav_icon_pdm.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-industry nav-icon nav-icon-hover" dvalue="Production">
-                            </a>
-                            <i class="fa fa-ellipsis-v icons-menu icon-font1 icon-font-js"></i>
-                            <ul>
-                                 <nav style="border-bottom:1px solid #d9d9d9;">
-                                    <p class="nav-menu-title">PRODUCTION DATA MANAGEMENT</p> 
-                                </nav>
-                                <?php if($this->data['access'][0]['production_data_management'] >=1) ?>
-                                <li class="flex-container sidenave-hover">
-                                    <div style="width: 10%;justify-content: center;" class="icon-align">
-                                        <!-- <i class="fa fa-clock-o paddingm icon-sub" style="font-style: 15px;"></i> -->
-                                        <img src="<?php echo base_url()?>/assets/icons/pdm_downtime.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
-                                    </div>
-                                    <div style="width: 90%;">
-                                        <a href="<?= base_url('Home/load_option/Production_Downtime')?>" class="nav-sub " dvalue="Downtime">DOWNTIME</a>
-                                        <!-- <a href="<?= base_url('Home/load_option/Production_Downtime_Up')?>" class="nav-sub " dvalue="Downtime">DOWNTIME</a> -->
+            <div class="col-lg paddingm side_nav side_nav_c left-sidebar">
+                <ul class="side-menu-area paddingm">
+                    <li class="side-menu-li po_relative display_f justify_c align_c">
+                        <a href="#" class="po_relative side-menu-element none_dec display_b">
+                            <img src="<?php echo base_url()?>/assets/icons/nav_icon_financial.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-line-chart nav-icon nav-icon-hover" dvalue="Financial">
+                        </a>
+                        <i class="fa fa-ellipsis-v icons-menu-ellipsis icon-font-js"></i>
+                        <ul class="side-nav-hover-content po_absolute paddingm">
+                            <nav class="side-menu-li-header hover_elem_height display_f align_c">
+                                <p class="paddingm side-menu-title fnt_fam">FINANCIAL METRICS</p>
+                            </nav>
+                            <?php if($this->data['access'][0]['oee_financial_drill_down'] >=1){ ?>
+                            <li class="hover_elem_height side-menu-hover-btom display_f align_c sidenave-hover">
+                                <div class="icon-option display_f justify_c align_c">
+                                    <img src="<?php echo base_url()?>/assets/icons/nav_financial_oee.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
+                                </div>
+                                <div class="lable-option display_f align_c">
+                                    <a href="<?= base_url('Home/load_option/Financial_FOeeDrillDown')?>" id="active-demo" class="nav-sub lable-option-val none_dec" dvalue="FOeeDrillDown">OEE DRILL DOWN</a>
+                                </div>
+                            </li>
+                            <?php }?>
+                            <?php if($this->data['access'][0]['opportunity_insights'] >=1){ ?>
+                            <li class="hover_elem_height display_f align_c sidenave-hover">
+                                <div class="icon-option display_f justify_c align_c">
+                                    <img src="<?php echo base_url()?>/assets/icons/nav_financial_opportunity.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
+                                </div>
+                                <div class="lable-option display_f align_c">
+                                    <a href="<?= base_url('Home/load_option/Financial_OpportunityInsights')?>"   dvalue="OpportunityInsights" class="nav-sub lable-option-val none_dec">OPPORTUNITY INSIGHTS</a>
+                                </div>
+                            </li>
+                            <?php } ?>
+                        </ul>
+                    </li>
+                    <li class="side-menu-li po_relative display_f justify_c align_c">
+                        <a href="#" class="po_relative side-menu-element none_dec display_b">
+                            <img src="<?php echo base_url()?>/assets/icons/nav_icon_pdm.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-industry nav-icon nav-icon-hover" dvalue="Production">
+                        </a>
+                        <i class="fa fa-ellipsis-v icons-menu-ellipsis icon-font-js"></i>
+                        <ul class="side-nav-hover-content po_absolute paddingm">
+                            <nav class="side-menu-li-header hover_elem_height display_f align_c">
+                                <p class="paddingm side-menu-title fnt_fam">PRODUCTION DATA MANAGEMENT</p>
+                            </nav>
+                                
+                            <?php if($this->data['access'][0]['production_data_management'] >=1) ?>
 
-                                    </div>
-                                </li>
-                                <?php if($this->data['access'][0]['production_data_management'] >=1){ ?>
-                                <li class="flex-container sidenave-hover">
-                                    <div style="width: 10%;justify-content: center;" class="icon-align">
-                                        <!-- <i class="fa fa-ban paddingm icon-sub" style="font-style: 15px;"></i> -->
+                            <li class="hover_elem_height side-menu-hover-btom display_f align_c sidenave-hover">
+                                <div class="icon-option display_f justify_c align_c">
+                                    <img src="<?php echo base_url()?>/assets/icons/pdm_downtime.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
+                                </div>
+                                <div class="lable-option display_f align_c">
+                                    <a href="<?= base_url('Home/load_option/Production_Downtime')?>" id="active-demo" class="nav-sub lable-option-val none_dec" dvalue="Downtime">DOWNTIME</a>
+                                </div>
+                            </li>
+                            <?php if($this->data['access'][0]['production_data_management'] >=1){ ?>
+                                <li class="hover_elem_height side-menu-hover-btom display_f align_c sidenave-hover">
+                                    <div class="icon-option display_f justify_c align_c">
                                         <img src="<?php echo base_url()?>/assets/icons/pdm_quality.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
                                     </div>
-                                    <div style="width: 90%;">
-                                        <a href="<?= base_url('Home/load_option/Production_Rejection')?>" class="nav-sub" dvalue="Rejection">QUALITY REJECTS</a>
-                                    </div>
-                                </li>
-                                <?php } ?>
-                                <?php if($this->data['access'][0]['production_data_management'] >=1){ ?>
-                                <li class="flex-container sidenave-hover">
-                                    <div style="width: 10%;justify-content: center;" class="icon-align">
-                                        <!-- <i class="fa fa-check paddingm icon-sub" style="font-style: 15px;"></i> -->
-                                        <img src="<?php echo base_url()?>/assets/icons/pdm_corrections.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
-                                    </div>
-                                    <div style="width: 90%;">
-                                        <a href="<?= base_url('Home/load_option/Production_Corrections')?>" class="nav-sub " dvalue="Corrections">CORRECTIONS</a>
-                                    </div>
-                                </li>
-                                <?php } ?>
-                            </ul>
-                        </li>
-
-                        <li class="side-menu-li d-flex ">
-                            <a href="<?= base_url('Home/load_option/Current_Shift_Performance')?>">
-                                <!-- <i class="fa fa-gear nav-icon nav-icon-hover" dvalue="Current" style="font-size: 29px;padding:9px" alt="Current Shift"></i> -->
-                                <img src="<?php echo base_url()?>/assets/icons/nav_icon_current_shift.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-current nav-icon nav-icon-hover nav-icon-align" dvalue="Current">
-                            </a>
-
-                            <ul>
-                                <nav style="border-bottom:1px solid #d9d9d9;">
-                                    <p class="nav-menu-title">CURRENT SHIFT PERFORMANCE</p>
-                                </nav>
-                            </ul>
-                        </li> 
-
-                        <li class="side-menu-li d-flex ">
-                            <a href="#">
-                                <!-- <i class="fa fa-gear nav-icon nav-icon-hover" dvalue="Settings" style="font-size: 29px;padding:9px" alt="Settings"></i> -->
-                                <img src="<?php echo base_url()?>/assets/icons/nav_icon_settings.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-gear nav-icon nav-icon-hover" dvalue="Settings">
-                            </a>
-                            <i class="fa fa-ellipsis-v icons-menu icon-font_last icon-font-js" style=""></i>
-                            <ul>
-                                <nav style="border-bottom:1px solid #d9d9d9;">
-                                    <p class="nav-menu-title">SETTINGS</p>
-                                </nav>
-                                <?php if($this->data['access'][0]['settings_machine'] >= 1){ ?>
-                                <li class="flex-container sidenave-hover">
-                                    <div style="width: 10%;justify-content: center;" class="icon-align">
-                                        <!-- <i class="fa fa-angle-double-down paddingm icon-sub" style="font-style: 15px;"></i> -->
-                                        <img src="<?php echo base_url()?>/assets/icons/nav_financial_oee.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
-                                    </div>
-                                    <div style="width: 90%;">
-                                        <a href="<?= base_url('Home/load_option/Settings_Machines')?>" class="nav-sub" dvalue="Machines">MACHINE</a>
-                                    </div>
-                                </li>
-                                <?php } ?>
-                                <?php if($this->data['access'][0]['settings_part'] >= 1){ ?>
-                                <li class="flex-container sidenave-hover">
-                                    <div style="width: 10%;justify-content: center;" class="icon-align">
-                                        <!-- <i class="fa fa-lightbulb-o paddingm icon-sub" style="font-style: 15px;"></i> -->
-                                        <img src="<?php echo base_url()?>/assets/icons/nav_financial_opportunity.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
-                                    </div>
-                                    <div style="width: 90%;">
-                                         <a href="<?= base_url('Home/load_option/Settings_Tools')?>" class="nav-sub" dvalue="Tools">PARTS</a>
-                                    </div>
-                                </li>
-                                <?php } ?>
-                                <?php if ($this->data['access'][0]['settings_general']  >=1) {?>
-                                <li class="flex-container sidenave-hover">
-                                    <div style="width: 10%;justify-content: center;" class="icon-align">
-                                        <!-- <i class="fa fa-bullseye paddingm icon-sub" style="font-style: 15px;"></i> -->
-                                        <img src="<?php echo base_url()?>/assets/icons/nav_settings_general.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
-                                        
-                                    </div>
-                                    <div style="width: 90%;">
-                                        <a href="<?= base_url('Home/load_option/Settings_Goals_Others')?>" class="nav-sub " dvalue="Goals">GENERAL</a>
-                                    </div>
-                                </li>
-                                <?php }?>
-                                <?php if ($this->data['access'][0]['settings_user_management']  >=1) {?>
-                                <li class="flex-container sidenave-hover">
-                                    <div style="width: 10%;justify-content: center;" class="icon-align">
-                                        <!-- <i class="fa fa-user-circle-o paddingm icon-sub" style="font-style: 15px;"></i> -->
-                                        <img src="<?php echo base_url()?>/assets/icons/nav_settings_user.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
-                                    </div>
-                                    <div style="width: 90%;">
-                                        <a href="<?= base_url('Home/load_option/Settings_Users')?>" class="nav-sub" dvalue="Users">USER ACCOUNT</a>
+                                    <div class="lable-option display_f align_c">
+                                        <a href="<?= base_url('Home/load_option/Production_Rejection')?>" id="active-demo" class="nav-sub lable-option-val none_dec" dvalue="Rejection">QUALITY REJECTS</a>
                                     </div>
                                 </li>
                             <?php } ?>
-                            </ul>
-                        </li>
+                            <?php if($this->data['access'][0]['production_data_management'] >=1){ ?>
+                                <li class="hover_elem_height side-menu-hover-btom display_f align_c sidenave-hover">
+                                    <div class="icon-option display_f justify_c align_c">
+                                        <img src="<?php echo base_url()?>/assets/icons/pdm_corrections.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
+                                    </div>
+                                    <div class="lable-option display_f align_c">
+                                        <a href="<?= base_url('Home/load_option/Production_Corrections')?>" id="active-demo" class="nav-sub lable-option-val none_dec" dvalue="Corrections">CORRECTIONS</a>
+                                    </div>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                    </li>
+                    <li class="side-menu-li po_relative display_f justify_c align_c mr_right_side_nav">
+                        <a href="<?= base_url('Home/load_option/Current_Shift_Performance')?>" class="po_relative side-menu-element none_dec display_b">
+                            <img src="<?php echo base_url()?>/assets/icons/nav_icon_current_shift.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-current nav-icon nav-icon-hover" dvalue="Current">
+                        </a>
+                        <ul class="side-nav-hover-content po_absolute paddingm">
+                            <nav class="hover_elem_height display_f align_c">
+                                <p class="paddingm side-menu-title fnt_fam">CURRENT SHIFT PERFORMANCE</p>
+                            </nav>
+                        </ul>
+                    </li>
 
-                        <!-- daily production link -->
-                        <?php if ($this->data['access'][0]['daily_production_data']  >=1) {?>
-                        <li class="side-menu-li d-flex ">
-                            <a href="<?php echo base_url('Home/load_option/Daily_Production_Status'); ?>">
-                                <i class="fa fa-calendar-day nav-icon nav-icon-hover" dvalue="Daily" style="font-size: 29px;padding:9px;height: 1.8rem;width: 1.8rem;margin-right: 0.8rem;" alt="Daily"></i>
-                            </a>
-                            <ul>
-                                <nav style="border-bottom:1px solid #d9d9d9;">
-                                    <p class="nav-menu-title">DAILY PRODUCTION STATUS</p> 
-                                </nav> 
-                            </ul>
-                        </li>
-                        <?php } ?>
-                        <!-- daily production link end -->
-
-                        <!-- production Downtime New module -->
-                        <?php if ($this->data['access'][0]['production_downtime']  >=1) {?>
-                        <li class="side-menu-li d-flex">
-                            <a href="<?php echo base_url('Home/load_option/Downtime_Production'); ?>">
-                                <!-- <i class="fa fa-clock nav-icon nav-icon-hover" dvalue="Downtime" style="font-size: 29px;padding:9px;height: 1.8rem;width: 1.8rem;margin-right: 0.8rem;" alt="Downtime"></i> -->
-                                <img src="<?php echo base_url()?>/assets/icons/nav_icon_downtime.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-clock nav-icon nav-icon-hover nav-icon-align" dvalue="Downtime">
-                            </a>
-                            <ul>
-                                <nav style="border-bottom:1px solid #d9d9d9;">
-                                    <p class="nav-menu-title">PRODUCTION DOWNTIME</p>
-                                </nav>
-                            </ul>
-                        </li>
-                        <?php } ?>
-                        <!-- production downtime new module end -->
-
-                        <!-- production Downtime New module -->
-                        <?php if ($this->data['access'][0]['production_quality']  >=1) {?>
-                        <li class="side-menu-li d-flex">
-                            <a href="<?php echo base_url('Home/load_option/Quality_Production'); ?>">
-                                <!-- <i class="fa fa-award nav-icon nav-icon-hover" dvalue="Quality" style="font-size: 29px;padding:9px;height: 1.8rem;width: 1.8rem;margin-right: 0.8rem;" alt="Quality"></i> -->
-                                <img src="<?php echo base_url()?>/assets/icons/nav_icon_quality.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-quality nav-icon nav-icon-hover nav-icon-align" dvalue="Quality">
+                    <li class="side-menu-li po_relative display_f justify_c align_c">
+                        <a href="#" class="po_relative side-menu-element none_dec display_b">
+                            <img src="<?php echo base_url()?>/assets/icons/nav_icon_settings.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-gear nav-icon nav-icon-hover" dvalue="Settings">
+                        </a>
+                        <i class="fa fa-ellipsis-v icons-menu-ellipsis icon-font-js"></i>
+                        <ul class="side-nav-hover-content po_absolute paddingm">
+                            <nav class="side-menu-li-header hover_elem_height display_f align_c">
+                                <p class="paddingm side-menu-title fnt_fam">SETTINGS</p>
+                            </nav>
                                 
-                            </a>
+                            <?php if($this->data['access'][0]['settings_machine'] >=1) ?>
 
-                            <ul>
-                                <nav style="border-bottom:1px solid #d9d9d9;">
-                                    <p class="nav-menu-title">PRODUCTION QUALITY</p>
-                                </nav>
-                            </ul>
-                        </li>
-                        <?php } ?>
-                        <!-- <i class="fa-duotone fa-award-simple"></i> -->
-                        <!-- production downtime new module end -->
+                            <li class="hover_elem_height side-menu-hover-btom display_f align_c sidenave-hover">
+                                <div class="icon-option display_f justify_c align_c">
+                                    <img src="<?php echo base_url()?>/assets/icons/nav_financial_oee.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
+                                </div>
+                                <div class="lable-option display_f align_c">
+                                    <a href="<?= base_url('Home/load_option/Settings_Machines')?>" id="active-demo" class="nav-sub lable-option-val none_dec" dvalue="Machines">MACHINE</a>
+                                </div>
+                            </li>
+                            <?php if($this->data['access'][0]['settings_part'] >=1){ ?>
+                                <li class="hover_elem_height side-menu-hover-btom display_f align_c sidenave-hover">
+                                    <div class="icon-option display_f justify_c align_c">
+                                        <img src="<?php echo base_url()?>/assets/icons/nav_financial_opportunity.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
+                                    </div>
+                                    <div class="lable-option display_f align_c">
+                                        <a href="<?= base_url('Home/load_option/Settings_Tools')?>" id="active-demo" class="nav-sub lable-option-val none_dec" dvalue="Tools">PARTS</a>
+                                    </div>
+                                </li>
+                            <?php } ?>
+                            <?php if($this->data['access'][0]['settings_general'] >=1){ ?>
+                                <li class="hover_elem_height side-menu-hover-btom display_f align_c sidenave-hover">
+                                    <div class="icon-option display_f justify_c align_c">
+                                        <img src="<?php echo base_url()?>/assets/icons/nav_settings_general.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
+                                    </div>
+                                    <div class="lable-option display_f align_c">
+                                        <a href="<?= base_url('Home/load_option/Settings_Goals_Others')?>" id="active-demo" class="nav-sub lable-option-val none_dec" dvalue="Goals">GENERAL</a>
+                                    </div>
+                                </li>
+                            <?php } ?>
+                            <?php if($this->data['access'][0]['settings_user_management'] >=1){ ?>
+                                <li class="hover_elem_height side-menu-hover-btom display_f align_c sidenave-hover">
+                                    <div class="icon-option display_f justify_c align_c">
+                                        <img src="<?php echo base_url()?>/assets/icons/nav_settings_user.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
+                                    </div>
+                                    <div class="lable-option display_f align_c">
+                                        <a href="<?= base_url('Home/load_option/Settings_Users')?>" id="active-demo" class="nav-sub lable-option-val none_dec" dvalue="Users">USER ACCOUNT</a>
+                                    </div>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                    </li>
 
-                        <!-- oee drilldown new module -->
-                        <?php if ($this->data['access'][0]['oee_drill_down']  >=1) {?>
-                        <li class="side-menu-li d-flex">
-                            <a href="<?php echo base_url('Home/load_option/Oee_Drill_Down'); ?>">
-                                <i class="fa fa-bore-hole nav-icon nav-icon-hover" dvalue="Oee" style="font-size: 29px;padding:9px;height: 1.8rem;width: 1.8rem;margin-right: 0.8rem;" alt="Oee"></i>
-                            </a>
-                            <ul>
-                                <nav style="border-bottom:1px solid #d9d9d9;">
-                                    <p class="nav-menu-title">OEE DRILLDOWN</p> 
-                                </nav> 
-                            </ul>
-                        </li>
-                        <?php } ?>
-                        <!-- oee drilldown new module end  -->
+                    <?php if ($this->data['access'][0]['daily_production_data']  >=1) {?>
+                    <li class="side-menu-li po_relative display_f justify_c align_c mr_right_side_nav">
+                        <a href="<?php echo base_url('Home/load_option/Daily_Production_Status'); ?>" class="po_relative side-menu-element none_dec display_b">
+                            <!-- <img src="<?php echo base_url()?>/assets/icons/Daily_Production_Status.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-calendar-day nav-icon nav-icon-hover" dvalue="Daily"> -->
+                            <i class="fa fa-calendar-day  nav-icon nav-icon-hover" dvalue="Daily" style="font-size: 29px;padding:9px;height: 1.8rem !important;width: 1.8rem !important;" alt="Daily"></i>
+                        </a>
+                        <ul class="side-nav-hover-content po_absolute paddingm">
+                            <nav class="hover_elem_height display_f align_c">
+                                <p class="paddingm side-menu-title fnt_fam">DAILY PRODUCTION STATUS</p>
+                            </nav>
+                        </ul>
+                    </li>
+                    <?php } ?>
 
-                        <!-- oee drilldown new module -->
-                        <?php if ($this->data['access'][0]['alert_management']  >=1) {?>
-                        <li class="side-menu-li d-flex">
-                            <a href="<?php echo base_url('Home/load_option/Alert_Settings'); ?>">
-                                <img src="<?php echo base_url()?>/assets/icons/nav_icon_alert.png?version=<?php echo rand() ; ?>" dvalue="Alert" class="icons-side-nav fa-alert nav-icon nav-icon-hover nav-icon-align" dvalue="Alert">
-                            </a>
-                            <ul>
-                                <nav style="border-bottom:1px solid #d9d9d9;">
-                                    <p class="nav-menu-title">Alert Management</p> 
-                                </nav> 
-                            </ul>
-                        </li>
-                        <?php } ?>
-                        <!-- oee drilldown new module end  -->
+                    <?php if ($this->data['access'][0]['production_downtime']  >=1) {?>
+                    <li class="side-menu-li po_relative display_f justify_c align_c mr_right_side_nav">
+                        <a href="<?php echo base_url('Home/load_option/Downtime_Production'); ?>" class="po_relative side-menu-element none_dec display_b">
+                            <img src="<?php echo base_url()?>/assets/icons/nav_icon_downtime.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-clock nav-icon nav-icon-hover" dvalue="Downtime">
+                        </a>
+                        <ul class="side-nav-hover-content po_absolute paddingm">
+                            <nav class="hover_elem_height display_f align_c">
+                                <p class="paddingm side-menu-title fnt_fam">PRODUCTION DOWNTIME</p>
+                            </nav>
+                        </ul>
+                    </li>
+                    <?php } ?>
 
-                        <!-- Issue Management -->
-                        <?php if ($this->data['access'][0]['work_order_management']  >=1) {?>
-                        <li class="side-menu-li d-flex">
-                            <a href="<?php echo base_url('Home/load_option/Work_Order_Management'); ?>">
-                                <img src="<?php echo base_url()?>/assets/icons/nav_icon_issue.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-work nav-icon nav-icon-hover nav-icon-align" dvalue="Work">
-                            </a>
-                            <ul>
-                                <nav style="border-bottom:1px solid #d9d9d9;">
-                                    <p class="nav-menu-title">Work Order Management</p> 
-                                </nav> 
-                            </ul>
-                        </li>
-                        <?php } ?>
+                    <?php if ($this->data['access'][0]['production_quality']  >=1) {?>
+                    <li class="side-menu-li po_relative display_f justify_c align_c mr_right_side_nav">
+                        <a href="<?php echo base_url('Home/load_option/Quality_Production'); ?>" class="po_relative side-menu-element none_dec display_b">
+                            <img src="<?php echo base_url()?>/assets/icons/nav_icon_quality.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-quality nav-icon nav-icon-hover" dvalue="Quality">
+                        </a>
+                        <ul class="side-nav-hover-content po_absolute paddingm">
+                            <nav class="hover_elem_height display_f align_c">
+                                <p class="paddingm side-menu-title fnt_fam">PRODUCTION QUALITY</p>
+                            </nav>
+                        </ul>
+                    </li>
+                    <?php } ?>
 
-                        <!-- Issue Management End -->
+                    <?php if ($this->data['access'][0]['oee_drill_down']  >=1) {?>
+                    <li class="side-menu-li po_relative display_f justify_c align_c mr_right_side_nav">
+                        <a href="<?php echo base_url('Home/load_option/Oee_Drill_Down'); ?>" class="po_relative side-menu-element none_dec display_b">
+                            <i class="fa fa-bore-hole  nav-icon nav-icon-hover" dvalue="Oee" style="font-size: 29px;padding:9px;height: 1.8rem !important;width: 1.8rem !important;" alt="Oee"></i> 
+                        </a>
+                        <ul class="side-nav-hover-content po_absolute paddingm">
+                            <nav class="hover_elem_height display_f align_c">
+                                <p class="paddingm side-menu-title fnt_fam">OEE DRILLDOWN</p>
+                            </nav>
+                        </ul>
+                    </li>
+                    <?php } ?>
+
+                    <?php if ($this->data['access'][0]['alert_management']  >=1) {?>
+                    <li class="side-menu-li po_relative display_f justify_c align_c mr_right_side_nav">
+                        <a href="<?php echo base_url('Home/load_option/Alert_Settings'); ?>" class="po_relative side-menu-element none_dec display_b">
+                            <img src="<?php echo base_url()?>/assets/icons/nav_icon_alert.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-alert nav-icon nav-icon-hover" dvalue="Alert">
+                        </a>
+                        <ul class="side-nav-hover-content po_absolute paddingm">
+                            <nav class="hover_elem_height display_f align_c">
+                                <p class="paddingm side-menu-title fnt_fam">ALERT MANAGEMENT</p>
+                            </nav>
+                        </ul>
+                    </li>
+                    <?php } ?>
+
+                    <?php if ($this->data['access'][0]['work_order_management']  >=1) {?>
+                    <li class="side-menu-li po_relative display_f justify_c align_c mr_right_side_nav">
+                        <a href="<?php echo base_url('Home/load_option/Work_Order_Management'); ?>" class="po_relative side-menu-element none_dec display_b">
+                            <img src="<?php echo base_url()?>/assets/icons/nav_icon_issue.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-alert nav-icon nav-icon-hover" dvalue="Work">
+                        </a>
+                        <ul class="side-nav-hover-content po_absolute paddingm">
+                            <nav class="hover_elem_height display_f align_c">
+                                <p class="paddingm side-menu-title fnt_fam">WORK ORDER MANAGEMENT</p>
+                            </nav>
+                        </ul>
+                    </li>
+                    <?php } ?>
                 </ul>
-            </div> 
+            </div>
             <div class="col-lg paddingm">        
                 <?php
                      
@@ -572,7 +541,7 @@
                         //echo $this->data['access'][0]['Settings_Machine'];
                     }
                     elseif($select_opt != null && $select_sub_opt == null)
-                    {
+                    {                  
                         echo view(''. $this->data['select_opt'].'',$this->data);
                     }
                     else{
@@ -605,7 +574,7 @@
     var actionList = document.getElementsByClassName('icon-font-js');
       for (var i = 0; i < listIcons.length; i++) {
         var x = listIcons[i].getAttribute("dvalue");
-        
+
         if(MenuSub[0] == x){
             var icon_name = listIcons[i].getAttribute("class");
 
@@ -699,7 +668,7 @@ var site_id = "<?php echo($this->data['user_details'][0]['site_id']); ?>";
 //alert(site_id);
 
     $(document).ready(function(){
-
+        
         // logout click event controller
        $(document).on('click','.unset_session',function(event){
             event.preventDefault();
@@ -859,8 +828,4 @@ $(document).ready(function(){
     $('#get_text_info').html(first_letter+''+last_letter);
 
 });
-
-
-
- 
 </script>

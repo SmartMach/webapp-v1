@@ -198,7 +198,7 @@ $session = \Config\Services::session();
                 <h5 class="modal-title header_popup fnt_fam" id="DeactiveMachineModal1" style="">CONFIRMATION MESSAGE</h5>
             </div>
                 <div class="modal-body" style="max-width:max-content;">
-                    <label style="color: black;">Are you sure you want to delete this machine record?</label>
+                    <label style="color: black;font-size:0.9rem;">Are you sure you want to delete this machine record?</label>
                     
                 </div>
                 <div class="modal-footer" style="border:none;">
@@ -215,7 +215,7 @@ $session = \Config\Services::session();
             <h5 class="modal-title header_popup fnt_fam" id="ActiveMachineModal1" style="">CONFIRMATION MESSAGE</h5>
         </div>
         <div class="modal-body">
-            <label style="color: black;">Are you sure you want to activate this machine record?</label>            
+            <label style="color: black;font-size:0.9rem;">Are you sure you want to activate this machine record?</label>            
         </div>
         <div class="modal-footer" style="border:none;">
             <a class="btn fnt_fam btn_fnt_size btn_padd btn_save Status-active" name="Edit_Machine" value="SAVE" >Save</a>
@@ -1188,7 +1188,7 @@ function get_machine_data(){
                                             +'</a>'
                                             +'<ul class="edit-subMenu" style="z-index:10;">'
                                                 +'<li class="edit-opt info-machine1" lvalue="'+item.machine_id+'" style="display:'+info_machine+';"><a href="#"><img src="<?php echo base_url('assets/img/info.png') ?>" class="img_font_wh2" style="margin-left:5px;">INFO</a></li>'
-                                                +'<li class="edit-opt edit-machine menu-font-change hover_work" lvalue="'+item.machine_id+'" style="display:'+edit_machine+';"><a href="#" style="margin-left:8px"><img src="<?php echo base_url('assets/img/pencil.png') ?>" class="img_font_wh" style="margin-left:12x;">EDIT</a></li>'
+                                                +'<li class="edit-opt edit-machine menu-font-change hover_work" lvalue="'+item.machine_id+'" style="display:'+edit_machine+';"><a href="#" style=""><img src="<?php echo base_url('assets/img/pencil.png') ?>" class="img_font_wh" style="margin-left:10px;">EDIT</a></li>'
                                                 +'<li class="edit-opt deactivate-machine" lvalue="'+item.machine_id+'" svalue="'+item.status+'" style="display:'+deactivate_machine+';"><a href="#"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="img_font_wh1" style="margin-left:10px;">DEACTIVATE</a></li>'
                                             +'</ul>'
                                         +'</li>'

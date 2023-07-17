@@ -24,7 +24,7 @@ class App extends BaseConfig
      * @var string
      */
     //http://209.97.177.78/smart-oee/oee-module/
-    public $baseURL = 'http://localhost/oee-module/';
+    public $baseURL = 'http://localhost/oee-module_new/';
 
     /**
      * --------------------------------------------------------------------------
@@ -37,7 +37,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $indexPage = 'index.php';
+    public $indexPage = '';
 
     /**
      * --------------------------------------------------------------------------

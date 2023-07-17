@@ -103,12 +103,12 @@
     width:0.8rem;
     
 }
-.label_text{
+/*.label_text{
     width:80%;
     color:white;
     font-size:12px;
     font-weight:450;
-}
+}*/
 .downtime_legend{
     display:flex;
     flex-direction:row;
@@ -349,9 +349,9 @@
 }
 
 /* goal header div */
-.oui_screen_view{
+/*.oui_screen_view{
     height: 100vh;
-}
+}*/
 .goal_div{
     width:48%;
     display:flex;

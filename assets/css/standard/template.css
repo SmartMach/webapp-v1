@@ -14,8 +14,26 @@ span{
 .fnt_inactive{
 	color: var(--inactive_count_color) !important;
 }
+.float_l{
+    float: left;
+}
+.display_b{
+    display: block;
+}
 .display_f{
 	display: flex;
+}
+.flex_f{
+    flex-flow: column;
+}
+.white_s{
+    white-space: nowrap;
+}
+.over_h{
+    overflow: hidden;
+}
+.text_e{
+    text-overflow: ellipsis;
 }
 .align_c{
 	align-items: center !important;
@@ -28,6 +46,9 @@ span{
 }
 .justify_sb{
 	justify-content: space-between !important;
+}
+.justify_sa{
+    justify-content: space-around !important;
 }
 .text_align_c{
 	text-align: center;
@@ -54,6 +75,9 @@ span{
 .mar_right_logo{
 	margin-right: var(--mr_left_inr) !important;
 }
+.inr_font{
+    font-size: var(--font_size_inr);
+}
 .active_dot{
 	font-size:9px;
 	margin-right:5px;
@@ -65,8 +89,30 @@ span{
 .mr_login{
     margin: 20px;
 }
+.po_relative{
+    position: relative;
+}
+.po_fixed{
+    position: fixed;
+}
+.po_absolute{
+    position: absolute;
+}
+.hover_elem_height{
+    height: 2rem;
+}
+.bg_white{
+    background:white;
+}
 
+.icons-smart {
+    height: 1rem !important;
+    width: 1rem !important;
+}
 
+/*INPUT LABLES*/
+
+/*INPUT LABLES END*/
 
 /*BUTTONS*/
 .btn_fnt_size{
@@ -92,6 +138,21 @@ span{
 	color: var(--font_color_cancel_hover_pop_up) !important;
 	background: var(--bg_color_cancel_hover_pop_up) !important;
 	/*opacity: 0.8;*/
+}
+
+
+/*EVENT BACKGROUND*/
+.active_bg{
+    background: var(--active_color) !important;
+}
+.inactive_bg{
+    background: var(--inactive_color) !important;
+}
+.machine_off_bg{
+    background: var(--machine_off_color) !important;
+}
+.offline_bg{
+    background: var(--offline-color) !important;
 }
 
 /*GLOBAL FOR SOFTWARE END*/
@@ -278,7 +339,37 @@ span{
 }
 /*GLOBAL CLASS FOR CURRENT SHIFT PERFORMANCE END*/
 
+/*GLOBAL CLASS FOR SELECT INPUT*/
+.select_input_width{
+    width: var(--input_select_width) !important;
+    height: var(--input_select_height) !important;
+}
+.input_padd{
+    padding-left: 0.7rem;
+    padding-right: 0.25rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    /*padding: var(--inpust_select_padding) !important;*/
+}
+/*GLOBAL CLASS FOR SELECT INPUT END*/
+
+/*PDM - DOWNTIME*/
+.labelGraph {
+    height: 10px !important;
+    width: 10px !important;
+    margin-right: 0.5rem !important;
+}
 
 
+/*GLOBAL CLASS FOR WORK ORDER MANAGEMENT*/
+.open_color{
+    color: var(--wom_color_open);
+}
+.overdue_color{
+    color: var(--wom_color_overdue);
+}
+.in_progress_color{
+    color: var(--wom_color_in_progress);
+}
 
-
+/*GLOBAL CLASS FOR WORK ORDER MANAGEMENT END*/

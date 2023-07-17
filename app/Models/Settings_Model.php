@@ -13,9 +13,6 @@ class Settings_Model extends Model{
        
         $this->site_connection = [
                     'DSN'      => '',
-                    // 'hostname' => '165.22.208.52',
-                    // 'username' => 'smartAd',
-                    // 'password' => 'WaDl@#smat1!',
                     'hostname' => 'localhost',
                     'username' => 'root',
                     'password' => '',
