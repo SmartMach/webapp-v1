@@ -23,6 +23,11 @@
 		--machine_off_color:#595959;
 		--offline-color:#f2f2f2;
 
+		/*WORK ORDER MANAGEMENT*/
+		--wom_color_open:#595959;
+		--wom_color_overdue:#ff0000;
+		--wom_color_in_progress:#4195f6;
+
 
 	/*********GLOBAL VARIABLES FOR SOFTWARE END*********/
 

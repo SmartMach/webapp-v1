@@ -167,3 +167,16 @@
 }
 
 /*GRAPH SECTIONS END*/
+
+
+/*MULTIPLE INPUT BOX*/
+.filter_multiselect_outer{
+    width: 10rem;
+    height: 2rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.3rem;
+}
+.filter_selectBox_inner{
+  height: 100%;
+}
+/*MULTIPLE INPUT BOX END*/

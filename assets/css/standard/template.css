@@ -361,3 +361,15 @@ span{
 }
 
 
+/*GLOBAL CLASS FOR WORK ORDER MANAGEMENT*/
+.open_color{
+    color: var(--wom_color_open);
+}
+.overdue_color{
+    color: var(--wom_color_overdue);
+}
+.in_progress_color{
+    color: var(--wom_color_in_progress);
+}
+
+/*GLOBAL CLASS FOR WORK ORDER MANAGEMENT END*/
