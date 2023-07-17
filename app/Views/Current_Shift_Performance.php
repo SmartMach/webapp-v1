@@ -91,7 +91,7 @@
             </div>
         </div>
     </nav>
-
+     
     <div class="graph-content">
         <div class="full_screen_close" onclick="fullscreen_mode_remove();">
             <div class="full-screen">
@@ -100,186 +100,156 @@
         </div>
         <div class="grid-container-cont row paddingm" id="full_screen_cards">
         </div>
-    </div>
+    </div> 
 
 
     <!-- oui screen start -->
     <!-- oui screen -->
-    <div class="oui_screen_view" style="display:none;">
-        <div class="oui_header_div" style="">
-            <div class="oui_sub_header" style="">
-                <div class="sub_header_first_row" style="">
-                    <span class="first_row_header" id="machine_name_text" style=""></span>
-                    <span class="first_row_body" style="" id="part_name_header"></span>
-                </div>
-                <div class="sub_header_second_row" style="">
-                    <p>DOWNTIME <br> <span class="downtime_second_val" style="">04:02</span></p>
-
-                </div>
-                <div class="sub_header_third_row" style="">
-                    <span id="machine_status"></span>
-                </div>
+    <div class="oui_screen oui_screen_view" style="display: none;">
+        <div class="second_header display_f justify_sb align_c">
+            <div class="left_margin">
+                <p class="paddingm machine_name" id="machine_name_oui"> </p>
+                <P class="paddingm part_name" id="part_name_oui"></P>
             </div>
+            <div class="">
+                <p class="paddingm machine_name text_align_c"> Downtime </p>
+                <P class="paddingm part_name text_align_c" id="event_duration_machine"> </P>
+            </div>
+            <div class="right_margin" style="display:flex;">
+                <div class="oui_duration_only_active">
+                    <i class="fa fa-circle" style="font-size:10px;color:white;"></i>
+                    <span class="active_duration_oui" style="margin:0;padding:0;margin-right:1rem;font-size:1.4rem;font-family:'Roboto',sans-serif;color:white;font-weight:bold;"></span>
+                </div>
+                 <p class="paddingm machine_name" id="latest_event_machine"> Event </p>
+            </div> 
+        </div>
 
-            <div class="first_row_div" style="">
-                <div class="goal_div" style="">
-                    <div class="goals_div line_color_border">
-                        <p class="label_header label_text_color">GOALS</p>
-                        <div class="goal_height_div" style="">
-                            <div style="width:60%;">
-                                <!-- circle graph start -->
-                                <div class="item-circle_oui">
-                                    <!-- Circular Graph -->
-                                    <div class="inner-circle_oui">
-                                        <div class="inner-val_oui">
-                                            <p class="paddingm production_completion_oui"><span
-                                                    id="production_per_oui"></span>%</p>
-                                            <p class="paddingm production_completion_oui partname_ref_oui"
-                                                id="part_name_circle"></p>
+        <div class="body_area display_f">
+            <div class="display_f graph_section" style="margin-bottom: 1rem;">
+                <div class="outer mr_right_oui" style="width: 35%;">
+                    <div class="po_relative">
+                        <label class="outer_label">GOALS</label>
+                        <div class="display_f">
+                            <div class="" style="width: 65%;margin-top: 1rem;">
+                                <div class="skill display_f justify_c align_c">
+                                    <div class="inner flex_f display_f justify_c align_c">
+                                        <div id="number_completion">
+                                            60%    
+                                        </div>
+                                        <div class="" style="width: 80%;"> 
+                                            <p class="white_s over_h text_e part_name" id="part_name_oui_p">partname</p>
                                         </div>
                                     </div>
                                     <svg version="1.1" class="svg_oui">
                                         <defs>
-                                            <linearGradient id="GradientColor_oui">
-                                                <stop id="oui_circle_graph_color" stop-color="#C55A11" />
+                                            <linearGradient id="GradientColor">
+                                                <stop id="circle_graph_colors" stop-color="#ffffff" />
                                             </linearGradient>
                                         </defs>
-                                        <circle id="circle_oui_anim" class="circle_oui_anim" cx="120" cy="120" r="63"
-                                            stroke-linecap="round" />
+                                        <circle class="circle_oui" id="" cx="96" cy="96" r="71" stroke-linecap="round"/>
                                     </svg>
                                 </div>
-                                <!-- circle graph end -->
                             </div>
-                            <div style="width:38%;">
-                                <div class="target_graph_div" style="">
-                                    <span>Target <span id="target_value">320</span></span>
-                                    <div class="target_graph_parent_div" style="">
-                                        <div class="target_graph_child_div" style="">
-                                            <span id="target_value_inner" style="">12</span>
+                            <div class="display_f justify_c align_c" style="width: 35%;margin-top: 1rem;">
+                                <div class="" style="width:65%;">
+                                    <p class="paddingm" style="">
+                                        <span class="text-small">Target</span>
+                                        <span class="target_text2">0</span>
+                                    </p>
+                                    <div class="target_bar bg_title target_outline" style="width: 100%;">
+                                        <div class="target_inline">
+                                            <p class="paddingm target_inline_Cont">0</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="goals_div_text" style="">
-                            <div class="circle_graph_text" style="">
-                                <i class="fa-solid fa-clock-rotate-left"
-                                    style="margin-right:1rem;"></i><span>112min</span>
-                            </div>
-                            <div class="target_graph_text" style="">
-                                <i class="fa-solid fa-circle" style="margin-right:0.4rem;font-size:0.5rem;"></i><span
-                                    style="" id="shift_date_oui_graph"></span>
-                            </div>
+                        <div class="display_f justify_c">
+                            <p class="text-small text-bold paddingm">
+                                <span>
+                                    <img src="<?php echo base_url(); ?>/assets/icons/duration_logo.png" alt="" class="icons_duration_oui">
+                                </span>
+                                <span id="remaining_time_duration">12m 11s</span>
+                                <span class="icons_space_oui">
+                                    <i class="fa fa-circle icons_dot_oui"></i>
+                                </span>
+                                <span id="estimated_time_target">2023-05-07 00:00</span>
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div class="timeline_part">
-                    <div class="timeline_div line_color_border" style="">
-                        <p class="label_header label_text_color" style="">TIMELINE</p>
-                        <div id="downtime_chart" style="padding:0;margin:0;margin-left:1rem;margin-right:1rem"></div>
-                        <!-- downtime legend -->
-                        <div class="downtime_legend" style="margin-top:1rem;">
-
-                            <div class="legend_label" style="">
-                                <div style="width:20%;">
-                                    <div class="label_div" style="background-color:#01BB55;"></div>
-                                </div>
-                                <div class="label_text" style="">
-                                    <span>ACTIVE</span>
-                                </div>
+                <div class="mr_left_oui" style="width: 65%;">
+                    <div class="outer po_relative" style="height: 40%;">
+                        <label class="outer_label">TIMELINE</label>
+                        <div class="display_f justify_sa" style="height: 100%;flex-direction: column;">
+                            <div id="chartOp"></div>
+                            <div class="">
+                                <span class="float-start labelAlign display_f justify_c align_c"><div class="labelGraph" style="background: #01bb55"></div><p class="paddingm label_text">ACTIVE</p></span>
+                                <span class="float-start labelAlign display_f justify_c align_c"><div class="labelGraph" style="background: #005abc"></div><p class="paddingm label_text">INACTIVE</p></span>
+                                <span class="float-start labelAlign display_f justify_c align_c"><div class="labelGraph" style="background: #595959"></div><p class="paddingm label_text">MACHINE OFF</p></span>
                             </div>
-
-                            <div class="legend_label">
-                                <div style="width:20%;">
-                                    <div class="label_div" style="background-color:#005ABC;"></div>
-                                </div>
-                                <div class="label_text">
-                                    <span>INACTIVE</span>
-                                </div>
-                            </div>
-
-                            <div class="legend_label" style="width:20%;">
-                                <div style="width:20%;">
-                                    <div class="label_div" style="background-color:#595959;"></div>
-                                </div>
-                                <div class="label_text">
-                                    <span>MACHINE OFF</span>
-                                </div>
-                            </div>
-
                         </div>
-
                     </div>
-                    <div class="part_div line_color_border" style="">
-                        <p class="label_header label_text_color">PARTS BY HOURS</p>
-                        <div class="parent_part_oui part_wise_alignment parent_div marginScroll">
-                            <div class="child_div child_part_oui">
-                                <canvas id="part_wise_graph_oui" class="part_wise_graph_oui_align"
-                                    style="height:100%;width:100%;"></canvas>
+                    <div class="outer po_relative" style="height: 57%;margin-top: 0.5rem;">
+                        <label class="outer_label">PARTS BY HOUR</label>
+                        <div class="display_f justify_sa" style="height: 100%;flex-direction: column;">
+                            <div class="production-graph-area">
+                                <div class="item-production-oui">
+                                    <div class="item-production-s-oui" id="" style="background-color: rgba(255, 255, 255, 0.05);width: 78%;"></div>
+                                    <div class="graph-content-div-oui production-graph-prod">
+                                        <canvas id="production-graph" style="padding-top: 5px;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="">
+                                <span class="float-start labelAlign display_f justify_c align_c"><div class="labelGraph" style="background: #595959"></div><p class="paddingm label_text">GOOD PARTS</p></span>
+                                <span class="float-start labelAlign display_f justify_c align_c"><div class="labelGraph" style="background: #595959"></div><p class="paddingm label_text">REJECTED PARTS</p></span>
                             </div>
                         </div>
-                        <!-- <canvas id="part_wise_graph" style="height:10rem;width:10rem;"></canvas> -->
                     </div>
                 </div>
             </div>
-
-            <!-- cards -->
-            <div class="cards_div" style="">
-                <div class="cards_div_left" style="">
-
-                    <div class="card_small_div" style="">
-                        <span class="card_header" style="">Downtime</span>
-                        <span class="card_body" style="margin:0.5rem;" id="downtime_val"></span>
-                    </div>
-
-                    <div class="card_small_div">
-                        <span class="card_header">Cycle Time</span>
-                        <div class="cycle_time_oui_div" style="width:100%;display:flex;flex-direction:row;height:3.5rem;justify-content:flex-start;align-items:center;">
-                            <div class="cycle_time_val_div" style="width:60%;height:max-content;text-align:end;">
-                                <span class="card_body" id="nict_val" style="padding:0;margin:0;"></span>
+            <div class="display_f live_section">
+                <div class="mr_right_oui" style="width: 35%;">
+                    <div class="po_relative" style="height: 100%">
+                        <div class="outer-bottom-con display_f justify_sb align_c">
+                            <div style="float:left;" class="smallDivs">
+                                <div class="display_f align_c justify_c cssDiv bg_title"><p class="paddingm">Downtime</p></div>
+                                <div class="display_f align_c justify_c endDiv bg_light"><p id="downtime_duration"></p></div>
                             </div>
-                            <div class="cycle_time_sval" style="">
-                                
+                            <div style="float:left;" class="smallDivs">
+                                <div class="display_f align_c justify_c cssDiv bg_title"><p class="paddingm">Cycle Time</p></div>
+                                <div class="display_f align_c justify_c endDiv bg_light"><p id="part_cycle_time"></p></div>
+                            </div>
+                            <div style="float:left;" class="smallDivs">
+                                <div class="display_f align_c justify_c cssDiv bg_title"><p class="paddingm">Reject Counts</p></div>
+                                <div class="display_f align_c justify_c endDiv bg_light"><p id="liveRejectCount"></p></div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="card_small_div">
-                        <span class="card_header">Rejects Counts</span>
-                        <span class="card_body" id="reject_count" style="margin:0.5rem;"></span>
-                    </div>
-
                 </div>
-                <div style="width:48%;">
-                    <div class="efficiency_div line_color_border">
-                        <p class="label_header label_text_color">EFFICIENCY</p>
-                        <div class="hide_card" style="">
-
-                            <div class="hide_card_div" style="">
-                                <span class="hide_card_header" style="">Availability</span>
-                                <span class="hide_card_body" style="margin:0.5rem"><span id="availability_val"
-                                        class="value_text"></span> %</span>
+                <div class="outer mr_left_oui" style="width: 65%;">
+                    <div class="po_relative" style="height: 100%;">
+                        <label class="outer_label">EFFICIENCY</label>
+                        <div class="display_f align_c justify_c" style="height: 100%;">
+                            <div style="flex: left;width: 20%;">  
                             </div>
-
-                            <div class="hide_card_div">
-                                <span class="hide_card_header">Performance</span>
-                                <span class="hide_card_body" style="margin:0.5rem;"><span id="performance_val" class="value_text"></span>
-                                    %</span>
+                            <div style="flex: left;width: 20%;">
+                                <p class="text-small text_align_c"><b>A</b>vailability</p>
+                                <p class="paddingm text-small text_align_c" id="oui_availability"></p>
                             </div>
-
-
-                            <div class="hide_card_div">
-                                <span class="hide_card_header">Quality</span>
-                                <span class="hide_card_body" style="margin:0.5rem;"><span id="quality_val" class="value_text"></span> %</span>
+                            <div style="flex: left;width: 20%;">
+                                <p class="text-small text_align_c"><b>P</b>erformance</p>
+                                <p class="paddingm text-small text_align_c" id="oui_performance"></p>
                             </div>
-
-                            <div class="shift_oee_div" style="">
-                                <span class="shift_oee_header" style="">SHIFT OEE</span>
-                                <span class="shift_oee_body" style="margin:0.5rem;"><span id="oee_val" class="value_text"></span>
-                                    %</span>
+                            <div style="flex: left;width: 20%;">
+                                <p class="text-small text_align_c"><b>Q</b>uality</p>
+                                <p class="paddingm text-small text_align_c" id="oui_quality"></p>
                             </div>
-
-
+                            <div style="flex: left;margin-right: 2rem;" class="smallDivs">
+                                <div class="display_f justify_c align_c cssDiv bg_title"><p class="paddingm">SHIFT OEE</p></div>
+                                <div class="display_f justify_c align_c endDiv bg_light"><p id="oui_oee" style="font-size: 1.7rem;margin-top: 0.5rem;"></p></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -298,12 +268,12 @@
 </div>
 
 <!-- preloader -->
-<div id="overlay">
+<!-- <div id="overlay">
     <div class="cv-spinner">
         <span class="spinner"></span>
         <span class="loading">Awaiting Completion...</span>
     </div>
-</div>
+</div> -->
 <!-- preloader end -->
 
 <script src="<?php echo base_url(); ?>/assets/apexchart/dist/apexcharts.js"></script>
@@ -380,6 +350,7 @@ $(document).on('click','.Previous_Shift_Live',function(event){
     });
     
 });
+
 
 function getMachineDataLiveUpdate(){
     $.ajax({
@@ -1129,7 +1100,7 @@ var shift_id = "";
 
 function live_graph(s_date, s_id) {
     // i_global = setInterval(function() {
-        live_MC1001(s_date, s_id); 
+        live_MC1001(s_date, s_id);
     // }, 2000);
 }
 
@@ -1542,10 +1513,10 @@ $(document).on('click', '.grid-item-cont', function(event) {
     oui_functions_call(index_val);
 });
 
-async function oui_functions_call(index_val){
-    
+
+function oui_functions_call(index_val){
     fullscreen_mode_remove();
-   
+
     var tmp_mid = $('.machine_name_ref:eq(' + index_val + ')').attr('mid_data');
     var tid_data = $('.machine_name_ref:eq('+index_val+')').attr('tid_data');
     var shift_date = $('#shift_date').attr("sdate_format");
@@ -1554,158 +1525,117 @@ async function oui_functions_call(index_val){
     var machine_name = $('.machine_name_ref:eq(' + index_val + ')').text();
     // alert(shift_id.split(" "));
     const tmp = shift_id.split(" ");
-    // alert(shift_date);
-    // alert(tmp_mid);
-    // alert(event_status);
+
+    console.log("oui \t"+tmp_mid);
+    console.log("oui \t"+tid_data);
+    console.log("oui \t"+shift_date);
+    console.log("oui \t"+shift_id);
+    console.log("oui \t"+machine_name);
+    console.log("oui \t"+tmp);
+    console.log("oui \t"+event_status);
+    // OUI FUNCTIONS...........
     var backgroundcolor = "";
-    var bar_color = "";
-    var card_body = "";
-    var line = "";
-    var label_text = "";
-    var downtime_display_property = "";
-    var circle_target_color = "";
+    var background_title_color="";
+    var background_light_color="";
+    var border_color="";
+    var production_bar_color="";
+    var sub_header = "";
+
+    // event_status = "Inactive";
 
     if (event_status === "Active") {
         backgroundcolor = "#01ab4e";
-        bar_color = "#007A37";
-        card_body = "#009644";
-        line = "#01a34a";
-        label_text = "white";
-        downtime_display_property = "none";
-        circle_target_color="#FFC000";
+        background_title_color="#007a37";
+        background_light_color="#009a46";
+        border_color = "#01a149";
+        sub_header = "#01ab4e";
 
     } else if (event_status === "Inactive") {
         backgroundcolor = "#d10527";
-        bar_color = "#730316";
-        card_body = "#BB0523";
-        line = "#730316";
-        label_text = "black";
-        downtime_display_property = "inline";
-        circle_target_color= "#C55A11";
+        background_title_color="#730316";
+        background_light_color="#bb0523";
+        border_color = "#9e041e";
+        sub_header = "";
 
     } else if (event_status === "Machine OFF") {
         backgroundcolor = "#7f7f7f";
-        bar_color = "#404040";
-        card_body = "#565656";
-        line = "#aaaaaa";
-        label_text = "black";
-        downtime_display_property = "none";
-        circle_target_color="#C55A11";
+        background_title_color="#404040";
+        background_light_color="#565656";
+        border_color = "#bfbfbf";
+        sub_header = "";
 
     } else {
-        backgroundcolor = "#7f7f7f";
-        bar_color = "#404040";
-        card_body = "#565656";
-        line = "#aaaaaa";
-        label_text = "black";
-        downtime_display_property = "inline";
-        circle_target_color="#C55A11";
+        backgroundcolor = "#ffd966";
+        background_title_color="#b08600";
+        background_light_color="#ffc50d";
+        border_color = "#d0a61b";
+        sub_header = "";
     }
-    const shift_arr = [];
-    shift_arr.push(tmp[1]);
-    await getDownTimeGraph(tmp_mid, shift_date, shift_arr);
-    await target_oui_graph(tmp_mid,tid_data,shift_date);
-    await part_by_hour(tmp_mid, shift_date, tmp[1], bar_color);
-    await div_records(tmp_mid, shift_date, tmp[1], bar_color, card_body);
-    await circle_data_oui(tmp_mid,shift_date,tmp[1]);
-    $('.target_graph_child_div').css('background-color',circle_target_color);
-    $('#oui_circle_graph_color').attr('stop-color',circle_target_color);
-    $('.graph-content').css('display', 'none');
-    $('.oui_screen_view').css('display', 'inline');
-    //alert(backgroundcolor);
-    $('.cycle_time_val_div').css('background-color',backgroundcolor);
-    $('.oui_header_div').css('background-color', backgroundcolor);
-    $('.label_header').css('background-color', backgroundcolor);
-    $('.oui_sub_header').css('background-color', card_body);
-    $('.target_graph_parent_div').css('background-color', bar_color);
-    $('.line_color_border').css('border', '1px solid ' + line);
-    $('.label_text_color').css('color', label_text);
-    $('#machine_status').text(event_status);
-    $('#machine_name_text').text(machine_name);
 
-    $('.downtime_second_val').css('display', downtime_display_property);
+    
+    $('.oui_screen_view').css('background-color', backgroundcolor);
+    $('.outer_label').css('background-color', backgroundcolor);
+    $('.bg_title').css('background-color', background_title_color);
+    $('.bg_light').css('background-color', background_light_color);
+    $('.outer').css('border-color', border_color);
+    $('.second_header').css('background-color',sub_header);
+    
+    
+    getProductionGraph(tmp_mid,shift_date,tmp[1],background_title_color,border_color);
+    getDownTimeGraph(tmp_mid,shift_date,tmp[1]);
+    getLiveOEE(tmp_mid,shift_date,tmp[1]);
+    getDowntimeDuration(tmp_mid,shift_date,tmp[1]);
+    getLiveProduction(tmp_mid,shift_date,tmp[1]);
+    getPartCycleTime(tmp_mid);
+    getRejectCounts(tmp_mid,shift_date,tmp[1]);
+    target_oui_graph(tmp_mid,tid_data,shift_date);
+    $('.graph-content').css('display', 'none');
+    $('.oui_screen_view').css('display', 'block');
     $('.oui_arrow_div').css('display', 'inline');
     $('.visibility_div').css('display', 'none');
     $('#full_screen_btn_visibility').css('visibility','hidden');
-    $("#overlay").fadeOut(300);
 }
+    
 
-// target graph oui screen
-function target_oui_graph(mid,tid,sdate){
-    return new Promise(function(resolve,reject){
-        $.ajax({
-            url:"<?php echo base_url('Current_Shift_Performance/get_target_graph'); ?>",
-            method:"POST",
-            data:{
-                mid:mid,
-                sdate:sdate,
-                tid:tid,
-            },
-            dataType:"JSON",
-            success:function(res){
-                resolve(res);
-                var target_percentage = 0;
-                if (parseInt(res[0]['percentage_target'])>100) {
-                    // target_percentage = res[0]['percentage_target'];
-                    target_percentage = 100;
-                }else{
-                    target_percentage = res[0]['percentage_target'];
-                }
-                $('.target_graph_child_div').css('height',target_percentage+'%');
-                $('#target_value_inner').text(res[0]['percentage_target']);
-                $('#target_value').text(res[0]['target']);
-
-            },
-            error:function(er){
-                reject(er);
-            }
-        });
-    });
-}
+   
+//     var tmp_mid = $('.machine_name_ref:eq(' + index_val + ')').attr('mid_data');
+//     var tid_data = $('.machine_name_ref:eq('+index_val+')').attr('tid_data');
+//     var shift_date = $('#shift_date').attr("sdate_format");
+//     var shift_id = $('#shift_id').text();
+//     var event_status = $('.current_event:eq(' + index_val + ')').attr('event');
+//     var machine_name = $('.machine_name_ref:eq(' + index_val + ')').text();
+//     // alert(shift_id.split(" "));
+//     const tmp = shift_id.split(" ");
 
 
-// circle graph data alignment oui screen graph 
-function circle_data_oui(mid,sdate,sid){
-    return new Promise(function(resolve,reject){
-        $.ajax({
-            url: "<?php echo base_url('Current_Shift_Performance/getLiveMode'); ?>",
-            type: "POST",
-            dataType: "json",
-            cache: false,
-            async: false,
-            data: {
-                shift_date: sdate,
-                shift_id: sid,
-                // filter:x,
-            },
-            success: function(res) {
-                resolve(res);
-                var production_total = 0;
-                res['production_total'].forEach(function(item){
-                    if (mid===item.machine_id) {
-                        production_total = item.total;
-                    }
-                });
+//     const shift_arr = [];
+//     shift_arr.push(tmp[1]);
+//     await getDownTimeGraph(tmp_mid, shift_date, shift_arr);
+//     await target_oui_graph(tmp_mid,tid_data,shift_date);
+//     await part_by_hour(tmp_mid, shift_date, tmp[1], bar_color);
+//     await div_records(tmp_mid, shift_date, tmp[1], bar_color, card_body);
+//     await circle_data_oui(tmp_mid,shift_date,tmp[1]);
+//     $('.target_graph_child_div').css('background-color',circle_target_color);
+//     $('#oui_circle_graph_color').attr('stop-color',circle_target_color);
+//     
+//     //alert(backgroundcolor);
+//     $('.cycle_time_val_div').css('background-color',backgroundcolor);
+//     $('.oui_header_div').css('background-color', backgroundcolor);
+//     $('.label_header').css('background-color', backgroundcolor);
+//     $('.oui_sub_header').css('background-color', card_body);
+//     $('.target_graph_parent_div').css('background-color', bar_color);
+//     $('.line_color_border').css('border', '1px solid ' + line);
+//     $('.label_text_color').css('color', label_text);
+//     $('#machine_status').text(event_status);
+//     $('#machine_name_text').text(machine_name);
 
-                var target_production = 5000;
-                var production_percent = parseInt((production_total / target_production) * 100);
-                var production_percent_val = 470 - (2.4 * production_percent);
-                var color_id = "GradientColor_oui";
-                var refcolor = 'url('+'#'+color_id+')';
-                var iterate = document.getElementById("circle_oui_anim");
-                iterate.style.setProperty("--foo_oui", production_percent_val);
-                iterate.style.setProperty("--ref_graph", refcolor);
-                document.getElementById('oui_circle_graph_color').attributes['stop-color'].value = "#C55A11";
-                $('#production_per_oui').text(production_percent);
+//     $('.downtime_second_val').css('display', downtime_display_property);
+//     $('.oui_arrow_div').css('display', 'inline');
+//     $('.visibility_div').css('display', 'none');
+//     $('#full_screen_btn_visibility').css('visibility','hidden');
+//     $("#overlay").fadeOut(300);
+// }
 
-
-            },
-            error:function(er){
-                reject(er);
-            }
-        });
-    });
-}
 
 
 // downtime graph global variables
@@ -1719,8 +1649,297 @@ var down_notes = new Array();
 var machine_Name = "";
 var part_name_tooltip = new Array();
 
+function color_bar(color, reason) {
+    var colordemo = "";
+    if (color == "Machine OFF") {
+        if (reason == 1) {
+            colordemo = "#686868";
+        } else {
+            colordemo = "#888888";
+        }
+    } else if (color == "Inactive") {
+        if (reason == 1) {
+            colordemo = "#4F8DF2";
+        } else {
+            colordemo = "#015BBC";
+        }
+    } else if (color == "Active") {
+        colordemo = "#01bb55";
+    } else if (color == "Offline") {
+        colordemo = "#f2f2f2";
+    } else {
+        colordemo = "#f2f2f2";
+    }
+    return colordemo;
+}
+
+function fullscreen_mode() {
+    $('.left-sidebar').css('display','none');
+    $('.topnav').css('display','none');
+    $('.fixsubnav_quality').css('display','none');
+
+    $('.mr_left_content_sec').css('top', '0rem');
+    $('.mr_left_content_sec').css('margin-left', '0rem');
+
+    $('.grid-container-cont').css('margin-top', '0rem');
+    $('.full_screen_close').css('display','block');
+    $('.full_screen_close').css('display','flex');
+
+    showSlides(0);
+
+    const element = document.documentElement;
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if (element.webkitRequestFullscreen) {
+      element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) {
+      element.msRequestFullscreen();
+    }
+
+    $('.prev').css('margin-left','-4.5rem');
+
+    let slides = document.getElementsByClassName("grid-item-cont");
+    if (slides.length > 0) {
+        $('.slideControl').css('display','block');
+    }
+}
+
+function fullscreen_mode_remove(){
+
+    // return new Promise(function(resolve,reject){
+
+   
+    $('.left-sidebar').css('display','block');
+    $('.topnav').css('display','block');
+    $('.fixsubnav_quality').css('display','block');
+
+    $('.mr_left_content_sec').css('margin-left', '4.5rem');
+    $('.mr_left_content_sec').css('top', '4rem');
+
+    $('.topnav').css('display','flex');
+    $('.fixsubnav_quality').css('display','flex');
+    $('.graph-content').css('display','block');
+    $('.full_screen_close').css('display','none');
+
+    $('.prev').css('margin-left','0rem');
+    let slides = document.getElementsByClassName("grid-item-cont");
+    for (j = 0; j < slides.length; j++) {
+        slides[j].style.display = "block";
+    }
+
+    const element = document.documentElement;
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    }
+
+    $('.slideControl').css('display','none');
+
+// });
+}
+
+// var full = document.getElementById("full_screen_id");
+
+// function full_screen_fun() {
+//   document.getElementById("full_screen_id").requestFullscreen();
+//     // if (document.fullscreenEnabled) {
+//     //   full.requestFullscreen();
+//     // } else if (full.webkitRequestFullscreen) { /* Safari */
+//     //   full.webkitRequestFullscreen();
+//     // } else if (full.msRequestFullscreen) { /* IE11 */
+//     //   full.msRequestFullscreen();
+//     // }
+//     // $(document).fullScreen(true);
+// }
+
+$(document).on('click','.close_div_circle',function(event){
+    event.preventDefault();
+
+    $('.left-sidebar').css('display','inline');
+    $('.full_screen_mode_oui_disturb').css('display','inline');
+    $('.hide_full_screen').css('display','inline');
+    $('.hide_full_screen').css('margin-left','4.5rem');
+    $('.full_screen_div').css('display','none');
+    // $('.graph-content').css('display','inline');
+});
+
+
+// this function return to oui to cards
+function oui_arrow_to_card(){
+    $('#full_screen_btn_visibility').css('visibility','visible');
+    $('.visibility_div').css("display",'inline');
+    $('.graph-content').css('display', 'inline');
+    $('.graph-content').css('margin-top', '4rem');
+    $('.graph-content').css('display', 'block');
+    $('.oui_screen_view').css('display', 'none');
+    // $('.grid-container-cont').css('margin-top', '5rem');
+    $('.oui_arrow_div').css("display",'none');
+    // $('#full_screen_cards').empty();
+    // fullscreen_mode_remove();
+}
+
+
+// Production Graph
+function getProductionGraph(machine_id,shift_date,shift,backgroundcolor,border_color){
+    $('#production-graph').remove();
+    $('.production-graph-prod').append('<canvas id="production-graph"><canvas>');
+    $.ajax({
+        url: "<?php echo base_url('Current_Shift_Performance/getLiveMode');?>",
+        type: "POST",
+        dataType: "json",
+        async:false,
+        data:{
+            shift_date: shift_date,
+            shift_id: shift,
+            filter:2,
+        },
+        success: function(res){
+            var hours_list=[];
+            var production_count = [];
+            var production_target =[];
+            var rejection_count =[];
+
+            res['hours'].forEach(function(item){
+                hours_list.push(item);
+            });
+
+            res['data'].forEach(function(item){
+                if (item['machine'] == machine_id) {
+                    item['production'].forEach(function(p){
+                        production_count.push(parseInt(p['production']));
+                    });
+                }
+            });
+
+            res['data'].forEach(function(item){
+                if (item['machine'] == machine_id) {
+                    item['production'].forEach(function(p){
+                        rejection_count.push(parseInt(p['rejections']));
+                    });
+                }
+            });
+
+            res['data'].forEach(function(item){
+                if (item['machine'] == machine_id) {
+                    item['targets'].forEach(function(p){
+                        production_target.push(p);
+                    });
+                }
+            });
+
+                ChartDataLabels.defaults.color = "#ffffff";
+                ChartDataLabels.defaults.font.size=16;
+                ChartDataLabels.defaults.font.family = "Roboto, sans-serif";
+                var ctx = document.getElementById('production-graph').getContext('2d');
+                myChartList = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: hours_list,
+                        datasets: [{
+                                label: "Total Parts",
+                                type: "bar",
+                                backgroundColor: backgroundcolor,
+                                borderWidth: 1,
+                                fill: true,
+                                data:production_count,
+                                // part_name: part_name_list,
+                                // rejections: rejections_list,
+                                categoryPercentage: 1.0,
+                                barPercentage: 0.8,
+                            },
+                            {
+                                label: "Total Rejection",
+                                type: "bar",
+                                backgroundColor: "#595959",
+                                borderWidth: 1,
+                                fill: true,
+                                data:rejection_count,
+                                // part_name: part_name_list,
+                                // rejections: rejections_list,
+                                categoryPercentage: 1.0,
+                                barPercentage: 0.8,
+                            },
+                            {
+                                label: "Production Target",
+                                type: "line",
+                                backgroundColor: "#ffffff",
+                                borderColor: "#ffffff",
+                                borderWidth: 1,
+                                fill: false,
+                                data:production_target,
+                                // part_name: part_name_list,
+                                pointRadius: 0,
+                                stepped: 'before',
+                            },
+                        ],
+                    },
+                    options: {
+                        scalebeginAtZero: false,
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                display: false,
+                                beginAtZero: true,
+                                grid: {
+                                    display: false,
+                                    color:"#01a149",
+                                },
+                                stacked: true,
+                            },
+                            x: {
+                                display: true,
+                                grid: {
+                                    display: true,
+                                    color:border_color,
+                                },
+                                stacked: true,
+                                ticks:{
+                                    crossAlign: 'far',
+                                    padding:5,
+                                    color:"#ffffff",
+                                }
+                            },
+                        },
+                        plugins: {
+                            datalabels: {
+                                anchor: "start",
+                                align: "end",
+                                offset: 6,
+                                color: "white",
+                                font: {
+                                    size: 12,
+                                },
+                                formatter: (value, context) => context.datasetIndex === 0 ?
+                                    value : '',
+                            },
+                            legend: {
+                                display: false,
+                                labels: {
+                                    font: {
+                                        size: 12
+                                    }
+                                }
+                            },
+                            tooltip: {
+                                // enabled: false,
+                                // external: productionTooltip,
+                            },
+                        },
+                    },
+                    plugins: [ChartDataLabels],
+                });
+        },
+        error: function(err){
+            // error......
+        }
+    });
+}
+// Downtime Graph
 function getDownTimeGraph(machine_id, shift_date, s) { 
-    return  new Promise(function(resolve,reject){
         var url = "<?php echo base_url('PDM_controller/getDownGraph'); ?>";
         $.ajax({
             method: 'POST',
@@ -1730,10 +1949,9 @@ function getDownTimeGraph(machine_id, shift_date, s) {
             data: {
                 machine_id: machine_id,
                 shift_date: shift_date,
-                shift: s[0],
+                shift: s,
             },
             success:function(response){
-                resolve(response);
                 response['shift']['shift'].forEach(function(item) {
                     var x = item.shifts.split("");
                     if (x[0] == s[0]) {
@@ -1744,7 +1962,7 @@ function getDownTimeGraph(machine_id, shift_date, s) {
                         shift_etime = item.end_time;
                     }
                 });
-                $('#downtime_chart').empty();
+                $('#chartOp').empty();
                 var graph_Data = [];
                 var machine_on_count = [];
                 var machine_off_count = [];
@@ -1980,12 +2198,12 @@ function getDownTimeGraph(machine_id, shift_date, s) {
                         duration: d
                     });
                 }
-                var options = {
 
+                var options = {
                     series: graph_Data,
                     chart: {
                         type: 'bar',
-                        height: 70,
+                        height: 50,
                         stacked: true,
                         stackType: '100%',
                         sparkline: {
@@ -2077,336 +2295,203 @@ function getDownTimeGraph(machine_id, shift_date, s) {
                     },
                 };
 
-                var chart = new ApexCharts(document.querySelector("#downtime_chart"), options);
+                var chart = new ApexCharts(document.querySelector("#chartOp"), options);
                 chart.render();
             },
             error:function(er){
                 reject(er);
             }
         });
-    });
+    
 }
 
-function color_bar(color, reason) {
-    var colordemo = "";
-    if (color == "Machine OFF") {
-        if (reason == 1) {
-            colordemo = "#686868";
-        } else {
-            colordemo = "#888888";
-        }
-    } else if (color == "Inactive") {
-        if (reason == 1) {
-            colordemo = "#4F8DF2";
-        } else {
-            colordemo = "#015BBC";
-        }
-    } else if (color == "Active") {
-        colordemo = "#01bb55";
-    } else if (color == "Offline") {
-        colordemo = "#f2f2f2";
-    } else {
-        colordemo = "#f2f2f2";
-    }
-    return colordemo;
-}
-
-// part wise graph by hours using oui screen
-function part_by_hour(mid, sdate, sid, bar_color) {
-    return new Promise(function(resolve,reject){
-
-        var x = 0;
+    function getLiveOEE(machine_id,shift_date,shift){
         $.ajax({
-            url: "<?php echo base_url('Current_Shift_Performance/getLiveMode'); ?>",
+            url: "<?php echo base_url('Current_Shift_Performance/getLiveMode');?>",
             type: "POST",
             dataType: "json",
-            cache: false,
-            async: false,
-            data: {
-                shift_date: sdate,
-                shift_id: sid,
-                filter: x,
-            },
-            success: function(res) {
-                resolve(res);
-                var hourly = [];
-                var hourList = [];
-                var production_target = [];
-                res['data'].forEach(function(items) {
-                    if (items['machine'] === mid) {
-                        items['production'].forEach(function(i) {
-                            hourly.push(i['production']);
-                            hourList.push(i['start_time'] + " to " + i['end_time']);
-                        });
-                        items['targets'].forEach(function(i) {
-                            production_target.push(i);
-                        });
-                    }
-                });
-                // availability performance and quality div records
-                var availability_assign = 0;
-                var performance_assign = 0;
-                var quality_assign = 0;
-                var oee_assign = 0;
-                res['oee'].forEach(function(item) {
-                    if (item['Machine_Id'] === mid) {
-                        availability_assign = item['Availability'];
-                        performance_assign = item['Performance'];
-                        quality_assign = item['Quality'];
-                        oee_assign = item['OEE'];
-                    }
-                });
-
-                $('#availability_val').text(parseInt(availability_assign));
-                $('#performance_val').text(parseInt(performance_assign));
-                $('#quality_val').text(parseInt(quality_assign));
-                $('#oee_val').text(parseInt(oee_assign));
-
-
-                ChartDataLabels.defaults.color = "#ffffff";
-                ChartDataLabels.defaults.font.size = "9px";
-                ChartDataLabels.defaults.font.family = "'Roboto', sans-serif;";
-                ChartDataLabels.defaults.anchor = "bottom";
-                var ctx = document.getElementById('part_wise_graph_oui').getContext('2d');
-                myChartList[myChartList.length] = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: hourList,
-                        datasets: [{
-                                label: "Production",
-                                type: "bar",
-                                backgroundColor: bar_color,
-                                borderColor: "white",
-                                borderWidth: 1,
-                                fill: true,
-                                data: hourly,
-                            },
-                            {
-                                label: "Production Target",
-                                type: "line",
-                                backgroundColor: "#7f7f7f",
-                                borderColor: "#00000",
-                                borderWidth: 1,
-                                fill: false,
-                                data: production_target,
-                                pointRadius: 0,
-                            },
-                        ],
-                    },
-                    options: {
-                        scalebeginAtZero: false,
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            y: {
-                                display: false,
-                                beginAtZero: true,
-                                stacked: false,
-                            },
-                            x: {
-                                display: true,
-                                grid: {
-                                    display: false
-                                },
-                                stacked: true,
-                            },
-                        },
-                        plugins: {
-                            datalabels: {
-                                formatter: (value, context) => context.datasetIndex === 0 ? value : ''
-                            },
-                            legend: {
-                                display: false,
-                            },
-                            tooltip: {
-                                enabled: true,
-                            },
-                        },
-
-                    },
-                    plugins: [ChartDataLabels],
-                });
-
-
-            },
-            error: function(er) {
-                reject(er);
-            },
-
-        });
-    });
-}
-
-// div elements value assigning function
-function div_records(mid, shift_date, shift_id, card_header, card_body) {
-    return new Promise(function(resolve,reject){
-        $.ajax({
-            url: "<?php echo base_url('Current_Shift_Performance/div_details'); ?>",
-            type: "POST",
-            dataType: "json",
-            cache: false,
-            async: false,
-            data: {
-                mid: mid,
+            data:{
                 shift_date: shift_date,
-                shift_id: shift_id,
+                shift_id: shift,
+                filter:2,
             },
-            success: function(res) {
-                resolve(res);
-                var nict_min = res['nict'] / 60;
+            success: function(res){
 
-                var tmp_nict = res['nict'].split(".");
-                // Update Machine Current Status
-                if (tmp_nict.length > 1) {
-                    var m = parseInt(tmp_nict[0] / 60);
-                    var s = tmp_nict[0] % 60;
-                    if (m > 0) {
-                        $('#nict_val').html(m + "m " + s +
-                            "s " + tmp_nict[1] + "ms");
-                    } else {
-                        $('#nict_val').html(tmp_nict[0] + "s " +
-                            tmp_nict[1] + "ms");
+                console.log("live record in current shift performance oui screen");
+                console.log(res['latest_event']);
+                res['oee'].forEach(function(machine) {
+                    if (machine['Machine_Id'] == machine_id) {
+                        $('#oui_availability').text(parseInt(machine['Availability'])+"%");
+                        $('#oui_performance').text(parseInt(machine['Performance'])+"%");
+                        $('#oui_quality').text(parseInt(machine['Quality'])+"%");
+                        $('#oui_oee').text(parseInt(machine['OEE'])+"%");
                     }
-                } else {
-                    var s = parseInt(tmp_nict[0] / 60);
-                    var ms = tmp_nict[0] % 60;
-                    if (s > 0) {
-                        $('#nict_val').html(s + "s " + ms +
-                            "ms");
-                    } else {
-                        $('#nict_val').html(tmp_nict[0] + "s");
+                });
+
+                res['machine_name'].forEach(function(machine) {
+                    if (machine['machine_id'] == machine_id) {
+                        $('#machine_name_oui').text(machine['machine_name']);
                     }
-                }
+                });
 
-                var temp_downtime_hour = res['downtime'] / 3600;
-                var temp_total_hour_second = parseInt(temp_downtime_hour)*3600;
-                var temp_downtime_minute =  parseInt(res['downtime']) - parseInt(temp_total_hour_second);
-                temp_downtime_minute = parseInt(temp_downtime_minute) /60
-                var downtime_val = parseInt(temp_downtime_hour)+"h"+" "+parseInt(temp_downtime_minute)+"m";
 
-                $('#downtime_val').text(downtime_val);
-                $('#reject_count').text(res['rejection_count']);
-                $('#part_name_circle').text(res['part_name'].replace(",",", "));
-                $('#part_name_header').text(res['part_name'].replace(",",", "));
-
-                $('.card_header').css('background-color', card_header);
-                $('.card_small_div').css('background-color', card_body);
-                $('.shift_oee_header').css('background-color', card_header);
-                $('.shift_oee_div').css('background-color', card_body);
-
+                res['latest_event'].forEach(function(machine) {
+                    if (machine[0]['machine_id'] == machine_id) {
+                        $('#latest_event_machine').text(machine[0]['event']);
+                        var t = machine[0]['duration'].split(".");
+                        if (machine[0]['event']==="Active") {
+                            $('#event_duration_machine').css("display",'none');
+                            $('.oui_duration_only_active').css("display",'inline');
+                            $('.active_duration_oui').text(t[0]+"m");
+                        }else{
+                            $('#event_duration_machine').css("display",'inline');
+                            $('.oui_duration_only_active').css("display",'none');
+                            $('#event_duration_machine').text(t[0]+"m");
+                        }
+                        
+                    }
+                });
             },
-            error: function(er) {
-                reject(er);
+            error: function(err) {
+                // 
             }
         });
-    });
-}
-
-function fullscreen_mode() {
-    $('.left-sidebar').css('display','none');
-    $('.topnav').css('display','none');
-    $('.fixsubnav_quality').css('display','none');
-
-    $('.mr_left_content_sec').css('top', '0rem');
-    $('.mr_left_content_sec').css('margin-left', '0rem');
-
-    $('.grid-container-cont').css('margin-top', '0rem');
-    $('.full_screen_close').css('display','block');
-    $('.full_screen_close').css('display','flex');
-
-    showSlides(0);
-
-    const element = document.documentElement;
-    if (element.requestFullscreen) {
-      element.requestFullscreen();
-    } else if (element.webkitRequestFullscreen) {
-      element.webkitRequestFullscreen();
-    } else if (element.msRequestFullscreen) {
-      element.msRequestFullscreen();
     }
 
-    $('.prev').css('margin-left','-4.5rem');
-
-    let slides = document.getElementsByClassName("grid-item-cont");
-    if (slides.length > 0) {
-        $('.slideControl').css('display','block');
-    }
-}
-
-function fullscreen_mode_remove(){
-
-    // return new Promise(function(resolve,reject){
-
-   
-    $('.left-sidebar').css('display','block');
-    $('.topnav').css('display','block');
-    $('.fixsubnav_quality').css('display','block');
-
-    $('.mr_left_content_sec').css('margin-left', '4.5rem');
-    $('.mr_left_content_sec').css('top', '4rem');
-
-    $('.topnav').css('display','flex');
-    $('.fixsubnav_quality').css('display','flex');
-    $('.graph-content').css('display','block');
-    $('.full_screen_close').css('display','none');
-
-    $('.prev').css('margin-left','0rem');
-    let slides = document.getElementsByClassName("grid-item-cont");
-    for (j = 0; j < slides.length; j++) {
-        slides[j].style.display = "block";
+    function getDowntimeDuration(machine_id,shift_date,shift){
+        $.ajax({
+            url: "<?php echo base_url('Operator/getLiveDowntime'); ?>",
+            type: "POST",
+            dataType: "json",
+            async: false,
+            data:{
+                machine_ref : machine_id,
+                shift_ref : shift,
+                shift_date_ref : shift_date
+            },
+            success: function(res) {
+                if (res['h'] > 0) {
+                    $('#downtime_duration').text(res['h']+"h"+" "+res['m']+"m");
+                }else{
+                    $('#downtime_duration').text(res['m']+"m");
+                }
+            },
+            error: function(res) {
+                // Error Occured!
+            }
+        });
     }
 
-    const element = document.documentElement;
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen();
+    function getLiveProduction(machine_id,shift_date,shift){
+        $.ajax({
+            url: "<?php echo base_url('Operator/getLiveProduction'); ?>",
+            type: "POST",
+            dataType: "json",
+            async: false,
+            data:{
+                machine_id_ref : machine_id,
+                shift_id_ref : shift,
+                shift_date_ref : shift_date, 
+            },
+            success: function(res) {
+                $('#remaining_time_duration').text(res['duration_min']+" "+"min");
+
+                var date = new Date();
+                date.setMinutes (date.getMinutes() + parseInt(res['duration_min']));
+
+                var x_date = ("0" +date.getDate()).slice(-2)+" "+(date.toLocaleString([], { month: 'short' })+" "+(date.getFullYear()))+", "+("0" +date.getHours()).slice(-2)+":"+("0" +date.getMinutes()).slice(-2);
+
+                $('#estimated_time_target').text(x_date);
+            },
+            error: function(res) {
+                // Error Occured!
+            }
+        });
     }
 
-    $('.slideControl').css('display','none');
+    function getPartCycleTime(machine_id){
+        $.ajax({
+            url: "<?php echo base_url('Operator/getPartCycleTime'); ?>",
+            type: "POST",
+            dataType: "json",
+            async: false,
+            data:{
+                machine_ref : machine_id,
+            },
+            success: function(res) {
+                $('#part_cycle_time').text(res[0]['NICT']+"s");
+                $('#part_name_oui').text(res[0]['part_name']);
+                $('#part_name_oui').attr("part_id",""+res[0]['part_id']+"");
 
-// });
-}
+                $('#part_name_oui_p').text(res[0]['part_name']);
 
-// var full = document.getElementById("full_screen_id");
+            },
+            error: function(res) {
+                // Error Occured!
+            }
+        });
+    }
 
-// function full_screen_fun() {
-//   document.getElementById("full_screen_id").requestFullscreen();
-//     // if (document.fullscreenEnabled) {
-//     //   full.requestFullscreen();
-//     // } else if (full.webkitRequestFullscreen) { /* Safari */
-//     //   full.webkitRequestFullscreen();
-//     // } else if (full.msRequestFullscreen) { /* IE11 */
-//     //   full.msRequestFullscreen();
-//     // }
-//     // $(document).fullScreen(true);
-// }
+    function getRejectCounts(machine_id,shift_date,shift){
+        $.ajax({
+            url: "<?php echo base_url('Operator/getLiveRejectCount'); ?>",
+            type: "POST",
+            dataType: "json",
+            async: false,
+            data:{
+                machine_ref : machine_id,
+                shift_ref : shift,
+                shift_date_ref : shift_date
+            },
+            success: function(res) {
+                if (res[0]['rejections'] != null && res[0]['rejections'] !="") {
+                    $('#liveRejectCount').text(res[0]['rejections']); 
+                }else{
+                    $('#liveRejectCount').text(0); 
+                }
+                
+            },
+            error: function(res) {
+                // Error Occured!
+            }
+        });
+    }
 
-$(document).on('click','.close_div_circle',function(event){
-    event.preventDefault();
-
-    $('.left-sidebar').css('display','inline');
-    $('.full_screen_mode_oui_disturb').css('display','inline');
-    $('.hide_full_screen').css('display','inline');
-    $('.hide_full_screen').css('margin-left','4.5rem');
-    $('.full_screen_div').css('display','none');
-    // $('.graph-content').css('display','inline');
-});
 
 
-// this function return to oui to cards
-function oui_arrow_to_card(){
-    $('#full_screen_btn_visibility').css('visibility','visible');
-    $('.visibility_div').css("display",'inline');
-    $('.graph-content').css('display', 'inline');
-    $('.graph-content').css('margin-top', '4rem');
-    $('.graph-content').css('display', 'block');
-    $('.oui_screen_view').css('display', 'none');
-    // $('.grid-container-cont').css('margin-top', '5rem');
-    $('.oui_arrow_div').css("display",'none');
-    // $('#full_screen_cards').empty();
-    // fullscreen_mode_remove();
-}
+    function target_oui_graph(mid,tid,sdate){
+        // return new Promise(function(resolve,reject){
+        $.ajax({
+            url:"<?php echo base_url('Current_Shift_Performance/get_target_graph'); ?>",
+            method:"POST",
+            data:{
+                mid:mid,
+                sdate:sdate,
+                tid:tid,
+            },
+            dataType:"JSON",
+            success:function(res){
+                // resolve(res);
+                console.log("current shift performance oui screen target graph value");
+                console.log(res[0]['percentage_target']);
+                var target_percentage = 0;
+                if (parseInt(res[0]['percentage_target'])>100) {
+                    // target_percentage = res[0]['percentage_target'];
+                    target_percentage = 100;
+                }else{
+
+                    target_percentage = res[0]['percentage_target'];
+                }
+                $('.target_inline').css('height',target_percentage+'%');
+                $('.target_inline_Cont').text(res[0]['percentage_target']);
+                $('.target_text2').text(res[0]['target']);
+
+            },
+            error:function(er){
+                // reject(er);
+                console.log("current shift performance oui screen target graph error\t"+er);
+            }
+        });
+        // });
+    }
 </script>

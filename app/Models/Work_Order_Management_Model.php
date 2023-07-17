@@ -33,7 +33,7 @@ class Work_Order_Management_Model extends Model{
             'DSN'      => '',
             'hostname' => 'localhost',
             'username' => 'root',
-            'password' => '',
+            'password' => 'quantanics123',
             'database' => 'smartories_roof',
             'DBDriver' => 'MySQLi',
             'DBPrefix' => '',

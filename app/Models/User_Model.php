@@ -298,6 +298,7 @@ class User_Model extends Model{
 
     // get site name records function
     public function getsit_name_user_record($site_id){
+        
         $db = \Config\Database::connect("another_db");
         $build = $db->table('sites');
         $build->select('site_name');

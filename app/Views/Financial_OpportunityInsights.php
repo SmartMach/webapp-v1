@@ -545,7 +545,7 @@
             </nav> 
               <div class="divMarLeft">
                 <p class="paddingm headTitle">TOTAL</p>
-                <p class="paddingm valueGraph"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft" id="PLTotal"></span></p>
+                <p class="paddingm valueGraph"><i style="font-size:1.3rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft" id="PLTotal"></span></p>
               </div>
               <div class="parent_graph_machine_wise_insights graph_margin_bottom parent_div marginScroll">
                 <div class="child_graph_machine_wise_insig child_div">
@@ -577,7 +577,7 @@
             </nav> 
               <div class="divMarLeft">
                 <p class="paddingm headTitle">TOTAL</p>
-                <p class="paddingm valueGraph"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft" id="GTotalTrend"></span></p>
+                <p class="paddingm valueGraph"><i style="font-size:1.3rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft" id="GTotalTrend"></span></p>
               </div>
 
               <div class="parent_graph_opportunity_trend_insights graph_margin_bottom parent_div marginScroll">
@@ -610,7 +610,7 @@
             </nav> 
               <div class="divMarLeft">
                 <p class="paddingm headTitle">TOTAL</p>
-                <p class="paddingm valueGraph"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft" id="GTotalDrillDown"></span></p>
+                <p class="paddingm valueGraph"><i style="font-size:1.3rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft" id="GTotalDrillDown"></span></p>
               </div>
 
               <div class="parent_graph_opportunity_dirll_down parent_div marginScroll" style="margin-bottom:1rem;">
@@ -643,7 +643,7 @@
             </nav> 
               <div class="divMarLeft">
                 <p class="paddingm headTitle financial_font">PROFIT / LOSS</p>
-                <p class="paddingm valueGraph valueGraph_Loss"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft" id="GTotalPL"></span></p>
+                <p class="paddingm valueGraph valueGraph_Loss"><i style="font-size:1.3rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft" id="GTotalPL"></span></p>
               </div>
 
               <div class="parent_graph_part_wise_pl parent_div marginScroll">
@@ -816,7 +816,7 @@ function plopportunity(){
             enabled: true,
             style: {
               colors: ["#004A9B","#FFFFFF"],
-              fontSize: '15px',
+              fontSize: '13px',
               fontFamily: 'Roboto, Arial, sans-serif',
             },
             background: {
@@ -881,7 +881,7 @@ function plopportunity(){
                       catch(err) {
                         var a = parseFloat(w.globals.seriesTotals[0]);
                       }
-                      return (parseInt(a)).toLocaleString("en-IN");
+                      return ("₹"+parseInt(a)).toLocaleString("en-IN");
                     },
                   },
                 },
@@ -916,7 +916,7 @@ function plopportunity(){
                     '<div class="title-bold"><span>'+l+'</span></div>'+
                     '<div class="grid-item title-bold"><span></span></div>'+
                     '<div class="grid-item content-text margin-top"><span>Opportunity Cost</span></div>'+
-                    '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<img src="<?php echo base_url()?>/assets/img/inr-logo.png?version=<?php echo rand() ; ?>" class="inr-img">'+parseInt(series[seriesIndex]).toLocaleString("en-IN")+'</span></div>'+
+                    '<div class="cost-value title-bold-value margin-top "><span class="values-op" >'+'<span style="padding-right:0.1rem;">₹</span>'+parseInt(series[seriesIndex]).toLocaleString("en-IN")+'</span></div>'+
                     '<div class="grid-item content-text"><span>Duration</span></div>'+
                     '<div class="grid-item content-text-val"><span class="values-op">'+days+"d"+" "+hours+"h"+" "+min+"m"+'</span></div>'+
                   '</div>'+
@@ -998,7 +998,7 @@ function plopportunity(){
                     '<div class="title-bold"><span>'+title+'</span></div>'+
                     '<div class="grid-item title-bold"><span></span></div>'+
                     '<div class="grid-item content-text margin-top"><span>Opportunity Cost</span></div>'+
-                    '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<img src="<?php echo base_url()?>/assets/img/inr-logo.png?version=<?php echo rand() ; ?>" class="inr-img">'+parseInt(cost).toLocaleString("en-IN")+'</span></div>'+
+                    '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<span style="padding-right:0.1rem;">₹</span>'+parseInt(cost).toLocaleString("en-IN")+'</span></div>'+
                     '<div class="grid-item content-text"><span>Duration</span></div>'+
                     '<div class="grid-item content-text-val"><span class="values-op">'+days+"d"+" "+hours+"h"+" "+min+"m"+'</span></div>'+
                   '</div>'+
@@ -1649,7 +1649,7 @@ function drillDownOpp(context) {
         innerHtml += '<div class="grid-item title-bold"><span></span></div>';
 
         innerHtml += '<div class="grid-item content-text margin-top"><span>Opportunity Cost</span></div>';
-        innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="true"></i>'+parseInt(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toLocaleString("en-IN")+'</span></div>';
+        innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="true" style="font-size:0.9rem;"></i>'+parseInt(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toLocaleString("en-IN")+'</span></div>';
         innerHtml += '<div class="grid-item content-text"><span>Duration</span></div>';
 
         if (days>0) {
@@ -1809,9 +1809,20 @@ function opportunityTrendDay(){
           maintainAspectRatio: false,   
           scales: {
               y: {
-                  display:false,
+                  display:true,
                   beginAtZero:true,
-                  stacked:true
+                  stacked:true,
+                  ticks:{
+                    callback:function(value){
+                      var tmp_val = parseInt(value)/1000;
+                      if (parseInt(tmp_val)>0) {
+                        return "₹"+tmp_val+"k";
+                      }else{
+                        return "₹"+value;
+                      }
+                      
+                    }
+                  }
               },
               x:{
                   display:true,

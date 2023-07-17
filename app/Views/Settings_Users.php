@@ -3434,7 +3434,7 @@ function error_show_remove(data){
 
  // retrive all users function
 
- function get_all_user(){
+function get_all_user(){
 
 // retrive all users for rows
 var SiteUserRef = "<?php echo($this->data['user_details'][0]['user_id']); ?>";
@@ -3528,7 +3528,7 @@ $.ajax({
                                             // +'<li class="edit-opt info-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" con="'+item.created_on+'"><a href="#"><i class="fa fa-info" style="margin-left:10px;"></i>INFO</a></li>'
                                             +'<li class="edit-opt edit-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" con="'+item.created_on+'" svalue="'+item.status+'" site="'+item.site_id+'"><a href="#"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh" style="margin-left:10px;"></i>EDIT</a></li>'
                                             +'<li class="edit-opt deactivate-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'" site_id="'+item.site_id+'"><a href="#"><img src="<?php echo base_url('assets/img/delete.png'); ?>" class="img_font_wh1" style="margin-left:10px;"></i>DEACTIVATE</a></li>'
-                                            +'<li class="edit-opt forgot-password forgotwork " style="display:'+forgot+';" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'" site="'+item.site_id+'"><a href="#"><i class="fa fa-key" style="margin-left:10px;"></i>RESET PASSWORD</a></li>'
+                                            +'<li class="edit-opt forgot-password forgotwork " style="display:'+forgot+';" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'" site="'+item.site_id+'"><a href="#"><i class="fa fa-key" style="margin-left:15px;font-size:1rem;"></i><span style="margin-left:0.8rem;">RESET PASSWORD</span></a></li>'
                                         +'</ul>'
                                     +'</li>'
                                 +'</ul>'                

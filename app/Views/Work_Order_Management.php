@@ -193,26 +193,26 @@
 $session = \Config\Services::session();
 
 ?>
-<div style="margin-left: 4.5rem;">
-        <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav">
-          <div class="container-fluid paddingm">
-            <p class="float-start" id="logo">Work Order Management</p>
+<div class="mr_left_content_sec">
+        <nav class="sec_nav display_f align_c justify_c sec_nav_c navbar-expand-lg">
+          <div class="container-fluid paddingm display_f justify_sb align_c">
+            <p class="float-start fnt_fam mdl_header">Work Order Management</p>
               <div class="d-flex">
                     
-                    <p class="float-end stcode stcode-up" class="active_click" style="color: #595959;">
+                    <p class="float-end fnt_fam style_label open_color">
                         <span  id="open_total" class="paddingm span-stl"></span>OPEN 
                     </p>
-                    <p class="float-end stcode stcode-up" class="active_click" style="color: #4195f6;">
+                    <p class="float-end fnt_fam style_label in_progress_color">
                         <span  id="inprogress_total" class="paddingm span-stl"></span>IN PROGRESS 
                     </p>
-                    <p class="float-end stcode stcode-up" style="color: #ff0000;">
+                    <p class="float-end fnt_fam style_label overdue_color">
                         <span  id="overdue_total" class="paddingm span-stl"></span>OVERDUE
                     </p>
               </div>
           </div>
         </nav>
-        <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav">
-          <div class="container-fluid paddingm ">
+        <nav class="inner_nav inner_nav_c display_f align_c justify_sb navbar-expand-lg">
+          <div class="container-fluid paddingm display_f justify_sb align_c">
             <div class="box rightmar" style="margin-left: 0.5rem;width: 10rem;">
                 <div class="input-box" style="display: flex;">
                   <input type="number" class="form-control font_weight font_color" name="" id="pagination_val" style="width:2rem;height:2rem;border-radius:0.2rem;border:1px solid #A6A6A6;color:black;font-size:0.8rem;font-weight:500;">
@@ -223,10 +223,10 @@ $session = \Config\Services::session();
             </div>
 
               <div class="d-flex innerNav">
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
+                    <div class="box rightmar display_f align_c" style="margin-right: 0.5rem;">
                         <div class="input-box">
-                          <div class="filter_multiselect">
-                            <div class="filter_selectBox status" onclick="multiple_drp_status()">
+                          <div class="filter_multiselect_outer">
+                            <div class="filter_selectBox_inner po_relative display_f align_c status" onclick="multiple_drp_status()">
                               <div class="inbox-span fontStyle search_style dropdown-arrow">
                                 <div style="width: 80% !important;">
                                   <p class="paddingm" id="Filter_status_val">All Status</p>
@@ -236,16 +236,16 @@ $session = \Config\Services::session();
                                 </div>
                               </div>
                             </div>
-                            <div class="filter_checkboxes_issue filter_checkboxes_filter Filter_status_div display_hide">
+                            <div class="filter_checkboxes_issue po_fixed filter_checkboxes_filter Filter_status_div display_hide">
                             </div>
                           </div>
                           <label class="input-padding ">Status</label>
                         </div>
                     </div>
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
+                    <div class="box rightmar display_f align_c" style="margin-right: 0.5rem;">
                         <div class="input-box">
-                          <div class="filter_multiselect">
-                            <div class="filter_selectBox" onclick="multiple_drp_lables()">
+                          <div class="filter_multiselect_outer">
+                            <div class="filter_selectBox_inner po_relative display_f align_c" onclick="multiple_drp_lables()">
                               <div class="inbox-span fontStyle search_style dropdown-arrow">
                                 <div style="width: 80% !important;">
                                   <p class="paddingm" id="Filter_lables_val">All Labels</p>
@@ -255,16 +255,16 @@ $session = \Config\Services::session();
                                 </div>
                               </div>
                             </div>
-                            <div class="filter_checkboxes_issue filter_checkboxes_filter Filter_lables_div display_hide">
+                            <div class="filter_checkboxes_issue po_fixed filter_checkboxes_filter Filter_lables_div display_hide">
                             </div>
                           </div>
                           <label class="input-padding ">Labels</label>
                         </div>
                     </div>
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
+                    <div class="box rightmar display_f align_c" style="margin-right: 0.5rem;">
                         <div class="input-box">
-                          <div class="filter_multiselect">
-                            <div class="filter_selectBox" onclick="multiple_drp_priority()">
+                          <div class="filter_multiselect_outer">
+                            <div class="filter_selectBox_inner po_relative display_f align_c" onclick="multiple_drp_priority()">
                               <div class="inbox-span fontStyle search_style dropdown-arrow">
                                 <div style="width: 80% !important;">
                                   <p class="paddingm" id="Filter_priority_val">All Priority</p>
@@ -274,16 +274,16 @@ $session = \Config\Services::session();
                                 </div>
                               </div>
                             </div>
-                            <div class="filter_checkboxes_issue filter_checkboxes_filter Filter_priority_div display_hide">
+                            <div class="filter_checkboxes_issue po_fixed filter_checkboxes_filter Filter_priority_div display_hide">
                             </div>
                           </div>
                           <label class="input-padding ">Priority</label>
                         </div>
                     </div>
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
+                    <div class="box rightmar display_f align_c" style="margin-right: 0.5rem;">
                         <div class="input-box">
-                          <div class="filter_multiselect">
-                            <div class="filter_selectBox" onclick="multiple_drp_assignee()">
+                          <div class="filter_multiselect_outer">
+                            <div class="filter_selectBox_inner po_relative display_f align_c" onclick="multiple_drp_assignee()">
                               <div class="inbox-span fontStyle search_style dropdown-arrow">
                                 <div style="width: 80% !important;">
                                   <p class="paddingm" id="Filter_assignee_val">All Assignee</p>
@@ -293,15 +293,16 @@ $session = \Config\Services::session();
                                 </div>
                               </div>
                             </div>
-                            <div class="filter_checkboxes_issue filter_checkboxes_filter Filter_assignee_div display_hide">
+                            <div class="filter_checkboxes_issue po_absolute filter_checkboxes_filter Filter_assignee_div display_hide">
                             </div>
                           </div>
                           <label class="input-padding ">Assignee</label>
                         </div>
                     </div>
 
-                    <a style="border-radius:0.25rem;padding:5px 25px;height:2.2rem;opacity:1;font-size:15px;cursor:pointer;font-weight:500;" class="settings_nav_anchor saveBtnStyle center-align" onclick="getFilterval(true)" id="">Apply Filter
+                    <a style="" class="add_btn cursor fnt_bold none_dec fnt_fam float-end" onclick="getFilterval(true)">APPLY FILTER
                     </a>
+
 
                     <div class="box rightmar" style="margin-right: 0.5rem;display: flex;justify-content: center;">
                         <img src="<?php echo base_url('assets/img/filter_reset.png'); ?>" class="undo" style="font-size:20px;color: #b5b8bc;cursor: pointer;width:1.3rem;height:1.3rem;">
@@ -311,8 +312,8 @@ $session = \Config\Services::session();
                         if($this->data['access'][0]['work_order_management'] == 3){ 
                     ?>
 
-                    <a style="border-radius:0.25rem;padding:5px 25px;cursor:pointer;font-size:15px;font-weight:500;height:2.2rem;" class="settings_nav_anchor saveBtnStyle float-end" id="add_issue_button">
-                        <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>Add Issue
+                    <a style="" class="add_btn cursor fnt_bold none_dec fnt_fam float-end" id="add_issue_button">
+                        <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD ISSUE
                     </a>
 
                     <?php 
@@ -321,32 +322,32 @@ $session = \Config\Services::session();
                 </div>
             </div>
         </nav>
-        <div class="tableContent" style="margin-top: 4rem;">
-            <div class="settings_machine_header sticky-top fixtabletitle" style="top:11.1rem;">
+        <div class="data_section">
+            <div class="table_header table_header_p">
                 <div class="row paddingm">
-                    <div class="col-sm-1 p3 paddingm">
-                      <p class="basic_header">ID</p>
+                    <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                      <p class="h_mar_l paddingm">ID</p>
                     </div>
-                    <div class="col-sm-2 p3 paddingm">
-                      <p class="basic_header">TITLE</p>
+                    <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                      <p class="h_mar_l paddingm">TITLE</p>
                     </div>
-                    <div class="col-sm-2 p3 paddingm">
-                      <p class="basic_header">LABEL</p>
+                    <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                      <p class="h_mar_l paddingm">LABEL</p>
                     </div>
-                    <div class="col-sm-1 p3 paddingm ">
-                      <p class="basic_right">PRIORITY</p>
+                    <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                      <p class="h_mar_l paddingm">PRIORITY</p>
                     </div>
-                    <div class="col-sm-2 p3 paddingm">
-                      <p class="basic_header">ASSIGNEE</p>
+                    <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                      <p class="h_mar_l paddingm">ASSIGNEE</p>
                     </div>
-                    <div class="col-sm-2 p3 paddingm">
-                      <p class="basic_header">DUE DATE</p>
+                    <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                      <p class="h_mar_l paddingm">DUE DATE</p>
                     </div>
-                    <div class="col-sm-1 p3 paddingm">
-                      <p class="basic_header">STATUS</p>
+                    <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                      <p class="h_mar_l paddingm">STATUS</p>
                     </div>
-                    <div class="col-sm-1 p3 paddingm" style="justify-content: center;">
-                      <p class="basic_header">ACTION</p>
+                    <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                      <p class="h_mar_l paddingm">ACTION</p>
                     </div>
                 </div>
             </div>
@@ -386,7 +387,7 @@ $session = \Config\Services::session();
                                 <!-- <span class="paddingm float-start validate" id="inputtypeErr"></span>  -->
                             </div>
                             <!-- Drop down Suggestion -->
-                            <div class="filter_checkboxes_issue suggestion suggession_box suggestion_width" id="dropdown-list-cause">
+                            <div class="filter_checkboxes_issue po_absolute suggestion suggession_box suggestion_width" id="dropdown-list-cause">
                             </div>
                             <!-- Cause Content -->
                             <div class="items-container reduce_width items-container-cause"></div>
@@ -400,7 +401,7 @@ $session = \Config\Services::session();
                             <!-- <span class="float-end charCount action_count" id="actiontakenCunt"></span>  -->
                             
                             <!-- Drop down Suggestion -->
-                            <div class="filter_checkboxes_issue suggestion suggession_box suggestion_width" id="dropdown-list-action">
+                            <div class="filter_checkboxes_issue po_absolute suggestion suggession_box suggestion_width" id="dropdown-list-action">
                             </div>
                             <!-- Action Taken content -->
                             <div class="items-container reduce_width items-container-action"></div>
@@ -449,7 +450,7 @@ $session = \Config\Services::session();
                                     <!-- <span id="inputpriorityErr" class="validate"></span> -->
                                   </div>
                                 </div>
-                                <div class="filter_checkboxes_issue display_hide filter_priority">
+                                <div class="filter_checkboxes_issue po_absolute display_hide filter_priority">
                                     
                                 </div>
                             </div>
@@ -473,7 +474,7 @@ $session = \Config\Services::session();
                                   </div>
                                 </div>
                                 <!-- Drop down Suggestion -->
-                                <div class="filter_checkboxes_issue suggession_box suggestion" id="dropdown-list-lables">
+                                <div class="filter_checkboxes_issue po_absolute suggession_box suggestion" id="dropdown-list-lables">
                                 </div>
                             </div>
                             <div class="box inbox-top">
@@ -493,7 +494,7 @@ $session = \Config\Services::session();
                                   </div>
                                   <span class="paddingm float-start validate" id="inputassignErr"></span>
                                 </div>
-                                <div class="filter_checkboxes_issue add_record_assignee display_hide filter_assignee">
+                                <div class="filter_checkboxes_issue po_absolute add_record_assignee display_hide filter_assignee">
                                     <!--  -->
                                 </div>
                             </div>
@@ -522,7 +523,7 @@ $session = \Config\Services::session();
                                   </div>
                                   <span class="paddingm float-start validate" id="inputstatusErr"></span>
                                 </div>
-                                <div class="filter_checkboxes_issue display_hide filter_status">
+                                <div class="filter_checkboxes_issue po_absolute display_hide filter_status">
                                     
                                 </div>
                             </div>
@@ -573,7 +574,7 @@ $session = \Config\Services::session();
                                 <!-- <span class="paddingm float-start validate" id="edittypeErr"></span>  -->
                             </div>
                             <!-- Drop down Suggestion -->
-                            <div class="filter_checkboxes_issue suggession_box suggestion suggestion_width" id="dropdown-list-cause-edit">
+                            <div class="filter_checkboxes_issue po_absolute suggession_box suggestion suggestion_width" id="dropdown-list-cause-edit">
                             </div>
                             <!-- Cause Container -->
                             <div class="items-container reduce_width items-container-edit-cause"></div>
@@ -584,7 +585,7 @@ $session = \Config\Services::session();
                                 <img src="<?php echo base_url('assets/img/plus-icon.png'); ?>" class="dot-style dot-cont input-field-action-edit-add">
                             </div>
                             <!-- Drop down Suggestion -->
-                            <div class="filter_checkboxes_issue suggession_box suggestion suggestion_width" id="dropdown-list-action-edit">
+                            <div class="filter_checkboxes_issue po_absolute suggession_box suggestion suggestion_width" id="dropdown-list-action-edit">
                             </div>
                             <!-- <span class="paddingm float-start validate" id="edit_action_Err"></span>  -->
                             <!-- <span class="float-end charCount action_count" id="editactiontakenCunt"></span>  -->
@@ -633,7 +634,7 @@ $session = \Config\Services::session();
                                     </div>
                                   </div>
                                 </div>
-                                <div class="filter_checkboxes_issue display_hide edit_priority filter_priority">
+                                <div class="filter_checkboxes_issue po_absolute display_hide edit_priority filter_priority">
                 
                                 </div>
                             </div>
@@ -658,7 +659,7 @@ $session = \Config\Services::session();
                                   </div>
                                 </div>
                                 <!-- Drop down Suggestion -->
-                                <div class="filter_checkboxes_issue suggession_box suggestion" id="dropdown-list-lables-edit">
+                                <div class="filter_checkboxes_issue po_absolute suggession_box suggestion" id="dropdown-list-lables-edit">
                                 </div>
                             </div>
                             <div class="box inbox-top">
@@ -677,7 +678,7 @@ $session = \Config\Services::session();
                                     </div>
                                   </div>
                                 </div>
-                                <div class="filter_checkboxes_issue edit_record_assignee display_hide filter_assignee">
+                                <div class="filter_checkboxes_issue po_absolute edit_record_assignee display_hide filter_assignee">
                                     <!--  -->
                                 </div>
                             </div>
@@ -706,7 +707,7 @@ $session = \Config\Services::session();
                                     </div>
                                   </div>
                                 </div>
-                                <div class="filter_checkboxes_issue display_hide edit-status filter_status">
+                                <div class="filter_checkboxes_issue po_absolute display_hide edit-status filter_status">
                                 </div>
                             </div>
                             <div class="attach-file">
@@ -3148,7 +3149,6 @@ function getFilterval(filter=false){
       }
     });
     }
-
     getWorkOrderRecords(status,lables,priority,assignee,filter);
   }
 
