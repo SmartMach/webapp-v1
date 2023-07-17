@@ -14,6 +14,68 @@
 
 <!-- style css -->
 <style>
+  .hoverOverall{
+    background-color: white;
+    border-radius: 5px 5px 5px 5px;
+    z-index: 1400;
+    position: absolute;
+    border: 0.5px solid #d9d9d9;
+    padding: 0.5rem;
+    color: #979a9a;
+    font-size: 0.8rem;
+    font-weight:500;
+    max-width:13rem;
+    min-width: 12rem; 
+    margin-top: 0.2rem;
+    opacity: 100%;
+    font-family: 'Roboto', sans-serif;
+  }
+  .hoverOverallOOE{
+    display: none;
+  }
+  .hoverOverallOEE{
+    display: none;
+  }
+  .hoverOverallTEEP{
+    display: none;
+  }
+
+  .hoverCardOOE:hover + .hoverOverallOOE{
+    display: block;
+  }
+  .hoverCardOEE:hover + .hoverOverallOEE{
+    display: block;
+  }
+  .hoverCardTEEP:hover + .hoverOverallTEEP{
+    display: block;
+  }
+  .center-align-div{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin-right:0.5rem;
+  }
+  .overallTargetDiv{
+    height: 10px;
+    width: 10px;
+    background-color: rgb(179,215,255);
+  }
+  .overallValueDiv{
+    height: 10px;
+    width: 10px;
+    background-color: rgb(0,74,155);
+  }
+  .overallDiv{
+    height: 10px;
+    width: 10px;
+    background-color: rgb(242,242,242);
+  }
+  .graph_font{
+    color: white;
+    margin-left: 0.3rem;
+  }
 </style>
 
 
@@ -122,101 +184,86 @@ $session = \Config\Services::session();
     <!-- first row -->
     <div class="first_row" style="">
         <div class="overall_div" style="">
-            <!-- overall teep div -->
-            
-            <div style="position:inherit;" class="target_bar_bottom">
-                <p class="graph_text" style="">Overall TEEP%</p>
-                <div class="empty_graph teep_graph_hover" >
-                    <div class="target_graph" id="teep_target" style="display:flex;flex-direction:row;justify-content:start;align-items:center;">
-                        <div class="fill_graph" id="teep_graph" style="">
-                            <span class="graph_font"  id="text_teep"></span>
-                        </div>
-                    </div>
+
+            <div class="target_bar_bottom">
+              <p class="graph_text" style="">Overall TEEP%</p>
+              <div style="width: 100%;max-width: 100%;" class="graphCardFLayer hoverCardTEEP">
+                <div style="width: 0%;max-width: 100%;" class="graphCardSLayer center-align" id="teep_target">
                 </div>
-                <div class="target_hover_div" style="">
-                    <div class="hover_flex" style="">
-                        <div class="hover_text_div" style="">
-                            <div class="hover_text_color_div" style="">
-                                <div class="val_color_div" style=""></div>
-                            </div>
-                            TEEP
-                        </div>
-                        <div style="width:50%;text-align:end;"><span id="teep_val_hover">30</span>%</div>
-                    </div>
-                    <div class="hover_flex">
-                        <div class="hover_flex" >
-                            <div class="hover_text_color_div" >
-                                <div class="target_color_div" style=""></div>
-                            </div>
-                            Target
-                        </div>
-                        <div style="width:50%;text-align:end;"><span id="target_teep_val_hover">30</span></div>
-                    </div>
+                <div style="width: 0%;max-width:100%;" class="graphCardTLayer display_f align_c" id="teep_graph">
+                    <p class="graph_font paddingm val"><span id="text_teep"></span>%</p>
+                  </div>
+              </div>
+              <div class="hoverOverallTEEP hoverOverall">
+                <div style="display: flex;">
+                  <div style="width:max-content" class="center-align-div">
+                    <div class="overallValueDiv"></div>
+                  </div>
+                  <div style="width: 70%" id="title_overall">TEEP%</div>
+                  <div style="width: 30%" class="val_color" ><p class="paddingm" id="teep_val_hover" style="width:max-content;">0%</p></div>
                 </div>
+                <div style="display: flex;">
+                  <div style="width: max-content" class="center-align-div">
+                    <div class="overallTargetDiv"></div>
+                  </div>
+                  <div style="width: 70%">Target</div>
+                  <div style="width: 30%"><p class="paddingm" id="target_teep_val_hover">0%</p></div>
+                </div>
+              </div>
             </div>
 
-            <!--  Overall OOE% -->
-            <div style="position:inherit;" class="target_bar_bottom">
-                <p class="graph_text" >Overall OOE%</p>
-                <div class="empty_graph ooe_graph_hover" >
-                    <div class="target_graph" id="ooe_target" style="display:flex;flex-direction:row;justify-content:start;align-items:center;">
-                        <div class="fill_graph" id="ooe_graph">
-                            <span class="graph_font" id="text_ooe"></span>
-                        </div>
-                    </div>
+            <div class="target_bar_bottom">
+              <p class="graph_text" style="">Overall OOE%</p>
+              <div style="width: 100%;max-width: 100%;" class="graphCardFLayer hoverCardOOE">
+                <div style="width: 0%;max-width: 100%;" class="graphCardSLayer center-align" id="ooe_target">
                 </div>
-                <div class="target_hover_div" style="">
-                    <div class="hover_flex" style="">
-                        <div class="hover_text_div" style="">
-                            <div class="hover_text_color_div" style="">
-                                <div class="val_color_div" style=""></div>
-                            </div>
-                            OOE
-                        </div>
-                        <div style="width:50%;text-align:end;"><span id="ooe_val_hover">30</span>%</div>
-                    </div>
-                    <div class="hover_flex">
-                        <div class="hover_flex" >
-                            <div class="hover_text_color_div" >
-                                <div class="target_color_div" style=""></div>
-                            </div>
-                            Target
-                        </div>
-                        <div style="width:50%;text-align:end;"><span id="target_ooe_val_hover">30</span></div>
-                    </div>
+                <div style="width: 0%;max-width: 100%;" class="graphCardTLayer display_f align_c" id="ooe_graph">
+                    <p class="graph_font paddingm val"><span id="text_ooe"></span>%</p>
                 </div>
+              </div>
+              <div class="hoverOverall hoverOverallOOE">
+                <div style="display: flex;">
+                  <div style="width: max-content" class="center-align-div">
+                    <div class="overallValueDiv"></div>
+                  </div>
+                  <div style="width: 70%" id="title_overall">OOE%</div>
+                  <div style="width: 30%" class="val_color"><p class="paddingm" id="teep_val_hover">0%</p></div>
+                </div>
+                <div style="display: flex;">
+                  <div style="width: max-content" class="center-align-div">
+                    <div class="overallTargetDiv"></div>
+                  </div>
+                  <div style="width: 70%">Target</div>
+                  <div style="width: 30%"><p class="paddingm" id="target_teep_val_hover">0%</p></div>
+                </div>
+              </div>
             </div>
 
-            <!-- overall OEE% -->
-            <div style="position:inherit;" class="target_bar_bottom">
-                <p class="graph_text" >Overall OEE%</p>
-                <div class="empty_graph oee_graph_hover">
-                    <div class="target_graph"  id="oee_target" style="display:flex;flex-direction:row;justify-content:start;align-items:center;">
-                        <div class="fill_graph" id="oee_graph" >
-                            <span class="graph_font" id="text_oee"></span>
-                        </div>
-                    </div>
+            <div class="target_bar_bottom">
+              <p class="graph_text" style="">Overall OEE%</p>
+              <div style="width: 100%;max-width: 100%;" class="graphCardFLayer hoverCardOEE">
+                <div style="width: 0%;max-width: 100%;" class="graphCardSLayer center-align" id="oee_target">
                 </div>
-                <div class="target_hover_div" style="">
-                    <div class="hover_flex" style="">
-                        <div class="hover_text_div" style="">
-                            <div class="hover_text_color_div" style="">
-                                <div class="val_color_div" style=""></div>
-                            </div>
-                            OOE
-                        </div>
-                        <div style="width:50%;text-align:end;"><span id="oee_val_hover">30</span>%</div>
-                    </div>
-                    <div class="hover_flex">
-                        <div class="hover_flex" >
-                            <div class="hover_text_color_div" >
-                                <div class="target_color_div" style=""></div>
-                            </div>
-                            Target
-                        </div>
-                        <div style="width:50%;text-align:end;"><span id="target_oee_val_hover">30</span></div>
-                    </div>
+                <div style="width: 0%;max-width: 100%;" class="graphCardTLayer display_f align_c" id="oee_graph">
+                    <p class="graph_font paddingm val"><span id="text_ooe"></span>%</p>
                 </div>
+              </div>
+              <div class="hoverOverallOEE hoverOverall">
+                <div style="display: flex;">
+                  <div style="width: max-content" class="center-align-div">
+                    <div class="overallValueDiv"></div>
+                  </div>
+                  <div style="width: 70%" id="title_overall">OEE%</div>
+                  <div style="width: 30%" class="val_color"><p class="paddingm" id="teep_val_hover">0%</p></div>
+                </div>
+                <div style="display: flex;">
+                  <div style="width: max-content" class="center-align-div">
+                    <div class="overallTargetDiv"></div>
+                  </div>
+                  <div style="width: 70%">Target</div>
+                  <div style="width: 30%"><p class="paddingm" id="target_teep_val_hover">0<span>%<span></div>
+                </div>
+              </div>
             </div>
 
             <div class="target_bar_bottom">
@@ -315,8 +362,6 @@ $session = \Config\Services::session();
                     <div class="filter_checkboxes filter_checkboxes_machine" style="" >
                     </div>
                 </div>
-               
-
 
             </div>
             <div class="parent_oee_trend prodcution_downtime_graph parent_div marginScroll" >
@@ -713,7 +758,7 @@ $(document).on('blur','.toDate',function(event){
 
 // in Document ready function calling
 $(document).ready(function(){
-    $('#overlay').fadeIn(400);
+    // $('#overlay').fadeIn(400);
     //    overall dropdown values and graph visible this function only
     // get_all_filter_drp_fill();
     all_graph_fun();
