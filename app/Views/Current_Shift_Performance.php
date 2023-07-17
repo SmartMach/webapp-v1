@@ -142,7 +142,7 @@
                                     </div>
                                     <svg version="1.1" class="svg_oui">
                                         <defs>
-                                            <linearGradient id="GradientColor">
+                                            <linearGradient id="GradientColor_oui">
                                                 <stop id="circle_graph_colors" stop-color="#ffffff" />
                                             </linearGradient>
                                         </defs>
@@ -1523,16 +1523,8 @@ function oui_functions_call(index_val){
     var shift_id = $('#shift_id').text();
     var event_status = $('.current_event:eq(' + index_val + ')').attr('event');
     var machine_name = $('.machine_name_ref:eq(' + index_val + ')').text();
-    // alert(shift_id.split(" "));
     const tmp = shift_id.split(" ");
 
-    console.log("oui \t"+tmp_mid);
-    console.log("oui \t"+tid_data);
-    console.log("oui \t"+shift_date);
-    console.log("oui \t"+shift_id);
-    console.log("oui \t"+machine_name);
-    console.log("oui \t"+tmp);
-    console.log("oui \t"+event_status);
     // OUI FUNCTIONS...........
     var backgroundcolor = "";
     var background_title_color="";
@@ -2317,8 +2309,6 @@ function getDownTimeGraph(machine_id, shift_date, s) {
             },
             success: function(res){
 
-                console.log("live record in current shift performance oui screen");
-                console.log(res['latest_event']);
                 res['oee'].forEach(function(machine) {
                     if (machine['Machine_Id'] == machine_id) {
                         $('#oui_availability').text(parseInt(machine['Availability'])+"%");
@@ -2471,25 +2461,39 @@ function getDownTimeGraph(machine_id, shift_date, s) {
             },
             dataType:"JSON",
             success:function(res){
-                // resolve(res);
-                console.log("current shift performance oui screen target graph value");
-                console.log(res[0]['percentage_target']);
-                var target_percentage = 0;
-                if (parseInt(res[0]['percentage_target'])>100) {
-                    // target_percentage = res[0]['percentage_target'];
-                    target_percentage = 100;
-                }else{
 
-                    target_percentage = res[0]['percentage_target'];
+                var target = 0;
+                if (parseInt(res[0]['production'])>=100) {
+                    target = 100;
+                }else{
+                    target = res[0]['percentage_target'];
                 }
-                $('.target_inline').css('height',target_percentage+'%');
-                $('.target_inline_Cont').text(res[0]['percentage_target']);
+                $('.target_inline').css('height',target+'%');
+                $('.target_inline_Cont').text(res[0]['production']);
                 $('.target_text2').text(res[0]['target']);
+
+                var production_percent_val = 470 - (4.7 * res[0]['percentage_target']);
+                const circle_container = document.getElementsByClassName("circle_oui");
+                circle_container[0].style.setProperty("stroke-dashoffset", production_percent_val);
+
+                production_percent = res[0]['percentage_target'];
+                var color_code = "";
+                if (production_percent > 75) {
+                    color_code = "#c2fb05";
+                } else if (production_percent > 50) {
+                    color_code = "#fae910";
+                } else if (production_percent > 25) {
+                    color_code = "#c55911";
+                } else {
+                    color_code = "#d10527";
+                }
+
+                document.getElementById('circle_graph_colors').attributes['stop-color'].value = color_code;
+                document.getElementsByClassName('target_inline')[0].style.backgroundColor  = color_code;
 
             },
             error:function(er){
                 // reject(er);
-                console.log("current shift performance oui screen target graph error\t"+er);
             }
         });
         // });
