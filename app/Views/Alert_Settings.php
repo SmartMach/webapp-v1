@@ -367,12 +367,12 @@
 <div class="modal fade" id="addAlert_modal" tabindex="-1" aria-labelledby="addAlert_modal" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered rounded ">
         <div class="container modal-content bodercss">
-            <div class="modal-header" style="border:none; ">
+            <div class="modal-header" style="border:none;padding-left:0; ">
                 <h5 class="modal-title settings-machineAdd-model" id="addAlert" style="">ADD ALERT</h5>
             </div>
             <div class="modal-body" style="padding:0;">
                 <div class="scroll_div" style="height:30rem;overflow:hidden;overflow-y:scroll;padding:0.8rem;">
-                    <div class="row mb-2 " style="margin-top:3rem;">
+                    <div class="row mb-2 " style="margin-top:0rem;">
                         <div class="box" style="">
                             <div class="input-box" >
                                 <input type="text" class="form-control alert_font_css" id="add_alert_name"    name="add_alert_name">
@@ -445,7 +445,7 @@
                             <!-- <label for="">In the Past</label> -->
                             <div class="input-group mb-3">
                                 <span class="label_txt_hour" style="">In The Past <span class="paddingm validate">*</span></span>
-                                <input type="text" class="form-control alert_font_css"  aria-label="Recipient's username" id="add_alert_past_hour" name="add_alert_past_hour" aria-describedby="basic-addon2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                <input type="text" class="form-control alert_font_css"  aria-label="Recipient's username" id="add_alert_past_hour" name="add_alert_past_hour" aria-describedby="basic-addon2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" style="border-radius:0.25rem 0rem 0rem 0.25rem;">
                                 <div class="input-group-append  bg-white text-primary">
                                     <span class="input-group-text bg-white" style="font-size:12px;height:2.4rem;" id="basic-addon2">Hours</span>
                                 </div>
@@ -717,12 +717,12 @@
 <div class="modal fade" id="edit_alert" tabindex="-1" aria-labelledby="edit_alert" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered rounded ">
         <div class="container modal-content bodercss">
-            <div class="modal-header" style="border:none; ">
+            <div class="modal-header" style="border:none; padding-left:0rem;">
                 <h5 class="modal-title settings-machineAdd-model" id="addAlert" style="">ALERT / <span id="title_alert_id"></span></h5>
             </div>
             <div class="modal-body" style="padding:0;">
                 <div class="scroll_div" style="height:30rem;overflow:hidden;overflow-y:scroll;padding:0.8rem;">
-                    <div class="row mb-2 " style="margin-top:3rem;">
+                    <div class="row mb-2 " style="margin-top:0rem;">
                         <div class="box" style="">
                             <div class="input-box" >
                                 <input type="text" class="form-control alert_font_css" id="edit_alert_name"    name="edit_alert_name">
@@ -794,7 +794,7 @@
                             <!-- <label for="">In the Past</label> -->
                             <div class="input-group mb-3">
                                 <span class="label_txt_hour" style="">In The Past <span class="paddingm validate">*</span></span>
-                                <input type="text" class="form-control alert_font_css"  aria-label="Recipient's username" id="edit_alert_past_hour" name="edit_alert_past_hour" aria-describedby="basic-addon2">
+                                <input type="text" class="form-control alert_font_css"  aria-label="Recipient's username" id="edit_alert_past_hour" name="edit_alert_past_hour" aria-describedby="basic-addon2" style="border-radius:0.25rem 0rem 0rem 0.25rem;">
                                 <div class="input-group-append  bg-white text-primary">
                                     <span class="input-group-text bg-white" style="font-size:12px;height:2.4rem;" id="basic-addon2">Hours</span>
                                 </div>
@@ -822,7 +822,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-1 d-flex align-content-end flex-wrap" >
+                        <div class="col-lg-1 d-flex  flex-wrap" style="justify-content:center;align-items:center;">
                             <span class="text-muted" style="font-size:12px;">and</span>
                         </div>
                         <div class="col-lg-3">
