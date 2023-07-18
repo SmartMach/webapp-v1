@@ -300,7 +300,7 @@ input[type=number] {
   left:4.6rem;
   right:0;
   background-color:var(--save_btn_font_color);
-  z-index:1000;
+  z-index:101;
   position: fixed;
   /* margin-top:8rem; */
   display:flex;
@@ -616,7 +616,7 @@ input[type=number] {
       </nav>
 
       <!-- Downtime Graph -->
-      <div class="chart-div po_fixed bg_white" style="left:4.5rem;right:0;z-index:1500;">
+      <div class="chart-div po_fixed bg_white" style="left:4.5rem;right:0;z-index:101;">
         <div id="chart"></div>
         <div class="text-label-graph" style="width: 50%;float: left;">
           <p  id="shift_start_time_label" class="startTimeVal"></p>

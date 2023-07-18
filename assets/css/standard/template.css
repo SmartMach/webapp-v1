@@ -373,3 +373,17 @@ span{
 }
 
 /*GLOBAL CLASS FOR WORK ORDER MANAGEMENT END*/
+
+
+/*GLOBAL CLASS FOR INPUT FIELDS*/
+.unit-input { 
+    position: absolute; 
+    display: block; 
+    left: 8px !important; 
+    top: 9px !important; 
+    z-index: 9; 
+}
+.unit-input .clip{
+    font-size: 1rem !important;
+}
+/*GLOBAL CLASS FOR INPUT FIELDS END*/
