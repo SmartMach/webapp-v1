@@ -132,10 +132,10 @@
   };
 </script>
 </head>
-<div style="margin-left: 4.5rem;">
-  <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav_quality" style="z-index: 1001!important">
-    <div class="container-fluid paddingm" style="margin-top:0.2rem;">
-      <p class="float-start p3" id="logo">Production Quality</p>
+<div class="mr_left_content_sec">
+  <nav class="sec_nav display_f align_c justify_c sec_nav_c navbar-expand-lg">
+    <div class="container-fluid paddingm display_f justify_sb align_c">
+      <p class="float-start fnt_fam mdl_header">Production Quality</p>
       <div class="d-flex" style="display: flex;align-items: center;">
                 <div class="box rightmar" style="margin-right:0.5rem;">
                     <div style="padding-left:10px;padding-right:10px;height:2.3rem;border:1px solid #e6e6e6;border-radius:0.25rem;display:flex;justify-content:center;align-items:center;color:#C00000;"><p style="text-align:center;margin:auto;font-size:15px;font-weight:bold;"><span id="total_rejection_header"></span> Rejects</p></div>
@@ -148,18 +148,14 @@
                     <i class="fa fa-calculator nav-link"  id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" style="padding:0.4rem;font-size:1.3rem;width: 1.6rem;"></i>
                   </li>
                 </ul>
-              <!-- </div> -->
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box">
-                  <!-- <input type="date" name="" class="form-control fromDate" id="from"> -->
                   <input type="text" class="form-control fromDate" value="" step="1">
-                  <!-- <input type="datetime-local" class="form-control" value="2013-10-24T10:00:00" step="1"> -->
                   <label for="inputSiteNameAdd" class="input-padding ">From DateTime</label>
                 </div>
               </div>
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box">
-                  <!-- <input type="date" name="" class="form-control toDate"> -->
                   <input type="text" class="form-control toDate" value="" step="1">
                   <label for="inputSiteNameAdd" class="input-padding ">To DateTime</label>
                 </div>
@@ -167,10 +163,10 @@
         </div>
     </div>
   </nav>
-  <div class="tab-content" id="pills-tabContent" style="margin-top:3.8rem;">
+  <div class="tab-content" id="pills-tabContent">
     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
     <div class="grid-container_graph">
-      <div class="row paddingm" style="height:max-content;width:100%;display:flex;flex-direction:row;justify-content:space-evenly;align-items:center;margin-bottom:0.3rem;">
+      <div class="row paddingm display_f align_c" style="height:max-content;width:100%;flex-direction:row;justify-content:space-evenly;margin-bottom:0.3rem;">
         <div class="grid-item_graph  paddingm" style="margin-top: 1.5rem;width:49%;margin-left:0.5rem;height:18rem;">
           <div class="graph-div-header" style="margin-left:1rem;">
             <p class="paddingm fontBold financial_font" style="margin-left:0;">Cost of Poor Quality (COPQ) by Reason</p>
@@ -657,13 +653,6 @@
         </div>
           
         <div class="d-flex innerNav">
-          <!-- <div class="box rightmar" style="margin-right: 0.5rem;">
-            <div class="input-box">
-              <select class="form-select font_weight" name="" id="Production_MachineName" style="width: 10rem;">
-              </select>
-              <label for="inputSiteNameAdd" class="input-padding ">Search</label>
-            </div>
-          </div> -->
           <div class="box rightmar" style="margin-right: 0.5rem;">
             <div class="input-box">
               <div class="filter_multiselect">
@@ -744,7 +733,7 @@
             </div>
           </div> 
 
-          <!-- <div class="box rightmar" style="margin-right: 0.5rem;"> -->
+          <!-- <div class="box rightmar" style="margin-right: 0.5rem;">
           <button class="btn fo bn filterbtnstyle settings_nav_anchor float-end" style="margin-right:0.5rem;border-radius:0.25rem;margin-left: 0;margin-top: 0;margin-bottom: 0;" id="add_machine_button" onclick="getFilterval()">Apply Filter</button>
           <!-- </div> -->
           <div class="box rightmar" style="margin-right: 0.5rem;display: flex;justify-content: center;">
@@ -794,17 +783,17 @@
     </div>
     </div>
   </div>
-
+ 
 
 </div>
 
  <!-- preloader -->
-  <div id="overlay">
+  <!-- <div id="overlay">
     <div class="cv-spinner">
       <span class="spinner"></span>
       <span class="loading">Awaiting Completion...</span>
     </div>
-  </div>
+  </div> -->
   <!-- preloader end -->
 
 <script type="text/javascript">
