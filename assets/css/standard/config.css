@@ -57,7 +57,7 @@
 		--border_right_side_nav: 1px solid #d9d9d9;
 		--max_width_side_nav:4.5rem;
 		--height_side_nav:100%;
-		--index_side_nav:1040;
+		--index_side_nav:102;
 	/******** GLOBAL VARIABLES FOR SIDE NAVIGATION MENU END ********/
 
 	/******** GLOBAL VARIABLES FOR SECONDARY NAVIGATION MENU ********/
@@ -72,7 +72,7 @@
 		/*Background*/
 		--background_secondary_nav:white;
 		/*Z-Index*/
-		--index_secondary_nav:1010;
+		--index_secondary_nav:100;
 		/*Padding*/
 		--pd_top_secondary_nav:0.5rem;
 		--pd_botm_secondary_nav:0.5rem;
@@ -88,7 +88,7 @@
 		/*Background*/
 		--background_inner_nav:white;
 		/*Z-Index*/
-		--index_inner_nav:1000;
+		--index_inner_nav:99;
 		/*Padding*/
 		--pd_top_inner_nav:0.5rem;
 		--pd_botm_inner_nav:0.5rem;
@@ -132,7 +132,7 @@
 		--box_shadow_table_header : 3px 3px 4px 0px #e6e6e6;
 		--margin_btom_table_header : 0.5rem;
 		--top_table_header : 10.8rem;
-		--index_table_header : 990;
+		--index_table_header : 95;
 		--height_table_header : 3.5rem;
 	/******** GLOBAL VARIABLES FOR TABLE HEADER END********/
 
