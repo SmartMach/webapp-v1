@@ -420,11 +420,10 @@
 
 </head>
 
-<div style="margin-left: 4.5rem;">
-    <div id="check"></div>
-        <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav">
-          <div class="container-fluid paddingm">
-            <p class="float-start" id="logo">Opportunity Insights</p>
+<div class="mr_left_content_sec">
+        <nav class="sec_nav display_f align_c justify_c sec_nav_c navbar-expand-lg">
+          <div class="container-fluid paddingm display_f justify_sb align_c">
+            <p class="float-start fnt_fam mdl_header">Opportunity Insights</p>
               <div class="d-flex">
                     <div class="box rightmar" style="margin-right: 0.5rem;">
                         <div class="input-box">

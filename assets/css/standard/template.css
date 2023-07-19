@@ -44,6 +44,9 @@ span{
 .justify_l{
 	justify-content: left !important;
 }
+.justify_e{
+    justify-content: end;
+}
 .justify_sb{
 	justify-content: space-between !important;
 }

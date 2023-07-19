@@ -19,7 +19,7 @@
     width: 256px;
     /* border: 1px solid #dddddd; */
     text-align: center;
-    /* z-index: 1000;*/
+    z-index: 100 !important;
 }
 
 .openemr-calendar .ui-datepicker {
@@ -85,10 +85,10 @@ a{
 }
 
 </style>
-<div style="margin-left: 4.5rem;">
-        <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav">
-          <div class="container-fluid paddingm">
-            <p class="float-start" id="logo">Quality Rejects</p>
+<div class="mr_left_content_sec">
+        <nav class="sec_nav display_f align_c justify_c sec_nav_c navbar-expand-lg">
+          <div class="container-fluid paddingm display_f justify_sb align_c">
+            <p class="float-start fnt_fam mdl_header">Quality Rejects</p>
               <div class="d-flex">
                     <p class="float-end stcode" style="color: #C00000;">
                         <span  id="rejects"></span><span style="font-size:1rem;">Rejects</span>
@@ -97,27 +97,27 @@ a{
           </div>
         </nav>
 
-        <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav" style="">
-          <div class="container-fluid paddingm "  style="margin-top:0.3rem;">
+        <nav class="inner_nav inner_nav_c display_f align_c justify_sb navbar-expand-lg">
+          <div class="container-fluid paddingm display_f justify_sb align_c ">
             <p class="float-start"></p>
               <div class="d-flex innerNav">
                     <div class="box rightmar" style="margin-right: 0.5rem;">
                         <div class="input-box">
-                            <select class="form-select font_weight" name="" id="RejectPartName" style="width: 10rem;">
+                            <select class="form-select font_weight select_input_width input_padd" name="" id="RejectPartName" style="width: 10rem;">
                             </select>
                             <label for="inputSiteNameAdd" class="input-padding ">Part Name</label>
                         </div>
                     </div>
                     <div class="box rightmar" style="margin-right: 0.5rem;">
                         <div class="input-box">
-                            <input type="datepicker" class="form-control font_weight datepicker" name="" id="RejectShiftDate" style="width: 10rem;" placeholder="dd-mm-yyyy" autocomplete="off">
+                            <input type="datepicker" class="form-control select_input_width input_padd font_weight datepicker" name="" id="RejectShiftDate" style="width: 10rem;" placeholder="dd-mm-yyyy" autocomplete="off">
                           
                             <label for="inputSiteNameAdd" class="input-padding font_weight">Shift Date</label>
                         </div>
                     </div>
                     <div class="box rightmar" style="margin-right: 0.5rem;">
                         <div class="input-box">
-                            <select class="form-select font_weight" name="" id="RejectShift" style="width: 10rem;">
+                            <select class="form-select select_input_width input_padd font_weight" name="" id="RejectShift" style="width: 10rem;">
                             </select>
                             <label for="inputSiteNameAdd" class="input-padding ">Shift</label>
                         </div>
@@ -125,34 +125,32 @@ a{
               </div>
           </div>
         </nav>
-        <br>
-        <br>
-            <div class="tableContent" style="margin-top:1rem;">
-                <div class="settings_machine_header sticky-top fixtabletitle_rejection">
+            <div class="data_section">
+                <div class="table_header table_header_p">
                     <div class="row paddingm">
-                        <div class="col-sm-1 p3 paddingm">
-                          <p class="basic_header">FROM TIME</p>
+                        <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                          <p class="h_mar_l paddingm">FROM TIME</p>
                         </div>
-                        <div class="col-sm-1 p3 paddingm">
-                          <p class="basic_header">TO TIME</p>
+                        <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                          <p class="h_mar_l paddingm">TO TIME</p>
                         </div>
-                        <div class="col-sm-2 p3 paddingm">
-                          <p class="basic_header">PART NAME</p>
+                        <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                          <p class="h_mar_l paddingm">PART NAME</p>
                         </div>
-                        <div class="col-sm-2 p3 paddingm " style="justify-content:end;">
-                          <p class="basic_header" style="margin-right:1rem;">MAX REJECTS <i class="fa fa-info-circle"></i></p>
+                        <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_e align_c text_align_c ">
+                          <p class="h_mar_r paddingm">MAX REJECTS <i class="fa fa-info-circle"></i></p>
                         </div>
-                        <div class="col-sm-2 p3 paddingm" style="justify-content:end;">
-                          <p class="basic_header" style="margin-right:1rem;">REJECT COUNTS</p>
+                        <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_e align_c text_align_c">
+                          <p class="h_mar_r paddingm">REJECT COUNTS</p>
                         </div>
-                        <div class="col-sm-1 p3 paddingm">
-                          <p class="basic_header">REASON</p>
+                        <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                          <p class="h_mar_l paddingm">REASON</p>
                         </div>
-                        <div class="col-sm-2 p3 paddingm">
-                          <p class="basic_header">NOTES</p>
+                        <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                          <p class="h_mar_l paddingm">NOTES</p>
                         </div>
-                        <div class="col-sm-1 p3 paddingm">
-                          <p class="basic_header">ACTION</p>
+                        <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_c align_c text_align_c">
+                          <p class="paddingm">ACTION</p>
                         </div>
                     </div>
                 </div>
