@@ -35,7 +35,7 @@
   justify-content: flex-end;
 }
 .indexing{
-  z-index: 1000;
+  z-index: 99;
 }
 .filter_last{
   margin-right: 0.5rem;
@@ -108,7 +108,7 @@
 }
 .parent-style{
   /*height: 58.5%;*/
-  height: 70%;
+  height: 65%;
   width: 100%;
   padding: 5px;
   /*overflow: hidden;*/
