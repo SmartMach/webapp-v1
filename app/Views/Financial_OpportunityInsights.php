@@ -422,7 +422,7 @@
 
 <div style="margin-left: 4.5rem;">
     <div id="check"></div>
-        <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav" style="z-index:98;">
+        <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav">
           <div class="container-fluid paddingm">
             <p class="float-start" id="logo">Opportunity Insights</p>
               <div class="d-flex">

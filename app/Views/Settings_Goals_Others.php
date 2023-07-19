@@ -174,13 +174,13 @@
 </style>
 
 <div style="margin-left: 4.5rem;">
-    <nav class="navbar navbar-expand-lg settings_nav sticky-top fixsubnav" style="z-index:98;">
+    <nav class="navbar navbar-expand-lg settings_nav sticky-top fixsubnav">
       <div class="container-fluid paddingm">
         <p class="float-start p3 " id="logo" style="">General Settings</p>
       </div> <!-----top left side------>
     </nav>
     <div>
-        <div class="contentGeneralSettings" style="margin-top:7rem;">
+        <div class="contentGeneralSettings">
             <div style="margin:2.5rem;">
                     <div class="card bodercss">
                         <p class="fieldTitle input-padding">GOALS</p>
