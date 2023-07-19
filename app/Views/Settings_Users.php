@@ -55,7 +55,7 @@
 </style>
 <div style="margin-left: 4.5rem;">
  <!---topbar navigation settings----->
-        <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav">
+        <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav" style="z-index:98;">
           <div class="container-fluid paddingm">
             <p class="float-start p3" id="logo">User Settings</p>
               <div class="d-flex">
@@ -70,7 +70,7 @@
         </nav>
  <!---topbar navigation settings ending----->
  <!---filter and add user navigation starting-->
-        <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav" style="margin-top: 4rem;">
+        <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav" style="margin-top: 4rem;z-index:95;">
           <div class="container-fluid paddingm ">
             <p class="float-start"></p>
               <div class="d-flex innerNav">
@@ -96,7 +96,7 @@
         <!---filter and add user navigation ending-->
         <!-----main function of table starts------->
             <div class="tableContent">
-                <div class="settings_machine_header sticky-top fixtabletitle">
+                <div class="settings_machine_header sticky-top fixtabletitle" style="z-index:95;">
                     <div class="row paddingm">
                         <div class="col-sm-2 p3 paddingm">
                           <p class="basic_header">USER ID</p>

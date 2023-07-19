@@ -34,7 +34,7 @@
     }
 </style>
 <div style="margin-left: 4.5rem;">
-    <nav class="navbar navbar-expand-lg settings_nav sticky-top fixsubnav">
+    <nav class="navbar navbar-expand-lg settings_nav sticky-top fixsubnav" style="z-index:98;">
       <div class="container-fluid paddingm">
         <p class="float-start p3" id="logo">Parts Settings</p>
           <div class="d-flex">
@@ -47,7 +47,7 @@
           </div>
       </div>
     </nav>
-    <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav" style="margin-top:3.8rem;">
+    <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav" style="margin-top:3.8rem;z-index:98;">
       <div class="container-fluid paddingm">
         <p class="float-start"></p>
           <div class="d-flex innerNav">
@@ -69,7 +69,7 @@
       </div>
     </nav>
     <div class="tableContent">
-        <div class="settings_machine_header sticky-top fixtabletitle">
+        <div class="settings_machine_header sticky-top fixtabletitle" style="z-index:95;">
             <div class="row paddingm">
                 <div class="col-sm-1 p3 paddingm">
                   <p class="basic_header">PART ID</p>

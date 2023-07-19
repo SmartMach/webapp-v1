@@ -174,13 +174,13 @@
 <br>
 <br>
 <div style="margin-left: 4.5rem;">
-    <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav">
+    <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav" style="z-index:98;">
         <div class="container-fluid paddingm">
             <p class="float-start" id="logo">Alert Settings</p>
 
         </div>
     </nav>
-    <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav">
+    <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav" style="z-index:98;">
         <div class="container-fluid paddingm " style="display:flex;flex-direction:row-reverse;">
 
             <!-- <p class="float-start"></p> -->
@@ -314,7 +314,7 @@
         </div>
     </nav>
     <div class="tableContent">
-        <div class="settings_machine_header sticky-top fixtabletitle" style="margin-top:1rem;top:11.5rem;">
+        <div class="settings_machine_header sticky-top fixtabletitle" style="margin-top:1rem;top:11.5rem;z-index:95;">
             <div class="row paddingm">
                 <div class="col-sm-1 p3 paddingm" style="width:6%;">
                     <p class="basic_header">ID</p>

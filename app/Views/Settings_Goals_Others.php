@@ -174,7 +174,7 @@
 </style>
 
 <div style="margin-left: 4.5rem;">
-    <nav class="navbar navbar-expand-lg settings_nav sticky-top fixsubnav">
+    <nav class="navbar navbar-expand-lg settings_nav sticky-top fixsubnav" style="z-index:98;">
       <div class="container-fluid paddingm">
         <p class="float-start p3 " id="logo" style="">General Settings</p>
       </div> <!-----top left side------>

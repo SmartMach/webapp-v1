@@ -100,7 +100,7 @@ $session = \Config\Services::session();
 <br>
 <br>
 <div class="tmp_header" style="margin-left: 4.5rem;margin-top:1rem;overflow:hidden; ">
-    <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav" style="position:fixed;margin-top:0;width:95%;">
+    <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav" style="position:fixed;margin-top:0;width:95%;z-index:98;">
         <div class="container-fluid paddingm">
             <p class="float-start" id="logo">Production Downtime</p>
             <div class="d-flex">
@@ -121,20 +121,25 @@ $session = \Config\Services::session();
                     <!-- </div> -->
                 </div>
 
-                <div class="box rightmar" style="margin-right: 0.5rem;">
-                    <div class="input-box">
+                <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;" >
+                    <div class="input-box" style="width:12rem;">
                         <!-- <input type="date" name="" class="form-control fromDate" id="from"> -->
                         <input type="text" class="form-control fromDate" value="" step="1">
                         <!-- <input type="datetime-local" class="form-control" value="2013-10-24T10:00:00" step="1"> -->
                         <label for="inputSiteNameAdd" class="input-padding ">From DateTime</label>
                     </div>
                 </div>
-                <div class="box rightmar" style="margin-right: 0.5rem;">
-                    <div class="input-box">
+                <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
+                    <div class="input-box" style="width:12rem;">
                         <!-- <input type="date" name="" class="form-control toDate"> -->
                         <input type="text" class="form-control toDate" value="" step="1">
                         <label for="inputSiteNameAdd" class="input-padding ">To DateTime</label>
                     </div>
+                </div>
+
+                <!-- apply filter button -->
+                <div class="box rightmar" style="margin-right:0.5rem;">
+                    <button type="button" class="apply_filter_overall_btn" style="border:1px solid transparent;background:#005abc;border-radius:0.25rem;font-size:15px;color:white;font-weight:500;cursor:pointer;opacity:1;height:2.2rem;padding:5px 25px;">Apply Filter</button>
                 </div>
             </div>
         </div>
@@ -2333,7 +2338,6 @@ function getfilter_machine_reason_duration(){
             var minute_text = parseInt(parseInt(res['total_duration'])%60);
             $('#machine_reason_duration_text').text(hour_text+'h'+' '+minute_text+'m');
 
-
             var color = ["white","#004591","#0071EE","#97C9FF","#595959","#A6A6A6","#D9D9D9","#09BB9F","#39F3BB"];
             var demo = [];
             var x= 1;
@@ -2497,6 +2501,14 @@ $(document).ready(function(){
 
 });
 
+// apply filter submit function
+$(document).on('click','.apply_filter_overall_btn',function(event){
+    event.preventDefault();
+    $("#overlay").fadeIn(400);
+    graph_loader();
+});
+
+/* temporary hide for this function for onblur function
 // onblur function change input filter
 // from date on blur function
 $(document).on('blur','.fromDate',function(event){
@@ -2518,6 +2530,8 @@ $(document).on('blur','.toDate',function(event){
     graph_loader();
 
 });
+
+*/
 
 // all dropdwon functions 
 function getall_filter_arr(){

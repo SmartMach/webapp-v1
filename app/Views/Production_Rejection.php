@@ -86,7 +86,7 @@ a{
 
 </style>
 <div style="margin-left: 4.5rem;">
-        <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav">
+        <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav" style="z-index:98;">
           <div class="container-fluid paddingm">
             <p class="float-start" id="logo">Quality Rejects</p>
               <div class="d-flex">
@@ -97,7 +97,7 @@ a{
           </div>
         </nav>
 
-        <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav" style="">
+        <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav" style="z-index:98;">
           <div class="container-fluid paddingm "  style="margin-top:0.3rem;">
             <p class="float-start"></p>
               <div class="d-flex innerNav">
@@ -128,7 +128,7 @@ a{
         <br>
         <br>
             <div class="tableContent" style="margin-top:1rem;">
-                <div class="settings_machine_header sticky-top fixtabletitle_rejection">
+                <div class="settings_machine_header sticky-top fixtabletitle_rejection" style="z-index:95;">
                     <div class="row paddingm">
                         <div class="col-sm-1 p3 paddingm">
                           <p class="basic_header">FROM TIME</p>
