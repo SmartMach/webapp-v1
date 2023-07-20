@@ -137,9 +137,8 @@
 }
 .target_inline{
     bottom: 0;
-    background: #ffbf00;
     height: 9rem;
-    width: 4.5rem;
+    width: 80%;
     padding: 0.4rem;
     display: flex;
     justify-content: center;
@@ -149,6 +148,9 @@
 .target_inline_Cont{
     position: absolute;
     bottom: 0;   
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
 }
 .icons_duration_oui{
     height: 1.5rem;
@@ -172,11 +174,11 @@
 }
 .circle_oui{
     fill: none;
-    stroke: url("#GradientColor");
+    stroke: url("#GradientColor_oui");
     stroke-width: 1rem !important;
-    stroke-dasharray: 372;
-    stroke-dashoffset: 372;
-    animation: anim 2s linear forwards;
+    stroke-dasharray: 472;
+    stroke-dashoffset: 472;
+    animation: anim_oui 2s linear forwards;
     transform-origin: center;
     transform: rotate(-90deg);
 }
@@ -210,9 +212,9 @@
     height: 12rem !important;
     width: 12rem !important;
 }
-@keyframes anim{
+@keyframes anim_oui{
     100%{
         /*stroke-dashoffset: var(--foo);*/
-        stroke-dashoffset: 370;
+        stroke-dashoffset: 470;
     }
 }

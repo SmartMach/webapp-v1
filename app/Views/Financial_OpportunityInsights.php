@@ -426,20 +426,25 @@
           <div class="container-fluid paddingm">
             <p class="float-start" id="logo">Opportunity Insights</p>
               <div class="d-flex">
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
-                        <div class="input-box">
+                    <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
+                        <div class="input-box" style="width:12rem;">
                           <!-- <input type="date" name="" class="form-control fromDate" id="from"> -->
                           <input type="text" class="form-control fromDate" value="" step="1">
                           <!-- <input type="datetime-local" class="form-control" value="2013-10-24T10:00:00" step="1"> -->
                           <label for="inputSiteNameAdd" class="input-padding ">From Date</label>
                         </div>
                     </div>
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
-                        <div class="input-box">
+                    <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
+                        <div class="input-box" style="width:12rem;">
                           <!-- <input type="date" name="" class="form-control toDate"> -->
                           <input type="text" class="form-control toDate" value="" step="1">
                           <label for="inputSiteNameAdd" class="input-padding ">To Date</label>
                         </div>
+                    </div>
+
+                    <!-- apply filter overall -->
+                    <div class="box rightmar" style="margin-right:0.5rem;">
+                        <button type="button" class="apply_filter_overall_btn" style="border:1px solid transparent;border-radius:0.25rem;opacity:1;background-color:#005abc;color:white;font-size:15px;font-weight:500;padding:5px 25px;cursor:pointer;">Apply Filter</button>
                     </div>
               </div>
           </div>
@@ -705,6 +710,7 @@ $('.toDate').datetimepicker({
   $("#overlay").fadeIn(300);
   setTimeout(myFun, 500);
 
+  /* temporary hide for this function as per the madhan sir instruction
   $(document).on('blur','.fromDate',function(){
     // Pre-Loader On
     $("#overlay").fadeIn(300);
@@ -715,6 +721,16 @@ $('.toDate').datetimepicker({
     $("#overlay").fadeIn(300);
     setTimeout(myFun, 500);
   });
+
+  */
+
+  // apply filter button click function
+  $(document).on('click','.apply_filter_overall_btn',function(event){
+    event.preventDefault();
+    $("#overlay").fadeIn(300);
+    setTimeout(myFun, 500);
+  });
+
   function myFun(){
       f = $('.fromDate').val(); 
       t = $('.toDate').val();

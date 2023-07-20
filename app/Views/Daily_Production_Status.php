@@ -191,7 +191,7 @@
   
 </style>
 <div style="margin-left: 4.5rem;">
-        <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav">
+        <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav" style="z-index:98;">
           <div class="container-fluid paddingm">
             <p class="float-start" id="logo">Daily Production Status</p>
     
@@ -209,7 +209,7 @@
           </div>
         </nav>
         <div class="tableContent paddingm" style="margin-top:4rem; padding-left:3px;padding-right:3px; ">
-            <div class="settings_machine_header sticky-top fixtabletitle" style="top:7.9rem;margin-bottom:0.3rem;">
+            <div class="settings_machine_header sticky-top fixtabletitle" style="top:7.9rem;margin-bottom:0.3rem;z-index:95;">
                 <div class="row paddingm">
                     <div class="col-sm-1 p3 paddingm" style="width:5.6%;">
                       <p class="basic_header" style="margin-left:0.7rem;">MACHINE </p>

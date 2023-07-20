@@ -25,7 +25,6 @@ class Production_Downtime_controller extends BaseController{
     }
 
 
-
     // raw data main function
     public function getDataRaw($fromTime=null,$toTime=null){
         // Calculation for to find ALL time value

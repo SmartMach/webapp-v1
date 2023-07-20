@@ -739,7 +739,7 @@ public function import_db($db_name){
                     'DSN'      => '',
                     'hostname' => 'localhost',
                     'username' => 'root',
-                    'password' => '',
+                    'password' => 'quantanics123',
                     //'database' => 'S10011',
                     'database' => ''.$db_name.'',
                     'DBDriver' => 'MySQLi',

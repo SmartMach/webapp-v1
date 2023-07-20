@@ -14,6 +14,68 @@
 
 <!-- style css -->
 <style>
+  .hoverOverall{
+    background-color: white;
+    border-radius: 5px 5px 5px 5px;
+    z-index: 1400;
+    position: absolute;
+    border: 0.5px solid #d9d9d9;
+    padding: 0.5rem;
+    color: #979a9a;
+    font-size: 0.8rem;
+    font-weight:500;
+    max-width:13rem;
+    min-width: 12rem; 
+    margin-top: 0.2rem;
+    opacity: 100%;
+    font-family: 'Roboto', sans-serif;
+  }
+  .hoverOverallOOE{
+    display: none;
+  }
+  .hoverOverallOEE{
+    display: none;
+  }
+  .hoverOverallTEEP{
+    display: none;
+  }
+
+  .hoverCardOOE:hover + .hoverOverallOOE{
+    display: block;
+  }
+  .hoverCardOEE:hover + .hoverOverallOEE{
+    display: block;
+  }
+  .hoverCardTEEP:hover + .hoverOverallTEEP{
+    display: block;
+  }
+  .center-align-div{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin-right:0.5rem;
+  }
+  .overallTargetDiv{
+    height: 10px;
+    width: 10px;
+    background-color: rgb(179,215,255);
+  }
+  .overallValueDiv{
+    height: 10px;
+    width: 10px;
+    background-color: rgb(0,74,155);
+  }
+  .overallDiv{
+    height: 10px;
+    width: 10px;
+    background-color: rgb(242,242,242);
+  }
+  .graph_font{
+    color: white;
+    margin-left: 0.3rem;
+  }
 </style>
 
 
@@ -95,25 +157,28 @@ $session = \Config\Services::session();
 <br>
 
 <div style="margin-left: 4.5rem;margin-top:1rem; overflow-x:hidden;overflow-y:scroll;">
-    <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav" style="position:fixed;margin-top:0;width:94.5%;">
+    <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav" style="position:fixed;margin-top:0;width:94.5%;z-index:98;">
         <div class="container-fluid paddingm">
             <p class="float-start" id="logo">OEE Drill Down</p>
             <div class="d-flex">
                
-                <div class="box rightmar" style="margin-right: 0.5rem;">
-                    <div class="input-box">
+                <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
+                    <div class="input-box" style="width:12rem;">
                         <!-- <input type="date" name="" class="form-control fromDate" id="from"> -->
-                        <input type="text" class="form-control fromDate" value="" step="1">
+                        <input type="text" class="form-control fromDate" value="" step="1" style="width:100%;">
                         <!-- <input type="datetime-local" class="form-control" value="2013-10-24T10:00:00" step="1"> -->
                         <label for="inputSiteNameAdd" class="input-padding ">From DateTime</label>
                     </div>
                 </div>
-                <div class="box rightmar" style="margin-right: 0.5rem;">
-                    <div class="input-box">
+                <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
+                    <div class="input-box" style="width:12rem;">
                         <!-- <input type="date" name="" class="form-control toDate"> -->
-                        <input type="text" class="form-control toDate" value="" step="1">
+                        <input type="text" class="form-control toDate" value="" step="1" style="width:100%;">
                         <label for="inputSiteNameAdd" class="input-padding ">To DateTime</label>
                     </div>
+                </div>
+                <div class="box rightmar" style="margin-right:0.5rem;display:flex;flex-direction:row;align-items:center;justify-content:center;">
+                    <button type="button" class="overall_filter_btn" style="background:#406EB4;color:white;border:1px solid transparent;border-radius:0.25rem;padding:5px 25px;height:2.2rem;font-size:15px;font-weight:500;opacity:1;cursor:pointer;">Apply Filter</button>
                 </div>
             </div>
         </div>
@@ -122,8 +187,8 @@ $session = \Config\Services::session();
     <!-- first row -->
     <div class="first_row" style="">
         <div class="overall_div" style="">
+
             <!-- overall teep div -->
-            
             <div style="position:inherit;" class="target_bar_bottom">
                 <p class="graph_text" style="">Overall TEEP%</p>
                 <div class="empty_graph teep_graph_hover" >
@@ -218,7 +283,6 @@ $session = \Config\Services::session();
                     </div>
                 </div>
             </div>
-
             <div class="target_bar_bottom">
                 <div class="overall_label_flex" style="">
                     <div style="width:40%;"></div>
@@ -315,8 +379,6 @@ $session = \Config\Services::session();
                     <div class="filter_checkboxes filter_checkboxes_machine" style="" >
                     </div>
                 </div>
-               
-
 
             </div>
             <div class="parent_oee_trend prodcution_downtime_graph parent_div marginScroll" >
@@ -678,7 +740,15 @@ $('.toDate').val(fdate);
 $('.fromDate').val(tdate);
 
 
+// from date and to date filter using button onclick function
+$(document).on('click','.overall_filter_btn',function(event){
+    event.preventDefault();
+    $('#overlay').fadeIn(400);
+    all_graph_fun();
+}); 
+
 // from date on blur function
+/* temporary hide for this function as per the madhan sir instruction
 $(document).on('blur','.fromDate',function(event){
    // event.preventDefault();
     $('#overlay').fadeIn(400);
@@ -697,6 +767,9 @@ $(document).on('blur','.toDate',function(event){
     all_graph_fun();
 
 });
+
+*/
+
 
 // async function all_graph_blur_fromdate(){
 //     console.log("on blur to date filter");

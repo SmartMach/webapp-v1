@@ -53,16 +53,16 @@
 }
 
 </style>
-<div style="margin-left: 4.5rem;">
+<div class="mr_left_content_sec">
  <!---topbar navigation settings----->
         <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav">
           <div class="container-fluid paddingm">
             <p class="float-start p3" id="logo">User Settings</p>
               <div class="d-flex">
-                    <p class="float-end stcode active_click" style="color: #005CBC;">
+                    <p class="float-end fnt_fam style_label active_click fnt_active">
                         <span  id="Active" class=""></span>Active
                     </p>
-                    <p class="float-end stcode inactive_click" style="color: #C00000;">
+                    <p class="float-end fnt_fam style_label fnt_inactive">
                         <span  id="Iactive"></span>Inactive
                     </p>
               </div>
@@ -98,26 +98,26 @@
             <div class="tableContent">
                 <div class="settings_machine_header sticky-top fixtabletitle">
                     <div class="row paddingm">
-                        <div class="col-sm-2 p3 paddingm">
-                          <p class="basic_header">USER ID</p>
+                        <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                          <p class="h_mar_l paddingm">USER ID</p>
                         </div>
-                        <div class="col-sm-2 p3 paddingm">
-                          <p class="basic_header">SITE NAME</p>
+                        <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                          <p class="h_mar_l paddingm">SITE NAME</p>
                         </div>
-                        <div class="col-sm-2 p3 paddingm">
-                          <p class="basic_header">DESIGNATION</p>
+                        <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                          <p class="h_mar_l paddingm">DESIGNATION</p>
                         </div>
-                        <div class="col-sm-2 p3  paddingm">
-                          <p class="basic_header">REGISTERED ON</p>
+                        <div class="col-sm-2 p3  paddingm table_header_sec display_f justify_l align_c text_align_c">
+                          <p class="h_mar_l paddingm">REGISTERED ON</p>
                         </div>
-                        <div class="col-sm-2  p3 paddingm " style="text-align:center;padding-left:1.4rem;">
-                          <p class="basic_header">ROLE</p>
+                        <div class="col-sm-2  p3 paddingm table_header_sec display_f justify_l align_c text_align_c " style="text-align:center;padding-left:1.4rem;">
+                          <p class="h_mar_l paddingm">ROLE</p>
                         </div>
-                        <div class="col-sm-1 p3 paddingm">
-                          <p class="basic_header">STATUS</p>
+                        <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                          <p class="h_mar_l paddingm">STATUS</p>
                         </div>
-                        <div class="col-sm-1 p3 paddingm" style="justify-content: center;">
-                          <p class="basic_header">ACTION</p>
+                        <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_c align_c text_align_c">
+                          <p class="paddingm">ACTION</p>
                         </div>
                     </div>
                 </div>

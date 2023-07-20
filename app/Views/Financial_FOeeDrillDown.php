@@ -305,17 +305,21 @@
           <div class="container-fluid paddingm display_f justify_sb align_c">
             <p class="float-start fnt_fam mdl_header">OEE Financial Drill Down</p>
               <div class="d-flex">
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
+                    <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
                         <div class="input-box">
                           <input type="text" class="form-control fromDate" value="2022-08-23" step="1">
                           <label for="inputSiteNameAdd" class="input-padding ">From Date</label>
                         </div>
                     </div>
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
+                    <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
                         <div class="input-box">
                           <input type="text" class="form-control toDate" value="" step="1">
                           <label for="inputSiteNameAdd" class="input-padding ">To Date</label>
                         </div>
+                    </div>
+                    <!-- overal apply filter button -->
+                    <div class="box rightmar" style="margin-right:0.5rem;display:flex;flex-direction:row;align-items:center;justify-content:center;">
+                      <button type="button" class="apply_fitler_overall_btn" style="height:2.2rem;padding:5px 25px;border:1px solid transparent;border-radius:0.25rem;background-color:#005abc;color:white;font-size:15px;font-weight:500;opacity:1;cursor:pointer;">Apply Filter</button>
                     </div>
               </div>
           </div>
@@ -482,7 +486,7 @@
             </nav> 
               <div class="divMarLeft">
                 <p class="paddingm headTitle fnt_fam">TOTAL</p>
-                <p class="paddingm valueGraph"><i style="font-size:1.2rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft TotalAvail"></span></p>
+                <p class="paddingm valueGraph"><i style="font-size:1.3rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft TotalAvail"></span></p>
               </div>
               <div class="parent_graph_availability_opportunity financial_drill_down_graph_bottom parent_div marginScroll">
                 <div class="child_div child_graph_availability_opportunity">
@@ -511,7 +515,7 @@
             </nav> 
             <div class="divMarLeft">
                 <p class="paddingm headTitle fnt_fam">TOTAL</p>
-                <p class="paddingm valueGraph"><i style="font-size:1.2rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft PerformanceGrand"></span></p>
+                <p class="paddingm valueGraph"><i style="font-size:1.3rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft PerformanceGrand"></span></p>
             </div>
             <div class="parent_graph_performance_opportunity financial_drill_down_graph_bottom parent_div marginScroll">
               <div class="child_div child_graph_performance_opportunity">
@@ -540,7 +544,7 @@
             </nav> 
             <div class="divMarLeft">
                 <p class="paddingm headTitle fnt_fam">TOTAL</p>
-                <p class="paddingm valueGraph" style="margin-left:0.4rem;"><i style="font-size:1.2rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft OppCostTotal" ></span></p>
+                <p class="paddingm valueGraph" style="margin-left:0.4rem;"><i style="font-size:1.3rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft OppCostTotal" ></span></p>
             </div>
             <div class="parent_graph_quality_opportunity financial_drill_down_graph_bottom parent_div marginScroll">
               <div class="child_div child_graph_quality_opportunity">
@@ -617,7 +621,7 @@ $('.fromDate').val(tdate);
 // $("#overlay").fadeIn(300);
 // setTimeout(myFun, 500);
 
-
+/* temporary hide for this function as per the madhan sir instruction
 $(document).on('blur','.fromDate',function(){
   // Pre-Loader On
   $("#overlay").fadeIn(300);
@@ -629,6 +633,23 @@ $(document).on('blur','.toDate',function(){
   $("#overlay").fadeIn(300);
   setTimeout(myFun, 500);
 });
+
+*/
+
+$(document).ready(function(){
+  // event.preventDefault();
+  $("#overlay").fadeIn(300);
+  setTimeout(myFun, 500);
+});
+
+// apply filter overall function
+$(document).on('click','.apply_fitler_overall_btn',function(event){
+  event.preventDefault();
+  $("#overlay").fadeIn(300);
+  setTimeout(myFun, 500);
+});
+
+
 function myFun(){
         
     f = $('.fromDate').val();

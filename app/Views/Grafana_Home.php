@@ -377,7 +377,7 @@
                                 </li>
                             <?php } ?>
                             <?php if($this->data['access'][0]['production_data_management'] >=1){ ?>
-                                <li class="hover_elem_height side-menu-hover-btom display_f align_c sidenave-hover">
+                                <li class="hover_elem_height display_f align_c sidenave-hover">
                                     <div class="icon-option display_f justify_c align_c">
                                         <img src="<?php echo base_url()?>/assets/icons/pdm_corrections.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
                                     </div>
@@ -440,7 +440,7 @@
                                 </li>
                             <?php } ?>
                             <?php if($this->data['access'][0]['settings_user_management'] >=1){ ?>
-                                <li class="hover_elem_height side-menu-hover-btom display_f align_c sidenave-hover">
+                                <li class="hover_elem_height display_f align_c sidenave-hover">
                                     <div class="icon-option display_f justify_c align_c">
                                         <img src="<?php echo base_url()?>/assets/icons/nav_settings_user.png?version=<?php echo rand() ; ?>" class="icons-smart icon-opportunity-insights icon-sub">
                                     </div>

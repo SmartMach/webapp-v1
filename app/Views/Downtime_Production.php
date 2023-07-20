@@ -100,7 +100,7 @@ $session = \Config\Services::session();
 <br>
 <br>
 <div class="tmp_header" style="margin-left: 4.5rem;margin-top:1rem;overflow:hidden; ">
-    <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav" style="position:fixed;margin-top:0;width:95%;">
+    <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav" style="position:fixed;margin-top:0;width:95%;z-index:98;">
         <div class="container-fluid paddingm">
             <p class="float-start" id="logo">Production Downtime</p>
             <div class="d-flex">
@@ -121,20 +121,25 @@ $session = \Config\Services::session();
                     <!-- </div> -->
                 </div>
 
-                <div class="box rightmar" style="margin-right: 0.5rem;">
-                    <div class="input-box">
+                <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;" >
+                    <div class="input-box" style="width:12rem;">
                         <!-- <input type="date" name="" class="form-control fromDate" id="from"> -->
                         <input type="text" class="form-control fromDate" value="" step="1">
                         <!-- <input type="datetime-local" class="form-control" value="2013-10-24T10:00:00" step="1"> -->
                         <label for="inputSiteNameAdd" class="input-padding ">From DateTime</label>
                     </div>
                 </div>
-                <div class="box rightmar" style="margin-right: 0.5rem;">
-                    <div class="input-box">
+                <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
+                    <div class="input-box" style="width:12rem;">
                         <!-- <input type="date" name="" class="form-control toDate"> -->
                         <input type="text" class="form-control toDate" value="" step="1">
                         <label for="inputSiteNameAdd" class="input-padding ">To DateTime</label>
                     </div>
+                </div>
+
+                <!-- apply filter button -->
+                <div class="box rightmar" style="margin-right:0.5rem;">
+                    <button type="button" class="apply_filter_overall_btn" style="border:1px solid transparent;background:#005abc;border-radius:0.25rem;font-size:15px;color:white;font-weight:500;cursor:pointer;opacity:1;height:2.2rem;padding:5px 25px;">Apply Filter</button>
                 </div>
             </div>
         </div>
@@ -789,8 +794,7 @@ $('.toDate').val(fdate);
 $('.fromDate').val(tdate);
 
 // reason wise opportunitycost graph tooltip
-function reason_oppcost_tooltip(context) {  
-    // console.log(context);
+function reason_oppcost_tooltip(context) { 
     // Tooltip Element
     let tooltipEl = document.getElementById('tooltip-reason_oppcost');
 
@@ -828,10 +832,7 @@ function reason_oppcost_tooltip(context) {
         const bodyLines = tooltipModel.body.map(getBody);
         var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
         var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].percentage_data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
-        // console.log("hovering"+percentage);
         var rname = context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label[context.tooltip.dataPoints[0].dataIndex]
-        // console.log(oppcost);
-        // console.log(rname);
         // var days = parseInt(parseInt(duration/60)/24);
         // var hours = parseInt(parseInt(duration-(days*1440))/60);
         // var min = parseInt(parseInt(duration-(days*1440))%60);
@@ -839,7 +840,6 @@ function reason_oppcost_tooltip(context) {
         innerHtml += '<div class="grid-container">';
 
         if (parseInt(percentage)>0) {
-            // console.log("percentage hovering");
 
             innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
             innerHtml += '<div class="grid-item title-bold"><span></span></div>';
@@ -851,7 +851,6 @@ function reason_oppcost_tooltip(context) {
             // innerHtml += '<div class="grid-item content-text"><span></span></div>';
             // innerHtml += '<div class="grid-item content-text-val"><span class="values-op"></span></div>';
         }else{
-            // console.log("bar hovering");
             innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
             innerHtml += '<div class="grid-item title-bold"><span></span></div>';
             innerHtml += '<div class="content-text sub-title"><span></span></div>';
@@ -883,7 +882,6 @@ function reason_oppcost_tooltip(context) {
 }
 // reason wise duration tooltip function
 function reason_wise_duration_tooltip(context){
-    // console.log(context);
      // Tooltip Element
      let tooltipEl = document.getElementById('tooltip-reason_duration');
 
@@ -977,7 +975,6 @@ function reason_wise_duration_tooltip(context){
 }
 // machine wise opportunity cost tooltip function
 function machine_wise_oppcost_tooltip(context){
-    // console.log(context);
     // Tooltip Element
     let tooltipEl = document.getElementById('tooltip-machine_oppcost');
 
@@ -1016,8 +1013,6 @@ function machine_wise_oppcost_tooltip(context){
         var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
         var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].percentage_data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
         var mname = context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label[context.tooltip.dataPoints[0].dataIndex]
-        // console.log(oppcost);
-        // console.log(mname);
         // var days = parseInt(parseInt(duration/60)/24);
         // var hours = parseInt(parseInt(duration-(days*1440))/60);
         // var min = parseInt(parseInt(duration-(days*1440))%60);
@@ -1065,7 +1060,6 @@ function machine_wise_oppcost_tooltip(context){
 
 // machine and reason wise tooltip function
 function machine_and_reason_wise_tooltip(context){
-    // console.log(context);
      // Tooltip Element
      let tooltipEl = document.getElementById('tooltip-machine_reason_duration');
 
@@ -1165,8 +1159,6 @@ function machine_and_reason_wise_tooltip(context){
 function pagination_filter(){
     var value_input = $('#pagination_val').val();
     var limit_val = $('#total_page').text();
-    // console.log(value_input);
-    // console.log(limit_val);
     $("#overlay").fadeIn(400);
     var start_index =0;
     var end_index = 0;
@@ -1174,20 +1166,15 @@ function pagination_filter(){
         if (parseInt(value_input)<=parseInt(limit_val)) {
             end_index = parseInt(value_input)*50;
             start_index = parseInt(end_index)-50;
-            // console.log("start index"+start_index);
-            // console.log("end index"+end_index);
             // pagination_filter_pass(start_index,end_index);
 
         }else{
-            // console.log("invalid and more than limited value");
             $('#pagination_val').val('1');
             start_index = 0;
             end_index = 50;
             // pagination_filter_pass();
-
         }
     }else{
-        // console.log("invalid and more than limited value");
         $('#pagination_val').val('1');
         start_index = 0;
         end_index = 50;
@@ -1201,8 +1188,6 @@ function pagination_filter(){
 function table_onclick(){
     // alert('hi');
     // var demo = $('.fixed_col_common').length;
-    // console.log("onclick");
-    // console.log(demo);
     // demo = parseInt(parseInt(demo)*4);
     // $('#container_table').css('max-height',parseInt(demo)+'rem');
 
@@ -1211,9 +1196,6 @@ function table_onclick(){
     var sub_header = $('.fixsubnav').height();
     var my_height = parseInt(tmp_h)+parseInt(nav_h)+parseInt(sub_header)+48;
     var overall_height = $(window).height();
-    console.log("get overall height"+overall_height);
-    console.log(tmp_h+"\n"+nav_h+"\n"+"\n"+sub_header);
-    console.log('myheight'+my_height);
     var get_height = parseInt(overall_height) - parseInt(my_height);
     $('.table_height_width').css('height',parseInt(get_height)+'px');    
 
@@ -1226,27 +1208,18 @@ function graph_view_click(){
     var child_width = $('.child_reason_wise_oppcost').width();
     var parent_width = $('.graph_01').width();
     parent_width = parseInt(parseInt(parent_width)*12)+30;
-    // console.log("parent width");
-    // console.log(parent_width);
-    // console.log("child width");
-    // console.log(child_width);
 
     // reason wise graph
     if (parseInt(child_width)<=parseInt(parent_width)) {
-        // console.log("error");
         $('.child_reason_wise_oppcost').css('width',parent_width+'px');
         $('.child_reason_wise_duration').css('width',parent_width+'px');
     }
-    // else{
-    //     console.log("no error");    
-    // }
 
     // macine wise graph 
     var machine_parent_width = $('.graph_03').width();
     var machine_child_width = $('.child_machine_wise_oppcost').width();
     machine_parent_width = parseInt(parseInt(machine_parent_width)*12)+30;
-    // console.log("macine wise graph");
-    // console.log(machine_parent_width);
+
     if (parseInt(machine_child_width)<parseInt(machine_parent_width)) {
         $('.child_machine_wise_oppcost').css('width',machine_parent_width+'px');
         $('.child_machine_reason_duration').css('width',machine_parent_width+'px');
@@ -1262,7 +1235,6 @@ function notes_hover(ele){
     //   alert(index_val);
     $('.notes_display:eq('+index_val+')').css('display','block');
     // $('.hover_check_index:eq('+index_val+')').css('margin-left','-10rem');
-    //   console.log("notes index hovering"+index_val);
 }
 
 
@@ -1271,8 +1243,6 @@ function mouse_out_check(ele1){
   var index_val1 = els.indexOf(event.currentTarget);
   $('.notes_display:eq('+index_val1+')').css("display","none");
 //   $('.hover_check_index:eq('+index_val+')').css('margin-left','0');
-    //   console.log("notes index  hovering remove"+index_val1);
-
 }
 
 // date formate change function
@@ -1543,11 +1513,6 @@ function filter_after_filter(end_index,start_index){
         pass_created_by = created_by;
     // }
 
-    // console.log(pass_machine);
-    // console.log(pass_part);
-    // console.log(pass_cate);
-    // console.log(pass_reason);
-    // console.log(pass_created_by);
     // from date and to date
     f = $('.fromDate').val();
     t = $('.toDate').val();
@@ -1568,13 +1533,8 @@ function filter_after_filter(end_index,start_index){
             to:to,   
         },
         success:function(res){
-            console.log(res);
-            console.log("table data");
-            console.log(res);
             $('.alert_content').empty();
             // $('.scroll_rows').empty();
-            // console.log("table key");
-            // console.log(res['total']);
             var from_len = 0;
             var end_len = 50;
             var index = 0;
@@ -1591,21 +1551,13 @@ function filter_after_filter(end_index,start_index){
                     var from_date = date_formate_change(val.shift_date+'T'+val.start_time);
                     var to_date = date_formate_change(val.shift_date+'T'+val.end_time);
                     var updated_at = date_formate_change(val.last_updated_on);
+                    
                     var tmp_duration  = val.split_duration.toString().split('.');
                     var final_tmp_duration = " ";
-                    if (parseInt(tmp_duration[0])>0) {
-                        if (parseInt(tmp_duration[1])>0) {
-                            final_tmp_duration = tmp_duration[0]+'m'+' '+tmp_duration[1]+'s';
-                        }else{
-                            final_tmp_duration = tmp_duration[0]+'m'+' ';
-                        }
-                       
+                    if (tmp_duration.length > 1) {
+                      final_tmp_duration = tmp_duration[0]+'m'+' '+tmp_duration[1]+'s';
                     }else{
-                        if (parseInt(tmp_duration[1])>0) {
-                            final_tmp_duration = tmp_duration[1]+'s';
-                        }else{
-                            final_tmp_duration = '0s';
-                        } 
+                      final_tmp_duration = tmp_duration[0]+'m';
                     }
 
                     elements = elements.add('<div style="display:flex;flex-direction:row;border:1px solid rgba(242,242,242);border-radius:10px;margin-bottom:0.5rem;height:3.5rem;width:100%;">'
@@ -1616,7 +1568,7 @@ function filter_after_filter(end_index,start_index){
                             +'<span style="margin: auto;">'+from_date+'</span>'
                         +'</div>'
                         +'<div class="red alignflex" style="width:9.6%;position: sticky;left:290px;background:white;height:100%;">'
-                            +'<span style="margin: auto;">'+val.split_duration+'</span>'
+                            +'<span style="margin: auto;">'+final_tmp_duration+'</span>'
                         +'</div>'
                         +'<div class="font_row alignflex" style="width:14.8%;">'
                             +'<span style="margin: auto;">'+to_date+'</span>'
@@ -1664,10 +1616,6 @@ function filter_after_filter(end_index,start_index){
 
                     $('.alert_content').append(elements);
                     // $('.scroll_rows').append(element);
-                    // console.log("Table Data");
-                    // console.log(val);
-
-                  
                 }
                 
             });
@@ -1676,14 +1624,11 @@ function filter_after_filter(end_index,start_index){
             $("#overlay").fadeOut(550);
             // var width_get = $('.fixed_rows').css('height');
             // var width_get_1 = $('.scroll_rows').css('height');
-            // // console.log("table height");
-            // // console.log(width_get);
-            // // consoe.log(width_get_1);
             // var demo_height = parseInt(width_get)+98;
             // $('#container_table').css('height',parseInt(demo_height)+"px");
         },
         error:function(er){
-            console.log("Try Again for filter button");
+          // alert("Error");
         }
 
     });       
@@ -1722,7 +1667,6 @@ $(document).on('click','.reason_oppcost_common',function(event){
 $(document).on('click','.reason_duration_common',function(event){
     event.preventDefault();
     getfilter_duration_reason();
-    // console.log("click reason duration common");
 
 });
 
@@ -1776,12 +1720,6 @@ function getfilter_oppcost_reason(){
     t = $('.toDate').val();
     f = f.replace(" ","T");
     t = t.replace(" ","T");
-    // console.log('reason oppcost graph filter');
-    // console.log(graph_machine_arr);
-    // console.log(graph_category_arr);
-    // console.log(graph_reason_arr);
-    // console.log(f);
-    // console.log(t);
 
     $.ajax({
         url:"<?php echo  base_url('Production_Downtime_controller/graph_filter_reason_wise_oppcost'); ?>",
@@ -1795,10 +1733,6 @@ function getfilter_oppcost_reason(){
             to:t,
         },
         success:function(res){
-            console.log("filter data reason oppcost");
-            console.log(res);
-
-
             $('#reason_wise_oppcost_total').text(parseInt(res['grandTotal']).toLocaleString("en-IN"));
             // total hour and minute
             var thour = parseInt(res['total_duration'])/60;
@@ -1818,13 +1752,8 @@ function getfilter_oppcost_reason(){
             res['graph'].forEach(function(val){
                 reason_label.push(val.downtime_reason);
                 var tempcost = parseInt(val.opportunity_cost);
-                // console.log(typeof tempcost);
                 oppcost_arr.push(tempcost);
                 reason_id_arr.push(val.downtime_reason_id);
-                // console.log(val.downtime_reason);
-                // console.log('tempcost'+tempcost);
-                // console.log('ex temp cost'+temp_cost_ini);
-                // console.log(res['grandTotal']);
                 temp_cost_ini = parseInt(temp_cost_ini)+parseInt(tempcost);
                 oppcost_percent_arr.push(temp_cost_ini);
             });
@@ -1832,15 +1761,11 @@ function getfilter_oppcost_reason(){
             // calculate percentage array
             var percentage_arr = [];
             oppcost_percent_arr.forEach(function(item){
-                // console.log(item);
-                // console.log(res['grandTotal']);
                 var temp_data = parseFloat(parseInt(item)/parseInt(res['grandTotal'])*100).toFixed(2);
                 // temp_data = temp_data*100;
                 percentage_arr.push(temp_data);
             });
 
-            console.log("temporary cost array");
-            console.log(percentage_arr);
             var bar_width = 0.6;
             var bar_size = 0.7;
         
@@ -1852,8 +1777,7 @@ function getfilter_oppcost_reason(){
                 else if(len > 8){
                 var l = parseInt(len)%parseInt(8);
                 var w= parseInt($('.parent_reason_wise_oppcost').css("width"))+parseInt(l*18*16);
-                // console.log("Reason Mapping");
-                // console.log(w);
+
                 $('.child_reason_wise_oppcost').css("width",w+"px");
                 break;
                 }
@@ -1862,9 +1786,6 @@ function getfilter_oppcost_reason(){
                 }
             }
           
-           
-            // console.log(oppcost_percent_arr);
-            // console.log(percentage_arr);
             var ctx = document.getElementById("reason_wise_oppcost").getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'bar',
@@ -1963,10 +1884,6 @@ function getfilter_oppcost_reason(){
         }
 
     });
-    //    console.log('filter data');
-    //    console.log(graph_category_arr);
-    //    console.log(graph_reason_arr);
-    //    console.log(graph_machine_arr);
 }
 
 
@@ -2009,12 +1926,6 @@ function getfilter_duration_reason(){
     t = $('.toDate').val();
     f = f.replace(" ","T");
     t = t.replace(" ","T");
-    // console.log('reason duration graph filter');
-    // console.log(graph_machine_arr);
-    // console.log(graph_category_arr);
-    // console.log(graph_reason_arr);
-    // console.log(f);
-    // console.log(t);
     $.ajax({
         url:"<?php echo base_url('Production_Downtime_controller/getdowntime_graph_filter_reason_duration'); ?>",
         type: "POST",
@@ -2027,8 +1938,6 @@ function getfilter_duration_reason(){
             category_arr:graph_category_arr
         },
         success:function(res){
-            // console.log("Reason Wise duration graph filter");
-            // console.log(res);
 
             var hour_text = parseInt(parseInt(res['total_duration'])/60);
             var minute_text = parseInt(parseInt(res['total_duration'])%60);
@@ -2047,10 +1956,8 @@ function getfilter_duration_reason(){
             res['graph'].forEach(function(val){
                 reason_label.push(val.downtime_reason);
                 var tempcost = parseInt(val.duration);
-                // console.log(typeof tempcost);
                 duration_arr.push(tempcost);
                 reason_id_arr.push(val.downtime_reason_id);
-                // console.log(val.downtime_reason);
                 total_duration = parseInt(total_duration) + parseInt(tempcost);
                 duration_arr_cumulative.push(total_duration);
                 var temp_data = parseFloat(parseInt(total_duration)/parseInt(res['total_duration'])*100).toFixed(2);
@@ -2075,8 +1982,6 @@ function getfilter_duration_reason(){
                 break;
                 }
             }
-            // console.log("duration by reasons");
-            // console.log(duration_percentage_arr);
             var ctx = document.getElementById("reason_wise_duration").getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'bar',
@@ -2216,12 +2121,6 @@ function getfilter_machine_oppcost(){
     t = $('.toDate').val();
     f = f.replace(" ","T");
     t = t.replace(" ","T");
-    // console.log('machine wise oppcost graph filter');
-    // console.log(graph_machine_arr);
-    // console.log(graph_category_arr);
-    // console.log(graph_reason_arr);
-    // console.log(f);
-    // console.log(t);
     $.ajax({
         url:'<?php echo base_url('Production_Downtime_controller/filter_machine_wise_oppcost') ?>',
         type: "POST",
@@ -2234,8 +2133,6 @@ function getfilter_machine_oppcost(){
             category_arr:graph_category_arr
         },
         success:function(res){
-            console.log('Machine wise oppcost');
-            console.log(res);
             $('#machine_wise_oppcost_total').text(parseInt(res['grant_total']).toLocaleString("en-IN"));
             var machine_label = [];
             var oppcost_arr = [];
@@ -2250,10 +2147,8 @@ function getfilter_machine_oppcost(){
             res['graph'].forEach(function(val){
                 machine_label.push(val.machine_name);
                 var tempcost = parseInt(val.oppcost);
-                // console.log(typeof tempcost);
                 oppcost_arr.push(tempcost);
                 machine_id_arr.push(val.machine_id);
-                // console.log(val.downtime_reason);
                 machine_duration_percentage = parseInt(machine_duration_percentage)+parseInt(tempcost);
                 oppcost_arr_cumulative.push(machine_duration_percentage);
                 var temp_d = parseFloat(parseInt(machine_duration_percentage)/parseInt(res['grant_total'])*100).toFixed(2);
@@ -2421,12 +2316,6 @@ function getfilter_machine_reason_duration(){
     t = $('.toDate').val();
     f = f.replace(" ","T");
     t = t.replace(" ","T");
-    // console.log('machine and reason duration  graph filter');
-    // console.log(graph_machine_arr);
-    // console.log(graph_category_arr);
-    // console.log(graph_reason_arr);
-    // console.log("from date:\t"+f);
-    // console.log("to date:\t"+t);
     $.ajax({
         url:'<?php echo base_url('Production_Downtime_controller/filter_machine_reason_duration') ?>',
         type: "POST",
@@ -2439,8 +2328,6 @@ function getfilter_machine_reason_duration(){
             category_arr:graph_category_arr
         },
         success:function(res){
-            console.log('Machine and reason  wise duration');
-            console.log(res);
 
             $('#machine_reason_duration').remove();
             $('.child_machine_reason_duration').append('<canvas id="machine_reason_duration"></canvas>');
@@ -2450,7 +2337,6 @@ function getfilter_machine_reason_duration(){
             var hour_text = parseInt(parseInt(res['total_duration'])/60);
             var minute_text = parseInt(parseInt(res['total_duration'])%60);
             $('#machine_reason_duration_text').text(hour_text+'h'+' '+minute_text+'m');
-
 
             var color = ["white","#004591","#0071EE","#97C9FF","#595959","#A6A6A6","#D9D9D9","#09BB9F","#39F3BB"];
             var demo = [];
@@ -2509,10 +2395,6 @@ function getfilter_machine_reason_duration(){
                 x = x+1;
             });
 
-            // console.log("graph data graph4");
-            // console.log(demo);
-
-        
             while(true){
                 var len= machineName.length;
                 if (len < 8) {
@@ -2601,7 +2483,6 @@ function getfilter_machine_reason_duration(){
         },
         error:function(er){
             // alert(er);
-            console.log("error "+er);
         }
     });
 
@@ -2620,6 +2501,14 @@ $(document).ready(function(){
 
 });
 
+// apply filter submit function
+$(document).on('click','.apply_filter_overall_btn',function(event){
+    event.preventDefault();
+    $("#overlay").fadeIn(400);
+    graph_loader();
+});
+
+/* temporary hide for this function for onblur function
 // onblur function change input filter
 // from date on blur function
 $(document).on('blur','.fromDate',function(event){
@@ -2642,6 +2531,8 @@ $(document).on('blur','.toDate',function(event){
 
 });
 
+*/
+
 // all dropdwon functions 
 function getall_filter_arr(){
     $.ajax({
@@ -2649,8 +2540,6 @@ function getall_filter_arr(){
         method:"POST",
         dataType:"json",
         success:function(res){
-            console.log("All dropdown function");
-            console.log(res);
 
             // machine
             $('.filter_checkboxes_machine').empty();
@@ -2837,9 +2726,6 @@ function getall_filter_arr(){
             $('.filter_checkboxes_reasongp2').empty();
             $('.filter_checkboxes_reasongp3').empty();
 
-            // console.log("reason dropdwon");
-            // console.log(res);
-
             var element_ddrp = $();
             var elements_ddrp = $();
             var ele_ddrp = $();
@@ -2907,8 +2793,7 @@ function getall_filter_arr(){
 
         },
         error:function(er){
-            console.log("All dropdown ajax error");
-            console.log(er);
+          // alert("Error");
         }
     });
 }
@@ -2945,8 +2830,6 @@ function first_load_reason_oppcost(f,t){
                 to:t
             },
             success:function(res){
-                console.log("loader forst graph reason oppcost");
-                console.log(res);
                 resolve(res);
                 $('#reason_wise_oppcost_total').text(parseInt(res['grandTotal']).toLocaleString("en-IN"));
                 // total hour and minute
@@ -2980,8 +2863,6 @@ function first_load_reason_oppcost(f,t){
                     percentage_arr.push(temp_data);
                 });
 
-                console.log("temporary cost array");
-                console.log(percentage_arr);
                 var bar_width = 0.6;
                 var bar_size = 0.7;
             
@@ -3099,7 +2980,6 @@ function first_load_reason_oppcost(f,t){
                 });
             },
             error:function(er){
-                console.log("error for reason oppcost");
                 reject(er);
             }
         });
@@ -3123,8 +3003,6 @@ function first_load_reason_duration(f,t){
                 to:t,
             },
             success:function(res){
-                console.log("first loader production downtime")
-                console.log(res);
                 resolve(res);
 
                 var hour_text = parseInt(parseInt(res['total_duration'])/60);
@@ -3144,10 +3022,8 @@ function first_load_reason_duration(f,t){
                 res['graph'].forEach(function(val){
                     reason_label.push(val.downtime_reason);
                     var tempcost = parseInt(val.duration);
-                    // console.log(typeof tempcost);
                     duration_arr.push(tempcost);
                     reason_id_arr.push(val.downtime_reason_id);
-                    // console.log(val.downtime_reason);
                     total_duration = parseInt(total_duration) + parseInt(tempcost);
                     duration_arr_cumulative.push(total_duration);
                     var temp_data = parseFloat(parseInt(total_duration)/parseInt(res['total_duration'])*100).toFixed(2);
@@ -3271,7 +3147,6 @@ function first_load_reason_duration(f,t){
 
             },
             error:function(er){
-                console.log("first loder reason duration graph error");
                 reject(er);
             }
         });
@@ -3299,8 +3174,6 @@ function first_load_machine_oppcost(f,t){
                 to:t
             },
             success:function(res){
-                console.log("first loder machine oppcost");
-                console.log(res);
                 resolve(res);
                 $('#machine_wise_oppcost_total').text(parseInt(res['grant_total']).toLocaleString("en-IN"));
                 var machine_label = [];
@@ -3316,10 +3189,8 @@ function first_load_machine_oppcost(f,t){
                 res['graph'].forEach(function(val){
                     machine_label.push(val.machine_name);
                     var tempcost = parseInt(val.oppcost);
-                    // console.log(typeof tempcost);
                     oppcost_arr.push(tempcost);
                     machine_id_arr.push(val.machine_id);
-                    // console.log(val.downtime_reason);
                     machine_duration_percentage = parseInt(machine_duration_percentage)+parseInt(tempcost);
                     oppcost_arr_cumulative.push(machine_duration_percentage);
                     var temp_d = parseFloat(parseInt(machine_duration_percentage)/parseInt(res['grant_total'])*100).toFixed(2);
@@ -3443,8 +3314,6 @@ function first_load_machine_oppcost(f,t){
                 });
             },
             error:function(er){
-                console.log("machine wise oppcost first loader issue");
-                console.log(er);
                 reject(er);
             }
         });
@@ -3468,8 +3337,6 @@ function first_load_machine_duration(f,t){
                 to:t
             },
             success:function(res){
-                console.log("first loder machine duration graph");
-                console.log(res);
                 resolve(res);
                 
                 $('#machine_reason_duration').remove();
@@ -3624,9 +3491,7 @@ function first_load_machine_duration(f,t){
                 // $('#overlay').fadeOut(300);
             },
             error:function(er){
-                console.log('first loader machine duration error');
-                console.log(er);
-                reject(er);
+              reject(er);
             }
         });
     });  

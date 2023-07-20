@@ -862,17 +862,20 @@ class Current_Shift_Performance extends BaseController{
 
             // echo "<pre>";
             $final_arr = [];
+            $tdate = $res_tool[0]['shift_date'];
+            $sdate = $shift_date;
             $tmp_target = $res_tool[0]['target'];
             if ($tmp_target>0) {
                 $tmp['target'] = $res_tool[0]['target'];
-                $tdate = $res_tool[0]['shift_date'];
-                $sdate = $shift_date;
                 $res_production = $this->datas->getproduction_target_count($tdate,$sdate,$mid,$tid);
                 $tmp['percentage_target'] = $res_production[0]['target_production']/$res_tool[0]['target']*100;
+                $tmp['production'] = $res_production[0]['target_production'];
                 array_push($final_arr,$tmp);
             }else{
                 $tmp['target'] = 0;
                 $tmp['percentage_target'] = 0;
+                $res_production = $this->datas->getproduction_target_count($tdate,$sdate,$mid,$tid);
+                $tmp['production'] = $res_production[0]['target_production'];
                 array_push($final_arr,$tmp);
             }
             // print_r($final_arr);
