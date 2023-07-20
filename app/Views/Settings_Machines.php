@@ -105,7 +105,7 @@ $session = \Config\Services::session();
                       <p class="h_mar_l paddingm">STATUS</p>
                     </div>
                     <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_c align_c text_align_c">
-                      <p class="h_mar_l paddingm">ACTION</p>
+                      <p class="paddingm">ACTION</p>
                     </div>
                 </div>
             </div>

@@ -17,7 +17,7 @@ class PDM_Model extends Model{
                     'DSN'      => '',
                     'hostname' => 'localhost',
                     'username' => 'root',
-                    'password' => '',
+                    'password' => 'quantanics123',
                     'database' => ''.$db_name.'',
                     'DBDriver' => 'MySQLi',
                     'DBPrefix' => '',

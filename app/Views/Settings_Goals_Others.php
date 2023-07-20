@@ -180,7 +180,7 @@
       </div> <!-----top left side------>
     </nav>
     <div>
-        <div class="contentGeneralSettings" style="margin-top:7rem;">
+        <div class="contentGeneralSettings">
             <div style="margin:2.5rem;">
                     <div class="card bodercss">
                         <p class="fieldTitle input-padding">GOALS</p>

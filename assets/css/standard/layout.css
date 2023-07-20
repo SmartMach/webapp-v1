@@ -41,6 +41,7 @@
 
 .side-menu-area{
     list-style: none;
+    background: white;
 }
 .side-menu-li{
     z-index: 1040;
