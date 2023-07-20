@@ -165,7 +165,7 @@ $session = \Config\Services::session();
                 <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
                     <div class="input-box" style="width:12rem;">
                         <!-- <input type="date" name="" class="form-control fromDate" id="from"> -->
-                        <input type="text" class="form-control fromDate" value="" step="1" style="width:100%;">
+                        <input type="text" class="form-control fromDate" value="" step="1">
                         <!-- <input type="datetime-local" class="form-control" value="2013-10-24T10:00:00" step="1"> -->
                         <label for="inputSiteNameAdd" class="input-padding ">From DateTime</label>
                     </div>
@@ -173,12 +173,14 @@ $session = \Config\Services::session();
                 <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
                     <div class="input-box" style="width:12rem;">
                         <!-- <input type="date" name="" class="form-control toDate"> -->
-                        <input type="text" class="form-control toDate" value="" step="1" style="width:100%;">
+                        <input type="text" class="form-control toDate" value="" step="1">
                         <label for="inputSiteNameAdd" class="input-padding ">To DateTime</label>
                     </div>
                 </div>
-                <div class="box rightmar" style="margin-right:0.5rem;display:flex;flex-direction:row;align-items:center;justify-content:center;">
-                    <button type="button" class="overall_filter_btn" style="background:#406EB4;color:white;border:1px solid transparent;border-radius:0.25rem;padding:5px 25px;height:2.2rem;font-size:15px;font-weight:500;opacity:1;cursor:pointer;">Apply Filter</button>
+
+                <!-- overall filter btn -->
+                <div class="box rightmar mar_r_box" style="">
+                    <button type="button" class="overall_filter_btn overall_filter_header_css"  >Apply Filter</button>
                 </div>
             </div>
         </div>
@@ -187,7 +189,6 @@ $session = \Config\Services::session();
     <!-- first row -->
     <div class="first_row" style="">
         <div class="overall_div" style="">
-
             <!-- overall teep div -->
             <div style="position:inherit;" class="target_bar_bottom">
                 <p class="graph_text" style="">Overall TEEP%</p>
@@ -283,6 +284,7 @@ $session = \Config\Services::session();
                     </div>
                 </div>
             </div>
+
             <div class="target_bar_bottom">
                 <div class="overall_label_flex" style="">
                     <div style="width:40%;"></div>
@@ -740,15 +742,9 @@ $('.toDate').val(fdate);
 $('.fromDate').val(tdate);
 
 
-// from date and to date filter using button onclick function
-$(document).on('click','.overall_filter_btn',function(event){
-    event.preventDefault();
-    $('#overlay').fadeIn(400);
-    all_graph_fun();
-}); 
 
+/*
 // from date on blur function
-/* temporary hide for this function as per the madhan sir instruction
 $(document).on('blur','.fromDate',function(event){
    // event.preventDefault();
     $('#overlay').fadeIn(400);
@@ -770,6 +766,12 @@ $(document).on('blur','.toDate',function(event){
 
 */
 
+// overall filter onclick function
+$(document).on('click','.overall_filter_btn',function(event){
+    event.preventDefault();
+    $('#overlay').fadeIn(400);
+    all_graph_fun();
+});
 
 // async function all_graph_blur_fromdate(){
 //     console.log("on blur to date filter");
@@ -786,7 +788,7 @@ $(document).on('blur','.toDate',function(event){
 
 // in Document ready function calling
 $(document).ready(function(){
-    $('#overlay').fadeIn(400);
+    // $('#overlay').fadeIn(400);
     //    overall dropdown values and graph visible this function only
     // get_all_filter_drp_fill();
     all_graph_fun();

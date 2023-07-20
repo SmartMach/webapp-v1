@@ -121,7 +121,7 @@ $session = \Config\Services::session();
                     <!-- </div> -->
                 </div>
 
-                <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;" >
+                <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
                     <div class="input-box" style="width:12rem;">
                         <!-- <input type="date" name="" class="form-control fromDate" id="from"> -->
                         <input type="text" class="form-control fromDate" value="" step="1">
@@ -137,9 +137,9 @@ $session = \Config\Services::session();
                     </div>
                 </div>
 
-                <!-- apply filter button -->
-                <div class="box rightmar" style="margin-right:0.5rem;">
-                    <button type="button" class="apply_filter_overall_btn" style="border:1px solid transparent;background:#005abc;border-radius:0.25rem;font-size:15px;color:white;font-weight:500;cursor:pointer;opacity:1;height:2.2rem;padding:5px 25px;">Apply Filter</button>
+                <!-- overall filter btn -->
+                <div class="box rightmar mar_r_box" >
+                    <button type="button" class="overall_filter_btn overall_filter_header_css"  >Apply Filter</button>
                 </div>
             </div>
         </div>
@@ -2338,6 +2338,7 @@ function getfilter_machine_reason_duration(){
             var minute_text = parseInt(parseInt(res['total_duration'])%60);
             $('#machine_reason_duration_text').text(hour_text+'h'+' '+minute_text+'m');
 
+
             var color = ["white","#004591","#0071EE","#97C9FF","#595959","#A6A6A6","#D9D9D9","#09BB9F","#39F3BB"];
             var demo = [];
             var x= 1;
@@ -2501,14 +2502,14 @@ $(document).ready(function(){
 
 });
 
-// apply filter submit function
-$(document).on('click','.apply_filter_overall_btn',function(event){
+// overall filter button onclick funciton
+$(document).on('click','.overall_filter_btn',function(event){
     event.preventDefault();
     $("#overlay").fadeIn(400);
     graph_loader();
-});
+}); 
 
-/* temporary hide for this function for onblur function
+/* temporary hide for this function 
 // onblur function change input filter
 // from date on blur function
 $(document).on('blur','.fromDate',function(event){
@@ -2532,7 +2533,6 @@ $(document).on('blur','.toDate',function(event){
 });
 
 */
-
 // all dropdwon functions 
 function getall_filter_arr(){
     $.ajax({
