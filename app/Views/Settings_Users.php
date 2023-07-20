@@ -55,9 +55,9 @@
 </style>
 <div class="mr_left_content_sec">
  <!---topbar navigation settings----->
-        <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav">
-          <div class="container-fluid paddingm">
-            <p class="float-start p3" id="logo">User Settings</p>
+        <nav class="sec_nav display_f align_c justify_c sec_nav_c navbar-expand-lg">
+          <div class="container-fluid paddingm display_f justify_sb align_c">
+            <p class="float-start fnt_fam mdl_header">User Settings</p>
               <div class="d-flex">
                     <p class="float-end fnt_fam style_label active_click fnt_active">
                         <span  id="Active" class=""></span>Active
@@ -70,8 +70,8 @@
         </nav>
  <!---topbar navigation settings ending----->
  <!---filter and add user navigation starting-->
-        <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav" style="margin-top: 4rem;">
-          <div class="container-fluid paddingm ">
+        <nav class="inner_nav inner_nav_c display_f align_c justify_sb navbar-expand-lg">
+          <div class="container-fluid paddingm display_f justify_sb align_c">
             <p class="float-start"></p>
               <div class="d-flex innerNav">
 
@@ -95,8 +95,8 @@
         </nav>
         <!---filter and add user navigation ending-->
         <!-----main function of table starts------->
-            <div class="tableContent">
-                <div class="settings_machine_header sticky-top fixtabletitle">
+            <div class="data_section">
+                <div class="table_header table_header_p">
                     <div class="row paddingm">
                         <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
                           <p class="h_mar_l paddingm">USER ID</p>
