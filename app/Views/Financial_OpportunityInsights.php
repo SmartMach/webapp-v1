@@ -420,25 +420,30 @@
 
 </head>
 
-<div class="mr_left_content_sec">
+<div class="mr_left_content_sec" style="top:0.2rem;">
         <nav class="sec_nav display_f align_c justify_c sec_nav_c navbar-expand-lg">
           <div class="container-fluid paddingm display_f justify_sb align_c">
             <p class="float-start fnt_fam mdl_header">Opportunity Insights</p>
               <div class="d-flex">
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
-                        <div class="input-box">
+                    <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
+                        <div class="input-box" style="width:12rem;">
                           <!-- <input type="date" name="" class="form-control fromDate" id="from"> -->
                           <input type="text" class="form-control fromDate" value="" step="1">
                           <!-- <input type="datetime-local" class="form-control" value="2013-10-24T10:00:00" step="1"> -->
                           <label for="inputSiteNameAdd" class="input-padding ">From Date</label>
                         </div>
                     </div>
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
-                        <div class="input-box">
+                    <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
+                        <div class="input-box" style="width:12rem;">
                           <!-- <input type="date" name="" class="form-control toDate"> -->
                           <input type="text" class="form-control toDate" value="" step="1">
                           <label for="inputSiteNameAdd" class="input-padding ">To Date</label>
                         </div>
+                    </div>
+
+                     <!-- overall filter btn -->
+                    <div class="box rightmar mar_r_box" >
+                      <button type="button" class="overall_filter_btn overall_filter_header_css"  >Apply Filter</button>
                     </div>
               </div>
           </div>
@@ -704,6 +709,7 @@ $('.toDate').datetimepicker({
   $("#overlay").fadeIn(300);
   setTimeout(myFun, 500);
 
+  /* temporary hdie for this function
   $(document).on('blur','.fromDate',function(){
     // Pre-Loader On
     $("#overlay").fadeIn(300);
@@ -714,6 +720,17 @@ $('.toDate').datetimepicker({
     $("#overlay").fadeIn(300);
     setTimeout(myFun, 500);
   });
+  */
+
+  $(document).on('click','.overall_filter_btn',function(event){
+    event.preventDefault();
+    $("#overlay").fadeIn(300);
+    setTimeout(myFun, 500);
+  }); 
+
+
+
+
   function myFun(){
       f = $('.fromDate').val(); 
       t = $('.toDate').val();

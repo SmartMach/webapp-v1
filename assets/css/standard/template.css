@@ -390,3 +390,25 @@ span{
     font-size: 1rem !important;
 }
 /*GLOBAL CLASS FOR INPUT FIELDS END*/
+
+/* ALL OUTPUT MODULE`S HEADER FILTER BUTTTON CSS */
+
+.overall_filter_header_css{
+    border:1px solid transparent;
+    background-color: var(--btn_save_color_bg) !important;
+    font-size: var(--left_input_lable) !important;
+    padding: var(--overall_filter_header_btn_pd) !important;
+    border-radius: var(--overall_filter_header_btn_br) !important;
+    color:var(--font_color_save_hover_pop_up) !important;
+    font-weight: var(--overall_fitler_header_btn_fw);
+}
+.mar_r_box{
+    margin-right:var(--mar_right_add_btn);
+    display:var(--overall_filter_header_div_f);
+    flex-direction:var(--overall_filter_header_div_fr);
+    justify-content:var(--overall_filter_header_div_jc);
+    align-items:var(--overall_filter_header_div_ac);
+}
+
+
+/* ALL OUTPUT MODULE`S HEADER FILTER BUTTON CSS */

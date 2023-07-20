@@ -210,4 +210,20 @@
 			--mr_top_graph_lable : 0;
 	/******** GLOBAL VARIABLES FOR GRAPH SECTION END********/
 
+
+
+	/* GLOBAL VARIABLES FOR OVERALL  HEADER  FILTER BUTTON CSS */
+		--overall_filter_header_btn_pd:5px 25px;
+		--overall_filter_header_btn_br:0.25rem;
+		--overall_fitler_header_btn_fw:500;
+
+
+		/* button outside box using flex properity global variables */
+		--overall_filter_header_div_f:flex;
+		--overall_filter_header_div_jc:center;
+		--overall_filter_header_div_fr:row;
+		--overall_filter_header_div_ac:center;
+
+	/* GLOBAL VARIABLES FOR OVERALL HEADER FILTER BUTTON CSS */
+
 }
