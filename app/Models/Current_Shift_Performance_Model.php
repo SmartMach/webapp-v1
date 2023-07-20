@@ -17,12 +17,9 @@ class Current_Shift_Performance_Model extends Model{
         // echo($db_name);
         $this->site_connection = [
                     'DSN'      => '',
-                    // 'hostname' => '165.22.208.52',
-                    // 'username' => 'smartAd',
-                    // 'password' => 'WaDl@#smat1!',
                     'hostname' => 'localhost',
                     'username' => 'root',
-                    'password' => '',
+                    'password' => 'quantanics123',
                     //'database' => 'S1001',
                     'database' => ''.$db_name.'',
                     'DBDriver' => 'MySQLi',
@@ -38,6 +35,20 @@ class Current_Shift_Performance_Model extends Model{
                     'failover' => [],
                     'port'     => 3306,
                 ];
+    }
+
+    public function getPreviousShiftLive()
+    {
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('pdm_production_info');
+        $query->select('shift_date,shift_id');
+        $query->orderby('shift_date','desc');
+        $query->orderby('shift_id','desc');
+        $query->groupby('shift_date');
+        $query->groupby('shift_id');
+        $query->limit(2);
+        $res= $query->get()->getResultArray();
+        return $res;
     }
 
 	public function getShiftLive()
@@ -236,7 +247,7 @@ class Current_Shift_Performance_Model extends Model{
     {
         $db = \Config\Database::connect($this->site_connection);
         $query = $db->table('pdm_production_info as p');
-        $query->select('p.machine_id,p.shift_date,p.start_time,p.end_time,p.shift_id,p.production,p.corrections,p.part_id,t.part_name,p.rejections,pt.tool_name');
+        $query->select('p.machine_id,p.calendar_date,p.shift_date,p.start_time,p.end_time,p.shift_id,p.production,p.corrections,p.part_id,t.part_name,p.rejections,pt.tool_name');
         $query->where('shift_date',$shift_date);
         $query->where('shift_id',$shift_id);
         $query->join('settings_part_current as t', 'p.part_id = t.part_id');
@@ -281,6 +292,35 @@ class Current_Shift_Performance_Model extends Model{
         $query->where('machine_id',$mid);
         $query->where('shift_id',$sid);
         $res = $query->get()->getResultArray();
+        return $res;
+    }
+
+
+    // target graph get tool chnageover records
+    public function get_target_tool_changeover($sdate,$mid,$tid){
+        $db = \Config\Database::connect($this->site_connection);
+        $build = $db->table('pdm_tool_changeover');
+        $build->select('*');
+        $build->where('shift_date<=',$sdate);
+        $build->where('machine_id',$mid);
+        $build->where('tool_id',$tid);
+        $build->orderBy('shift_date','DESC');
+        $build->limit(1);
+        $res = $build->get()->getResultArray();
+        return $res;
+
+    }
+
+    // that particular tool chnageover production count
+    public function getproduction_target_count($tdate,$sdate,$mid,$tid){
+        $db = \Config\Database::connect($this->site_connection);
+        $build = $db->table('pdm_production_info');
+        $build->select('SUM(production) as target_production');
+        $build->where('shift_date>=',$tdate);
+        $build->where('shift_date<=',$sdate);
+        $build->where('machine_id',$mid);
+        $build->where('tool_id',$tid);
+        $res = $build->get()->getResultArray();
         return $res;
     }
 

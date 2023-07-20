@@ -65,11 +65,10 @@ class Production_Quality extends BaseController
             $_ftime = strtotime($fromTime);
             $_ttime = strtotime($toTime);
 
+            $s_time_range_limit =  strtotime($FromDate." ".$FromTime);
+            $e_time_range_limit =  strtotime($ToDate." ".$ToTime);
+
             foreach ($output as $key => $value) {
-
-                $time_temp_start = strtotime($value['shift_date']." ".$value['start_time']);
-                $time_temp_end = strtotime($value['shift_date']." ".$value['end_time']);
-
                 $check_no = 0;
                 for($i=0;$i<$len_id;$i++){
                     if ($getOfflineId[$i]['machine_event_id'] == $value['machine_event_id']) {
@@ -83,26 +82,25 @@ class Production_Quality extends BaseController
                         unset($output[$key]);
                     }
                     else{
-                        if ($value['shift_date'] == $FromDate && $value['start_time'] <= $FromTime && $value['end_time'] >= $FromTime) {
+                        $s_time_range =  strtotime($value['shift_date']." ".$value['start_time']);
+                        $e_time_range =  strtotime($value['shift_date']." ".$value['end_time']);
+
+                        if ($s_time_range <= $s_time_range_limit && $e_time_range >= $s_time_range_limit) {
                             $output[$key]['start_time'] = $FromTime;
-                            if ($value['end_time']>= $ToTime) {
+                            if ($e_time_range >= $e_time_range_limit) {
                                 $output[$key]['end_time'] = $ToTime;
                             }
                             $output[$key]['split_duration'] = $this->getDuration($value['calendar_date']." ".$output[$key]['start_time'],$value['calendar_date']." ".$output[$key]['end_time']);
                         }
-                        else if (($value['shift_date'] == $ToDate && $value['start_time']>=$value['end_time']) || $value['shift_date'] == $ToDate && $value['end_time'] >= $ToTime) {
+                        else if ($s_time_range < $e_time_range_limit && $e_time_range > $e_time_range_limit) {
                             $output[$key]['end_time'] = $ToTime;
                             $output[$key]['split_duration'] = $this->getDuration($value['calendar_date']." ".$output[$key]['start_time'],$value['calendar_date']." ".$output[$key]['end_time']);
                         }
                         else{
-                            if ($value['shift_date'] == $FromDate  && strtotime($value['start_time']) < strtotime($FromTime)){
+                            if ($e_time_range <= $s_time_range_limit){
                                 unset($output[$key]);
                             }
-                            if ($value['shift_date'] == $FromDate  && $value['start_time'] >= $ToTime){
-                                unset($output[$key]);
-                            }
-
-                            if ($value['shift_date'] == $ToDate  && strtotime($value['start_time']) > strtotime($ToTime)) {
+                            if ($s_time_range >= $e_time_range_limit){
                                 unset($output[$key]);
                             }
                         }
@@ -110,13 +108,14 @@ class Production_Quality extends BaseController
                         //For remove the current data of inactive machines.........
                         foreach ($getInactiveMachine as $v) {
                             $t = explode(" ", $v['max(r.last_updated_on)']);
-
-                            if ($value['shift_date'] >= $t[0]  && $value['start_time'] > $t[1] && $value['machine_id'] == $v['machine_id']){
+                            $start_time_range =  strtotime($v['max(r.last_updated_on)']);
+                            if ($s_time_range_limit > $start_time_range && $value['machine_id'] == $v['machine_id']){
                                 unset($output[$key]);
                             }
                         }
                     }
                 }
+                
             }
 
             // Filter for Find the All Time.............
@@ -125,63 +124,60 @@ class Production_Quality extends BaseController
                     unset($getAllTimeValues[$key]);
                 }
                 else{
-                    if ($value['shift_date'] == $FromDate && $value['start_time'] <= $FromTime && $value['end_time'] >= $FromTime) {
+                    $s_time_range =  strtotime($value['shift_date']." ".$value['start_time']);
+                    $e_time_range =  strtotime($value['shift_date']." ".$value['end_time']);
+
+                    if ($s_time_range <= $s_time_range_limit && $e_time_range >= $s_time_range_limit) {
                         $getAllTimeValues[$key]['start_time'] = $FromTime;
-                        if ($value['end_time']>= $ToTime) {
+                        if ($e_time_range >= $e_time_range_limit) {
                             $getAllTimeValues[$key]['end_time'] = $ToTime;
                         }
                         $getAllTimeValues[$key]['duration'] = $this->getDuration($value['calendar_date']." ".$getAllTimeValues[$key]['start_time'],$value['calendar_date']." ".$getAllTimeValues[$key]['end_time']);
                     }
-                    else if (($value['shift_date'] == $ToDate && $value['start_time']>=$value['end_time']) || $value['shift_date'] == $ToDate && $value['end_time'] >= $ToTime) {
+                    else if ($s_time_range < $e_time_range_limit && $e_time_range > $e_time_range_limit) {
                         $getAllTimeValues[$key]['end_time'] = $ToTime;
                         $getAllTimeValues[$key]['duration'] = $this->getDuration($value['calendar_date']." ".$getAllTimeValues[$key]['start_time'],$value['calendar_date']." ".$getAllTimeValues[$key]['end_time']);
                     }
                     else{
-                        if ($value['shift_date'] == $FromDate  && $value['start_time'] < $FromTime){
+                        if ($e_time_range <= $s_time_range_limit){
                             unset($getAllTimeValues[$key]);
                         }
-                        if ($value['shift_date'] == $ToDate  && strtotime($value['end_time']) > strtotime($ToTime)) {
-                            unset($getAllTimeValues[$key]);
-                        }
-
-                        if ($value['shift_date'] == $FromDate  && $value['start_time'] >= $ToTime){
+                        if ($s_time_range >= $e_time_range_limit){
                             unset($getAllTimeValues[$key]);
                         }
                     }
 
                     //For remove the current data of inactive machines.........
                     foreach ($getInactiveMachine as $v) {
-                        $t = explode(" ", $v['max(r.last_updated_on)']);
-
-                        if ($value['shift_date'] >= $t[0]  && $value['start_time'] > $t[1] && $value['machine_id'] == $v['machine_id']){
+                        $start_time_range =  strtotime($v['max(r.last_updated_on)']);
+                        if ($s_time_range_limit > $start_time_range && $value['machine_id'] == $v['machine_id']){
                             unset($getAllTimeValues[$key]);
                         }
                     }
                 }
-            }   
+            }
 
             // Filter for Production Info Table Data..........
             foreach ($production as $key => $value) {   
-                if ($value['shift_date'] == $FromDate  && $value['start_time'] < $FromTime) {
+                $s_time_range =  strtotime($value['shift_date']." ".$value['start_time']);
+                $e_time_range =  strtotime($value['shift_date']." ".$value['end_time']);
+                
+                if ($s_time_range < $s_time_range_limit) {
                     unset($production[$key]);
                 }
-                if ($value['shift_date'] == $FromDate  && $value['start_time'] >= $ToTime){
-                        unset($production[$key]);
-                    }
+                if ($e_time_range >= $e_time_range_limit){
+                    unset($production[$key]);
+                }
 
-                if (strtotime($value['shift_date']) == strtotime($ToDate)  && ($value['start_time']) >= ($ToTime)) {
-                    unset($production[$key]);
-                }
                 //For remove the current data of inactive machines.........
                 foreach ($getInactiveMachine as $v) {
-                    $t = explode(" ", $v['max(r.last_updated_on)']);
-                    if ($value['shift_date'] == $t[0]  && $value['start_time'] > $t[1] && $value['machine_id'] == $v['machine_id'] OR $value['shift_date'] > $t[0] && $value['machine_id'] == $v['machine_id']){
+                    $start_time_range =  strtotime($v['max(r.last_updated_on)']);
+                    if ($s_time_range_limit > $start_time_range && $value['machine_id'] == $v['machine_id']){
                         unset($production[$key]);
                     }
                 }
             }
-
-        
+    
             //Function return for qualityOpportunity graph........
             if ($graphRef == "qualityOpportunity") {
                 return $production;
@@ -199,14 +195,16 @@ class Production_Quality extends BaseController
 
     public function qualityOpportunity(){
 
+        log_message("info","\n\n production quality COPQP graph function calling !!");
+        $start_time_logger_COPQP = microtime(true);
         //Function call for production data............
         $ref = "qualityOpportunity";
 
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
 
-        // $fromTime = "2023-02-12T09:00:00";
-        // $toTime = "2023-02-28T21:00:00";
+        // $fromTime = "2023-06-13T12:00:00";
+        // $toTime = "2023-06-19T11:00:00";
 
         // $url = "http://localhost:8080/graph/qualityOpportunity/".$fromTime."/".$toTime."/";
         // $ch = curl_init($url);
@@ -217,13 +215,13 @@ class Production_Quality extends BaseController
 
         $qualityReason_filter = $this->Financial->qualityReason();
         $qualityReason = $this->request->getVar("reason");
-        // $qualityReason = ["3","4","5","6","7"];
+        // $qualityReason = ['4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25'];
 
         $ProductionData = $this->getDataRaw($ref,$fromTime,$toTime);
 
         $partDetails_filter = $this->Financial->getPartDetails();
         $partDetails = $this->request->getVar("part");
-        // $partDetails = ["PT1001","PT1002","PT1003","PT1004"];
+        // $partDetails = ['PT1001', 'PT1002', 'PT1003', 'PT1004', 'PT1005', 'PT1006', 'PT1007', 'PT1008', 'PT1009', 'PT1010', 'PT1011', 'PT1012', 'PT1013', 'PT1014', 'PT1015', 'PT1016', 'PT1017', 'PT1018', 'PT1019', 'PT1020', 'PT1021', 'PT1022', 'PT1023'];
 
         $machineDetails_filter = $this->Financial->getMachineDetails();
         $machineDetails = $this->request->getVar("machine");
@@ -237,7 +235,8 @@ class Production_Quality extends BaseController
                     $m=1;
                 }
             }
-            if ($m==1) {
+            if ($m==1) { 
+
                 if (trim($value['reject_reason']) !="" or trim($value['reject_reason']) !=null) {
                     $reasons =  explode("&&", $value['reject_reason']);
                     foreach ($reasons as $count) {
@@ -253,6 +252,8 @@ class Production_Quality extends BaseController
                 unset($ProductionData[$k]);
             }
         }
+
+
 
         // Part wise quality reason........
         $QualityAvailabilityData=[];
@@ -345,6 +346,12 @@ class Production_Quality extends BaseController
         $result['Total']=$ReasonWiseTotal;
 
         $out = $this->selectionSortQualityOpp($result,sizeof($result['Total']));
+
+        $end_time_logger_COPQP = microtime(true);
+        $execution_time_logger_copqp = ($end_time_logger_COPQP - $start_time_logger_COPQP);
+        log_message("info","production quality copqp function execution duration is :\t".$execution_time_logger_copqp);
+
+
         echo json_encode($out);
     }
 
@@ -384,6 +391,9 @@ class Production_Quality extends BaseController
     }
 
     public function qualityOpportunitypartsreason(){
+
+        log_message("info","\n\nproduction quality CQRP graph function calling !!");
+        $start_time_logger_CQRP = microtime(true);
 
         //Function call for production data............
         $ref = "qualityOpportunity";
@@ -508,6 +518,12 @@ class Production_Quality extends BaseController
         $result['Total']=$total;
 
         $out = $this->selectionSortQualityPartsReason($result,sizeof($result['Total']));
+
+        $end_time_logger_CQRP = microtime(true);
+        $execution_time_logger_cqrp = ($end_time_logger_CQRP - $start_time_logger_CQRP);
+        log_message("info","prodcution quality cqrp graph function execution duration :\t".$execution_time_logger_cqrp);
+
+
         echo json_encode($out);
         // echo "<pre>";
         // print_r($out);
@@ -571,6 +587,9 @@ class Production_Quality extends BaseController
     }
 
     public function qualityOpportunityparts(){
+
+        log_message("info","\n\n production quality qualityOpportunityparts grpah function calling !!");
+        $start_time_logger_qualityOpportunityparts = microtime(true);
 
         //Function call for production data............
         $ref = "qualityOpportunity";
@@ -659,6 +678,12 @@ class Production_Quality extends BaseController
         $result['GrandTotal']=$totalPart;
 
         $out = $this->selectionSortQualityParts($result,sizeof($result['Part']));
+
+        $end_Time_logger_qualityOpportunityparts = microtime(true);
+        $execution_time_logger_qualityOpportunityparts = ($end_Time_logger_qualityOpportunityparts - $start_time_logger_qualityOpportunityparts);
+        log_message("info","production quality qualityOpportunityparts graph execution duration is :\t".$execution_time_logger_qualityOpportunityparts);
+
+
         echo json_encode($out);
         // echo "<pre>";
         // print_r($out);
@@ -693,6 +718,9 @@ class Production_Quality extends BaseController
     }
 
     public function qualityOpportunityRejectionWise(){
+
+        log_message("info","\n\n Production quality QRBR graph function calling !!");
+        $start_time_logger_QRBR = microtime(true);
 
         //Function call for production data............
         $ref = "qualityOpportunity";
@@ -777,6 +805,11 @@ class Production_Quality extends BaseController
         $result['GrandTotal']=$GrandTotal;
 
         $out = $this->selectionSortQualityRejection($result,sizeof($result['Reason']));
+
+        $end_time_logger_QRBR = microtime(true);
+        $execution_time_logger_QRBR = ($end_time_logger_QRBR - $start_time_logger_QRBR);
+        log_message("info","production quality QRBR graph execution duration is :\t".$execution_time_logger_QRBR);
+
         echo json_encode($out);
     }
 
@@ -817,6 +850,9 @@ class Production_Quality extends BaseController
     }
 
     public function qualityOpportunityMachine(){
+
+        log_message("info","\n\nproduction quality graph COPQM function calling !!");
+        $start_time_logger_COPQM = microtime(true);
 
         //Function call for production data............
         $ref = "qualityOpportunity";
@@ -905,6 +941,12 @@ class Production_Quality extends BaseController
         $result['GrandTotal']=$GrandTotal;
 
         $out = $this->selectionSortByMachine($result,sizeof($result['Machine']));
+
+        $end_time_logger_COPQM = microtime(true);
+        $execution_time_logger_COPQM = ($end_time_logger_COPQM - $start_time_logger_COPQM);
+        log_message("info","production quality COPQM graph execution duration is :\t".$execution_time_logger_COPQM);
+
+
         echo json_encode($out);
     }
 
@@ -953,6 +995,9 @@ class Production_Quality extends BaseController
     public function qualityOpportunityMachineReason(){
 
         //Function call for production data............
+        log_message("info","\n\n production quality module CRBMR graph function calling !!");
+        $start_time_logger_CRBMR = microtime(true);
+
         $ref = "qualityOpportunity";
 
         $fromTime = $this->request->getVar("from");
@@ -1065,6 +1110,10 @@ class Production_Quality extends BaseController
        $out = $this->selectionSortByMachineReason($result,sizeof($result['Total']));
         // echo"<pre>";
         // print_r($result);
+        $end_time_logger_CRBMR = microtime(true);
+        $execution_time_logger_CRBMR = ($end_time_logger_CRBMR - $start_time_logger_CRBMR);
+        log_message("info","production quality grpah CRBMR execution duraiton is :\t".$execution_time_logger_CRBMR);
+
 
         echo json_encode($out);
     }
@@ -1130,10 +1179,19 @@ class Production_Quality extends BaseController
     public function getfilterdata()
     {
         if ($this->request->isAJAX()) {
+
+            log_message("info","\n\n Production Quality Module Dropdown function calling!!");
+            $start_time_drp_logger = microtime(true);
+
             $arr['Part'] = $this->Financial->getPartDetailsFilter();
             $arr['Machine'] = $this->Financial->getMachineDetailsFilter();
             $arr['Reason'] = $this->Financial->getQualityReasonDetails();
             $arr['Created_By'] = $this->User->getCreatedByDetails();
+
+            $end_time_drp_logger = microtime(true);
+            $execution_time_drp_logger = ($end_time_drp_logger - $start_time_drp_logger);
+            log_message("info","production quality module dropdown function duration is:\t".$execution_time_drp_logger);
+
             echo json_encode($arr);
         }
     }
@@ -1141,15 +1199,30 @@ class Production_Quality extends BaseController
 
     public function gettablefilterdata(){
         if ($this->request->isAJAX()) {
+      
+            log_message("info","\n\nprodcution quality module table function calling!!");
+            $start_time_table_logger = microtime(true);
+
+            $fdate = explode("T",$this->request->getVar('from'));
+            $tdate = explode("T", $this->request->getVar('to'));
+            $fromdate = $fdate[0]." ".$fdate[1];
+            $todate = $tdate[0]." ".$tdate[1];
             $arr['part'] = $this->request->getVar('part');
             $arr['machine'] = $this->request->getVar('machine');
             $arr['user'] = $this->request->getVar('user');
             $arr['reason'] = $this->request->getVar('reason');
+            $arr['from_date'] = $fdate[0];
+            $arr['to_date'] = $tdate[0];
+
 
             // $arr['machine'] = ['MC1001','MC1002','MC1003','MC1004'];
             // $arr['part'] = ['PT1001', 'PT1002','PT1003','PT1004','PT1005','PT1006','PT1007','PT1008','PT1009'];
             // $arr['user'] = ['UM1002','UM1001'];
             // $arr['reason'] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14'];
+            // $arr['from_date'] = "2023-06-01";
+            // $arr['to_date'] = "2023-06-22";
+            // $fromdate = "2023-06-01 09:00:00";
+            // $todate = "2023-06-22 10:00:00";
 
 
             $ProductionData = $this->Financial->getProductionDetailsFilter($arr);
@@ -1159,49 +1232,61 @@ class Production_Quality extends BaseController
             $ProductionDataExpand = [];
             foreach ($ProductionData as $value) {
                 // Machine Filter.......
-                if (in_array($value['machine_id'], $arr['machine'])) {
-                    // Part Filter/
-                    if (in_array($value['part_id'], $arr['part'])) {
-                        if (trim($value['reject_reason']) !="" or trim($value['reject_reason']) !=null) {
-                            $reasons =  explode("&&", $value['reject_reason']);
-                            foreach ($reasons as $count) {
-                                $tt = explode("&", $count);
-                                $total = $tt[0];
-                                //$temp = explode($total, $count);
-                                $temp = $tt[1];
-                                // Rejection reason and Last updated by filter......
-                                if (in_array($temp, $arr['reason'])){ 
-                                    if(in_array($value['last_updated_by'], $arr['user'])) {
-                                        $dr = $temp;
-                                        $un = $value['last_updated_by'];
-                                        foreach ($reasonData as $r) {
-                                            if ($r['quality_reason_id'] == $temp) {
-                                                $dr = $r['quality_reason_name'];    
+                $shift_stime = $value['shift_date']." ".$value['start_time'];
+                // $shift_etime = $value['shift_date']." ".$value['start_time']; 
+                if ($shift_stime>=$fromdate && $shift_stime<=$todate) {
+                    if (in_array($value['machine_id'], $arr['machine'])) {
+                        // Part Filter/
+                        if (in_array($value['part_id'], $arr['part'])) {
+                            if (trim($value['reject_reason']) !="" or trim($value['reject_reason']) !=null) {
+                                $reasons =  explode("&&", $value['reject_reason']);
+                                foreach ($reasons as $count) {
+                                    $tt = explode("&", $count);
+                                    $total = $tt[0];
+                                    //$temp = explode($total, $count);
+                                    $temp = $tt[1];
+                                    // Rejection reason and Last updated by filter......
+                                    if (in_array($temp, $arr['reason'])){ 
+                                        if(in_array($value['last_updated_by'], $arr['user'])) {
+                                            $dr = $temp;
+                                            $un = $value['last_updated_by'];
+                                            foreach ($reasonData as $r) {
+                                                if ($r['quality_reason_id'] == $temp) {
+                                                    $dr = $r['quality_reason_name'];    
+                                                }
                                             }
-                                        }
-
-                                        foreach ($userData as $u) {
-                                            if ($u['user_id'] == $value['last_updated_by']) {
-                                                $un = $u['first_name']." ".$u['last_name'];    
+    
+                                            foreach ($userData as $u) {
+                                                if ($u['user_id'] == $value['last_updated_by']) {
+                                                    $un = $u['first_name']." ".$u['last_name'];    
+                                                }
                                             }
+    
+                                            $time = strtotime($value['shift_date']);
+                                            $time_stamp = strtotime($value['last_updated_on']);
+                                            $tmp = array("machine_id"=>$value['machine_id'],"part_id"=>$value['part_id'],"reject_count"=>$total,"reject_reason"=>$temp,"total_reject"=>$total,"from_time"=>$value['start_time'],"to_time"=>$value['end_time'],"from_date"=>date('d M y',$time),"updated_by"=>$value['last_updated_by'],"updated_at"=>date('d M y, h:i',$time_stamp),"part_name"=>$value['part_name'],"machine_name"=>$value['machine_name'],"reason_name"=>$dr,"user_name" => $un);
+                                            array_push($ProductionDataExpand, $tmp);
                                         }
-
-                                        $time = strtotime($value['shift_date']);
-                                        $time_stamp = strtotime($value['last_updated_on']);
-                                        $tmp = array("machine_id"=>$value['machine_id'],"part_id"=>$value['part_id'],"reject_count"=>$total,"reject_reason"=>$temp,"total_reject"=>$total,"from_time"=>$value['start_time'],"to_time"=>$value['end_time'],"from_date"=>date('d M y',$time),"updated_by"=>$value['last_updated_by'],"updated_at"=>date('d M y, h:i',$time_stamp),"part_name"=>$value['part_name'],"machine_name"=>$value['machine_name'],"reason_name"=>$dr,"user_name" => $un);
-                                        array_push($ProductionDataExpand, $tmp);
                                     }
                                 }
                             }
                         }
                     }
                 }
+              
             }
 
             // echo sizeof($ProductionDataExpand);
             // echo "<pre>";
             // print_r($ProductionDataExpand);
+                // $tmp['arr'] = $arr;
+                // $tmp['fdate'] = $fromdate;
+                // $tmp['todate'] = $todate;
 
+            $end_time_table_logger = microtime(true);
+            $execution_time_table_logger = ($end_time_table_logger - $start_time_table_logger);
+            log_message("info","production quality table function execution duration is :\t".$execution_time_table_logger);
+            
             echo json_encode($ProductionDataExpand);
         }
     }

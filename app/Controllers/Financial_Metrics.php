@@ -14,16 +14,28 @@ class Financial_Metrics extends BaseController
     } 
     
     public function getOverallTarget(){
+        log_message("info","\n\n financial oee drill down  metrics overall function calling !!");
+        $start_time_logger_overall = microtime(true);
+
         $Targets =  $this->Financial->getGoalsFinancialData();
+
+        $end_time_logger_overall = microtime(true);
+        $execution_time_logger_overall = ($start_time_logger_overall - $end_time_logger_overall);
+        log_message("info","\n\n financial oee drill down metrics overall function duration is:\t".$execution_time_logger_overall);
+
+
         return json_encode($Targets);
     }
 
     public function OverallOEETarget(){
+        log_message("info","\n\n financial oee drill down  metrics overalltarget function calling !!");
+        $start_time_logger_overall_target = microtime(true);
+
         $ref="Overall";
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
-        // $fromTime = "2022-12-18T09:00:00";
-        // $toTime = "2022-12-18T21:00:00";
+        // $fromTime = "2023-05-16T09:00:00";
+        // $toTime = "2023-05-16T21:00:00";
 
         // $url = "http://localhost:8080/graph/overallMonitoringValues/".$fromTime."/".$toTime."/";
         // $ch = curl_init($url);
@@ -36,6 +48,11 @@ class Financial_Metrics extends BaseController
         // $end_time = microtime(true);
         // $execution_time = ($end_time - $start_time);
         // echo " Execution time of script = ".$execution_time." sec";
+        $end_time_logger_overall_target = microtime(true);
+        $execution_time_logger_overall_target = ($end_time_logger_overall_target - $start_time_logger_overall_target);
+        log_message("info","current shift performance overall target function duration is :\t".$execution_time_logger_overall_target);
+
+
         echo json_encode($Overall);
     }
 
@@ -85,6 +102,16 @@ class Financial_Metrics extends BaseController
 
             // Date Filte for PDM Reason Mapping Data........
             $len_id = sizeof($getOfflineId);
+            $s_time_range_limit =  strtotime($FromDate." ".$FromTime);
+            $e_time_range_limit =  strtotime($ToDate." ".$ToTime);
+
+            // foreach ($getOfflineId as $key => $v) {
+            //     if ($v['machine_id'] == "MC1001") {
+            //         echo "<pre>";
+            //         print_r($v);
+            //     }
+            // }
+
             foreach ($output as $key => $value) {
                 $check_no = 0;
                 for($i=0;$i<$len_id;$i++){
@@ -99,26 +126,25 @@ class Financial_Metrics extends BaseController
                         unset($output[$key]);
                     }
                     else{
-                        if ($value['shift_date'] == $FromDate && $value['start_time'] <= $FromTime && $value['end_time'] >= $FromTime) {
+                        $s_time_range =  strtotime($value['shift_date']." ".$value['start_time']);
+                        $e_time_range =  strtotime($value['shift_date']." ".$value['end_time']);
+
+                        if ($s_time_range <= $s_time_range_limit && $e_time_range >= $s_time_range_limit) {
                             $output[$key]['start_time'] = $FromTime;
-                            if ($value['end_time']>= $ToTime) {
+                            if ($e_time_range >= $e_time_range_limit) {
                                 $output[$key]['end_time'] = $ToTime;
                             }
                             $output[$key]['split_duration'] = $this->getDuration($value['calendar_date']." ".$output[$key]['start_time'],$value['calendar_date']." ".$output[$key]['end_time']);
                         }
-                        else if (($value['shift_date'] == $ToDate && $value['start_time']>=$value['end_time']) || $value['shift_date'] == $ToDate && $value['end_time'] >= $ToTime) {
+                        else if ($s_time_range < $e_time_range_limit && $e_time_range > $e_time_range_limit) {
                             $output[$key]['end_time'] = $ToTime;
                             $output[$key]['split_duration'] = $this->getDuration($value['calendar_date']." ".$output[$key]['start_time'],$value['calendar_date']." ".$output[$key]['end_time']);
                         }
                         else{
-                            if ($value['shift_date'] == $FromDate  && strtotime($value['start_time']) < strtotime($FromTime)){
+                            if ($e_time_range <= $s_time_range_limit){
                                 unset($output[$key]);
                             }
-                            if ($value['shift_date'] == $FromDate  && $value['start_time'] >= $ToTime){
-                                unset($output[$key]);
-                            }
-
-                            if ($value['shift_date'] == $ToDate  && strtotime($value['start_time']) > strtotime($ToTime)) {
+                            if ($s_time_range >= $e_time_range_limit){
                                 unset($output[$key]);
                             }
                         }
@@ -126,8 +152,8 @@ class Financial_Metrics extends BaseController
                         //For remove the current data of inactive machines.........
                         foreach ($getInactiveMachine as $v) {
                             $t = explode(" ", $v['max(r.last_updated_on)']);
-
-                            if ($value['shift_date'] >= $t[0]  && $value['start_time'] > $t[1] && $value['machine_id'] == $v['machine_id']){
+                            $start_time_range =  strtotime($v['max(r.last_updated_on)']);
+                            if ($s_time_range_limit > $start_time_range && $value['machine_id'] == $v['machine_id']){
                                 unset($output[$key]);
                             }
                         }
@@ -141,35 +167,33 @@ class Financial_Metrics extends BaseController
                     unset($getAllTimeValues[$key]);
                 }
                 else{
-                    if ($value['shift_date'] == $FromDate && $value['start_time'] <= $FromTime && $value['end_time'] >= $FromTime) {
+                    $s_time_range =  strtotime($value['shift_date']." ".$value['start_time']);
+                    $e_time_range =  strtotime($value['shift_date']." ".$value['end_time']);
+
+                    if ($s_time_range <= $s_time_range_limit && $e_time_range >= $s_time_range_limit) {
                         $getAllTimeValues[$key]['start_time'] = $FromTime;
-                        if ($value['end_time']>= $ToTime) {
+                        if ($e_time_range >= $e_time_range_limit) {
                             $getAllTimeValues[$key]['end_time'] = $ToTime;
                         }
                         $getAllTimeValues[$key]['duration'] = $this->getDuration($value['calendar_date']." ".$getAllTimeValues[$key]['start_time'],$value['calendar_date']." ".$getAllTimeValues[$key]['end_time']);
                     }
-                    else if (($value['shift_date'] == $ToDate && $value['start_time']>=$value['end_time']) || $value['shift_date'] == $ToDate && $value['end_time'] >= $ToTime) {
+                    else if ($s_time_range < $e_time_range_limit && $e_time_range > $e_time_range_limit) {
                         $getAllTimeValues[$key]['end_time'] = $ToTime;
                         $getAllTimeValues[$key]['duration'] = $this->getDuration($value['calendar_date']." ".$getAllTimeValues[$key]['start_time'],$value['calendar_date']." ".$getAllTimeValues[$key]['end_time']);
                     }
                     else{
-                        if ($value['shift_date'] == $FromDate  && $value['start_time'] < $FromTime){
+                        if ($e_time_range <= $s_time_range_limit){
                             unset($getAllTimeValues[$key]);
                         }
-                        if ($value['shift_date'] == $ToDate  && strtotime($value['end_time']) > strtotime($ToTime)) {
-                            unset($getAllTimeValues[$key]);
-                        }
-
-                        if ($value['shift_date'] == $FromDate  && $value['start_time'] >= $ToTime){
+                        if ($s_time_range >= $e_time_range_limit){
                             unset($getAllTimeValues[$key]);
                         }
                     }
 
                     //For remove the current data of inactive machines.........
                     foreach ($getInactiveMachine as $v) {
-                        $t = explode(" ", $v['max(r.last_updated_on)']);
-
-                        if ($value['shift_date'] >= $t[0]  && $value['start_time'] > $t[1] && $value['machine_id'] == $v['machine_id']){
+                        $start_time_range =  strtotime($v['max(r.last_updated_on)']);
+                        if ($s_time_range_limit > $start_time_range && $value['machine_id'] == $v['machine_id']){
                             unset($getAllTimeValues[$key]);
                         }
                     }
@@ -178,24 +202,29 @@ class Financial_Metrics extends BaseController
 
             // Filter for Production Info Table Data..........
             foreach ($production as $key => $value) {   
-                if ($value['shift_date'] == $FromDate  && $value['start_time'] < $FromTime) {
+                $s_time_range =  strtotime($value['shift_date']." ".$value['start_time']);
+                $e_time_range =  strtotime($value['shift_date']." ".$value['end_time']);
+                
+                if ($s_time_range < $s_time_range_limit) {
                     unset($production[$key]);
                 }
-                if ($value['shift_date'] == $FromDate  && $value['start_time'] >= $ToTime){
-                        unset($production[$key]);
-                    }
+                if ($e_time_range >= $e_time_range_limit){
+                    unset($production[$key]);
+                }
 
-                if (strtotime($value['shift_date']) == strtotime($ToDate)  && ($value['start_time']) >= ($ToTime)) {
-                    unset($production[$key]);
-                }
                 //For remove the current data of inactive machines.........
                 foreach ($getInactiveMachine as $v) {
-                    $t = explode(" ", $v['max(r.last_updated_on)']);
-                    if ($value['shift_date'] == $t[0]  && $value['start_time'] > $t[1] && $value['machine_id'] == $v['machine_id'] OR $value['shift_date'] > $t[0] && $value['machine_id'] == $v['machine_id']){
+                    $start_time_range =  strtotime($v['max(r.last_updated_on)']);
+                    if ($s_time_range_limit > $start_time_range && $value['machine_id'] == $v['machine_id']){
                         unset($production[$key]);
                     }
                 }
             }
+
+            // foreach ($output as $v) {
+            //     echo "<pre>";
+            //     print_r($v);
+            // }
 
             //Downtime reasons data ordering.....
             $MachineWiseDataRaw = $this->storeData($output,$machine,$part);
@@ -509,6 +538,10 @@ class Financial_Metrics extends BaseController
 
     public function getMachineWiseOEE(){
 
+        log_message("info","\n\n financial foee drill down machine wise oee");
+        $start_time_logger_machine_oee = microtime(true);
+
+
         $ref = "MachinewiseOEE";
 
         // $fromTime = "2022-12-18T09:00:00";
@@ -573,6 +606,12 @@ class Financial_Metrics extends BaseController
         $graphData['OEETarget'] = $OEETarget;
 
         $out = $this->selectionSortOEE($graphData,sizeof($graphData['OEE']));
+
+        $end_time_logger_machine_oee = microtime(true);
+        $execution_time_logger_machine_oee = ($end_time_logger_machine_oee - $start_time_logger_machine_oee);
+        log_message("info","financial oee drill down machine wise oee function duration is :\t".$execution_time_logger_machine_oee);
+
+
         echo json_encode($out);
     }
 
@@ -683,7 +722,7 @@ class Financial_Metrics extends BaseController
                             $st[0]=$st[0]/sizeof($part_count);
                             if (sizeof($st) > 1) {
                                 $st[1]=$st[1]/sizeof($part_count);
-                            }   
+                            }
 
                             $noplan = trim($DTR['downtime_reason']);
                             $noplan = strtolower(str_replace(" ","",$noplan));
@@ -821,6 +860,10 @@ class Financial_Metrics extends BaseController
     }
 
     public function getAvailabilityReasonWise(){
+        log_message("info","\n\n financial oee drill down availability reason wise function calling !!");
+        $start_time_logger_availability = microtime(true);
+
+
         $ref = "AvailabilityReasonWise";
 
         // $fromTime = "2022-12-18T09:00:00";
@@ -969,6 +1012,12 @@ class Financial_Metrics extends BaseController
         
         //sorting in desending order......
         $out = $this->selectionSortAvailability($res,sizeof($res['total']));
+
+        $end_time_logger_availability = microtime(true);
+        $execution_time_logger_availability = ($end_time_logger_availability - $start_time_logger_availability);
+        log_message("info","\n\n financial oee drill down availability duration is :\t".$execution_time_logger_availability);
+
+
         echo json_encode($out);   
     }
     public function selectionSortAvailability($arr, $n)
@@ -1030,6 +1079,9 @@ class Financial_Metrics extends BaseController
     public function qualityOpportunity(){
 
         //Function call for production data............
+        log_message("info","financial oee drill down quality opportunity graph function calling !!");
+        $start_time_logger_quality = microtime(true);
+
         $ref = "qualityOpportunity";
 
         $fromTime = $this->request->getVar("from");
@@ -1139,6 +1191,12 @@ class Financial_Metrics extends BaseController
         $result['Total']=$ReasonWiseTotal;
 
         $out = $this->selectionSortQualityOpp($result,sizeof($result['Total']));
+
+        $end_time_logger_quality = microtime(true);
+        $execution_time_logger_quality = ($start_time_logger_quality - $end_time_logger_quality);
+        log_message("info","financial oee drill down quality graph function duration is :\t".$execution_time_logger_quality);
+
+
         echo json_encode($out);
     }
 
@@ -1189,6 +1247,9 @@ class Financial_Metrics extends BaseController
 
     public function performanceOpportunity(){
         
+        log_message("info","\n\n financial oee drill down performance opportunity graph function calling !!");
+        $start_time_logger_performance_oppcost= microtime(true);
+
         $ref = "PerformanceOpportunity";
 
         $fromTime = $this->request->getVar("from");
@@ -1310,6 +1371,11 @@ class Financial_Metrics extends BaseController
 
         //sorting in desending order......
         $out = $this->selectionSortQuality($res,sizeof($res['Total']));
+
+        $end_time_logger_performance_oppcost= microtime(true);
+        $execution_time_logger_performance_oppcost = ($end_time_logger_performance_oppcost - $start_time_logger_performance_oppcost);
+        log_message("info","financial metrics performance opportunity duraiton is :\t".$execution_time_logger_performance_oppcost);
+
  
         echo json_encode($out);
     }
@@ -1367,6 +1433,10 @@ class Financial_Metrics extends BaseController
     }
 
     public function plopportunity(){
+
+        log_message("info","\n\n financial metrics oppcost ploppcost grpah function calling !!");
+        $start_time_logger_ploppcost = microtime(true);
+
         $ref = "PLOpportunity";
 
         $fromTime = $this->request->getVar("from");
@@ -1480,11 +1550,21 @@ class Financial_Metrics extends BaseController
         $out['unplannedDuration']=(floatval($UnplannedDuration));
         $out['performanceDuration']=(floatval($PerformanceDuration));
         $out['qualityDuration']=(floatval($QualityDuration));
+
+        $end_time_logger_ploppcost = microtime(true);
+        $execution_time_logger_ploppcost = ($end_time_logger_ploppcost - $start_time_logger_ploppcost);
+        log_message("info","financial metrics opportunity graph function diration is :\t".$execution_time_logger_ploppcost);
+
+
         echo json_encode($out);
     }
 
 
     public function machineplopportunity(){
+
+        log_message("info","\n\n financial metrics machine_wise_pl_oppcost graph function calling !!");
+        $start_time_logger_machine_ploppcost = microtime(true);
+
         $ref = "PLOpportunity";
 
         $fromTime = $this->request->getVar("from");
@@ -1650,6 +1730,12 @@ class Financial_Metrics extends BaseController
         //sorting in desending order......
         $out = $this->selectionSort($out,sizeof($out['total']));
         $out['grand_total'] = (int)$GrantTotalPL;
+
+        $end_time_logger_machine_ploppcost = microtime(true);
+        $execution_time_logger_machine_oppcost = ($end_time_logger_machine_ploppcost - $start_time_logger_machine_ploppcost);
+        log_message("info","financial metrics machine wise ploppcost duration is :\t".$execution_time_logger_machine_oppcost);
+
+
         echo json_encode($out);
     }
 
@@ -1724,6 +1810,10 @@ class Financial_Metrics extends BaseController
 
 
     public function partplopportunity(){
+
+        log_message("info","\n\n financial matrics part wise ploppcost");
+        $start_time_part_wise_ploppcost = microtime(true);
+
         $ref = "PartPLOpportunity";
 
         $fromTime = $this->request->getVar("from");
@@ -1874,6 +1964,11 @@ class Financial_Metrics extends BaseController
         $out = $this->selectionSortPL($out,sizeof($out['data']));
         $out['total'] = (int)$GrandTotal;
 
+        $end_time_part_wise_ploppcost = microtime(true);
+        $execution_time_part_wise_ploppcost = ($end_time_part_wise_ploppcost - $start_time_part_wise_ploppcost);
+        log_message("info"," financial metrics part wise pl oppcost function duration is :\t ".$execution_time_part_wise_ploppcost);
+
+
         echo json_encode($out);
 
     }
@@ -1929,6 +2024,10 @@ class Financial_Metrics extends BaseController
 
 
     public function opportunityTrendDay(){
+
+        log_message("info","\n\n financial metrics opportunity trend day function calling !!");
+        $start_time_opp_trend = microtime(true);
+
         $ref = "OpportunityTrendDay";
 
         $fromTime = $this->request->getVar("from");
@@ -2091,6 +2190,12 @@ class Financial_Metrics extends BaseController
         // print_r($opportunityTrendDay);
         $out['data']=$opportunityTrendDay;
         $out['grand_total'] = (int)$GrantTotalPL;
+
+        $end_time_opp_trend = microtime(true);
+        $execution_time_opp_trend = ($end_time_opp_trend - $start_time_opp_trend);
+        log_message("info","financial metrics opportunity trend function duration is :\t".$execution_time_opp_trend);
+
+
         echo json_encode($out);
 
     }
@@ -2172,6 +2277,9 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days,$noplan=false)
     }
 
     public function oeeTrendDay(){
+        log_message("info","\n\n financial metrics oee drill down oee trend function calling !!");
+        $start_time_logger_oee_trend = microtime(true);
+
         $ref = "OpportunityTrendDay";
 
         $fromTime = $this->request->getVar("from");
@@ -2349,10 +2457,18 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days,$noplan=false)
             array_push($data,$t);
         }
         $out = $data;
+
+        $end_time_logger_oee_trend = microtime(true);
+        $execution_time_logger_oee_trend = ($end_time_logger_oee_trend - $start_time_logger_oee_trend);
+        log_message("info","financial metrics oee drill down oee trend duration is :\t".$execution_time_logger_oee_trend);
+
         echo json_encode($out);
     }
 
     public function opportunitydrilldown(){
+
+        log_message("info","\n\n financial metrics opportunity drill down graph functin calling !!");
+        $start_time_opp_drill_down = microtime(true);
 
         $totalvalues=[];
         $totalreasons=[];
@@ -2697,6 +2813,12 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days,$noplan=false)
         $out['Duration'] = $durationTotal;
         
         $res = $this->selectionSortDrillDown($out,sizeof($totalreasons));
+
+        $end_time_opp_drill_down = microtime(true);
+        $execution_time_opp_drill_down = ($end_time_opp_drill_down - $start_time_opp_drill_down);
+        log_message("info","financial metrics function opportunity drill down duration is :\t".$execution_time_opp_drill_down);
+
+
         echo json_encode($res);
     }
 

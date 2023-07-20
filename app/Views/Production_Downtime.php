@@ -107,7 +107,7 @@
     }
     .doneEdit img{
       position: absolute;
-      top: 20%;
+      top: 15%;
       left: 17%;
     }
     /*.split_input:nth-child(1) #settings_div div div .delete-split{
@@ -288,8 +288,8 @@ input[type=number] {
 
 /* filter button hovering style */
 .filterbtnstyle:hover{
-  color:white;
-  background-color:#005abc;
+  color:var(--save_btn_font_color);
+  background-color:var(--save_btn_hover_background_color);
   opacity: 0.9;
 
 }
@@ -299,8 +299,8 @@ input[type=number] {
   top:19rem;
   left:4.6rem;
   right:0;
-  background-color:white;
-  z-index:1000;
+  background-color:var(--save_btn_font_color);
+  z-index:101;
   position: fixed;
   /* margin-top:8rem; */
   display:flex;
@@ -375,7 +375,7 @@ input[type=number] {
     border: 1px #dadada solid;
     z-index:2000;
     position: absolute;
-    background:white;
+    background:var(--save_btn_font_color);
     /* padding:0.4rem; */
     border-radius:0.25rem;
     min-width:8.7rem;
@@ -418,6 +418,7 @@ input[type=number] {
     padding-right:0.5rem;
     justify-content:center;
     align-items:center;
+    height:2rem;
   }
   .cate_drp_check{
     width:20%;
@@ -452,7 +453,7 @@ input[type=number] {
     border: 1px #dadada solid;
     z-index:2000;
     position: absolute;
-    background:white;
+    background:var(--save_btn_font_color);
     /* padding:0.4rem; */
     border-radius:0.25rem;
     min-width:8.7rem;
@@ -476,6 +477,7 @@ input[type=number] {
     padding-right:0.5rem; */
     justify-content:center;
     align-items:center;
+    height:2rem;
   }
   .reason_drp_check{
     width:20%;
@@ -564,69 +566,65 @@ input[type=number] {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.14.0/jquery.timepicker.js" integrity="sha512-v84GNWs/NREzyztDm0s2NCXR9tIXH4aD/pe3uktyJeCWICr+/J38obdjXx1wxPRzTXHY54Hf0zBD5fbuRSNvGw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- timepicker end -->
 
-<div style="margin-left: 4.5rem;">
-        <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav">
-          <div class="container-fluid paddingm" style="margin-top:0.2rem;">
-            <p class="float-start p3" id="logo">Downtime</p>
+<div class="mr_left_content_sec">
+      <nav class="sec_nav display_f align_c justify_c sec_nav_c navbar-expand-lg">
+        <div class="container-fluid paddingm display_f justify_sb align_c">
+          <p class="float-start fnt_fam mdl_header">Downtime</p>
             <div class="d-flex">
-                    <p class="float-end stcode" style="color:#005CBC;font-size:1rem; ">
-                        <span  id="machineOFFTotal">00</span> Machine OFF
-                    </p>
-                    <p class="float-end stcode" style="color: #C00000;font-size:1rem;">
-                        <span  id="UnnamedTotal">00</span> Unnamed
-                    </p>
-              </div>
-          </div>
-        </nav>
-        <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav_downtime">
-          <div class="container-fluid paddingm " style="margin-top:2.2rem;">
-              <div>
-                <span class="float-start paddingm labelAlign center-align p4"><div class="labelGraph" style="background: #01bb55"></div><p class="paddingm p3">Active</p></span>
-                <span class="float-start paddingm labelAlign center-align  p4"><div class="labelGraph" style="background: #005abc"></div><p class="paddingm p3">Inactive</p></span>
-                <span class="float-start paddingm labelAlign center-align p4"><div class="labelGraph" style="background: #595959"></div><p class="paddingm p3">Machine OFF</p></span>
-                <!-- <span class="float-start paddingm labelAlign center-align p4"><div class="labelGraph1" style="background: #f2f2f2"></div><p class="paddingm p3">No Data</p></span> -->
-                <span class="float-start paddingm labelAlign center-align p4"><div class="labelGraph" style="background: #f2f2f2"></div><p class="paddingm p3">No Data</p></span>
-              </div>
-              <div class="d-flex innerNav">
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
-                        <div class="input-box">
-                            <select class="form-select font_weight" name="" id="Production_MachineName" style="width: 10rem;">
-                            </select>
-                            <label for="inputSiteNameAdd" class="input-padding ">Machine Name</label>
-                        </div>
-                    </div>
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
-                        <div class="input-box">
-                            <!-- <input  type="date" class="form-control font_weight" name="" id="Production_shift_date" style="width: 10rem;"> -->
-                            <input type="datepicker" class="form-control font_weight datepicker" id="Production_shift_date" style="width: 10rem;" placeholder="dd-mm-yyyy" autocomplete="off">
-                            <label for="inputSiteNameAdd" class="input-padding ">Shift Date</label>
-                        </div>
-                    </div>
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
-                        <div class="input-box">
-                            <select class="form-select font_weight" name="" id="RejectShift" style="width: 10rem;">
-                             <!--  <option value="1">shift1</option>
-                              <option value="2">shift2</option> -->
-                            </select>
-                            <label for="inputSiteNameAdd" class="input-padding ">Shift</label>
-                        </div>
-                    </div> 
-              </div>
-          </div>
-        </nav>
-      <br>
-      <br>
+                  <p class="float-end fnt_fam style_label active_click fnt_active">
+                      <span  id="machineOFFTotal">0</span>Machine OFF 
+                  </p>
+                  <p class="float-end fnt_fam style_label fnt_inactive">
+                      <span  id="UnnamedTotal">0</span>Unnamed
+                  </p>
+            </div>
+        </div>
+      </nav>
 
-        <!-- Downtime Graph -->
-        <div class="chart-div" style="position:fixed;left:4.5rem;right:0;background-color:white;z-index:150;">
-          <div id="chart"></div>
-          <div class="text-label-graph" style="width: 50%;float: left;">
-            <p  id="shift_start_time_label" class="startTimeVal"></p>
+      <nav class="inner_nav inner_nav_c display_f align_c justify_sb navbar-expand-lg">
+        <div class="container-fluid paddingm display_f justify_sb align_c">
+          <div>
+            <span class="float-start paddingm labelAlign display_f justify_c align_c"><div class="labelGraph active_bg"></div><p class="paddingm p3">Active</p></span>
+            <span class="float-start paddingm labelAlign  display_f justify_c align_c"><div class="labelGraph inactive_bg"></div><p class="paddingm p3">Inactive</p></span>
+            <span class="float-start paddingm labelAlign  display_f justify_c align_c"><div class="labelGraph machine_off_bg"></div><p class="paddingm p3">Machine OFF</p></span>
+            <span class="float-start paddingm labelAlign  display_f justify_c align_c"><div class="labelGraph offline_bg"></div><p class="paddingm p3">No Data</p></span>
           </div>
-          <div class="text-label-graph-end" style="width: 50%;float: left;">
-            <p  id="shift_end_time_label" class="endTimeVal"></p>
+          <div class="d-flex innerNav">
+            <div class="box display_f align_c" style="margin-right: 0.5rem;">
+              <div class="input-box">
+                  <select class="form-select font_weight select_input_width input_padd" name="" id="Production_MachineName" style="width: 10rem;">
+                  </select>
+                  <label for="inputSiteNameAdd" class="input-padding ">Machine Name</label>
+              </div>
+            </div>
+            <div class="box display_f align_c" style="margin-right: 0.5rem;">
+              <div class="input-box">
+                  <input type="datepicker" class="form-control select_input_width input_padd font_weight datepicker" id="Production_shift_date" style="width: 10rem;" placeholder="dd-mm-yyyy" autocomplete="off">
+                  <label for="inputSiteNameAdd" class="input-padding ">Shift Date</label>
+              </div>
+            </div>
+            <div class="box display_f align_c" style="margin-right: 0.5rem;">
+              <div class="input-box">
+                  <select class="form-select select_input_width input_padd font_weight" name="" id="RejectShift" style="width: 10rem;">
+                  </select>
+                  <label for="inputSiteNameAdd" class="input-padding ">Shift</label>
+              </div>
+            </div>
+                 
           </div>
         </div>
+      </nav>
+
+      <!-- Downtime Graph -->
+      <div class="chart-div po_fixed bg_white" style="left:4.5rem;right:0;z-index:101;">
+        <div id="chart"></div>
+        <div class="text-label-graph" style="width: 50%;float: left;">
+          <p  id="shift_start_time_label" class="startTimeVal"></p>
+        </div>
+        <div class="text-label-graph-end" style="width: 50%;float: left;">
+          <p  id="shift_end_time_label" class="endTimeVal"></p>
+        </div>
+      </div>
 
         <!-- filter option bulg edit -->
         <!-- filter downtime -->
@@ -812,13 +810,19 @@ input[type=number] {
                   <div class="col-sm-1 p3 paddingm">
                     <p class="basic_header">CATEGORY</p>
                   </div>
-                  <div class="col-sm-2 p3 paddingm" style="width:15%;">
+                  <div class="col-sm-2 p3 paddingm reason_header" style="width:15%;">
                     <p class="basic_header">REASON</p>
                   </div>
-                  <div class="col-sm-2 p3 paddingm" style="width:15%;">
+                  <!-- target header -->
+                  <div class="col-sm-2 p3 paddingm target_header" style="width:10%;display:none;">
+                    <p class="basic_header" style="margin:auto;margin-block-start:revert;margin-top:1rem;">Target</p>
+                  </div>
+                  <!-- target header end -->
+
+                  <div class="col-sm-2 p3 paddingm tool_name_header" style="width:15%;">
                     <p class="basic_header">TOOL NAME</p>
                   </div>
-                  <div class="col-sm-2 p3 paddingm" style="width:15%;">
+                  <div class="col-sm-2 p3 paddingm part_name_header" style="width:15%;">
                     <p class="basic_header">PART NAME</p>
                   </div>
                   <div class="col-sm-2 p3 paddingm" style="justify-content: center;width:15%;">
@@ -964,6 +968,9 @@ function filter_show_hide(){
   $('.edit_display4').css('display','inline');
   $('.doneEdit').css('display','none');
   $('.reasonInfo').css('display','inline');
+
+  target_input_function_handle("remove",0);
+
 }
 
 // reset category dropdwon
@@ -1935,7 +1942,7 @@ $(document).on('change','#Production_shift_date',function(){
     var production_machine_name = $('#Production_MachineName').val();
     var production_shift_date = $('#Production_shift_date').val();
     // $('#RejectShift').empty();
-  
+    
     $('#chart').empty();
     $('#RejectShift').empty();
     $('.startTimeVal').css("display","none");
@@ -1984,6 +1991,7 @@ $(document).on('change','#Production_shift_date',function(){
   });
     //To find the current part in Machine...................
   findPart(production_shift_date);
+ 
 });
 
 function findPart(production_shift_date){
@@ -2056,7 +2064,7 @@ $(document).on('change','#RejectShift',function(){
   var dateShift = new Date(shift_date_1);
     shift_date = dateShift.getFullYear()+'-'+((dateShift.getMonth() > 8) ? (dateShift.getMonth() + 1) : ('0' + (dateShift.getMonth() + 1))) + '-' + ((dateShift.getDate() > 9) ? dateShift.getDate() : ('0' + dateShift.getDate()));
 
-// Line hiding for checking..
+  // Line hiding for checking..
   // var tmp = shift_date_1.split("/");
   // var shift_date = ""+tmp[2]+"-"+tmp[0]+"-"+tmp[1]+"";
   
@@ -2094,7 +2102,7 @@ $(document).on('change','#RejectShift',function(){
     
     var category_tmp = null;
     downtime_reason_filter(category_tmp);
-
+    target_input_function_handle("remove",0);
 
     // $('.category_drp_checkbox').attr('checked',true);
 
@@ -2249,6 +2257,7 @@ $(document).on("click", ".deleteRec", function(){
       var elements = $();
       var id = 0;
       $('.DownReason:eq('+index_value+')').empty();
+      target_input_function_handle("remove",0);
       // console.log(down_reason_collection);
       down_reason_collection.forEach(function(item){
         if (val == item[1]) {
@@ -2293,7 +2302,7 @@ $(document).on("click", ".deleteRec", function(){
       var index_value = count.index($(this));
       for (var i = 1 ; i <= down_reason.length; i++) {
         if (i == val) {
-          $(this).siblings('.ReasonName').text(down_reason[i-1]);;
+          $(this).siblings('.ReasonName').text(down_reason[i-1]);
         }
       }
       if (val==2 || val==3) {
@@ -2302,6 +2311,9 @@ $(document).on("click", ".deleteRec", function(){
         $('.edit_input4:eq('+index_value+')').css("display","inline");
         $('.edit_display3:eq('+index_value+')').css("display","none");
         $('.edit_display4:eq('+index_value+')').css("display","none");
+        // target 
+        target_input_function_handle("add",index_value);
+      
         // document.getElementsByClassName('edit_input3')[index_value].style.display="inline";
         // document.getElementsByClassName('edit_input4')[index_value].style.display="inline";
         // document.getElementsByClassName('edit_display3')[index_value].style.display="none";
@@ -2313,6 +2325,10 @@ $(document).on("click", ".deleteRec", function(){
         $('.edit_input4:eq('+index_value+')').css("display","none");
         $('.edit_display3:eq('+index_value+')').css("display","inline");
         $('.edit_display4:eq('+index_value+')').css("display","inline");
+
+        // target display none
+        target_input_function_handle("remove",0);
+        
         // document.getElementsByClassName('edit_input3')[index_value].style.display="none";
         // document.getElementsByClassName('edit_input4')[index_value].style.display="none";
         // document.getElementsByClassName('edit_display3')[index_value].style.display="inline";
@@ -2466,14 +2482,17 @@ $(document).on("click", ".deleteRec", function(){
                   +'</select>'
                   +'<p class="paraEdit ReasonName edit_display2" id="ReasonName">'+reason+'</p>'
                 +'</div>'
-                +'<div class="col-sm-2 col marleft" style="width:14.8%;">'
+                +'<div class="col-sm-2 col marleft Downtime_target" style="width:10%;display:none;padding:0.3rem;">'
+                +'<input type="text" class="form-control target_input_cl" id="target_input" style="width:100%;" value="0">'
+                +'</div>'
+                +'<div class="col-sm-2 col marleft downtime_tool_name_div" style="width:14.8%;">'
                   +'<select class="form-select inEditValue marginlr DownTool edit_input3 font-size">'
                       // +'<option>Tool Name1</option>'
                       // +'<option>Tool Name2</option>'
                   +'</select>'
                   +'<p class="paraEditValue  edit_display3 ToolName">'+toolName+'</p>'
                 +'</div>'
-                +'<div class="col-sm-2 col marleft" style="width:14.9%;">'
+                +'<div class="col-sm-2 col marleft downtime_part_name_div" style="width:14.9%;">'
 
                   // +'<select class="form-select inEditValue marginlr DownPart edit_input4 font-size">'
                   //     // +'<option>Part Name1</option>'
@@ -2761,7 +2780,7 @@ function getDownTimeGraph(){
                     },
                     events:{
                       click:function(event, chartContext, config){
-
+                        target_input_function_handle("remove",0);
                         var l_l = config.globals.series.length;
 
                         var production_shift_date = $('#Production_shift_date').val();
@@ -3339,6 +3358,9 @@ $(document).on('click','.doneEdit',function(){
       var category = document.getElementsByClassName('DownCategoryValue')[index].value;
       var reason = document.getElementsByClassName('DownReasonValue')[index].value;
       var toolname = document.getElementsByClassName('DownTool')[index].value;
+      var target = document.getElementsByClassName('target_input_cl')[index].value;
+      console.log(target);
+      console.log("top target input");
       // var partname = document.getElementsByClassName('DownPart')[index].value;
 
       // one tool multi part
@@ -3367,6 +3389,7 @@ $(document).on('click','.doneEdit',function(){
     // console.log(calendar_array);
 
     // Ajax function for update particular splitted value in database
+    
     $.ajax({
       url: "<?php echo base_url('PDM_controller/updateDownGraph'); ?>",
       type: "POST",
@@ -3378,7 +3401,8 @@ $(document).on('click','.doneEdit',function(){
           DurationArray:data_array,
           Data:dataArray,
           split_arr:split_ref,
-          date_array:calendar_array
+          date_array:calendar_array,
+          target:target,
       },
       success:function(res_Site){
         // console.log(res_Site);
@@ -3409,6 +3433,7 @@ $(document).on('click','.doneEdit',function(){
         $("#overlay").fadeOut(300);
       }
     });
+    
 });
 
   $(document).on('change','.sval',function(){
@@ -4530,5 +4555,30 @@ function notes_submit(){
 //   alert('hi');
 // });
 
+
+// target input ui display visibility control function 
+function target_input_function_handle(var_str,index_value){
+  if (var_str==="add") {
+    $('.target_header').css('display','inline');
+    $('.reason_header').css('width','11%');
+    $('.tool_name_header').css('width','13.4%');
+    $('.part_name_header').css('width','13.4%');
+    $('.DownReasonDiv:eq('+index_value+')').css("width",'11%');
+    $('.Downtime_target:eq('+index_value+')').css('display','inline');
+    $('.downtime_part_name_div:eq('+index_value+')').css("width",'13.2%');
+    $('.downtime_tool_name_div:eq('+index_value+')').css("width",'13.4%');
+    $('.action_div:eq('+index_value+')').css('width','14%');
+  }else if(var_str==="remove"){
+    $('.target_header').css('display','none');
+    $('.reason_header').css('width','15%');
+    $('.tool_name_header').css('width','15%');
+    $('.part_name_header').css('width','15%');
+    $('.DownReasonDiv').css("width",'15%');
+    $('.Downtime_target').css('display','none');
+    $('.downtime_part_name_div').css("width",'14.8%');
+    $('.downtime_tool_name_div').css("width",'14.8%');
+    $('.action_div').css('width','18%');
+  }
+}
 
 </script>

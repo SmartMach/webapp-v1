@@ -18,7 +18,7 @@ class Production_Downtime_Model extends Model{
                     'DSN'      => '',
                     'hostname' => 'localhost',
                     'username' => 'root',
-                    'password' => '',                    
+                    'password' => 'quantanics123',                    
                     // 'database' => 's1002',
                     'database' => ''.$db_name.'',
                     'DBDriver' => 'MySQLi',
@@ -281,7 +281,7 @@ class Production_Downtime_Model extends Model{
         $db = \Config\Database::connect($this->site_connection);
         $query = $db->table('settings_downtime_reasons');
         // $query->select('DISTINCT(downtime_reason),downtime_reason_id');
-        $query->select('DISTINCT(downtime_reason)');
+        $query->select('DISTINCT(downtime_reason),downtime_reason_id');
         $query->orderBy('downtime_reason','ASC');
         $res = $query->get()->getResultArray();
         return $res;    
@@ -300,27 +300,29 @@ class Production_Downtime_Model extends Model{
 
 
     // filter function
-    public function single_arr_filter($from_date,$to_date,$created_arr,$name){
+    public function single_arr_filter($from_date,$to_date){
         $db = \Config\Database::connect($this->site_connection);
 	    $query = $db->table('pdm_downtime_reason_mapping as t');
 	    $query->select('t.machine_event_id,t.machine_id,t.downtime_reason_id,t.tool_id,t.part_id,t.shift_date,t.start_time,t.end_time,t.split_duration,t.calendar_date,r.downtime_category,r.downtime_reason,t.Shift_id,t.last_updated_on,t.notes,t.last_updated_by');
         $query->where('t.shift_date >=',$from_date);
         $query->where('t.shift_date <=',$to_date);
-        if ($name==="created_by") {
-            $query->WhereIn('t.last_updated_by',$created_arr);
-        }
-        elseif ($name==="category") {
-            // $getreasons_arr = $this->getreason_arr_category($created_arr[0]);
-            $query->where('r.downtime_category',$created_arr[0]);
-        }
-        elseif ($name==="reasons") {
-            $query->WhereIn('r.downtime_reason',$created_arr);
-        }
-        elseif ($name==="machine") {
-            $query->WhereIn('t.machine_id',$created_arr);
-        }
+        // if ($name==="created_by") {
+        //     $query->WhereIn('t.last_updated_by',$created_arr);
+        // }
+        // elseif ($name==="category") {
+        //     // $getreasons_arr = $this->getreason_arr_category($created_arr[0]);
+        //     $query->where('r.downtime_category',$created_arr[0]);
+        // }
+        // elseif ($name==="reasons") {
+        //     $query->WhereIn('r.downtime_reason',$created_arr);
+        // }
+        // elseif ($name==="machine") {
+        //     $query->WhereIn('t.machine_id',$created_arr);
+        // }
       
 	    $query->join('settings_downtime_reasons as r', 'r.downtime_reason_id = t.downtime_reason_id');
+        $query->orderBy('t.shift_date','ASC');
+        $query->orderBy('t.start_time','ASC');
 	    $res= $query->get()->getResultArray();
 	    return $res;
     }

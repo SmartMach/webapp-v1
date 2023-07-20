@@ -1,9 +1,5 @@
 <head>
-    <!-- Google Chart link -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css"> -->
-    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script> -->
-    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>     -->
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/model.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/main.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/financial_metrics.css?version=<?php echo rand() ; ?>">
@@ -13,7 +9,13 @@
     <!-- Datetimepicker -->
     <script src="<?php echo base_url(); ?>/assets/js/datetimepicker.js?version=<?php echo rand() ; ?>"></script>
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/jquery.datetimepicker.min.css?version=<?php echo rand() ; ?>">
+
+    <!-- Pre Loader -->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/standard/pre-loader.css?version=<?php echo rand() ; ?>">
+
     <script src="<?php echo base_url(); ?>/assets/js/jquery.datetimepicker.js?version=<?php echo rand() ; ?>"></script>
+
+
       <style>
         #area-chart,
         #line-chart,
@@ -23,10 +25,6 @@
           min-height: 250px;
         }
 
-        .fontBold{
-          font-weight: bold;
-          margin-top:0.8rem;
-        }
         .graphCardMain{
           padding: 10px;
         }
@@ -43,17 +41,8 @@
           display: inline-flex;
           align-items: center;
         }
-        .valueGraph{
-          font-size: 1.5rem;
-          font-weight: bold;
-          color: #004b9b;
-        }
-        .valueMarLeft{
-          margin-left: 5px;
-        }
-        .divMarLeft{
-          margin-left: 1rem;
-        }
+
+        
         .val{
           font-size: 1.7rem;
           font-weight: bold;
@@ -78,23 +67,6 @@
           transition: 0.15s ease all;
         }
 
-        .centerAlign{
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 2rem;
-        }
-        .centerAlignLable{
-          display: flex;
-          justify-content: start;
-          align-items: center;
-          height: 2rem;
-        }
-        .leftMargin{
-          margin-left: 2rem;
-          margin-top:0.9rem;
-          margin-bottom:0.6rem;
-        }
         .triangleDraw {
           width: 0;
           height: 0;
@@ -134,29 +106,16 @@
         .lableSpace{
           margin-right: 0.5rem;
         }
-        .divSpace{
-          margin-right: 1.5rem;
-        }
 
         .fontStyle{
           font-size: 12px;
           color: #595959;
           font-family: 'Roboto', sans-serif;
         }
-        .financial_font{
-          font-weight: 689;
-          font-family: 'Roboto' , sans-serif;
-          color: #A6A6A6;
-          font-size: 1rem;
-          opacity: 0.7;
-          margin-left: 1.1rem;
-          /* margin-top:1.3rem; */
-        }
         .financial_text_center{
 
           display: flex;
           align-items: center;
-          /* text-align: center; */
           justify-content: start;
 
         }
@@ -182,43 +141,6 @@
         .financial_drill_down_graph_bottom{
             margin-bottom:0.6rem;
         }
-
-        /* scroll graph css */
-        /* machine wise oee graph css */
-        /*.parent_graph_machine_wise_oee{
-          overflow-x:scroll;
-          overflow-y:hidden;
-          margin-left:1rem;
-          margin-right:1rem;
-          height:22rem;
-        }*/
-
-        /* availability opportunity */
-        /*.parent_graph_availability_opportunity{
-          overflow-x:scroll;
-          overflow-y:hidden;
-          margin-left:1rem;
-          margin-right:1rem;
-          height:22rem;
-        }*/
-
-        /* quality opportunity */
-        /*.parent_graph_quality_opportunity{
-          overflow-x:scroll;
-          overflow-y:hidden;
-          margin-left:1rem;
-          margin-right:1rem;
-          height:22rem;
-        }*/
-
-        /* performance opportunity */
-        /*.parent_graph_performance_opportunity{
-          overflow-x:scroll;
-          overflow-y:hidden;
-          margin-left:1rem;
-          margin-right:1rem;
-          height:22rem;
-        }*/
 
         /* oee trend graph css */
         .parent_graph_oee_trend{
@@ -294,36 +216,6 @@
           width: 10px;
           background-color: rgb(242,242,242);
         }
-
-
-        /*#avalabilityOpportunity{
-          max-height:21.5rem;
-        }
-        #machine_wise_OEE{
-          max-height:21.5rem;
-        }
-        #performanceOpportunity{
-          max-height:21.4rem;
-        }
-        #qualityOpportunity{
-          max-height:21.4rem;
-        }
-        #OEETrend{
-          max-height:21rem;
-        }*/
-
-/*
-      ::-webkit-scrollbar{
-        width: 0.8rem !important;
-      }
-      ::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-        border-radius: 10px;
-      }
-      ::-webkit-scrollbar-thumb {
-        border-radius: 10px;
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-      }*/
 
       #title_overall{
         color:#596365;
@@ -408,34 +300,35 @@
 </script>
 </head>
 
-<div style="margin-left: 4.5rem;">
-        <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav">
-          <div class="container-fluid paddingm">
-            <p class="float-start" id="logo">OEE Financial Drill Down</p>
+<div class="mr_left_content_sec">
+        <nav class="sec_nav display_f align_c justify_c sec_nav_c navbar-expand-lg">
+          <div class="container-fluid paddingm display_f justify_sb align_c">
+            <p class="float-start fnt_fam mdl_header">OEE Financial Drill Down</p>
               <div class="d-flex">
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
+                    <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
                         <div class="input-box">
-                          <!-- <input type="date" name="" class="form-control fromDate" id="from"> -->
                           <input type="text" class="form-control fromDate" value="2022-08-23" step="1">
-                          <!-- <input type="datetime-local" class="form-control" value="2013-10-24T10:00:00" step="1"> -->
                           <label for="inputSiteNameAdd" class="input-padding ">From Date</label>
                         </div>
                     </div>
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
+                    <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
                         <div class="input-box">
-                          <!-- <input type="date" name="" class="form-control toDate"> -->
                           <input type="text" class="form-control toDate" value="" step="1">
                           <label for="inputSiteNameAdd" class="input-padding ">To Date</label>
                         </div>
+                    </div>
+                    <!-- overal apply filter button -->
+                    <div class="box rightmar" style="margin-right:0.5rem;display:flex;flex-direction:row;align-items:center;justify-content:center;">
+                      <button type="button" class="apply_fitler_overall_btn" style="height:2.2rem;padding:5px 25px;border:1px solid transparent;border-radius:0.25rem;background-color:#005abc;color:white;font-size:15px;font-weight:500;opacity:1;cursor:pointer;">Apply Filter</button>
                     </div>
               </div>
           </div>
         </nav>
 
-        <div class="OuterCard bodercss" style="margin-top:4.5rem;">
+        <div class="OuterCard bodercss">
         	<div class="flex-container">
         		<div style="width: 25%" class="graphCard">
-        			<p class="financial_font">OVERALL TEEP%</p>
+        			<p class="graph_lable_header fnt_fam">OVERALL TEEP%</p>
         			<div style="width: 100%;max-width: 100%;" class="graphCardFLayer hoverCardTEEP">
         				<div style="width: 0%;max-width: 100%;" class="graphCardSLayer center-align" id="ViewOverallTEEP">
 	        			</div>
@@ -468,7 +361,7 @@
               </div>
         		</div>
         		<div style="width: 25%" class="graphCard bodercss">
-        			<p class="financial_font">OVERALL OOE%</p>
+        			<p class="graph_lable_header fnt_fam">OVERALL OOE%</p>
         			<div style="width: 100%;max-width: 100%;" class="graphCardFLayer hoverCardOOE">
         				<div style="width: 0%;max-width: 100%;" class="graphCardSLayer center-align" id="ViewOverallOOE">
         				</div>
@@ -501,7 +394,7 @@
               </div>
         		</div>
         		<div style="width: 25%" class="graphCard bodercss">
-        			<p class="financial_font">OVERALL OEE%</p>
+        			<p class="graph_lable_header">OVERALL OEE%</p>
         			<div style="width: 100%;max-width: 100%;" class="graphCardFLayer hoverCardOEE">
         				<div style="width: 0%;max-width: 100%;" class="graphCardSLayer center-align" id="ViewOverallOEE">
         				</div>
@@ -535,12 +428,11 @@
         		</div>
         	</div>
         </div>
-        <!-- the graph header is remove for madhan sir instruction for tell him  the before class is graph_header -->
         <div class="OuterCard graphCardMain">
           <div class="card bodercss" style="width: 80%">
               <nav class="navbar navbar-expand-lg">
               <div class="container-fluid paddingm">
-                <p class="float-start fontBold financial_font" id="">MACHINE-WISE OEE% BREAKDOWN</p>
+                <p class="float-start graph_lable_header graph_lable_header_top fnt_fam" id="">MACHINE-WISE OEE% BREAKDOWN</p>
                   <div class="d-flex">
                         <!-- <div class="rightmar">
                           <select class="form-select" name="" id="" style="width: 10rem;">
@@ -559,18 +451,18 @@
               </div>
             </div> 
 
-            <div class="centerAlignLable leftMargin">
-              <div class="divSpace centerAlign">
-                <p class="paddingm centerAlign fontStyle"><span class="recDraw lableSpace paddingm">.</span><span id="graph_machine_agenda">Machine OEE%</span></p>
+            <div class="display_f graph_lable">
+              <div class="divSpace display_f justify_c align_c">
+                <p class="paddingm display_f justify_c align_c fontStyle"><span class="recDraw lableSpace paddingm">.</span><span id="graph_machine_agenda">Machine OEE%</span></p>
               </div>
-              <div class="divSpace">
-                <p class="paddingm centerAlign fontStyle"><span class="triangleDraw lableSpace paddingm"></span><span id="graph_machine_agenda">Availability%</span></p>
+              <div class="divSpace display_f justify_c align_c">
+                <p class="paddingm display_f justify_c align_c fontStyle"><span class="triangleDraw lableSpace paddingm"></span><span id="graph_machine_agenda">Availability%</span></p>
               </div>
-              <div class="divSpace">
-                <p class="paddingm centerAlign fontStyle"><span class="squareDraw lableSpace paddingm">.</span><span id="graph_machine_agenda">Performance%</span></p>
+              <div class="divSpace display_f justify_c align_c">
+                <p class="paddingm display_f justify_c align_c fontStyle"><span class="squareDraw lableSpace paddingm">.</span><span id="graph_machine_agenda">Performance%</span></p>
               </div>
-              <div class="divSpace">
-                <p class="paddingm centerAlign fontStyle"><span class="circleDraw lableSpace paddingm">.</span><span id="graph_machine_agenda">Quality%</span></p>
+              <div class="divSpace display_f justify_c align_c">
+                <p class="paddingm display_f justify_c align_c fontStyle"><span class="circleDraw lableSpace paddingm">.</span><span id="graph_machine_agenda">Quality%</span></p>
               </div>
             </div>  
           </div>
@@ -579,7 +471,7 @@
           <div class="card bodercss" style="width: 80%">
               <nav class="navbar navbar-expand-lg">
               <div class="container-fluid paddingm">
-                <p class="float-start fontBold financial_font" id="">AVAILABILITY OPPORTUNITY</p>
+                <p class="float-start graph_lable_header graph_lable_header_top fnt_fam" id="">AVAILABILITY OPPORTUNITY</p>
                   <div class="d-flex">
                         <!-- <div class="rightmar">
                           <select class="form-select" name="" id="" style="width: 10rem;">
@@ -593,8 +485,8 @@
               </div>
             </nav> 
               <div class="divMarLeft">
-                <p class="paddingm headTitle">TOTAL</p>
-                <p class="paddingm valueGraph"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft TotalAvail"></span></p>
+                <p class="paddingm headTitle fnt_fam">TOTAL</p>
+                <p class="paddingm valueGraph"><i style="font-size:1.3rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft TotalAvail"></span></p>
               </div>
               <div class="parent_graph_availability_opportunity financial_drill_down_graph_bottom parent_div marginScroll">
                 <div class="child_div child_graph_availability_opportunity">
@@ -607,7 +499,7 @@
           <div class="card bodercss" style="width: 80%"> 
               <nav class="navbar navbar-expand-lg">
               <div class="container-fluid paddingm">
-                <p class="float-start fontBold financial_font" id="">PERFORMANCE OPPORTUNITY</p>
+                <p class="float-start graph_lable_header graph_lable_header_top fnt_fam" id="">PERFORMANCE OPPORTUNITY</p>
                   <div class="d-flex">
                         <!-- <div class="rightmar">
                           <select class="form-select" name="" id="" style="width: 10rem;"></select>
@@ -622,8 +514,8 @@
               </div>
             </nav> 
             <div class="divMarLeft">
-                <p class="paddingm headTitle">TOTAL</p>
-                <p class="paddingm valueGraph"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft PerformanceGrand"></span></p>
+                <p class="paddingm headTitle fnt_fam">TOTAL</p>
+                <p class="paddingm valueGraph"><i style="font-size:1.3rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft PerformanceGrand"></span></p>
             </div>
             <div class="parent_graph_performance_opportunity financial_drill_down_graph_bottom parent_div marginScroll">
               <div class="child_div child_graph_performance_opportunity">
@@ -636,7 +528,7 @@
           <div class="card bodercss" style="width: 80%">
             <nav class="navbar navbar-expand-lg">
               <div class="container-fluid paddingm">
-                <p class="float-start fontBold financial_font" id="">QUALITY OPPORTUNITY</p>
+                <p class="float-start graph_lable_header graph_lable_header_top fnt_fam" id="">QUALITY OPPORTUNITY</p>
                   <div class="d-flex">
                         <!-- <div class="rightmar">
                           <select class="form-select" name="" id="" style="width: 10rem;"></select>
@@ -651,8 +543,8 @@
               </div>
             </nav> 
             <div class="divMarLeft">
-                <p class="paddingm headTitle">TOTAL</p>
-                <p class="paddingm valueGraph" style="margin-left:0.4rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft OppCostTotal" ></span></p>
+                <p class="paddingm headTitle fnt_fam">TOTAL</p>
+                <p class="paddingm valueGraph" style="margin-left:0.4rem;"><i style="font-size:1.3rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft OppCostTotal" ></span></p>
             </div>
             <div class="parent_graph_quality_opportunity financial_drill_down_graph_bottom parent_div marginScroll">
               <div class="child_div child_graph_quality_opportunity">
@@ -665,7 +557,7 @@
           <div class="card bodercss" style="width: 80%">
               <nav class="navbar navbar-expand-lg">
               <div class="container-fluid paddingm">
-                <p class="float-start fontBold financial_font" id="">OEE TREND</p>
+                <p class="float-start graph_lable_header graph_lable_header_top fnt_fam" id="">OEE TREND</p>
                   <div class="d-flex">
                         <!-- <div class="rightmar">
                           <select class="form-select" name="" id="" style="width: 10rem;"></select>
@@ -684,6 +576,16 @@
           </div>
         </div>
 </div>
+
+<!-- preloader Start-->
+<div id="overlay">
+      <div class="cv-spinner">
+        <span class="spinner"></span>
+        <span class="loading">Awaiting Completion...</span>
+      </div>
+</div>
+<!-- preloader end -->
+
 
 <script type="text/javascript">
 
@@ -714,15 +616,42 @@ var tdate = now.getFullYear()+"-"+("0" + (parseInt(now.getMonth())+parseInt(1)))
 $('.toDate').val(fdate);
 $('.fromDate').val(tdate);
 
-myFun();
+
+// Pre-Loader On
+// $("#overlay").fadeIn(300);
+// setTimeout(myFun, 500);
+
+/* temporary hide for this function as per the madhan sir instruction
 $(document).on('blur','.fromDate',function(){
-  myFun();
+  // Pre-Loader On
+  $("#overlay").fadeIn(300);
+  setTimeout(myFun, 500);
+
 });
 $(document).on('blur','.toDate',function(){
-  myFun();
+  // Pre-Loader On
+  $("#overlay").fadeIn(300);
+  setTimeout(myFun, 500);
 });
-function myFun(){
 
+*/
+
+$(document).ready(function(){
+  // event.preventDefault();
+  $("#overlay").fadeIn(300);
+  setTimeout(myFun, 500);
+});
+
+// apply filter overall function
+$(document).on('click','.apply_fitler_overall_btn',function(event){
+  event.preventDefault();
+  $("#overlay").fadeIn(300);
+  setTimeout(myFun, 500);
+});
+
+
+function myFun(){
+        
     f = $('.fromDate').val();
     t = $('.toDate').val();
     if ((new Date(f) >= new Date(t)) || (t=="")) {
@@ -767,6 +696,9 @@ function myFun(){
       qualityOpportunity();
       performanceOpportunity();
       oeeTrendDay();
+
+  // Pre-Loader Off
+  $("#overlay").fadeOut(300);
 }
 
 //Target Values.......
@@ -795,15 +727,19 @@ $.ajax({
 //Overall TEEP,OOE,OEE.......
 //overallTarget();
 function overallTarget(){
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
-    f = f.replace(" ","T");
+  // Pre-Loader On
+  // $("#overlay").fadeIn(300);
+
+  f = $('.fromDate').val();
+  t = $('.toDate').val();
+  f = f.replace(" ","T");
   t = t.replace(" ","T");
   $.ajax({
     //OEE check....
     url: "<?php echo base_url('Financial_Metrics/OverallOEETarget'); ?>",
     type: "POST",
     dataType: "json",
+    async:false,
     data:{
       from:f,
       to:t
@@ -822,43 +758,26 @@ function overallTarget(){
       $('.oeeVal').html(res.Overall_OEE);
       $('.teepVal').html(res.Overall_TEEP);
 
-      // //Code for value get from Spring.....
-      // $('#viewTEEP').css('width',''+parseInt(res['TEEP'])+'%');
-      // $('#viewOOE').css('width',''+parseInt(res['OOE'])+'%');
-      // $('#viewOEE').css('width',''+parseInt(res['OEE'])+'%');
-      
-      // $('#valueTEEP').html(res['TEEP']);
-      // $('#valueOOE').html(res['OOE']);
-      // $('#valueOEE').html(res['OEE']);
-
-      // $('.ooeVal').html(res['OOE']);
-      // $('.oeeVal').html(res['OEE']);
-      // $('.teepVal').html(res['TEEP']);
-
-      // //Targets.....
-      // $('#ViewOverallTEEP').css('width',''+res['Target_TEEP']+'%');
-      // $('#ViewOverallOEE').css('width',''+res['Target_OEE']+'%');
-      // $('#ViewOverallOOE').css('width',''+res['Target_OOE']+'%');
-
-      // $('.teepTarget').html(res['Target_TEEP']);
-      // $('.oeeTarget').html(res['Target_OEE']);
-      // $('.ooeTarget').html(res['Target_OOE']);
-      // console.log(res);
+        // Pre-Loader Off
+        // $("#overlay").fadeOut(300);
     },
     error:function(res){
-        // alert("No Data Records!");
-        console.log("No Data Records!");
-        //$('#viewOEE').css('width','0%');
 
       $('#ViewOverallTEEP').css('width','0%');
       $('#ViewOverallOEE').css('width','0%');
       $('#ViewOverallOOE').css('width','0%');
+
+        // Pre-Loader Off
+        // $("#overlay").fadeOut(300);
     }
   });
 }
 
 //Machine Wise OEE......
 function machineWiseOEE() {
+  // Pre-Loader On
+  // $("#overlay").fadeIn(300);
+
   f = $('.fromDate').val();
   t = $('.toDate').val();
   f = f.replace(" ","T");
@@ -867,6 +786,7 @@ function machineWiseOEE() {
     url: "<?php echo base_url('Financial_Metrics/getMachineWiseOEE');?>",
     type: "POST",
     dataType: "json",
+    async:false,
     data:{
       from:f,
       to:t
@@ -1001,10 +921,14 @@ function machineWiseOEE() {
                 },
               },
               });  
+
+        // Pre-Loader Off
+        // $("#overlay").fadeOut(300);
     },
     error:function(res){
+        // Pre-Loader Off
+        // $("#overlay").fadeOut(300);
         // alert("No Data Records!");
-        console.log("No Data Records!");
     }
   });
   // return;
@@ -1095,6 +1019,10 @@ function machineWiseOEETooltip(context) {
 //Reason wise availability........
 //availabilityReason();
 function availabilityReason() {
+
+  // Pre-Loader On
+  // $("#overlay").fadeIn(300);
+
   f = $('.fromDate').val();
   t = $('.toDate').val();
   f = f.replace(" ","T");
@@ -1103,6 +1031,7 @@ function availabilityReason() {
     url: "<?php echo base_url('Financial_Metrics/getAvailabilityReasonWise'); ?>",
     type: "POST",
     dataType: "json",
+    async:false,
     data:{
       from:f,
       to:t
@@ -1236,10 +1165,13 @@ function availabilityReason() {
         },
       });
 
+        // Pre-Loader Off
+        // $("#overlay").fadeOut(300);
     },
     error:function(res){
+        // Pre-Loader Off
+        // $("#overlay").fadeOut(300);
         // alert("Sorry!Try Agian!!!!");
-        // console.log("Sorry!Try Agian!!!!");
     }
   }); 
 }
@@ -1328,6 +1260,9 @@ function availabilityOpp(context) {
 //Quality Opportunity........
 //qualityOpportunity();
 function qualityOpportunity() {
+  // Pre-Loader On
+  // $("#overlay").fadeIn(300);
+
   f = $('.fromDate').val();
   t = $('.toDate').val();
   f = f.replace(" ","T");
@@ -1336,6 +1271,7 @@ function qualityOpportunity() {
     url: "<?php echo base_url('Financial_Metrics/qualityOpportunity'); ?>",
     type: "POST",
     dataType: "json",
+    async:false,
     data:{
       from:f,
       to:t
@@ -1500,9 +1436,13 @@ function qualityOpportunity() {
               },
             },
           });
+
+          // Pre-Loader Off
+          // $("#overlay").fadeOut(300);
         },
     error:function(res){
-      // console.log("Sorry!Try Agian!!!!");
+        // Pre-Loader Off
+        // $("#overlay").fadeOut(300);
         // alert("Sorry!Try Agian!!!!");
     }
   }); 
@@ -1588,6 +1528,9 @@ function performanceOpportunity() {
   $('.child_graph_performance_opportunity').append('<canvas id="performanceOpportunity"><canvas>');
   $('.chartjs-hidden-iframe').remove();
 
+  // Pre-Loader On
+  // $("#overlay").fadeIn(300);
+
 
   f = $('.fromDate').val();
   t = $('.toDate').val();
@@ -1597,6 +1540,7 @@ function performanceOpportunity() {
     url: "<?php echo base_url('Financial_Metrics/performanceOpportunity'); ?>",
     type: "POST",
     dataType: "json",
+    async:false,
     data:{
       from:f,
       to:t
@@ -1718,8 +1662,13 @@ function performanceOpportunity() {
                 },
               },            
             });
+
+        // Pre-Loader Off
+        // $("#overlay").fadeOut(300);
     },
     error:function(res){
+        // Pre-Loader Off
+        // $("#overlay").fadeOut(300);
         // alert("Sorry!Try Agian!!!!");
     }
   }); 
@@ -1805,7 +1754,11 @@ function performanceOpp(context) {
     tooltipEl.style.pointerEvents = 'none';
 }
 
+
 function oeeTrendDay() {
+  // Pre-Loader On
+  // $("#overlay").fadeIn(300);
+
   f = $('.fromDate').val();
   t = $('.toDate').val();
   f = f.replace(" ","T");
@@ -1815,6 +1768,7 @@ function oeeTrendDay() {
         url: "<?php echo base_url('Financial_Metrics/oeeTrendDay'); ?>",
         type: "POST",
         dataType: "json",
+        async:false,
         data:{
           from:f,
           to:t
@@ -1885,9 +1839,15 @@ function oeeTrendDay() {
             maintainAspectRatio: false,   
             scales: {
                 y: {
-                    display:false,
+                    display:true,
                     beginAtZero:true,  
                     stacked:true,
+                    ticks:{
+                      callback:function(value){
+                        return value+"%";
+                      },
+                    }
+                    
                 },
                 x:{
                     display:true,
@@ -1909,9 +1869,14 @@ function oeeTrendDay() {
             },
           },
           });
+
+          // Pre-Loader Off
+          // $("#overlay").fadeOut(300);
         },
         error:function(res){
-            // alert("Sorry!Try Agian!!");
+          // Pre-Loader Off
+          // $("#overlay").fadeOut(300);
+          // alert("Sorry!Try Agian!!");
         }
     });
   }
@@ -1989,31 +1954,5 @@ function oeeTrendDay() {
     tooltipEl.style.pointerEvents = 'none';
 }
 
-
-  // $(document).ready(function(){
-  //     $.ajax({
-  //       url:"<?php echo base_url('Financial_Metrics/test_function') ?>",
-  //       method:"POST",
-  //       dataType:"json",
-  //       success:function(data){
-  //         alert(data);
-  //         console.log('checking data'+data[0].machine_id);
-  //       },
-  //       error:function(er){
-  //         alert(er);
-  //       }
-  //     });
-  // });
 </script>
 
-<script  type="text/javascript">
-
-
-
-/*var legend = myChart.generateLegend();
-document.getElementById("legend").innerHTML = legend; */
-
-
-
-
-</script>

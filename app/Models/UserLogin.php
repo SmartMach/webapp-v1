@@ -15,7 +15,7 @@ class UserLogin extends Model{
 
     //     return $login_password_encrypt;
     // }
-
+    
     public function verifyUser($user)
     {
         $db = \Config\Database::connect('another_db');

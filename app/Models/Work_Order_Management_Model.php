@@ -13,7 +13,7 @@ class Work_Order_Management_Model extends Model{
             'DSN'      => '',
             'hostname' => 'localhost',
             'username' => 'root',
-            'password' => '',
+            'password' => 'quantanics123',
             'database' => ''.$db_name.'',
             'DBDriver' => 'MySQLi',
             'DBPrefix' => '',
@@ -33,7 +33,7 @@ class Work_Order_Management_Model extends Model{
             'DSN'      => '',
             'hostname' => 'localhost',
             'username' => 'root',
-            'password' => '',
+            'password' => 'quantanics123',
             'database' => 'smartories_roof',
             'DBDriver' => 'MySQLi',
             'DBPrefix' => '',
@@ -62,7 +62,10 @@ class Work_Order_Management_Model extends Model{
         $db = \Config\Database::connect($this->site_connection_assignee);
         $query = $db->table('user');
         $query->select('user_id,first_name,last_name,site_id');
+        // if ($site != "smartories") {
         $query->where('site_id',$site);
+        $query->orWhere('site_id',"smartories");
+        // }
         $res = $query->get()->getResultArray();
         return $res;
     }
@@ -127,12 +130,23 @@ class Work_Order_Management_Model extends Model{
     public function updateWorkOrder($data,$ref){
         $db = \Config\Database::connect($this->site_connection);
 
-        if ($data['comment_id'] != "") {
+        if ($data['comment_id'] ==""){
             $query_get = $db->table('work_order_management');
             $query_get->select('*');
             $query_get->where('work_order_id',$ref);
             $res = $query_get->get()->getResultArray(); 
-            $data['comment_id'] = $res[0]['comment_id'].",".$data['comment_id'];
+            $data['comment_id'] = $res[0]['comment_id'];
+        }
+        else{
+            $query_get = $db->table('work_order_management');
+            $query_get->select('*');
+            $query_get->where('work_order_id',$ref);
+            $res = $query_get->get()->getResultArray(); 
+            if ($res[0]['comment_id'] == "") {
+                $data['comment_id'] = $data['comment_id'];
+            }else{
+                $data['comment_id'] = $res[0]['comment_id'].",".$data['comment_id'];
+            }
         }
 
         $query = $db->table('work_order_management');
@@ -196,6 +210,34 @@ class Work_Order_Management_Model extends Model{
         $query->orderBy('last_updated_on', 'DESC');
         $res = $query->get()->getResultArray();
         return $res;
+    }
+
+    public function update_comments_data($data){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('work_order_management');
+        $query->select('comment_id');
+        $query->where('work_order_id',$data['id']);
+        $res = $query->get()->getResultArray();
+
+        $val = "";
+        if ($res[0]['comment_id'] != "" || $res[0]['comment_id'] != NULL || strval($res[0]['comment_id']) != "undefined" ) {
+            $val = $res[0]['comment_id'].",".$data['comment_id'];
+        }else{
+            $val = $data['comment_id'];
+        }
+
+        $query1 = $db->table('work_order_management');
+        $query->set('comment_id',$val);
+        $query->where('work_order_id',$data['id']);
+        if ($query->update()) {
+            $query2 = $db->table('work_order_management');
+            $query2->select('*');
+            $query2->where('work_order_id',$data['id']);
+            $res1 = $query2->get()->getResultArray();
+            return $res1;
+        }else{
+            return false;
+        }
     }
 
     public function getActionId(){

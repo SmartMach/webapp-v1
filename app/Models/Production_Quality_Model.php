@@ -19,7 +19,7 @@ class Production_Quality_Model extends Model{
                     'DSN'      => '',
                     'hostname' => 'localhost',
                     'username' => 'root',
-                    'password' => '',
+                    'password' => 'quantanics123',
                     // 'database' => 's1002',
                     'database' => ''.$db_name.'',
                     'DBDriver' => 'MySQLi',
@@ -168,6 +168,8 @@ class Production_Quality_Model extends Model{
         // foreach($arr['part'] as $i => $m){
         //     $SFM->orWhere('part_id',$m);
         // }
+        $SFM->where('p.shift_date>=',$arr['from_date']);
+        $SFM->where('p.shift_date<=',$arr['to_date']);
         $SFM->join('settings_part_current as part', 'part.part_id = p.part_id');
         $SFM->join('settings_machine_current as m', 'm.machine_id = p.machine_id');
         $query = $SFM->get()->getResultArray();

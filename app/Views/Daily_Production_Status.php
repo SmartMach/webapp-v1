@@ -191,27 +191,25 @@
   
 </style>
 <div style="margin-left: 4.5rem;">
-        <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav">
+        <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav" style="z-index:98;">
           <div class="container-fluid paddingm">
             <p class="float-start" id="logo">Daily Production Status</p>
     
               <div class="d-flex" style="margin-top:0.5rem;">
                 <!-- calendar box -->
                   <div class="float-end " style="display:flex;flex-direction:row-reverse;">
-                    <!-- <div class="" style="display:flex;flex:wrap;flex-direction:row;padding:5px 10px 5px;padding-left:1px;">
-                      <i class="fa fa-calendar-alt date_selection_icon" style="color:#a6a6a6;align-self:center;padding-right:1rem;font-size:x-large;"></i> 
-                      <span style="color:grey;font-size:14px;text-align:center;margin:auto;margin-bottom:unset;margin-right:1.4rem;" id="change_date">2022-12-05</span>
-                    </div> -->
-                    <div class="fontuser" style="width:83%;">
-                        <input type="text" class="form-control container-input" id="changed_date">
-                        <i class="fa fa-calendar click_font" ></i>
+                   
+                    <div class="fontuser" style="width:100%;">
+                    <i class="fa fa-calendar click_font" style="position:absolute;z-index:100;margin-left:1rem;margin-top:0.7rem;"></i>
+                        <input type="text" class="form-control container-input" id="changed_date" style="position:relative;">
+                      
                     </div>
                   </div>
               </div>
           </div>
         </nav>
         <div class="tableContent paddingm" style="margin-top:4rem; padding-left:3px;padding-right:3px; ">
-            <div class="settings_machine_header sticky-top fixtabletitle" style="top:7.9rem;margin-bottom:0.3rem;">
+            <div class="settings_machine_header sticky-top fixtabletitle" style="top:7.9rem;margin-bottom:0.3rem;z-index:95;">
                 <div class="row paddingm">
                     <div class="col-sm-1 p3 paddingm" style="width:5.6%;">
                       <p class="basic_header" style="margin-left:0.7rem;">MACHINE </p>
@@ -314,19 +312,20 @@ $('#changed_date').datetimepicker({
     // document ready function its get color change for tpp record font color
     $(document).ready(function(){
         const current_date = getcurrent_date();
-        // console.log("current date"+current_date);
+        console.log("current date"+current_date);
         $('#changed_date').val(current_date);
         $("#overlay").fadeIn(300);
         load_allfiles();
+        console.log("after function calling");
         color_change_value();
     });
-
+    
       // get final json records
       function load_allfiles(){
             // $("#overlay").fadeIn(300);
             var date =$('#changed_date').val();
             $.ajax({
-                url:"<?php echo base_url('Daily_production_controller/getMachine_data') ?>",
+                url:"<?php echo base_url('Daily_production_controller/getMachine_data'); ?>",
                 method:"POST",
                 dataType:"json",
                 data:{
@@ -486,12 +485,14 @@ $('#changed_date').datetimepicker({
 
                           // part wise record alignment
                           $.each(res['Part_details'][k][k1],function(k2,v2){
+
                             var part_count_pershift = Object.keys(res['Part_details'][k][k1]).length;
-                            //console.log("part count pershift:\t"+part_count_pershift);
+                            console.log("part count pershift:\t"+res['Part_production_details'][k][k1][k2][0]);
+                            console.log(typeof res['Part_production_details'][k][k1][k2][0]);
                             var el = $();
                             var part_name = res['part_names'][k2][0];
                             var tool_name = res['part_names'][k2][1];
-                            var rejection = res['Part_production_details'][k][k1][k2][0];
+                            var trejection = res['Part_production_details'][k][k1][k2][0];
                             // percentage conditions 
                             var percentage = res['Part_production_details'][k][k1][k2][3].toFixed(1);
                             var tmp_percentage = 0;
@@ -512,14 +513,17 @@ $('#changed_date').datetimepicker({
 
 
                             // rejection count condition
-                            if (rejection === null) {
+                            if (trejection === null) {
                               rejection = 0;
+                            }else{
+                              rejection = parseInt(trejection);
                             }
                             var part_count_find = 0;
+                            console.log(part_count_pershift);
                             if (parseInt(part_count_pershift)>1) {
                               // multiple parts pershift
                               part_count_find = parseInt(part_count_find) +1;
-                             
+                             console.log("multiple parts");
                               el = el.add('<div class="row_'+k+'_'+k1+'" style="display:grid;gap:3px;"><div class="machine_header_production_status" style="width:100%;gird-column:1;display:flex;min-height:7rem;">'
                                 +'<div class="mar_right" style="width:12%;margin-block:auto;display:flex;flex-direction:column;padding:0.3rem;">'
                                   +'<p id="partname_pds" title="'+part_name+'" style="margin-bottom:0;">'+part_name +'</p>'
@@ -554,6 +558,7 @@ $('#changed_date').datetimepicker({
                              
                               
                             }else{
+                              console.log("single parts");
                               // single parts per shift
                               el = el.add('<div class="machine_header_production_status row_'+k+'_'+k1+'" style="width:100%;display:flex;min-height:7rem;">'
                               +'<div class="mar_right" style="width:11.89%;margin-block:auto;display:flex;flex-direction:column;padding:0.3rem;">'
@@ -743,6 +748,7 @@ $('#changed_date').datetimepicker({
       var y = current_date.getFullYear();
       var today_date = y+"-"+m+"-"+d;
 
+      // return "2023-06-10";
       return today_date;
     }
 

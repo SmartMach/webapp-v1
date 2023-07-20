@@ -14,7 +14,68 @@
 
 <!-- style css -->
 <style>
+  .hoverOverall{
+    background-color: white;
+    border-radius: 5px 5px 5px 5px;
+    z-index: 1400;
+    position: absolute;
+    border: 0.5px solid #d9d9d9;
+    padding: 0.5rem;
+    color: #979a9a;
+    font-size: 0.8rem;
+    font-weight:500;
+    max-width:13rem;
+    min-width: 12rem; 
+    margin-top: 0.2rem;
+    opacity: 100%;
+    font-family: 'Roboto', sans-serif;
+  }
+  .hoverOverallOOE{
+    display: none;
+  }
+  .hoverOverallOEE{
+    display: none;
+  }
+  .hoverOverallTEEP{
+    display: none;
+  }
 
+  .hoverCardOOE:hover + .hoverOverallOOE{
+    display: block;
+  }
+  .hoverCardOEE:hover + .hoverOverallOEE{
+    display: block;
+  }
+  .hoverCardTEEP:hover + .hoverOverallTEEP{
+    display: block;
+  }
+  .center-align-div{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin-right:0.5rem;
+  }
+  .overallTargetDiv{
+    height: 10px;
+    width: 10px;
+    background-color: rgb(179,215,255);
+  }
+  .overallValueDiv{
+    height: 10px;
+    width: 10px;
+    background-color: rgb(0,74,155);
+  }
+  .overallDiv{
+    height: 10px;
+    width: 10px;
+    background-color: rgb(242,242,242);
+  }
+  .graph_font{
+    color: white;
+    margin-left: 0.3rem;
+  }
 </style>
 
 
@@ -96,25 +157,28 @@ $session = \Config\Services::session();
 <br>
 
 <div style="margin-left: 4.5rem;margin-top:1rem; overflow-x:hidden;overflow-y:scroll;">
-    <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav" style="position:fixed;margin-top:0;width:94.5%;">
+    <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav" style="position:fixed;margin-top:0;width:94.5%;z-index:98;">
         <div class="container-fluid paddingm">
             <p class="float-start" id="logo">OEE Drill Down</p>
             <div class="d-flex">
                
-                <div class="box rightmar" style="margin-right: 0.5rem;">
-                    <div class="input-box">
+                <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
+                    <div class="input-box" style="width:12rem;">
                         <!-- <input type="date" name="" class="form-control fromDate" id="from"> -->
-                        <input type="text" class="form-control fromDate" value="" step="1">
+                        <input type="text" class="form-control fromDate" value="" step="1" style="width:100%;">
                         <!-- <input type="datetime-local" class="form-control" value="2013-10-24T10:00:00" step="1"> -->
                         <label for="inputSiteNameAdd" class="input-padding ">From DateTime</label>
                     </div>
                 </div>
-                <div class="box rightmar" style="margin-right: 0.5rem;">
-                    <div class="input-box">
+                <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
+                    <div class="input-box" style="width:12rem;">
                         <!-- <input type="date" name="" class="form-control toDate"> -->
-                        <input type="text" class="form-control toDate" value="" step="1">
+                        <input type="text" class="form-control toDate" value="" step="1" style="width:100%;">
                         <label for="inputSiteNameAdd" class="input-padding ">To DateTime</label>
                     </div>
+                </div>
+                <div class="box rightmar" style="margin-right:0.5rem;display:flex;flex-direction:row;align-items:center;justify-content:center;">
+                    <button type="button" class="overall_filter_btn" style="background:#406EB4;color:white;border:1px solid transparent;border-radius:0.25rem;padding:5px 25px;height:2.2rem;font-size:15px;font-weight:500;opacity:1;cursor:pointer;">Apply Filter</button>
                 </div>
             </div>
         </div>
@@ -123,42 +187,102 @@ $session = \Config\Services::session();
     <!-- first row -->
     <div class="first_row" style="">
         <div class="overall_div" style="">
+
             <!-- overall teep div -->
-            <div style="" class="target_bar_bottom">
+            <div style="position:inherit;" class="target_bar_bottom">
                 <p class="graph_text" style="">Overall TEEP%</p>
-                <div class="empty_graph" >
-                    <div class="target_graph" id="teep_target" style="">
+                <div class="empty_graph teep_graph_hover" >
+                    <div class="target_graph" id="teep_target" style="display:flex;flex-direction:row;justify-content:start;align-items:center;">
                         <div class="fill_graph" id="teep_graph" style="">
                             <span class="graph_font"  id="text_teep"></span>
                         </div>
                     </div>
                 </div>
+                <div class="target_hover_div" style="">
+                    <div class="hover_flex" style="">
+                        <div class="hover_text_div" style="">
+                            <div class="hover_text_color_div" style="">
+                                <div class="val_color_div" style=""></div>
+                            </div>
+                            TEEP
+                        </div>
+                        <div style="width:50%;text-align:end;"><span id="teep_val_hover">30</span>%</div>
+                    </div>
+                    <div class="hover_flex">
+                        <div class="hover_flex" >
+                            <div class="hover_text_color_div" >
+                                <div class="target_color_div" style=""></div>
+                            </div>
+                            Target
+                        </div>
+                        <div style="width:50%;text-align:end;"><span id="target_teep_val_hover">30</span></div>
+                    </div>
+                </div>
             </div>
 
             <!--  Overall OOE% -->
-            <div style="" class="target_bar_bottom">
+            <div style="position:inherit;" class="target_bar_bottom">
                 <p class="graph_text" >Overall OOE%</p>
-                <div class="empty_graph" >
-                    <div class="target_graph" id="ooe_target" style="">
+                <div class="empty_graph ooe_graph_hover" >
+                    <div class="target_graph" id="ooe_target" style="display:flex;flex-direction:row;justify-content:start;align-items:center;">
                         <div class="fill_graph" id="ooe_graph">
                             <span class="graph_font" id="text_ooe"></span>
                         </div>
                     </div>
                 </div>
+                <div class="target_hover_div" style="">
+                    <div class="hover_flex" style="">
+                        <div class="hover_text_div" style="">
+                            <div class="hover_text_color_div" style="">
+                                <div class="val_color_div" style=""></div>
+                            </div>
+                            OOE
+                        </div>
+                        <div style="width:50%;text-align:end;"><span id="ooe_val_hover">30</span>%</div>
+                    </div>
+                    <div class="hover_flex">
+                        <div class="hover_flex" >
+                            <div class="hover_text_color_div" >
+                                <div class="target_color_div" style=""></div>
+                            </div>
+                            Target
+                        </div>
+                        <div style="width:50%;text-align:end;"><span id="target_ooe_val_hover">30</span></div>
+                    </div>
+                </div>
             </div>
 
             <!-- overall OEE% -->
-            <div style="" class="target_bar_bottom">
+            <div style="position:inherit;" class="target_bar_bottom">
                 <p class="graph_text" >Overall OEE%</p>
-                <div class="empty_graph">
-                    <div class="target_graph" style="" id="oee_target">
+                <div class="empty_graph oee_graph_hover">
+                    <div class="target_graph"  id="oee_target" style="display:flex;flex-direction:row;justify-content:start;align-items:center;">
                         <div class="fill_graph" id="oee_graph" >
                             <span class="graph_font" id="text_oee"></span>
                         </div>
                     </div>
                 </div>
+                <div class="target_hover_div" style="">
+                    <div class="hover_flex" style="">
+                        <div class="hover_text_div" style="">
+                            <div class="hover_text_color_div" style="">
+                                <div class="val_color_div" style=""></div>
+                            </div>
+                            OOE
+                        </div>
+                        <div style="width:50%;text-align:end;"><span id="oee_val_hover">30</span>%</div>
+                    </div>
+                    <div class="hover_flex">
+                        <div class="hover_flex" >
+                            <div class="hover_text_color_div" >
+                                <div class="target_color_div" style=""></div>
+                            </div>
+                            Target
+                        </div>
+                        <div style="width:50%;text-align:end;"><span id="target_oee_val_hover">30</span></div>
+                    </div>
+                </div>
             </div>
-
             <div class="target_bar_bottom">
                 <div class="overall_label_flex" style="">
                     <div style="width:40%;"></div>
@@ -255,8 +379,6 @@ $session = \Config\Services::session();
                     <div class="filter_checkboxes filter_checkboxes_machine" style="" >
                     </div>
                 </div>
-               
-
 
             </div>
             <div class="parent_oee_trend prodcution_downtime_graph parent_div marginScroll" >
@@ -272,7 +394,7 @@ $session = \Config\Services::session();
         <div class="each_row_split" >
             <!-- title -->
             <div class="title_div" style="">
-                <p class="graph_title_oee" >Machine-wise OEE% BreakDown</p>
+                <p class="graph_title_oee" >Machine-wise OEE% Breakdown</p>
             </div>
             <!-- dropdowns -->
             <div class="graph_filter_div marginScroll" style="">
@@ -280,7 +402,7 @@ $session = \Config\Services::session();
                 <!-- reason multi select dropdown -->
                 <div class="box rightmar" style="margin-right: 0.5rem;" >
                     <label class="multi_select_label" style="">All Data Field</label>
-                    <div class="filter_selectBox" onclick="all_data_field()">
+                    <div class="filter_selectBox" onclick="all_data_field_click_fun()">
                         <select  class="multi_select_drp" style="" >
                             <option id="text_all_data_field" style="">All Data Fields</option>
                         </select>
@@ -366,7 +488,7 @@ $session = \Config\Services::session();
                     </div>
                 </div>
                 <div class="align_icons" style="">
-                    <div class="align_machine_icons" ><i class="fa fa-certificate performance_star"  style=""></i></div>
+                    <div class="align_machine_icons" ><i class="fa-solid fa-diamond" style="color: #0075F6;font-size:0.8rem;"></i></div>
                     <div style="width:80%;">
                         <span class="graph_label_font" >Performance</span>
                     </div>
@@ -618,74 +740,59 @@ $('.toDate').val(fdate);
 $('.fromDate').val(tdate);
 
 
+// from date and to date filter using button onclick function
+$(document).on('click','.overall_filter_btn',function(event){
+    event.preventDefault();
+    $('#overlay').fadeIn(400);
+    all_graph_fun();
+}); 
+
+// from date on blur function
+/* temporary hide for this function as per the madhan sir instruction
 $(document).on('blur','.fromDate',function(event){
-    event.preventDefault();
-    fill_downtime_reason();
-    fill_machine_dropdown();
-    fill_part_drp();
-    resetbyday_click();
-    reset_category2();
-    reset_all_data_field();
-
-    fill_target_bar();
-    overallTarget();
-
-    // graph filter
-   graph_func();
-
-   performance_opportunity();
-   quality_reason_machine();
-   fill_quality_reason_dropdown();
-    
+   // event.preventDefault();
+    $('#overlay').fadeIn(400);
+    //    overall dropdown values and graph visible this function only
+    // get_all_filter_drp_fill();
+    all_graph_fun();
 });
 
+// todate onblur function
 $(document).on('blur','.toDate',function(event){
-    event.preventDefault();
-     // overall target function
-    // target fill width function
-    fill_downtime_reason();
-    fill_machine_dropdown();
-    fill_part_drp();
-    resetbyday_click();
-    reset_category2();
-    reset_all_data_field();
+    //event.preventDefault();
 
-    fill_target_bar();
-    overallTarget();
-
-    // graph filter
-   graph_func();
-
-   performance_opportunity();
-   quality_reason_machine();
-   fill_quality_reason_dropdown(); 
-
-
+    $('#overlay').fadeIn(400);
+    //    overall dropdown values and graph visible this function only
+    // get_all_filter_drp_fill();
+    all_graph_fun();
 
 });
 
+*/
+
+
+// async function all_graph_blur_fromdate(){
+//     console.log("on blur to date filter");
+//     await fill_target_bar.then(x=>console.log(x));
+//     await over_all_target_graph.then(x=>console.log(x));
+//     await first_load_oee_trend_day.then(x=>console.log(x));
+//     await first_load_quality
+//     await first_machine_wise_oee
+//     await first_loader_performance
+//     await first_load_availability
+//     await get_all_filter_drp_fill
+//     $('#overlay').fadeOut(500);
+// }
+
+// in Document ready function calling
 $(document).ready(function(){
-
-    // overall target function
-    // target fill width function
-    fill_downtime_reason();
-    fill_machine_dropdown();
-    fill_part_drp();
-    resetbyday_click();
-    reset_category2();
-    reset_all_data_field();
-
-    fill_target_bar();
-    overallTarget();
-
-    // graph filter
-    //    graph_func();
-
-    //    performance_opportunity();
-    //    quality_reason_machine();
-   fill_quality_reason_dropdown(); 
-
+    $('#overlay').fadeIn(400);
+    //    overall dropdown values and graph visible this function only
+    // get_all_filter_drp_fill();
+    all_graph_fun();
 });
+
+
 
 
 // by day shift and month week
@@ -697,14 +804,7 @@ function resetbyday_click(){
     $('#by_day_checkbox').text('By Day');
 }
 
-    // reset category
-    // function reset_category(){
-    //     var category_arr = $('.category_drp_checkbox');
-    //     jQuery('.category_drp_checkbox').each(function(in2){
-    //         category_arr[in2].checked=true;
-    //     });
-    //     $('#text_category_drp').text('All Category');
-    // }
+  
 
 // availability graph reset categroy
 function reset_category2(){
@@ -823,11 +923,13 @@ function category_drp2() {
       $('.category_fill2').css("display","block");
       filter_expanded2 = true;
   } else  {
+
+      
      
       $('#text_category_drp2').text('All category');
       $('.category_fill2').css("display","none");
       filter_expanded2 = false;
-      availabilityReason_machine();
+    //   availabilityReason_machine();
   }
 }
 
@@ -843,11 +945,11 @@ function reason_drp2() {
       $('.reason_fill2').css("display","block");
       filter_expanded_reason2 = true;
   } else  {
-     
+      
       $('#text_reason2').text('All Reason');
       $('.reason_fill2').css("display","none");
       filter_expanded_reason2 = false;
-      availabilityReason_machine();
+    //   availabilityReason_machine();
   }
 }
 
@@ -867,7 +969,7 @@ function quality_reason_drp() {
       $('.quality_reason_fill').css("display","none");
       reason_expand_filter_quality = false;
     //   availabilityReason_machine();
-    quality_reason_machine();
+    // quality_reason_machine();
   }
 }
 
@@ -882,28 +984,28 @@ function machine_drp1() {
       filter_expanded_machine1 = true;
   } else  {
      
-    //   $('#text_machine1').text('All Machine');
-      $('.filter_checkboxes_machine1').css("display","none");
-      filter_expanded_machine1 = false;
-      machineWiseOEE();
+       
+        $('.filter_checkboxes_machine1').css("display","none");
+        filter_expanded_machine1 = false;
+        // machineWiseOEE();
 
   }
 }
 
 var filter_expanded_machine = false;
 function machine_drp() {
- 
+
   var checkboxes2 = document.getElementsByClassName("filter_checkboxes_machine");
   if (!filter_expanded_machine) {
    
       $('.filter_checkboxes_machine').css("display","block");
       filter_expanded_machine = true;
   } else  {
-     
+   
     //   $('#text_machine').text('All Machine');
       $('.filter_checkboxes_machine').css("display","none");
       filter_expanded_machine = false;
-      oeeTrendDay();
+    //   oeeTrendDay();
   }
 }
 
@@ -916,11 +1018,11 @@ function machine_drp2() {
       $('.filter_checkboxes_machine2').css("display","block");
       filter_expanded_machine2 = true;
   } else  {
-     
+      
     //   $('#text_machine2').text('All Machine');
       $('.filter_checkboxes_machine2').css("display","none");
       filter_expanded_machine2 = false;
-      availabilityReason_machine();
+    //   availabilityReason_machine();
   }
 }
 
@@ -933,11 +1035,12 @@ function machine_drp3() {
       $('.filter_checkboxes_machine3').css("display","block");
       filter_expanded_machine3 = true;
   } else  {
-     
+
+      
     //   $('#text_machine3').text('All Machine');
       $('.filter_checkboxes_machine3').css("display","none");
       filter_expanded_machine3 = false;
-      performance_opportunity();
+    //   performance_opportunity();
   }
 }
 
@@ -955,7 +1058,7 @@ function machine_drp4() {
     // $('#text_machine4').text('All Machine');
     $('.filter_checkboxes_machine4').css("display","none");
     filter_expanded_machine4 = false;
-    quality_reason_machine();
+    // quality_reason_machine();
   }
 }
 
@@ -966,24 +1069,27 @@ function part_drp(){
         $('.part_fill').css('display','block');
         filterexpand_part = true;
     }else{
+       
         $('#text_part').text('All Part');
         $('.part_fill').css('display','none');
         filterexpand_part = false;
-        performance_opportunity();
+        // performance_opportunity();
     }
 }
 
 var all_data_field_expand = false;
-function all_data_field(){
-    var checkbox1 = document.getElementsByClassName("all_data_field_fill");
+function all_data_field_click_fun(){
+    // var checkbox1 = document.getElementsByClassName("all_data_field_fill");
+    // alert('hi');
     if (!all_data_field_expand) {
         $('.all_data_field_fill').css('display','block');
         all_data_field_expand = true;
     }else{
         // $('#text_all_data_field').text('All Data Field');
+       
         $('.all_data_field_fill').css('display','none');
         all_data_field_expand = false;
-        machineWiseOEE();
+        // machineWiseOEE();
     } 
 }
 
@@ -999,7 +1105,8 @@ $(document).on('click','.byday_click',function(event){
         if (check_if1[0].checked==false) {
             resetbyday_click();
 
-        }else{
+        }
+        else{
             $('.by_day_checkbox').removeAttr('checked');
         }
     }else{
@@ -1049,7 +1156,8 @@ $(document).on('click','.category_click2',function(event){
         if (check_if1[0].checked==false) {
             reset_category2();
 
-        }else{
+        }
+        else{
             $('.category_drp_checkbox2').removeAttr('checked');
         }
     }else{
@@ -1096,9 +1204,10 @@ $(document).on('click','.reason_click2',function(event){
     var check_if1 = $('.reason_checkbox2');
     if (index_reason_gp1 === 0) {
         if (check_if1[0].checked==false) {
-            reset_reason();
+            reset_reason2();
 
-        }else{
+        }
+        else{
             $('.reason_checkbox2').removeAttr('checked');
         }
     }else{
@@ -1147,7 +1256,8 @@ $(document).on('click','.quality_click',function(event){
         if (check_if1[0].checked==false) {
             reset_quality_reason();
 
-        }else{
+        }
+        else{
             $('.quality_checkbox').removeAttr('checked');
         }
     }else{
@@ -1196,7 +1306,8 @@ $(document).on('click','.machine_click',function(event){
         if (check_if1[0].checked==false) {
             reset_machine();
 
-        }else{
+        }
+        else{
             $('.machine_checkbox').removeAttr('checked');
         }
     }else{
@@ -1244,7 +1355,8 @@ $(document).on('click','.machine_click1',function(event){
         if (check_if1[0].checked==false) {
             reset_machine1();
 
-        }else{
+        }
+        else{
             $('.machine_checkbox1').removeAttr('checked');
         }
     }else{
@@ -1293,7 +1405,8 @@ $(document).on('click','.machine_click2',function(event){
         if (check_if1[0].checked==false) {
             reset_machine2();
 
-        }else{
+        }
+        else{
             $('.machine_checkbox2').removeAttr('checked');
         }
     }else{
@@ -1342,7 +1455,8 @@ $(document).on('click','.machine_click3',function(event){
         if (check_if1[0].checked==false) {
             reset_machine3();
 
-        }else{
+        }
+        else{
             $('.machine_checkbox3').removeAttr('checked');
         }
     }else{
@@ -1392,7 +1506,8 @@ $(document).on('click','.part_click',function(event){
         if (check_if1[0].checked==false) {
             reset_part();
 
-        }else{
+        }
+        else{
             $('.part_checkbox').removeAttr('checked');
         }
     }else{
@@ -1441,7 +1556,8 @@ $(document).on('click','.machine_click4',function(event){
         if (check_if1[0].checked==false) {
             reset_machine4();
 
-        }else{
+        }
+        else{
             $('.machine_checkbox4').removeAttr('checked');
         }
     }else{
@@ -1489,7 +1605,8 @@ $(document).on('click','.all_data_field_click',function(event){
         if (check_if1[0].checked==false) {
             reset_all_data_field();
 
-        }else{
+        }
+        else{
             $('.all_data_field_checkbox').removeAttr('checked');
         }
     }else{
@@ -1530,360 +1647,94 @@ $(document).on('click','.all_data_field_click',function(event){
 
 
 
-function fill_downtime_reason(){
-    $.ajax({
-      url:"<?php echo base_url(); ?>/OEE_Drill_Down_controller/downtime_reason_filter_con",
-      method:"POST",
-      dataType:"json",
-      success:function(res){
 
-        // console.log("reason dropdwon");
-    //     console.log(res);
 
-      
-        $('.reason_fill2').empty();
-        // $('.quality_reason_fill').empty();
-        var element = $();
-        var elements = $();
-        
-       
 
-        // $('.reason_fill').append('<div class="filter_check_cate reason_click" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
-      
-        $('.reason_fill2').append('<div class="filter_check_cate reason_click2 machine_availability_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox2" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
-        // $('.quality_reason_fill').append('<div class="filter_check_cate quality_click" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="quality_checkbox" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
-        res.forEach(function(item){
-            // element = element.add('<div class="filter_check_cate reason_click" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
-          
-            elements = elements.add('<div class="filter_check_cate reason_click2 machine_availability_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox2" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
+// graph value for overallTarget function
+function overallTarget(f,t){
+    return  new Promise(function(resolve,reject){
+        // f = $('.fromDate').val();
+        // t = $('.toDate').val();
+        // f = f.replace(" ","T");
+        // t = t.replace(" ","T");
+        $.ajax({
+            //OEE check....
+            url: "<?php echo base_url('OEE_Drill_Down_controller/OverallOEETarget'); ?>",
+            type: "POST",
+            dataType: "json",
+            data:{
+                from:f,
+                to:t
+            },
+            success:function(res){
+                // console.log("overall graph value");
+                // console.log(res);
+                resolve(res);
 
-            // element = element.add('<div class="filter_check_cate quality_click" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="quality_checkbox" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
+                var teep_graph_width = parseInt(res.Overall_TEEP)>100? parseInt(133) : parseInt(res.Overall_TEEP);
+                var oee_graph_width = parseInt(res.Overall_OEE)>100? parseInt(111) : parseInt(res.Overall_OEE);
+                var ooe_graph_width = parseInt(res.Overall_OOE)>100? parseInt(117) : parseInt(res.Overall_OEE);
 
-            // $('.reason_fill').append(element);
-            $('.reason_fill2').append(elements);
-            // $('.quality_reason_fill').append(element);
+                $('#teep_graph').css('width',''+teep_graph_width+'%');
+                $('#ooe_graph').css('width',''+ooe_graph_width+'%');
+                $('#oee_graph').css('width',''+oee_graph_width+'%');
+                
+                
+                $('#text_teep').html(res.Overall_TEEP+'%');
+                $('#text_ooe').html(res.Overall_OOE+'%');
+                $('#text_oee').html(res.Overall_OEE+'%');
+
+                $('#teep_val_hover').html(res.Overall_TEEP);
+                $('#ooe_val_hover').html(res.Overall_OOE);
+                $('#oee_val_hover').html(res.Overall_OEE);
+
+            
+            },
+            error:function(er){
+                console.log("No Data Records!");
+                $('#teep_graph').css('width','0%');
+                $('#ooe_graph').css('width','0%');
+                $('#oee_graph').css('width','0%');
+                reject(er);
+            }
         });
-
-        // reset_reason();
-        reset_reason2();
-        // reset_quality_reason();
-        },
-        error:function(err){
-            console.log(err);
-        },
     });
+   
 }
 
-function fill_quality_reason_dropdown(){
-    $.ajax({
-        url:"<?php echo base_url(); ?>/OEE_Drill_Down_controller/dropdown_quality_reject",
-        method:"POST",
-        dataType:"json",
-        success:function(res){
-            // console.log("Quality reject reason");
-            // console.log(res);
-
-            $('.quality_reason_fill').empty();
-            $('.quality_reason_fill').append('<div class="filter_check_cate quality_click machine_quality_common" style="">'
-            +'<div class="cate_drp_check" style="">'
-            +'<input type="checkbox" id="one" class="quality_checkbox" value="all"/>'
-            +'</div>'
-            +'<div class="cate_drp_text" style="">'
-            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
-            +'</div>'
-            +'</div>');
-            res.forEach(function(val){
-                var elements = $();
-                elements = elements.add('<div class="filter_check_cate quality_click machine_quality_common" style="">'
-                +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="quality_checkbox" value="'+val.quality_reason_id+'"/>'
-                +'</div>'
-                +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">'+val.quality_reason_name+'</p>'
-                +'</div>'
-                +'</div>');
-                // console.log(val.quality_reason_id);
-
-
-                $('.quality_reason_fill').append(elements);
-            });
-            reset_quality_reason();
-            quality_reason_machine();
-        },
-        error:function(err){
-            console.log(err);
-        },
-    });
-}
-
-// fill machine 
-function fill_machine_dropdown(){
-    // console.log("machine dropdown records filling function");
-    $.ajax({
-        url:"<?php echo base_url('OEE_Drill_Down_controller/getmachine_data'); ?>",
-        type:"POST",
-        dataType: "json",
-        success:function(res){
-            // console.log("multi select dropdown machine");
-            // console.log(res);
+// target bar value loading funciton
+// function fill_target_bar(){
+    const fill_target_bar = new Promise(function(resolve,reject){
+        $.ajax({
+            url: "<?php echo base_url('Financial_Metrics/getOverallTarget'); ?>",
+            type: "POST",
+            dataType: "json",
+            success:function(res){
+                console.log("graph target");
+                console.log(res);
+                resolve(res);
             
-            $('.filter_checkboxes_machine').empty();
-            $('.filter_checkboxes_machine1').empty();
-            $('.filter_checkboxes_machine2').empty();
-            $('.filter_checkboxes_machine3').empty();
-            $('.filter_checkboxes_machine4').empty();
+                $('#teep_target').css('width',''+res[0].overall_teep+'%');
+                $('#ooe_target').css('width',''+res[0].overall_ooe+'%');
+                $('#oee_target').css('width',''+res[0].overall_oee+'%');
 
-            $('.filter_checkboxes_machine').append('<div class="filter_check_cate machine_click oee_trend_common" style="">'
-            +'<div class="cate_drp_check" style="">'
-            +'<input type="checkbox" id="one" class="machine_checkbox" value="all"/>'
-            +'</div>'
-            +'<div class="cate_drp_text" style="">'
-            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
-            +'</div>'
-            +'</div>');
+                $('#target_ooe_val_hover').html(res[0].overall_ooe);
+                $('#target_oee_val_hover').html(res[0].overall_oee);
+                $('#target_teep_val_hover').html(res[0].overall_teep);
 
-            $('.filter_checkboxes_machine1').append('<div class="filter_check_cate machine_click1 machine_oee_common" style="">'
-            +'<div class="cate_drp_check" style="">'
-            +'<input type="checkbox" id="one" class="machine_checkbox1" value="all"/>'
-            +'</div>'
-            +'<div class="cate_drp_text" style="">'
-            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
-            +'</div>'
-            +'</div>');
-
-
-            $('.filter_checkboxes_machine2').append('<div class="filter_check_cate machine_click2 machine_availability_common" style="">'
-            +'<div class="cate_drp_check" style="">'
-            +'<input type="checkbox" id="one" class="machine_checkbox2" value="all"/>'
-            +'</div>'
-            +'<div class="cate_drp_text" style="">'
-            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
-            +'</div>'
-            +'</div>');
-
-
-            $('.filter_checkboxes_machine3').append('<div class="filter_check_cate machine_click3 machine_performance_common" style="">'
-            +'<div class="cate_drp_check" style="">'
-            +'<input type="checkbox" id="one" class="machine_checkbox3" value="all"/>'
-            +'</div>'
-            +'<div class="cate_drp_text" style="">'
-            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
-            +'</div>'
-            +'</div>');
-
-
-            $('.filter_checkboxes_machine4').append('<div class="filter_check_cate machine_click4 machine_quality_common" style="">'
-            +'<div class="cate_drp_check" style="">'
-            +'<input type="checkbox" id="one" class="machine_checkbox4" value="all"/>'
-            +'</div>'
-            +'<div class="cate_drp_text" style="">'
-            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
-            +'</div>'
-            +'</div>');
-
-            res.forEach(function(val){
-                var elements = $();
-                var element = $();
-                var ele = $();
-                var eles = $();
-                var element1 = $();
-             
-                elements = elements.add('<div class="filter_check_cate machine_click oee_trend_common" style="">'
-                +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="machine_checkbox" value="'+val.machine_id+'"/>'
-                +'</div>'
-                +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
-                +'</div>'
-                +'</div>');
-
-
-                element = element.add('<div class="filter_check_cate machine_click1 machine_oee_common" style="">'
-                +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="machine_checkbox1" value="'+val.machine_id+'"/>'
-                +'</div>'
-                +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
-                +'</div>'
-                +'</div>');
-
-                ele = ele.add('<div class="filter_check_cate machine_click2 machine_availability_common" style="">'
-                +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="machine_checkbox2" value="'+val.machine_id+'"/>'
-                +'</div>'
-                +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
-                +'</div>'
-                +'</div>');
-              
-
-                eles = eles.add('<div class="filter_check_cate machine_click3 machine_performance_common" style="">'
-                +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="machine_checkbox3" value="'+val.machine_id+'"/>'
-                +'</div>'
-                +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
-                +'</div>'
-                +'</div>');
-
-                element1 = element1.add('<div class="filter_check_cate machine_click4 machine_quality_common" style="">'
-                +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="machine_checkbox4" value="'+val.machine_id+'"/>'
-                +'</div>'
-                +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
-                +'</div>'
-                +'</div>');
-
-                $('.filter_checkboxes_machine').append(elements);
-                $('.filter_checkboxes_machine1').append(element);
-                $('.filter_checkboxes_machine2').append(ele);
-                $('.filter_checkboxes_machine3').append(eles);
-                $('.filter_checkboxes_machine4').append(element1);
-
-            });
-
-            reset_machine();
-            reset_machine1();
-            reset_machine2();
-            reset_machine3();
-            reset_machine4();
-
-            oeeTrendDay();
-            machineWiseOEE();
-            availabilityReason_machine();
             
-        },
-        error:function(er){
-            console.log("Error Try Again...");
-        }
+                
+            },
+            error:function(er){
+                $('#teep_target').css('width','0%');
+                $('#oee_target').css('width','0%');
+                $('#ooe_target').css('width','0%');
+                reject(er);
+            }
+        });
     });
-}
-
-// fill part 
-function fill_part_drp(){
-    $.ajax({
-        url:"<?php echo base_url('OEE_Drill_Down_controller/getpart_data'); ?>",
-        type:"POST",
-        dataType: "json",
-        success:function(res){
-            // console.log("multi select dropdown part");
-            // console.log(res);
-            $('.part_fill').empty();
-            $('.part_fill').append('<div class="filter_check_cate part_click machine_performance_common" style="">'
-            +'<div class="cate_drp_check" style="">'
-            +'<input type="checkbox" id="one" class="part_checkbox" value="all"/>'
-            +'</div>'
-            +'<div class="cate_drp_text" style="">'
-            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
-            +'</div>'
-            +'</div>');
-            res.forEach(function(val){
-                var elements = $();
-                elements = elements.add('<div class="filter_check_cate part_click machine_performance_common" style="">'
-                +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="part_checkbox" value="'+val.part_id+'"/>'
-                +'</div>'
-                +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">'+val.part_name+'</p>'
-                +'</div>'
-                +'</div>');
-
-
-
-                $('.part_fill').append(elements);
-            });
-            reset_part();
-            performance_opportunity();
-            availabilityReason_machine();
-
-         
-           
-        },
-        error:function(er){
-            console.log("Error Try Again...");
-        }
-    });
-}
-
-
-
-// graph functions 
-function graph_func(){
-    oeeTrendDay();
-    machineWiseOEE();
-    availabilityReason_machine();
-
-}
-
-
-// graph value for overallTarget
-function overallTarget(){
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
-    f = f.replace(" ","T");
-    t = t.replace(" ","T");
-    $.ajax({
-        //OEE check....
-        url: "<?php echo base_url('OEE_Drill_Down_controller/OverallOEETarget'); ?>",
-        type: "POST",
-        dataType: "json",
-        data:{
-        from:f,
-        to:t
-        },
-        success:function(res){
-            // console.log("overall target");
-            // console.log(res);
-        // res=res['OverallMonitoring'];
-          $('#teep_graph').css('width',''+parseInt(res.Overall_TEEP)+'%');
-          $('#ooe_graph').css('width',''+parseInt(res.Overall_OOE)+'%');
-          $('#oee_graph').css('width',''+parseInt(res.Overall_OEE)+'%');
-        
-          $('#text_teep').html(res.Overall_TEEP+'%');
-          $('#text_ooe').html(res.Overall_OOE+'%');
-          $('#text_oee').html(res.Overall_OEE+'%');
-
-        //   $('.ooeVal').html(res.Overall_OOE);
-        //   $('.oeeVal').html(res.Overall_OEE);
-        //   $('.teepVal').html(res.Overall_TEEP);
-
-        
-        },
-        error:function(res){
-            console.log("No Data Records!");
-            $('#teep_graph').css('width','0%');
-            $('#ooe_graph').css('width','0%');
-            $('#oee_graph').css('width','0%');
-        }
-    });
-}
-
-
-function fill_target_bar(){
-    $.ajax({
-        url: "<?php echo base_url('Financial_Metrics/getOverallTarget'); ?>",
-        type: "POST",
-        dataType: "json",
-        success:function(res){
-            // console.log("graph target");
-            // console.log(res);
-            $('#teep_target').css('width',''+res[0].overall_teep+'%');
-            $('#oee_target').css('width',''+res[0].overall_oee+'%');
-            $('#ooe_target').css('width',''+res[0].overall_ooe+'%');
-
-            // $('.teepTarget').html(res[0].overall_teep);
-            // $('.oeeTarget').html(res[0].overall_oee);
-            // $('.ooeTarget').html(res[0].overall_ooe);
-            
-        },
-        error:function(res){
-            $('#teep_target').css('width','0%');
-            $('#oee_target').css('width','0%');
-            $('#ooe_target').css('width','0%');
-        }
-    });
-}
+  
+// }
 
 
 // on mouse up function
@@ -1894,6 +1745,8 @@ $(document).mouseup(function(event){
     var machine = $('.filter_checkboxes_machine');
     if (!machine.is(event.target) && machine.has(event.target).length==0) {
         machine.hide();
+
+     
     }
 
     // machine wise OEE %
@@ -2033,8 +1886,8 @@ function oeeTrendDay() {
         },
         success:function(res){
 
-            // console.log("oee trend graph");
-            // console.log(res);
+            console.log("oee trend graph");
+            console.log(res);
             
           $('#oee_trend').remove();
           $('.child_oee_trend').append('<canvas id="oee_trend"><canvas>');
@@ -2059,8 +1912,8 @@ function oeeTrendDay() {
             partwiseTotal[i]=p;
           }
 
-          var bar_width = 0.9;
-          var bar_size = 0.7;
+            var category_percent = 0.9;
+            var bar_space = 0.7;
 
             while(true){
               var len= mainLable.length;
@@ -2092,7 +1945,10 @@ function oeeTrendDay() {
                   borderWidth:1,
                   fill:true,
                   data:oee,
-                  each:partwiseTotal
+                  each:partwiseTotal,
+                  categoryPercentage:category_percent,
+                  barPercentage: bar_space,
+
               }],
           },
 
@@ -2369,6 +2225,7 @@ function machineWiseOEE() {
                             display:true,
                             beginAtZero:true,
                             stacked:false,
+                           
                         },
                         x:{
                             display:true,
@@ -2602,9 +2459,9 @@ function availabilityReason_machine() {
             var category_percent =1.0;
             var bar_space=0.5;
             while(true){
-                var len= reasonList.length;
+                var len= machineName.length;
                 if (len < 8) {
-                reasonList.push("");
+                    machineName.push("");
                 }
                 else if(len > 8){
                 var l = parseInt(len)%parseInt(8);
@@ -2976,19 +2833,19 @@ function performance_opportunity(){
                 var bar_size = 0.7;
 
                 while(true){
-                var len= partWiseLable.length;
-                if (len < 8) {
-                    partWiseLable.push("");
-                }
-                else if(len > 8){
-                    var l = parseInt(len)%parseInt(8);
-                    var w= parseInt($('.parent_graph_performance_opportunity').css("width"))+parseInt(l*18*16);
-                    $('.child_graph_performance_opportunity').css("width",w+"px");
-                    break;
-                }
-                else{
-                    break;
-                }
+                    var len= mname_arr.length;
+                    if (len < 8) {
+                        mname_arr.push("");
+                    }
+                    else if(len > 8){
+                        var l = parseInt(len)%parseInt(8);
+                        var w= parseInt($('.parent_graph_performance_opportunity').css("width"))+parseInt(l*18*16);
+                        $('.child_graph_performance_opportunity').css("width",w+"px");
+                        break;
+                    }
+                    else{
+                        break;
+                    }
                 }
                 // console.log("Machine name lable");
                 // console.log(mname_arr);
@@ -3173,6 +3030,9 @@ function quality_reason_machine() {
         quality_arr:graph_quality_arr,
         },
         success:function(res){
+
+            console.log("quality reasons array");
+            console.log(res);
             $('#quality_reason_machine').remove();
             $('.child_quality_reason_machine').append('<canvas id="quality_reason_machine"></canvas>');
             $('.chartjs-hidden-iframe').remove();
@@ -3312,7 +3172,7 @@ function quality_reason_machine() {
                             }
                         },
                     },            
-                });
+            });
         
         },
         error:function(er){
@@ -3428,6 +3288,1123 @@ function quality_reason_machine_tooltip(context){
     tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
     tooltipEl.style.pointerEvents = 'none';
 }
+// this function gets all dropdown value and graph calling function
+// function get_all_filter_drp_fill(){
+    const get_all_filter_drp_fill = new Promise(function (resolve,reject){
+        $.ajax({
+            url:"<?php echo base_url('OEE_Drill_Down_controller/get_all_dilter_drp_fun'); ?>",
+            method:"POST",
+            dataType:"JSON",
+            // async:false,
+            success:function(res){
+                console.log("all dropdown ajax value");
+                console.log(res);
+                resolve(res);
+
+                // machine 
+                $('.filter_checkboxes_machine').empty();
+                $('.filter_checkboxes_machine1').empty();
+                $('.filter_checkboxes_machine2').empty();
+                $('.filter_checkboxes_machine3').empty();
+                $('.filter_checkboxes_machine4').empty();
+
+                $('.filter_checkboxes_machine').append('<div class="filter_check_cate machine_click oee_trend_common" style="">'
+                    +'<div class="cate_drp_check" style="">'
+                    +'<input type="checkbox" id="one" class="machine_checkbox" value="all"/>'
+                    +'</div>'
+                    +'<div class="cate_drp_text" style="">'
+                    +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+                    +'</div>'
+                +'</div>');
+
+                $('.filter_checkboxes_machine1').append('<div class="filter_check_cate machine_click1 machine_oee_common" style="">'
+                    +'<div class="cate_drp_check" style="">'
+                    +'<input type="checkbox" id="one" class="machine_checkbox1" value="all"/>'
+                    +'</div>'
+                    +'<div class="cate_drp_text" style="">'
+                    +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+                    +'</div>'
+                +'</div>');
 
 
+                $('.filter_checkboxes_machine2').append('<div class="filter_check_cate machine_click2 machine_availability_common" style="">'
+                    +'<div class="cate_drp_check" style="">'
+                    +'<input type="checkbox" id="one" class="machine_checkbox2" value="all"/>'
+                    +'</div>'
+                    +'<div class="cate_drp_text" style="">'
+                    +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+                    +'</div>'
+                +'</div>');
+
+                $('.filter_checkboxes_machine3').append('<div class="filter_check_cate machine_click3 machine_performance_common" style="">'
+                    +'<div class="cate_drp_check" style="">'
+                    +'<input type="checkbox" id="one" class="machine_checkbox3" value="all"/>'
+                    +'</div>'
+                    +'<div class="cate_drp_text" style="">'
+                    +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+                    +'</div>'
+                +'</div>');
+
+
+                $('.filter_checkboxes_machine4').append('<div class="filter_check_cate machine_click4 machine_quality_common" style="">'
+                    +'<div class="cate_drp_check" style="">'
+                    +'<input type="checkbox" id="one" class="machine_checkbox4" value="all"/>'
+                    +'</div>'
+                    +'<div class="cate_drp_text" style="">'
+                    +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+                    +'</div>'
+                +'</div>');
+
+                    res['machine'].forEach(function(val){
+                        var elements_mdrp = $();
+                        var element_mdrp = $();
+                        var ele_mdrp = $();
+                        var eles_mdrp = $();
+                        var element1_mdrp = $();
+                    
+                        elements_mdrp = elements_mdrp.add('<div class="filter_check_cate machine_click oee_trend_common" style="">'
+                            +'<div class="cate_drp_check" style="">'
+                            +'<input type="checkbox" id="one" class="machine_checkbox" value="'+val.machine_id+'"/>'
+                            +'</div>'
+                            +'<div class="cate_drp_text" style="">'
+                            +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
+                            +'</div>'
+                        +'</div>');
+
+
+                        element_mdrp = element_mdrp.add('<div class="filter_check_cate machine_click1 machine_oee_common" style="">'
+                            +'<div class="cate_drp_check" style="">'
+                            +'<input type="checkbox" id="one" class="machine_checkbox1" value="'+val.machine_id+'"/>'
+                            +'</div>'
+                            +'<div class="cate_drp_text" style="">'
+                            +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
+                            +'</div>'
+                        +'</div>');
+
+                        ele_mdrp = ele_mdrp.add('<div class="filter_check_cate machine_click2 machine_availability_common" style="">'
+                            +'<div class="cate_drp_check" style="">'
+                            +'<input type="checkbox" id="one" class="machine_checkbox2" value="'+val.machine_id+'"/>'
+                            +'</div>'
+                            +'<div class="cate_drp_text" style="">'
+                            +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
+                            +'</div>'
+                        +'</div>');
+                    
+
+                        eles_mdrp = eles_mdrp.add('<div class="filter_check_cate machine_click3 machine_performance_common" style="">'
+                            +'<div class="cate_drp_check" style="">'
+                            +'<input type="checkbox" id="one" class="machine_checkbox3" value="'+val.machine_id+'"/>'
+                            +'</div>'
+                            +'<div class="cate_drp_text" style="">'
+                            +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
+                            +'</div>'
+                        +'</div>');
+
+                        element1_mdrp = element1_mdrp.add('<div class="filter_check_cate machine_click4 machine_quality_common" style="">'
+                        +'<div class="cate_drp_check" style="">'
+                        +'<input type="checkbox" id="one" class="machine_checkbox4" value="'+val.machine_id+'"/>'
+                        +'</div>'
+                        +'<div class="cate_drp_text" style="">'
+                        +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
+                        +'</div>'
+                        +'</div>');
+
+                        $('.filter_checkboxes_machine').append(elements_mdrp);
+                        $('.filter_checkboxes_machine1').append(element_mdrp);
+                        $('.filter_checkboxes_machine2').append(ele_mdrp);
+                        $('.filter_checkboxes_machine3').append(eles_mdrp);
+                        $('.filter_checkboxes_machine4').append(element1_mdrp);
+
+                    });
+
+                    // part
+                $('.part_fill').empty();
+                $('.part_fill').append('<div class="filter_check_cate part_click machine_performance_common" style="">'
+                    +'<div class="cate_drp_check" style="">'
+                    +'<input type="checkbox" id="one" class="part_checkbox" value="all"/>'
+                    +'</div>'
+                    +'<div class="cate_drp_text" style="">'
+                    +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+                    +'</div>'
+                    +'</div>');
+                res['part'].forEach(function(val){
+                    var elements_pdrp = $();
+                    elements_pdrp = elements_pdrp.add('<div class="filter_check_cate part_click machine_performance_common" style="">'
+                        +'<div class="cate_drp_check" style="">'
+                        +'<input type="checkbox" id="one" class="part_checkbox" value="'+val.part_id+'"/>'
+                        +'</div>'
+                        +'<div class="cate_drp_text" style="">'
+                        +'<p class="font_multi_drp" style="margin:auto;">'+val.part_name+'</p>'
+                        +'</div>'
+                        +'</div>');
+
+
+
+                    $('.part_fill').append(elements_pdrp);
+                });
+
+                // quality reason 
+                $('.quality_reason_fill').empty();
+                $('.quality_reason_fill').append('<div class="filter_check_cate quality_click machine_quality_common" style="">'
+                    +'<div class="cate_drp_check" style="">'
+                    +'<input type="checkbox" id="one" class="quality_checkbox" value="all"/>'
+                    +'</div>'
+                    +'<div class="cate_drp_text" style="">'
+                    +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+                    +'</div>'
+                    +'</div>');
+
+                res['quality'].forEach(function(val){
+                    var elements_qdrp = $();
+                    elements_qdrp = elements_qdrp.add('<div class="filter_check_cate quality_click machine_quality_common" style="">'
+                        +'<div class="cate_drp_check" style="">'
+                        +'<input type="checkbox" id="one" class="quality_checkbox" value="'+val.quality_reason_id+'"/>'
+                        +'</div>'
+                        +'<div class="cate_drp_text" style="">'
+                        +'<p class="font_multi_drp" style="margin:auto;">'+val.quality_reason_name+'</p>'
+                        +'</div>'
+                    +'</div>');
+                        // console.log(val.quality_reason_id);
+
+
+                    $('.quality_reason_fill').append(elements_qdrp);
+                });
+
+                // downtime reason
+                $('.reason_fill2').empty();
+                var element_ddrp = $();
+                var elements_ddrp = $();
+                $('.reason_fill2').append('<div class="filter_check_cate reason_click2 machine_availability_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox2" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
+                res['downtime'].forEach(function(item){        
+                    elements_ddrp = elements_ddrp.add('<div class="filter_check_cate reason_click2 machine_availability_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox2" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
+                    $('.reason_fill2').append(elements_ddrp);
+                
+                });
+
+                // reset_reason();
+                reset_reason2();
+                
+                reset_quality_reason();
+                reset_part();
+                reset_machine();
+                reset_machine1();
+                reset_machine2();
+                reset_machine3();
+                reset_machine4();
+                resetbyday_click();
+                reset_category2();
+                reset_all_data_field();
+
+              
+                
+            },
+            error:function(er){
+                console.log("all dropdown ajax error");
+                console.log(er);
+                reject(er);
+            }
+        });
+    });
+// }
+
+// all graph functions
+async function all_graph_fun(){
+
+    // fill_target_bar();
+    // overallTarget();
+    // oee_trend_first_load();
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
+
+    console.log("function calling");
+    await fill_target_bar
+    await overallTarget(f,t);
+    await oee_trend_first_load(f,t);
+    await first_loader_machine_oee(f,t);
+    await first_loader_availability(f,t);
+    await first_loader_performance(f,t);
+    await first_loader_quality(f,t);
+    // await first_load_quality
+    // await first_machine_wise_oee
+    // await first_loader_performance
+    // await first_load_availability
+    await get_all_filter_drp_fill
+    $('#overlay').fadeOut(500);
+   
+
+}
+
+// function first loader function 
+function oee_trend_first_load(f,t){
+
+    return  new Promise(function (resolve,reject){
+       
+        $.ajax({
+            url:"<?php echo  base_url('OEE_Drill_Down_controller/first_load_oee_trend'); ?>",
+            method:"POST",
+            dataType:"JSON",
+            // async:false,
+            data:{
+                from:f,
+                to:t
+            },
+            success:function(res){
+                console.log("oee drill down graph first loader");
+                console.log(res);
+                resolve(res);
+                
+                $('#oee_trend').remove();
+                $('.child_oee_trend').append('<canvas id="oee_trend"><canvas>');
+                $('.chartjs-hidden-iframe').remove();
+                
+                // res=res["OEETrend"];
+                oee = [];
+                mainLable = [];
+                var x=0;
+                res.forEach(function(doee){
+                    oee.push(doee['oee']);
+                    mainLable.push(doee['date']);
+                });
+
+                var partwiseTotal=[];
+                for (var i = 0; i < res.length; i++) {
+                    var p=[];
+                    p.push(res[i].availability);
+                    p.push(res[i].performance);
+                    p.push(res[i].quality);
+                    
+                    partwiseTotal[i]=p;
+                }
+
+                var category_percent = 0.9;
+                var bar_space = 0.7;
+
+                while(true){
+                var len= mainLable.length;
+                if (len < 15) {
+                    mainLable.push("");
+                }
+                else if(len > 15){
+                    var l = parseInt(len)%parseInt(8);
+                    var w= parseInt($('.parent_oee_trend').css("width"))+parseInt(l*4*16);
+                    $('.child_oee_trend').css("width",w+"px");
+                    break;
+                }
+                else{
+                    break;
+                }
+                }
+
+                var ctx = document.getElementById("oee_trend").getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels:mainLable,
+                    
+                        datasets: [{
+                            label:'OEE',
+                            type:'bar',
+                            backgroundColor:'#0075F6',
+                            borderColor:'#0075F6',
+                            borderWidth:1,
+                            fill:true,
+                            data:oee,
+                            each:partwiseTotal,
+                            categoryPercentage:category_percent,
+                            barPercentage: bar_space, 
+                        }],
+                    },
+
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,   
+                        scales: {
+                            y: {
+                                display:true,
+                                beginAtZero:true,  
+                                stacked:true,
+                                ticks:{
+                                    callback:function(value){
+                                        return value+"%";
+                                    }
+                                }
+                            },
+                            x:{
+                                display:true,
+                                grid:{
+                                display:false
+                                },
+                                stacked:true,
+                                barPercentage: 0.2
+                            },
+                        },
+                        plugins: {
+                            legend: {
+                                display: false,
+                            },
+                            tooltip: {
+                                enabled: false,
+                                external: oeeTrendOpp,
+                            }
+                        },
+                    },
+                });
+            
+
+            },
+            error:function(er){
+                console.log("Oee drill down graph first loader ajax funtion issue");
+                reject(er);
+            }
+        });
+    });
+    
+}
+
+// first loader machine wise oee
+function first_loader_machine_oee(f,t){
+
+    return  new Promise(function(resolve,reject){
+       
+        $.ajax({
+            url:"<?php echo  base_url('OEE_Drill_Down_controller/first_loader_machine_oee'); ?>",
+            method:"POST",
+            dataType:"JSON",
+            // async:false,
+            data:{
+                from:f,
+                to:t
+            },
+            success:function(res){
+                console.log("first laoder machine wise oee");
+                console.log(res);
+
+                resolve(res);
+                $('#machine_wise_oee').remove();
+                $('.child_machine_wise_oee').append('<canvas id="machine_wise_oee"></canvas>');
+                $('.chartjs-hidden-iframe').remove();
+                // console.log("machine wise oee");
+                // console.log(res);
+                
+                var category_percent = 1.0;
+                var bar_space = 0.5;
+
+                while(true){
+                    var len= res["OEE"].length;
+                    if (len < 8) {
+                    res["OEE"].push("");
+                    res.MachineName.push("");
+                    }
+                    else if(len > 8){
+                    var l = parseInt(len)%parseInt(8);
+                    var w= parseInt($('.parent_machine_wise_oee').css("width"))+parseInt(l*18*16);
+                    $('.child_machine_wise_oee').css("width",w+"px");
+                    break;
+                    }
+                    else{
+                    break;
+                    }
+                }
+
+                all_data_field = ['quality','performance','availability','oee'];
+                // console.log("all data field array");
+                var graph_demo_arr = [];
+                all_data_field.forEach(function(item){
+                    if(item === "quality"){
+                        graph_demo_arr.push({
+                            label: "Quality",
+                            type: "line",
+                            backgroundColor: "#09BB9F",
+                            pointStyle:"circle",
+                            radius:"5",
+                            borderWidth: 1,
+                            showLine : false,
+                            fill: false,
+                            data: res['Quality'],
+                            pointRadius: 5,
+                            perTarget:res['PerformanceTarget'],
+                            availTarget:res['AvailabilityTarget'],
+                            qulyTarget:res['QualityTarget'],
+                            oeeTarget:res['OEETarget'],
+                        });
+                    }
+                    else if(item === "performance"){
+                        graph_demo_arr.push({
+                            label: "Performance",
+                            type: "line",
+                            backgroundColor: "#0075F6",
+                            pointStyle:"rectRot",
+                            radius:"5", 
+                            borderWidth: 1, 
+                            showLine : false,
+                            fill: false, 
+                            data: res['Performance'],
+                            pointRadius: 6,
+                            pointHoverRadius: 6,
+
+                            perTarget:res['PerformanceTarget'],
+                            availTarget:res['AvailabilityTarget'],
+                            qulyTarget:res['QualityTarget'],
+                            oeeTarget:res['OEETarget'],
+                        });
+
+                    }
+                    else if(item === "availability"){
+                        graph_demo_arr.push({
+                            label: "Availability",
+                            type: "line",
+                            backgroundColor: "#000000",
+                            pointStyle:"triangle",
+                            // borderColor: "red",  
+                            borderWidth: 1, 
+                            showLine : false,
+                            fill: false,
+                            data: res['Availability'],
+                            pointRadius: 5,
+
+                            perTarget:res['PerformanceTarget'],
+                            availTarget:res['AvailabilityTarget'],
+                            qulyTarget:res['QualityTarget'],
+                            oeeTarget:res['OEETarget'],
+                        });
+                    }
+                    else if (item==="oee") {
+                        graph_demo_arr.push({
+                            label: "Machine OEE",
+                            type: "bar",
+                            backgroundColor: "#0075F6",
+                            borderColor: "#004b9b", 
+                            borderWidth: 1,
+                            fill: true,
+                            data: res['OEE'],
+                            perTarget:res['PerformanceTarget'],
+                            availTarget:res['AvailabilityTarget'],
+                            qulyTarget:res['QualityTarget'],
+                            oeeTarget:res['OEETarget'],
+                            categoryPercentage:category_percent,
+                            barPercentage: bar_space, 
+                            // yAxisID:'ypercentage',
+                        });
+                    }
+                });
+                var ctx = document.getElementById("machine_wise_oee").getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: res.MachineName,
+                        datasets: graph_demo_arr,
+                    },
+                    
+                    options: {
+                        scalebeginAtZero:false,
+                        responsive: true,
+                        maintainAspectRatio: false,   
+                        scales: {
+                            y: {
+                                //type:"bar",
+                                display:true,
+                                beginAtZero:true,
+                                stacked:false,
+                                ticks:{
+                                    callback:function(value){
+                                        return value+"%";
+                                    }
+                                }
+                            },
+                            x:{
+                                display:true,
+                                grid:{
+                                display:false
+                                },
+                                stacked:true,
+                            },
+                        },
+                        plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        tooltip: {
+                            enabled: false,
+                            borderColor:"red",
+                            external: machineWiseOEETooltip,
+                        },
+                        
+                        },
+                    },
+                }); 
+                
+            },
+            error:function(er){
+                console.log("first loader machine wise oee ajax issue");
+                console.log(er);
+                reject(er);
+            }
+        });
+    });
+   
+    
+}
+
+// first loader availability graph function
+function first_loader_availability(f,t){
+    return  new Promise(function (resolve,reject){
+       
+        $.ajax({
+            url:"<?php echo base_url('OEE_Drill_Down_controller/first_load_availability'); ?>",
+            method:"POST",
+            dataType:"JSON",
+            // async:false,
+            data:{
+                from:f,
+                to:t
+            },
+            success:function(res){
+                console.log("first loader availability graph ");
+                console.log(res);
+                resolve(res);
+
+                
+                $('#machine_reason_availability').remove();
+                $('.child_machine_reason_availability').append('<canvas id="machine_reason_availability"></canvas>');
+                $('.chartjs-hidden-iframe').remove();
+                
+                // res= res["AvailabilityOpportunity"];
+
+                //$(".TotalAvail").html(res.grandTotal.toLocaleString("en-IN"));
+                var color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
+                    "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
+                    "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
+                    "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
+                    "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
+                    "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
+                    "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
+                    "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
+                    "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
+                    "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
+                    "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
+                ];
+                    
+                // Find the Reason Names as Lables..........
+                var machine_wise_total = [];
+                res['data'].forEach(function(item){
+                    // console.log("Availability ");
+                    // console.log(item);
+                    var tmp_total_duration = 0;
+                    item.forEach(function(val){
+                        tmp_total_duration = tmp_total_duration + val['duration'];
+                    });
+                    machine_wise_total.push(tmp_total_duration);
+        
+                });
+
+
+                // console.log("Availability graph total");
+                // console.log(machine_wise_total);
+                var reasonList =[];
+                res['reason'].forEach(function(reason){
+                    reasonList.push(reason.downtime_reason);
+                });
+
+                var totalVal =[];
+                res['total'].forEach(function(total){
+                    totalVal.push(total.toFixed(2));
+                });
+
+                var totalDuration=[];
+                res['totalDuration'].forEach(function(duration){
+                    totalDuration.push(duration);
+                });
+                
+
+                var machineName = [];
+                res['machineName'].forEach(function(Name){
+                    machineName.push(Name.machine_name);
+                });
+
+                var sum = machine_wise_total.reduce(function(a, b) { return a + b; }, 0);
+                var hour_text = parseInt(parseInt(sum)/60);
+                var minute_text = parseInt(parseInt(sum)%60);
+                $('#total_duration_availability').text(hour_text+'h'+' '+minute_text+'m');
+
+                var category_percent = 1.0;
+                var bar_space = 0.5;
+                while(true){
+                    var len= machineName.length;
+                    if (len < 8) {
+                        machineName.push("");
+                    }
+                    else if(len > 8){
+                        var l = parseInt(len)%parseInt(8);
+                        var w= parseInt($('.parent_machine_reason_availability').css("width"))+parseInt(l*18*16);
+                        $('.child_machine_reason_availability').css("width",w+"px");
+                        break;
+                    }
+                    else{
+                        break;
+                    }
+                }
+
+                //Find the duration for each machine in each Reason............
+                machine = [
+                    {
+                    label:"Total" ,
+                    type: "line",
+                    backgroundColor: color[0],
+                    borderColor: "#d9d9ff",  
+                    borderWidth: 1, 
+                    showLine : false,
+                    fill: false, 
+                    // data:totalVal,
+                    data:machine_wise_total,
+                    data_percentage:machine_wise_total,
+                    duration:totalDuration,
+                    pointRadius: 7,
+                    }           
+                ];
+
+                var x=1;
+                var index=0;
+                res['reason'].forEach(function(machineWise){
+                    //All the machines duration for each Reason..........
+    
+                    var arr= [];
+                    var arrtmp = [];
+                
+                    machine.push({
+                        label: machineWise['downtime_reason'],
+                        type: "bar",
+                        backgroundColor: color[x],
+                        borderColor: color[x],
+                        borderWidth: 1,
+                        fill: true,
+                        duration:machineWise['duration'],
+                        // data: machineWise['oppcost'],
+                        data_percentage:0,
+                        data: machineWise['duration'],
+                        categoryPercentage:category_percent,
+                        barPercentage: bar_space,
+                    });
+                    x=x+1;
+                    index=index+1;
+                });
+                // console.log("machine array");
+                // console.log(machine)
+                var avlOpp = document.getElementById("machine_reason_availability").getContext('2d');
+                var avlOppChart = new Chart(avlOpp, {
+                    type: 'bar',
+                    data: {
+                        labels: machineName,
+                        datasets: machine,
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,   
+                        scales: {
+                            y: {
+                                display: true,
+                                stacked:true,
+                                beginAtZero:true,
+                            },
+                            x:{
+                                display:true,
+                                grid:{
+                                    display:false
+                                },
+                                stacked:true
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false,
+                            },
+                            tooltip: {
+                            enabled: false,
+                            // borderColor:"red",
+                            external: availabilityOpp,
+                            }
+                        },
+                    },
+                });
+
+
+            },
+            error:function(er){
+                console.log("first loader availability graph ajax issue");
+                console.log(er);
+                reject(er);
+            }
+        });
+    });
+   
+ 
+}
+
+// first loader performance graph function
+function first_loader_performance(f,t){
+    return  new Promise(function (resolve,reject){
+        $('#performanceOpportunity').remove();
+        $('.child_graph_performance_opportunity').append('<canvas id="performanceOpportunity"></canvas>');
+        $('.chartjs-hidden-iframe').remove();
+      
+        $.ajax({
+            url:"<?php echo base_url('OEE_Drill_Down_controller/first_loader_performance') ?>",
+            method:"POST",
+            dataType:"JSON",
+            // async:false,
+            data:{
+                from:f,
+                to:t
+            },
+            success:function(res){
+                console.log("first loader performance graph");
+                console.log(res);
+                resolve(res);
+
+
+                var color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
+                    "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
+                    "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
+                    "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
+                    "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
+                    "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
+                    "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
+                    "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
+                    "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
+                    "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
+                    "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
+                ];
+                    // $(".PerformanceGrand").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
+
+                var partTotal = [];
+                res.Total.forEach(function(r){
+                    partTotal.push(parseFloat(r.toFixed(2)));
+                });
+                    
+                var speedTotal=[];
+                res.SpeedLossTotal.forEach(function(t){
+                    speedTotal.push(parseFloat(t.toFixed(2)));
+                });
+
+                var sum = speedTotal.reduce(function(a, b) { return a + b; }, 0);
+                var hour_text = parseInt(parseInt(sum)/60);
+                var minute_text = parseInt(parseInt(sum)%60);
+                $('#total_speed_loss').text(hour_text+'h'+' '+minute_text+'m');
+
+                // console.log("total speed loss");
+                // console.log(sum);
+                var partWiseLable = [];
+                res.Part.forEach(function(item){
+                    partWiseLable.push(item.part_name);
+                });
+    
+                var machine_total_arr = [];
+                var mname_arr = [];
+                res.dataPart.forEach(function(item){
+                    var tmp_data = 0;
+                    mname_arr.push(item['machine_name']);
+                    item['machineData'].forEach(function(val){
+                        tmp_data = parseInt(tmp_data)+parseInt(val['SpeedLoss']);
+                    });
+                    machine_total_arr.push(tmp_data);
+                });
+                //Find the duration for each machine in each Reason............
+                oppCost = [
+                    {
+                        label:"Total" ,
+                        type: "line",
+                        backgroundColor: color[0],
+                        borderColor: "#d9d9ff",  
+                        borderWidth: 1, 
+                        showLine : false,
+                        fill: false, 
+                        data:machine_total_arr,
+                        percentage_data:machine_total_arr,
+                        machine_wise_total:0,
+                        speedLoss:speedTotal,
+                        pointRadius: 7,
+                    }           
+                ];
+
+                var x=1;
+                var index=0;
+                var category_percent = 1.0;
+                var bar_space = 0.5;
+            // var machine_total_arr = [];
+                res.Part.forEach(function(item){
+                    var performancePart=[];
+                    var speedLoss=[];
+                    var part_name_arr = [];
+                        
+                    var machine_wise_total = 0;   
+                    res.dataPart.forEach(function(val){
+                        // mname_arr.push(val['machine_name']);
+                        val.machineData.forEach(function(value){
+                            if (value['part_id'] === item['part_id']) {
+                                var p = parseFloat(value['Opportunity'].toFixed(2));
+                                //var tmp_sploss = parseFloat(value['SpeedLoss'].toFixed(2));
+                                performancePart.push(p);
+                                speedLoss.push(parseFloat(value['SpeedLoss'].toFixed(2)));
+                                part_name_arr.push(value['part_name']);
+                                machine_wise_total = parseFloat(machine_wise_total) + parseFloat(p).toFixed(2);
+                            }
+                        });         
+                    });
+                    // machine_total_arr.push(machine_wise_total)
+                    oppCost.push({
+                        label:item['part_name'],
+                        type: "bar",
+                        backgroundColor: color[x],
+                        borderColor: color[x],
+                        borderWidth: 1,
+                        fill: true,
+                        data: speedLoss,
+                        // speedLoss:speedLoss,
+                        percentage_data:0,
+                        categoryPercentage:category_percent,
+                        barPercentage: bar_space, 
+                    });
+                    x=x+1;
+                    index=index+1;
+                    
+                });
+
+                // console.log("Graph array")
+                // console.log(oppCost);
+
+                var bar_width = 0.6;
+                var bar_size = 0.7;
+
+                while(true){
+                    var len= mname_arr.length;
+                    if (len < 8) {
+                        mname_arr.push("");
+                    }
+                    else if(len > 8){
+                        var l = parseInt(len)%parseInt(8);
+                        var w= parseInt($('.parent_graph_performance_opportunity').css("width"))+parseInt(l*18*16);
+                        $('.child_graph_performance_opportunity').css("width",w+"px");
+                        break;
+                    }
+                    else{
+                        break;
+                    }
+                }
+                // console.log("Machine name lable");
+                // console.log(mname_arr);
+                var ctx = document.getElementById("performanceOpportunity").getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: mname_arr,
+                        datasets:oppCost,
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,   
+                        scales: {
+                            y: {
+                                display:true,
+                                beginAtZero:true,
+                                stacked:true
+                            },
+                            x:{
+                                display:true,
+                                grid:{
+                                display:false
+                                },
+                                stacked:true,
+                            },
+                        },
+                        plugins: {
+                            legend: {
+                                display: false,
+                            },
+                            tooltip: {
+                                enabled: false,
+                            external: performanceOpp,
+                            }
+                        },
+                    },            
+                });
+
+            },
+            error:function(er){
+                console.log("first loader performance graph ajax issue");
+                console.log(er);
+                reject(er);
+            }
+        });
+    });
+   
+}
+
+
+function first_loader_quality(f,t){
+    return new Promise(function (resolve,reject){
+       
+        $.ajax({
+            url:"<?php echo  base_url('OEE_Drill_Down_controller/first_loader_quality'); ?>",
+            method:"POST",
+            dataType:"JSON",
+            // async:false,
+            data:{
+                from:f,
+                to:t
+            },
+            success:function(res){
+                console.log("first loader quality graph");
+                console.log(res);
+                resolve(res);
+                $('#quality_reason_machine').remove();
+                $('.child_quality_reason_machine').append('<canvas id="quality_reason_machine"></canvas>');
+                $('.chartjs-hidden-iframe').remove();
+
+
+                // console.log("Quality Opportunity graph");
+                // console.log(res);
+                var color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
+                    "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
+                    "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
+                    "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
+                    "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
+                    "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
+                    "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
+                    "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
+                    "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
+                    "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
+                    "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
+                ];
+
+                var machineName_arr = [];
+                var machine_total_arr = [];
+                var total_val = 0;
+                res['machine_data'].forEach(function(item){
+                    machineName_arr.push(item.machine_name);
+                    total_val = total_val + item.total_rejects;
+                    machine_total_arr.push(item.total_rejects);
+                });
+
+                $('#total_machine_reason_quality').text(parseInt(total_val).toLocaleString("en-IN"));
+                quality_reason_arr = [
+                    {
+                        label:"Total" ,
+                        type: "line",
+                        backgroundColor: color[0],
+                        borderColor: "#d9d9ff",  
+                        borderWidth: 1, 
+                        showLine : false,
+                        fill: false, 
+                        data:machine_total_arr,
+                        percentage_data:machine_total_arr,
+                        machine_wise_total:0,
+                        // speedLoss:speedTotal,
+                        pointRadius: 7,
+                    }           
+                ];
+                var x=1;
+                var index=0;
+                res['graph_data'].forEach(function(item){
+                    var part_arr = [];
+                    var count_arr = [];
+                    var reason_wise_data = [];
+                    var temp_machine_part_arr = [];
+                    item['machine_data'].forEach(function(ele) {
+                        var tmp_part_total = 0;
+                        var temp_partname_arr = [];
+                        ele['part_data'].forEach(function(element){
+                            tmp_part_total = tmp_part_total + element['total_reject'];
+                            var temp_data = element['part_name']+'&'+element['total_reject'];
+                            temp_partname_arr.push(temp_data);
+                        });
+
+                        var tmp_arr_str = temp_partname_arr.join(',');
+                        temp_machine_part_arr.push(tmp_arr_str);
+                        reason_wise_data.push(tmp_part_total);
+                    });
+                    quality_reason_arr.push({
+                        label:item['reason_name'],
+                        type: "bar",
+                        backgroundColor: color[x],
+                        borderColor: color[x],
+                        borderWidth: 1,
+                        fill: true,
+                        data: reason_wise_data,
+                        reason_arr:temp_machine_part_arr,
+                        percentage_data:0,
+                        categoryPercentage:1.0,
+                        barPercentage: 0.5, 
+                    });
+                    x=x+1;
+                    index=index+1;
+                });
+
+
+                // console.log(quality_reason_arr);
+                var bar_width = 0.6;
+                var bar_size = 0.7;
+                while(true){
+                    var len= machineName_arr.length;
+                    if (len < 8) {
+                        machineName_arr.push("");
+                    }
+                    else if(len > 8){
+                        var l = parseInt(len)%parseInt(8);
+                        var w= parseInt($('.parent_quality_reason_machine').css("width"))+parseInt(l*18*16);
+                        $('.child_quality_reason_machine').css("width",w+"px");
+                        break;
+                    }
+                    else{
+                        break;
+                    }
+                }
+            
+                var ctx = document.getElementById("quality_reason_machine").getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: machineName_arr,
+                        datasets:quality_reason_arr,
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,   
+                        scales: {
+                            y: {
+                                display:true,
+                                beginAtZero:true,
+                                stacked:true
+                            },
+                            x:{
+                                display:true,
+                                grid:{
+                                    display:false
+                                },
+                                stacked:true,
+                            },
+                        },
+                        plugins: {
+                            legend: {
+                                display: false,
+                            },
+                            tooltip: {
+                                enabled: false,
+                                external: quality_reason_machine_tooltip,
+                            }
+                        },
+                    },            
+                });
+
+            },
+            error:function(er){
+                console.log("first loader quality graph aja issue");
+                console.log(er);
+                reject(er);
+            }
+        });
+    });
+   
+
+}
 </script>

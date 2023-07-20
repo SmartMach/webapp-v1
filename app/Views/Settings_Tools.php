@@ -38,10 +38,10 @@
       <div class="container-fluid paddingm">
         <p class="float-start p3" id="logo">Parts Settings</p>
           <div class="d-flex">
-                <p class="float-end stcode" style="color: #005CBC;">
+                <p class="float-end fnt_fam style_label active_click fnt_active">
                     <span  id="active"></span>Active
                 </p>
-                <p class="float-end stcode" style="color: #C00000;">
+                <p class="float-end fnt_fam style_label fnt_inactive">
                     <span  id="IActive"></span>Inactive
                 </p>
           </div>
@@ -59,7 +59,7 @@
                 <?php 
                      if($this->data['access'][0]['settings_part'] == 3){ 
                 ?>
-                    <a style="background: #005abc;color: white;width:8rem;justify-content:center;text-align:center;" class="settings_nav_anchor float-end" id="add_part_modal">
+                    <a style="width:8rem;justify-content:center;text-align:center;" class="settings_nav_anchor saveBtnStyle float-end" id="add_part_modal">
                         <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD PART
                     </a> 
                 <?php 
@@ -71,34 +71,34 @@
     <div class="tableContent">
         <div class="settings_machine_header sticky-top fixtabletitle">
             <div class="row paddingm">
-                <div class="col-sm-1 p3 paddingm">
-                  <p class="basic_header">PART ID</p>
+                <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                  <p class="h_mar_l paddingm">PART ID</p>
                 </div>
-                <div class="col-sm-2 p3 paddingm">
-                  <p class="basic_header">PART NAME</p>
+                <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                  <p class="h_mar_l paddingm">PART NAME</p>
                 </div>
-                <div class="col-sm-2 p3 paddingm">
-                  <p class="basic_header">TOOL NAME</p>
+                <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                  <p class="h_mar_l paddingm">TOOL NAME</p>
                 </div>
-                <div class="col-sm-2 p3 paddingm ">
-                  <p class="basic_header">NET IDEAL CYCLE TIME (NICT)</p>
+                <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                  <p class="h_mar_l paddingm">NET IDEAL CYCLE TIME (NICT)</p>
                 </div>
-                <div class="col-sm-2 p3 paddingm ">
-                  <p class="basic_header">PARTS PRODUCED / CYCLE</p>
+                <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                  <p class="h_mar_l paddingm">PARTS PRODUCED / CYCLE</p>
                 </div>
-                <div class="col-sm-1 p3 paddingm">
-                  <p class="basic_right">PART PRICE</p>
+                <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                  <p class="h_mar_r paddingm">PART PRICE</p>
                 </div>
-                <div class="col-sm-1 p3 paddingm">
-                  <p class="basic_header">STATUS</p>
+                <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                  <p class="h_mar_l paddingm">STATUS</p>
                 </div>
-                <div class="col-sm-1 p3 paddingm" style="justify-content: center;">
-                  <p class="basic_header">ACTION</p>
+                <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_c align_c text_align_c">
+                  <p class="paddingm">ACTION</p>
                 </div>
             </div>
         </div>
         <!-- Header -->
-        <div class="contentTool contentContainer paddingm" >
+        <div class="contentTool tableDataContainer paddingm" >
       
         </div>
     </div>

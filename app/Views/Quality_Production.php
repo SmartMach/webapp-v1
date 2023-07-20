@@ -132,10 +132,10 @@
   };
 </script>
 </head>
-<div style="margin-left: 4.5rem;">
-  <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav_quality" style="z-index: 1001!important">
-    <div class="container-fluid paddingm" style="margin-top:0.2rem;">
-      <p class="float-start p3" id="logo">Production Quality</p>
+<div class="mr_left_content_sec">
+  <nav class="sec_nav display_f align_c justify_c sec_nav_c navbar-expand-lg">
+    <div class="container-fluid paddingm display_f justify_sb align_c">
+      <p class="float-start fnt_fam mdl_header">Production Quality</p>
       <div class="d-flex" style="display: flex;align-items: center;">
                 <div class="box rightmar" style="margin-right:0.5rem;">
                     <div style="padding-left:10px;padding-right:10px;height:2.3rem;border:1px solid #e6e6e6;border-radius:0.25rem;display:flex;justify-content:center;align-items:center;color:#C00000;"><p style="text-align:center;margin:auto;font-size:15px;font-weight:bold;"><span id="total_rejection_header"></span> Rejects</p></div>
@@ -148,18 +148,14 @@
                     <i class="fa fa-calculator nav-link"  id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" style="padding:0.4rem;font-size:1.3rem;width: 1.6rem;"></i>
                   </li>
                 </ul>
-              <!-- </div> -->
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box">
-                  <!-- <input type="date" name="" class="form-control fromDate" id="from"> -->
                   <input type="text" class="form-control fromDate" value="" step="1">
-                  <!-- <input type="datetime-local" class="form-control" value="2013-10-24T10:00:00" step="1"> -->
                   <label for="inputSiteNameAdd" class="input-padding ">From DateTime</label>
                 </div>
               </div>
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box">
-                  <!-- <input type="date" name="" class="form-control toDate"> -->
                   <input type="text" class="form-control toDate" value="" step="1">
                   <label for="inputSiteNameAdd" class="input-padding ">To DateTime</label>
                 </div>
@@ -167,20 +163,20 @@
         </div>
     </div>
   </nav>
-  <div class="tab-content" id="pills-tabContent" style="margin-top:3.8rem;">
+  <div class="tab-content" id="pills-tabContent">
     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
     <div class="grid-container_graph">
-      <div class="row paddingm" style="height:max-content;width:100%;display:flex;flex-direction:row;justify-content:space-evenly;align-items:center;margin-bottom:0.3rem;">
+      <div class="row paddingm display_f align_c" style="height:max-content;width:100%;flex-direction:row;justify-content:space-evenly;margin-bottom:0.3rem;">
         <div class="grid-item_graph  paddingm" style="margin-top: 1.5rem;width:49%;margin-left:0.5rem;height:18rem;">
-          <div class="graph-div-header">
-            <p class="paddingm fontBold financial_font">Cost of Poor Quality (COPQ) by Reason</p>
+          <div class="graph-div-header" style="margin-left:1rem;">
+            <p class="paddingm fontBold financial_font" style="margin-left:0;">Cost of Poor Quality (COPQ) by Reason</p>
           </div>
-          <div class="valueMarLeft">
-            <div style="float: left;width: 10%">
-              <p class="paddingm headTitle total-margin">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0.8rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft COPQP" ></span></p>
+          <div class="valueMarLeft" style="margin-left:1rem;">
+            <div style="float: left;width: 17%;">
+              <p class="paddingm headTitle total-margin" style="margin-left:0rem;">TOTAL</p>
+              <p class="paddingm valueGraph"><i class="fa fa-inr inr_font" aria-hidden="true"></i><span class="paddingm COPQP"></span></p>
             </div>
-            <div style="float: left;width:90%;" class="filter_div">
+            <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing Reasons_COPQP">
 
@@ -243,22 +239,22 @@
               </div>
             </div>
           </div>
-          <div class="parent_graph_quality_opportunity parent_graph_div parent-style">
+          <div class="parent_graph_quality_opportunity parent_graph_div parent-style" style="padding-left:1rem;padding-right:1rem;">
             <div class="child_graph_quality_opportunity child-style">
               <canvas id="COPQP" height="110"></canvas>
             </div>
           </div>
         </div>
         <div class="grid-item_graph  paddingm" style="margin-top: 1.5rem;width:49%;margin-right:0.5rem;height:18rem;">
-          <div class="graph-div-header">
-            <p class="paddingm fontBold financial_font">Quality Rejection by Reason</p>
+          <div class="graph-div-header" style="margin-left:1rem;">
+            <p class="paddingm fontBold financial_font" style="margin-left:0;">Quality Rejection by Reason</p>
           </div> 
-          <div class="valueMarLeft">
-            <div style="float: left;width: 10%">
-              <p class="paddingm headTitle total-margin">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0.4rem;"><span class="paddingm valueMarLeft CRBR" ></span></p>
+          <div class="valueMarLeft" style="margin-left:1rem;">
+            <div style="float: left;width: 17%">
+              <p class="paddingm headTitle total-margin" style="margin-left:0rem;">TOTAL</p>
+              <p class="paddingm valueGraph" style="margin-left:0rem;"><span class="paddingm  CRBR" ></span></p>
             </div>
-            <div style="float: left;width:90%;" class="filter_div">
+            <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
@@ -320,7 +316,7 @@
               </div>
             </div>
           </div>
-          <div class="parent_graph_quality_reason_wise parent_graph_div parent-style">
+          <div class="parent_graph_quality_reason_wise parent_graph_div parent-style" style="padding-left:1rem;padding-right:1rem;">
             <div class="child_graph_quality_reason_wise child-style">
               <canvas id="QRBR" height="110"></canvas>
             </div>
@@ -329,15 +325,15 @@
       </div>
       <div class="row paddingm" style="height: max-content;width:100%;display:flex;flex-direction:row;justify-content:space-evenly;alig-items:center;margin-bottom:0.3rem;">
         <div class="grid-item_graph  paddingm" style="width:49%;margin-left:0.5rem;height:18rem;">
-          <div class="graph-div-header">
-            <p class="paddingm fontBold financial_font">Cost of Poor Quality (COPQ) by Machines</p>
+          <div class="graph-div-header" style="margin-left:1rem;">
+            <p class="paddingm fontBold financial_font" style="margin-left:0rem;">Cost of Poor Quality (COPQ) by Machines</p>
           </div>
-          <div class="valueMarLeft">
-            <div style="float: left;width: 10%">
-              <p class="paddingm headTitle total-margin">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0.8rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft COPQM" ></span></p>
+          <div class="valueMarLeft" style="margin-left:1rem;">
+            <div style="float: left;width: 17%;">
+              <p class="paddingm headTitle total-margin" style="margin-left:0;">TOTAL</p>
+              <p class="paddingm valueGraph"><i class="fa fa-inr inr_font" aria-hidden="true"></i><span class="paddingm COPQM"></span></p>
             </div>
-            <div style="float: left;width:90%;" class="filter_div">
+            <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
@@ -399,22 +395,22 @@
               </div>
             </div>
           </div>
-          <div class="parent_graph_quality_machine_wise parent_graph_div parent-style">
+          <div class="parent_graph_quality_machine_wise parent_graph_div parent-style" style="padding-left:1rem;padding-right:1rem;">
             <div class="child_graph_quality_machine_wise child-style">
               <canvas id="COPQM" height="110"></canvas>
             </div>  
           </div>
         </div>
         <div class="grid-item_graph   paddingm" style="width:49%;margin-right:0.5rem;height:18rem;">
-          <div class="graph-div-header">
-            <p class="paddingm fontBold financial_font">Quality Rejection by Machines with Reasons</p>
+          <div class="graph-div-header" style="margin-left:1rem;">
+            <p class="paddingm fontBold financial_font" style="margin-left:0rem;">Quality Rejection by Machines with Reasons</p>
           </div>
-          <div class="valueMarLeft">
-            <div style="float: left;width: 10%">
-              <p class="paddingm headTitle total-margin">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0.4rem;"><span class="paddingm valueMarLeft CRBMR" ></span></p>
+          <div class="valueMarLeft" style="margin-left:1rem;">
+            <div style="float: left;width: 17%;">
+              <p class="paddingm headTitle total-margin" style="margin-left:0;">TOTAL</p>
+              <p class="paddingm valueGraph" style="margin-left:0rem;"><span class="paddingm  CRBMR" ></span></p>
             </div>
-            <div style="float: left;width:90%;" class="filter_div">
+            <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
@@ -478,7 +474,7 @@
 
 
           </div>
-          <div class="parent_graph_quality_machine_reason parent_graph_div parent-style">
+          <div class="parent_graph_quality_machine_reason parent_graph_div parent-style" style="padding-left:1rem;padding-right:1rem;">
             <div class="child_graph_quality_machine_reason child-style">
               <canvas id="CRBMR" height="110"></canvas>
             </div>
@@ -488,15 +484,15 @@
       
       <div class="row paddingm" style="height:max-content;width:100%;display:flex;flex-direction:row;justify-content:space-evenly;align-items:center;margin-bottom:0.5rem">
         <div class="grid-item_graph  paddingm" style="width:49%;margin-left:0.5rem;height:18rem;">
-          <div class="graph-div-header">
-            <p class="paddingm fontBold financial_font">Cost of Poor Quality (COPQ) by Parts</p>
+          <div class="graph-div-header" style="margin-left:1rem;">
+            <p class="paddingm fontBold financial_font" style="margin-left:0rem;">Cost of Poor Quality (COPQ) by Parts</p>
           </div>
-          <div class="valueMarLeft">
-            <div style="float: left;width: 10%">
-              <p class="paddingm headTitle total-margin">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0.8rem;"><i class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft CQRP" ></span></p>
+          <div class="valueMarLeft" style="margin-left:1rem;">
+            <div style="float: left;width: 17%;">
+              <p class="paddingm headTitle total-margin" style="margin:0;">TOTAL</p>
+              <p class="paddingm valueGraph"><i class="fa fa-inr inr_font" aria-hidden="true"></i><span class="paddingm CQRP"></span></p>
             </div>
-            <div style="float: left;width:90%;" class="filter_div">
+            <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
@@ -558,22 +554,22 @@
               </div>
             </div>
           </div>
-          <div class="parent_graph_quality_parts parent_graph_div parent-style">
+          <div class="parent_graph_quality_parts parent_graph_div parent-style" style="padding-left:1rem;padding-right:1rem;">
             <div class="child_graph_quality_parts child-style">
               <canvas id="CQRP" height="110"></canvas>
             </div>
           </div>
         </div>
         <div class="grid-item_graph  paddingm" style="width:49%;margin-right:0.5rem;height:18rem;">
-          <div class="graph-div-header">
-            <p class="paddingm fontBold financial_font">Quality Rejection by Parts with Reasons</p>
+          <div class="graph-div-header" style="margin-left:1rem;">
+            <p class="paddingm fontBold financial_font" style="margin-left:0rem;">Quality Rejection by Parts with Reasons</p>
           </div>
-          <div class="valueMarLeft">
-            <div style="float: left;width: 10%">
-              <p class="paddingm headTitle total-margin">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0.4rem;"><span class="paddingm valueMarLeft CQRPR" ></span></p>
+          <div class="valueMarLeft" style="margin-left:1rem;">
+            <div style="float: left;width: 17%;">
+              <p class="paddingm headTitle total-margin" style="margin-left:0;">TOTAL</p>
+              <p class="paddingm valueGraph" style="margin-left:0rem;"><span class="paddingm  CQRPR" ></span></p>
             </div>
-            <div style="float: left;width:90%;" class="filter_div">
+            <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option">
@@ -635,7 +631,7 @@
               </div>
             </div>
           </div>
-          <div class="parent_graph_quality_part_reason parent_graph_div parent-style">
+          <div class="parent_graph_quality_part_reason parent_graph_div parent-style" style="padding-left:1rem;padding-right:1rem;">
             <div class="child_graph_quality_part_reason child-style">
               <canvas id="CQRPR" height="110"></canvas>
             </div>
@@ -648,29 +644,22 @@
     <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav">
       <div class="container-fluid paddingm ">
         <div class="box rightmar" style="margin-left: 0.5rem;width: 10rem;">
-            <div class="input-box" style="display: flex;">
-              <input type="number" class="form-control font_weight font_color" name="" id="pagination_val" style="width: 3.5rem;">
-              <div class="box rightmar center-align font_color font-size-lable" style="margin-left: 0.5rem;">
+            <div class="input-box" style="display: flex;font-size:12px;">
+              <input type="number" class="form-control font_weight font_color" name="" id="pagination_val" style="width: 2rem;height:2rem;margin-right:0.5rem;padding:0;font-size:12px;text-align:center;">
+              <div class="box rightmar center-align font_color font-size-lable" >
                 <p class="paddingm">of <span id="total_pagination"></span> pages</p>
               </div>
             </div>
         </div>
           
         <div class="d-flex innerNav">
-          <!-- <div class="box rightmar" style="margin-right: 0.5rem;">
-            <div class="input-box">
-              <select class="form-select font_weight" name="" id="Production_MachineName" style="width: 10rem;">
-              </select>
-              <label for="inputSiteNameAdd" class="input-padding ">Search</label>
-            </div>
-          </div> -->
           <div class="box rightmar" style="margin-right: 0.5rem;">
             <div class="input-box">
               <div class="filter_multiselect">
                 <div class="filter_selectBox" onclick="multiple_drp()">
                   <div class="inbox-span fontStyle search_style dropdown-arrow">
                     <div style="width: 80% !important;">
-                      <p class="paddingm" id="part_text">Select</p>
+                      <p class="paddingm" id="part_text">All Parts</p>
                     </div>
                     <div style="width: 80% !important;" class="dropdown-div">
                       <i class="fa fa-angle-down icon-style"></i>
@@ -690,7 +679,7 @@
                 <div class="filter_selectBox" onclick="multiple_drp_machine()">
                   <div class="inbox-span fontStyle search_style dropdown-arrow">
                     <div style="width: 80% !important;">
-                      <p class="paddingm" id="machine_text">Select</p>
+                      <p class="paddingm" id="machine_text">All Machines</p>
                     </div>
                     <div style="width: 80% !important;" class="dropdown-div">
                       <i class="fa fa-angle-down icon-style"></i>
@@ -710,7 +699,7 @@
                 <div class="filter_selectBox" onclick="multiple_drp_reason()">
                   <div class="inbox-span fontStyle search_style dropdown-arrow">
                     <div style="width: 80% !important;">
-                      <p class="paddingm" id="reason_text">Select</p>
+                      <p class="paddingm" id="reason_text">All Reasons</p>
                     </div>
                     <div style="width: 80% !important;" class="dropdown-div">
                       <i class="fa fa-angle-down icon-style"></i>
@@ -730,7 +719,7 @@
                 <div class="filter_selectBox" onclick="multiple_drp_user()">
                   <div class="inbox-span fontStyle search_style dropdown-arrow">
                     <div style="width: 80% !important;">
-                      <p class="paddingm" id="user_text">Select</p>
+                      <p class="paddingm" id="user_text">All Users</p>
                     </div>
                     <div style="width: 80% !important;" class="dropdown-div">
                       <i class="fa fa-angle-down icon-style"></i>
@@ -744,8 +733,8 @@
             </div>
           </div> 
 
-          <!-- <div class="box rightmar" style="margin-right: 0.5rem;"> -->
-          <button class="btn fo bn filterbtnstyle settings_nav_anchor float-end" style="margin-right:0.5rem;margin-left: 0;margin-top: 0;margin-bottom: 0;" id="add_machine_button" onclick="getFilterval()">Apply Filter</button>
+          <!-- <div class="box rightmar" style="margin-right: 0.5rem;">
+          <button class="btn fo bn filterbtnstyle settings_nav_anchor float-end" style="margin-right:0.5rem;border-radius:0.25rem;margin-left: 0;margin-top: 0;margin-bottom: 0;" id="add_machine_button" onclick="getFilterval()">Apply Filter</button>
           <!-- </div> -->
           <div class="box rightmar" style="margin-right: 0.5rem;display: flex;justify-content: center;">
             <img src="<?php echo base_url('assets/img/filter_reset.png'); ?>" class="undo" style="font-size:20px;color: #b5b8bc;cursor: pointer;width:1.3rem;height:1.3rem;">
@@ -794,17 +783,17 @@
     </div>
     </div>
   </div>
-
+ 
 
 </div>
 
  <!-- preloader -->
-  <div id="overlay">
+  <!-- <div id="overlay">
     <div class="cv-spinner">
       <span class="spinner"></span>
       <span class="loading">Awaiting Completion...</span>
     </div>
-  </div>
+  </div> -->
   <!-- preloader end -->
 
 <script type="text/javascript">
@@ -896,7 +885,7 @@
       }
     });
     }
-
+    
     getTableData(part,machine,reason,user);
   }
 
@@ -930,12 +919,20 @@
   $(document).on('blur','.fromDate',function(){
     $("#overlay").fadeIn(300);
     myFun();
+    
   });
   $(document).on('blur','.toDate',function(){
     $("#overlay").fadeIn(300);
     myFun();
+    // getFilterval();
   });
-  function myFun(){
+
+  $(document).ready(function(){
+    $("#overlay").fadeIn(300);
+    myFun();
+  });
+
+  async function myFun(){
       f = $('.fromDate').val(); 
       t = $('.toDate').val();
 
@@ -965,15 +962,17 @@
       f = $('.fromDate').val();
       t = $('.toDate').val();
     }
-    
-    copqp();
-    qrbr();
-    copqm();
-    crbmr();
-    qualitybyparts();
-    qualitybyreasonparts();
+    await getfilterdata();
+    await copqp();
+    await qrbr();
+    await copqm();
+    await crbmr();
+    await qualitybyparts();
+    await qualitybyreasonparts();
+    getFilterval();
     $("#overlay").fadeOut(300);
   }
+  
 
 function multiple_drp() {
   $('.filter_checkboxes').css("display","none");
@@ -1594,6 +1593,7 @@ $(document).on('click','.inbox_part_crpr',function(event){
   }
 
 });
+
 $(document).on('click','.inbox_machine_crpr',function(event){
   var index = $('.inbox_machine_crpr').index(this);
   if(index==0 && $( ".filter_machine_val_crpr:eq('"+index+"')").prop( "checked")==true){
@@ -2315,6 +2315,9 @@ $(document).on('click','.inbox_user',function(event){
 
 
 function qualitybyreasonparts() {
+  return new Promise(function(resolve,reject){
+
+  
     var part=[];
     var machine =[];
     var reason= [];
@@ -2380,203 +2383,219 @@ function qualitybyreasonparts() {
       return;  
     }
 
-  $('#CQRPR').remove();
-  $('.child_graph_quality_part_reason').append('<canvas id="CQRPR"></canvas>');
-  $('.chartjs-hidden-iframe').remove();
-  
-  f = $('.fromDate').val();
-  t = $('.toDate').val();
-  f = f.replace(" ","T");
-  t = t.replace(" ","T");
-  $.ajax({
-    url: "<?php echo base_url('Production_Quality/qualityOpportunitypartsreason'); ?>",
-    type: "POST",
-    dataType: "json",
-    data:{
-      from:f,
-      to:t,
-      reason:reason,
-      machine:machine,
-      part:part
-    },
-    success:function(res){
-      // $('#qualityOpportunity').remove();
-      // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
-      // $('.chartjs-hidden-iframe').remove();
+    $('#CQRPR').remove();
+    $('.child_graph_quality_part_reason').append('<canvas id="CQRPR"></canvas>');
+    $('.chartjs-hidden-iframe').remove();
+    
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
+    $.ajax({
+      url: "<?php echo base_url('Production_Quality/qualityOpportunitypartsreason'); ?>",
+      type: "POST",
+      dataType: "json",
+      data:{
+        from:f,
+        to:t,
+        reason:reason,
+        machine:machine,
+        part:part
+      },
+      success:function(res){
+        resolve(res);
+        // $('#qualityOpportunity').remove();
+        // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
+        // $('.chartjs-hidden-iframe').remove();
 
-      $('#total_rejection_header').text(res.GrandTotal);
-      // res=res["QualityOpportunity"]
-      $(".CQRPR").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
-      // color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
-      color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
-        "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
-        "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
-        "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
-        "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
-        "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
-        "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
-        "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
-        "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
-        "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
-        "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
-      ];
-        
-      // Find the Reason Names as Lables..........
+        $('#total_rejection_header').text(res.GrandTotal);
+        // res=res["QualityOpportunity"]
+        $(".CQRPR").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
+        // color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
+        color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
+          "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
+          "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
+          "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
+          "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
+          "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
+          "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
+          "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
+          "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
+          "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
+          "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
+        ];
+          
+        // Find the Reason Names as Lables..........
 
-      var totalVal =[];
-      res['Total'].forEach(function(t){
-          totalVal.push(parseInt(t));
-      });
+        var totalVal =[];
+        res['Total'].forEach(function(t){
+            totalVal.push(parseInt(t));
+        });
 
-      var totalVal_percentage =[];
-      res['Total'].forEach(function callback(value, index) {
-        if (index == 0) {
-          totalVal_percentage.push(parseInt((parseInt(value)/parseInt(res.GrandTotal))*100));
-        }else if (index == (res['Total'].length-1)) {
-          totalVal_percentage.push(100);
-        }
-        else{
-          var temp =  parseInt((parseInt(value)/parseInt(res.GrandTotal))*100);
-          totalVal_percentage.push(totalVal_percentage[index-1]+parseInt(temp));
-        }
-      });
+        var totalVal_percentage =[];
+        res['Total'].forEach(function callback(value, index) {
+          if (index == 0) {
+            totalVal_percentage.push(parseInt((parseInt(value)/parseInt(res.GrandTotal))*100));
+          }else if (index == (res['Total'].length-1)) {
+            totalVal_percentage.push(100);
+          }
+          else{
+            var temp =  parseInt((parseInt(value)/parseInt(res.GrandTotal))*100);
+            totalVal_percentage.push(totalVal_percentage[index-1]+parseInt(temp));
+          }
+        });
 
-      for (let i = 0; i < totalVal.length; i++) {
-        let lowest = i
-        for (let j = i + 1; j < totalVal.length; j++) {
-          if (totalVal[j] < totalVal[lowest]) {
-            lowest = j
+        for (let i = 0; i < totalVal.length; i++) {
+          let lowest = i
+          for (let j = i + 1; j < totalVal.length; j++) {
+            if (totalVal[j] < totalVal[lowest]) {
+              lowest = j
+            }
+          }
+          if (lowest !== i) {
+            // Swap
+            ;[totalVal[i], totalVal[lowest]] = [totalVal[lowest], totalVal[i]]
           }
         }
-        if (lowest !== i) {
-          // Swap
-          ;[totalVal[i], totalVal[lowest]] = [totalVal[lowest], totalVal[i]]
-        }
-      }
 
-      var lab = [];
-      res['Part_List'].forEach(function(t){
-        lab.push(t);
-      });
-      var category_percent =1.0;
-      var bar_space=0.5;
-
-      while(true){
-        var len= lab.length;
-        if (len < 8) {
-          lab.push("");
-        }
-        else if(len > 8){
-          var l = parseInt(len)%parseInt(8);  
-          var w= parseInt($('.parent_graph_quality_part_reason').css("width"))+parseInt(l*5*16);
-          $('.child_graph_quality_part_reason').css("width",w+"px");
-          break;
-        }
-        else{
-          break;
-        }
-      }
-      oppCost = [
-        {
-          label:"Total",
-          type: "line",
-          backgroundColor: "white",
-          borderColor: "#7f7f7f",
-          borderWidth: 1, 
-          lineColor:"black",
-          borderWidth: 1,
-          showLine : true,
-          fill: false,
-          percentage_data:totalVal_percentage,
-          // reject:totalReject, 
-          data:totalVal_percentage,
-          // partName:partNameTotal,
-          pointRadius: 7,
-          yAxisID: 'A',  
-        }           
-      ];
-
-      var x=1;
-      res['Part'].forEach(function(item){
-        var ar=[];
-        item['part_1'].forEach(function(val){
-          ar.push(val['reject']);
+        var lab = [];
+        res['Part_List'].forEach(function(t){
+          lab.push(t);
         });
-        oppCost.push({
-          label: item.reason,
-          type: "bar",
-          backgroundColor: color[x],
-          borderColor: color[x],
-          borderWidth: 1,
-          fill: true,
-          // reject:a,
-          data: ar,
-          percentage_data:0,
-          // partName:partNameHover,
-          categoryPercentage:category_percent,
-          barPercentage:bar_space,
-          yAxisID: 'B',
-        });
-        x=x+1;
-      });
-            var ctx = document.getElementById("CQRPR").getContext('2d');
-            var myChart = new Chart(ctx, {
-              type: 'bar',
-              data: {
-                labels: lab,
-                datasets:oppCost
-            },
-            
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,   
-              scales: {
-                  A:{
-                      type: 'linear',
-                      position: 'right',
-                      // beginAtZero: true,
-                      suggestedMin: 0,
-                      suggestedMax: 100,
-                      display:true,
-                      grid:{
-                        display:false
-                      },
-                    },
-                  B:{
-                      type: 'linear',
-                      position: 'left',
-                      beginAtZero: true,
-                      display:true,
-                      grid:{
-                        display:false
-                      },
-                      stacked:true
-                    },
-                  x:{
-                      display:true,
-                      grid:{
-                        display:false
-                      },
-                      stacked:true
-                  },
-              },
-              plugins: {
-                legend: {
-                    display: false,
-                },
-                tooltip: {
-                  enabled: false,
-                  // borderColor:"red",
-                  external: quality_oppcost_reaosn_part_tooltip,
-                }
-              },
-            },
+        var category_percent =1.0;
+        var bar_space=0.5;
+
+        while(true){
+          var len= lab.length;
+          if (len < 8) {
+            lab.push("");
+          }
+          else if(len > 8){
+            var l = parseInt(len)%parseInt(8);  
+            var w= parseInt($('.parent_graph_quality_part_reason').css("width"))+parseInt(l*5*16);
+            $('.child_graph_quality_part_reason').css("width",w+"px");
+            break;
+          }
+          else{
+            break;
+          }
+        }
+        oppCost = [
+          {
+            label:"Total",
+            type: "line",
+            backgroundColor: "white",
+            borderColor: "#7f7f7f",
+            borderWidth: 1, 
+            lineColor:"black",
+            borderWidth: 1,
+            showLine : true,
+            fill: false,
+            percentage_data:totalVal_percentage,
+            // reject:totalReject, 
+            data:totalVal_percentage,
+            // partName:partNameTotal,
+            pointRadius: 7,
+            yAxisID: 'A',  
+          }           
+        ];
+
+        var x=1;
+        res['Part'].forEach(function(item){
+          var ar=[];
+          item['part_1'].forEach(function(val){
+            ar.push(val['reject']);
           });
-        },
-    error:function(res){
-        // alert("Sorry!Try Agian!!!!");
-    }
+          oppCost.push({
+            label: item.reason,
+            type: "bar",
+            backgroundColor: color[x],
+            borderColor: color[x],
+            borderWidth: 1,
+            fill: true,
+            // reject:a,
+            data: ar,
+            percentage_data:0,
+            // partName:partNameHover,
+            categoryPercentage:category_percent,
+            barPercentage:bar_space,
+            yAxisID: 'B',
+          });
+          x=x+1;
+        });
+              var ctx = document.getElementById("CQRPR").getContext('2d');
+              var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                  labels: lab,
+                  datasets:oppCost
+              },
+              
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,   
+                scales: {
+                    A:{
+                        type: 'linear',
+                        position: 'right',
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        display:true,
+                        grid:{
+                          display:false
+                        },
+                        // For Percentage.....
+                        ticks: {
+                          callback: function(value, index, values) {
+                            return value + '%';
+                          }
+                        },
+                      },
+                    B:{
+                        type: 'linear',
+                        position: 'left',
+                        beginAtZero: true,
+                        display:true,
+                        grid:{
+                          display:false
+                        },
+                        stacked:true,
+                        // For Rupee Symbol.....
+                        ticks: {
+                          callback: function(value, index, values) {
+                            return '₹' + value;
+                          }
+                        },
+                      },
+                    x:{
+                        display:true,
+                        grid:{
+                          display:false
+                        },
+                        stacked:true
+                    },
+                },
+                plugins: {
+                  legend: {
+                      display: false,
+                  },
+                  tooltip: {
+                    enabled: false,
+                    // borderColor:"red",
+                    external: quality_oppcost_reaosn_part_tooltip,
+                  }
+                },
+              },
+            });
+          },
+      error:function(er){
+
+        reject(er);
+          // alert("Sorry!Try Agian!!!!");
+      }
+    });
   }); 
+  
 }
 
 // Quality Rejection by Parts with Reasons
@@ -2617,8 +2636,7 @@ function quality_oppcost_reaosn_part_tooltip(context){
     const bodyLines = tooltipModel.body.map(getBody);
     var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
     var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].percentage_data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
-    //console.log(oppcost);
-    //console.log(mname);
+
     let innerHtml = '<div>';
 
       innerHtml += '<div class="grid-container">';
@@ -2663,6 +2681,10 @@ function quality_oppcost_reaosn_part_tooltip(context){
 
 
 function copqp() {
+
+  return new Promise(function(resolve,reject){
+
+  
     var part=[];
     var machine =[];
     var reason= [];
@@ -2728,191 +2750,206 @@ function copqp() {
       return;  
     }
 
-  $('#COPQP').remove();
-  $('.child_graph_quality_opportunity').append('<canvas id="COPQP"></canvas>');
-  $('.chartjs-hidden-iframe').remove();
+    $('#COPQP').remove();
+    $('.child_graph_quality_opportunity').append('<canvas id="COPQP"></canvas>');
+    $('.chartjs-hidden-iframe').remove();
 
-  f = $('.fromDate').val();
-  t = $('.toDate').val();
-  f = f.replace(" ","T");
-  t = t.replace(" ","T");
-  $.ajax({
-    url: "<?php echo base_url('Production_Quality/qualityOpportunity'); ?>",
-    type: "POST",
-    dataType: "json",
-    data:{
-      from:f,
-      to:t,
-      machine:machine,
-      part:part,
-      reason:reason
-    },
-    success:function(res){
-      // $('#qualityOpportunity').remove();
-      // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
-      // $('.chartjs-hidden-iframe').remove();
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
 
-      $(".COPQP").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
+    $.ajax({
+      url: "<?php echo base_url('Production_Quality/qualityOpportunity'); ?>",
+      type: "POST",
+      dataType: "json",
+      data:{
+        from:f,
+        to:t,
+        machine:machine,
+        part:part,
+        reason:reason
+      },
+      success:function(res){
+        resolve(res);
+        // $('#qualityOpportunity').remove();
+        // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
+        // $('.chartjs-hidden-iframe').remove();
 
-      color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
-        "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
-        "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
-        "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
-        "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
-        "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
-        "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
-        "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
-        "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
-        "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
-        "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
-      ];
-        
-      // Find the Reason Names as Lables..........
-      var reasonList =[];
-      res['Reason'].forEach(function(res){
-          reasonList.push(res);
-      });
+        $(".COPQP").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
 
-      var totalVal =[];
-      var partNameTotal=[];
-      var temp_data = 0;
-      var percentage_arr = [];
+        color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
+          "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
+          "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
+          "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
+          "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
+          "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
+          "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
+          "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
+          "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
+          "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
+          "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
+        ];
+          
+        // Find the Reason Names as Lables..........
+        var reasonList =[];
+        res['Reason'].forEach(function(res){
+            reasonList.push(res);
+        });
 
-      // res['Total'].forEach(function(t){
-      res['Total'].forEach(function callback(value, index) {
-          totalVal.push(value);
-          partNameTotal.push("Total");
+        var totalVal =[];
+        var partNameTotal=[];
+        var temp_data = 0;
+        var percentage_arr = [];
 
-          if (index == 0) {
-            percentage_arr.push(parseInt((parseInt(value)/parseInt(res.GrandTotal))*100));
-          }else if (index == (res['Total'].length-1)) {
-            percentage_arr.push(100);
+        // res['Total'].forEach(function(t){
+        res['Total'].forEach(function callback(value, index) {
+            totalVal.push(value);
+            partNameTotal.push("Total");
+
+            if (index == 0) {
+              percentage_arr.push(parseInt((parseInt(value)/parseInt(res.GrandTotal))*100));
+            }else if (index == (res['Total'].length-1)) {
+              percentage_arr.push(100);
+            }
+            else{
+              var temp =  parseInt((parseInt(value)/parseInt(res.GrandTotal))*100);
+              percentage_arr.push(percentage_arr[index-1]+parseInt(temp));
+            }
+        });
+
+        var category_percent =1.0;
+        var bar_space=0.5;
+
+        while(true){
+          var len= reasonList.length;
+          if (len < 8) {
+            reasonList.push("");
+          }
+          else if(len > 8){
+            var l = parseInt(len)%parseInt(8);
+            var w= parseInt($('.parent_graph_quality_opportunity').css("width"))+parseInt(l*5*16);
+            $('.child_graph_quality_opportunity').css("width",w+"px");
+            break;
           }
           else{
-            var temp =  parseInt((parseInt(value)/parseInt(res.GrandTotal))*100);
-            percentage_arr.push(percentage_arr[index-1]+parseInt(temp));
+            break;
           }
-      });
-
-      var category_percent =1.0;
-      var bar_space=0.5;
-
-      while(true){
-        var len= reasonList.length;
-        if (len < 8) {
-          reasonList.push("");
         }
-        else if(len > 8){
-          var l = parseInt(len)%parseInt(8);
-          var w= parseInt($('.parent_graph_quality_opportunity').css("width"))+parseInt(l*5*16);
-          $('.child_graph_quality_opportunity').css("width",w+"px");
-          break;
-        }
-        else{
-          break;
-        }
-      }
 
-      oppCost = [{
-        
-        type: 'line',
-        label: 'Percentage',
-        data:percentage_arr,
-        percentage_data: percentage_arr,
-        backgroundColor: 'white',
-        borderColor: "#7f7f7f", 
-        pointBorderColor: "#d9d9ff",  
-        borderWidth: 1, 
-        showLine : true,
-        fill: false,
-        lineColor:"black",
-        pointRadius:7,
-        yAxisID: 'A',
-      },
-        {
-          label:"Total",
-          type: "bar",
-          backgroundColor: "#0075F6",
-          percentage_data: 0,
-          borderColor: "#d9d9ff",
-          borderWidth: 1,
-          showLine : false,
+        oppCost = [{
+          
+          type: 'line',
+          label: 'Percentage',
+          data:percentage_arr,
+          percentage_data: percentage_arr,
+          backgroundColor: 'white',
+          borderColor: "#7f7f7f", 
+          pointBorderColor: "#d9d9ff",  
+          borderWidth: 1, 
+          showLine : true,
           fill: false,
-          // reject:totalReject, 
-          data:totalVal,
-          partName:partNameTotal,
-          categoryPercentage:1.0,
-          barPercentage:0.5,
-          yAxisID: 'B',  
-        }           
-      ];
-            var ctx = document.getElementById("COPQP").getContext('2d');
-            var myChart = new Chart(ctx, {
-              type: 'bar',
-              data: {
-                labels: reasonList,
-                datasets:oppCost
-            },
-            
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,   
-              scales: {
-                  A:{
-                    type: 'linear',
-                    position: 'right',
-                    // beginAtZero: true,
-                    suggestedMin: 0,
-                    suggestedMax: 100,
-                    display:true,
-                    grid:{
-                      display:false
-                    },
-                  },
-                  B:{
-                    type: 'linear',
-                    position: 'left',
-                    beginAtZero: true,
-                    display:true,
-                    grid:{
-                      display:false
-                    },
-                  },
-                  x:{
+          lineColor:"black",
+          pointRadius:7,
+          yAxisID: 'A',
+        },
+          {
+            label:"Total",
+            type: "bar",
+            backgroundColor: "#0075F6",
+            percentage_data: 0,
+            borderColor: "#d9d9ff",
+            borderWidth: 1,
+            showLine : false,
+            fill: false,
+            // reject:totalReject, 
+            data:totalVal,
+            partName:partNameTotal,
+            categoryPercentage:1.0,
+            barPercentage:0.5,
+            yAxisID: 'B',  
+          }           
+        ];
+              var ctx = document.getElementById("COPQP").getContext('2d');
+              var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                  labels: reasonList,
+                  datasets:oppCost
+              },
+              
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,   
+                scales: {
+                    A:{
+                      type: 'linear',
+                      position: 'right',
+                      // beginAtZero: true,
+                      suggestedMin: 0,
+                      suggestedMax: 100,
                       display:true,
                       grid:{
                         display:false
                       },
-                      stacked:true,
-                      ticks: { 
-                        color: '#A6A6A6', 
-                        beginAtZero: true 
-                      }
+                      // For Percentage.....
+                      ticks: {
+                        callback: function(value, index, values) {
+                          return value + '%';
+                        }
+                      },
+                    },
+                    B:{
+                      type: 'linear',
+                      position: 'left',
+                      beginAtZero: true,
+                      display:true,
+                      grid:{
+                        display:false
+                      },
+                      // For Rupee Symbol.....
+                        ticks: {
+                          callback: function(value, index, values) {
+                            return '₹' + value;
+                          }
+                        },
+                    },
+                    x:{
+                        display:true,
+                        grid:{
+                          display:false
+                        },
+                        stacked:true,
+                        ticks: { 
+                          color: '#A6A6A6', 
+                          beginAtZero: true 
+                        }
+                    },
+                },
+                plugins: {
+                  legend: {
+                      display: false,
                   },
-              },
-              plugins: {
-                legend: {
-                    display: false,
-                },
-                tooltip: {
-                  enabled: false,
-                  // borderColor:"red",
-                  external: quality_opportunity_tooltip,
+                  tooltip: {
+                    enabled: false,
+                    // borderColor:"red",
+                    external: quality_opportunity_tooltip,
+                  },
                 },
               },
-            },
-          });
-        },
-    error:function(res){
-      // console.log("Sorry!Try Agian!!!!");
+            });
+          },
+      error:function(er){
         // alert("Sorry!Try Agian!!!!");
-    }
-  }); 
+        reject(er);
+      }
+    }); 
+
+  });
 }
 
 // Cost of Poor Quality (COPQ) by Reason
 function quality_opportunity_tooltip(context){
-  //console.log(context);
   let tooltipEl = document.getElementById('tooltip-rejection__reason_oppcost');
 
     // Create element on first render
@@ -2949,8 +2986,6 @@ function quality_opportunity_tooltip(context){
         const bodyLines = tooltipModel.body.map(getBody);
         var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
         var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].percentage_data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
-        //console.log(oppcost);
-        //console.log(mname);
      
         let innerHtml = '<div>';
         if (parseInt(percentage)>0) {
@@ -2991,7 +3026,10 @@ function quality_opportunity_tooltip(context){
 }
 
 function qualitybyparts() {
-  var part=[];
+  return new Promise(function(resolve,reject){
+
+  
+    var part=[];
     var machine =[];
     var reason= [];
 
@@ -3056,183 +3094,197 @@ function qualitybyparts() {
       return;  
     }
 
-  $('#CQRP').remove();
-  $('.child_graph_quality_parts').append('<canvas id="CQRP"></canvas>');
-  $('.chartjs-hidden-iframe').remove();
+    $('#CQRP').remove();
+    $('.child_graph_quality_parts').append('<canvas id="CQRP"></canvas>');
+    $('.chartjs-hidden-iframe').remove();
 
-  f = $('.fromDate').val();
-  t = $('.toDate').val();
-  f = f.replace(" ","T");
-  t = t.replace(" ","T");
-  $.ajax({
-    url: "<?php echo base_url('Production_Quality/qualityOpportunityparts'); ?>",
-    type: "POST",
-    dataType: "json",
-    data:{
-      from:f,
-      to:t,
-      reason:reason,
-      part:part,
-      machine:machine
-    },
-    success:function(res){
-      // $('#qualityOpportunity').remove();
-      // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
-      // $('.chartjs-hidden-iframe').remove();
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
+    $.ajax({
+      url: "<?php echo base_url('Production_Quality/qualityOpportunityparts'); ?>",
+      type: "POST",
+      dataType: "json",
+      data:{
+        from:f,
+        to:t,
+        reason:reason,
+        part:part,
+        machine:machine
+      },
+      success:function(res){
+        resolve(res);
+        // $('#qualityOpportunity').remove();
+        // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
+        // $('.chartjs-hidden-iframe').remove();
 
-      // res=res["QualityOpportunity"]
-      $(".CQRP").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
-      // color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
-      color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
-        "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
-        "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
-        "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
-        "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
-        "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
-        "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
-        "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
-        "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
-        "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
-        "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
-      ];
-        
+        // res=res["QualityOpportunity"]
+        $(".CQRP").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
+        // color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
+        color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
+          "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
+          "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
+          "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
+          "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
+          "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
+          "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
+          "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
+          "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
+          "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
+          "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
+        ];
+          
 
-      var totalVal =[];
-      var partNameTotal=[];
-      var temp_data = 0;
-      var percentage_arr = [];
-      res['Part'].forEach(function callback(value, index) {
-          totalVal.push(value['cost']);
-          partNameTotal.push(value['part_name']);
+        var totalVal =[];
+        var partNameTotal=[];
+        var temp_data = 0;
+        var percentage_arr = [];
+        res['Part'].forEach(function callback(value, index) {
+            totalVal.push(value['cost']);
+            partNameTotal.push(value['part_name']);
 
-          if (index == 0) {
-            percentage_arr.push(parseInt((parseInt(value['cost'])/parseInt(res.GrandTotal))*100));
-          }else if (index == (res['Part'].length-1)) {
-            percentage_arr.push(100);
+            if (index == 0) {
+              percentage_arr.push(parseInt((parseInt(value['cost'])/parseInt(res.GrandTotal))*100));
+            }else if (index == (res['Part'].length-1)) {
+              percentage_arr.push(100);
+            }
+            else{
+              var temp =  parseInt((parseInt(value['cost'])/parseInt(res.GrandTotal))*100);
+              percentage_arr.push(percentage_arr[index-1]+parseInt(temp));
+            }
+        });
+
+        var category_percent =1.0;
+        var bar_space=0.5;
+
+        while(true){
+          var len= partNameTotal.length;
+          if (len < 8) {
+            partNameTotal.push("");
+          }
+          else if(len > 8){
+            var l = parseInt(len)%parseInt(8);  
+            var w= parseInt($('.parent_graph_quality_parts').css("width"))+parseInt(l*5*16);
+            $('.child_graph_quality_parts').css("width",w+"px");
+            break;
           }
           else{
-            var temp =  parseInt((parseInt(value['cost'])/parseInt(res.GrandTotal))*100);
-            percentage_arr.push(percentage_arr[index-1]+parseInt(temp));
+            break;
           }
-      });
-
-      var category_percent =1.0;
-      var bar_space=0.5;
-
-      while(true){
-        var len= partNameTotal.length;
-        if (len < 8) {
-          partNameTotal.push("");
         }
-        else if(len > 8){
-          var l = parseInt(len)%parseInt(8);  
-          var w= parseInt($('.parent_graph_quality_parts').css("width"))+parseInt(l*5*16);
-          $('.child_graph_quality_parts').css("width",w+"px");
-          break;
-        }
-        else{
-          break;
-        }
-      }
 
 
-      oppCost = [
-        {
-          type: 'line',
-          label: 'Percentage',
-          data:percentage_arr,
-          percentage_data: percentage_arr,
-          backgroundColor: 'white',
-          borderColor: "#7f7f7f", 
-          pointBorderColor: "#d9d9ff",  
-          borderWidth: 1, 
-          showLine : true,
-          fill: false,
-          lineColor:"black",
-          pointRadius:7,
-          yAxisID: 'A',
-        },
-        {
-          label:"Total",
-          type: "bar",
-          backgroundColor: "#0075F6",
-          percentage_data: 0,
-          borderColor: "#d9d9ff",
-          borderWidth: 1,
-          showLine : false,
-          fill: false,
-          // reject:totalReject, 
-          data:totalVal,
-          partName:partNameTotal,
-          // pointRadius: 7,
-          categoryPercentage:category_percent,
-          barPercentage:bar_space,
-          yAxisID: 'B',
-        }           
-      ];
+        oppCost = [
+          {
+            type: 'line',
+            label: 'Percentage',
+            data:percentage_arr,
+            percentage_data: percentage_arr,
+            backgroundColor: 'white',
+            borderColor: "#7f7f7f", 
+            pointBorderColor: "#d9d9ff",  
+            borderWidth: 1, 
+            showLine : true,
+            fill: false,
+            lineColor:"black",
+            pointRadius:7,
+            yAxisID: 'A',
+          },
+          {
+            label:"Total",
+            type: "bar",
+            backgroundColor: "#0075F6",
+            percentage_data: 0,
+            borderColor: "#d9d9ff",
+            borderWidth: 1,
+            showLine : false,
+            fill: false,
+            // reject:totalReject, 
+            data:totalVal,
+            partName:partNameTotal,
+            // pointRadius: 7,
+            categoryPercentage:category_percent,
+            barPercentage:bar_space,
+            yAxisID: 'B',
+          }           
+        ];
 
-            var ctx = document.getElementById("CQRP").getContext('2d');
-            var myChart = new Chart(ctx, {
-              type: 'bar',
-              data: {
-                labels: partNameTotal,
-                datasets:oppCost
-            },
-            
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,   
-              scales: {
-                  A:{
-                    type: 'linear',
-                    position: 'right',
-                    // beginAtZero: true,
-                    suggestedMin: 0,
-                    suggestedMax: 100,
-                    display:true,
-                      grid:{
-                        display:false
-                      },
-                    },
-                    B:{
+              var ctx = document.getElementById("CQRP").getContext('2d');
+              var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                  labels: partNameTotal,
+                  datasets:oppCost
+              },
+              
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,   
+                scales: {
+                    A:{
                       type: 'linear',
-                      position: 'left',
-                      beginAtZero: true,
+                      position: 'right',
+                      // beginAtZero: true,
+                      suggestedMin: 0,
+                      suggestedMax: 100,
                       display:true,
-                      grid:{
-                        display:false
+                        grid:{
+                          display:false
+                        },
+                      // For Percentage.....
+                        ticks: {
+                          callback: function(value, index, values) {
+                            return value + '%';
+                          }
+                        },
                       },
+                      B:{
+                        type: 'linear',
+                        position: 'left',
+                        beginAtZero: true,
+                        display:true,
+                        grid:{
+                          display:false
+                        },
+                        // For Rupee Symbol.....
+                        ticks: {
+                          callback: function(value, index, values) {
+                            return '₹' + value;
+                          }
+                        },
+                      },
+                    x:{
+                        display:true,
+                        grid:{
+                          display:false
+                        },
+                        stacked:true,
+                        ticks: { 
+                          color: '#A6A6A6', 
+                          beginAtZero: true 
+                        }
                     },
-                  x:{
-                      display:true,
-                      grid:{
-                        display:false
-                      },
-                      stacked:true,
-                      ticks: { 
-                        color: '#A6A6A6', 
-                        beginAtZero: true 
-                      }
-                  },
-              },
-              plugins: {
-                legend: {
-                    display: false,
                 },
-                tooltip: {
-                  enabled: false,
-                  // borderColor:"red",
-                  external: quality_part_wise_cost_tooltip,
-                }
+                plugins: {
+                  legend: {
+                      display: false,
+                  },
+                  tooltip: {
+                    enabled: false,
+                    // borderColor:"red",
+                    external: quality_part_wise_cost_tooltip,
+                  }
+                },
               },
-            },
-          });
-        },
-    error:function(res){
-      // console.log("Sorry!Try Agian!!!!");
+            });
+          },
+      error:function(er){
+        reject(er);
         // alert("Sorry!Try Agian!!!!");
-    }
-  }); 
+      }
+    }); 
+  });
 }
 // Cost of Poor Quality (COPQ) by Parts tooltip function
 function quality_part_wise_cost_tooltip(context){
@@ -3272,8 +3324,6 @@ function quality_part_wise_cost_tooltip(context){
         const bodyLines = tooltipModel.body.map(getBody);
         var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
         var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].percentage_data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
-        //console.log(oppcost);
-        //console.log(mname);
      
         let innerHtml = '<div>';
         if (parseInt(percentage)>0) {
@@ -3315,7 +3365,10 @@ function quality_part_wise_cost_tooltip(context){
 
 
 function crbmr() {
-  var part=[];
+  return new Promise(function(resolve,reject){
+
+  
+    var part=[];
     var machine =[];
     var reason= [];
 
@@ -3380,208 +3433,222 @@ function crbmr() {
       return;  
     }
 
-  $('#CRBMR').remove();
-  $('.child_graph_quality_machine_reason').append('<canvas id="CRBMR"></canvas>');
-  $('.chartjs-hidden-iframe').remove();
+    $('#CRBMR').remove();
+    $('.child_graph_quality_machine_reason').append('<canvas id="CRBMR"></canvas>');
+    $('.chartjs-hidden-iframe').remove();
 
-  f = $('.fromDate').val();
-  t = $('.toDate').val();
-  f = f.replace(" ","T");
-  t = t.replace(" ","T");
-  $.ajax({
-    url: "<?php echo base_url('Production_Quality/qualityOpportunityMachineReason'); ?>",
-    type: "POST",
-    dataType: "json",
-    data:{
-      from:f,
-      to:t,
-      machine:machine,
-      part:part,
-      reason:reason
-    },
-    success:function(res){
-      // $('#qualityOpportunity').remove();
-      // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
-      // $('.chartjs-hidden-iframe').remove();
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
+    $.ajax({
+      url: "<?php echo base_url('Production_Quality/qualityOpportunityMachineReason'); ?>",
+      type: "POST",
+      dataType: "json",
+      data:{
+        from:f,
+        to:t,
+        machine:machine,
+        part:part,
+        reason:reason
+      },
+      success:function(res){
+        resolve(res);
+        // $('#qualityOpportunity').remove();
+        // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
+        // $('.chartjs-hidden-iframe').remove();
 
-      // res=res["QualityOpportunity"]
-      $(".CRBMR").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
-      // color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
-      color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
-        "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
-        "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
-        "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
-        "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
-        "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
-        "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
-        "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
-        "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
-        "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
-        "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
-      ];
-        
-      // Find the Reason Names as Lables..........
-      var machineTotal =[];
-      var percentage_arr = [];
-      res['Total'].forEach(function callback(value, index) {
-          machineTotal.push(value);
-          if (index == 0) {
-            percentage_arr.push(parseInt((parseInt(value)/parseInt(res.GrandTotal))*100));
-          }else if (index == (res['Total'].length-1)) {
-            percentage_arr.push(100);
+        // res=res["QualityOpportunity"]
+        $(".CRBMR").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
+        // color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
+        color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
+          "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
+          "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
+          "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
+          "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
+          "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
+          "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
+          "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
+          "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
+          "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
+          "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
+        ];
+          
+        // Find the Reason Names as Lables..........
+        var machineTotal =[];
+        var percentage_arr = [];
+        res['Total'].forEach(function callback(value, index) {
+            machineTotal.push(value);
+            if (index == 0) {
+              percentage_arr.push(parseInt((parseInt(value)/parseInt(res.GrandTotal))*100));
+            }else if (index == (res['Total'].length-1)) {
+              percentage_arr.push(100);
+            }
+            else{
+              var temp =  parseInt((parseInt(value)/parseInt(res.GrandTotal))*100);
+              percentage_arr.push(percentage_arr[index-1]+parseInt(temp));
+            }
+        });
+
+        for (let i = 0; i < machineTotal.length; i++) {
+          let lowest = i
+          for (let j = i + 1; j < machineTotal.length; j++) {
+            if (machineTotal[j] < machineTotal[lowest]) {
+              lowest = j
+            }
+          }
+          if (lowest !== i) {
+            // Swap
+            ;[machineTotal[i], machineTotal[lowest]] = [machineTotal[lowest], machineTotal[i]]
+          }
+        }
+
+        var machineList =[];
+        res['Machine_name'].forEach(function(res){
+            machineList.push(res);
+        });
+
+        var category_percent =1.0;
+        var bar_space=0.5;
+
+        while(true){
+          var len= machineList.length;
+          if (len < 8) {
+            machineList.push("");
+          }
+          else if(len > 8){
+            var l = parseInt(len)%parseInt(8);  
+            var w= parseInt($('.parent_graph_quality_machine_reason').css("width"))+parseInt(l*5*16);
+            $('.child_graph_quality_machine_reason').css("width",w+"px");
+            break;
           }
           else{
-            var temp =  parseInt((parseInt(value)/parseInt(res.GrandTotal))*100);
-            percentage_arr.push(percentage_arr[index-1]+parseInt(temp));
-          }
-      });
-
-      for (let i = 0; i < machineTotal.length; i++) {
-        let lowest = i
-        for (let j = i + 1; j < machineTotal.length; j++) {
-          if (machineTotal[j] < machineTotal[lowest]) {
-            lowest = j
+            break;
           }
         }
-        if (lowest !== i) {
-          // Swap
-          ;[machineTotal[i], machineTotal[lowest]] = [machineTotal[lowest], machineTotal[i]]
-        }
-      }
 
-      var machineList =[];
-      res['Machine_name'].forEach(function(res){
-          machineList.push(res);
-      });
+        oppCost = [
+          {
+            label:"Total" ,
+            type: "line",
+            backgroundColor: color[0],
+            borderColor: "#7f7f7f",
+            pointBorderColor: "#d9d9ff",   
+            borderWidth: 1, 
+            showLine : true,
+            fill: false, 
+            data:percentage_arr,
+            pointRadius: 7,
+            borderWidth: 1, 
+            lineColor:"black",
+            yAxisID: 'A',  
+            percentage_data:percentage_arr,
+          }           
+        ];
 
-      var category_percent =1.0;
-      var bar_space=0.5;
-
-      while(true){
-        var len= machineList.length;
-        if (len < 8) {
-          machineList.push("");
-        }
-        else if(len > 8){
-          var l = parseInt(len)%parseInt(8);  
-          var w= parseInt($('.parent_graph_quality_machine_reason').css("width"))+parseInt(l*5*16);
-          $('.child_graph_quality_machine_reason').css("width",w+"px");
-          break;
-        }
-        else{
-          break;
-        }
-      }
-
-      oppCost = [
-        {
-          label:"Total" ,
-          type: "line",
-          backgroundColor: color[0],
-          borderColor: "#7f7f7f",
-          pointBorderColor: "#d9d9ff",   
-          borderWidth: 1, 
-          showLine : true,
-          fill: false, 
-          data:percentage_arr,
-          pointRadius: 7,
-          borderWidth: 1, 
-          lineColor:"black",
-          yAxisID: 'A',  
-          percentage_data:percentage_arr,
-        }           
-      ];
-
-      var x = 1;
-      res['Rejection'].forEach(function(reasonWise){
-        var arr=[];
-        reasonWise['Machine'].forEach(function(machineWise){
-          arr.push(machineWise['Rejection']);
-        });
-        oppCost.push({
-          label: reasonWise.Reason,
-          type: "bar",
-          backgroundColor: color[x],
-          borderColor: color[x],
-          borderWidth: 1,
-          fill: true,
-          data: arr,
-          percentage_data:0,
-          categoryPercentage:category_percent,
-          barPercentage:bar_space,
-          yAxisID: 'B',  
-        });
-        x=x+1;
-      });
-
-            var ctx = document.getElementById("CRBMR").getContext('2d');
-            var myChart = new Chart(ctx, {
-              type: 'bar',
-              data: {
-                labels: machineList,
-                datasets:oppCost
-            },
-            
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,   
-              scales: {
-                  // y: {
-                  //     display:false,
-                  //     beginAtZero:true,
-                  //     stacked:true
-                  // },
-                  A:{
-                      type: 'linear',
-                      position: 'right',
-                      // beginAtZero: true,
-                      suggestedMin: 0,
-                      suggestedMax: 100,
-                      display:true,
-                      grid:{
-                        display:false
-                      },
-                    },
-                  B:{
-                      type: 'linear',
-                      position: 'left',
-                      beginAtZero: true,
-                      display:true,
-                      grid:{
-                        display:false
-                      },
-                      stacked:true,
-                    },
-                  x:{
-                      display:true,
-                      grid:{
-                        display:false
-                      },
-                      stacked:true,
-                      ticks: { 
-                        color: '#A6A6A6', 
-                        beginAtZero: true 
-                      }
-                  },
-              },
-              plugins: {
-                legend: {
-                    display: false,
-                },
-                tooltip: {
-                  enabled: false,
-                  // borderColor:"red",
-                  external: quality_opportuntiycost_reason_machine_tooltip,
-                }
-              },
-            },
+        var x = 1;
+        res['Rejection'].forEach(function(reasonWise){
+          var arr=[];
+          reasonWise['Machine'].forEach(function(machineWise){
+            arr.push(machineWise['Rejection']);
           });
-        },
-    error:function(res){
-      // console.log("Sorry!Try Agian!!!!");
-        // alert("Sorry!Try Agian!!!!");
-    }
-  }); 
+          oppCost.push({
+            label: reasonWise.Reason,
+            type: "bar",
+            backgroundColor: color[x],
+            borderColor: color[x],
+            borderWidth: 1,
+            fill: true,
+            data: arr,
+            percentage_data:0,
+            categoryPercentage:category_percent,
+            barPercentage:bar_space,
+            yAxisID: 'B',  
+          });
+          x=x+1;
+        });
+
+              var ctx = document.getElementById("CRBMR").getContext('2d');
+              var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                  labels: machineList,
+                  datasets:oppCost
+              },
+              
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,   
+                scales: {
+                    // y: {
+                    //     display:false,
+                    //     beginAtZero:true,
+                    //     stacked:true
+                    // },
+                    A:{
+                        type: 'linear',
+                        position: 'right',
+                        // beginAtZero: true,
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        display:true,
+                        grid:{
+                          display:false
+                        },
+                        // For Percentage.....
+                        ticks: {
+                          callback: function(value, index, values) {
+                            return value + '%';
+                          }
+                        },
+                      },
+                    B:{
+                        type: 'linear',
+                        position: 'left',
+                        beginAtZero: true,
+                        display:true,
+                        grid:{
+                          display:false
+                        },
+                        stacked:true,
+                        // For Rupee Symbol.....
+                        ticks: {
+                          callback: function(value, index, values) {
+                            return '₹' + value;
+                          }
+                        },
+                      },
+                    x:{
+                        display:true,
+                        grid:{
+                          display:false
+                        },
+                        stacked:true,
+                        ticks: { 
+                          color: '#A6A6A6', 
+                          beginAtZero: true 
+                        }
+                    },
+                },
+                plugins: {
+                  legend: {
+                      display: false,
+                  },
+                  tooltip: {
+                    enabled: false,
+                    // borderColor:"red",
+                    external: quality_opportuntiycost_reason_machine_tooltip,
+                  }
+                },
+              },
+            });
+          },
+      error:function(er){
+          // alert("Sorry!Try Agian!!!!");
+          reject(er);
+      }
+    }); 
+  });
 }
 //  Quality Rejection by Machines with Reasons tooltip function
 function quality_opportuntiycost_reason_machine_tooltip(context){
@@ -3621,9 +3688,7 @@ function quality_opportuntiycost_reason_machine_tooltip(context){
         const bodyLines = tooltipModel.body.map(getBody);
         var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
         var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].percentage_data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
-        //console.log(oppcost);
-        //console.log(mname);
-     
+
         let innerHtml = '<div>';
           innerHtml += '<div class="grid-container">';
           if (parseInt(percentage)>0) {
@@ -3663,8 +3728,10 @@ function quality_opportuntiycost_reason_machine_tooltip(context){
 }
 
 function copqm() {
+  return new Promise(function(resolve,reject){
 
-  var part=[];
+  
+    var part=[];
     var machine =[];
     var reason= [];
 
@@ -3729,188 +3796,202 @@ function copqm() {
       return;  
     }
 
-  $('#COPQM').remove();
-  $('.child_graph_quality_machine_wise').append('<canvas id="COPQM"></canvas>');
-  $('.chartjs-hidden-iframe').remove();
+    $('#COPQM').remove();
+    $('.child_graph_quality_machine_wise').append('<canvas id="COPQM"></canvas>');
+    $('.chartjs-hidden-iframe').remove();
 
 
-  f = $('.fromDate').val();
-  t = $('.toDate').val();
-  f = f.replace(" ","T");
-  t = t.replace(" ","T");
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
 
-  $.ajax({
-    url: "<?php echo base_url('Production_Quality/qualityOpportunityMachine'); ?>",
-    type: "POST",
-    dataType: "json",
-    data:{
-      from:f,
-      to:t,
-      machine: machine,
-      part: part,
-      reason:reason
-    },
-    success:function(res){
-      // $('#qualityOpportunity').remove();
-      // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
-      // $('.chartjs-hidden-iframe').remove();
+    $.ajax({
+      url: "<?php echo base_url('Production_Quality/qualityOpportunityMachine'); ?>",
+      type: "POST",
+      dataType: "json",
+      data:{
+        from:f,
+        to:t,
+        machine: machine,
+        part: part,
+        reason:reason
+      },
+      success:function(res){
+        resolve(res);
+        // $('#qualityOpportunity').remove();
+        // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
+        // $('.chartjs-hidden-iframe').remove();
 
-      // res=res["QualityOpportunity"]
-      $(".COPQM").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
-      // color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
-      color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
-        "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
-        "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
-        "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
-        "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
-        "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
-        "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
-        "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
-        "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
-        "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
-        "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
-      ];
-        
-      // Find the Reason Names as Lables..........
-      var machineList =[];
-      res['Machine'].forEach(function(res){
-          machineList.push(res);
-      });
+        // res=res["QualityOpportunity"]
+        $(".COPQM").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
+        // color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
+        color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
+          "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
+          "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
+          "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
+          "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
+          "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
+          "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
+          "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
+          "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
+          "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
+          "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
+        ];
+          
+        // Find the Reason Names as Lables..........
+        var machineList =[];
+        res['Machine'].forEach(function(res){
+            machineList.push(res);
+        });
 
-      var machineTotal=[];
-      var temp_data = 0;
-      var percentage_arr = [];
+        var machineTotal=[];
+        var temp_data = 0;
+        var percentage_arr = [];
 
-      res['MachineCost'].forEach(function callback(value, index) {
-          machineTotal.push(value);
-          if (index == 0) {
-            percentage_arr.push(parseInt((parseInt(value)/parseInt(res.GrandTotal))*100));
-          }else if (index == (res['MachineCost'].length-1)) {
-            percentage_arr.push(100);
+        res['MachineCost'].forEach(function callback(value, index) {
+            machineTotal.push(value);
+            if (index == 0) {
+              percentage_arr.push(parseInt((parseInt(value)/parseInt(res.GrandTotal))*100));
+            }else if (index == (res['MachineCost'].length-1)) {
+              percentage_arr.push(100);
+            }
+            else{
+              var temp =  parseInt((parseInt(value)/parseInt(res.GrandTotal))*100);
+              percentage_arr.push(percentage_arr[index-1]+parseInt(temp));
+            }
+        });
+
+        var category_percent =1.0;
+        var bar_space=0.5;
+
+        while(true){
+          var len= machineList.length;
+          if (len < 8) {
+            machineList.push("");
+          }
+          else if(len > 8){
+            var l = parseInt(len)%parseInt(8);  
+            var w= parseInt($('.parent_graph_quality_machine_wise').css("width"))+parseInt(l*18*16);
+            $('.child_graph_quality_machine_wise').css("width",w+"px");
+            break;
           }
           else{
-            var temp =  parseInt((parseInt(value)/parseInt(res.GrandTotal))*100);
-            percentage_arr.push(percentage_arr[index-1]+parseInt(temp));
+            break;
           }
-      });
-
-      var category_percent =1.0;
-      var bar_space=0.5;
-
-      while(true){
-        var len= machineList.length;
-        if (len < 8) {
-          machineList.push("");
         }
-        else if(len > 8){
-          var l = parseInt(len)%parseInt(8);  
-          var w= parseInt($('.parent_graph_quality_machine_wise').css("width"))+parseInt(l*18*16);
-          $('.child_graph_quality_machine_wise').css("width",w+"px");
-          break;
-        }
-        else{
-          break;
-        }
-      }
 
-      oppCost = [{
-        type: 'line',
-        label: 'Percentage',
-        data:percentage_arr,
-        percentage_data: percentage_arr,
-        backgroundColor: 'white',
-        borderColor: "#7f7f7f", 
-        pointBorderColor: "#d9d9ff",  
-        borderWidth: 1, 
-        showLine : true,
-        fill: false,
-        lineColor:"black",
-        pointRadius:7,
-        yAxisID: 'A',
-      },
-        {
-          label: "partName",
-          type: "bar",
-          backgroundColor: "#0075F6",
-          percentage_data: 0,
-          borderColor: "#004b9b",
-          borderWidth: 1,
-          fill: true,
-          // reject:a,
-          data: machineTotal,
-          // partName:partNameHover,
-          categoryPercentage:category_percent,
-          barPercentage:bar_space,
-          yAxisID: 'B',
-        }           
-      ];
+        oppCost = [{
+          type: 'line',
+          label: 'Percentage',
+          data:percentage_arr,
+          percentage_data: percentage_arr,
+          backgroundColor: 'white',
+          borderColor: "#7f7f7f", 
+          pointBorderColor: "#d9d9ff",  
+          borderWidth: 1, 
+          showLine : true,
+          fill: false,
+          lineColor:"black",
+          pointRadius:7,
+          yAxisID: 'A',
+        },
+          {
+            label: "partName",
+            type: "bar",
+            backgroundColor: "#0075F6",
+            percentage_data: 0,
+            borderColor: "#004b9b",
+            borderWidth: 1,
+            fill: true,
+            // reject:a,
+            data: machineTotal,
+            // partName:partNameHover,
+            categoryPercentage:category_percent,
+            barPercentage:bar_space,
+            yAxisID: 'B',
+          }           
+        ];
 
-            var ctx = document.getElementById("COPQM").getContext('2d');
-            var myChart = new Chart(ctx, {
-              type: 'bar',
-              data: {
-                labels: machineList,
-                datasets:oppCost
-            },
-            
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,   
-              scales: {
-                  A:{
-                    type: 'linear',
-                    position: 'right',
-                    // beginAtZero: true,
-                    suggestedMin: 0,
-                    suggestedMax: 100,
-                    display:true,
-                    grid:{
-                      display:false
-                    },
-                  },
-                  B:{
-                    type: 'linear',
-                    position: 'left',
-                    beginAtZero: true,
-                    display:true,
-                    grid:{
-                      display:false
-                    },
-                  },
-                  x:{
+              var ctx = document.getElementById("COPQM").getContext('2d');
+              var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                  labels: machineList,
+                  datasets:oppCost
+              },
+              
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,   
+                scales: {
+                    A:{
+                      type: 'linear',
+                      position: 'right',
+                      // beginAtZero: true,
+                      suggestedMin: 0,
+                      suggestedMax: 100,
                       display:true,
                       grid:{
                         display:false
                       },
-                      stacked:true,
-                      ticks: { 
-                        color: '#A6A6A6', 
-                        beginAtZero: true 
-                      }
-                  },
-              },
-              plugins: {
-                legend: {
-                    display: false,
+                      // For Percentage.....
+                      ticks: {
+                        callback: function(value, index, values) {
+                          return value + '%';
+                        }
+                      },
+                    },
+                    B:{
+                      type: 'linear',
+                      position: 'left',
+                      beginAtZero: true,
+                      display:true,
+                      grid:{
+                        display:false
+                      },
+                      // For Rupee Symbol.....
+                        ticks: {
+                          callback: function(value, index, values) {
+                            return '₹' + value;
+                          }
+                        },
+                    },
+                    x:{
+                        display:true,
+                        grid:{
+                          display:false
+                        },
+                        stacked:true,
+                        ticks: { 
+                          color: '#A6A6A6', 
+                          beginAtZero: true 
+                        }
+                    },
                 },
-                tooltip: {
-                  enabled: false,
-                  // borderColor:"red",
-                  external: quality_machine_oppcost,
-                }
+                plugins: {
+                  legend: {
+                      display: false,
+                  },
+                  tooltip: {
+                    enabled: false,
+                    // borderColor:"red",
+                    external: quality_machine_oppcost,
+                  }
+                },
               },
-            },
-          });
-        },
-    error:function(res){
-      // console.log("Sorry!Try Agian!!!!");
-        // alert("Sorry!Try Agian!!!!");
-    }
-  }); 
+            });
+          },
+      error:function(er){
+        reject(er);
+          // alert("Sorry!Try Agian!!!!");
+      }
+    }); 
+
+  });
 }
 // Cost of Poor Quality (COPQ) by Machines tooltip function
 function quality_machine_oppcost(context){
-  //console.log(context);
     // Tooltip Element
     let tooltipEl = document.getElementById('tooltip-rejection_machine_reason_oppcost');
 
@@ -3948,8 +4029,6 @@ function quality_machine_oppcost(context){
         const bodyLines = tooltipModel.body.map(getBody);
         var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
         var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].percentage_data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
-       // console.log(oppcost);
-        //console.log(mname);
      
         let innerHtml = '<div>';
         if (parseInt(percentage)>0) {
@@ -3991,7 +4070,9 @@ function quality_machine_oppcost(context){
 
 
 function qrbr() {
+  return new Promise(function(resolve,reject){
 
+  
     var part=[];
     var machine =[];
     var reason= [];
@@ -4057,211 +4138,225 @@ function qrbr() {
       return;  
     }
 
-  $('#QRBR').remove();
-  $('.child_graph_quality_reason_wise').append('<canvas id="QRBR"></canvas>');
-  $('.chartjs-hidden-iframe').remove();
+    $('#QRBR').remove();
+    $('.child_graph_quality_reason_wise').append('<canvas id="QRBR"></canvas>');
+    $('.chartjs-hidden-iframe').remove();
 
-  f = $('.fromDate').val();
-  t = $('.toDate').val();
-  f = f.replace(" ","T");
-  t = t.replace(" ","T");
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
 
-  $.ajax({
-    url: "<?php echo base_url('Production_Quality/qualityOpportunityRejectionWise'); ?>",
-    type: "POST",
-    dataType: "json",
-    data:{
-      from:f,
-      to:t,
-      reason:reason,
-      part:part,
-      machine:machine
-    },
-    success:function(res){
-      // $('#qualityOpportunity').remove();
-      // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
-      // $('.chartjs-hidden-iframe').remove();
-      // res=res["QualityOpportunity"]
-      $(".CRBR").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
-      // color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
-      color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
-        "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
-        "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
-        "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
-        "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
-        "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
-        "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
-        "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
-        "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
-        "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
-        "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
-      ];
-        
-      // Find the Reason Names as Lables..........
-      var reasonList =[];
-      res['Reason'].forEach(function(res){
-          reasonList.push(res);
-      });
+    $.ajax({
+      url: "<?php echo base_url('Production_Quality/qualityOpportunityRejectionWise'); ?>",
+      type: "POST",
+      dataType: "json",
+      data:{
+        from:f,
+        to:t,
+        reason:reason,
+        part:part,
+        machine:machine
+      },
+      success:function(res){
+        resolve(res);
+        // $('#qualityOpportunity').remove();
+        // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
+        // $('.chartjs-hidden-iframe').remove();
+        // res=res["QualityOpportunity"]
+        $(".CRBR").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
+        // color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
+        color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
+          "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
+          "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
+          "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
+          "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
+          "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
+          "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
+          "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
+          "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
+          "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
+          "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
+        ];
+          
+        // Find the Reason Names as Lables..........
+        var reasonList =[];
+        res['Reason'].forEach(function(res){
+            reasonList.push(res);
+        });
 
-      var totalVal =[];
-      var partNameTotal=[];
-      var temp_data = 0;
-      var percentage_arr = [];
+        var totalVal =[];
+        var partNameTotal=[];
+        var temp_data = 0;
+        var percentage_arr = [];
 
-      res['Rejection'].forEach(function callback(value, index) {
-          totalVal.push(value);
-          partNameTotal.push("Total");
+        res['Rejection'].forEach(function callback(value, index) {
+            totalVal.push(value);
+            partNameTotal.push("Total");
 
-          if (index == 0) {
-            percentage_arr.push(parseInt((parseInt(value)/parseInt(res.GrandTotal))*100));
-          }else if (index == (res['Rejection'].length-1)) {
-            percentage_arr.push(100);
+            if (index == 0) {
+              percentage_arr.push(parseInt((parseInt(value)/parseInt(res.GrandTotal))*100));
+            }else if (index == (res['Rejection'].length-1)) {
+              percentage_arr.push(100);
+            }
+            else{
+              var temp =  parseInt((parseInt(value)/parseInt(res.GrandTotal))*100);
+              percentage_arr.push(percentage_arr[index-1]+parseInt(temp));
+            }
+        });
+
+        var category_percent =1.0;
+        var bar_space=0.5;
+
+        while(true){
+          var len= reasonList.length;
+          if (len < 8) {
+            reasonList.push("");
+          }
+          else if(len > 8){
+            var l = parseInt(len)%parseInt(8);  
+            var w= parseInt($('.parent_graph_quality_reason_wise').css("width"))+parseInt(l*5*16);
+            $('.child_graph_quality_reason_wise').css("width",w+"px");
+            break;
           }
           else{
-            var temp =  parseInt((parseInt(value)/parseInt(res.GrandTotal))*100);
-            percentage_arr.push(percentage_arr[index-1]+parseInt(temp));
+            break;
           }
-      });
-
-      var category_percent =1.0;
-      var bar_space=0.5;
-
-      while(true){
-        var len= reasonList.length;
-        if (len < 8) {
-          reasonList.push("");
         }
-        else if(len > 8){
-          var l = parseInt(len)%parseInt(8);  
-          var w= parseInt($('.parent_graph_quality_reason_wise').css("width"))+parseInt(l*5*16);
-          $('.child_graph_quality_reason_wise').css("width",w+"px");
-          break;
-        }
-        else{
-          break;
-        }
-      }
 
-      oppCost = [{
-        type: 'line',
-        label: 'Percentage',
-        data:percentage_arr,
-        percentage_data: percentage_arr,
-        backgroundColor: 'white',
-        borderColor: "#7f7f7f", 
-        pointBorderColor: "#d9d9ff",  
-        borderWidth: 1, 
-        showLine : true,
-        fill: false,
-        lineColor:"black",
-        pointRadius:7,
-        yAxisID: 'A',
-
-      },
-        {
-          label:"Total",
-          type: "bar",
-          backgroundColor: "#0075F6",
-          percentage_data: 0,
-          borderColor: "#d9d9ff",
-          borderWidth: 1,
-          showLine : false,
+        oppCost = [{
+          type: 'line',
+          label: 'Percentage',
+          data:percentage_arr,
+          percentage_data: percentage_arr,
+          backgroundColor: 'white',
+          borderColor: "#7f7f7f", 
+          pointBorderColor: "#d9d9ff",  
+          borderWidth: 1, 
+          showLine : true,
           fill: false,
-          // reject:totalReject, 
-          data:totalVal,
-          partName:partNameTotal,
-          // pointRadius: 7,
-          categoryPercentage:category_percent,
-          barPercentage:bar_space,
-          yAxisID: 'B',
-        }           
-      ];
+          lineColor:"black",
+          pointRadius:7,
+          yAxisID: 'A',
 
-        // oppCost.push({
-        //   label: "partName",
-        //   type: "bar",
-        //   backgroundColor: "#004b9b",
-        //   borderColor: color[x],
-        //   borderWidth: 1,
-        //   fill: true,
-        //   // reject:a,
-        //   data: totalVal,
-        //   // partName:partNameHover,
-        //   categoryPercentage:category_percent,
-        //   barPercentage:bar_space,
-        // });
-            var ctx = document.getElementById("QRBR").getContext('2d');
-            var myChart = new Chart(ctx, {
-              type: 'bar',
-              data: {
-                labels: reasonList,
-                datasets:oppCost
-            },
-            
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,   
-              scales: {
-                  // y: {
-                  //     display:false,
-                  //     beginAtZero:true,
-                  //     stacked:true
-                  // },
-                  A:{
-                    type: 'linear',
-                    position: 'right',
-                    // beginAtZero: true,
-                    suggestedMin: 0,
-                    suggestedMax: 100,
-                    display:true,
-                    grid:{
-                      display:false
-                    },
-                  },
-                  B:{
-                    type: 'linear',
-                    position: 'left',
-                    beginAtZero: true,
-                    display:true,
-                    grid:{
-                      display:false
-                    },
-                  },
-                  x:{
+        },
+          {
+            label:"Total",
+            type: "bar",
+            backgroundColor: "#0075F6",
+            percentage_data: 0,
+            borderColor: "#d9d9ff",
+            borderWidth: 1,
+            showLine : false,
+            fill: false,
+            // reject:totalReject, 
+            data:totalVal,
+            partName:partNameTotal,
+            // pointRadius: 7,
+            categoryPercentage:category_percent,
+            barPercentage:bar_space,
+            yAxisID: 'B',
+          }           
+        ];
+
+          // oppCost.push({
+          //   label: "partName",
+          //   type: "bar",
+          //   backgroundColor: "#004b9b",
+          //   borderColor: color[x],
+          //   borderWidth: 1,
+          //   fill: true,
+          //   // reject:a,
+          //   data: totalVal,
+          //   // partName:partNameHover,
+          //   categoryPercentage:category_percent,
+          //   barPercentage:bar_space,
+          // });
+              var ctx = document.getElementById("QRBR").getContext('2d');
+              var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                  labels: reasonList,
+                  datasets:oppCost
+              },
+              
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,   
+                scales: {
+                    // y: {
+                    //     display:false,
+                    //     beginAtZero:true,
+                    //     stacked:true
+                    // },
+                    A:{
+                      type: 'linear',
+                      position: 'right',
+                      // beginAtZero: true,
+                      suggestedMin: 0,
+                      suggestedMax: 100,
                       display:true,
                       grid:{
                         display:false
                       },
-                      stacked:true,
-                      ticks: { 
-                        color: '#A6A6A6', 
-                        beginAtZero: true 
-                      }
-                  },
-              },
-              plugins: {
-                legend: {
-                    display: false,
+                      // For Percentage.....
+                      ticks: {
+                        callback: function(value, index, values) {
+                          return value + '%';
+                        }
+                      },
+                    },
+                    B:{
+                      type: 'linear',
+                      position: 'left',
+                      beginAtZero: true,
+                      display:true,
+                      grid:{
+                        display:false
+                      },
+                      // For Rupee Symbol.....
+                        ticks: {
+                          callback: function(value, index, values) {
+                            return '₹' + value;
+                          }
+                        },
+                    },
+                    x:{
+                        display:true,
+                        grid:{
+                          display:false
+                        },
+                        stacked:true,
+                        ticks: { 
+                          color: '#A6A6A6', 
+                          beginAtZero: true 
+                        }
+                    },
                 },
-                tooltip: {
-                  enabled: false,
-                  // borderColor:"red",
-                  external: quality_rejection_reason_cost,
-                }
+                plugins: {
+                  legend: {
+                      display: false,
+                  },
+                  tooltip: {
+                    enabled: false,
+                    // borderColor:"red",
+                    external: quality_rejection_reason_cost,
+                  }
+                },
               },
-            },
-          });
-        },
-    error:function(res){
-      // console.log("Sorry!Try Agian!!!!");
-        // alert("Sorry!Try Agian!!!!");
-    }
-  }); 
+            });
+          },
+      error:function(er){
+        reject(er);
+          // alert("Sorry!Try Agian!!!!");
+      }
+    });
+
+  });
 
 }
 // Quality Rejection by Reason tooltip function
 function  quality_rejection_reason_cost(context){
-   //console.log(context);
     // Tooltip Element
     let tooltipEl = document.getElementById('tooltip-rejection_reason_oppcost');
 
@@ -4299,8 +4394,6 @@ function  quality_rejection_reason_cost(context){
         const bodyLines = tooltipModel.body.map(getBody);
         var oppcost = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
         var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].percentage_data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
-       // console.log(oppcost);
-        //console.log(mname);
      
         let innerHtml = '<div>';
           // innerHtml += '<div class="grid-container">';
@@ -4352,508 +4445,547 @@ $(document).on('click','#table-cont',function(event){
 });
 
 
-getfilterdata();
-
-function getfilterdata() {
-  $("#overlay").fadeIn(300);
-
-  $('.filter_part').empty();
-  $('.filter_machine').empty();
-  $('.filter_reason').empty();
-  $('#userNameFilter').empty();
 
 
-  $('.filter_reason_copq').empty();
-  $('.filter_machine_copq').empty();
-  $('.filter_part_copq').empty();
+ function getfilterdata() {
+
+  // $("#overlay").fadeIn(300);
+  return new Promise(function(resolve,reject){
 
   
-  $.ajax({
-    url: "<?php echo base_url('Production_Quality/getfilterdata'); ?>",
-    type: "POST",
-    dataType: "json",
-    success:function(res){
-      // Part Filter
-      var elements = $();
-      $('.filter_part').append('<div class="inbox inbox_part" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_part_val" name="part_filter_val" value="all" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">All</p>'
-                                +'</div>'
-                              +'</div>');
-      res['Part'].forEach(function(item){
+    $('.filter_part').empty();
+    $('.filter_part_copq').empty();
+    $('.filter_machine').empty();
+    $('.filter_machine_copq').empty();
+    $('.filter_reason').empty();
+    $('.filter_reason_copq').empty();
+    $('.filter_reason_crpr').empty();
+    $('.filter_machine_crpr').empty();
+    $('.filter_part_crpr').empty();
+    $('.filter_reason_copqm').empty();
+    $('.filter_machine_copqm').empty();
+    $('.filter_part_copqm').empty();
+    $('.filter_reason_copqp').empty();
+    $('.filter_machine_copqp').empty();
+    $('.filter_part_copqp').empty();
+    $('.filter_machine_qrmr').empty();
+    $('.filter_reason_qrmr').empty();
+    $('.filter_part_qrmr').empty();
+    $('.filter_reason_qrpr').empty();
+    $('.filter_machine_qrpr').empty();
+    $('.filter_part_qrpr').empty();
+
+
+    $('.filter_user').empty();
+    // $('.filter_machine_copq').empty();
+    // $('.filter_part_copq').empty();
+
+    
+    $.ajax({
+      url: "<?php echo base_url('Production_Quality/getfilterdata'); ?>",
+      type: "POST",
+      dataType: "json",
+      success:function(res){
+        resolve(res);
+        // Part Filter
+        var elements = $();
         $('.filter_part').append('<div class="inbox inbox_part" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_part_val" name="part_filter_val" value="'+item.part_id+'" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">'+item.part_id+"-"+item.part_name+'</p>'
-                                +'</div>'
-                              +'</div>');
-      }); 
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_part_val" name="part_filter_val" value="all" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">All</p>'
+                                  +'</div>'
+                                +'</div>');
+        res['Part'].forEach(function(item){
+          $('.filter_part').append('<div class="inbox inbox_part" style="display: flex;">'
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_part_val" name="part_filter_val" value="'+item.part_id+'" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">'+item.part_id+"-"+item.part_name+'</p>'
+                                  +'</div>'
+                                +'</div>');
+        }); 
 
 
-      // Part Filter COPQ
-      $('.filter_part_copq').append('<div class="inbox inbox_part_copq copq_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_part_val_copq" name="part_filter_val_copq" value="all" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">All</p>'
-                                +'</div>'
-                              +'</div>');
-      res['Part'].forEach(function(item){
+        // Part Filter COPQ
         $('.filter_part_copq').append('<div class="inbox inbox_part_copq copq_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_part_val_copq" name="part_filter_val_copq" value="'+item.part_id+'" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">'+item.part_id+"-"+item.part_name+'</p>'
-                                +'</div>'
-                              +'</div>');
-      });     
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_part_val_copq" name="part_filter_val_copq" value="all" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">All</p>'
+                                  +'</div>'
+                                +'</div>');
+        res['Part'].forEach(function(item){
+          $('.filter_part_copq').append('<div class="inbox inbox_part_copq copq_filter" style="display: flex;">'
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_part_val_copq" name="part_filter_val_copq" value="'+item.part_id+'" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">'+item.part_id+"-"+item.part_name+'</p>'
+                                  +'</div>'
+                                +'</div>');
+        });     
 
-      // Machine Filter
-      var elements1 = $();
-      $('.filter_machine').append('<div class="inbox inbox_machine" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_machine_val" name="machine_filter_val" value="all" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">All</p>'
-                                +'</div>'
-                              +'</div>');
-      res['Machine'].forEach(function(item){
+        // Machine Filter
+        var elements1 = $();
         $('.filter_machine').append('<div class="inbox inbox_machine" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_machine_val" name="machine_filter_val" value="'+item.machine_id+'" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">'+item.machine_id+"-"+item.machine_name+'</p>'
-                                +'</div>'
-                              +'</div>');
-      });
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_machine_val" name="machine_filter_val" value="all" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">All</p>'
+                                  +'</div>'
+                                +'</div>');
+        res['Machine'].forEach(function(item){
+          $('.filter_machine').append('<div class="inbox inbox_machine" style="display: flex;">'
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_machine_val" name="machine_filter_val" value="'+item.machine_id+'" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">'+item.machine_id+"-"+item.machine_name+'</p>'
+                                  +'</div>'
+                                +'</div>');
+        });
 
 
-      // Machine Filter COPQ
-      var elements_copq_machine = $();
-      $('.filter_machine_copq').append('<div class="inbox inbox_machine_copq copq_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_machine_val_copq" name="machine_filter_val_copq" value="all" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">All</p>'
-                                +'</div>'
-                              +'</div>');
-      res['Machine'].forEach(function(item){
+        // Machine Filter COPQ
+        var elements_copq_machine = $();
         $('.filter_machine_copq').append('<div class="inbox inbox_machine_copq copq_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_machine_val_copq" name="machine_filter_val_copq" value="'+item.machine_id+'" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">'+item.machine_id+"-"+item.machine_name+'</p>'
-                                +'</div>'
-                              +'</div>');
-      });
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_machine_val_copq" name="machine_filter_val_copq" value="all" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">All</p>'
+                                  +'</div>'
+                                +'</div>');
+        res['Machine'].forEach(function(item){
+          $('.filter_machine_copq').append('<div class="inbox inbox_machine_copq copq_filter" style="display: flex;">'
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_machine_val_copq" name="machine_filter_val_copq" value="'+item.machine_id+'" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">'+item.machine_id+"-"+item.machine_name+'</p>'
+                                  +'</div>'
+                                +'</div>');
+        });
 
-      // Reason Filter
-      var elements2 = $();
-      $('.filter_reason').append('<div class="inbox inbox_reason" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_reason_val" name="reason_filter_val" value="all" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">All</p>'
-                                +'</div>'
-                              +'</div>');
-      res['Reason'].forEach(function(item){
+        // Reason Filter
+        var elements2 = $();
         $('.filter_reason').append('<div class="inbox inbox_reason" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_reason_val" name="reason_filter_val" value="'+item.quality_reason_id+'" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">'+item.quality_reason_id+"-"+item.quality_reason_name+'</p>'
-                                +'</div>'
-                              +'</div>');
-      });
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_reason_val" name="reason_filter_val" value="all" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">All</p>'
+                                  +'</div>'
+                                +'</div>');
+        res['Reason'].forEach(function(item){
+          $('.filter_reason').append('<div class="inbox inbox_reason" style="display: flex;">'
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_reason_val" name="reason_filter_val" value="'+item.quality_reason_id+'" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">'+item.quality_reason_id+"-"+item.quality_reason_name+'</p>'
+                                  +'</div>'
+                                +'</div>');
+        });
 
 
-      // Reason Filter
-      var elements_copq = $();
-      $('.filter_reason_copq').append('<div class="inbox inbox_reason_copq copq_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_reason_val_copq" name="reason_filter_val_copq" value="all" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">All</p>'
-                                +'</div>'
-                              +'</div>');
-      res['Reason'].forEach(function(item){
+        // Reason Filter
+        var elements_copq = $();
         $('.filter_reason_copq').append('<div class="inbox inbox_reason_copq copq_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_reason_val_copq" name="reason_filter_val_copq" value="'+item.quality_reason_id+'" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">'+item.quality_reason_id+"-"+item.quality_reason_name+'</p>'
-                                +'</div>'
-                              +'</div>');
-      });
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_reason_val_copq" name="reason_filter_val_copq" value="all" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">All</p>'
+                                  +'</div>'
+                                +'</div>');
+        res['Reason'].forEach(function(item){
+          $('.filter_reason_copq').append('<div class="inbox inbox_reason_copq copq_filter" style="display: flex;">'
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_reason_val_copq" name="reason_filter_val_copq" value="'+item.quality_reason_id+'" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">'+item.quality_reason_id+"-"+item.quality_reason_name+'</p>'
+                                  +'</div>'
+                                +'</div>');
+        });
 
-      // CRBR......
-       $('.filter_reason_crpr').append('<div class="inbox inbox_reason_crpr crpr_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_reason_val_crpr" name="reason_filter_val_crpr" value="all" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">All</p>'
-                                +'</div>'
-                              +'</div>');
-      res['Reason'].forEach(function(item){
+        // CRBR......
         $('.filter_reason_crpr').append('<div class="inbox inbox_reason_crpr crpr_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_reason_val_crpr" name="reason_filter_val_crpr" value="'+item.quality_reason_id+'" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">'+item.quality_reason_id+"-"+item.quality_reason_name+'</p>'
-                                +'</div>'
-                              +'</div>');
-      });
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_reason_val_crpr" name="reason_filter_val_crpr" value="all" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">All</p>'
+                                  +'</div>'
+                                +'</div>');
+        res['Reason'].forEach(function(item){
+          $('.filter_reason_crpr').append('<div class="inbox inbox_reason_crpr crpr_filter" style="display: flex;">'
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_reason_val_crpr" name="reason_filter_val_crpr" value="'+item.quality_reason_id+'" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">'+item.quality_reason_id+"-"+item.quality_reason_name+'</p>'
+                                  +'</div>'
+                                +'</div>');
+        });
 
-      $('.filter_machine_crpr').append('<div class="inbox inbox_machine_crpr crpr_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_machine_val_crpr" name="machine_filter_val_crpr" value="all" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">All</p>'
-                                +'</div>'
-                              +'</div>');
-      res['Machine'].forEach(function(item){
         $('.filter_machine_crpr').append('<div class="inbox inbox_machine_crpr crpr_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_machine_val_crpr" name="machine_filter_val_crpr" value="'+item.machine_id+'" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">'+item.machine_id+"-"+item.machine_name+'</p>'
-                                +'</div>'
-                              +'</div>');
-      });
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_machine_val_crpr" name="machine_filter_val_crpr" value="all" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">All</p>'
+                                  +'</div>'
+                                +'</div>');
+        res['Machine'].forEach(function(item){
+          $('.filter_machine_crpr').append('<div class="inbox inbox_machine_crpr crpr_filter" style="display: flex;">'
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_machine_val_crpr" name="machine_filter_val_crpr" value="'+item.machine_id+'" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">'+item.machine_id+"-"+item.machine_name+'</p>'
+                                  +'</div>'
+                                +'</div>');
+        });
 
 
-      $('.filter_part_crpr').append('<div class="inbox inbox_part_crpr crpr_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_part_val_crpr" name="part_filter_val_crpr" value="all" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">All</p>'
-                                +'</div>'
-                              +'</div>');
-      res['Part'].forEach(function(item){
         $('.filter_part_crpr').append('<div class="inbox inbox_part_crpr crpr_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_part_val_crpr" name="part_filter_val_crpr" value="'+item.part_id+'" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">'+item.part_id+"-"+item.part_name+'</p>'
-                                +'</div>'
-                              +'</div>');
-      }); 
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_part_val_crpr" name="part_filter_val_crpr" value="all" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">All</p>'
+                                  +'</div>'
+                                +'</div>');
+        res['Part'].forEach(function(item){
+          $('.filter_part_crpr').append('<div class="inbox inbox_part_crpr crpr_filter" style="display: flex;">'
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_part_val_crpr" name="part_filter_val_crpr" value="'+item.part_id+'" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">'+item.part_id+"-"+item.part_name+'</p>'
+                                  +'</div>'
+                                +'</div>');
+        }); 
 
-      // COPQM......
-       $('.filter_reason_copqm').append('<div class="inbox inbox_reason_copqm copqm_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_reason_val_copqm" name="reason_filter_val_copqm" value="all" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">All</p>'
-                                +'</div>'
-                              +'</div>');
-      res['Reason'].forEach(function(item){
+        // COPQM......
         $('.filter_reason_copqm').append('<div class="inbox inbox_reason_copqm copqm_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_reason_val_copqm" name="reason_filter_val_copqm" value="'+item.quality_reason_id+'" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">'+item.quality_reason_id+"-"+item.quality_reason_name+'</p>'
-                                +'</div>'
-                              +'</div>');
-      });
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_reason_val_copqm" name="reason_filter_val_copqm" value="all" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">All</p>'
+                                  +'</div>'
+                                +'</div>');
+        res['Reason'].forEach(function(item){
+          $('.filter_reason_copqm').append('<div class="inbox inbox_reason_copqm copqm_filter" style="display: flex;">'
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_reason_val_copqm" name="reason_filter_val_copqm" value="'+item.quality_reason_id+'" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">'+item.quality_reason_id+"-"+item.quality_reason_name+'</p>'
+                                  +'</div>'
+                                +'</div>');
+        });
 
-      $('.filter_machine_copqm').append('<div class="inbox inbox_machine_copqm copqm_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_machine_val_copqm" name="machine_filter_val_copqm" value="all" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">All</p>'
-                                +'</div>'
-                              +'</div>');
-      res['Machine'].forEach(function(item){
         $('.filter_machine_copqm').append('<div class="inbox inbox_machine_copqm copqm_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_machine_val_copqm" name="machine_filter_val_copqm" value="'+item.machine_id+'" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">'+item.machine_id+"-"+item.machine_name+'</p>'
-                                +'</div>'
-                              +'</div>');
-      });
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_machine_val_copqm" name="machine_filter_val_copqm" value="all" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">All</p>'
+                                  +'</div>'
+                                +'</div>');
+        res['Machine'].forEach(function(item){
+          $('.filter_machine_copqm').append('<div class="inbox inbox_machine_copqm copqm_filter" style="display: flex;">'
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_machine_val_copqm" name="machine_filter_val_copqm" value="'+item.machine_id+'" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">'+item.machine_id+"-"+item.machine_name+'</p>'
+                                  +'</div>'
+                                +'</div>');
+        });
 
 
-      $('.filter_part_copqm').append('<div class="inbox inbox_part_copqm copqm_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_part_val_copqm" name="part_filter_val_copqm" value="all" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">All</p>'
-                                +'</div>'
-                              +'</div>');
-      res['Part'].forEach(function(item){
         $('.filter_part_copqm').append('<div class="inbox inbox_part_copqm copqm_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_part_val_copqm" name="part_filter_val_copqm" value="'+item.part_id+'" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">'+item.part_id+"-"+item.part_name+'</p>'
-                                +'</div>'
-                              +'</div>');
-      }); 
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_part_val_copqm" name="part_filter_val_copqm" value="all" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">All</p>'
+                                  +'</div>'
+                                +'</div>');
+        res['Part'].forEach(function(item){
+          $('.filter_part_copqm').append('<div class="inbox inbox_part_copqm copqm_filter" style="display: flex;">'
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_part_val_copqm" name="part_filter_val_copqm" value="'+item.part_id+'" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">'+item.part_id+"-"+item.part_name+'</p>'
+                                  +'</div>'
+                                +'</div>');
+        }); 
 
 
-      // COPQP......
-       $('.filter_reason_copqp').append('<div class="inbox inbox_reason_copqp cpqp_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_reason_val_copqp" name="reason_filter_val_copqp" value="all" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">All</p>'
-                                +'</div>'
-                              +'</div>');
-      res['Reason'].forEach(function(item){
+        // COPQP......
         $('.filter_reason_copqp').append('<div class="inbox inbox_reason_copqp cpqp_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_reason_val_copqp" name="reason_filter_val_copqp" value="'+item.quality_reason_id+'" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">'+item.quality_reason_id+"-"+item.quality_reason_name+'</p>'
-                                +'</div>'
-                              +'</div>');
-      });
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_reason_val_copqp" name="reason_filter_val_copqp" value="all" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">All</p>'
+                                  +'</div>'
+                                +'</div>');
+        res['Reason'].forEach(function(item){
+          $('.filter_reason_copqp').append('<div class="inbox inbox_reason_copqp cpqp_filter" style="display: flex;">'
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_reason_val_copqp" name="reason_filter_val_copqp" value="'+item.quality_reason_id+'" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">'+item.quality_reason_id+"-"+item.quality_reason_name+'</p>'
+                                  +'</div>'
+                                +'</div>');
+        });
 
-      $('.filter_machine_copqp').append('<div class="inbox inbox_machine_copqp cpqp_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_machine_val_copqp" name="machine_filter_val_copqp" value="all" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">All</p>'
-                                +'</div>'
-                              +'</div>');
-      res['Machine'].forEach(function(item){
         $('.filter_machine_copqp').append('<div class="inbox inbox_machine_copqp cpqp_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_machine_val_copqp" name="machine_filter_val_copqp" value="'+item.machine_id+'" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">'+item.machine_id+"-"+item.machine_name+'</p>'
-                                +'</div>'
-                              +'</div>');
-      });
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_machine_val_copqp" name="machine_filter_val_copqp" value="all" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">All</p>'
+                                  +'</div>'
+                                +'</div>');
+        res['Machine'].forEach(function(item){
+          $('.filter_machine_copqp').append('<div class="inbox inbox_machine_copqp cpqp_filter" style="display: flex;">'
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_machine_val_copqp" name="machine_filter_val_copqp" value="'+item.machine_id+'" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">'+item.machine_id+"-"+item.machine_name+'</p>'
+                                  +'</div>'
+                                +'</div>');
+        });
 
 
-      $('.filter_part_copqp').append('<div class="inbox inbox_part_copqp cpqp_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_part_val_copqp" name="part_filter_val_copqp" value="all" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">All</p>'
-                                +'</div>'
-                              +'</div>');
-      res['Part'].forEach(function(item){
         $('.filter_part_copqp').append('<div class="inbox inbox_part_copqp cpqp_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_part_val_copqp" name="part_filter_val_copqp" value="'+item.part_id+'" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">'+item.part_id+"-"+item.part_name+'</p>'
-                                +'</div>'
-                              +'</div>');
-      }); 
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_part_val_copqp" name="part_filter_val_copqp" value="all" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">All</p>'
+                                  +'</div>'
+                                +'</div>');
+        res['Part'].forEach(function(item){
+          $('.filter_part_copqp').append('<div class="inbox inbox_part_copqp cpqp_filter" style="display: flex;">'
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_part_val_copqp" name="part_filter_val_copqp" value="'+item.part_id+'" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">'+item.part_id+"-"+item.part_name+'</p>'
+                                  +'</div>'
+                                +'</div>');
+        }); 
 
-      // QRMR......
-       $('.filter_reason_qrmr').append('<div class="inbox inbox_reason_qrmr qrmr_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_reason_val_qrmr" name="reason_filter_val_qrmr" value="all" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">All</p>'
-                                +'</div>'
-                              +'</div>');
-      res['Reason'].forEach(function(item){
+        // QRMR......
         $('.filter_reason_qrmr').append('<div class="inbox inbox_reason_qrmr qrmr_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_reason_val_qrmr" name="reason_filter_val_qrmr" value="'+item.quality_reason_id+'" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">'+item.quality_reason_id+"-"+item.quality_reason_name+'</p>'
-                                +'</div>'
-                              +'</div>');
-      });
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_reason_val_qrmr" name="reason_filter_val_qrmr" value="all" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">All</p>'
+                                  +'</div>'
+                                +'</div>');
+        res['Reason'].forEach(function(item){
+          $('.filter_reason_qrmr').append('<div class="inbox inbox_reason_qrmr qrmr_filter" style="display: flex;">'
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_reason_val_qrmr" name="reason_filter_val_qrmr" value="'+item.quality_reason_id+'" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">'+item.quality_reason_id+"-"+item.quality_reason_name+'</p>'
+                                  +'</div>'
+                                +'</div>');
+        });
 
-      $('.filter_machine_qrmr').append('<div class="inbox inbox_machine_qrmr qrmr_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_machine_val_qrmr" name="machine_filter_val_qrmr" value="all" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">All</p>'
-                                +'</div>'
-                              +'</div>');
-      res['Machine'].forEach(function(item){
         $('.filter_machine_qrmr').append('<div class="inbox inbox_machine_qrmr qrmr_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_machine_val_qrmr" name="machine_filter_val_qrmr" value="'+item.machine_id+'" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">'+item.machine_id+"-"+item.machine_name+'</p>'
-                                +'</div>'
-                              +'</div>');
-      });
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_machine_val_qrmr" name="machine_filter_val_qrmr" value="all" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">All</p>'
+                                  +'</div>'
+                                +'</div>');
+        res['Machine'].forEach(function(item){
+          $('.filter_machine_qrmr').append('<div class="inbox inbox_machine_qrmr qrmr_filter" style="display: flex;">'
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_machine_val_qrmr" name="machine_filter_val_qrmr" value="'+item.machine_id+'" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">'+item.machine_id+"-"+item.machine_name+'</p>'
+                                  +'</div>'
+                                +'</div>');
+        });
 
 
-      $('.filter_part_qrmr').append('<div class="inbox inbox_part_qrmr qrmr_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_part_val_qrmr" name="part_filter_val_qrmr" value="all" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">All</p>'
-                                +'</div>'
-                              +'</div>');
-      res['Part'].forEach(function(item){
         $('.filter_part_qrmr').append('<div class="inbox inbox_part_qrmr qrmr_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_part_val_qrmr" name="part_filter_val_qrmr" value="'+item.part_id+'" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">'+item.part_id+"-"+item.part_name+'</p>'
-                                +'</div>'
-                              +'</div>');
-      }); 
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_part_val_qrmr" name="part_filter_val_qrmr" value="all" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">All</p>'
+                                  +'</div>'
+                                +'</div>');
+        res['Part'].forEach(function(item){
+          $('.filter_part_qrmr').append('<div class="inbox inbox_part_qrmr qrmr_filter" style="display: flex;">'
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_part_val_qrmr" name="part_filter_val_qrmr" value="'+item.part_id+'" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">'+item.part_id+"-"+item.part_name+'</p>'
+                                  +'</div>'
+                                +'</div>');
+        }); 
 
 
-      // QRMR......
-       $('.filter_reason_qrpr').append('<div class="inbox inbox_reason_qrpr qrpr_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_reason_val_qrpr" name="reason_filter_val_qrpr" value="all" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">All</p>'
-                                +'</div>'
-                              +'</div>');
-      res['Reason'].forEach(function(item){
+        // QRMR......
         $('.filter_reason_qrpr').append('<div class="inbox inbox_reason_qrpr qrpr_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_reason_val_qrpr" name="reason_filter_val_qrpr" value="'+item.quality_reason_id+'" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">'+item.quality_reason_id+"-"+item.quality_reason_name+'</p>'
-                                +'</div>'
-                              +'</div>');
-      });
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_reason_val_qrpr" name="reason_filter_val_qrpr" value="all" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">All</p>'
+                                  +'</div>'
+                                +'</div>');
+        res['Reason'].forEach(function(item){
+          $('.filter_reason_qrpr').append('<div class="inbox inbox_reason_qrpr qrpr_filter" style="display: flex;">'
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_reason_val_qrpr" name="reason_filter_val_qrpr" value="'+item.quality_reason_id+'" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">'+item.quality_reason_id+"-"+item.quality_reason_name+'</p>'
+                                  +'</div>'
+                                +'</div>');
+        });
 
-      $('.filter_machine_qrpr').append('<div class="inbox inbox_machine_qrpr qrpr_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_machine_val_qrpr" name="machine_filter_val_qrpr" value="all" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">All</p>'
-                                +'</div>'
-                              +'</div>');
-      res['Machine'].forEach(function(item){
         $('.filter_machine_qrpr').append('<div class="inbox inbox_machine_qrpr qrpr_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_machine_val_qrpr" name="machine_filter_val_qrpr" value="'+item.machine_id+'" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">'+item.machine_id+"-"+item.machine_name+'</p>'
-                                +'</div>'
-                              +'</div>');
-      });
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_machine_val_qrpr" name="machine_filter_val_qrpr" value="all" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">All</p>'
+                                  +'</div>'
+                                +'</div>');
+        res['Machine'].forEach(function(item){
+          $('.filter_machine_qrpr').append('<div class="inbox inbox_machine_qrpr qrpr_filter" style="display: flex;">'
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_machine_val_qrpr" name="machine_filter_val_qrpr" value="'+item.machine_id+'" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">'+item.machine_id+"-"+item.machine_name+'</p>'
+                                  +'</div>'
+                                +'</div>');
+        });
 
 
-      $('.filter_part_qrpr').append('<div class="inbox inbox_part_qrpr qrpr_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_part_val_qrpr" name="part_filter_val_qrpr" value="all" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">All</p>'
-                                +'</div>'
-                              +'</div>');
-      res['Part'].forEach(function(item){
         $('.filter_part_qrpr').append('<div class="inbox inbox_part_qrpr qrpr_filter" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_part_val_qrpr" name="part_filter_val_qrpr" value="'+item.part_id+'" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">'+item.part_id+"-"+item.part_name+'</p>'
-                                +'</div>'
-                              +'</div>');
-      });
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_part_val_qrpr" name="part_filter_val_qrpr" value="all" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">All</p>'
+                                  +'</div>'
+                                +'</div>');
+        res['Part'].forEach(function(item){
+          $('.filter_part_qrpr').append('<div class="inbox inbox_part_qrpr qrpr_filter" style="display: flex;">'
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_part_val_qrpr" name="part_filter_val_qrpr" value="'+item.part_id+'" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">'+item.part_id+"-"+item.part_name+'</p>'
+                                  +'</div>'
+                                +'</div>');
+        });
 
 
-      // User Filter
-      var elements3 = $();
-      $('.filter_user').append('<div class="inbox inbox_user" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_user_val" name="user_filter_val" value="all" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">All</p>'
-                                +'</div>'
-                              +'</div>');
-      res['Created_By'].forEach(function(item){
+        // User Filter
+        var elements3 = $();
         $('.filter_user').append('<div class="inbox inbox_user" style="display: flex;">'
-                                +'<div style="float: left;width: 20%;" class="center-align">'
-                                  +'<input class="checkbox_part filter_user_val" name="user_filter_val" value="'+item.user_id+'" type="checkbox" checked/>'
-                                +'</div>'
-                                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                                    +'<p class="inbox-span paddingm">'+item.user_id+"-"+item.first_name+'</p>'
-                                +'</div>'
-                              +'</div>');
-      });
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_user_val" name="user_filter_val" value="all" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">All</p>'
+                                  +'</div>'
+                                +'</div>');
+        res['Created_By'].forEach(function(item){
+          $('.filter_user').append('<div class="inbox inbox_user" style="display: flex;">'
+                                  +'<div style="float: left;width: 20%;" class="center-align">'
+                                    +'<input class="checkbox_part filter_user_val" name="user_filter_val" value="'+item.user_id+'" type="checkbox" checked/>'
+                                  +'</div>'
+                                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                                      +'<p class="inbox-span paddingm">'+item.user_id+"-"+item.first_name+'</p>'
+                                  +'</div>'
+                                +'</div>');
+        });
 
-      myFun();
-      getFilterval();
-      $("#overlay").fadeOut(300);
-    },
-    error:function(res){
-      // alert("Something went wrong!");
-    }
+        // myFun();
+        // getFilterval();
+        // $("#overlay").fadeOut(300);
+      },
+      error:function(er){
+        // alert("Something went wrong!");
+        reject(er);
+      }
+    });
+
   });
 }
 
 function getTableData(part,machine,reason,user){
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
     filter_array =[];
     $.ajax({
-    url: "<?php echo base_url('Production_Quality/gettablefilterdata'); ?>",
-    type: "POST",
-    dataType: "json",
-    async:false,
-    data:{
-      part:part,
-      machine:machine,
-      reason:reason,
-      user:user
-    },
-    success:function(res){
-      res.forEach(function(value, index) {
-        filter_array.push(value);
-      });
-    },
-    error:function(res){
-      // alert("Something went wrong!");
-    }
-  });
-  $("#pagination_val").val(1);
-  filter_table_data();
+      url: "<?php echo base_url('Production_Quality/gettablefilterdata'); ?>",
+      type: "POST",
+      dataType: "json",
+      // async:false,
+      data:{
+        part:part,
+        machine:machine,
+        reason:reason,
+        user:user,
+        from:f,
+        to:t,
+      },
+      success:function(res){
+        res.forEach(function(value, index) {
+          filter_array.push(value);
+        });
+       
+        if(filter_array.length<=0){
+          $("#pagination_val").val(1);
+          $('#total_pagination').text('1');
+          $('.contentQualityFilter').append('<div style="margin-top:1rem;display:flex;flex-direction:row;justify-content:center;align-items:center;height:1.4rem;color:#a6a6a6;font-weight:500;">No Records Found...</div>');
+        }else{
+          $("#pagination_val").val(1);
+          filter_table_data();
+        }
+        
+      },
+      error:function(er){
+        // alert("Something went wrong!");
+      }
+    });
+  
 }
 
 $('#pagination_val').on('change', function(event) {
@@ -4862,15 +4994,23 @@ $('#pagination_val').on('change', function(event) {
 
 function filter_table_data(){
   $('.contentQualityFilter').empty();
-  var pagination_length=10;
+  var pagination_length=50;
   total_pagination = Math.ceil((filter_array.length)/(pagination_length));
   $("#total_pagination").html(total_pagination);
   var x = $("#pagination_val").val();
   filter_array.forEach(function(value, index) {
     if ((index > (x*pagination_length)-(pagination_length+1)) && (index < (x*pagination_length))) {
       var elements = $();
-     
-      
+
+      var notes_msg = "";
+      if (value['notes']===undefined) {
+        notes_msg = " ";
+      }else if(value['notes'] === ""){
+        notes_msg = " ";
+      }
+      else{
+        notes_msg = value['notes'];
+      }
       elements = elements.add('<div id="settings_div">'
                   +'<div class="row paddingm" style="height:3.8rem;">'
                     +'<div class="col-sm-1 col marleft"><p class="rejection_font_color">'+value['from_date']+'</p></div>'
@@ -4885,7 +5025,7 @@ function filter_table_data(){
                     // +'<div class="col-sm-1 col " style="justify-content:center;"><div class="rejection_font_color"><img src="<?php echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" style="height:1.4rem;width:1.4rem;"></div></div>'
                     +'<div class="col-sm-1 col " style="justify-content:center;"><div class="rejection_font_color notes_check"><img src="<?php echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" style="height:1.4rem;width:1.4rem;" onmouseover="notes_hover(this)"  onmouseout="mouse_out_check(this)"></div></div>'
                     +'<div class="notes_display" style="">'
-                            +'<p >'+value['notes']+'</p>'
+                            +'<p >'+notes_msg+'</p>'
                     +'</div>'
                   +'</div>'
                 +'</div>');
@@ -5099,7 +5239,6 @@ function notes_hover(ele){
     var index_val = els.indexOf(event.currentTarget);
     //   alert(index_val);
     $('.notes_display:eq('+index_val+')').css('display','block');
-    //   console.log("notes index hovering"+index_val);
 }
 
 
@@ -5108,8 +5247,6 @@ function mouse_out_check(ele1){
   var els = Array.prototype.slice.call( document.getElementsByClassName('icon_img_wh'), 0 );
   var index_val1 = els.indexOf(event.currentTarget);
   $('.notes_display:eq('+index_val1+')').css("display","none");
-    //   console.log("notes index  hovering remove"+index_val1);
-
 }
 
 </script>

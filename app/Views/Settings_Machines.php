@@ -41,28 +41,27 @@
 $session = \Config\Services::session();
 
 ?>
-<br>
-<br>
-<div style="margin-left: 4.5rem;">
-        <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav">
-          <div class="container-fluid paddingm">
-            <p class="float-start" id="logo">Machine Settings</p>
-              <div class="d-flex">
-                    
-                    <p class="float-end stcode" class="active_click" style="color: #005CBC;">
-                        <span  id="Active"></span>Active 
 
+<div class="mr_left_content_sec">
+        <nav class="sec_nav display_f align_c justify_c sec_nav_c navbar-expand-lg">
+          <div class="container-fluid paddingm display_f justify_sb align_c">
+            <p class="float-start fnt_fam mdl_header">Machine Settings</p>
+              <div class="d-flex">
+                    <p class="float-end fnt_fam style_label active_click fnt_active">
+                        <span  id="Active"></span>Active 
                     </p>
-                    <p class="float-end stcode" style="color: #C00000;">
+                    <p class="float-end fnt_fam style_label fnt_inactive">
                         <span  id="Iactive"></span>Inactive
                     </p>
               </div>
           </div>
         </nav>
-        <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav">
-          <div class="container-fluid paddingm ">
+
+        <nav class="inner_nav inner_nav_c display_f align_c justify_sb navbar-expand-lg">
+          <div class="container-fluid paddingm display_f justify_sb align_c">
             <p class="float-start"></p>
               <div class="d-flex innerNav">
+
                     <!-- Filter and Refresh Option will enable in future update-->
                     <!-- <img src="<?php echo base_url('assets/img/filter_reset.png'); ?>" class=" float-end  undo" style="font-size:20px;color: #b5b8bc;cursor: pointer;width:1.3rem;height:1.3rem;"></i>
                     <a style="background: #cde4ff;color: #005abc;width:7rem;justify-content:center;text-align:center;" class="settings_nav_anchor float-end" data-bs-toggle="modal" data-bs-target="#FilterMachineModal" id="filterData">FILTER</a> -->
@@ -71,7 +70,7 @@ $session = \Config\Services::session();
                         if($this->data['access'][0]['settings_machine'] == 3){ 
                     ?>
 
-                    <a style="background: #005abc;color: white;width:9rem;" class="settings_nav_anchor float-end" id="add_machine_button">
+                    <a style="" class="add_btn cursor fnt_bold none_dec fnt_fam float-end" id="add_machine_button">
                         <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD MACHINE
                     </a>  
 
@@ -81,38 +80,37 @@ $session = \Config\Services::session();
                 </div>
             </div>
         </nav>
-        <div class="tableContent">
-            <div class="settings_machine_header sticky-top fixtabletitle">
+        <div class="data_section">
+            <div class="table_header table_header_p">
                 <div class="row paddingm">
-                    <div class="col-sm-1 p3 paddingm">
-                      <p class="basic_header">MACHINE ID</p>
+                    <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                      <p class="h_mar_l paddingm">MACHINE ID</p>
                     </div>
-                    <div class="col-sm-2 p3 paddingm">
-                      <p class="basic_header">MACHINE NAME</p>
+                    <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                      <p class="h_mar_l paddingm">MACHINE NAME</p>
                     </div>
-                    <div class="col-sm-2 p3 paddingm mar_right">
-                      <p class="basic_right">MACHINE RATE HOUR</p>
+                    <div class="col-sm-2 p3 paddingm mar_right table_header_sec display_f justify_l align_c text_align_c">
+                      <p class="paddingm h_mar_r">MACHINE RATE HOUR</p>
                     </div>
-                    <div class="col-sm-2 p3 paddingm ">
-                      <p class="basic_right">MACHINE OFF RATE HOUR</p>
+                    <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                      <p class="paddingm h_mar_r">MACHINE OFF RATE HOUR</p>
                     </div>
-                    <div class="col-sm-1 p3 paddingm">
-                      <p class="basic_header">TONNAGE</p>
+                    <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                      <p class="h_mar_l paddingm">TONNAGE</p>
                     </div>
-                    <div class="col-sm-2 p3 paddingm">
-                      <p class="basic_header">MACHINE BRAND</p>
+                    <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                      <p class="h_mar_l paddingm">MACHINE BRAND</p>
                     </div>
-                    <div class="col-sm-1 p3 paddingm">
-                      <p class="basic_header">STATUS</p>
+                    <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                      <p class="h_mar_l paddingm">STATUS</p>
                     </div>
-                    <div class="col-sm-1 p3 paddingm" style="justify-content: center;">
-                      <p class="basic_header">ACTION</p>
+                    <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_c align_c text_align_c">
+                      <p class="paddingm">ACTION</p>
                     </div>
                 </div>
             </div>
 
-            <div class="contentMachine contentContainer paddingm " style="margin-bottom:0rem;">
-           
+            <div class="contentMachine tableDataContainer paddingm ">
             </div>
         </div>
 </div>
@@ -121,16 +119,16 @@ $session = \Config\Services::session();
   <div class="modal-dialog modal-lg modal-dialog-centered rounded ">
     <div class="container modal-content bodercss">
             <div class="modal-header" style="border:none; ">
-                <h5 class="modal-title settings-machineAdd-model" id="AddMachineModal1" style="">ADD MACHINE</h5>
+                <h5 class="modal-title header_popup fnt_fam" id="AddMachineModal1" style="">ADD MACHINE</h5>
             </div> 
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-6 box">
                             <div class="input-box fieldStyle">      
                                 <input type="text" class="form-control font_weight_modal" id="inputMachineName" name="inputMachineName" >
-                                <label for="inputMachineName" class="input-padding">Machine Name <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id="inputMachineNameErr"></span> 
-                                <span class="float-end charCount" id="inputMachineNameCunt"></span> 
+                                <label for="inputMachineName" class="input_lable fnt_fam">Machine Name <span class="paddingm validate fnt_fam">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam" id="inputMachineNameErr"></span> 
+                                <span class="float-end charCount fnt_fam" id="inputMachineNameCunt"></span> 
                             </div>
                         </div>
                     </div>
@@ -139,8 +137,8 @@ $session = \Config\Services::session();
                             <div class=" input-box fieldStyle">
                                 <input type="text" class="form-control padin font_weight_modal" id="inputMachineRateHour" name="inputMachineRateHour" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                 <span class="unit-input"><i class="fa fa-inr clip" aria-hidden="true"></i></span>
-                                <label for="inputMachineRateHour" class="input-padding">Machine Rate Hour <span class="paddingm validate">*</span></label></label>
-                                <span class="paddingm float-start validate" id="inputMachineRateHourErr"></span> 
+                                <label for="inputMachineRateHour" class="input_lable fnt_fam">Machine Rate Hour <span class="paddingm validate fnt_fam">*</span></label></label>
+                                <span class="paddingm float-start validate fnt_fam" id="inputMachineRateHourErr"></span> 
                                 
                             </div>
                         </div>
@@ -148,9 +146,9 @@ $session = \Config\Services::session();
                             <div class="input-box fieldStyle">
                                 <input type="text" class="form-control input padin font_weight_modal" id="inputMachineOffRateHour" name="inputMachineOffRateHour" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                 <span class="unit-input"><i class="fa fa-inr clip" aria-hidden="true"></i></span>
-                                <label for="inputMachineOffRateHour" class="input-padding">Machine OFF Rate Hour <span class="paddingm validate">*</span></label></label>
-                                <span class="paddingm float-start validate" id="inputMachineOffRateHourErr"></span> 
-                                <!-- <span class="float-end charCount">Character Count</span> -->
+                                <label for="inputMachineOffRateHour" class="input_lable fnt_fam">Machine OFF Rate Hour <span class="paddingm validate fnt_fam">*</span></label></label>
+                                <span class="paddingm float-start validate fnt_fam" id="inputMachineOffRateHourErr"></span> 
+                                <!-- <span class="float-end charCount fnt_fam">Character Count</span> -->
                             </div>
                         </div>
                     </div>
@@ -158,25 +156,25 @@ $session = \Config\Services::session();
                         <div class="col-lg-3 box">
                             <div class=" input-box fieldStyle">
                                 <input type="text" class="form-control input font_weight_modal paddinginright" id="inputTonnage" name="inputTonnage" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                <label for="inputTonnage" class="input-padding">Tonnage <span class="paddingm validate">*</span></label></label>
-                                <span class="paddingm float-start validate" id="inputTonnageErr"></span> 
+                                <label for="inputTonnage" class="input_lable fnt_fam">Tonnage <span class="paddingm validate fnt_fam">*</span></label></label>
+                                <span class="paddingm float-start validate fnt_fam" id="inputTonnageErr"></span> 
                                 <span class="unit clip">T</span>
                             </div>
                         </div>
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" class="form-control input font_weight_modal" id="inputMachineBrand" name="inputMachineBrand">
-                                <label for="inputMachineBrand" class="input-padding">Machine Brand <span class="paddingm validate">*</span></label></label>
-                                <span class="paddingm float-start validate" id="inputMachineBrandErr"></span> 
-                                <span class="float-end charCount" id="inputMachineBrandCunt"></span>
+                                <label for="inputMachineBrand" class="input_lable fnt_fam">Machine Brand <span class="paddingm validate fnt_fam">*</span></label></label>
+                                <span class="paddingm float-start validate fnt_fam" id="inputMachineBrandErr"></span> 
+                                <span class="float-end charCount fnt_fam" id="inputMachineBrandCunt"></span>
                             </div>
                         </div>
                         <div class="col-lg-6 box" >
                             <div class="input-box fieldStyle">
                                 <input type="text" class="form-control input font_weight_modal" id="inputMachineSerialId" name="inputMachineSerialId" onkeydown="key_down(event)" onpaste="check_white_space(event)">
-                                <label for="inputMachineSerialId" class="input-padding">Machine Serial ID <span class="paddingm validate">*</span></label></label>
-                                <span class="paddingm float-start validate" id="inputMachineSerialId_err"></span> 
-                                <span class="float-end charCount" id="inputMachineSerialIdCunt"></span>
+                                <label for="inputMachineSerialId" class="input_lable fnt_fam">Machine Serial ID <span class="paddingm validate fnt_fam">*</span></label></label>
+                                <span class="paddingm float-start validate fnt_fam" id="inputMachineSerialId_err"></span> 
+                                <span class="float-end charCount fnt_fam" id="inputMachineSerialIdCunt"></span>
                             </div>
                         </div>
                     </div>
@@ -186,8 +184,8 @@ $session = \Config\Services::session();
                 </div>
 
                 <div class="modal-footer" style="border:none;">
-                    <input type="submit" class="btn fo bn Add_Machine_Data saveBtnStyle" name="Add_Machine" value="Save">
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                    <input type="submit" class="btn fnt_fam btn_fnt_size btn_padd btn_save Add_Machine_Data" name="Add_Machine" value="Save">
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
                 </div>
     </div>
   </div>
@@ -197,15 +195,15 @@ $session = \Config\Services::session();
   <div class="modal-dialog modal-dialog-centered rounded">
     <div class="modal-content bodercss">
             <div class="modal-header" style="border:none; ">
-                <h5 class="modal-title settings-machineAdd-model" id="DeactiveMachineModal1" style="">CONFIRMATION MESSAGE</h5>
+                <h5 class="modal-title header_popup fnt_fam" id="DeactiveMachineModal1" style="">CONFIRMATION MESSAGE</h5>
             </div>
                 <div class="modal-body" style="max-width:max-content;">
-                    <label style="color: black;">Are you sure you want to delete this machine record?</label>
+                    <label style="color: black;font-size:0.9rem;">Are you sure you want to delete this machine record?</label>
                     
                 </div>
                 <div class="modal-footer" style="border:none;">
-                    <a class="btn fo bn Status-Machine Status-deactive saveBtnStyle" name="Edit_Machine" value="SAVE" >Save</a>
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_save Status-Machine Status-deactive" name="Edit_Machine" value="SAVE" >Save</a>
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
                 </div>
     </div>
   </div>
@@ -214,14 +212,14 @@ $session = \Config\Services::session();
   <div class="modal-dialog modal-dialog-centered rounded">
     <div class="modal-content bodercss">
         <div class="modal-header" style="border:none; ">
-            <h5 class="modal-title settings-machineAdd-model" id="ActiveMachineModal1" style="">CONFIRMATION MESSAGE</h5>
+            <h5 class="modal-title header_popup fnt_fam" id="ActiveMachineModal1" style="">CONFIRMATION MESSAGE</h5>
         </div>
         <div class="modal-body">
-            <label style="color: black;">Are you sure you want to activate this machine record?</label>            
+            <label style="color: black;font-size:0.9rem;">Are you sure you want to activate this machine record?</label>            
         </div>
         <div class="modal-footer" style="border:none;">
-            <a class="btn fo bn  Status-active saveBtnStyle" name="Edit_Machine" value="SAVE" >Save</a>
-            <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+            <a class="btn fnt_fam btn_fnt_size btn_padd btn_save Status-active" name="Edit_Machine" value="SAVE" >Save</a>
+            <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
         </div>
     </div>
   </div>
@@ -230,7 +228,7 @@ $session = \Config\Services::session();
   <div class="modal-dialog modal-lg modal-dialog-centered rounded">
     <div class="modal-content container bodercss">
             <div class="modal-header" style="border:none; ">
-                <p class="modal-title settings-machineAdd-model" id="EditMachineModal1" style="">EDIT MACHINE DETAILS</p>
+                <p class="modal-title header_popup fnt_fam" id="EditMachineModal1" style="">EDIT MACHINE DETAILS</p>
             </div>
                 <div class="modal-body">
                     <div class="row">
@@ -238,13 +236,13 @@ $session = \Config\Services::session();
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="mb-3">
-                                        <label for="" class="col-form-label headTitle">Machine ID</label>
+                                        <label for="" class="col-form-label headTitle fnt_fam">Machine ID</label>
                                         <p><span id="machineid" class="font_weight_modal"></span></p>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class=" float-end">
-                                        <label for="" class="col-form-label headTitle">Status</label>
+                                        <label for="" class="col-form-label headTitle fnt_fam">Status</label>
                                         <p><b><span id="machinestatus" class="font_weight_modal" style="font-weight:bold;opacity:1;font-size:0.9rem;"></span></b></p>
                                     </div>
                                 </div>
@@ -256,9 +254,9 @@ $session = \Config\Services::session();
                         <div class="col-lg-6 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" class="form-control font_weight_modal" id="editMachineName" name="" required=""  value="" >
-                                <label class="input-padding">Machine Name <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id="editMachineNameErr"></span>
-                                <span class="float-end charCount" id="editMachineNameCuntEdit"></span>
+                                <label class="input_lable fnt_fam">Machine Name <span class="paddingm validate fnt_fam">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam" id="editMachineNameErr"></span>
+                                <span class="float-end charCount fnt_fam" id="editMachineNameCuntEdit"></span>
                             </div>
                         </div>
                     </div>
@@ -267,16 +265,16 @@ $session = \Config\Services::session();
                             <div class="input-box fieldStyle">
                                 <input type="text" class="form-control input left-align font_weight_modal" id="editMachineRateHour" name="" required=""  value=" " oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                 <span class="unit-input"><i class="fa fa-inr clip" aria-hidden="true"></i></span>
-                                <label class="input-padding">Machine Rate Hour <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id="editMachineRateHourErr"></span>
+                                <label class="input_lable fnt_fam">Machine Rate Hour <span class="paddingm validate fnt_fam">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam" id="editMachineRateHourErr"></span>
                             </div>
                         </div>
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" class="form-control input left-align font_weight_modal" id="editMachineOffRateHour" name="" required=""  value=" " oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                 <span class="unit-input"><i class="fa fa-inr clip" aria-hidden="true"></i></span>
-                                <label class="input-padding">Machine OFF Rate Hour <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id="editMachineOffRateHourErr"></span>
+                                <label class="input_lable fnt_fam">Machine OFF Rate Hour <span class="paddingm validate fnt_fam">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam" id="editMachineOffRateHourErr"></span>
                             </div>
                         </div>
                     </div>
@@ -284,17 +282,17 @@ $session = \Config\Services::session();
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" class="form-control input paddinginright font_weight_modal" id="editTonnage" name="" required=""  value=" " oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                <label class="input-padding">Tonnage <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id="editTonnageErr"></span>
+                                <label class="input_lable fnt_fam">Tonnage <span class="paddingm validate fnt_fam">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam" id="editTonnageErr"></span>
                                 <span class="unit clip">T</span>
                             </div>
                         </div>
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" class="form-control input font_weight_modal" id="editMachineBrand" name="" required=""  value=" ">
-                                <label class="input-padding">Machine Brand <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id="editMachineBrandErr"></span>
-                                <span class="float-end charCount" id="editMachineBrandCuntEdit"></span>
+                                <label class="input_lable fnt_fam">Machine Brand <span class="paddingm validate fnt_fam">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam" id="editMachineBrandErr"></span>
+                                <span class="float-end charCount fnt_fam" id="editMachineBrandCuntEdit"></span>
                             </div>
                         </div>
                         <?php 
@@ -303,9 +301,9 @@ $session = \Config\Services::session();
                          <div class="col-lg-6 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" class="form-control input font_weight_modal" id="editMachineSerialNumber" name="" required=""  value=" " onkeydown="key_down(event)" onpaste="check_white_space(event)">
-                                <label class="input-padding">Machine Serial ID <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id="editMachineSerialNumber_err"></span>
-                                <span class="float-end charCount" id="editMachineSerialNumberCunt"></span>
+                                <label class="input_lable fnt_fam">Machine Serial ID <span class="paddingm validate fnt_fam">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam" id="editMachineSerialNumber_err"></span>
+                                <span class="float-end charCount fnt_fam" id="editMachineSerialNumberCunt"></span>
                             </div>
                         </div>
                        
@@ -313,9 +311,9 @@ $session = \Config\Services::session();
                          <div class="col-lg-6 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" class="form-control input font_weight_modal" id="editMachineSerialNumber" name="" required=""  value=" " readonly="true">
-                                <label class="input-padding">Machine Serial ID <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id="editMachineSerialNumber_err"></span>
-                                <span class="float-end charCount" id="editMachineSerialNumberCunt"></span>
+                                <label class="input_lable fnt_fam">Machine Serial ID <span class="paddingm validate fnt_fam">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam" id="editMachineSerialNumber_err"></span>
+                                <span class="float-end charCount fnt_fam" id="editMachineSerialNumberCunt"></span>
                             </div>
                         </div>
                     <?php }?>
@@ -323,21 +321,21 @@ $session = \Config\Services::session();
                     <div class="row">
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
-                                <label for="" class="col-form-label headTitle">Last Updated By</label>
+                                <label for="" class="col-form-label headTitle fnt_fam">Last Updated By</label>
                                 <p class="fieldStyleSub" style="position: absolute;"><span id="last_updated_by" class="font_weight_modal"></span></p>
                             </div>
                         </div>
                         <div class="col-lg-4 box">
                             <div class="input-box fieldStyle">
-                                <label for="" class="col-form-label headTitle">Last Updated On</label>
+                                <label for="" class="col-form-label headTitle fnt_fam">Last Updated On</label>
                                 <p class="fieldStyleSub" style="position: absolute;"><span id='last_updated_on' class="font_weight_modal"></span></p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer" style="border:none;">
-                    <a class="EditMachine btn fo bn saveBtnStyle" name="EditMachine" id="edit_machine_data" value="SAVE">Save</a>
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                    <a class="EditMachine btn fnt_fam btn_fnt_size btn_padd btn_save" name="EditMachine" id="edit_machine_data" value="SAVE">Save</a>
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
                 </div>
     </div>
   </div>
@@ -346,60 +344,60 @@ $session = \Config\Services::session();
   <div class="modal-dialog modal-lg modal-dialog-centered rounded">
     <div class="modal-content container bodercss">
             <div class="modal-header" style="border:none; ">
-                <h5 class="modal-title settings-machineAdd-model" id="InfoMachineModal1" style="">INFO MACHINE</h5>
+                <h5 class="modal-title header_popup fnt_fam" id="InfoMachineModal1" style="">INFO MACHINE</h5>
             </div>
                 <div class="modal-body addMachineForm">
                     <div class="row">
                         <div class="col-lg-4">
-                            <label for="" class="col-form-label headTitle">Machine ID</label>
+                            <label for="" class="col-form-label headTitle fnt_fam">Machine ID</label>
                             <p><span id="MId" class="font_weight_modal"></span></p>
                         </div>
                         <div class="col-lg-4">
-                            <label for="" class="col-form-label headTitle">Status</label>
+                            <label for="" class="col-form-label headTitle fnt_fam">Status</label>
                             <p><span id="MStatus" class="font_weight_modal"></span></p>
                         </div>
                         <div class="col-lg-4">
-                            <label for="" class="col-form-label headTitle">Machine Name</label>
+                            <label for="" class="col-form-label headTitle fnt_fam">Machine Name</label>
                             <p><span id="MName" class="font_weight_modal"></span></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <label for="" class="col-form-label headTitle">Machine Brand</label>
+                            <label for="" class="col-form-label headTitle fnt_fam">Machine Brand</label>
                             <p><span id="MBrand" class="font_weight_modal"></span></p>
                         </div>
                         <div class="col-lg-4">
-                            <label for="" class="col-form-label headTitle">Machine Rate Hour</label>
+                            <label for="" class="col-form-label headTitle fnt_fam">Machine Rate Hour</label>
                             <p><span id="MRateHour" class="font_weight_modal"></span></p>
                         </div>
                         <div class="col-lg-4">
-                            <label for="" class="col-form-label headTitle">Machine OFF Rate Hour</label>
+                            <label for="" class="col-form-label headTitle fnt_fam">Machine OFF Rate Hour</label>
                             <p><span id="MOffRate" class="font_weight_modal"></span></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <label for="" class="col-form-label headTitle">Tonnage</label>
+                            <label for="" class="col-form-label headTitle fnt_fam">Tonnage</label>
                             <p><span id="MTonnage" class="font_weight_modal"></span></p>
                         </div>
                         <div class="col-lg-4">
-                            <label for="" class="col-form-label headTitle">Machine Serial ID</label>
+                            <label for="" class="col-form-label headTitle fnt_fam">Machine Serial ID</label>
                             <p><span id="MSerialNumber" class="font_weight_modal"></span></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <label for="" class="col-form-label headTitle">Last Updated By</label>
+                            <label for="" class="col-form-label headTitle fnt_fam">Last Updated By</label>
                             <p><span id="last_updated_by1" class="font_weight_modal"></span></p>
                         </div>
                         <div class="col-lg-4">
-                            <label for="" class="col-form-label headTitle">Last Updated On</label>
+                            <label for="" class="col-form-label headTitle fnt_fam">Last Updated On</label>
                             <p><span id="last_updated_on1" class="font_weight_modal"></span></p>
                         </div>
                     </div>                   
                 </div>
                 <div class="modal-footer" style="border:none;">
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
                 </div>
     </div>
   </div>
@@ -409,7 +407,7 @@ $session = \Config\Services::session();
   <div class="modal-dialog modal-lg modal-dialog-centered rounded">
     <div class="container modal-content bodercss">
             <div class="modal-header" style="border:none; ">
-                <h5 class="modal-title settings-machineAdd-model" id="FilterMachineModal1" style="">FILTER MACHINES</h5>
+                <h5 class="modal-title header_popup fnt_fam" id="FilterMachineModal1" style="">FILTER MACHINES</h5>
             </div>
             <!-- <form method="" class="addMachineForm" action="" > -->
                 <div class="modal-body">
@@ -880,12 +878,12 @@ $session = \Config\Services::session();
                     );
                     if (res_csp['machine'][0].status == 1) {
                         $('#machinestatus').html(
-                            '<p style="color: #005CBC;"><i class="fa fa-circle" style="font-size:9px;margin-right:5px;"></i>Active</p>'        
+                            '<p class="fnt_active"><i class="fa fa-circle active_dot"></i>Active</p>'
                         );
                     }
                     else{
                         $('#machinestatus').html(
-                            '<p style="color: #C00000;"><i class="fa fa-circle" style="font-size:9px;margin-right:5px;margin-top:5px;"></i>Inactive</p>'
+                            '<p class="fnt_active"><i class="fa fa-circle active_dot"></i>Inactive</p>'
                         );
                     }
                     var date_time  = getdate_time(res_csp['machine'][0].last_updated_on)
@@ -1169,19 +1167,19 @@ function get_machine_data(){
                 }
                 var elements = $();
                 if (item.status == 1) {
-                    elements = elements.add('<div id="settings_div">'
+                    elements = elements.add('<div class="table_data">'
                         +'<div class="row paddingm">'
-                            +'<div class="col-sm-1 col marleft" ><p>'+item.machine_id+'</p></div>'
-                            +'<div class="col-sm-2 col marleft" ><p title='+item.machine_name+'>'+item.machine_name+'</p></div>'         
-                            +'<div class="col-sm-2 col marright" >'
-                                +'<p><i class="fa fa-inr" style="margin-right:5px;"></i>'+machine_rph+'</p>'
+                            +'<div class="col-sm-1 col marleft table_data_section display_f align_c" ><p class="table_data_element fnt_fam">'+item.machine_id+'</p></div>'
+                            +'<div class="col-sm-2 col marleft table_data_section display_f align_c" ><p class="table_data_element fnt_fam" title='+item.machine_name+'>'+item.machine_name+'</p></div>'         
+                            +'<div class="col-sm-2 col marright table_data_section display_f align_c" >'
+                                +'<p class="table_data_element fnt_fam"><i class="fa fa-inr mar_right_logo"></i>'+machine_rph+'</p>'
                             +'</div>'
-                            +'<div class="col-sm-2 col marright" >'
-                                +'<p><i class="fa fa-inr" style="margin-right:5px;"></i>'+machine_orh+'</p>'
+                            +'<div class="col-sm-2 col marright table_data_section display_f align_c" >'
+                                +'<p class="table_data_element fnt_fam"><i class="fa fa-inr mar_right_logo"></i>'+machine_orh+'</p>'
                             +'</div>'
-                            +'<div class="col-sm-1 col marleft" ><p>'+item.tonnage+'T</p></div>'
-                            +'<div class="col-sm-2 col marleft" ><p>'+item.machine_brand+'</p></div>'
-                            +'<div class="col-sm-1 col marleft settings_active marleft" style="color:#005CBC;"><p style="color: #005CBC;"><i class="fa fa-circle" style="font-size:9px;margin-right:5px;margin-top:5px;"></i>Active</p></div>'
+                            +'<div class="col-sm-1 col marleft table_data_section display_f align_c" ><p class="table_data_element fnt_fam">'+item.tonnage+'T</p></div>'
+                            +'<div class="col-sm-2 col marleft table_data_section display_f align_c" ><p class="table_data_element fnt_fam">'+item.machine_brand+'</p></div>'
+                            +'<div class="col-sm-1 col marleft settings_active marleft table_data_section display_f align_c fnt_active" ><p class="table_data_element fnt_fam fnt_active"><i class="fa fa-circle active_dot"></i>Active</p></div>'
                                 +'<div class="col-sm-1 col d-flex justify-content-center fasdiv">'
                                     +'<ul class="edit-menu" style="z-index:10;">'
                                         +'<li class="d-flex justify-content-center">'
@@ -1190,7 +1188,7 @@ function get_machine_data(){
                                             +'</a>'
                                             +'<ul class="edit-subMenu" style="z-index:10;">'
                                                 +'<li class="edit-opt info-machine1" lvalue="'+item.machine_id+'" style="display:'+info_machine+';"><a href="#"><img src="<?php echo base_url('assets/img/info.png') ?>" class="img_font_wh2" style="margin-left:5px;">INFO</a></li>'
-                                                +'<li class="edit-opt edit-machine menu-font-change hover_work" lvalue="'+item.machine_id+'" style="display:'+edit_machine+';"><a href="#" style="margin-left:8px"><img src="<?php echo base_url('assets/img/pencil.png') ?>" class="img_font_wh" style="margin-left:12x;">EDIT</a></li>'
+                                                +'<li class="edit-opt edit-machine menu-font-change hover_work" lvalue="'+item.machine_id+'" style="display:'+edit_machine+';"><a href="#" style=""><img src="<?php echo base_url('assets/img/pencil.png') ?>" class="img_font_wh" style="margin-left:10px;">EDIT</a></li>'
                                                 +'<li class="edit-opt deactivate-machine" lvalue="'+item.machine_id+'" svalue="'+item.status+'" style="display:'+deactivate_machine+';"><a href="#"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="img_font_wh1" style="margin-left:10px;">DEACTIVATE</a></li>'
                                             +'</ul>'
                                         +'</li>'
@@ -1202,19 +1200,19 @@ function get_machine_data(){
                     }
                     else{
                         var machine_off_reate_hour = item.machine_offrate_per_hour;
-                        elements = elements.add('<div id="settings_div">'
+                        elements = elements.add('<div class="table_data">'
                             +'<div class="row paddingm">'
-                            +'<div class="col-sm-1 col marleft" ><p>'+item.machine_id+'</p></div>'
-                            +'<div class="col-sm-2 col marleft" ><p title='+item.machine_name+'>'+item.machine_name+'</p></div>'        
-                            +'<div class="col-sm-2 col marright" >'
-                                +'<p><i class="fa fa-inr" style="margin-right:5px;"></i>'+machine_rph+'</p>'
+                            +'<div class="col-sm-1 col marleft table_data_section display_f align_c"><p class="table_data_element fnt_fam">'+item.machine_id+'</p></div>'
+                            +'<div class="col-sm-2 col marleft table_data_section display_f align_c" ><p class="table_data_element fnt_fam" title='+item.machine_name+'>'+item.machine_name+'</p></div>'        
+                            +'<div class="col-sm-2 col marright table_data_section display_f align_c" >'
+                                +'<p class="table_data_element fnt_fam"><i class="fa fa-inr mar_right_logo"></i>'+machine_rph+'</p>'
+                            +'</div>' 
+                            +'<div class="col-sm-2 col marright table_data_section display_f align_c" >'
+                                +'<p class="table_data_element fnt_fam"><i class="fa fa-inr mar_right_logo"></i>'+machine_orh+'</p>'
                             +'</div>'
-                            +'<div class="col-sm-2 col marright" >'
-                                +'<p><i class="fa fa-inr" style="margin-right:5px;"></i>'+machine_orh+'</p>'
-                            +'</div>'
-                            +'<div class="col-sm-1 col marleft" ><p>'+item.tonnage+'T</p></div>'
-                            +'<div class="col-sm-2 col marleft" ><p>'+item.machine_brand+'</p></div>'
-                            +'<div class="col-sm-1 col marleft settings_active" style="color:#C00000;"><p style="color: #C00000; "><i class="fa fa-circle" style="font-size:9px;margin-right:5px;margin-top:5px;"></i>Inactive</p></div>'
+                            +'<div class="col-sm-1 col marleft table_data_section display_f align_c" ><p class="table_data_element fnt_fam">'+item.tonnage+'T</p></div>'
+                            +'<div class="col-sm-2 col marleft table_data_section display_f align_c" ><p class="table_data_element fnt_fam">'+item.machine_brand+'</p></div>'
+                            +'<div class="col-sm-1 col marleft settings_active table_data_section display_f align_c fnt_inactive"><p class="table_data_element fnt_fam fnt_inactive"><i class="fa fa-circle active_dot"></i>Inactive</p></div>'
                             +'<div class="col-sm-1 col d-flex justify-content-center fasdiv">'
                                 +'<ul class="edit-menu">'
                                     +'<li class="d-flex justify-content-center">'

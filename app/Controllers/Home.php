@@ -4,7 +4,7 @@ namespace App\Controllers;
 use App\Models\MainModel;
 
 class Home extends BaseController
-{   
+{
     protected $data;
     function __construct(){
         //parent::__construct();

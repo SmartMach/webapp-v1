@@ -103,12 +103,12 @@
     width:0.8rem;
     
 }
-.label_text{
+/*.label_text{
     width:80%;
     color:white;
     font-size:12px;
     font-weight:450;
-}
+}*/
 .downtime_legend{
     display:flex;
     flex-direction:row;
@@ -217,7 +217,7 @@
     width:100%;
     /* border:1px solid #730316; */
     border-radius:0.5rem;
-    height:6.8rem;
+    height:7.8rem;
     margin-bottom:10px;
 }
 
@@ -349,9 +349,9 @@
 }
 
 /* goal header div */
-.oui_screen_view{
+/*.oui_screen_view{
     height: 100vh;
-}
+}*/
 .goal_div{
     width:48%;
     display:flex;
@@ -441,7 +441,7 @@
     background-color:#C55A11;
     display:flex;
     justify-content:center;
-    align-items:flex-start;
+    align-items:flex-end;
 }
 #target_value_inner{
     color:white;

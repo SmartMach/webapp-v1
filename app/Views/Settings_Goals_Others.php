@@ -180,7 +180,7 @@
       </div> <!-----top left side------>
     </nav>
     <div>
-        <div class="contentGeneralSettings" style="margin-top:7rem;">
+        <div class="contentGeneralSettings">
             <div style="margin:2.5rem;">
                     <div class="card bodercss">
                         <p class="fieldTitle input-padding">GOALS</p>
@@ -335,7 +335,7 @@
                                     <div class="genmtop" >
                                         <div class="flex-container" style="padding:0.4rem;justify-content:space-around;align-item:center;">
                                             <div class="float-start paddingm FMalign" style="width:20%;">
-                                                <label class="headTitle">OEE%Target</label>
+                                                <label class="headTitle">OEE%   Target</label>
                                                 <p class="paddingm"><span class="target_val font_weight"></span></p>
                                             </div>
                                             <div class="reason-box-cf" >
@@ -950,10 +950,11 @@
                     
                     <div class="row">
                         <div class="col-lg-4">
-                            <div class="box ">
-                                <div class="input-box fieldStyle">
+                            <div class="box " style="text-align:end;">
+                                <div class="input-box fieldStyle" sytle="text-align:end;">
                                     
-                                    <input type="text" class="form-control form-control-lg target_value_edit font_weight" style="font-size:0.9rem;" name="targetvalue" id="targetvalue" value="" required="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                    <input type="text" class="form-control form-control-lg target_value_edit font_weight" style="font-size:0.9rem;text-align:end;padding-right:1.5rem;position:relative;" name="targetvalue" id="targetvalue" value="" required="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                    <span style="position:absolute;top:0.5rem;font-size:1rem;margin-left:-1.4rem;">%</span>
                                     <label class="input-padding">OEE% Target <span class="paddingm validate">*</span></label>
                                     <span class="add_target_data" style="color:red;font-size:0.8rem;"></span>
                                 </div>

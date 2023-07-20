@@ -1,0 +1,183 @@
+
+/******* TOP NAVIGATION MENU ********/
+.nav_top{ 
+    white-space: nowrap;
+    background: var(--background_top_nav) !important;
+    border-bottom: var(--border_btm_top_nav) !important;
+    box-shadow: var(--shadow_top_nav) !important;
+    height: var(--height_top_nav) !important;
+    padding-top: var(--pd_top_top_nav)!important;
+    padding-bottom: var(--pd_botm_top_nav)!important;
+    top: var(--top_top_nav) !important;
+    z-index: var(--index_top_nav) !important;
+    width: 100% !important;
+}
+.top_nav_c{
+	position: fixed;
+}
+/******* TOP NAVIGATION MENU END********/
+
+/*CONTENT SECTION*/
+.mr_left_content_sec{
+	margin-left: var(--mr_left_content_sec);
+	top: 4rem;
+	position: relative !important;
+}
+
+/*CONTENT SECTION END*/
+
+/******** SIDE NAVIGATION MENU ********/
+.side_nav{
+    height: var(--height_side_nav) !important;
+    top: var(--top_side_nav) ;
+    z-index: var(--index_side_nav) !important;
+    left: var(--left_side_nav);
+    max-width: var(--max_width_side_nav) !important;
+    border-right: var(--border_right_side_nav) !important;
+}
+.side_nav_c{
+	position: fixed;
+}
+
+.side-menu-area{
+    list-style: none;
+    background: white;
+}
+.side-menu-li{
+    z-index: 1040;
+}
+.side-menu-element{
+    color: #595959;
+}
+.icons-menu-ellipsis{
+    font-size: 1.35rem;
+    float: right;
+    color: #005abc;
+    padding: 1px 1px 1px 1px;
+}
+.mr_right_side_nav{
+    margin-right: 0.5rem;
+}
+.side-nav-hover-content{
+  list-style: none;
+  height: auto;
+  width: fit-content;
+  white-space: nowrap;
+  background: #FFF;
+  opacity: 0;
+  visibility: hidden;
+  border-radius: 10px 10px 10px 10px;
+  border:1px solid #d9d9d9;
+  font-size: 13px;
+  transition: all 300ms linear;
+  -o-transition: all 300ms linear;
+  -ms-transition: all 300ms linear;
+  -moz-transition: all 300ms linear;
+  -webkit-transition: all 300ms linear;
+  z-index: 1040;
+  left:4rem;
+  top: 0px;
+}
+.side-menu-li:hover > .side-nav-hover-content{
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    left:4.8rem;
+    box-shadow: 3px 3px 4px 0px #d9d9d9;
+    color: #9d9d9d;
+    z-index: 1040;
+}
+.side-menu-li-header{
+    border-bottom:1px solid #d9d9d9;
+}
+.side-menu-title{
+    font-size: 13px;
+    font-weight: bold;
+    color: #595959;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+.side-menu-hover-btom{
+    border-bottom: 1px solid #EEE;
+}
+
+.icon-option{
+    width: 2rem;
+    pointer-events: none;
+    cursor: pointer;
+}
+.lable-option{
+    width: fit-content;
+}
+.lable-option-val{
+    color: #595959;
+    margin-right: 10px;
+}
+.lable-option-val:hover{
+  color: #595959;
+}
+/******** SIDE NAVIGATION MENU END ********/
+
+/******** SECONDARY NAVIGATION MENU ********/
+.sec_nav{ 
+    white-space: nowrap;
+    background: var(--background_secondary_nav) !important;
+    border-bottom: var(--border_btm_secondary_nav) !important;
+    box-shadow: var(--shadow_secondary_nav) !important;
+    height: var(--height_secondary_nav) !important;
+    overflow: var(--overflow_h)!important;
+    padding-top: var(--pd_top_secondary_nav)!important;
+    padding-bottom: var(--pd_botm_secondary_nav)!important;
+    top: var(--top_secondary_nav) !important;
+    z-index: var(--index_secondary_nav) !important;
+}
+.sec_nav_c{
+	position: sticky;
+}
+/******** SECONDARY NAVIGATION MENU END ********/
+
+
+/******** INNER NAVIGATION MENU ********/
+.inner_nav{
+    white-space: nowrap;
+    background: var(--background_inner_nav) !important;
+    height: var(--height_inner_nav) !important;
+    overflow: var(--overflow_h)!important;
+    padding-top: var(--pd_top_inner_nav)!important;
+    padding-bottom: var(--pd_botm_inner_nav)!important;
+    top: var(--top_inner_nav) !important;
+    z-index: var(--index_inner_nav) !important;
+}
+
+.inner_nav_c{
+	position: sticky;
+}
+/******** INNER NAVIGATION MENU END ********/
+
+/*GRAPH SECTIONS*/
+.card {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-width: 0 !important;
+    word-wrap: break-word !important;
+    background-color: #fff !important;
+    background-clip: border-box !important;
+    border: 1px solid rgba(0,0,0,.125) !important;
+    border-radius: 15px 15px 15px 15px !important;
+}
+
+/*GRAPH SECTIONS END*/
+
+
+/*MULTIPLE INPUT BOX*/
+.filter_multiselect_outer{
+    width: 10rem;
+    height: 2rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.3rem;
+}
+.filter_selectBox_inner{
+  height: 100%;
+}
+/*MULTIPLE INPUT BOX END*/

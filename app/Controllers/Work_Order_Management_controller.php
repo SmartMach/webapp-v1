@@ -58,21 +58,21 @@ class Work_Order_Management_controller extends BaseController{
 
             $data['work_order_id'] = strtoupper($db_name[0]).$db_name[1]."-W".(string)$id_gen;
 
-            $comment = $this->request->getVar('comments_list');
-            if ($comment != "") {
-                $id_gen_comment = $this->generateCommentsId();
-                $data['comment_id'] = strtoupper($db_name[0]).$db_name[1]."-CO".(string)$id_gen_comment;
+            // $comment = $this->request->getVar('comments_list');
+            // if ($comment != "") {
+            //     $id_gen_comment = $this->generateCommentsId();
+            //     $data['comment_id'] = strtoupper($db_name[0]).$db_name[1]."-CO".(string)$id_gen_comment;
 
-                $c['comment_id'] = $data['comment_id'];
-                $c['comment'] = $comment;
-                $c['status'] = 1;
-                $c['last_updated_by'] = $this->session->get('user_name');
+            //     $c['comment_id'] = $data['comment_id'];
+            //     $c['comment'] = $comment;
+            //     $c['status'] = 1;
+            //     $c['last_updated_by'] = $this->session->get('user_name');
 
-                $r =  $this->datas->insertComments($c);
-                if ($r != true) {
-                    echo json_encode(false);
-                }
-            }
+            //     $r =  $this->datas->insertComments($c);
+            //     if ($r != true) {
+            //         echo json_encode(false);
+            //     }
+            // }
 
 
             // $data['site_id'] = $this->session->get('active_site');
@@ -92,18 +92,38 @@ class Work_Order_Management_controller extends BaseController{
             $data['priority_id'] = $this->request->getVar('priority');
             $data['due_date'] = $this->request->getVar('due_date');
             $data['status_id'] = $this->request->getVar('status');
-            $data['assignee'] = $this->request->getVar('assignee');
-            if ($data['type'] == "issue") {
-                $data['cause_id'] = $this->request->getVar('cause_list');
+            
+            if (strval($this->request->getVar('assignee')) == "undefined") {
+                $data['assignee'] = "";
+            }else{
+                $data['assignee'] = $this->request->getVar('assignee');
             }
-            $data['action_id'] = $this->request->getVar('action_list');
-            $data['lable_id'] = $this->request->getVar('lable_list');
+            
+            if ($data['type'] == "issue") {
+                if (strval($this->request->getVar('cause_list')) == "undefined") {
+                    $data['cause_id'] = "";
+                }else{
+                    $data['cause_id'] = $this->request->getVar('cause_list');
+                }
+            }
+
+            if (strval($this->request->getVar('action_list')) == "undefined") {
+                $data['action_id'] = "";
+            }else{
+                $data['action_id'] = $this->request->getVar('action_list');
+            }
+            
+            if (strval($this->request->getVar('lable_list')) == "undefined") {
+                $data['lable_id'] = "";
+            }else{
+                $data['lable_id'] = $this->request->getVar('lable_list');
+            }
+
             $data['attachment_id'] = $this->request->getVar('file_list_collection');
             $data['last_updated_by'] = $this->session->get('user_name');
 
             $comment = $this->request->getVar('comments_list');
-
-            $data['comment_id']="";
+            $data['comment_id'] = "";
             if ($comment != "") {
                 $id_gen_comment = $this->generateCommentsId();
                 $db_name = $this->session->get('active_site');
@@ -129,12 +149,64 @@ class Work_Order_Management_controller extends BaseController{
             }
     }
 
+    public function update_comments_data(){
+        if ($this->request->isAJAX()) {
+            $ref = $this->request->getVar('ref');
+            $comment = $this->request->getVar('comment');
+
+            $data['last_updated_by'] = $this->session->get('user_name');
+            $data['id'] = $ref;
+
+            $id_gen_comment = $this->generateCommentsId();
+            $db_name = $this->session->get('active_site');
+            $db_name = str_split($db_name);
+            $data['comment_id'] = strtoupper($db_name[0]).$db_name[1]."-CO".(string)$id_gen_comment;
+
+            $c['comment_id'] = $data['comment_id'];
+            $c['comment'] = $comment;
+            $c['status'] = 1;
+            $c['last_updated_by'] = $this->session->get('user_name');
+
+
+            if ($this->datas->insertComments($c) == true) {
+                if ($res = $this->datas->update_comments_data($data)) {
+                    echo json_encode($res);
+                }else{
+                    echo json_encode(false);
+                }
+            }else{
+                echo json_encode(false);
+            }
+        }
+    }
+
     public function get_work_order_data(){
+
         if ($this->request->isAJAX()) {
             $status = $this->request->getVar('status');
             $lables = $this->request->getVar('lables');
             $priority = $this->request->getVar('priority');
             $assignee= $this->request->getVar('assignee');
+            $filter= $this->request->getVar('filter');
+
+            if ($status == "null" || $status == null || $status == "" ) {
+                $status = [];
+            }
+            if ($lables == "null" || $lables == null || $lables == "" ) {
+                $lables = [];
+            }
+            if ($priority == "null" || $priority == null || $priority == "" ) {
+                $priority = [];
+            }
+            if ($assignee == "null" || $assignee == null || $assignee == "" ) {
+                $assignee = [];
+            }
+
+            // $status = ['1', '2', '3'];
+            // $lables = ['S1-L0', 'S1-L1', 'S1-L2', 'S1-L3', 'S1-L4', 'S1-L5', 'S1-L6', 'S1-L7', 'S1-L8', 'S1-L9', 'S1-L10', 'S1-L11', 'S1-L12', 'S1-L13', 'S1-L14', 'S1-L15', 'S1-L16', 'S1-L17', 'S1-L18', 'S1-L19', 'S1-L20', 'S1-L21', 'S1-L22', 'S1-L23', 'S1-L24', 'S1-L25', 'S1-L26'];
+            // $priority = ['1', '2', '3'];
+            // $assignee= [];
+            // $filter="false";
 
             $res = $this->datas->get_work_order_data();
 
@@ -152,8 +224,31 @@ class Work_Order_Management_controller extends BaseController{
                     }
                 }
             }
-            echo json_encode($final_list);
-            // echo json_encode($res);    
+
+
+            if ($filter == false || $filter == "false") {
+                foreach ($res as $value) {
+                    $temp=0;
+                    if (($value['assignee']=="" || !$value['assignee'] || $value['assignee']==null || $value['assignee']=="undefined") and $temp==0) {
+                        array_push($final_list, $value);
+                        $temp=1;
+                    }
+                    if (($value['priority_id']=="" || !$value['priority_id'] || $value['priority_id']==null || $value['priority_id']=="undefined") and $temp==0) {
+                        array_push($final_list, $value);
+                        $temp=1;
+                    }
+                    if (($value['lable_id']=="" || !$value['lable_id'] || $value['lable_id']==null || $value['lable_id']=="undefined") and $temp==0) {
+                        array_push($final_list, $value);
+                        $temp=1;
+                    }
+                    if (($value['status_id']=="" || !$value['status_id'] || $value['status_id']==null || $value['status_id']=="undefined") and $temp==0) {
+                        array_push($final_list, $value);
+                        $temp=1;
+                    }
+                }
+            }
+
+            echo json_encode($final_list); 
         }
     }
 
@@ -294,7 +389,6 @@ class Work_Order_Management_controller extends BaseController{
                 
         }
     }
-
     public function getAttachFileID(){
         if ($this->request->isAJAX()) {
             helper(['filesystem']);

@@ -298,6 +298,7 @@ class User_Model extends Model{
 
     // get site name records function
     public function getsit_name_user_record($site_id){
+        
         $db = \Config\Database::connect("another_db");
         $build = $db->table('sites');
         $build->select('site_name');
@@ -559,7 +560,7 @@ class User_Model extends Model{
 
         $db = \Config\Database::connect('another_db');
         $builder = $db->table('user_access_control');
-       
+        
         $update_data = [
             'oee_financial_drill_down' => $roles['Financial_Drill_Down'],
             'opportunity_insights' => $roles['Financial_Opportunity_Insights'],
@@ -570,6 +571,14 @@ class User_Model extends Model{
             'settings_part' => $roles['Settings_Parts'],
             'settings_general' => $roles['Settings_General'],
             'settings_user_management' => $roles['Settings_User_Management'],
+
+            'daily_production_data' => $roles['Daily_Production_Data'],
+            'current_shift_performance' => $roles['Current_Shift_Performance'],
+            'production_downtime' => $roles['Production_Downtime'],
+            'production_quality' => $roles['Production_Quality'],
+            'work_order_management' => $roles['Work_Order_Management'],
+            'alert_management' => $roles['Alert_Management'],
+
             'last_updated_by' => $roles['Last_Updated_By'],
         ];
 
@@ -730,7 +739,7 @@ public function import_db($db_name){
                     'DSN'      => '',
                     'hostname' => 'localhost',
                     'username' => 'root',
-                    'password' => '',
+                    'password' => 'quantanics123',
                     //'database' => 'S10011',
                     'database' => ''.$db_name.'',
                     'DBDriver' => 'MySQLi',

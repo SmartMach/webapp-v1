@@ -16,6 +16,9 @@ class Current_Shift_Performance extends BaseController{
     }
 
     public function getLive(){
+        log_message("info","\n\n current shift performance get live machine function calling !!");
+        $start_time_logger_live = microtime(true);
+
         $shift_detailes =  $this->datas->getShiftLive();
         $shift = $this->datas->getShiftExact($shift_detailes[0]['shift_date']." 23:59:59");
 
@@ -25,17 +28,51 @@ class Current_Shift_Performance extends BaseController{
         		$shift_detailes[0]['end_time'] = $value['end_time'];
         	}
         }
+
+        $end_time_logger_live = microtime(true);
+        $execution_time_logger_live = ($end_time_logger_live - $start_time_logger_live);
+        log_message("info","current shift performance get live execution duration is :\t".$execution_time_logger_live);
+
+
         return json_encode($shift_detailes);
+    }
+
+    public function getPreviousShiftLive(){
+        log_message("info","\n\n current shift performance module previous shift function calling !!");
+        $start_time_logger_prev_shift = microtime(true);
+
+        $shift_detailes =  $this->datas->getPreviousShiftLive();
+
+        $shift = $this->datas->getShiftExact($shift_detailes[1]['shift_date']." 23:59:59");
+
+        foreach ($shift['shift'] as $key => $value) {
+            if (str_split($value['shifts'])[0] == $shift_detailes[1]['shift_id']) {
+                $shift_detailes[1]['start_time'] = $value['start_time'];
+                $shift_detailes[1]['end_time'] = $value['end_time'];
+            }
+        }
+        $shift_data = [];
+        array_push($shift_data,$shift_detailes[1]);
+
+        $end_time_logger_prev_shift = microtime(true);
+        $execution_time_logger_prev_shift = ($end_time_logger_prev_shift - $start_time_logger_prev_shift);
+        log_message("info","current shift performance previous shift function execution duration is:\t".$execution_time_logger_prev_shift);
+        
+        return json_encode($shift_data);
     }
     
     public function getLiveMode(){
-    	// if ($this->request->isAJAX()) {
-    		// $shift_date = $this->request->getVar('shift_date');
-    		// $shift_id = $this->request->getVar('shift_id');
-            // $filter = $this->request->getVar('filter');
+    	if ($this->request->isAJAX()) {
 
-    		$shift_date = "2023-03-15";
-    		$shift_id = "A";
+            log_message("info","\n\ncurrent shift performance getlivemode graph function calling !!!");
+            $start_time_logger_getlive_mode = microtime(true);
+
+    		$shift_date = $this->request->getVar('shift_date');
+    		$shift_id = $this->request->getVar('shift_id');
+            $filter = $this->request->getVar('filter');
+
+    		// $shift_date = "2023-07-04";
+    		// $shift_id = "B";
       //       $filter = 2;
 
     		// Current Shift OEE Target......
@@ -103,13 +140,25 @@ class Current_Shift_Performance extends BaseController{
 	        	foreach ($hourly_production as $key => $p) {
 	        		if ($m['machine_id'] == $p['machine_id']) {
                         $h_total=0;
-	        			$total =$total+$p['production']+$p['corrections'];
+                        
+	        			$total =$total+$p['production']+(int)trim($p['corrections'],"");
                             $temp_target =0;		
                             $tc=0;	
                             foreach ($partsDetails as $part) {
                                 if ($p['part_id'] == $part->part_id and !in_array($key,$check_array)) {
                                     $s_time =  strtotime($p['shift_date']." ".$p['start_time']);
                                     $e_time = strtotime($p['shift_date']." ".$p['end_time']);
+
+                                    $e_time_tmp = $s_time;
+                                    while (true) {
+                                        $e_time_tmp += 60;
+                                        if (date('H', $e_time_tmp) == date('H', $e_time) && date('i', $e_time_tmp)==date('i', $e_time)) {
+                                            break;
+                                        }
+                                        
+                                    }
+                                    $e_time = $e_time_tmp;                                
+                                    
                                     $temp_target = $temp_target + (($e_time-$s_time)/$part->NICT);
                                     $tc=1;  
                                     $h_total=$h_total+$p['production'];
@@ -121,6 +170,16 @@ class Current_Shift_Performance extends BaseController{
                                         if ($p['part_id'] == $part->part_id) {
                                             $s_time =  strtotime($p['shift_date']." ".$p['start_time']);
                                             $e_time = strtotime($p['shift_date']." ".$p['end_time']);
+
+                                            $e_time_tmp = $s_time;
+                                            while (true) {
+                                                $e_time_tmp += 60;
+                                                if (date('H', $e_time_tmp) == date('H', $e_time) && date('i', $e_time_tmp)==date('i', $e_time)) {
+                                                    break;
+                                                } 
+                                            }
+                                            $e_time = $e_time_tmp;
+
                                             $temp_target = $temp_target + (($e_time-$s_time)/$part->NICT);
                                             // unset($hourly_production[$k]);
                                             array_push($check_array, $key);
@@ -163,8 +222,6 @@ class Current_Shift_Performance extends BaseController{
 	        	array_push($machine_name, $t);
 	        }
 
-            // echo "<pre>";
-            // print_r($machineWise);
 	        
 	        // OEE Calculation......
 	        $output = $this->datas->getDataRaw($shift_date,$shift_id);
@@ -296,7 +353,16 @@ class Current_Shift_Performance extends BaseController{
 
                                 //For Find Quality.......
                                 $tmpCorrectedTPP = $tmpCorrectedTPP+$corrected_tpp;
-                                $tmpReject = $tmpReject+$product['rejections'];
+                                $reject_r = explode('&&', $product['rejections']);
+                                $reject_temp = 0;
+
+                                foreach ($reject_r as $rp) {
+                                    $tx = explode('&', $rp);
+                                    if (sizeof($tx) > 1) {
+                                        $reject_temp = $reject_temp + $tx[1];
+                                    }
+                                }
+                                $tmpReject = $tmpReject+$reject_temp;
                              }
                         }
 
@@ -391,24 +457,13 @@ class Current_Shift_Performance extends BaseController{
 	       	$out['latest_event'] = $machine_event;
             $out['part_list'] = $partList;
 
-            // // Machine Wise Order
-            // if ($filter == 0) {
-            //     return json_encode($out);
-            // }
-            // // OEE Low to High
-            // else if ($filter == 1) {
-            //     $out = $this->sortbyoee($out);
-            //     return json_encode($out);
-            // }
-            // // Part Completion
-            // else if ($filter == 2) {
-            //     $out = $this->sortbypartcompletion($out);
-            //     return json_encode($out);
-            // }
+            // $end_time_logger_getlive_mode = microtime(true);
+            // $execution_time_logger_gerlive_mode = ($end_time_logger_getlive_mode - $start_time_logger_getlive_mode);
+            // log_message("info","current shift peformance getlive mode graph execution duration is :\t".$execution_time_logger_gerlive_mode);
 
             return json_encode($out);
 	       	
-    	// }
+    	}
     }
 
     public function sortbyoee($out){
@@ -723,6 +778,10 @@ class Current_Shift_Performance extends BaseController{
      // div record for current shift performance oui screen
      public function div_details(){
         if ($this->request->isAJAX()) {
+            log_message("info","\n\n current shift performance oui screen div records ");
+            $start_time_logger_div_record = microtime(true);
+
+
             $mid = $this->request->getVar('mid');
             $sdate = $this->request->getVar('shift_date');
             $sid = $this->request->getVar('shift_id');
@@ -775,11 +834,64 @@ class Current_Shift_Performance extends BaseController{
 
             // $div_record['rejection_count'] = $total_reject_count;
             // $div_record['part_name'] = implode(',',$tmp_partname_arr);
+            $end_time_logger_div_record = microtime(true);
+            $execution_time_logger_dive_record = ($end_time_logger_div_record - $start_time_logger_div_record);
+            log_message("info","current shift peroformance execution duration is :\t".$execution_time_logger_dive_record);
+
+
             echo json_encode($div_record);
         }
     }
 
 
+    
+    // target graph function
+    public function get_target_graph(){
+        if ($this->request->isAJAX()) {
+        
+            log_message("info","\n\n current shift performance oui screen get target graph");
+            $start_time_logger_oui_target = microtime(true);
+        
+            $shift_date=$this->request->getvar('sdate');
+            $mid = $this->request->getvar('mid');
+            $tid = $this->request->getvar('tid');
+            // $shift_date="2023-05-16";
+            // $mid="MC1001";
+            // $tid="TL1004";
+            $res_tool = $this->datas->get_target_tool_changeover($shift_date,$mid,$tid);
+
+            // echo "<pre>";
+            $final_arr = [];
+            $tdate = $res_tool[0]['shift_date'];
+            $sdate = $shift_date;
+            $tmp_target = $res_tool[0]['target'];
+            if ($tmp_target>0) {
+                $tmp['target'] = $res_tool[0]['target'];
+                $res_production = $this->datas->getproduction_target_count($tdate,$sdate,$mid,$tid);
+                $tmp['percentage_target'] = $res_production[0]['target_production']/$res_tool[0]['target']*100;
+                $tmp['production'] = $res_production[0]['target_production'];
+                array_push($final_arr,$tmp);
+            }else{
+                $tmp['target'] = 0;
+                $tmp['percentage_target'] = 0;
+                $res_production = $this->datas->getproduction_target_count($tdate,$sdate,$mid,$tid);
+                $tmp['production'] = $res_production[0]['target_production'];
+                array_push($final_arr,$tmp);
+            }
+            // print_r($final_arr);
+            $end_time_logger_oui_target = microtime(true);
+            $execution_time_logger_oui_target = ($end_time_logger_oui_target - $start_time_logger_oui_target);
+            log_message("info","current shift performance oui screen target graph execution duration is :\t".$execution_time_logger_oui_target);
+
+            
+            echo json_encode($final_arr);
+            // $final_ar['target_production'] = $res_production;
+            // $final_ar['target'] = $res_tool;
+            // echo "<pre>";
+            // print_r($final_ar);
+
+        }
+    }
     // // full screen mode records
     // public function full_screen_records(){
     //     if ($this->request->isAJAX()) {
