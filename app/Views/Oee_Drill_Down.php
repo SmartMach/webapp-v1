@@ -788,7 +788,7 @@ $(document).on('click','.overall_filter_btn',function(event){
 
 // in Document ready function calling
 $(document).ready(function(){
-    // $('#overlay').fadeIn(400);
+    $('#overlay').fadeIn(400);
     //    overall dropdown values and graph visible this function only
     // get_all_filter_drp_fill();
     all_graph_fun();

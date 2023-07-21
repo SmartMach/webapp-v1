@@ -9,7 +9,7 @@
 
 .partname_ref,.machine_name_ref{
 	position: relative;
-  	z-index: 1000;
+  	z-index: 99;
 }
 
 .graph-content{
@@ -232,7 +232,7 @@
     display: block;
 }
 .hoverOverall_current{
-	background-color: white;
+	/*background-color: white;
 	border-radius: 5px 5px 5px 5px;
 	z-index: 1400;
 	position: fixed;
@@ -246,7 +246,7 @@
 	margin-top: -1rem;
 	margin-left: 2.9rem;
 	opacity: 100%;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Roboto', sans-serif;*/
 }
 
     .circle{
@@ -260,19 +260,8 @@
         transform: rotate(-90deg);
     }
     .part_completion{
-		position: absolute;
-		border: 1px solid #d9d9d9;
-		border-radius: 3px;
-		padding-top: 0.1rem;
-		padding-bottom: 0.1rem;
-		padding-left: 0.2rem;
-		padding-right: 0.1rem;
-		background: white;
-		font-size: 11px;
-		color: #404040;
-		z-index: 1000;
+    	margin-left: 8rem;
 		display: none;
-		/*transform:translate3d(-50%,-50%,0);*/
   		transition:transform 2s cubic-bezier(.02,1.23,.79,1.08);
 	}
     .svg{
