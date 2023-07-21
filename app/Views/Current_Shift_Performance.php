@@ -112,7 +112,7 @@
                 <P class="paddingm part_name" id="part_name_oui"></P>
             </div>
             <div class="">
-                <p class="paddingm machine_name text_align_c"> Downtime </p>
+                <p class="paddingm machine_name text_align_c" id="event_logo"> Downtime </p>
                 <P class="paddingm part_name text_align_c" id="event_duration_machine"> </P>
             </div>
             <div class="right_margin" style="display:flex;">
@@ -1752,7 +1752,6 @@ function oui_arrow_to_card(){
     $('#full_screen_btn_visibility').css('visibility','visible');
     $('.visibility_div').css("display",'inline');
     $('.graph-content').css('display', 'inline');
-    $('.graph-content').css('margin-top', '4rem');
     $('.graph-content').css('display', 'block');
     $('.oui_screen_view').css('display', 'none');
     // $('.grid-container-cont').css('margin-top', '5rem');
@@ -2319,10 +2318,12 @@ function getDownTimeGraph(machine_id, shift_date, s) {
                         var t = machine[0]['duration'].split(".");
                         if (machine[0]['event']==="Active") {
                             $('#event_duration_machine').css("display",'none');
+                            $('#event_logo').css("display",'none');
                             $('.oui_duration_only_active').css("display",'inline');
                             $('.active_duration_oui').text(t[0]+"m");
                         }else{
-                            $('#event_duration_machine').css("display",'inline');
+                            $('#event_duration_machine').css("display",'block');
+                            $('#event_logo').css("display",'block');
                             $('.oui_duration_only_active').css("display",'none');
                             $('#event_duration_machine').text(t[0]+"m");
                         }
