@@ -370,7 +370,7 @@
               //Terminate
           }
 
-          if (inputDateTime.getDate() == current.getDate()) {
+          if (inputDateTime.getDate() == current.getDate() && inputDateTime.getMonth() == current.getMonth()) {
               if (inputDateTime.getHours() <= (current.getHours())) {
                   $('.toDate').datetimepicker('reset');
               }
