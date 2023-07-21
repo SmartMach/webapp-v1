@@ -258,6 +258,7 @@ color:#8c8c8c;
 border:1px solid #ced4da;
 border-radius:0.25rem;
 padding-left: 0.3rem;
+background-color: white;
 }
 
 .filter_overSelect {
@@ -331,6 +332,7 @@ color:#8c8c8c;
 border:1px solid #ced4da;
 border-radius:0.25rem;
 padding-left: 0.3rem;
+background-color: white;
 }
 .filter_overSelect_cb{
 position: absolute;
@@ -395,6 +397,7 @@ color:#8c8c8c;
 border:1px solid #ced4da;
 border-radius:0.25rem;
 padding-left: 0.3rem;
+background-color: white;
 }
 .filter_overSelect_r{
 position: absolute;
@@ -460,6 +463,7 @@ color:#8c8c8c;
 border:1px solid #ced4da;
 border-radius:0.25rem;
 padding-left: 0.3rem;
+background-color: white;
 }
 .filter_overSelect_part{
 position: absolute;
@@ -524,6 +528,7 @@ color:#8c8c8c;
 border:1px solid #ced4da;
 border-radius:0.25rem;
 padding-left: 0.3rem;
+background-color: white;
 }
 .filter_overSelect_machine{
 position: absolute;
@@ -607,6 +612,7 @@ color:#8c8c8c;
 border:1px solid #ced4da;
 border-radius:0.25rem; 
 padding-left: 0.3rem;
+background-color: white;
 }
 .filter_overSelect_machinegp{
 position: absolute;
@@ -674,6 +680,7 @@ color:#8c8c8c;
 border:1px solid #ced4da;
 border-radius:0.25rem; 
 padding-left: 0.3rem;
+background-color: white;
 }
 .filter_overSelect_reasongp{
 position: absolute;
@@ -740,6 +747,7 @@ color:#8c8c8c;
 border:1px solid #ced4da;
 border-radius:0.25rem; 
 padding-left: 0.3rem;
+background-color: white;
 }
 .filter_overSelect_categorygp{
 position: absolute;
@@ -806,6 +814,7 @@ height:2rem;
     border:1px solid #ced4da;
     border-radius:0.25rem;
     padding-left: 0.3rem; 
+    background-color: white;
 }
 .filter_overSelect_machinegp1{
     position: absolute;
@@ -873,6 +882,7 @@ height:2rem;
     border:1px solid #ced4da;
     border-radius:0.25rem;
     padding-left: 0.3rem; 
+    background-color: white;
 }
 .filter_overSelect_categorygp1{
     position: absolute;
@@ -941,6 +951,7 @@ height:2rem;
     border:1px solid #ced4da;
     border-radius:0.25rem; 
     padding-left: 0.3rem;
+    background-color: white;
 }
 .filter_overSelect_reasongp1{
     position: absolute;
@@ -1006,6 +1017,7 @@ height:2rem;
     border:1px solid #ced4da;
     border-radius:0.25rem; 
     padding-left: 0.3rem;
+    background-color: white;
 }
 .filter_overSelect_machinegp2{
     position: absolute;
@@ -1074,6 +1086,7 @@ height:2rem;
     border:1px solid #ced4da;
     border-radius:0.25rem; 
     padding-left: 0.3rem;
+    background-color: white;
 }
 .filter_overSelect_reasongp2{
     position: absolute;
@@ -1141,6 +1154,7 @@ height:2rem;
     border:1px solid #ced4da;
     border-radius:0.25rem; 
     padding-left: 0.3rem;
+    background-color: white;
 }
 .filter_overSelect_categorygp2{
     position: absolute;
@@ -1207,6 +1221,7 @@ height:2rem;
     border:1px solid #ced4da;
     border-radius:0.25rem; 
     padding-left: 0.3rem;
+    background-color: white;
 }
 .filter_overSelect_machinegp3{
     position: absolute;
@@ -1275,6 +1290,7 @@ height:2rem;
     border:1px solid #ced4da;
     border-radius:0.25rem; 
     padding-left: 0.3rem;
+    background-color: white;
 }
 .filter_overSelect_reasongp3{
     position: absolute;
@@ -1342,6 +1358,7 @@ height:2rem;
     border:1px solid #ced4da;
     border-radius:0.25rem; 
     padding-left: 0.3rem;
+    background-color: white;
 }
 .filter_overSelect_categorygp3{
     position: absolute;

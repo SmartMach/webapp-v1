@@ -148,17 +148,22 @@
                     <i class="fa fa-calculator nav-link"  id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" style="padding:0.4rem;font-size:1.3rem;width: 1.6rem;"></i>
                   </li>
                 </ul>
-              <div class="box rightmar" style="margin-right: 0.5rem;">
+              <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
                 <div class="input-box">
                   <input type="text" class="form-control fromDate" value="" step="1">
                   <label for="inputSiteNameAdd" class="input-padding ">From DateTime</label>
                 </div>
               </div>
-              <div class="box rightmar" style="margin-right: 0.5rem;">
+              <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
                 <div class="input-box">
                   <input type="text" class="form-control toDate" value="" step="1">
                   <label for="inputSiteNameAdd" class="input-padding ">To DateTime</label>
                 </div>
+              </div>
+
+              <!-- overall filter btn -->
+              <div class="box rightmar mar_r_box" >
+                <button type="button" class="overall_filter_btn overall_filter_header_css"  >Apply Filter</button>
               </div>
         </div>
     </div>
@@ -915,7 +920,7 @@
   $('.toDate').val(fdate);
   $('.fromDate').val(tdate);
 
-
+/* temporary hide for this function
   $(document).on('blur','.fromDate',function(){
     $("#overlay").fadeIn(300);
     myFun();
@@ -925,6 +930,16 @@
     $("#overlay").fadeIn(300);
     myFun();
     // getFilterval();
+  });
+
+  */
+
+  // overall apply filter button function 
+  $(document).on('click','.overall_filter_btn',function(event){
+    event.preventDefault();
+    $("#overlay").fadeIn(300);
+    $('.contentQualityFilter').empty();
+    myFun();
   });
 
   $(document).ready(function(){

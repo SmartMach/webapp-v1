@@ -112,7 +112,7 @@
                 <P class="paddingm part_name" id="part_name_oui"></P>
             </div>
             <div class="">
-                <p class="paddingm machine_name text_align_c"> Downtime </p>
+                <p class="paddingm machine_name text_align_c" id="event_logo"> Downtime </p>
                 <P class="paddingm part_name text_align_c" id="event_duration_machine"> </P>
             </div>
             <div class="right_margin" style="display:flex;">
@@ -480,27 +480,20 @@ function getLiveMode(shift_date, shift_id) {
                     '</linearGradient>' +
                     '</defs>' +
                     '<circle class="circle" id="' + machine[0]['machine_id'] +
-                    '" cx="120" cy="120" r="47" stroke-linecap="round"/>'
-                    // +'<div class="part_completion">'
-                    //   +'<p class="paddingm">Part Completion</p>'
-                    // +'</div>'
-                    +
-                    '<div class="part_completion hoverOverallOEE_Current hoverOverall_current">' +
-                    '<div style="display: flex;">' +
-                    '<div style="width: 70%" id="title_overall">Part Name</div>' +
-                    '<div style="width: 30%" class="val_color" ><p class="paddingm cen-align" id="part_name_hover_' +
-                    machine[0]['machine_id'] + '"></p></div>' +
-                    '</div>' +
-                    '<div style="display: flex;">' +
-                    '<div style="width: 70%" id="title_overall">Tool Name</div>' +
-                    '<div style="width: 30%" class="val_color" ><p class="paddingm cen-align" id="tool_name_hover_' +
-                    machine[0]['machine_id'] + '"></p></div>' +
-                    '</div>' +
-                    '<div style="display: flex;">' +
-                    '<div style="width: 70%" id="title_overall">Part Completion</div>' +
-                    '<div style="width: 30%" class="val_color" ><p class="paddingm" id="part_completion_hover_' +
-                    machine[0]['machine_id'] + '"></p></div>' +
-                    '</div>' +
+                    '" cx="120" cy="120" r="47" stroke-linecap="round"/>'+
+                    '<div class="part_completion hover_area">'+
+                        '<div style="display: flex;">' +
+                            '<div class="hover_header_area paddingm fnt_fam hover_header_light">Part Name</div>' +
+                            '<div class="hover_header_val_area"><p class="paddingm fnt_fam hover_val" id="part_name_hover_' +machine[0]['machine_id'] + '"></p></div>' +
+                        '</div>' +
+                        '<div style="display: flex;">' +
+                            '<div class="hover_header_area paddingm fnt_fam hover_header_light">Tool Name</div>' +
+                            '<div class="hover_header_val_area" ><p class="paddingm fnt_fam hover_val" id="tool_name_hover_' +machine[0]['machine_id'] + '"></p></div>' +
+                        '</div>' +
+                        '<div style="display: flex;">' +
+                            '<div class="hover_header_area paddingm fnt_fam hover_header_light">Part Completion</div>' +
+                            '<div class="hover_header_val_area" ><p class="paddingm fnt_fam hover_val" id="part_completion_hover_' +machine[0]['machine_id'] + '"></p></div>' +
+                        '</div>' +
                     '</div>' +
                     '</svg>' +
                     '</div>' +
@@ -520,31 +513,26 @@ function getLiveMode(shift_date, shift_id) {
                     '</div>'
 
                     +
-                    '<div class="hoverOverallOEE_Current hoverOverall_current">' +
+                    '<div class="hover_area hoverOverallOEE_Current hoverOverall_current">' +
                     '<div style="display: flex;">' +
-                    '<div style="width: 70%" id="title_overall">OEE%</div>' +
-                    '<div style="width: 30%" class="val_color" ><p class="paddingm teepVal" style="width:max-content;" id="OEE_' +
-                    machine[0]['machine_id'] + '">0%</p></div>' +
+                        '<div class="hover_header_area paddingm fnt_fam hover_header_light">OEE%</div>' +
+                        '<div class="hover_header_val_area" ><p class="paddingm fnt_fam hover_val teepVal" id="OEE_' +machine[0]['machine_id'] + '">0%</p></div>' +
                     '</div>' +
                     '<div style="display: flex;">' +
-                    '<div style="width: 70%">Target</div>' +
-                    '<div style="width: 30%"><p class="paddingm teepTarget" id="OEETarget_' +
-                    machine[0]['machine_id'] + '">0%</p></div>' +
+                        '<div class="hover_header_area paddingm fnt_fam hover_header_light">Target</div>' +
+                        '<div class="hover_header_val_area"><p class="paddingm fnt_fam hover_val teepTarget" id="OEETarget_' +machine[0]['machine_id'] + '">0%</p></div>' +
                     '</div>' +
                     '<div style="display: flex;" class="margin-top">' +
-                    '<div style="width: 70%">Availability%</div>' +
-                    '<div style="width: 30%"><p class="paddingm teepTarget" id="OEEAvail_' +
-                    machine[0]['machine_id'] + '">0%</p></div>' +
+                        '<div class="hover_header_area paddingm fnt_fam hover_header_light">Availability%</div>' +
+                        '<div class="hover_header_val_area"><p class="paddingm fnt_fam hover_val teepTarget" id="OEEAvail_' +machine[0]['machine_id'] + '">0%</p></div>' +
                     '</div>' +
                     '<div style="display: flex;">' +
-                    '<div style="width: 70%">Performance%</div>' +
-                    '<div style="width: 30%"><p class="paddingm teepTarget" id="OEEPerf_' +
-                    machine[0]['machine_id'] + '">0%</p></div>' +
+                        '<div class="hover_header_area paddingm fnt_fam hover_header_light">Performance%</div>' +
+                        '<div class="hover_header_val_area"><p class="paddingm fnt_fam hover_val teepTarget" id="OEEPerf_' +machine[0]['machine_id'] + '">0%</p></div>' +
                     '</div>' +
                     '<div style="display: flex;">' +
-                    '<div style="width: 70%">Quality%</div>' +
-                    '<div style="width: 30%"><p class="paddingm teepTarget" id="OEEQuali_' +
-                    machine[0]['machine_id'] + '">0%</p></div>' +
+                        '<div class="hover_header_area paddingm fnt_fam hover_header_light">Quality%</div>' +
+                        '<div class="hover_header_val_area"><p class="paddingm fnt_fam hover_val teepTarget" id="OEEQuali_' +machine[0]['machine_id'] + '">0%</p></div>' +
                     '</div>' +
                     '</div>'
 
@@ -1371,7 +1359,7 @@ function live_MC1001(shift_date, shift_id) {
                             'Quality']) + "%");
 
 
-                        $('#OEE_' + machine[0]['machine_id'] + '').html(m['OEE'] + "%");
+                        $('#OEE_' + machine[0]['machine_id'] + '').html(parseInt(m['OEE']) + "%");
                     }
                 });
 
@@ -1408,7 +1396,7 @@ function live_MC1001(shift_date, shift_id) {
                 // Update OEE Target
                 $('#Target_' + machine[0]['machine_id'] + '').css("width", res['targets'][0].oee +
                     "%");
-                $('#OEETarget_' + machine[0]['machine_id'] + '').html(res['targets'][0].oee + "%");
+                $('#OEETarget_' + machine[0]['machine_id'] + '').html(parseInt(res['targets'][0].oee) + "%");
 
 
                 // Update Production Percentage
@@ -1764,7 +1752,6 @@ function oui_arrow_to_card(){
     $('#full_screen_btn_visibility').css('visibility','visible');
     $('.visibility_div').css("display",'inline');
     $('.graph-content').css('display', 'inline');
-    $('.graph-content').css('margin-top', '4rem');
     $('.graph-content').css('display', 'block');
     $('.oui_screen_view').css('display', 'none');
     // $('.grid-container-cont').css('margin-top', '5rem');
@@ -2331,10 +2318,12 @@ function getDownTimeGraph(machine_id, shift_date, s) {
                         var t = machine[0]['duration'].split(".");
                         if (machine[0]['event']==="Active") {
                             $('#event_duration_machine').css("display",'none');
+                            $('#event_logo').css("display",'none');
                             $('.oui_duration_only_active').css("display",'inline');
                             $('.active_duration_oui').text(t[0]+"m");
                         }else{
-                            $('#event_duration_machine').css("display",'inline');
+                            $('#event_duration_machine').css("display",'block');
+                            $('#event_logo').css("display",'block');
                             $('.oui_duration_only_active').css("display",'none');
                             $('#event_duration_machine').text(t[0]+"m");
                         }

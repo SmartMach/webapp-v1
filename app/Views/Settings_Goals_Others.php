@@ -173,10 +173,10 @@
 
 </style>
 
-<div style="margin-left: 4.5rem;">
-    <nav class="navbar navbar-expand-lg settings_nav sticky-top fixsubnav">
-      <div class="container-fluid paddingm">
-        <p class="float-start p3 " id="logo" style="">General Settings</p>
+<div class="mr_left_content_sec">
+    <nav class="sec_nav display_f align_c justify_c sec_nav_c navbar-expand-lg">
+      <div class="container-fluid paddingm display_f justify_sb align_c">
+        <p class="float-start fnt_fam mdl_header" style="">General Settings</p>
       </div> <!-----top left side------>
     </nav>
     <div>
