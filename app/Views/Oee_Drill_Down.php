@@ -517,7 +517,7 @@ $session = \Config\Services::session();
 
              <!-- dropdowns -->
             <div  style="" class="marginScroll machine_wise_availability_div">
-                <div style="width:max-content;">
+                <div style="width:16%;">
                     <p class="header_text_val" style="">TOTAL</p>
                     <span class="header_value_pass" style="" id="total_duration_availability">0</span>
                 </div>
@@ -607,7 +607,7 @@ $session = \Config\Services::session();
             </div>
             <!-- flex for dropdown and total -->
             <div class="marginScroll machine_wise_availability_div">
-                <div style="width:max-content;">
+                <div style="width:20%;">
                     <p class="header_text_val" >TOTAL</p>
                     <span class="header_value_pass"  id="total_speed_loss">0</span>
                 </div>
