@@ -377,6 +377,37 @@ span{
 
 /*GLOBAL CLASS FOR WORK ORDER MANAGEMENT END*/
 
+/*GLOBAL CLASS FOR HOVERING DESIGN*/
+.hover_area{
+    position: absolute;
+    background-color: white;
+    border-radius: 10px 10px 10px 10px;
+    border: 0.5px solid #f2f2f2;
+    z-index: 105;
+    padding: 0.5rem;
+    /*margin-top: 0.2rem;*/
+    opacity: 100%;
+}
+.hover_header_area{
+    width: 10rem;
+}
+.hover_header_val_area{
+    width: max-content;
+}
+.hover_header_light{
+    color: #a6a6a6;
+    font-size: 14px;
+    margin-top: 0.3rem;
+    letter-spacing: 0.05rem;
+}
+.hover_val{
+    color: #595959;
+    font-size: 14px;
+    font-weight: lighter;
+    margin-top: 0.3rem;
+}
+/*GLOBAL CLASS FOR HOVERING DESIGN END*/
+
 
 /*GLOBAL CLASS FOR INPUT FIELDS*/
 .unit-input { 
@@ -390,6 +421,8 @@ span{
     font-size: 1rem !important;
 }
 /*GLOBAL CLASS FOR INPUT FIELDS END*/
+
+
 
 /* ALL OUTPUT MODULE`S HEADER FILTER BUTTTON CSS */
 
@@ -409,6 +442,5 @@ span{
     justify-content:var(--overall_filter_header_div_jc);
     align-items:var(--overall_filter_header_div_ac);
 }
-
 
 /* ALL OUTPUT MODULE`S HEADER FILTER BUTTON CSS */
