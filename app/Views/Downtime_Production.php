@@ -701,7 +701,7 @@ $session = \Config\Services::session();
             </div>  -->
             <div class="table_height_width" style="width:100%;height:10rem;margin-top:0.2rem;overflow:scroll;padding-left:0.2rem;padding-right:0.2rem;">
                 <div style="width:90rem;">
-                    <div class="header_fixed_col" style="">
+                    <div class="header_fixed_col" style="z-index:95;">
                         <div class="font alignflex" style="width:10%;position: sticky;height:100%;left:0px;border-radius:10px 0px 0px 10px;background:white;">
                             <span style="margin-left:1rem;">MACHINE</span>
                         </div>

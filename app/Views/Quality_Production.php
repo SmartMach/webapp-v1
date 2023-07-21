@@ -133,7 +133,7 @@
 </script>
 </head>
 <div class="mr_left_content_sec">
-  <nav class="sec_nav display_f align_c justify_c sec_nav_c navbar-expand-lg">
+  <nav class="sec_nav display_f align_c justify_c sec_nav_c navbar-expand-lg" >
     <div class="container-fluid paddingm display_f justify_sb align_c">
       <p class="float-start fnt_fam mdl_header">Production Quality</p>
       <div class="d-flex" style="display: flex;align-items: center;">
@@ -177,15 +177,15 @@
             <p class="paddingm fontBold financial_font" style="margin-left:0;">Cost of Poor Quality (COPQ) by Reason</p>
           </div>
           <div class="valueMarLeft" style="margin-left:1rem;">
-            <div style="float: left;width: 17%;">
+            <div style="float: left;width: 20%;">
               <p class="paddingm headTitle total-margin" style="margin-left:0rem;">TOTAL</p>
-              <p class="paddingm valueGraph"><i class="fa fa-inr inr_font" aria-hidden="true"></i><span class="paddingm COPQP"></span></p>
+              <p class="paddingm valueGraph" ><i class="fa fa-inr inr_font" aria-hidden="true" style="font-size:1rem;"></i><span class="paddingm COPQP" style="font-size:1rem;"></span></p>
             </div>
-            <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
+            <div style="float: left;width:80%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing Reasons_COPQP">
 
-                  <div class="filter_multiselect filter_option">
+                  <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Reason</span>
                     <div class="filter_selectBox" onclick="multiple_drp_reason_copq()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
@@ -205,7 +205,7 @@
 
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing Reasons_COPQP">
-                  <div class="filter_multiselect filter_option">
+                  <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Machine</span>
                     <div class="filter_selectBox" onclick="multiple_drp_machine_copq()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
@@ -225,7 +225,7 @@
 
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing Reasons_COPQP">
-                  <div class="filter_multiselect filter_option">
+                  <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Part</span>
                     <div class="filter_selectBox" onclick="multiple_drp_copq()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
@@ -257,12 +257,12 @@
           <div class="valueMarLeft" style="margin-left:1rem;">
             <div style="float: left;width: 17%">
               <p class="paddingm headTitle total-margin" style="margin-left:0rem;">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0rem;"><span class="paddingm  CRBR" ></span></p>
+              <p class="paddingm valueGraph" ><span class="paddingm  CRBR" style="font-size:1rem;"></span></p>
             </div>
             <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
-                  <div class="filter_multiselect filter_option">
+                  <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Reason</span>
                     <div class="filter_selectBox" onclick="multiple_drp_reason_crpr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
@@ -282,7 +282,7 @@
 
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
-                  <div class="filter_multiselect filter_option">
+                  <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Machine</span>
                     <div class="filter_selectBox" onclick="multiple_drp_machine_crpr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
@@ -302,7 +302,7 @@
 
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
-                  <div class="filter_multiselect filter_option">
+                  <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Part</span>
                     <div class="filter_selectBox" onclick="multiple_drp_crpr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
@@ -336,12 +336,12 @@
           <div class="valueMarLeft" style="margin-left:1rem;">
             <div style="float: left;width: 17%;">
               <p class="paddingm headTitle total-margin" style="margin-left:0;">TOTAL</p>
-              <p class="paddingm valueGraph"><i class="fa fa-inr inr_font" aria-hidden="true"></i><span class="paddingm COPQM"></span></p>
+              <p class="paddingm valueGraph" ><i class="fa fa-inr inr_font" aria-hidden="true" style="font-size:1rem;"></i><span class="paddingm COPQM" style="font-size:1rem;"></span></p>
             </div>
             <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
-                  <div class="filter_multiselect filter_option">
+                  <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Reason</span>
                     <div class="filter_selectBox" onclick="multiple_drp_reason_copqm()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
@@ -361,7 +361,7 @@
 
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
-                  <div class="filter_multiselect filter_option">
+                  <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Machine</span>
                     <div class="filter_selectBox" onclick="multiple_drp_machine_copqm()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
@@ -381,7 +381,7 @@
 
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
-                  <div class="filter_multiselect filter_option">
+                  <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Part</span>
                     <div class="filter_selectBox" onclick="multiple_drp_copqm()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
@@ -413,12 +413,12 @@
           <div class="valueMarLeft" style="margin-left:1rem;">
             <div style="float: left;width: 17%;">
               <p class="paddingm headTitle total-margin" style="margin-left:0;">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0rem;"><span class="paddingm  CRBMR" ></span></p>
+              <p class="paddingm valueGraph" ><span class="paddingm  CRBMR" style="font-size:1rem;"></span></p>
             </div>
             <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
-                  <div class="filter_multiselect filter_option">
+                  <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Reason</span>
                     <div class="filter_selectBox" onclick="multiple_drp_reason_qrmr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
@@ -438,7 +438,7 @@
 
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
-                  <div class="filter_multiselect filter_option">
+                  <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Machine</span>
                     <div class="filter_selectBox" onclick="multiple_drp_machine_qrmr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
@@ -458,7 +458,7 @@
 
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
-                  <div class="filter_multiselect filter_option">
+                  <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Part</span>
                     <div class="filter_selectBox" onclick="multiple_drp_qrmr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
@@ -495,12 +495,12 @@
           <div class="valueMarLeft" style="margin-left:1rem;">
             <div style="float: left;width: 17%;">
               <p class="paddingm headTitle total-margin" style="margin:0;">TOTAL</p>
-              <p class="paddingm valueGraph"><i class="fa fa-inr inr_font" aria-hidden="true"></i><span class="paddingm CQRP"></span></p>
+              <p class="paddingm valueGraph" ><i class="fa fa-inr inr_font" aria-hidden="true" style="font-size:1rem;"></i><span class="paddingm CQRP" style="font-size:1rem;"></span></p>
             </div>
             <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
-                  <div class="filter_multiselect filter_option">
+                  <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Reason</span>
                     <div class="filter_selectBox" onclick="multiple_drp_reason_copqp()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
@@ -520,7 +520,7 @@
 
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
-                  <div class="filter_multiselect filter_option">
+                  <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Machine</span>
                     <div class="filter_selectBox" onclick="multiple_drp_machine_copqp()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
@@ -540,7 +540,7 @@
 
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
-                  <div class="filter_multiselect filter_option">
+                  <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Part</span>
                     <div class="filter_selectBox" onclick="multiple_drp_copqp()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
@@ -572,12 +572,12 @@
           <div class="valueMarLeft" style="margin-left:1rem;">
             <div style="float: left;width: 17%;">
               <p class="paddingm headTitle total-margin" style="margin-left:0;">TOTAL</p>
-              <p class="paddingm valueGraph" style="margin-left:0rem;"><span class="paddingm  CQRPR" ></span></p>
+              <p class="paddingm valueGraph" ><span class="paddingm  CQRPR" style="font-size:1rem;"></span></p>
             </div>
             <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
-                  <div class="filter_multiselect filter_option">
+                  <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Reason</span>
                     <div class="filter_selectBox" onclick="multiple_drp_reason_qrpr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
@@ -597,7 +597,7 @@
 
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
-                  <div class="filter_multiselect filter_option">
+                  <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Machine</span>
                     <div class="filter_selectBox" onclick="multiple_drp_machine_qrpr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
@@ -617,7 +617,7 @@
 
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
-                  <div class="filter_multiselect filter_option">
+                  <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Part</span>
                     <div class="filter_selectBox" onclick="multiple_drp_qrpr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
@@ -646,7 +646,7 @@
     </div>
     </div>
     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
-    <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav">
+    <nav class="navbar navbar-expand-lg sub-nav sticky-top fixinnersubnav" style="z-index:98;">
       <div class="container-fluid paddingm ">
         <div class="box rightmar" style="margin-left: 0.5rem;width: 10rem;">
             <div class="input-box" style="display: flex;font-size:12px;">
@@ -748,7 +748,7 @@
       </div>
     </nav>
     <div class="tableContent">
-      <div class="settings_machine_header sticky-top fixtabletitle" style="top: 11.19rem !important;">
+      <div class="settings_machine_header sticky-top fixtabletitle" style="top: 11.19rem !important;z-index:95;">
         <div class="row paddingm">
           <div class="col-sm-1 p3 paddingm">
             <p class="basic_header">FROM DATE</p>
@@ -793,12 +793,12 @@
 </div>
 
  <!-- preloader -->
-  <!-- <div id="overlay">
+  <div id="overlay">
     <div class="cv-spinner">
       <span class="spinner"></span>
       <span class="loading">Awaiting Completion...</span>
     </div>
-  </div> -->
+  </div>
   <!-- preloader end -->
 
 <script type="text/javascript">
