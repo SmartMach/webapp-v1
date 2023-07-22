@@ -370,7 +370,7 @@
               //Terminate
           }
 
-          if (inputDateTime.getDate() == current.getDate()) {
+          if (inputDateTime.getDate() == current.getDate() && inputDateTime.getMonth() == current.getMonth()) {
               if (inputDateTime.getHours() <= (current.getHours())) {
                   $('.toDate').datetimepicker('reset');
               }
@@ -680,7 +680,7 @@
 
 var dt = new Date();
 $('.fromDate').datetimepicker({  
-  format:'Y-m-d H:00:00',
+  format:'Y-m-d H:00',
   // minDate : '0',
   maxDate: new Date(),
   onChangeDateTime:checkPastTime_F,

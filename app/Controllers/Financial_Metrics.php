@@ -105,13 +105,6 @@ class Financial_Metrics extends BaseController
             $s_time_range_limit =  strtotime($FromDate." ".$FromTime);
             $e_time_range_limit =  strtotime($ToDate." ".$ToTime);
 
-            // foreach ($getOfflineId as $key => $v) {
-            //     if ($v['machine_id'] == "MC1001") {
-            //         echo "<pre>";
-            //         print_r($v);
-            //     }
-            // }
-
             foreach ($output as $key => $value) {
                 $check_no = 0;
                 for($i=0;$i<$len_id;$i++){
@@ -126,8 +119,8 @@ class Financial_Metrics extends BaseController
                         unset($output[$key]);
                     }
                     else{
-                        $s_time_range =  strtotime($value['shift_date']." ".$value['start_time']);
-                        $e_time_range =  strtotime($value['shift_date']." ".$value['end_time']);
+                        $s_time_range =  strtotime($value['calendar_date']." ".$value['start_time']);
+                        $e_time_range =  strtotime($value['calendar_date']." ".$value['end_time']);
 
                         if ($s_time_range <= $s_time_range_limit && $e_time_range >= $s_time_range_limit) {
                             $output[$key]['start_time'] = $FromTime;
@@ -167,8 +160,8 @@ class Financial_Metrics extends BaseController
                     unset($getAllTimeValues[$key]);
                 }
                 else{
-                    $s_time_range =  strtotime($value['shift_date']." ".$value['start_time']);
-                    $e_time_range =  strtotime($value['shift_date']." ".$value['end_time']);
+                    $s_time_range =  strtotime($value['calendar_date']." ".$value['start_time']);
+                    $e_time_range =  strtotime($value['calendar_date']." ".$value['end_time']);
 
                     if ($s_time_range <= $s_time_range_limit && $e_time_range >= $s_time_range_limit) {
                         $getAllTimeValues[$key]['start_time'] = $FromTime;
@@ -202,17 +195,20 @@ class Financial_Metrics extends BaseController
 
             // Filter for Production Info Table Data..........
             foreach ($production as $key => $value) {   
-                $s_time_range =  strtotime($value['shift_date']." ".$value['start_time']);
-                $e_time_range =  strtotime($value['shift_date']." ".$value['end_time']);
+                $s_time_range =  strtotime($value['calendar_date']." ".$value['start_time']);
+                $e_time_range =  strtotime($value['calendar_date']." ".$value['end_time']);
                 
                 if ($s_time_range < $s_time_range_limit) {
                     unset($production[$key]);
                 }
-                if ($e_time_range >= $e_time_range_limit){
+                elseif ($e_time_range > $e_time_range_limit){
+                    unset($production[$key]);
+                }
+                elseif ($s_time_range >= $e_time_range_limit) {
                     unset($production[$key]);
                 }
 
-                //For remove the current data of inactive machines.........
+                // For remove the current data of inactive machines.........
                 foreach ($getInactiveMachine as $v) {
                     $start_time_range =  strtotime($v['max(r.last_updated_on)']);
                     if ($s_time_range_limit > $start_time_range && $value['machine_id'] == $v['machine_id']){
@@ -220,11 +216,6 @@ class Financial_Metrics extends BaseController
                     }
                 }
             }
-
-            // foreach ($output as $v) {
-            //     echo "<pre>";
-            //     print_r($v);
-            // }
 
             //Downtime reasons data ordering.....
             $MachineWiseDataRaw = $this->storeData($output,$machine,$part);
@@ -1826,8 +1817,8 @@ class Financial_Metrics extends BaseController
         // $res = json_decode($result);
         // echo json_encode($res);
 
-        // $fromTime = "2022-12-18T09:00:00";
-        // $toTime = "2022-12-18T21:00:00";
+        // $fromTime = "2023-06-09T09:00:00";
+        // $toTime = "2023-06-09T21:00:00";
 
 
         $production = $this->getDataRaw($ref,$fromTime,$toTime);
@@ -1838,9 +1829,6 @@ class Financial_Metrics extends BaseController
         $diff = abs(strtotime($toTime) - strtotime($fromTime));
         $AllTime = (int)($diff/60);
 
-        // echo "<pre>";
-        // print_r($production['downtime']);
-
         //Performance Opportunity.........
         $PartWisePL =[];
         $PartDataID=[];
@@ -1848,15 +1836,13 @@ class Financial_Metrics extends BaseController
 
         $ln=0;
         foreach ($production['production'] as $product) {
-            foreach ($partDetails as $key => $part) {
-                // $planned=0;
-                // $unplanned=0;
-                $rateHour=0;
-                foreach ($machineDetails as $val) {
-                    if ($product['machine_id']==$val['machine_id']) {
-                        $rateHour= $val['rate_per_hour'];
-                    }   
+            $rateHour=0;
+            foreach ($machineDetails as $val) {
+                if ($product['machine_id']==$val['machine_id']) {
+                    $rateHour= $val['rate_per_hour'];
                 }
+            }
+            foreach ($partDetails as $key => $part) {
 
                 if ($part['part_id'] == $product['part_id']) {
                     $PartInMachine = 0;
@@ -1867,8 +1853,6 @@ class Financial_Metrics extends BaseController
                                 // One-tool, multi-part
                                 foreach ($tmpPart as $pt) {
                                     if ($part['part_id'] == $pt) {
-                                        // $planned = $value['Planed'];
-                                        // $unplanned = $value['Unplanned'];
                                         $PartInMachine = $value['PartInMachine'];
                                     }
                                 }
@@ -1893,7 +1877,6 @@ class Financial_Metrics extends BaseController
                         $k=0;
                         foreach ($PartWisePL as $key => $value) {
                             if ($PartWisePL[$key]['Part_Id'] == $product['part_id']) {
-
                                 $TCorrected = (int)$product['production']+(int)($product['corrections']);
                                 $UMaterialCost  = $part['material_price']*$TCorrected*($part['part_weight']/1000);
                                 $UProductionCost  = 0;
@@ -1902,7 +1885,6 @@ class Financial_Metrics extends BaseController
                                 $ProfitLoss = $GoodRevenu-$UTotalPartProducedCost;
                                 
                                 $tt=$UMaterialCost + $UProductionCost + $ProfitLoss;
-                                $PartWisePLTmp = array("Part_Id"=>$product['part_id'],"Material_Cost"=>$UMaterialCost,"Production_Cost"=>$UProductionCost,"Profit_Loss"=>$ProfitLoss,"Total"=>$tt);
                                 $GrandTotal = $GrandTotal+$ProfitLoss;
 
                                 //Part-wise update.....

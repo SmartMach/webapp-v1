@@ -701,7 +701,7 @@ $session = \Config\Services::session();
             </div>  -->
             <div class="table_height_width" style="width:100%;height:10rem;margin-top:0.2rem;overflow:scroll;padding-left:0.2rem;padding-right:0.2rem;">
                 <div style="width:90rem;">
-                    <div class="header_fixed_col" style="">
+                    <div class="header_fixed_col" style="z-index:95;">
                         <div class="font alignflex" style="width:10%;position: sticky;height:100%;left:0px;border-radius:10px 0px 0px 10px;background:white;">
                             <span style="margin-left:1rem;">MACHINE</span>
                         </div>
@@ -766,7 +766,7 @@ $session = \Config\Services::session();
 
 // from  date time 
 $('.fromDate').datetimepicker({  
-  format:'Y-m-d H:00:00',
+  format:'Y-m-d H:00',
   // minDate : '0',
   maxDate: new Date(),
   onChangeDateTime:checkPastTime_F,
@@ -1518,7 +1518,9 @@ function filter_after_filter(end_index,start_index){
     t = $('.toDate').val();
     from = f.replace(" ","T");
     to = t.replace(" ","T");
-
+    console.log(from);
+    console.log(to);
+    console.log("prodcution downtime table filter values");
     $.ajax({
         url:"<?php echo base_url('Production_Downtime_controller/filter_records'); ?>",
         method:"POST",
@@ -1533,6 +1535,8 @@ function filter_after_filter(end_index,start_index){
             to:to,   
         },
         success:function(res){
+            console.log("prouction downtime records table");
+            console.log(res);
             $('.alert_content').empty();
             // $('.scroll_rows').empty();
             var from_len = 0;
