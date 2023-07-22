@@ -766,7 +766,7 @@ $session = \Config\Services::session();
 
 // from  date time 
 $('.fromDate').datetimepicker({  
-  format:'Y-m-d H:00:00',
+  format:'Y-m-d H:00',
   // minDate : '0',
   maxDate: new Date(),
   onChangeDateTime:checkPastTime_F,
@@ -1518,7 +1518,9 @@ function filter_after_filter(end_index,start_index){
     t = $('.toDate').val();
     from = f.replace(" ","T");
     to = t.replace(" ","T");
-
+    console.log(from);
+    console.log(to);
+    console.log("prodcution downtime table filter values");
     $.ajax({
         url:"<?php echo base_url('Production_Downtime_controller/filter_records'); ?>",
         method:"POST",
@@ -1533,6 +1535,8 @@ function filter_after_filter(end_index,start_index){
             to:to,   
         },
         success:function(res){
+            console.log("prouction downtime records table");
+            console.log(res);
             $('.alert_content').empty();
             // $('.scroll_rows').empty();
             var from_len = 0;
