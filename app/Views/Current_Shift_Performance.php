@@ -24,6 +24,15 @@
 
 </head>
 
+<!-- preloader -->
+<div id="overlay">
+    <div class="cv-spinner">
+        <span class="spinner"></span>
+        <span class="loading">Awaiting Completion...</span>
+    </div>
+</div>
+<!-- preloader end -->
+
 <div class="mr_left_content_sec">
     <nav class="sec_nav display_f align_c justify_c sec_nav_c navbar-expand-lg fixsubnav_quality">
         <div class="container-fluid paddingm display_f justify_sb align_c">
@@ -133,11 +142,11 @@
                             <div class="" style="width: 65%;margin-top: 1rem;">
                                 <div class="skill display_f justify_c align_c">
                                     <div class="inner flex_f display_f justify_c align_c">
-                                        <div id="number_completion">
-                                            60%    
+                                        <div class="text_align_c" id="number_completion">
+                                            
                                         </div>
-                                        <div class="" style="width: 80%;"> 
-                                            <p class="white_s over_h text_e part_name" id="part_name_oui_p">partname</p>
+                                        <div class="text_align_c" style="width: 80%;"> 
+                                            <p class="white_s over_h text_e part_name" id="part_name_oui_p"></p>
                                         </div>
                                     </div>
                                     <svg version="1.1" class="svg_oui">
@@ -158,7 +167,7 @@
                                     </p>
                                     <div class="target_bar bg_title target_outline" style="width: 100%;">
                                         <div class="target_inline">
-                                            <p class="paddingm target_inline_Cont">0</p>
+                                            <p class="paddingm target_inline_Cont"></p>
                                         </div>
                                     </div>
                                 </div>
@@ -267,19 +276,13 @@
    
 </div>
 
-<!-- preloader -->
-<!-- <div id="overlay">
-    <div class="cv-spinner">
-        <span class="spinner"></span>
-        <span class="loading">Awaiting Completion...</span>
-    </div>
-</div> -->
-<!-- preloader end -->
 
 <script src="<?php echo base_url(); ?>/assets/apexchart/dist/apexcharts.js"></script>
 <script src="<?php echo base_url(); ?>/assets/js/all-fontawesome.js?version=<?php echo rand() ; ?>"></script>
 
 <script type="text/javascript">
+
+$("#overlay").fadeIn(300);
 
 let slideIndex = 0;
 let slideIndexLimit = 10;
@@ -322,7 +325,7 @@ $('.visibility_div').css('display', 'inline');
 var j_global = "";
 var mx_global="";
 
-$("#overlay").fadeIn(300);
+
 getMachineDataLive();
  
 mx_global = setInterval(function() {
@@ -564,8 +567,15 @@ function getLiveMode(shift_date, shift_id) {
                 $('#latest_status_' + machine[0]['machine_id'] + '').html(res['latest_event'][0][0]
                     .duration + "m " + res['latest_event'][0][0].event);
 
+                
                 // Production Percentage.......
-                var target_production = 5000;
+                var target_production = 0;
+                res['production_target'].forEach(function(pp){
+                    if (machine[0]['machine_id'] == pp['machine_id']) {
+                        target_production = pp['target'];
+                    }
+                });
+
                 var production_percent = parseInt((production_total / target_production) * 100);
                 var production_percent_val = 470 - (4.7 * production_percent);
                 const MyFSC_container = document.getElementsByClassName("circle");
@@ -1503,6 +1513,8 @@ $(document).on('click', '.grid-item-cont', function(event) {
 
 
 function oui_functions_call(index_val){
+    $("#overlay").fadeIn(300);
+
     fullscreen_mode_remove();
 
     var tmp_mid = $('.machine_name_ref:eq(' + index_val + ')').attr('mid_data');
@@ -1574,6 +1586,8 @@ function oui_functions_call(index_val){
     $('.oui_arrow_div').css('display', 'inline');
     $('.visibility_div').css('display', 'none');
     $('#full_screen_btn_visibility').css('visibility','hidden');
+
+    $("#overlay").fadeOut(300);
 }
     
 

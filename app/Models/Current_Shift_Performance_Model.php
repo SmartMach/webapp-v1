@@ -19,7 +19,7 @@ class Current_Shift_Performance_Model extends Model{
                     'DSN'      => '',
                     'hostname' => 'localhost',
                     'username' => 'root',
-                    'password' => 'quantanics123',
+                    'password' => '',
                     //'database' => 'S1001',
                     'database' => ''.$db_name.'',
                     'DBDriver' => 'MySQLi',
@@ -295,6 +295,40 @@ class Current_Shift_Performance_Model extends Model{
         return $res;
     }
 
+    // To get the Production Target value for Every Machine.....
+    public function getProductionTarget($shift_date){
+        $db = \Config\Database::connect($this->site_connection);
+        $sql = 'WITH ToolChangeoverData AS (
+            SELECT 
+                machine_id,
+                shift_date,
+                tool_id,
+                target,
+                ROW_NUMBER() OVER (PARTITION BY machine_id ORDER BY shift_date DESC, machine_id ASC) AS row_num
+            FROM
+                pdm_tool_changeover
+            WHERE
+                shift_date <= "'.$shift_date.'"
+        )
+        SELECT
+            machine_id,
+            shift_date,
+            tool_id,
+            target
+        FROM
+            ToolChangeoverData
+        WHERE
+            row_num = 1;';
+
+        $query = $db->query($sql);
+        if ($query) {
+            $results = $query->getResult();
+            return $results;
+        }
+        else {
+            $error = $this->db->error();
+        }
+    }
 
     // target graph get tool chnageover records
     public function get_target_tool_changeover($sdate,$mid,$tid){
@@ -308,7 +342,6 @@ class Current_Shift_Performance_Model extends Model{
         $build->limit(1);
         $res = $build->get()->getResultArray();
         return $res;
-
     }
 
     // that particular tool chnageover production count

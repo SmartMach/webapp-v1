@@ -60,7 +60,7 @@ class Current_Shift_Performance extends BaseController{
         
         return json_encode($shift_data);
     }
-    
+
     public function getLiveMode(){
     	if ($this->request->isAJAX()) {
 
@@ -448,6 +448,7 @@ class Current_Shift_Performance extends BaseController{
 
             $partList = $this->datas->part_list();
 
+            $out['production_target'] = $this->datas->getProductionTarget($shift_date);
 	       	$out['hours'] = $shiftList;
 	       	$out['data'] = $machineWise;
 	       	$out['targets'] = $oee_target;
