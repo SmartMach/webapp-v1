@@ -570,13 +570,20 @@ function getLiveMode(shift_date, shift_id) {
                 
                 // Production Percentage.......
                 var target_production = 0;
-                res['production_target'].forEach(function(pp){
-                    if (machine[0]['machine_id'] == pp['machine_id']) {
-                        target_production = pp['target'];
+                // res['production_target'].forEach(function(pp){
+                //     if (machine[0]['machine_id'] == pp['machine_id']) {
+                //         target_production = pp['target'];
+                //     }
+                // });
+                var shift_production=0;
+                res['shift_production_target'].forEach(function(i){
+                    if (i['machine_id'] == machine[0]['machine_id']) {
+                        target_production = i['shift_production_target'];
+                        shift_production = i['shift_production'];
                     }
                 });
 
-                var production_percent = parseInt((production_total / target_production) * 100);
+                var production_percent = parseInt((shift_production / target_production) * 100);
                 var production_percent_val = 470 - (4.7 * production_percent);
                 const MyFSC_container = document.getElementsByClassName("circle");
                 MyFSC_container[0].style.setProperty("--foo", production_percent_val);
@@ -866,9 +873,17 @@ function getLiveMode(shift_date, shift_id) {
                             'latest_event'][0][0].duration + "m " + res['latest_event'][0][
                             0].event);
 
+                        var target_production = 0;  
+                        var shift_production=0;
+                        res['shift_production_target'].forEach(function(i){
+                            if (i['machine_id'] == machine[0]['machine_id']) {
+                                target_production = i['shift_production_target'];
+                                shift_production = i['shift_production'];
+                            }
+                        });
+
                         // Production Percentage.......
-                        var target_production = 5000;
-                        var production_percent = parseInt((production_total / target_production) *
+                        var production_percent = parseInt((shift_production / target_production) *
                             100);
                         var production_percent_val = 470 - (4.7 * production_percent);
                         const MyFSC_container = document.getElementsByClassName("circle");
@@ -1408,9 +1423,16 @@ function live_MC1001(shift_date, shift_id) {
                     "%");
                 $('#OEETarget_' + machine[0]['machine_id'] + '').html(parseInt(res['targets'][0].oee) + "%");
 
-
                 // Update Production Percentage
-                var target_production = 5000;
+                var target_production = 0;  
+                var production_total=0;
+                res['shift_production_target'].forEach(function(i){
+                    if (i['machine_id'] == machine[0]['machine_id']) {
+                        target_production = i['shift_production_target'];
+                        production_total = i['shift_production'];
+                    }
+                });
+
                 var production_percent = parseInt((production_total / target_production) * 100);
                 $('#production_per' + machine[0]['machine_id'] + '').html(production_percent);
 
@@ -1580,7 +1602,7 @@ function oui_functions_call(index_val){
     getLiveProduction(tmp_mid,shift_date,tmp[1]);
     getPartCycleTime(tmp_mid);
     getRejectCounts(tmp_mid,shift_date,tmp[1]);
-    target_oui_graph(tmp_mid,tid_data,shift_date);
+    target_oui_graph(tmp_mid,tid_data,shift_date,shift_id);
     $('.graph-content').css('display', 'none');
     $('.oui_screen_view').css('display', 'block');
     $('.oui_arrow_div').css('display', 'inline');
@@ -2452,34 +2474,67 @@ function getDownTimeGraph(machine_id, shift_date, s) {
 
 
 
-    function target_oui_graph(mid,tid,sdate){
+    function target_oui_graph(mid,tid,sdate,shift_id){
         // return new Promise(function(resolve,reject){
         $.ajax({
-            url:"<?php echo base_url('Current_Shift_Performance/get_target_graph'); ?>",
+            url:"<?php echo base_url('Current_Shift_Performance/getLiveMode'); ?>",
             method:"POST",
             data:{
-                mid:mid,
-                sdate:sdate,
-                tid:tid,
+                // mid:mid,
+                // sdate:sdate,
+                // tid:tid,
+                shift_date: sdate,
+                shift_id: shift_id,
             },
             dataType:"JSON",
             success:function(res){
-
                 var target = 0;
-                if (parseInt(res[0]['production'])>=100) {
-                    target = 100;
+                res['production_target'].forEach(function(i){
+                    if (i['machine_id'] == mid) {
+                        target = i['target'];
+                    }
+                });
+
+                var total_produced=0;
+                res['target_production'].forEach(function(i){
+                    if (i['machine_id'] == mid) {
+                        total_produced = i['total_part_produced'];
+                    }
+                });
+                
+                var target_percentage=0;
+                if (target > 0) {
+                    target_percentage = (total_produced/target)*100;
                 }else{
-                    target = res[0]['percentage_target'];
+                    target_percentage = 100;
                 }
-                $('.target_inline').css('height',target+'%');
-                $('.target_inline_Cont').text(res[0]['production']);
-                $('.target_text2').text(res[0]['target']);
+                
+                if (target_percentage > 100) {
+                    $('.target_inline').css('height','100%');
+                }else{
+                    $('.target_inline').css('height',target_percentage+'%');
+                }
 
-                var production_percent_val = 470 - (4.7 * res[0]['percentage_target']);
+                $('.target_inline_Cont').text(total_produced);
+                $('.target_text2').text(target);
+
+                var shift_target = 0;
+                var shift_production=0;
+                res['shift_production_target'].forEach(function(i){
+                    if (i['machine_id'] == mid) {
+                        shift_target = i['shift_production_target'];
+                        shift_production = i['shift_production'];
+                    }
+                });
+
+                var production_percent = (shift_production/shift_target)*100;
+                var production_percent_val = 470 - (4.7 * production_percent);
                 const circle_container = document.getElementsByClassName("circle_oui");
-                circle_container[0].style.setProperty("stroke-dashoffset", production_percent_val);
+                circle_container[0].style.setProperty("--foo_oui", production_percent_val);
 
-                production_percent = res[0]['percentage_target'];
+                $('#number_completion').text(parseInt(production_percent)+"%");
+                
+
                 var color_code = "";
                 if (production_percent > 75) {
                     color_code = "#c2fb05";
