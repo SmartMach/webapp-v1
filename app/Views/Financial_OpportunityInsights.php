@@ -799,6 +799,8 @@ function plopportunity(){
         },
         success:function(res){      
           
+          console.log("financial p&l improvment graph");
+          console.log(res);
           $('#chart').empty();
           $(".apexcharts-canvas").remove();
           
