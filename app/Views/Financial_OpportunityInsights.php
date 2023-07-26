@@ -842,9 +842,9 @@ function plopportunity(){
               enabled: false,
               top: 1,
               left: 1,
-              blur: 1,
+              // blur: 1,
               color: '#000',
-              opacity: 0.45
+              // opacity: 0.45
             }
           }, 
 
@@ -963,6 +963,7 @@ function plopportunity(){
           type: 'pie',
         },
         colors: [ "#005FC8", "#057CFF","#53A5FF", "#E7F2FF"],
+        // colors: [ "#005FC8", "#057CFF","#53A5FF", "#B3D7FF"],
         dataLabels: {
             enabled: true,
             offsetX: 30,
@@ -979,9 +980,17 @@ function plopportunity(){
               enabled: false,
               top: 1,
               left: 1,
-              blur: 1,
-              color: '#000',
-              opacity: 0.45
+              // blur: 1,
+              // color: '#000',
+              // opacity:1
+            },
+          },
+          states:{
+            hover:{
+              filter:{
+                type:"none",
+                value:0,
+              },
             },
           },
         labels: label_data,
@@ -1524,6 +1533,8 @@ function opportunitydrilldown(){
     },
     success:function(res){ 
 
+      console.log("opportunity drill down graph")
+      console.log(res);
       $('#OpportunityDrillDownInsights').remove();
       $('.child_graph_opportunity_drill_down').append('<canvas id="OpportunityDrillDownInsights"><canvas>');
       $('.chartjs-hidden-iframe').remove();

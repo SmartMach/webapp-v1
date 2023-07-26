@@ -952,8 +952,7 @@ $(document).on("mousemove", ".circle", function(e) {
     var relBoxCoords = "(" + relX + "," + relY + ")";
     var count = $('.circle');
     var index_val = count.index($(this));
-    $('.part_completion:eq(' + index_val + ')').css("transform", "translate3d(" + relX + "px," + relY +
-        "px,0px)");
+    // $('.part_completion:eq(' + index_val + ')').css("transform", "translate3d(" + relX + "px," + relY + "px,0px)");
 });
 
 function live_target_update(shift_date) {
