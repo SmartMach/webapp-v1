@@ -163,7 +163,7 @@
                                 <div class="" style="width:65%;">
                                     <p class="paddingm" style="">
                                         <span class="text-small">Target</span>
-                                        <span class="target_text2">0</span>
+                                        <span class="target_text2"></span>
                                     </p>
                                     <div class="target_bar bg_title target_outline" style="width: 100%;">
                                         <div class="target_inline">
@@ -437,6 +437,8 @@ function getLiveMode(shift_date, shift_id) {
             // filter:x,
         },
         success: function(res) {
+            console.log("current shift performance live mode value");
+            console.log(res);
             $('.grid-container-cont').empty();
             res['latest_event'].forEach(function(machine) {
                 var machine_name = "";
@@ -470,7 +472,7 @@ function getLiveMode(shift_date, shift_id) {
                     '<div class="inner-circle">' +
                     '<div class="inner-val">' +
                     '<p class="paddingm production_completion production_completion_ref"><span id="production_per' +
-                    machine[0]['machine_id'] + '"></span>%</p>' +
+                    machine[0]['machine_id'] + '"></span></p>' +
                     '<p class="paddingm production_completion partname_ref" id="partname_' +
                     machine[0]['machine_id'] + '" title="">Part Name</p>' +
                     '</div>' +
@@ -1433,10 +1435,20 @@ function live_MC1001(shift_date, shift_id) {
                 });
 
                 var production_percent = parseInt((production_total / target_production) * 100);
-                $('#production_per' + machine[0]['machine_id'] + '').html(production_percent);
-
-                $('#part_completion_hover_' + machine[0]['machine_id'] + '').html(
-                    production_percent + "%");
+                console.log("current shift performance production target selection");
+                console.log(production_percent);
+                res['production_target'].forEach(function(tmid){
+                    if (tmid['machine_id']==machine[0]['machine_id']) {
+                        if (parseInt(tmid['target'])>0) {
+                            $('#production_per' + machine[0]['machine_id'] + '').html(production_percent+"%");
+                            $('#part_completion_hover_' + machine[0]['machine_id'] + '').html(production_percent + "%");
+                        }else{
+                            $('#production_per' + machine[0]['machine_id'] + '').html('NA');
+                            $('#part_completion_hover_' + machine[0]['machine_id'] + '').html("NA");
+                        }
+                    }
+                }); 
+               
 
                 // Graph Portion
                 var hourly = [];
@@ -2487,6 +2499,8 @@ function getDownTimeGraph(machine_id, shift_date, s) {
             },
             dataType:"JSON",
             success:function(res){
+                console.log("oui tool changeover target graph");
+                console.log(res);
                 var target = 0;
                 res['production_target'].forEach(function(i){
                     if (i['machine_id'] == mid) {
@@ -2508,14 +2522,31 @@ function getDownTimeGraph(machine_id, shift_date, s) {
                     target_percentage = 100;
                 }
                 
+                console.log("production target percentage");
+                console.log(target_percentage);
+                console.log("target tool changeover"+target);
+                console.log("target production count :\t"+total_produced);
                 if (target_percentage > 100) {
+                    
                     $('.target_inline').css('height','100%');
                 }else{
-                    $('.target_inline').css('height',target_percentage+'%');
+                    if (parseInt(target)>0) {
+                        $('.target_inline').css('height',target_percentage+'%');
+                    }else{
+                        $('.target_inline').css('height','2%');
+                    }
+                    
                 }
-
-                $('.target_inline_Cont').text(total_produced);
-                $('.target_text2').text(target);
+                if (parseInt(target)>0) {
+                    $('.target_inline_Cont').text(total_produced);
+                    $('.target_text2').text(target);
+                }else {
+                    $('.target_inline_Cont').text('NA');
+                    $('.target_text2').text('NA');
+                    $('#remaining_time_duration').text('NA');
+                    $('#estimated_time_target').text('NA');
+                }
+               
 
                 var shift_target = 0;
                 var shift_production=0;
@@ -2530,8 +2561,11 @@ function getDownTimeGraph(machine_id, shift_date, s) {
                 var production_percent_val = 470 - (4.7 * production_percent);
                 const circle_container = document.getElementsByClassName("circle_oui");
                 circle_container[0].style.setProperty("--foo_oui", production_percent_val);
-
-                $('#number_completion').text(parseInt(production_percent)+"%");
+                if (parseInt(target)>0) {
+                    $('#number_completion').text(parseInt(production_percent)+"%");
+                }else{
+                    $('#number_completion').text("NA");
+                }
                 
 
                 var color_code = "";
