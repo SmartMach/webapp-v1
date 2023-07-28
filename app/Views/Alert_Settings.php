@@ -660,7 +660,7 @@
                             <div class="col-lg-6">
                                 <div class="wrapper">
                                     <div class="content">
-                                        <ul class="parent_div_input_check" style="position:relative;"><input type="email" class="input_check_to alert_font_css" id="input_check_to" placeholder="TO" spellcheck="false"><span style="position:absolute;margin-top:-1rem;font-size:12px;color:#8c8c8c;background:white;padding:1px;margin-left:1rem;">To Email</span></ul>
+                                        <ul class="parent_div_input_check" style="position:relative;"><input type="email" class="input_check_to alert_font_css" id="input_check_to" placeholder="TO" spellcheck="false"><span class="to_email_label" style="position:absolute;margin-top:-1rem;font-size:12px;color:#8c8c8c;background:white;padding:1px;margin-left:1rem;">To Email</span></ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_check_to_Err"></span>
                                 </div>
@@ -2888,9 +2888,13 @@ $(".selectBtn3").click(function(){
     if (parseInt(clicks_count)%2==0) {
         $('.selectDropdown3').removeClass('new_4');
         $('.email_che').removeClass('checked');
+        $('.parent_div_input_check').css('position','relative');
+        $('.to_email_label').css('display','inline');
     }else{
         $('.selectDropdown3').toggleClass('new_4');
         $('.email_che').toggleClass('checked');
+        $('.parent_div_input_check').css('position','inherit');
+        $('.to_email_label').css('display','none');
     }
    
 });
@@ -2925,6 +2929,8 @@ function icon_drop(elem){
     }
     $('.selectDropdown3').toggleClass('new_4');
     $('.email_che').toggleClass('checked');
+    $('.parent_div_input_check').css('position','relative');
+    $('.to_email_label').css('display','inline');
 }
 
 // edit priority dropdown
