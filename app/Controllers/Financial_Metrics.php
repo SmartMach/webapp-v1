@@ -306,7 +306,7 @@ class Financial_Metrics extends BaseController
                                     if ($p['part_id'] == $partVal->part_id) {
                                         $mnict = explode(".", $partVal->NICT);
                                         if (sizeof($mnict)>1) {
-                                            $NICT = (($mnict[0]/60)+($mnict[1]/1000));
+                                            $NICT = (($mnict[0])+($mnict[1]/1000))/60;
                                         }else{
                                             $NICT = ($mnict[0]/60);
                                         }
@@ -1287,7 +1287,7 @@ class Financial_Metrics extends BaseController
                             $tnict=0;
                             $mnict = explode(".", $part['NICT']);
                             if (sizeof($mnict)>1) {
-                                $tnict = (($mnict[0]/60)+($mnict[1]/1000));
+                                $tnict = (($mnict[0])+($mnict[1]/1000))/60;
                             }else{
                                 $tnict = ($mnict[0]/60);
                             }
@@ -1503,7 +1503,7 @@ class Financial_Metrics extends BaseController
                             $NICT=0;
                             $mnict = explode(".", $part['NICT']);
                             if (sizeof($mnict)>1) {
-                                $NICT = (($mnict[0]/60)+($mnict[1]/1000));
+                                $NICT = (($mnict[0])+($mnict[1]/1000))/60;
                             }else{
                                 $NICT = ($mnict[0]/60);
                             }
@@ -1649,7 +1649,7 @@ class Financial_Metrics extends BaseController
                             $NICT=0;
                             $mnict = explode(".", $part['NICT']);
                             if (sizeof($mnict)>1) {
-                                $NICT = (($mnict[0]/60)+($mnict[1]/1000));
+                                $NICT = (($mnict[0])+($mnict[1]/1000))/60;
                             }else{
                                 $NICT = ($mnict[0]/60);
                             }
@@ -2102,7 +2102,7 @@ class Financial_Metrics extends BaseController
                             $NICT=0;
                             $mnict = explode(".", $part['NICT']);
                             if (sizeof($mnict)>1) {
-                                $NICT = (($mnict[0]/60)+($mnict[1]/1000));
+                                $NICT = (($mnict[0])+($mnict[1]/1000))/60;
                             }else{
                                 $NICT = ($mnict[0]/60);
                             }
@@ -2352,7 +2352,7 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days,$noplan=false)
 
                                         $mnict = explode(".", $partVal['NICT']);
                                         if (sizeof($mnict)>1) {
-                                            $NICT = (($mnict[0]/60)+($mnict[1]/1000));
+                                            $NICT = (($mnict[0])+($mnict[1]/1000))/60;
                                         }else{
                                             $NICT = ($mnict[0]/60);
                                         }
@@ -2527,7 +2527,7 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days,$noplan=false)
                             $NICT = 0;
                             $mnict = explode(".", $part['NICT']);
                             if (sizeof($mnict)>1) {
-                                $NICT = (($mnict[0]/60)+($mnict[1]/1000));
+                                $NICT = (($mnict[0])+($mnict[1]/1000))/60;
                             }else{
                                 $NICT = ($mnict[0]/60);
                             }
