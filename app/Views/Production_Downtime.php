@@ -592,7 +592,7 @@ input[type=number] {
           <div class="d-flex innerNav">
             <div class="box display_f align_c" style="margin-right: 0.5rem;">
               <div class="input-box">
-                  <select class="form-select font_weight select_input_width input_padd" name="" id="Production_MachineName" style="width: 10rem;">
+                  <select class="form-select font_weight select_input_width input_padd" name="" id="Production_MachineName" style="width: 10rem;padding-right:1.8rem;">
                   </select>
                   <label for="inputSiteNameAdd" class="input-padding ">Machine Name</label>
               </div>

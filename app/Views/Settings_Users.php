@@ -907,12 +907,21 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <div class="box fieldStyle" >
-                                <div class="flex-container textCenter float-start ACControl" id="ACControl" style="display: none;">
-                                    <label for="input" class="float-start" style="margin-right:1rem;">Access Control</label>
-                                    <div class="dotAccess dot-css acsControl_edit" style="margin-left: 2rem;font-size:2rem;"><img src="<?php echo base_url('assets/img/oui_arrow.png'); ?>" class=" dot-cont" style="height: 1.5rem;width: 1.5rem;"></i></div>
+                            <div class="box">
+                                <div class="input-box fieldStyle">
+                                    <select class="inputDepartmentAdd form-select font_weight_modal" name="EditUserDepartment" id="EditUserDepartment">
+                                    </select>
+                                    <label for="input" class="input-padding">Department<span class="paddingm validate">*</span></label>
+                                    <span class="paddingm float-start validate d-none" id="dept_err"></span> 
+                                    <!-- <span class="float-end charCount">Character Count</span> -->
                                 </div>
                             </div>
+                            <!-- <div class="box fieldStyle" >
+                                <div class="flex-container textCenter float-start ACControl" id="ACControl" style="display: none;">
+                                    <label for="input" class="float-start" style="margin-right:1rem;margin-top:0.3rem;">Access Control</label>
+                                    <div class="dotAccess dot-css acsControl_edit" style="margin-left: 2rem;font-size:2rem;"><img src="<?php echo base_url('assets/img/oui_arrow.png'); ?>" class=" dot-cont" style="height: 1.5rem;width: 1.5rem;"></i></div>
+                                </div>
+                            </div> -->
                         </div>
                     </div>    
                     <div class="row">
@@ -933,16 +942,22 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="box">
+                            <div class="box fieldStyle" >
+                                <div class="flex-container textCenter float-start ACControl" id="ACControl" style="display: none;">
+                                    <label for="input" class="float-start" style="margin-right:1rem;margin-top:0.3rem;">Access Control</label>
+                                    <div class="dotAccess dot-css acsControl_edit" style="margin-left: 2rem;font-size:2rem;"><img src="<?php echo base_url('assets/img/oui_arrow.png'); ?>" class=" dot-cont" style="height: 1.5rem;width: 1.5rem;"></i></div>
+                                </div>
+                            </div>
+                            <!-- <div class="box">
                                 <div class="input-box fieldStyle">
                                     <select class="inputDepartmentAdd form-select font_weight_modal" name="EditUserDepartment" id="EditUserDepartment">
                                     </select>
                                     <label for="input" class="input-padding">Department<span class="paddingm validate">*</span></label>
                                     <span class="paddingm float-start validate d-none" id="dept_err"></span> 
-                                    <!-- <span class="float-end charCount">Character Count</span> -->
+                                    <!-- <span class="float-end charCount">Character Count</span> --
                                 </div>
                              
-                            </div>
+                            </div> -->
                            
                         </div>
                         

@@ -121,7 +121,7 @@
                 <P class="paddingm part_name" id="part_name_oui"></P>
             </div>
             <div class="">
-                <p class="paddingm machine_name text_align_c" id="event_logo"> Downtime </p>
+                <p class="paddingm machine_name text_align_c" id="event_logo" style="font-size:1.2rem;"> Downtime </p>
                 <P class="paddingm part_name text_align_c" id="event_duration_machine"> </P>
             </div>
             <div class="right_margin" style="display:flex;">
