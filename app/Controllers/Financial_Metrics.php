@@ -34,8 +34,8 @@ class Financial_Metrics extends BaseController
         $ref="Overall";
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
-        // $fromTime = "2023-05-16T09:00:00";
-        // $toTime = "2023-05-16T21:00:00";
+        // $fromTime = "2023-06-01T09:00:00";
+        // $toTime = "2023-07-01T09:00:00";
 
         // $url = "http://localhost:8080/graph/overallMonitoringValues/".$fromTime."/".$toTime."/";
         // $ch = curl_init($url);
@@ -715,8 +715,8 @@ class Financial_Metrics extends BaseController
                                 $st[1]=$st[1]/sizeof($part_count);
                             }
 
-                            $noplan = trim($DTR['downtime_reason']);
-                            $noplan = strtolower(str_replace(" ","",$noplan));
+                            $noplan_c = trim($DTR['downtime_reason']);
+                            $noplan_c = strtolower(str_replace(" ","",$noplan));
                             if ($DTR['downtime_category'] == 'Planned' && $noplan == 'noplan' && $noplan == true) {
                                 if (sizeof($st) > 1) {
                                     $tmpMachineOFFDown = $tmpMachineOFFDown + $st[0];
@@ -762,7 +762,7 @@ class Financial_Metrics extends BaseController
                                 
                             }
 
-                            if ($DTR['downtime_reason'] != 'Machine OFF' || ($DTR['downtime_category'] == 'Planned' && $noplan == 'noplan' && $noplan == true)) {
+                            if ($DTR['downtime_reason'] != 'Machine OFF' || ($DTR['downtime_category'] == 'Planned' && $noplan_c == 'noplan' && $noplan == true)) {
                                 if (sizeof($st) > 1) {
                                     $PartInMachine = $PartInMachine + $st[0];
                                     $PartInMachineSec = $PartInMachineSec + $st[1];
@@ -839,6 +839,7 @@ class Financial_Metrics extends BaseController
                 array_push($DowntimeTimeData, $tmpDown);
             }
         }
+
         return $DowntimeTimeData;
     }
 
@@ -2222,9 +2223,9 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days,$noplan=false)
                                     $duration = ($st[0]);
                                 }
 
-                                $noplan = trim($DTR['downtime_reason']);
-                                $noplan = strtolower(str_replace(" ","",$noplan));
-                                if ($DTR['downtime_category'] == 'Planned' && $noplan == 'noplan' && $noplan == true) {
+                                $noplan_c = trim($DTR['downtime_reason']);
+                                $noplan_c = strtolower(str_replace(" ","",$noplan));
+                                if ($DTR['downtime_category'] == 'Planned' && $noplan_c == 'noplan' && $noplan == true) {
                                     $tmpMachineOFFDown = $tmpMachineOFFDown + $duration;
                                 }
                                 else if($DTR['downtime_category'] == 'Unplanned'){
