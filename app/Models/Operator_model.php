@@ -221,7 +221,7 @@ class Operator_model extends Model{
         $res = $query->get()->getResultArray();
         return $res;
     }
-
+    
     public function getLiveProduction($machine,$shift,$shift_date)
     {
         $db = \Config\Database::connect($this->site_creation);

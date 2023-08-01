@@ -236,7 +236,7 @@ $session = \Config\Services::session();
                                 </div>
                               </div>
                             </div>
-                            <div class="filter_checkboxes_issue po_fixed filter_checkboxes_filter Filter_status_div display_hide">
+                            <div class="filter_checkboxes_issue po_fixed filter_checkboxes_filter Filter_status_div display_hide" style="position:fixed;">
                             </div>
                           </div>
                           <label class="input-padding ">Status</label>
@@ -255,7 +255,7 @@ $session = \Config\Services::session();
                                 </div>
                               </div>
                             </div>
-                            <div class="filter_checkboxes_issue po_fixed filter_checkboxes_filter Filter_lables_div display_hide">
+                            <div class="filter_checkboxes_issue po_fixed filter_checkboxes_filter Filter_lables_div display_hide" style="position:fixed;">
                             </div>
                           </div>
                           <label class="input-padding ">Labels</label>
@@ -274,7 +274,7 @@ $session = \Config\Services::session();
                                 </div>
                               </div>
                             </div>
-                            <div class="filter_checkboxes_issue po_fixed filter_checkboxes_filter Filter_priority_div display_hide">
+                            <div class="filter_checkboxes_issue po_fixed filter_checkboxes_filter Filter_priority_div display_hide" style="position:fixed;">
                             </div>
                           </div>
                           <label class="input-padding ">Priority</label>
@@ -293,7 +293,7 @@ $session = \Config\Services::session();
                                 </div>
                               </div>
                             </div>
-                            <div class="filter_checkboxes_issue po_absolute filter_checkboxes_filter Filter_assignee_div display_hide">
+                            <div class="filter_checkboxes_issue po_absolute filter_checkboxes_filter Filter_assignee_div display_hide" style="position:fixed;">
                             </div>
                           </div>
                           <label class="input-padding ">Assignee</label>

@@ -76,6 +76,9 @@ class Production_Downtime_controller extends BaseController{
         // return $getInactiveMachine;
         // Date Filte for PDM Reason Mapping Data........
         $len_id = sizeof($getOfflineId);
+        $s_time_range_limit =  strtotime($FromDate." ".$FromTime);
+        $e_time_range_limit =  strtotime($ToDate." ".$ToTime);
+        /*
         foreach ($output as $key => $value) {
             $check_no = 0;
             // check if machien event id is same on offline and no data
@@ -127,6 +130,56 @@ class Production_Downtime_controller extends BaseController{
                 }
             }
         }
+        */
+        foreach ($output as $key => $value) {
+            $check_no = 0;
+            for($i=0;$i<$len_id;$i++){
+                if ($getOfflineId[$i]['machine_event_id'] == $value['machine_event_id']) {
+                    unset($output[$key]);
+                    $check_no = 1;
+                    break;
+                }
+            }
+            if($check_no == 0){
+                if ($value['split_duration']<0) {
+                    unset($output[$key]);
+                }
+                else{
+                    $s_time_range =  strtotime($value['calendar_date']." ".$value['start_time']);
+                    $e_time_range =  strtotime($value['calendar_date']." ".$value['end_time']);
+
+                    if ($s_time_range <= $s_time_range_limit && $e_time_range >= $s_time_range_limit) {
+                        $output[$key]['start_time'] = $FromTime;
+                        if ($e_time_range >= $e_time_range_limit) {
+                            $output[$key]['end_time'] = $ToTime;
+                        }
+                        $output[$key]['split_duration'] = $this->getDuration($value['calendar_date']." ".$output[$key]['start_time'],$value['calendar_date']." ".$output[$key]['end_time']);
+                    }
+                    else if ($s_time_range < $e_time_range_limit && $e_time_range > $e_time_range_limit) {
+                        $output[$key]['end_time'] = $ToTime;
+                        $output[$key]['split_duration'] = $this->getDuration($value['calendar_date']." ".$output[$key]['start_time'],$value['calendar_date']." ".$output[$key]['end_time']);
+                    }
+                    else{
+                        if ($e_time_range <= $s_time_range_limit){
+                            unset($output[$key]);
+                        }
+                        if ($s_time_range >= $e_time_range_limit){
+                            unset($output[$key]);
+                        }
+                    }
+
+                    //For remove the current data of inactive machines.........
+                    foreach ($getInactiveMachine as $v) {
+                        $t = explode(" ", $v['max(r.last_updated_on)']);
+                        $start_time_range =  strtotime($v['max(r.last_updated_on)']);
+                        if ($s_time_range_limit > $start_time_range && $value['machine_id'] == $v['machine_id']){
+                            unset($output[$key]);
+                        }
+                    }
+                }
+            }
+        }
+
 
         // if ($graphRef  == "AvailabilityReasonWise") {
         //     return $output;
@@ -435,18 +488,14 @@ class Production_Downtime_controller extends BaseController{
                     // array_push($reason_arr,$val[$key]['oppCost']);
                     $reason_arr[$val[$key]['machine_id']] = $val[$key]['duration'];
                 }
-                
             }
             $reason_arr['downtime_reason_id'] = $value['downtime_reason_id'];
             $reason_arr['downtime_reason'] = $value['downtime_reason'];
             $reason_arr['downtime_category'] = $value['downtime_category'];
             $reason_arr['normal_reason'] = $value['normal_reason'];
             $reason_id_arr[$value['downtime_reason_id']] = $reason_arr;
-
             //array_push($reason_id_arr,$reason_arr);
-
         }
-
         $final_arr['graph'] = $reason_id_arr;
         $final_arr['grandTotal'] = $result['grandTotal'];
         $final_arr['total_duration'] = array_sum($result['totalDuration']);
@@ -1641,8 +1690,8 @@ class Production_Downtime_controller extends BaseController{
 
             $fromdate = $this->request->getVar('from');
             $todate = $this->request->getVar('to');
-            // $fromdate = "2023-06-10T14:00:00";
-            // $todate="2023-06-16T13:00:00";
+            // $fromdate = "2023-06-01T09:00:00";
+            // $todate="2023-06-01T21:00:00";
             $res = $this->reason_duration_graph($fromdate,$todate);
             $machine_drp = $this->data->getmachine_record_data();
 
@@ -1673,7 +1722,7 @@ class Production_Downtime_controller extends BaseController{
 
             echo  json_encode($out);
             // echo "<pre>";
-            // print_r($out);
+            // print_r($res);
         }
         
     }

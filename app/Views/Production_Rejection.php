@@ -103,7 +103,7 @@ a{
               <div class="d-flex innerNav">
                     <div class="box rightmar" style="margin-right: 0.5rem;">
                         <div class="input-box">
-                            <select class="form-select font_weight select_input_width input_padd" name="" id="RejectPartName" style="width: 10rem;">
+                            <select class="form-select font_weight select_input_width input_padd" name="" id="RejectPartName" style="width: 10rem;padding-right:1.8rem;">
                             </select>
                             <label for="inputSiteNameAdd" class="input-padding ">Part Name</label>
                         </div>
