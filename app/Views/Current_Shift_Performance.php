@@ -24,6 +24,15 @@
 
 </head>
 
+<!-- preloader -->
+<div id="overlay">
+    <div class="cv-spinner">
+        <span class="spinner"></span>
+        <span class="loading">Awaiting Completion...</span>
+    </div>
+</div>
+<!-- preloader end -->
+
 <div class="mr_left_content_sec">
     <nav class="sec_nav display_f align_c justify_c sec_nav_c navbar-expand-lg fixsubnav_quality">
         <div class="container-fluid paddingm display_f justify_sb align_c">
@@ -112,7 +121,7 @@
                 <P class="paddingm part_name" id="part_name_oui"></P>
             </div>
             <div class="">
-                <p class="paddingm machine_name text_align_c" id="event_logo"> Downtime </p>
+                <p class="paddingm machine_name text_align_c" id="event_logo" style="font-size:1.2rem;"> Downtime </p>
                 <P class="paddingm part_name text_align_c" id="event_duration_machine"> </P>
             </div>
             <div class="right_margin" style="display:flex;">
@@ -120,7 +129,7 @@
                     <i class="fa fa-circle" style="font-size:10px;color:white;"></i>
                     <span class="active_duration_oui" style="margin:0;padding:0;margin-right:1rem;font-size:1.4rem;font-family:'Roboto',sans-serif;color:white;font-weight:bold;"></span>
                 </div>
-                 <p class="paddingm machine_name" id="latest_event_machine"> Event </p>
+                 <p class="paddingm machine_name" id="latest_event_machine" style="font-size:1.3rem;font-weight:600;"> Event </p>
             </div> 
         </div>
 
@@ -133,11 +142,11 @@
                             <div class="" style="width: 65%;margin-top: 1rem;">
                                 <div class="skill display_f justify_c align_c">
                                     <div class="inner flex_f display_f justify_c align_c">
-                                        <div id="number_completion">
-                                            60%    
+                                        <div class="text_align_c" id="number_completion">
+                                            
                                         </div>
-                                        <div class="" style="width: 80%;"> 
-                                            <p class="white_s over_h text_e part_name" id="part_name_oui_p">partname</p>
+                                        <div class="text_align_c" style="width: 80%;"> 
+                                            <p class="white_s over_h text_e part_name" id="part_name_oui_p"></p>
                                         </div>
                                     </div>
                                     <svg version="1.1" class="svg_oui">
@@ -154,11 +163,11 @@
                                 <div class="" style="width:65%;">
                                     <p class="paddingm" style="">
                                         <span class="text-small">Target</span>
-                                        <span class="target_text2">0</span>
+                                        <span class="target_text2"></span>
                                     </p>
                                     <div class="target_bar bg_title target_outline" style="width: 100%;">
                                         <div class="target_inline">
-                                            <p class="paddingm target_inline_Cont">0</p>
+                                            <p class="paddingm target_inline_Cont"></p>
                                         </div>
                                     </div>
                                 </div>
@@ -267,19 +276,13 @@
    
 </div>
 
-<!-- preloader -->
-<!-- <div id="overlay">
-    <div class="cv-spinner">
-        <span class="spinner"></span>
-        <span class="loading">Awaiting Completion...</span>
-    </div>
-</div> -->
-<!-- preloader end -->
 
 <script src="<?php echo base_url(); ?>/assets/apexchart/dist/apexcharts.js"></script>
 <script src="<?php echo base_url(); ?>/assets/js/all-fontawesome.js?version=<?php echo rand() ; ?>"></script>
 
 <script type="text/javascript">
+
+$("#overlay").fadeIn(300);
 
 let slideIndex = 0;
 let slideIndexLimit = 10;
@@ -322,7 +325,7 @@ $('.visibility_div').css('display', 'inline');
 var j_global = "";
 var mx_global="";
 
-$("#overlay").fadeIn(300);
+
 getMachineDataLive();
  
 mx_global = setInterval(function() {
@@ -434,6 +437,8 @@ function getLiveMode(shift_date, shift_id) {
             // filter:x,
         },
         success: function(res) {
+            console.log("current shift performance live mode value");
+            console.log(res);
             $('.grid-container-cont').empty();
             res['latest_event'].forEach(function(machine) {
                 var machine_name = "";
@@ -467,7 +472,7 @@ function getLiveMode(shift_date, shift_id) {
                     '<div class="inner-circle">' +
                     '<div class="inner-val">' +
                     '<p class="paddingm production_completion production_completion_ref"><span id="production_per' +
-                    machine[0]['machine_id'] + '"></span>%</p>' +
+                    machine[0]['machine_id'] + '"></span></p>' +
                     '<p class="paddingm production_completion partname_ref" id="partname_' +
                     machine[0]['machine_id'] + '" title="">Part Name</p>' +
                     '</div>' +
@@ -564,9 +569,23 @@ function getLiveMode(shift_date, shift_id) {
                 $('#latest_status_' + machine[0]['machine_id'] + '').html(res['latest_event'][0][0]
                     .duration + "m " + res['latest_event'][0][0].event);
 
+                
                 // Production Percentage.......
-                var target_production = 5000;
-                var production_percent = parseInt((production_total / target_production) * 100);
+                var target_production = 0;
+                // res['production_target'].forEach(function(pp){
+                //     if (machine[0]['machine_id'] == pp['machine_id']) {
+                //         target_production = pp['target'];
+                //     }
+                // });
+                var shift_production=0;
+                res['shift_production_target'].forEach(function(i){
+                    if (i['machine_id'] == machine[0]['machine_id']) {
+                        target_production = i['shift_production_target'];
+                        shift_production = i['shift_production'];
+                    }
+                });
+
+                var production_percent = parseInt((shift_production / target_production) * 100);
                 var production_percent_val = 470 - (4.7 * production_percent);
                 const MyFSC_container = document.getElementsByClassName("circle");
                 MyFSC_container[0].style.setProperty("--foo", production_percent_val);
@@ -856,9 +875,17 @@ function getLiveMode(shift_date, shift_id) {
                             'latest_event'][0][0].duration + "m " + res['latest_event'][0][
                             0].event);
 
+                        var target_production = 0;  
+                        var shift_production=0;
+                        res['shift_production_target'].forEach(function(i){
+                            if (i['machine_id'] == machine[0]['machine_id']) {
+                                target_production = i['shift_production_target'];
+                                shift_production = i['shift_production'];
+                            }
+                        });
+
                         // Production Percentage.......
-                        var target_production = 5000;
-                        var production_percent = parseInt((production_total / target_production) *
+                        var production_percent = parseInt((shift_production / target_production) *
                             100);
                         var production_percent_val = 470 - (4.7 * production_percent);
                         const MyFSC_container = document.getElementsByClassName("circle");
@@ -927,8 +954,7 @@ $(document).on("mousemove", ".circle", function(e) {
     var relBoxCoords = "(" + relX + "," + relY + ")";
     var count = $('.circle');
     var index_val = count.index($(this));
-    $('.part_completion:eq(' + index_val + ')').css("transform", "translate3d(" + relX + "px," + relY +
-        "px,0px)");
+    // $('.part_completion:eq(' + index_val + ')').css("transform", "translate3d(" + relX + "px," + relY + "px,0px)");
 });
 
 function live_target_update(shift_date) {
@@ -1398,14 +1424,31 @@ function live_MC1001(shift_date, shift_id) {
                     "%");
                 $('#OEETarget_' + machine[0]['machine_id'] + '').html(parseInt(res['targets'][0].oee) + "%");
 
-
                 // Update Production Percentage
-                var target_production = 5000;
-                var production_percent = parseInt((production_total / target_production) * 100);
-                $('#production_per' + machine[0]['machine_id'] + '').html(production_percent);
+                var target_production = 0;  
+                var production_total=0;
+                res['shift_production_target'].forEach(function(i){
+                    if (i['machine_id'] == machine[0]['machine_id']) {
+                        target_production = i['shift_production_target'];
+                        production_total = i['shift_production'];
+                    }
+                });
 
-                $('#part_completion_hover_' + machine[0]['machine_id'] + '').html(
-                    production_percent + "%");
+                var production_percent = parseInt((production_total / target_production) * 100);
+                console.log("current shift performance production target selection");
+                console.log(production_percent);
+                res['production_target'].forEach(function(tmid){
+                    if (tmid['machine_id']==machine[0]['machine_id']) {
+                        if (parseInt(tmid['target'])>0) {
+                            $('#production_per' + machine[0]['machine_id'] + '').html(production_percent+"%");
+                            $('#part_completion_hover_' + machine[0]['machine_id'] + '').html(production_percent + "%");
+                        }else{
+                            $('#production_per' + machine[0]['machine_id'] + '').html('NA');
+                            $('#part_completion_hover_' + machine[0]['machine_id'] + '').html("NA");
+                        }
+                    }
+                }); 
+               
 
                 // Graph Portion
                 var hourly = [];
@@ -1503,6 +1546,8 @@ $(document).on('click', '.grid-item-cont', function(event) {
 
 
 function oui_functions_call(index_val){
+    $("#overlay").fadeIn(300);
+
     fullscreen_mode_remove();
 
     var tmp_mid = $('.machine_name_ref:eq(' + index_val + ')').attr('mid_data');
@@ -1568,12 +1613,14 @@ function oui_functions_call(index_val){
     getLiveProduction(tmp_mid,shift_date,tmp[1]);
     getPartCycleTime(tmp_mid);
     getRejectCounts(tmp_mid,shift_date,tmp[1]);
-    target_oui_graph(tmp_mid,tid_data,shift_date);
+    target_oui_graph(tmp_mid,tid_data,shift_date,shift_id);
     $('.graph-content').css('display', 'none');
     $('.oui_screen_view').css('display', 'block');
     $('.oui_arrow_div').css('display', 'inline');
     $('.visibility_div').css('display', 'none');
     $('#full_screen_btn_visibility').css('visibility','hidden');
+
+    $("#overlay").fadeOut(300);
 }
     
 
@@ -2438,34 +2485,89 @@ function getDownTimeGraph(machine_id, shift_date, s) {
 
 
 
-    function target_oui_graph(mid,tid,sdate){
+    function target_oui_graph(mid,tid,sdate,shift_id){
         // return new Promise(function(resolve,reject){
         $.ajax({
-            url:"<?php echo base_url('Current_Shift_Performance/get_target_graph'); ?>",
+            url:"<?php echo base_url('Current_Shift_Performance/getLiveMode'); ?>",
             method:"POST",
             data:{
-                mid:mid,
-                sdate:sdate,
-                tid:tid,
+                // mid:mid,
+                // sdate:sdate,
+                // tid:tid,
+                shift_date: sdate,
+                shift_id: shift_id,
             },
             dataType:"JSON",
             success:function(res){
-
+                console.log("oui tool changeover target graph");
+                console.log(res);
                 var target = 0;
-                if (parseInt(res[0]['production'])>=100) {
-                    target = 100;
+                res['production_target'].forEach(function(i){
+                    if (i['machine_id'] == mid) {
+                        target = i['target'];
+                    }
+                });
+
+                var total_produced=0;
+                res['target_production'].forEach(function(i){
+                    if (i['machine_id'] == mid) {
+                        total_produced = i['total_part_produced'];
+                    }
+                });
+                
+                var target_percentage=0;
+                if (target > 0) {
+                    target_percentage = (total_produced/target)*100;
                 }else{
-                    target = res[0]['percentage_target'];
+                    target_percentage = 100;
                 }
-                $('.target_inline').css('height',target+'%');
-                $('.target_inline_Cont').text(res[0]['production']);
-                $('.target_text2').text(res[0]['target']);
+                
+                console.log("production target percentage");
+                console.log(target_percentage);
+                console.log("target tool changeover"+target);
+                console.log("target production count :\t"+total_produced);
+                if (target_percentage > 100) {
+                    
+                    $('.target_inline').css('height','100%');
+                }else{
+                    if (parseInt(target)>0) {
+                        $('.target_inline').css('height',target_percentage+'%');
+                    }else{
+                        $('.target_inline').css('height','2%');
+                    }
+                    
+                }
+                if (parseInt(target)>0) {
+                    $('.target_inline_Cont').text(total_produced);
+                    $('.target_text2').text(target);
+                }else {
+                    $('.target_inline_Cont').text('NA');
+                    $('.target_text2').text('NA');
+                    $('#remaining_time_duration').text('NA');
+                    $('#estimated_time_target').text('NA');
+                }
+               
 
-                var production_percent_val = 470 - (4.7 * res[0]['percentage_target']);
+                var shift_target = 0;
+                var shift_production=0;
+                res['shift_production_target'].forEach(function(i){
+                    if (i['machine_id'] == mid) {
+                        shift_target = i['shift_production_target'];
+                        shift_production = i['shift_production'];
+                    }
+                });
+
+                var production_percent = (shift_production/shift_target)*100;
+                var production_percent_val = 470 - (4.7 * production_percent);
                 const circle_container = document.getElementsByClassName("circle_oui");
-                circle_container[0].style.setProperty("stroke-dashoffset", production_percent_val);
+                circle_container[0].style.setProperty("--foo_oui", production_percent_val);
+                if (parseInt(target)>0) {
+                    $('#number_completion').text(parseInt(production_percent)+"%");
+                }else{
+                    $('#number_completion').text("NA");
+                }
+                
 
-                production_percent = res[0]['percentage_target'];
                 var color_code = "";
                 if (production_percent > 75) {
                     color_code = "#c2fb05";

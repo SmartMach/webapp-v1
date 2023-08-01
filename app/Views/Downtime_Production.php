@@ -1518,9 +1518,9 @@ function filter_after_filter(end_index,start_index){
     t = $('.toDate').val();
     from = f.replace(" ","T");
     to = t.replace(" ","T");
-    console.log(from);
-    console.log(to);
-    console.log("prodcution downtime table filter values");
+    // console.log(from);
+    // console.log(to);
+    // console.log("prodcution downtime table filter values");
     $.ajax({
         url:"<?php echo base_url('Production_Downtime_controller/filter_records'); ?>",
         method:"POST",
@@ -1535,8 +1535,8 @@ function filter_after_filter(end_index,start_index){
             to:to,   
         },
         success:function(res){
-            console.log("prouction downtime records table");
-            console.log(res);
+            // console.log("prouction downtime records table");
+            // console.log(res);
             $('.alert_content').empty();
             // $('.scroll_rows').empty();
             var from_len = 0;
@@ -3007,6 +3007,8 @@ function first_load_reason_duration(f,t){
                 to:t,
             },
             success:function(res){
+                console.log("downtime duration reason")
+                console.log(res);
                 resolve(res);
 
                 var hour_text = parseInt(parseInt(res['total_duration'])/60);

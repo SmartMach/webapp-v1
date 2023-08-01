@@ -549,7 +549,7 @@
             </nav> 
               <div class="divMarLeft">
                 <p class="paddingm headTitle">TOTAL</p>
-                <p class="paddingm valueGraph"><i style="font-size:1.3rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft" id="PLTotal"></span></p>
+                <p class="paddingm valueGraph"><i style="font-size:1.2rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft" id="PLTotal"></span></p>
               </div>
               <div class="parent_graph_machine_wise_insights graph_margin_bottom parent_div marginScroll">
                 <div class="child_graph_machine_wise_insig child_div">
@@ -799,6 +799,8 @@ function plopportunity(){
         },
         success:function(res){      
           
+          console.log("financial p&l improvment graph");
+          console.log(res);
           $('#chart').empty();
           $(".apexcharts-canvas").remove();
           
@@ -842,9 +844,9 @@ function plopportunity(){
               enabled: false,
               top: 1,
               left: 1,
-              blur: 1,
+              // blur: 1,
               color: '#000',
-              opacity: 0.45
+              // opacity: 0.45
             }
           }, 
 
@@ -963,6 +965,7 @@ function plopportunity(){
           type: 'pie',
         },
         colors: [ "#005FC8", "#057CFF","#53A5FF", "#E7F2FF"],
+        // colors: [ "#005FC8", "#057CFF","#53A5FF", "#B3D7FF"],
         dataLabels: {
             enabled: true,
             offsetX: 30,
@@ -979,9 +982,17 @@ function plopportunity(){
               enabled: false,
               top: 1,
               left: 1,
-              blur: 1,
-              color: '#000',
-              opacity: 0.45
+              // blur: 1,
+              // color: '#000',
+              // opacity:1
+            },
+          },
+          states:{
+            hover:{
+              filter:{
+                type:"none",
+                value:0,
+              },
             },
           },
         labels: label_data,
@@ -1524,6 +1535,8 @@ function opportunitydrilldown(){
     },
     success:function(res){ 
 
+      console.log("opportunity drill down graph")
+      console.log(res);
       $('#OpportunityDrillDownInsights').remove();
       $('.child_graph_opportunity_drill_down').append('<canvas id="OpportunityDrillDownInsights"><canvas>');
       $('.chartjs-hidden-iframe').remove();
