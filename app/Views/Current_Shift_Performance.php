@@ -129,7 +129,7 @@
                     <i class="fa fa-circle" style="font-size:10px;color:white;"></i>
                     <span class="active_duration_oui" style="margin:0;padding:0;margin-right:1rem;font-size:1.4rem;font-family:'Roboto',sans-serif;color:white;font-weight:bold;"></span>
                 </div>
-                 <p class="paddingm machine_name" id="latest_event_machine"> Event </p>
+                 <p class="paddingm machine_name" id="latest_event_machine" style="font-size:1.3rem;font-weight:600;"> Event </p>
             </div> 
         </div>
 

@@ -549,7 +549,7 @@
             </nav> 
               <div class="divMarLeft">
                 <p class="paddingm headTitle">TOTAL</p>
-                <p class="paddingm valueGraph"><i style="font-size:1.3rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft" id="PLTotal"></span></p>
+                <p class="paddingm valueGraph"><i style="font-size:1.2rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft" id="PLTotal"></span></p>
               </div>
               <div class="parent_graph_machine_wise_insights graph_margin_bottom parent_div marginScroll">
                 <div class="child_graph_machine_wise_insig child_div">

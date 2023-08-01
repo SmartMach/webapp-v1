@@ -3479,31 +3479,42 @@ $.ajax({
             res_Site.forEach(function(item){
                 var randomColor = color[Math.floor(Math.random()*color.length)];
                 var elements = $();
-
+                var forgot_border = "";
+                var delete_border = "";
                 if (item.role == "Smart Admin"){
                     var forgot = "none";
                     var colorRole = "#853e2c";
                     var colorBorder = "#ffdad0";
+                    forgot_border = "none";
+                    delete_border="none";
                 }
                 else if(item.role == "Smart Users"){
                     var forgot = "none";
                     var colorRole = "#a2723f";
                     var colorBorder = "#ffe4c4";
+                    forgot_border = "none";
+                    delete_border="none";
                 }
                 else if(item.role == "Site Admin"){
                     var forgot = "none";
                     var colorRole = "#005fc8";
                     var colorBorder = "#c1eaff";
+                    forgot_border = "none";
+                    delete_border="none";
                 }
                 else if(item.role == "Site Users"){
                     var forgot = "none";
                     var colorRole = "#56b8c2";
                     var colorBorder = "#60ebee";
+                    forgot_border = "none";
+                    delete_border="none";
                 }
                 else if(item.role == "Operator"){
                     var forgot = "block";
                     var colorRole = "#7030a0";
                     var colorBorder = "#dfcaee";
+                    forgot_border = "none";
+                    delete_border="1px solid #EEE";
                 }
                 if (item.status == 1) {
                     active = active+1;
@@ -3542,8 +3553,8 @@ $.ajax({
                                         +'<ul class="edit-subMenu" style="z-index:10;">'
                                             // +'<li class="edit-opt info-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" con="'+item.created_on+'"><a href="#"><i class="fa fa-info" style="margin-left:10px;"></i>INFO</a></li>'
                                             +'<li class="edit-opt edit-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" con="'+item.created_on+'" svalue="'+item.status+'" site="'+item.site_id+'"><a href="#"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh" style="margin-left:10px;"></i>EDIT</a></li>'
-                                            +'<li class="edit-opt deactivate-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'" site_id="'+item.site_id+'"><a href="#"><img src="<?php echo base_url('assets/img/delete.png'); ?>" class="img_font_wh1" style="margin-left:10px;"></i>DEACTIVATE</a></li>'
-                                            +'<li class="edit-opt forgot-password forgotwork " style="display:'+forgot+';" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'" site="'+item.site_id+'"><a href="#"><i class="fa fa-key" style="margin-left:15px;font-size:1rem;"></i><span style="margin-left:0.8rem;">RESET PASSWORD</span></a></li>'
+                                            +'<li class="edit-opt deactivate-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'" site_id="'+item.site_id+'"><a href="#" style="border-bottom:'+delete_border+';"><img src="<?php echo base_url('assets/img/delete.png'); ?>" class="img_font_wh1" style="margin-left:10px;"></i>DEACTIVATE</a></li>'
+                                            +'<li class="edit-opt forgot-password forgotwork " style="display:'+forgot+';" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'" site="'+item.site_id+'"><a href="#" style="border-bottom:'+forgot_border+';"><i class="fa fa-key" style="margin-left:15px;font-size:1rem;"></i><span style="margin-left:0.8rem;">RESET PASSWORD</span></a></li>'
                                         +'</ul>'
                                     +'</li>'
                                 +'</ul>'                
@@ -3587,7 +3598,7 @@ $.ajax({
                                         +'</a>'
                                         +'<ul class="edit-subMenu" style="z-index:10;">'
                                             +'<li class="edit-opt info-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" con="'+item.created_on+'" site="'+item.site_id+'"><a href="#"><img src="<?php echo base_url('assets/img/info.png'); ?>" class="img_font_wh2" style="margin-left:10px;"></i>INFO</a></li>'
-                                            +'<li class="edit-opt activate-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'"  site_id="'+item.site_id+'"><a href="#"><img src="<?php echo base_url('assets/img/activate.png'); ?>" class="img_font_wh2" style="margin-left:10px;"></i>ACTIVATE</a></li>'
+                                            +'<li class="edit-opt activate-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'"  site_id="'+item.site_id+'"><a href="#" style="border-bottom:none;"><img src="<?php echo base_url('assets/img/activate.png'); ?>" class="img_font_wh2" style="margin-left:10px;"></i>ACTIVATE</a></li>'
                                         +'</ul>'
                                     +'</li>'
                                 +'</ul>'                
