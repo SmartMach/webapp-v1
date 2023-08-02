@@ -36,11 +36,6 @@ class Login extends BaseController
         	
         }
     }
-    public function updatePassword(){
-    	//$data =  "Mani";
-    	//return view('user_login');
-    	//return view('Create_Password');
-    }
     public function creation_password(){
     	// if ($_POST['submit']) {
     		//$userName = $this->data;
