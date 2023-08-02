@@ -369,11 +369,14 @@
               $('.toDate').datetimepicker('reset');
               //Terminate
           }
-
+          
+          // var tmp_current_time = new Date()
           if (inputDateTime.getDate() == current.getDate() && inputDateTime.getMonth() == current.getMonth()) {
-              if (inputDateTime.getHours() <= (current.getHours())) {
+            var tmp_current = new Date();
+            if (inputDateTime.getHours() <= (current.getHours()) && inputDateTime.getDate()==tmp_current.getDate() && inputDateTime.getMonth()==tmp_current.getMonth()) {
                   $('.toDate').datetimepicker('reset');
               }
+              
               this.setOptions({
                   minTime:(parseInt(current.getHours())+parseInt(1)) + ':00',
                   minDate:c_date
@@ -386,7 +389,7 @@
           }
 
           var tmp = new Date()
-          if (inputDateTime.getDate() == tmp.getDate()) {
+          if (inputDateTime.getDate() == tmp.getDate() && inputDateTime.getMonth() == tmp.getMonth()) {
               this.setOptions({
                   maxTime: (tmp.getHours())+ ':00',
               });
@@ -405,9 +408,12 @@
               if (inputDateTime.getHours() > (current.getHours())) {
                   $('.fromDate').datetimepicker('reset');
               }
-              this.setOptions({
+              if (inputDateTime.getDate() == current.getDate() && inputDateTime.getMonth() == current.getMonth()) {
+                this.setOptions({
                   maxTime: (current.getHours())+ ':00',
-              });
+                });
+              }
+             
           } else {
               this.setOptions({
                   maxTime: false,
