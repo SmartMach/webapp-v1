@@ -300,7 +300,9 @@ $session = \Config\Services::session();
                         </div>
                     </div>
 
-                    <a style="" class="add_btn cursor fnt_bold none_dec fnt_fam float-end" onclick="getFilterval(true)">APPLY FILTER
+                    <!-- <a style="" class="add_btn cursor fnt_bold none_dec fnt_fam float-end" onclick="getFilterval(true)">APPLY FILTER
+                    </a> -->
+                    <a class="overall_filter_btn overall_filter_header_css" style="text-decoration:none;margin-right:0.5rem;cursor:pointer;"  onclick="getFilterval(true)">Apply Filter
                     </a>
 
 
@@ -312,7 +314,10 @@ $session = \Config\Services::session();
                         if($this->data['access'][0]['work_order_management'] == 3){ 
                     ?>
 
-                    <a style="" class="add_btn cursor fnt_bold none_dec fnt_fam float-end" id="add_issue_button">
+                    <!-- <a style="" class="add_btn cursor fnt_bold none_dec fnt_fam float-end" id="add_issue_button">
+                        <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD ISSUE
+                    </a> -->
+                    <a style="text-decoration:none;margin-right:0.5rem;cursor:pointer;" class="overall_filter_btn overall_filter_header_css" id="add_issue_button">
                         <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD ISSUE
                     </a>
 

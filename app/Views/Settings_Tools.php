@@ -59,7 +59,7 @@
                 <?php 
                      if($this->data['access'][0]['settings_part'] == 3){ 
                 ?>
-                    <a style="width:8rem;justify-content:center;text-align:center;" class="settings_nav_anchor saveBtnStyle float-end" id="add_part_modal">
+                    <a style="text-decoration:none;margin-right:0.3rem;cursor:pointer;" class="overall_filter_btn overall_filter_header_css" id="add_part_modal">
                         <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD PART
                     </a> 
                 <?php 

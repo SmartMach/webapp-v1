@@ -150,8 +150,8 @@ class Alert_Settings_Model extends Model{
         $query = $db->table('alert_settings');
         $query->select('*');
         $query->where('alert_status !=',1);
+        $query->orderBy('last_updated_on','DESC');
         $res = $query->get()->getResultArray();
-
         return $res;
     }
 

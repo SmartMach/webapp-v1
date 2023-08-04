@@ -435,6 +435,12 @@ span{
     color:var(--font_color_save_hover_pop_up) !important;
     font-weight: var(--overall_fitler_header_btn_fw);
 }
+
+.overall_filter_header_css:hover{
+    background-color: var(--save_btn_hover_background_color);
+    color:var(--save_btn_font_color);
+    opacity: 0.8;
+}
 .mar_r_box{
     margin-right:var(--mar_right_add_btn);
     display:var(--overall_filter_header_div_f);
