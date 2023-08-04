@@ -744,7 +744,7 @@ $session = \Config\Services::session();
 
                     </div>
 
-                    <div class="alert_content">    </div>
+                    <div class="production_downtime_content">    </div>
                 </div>
             </div>
            
@@ -1539,7 +1539,7 @@ function filter_after_filter(end_index,start_index){
         success:function(res){
             // console.log("prouction downtime records table");
             // console.log(res);
-            $('.alert_content').empty();
+            $('.production_downtime_content').empty();
             // $('.scroll_rows').empty();
             var from_len = 0;
             var end_len = 50;
@@ -1547,86 +1547,91 @@ function filter_after_filter(end_index,start_index){
             var total_page = parseInt(res['total'])/50;
             total_page = Math.ceil(total_page);
             $('#total_page').html(total_page);
-            res['data'].forEach(function(val,key){
+            if (parseInt(res['data'].length)>0) {
+                res['data'].forEach(function(val,key){
                 
-                // index = parseInt(index)+1;
-                if ((parseInt(key)<parseInt(end_index)) && (parseInt(key)>=parseInt(start_index))) {  
-                    var elements = $();
-                    var element = $();
+                    // index = parseInt(index)+1;
+                    if ((parseInt(key)<parseInt(end_index)) && (parseInt(key)>=parseInt(start_index))) {  
+                        var elements = $();
+                        var element = $();
 
-                    var from_date = date_formate_change(val.shift_date+'T'+val.start_time);
-                    var to_date = date_formate_change(val.shift_date+'T'+val.end_time);
-                    var updated_at = date_formate_change(val.last_updated_on);
-                    
-                    var tmp_duration  = val.split_duration.toString().split('.');
-                    var final_tmp_duration = " ";
-                    if (tmp_duration.length > 1) {
-                      final_tmp_duration = tmp_duration[0]+'m'+' '+tmp_duration[1]+'s';
-                    }else{
-                      final_tmp_duration = tmp_duration[0]+'m';
+                        var from_date = date_formate_change(val.shift_date+'T'+val.start_time);
+                        var to_date = date_formate_change(val.shift_date+'T'+val.end_time);
+                        var updated_at = date_formate_change(val.last_updated_on);
+                        
+                        var tmp_duration  = val.split_duration.toString().split('.');
+                        var final_tmp_duration = " ";
+                        if (tmp_duration.length > 1) {
+                        final_tmp_duration = tmp_duration[0]+'m'+' '+tmp_duration[1]+'s';
+                        }else{
+                        final_tmp_duration = tmp_duration[0]+'m';
+                        }
+
+                        elements = elements.add('<div style="display:flex;flex-direction:row;border:1px solid rgba(242,242,242);border-radius:10px;margin-bottom:0.5rem;height:3.5rem;width:100%;">'
+                            +'<div class="font_row alignflex" style="width:9.5%;position: sticky;left:0px;background:white;height:100%;border-radius:10px 0px 0px 10px;">'
+                                +'<span style="margin: auto;">'+val.machine_name+'</span>'
+                            +' </div>'
+                            +'<div class="font_row alignflex" style="width:14%;position: sticky;left:118px;background:white;height:100%">'
+                                +'<span style="margin: auto;">'+from_date+'</span>'
+                            +'</div>'
+                            +'<div class="red alignflex" style="width:9.6%;position: sticky;left:290px;background:white;height:100%;">'
+                                +'<span style="margin: auto;">'+final_tmp_duration+'</span>'
+                            +'</div>'
+                            +'<div class="font_row alignflex" style="width:14.8%;">'
+                                +'<span style="margin: auto;">'+to_date+'</span>'
+                            +' </div>'
+                            +'<div class="font_row alignflex" style="width:9.5%;">'
+                                +'<span style="margin: auto;">'+val.downtime_category+'</span>'
+                            +'</div>'
+                            +' <div class="font_row alignflex" style="width:12.4%;">'
+                                +'<span style="margin: auto;">'+val.downtime_reason+'</span>'
+                            +'</div>'
+                            +'<div class="font_row alignflex" style="width:10.6%;">'
+                                +'<span style="margin: auto;">'+val.tool_name+'</span>'
+                            +'</div>'
+                            +'<div class="font_row alignflex" style="width:10.5%;">'
+                                +'<span style="margin:auto;">'+val.part_name+'</span>'
+                            +'</div>'
+                            +'<div class="font_row alignflex" style="width:9.5%;">'
+                                +'<span style="margin:auto;">'+val.last_updated_by+'</span>'
+                            +'</div>'
+                            +'<div class="font_row alignflex" style="width:9.6%;">'
+                                +'<span style="margin:auto;">'+updated_at+'</span>'
+                            +'</div>'
+                            +'<div class="font_row alignflex " style="width:6.5%;">'
+                                +'<div class="notes_check"><img src="<?php  echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" onmouseover="notes_hover(this)"  onmouseout="mouse_out_check(this)"/></div>'
+                            +'</div>'
+                            +'<div class="notes_display" style="">'
+                                +'<p >'+val.notes+'</p>'
+                            +'</div>'
+                        +'</div>');
+
+
+                        // element = element.add('<div class="alignflex fixed_col_common2"  style="width:83%;">'
+                        //     +'<div class="font_row alignflex " style="height:100%;width:15.1%;"><span style="margin:auto;">'+to_date+'</span></div>'
+                        //     +'<div class="font_row alignflex" style="height:100%;width:10%;"><span style="margin-left:1rem;">'+val.downtime_category+'</span></div>'
+                        //     +' <div class="font_row alignflex" style="height:100%;width:15%;"><span style="margin-left:1rem;">'+val.downtime_reason+'</span></div>'
+                        //     +' <div class="font_row alignflex" style="height:100%;width:12%"><span style="margin-left:1rem;">'+val.tool_name+'</span></div>'
+                        //     +'<div class="font_row alignflex" style="height:100%;width:15%;"><span style="margin-left:1rem;">'+val.part_name+'</span></div>'
+                        //     +'<div class="font_row alignflex" style="height:100%;width:10%;"><span style="margin-left:1rem;">'+val.last_updated_by+'</span></div>'
+                        //     +'<div class="font_row alignflex" style="height:100%;width: 15%;"><span style="margin-left:1rem;">'+updated_at+'</span></div>'
+                        //     +'<div class="font_row alignflex "  style="height:100%;width: 8%;justify-content:center;"><div class="notes_check"><img src="<?php  echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" onmouseover="notes_hover(this)"  onmouseout="mouse_out_check(this)"/></div></div>'
+                        //     +'<div class="notes_display" style="">'
+                        //         +'<p >'+val.notes+'</p>'
+                        //     +'</div>'
+                        // +'</div>');
+
+                        $('.production_downtime_content').append(elements);
+                        // $('.scroll_rows').append(element);
                     }
-
-                    elements = elements.add('<div style="display:flex;flex-direction:row;border:1px solid rgba(242,242,242);border-radius:10px;margin-bottom:0.5rem;height:3.5rem;width:100%;">'
-                        +'<div class="font_row alignflex" style="width:9.5%;position: sticky;left:0px;background:white;height:100%;border-radius:10px 0px 0px 10px;">'
-                            +'<span style="margin: auto;">'+val.machine_name+'</span>'
-                        +' </div>'
-                        +'<div class="font_row alignflex" style="width:14%;position: sticky;left:118px;background:white;height:100%">'
-                            +'<span style="margin: auto;">'+from_date+'</span>'
-                        +'</div>'
-                        +'<div class="red alignflex" style="width:9.6%;position: sticky;left:290px;background:white;height:100%;">'
-                            +'<span style="margin: auto;">'+final_tmp_duration+'</span>'
-                        +'</div>'
-                        +'<div class="font_row alignflex" style="width:14.8%;">'
-                            +'<span style="margin: auto;">'+to_date+'</span>'
-                        +' </div>'
-                        +'<div class="font_row alignflex" style="width:9.5%;">'
-                            +'<span style="margin: auto;">'+val.downtime_category+'</span>'
-                        +'</div>'
-                        +' <div class="font_row alignflex" style="width:12.4%;">'
-                            +'<span style="margin: auto;">'+val.downtime_reason+'</span>'
-                        +'</div>'
-                        +'<div class="font_row alignflex" style="width:10.6%;">'
-                            +'<span style="margin: auto;">'+val.tool_name+'</span>'
-                        +'</div>'
-                        +'<div class="font_row alignflex" style="width:10.5%;">'
-                            +'<span style="margin:auto;">'+val.part_name+'</span>'
-                        +'</div>'
-                        +'<div class="font_row alignflex" style="width:9.5%;">'
-                            +'<span style="margin:auto;">'+val.last_updated_by+'</span>'
-                        +'</div>'
-                        +'<div class="font_row alignflex" style="width:9.6%;">'
-                            +'<span style="margin:auto;">'+updated_at+'</span>'
-                        +'</div>'
-                        +'<div class="font_row alignflex " style="width:6.5%;">'
-                            +'<div class="notes_check"><img src="<?php  echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" onmouseover="notes_hover(this)"  onmouseout="mouse_out_check(this)"/></div>'
-                        +'</div>'
-                        +'<div class="notes_display" style="">'
-                            +'<p >'+val.notes+'</p>'
-                        +'</div>'
-                    +'</div>');
-
-
-                    // element = element.add('<div class="alignflex fixed_col_common2"  style="width:83%;">'
-                    //     +'<div class="font_row alignflex " style="height:100%;width:15.1%;"><span style="margin:auto;">'+to_date+'</span></div>'
-                    //     +'<div class="font_row alignflex" style="height:100%;width:10%;"><span style="margin-left:1rem;">'+val.downtime_category+'</span></div>'
-                    //     +' <div class="font_row alignflex" style="height:100%;width:15%;"><span style="margin-left:1rem;">'+val.downtime_reason+'</span></div>'
-                    //     +' <div class="font_row alignflex" style="height:100%;width:12%"><span style="margin-left:1rem;">'+val.tool_name+'</span></div>'
-                    //     +'<div class="font_row alignflex" style="height:100%;width:15%;"><span style="margin-left:1rem;">'+val.part_name+'</span></div>'
-                    //     +'<div class="font_row alignflex" style="height:100%;width:10%;"><span style="margin-left:1rem;">'+val.last_updated_by+'</span></div>'
-                    //     +'<div class="font_row alignflex" style="height:100%;width: 15%;"><span style="margin-left:1rem;">'+updated_at+'</span></div>'
-                    //     +'<div class="font_row alignflex "  style="height:100%;width: 8%;justify-content:center;"><div class="notes_check"><img src="<?php  echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" onmouseover="notes_hover(this)"  onmouseout="mouse_out_check(this)"/></div></div>'
-                    //     +'<div class="notes_display" style="">'
-                    //         +'<p >'+val.notes+'</p>'
-                    //     +'</div>'
-                    // +'</div>');
-
-                    $('.alert_content').append(elements);
-                    // $('.scroll_rows').append(element);
-                }
                 
-            });
-            table_onclick();
+                });
+                table_onclick();
 
+              
+            }else{
+                $('.production_downtime_content').append('<p class="no_record_css">No Records...</p>');
+            }
             $("#overlay").fadeOut(550);
             // var width_get = $('.fixed_rows').css('height');
             // var width_get_1 = $('.scroll_rows').css('height');

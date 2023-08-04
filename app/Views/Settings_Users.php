@@ -3470,7 +3470,7 @@ $.ajax({
     success:function(res_Site){    
         $('.contentUser').empty();
             if (jQuery.isEmptyObject(res_Site)){
-                $('.contentUser').html("<p>No Records Found!</p>");
+                $('.contentUser').html('<p class="no_record_css">No Records...</p>');
             }
             var active = 0;
             var inactive = 0;

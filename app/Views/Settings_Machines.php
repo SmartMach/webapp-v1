@@ -1147,7 +1147,7 @@ function get_machine_data(){
         success:function(res){
             $('.contentMachine').empty();
             if (jQuery.isEmptyObject(res)){
-                $('.contentMachine').html("<p>No Records Found!</p>");
+                $('.contentMachine').html('<p class="no_record_css">No Records...</p>');
             }
             res.forEach(function(item){
                 var machine_rate_per_hour = item.rate_per_hour;
@@ -1197,8 +1197,8 @@ function get_machine_data(){
                             +'</div>'
                         +'</div>');
                         $('.contentMachine').append(elements);
-                    }
-                    else{
+                }
+                else{
                         var machine_off_reate_hour = item.machine_offrate_per_hour;
                         elements = elements.add('<div class="table_data">'
                             +'<div class="row paddingm">'

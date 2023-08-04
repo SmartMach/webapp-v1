@@ -1348,95 +1348,91 @@ function get_part_data(){
         async:false,
         success:function(res){
             $('.contentTool').empty();
-            if( res != ""){  
-            res.forEach(function(item){
-                var elements = $();
-                var part_price = item.part_price;
-                var part_p =0;
-                if (isFloat(part_price) == true) {
-                    part_p = parseFloat(part_price);
-                }else{
-                    part_p = parseInt(part_price).toFixed(2);
-                }
-                if (item.status == 1) {
-                    var condition = item.part_price;
-                    elements = elements.add('<div id="settings_div">'
-                        +'<div class="row paddingm">'
-                        +'<div class="col col-sm-1 marleft" ><p>'+item.part_id+'</p></div>'
-                        +'<div class="col col-sm-2 marleft " ><p title='+item.part_name+'>'+item.part_name+'</p></div>'       
-                        +'<div class="col col-sm-2 marleft" >'
-                        +'<p title="'+item.tool_id+'">'+item.tool_name+'</p>'
-                        +'</div>'
-                        +'<div class="col col-sm-2 marleft" >'
-                        +'<p>'+item.NICT+'s</p>'
-                        +'</div>'
-                        +'<div class="col col-sm-2 marleft" ><p>'+item.part_produced_cycle+'</p></div>'
-                        +'<div class="col col-sm-1 marright" >'
-                        +'<p><i class="fa fa-inr" style="margin-right:5px;"></i>'+part_p+'</p>'
-                        +'</div>'
-                        +'<div class="col col-sm-1 marleft settings_active" ><p style="color: #005CBC"><i class="fa fa-circle" style="font-size:9px;margin-right:5px;margin-top:5px; color:#005CBC;"></i>Active</p></div>'
-                        +'<div class="col col-sm-1 d-flex justify-content-center fasdiv">'
-                        +'<ul class="edit-menu">'
-                        +'<li class="d-flex justify-content-center">'
-                        +'<a href="javascript:function(){return false;}">'
-                        +'<i  class="edit fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
-                        +'</a>'
-                        +'<ul class="edit-subMenu" style="z-index:10;">'
-                        +'<li class="edit-opt info-tool1" lvalue="'+item.part_id+'" style="display:'+info_machine+';"><a href="#"><img src="<?php echo base_url('assets/img/info.png'); ?>" class="img_font_wh2" style="margin-left:10px;">INFO</a></li>'
-                        +'<li class="edit-opt edit-tool menu-font-change text-right" lvalue="'+item.part_id+'" style="display:'+edit_machine+';"><a href="#"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh" style="margin-left:10px;">EDIT</a></li>'
-                        +'<li class="deactivate-tool " lvalue="'+item.part_id+'" svalue="'+item.status+'" style="display:'+deactivate_machine+';"><a href="#" style="border-bottom:none;"><img  src="<?php echo base_url('assets/img/delete.png'); ?>" class="img_font_wh1" style="margin-left:10px;">DEACTIVATE</a></li>'
-                        +'</ul>'
-                        +'</li>'
-                        +'</ul>'               
-                        +'</div>'  
-                        +'</div>'
-                    +'</div>');
-                    $('.contentTool').append(elements);
-                }
-                else{
-                    var condition1 = item.part_price;
-                    elements = elements.add('<div id="settings_div">'
-                        +'<div class="row paddingm">'
-                        +'<div class="col col-sm-1 marleft" ><p>'+item.part_id+'</p></div>'
-                        +'<div class="col col-sm-2 marleft" ><p title='+item.part_name+'>'+item.part_name+'</p></div>'        
-                        +'<div class="col col-sm-2 marleft" >'
-                        +'<p title="'+item.tool_id+'">'+item.tool_name+'</p>'
-                        +'</div>'
-                        +'<div class="col col-sm-2 marleft" >'
-                        +'<p>'+item.NICT+'s</p>'
-                        +'</div>'
-                        +'<div class="col col-sm-2 marleft" ><p>'+item.part_produced_cycle+'</p></div>'
-                        +'<div class="col col-sm-1 marright" >'
-                        +'<p><i class="fa fa-inr" style="margin-right:5px;"></i>'+part_p+'</p>'
-                        +'</div>'
-                        +'<div class="col col-sm-1 marleft settings_active" style="color:#C00000;"><p style="color: #C00000"><i class="fa fa-circle" style="font-size:9px;margin-right:5px;margin-top:5px;"></i>Inactive</p></div>'
-                        +'<div class="col col-sm-1 d-flex justify-content-center fasdiv">'
-                        +'<ul class="edit-menu">'
-                        +'<li class="d-flex justify-content-center">'
-                        +'<a href="javascript:function(){return false;}">'
-                        +'<i class="edit fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
-                        +'</a>'
-                        +'<ul class="edit-subMenu" style="z-index:10;">'
-                        +'<li class="edit-opt info-tool" lvalue="'+item.part_id+'"><a href="#"><img src="<?php echo base_url('assets/img/info.png'); ?>" class="img_font_wh2" style="margin-left:10px;">INFO</a></li>'
-                        +'<li class="activate-tool active_not" lvalue="'+item.part_id+'" svalue="'+item.status+'" style="display:'+activate_machine+';"><a href="#" style="border-bottom:none;"><img src="<?php  echo base_url('assets/img/activate.png') ?>" class="img_font_wh2" style="margin-left:10px;"></i>ACTIVATE</a></li>'
-                        +'</ul>'
-                        +'</li>'
-                        +'</ul>'                
-                        +'</div>'
-                        +'</div>'
-                    +'</div>');
-                    $('.contentTool').append(elements);
-                }      
-            });
-        }
-        else{
-            elements = elements.add('<div id="settings_div">'
-                +'<div class="row paddingm">'
-                +'<div class="col-lg col textAlignCenter" ><p>*No Records Found!</p></div>'
-                +'</div>'
-            +'</div>');
-            $('.contentTool').append(elements);
-        }            
+            if(parseInt(res.length)>0){  
+                res.forEach(function(item){
+                    var elements = $();
+                    var part_price = item.part_price;
+                    var part_p =0;
+                    if (isFloat(part_price) == true) {
+                        part_p = parseFloat(part_price);
+                    }else{
+                        part_p = parseInt(part_price).toFixed(2);
+                    }
+                    if (item.status == 1) {
+                        var condition = item.part_price;
+                        elements = elements.add('<div id="settings_div">'
+                            +'<div class="row paddingm">'
+                            +'<div class="col col-sm-1 marleft" ><p>'+item.part_id+'</p></div>'
+                            +'<div class="col col-sm-2 marleft " ><p title='+item.part_name+'>'+item.part_name+'</p></div>'       
+                            +'<div class="col col-sm-2 marleft" >'
+                            +'<p title="'+item.tool_id+'">'+item.tool_name+'</p>'
+                            +'</div>'
+                            +'<div class="col col-sm-2 marleft" >'
+                            +'<p>'+item.NICT+'s</p>'
+                            +'</div>'
+                            +'<div class="col col-sm-2 marleft" ><p>'+item.part_produced_cycle+'</p></div>'
+                            +'<div class="col col-sm-1 marright" >'
+                            +'<p><i class="fa fa-inr" style="margin-right:5px;"></i>'+part_p+'</p>'
+                            +'</div>'
+                            +'<div class="col col-sm-1 marleft settings_active" ><p style="color: #005CBC"><i class="fa fa-circle" style="font-size:9px;margin-right:5px;margin-top:5px; color:#005CBC;"></i>Active</p></div>'
+                            +'<div class="col col-sm-1 d-flex justify-content-center fasdiv">'
+                            +'<ul class="edit-menu">'
+                            +'<li class="d-flex justify-content-center">'
+                            +'<a href="javascript:function(){return false;}">'
+                            +'<i  class="edit fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
+                            +'</a>'
+                            +'<ul class="edit-subMenu" style="z-index:10;">'
+                            +'<li class="edit-opt info-tool1" lvalue="'+item.part_id+'" style="display:'+info_machine+';"><a href="#"><img src="<?php echo base_url('assets/img/info.png'); ?>" class="img_font_wh2" style="margin-left:10px;">INFO</a></li>'
+                            +'<li class="edit-opt edit-tool menu-font-change text-right" lvalue="'+item.part_id+'" style="display:'+edit_machine+';"><a href="#"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh" style="margin-left:10px;">EDIT</a></li>'
+                            +'<li class="deactivate-tool " lvalue="'+item.part_id+'" svalue="'+item.status+'" style="display:'+deactivate_machine+';"><a href="#" style="border-bottom:none;"><img  src="<?php echo base_url('assets/img/delete.png'); ?>" class="img_font_wh1" style="margin-left:10px;">DEACTIVATE</a></li>'
+                            +'</ul>'
+                            +'</li>'
+                            +'</ul>'               
+                            +'</div>'  
+                            +'</div>'
+                        +'</div>');
+                        $('.contentTool').append(elements);
+                    }
+                    else{
+                        var condition1 = item.part_price;
+                        elements = elements.add('<div id="settings_div">'
+                            +'<div class="row paddingm">'
+                            +'<div class="col col-sm-1 marleft" ><p>'+item.part_id+'</p></div>'
+                            +'<div class="col col-sm-2 marleft" ><p title='+item.part_name+'>'+item.part_name+'</p></div>'        
+                            +'<div class="col col-sm-2 marleft" >'
+                            +'<p title="'+item.tool_id+'">'+item.tool_name+'</p>'
+                            +'</div>'
+                            +'<div class="col col-sm-2 marleft" >'
+                            +'<p>'+item.NICT+'s</p>'
+                            +'</div>'
+                            +'<div class="col col-sm-2 marleft" ><p>'+item.part_produced_cycle+'</p></div>'
+                            +'<div class="col col-sm-1 marright" >'
+                            +'<p><i class="fa fa-inr" style="margin-right:5px;"></i>'+part_p+'</p>'
+                            +'</div>'
+                            +'<div class="col col-sm-1 marleft settings_active" style="color:#C00000;"><p style="color: #C00000"><i class="fa fa-circle" style="font-size:9px;margin-right:5px;margin-top:5px;"></i>Inactive</p></div>'
+                            +'<div class="col col-sm-1 d-flex justify-content-center fasdiv">'
+                            +'<ul class="edit-menu">'
+                            +'<li class="d-flex justify-content-center">'
+                            +'<a href="javascript:function(){return false;}">'
+                            +'<i class="edit fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
+                            +'</a>'
+                            +'<ul class="edit-subMenu" style="z-index:10;">'
+                            +'<li class="edit-opt info-tool" lvalue="'+item.part_id+'"><a href="#"><img src="<?php echo base_url('assets/img/info.png'); ?>" class="img_font_wh2" style="margin-left:10px;">INFO</a></li>'
+                            +'<li class="activate-tool active_not" lvalue="'+item.part_id+'" svalue="'+item.status+'" style="display:'+activate_machine+';"><a href="#" style="border-bottom:none;"><img src="<?php  echo base_url('assets/img/activate.png') ?>" class="img_font_wh2" style="margin-left:10px;"></i>ACTIVATE</a></li>'
+                            +'</ul>'
+                            +'</li>'
+                            +'</ul>'                
+                            +'</div>'
+                            +'</div>'
+                        +'</div>');
+                        $('.contentTool').append(elements);
+                    }      
+                });
+            }
+            else{
+                // elements = elements.add(');
+                $('.contentTool').append('<p class="no_record_css">No Records...</p>');
+            }            
                 
         },
         error:function(err){
