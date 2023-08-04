@@ -82,8 +82,8 @@ class Production_Quality extends BaseController
                         unset($output[$key]);
                     }
                     else{
-                        $s_time_range =  strtotime($value['shift_date']." ".$value['start_time']);
-                        $e_time_range =  strtotime($value['shift_date']." ".$value['end_time']);
+                        $s_time_range =  strtotime($value['calendar_date']." ".$value['start_time']);
+                        $e_time_range =  strtotime($value['calendar_date']." ".$value['end_time']);
 
                         if ($s_time_range <= $s_time_range_limit && $e_time_range >= $s_time_range_limit) {
                             $output[$key]['start_time'] = $FromTime;
@@ -115,7 +115,6 @@ class Production_Quality extends BaseController
                         }
                     }
                 }
-                
             }
 
             // Filter for Find the All Time.............
@@ -124,8 +123,8 @@ class Production_Quality extends BaseController
                     unset($getAllTimeValues[$key]);
                 }
                 else{
-                    $s_time_range =  strtotime($value['shift_date']." ".$value['start_time']);
-                    $e_time_range =  strtotime($value['shift_date']." ".$value['end_time']);
+                    $s_time_range =  strtotime($value['calendar_date']." ".$value['start_time']);
+                    $e_time_range =  strtotime($value['calendar_date']." ".$value['end_time']);
 
                     if ($s_time_range <= $s_time_range_limit && $e_time_range >= $s_time_range_limit) {
                         $getAllTimeValues[$key]['start_time'] = $FromTime;
@@ -155,21 +154,24 @@ class Production_Quality extends BaseController
                         }
                     }
                 }
-            }
+            }   
 
             // Filter for Production Info Table Data..........
             foreach ($production as $key => $value) {   
-                $s_time_range =  strtotime($value['shift_date']." ".$value['start_time']);
-                $e_time_range =  strtotime($value['shift_date']." ".$value['end_time']);
+                $s_time_range =  strtotime($value['calendar_date']." ".$value['start_time']);
+                $e_time_range =  strtotime($value['calendar_date']." ".$value['end_time']);
                 
                 if ($s_time_range < $s_time_range_limit) {
                     unset($production[$key]);
                 }
-                if ($e_time_range >= $e_time_range_limit){
+                elseif ($e_time_range > $e_time_range_limit){
+                    unset($production[$key]);
+                }
+                elseif ($s_time_range >= $e_time_range_limit) {
                     unset($production[$key]);
                 }
 
-                //For remove the current data of inactive machines.........
+                // For remove the current data of inactive machines.........
                 foreach ($getInactiveMachine as $v) {
                     $start_time_range =  strtotime($v['max(r.last_updated_on)']);
                     if ($s_time_range_limit > $start_time_range && $value['machine_id'] == $v['machine_id']){
@@ -177,6 +179,8 @@ class Production_Quality extends BaseController
                     }
                 }
             }
+
+
     
             //Function return for qualityOpportunity graph........
             if ($graphRef == "qualityOpportunity") {

@@ -425,7 +425,7 @@ class Current_Shift_Performance extends BaseController{
                                     if ($p['part_id'] == $partVal->part_id) {
                                         $mnict = explode(".", $partVal->NICT);
                                         if (sizeof($mnict)>1) {
-                                            $NICT = (($mnict[0]/60)+($mnict[1]/1000));
+                                            $NICT = (($mnict[0])+($mnict[1]/1000))/60;
                                         }else{
                                             $NICT = ($mnict[0]/60);
                                         }
