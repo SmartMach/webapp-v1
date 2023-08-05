@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/user_management_sub2.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/pre_loader.css">
     <!-- temporary for strategy wait for part settings input alignment changes -->
-    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/css_demo1.css">
+    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/css_demo1.css?version=<?php echo rand(); ?>">
 
 
 
@@ -75,6 +75,7 @@
     .sidenave-hover:hover{
         background-color:#EFF7FF;
         color:#595959;
+        border-radius:0.45rem;
     }
 
     .icon-font{
