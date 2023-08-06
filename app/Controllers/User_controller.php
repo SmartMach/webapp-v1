@@ -27,7 +27,7 @@ class User_controller extends BaseController
                 $role = array(
                     "Financial_Drill_Down" => "1",
                     "Financial_Opportunity_Insights" => "1", 
-                    "OEE_Drill_Down" => "0",
+                    "OEE_Drill_Down" => "1",
                     "Operator_User_Interface" => "0", 
                     "Production_Data_Management" => "2",
                     "Settings_Machine" => "3", 
@@ -49,7 +49,7 @@ class User_controller extends BaseController
                 $role = array(
                     "Financial_Drill_Down" => "1",
                     "Financial_Opportunity_Insights" => "1", 
-                    "OEE_Drill_Down" => "0",
+                    "OEE_Drill_Down" => "1",
                     "Operator_User_Interface" => "0",
                     "Production_Data_Management" => "2",
                     "Settings_Machine" => "2", 
@@ -71,7 +71,7 @@ class User_controller extends BaseController
                 $role = array(
                     "Financial_Drill_Down" => "1",
                     "Financial_Opportunity_Insights" => "1", 
-                    "OEE_Drill_Down" => "0",
+                    "OEE_Drill_Down" => "1",
                     "Operator_User_Interface" => "0", 
                     "Production_Data_Management" => "2",
                     "Settings_Machine" => "2",
