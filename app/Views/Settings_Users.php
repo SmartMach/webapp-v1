@@ -411,11 +411,12 @@
                                         <input type="radio" id="html" name="ooe_drill_down" value="0">
                                     <?php } ?>
                                 </div>
-                                <!-- <div class="col-sm-2 fn paddingm textCenter">
+                                 <div class="col-sm-2 fn paddingm textCenter">
                                     <?php if ($this->data['access'][0]['oee_drill_down'] >= 1){ ?>
                                         <input type="radio" id="html" name="ooe_drill_down" value="1">
                                     <?php } ?>
                                 </div>
+                                <!--
                                 <div class="col-sm-2 fn paddingm textCenter">
                                     <?php if ($this->data['access'][0]['oee_drill_down'] >= 2){ ?>
                                         <input type="radio" id="html" name="ooe_drill_down" value="2">
