@@ -482,5 +482,21 @@ public function notes_submit(){
     }
 }
 
+
+// edit purpose get target input 
+public function gettarget_input(){
+    if ($this->request->isAJAX()) {
+        $data['mid'] = $this->request->getVar('mid');
+        $data['sid'] = $this->request->getVar('sid');
+        $data['pid'] = $this->request->getVar('pid');
+        $data['tid'] = $this->request->getVar('tid');
+        $data['sdate'] = $this->request->getVar('sdate');
+        $data['refid'] = $this->request->getVar('refid');
+
+        $get_target = $this->data->getTarget_val($data);
+        echo  json_encode($get_target);
+    }
+}
+
 }
  ?>

@@ -2482,8 +2482,11 @@ $(document).on("click", ".deleteRec", function(){
                   +'</select>'
                   +'<p class="paraEdit ReasonName edit_display2" id="ReasonName">'+reason+'</p>'
                 +'</div>'
+                // Target value input
                 +'<div class="col-sm-2 col marleft Downtime_target" style="width:10%;display:none;padding:0.3rem;">'
-                +'<input type="text" class="form-control target_input_cl" id="target_input" style="width:100%;" value="0">'
+                  +'<div style="display:flex;flex-direction:row;align-items:center;justify-content:center;height:100%;">'
+                    +'<input type="text" class="form-control target_input_cl" id="target_input" style="width:100%;height:2rem;" value="0">'
+                  +'</div>'
                 +'</div>'
                 +'<div class="col-sm-2 col marleft downtime_tool_name_div" style="width:14.8%;">'
                   +'<select class="form-select inEditValue marginlr DownTool edit_input3 font-size">'
@@ -2876,7 +2879,7 @@ function getDownTimeGraph(){
                                       
                                         // alert(downtime_reason_id);
                                         drawGraph(item.start_time,item.split_duration,item.end_time,item.machine_event_id,item.notes,reason,partid,toolid,item.split_id,item.last_updated_by,item.last_updated_on);
-
+                                        console.log("downtime graph clicking 11...");
                                         $(".delete-split:eq(0)").css("display","none");
                                         $(".circleMatch:eq(0)").css("display","block");
                                       
@@ -4097,7 +4100,7 @@ function true_value(index_value,einput){
         document.getElementsByClassName('ndelete')[i].style.display="inline";
       }
 
-    }
+  }
     
     if ($('.edit_display').size() == 1) {
       document.getElementsByClassName('edit_input')[index_value].style.display="none";
@@ -4135,6 +4138,9 @@ function true_value(index_value,einput){
           $('.edit_input4:eq('+index_value+')').css("display","inline");
           $('.edit_display3:eq('+index_value+')').css("display","none");
           $('.edit_display4:eq('+index_value+')').css("display","none");
+          console.log("already tool changeover");
+          target_input_function_handle("edit",index_value);
+
           // document.getElementsByClassName('edit_input3')[index_value].style.display="inline";
           // document.getElementsByClassName('edit_input4')[index_value].style.display="inline";
           // document.getElementsByClassName('edit_display3')[index_value].style.display="none";
@@ -4579,6 +4585,56 @@ function target_input_function_handle(var_str,index_value){
     $('.downtime_tool_name_div').css("width",'14.8%');
     $('.action_div').css('width','18%');
   }
+  else if(var_str==="edit"){
+    $('.target_header').css('display','inline');
+    $('.reason_header').css('width','11%');
+    $('.tool_name_header').css('width','13.4%');
+    $('.part_name_header').css('width','13.4%');
+    $('.DownReasonDiv:eq('+index_value+')').css("width",'11%');
+    $('.Downtime_target:eq('+index_value+')').css('display','inline');
+    $('.downtime_part_name_div:eq('+index_value+')').css("width",'13.2%');
+    $('.downtime_tool_name_div:eq('+index_value+')').css("width",'13.4%');
+    $('.action_div:eq('+index_value+')').css('width','14%');
+    target_value_ajax(index_value);
+  }
+}
+
+// target value ajax function
+function target_value_ajax(index_value){
+  var sdate  = $('#Production_shift_date').val();
+  var mid = $('#Production_MachineName').val();
+  var sid = $('#RejectShift').val();
+  var tid = $('.splitclick:eq('+index_value+')').attr('tool');
+  var pid = $('.splitclick:eq('+index_value+')').attr('part');
+  var refid = $('.splitclick:eq('+index_value+')').attr('refval');
+
+  var temp_sid = sid.split('0');
+
+  $.ajax({
+    url:"<?php echo base_url(); ?>/PDM_controller/gettarget_input",
+    dataType:"JSON",
+    method:"POST",
+    data:{
+      sdate:sdate,
+      mid:mid,
+      pid:pid,
+      tid:tid,
+      sid:temp_sid[0],
+      refid:refid,
+    },
+    DataType:"json",
+    success:function(res_data){
+      console.log("ajax success target value geeting");
+      console.log(res_data);
+      $('.target_input_cl:eq('+index_value+')').val(res_data);
+    },
+    error:function(er){
+      console.log("Sorry Try Again... in target input value get error for editing purpose");
+      console.log(er);
+    }
+  });
+
+
 }
 
 </script>
