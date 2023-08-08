@@ -398,7 +398,7 @@ $session = \Config\Services::session();
                             <div class="items-container reduce_width items-container-cause"></div>
 
                             <div class="input-box center-align">      
-                                <input type="text" class="form-control reduce_width font_weight_modal input-field-action" id="add_filed_action" name="add_filed_action" >
+                                <input type="text" class="form-control reduce_width font_weight_modal input-field-action" autocomplete="off" id="add_filed_action" name="add_filed_action" >
                                 <label for="" class="input-padding">Action Taken</label>
                                 <img src="<?php echo base_url('assets/img/plus-icon.png'); ?>" class="dot-style dot-cont input-field-action-add">
                             </div>

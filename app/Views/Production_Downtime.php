@@ -2454,7 +2454,7 @@ $(document).on("click", ".deleteRec", function(){
     else{
       var notes_mapped = "notes.png";
     }
-    
+    console.log("downtime function opened");    
     // var last_updated_name = getlast_updated_name(last_updated_by);
    var cal_count = 1;
     $( ".split_input" ).append('<div id="settings_div" class="rowData">'
@@ -2785,6 +2785,9 @@ function getDownTimeGraph(){
                       click:function(event, chartContext, config){
                         target_input_function_handle("remove",0);
                         var l_l = config.globals.series.length;
+                        console.log("downtime click1");
+                        console.log(config.seriesIndex);
+                        console.log(l_l);
 
                         var production_shift_date = $('#Production_shift_date').val();
                         var formattedDate = new Date(production_shift_date);
@@ -2792,11 +2795,15 @@ function getDownTimeGraph(){
                         var m =  formattedDate.getMonth();
                         m += 1;  
                         var y = formattedDate.getFullYear();
-                        var c_date = new Date(y+"-"+(m > 9 ? m: "0" + m)+"-"+(d > 9 ? d: "0" + d)+" "+shift_stime);
-                        if ((config.seriesIndex == (l_l-2)) && (new Date() >= c_date)) {
+                        var c_date = new Date(y+"-"+(m > 9 ? m: "0" + m)+"-"+(d > 9 ? d: "0" + d));
+                        var current_date = new Date();
+                        var current_date_check = current_date.getFullYear()+"-"+current_date.getMonth()+"-"+current_date.getDate();
+                        var production_dch = c_date.getFullYear()+"-"+c_date.getMonth()+"-"+c_date.getDate();
+                        if ((config.seriesIndex == (l_l-2)) && (current_date_check===production_dch) && (new Date() >= new Date(current_date_check+" "+shift_stime)) ) {
                           $('.split_input').empty();
                         }
                         else{
+                          console.log("downtime clicke 2");
                           if (config.seriesIndex >= 0) {
                             $('.split_input').empty();
                             //function for find the split records
@@ -2825,6 +2832,8 @@ function getDownTimeGraph(){
                             var durationVal = config.config.series[inval].duration;
                             overall_duration_value = svalue;
 
+                            console.log(machineEventRef);
+
                             if ((parseInt(durationVal) >= 0) && (parseInt(access_control)>1) ) {
                               $.ajax({
                                 url: "<?php echo base_url('PDM_controller/findSplit'); ?>",
@@ -2834,6 +2843,8 @@ function getDownTimeGraph(){
                                   ref:machineEventRef, 
                                 },
                                 success:function(res){
+                                  console.log("downtime click2 inner ajax");
+
                                   data_time=[];
                                   data_array=[];
                                   split_ref =[];
