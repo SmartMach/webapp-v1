@@ -193,7 +193,7 @@
     .tooltip_logout .tooltiptext {
         visibility: hidden;
         /* transition-delay: 2s; */
-        min-width: max-content;
+        min-width: 15rem;
         background-color: white;
         border: 1px solid #d9d9d9;
         color: black;
