@@ -237,8 +237,8 @@
     }
 
     .circle_div{
-        height:2.7rem;
-        width:2.7rem;
+        height:2.5rem;
+        width:2.5rem;
         border-radius:50%;
         /* background-color:#005abc; */
         

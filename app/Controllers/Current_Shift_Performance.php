@@ -35,6 +35,9 @@ class Current_Shift_Performance extends BaseController{
 
 
         return json_encode($shift_detailes);
+        // echo "<pre>";
+        // print_r($shift_detailes);
+        // echo "</pre>";
     }
 
     public function getPreviousShiftLive(){
@@ -71,8 +74,8 @@ class Current_Shift_Performance extends BaseController{
     		$shift_id = $this->request->getVar('shift_id');
       //       $filter = $this->request->getVar('filter');
 
-    		// $shift_date = "2023-07-04";
-    		// $shift_id = "B";
+    		// $shift_date = "2023-08-09";
+    		// $shift_id = "A";
             // $filter = 2;
 
     		// Current Shift OEE Target......
@@ -88,6 +91,9 @@ class Current_Shift_Performance extends BaseController{
     		$machine_detailes = $this->datas->getMachineLive();
 
             $production_target_all = $this->datas->getProductionTarget($shift_date);
+
+            // echo "<pre>";
+            // print_r($production_target_all);
 
     		// Shift Detailes,.......
     		$shift_detailes =  $this->datas->getShiftLive();
@@ -312,8 +318,11 @@ class Current_Shift_Performance extends BaseController{
                         }else{
                             $nict = $x_t[0];
                         }
-
-                        $target_production_shift = ($time_duration/$nict)*$p->part_produced_cycle;
+                        if($nict>0) {
+                            $target_production_shift = ($time_duration/$nict)*$p->part_produced_cycle;
+                        }else{
+                            $target_production_shift = 0*$p->part_produced_cycle;
+                        }
                     }
 
                     foreach ($hourly_production as $key => $value) {
@@ -551,6 +560,9 @@ class Current_Shift_Performance extends BaseController{
             // log_message("info","current shift peformance getlive mode graph execution duration is :\t".$execution_time_logger_gerlive_mode);
 
             return json_encode($out);
+            // echo "<pre>";
+            // print_r($out);
+            // echo "</pre>";
 	       	
     	}
     }
