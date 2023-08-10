@@ -1867,13 +1867,15 @@ function getAttachFileIDEdit(item){
 function getActionID(item,value){
     var previous=0;
     action_list_globle.forEach(function(ele){
-      if (ele['action'].trim().toUpperCase() == inputVal) {
+      if (ele['action'].trim().toUpperCase() == value) {
         item.setAttribute("action_list_id", ele['action_id']);
         item.innerText=value;
         previous=1;
       }
     });
     if (previous==0) {
+      console.log("ation ajax");
+      console.log(value);
       $.ajax({
           url:"<?php echo base_url('Work_Order_Management_controller/getActionID') ?>",
           method:"POST",
@@ -2074,6 +2076,7 @@ inputFieldaction.addEventListener("keyup", function (event) {
 function add_action_val(ack){
   // Get the value from the input field
     const value = inputFieldaction.value.trim();
+    console.log("add actions value:\t"+value);
     if (ack==true) {
       action_list_globle_unique.push(value);
     }
@@ -2083,6 +2086,8 @@ function add_action_val(ack){
       return item_val.toUpperCase() === inputVal;
     });
 
+    console.log("add action condition:\n");
+    console.log(value!="" && present);
     // If the value is not empty, create a new item and append it to the container
     if (value !== "" && present) {
 
@@ -2099,7 +2104,7 @@ function add_action_val(ack){
       itemText.classList.add("font-fam");
       itemText.classList.add("item-text-action");
       itemText.classList.add("stcode-up");
-
+      console.log("action condition working");
       if (ack == true) {
         getActionID(itemText,value);
       }else{

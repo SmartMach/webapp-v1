@@ -863,8 +863,8 @@ class Production_Quality extends BaseController
 
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
-        // $fromTime = "2023-02-12T09:00:00";
-        // $toTime = "2023-02-28T21:00:00";
+        // $fromTime = "2023-08-04T12:00:00";
+        // $toTime = "2023-08-10T11:00:00";
 
         $ProductionData = $this->getDataRaw($ref,$fromTime,$toTime);
 
