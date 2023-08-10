@@ -207,8 +207,8 @@ class Production_Quality extends BaseController
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
 
-        // $fromTime = "2023-06-13T12:00:00";
-        // $toTime = "2023-06-19T11:00:00";
+        // $fromTime = "2023-08-04T12:00:00";
+        // $toTime = "2023-08-10T11:00:00";
 
         // $url = "http://localhost:8080/graph/qualityOpportunity/".$fromTime."/".$toTime."/";
         // $ch = curl_init($url);
@@ -219,17 +219,20 @@ class Production_Quality extends BaseController
 
         $qualityReason_filter = $this->Financial->qualityReason();
         $qualityReason = $this->request->getVar("reason");
-        // $qualityReason = ['4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25'];
+        // $qualityReason = [];
 
         $ProductionData = $this->getDataRaw($ref,$fromTime,$toTime);
 
         $partDetails_filter = $this->Financial->getPartDetails();
         $partDetails = $this->request->getVar("part");
-        // $partDetails = ['PT1001', 'PT1002', 'PT1003', 'PT1004', 'PT1005', 'PT1006', 'PT1007', 'PT1008', 'PT1009', 'PT1010', 'PT1011', 'PT1012', 'PT1013', 'PT1014', 'PT1015', 'PT1016', 'PT1017', 'PT1018', 'PT1019', 'PT1020', 'PT1021', 'PT1022', 'PT1023'];
+        // $partDetails = ['PT1001'];
+
+        // echo "<pre>";
+        // print_r($partDetails_filter);
 
         $machineDetails_filter = $this->Financial->getMachineDetails();
         $machineDetails = $this->request->getVar("machine");
-        // $machineDetails = ["MC1001","MC1002","MC1003","MC1004"];
+        // $machineDetails = ["MC1001"];
 
         $ProductionDataExpand = [];
         foreach ($ProductionData as $k => $value) {
