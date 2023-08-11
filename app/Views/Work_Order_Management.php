@@ -300,7 +300,9 @@ $session = \Config\Services::session();
                         </div>
                     </div>
 
-                    <a style="" class="add_btn cursor fnt_bold none_dec fnt_fam float-end" onclick="getFilterval(true)">APPLY FILTER
+                    <!-- <a style="" class="add_btn cursor fnt_bold none_dec fnt_fam float-end" onclick="getFilterval(true)">APPLY FILTER
+                    </a> -->
+                    <a class="overall_filter_btn overall_filter_header_css" style="text-decoration:none;margin-right:0.5rem;cursor:pointer;"  onclick="getFilterval(true)">Apply Filter
                     </a>
 
 
@@ -312,7 +314,10 @@ $session = \Config\Services::session();
                         if($this->data['access'][0]['work_order_management'] == 3){ 
                     ?>
 
-                    <a style="" class="add_btn cursor fnt_bold none_dec fnt_fam float-end" id="add_issue_button">
+                    <!-- <a style="" class="add_btn cursor fnt_bold none_dec fnt_fam float-end" id="add_issue_button">
+                        <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD ISSUE
+                    </a> -->
+                    <a style="text-decoration:none;margin-right:0.5rem;cursor:pointer;" class="overall_filter_btn overall_filter_header_css" id="add_issue_button">
                         <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD ISSUE
                     </a>
 
@@ -393,7 +398,7 @@ $session = \Config\Services::session();
                             <div class="items-container reduce_width items-container-cause"></div>
 
                             <div class="input-box center-align">      
-                                <input type="text" class="form-control reduce_width font_weight_modal input-field-action" id="add_filed_action" name="add_filed_action" >
+                                <input type="text" class="form-control reduce_width font_weight_modal input-field-action" autocomplete="off" id="add_filed_action" name="add_filed_action" >
                                 <label for="" class="input-padding">Action Taken</label>
                                 <img src="<?php echo base_url('assets/img/plus-icon.png'); ?>" class="dot-style dot-cont input-field-action-add">
                             </div>
@@ -1862,13 +1867,15 @@ function getAttachFileIDEdit(item){
 function getActionID(item,value){
     var previous=0;
     action_list_globle.forEach(function(ele){
-      if (ele['action'].trim().toUpperCase() == inputVal) {
+      if (ele['action'].trim().toUpperCase() == value) {
         item.setAttribute("action_list_id", ele['action_id']);
         item.innerText=value;
         previous=1;
       }
     });
     if (previous==0) {
+      console.log("ation ajax");
+      console.log(value);
       $.ajax({
           url:"<?php echo base_url('Work_Order_Management_controller/getActionID') ?>",
           method:"POST",
@@ -2069,6 +2076,7 @@ inputFieldaction.addEventListener("keyup", function (event) {
 function add_action_val(ack){
   // Get the value from the input field
     const value = inputFieldaction.value.trim();
+    console.log("add actions value:\t"+value);
     if (ack==true) {
       action_list_globle_unique.push(value);
     }
@@ -2078,6 +2086,8 @@ function add_action_val(ack){
       return item_val.toUpperCase() === inputVal;
     });
 
+    console.log("add action condition:\n");
+    console.log(value!="" && present);
     // If the value is not empty, create a new item and append it to the container
     if (value !== "" && present) {
 
@@ -2094,7 +2104,7 @@ function add_action_val(ack){
       itemText.classList.add("font-fam");
       itemText.classList.add("item-text-action");
       itemText.classList.add("stcode-up");
-
+      console.log("action condition working");
       if (ack == true) {
         getActionID(itemText,value);
       }else{

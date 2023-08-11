@@ -2454,7 +2454,7 @@ $(document).on("click", ".deleteRec", function(){
     else{
       var notes_mapped = "notes.png";
     }
-    
+    console.log("downtime function opened");    
     // var last_updated_name = getlast_updated_name(last_updated_by);
    var cal_count = 1;
     $( ".split_input" ).append('<div id="settings_div" class="rowData">'
@@ -2482,8 +2482,11 @@ $(document).on("click", ".deleteRec", function(){
                   +'</select>'
                   +'<p class="paraEdit ReasonName edit_display2" id="ReasonName">'+reason+'</p>'
                 +'</div>'
+                // Target value input
                 +'<div class="col-sm-2 col marleft Downtime_target" style="width:10%;display:none;padding:0.3rem;">'
-                +'<input type="text" class="form-control target_input_cl" id="target_input" style="width:100%;" value="0">'
+                  +'<div style="display:flex;flex-direction:row;align-items:center;justify-content:center;height:100%;">'
+                    +'<input type="text" class="form-control target_input_cl" id="target_input" style="width:100%;height:2rem;" value="0">'
+                  +'</div>'
                 +'</div>'
                 +'<div class="col-sm-2 col marleft downtime_tool_name_div" style="width:14.8%;">'
                   +'<select class="form-select inEditValue marginlr DownTool edit_input3 font-size">'
@@ -2782,6 +2785,9 @@ function getDownTimeGraph(){
                       click:function(event, chartContext, config){
                         target_input_function_handle("remove",0);
                         var l_l = config.globals.series.length;
+                        console.log("downtime click1");
+                        console.log(config.seriesIndex);
+                        console.log(l_l);
 
                         var production_shift_date = $('#Production_shift_date').val();
                         var formattedDate = new Date(production_shift_date);
@@ -2789,11 +2795,15 @@ function getDownTimeGraph(){
                         var m =  formattedDate.getMonth();
                         m += 1;  
                         var y = formattedDate.getFullYear();
-                        var c_date = new Date(y+"-"+(m > 9 ? m: "0" + m)+"-"+(d > 9 ? d: "0" + d)+" "+shift_stime);
-                        if ((config.seriesIndex == (l_l-2)) && (new Date() >= c_date)) {
+                        var c_date = new Date(y+"-"+(m > 9 ? m: "0" + m)+"-"+(d > 9 ? d: "0" + d));
+                        var current_date = new Date();
+                        var current_date_check = current_date.getFullYear()+"-"+current_date.getMonth()+"-"+current_date.getDate();
+                        var production_dch = c_date.getFullYear()+"-"+c_date.getMonth()+"-"+c_date.getDate();
+                        if ((config.seriesIndex == (l_l-2)) && (current_date_check===production_dch) && (new Date() >= new Date(current_date_check+" "+shift_stime)) ) {
                           $('.split_input').empty();
                         }
                         else{
+                          console.log("downtime clicke 2");
                           if (config.seriesIndex >= 0) {
                             $('.split_input').empty();
                             //function for find the split records
@@ -2822,6 +2832,8 @@ function getDownTimeGraph(){
                             var durationVal = config.config.series[inval].duration;
                             overall_duration_value = svalue;
 
+                            console.log(machineEventRef);
+
                             if ((parseInt(durationVal) >= 0) && (parseInt(access_control)>1) ) {
                               $.ajax({
                                 url: "<?php echo base_url('PDM_controller/findSplit'); ?>",
@@ -2831,6 +2843,8 @@ function getDownTimeGraph(){
                                   ref:machineEventRef, 
                                 },
                                 success:function(res){
+                                  console.log("downtime click2 inner ajax");
+
                                   data_time=[];
                                   data_array=[];
                                   split_ref =[];
@@ -2876,7 +2890,7 @@ function getDownTimeGraph(){
                                       
                                         // alert(downtime_reason_id);
                                         drawGraph(item.start_time,item.split_duration,item.end_time,item.machine_event_id,item.notes,reason,partid,toolid,item.split_id,item.last_updated_by,item.last_updated_on);
-
+                                        console.log("downtime graph clicking 11...");
                                         $(".delete-split:eq(0)").css("display","none");
                                         $(".circleMatch:eq(0)").css("display","block");
                                       
@@ -4097,7 +4111,7 @@ function true_value(index_value,einput){
         document.getElementsByClassName('ndelete')[i].style.display="inline";
       }
 
-    }
+  }
     
     if ($('.edit_display').size() == 1) {
       document.getElementsByClassName('edit_input')[index_value].style.display="none";
@@ -4135,6 +4149,9 @@ function true_value(index_value,einput){
           $('.edit_input4:eq('+index_value+')').css("display","inline");
           $('.edit_display3:eq('+index_value+')').css("display","none");
           $('.edit_display4:eq('+index_value+')').css("display","none");
+          console.log("already tool changeover");
+          target_input_function_handle("edit",index_value);
+
           // document.getElementsByClassName('edit_input3')[index_value].style.display="inline";
           // document.getElementsByClassName('edit_input4')[index_value].style.display="inline";
           // document.getElementsByClassName('edit_display3')[index_value].style.display="none";
@@ -4579,6 +4596,56 @@ function target_input_function_handle(var_str,index_value){
     $('.downtime_tool_name_div').css("width",'14.8%');
     $('.action_div').css('width','18%');
   }
+  else if(var_str==="edit"){
+    $('.target_header').css('display','inline');
+    $('.reason_header').css('width','11%');
+    $('.tool_name_header').css('width','13.4%');
+    $('.part_name_header').css('width','13.4%');
+    $('.DownReasonDiv:eq('+index_value+')').css("width",'11%');
+    $('.Downtime_target:eq('+index_value+')').css('display','inline');
+    $('.downtime_part_name_div:eq('+index_value+')').css("width",'13.2%');
+    $('.downtime_tool_name_div:eq('+index_value+')').css("width",'13.4%');
+    $('.action_div:eq('+index_value+')').css('width','14%');
+    target_value_ajax(index_value);
+  }
+}
+
+// target value ajax function
+function target_value_ajax(index_value){
+  var sdate  = $('#Production_shift_date').val();
+  var mid = $('#Production_MachineName').val();
+  var sid = $('#RejectShift').val();
+  var tid = $('.splitclick:eq('+index_value+')').attr('tool');
+  var pid = $('.splitclick:eq('+index_value+')').attr('part');
+  var refid = $('.splitclick:eq('+index_value+')').attr('refval');
+
+  var temp_sid = sid.split('0');
+
+  $.ajax({
+    url:"<?php echo base_url(); ?>/PDM_controller/gettarget_input",
+    dataType:"JSON",
+    method:"POST",
+    data:{
+      sdate:sdate,
+      mid:mid,
+      pid:pid,
+      tid:tid,
+      sid:temp_sid[0],
+      refid:refid,
+    },
+    DataType:"json",
+    success:function(res_data){
+      console.log("ajax success target value geeting");
+      console.log(res_data);
+      $('.target_input_cl:eq('+index_value+')').val(res_data);
+    },
+    error:function(er){
+      console.log("Sorry Try Again... in target input value get error for editing purpose");
+      console.log(er);
+    }
+  });
+
+
 }
 
 </script>

@@ -335,8 +335,8 @@ $('#changed_date').datetimepicker({
                     console.log("Ajax Succeed");
                     console.log(res);
                       $('.contentProduction').empty();
-                    if (jQuery.isEmptyObject(res['Machines'])){
-                        $('.contentProduction').html("<p>No Records Found!</p>");
+                    if (jQuery.isEmptyObject(res['Part_details'])){
+                        $('.contentProduction').html('<p class="no_record_css">No Records...</p>');
                     }
 
                     var id = 1;

@@ -101,7 +101,7 @@
           }
 
           var tmp = new Date()
-          if (inputDateTime.getDate() == tmp.getDate()) {
+          if (inputDateTime.getDate() == tmp.getDate() && inputDateTime.getMonth()==tmp.getMonth()) {
               this.setOptions({
                   maxTime: (tmp.getHours())+ ':00',
               });
@@ -120,9 +120,11 @@
               if (inputDateTime.getHours() > (current.getHours())) {
                   $('.fromDate').datetimepicker('reset');
               }
-              this.setOptions({
+              if (inputDateTime.getDate()==current.getDate() && inputDateTime.getMonth()==current.getMonth()) {
+                this.setOptions({
                   maxTime: (current.getHours())+ ':00',
-              });
+                });
+              }
           } else {
               this.setOptions({
                   maxTime: false,
@@ -977,6 +979,10 @@
       f = $('.fromDate').val();
       t = $('.toDate').val();
     }
+
+    console.log("from date and to date");
+    console.log(t);
+    console.log(f);
     await getfilterdata();
     await copqp();
     await qrbr();
@@ -2395,6 +2401,7 @@ function qualitybyreasonparts() {
     }
 
     if(reason.length ==0 || machine.length ==0 || part.length ==0){
+      resolve("One Reason Empty");
       return;  
     }
 
@@ -2761,8 +2768,11 @@ function copqp() {
     });
     }
 
+   
     if(reason.length ==0 || machine.length ==0 || part.length ==0){
+      resolve("One Reason Empty");
       return;  
+
     }
 
     $('#COPQP').remove();
@@ -2774,6 +2784,10 @@ function copqp() {
     f = f.replace(" ","T");
     t = t.replace(" ","T");
 
+    console.log("machine part reason");
+    console.log(machine);
+    console.log(part);
+    console.log(reason);
     $.ajax({
       url: "<?php echo base_url('Production_Quality/qualityOpportunity'); ?>",
       type: "POST",
@@ -2786,6 +2800,8 @@ function copqp() {
         reason:reason
       },
       success:function(res){
+        console.log("first graph");
+        console.log(res);
         resolve(res);
         // $('#qualityOpportunity').remove();
         // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
@@ -2956,6 +2972,7 @@ function copqp() {
           },
       error:function(er){
         // alert("Sorry!Try Agian!!!!");
+        console.log("first graph error");
         reject(er);
       }
     }); 
@@ -3106,6 +3123,7 @@ function qualitybyparts() {
     }
 
     if(reason.length ==0 || machine.length ==0 || part.length ==0){
+      resolve("One Reason Empty");
       return;  
     }
 
@@ -3445,6 +3463,7 @@ function crbmr() {
     }
 
     if(reason.length ==0 || machine.length ==0 || part.length ==0){
+      resolve("One Reason Empty");
       return;  
     }
 
@@ -3808,6 +3827,7 @@ function copqm() {
     }
 
     if(reason.length ==0 || machine.length ==0 || part.length ==0){
+      resolve("One Reason Empty");
       return;  
     }
 
@@ -4149,7 +4169,12 @@ function qrbr() {
     });
     }
 
+    // console.log("second graph ");
+    // console.log(reason.length);
+    // console.log(machine.length);
+    // console.log(part.length);
     if(reason.length ==0 || machine.length ==0 || part.length ==0){
+      resolve("One Reason Empty");
       return;  
     }
 
@@ -4501,6 +4526,9 @@ $(document).on('click','#table-cont',function(event){
       type: "POST",
       dataType: "json",
       success:function(res){
+
+        console.log("dropdown value");
+        console.log(res);
         resolve(res);
         // Part Filter
         var elements = $();
