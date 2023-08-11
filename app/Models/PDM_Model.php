@@ -348,6 +348,7 @@ class PDM_Model extends Model{
             $tmp_tool_date['split array'] = $split_array;
         
             // for ($i = 0; $i < ($size); $i++) {
+            // downtime reason mapping table reasons updation 
             foreach($split_array as $i => $val_arr){
                 //   1=1
                 // if($tableData[$i]['split_id'] == $splitRef){
@@ -423,64 +424,124 @@ class PDM_Model extends Model{
                     }
                 }
 
+
                 if ($data[1] == 2 OR $data[1] == 3) {
                     // $query = $db->table('pdm_tool_changeover_log');
+                    // machine id 
                     $mid=$data[6];
-                    // tool change over id generation
-                    $tool_changeover_id = $this->tool_change_over_getid();
-                    // return $tool_changeover_id;
-                    if (!empty($tool_changeover_id)) {
-                        $new_tool_changeover_id = $tool_changeover_id+1;
-                       
-                    }else{
-                        $new_tool_changeover_id = 1000+1;
-                    }
-                    $part_arr = $data[3];
-                    $tmp_tool_id = $data[2];
-                    $tmp_shift_date = $data[7];
-
-                    $tool_change_data = [
-                        "tool_changeover_id" => $new_tool_changeover_id,
-                        "machine_id" => $data[6],
-                        "no_of_part"=>count($part_arr),
-                        "tool_id"=>$tmp_tool_id,
-                        "shift_date" =>$tmp_shift_date,
-                        "calendar_date" => $output[0]['calendar_date'],
-                        "event_start_time"=>$sstart,
-                        "shift_id"=>$data[8],
-                        "machine_event_id"=>$machineRef,
-                        "target"=>$target,
-                        "last_updated_by" => $last_updated_by,
-                    ];
-
-                    $tool_change_tb = $db->table('pdm_tool_changeover');
-                    $tool_child_tb = $db->table('tool_changeover');
-                    $tool_changeover_cdate = $output[0]['calendar_date'];
-                    if ($tool_change_tb->insert($tool_change_data)) {
-                        $len = count($part_arr);
-                        for($j=0;$j<$len;$j++){
-                            $tmp_part_order = $j+1;
-                            $data_tool_child =[
-                                "id" => $new_tool_changeover_id,
-                                "machine_id"=>$data[6],
-                                "part_id"=>$part_arr[$j],
-                                "part_order" => $tmp_part_order,
-                                // "last_updated_by"=>$last_updated_by,
-                            ];
-
-                            if($tool_child_tb->insert($data_tool_child)){
-                                $tmp = $len-1;
-                                if ($j == $tmp) {
-                                    $part_str = implode(',',$part_arr);
-                                    $var = $this->updatePDMGraph($machineRef,$tool_changeover_cdate,$tmp_tool_id,$part_str,$tmp_shift_date,$timeArray[2*$splitRef],$sstart,$send,$mid,$last_updated_by);
-                                    return $var;
+                    // first check if only for target value updation
+                    $target_update = 0;
+                    
+                    $target_check = $db->table('pdm_tool_changeover');
+                    $target_check->select('tool_changeover_id');
+                    $target_check->where('machine_id',$mid);
+                    $target_check->where('machine_event_id',$machineRef);
+                    $target_check->where('shift_id',$data[8]);
+                    $target_check->where('shift_date',$data[7]);
+                    $target_check->where('tool_id',$data[2]);
+                    $target_res = $target_check->get()->getResultArray();
+                    // return count($target_res);
+                    if (count($target_res)>0) {
+                        $target_part_check = $db->table('tool_changeover');
+                        $target_part_check->select('part_id');
+                        $target_part_check->where('id',$target_res[0]['tool_changeover_id']);
+                        // $target_part_check->where_in('part_id',$data[3]);
+                        $target_part_res = $target_part_check->get()->getResultArray();
+                        // return $target_part_res;
+                        if (count($target_part_res)==count($data[3])) {
+                            $tmp_loop_count = 0;
+                            foreach ($data[3] as $part_key => $part_value) {
+                                foreach ($target_part_res as $part1key => $part1value) {
+                                    if ($part1value['part_id']==$part_value) {
+                                        $tmp_loop_count = $tmp_loop_count+1;
+                                    }
                                 }
-                            }else{  
-                                return false;
                             }
-
+                            // return $tmp_loop_count;
+                            if ($tmp_loop_count == count($data[3])) {
+                                $target_update = 1;
+                            }else{
+                                $target_update = 0;
+                            }
+                            
+                        }else{
+                            // return "target false";
+                            $target_update=0;
                         }
                     }
+
+                    // return $target_update;
+                    if ($target_update == 0) {
+                       // tool change over id generation
+                        $tool_changeover_id = $this->tool_change_over_getid();
+                        // return $tool_changeover_id;
+                        if (!empty($tool_changeover_id)) {
+                            $new_tool_changeover_id = $tool_changeover_id+1;
+                        
+                        }else{
+                            $new_tool_changeover_id = 1000+1;
+                        }
+                        $part_arr = $data[3];
+                        $tmp_tool_id = $data[2];
+                        $tmp_shift_date = $data[7];
+
+                        $tool_change_data = [
+                            "tool_changeover_id" => $new_tool_changeover_id,
+                            "machine_id" => $data[6],
+                            "no_of_part"=>count($part_arr),
+                            "tool_id"=>$tmp_tool_id,
+                            "shift_date" =>$tmp_shift_date,
+                            "calendar_date" => $output[0]['calendar_date'],
+                            "event_start_time"=>$sstart,
+                            "shift_id"=>$data[8],
+                            "machine_event_id"=>$machineRef,
+                            "target"=>$target,
+                            "last_updated_by" => $last_updated_by,
+                        ];
+
+                        $tool_change_tb = $db->table('pdm_tool_changeover');
+                        $tool_child_tb = $db->table('tool_changeover');
+                        $tool_changeover_cdate = $output[0]['calendar_date'];
+                        if ($tool_change_tb->insert($tool_change_data)) {
+                            $len = count($part_arr);
+                            for($j=0;$j<$len;$j++){
+                                $tmp_part_order = $j+1;
+                                $data_tool_child =[
+                                    "id" => $new_tool_changeover_id,
+                                    "machine_id"=>$data[6],
+                                    "part_id"=>$part_arr[$j],
+                                    "part_order" => $tmp_part_order,
+                                    // "last_updated_by"=>$last_updated_by,
+                                ];
+
+                                if($tool_child_tb->insert($data_tool_child)){
+                                    $tmp = $len-1;
+                                    if ($j == $tmp) {
+                                        $part_str = implode(',',$part_arr);
+                                        $var = $this->updatePDMGraph($machineRef,$tool_changeover_cdate,$tmp_tool_id,$part_str,$tmp_shift_date,$timeArray[2*$splitRef],$sstart,$send,$mid,$last_updated_by);
+                                        return $var;
+                                    }
+                                }else{  
+                                    return false;
+                                }
+
+                            }
+                        }  
+                    }else{
+                        // return "target update";
+                        $target_build = $db->table('pdm_tool_changeover');
+                        $target_build->set('target',$target);
+                        $target_build->where('machine_event_id',$machineRef);
+                        $target_build->where('machine_id',$mid);
+                        $target_build->where('shift_date',$data[7]);
+                        $target_build->where('shift_id',$data[8]);
+                        $target_build->where('tool_id',$data[2]);
+                        $target_build_res = $target_build->update();
+                        return $target_build_res;
+
+                    }                   
+                   
+                 
                 }
                 else{
                     
@@ -502,6 +563,8 @@ class PDM_Model extends Model{
                         return "true_ok";
                     }
                 }
+
+                
             } 
             else{
                 return false;
