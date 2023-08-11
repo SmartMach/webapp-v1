@@ -82,10 +82,10 @@
  -->
                     <?php if($this->data['access'][0]['settings_user_management'] == 3){ ?>
                         <!----add user option----->
-                       <!--  <a style="background: #005abc;color: white;width:8rem;justify-content:center;text-align:center;" class="settings_nav_anchor float-end " data-bs-toggle="modal" data-bs-target="#AddUserModal">
+                        <!-- <a style="width:8rem;justify-content:center;text-align:center;" class="settings_nav_anchor saveBtnStyle float-end " id="add_user_model">
                             <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD USER
-                        </a>   -->
-                        <a style="width:8rem;justify-content:center;text-align:center;" class="settings_nav_anchor saveBtnStyle float-end " id="add_user_model">
+                        </a>  -->
+                        <a style="text-decoration:none;margin-right:0.3rem;cursor:pointer;" class="overall_filter_btn overall_filter_header_css" id="add_user_model">
                             <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD USER
                         </a> 
 
@@ -411,11 +411,12 @@
                                         <input type="radio" id="html" name="ooe_drill_down" value="0">
                                     <?php } ?>
                                 </div>
-                                <!-- <div class="col-sm-2 fn paddingm textCenter">
+                                 <div class="col-sm-2 fn paddingm textCenter">
                                     <?php if ($this->data['access'][0]['oee_drill_down'] >= 1){ ?>
                                         <input type="radio" id="html" name="ooe_drill_down" value="1">
                                     <?php } ?>
                                 </div>
+                                <!--
                                 <div class="col-sm-2 fn paddingm textCenter">
                                     <?php if ($this->data['access'][0]['oee_drill_down'] >= 2){ ?>
                                         <input type="radio" id="html" name="ooe_drill_down" value="2">
@@ -3470,7 +3471,7 @@ $.ajax({
     success:function(res_Site){    
         $('.contentUser').empty();
             if (jQuery.isEmptyObject(res_Site)){
-                $('.contentUser').html("<p>No Records Found!</p>");
+                $('.contentUser').html('<p class="no_record_css">No Records...</p>');
             }
             var active = 0;
             var inactive = 0;

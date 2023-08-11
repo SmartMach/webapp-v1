@@ -3490,6 +3490,30 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
 
     }
 
+
+    // get target value for downtime edit purpose
+    public function getTarget_val($data){
+        $db = \Config\Database::connect($this->site_creation);
+        $build = $db->table('pdm_tool_changeover as tp');
+        $build->select('tp.target');
+        $build->where('tp.machine_id',$data['mid']);
+        $build->where('tp.shift_id',$data['sid']);
+        $build->where('tp.shift_date',$data['sdate']);
+        $build->where('tp.tool_id',$data['tid']);
+        $build->where('tp.machine_event_id',$data['refid']);
+        $build->join('tool_changeover as tc','tp.tool_changeover_id=tc.id');
+        $build->where('tc.part_id',$data['pid']);
+
+        $res = $build->get()->getResultArray();
+        $target = 0;
+        if (count($res)>0) {
+            $target = $res[0]['target']; 
+        }
+
+        return $target;
+
+    }
+
 }
 
  ?>

@@ -2263,7 +2263,7 @@ function add_assignee(t) {
                         }
                     });   
                 }else{
-                    $('.content_alert_settings').append('No Records');
+                    $('.content_alert_settings').append('<p class="no_record_css">No Records...</p>');
                 }
                 
 

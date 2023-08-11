@@ -78,59 +78,7 @@ class Production_Downtime_controller extends BaseController{
         $len_id = sizeof($getOfflineId);
         $s_time_range_limit =  strtotime($FromDate." ".$FromTime);
         $e_time_range_limit =  strtotime($ToDate." ".$ToTime);
-        /*
-        foreach ($output as $key => $value) {
-            $check_no = 0;
-            // check if machien event id is same on offline and no data
-            foreach($getOfflineId as $k2 => $v2){
-                if ($v2['machine_event_id'] == $value['machine_event_id']) {
-                    unset($output[$key]);
-                    $check_no = 1;
-                    break;
-                }
-            }
-            if($check_no == 0){
-                if ($value['split_duration']<0) {
-                    unset($output[$key]);
-                }
-                else{
 
-                    if ($value['shift_date'] == $FromDate && $value['start_time'] <= $FromTime && $value['end_time'] >= $FromTime) {
-                        $output[$key]['start_time'] = $FromTime;
-                        if ($value['end_time']>= $ToTime) {
-                            $output[$key]['end_time'] = $ToTime;
-                        }
-                        $output[$key]['split_duration'] = $this->getDuration($value['calendar_date']." ".$output[$key]['start_time'],$value['calendar_date']." ".$output[$key]['end_time']);
-                    }
-                    else if (($value['shift_date'] == $ToDate && $value['start_time']>=$value['end_time']) || $value['shift_date'] == $ToDate && $value['end_time'] >= $ToTime) {
-                        $output[$key]['end_time'] = $ToTime;
-                        $output[$key]['split_duration'] = $this->getDuration($value['calendar_date']." ".$output[$key]['start_time'],$value['calendar_date']." ".$output[$key]['end_time']);
-                    }
-                    else{
-                        if ($value['shift_date'] == $FromDate  && strtotime($value['start_time']) < strtotime($FromTime)){
-                            unset($output[$key]);
-                        }
-                        if ($value['shift_date'] == $FromDate  && $value['start_time'] >= $ToTime){
-                            unset($output[$key]);
-                        }
-
-                        if ($value['shift_date'] == $ToDate  && strtotime($value['start_time']) > strtotime($ToTime)) {
-                            unset($output[$key]);
-                        }
-                    }
-
-                    //For remove the current data of inactive machines.........
-                    foreach ($getInactiveMachine as $v) {
-                        $t = explode(" ", $v['max(r.last_updated_on)']);
-
-                        if ($value['shift_date'] >= $t[0]  && $value['start_time'] > $t[1] && $value['machine_id'] == $v['machine_id']){
-                            unset($output[$key]);
-                        }
-                    }
-                }
-            }
-        }
-        */
         foreach ($output as $key => $value) {
             $check_no = 0;
             for($i=0;$i<$len_id;$i++){

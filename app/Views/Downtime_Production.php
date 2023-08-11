@@ -62,7 +62,7 @@
           }
 
           var tmp = new Date()
-          if (inputDateTime.getDate() == tmp.getDate()) {
+          if (inputDateTime.getDate() == tmp.getDate() && inputDateTime.getMonth()==tmp.getMonth()) {
               this.setOptions({
                   maxTime: (tmp.getHours())+ ':00',
               });
@@ -81,9 +81,11 @@
               if (inputDateTime.getHours() > (current.getHours())) {
                   $('.fromDate').datetimepicker('reset');
               }
-              this.setOptions({
+              if (inputDateTime.getDate()==current.getDate() && inputDateTime.getMonth()==current.getMonth()) {
+                this.setOptions({
                   maxTime: (current.getHours())+ ':00',
-              });
+                });
+              }
           } else {
               this.setOptions({
                   maxTime: false,
@@ -742,7 +744,7 @@ $session = \Config\Services::session();
 
                     </div>
 
-                    <div class="alert_content">    </div>
+                    <div class="production_downtime_content">    </div>
                 </div>
             </div>
            
@@ -1537,7 +1539,7 @@ function filter_after_filter(end_index,start_index){
         success:function(res){
             // console.log("prouction downtime records table");
             // console.log(res);
-            $('.alert_content').empty();
+            $('.production_downtime_content').empty();
             // $('.scroll_rows').empty();
             var from_len = 0;
             var end_len = 50;
@@ -1545,86 +1547,91 @@ function filter_after_filter(end_index,start_index){
             var total_page = parseInt(res['total'])/50;
             total_page = Math.ceil(total_page);
             $('#total_page').html(total_page);
-            res['data'].forEach(function(val,key){
+            if (parseInt(res['data'].length)>0) {
+                res['data'].forEach(function(val,key){
                 
-                // index = parseInt(index)+1;
-                if ((parseInt(key)<parseInt(end_index)) && (parseInt(key)>=parseInt(start_index))) {  
-                    var elements = $();
-                    var element = $();
+                    // index = parseInt(index)+1;
+                    if ((parseInt(key)<parseInt(end_index)) && (parseInt(key)>=parseInt(start_index))) {  
+                        var elements = $();
+                        var element = $();
 
-                    var from_date = date_formate_change(val.shift_date+'T'+val.start_time);
-                    var to_date = date_formate_change(val.shift_date+'T'+val.end_time);
-                    var updated_at = date_formate_change(val.last_updated_on);
-                    
-                    var tmp_duration  = val.split_duration.toString().split('.');
-                    var final_tmp_duration = " ";
-                    if (tmp_duration.length > 1) {
-                      final_tmp_duration = tmp_duration[0]+'m'+' '+tmp_duration[1]+'s';
-                    }else{
-                      final_tmp_duration = tmp_duration[0]+'m';
+                        var from_date = date_formate_change(val.shift_date+'T'+val.start_time);
+                        var to_date = date_formate_change(val.shift_date+'T'+val.end_time);
+                        var updated_at = date_formate_change(val.last_updated_on);
+                        
+                        var tmp_duration  = val.split_duration.toString().split('.');
+                        var final_tmp_duration = " ";
+                        if (tmp_duration.length > 1) {
+                        final_tmp_duration = tmp_duration[0]+'m'+' '+tmp_duration[1]+'s';
+                        }else{
+                        final_tmp_duration = tmp_duration[0]+'m';
+                        }
+
+                        elements = elements.add('<div style="display:flex;flex-direction:row;border:1px solid rgba(242,242,242);border-radius:10px;margin-bottom:0.5rem;height:3.5rem;width:100%;">'
+                            +'<div class="font_row alignflex" style="width:9.5%;position: sticky;left:0px;background:white;height:100%;border-radius:10px 0px 0px 10px;">'
+                                +'<span style="margin: auto;">'+val.machine_name+'</span>'
+                            +' </div>'
+                            +'<div class="font_row alignflex" style="width:14%;position: sticky;left:118px;background:white;height:100%">'
+                                +'<span style="margin: auto;">'+from_date+'</span>'
+                            +'</div>'
+                            +'<div class="red alignflex" style="width:9.6%;position: sticky;left:290px;background:white;height:100%;">'
+                                +'<span style="margin: auto;">'+final_tmp_duration+'</span>'
+                            +'</div>'
+                            +'<div class="font_row alignflex" style="width:14.8%;">'
+                                +'<span style="margin: auto;">'+to_date+'</span>'
+                            +' </div>'
+                            +'<div class="font_row alignflex" style="width:9.5%;">'
+                                +'<span style="margin: auto;">'+val.downtime_category+'</span>'
+                            +'</div>'
+                            +' <div class="font_row alignflex" style="width:12.4%;">'
+                                +'<span style="margin: auto;">'+val.downtime_reason+'</span>'
+                            +'</div>'
+                            +'<div class="font_row alignflex" style="width:10.6%;">'
+                                +'<span style="margin: auto;">'+val.tool_name+'</span>'
+                            +'</div>'
+                            +'<div class="font_row alignflex" style="width:10.5%;">'
+                                +'<span style="margin:auto;">'+val.part_name+'</span>'
+                            +'</div>'
+                            +'<div class="font_row alignflex" style="width:9.5%;">'
+                                +'<span style="margin:auto;">'+val.last_updated_by+'</span>'
+                            +'</div>'
+                            +'<div class="font_row alignflex" style="width:9.6%;">'
+                                +'<span style="margin:auto;">'+updated_at+'</span>'
+                            +'</div>'
+                            +'<div class="font_row alignflex " style="width:6.5%;">'
+                                +'<div class="notes_check"><img src="<?php  echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" onmouseover="notes_hover(this)"  onmouseout="mouse_out_check(this)"/></div>'
+                            +'</div>'
+                            +'<div class="notes_display" style="">'
+                                +'<p >'+val.notes+'</p>'
+                            +'</div>'
+                        +'</div>');
+
+
+                        // element = element.add('<div class="alignflex fixed_col_common2"  style="width:83%;">'
+                        //     +'<div class="font_row alignflex " style="height:100%;width:15.1%;"><span style="margin:auto;">'+to_date+'</span></div>'
+                        //     +'<div class="font_row alignflex" style="height:100%;width:10%;"><span style="margin-left:1rem;">'+val.downtime_category+'</span></div>'
+                        //     +' <div class="font_row alignflex" style="height:100%;width:15%;"><span style="margin-left:1rem;">'+val.downtime_reason+'</span></div>'
+                        //     +' <div class="font_row alignflex" style="height:100%;width:12%"><span style="margin-left:1rem;">'+val.tool_name+'</span></div>'
+                        //     +'<div class="font_row alignflex" style="height:100%;width:15%;"><span style="margin-left:1rem;">'+val.part_name+'</span></div>'
+                        //     +'<div class="font_row alignflex" style="height:100%;width:10%;"><span style="margin-left:1rem;">'+val.last_updated_by+'</span></div>'
+                        //     +'<div class="font_row alignflex" style="height:100%;width: 15%;"><span style="margin-left:1rem;">'+updated_at+'</span></div>'
+                        //     +'<div class="font_row alignflex "  style="height:100%;width: 8%;justify-content:center;"><div class="notes_check"><img src="<?php  echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" onmouseover="notes_hover(this)"  onmouseout="mouse_out_check(this)"/></div></div>'
+                        //     +'<div class="notes_display" style="">'
+                        //         +'<p >'+val.notes+'</p>'
+                        //     +'</div>'
+                        // +'</div>');
+
+                        $('.production_downtime_content').append(elements);
+                        // $('.scroll_rows').append(element);
                     }
-
-                    elements = elements.add('<div style="display:flex;flex-direction:row;border:1px solid rgba(242,242,242);border-radius:10px;margin-bottom:0.5rem;height:3.5rem;width:100%;">'
-                        +'<div class="font_row alignflex" style="width:9.5%;position: sticky;left:0px;background:white;height:100%;border-radius:10px 0px 0px 10px;">'
-                            +'<span style="margin: auto;">'+val.machine_name+'</span>'
-                        +' </div>'
-                        +'<div class="font_row alignflex" style="width:14%;position: sticky;left:118px;background:white;height:100%">'
-                            +'<span style="margin: auto;">'+from_date+'</span>'
-                        +'</div>'
-                        +'<div class="red alignflex" style="width:9.6%;position: sticky;left:290px;background:white;height:100%;">'
-                            +'<span style="margin: auto;">'+final_tmp_duration+'</span>'
-                        +'</div>'
-                        +'<div class="font_row alignflex" style="width:14.8%;">'
-                            +'<span style="margin: auto;">'+to_date+'</span>'
-                        +' </div>'
-                        +'<div class="font_row alignflex" style="width:9.5%;">'
-                            +'<span style="margin: auto;">'+val.downtime_category+'</span>'
-                        +'</div>'
-                        +' <div class="font_row alignflex" style="width:12.4%;">'
-                            +'<span style="margin: auto;">'+val.downtime_reason+'</span>'
-                        +'</div>'
-                        +'<div class="font_row alignflex" style="width:10.6%;">'
-                            +'<span style="margin: auto;">'+val.tool_name+'</span>'
-                        +'</div>'
-                        +'<div class="font_row alignflex" style="width:10.5%;">'
-                            +'<span style="margin:auto;">'+val.part_name+'</span>'
-                        +'</div>'
-                        +'<div class="font_row alignflex" style="width:9.5%;">'
-                            +'<span style="margin:auto;">'+val.last_updated_by+'</span>'
-                        +'</div>'
-                        +'<div class="font_row alignflex" style="width:9.6%;">'
-                            +'<span style="margin:auto;">'+updated_at+'</span>'
-                        +'</div>'
-                        +'<div class="font_row alignflex " style="width:6.5%;">'
-                            +'<div class="notes_check"><img src="<?php  echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" onmouseover="notes_hover(this)"  onmouseout="mouse_out_check(this)"/></div>'
-                        +'</div>'
-                        +'<div class="notes_display" style="">'
-                            +'<p >'+val.notes+'</p>'
-                        +'</div>'
-                    +'</div>');
-
-
-                    // element = element.add('<div class="alignflex fixed_col_common2"  style="width:83%;">'
-                    //     +'<div class="font_row alignflex " style="height:100%;width:15.1%;"><span style="margin:auto;">'+to_date+'</span></div>'
-                    //     +'<div class="font_row alignflex" style="height:100%;width:10%;"><span style="margin-left:1rem;">'+val.downtime_category+'</span></div>'
-                    //     +' <div class="font_row alignflex" style="height:100%;width:15%;"><span style="margin-left:1rem;">'+val.downtime_reason+'</span></div>'
-                    //     +' <div class="font_row alignflex" style="height:100%;width:12%"><span style="margin-left:1rem;">'+val.tool_name+'</span></div>'
-                    //     +'<div class="font_row alignflex" style="height:100%;width:15%;"><span style="margin-left:1rem;">'+val.part_name+'</span></div>'
-                    //     +'<div class="font_row alignflex" style="height:100%;width:10%;"><span style="margin-left:1rem;">'+val.last_updated_by+'</span></div>'
-                    //     +'<div class="font_row alignflex" style="height:100%;width: 15%;"><span style="margin-left:1rem;">'+updated_at+'</span></div>'
-                    //     +'<div class="font_row alignflex "  style="height:100%;width: 8%;justify-content:center;"><div class="notes_check"><img src="<?php  echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" onmouseover="notes_hover(this)"  onmouseout="mouse_out_check(this)"/></div></div>'
-                    //     +'<div class="notes_display" style="">'
-                    //         +'<p >'+val.notes+'</p>'
-                    //     +'</div>'
-                    // +'</div>');
-
-                    $('.alert_content').append(elements);
-                    // $('.scroll_rows').append(element);
-                }
                 
-            });
-            table_onclick();
+                });
+                table_onclick();
 
+              
+            }else{
+                $('.production_downtime_content').append('<p class="no_record_css">No Records...</p>');
+            }
             $("#overlay").fadeOut(550);
             // var width_get = $('.fixed_rows').css('height');
             // var width_get_1 = $('.scroll_rows').css('height');
@@ -3344,7 +3351,8 @@ function first_load_machine_duration(f,t){
             },
             success:function(res){
                 resolve(res);
-                
+                console.log("machine duration");
+                console.log(res);
                 $('#machine_reason_duration').remove();
                 $('.child_machine_reason_duration').append('<canvas id="machine_reason_duration"></canvas>');
                 $('.chartjs-hidden-iframe').remove();           
@@ -3352,7 +3360,19 @@ function first_load_machine_duration(f,t){
                 var minute_text = parseInt(parseInt(res['total_duration'])%60);
                 $('#machine_reason_duration_text').text(hour_text+'h'+' '+minute_text+'m');
 
-                var color = ["white","#004591","#0071EE","#97C9FF","#595959","#A6A6A6","#D9D9D9","#09BB9F","#39F3BB"];
+                // var color = ["white","#004591","#0071EE","#97C9FF","#595959","#A6A6A6","#D9D9D9","#09BB9F","#39F3BB"];
+                color = ["white","#004b9b","#58808f","#DE5B88","#53a6ff","#cde5ff",
+                    "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
+                    "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
+                    "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
+                    "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
+                    "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
+                    "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
+                    "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
+                    "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
+                    "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
+                    "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
+                ];
                 var demo = [];
                 var x= 1;
                 var machineName = [];
@@ -3370,7 +3390,7 @@ function first_load_machine_duration(f,t){
                 demo.push({
                     label:"Total",
                     type: "line",
-                    backgroundColor: 'white',
+                    backgroundColor: color[0],
                     borderColor: "#7f7f7f", 
                     pointBorderColor: "#d9d9ff",  
                     borderWidth: 1, 
@@ -3389,6 +3409,7 @@ function first_load_machine_duration(f,t){
                     res['data'].forEach(function(item){
                         arr_1.push(item.reason_duration[val]);
                         rname.push(item.reason_name[val]);
+                        console.log(item.reason_name[val]);
                         
                     });
                     demo.push({
@@ -3406,6 +3427,7 @@ function first_load_machine_duration(f,t){
                         barPercentage: bar_space,
                         yAxisID: 'B',
                     });
+                    console.log("color code is :\t"+color[x]);
                     x = x+1;
                 });
 

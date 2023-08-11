@@ -176,7 +176,7 @@ class Daily_production_controller extends BaseController{
     // get machine records
     public function getMachine_data(){
         if ($this->request->isAJAX()) {
-            // $date = "2023-06-10";
+            // $date = "2023-08-08";
 
             log_message("info","\n\ndaily production status function calling log");
             log_message("info","\n\ndaily production status function calling log");
