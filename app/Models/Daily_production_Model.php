@@ -229,7 +229,7 @@ class Daily_production_Model extends Model{
         $db =  \Config\Database::connect($this->site_connection);
         $query = $db->table('settings_machine_current');
         $query->select('machine_id,machine_name,machine_brand,tonnage');
-        $query->where('machine_id!=','MC1005');
+        // $query->where('machine_id!=','MC1005');
         $resm = $query->get()->getResultArray();
         return $resm;
     }
