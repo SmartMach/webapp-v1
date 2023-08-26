@@ -74,7 +74,7 @@ class Current_Shift_Performance extends BaseController{
     		$shift_id = $this->request->getVar('shift_id');
       //       $filter = $this->request->getVar('filter');
 
-    		// $shift_date = "2023-08-09";
+    		// $shift_date = "2023-08-25";
     		// $shift_id = "A";
             // $filter = 2;
 
@@ -166,7 +166,12 @@ class Current_Shift_Performance extends BaseController{
                                     }
                                     $e_time = $e_time_tmp;                            
                                     
-                                    $temp_target = $temp_target + (($e_time-$s_time)/$part->NICT);
+                                    if ($part->NICT>0) {
+                                        $temp_target = $temp_target + (($e_time-$s_time)/$part->NICT);    
+                                    }else{
+                                        // $temp_target = $temp_target + (($e_time-$s_time)/$part->NICT);
+                                        $temp_target = 0;
+                                    }
                                     $tc=1;  
                                     $h_total=$h_total+$p['production'];
                                 }
