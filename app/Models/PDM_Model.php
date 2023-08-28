@@ -2875,7 +2875,7 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
            $query->where('rs.shift_id',$shift);
           $query->where('rs.shift_date',$shift_date);
           $query->where('rs.part_id',$partname);
-          $query->orderby('rs.start_time','ASC');
+          $query->orderby('rs.r_no','ASC');
           $query->join('settings_part_current as parts','rs.part_id = parts.part_id');
           $res = $query->get()->getResultArray();
           return $res;
@@ -3011,7 +3011,8 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
       $query->where('rs.shift_id',$shift);
       $query->where('rs.shift_date',$shiftdate);
       $query->where('rs.part_id',$partname);
-      $query->orderby('rs.start_time','ASC');
+      $query->orderby('rs.r_no','ASC');
+    //   $query->orderby('rs.calendar_date','ASC');
       $query->join('settings_part_current as parts','rs.part_id = parts.part_id');
       $res = $query->get()->getResultArray();
       return $res;
