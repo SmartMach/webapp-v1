@@ -1606,11 +1606,15 @@ $(document).on('click', '.grid-item-cont', function(event) {
     $('.outer').css('border-color', border_color);
     $('.second_header').css('background-color',sub_header);
     
-    
+    // console.log("shift date :\t"+shift_date);
+    // console.log("machine id :\t"+tmp_mid);
+    // console.log("shift id :\t",tmp[1]);
+
     await getProductionGraph(tmp_mid,shift_date,tmp[1],background_title_color,border_color);
     await getDownTimeGraph(tmp_mid,shift_date,tmp[1]);
     await getLiveOEE(tmp_mid,shift_date,tmp[1]);
     await getDowntimeDuration(tmp_mid,shift_date,tmp[1]);
+  
     await getLiveProduction(tmp_mid,shift_date,tmp[1]);
     await getPartCycleTime(tmp_mid);
     await getRejectCounts(tmp_mid,shift_date,tmp[1]);
@@ -1811,6 +1815,9 @@ function oui_arrow_to_card(){
 
 // Production Graph
 function getProductionGraph(machine_id,shift_date,shift,backgroundcolor,border_color){
+    console.log("machine id:\t"+machine_id);
+    console.log("shift date:\t"+shift_date);
+    console.log("shift id :\t"+shift);
     return new Promise(function(resolve,reject){
         $('#production-graph').remove();
         $('.production-graph-prod').append('<canvas id="production-graph"><canvas>');
@@ -1825,6 +1832,8 @@ function getProductionGraph(machine_id,shift_date,shift,backgroundcolor,border_c
                 filter:2,
             },
             success: function(res){
+                console.log("production graph ");
+                console.log(res);
                 resolve(res);
                 var hours_list=[];
                 var production_count = [];
