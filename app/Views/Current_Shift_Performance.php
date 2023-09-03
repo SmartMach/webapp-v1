@@ -101,7 +101,7 @@
         </div>
     </nav>
      
-    <div class="graph-content" id="full_screen_id">
+    <div class="graph-content" >
         <div class="full_screen_close" onclick="fullscreen_mode_remove();">
             <div class="full-screen">
                 <img src="<?php echo base_url('assets/icons/cancel1.png'); ?>" class="icon_img_wh">
@@ -308,11 +308,13 @@ function showSlides(n) {
     }
 
     for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
+        // slides[i].style.display = "none";  
+        $('.grid-item-cont:eq('+i+')').css('display','none');
     }
     let l = slideIndex;
     for (j = l; j < (10); j++) {
-        slides[j].style.display = "block";
+        // slides[j].style.display = "block";
+        $('.grid-item-cont:eq('+j+')').css('display','block');
     }
 }
 
@@ -1705,7 +1707,6 @@ function color_bar(color, reason) {
     return colordemo;
 }
 
-// const full_screen_id = document.getElementById('full_screen_id');
 function fullscreen_mode() {
     $('.left-sidebar').css('display','none');
     $('.topnav').css('display','none');
@@ -1721,11 +1722,12 @@ function fullscreen_mode() {
     showSlides(0);
 
     const element = document.documentElement;
-    if (element.requestFullscreen) {
+   
+    if (document.fullscreenEnabled) {
         element.requestFullscreen();
-    } else if (element.webkitRequestFullscreen) {
+    } else if (document.webkitRequestFullscreen) {
         element.webkitRequestFullscreen();
-    } else if (element.msRequestFullscreen) {
+    } else if (document.msRequestFullscreen) {
         element.msRequestFullscreen();
     }
 
@@ -1760,13 +1762,13 @@ function fullscreen_mode_remove(){
             slides[j].style.display = "block";
         }
 
-        const element = document.documentElement;
-        if (element.exitFullscreen) {
-            element.exitFullscreen();
-        } else if (element.webkitExitFullscreen) {
-            element.webkitExitFullscreen();
-        } else if (element.msExitFullscreen) {
-            element.msExitFullscreen();
+        // const element = document.documentElement;
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) { /* Safari */
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { /* IE11 */
+            document.msExitFullscreen();
         }
 
         $('.slideControl').css('display','none');
