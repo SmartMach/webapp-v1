@@ -101,7 +101,7 @@
         </div>
     </nav>
      
-    <div class="graph-content">
+    <div class="graph-content" id="full_screen_id">
         <div class="full_screen_close" onclick="fullscreen_mode_remove();">
             <div class="full-screen">
                 <img src="<?php echo base_url('assets/icons/cancel1.png'); ?>" class="icon_img_wh">
@@ -1705,6 +1705,7 @@ function color_bar(color, reason) {
     return colordemo;
 }
 
+// const full_screen_id = document.getElementById('full_screen_id');
 function fullscreen_mode() {
     $('.left-sidebar').css('display','none');
     $('.topnav').css('display','none');
@@ -1721,11 +1722,11 @@ function fullscreen_mode() {
 
     const element = document.documentElement;
     if (element.requestFullscreen) {
-      element.requestFullscreen();
+        element.requestFullscreen();
     } else if (element.webkitRequestFullscreen) {
-      element.webkitRequestFullscreen();
+        element.webkitRequestFullscreen();
     } else if (element.msRequestFullscreen) {
-      element.msRequestFullscreen();
+        element.msRequestFullscreen();
     }
 
     $('.prev').css('margin-left','-4.5rem');
@@ -1760,12 +1761,12 @@ function fullscreen_mode_remove(){
         }
 
         const element = document.documentElement;
-        if (document.exitFullscreen) {
-        document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) {
-        document.msExitFullscreen();
+        if (element.exitFullscreen) {
+            element.exitFullscreen();
+        } else if (element.webkitExitFullscreen) {
+            element.webkitExitFullscreen();
+        } else if (element.msExitFullscreen) {
+            element.msExitFullscreen();
         }
 
         $('.slideControl').css('display','none');
