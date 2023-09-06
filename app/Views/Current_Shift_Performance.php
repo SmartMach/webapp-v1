@@ -1620,7 +1620,7 @@ $(document).on('click', '.grid-item-cont', function(event) {
     await getLiveProduction(tmp_mid,shift_date,tmp[1]);
     await getPartCycleTime(tmp_mid);
     await getRejectCounts(tmp_mid,shift_date,tmp[1]);
-    target_oui_graph(tmp_mid,tid_data,shift_date,shift_id);
+    target_oui_graph(tmp_mid,tid_data,shift_date,tmp[1]);
     $('.graph-content').css('display', 'none');
     $('.oui_screen_view').css('display', 'block');
     $('.oui_arrow_div').css('display', 'inline');
@@ -2541,6 +2541,9 @@ function getDownTimeGraph(machine_id, shift_date, s) {
 
     function target_oui_graph(mid,tid,sdate,shift_id){
         return new Promise(function(resolve,reject){
+            console.log("shift date:\t"+sdate);
+            console.log("shift id :\t"+shift_id);
+
             $.ajax({
                 url:"<?php echo base_url('Current_Shift_Performance/getLiveMode'); ?>",
                 method:"POST",
