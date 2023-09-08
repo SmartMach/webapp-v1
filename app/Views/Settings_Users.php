@@ -2209,6 +2209,15 @@ $(document).ready(function(){
                             $("input[name=settings_part][value='"+res_role[0].settings_part+"']").prop("checked",true);
                             $("input[name=settings_general][value='"+res_role[0].settings_general+"']").prop("checked",true);
                             $("input[name=settings_user][value='"+res_role[0].settings_user_management+"']").prop("checked",true);
+
+                            // new module
+                            $("input[name=dpd][value='"+res_role[0].daily_production_data+"']").prop("checked",true);
+                            $("input[name=csp][value='"+res_role[0].current_shift_performance+"']").prop("checked",true);
+                            $("input[name=pd][value='"+res_role[0].production_downtime+"']").prop("checked",true);
+                            $("input[name=pq][value='"+res_role[0].production_quality+"']").prop("checked",true);
+                            $("input[name=wom][value='"+res_role[0].work_order_management+"']").prop("checked",true);
+                            $("input[name=alm][value='"+res_role[0].alert_management+"']").prop("checked",true);
+
                                 
                         },
                         error:function(res){
@@ -2253,7 +2262,8 @@ $(document).ready(function(){
             },
             dataType: "json",
             success:function(res_csp){
-                // console.log(res_csp);
+                console.log("edit user details");
+                console.log(res_csp);
                 // active inactive user s condition
                 if (res_csp['user_data'][0].status == 1) {
                     $('#EditUserStatus').html('<p style="color: #005CBC;"><i class="fa fa-circle" style="font-size:9px;margin-right:5px;"></i>Active</p>');
@@ -3649,6 +3659,9 @@ function get_edit_access_control(userid,user_role){
             userName:userid,
         },
         success:function(res_role){
+            console.log("get edit access control");
+            console.log(res_role);
+            // old modules
             $("input[name=ooe_f_drill_down][value='"+res_role[0].oee_financial_drill_down+"']").prop("checked",true);
             $("input[name=opportunity_insights][value='"+res_role[0].opportunity_insights+"']").prop("checked",true);
             $("input[name=ooe_drill_down][value='"+res_role[0].oee_drill_down+"']").prop("checked",true);
@@ -3656,9 +3669,17 @@ function get_edit_access_control(userid,user_role){
             $("input[name=pdm][value='"+res_role[0].production_data_management+"']").prop("checked",true);
             $("input[name=settings_macine][value='"+res_role[0].settings_machine+"']").prop("checked",true);
             $("input[name=settings_part][value='"+res_role[0].settings_part+"']").prop("checked",true);
-            $("input[name=settings_general][value='"+res_role[0].settings_general+"']").prop("checked",true);
-                         
+            $("input[name=settings_general][value='"+res_role[0].settings_general+"']").prop("checked",true);        
             $("input[name=settings_user][value='"+res_role[0].settings_user_management+"']").prop("checked",true);
+        
+            // new modules 
+            $("input[name=dpd][value='"+res_role[0].daily_production_data+"']").prop("checked",true);
+            $("input[name=csp][value='"+res_role[0].current_shift_performance+"']").prop("checked",true);
+            $("input[name=pd][value='"+res_role[0].production_downtime+"']").prop("checked",true);
+            $("input[name=pq][value='"+res_role[0].production_quality+"']").prop("checked",true);
+            $("input[name=wom][value='"+res_role[0].work_order_management+"']").prop("checked",true);
+            $("input[name=alm][value='"+res_role[0].alert_management+"']").prop("checked",true);
+
         },
         error:function(res){
             // alert("Sorry!Try Agian!!");
@@ -3695,12 +3716,12 @@ function get_access_control(user){
                 $("input[name=settings_general][value='"+res_role.Settings_General+"']").prop("checked",true);
                 $("input[name=settings_user][value='"+res_role.Settings_User_Management+"']").prop("checked",true);
 
-                $("input[name=dpd][value='"+res_role.Daily_Production_Data+"']").prop("checked",true);
-                $("input[name=csp][value='"+res_role.Current_Shift_Performance+"']").prop("checked",true);
-                $("input[name=pd][value='"+res_role.Production_Downtime+"']").prop("checked",true);
-                $("input[name=pq][value='"+res_role.Production_Quality+"']").prop("checked",true);
-                $("input[name=wom][value='"+res_role.Work_Order_Management+"']").prop("checked",true);
-                $("input[name=alm][value='"+res_role.Alert_Management+"']").prop("checked",true);
+                $("input[name=dpd][value='"+res_role.daily_production_data+"']").prop("checked",true);
+                $("input[name=csp][value='"+res_role.current_shift_performance+"']").prop("checked",true);
+                $("input[name=pd][value='"+res_role.production_downtime+"']").prop("checked",true);
+                $("input[name=pq][value='"+res_role.production_quality+"']").prop("checked",true);
+                $("input[name=wom][value='"+res_role.work_order_management+"']").prop("checked",true);
+                $("input[name=alm][value='"+res_role.alert_management+"']").prop("checked",true);
 
             },
             error:function(res){

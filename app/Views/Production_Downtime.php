@@ -3419,7 +3419,8 @@ $(document).on('click','.doneEdit',function(){
           target:target,
       },
       success:function(res_Site){
-        // console.log(res_Site);
+        console.log(res_Site);
+        console.log("done for tool changeover result");
         if (res_Site) {
           alert("Updated Successfully!!");
         } 

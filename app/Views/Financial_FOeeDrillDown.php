@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/jquery.datetimepicker.min.css?version=<?php echo rand() ; ?>">
 
     <!-- Pre Loader -->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/standard/pre-loader.css?version=<?php echo rand() ; ?>">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/pre_loader.css?version=<?php echo rand() ; ?>">
 
     <script src="<?php echo base_url(); ?>/assets/js/jquery.datetimepicker.js?version=<?php echo rand() ; ?>"></script>
 
@@ -645,18 +645,16 @@ $(document).on('blur','.toDate',function(){
 $(document).on('click','.overall_filter_btn',function(event){
   event.preventDefault();
   $("#overlay").fadeIn(300);
-  setTimeout(myFun, 500);
+  console.log("filter button click");
+  myFun();
 });
 
 $(document).ready(function(){
   $("#overlay").fadeIn(300);
-  setTimeout(myFun, 500);
-  // $('.xdsoft_datetimepicker').css('position','fixed');
-  // document.getElementsByClassName('xdsoft_datetimepicker').style.position="fixed";
+  myFun();
 });
 
-function myFun(){
-        
+async function myFun(){
     f = $('.fromDate').val();
     t = $('.toDate').val();
     if ((new Date(f) >= new Date(t)) || (t=="")) {
@@ -694,14 +692,14 @@ function myFun(){
       f = $('.fromDate').val();
       t = $('.toDate').val();
     }
-    
-      overallTarget();
-      machineWiseOEE();
-      availabilityReason();
-      qualityOpportunity();
-      performanceOpportunity();
-      oeeTrendDay();
 
+   
+    await overallTarget();
+    await machineWiseOEE();
+    await availabilityReason();
+    await qualityOpportunity();
+    await performanceOpportunity();
+    await oeeTrendDay();
   // Pre-Loader Off
   $("#overlay").fadeOut(300);
 }
@@ -728,214 +726,219 @@ $.ajax({
   }
 });
 
-
 //Overall TEEP,OOE,OEE.......
 //overallTarget();
 function overallTarget(){
   // Pre-Loader On
   // $("#overlay").fadeIn(300);
+  return new Promise(function(resolve,reject){
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
+    $.ajax({
+      //OEE check....
+      url: "<?php echo base_url('Financial_Metrics/OverallOEETarget'); ?>",
+      type: "POST",
+      dataType: "json",
+      // async:false,
+      data:{
+        from:f,
+        to:t
+      },
+      success:function(res){
+        console.log('overall target');
+        resolve(res);
+        // res=res['OverallMonitoring'];
+        $('#viewTEEP').css('width',''+parseInt(res.Overall_TEEP)+'%');
+        $('#viewOOE').css('width',''+parseInt(res.Overall_OOE)+'%');
+        $('#viewOEE').css('width',''+parseInt(res.Overall_OEE)+'%');
+        
+        $('#valueTEEP').html(res.Overall_TEEP);
+        $('#valueOOE').html(res.Overall_OOE);
+        $('#valueOEE').html(res.Overall_OEE);
 
-  f = $('.fromDate').val();
-  t = $('.toDate').val();
-  f = f.replace(" ","T");
-  t = t.replace(" ","T");
-  $.ajax({
-    //OEE check....
-    url: "<?php echo base_url('Financial_Metrics/OverallOEETarget'); ?>",
-    type: "POST",
-    dataType: "json",
-    async:false,
-    data:{
-      from:f,
-      to:t
-    },
-    success:function(res){
-      // res=res['OverallMonitoring'];
-      $('#viewTEEP').css('width',''+parseInt(res.Overall_TEEP)+'%');
-      $('#viewOOE').css('width',''+parseInt(res.Overall_OOE)+'%');
-      $('#viewOEE').css('width',''+parseInt(res.Overall_OEE)+'%');
-      
-      $('#valueTEEP').html(res.Overall_TEEP);
-      $('#valueOOE').html(res.Overall_OOE);
-      $('#valueOEE').html(res.Overall_OEE);
+        $('.ooeVal').html(res.Overall_OOE);
+        $('.oeeVal').html(res.Overall_OEE);
+        $('.teepVal').html(res.Overall_TEEP);
 
-      $('.ooeVal').html(res.Overall_OOE);
-      $('.oeeVal').html(res.Overall_OEE);
-      $('.teepVal').html(res.Overall_TEEP);
+          // Pre-Loader Off
+      },
+      error:function(res){
+        reject(res);
+        $('#ViewOverallTEEP').css('width','0%');
+        $('#ViewOverallOEE').css('width','0%');
+        $('#ViewOverallOOE').css('width','0%');
 
-        // Pre-Loader Off
-        // $("#overlay").fadeOut(300);
-    },
-    error:function(res){
-
-      $('#ViewOverallTEEP').css('width','0%');
-      $('#ViewOverallOEE').css('width','0%');
-      $('#ViewOverallOOE').css('width','0%');
-
-        // Pre-Loader Off
-        // $("#overlay").fadeOut(300);
-    }
+          // Pre-Loader Off
+      }
+    });
   });
+ 
 }
 
 //Machine Wise OEE......
 function machineWiseOEE() {
   // Pre-Loader On
   // $("#overlay").fadeIn(300);
+  return new Promise(function(resolve,reject){
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
+    $.ajax({
+      url: "<?php echo base_url('Financial_Metrics/getMachineWiseOEE');?>",
+      type: "POST",
+      dataType: "json",
+      // async:false,
+      data:{
+        from:f,
+        to:t
+      },
+      success:function(res){
+        console.log('machine wise oee graph');
+        resolve(res);
+        $('#machine_wise_OEE').remove();
+        $('.child_graph_machine_wise_oee').append('<canvas id="machine_wise_OEE"><canvas>');
+        $('.chartjs-hidden-iframe').remove();
 
-  f = $('.fromDate').val();
-  t = $('.toDate').val();
-  f = f.replace(" ","T");
-  t = t.replace(" ","T");
-  $.ajax({
-    url: "<?php echo base_url('Financial_Metrics/getMachineWiseOEE');?>",
-    type: "POST",
-    dataType: "json",
-    async:false,
-    data:{
-      from:f,
-      to:t
-    },
-    success:function(res){
-      $('#machine_wise_OEE').remove();
-      $('.child_graph_machine_wise_oee').append('<canvas id="machine_wise_OEE"><canvas>');
-      $('.chartjs-hidden-iframe').remove();
+          var category_percent = 1.0;
+          var bar_space = 0.5;
 
-        var category_percent = 1.0;
-        var bar_space = 0.5;
-
-          while(true){
-            var len= res["OEE"].length;
-            if (len < 8) {
-              res["OEE"].push("");
-              res.MachineName.push("");
+            while(true){
+              var len= res["OEE"].length;
+              if (len < 8) {
+                res["OEE"].push("");
+                res.MachineName.push("");
+              }
+              else if(len > 8){
+                var l = parseInt(len)%parseInt(8);
+                var w= parseInt($('.parent_graph_machine_wise_oee').css("width"))+parseInt(l*18*16);
+                $('.child_graph_machine_wise_oee').css("width",w+"px");
+                break;
+              }
+              else{
+                break;
+              }
             }
-            else if(len > 8){
-              var l = parseInt(len)%parseInt(8);
-              var w= parseInt($('.parent_graph_machine_wise_oee').css("width"))+parseInt(l*18*16);
-              $('.child_graph_machine_wise_oee').css("width",w+"px");
-              break;
-            }
-            else{
-              break;
-            }
-          }
-            var ctx = document.getElementById("machine_wise_OEE").getContext('2d');
-                var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                  labels: res.MachineName,
-                  datasets: [
-                  {
-                    label: "Quality",
-                    type: "line",
-                    backgroundColor: "#004b9b",
-                    pointStyle:"circle",
-                    radius:"5",
-                    borderWidth: 1,
-                    showLine : false,
-                    fill: false,
-                    data: res['Quality'],
-                    pointRadius: 5,
-                    perTarget:res['PerformanceTarget'],
-                    availTarget:res['AvailabilityTarget'],
-                    qulyTarget:res['QualityTarget'],
-                    oeeTarget:res['OEETarget'],
-                  },
-                  {
-                    label: "Performance",
-                    type: "line",
-                    backgroundColor: "#004b9b",
-                    pointStyle:"rectRot",
-                    radius:"5", 
-                    borderWidth: 1, 
-                    showLine : false,
-                    fill: false, 
-                    data: res['Performance'],
-                    pointRadius: 6,
-
-                    perTarget:res['PerformanceTarget'],
-                    availTarget:res['AvailabilityTarget'],
-                    qulyTarget:res['QualityTarget'],
-                    oeeTarget:res['OEETarget'],
-
-                  },
-                  {
-                    label: "Availability",
-                    type: "line",
-                    backgroundColor: "#004b9b",
-                    pointStyle:"triangle",
-                    // borderColor: "red",  
-                    borderWidth: 1, 
-                    showLine : false,
-                    fill: false,
-                    data: res['Availability'],
-                    pointRadius: 5,
-
-                    perTarget:res['PerformanceTarget'],
-                    availTarget:res['AvailabilityTarget'],
-                    qulyTarget:res['QualityTarget'],
-                    oeeTarget:res['OEETarget'],
-                  },
+              var ctx = document.getElementById("machine_wise_OEE").getContext('2d');
+                  var myChart = new Chart(ctx, {
+                  type: 'bar',
+                  data: {
+                    labels: res.MachineName,
+                    datasets: [
                     {
-                      label: "Machine OEE",
-                      type: "bar",
+                      label: "Quality",
+                      type: "line",
                       backgroundColor: "#004b9b",
-                      borderColor: "#004b9b", 
+                      pointStyle:"circle",
+                      radius:"5",
                       borderWidth: 1,
-                      fill: true,
-                      data: res['OEE'],
+                      showLine : false,
+                      fill: false,
+                      data: res['Quality'],
+                      pointRadius: 5,
                       perTarget:res['PerformanceTarget'],
                       availTarget:res['AvailabilityTarget'],
                       qulyTarget:res['QualityTarget'],
                       oeeTarget:res['OEETarget'],
-                      categoryPercentage:category_percent,
-                      barPercentage: bar_space, 
-                    }
-                  ],
-              },
-              
-              options: {
-                scalebeginAtZero:false,
-                responsive: true,
-                maintainAspectRatio: false,   
-                scales: {
-                    y: {
-                        display:false,
-                        beginAtZero:true,
-                        stacked:false,
                     },
-                    x:{
-                        display:true,
-                        grid:{
-                          display:false
-                        },
-                        stacked:true,
-                    },
-                },
-                plugins: {
-                  legend: {
-                      display: false,
-                  },
-                  tooltip: {
-                    enabled: false,
-                    borderColor:"red",
-                    external: machineWiseOEETooltip,
-                  },
-                  
-                },
-              },
-              });  
+                    {
+                      label: "Performance",
+                      type: "line",
+                      backgroundColor: "#004b9b",
+                      pointStyle:"rectRot",
+                      radius:"5", 
+                      borderWidth: 1, 
+                      showLine : false,
+                      fill: false, 
+                      data: res['Performance'],
+                      pointRadius: 6,
 
-        // Pre-Loader Off
-        // $("#overlay").fadeOut(300);
-    },
-    error:function(res){
-        // Pre-Loader Off
-        // $("#overlay").fadeOut(300);
-        // alert("No Data Records!");
-    }
+                      perTarget:res['PerformanceTarget'],
+                      availTarget:res['AvailabilityTarget'],
+                      qulyTarget:res['QualityTarget'],
+                      oeeTarget:res['OEETarget'],
+
+                    },
+                    {
+                      label: "Availability",
+                      type: "line",
+                      backgroundColor: "#004b9b",
+                      pointStyle:"triangle",
+                      // borderColor: "red",  
+                      borderWidth: 1, 
+                      showLine : false,
+                      fill: false,
+                      data: res['Availability'],
+                      pointRadius: 5,
+
+                      perTarget:res['PerformanceTarget'],
+                      availTarget:res['AvailabilityTarget'],
+                      qulyTarget:res['QualityTarget'],
+                      oeeTarget:res['OEETarget'],
+                    },
+                      {
+                        label: "Machine OEE",
+                        type: "bar",
+                        backgroundColor: "#004b9b",
+                        borderColor: "#004b9b", 
+                        borderWidth: 1,
+                        fill: true,
+                        data: res['OEE'],
+                        perTarget:res['PerformanceTarget'],
+                        availTarget:res['AvailabilityTarget'],
+                        qulyTarget:res['QualityTarget'],
+                        oeeTarget:res['OEETarget'],
+                        categoryPercentage:category_percent,
+                        barPercentage: bar_space, 
+                      }
+                    ],
+                },
+                
+                options: {
+                  scalebeginAtZero:false,
+                  responsive: true,
+                  maintainAspectRatio: false,   
+                  scales: {
+                      y: {
+                          display:false,
+                          beginAtZero:true,
+                          stacked:false,
+                      },
+                      x:{
+                          display:true,
+                          grid:{
+                            display:false
+                          },
+                          stacked:true,
+                      },
+                  },
+                  plugins: {
+                    legend: {
+                        display: false,
+                    },
+                    tooltip: {
+                      enabled: false,
+                      borderColor:"red",
+                      external: machineWiseOEETooltip,
+                    },
+                    
+                  },
+                },
+                });  
+
+          // Pre-Loader Off
+      },
+      error:function(res){
+        console.log('machine wise oee error');
+        reject(res);
+          // Pre-Loader Off
+          // alert("No Data Records!");
+      }
+    });
   });
+ 
   // return;
 }
 
@@ -1027,158 +1030,162 @@ function availabilityReason() {
 
   // Pre-Loader On
   // $("#overlay").fadeIn(300);
-
-  f = $('.fromDate').val();
-  t = $('.toDate').val();
-  f = f.replace(" ","T");
-  t = t.replace(" ","T");
-	$.ajax({
-    url: "<?php echo base_url('Financial_Metrics/getAvailabilityReasonWise'); ?>",
-    type: "POST",
-    dataType: "json",
-    async:false,
-    data:{
-      from:f,
-      to:t
-    },
-    success:function(res){
-      $('#avalabilityOpportunity').remove();
-      $('.child_graph_availability_opportunity').append('<canvas id="avalabilityOpportunity"><canvas>');
-      $('.chartjs-hidden-iframe').remove();
-      
-      // res= res["AvailabilityOpportunity"];
-
-      $(".TotalAvail").html(res.grandTotal.toLocaleString("en-IN"));
-      var color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
+  return new Promise(function(resolve,reject){
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
+    $.ajax({
+      url: "<?php echo base_url('Financial_Metrics/getAvailabilityReasonWise'); ?>",
+      type: "POST",
+      dataType: "json",
+      // async:false,
+      data:{
+        from:f,
+        to:t
+      },
+      success:function(res){
+        console.log("availability opportunity graph ");
+        resolve(res);
+        $('#avalabilityOpportunity').remove();
+        $('.child_graph_availability_opportunity').append('<canvas id="avalabilityOpportunity"><canvas>');
+        $('.chartjs-hidden-iframe').remove();
         
-      // Find the Reason Names as Lables..........
-      var reasonList =[];
-      res['reason'].forEach(function(reason){
-          reasonList.push(reason.downtime_reason);
-      });
+        // res= res["AvailabilityOpportunity"];
 
-      var totalVal =[];
-      res['total'].forEach(function(total){
-          totalVal.push(total.toFixed(2));
-      });
+        $(".TotalAvail").html(res.grandTotal.toLocaleString("en-IN"));
+        var color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
+          
+        // Find the Reason Names as Lables..........
+        var reasonList =[];
+        res['reason'].forEach(function(reason){
+            reasonList.push(reason.downtime_reason);
+        });
 
-      var totalDuration=[];
-      res['totalDuration'].forEach(function(duration){
-          totalDuration.push(duration);
-      });
-      
+        var totalVal =[];
+        res['total'].forEach(function(total){
+            totalVal.push(total.toFixed(2));
+        });
 
-      var machineName = [];
-      res['machineName'].forEach(function(Name){
-          machineName.push(Name.machine_name);
-      });
+        var totalDuration=[];
+        res['totalDuration'].forEach(function(duration){
+            totalDuration.push(duration);
+        });
+        
 
-      var category_percent =1.0;
-      var bar_space=0.5;
-      while(true){
-        var len= reasonList.length;
-        if (len < 8) {
-          reasonList.push("");
+        var machineName = [];
+        res['machineName'].forEach(function(Name){
+            machineName.push(Name.machine_name);
+        });
+
+        var category_percent =1.0;
+        var bar_space=0.5;
+        while(true){
+          var len= reasonList.length;
+          if (len < 8) {
+            reasonList.push("");
+          }
+          else if(len > 8){
+            var l = parseInt(len)%parseInt(8);
+            var w= parseInt($('.parent_graph_availability_opportunity').css("width"))+parseInt(l*18*16);
+            $('.child_graph_availability_opportunity').css("width",w+"px");
+            break;
+          }
+          else{
+            break;
+          }
         }
-        else if(len > 8){
-          var l = parseInt(len)%parseInt(8);
-          var w= parseInt($('.parent_graph_availability_opportunity').css("width"))+parseInt(l*18*16);
-          $('.child_graph_availability_opportunity').css("width",w+"px");
-          break;
-        }
-        else{
-          break;
-        }
-      }
 
-      //Find the duration for each machine in each Reason............
-      machine = [
-        {
-          label:"Total" ,
-          type: "line",
-          backgroundColor: color[0],
-          borderColor: "#d9d9ff",  
-          borderWidth: 1, 
-          showLine : false,
-          fill: false, 
-          data:totalVal,
-          duration:totalDuration,
-          pointRadius: 7,
-        }           
-      ];
+        //Find the duration for each machine in each Reason............
+        machine = [
+          {
+            label:"Total" ,
+            type: "line",
+            backgroundColor: color[0],
+            borderColor: "#d9d9ff",  
+            borderWidth: 1, 
+            showLine : false,
+            fill: false, 
+            data:totalVal,
+            duration:totalDuration,
+            pointRadius: 7,
+          }           
+        ];
 
-      var x=1;
-      var index=0;
-      res['data'].forEach(function(machineWise){
-      //     //All the machines duration for each Reason..........
-          var arr= [];
-          var arrtmp = [];
-          machineWise.forEach(function(reason){
-            arr.push(reason.oppCost.toFixed(2));
-            arrtmp.push(reason.duration);
-          });
+        var x=1;
+        var index=0;
+        res['data'].forEach(function(machineWise){
+          //     //All the machines duration for each Reason..........
+            var arr= [];
+            var arrtmp = [];
+            machineWise.forEach(function(reason){
+              arr.push(reason.oppCost.toFixed(2));
+              arrtmp.push(reason.duration);
+            });
 
-          machine.push({
-            label: machineName[index],
-            type: "bar",
-            backgroundColor: color[x],
-            borderColor: color[x],
-            borderWidth: 1,
-            fill: true,
-            duration:arrtmp,
-            data: arr,
-            categoryPercentage:category_percent,
-            barPercentage: bar_space,
-          });
-          x=x+1;
-          index=index+1;
-      });
-      var avlOpp = document.getElementById("avalabilityOpportunity").getContext('2d');
-      var avlOppChart = new Chart(avlOpp, {
-        type: 'bar',
-        data: {
-          labels: reasonList,
-          datasets: machine,
-        },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,   
-          scales: {
-              y: {
-                  display: false,
-                  stacked:true,
-                  beginAtZero:true,
-              },
-              x:{
-                  display:true,
-                  grid:{
-                    display:false
-                  },
-                  stacked:true
-              }
+            machine.push({
+              label: machineName[index],
+              type: "bar",
+              backgroundColor: color[x],
+              borderColor: color[x],
+              borderWidth: 1,
+              fill: true,
+              duration:arrtmp,
+              data: arr,
+              categoryPercentage:category_percent,
+              barPercentage: bar_space,
+            });
+            x=x+1;
+            index=index+1;
+        });
+        var avlOpp = document.getElementById("avalabilityOpportunity").getContext('2d');
+        var avlOppChart = new Chart(avlOpp, {
+          type: 'bar',
+          data: {
+            labels: reasonList,
+            datasets: machine,
           },
-          plugins: {
-            legend: {
-                display: false,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,   
+            scales: {
+                y: {
+                    display: false,
+                    stacked:true,
+                    beginAtZero:true,
+                },
+                x:{
+                    display:true,
+                    grid:{
+                      display:false
+                    },
+                    stacked:true
+                }
             },
-            tooltip: {
-              enabled: false,
-              // borderColor:"red",
-              external: availabilityOpp,
-            }
+            plugins: {
+              legend: {
+                  display: false,
+              },
+              tooltip: {
+                enabled: false,
+                // borderColor:"red",
+                external: availabilityOpp,
+              }
+            },
           },
-        },
-      });
+        });
 
-        // Pre-Loader Off
-        // $("#overlay").fadeOut(300);
-    },
-    error:function(res){
-        // Pre-Loader Off
-        // $("#overlay").fadeOut(300);
-        // alert("Sorry!Try Agian!!!!");
-    }
-  }); 
+          // Pre-Loader Off
+      },
+      error:function(res){
+        console.log("availability opportunity graph");
+        reject(res);
+          // Pre-Loader Off
+          // alert("Sorry!Try Agian!!!!");
+      }
+    }); 
+  });
+  
 }
 
 function availabilityOpp(context) {
@@ -1267,190 +1274,194 @@ function availabilityOpp(context) {
 function qualityOpportunity() {
   // Pre-Loader On
   // $("#overlay").fadeIn(300);
+  return new Promise(function(resolve,reject){
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
+    $.ajax({
+      url: "<?php echo base_url('Financial_Metrics/qualityOpportunity'); ?>",
+      type: "POST",
+      dataType: "json",
+      // async:false,
+      data:{
+        from:f,
+        to:t
+      },
+      success:function(res){
+        console.log('qualityOpportunity');
+        resolve(res);
+        $('#qualityOpportunity').remove();
+        $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
+        $('.chartjs-hidden-iframe').remove();
 
-  f = $('.fromDate').val();
-  t = $('.toDate').val();
-  f = f.replace(" ","T");
-  t = t.replace(" ","T");
-  $.ajax({
-    url: "<?php echo base_url('Financial_Metrics/qualityOpportunity'); ?>",
-    type: "POST",
-    dataType: "json",
-    async:false,
-    data:{
-      from:f,
-      to:t
-    },
-    success:function(res){
-      $('#qualityOpportunity').remove();
-      $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
-      $('.chartjs-hidden-iframe').remove();
+        // res=res["QualityOpportunity"]
+        $(".OppCostTotal").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
+        // color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
+        color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
+          "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
+          "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
+          "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
+          "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
+          "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
+          "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
+          "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
+          "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
+          "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
+          "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
+        ];
+          
+        // Find the Reason Names as Lables..........
+        var reasonList =[];
+        res['Reason'].forEach(function(res){
+            reasonList.push(res);
+        });
 
-      // res=res["QualityOpportunity"]
-      $(".OppCostTotal").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
-      // color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
-      color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
-        "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
-        "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
-        "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
-        "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
-        "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
-        "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
-        "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
-        "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
-        "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
-        "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
-      ];
+        var totalVal =[];
+        var partNameTotal=[];
+        res['Total'].forEach(function(t){
+            totalVal.push(t);
+            partNameTotal.push("Total");
+        });
         
-      // Find the Reason Names as Lables..........
-      var reasonList =[];
-      res['Reason'].forEach(function(res){
-          reasonList.push(res);
-      });
+        var partName = [];
+        for (const key in res['Part']) {
 
-      var totalVal =[];
-      var partNameTotal=[];
-      res['Total'].forEach(function(t){
-          totalVal.push(t);
-          partNameTotal.push("Total");
-      });
-      
-      var partName = [];
-      for (const key in res['Part']) {
-
-          partName.push(`${res['Part'][key]}`);
-      }
-
-      //Find the duration for each machine in each Reason............
-      var totalReject=[];
-      for (var i = 0; i< reasonList.length; i++) {
-        var tmpTotalReject=0;
-        for (var j = 0; j < res['OppCost'].length; j++) {
-          tmpTotalReject=parseInt(tmpTotalReject)+parseInt(res['OppCost'][j]['Reason'][i]['TotalRejects']);
+            partName.push(`${res['Part'][key]}`);
         }
-        totalReject.push(tmpTotalReject);
-      }
 
-      var category_percent =1.0;
-      var bar_space=0.5;
-
-      while(true){
-        var len= reasonList.length;
-        if (len < 8) {
-          reasonList.push("");
+        //Find the duration for each machine in each Reason............
+        var totalReject=[];
+        for (var i = 0; i< reasonList.length; i++) {
+          var tmpTotalReject=0;
+          for (var j = 0; j < res['OppCost'].length; j++) {
+            tmpTotalReject=parseInt(tmpTotalReject)+parseInt(res['OppCost'][j]['Reason'][i]['TotalRejects']);
+          }
+          totalReject.push(tmpTotalReject);
         }
-        else if(len > 8){
-          var l = parseInt(len)%parseInt(8);  
-          var w= parseInt($('.parent_graph_quality_opportunity').css("width"))+parseInt(l*18*16);
-          $('.child_graph_quality_opportunity').css("width",w+"px");
-          break;
+
+        var category_percent =1.0;
+        var bar_space=0.5;
+
+        while(true){
+          var len= reasonList.length;
+          if (len < 8) {
+            reasonList.push("");
+          }
+          else if(len > 8){
+            var l = parseInt(len)%parseInt(8);  
+            var w= parseInt($('.parent_graph_quality_opportunity').css("width"))+parseInt(l*18*16);
+            $('.child_graph_quality_opportunity').css("width",w+"px");
+            break;
+          }
+          else{
+            break;
+          }
         }
-        else{
-          break;
-        }
-      }
 
 
-      oppCost = [
-        {
-          label:"Total" ,
-          type: "line",
-          backgroundColor: color[0],
-          borderColor: "#d9d9ff",  
-          borderWidth: 1, 
-          showLine : false,
-          fill: false,
-          reject:totalReject, 
-          data:totalVal,
-          partName:partNameTotal,
-          pointRadius: 7,
-        }           
-      ];
+        oppCost = [
+          {
+            label:"Total" ,
+            type: "line",
+            backgroundColor: color[0],
+            borderColor: "#d9d9ff",  
+            borderWidth: 1, 
+            showLine : false,
+            fill: false,
+            reject:totalReject, 
+            data:totalVal,
+            partName:partNameTotal,
+            pointRadius: 7,
+          }           
+        ];
 
-      var x=1;
-      var index=0;
-      res['OppCost'].forEach(function(partWise){
-      //     //All the part opportunity cost for each Reason..........
-          var arr= [];
-          var arrtmp = [];
-          var a=[];
-          var partNameHover=[];
-          partWise.Reason.forEach(function(res){
-            if (res.TotalCost == "") {
-              arr.push(0);
-              a.push(0);
-            }
-            else{
-                arr.push(res.TotalCost);
-                a.push(res.TotalRejects);
-            }
-            partNameHover.push(res.Part_Name);
-          });
-          oppCost.push({
-            label: partName[index],
-            type: "bar",
-            backgroundColor: color[x],
-            borderColor: color[x],
-            borderWidth: 1,
-            fill: true,
-            reject:a,
-            data: arr,
-            partName:partNameHover,
-            categoryPercentage:category_percent,
-            barPercentage:bar_space,
-          });
-          x=x+1;
-          index=index+1;
+        var x=1;
+        var index=0;
+        res['OppCost'].forEach(function(partWise){
+        //     //All the part opportunity cost for each Reason..........
+            var arr= [];
+            var arrtmp = [];
+            var a=[];
+            var partNameHover=[];
+            partWise.Reason.forEach(function(res){
+              if (res.TotalCost == "") {
+                arr.push(0);
+                a.push(0);
+              }
+              else{
+                  arr.push(res.TotalCost);
+                  a.push(res.TotalRejects);
+              }
+              partNameHover.push(res.Part_Name);
+            });
+            oppCost.push({
+              label: partName[index],
+              type: "bar",
+              backgroundColor: color[x],
+              borderColor: color[x],
+              borderWidth: 1,
+              fill: true,
+              reject:a,
+              data: arr,
+              partName:partNameHover,
+              categoryPercentage:category_percent,
+              barPercentage:bar_space,
+            });
+            x=x+1;
+            index=index+1;
 
-      });
+        });
 
-            var ctx = document.getElementById("qualityOpportunity").getContext('2d');
-            var myChart = new Chart(ctx, {
-              type: 'bar',
-              data: {
-                labels: reasonList,
-                datasets:oppCost
-            },
-            
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,   
-              scales: {
-                  y: {
-                      display:false,
-                      beginAtZero:true,
-                      stacked:true
-                  },
-                  x:{
-                      display:true,
-                      grid:{
-                        display:false
-                      },
-                      stacked:true
-                  },
+              var ctx = document.getElementById("qualityOpportunity").getContext('2d');
+              var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                  labels: reasonList,
+                  datasets:oppCost
               },
-              plugins: {
-                legend: {
-                    display: false,
+              
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,   
+                scales: {
+                    y: {
+                        display:false,
+                        beginAtZero:true,
+                        stacked:true
+                    },
+                    x:{
+                        display:true,
+                        grid:{
+                          display:false
+                        },
+                        stacked:true
+                    },
                 },
-                tooltip: {
-                  enabled: false,
-                  // borderColor:"red",
-                  external: qualityOpp,
-                }
+                plugins: {
+                  legend: {
+                      display: false,
+                  },
+                  tooltip: {
+                    enabled: false,
+                    // borderColor:"red",
+                    external: qualityOpp,
+                  }
+                },
               },
-            },
-          });
+            });
 
+            // Pre-Loader Off
+          },
+      error:function(res){
+        reject(res);
+        console.log('quality opportunity graph error');
           // Pre-Loader Off
-          // $("#overlay").fadeOut(300);
-        },
-    error:function(res){
-        // Pre-Loader Off
-        // $("#overlay").fadeOut(300);
-        // alert("Sorry!Try Agian!!!!");
-    }
-  }); 
+          // alert("Sorry!Try Agian!!!!");
+      }
+    }); 
+  });
+ 
 }
 
 function qualityOpp(context) {  
@@ -1529,154 +1540,152 @@ function qualityOpp(context) {
 //performanceOpportunity();
 function performanceOpportunity() {
 
-  $('#performanceOpportunity').remove();
-  $('.child_graph_performance_opportunity').append('<canvas id="performanceOpportunity"><canvas>');
-  $('.chartjs-hidden-iframe').remove();
+  return new Promise(function(resolve,reject){
+    $('#performanceOpportunity').remove();
+    $('.child_graph_performance_opportunity').append('<canvas id="performanceOpportunity"><canvas>');
+    $('.chartjs-hidden-iframe').remove();
+    // Pre-Loader On
+    // $("#overlay").fadeIn(300);
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
+    $.ajax({
+      url: "<?php echo base_url('Financial_Metrics/performanceOpportunity'); ?>",
+      type: "POST",
+      dataType: "json",
+      // async:false,
+      data:{
+        from:f,
+        to:t
+      },
+      success:function(res){
+        console.log("performance opportunity graph");
+        resolve(res);
+              var color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
+              $(".PerformanceGrand").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
 
-  // Pre-Loader On
-  // $("#overlay").fadeIn(300);
-
-
-  f = $('.fromDate').val();
-  t = $('.toDate').val();
-  f = f.replace(" ","T");
-  t = t.replace(" ","T");
-  $.ajax({
-    url: "<?php echo base_url('Financial_Metrics/performanceOpportunity'); ?>",
-    type: "POST",
-    dataType: "json",
-    async:false,
-    data:{
-      from:f,
-      to:t
-    },
-    success:function(res){
-            var color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
-            $(".PerformanceGrand").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
-
-            var partTotal = [];
-            res.Total.forEach(function(r){
-              partTotal.push(parseFloat(r.toFixed(2)));
-            });
-            
-            var speedTotal=[];
-            res.SpeedLossTotal.forEach(function(t){
-              speedTotal.push(parseFloat(t.toFixed(2)));
-            });
-
-            var partWiseLable = [];
-            res.Part.forEach(function(item){
-              partWiseLable.push(item.part_name);
-            });
-
-             //Find the duration for each machine in each Reason............
-            oppCost = [
-              {
-                label:"Total" ,
-                type: "line",
-                backgroundColor: color[0],
-                borderColor: "#d9d9ff",  
-                borderWidth: 1, 
-                showLine : false,
-                fill: false, 
-                data:partTotal,
-                speedLoss:speedTotal,
-                pointRadius: 7,
-              }           
-            ];
-
-            var x=1;
-            var index=0;
-            
-            res.dataPart.forEach(function(item){
-              var performancePart=[];
-              var speedLoss=[];
-              item.machineData.forEach(function(val){
-                var p = parseFloat(val['Opportunity'].toFixed(2));
-                performancePart.push(p);
-                speedLoss.push(parseFloat(val['SpeedLoss'].toFixed(2)));
+              var partTotal = [];
+              res.Total.forEach(function(r){
+                partTotal.push(parseFloat(r.toFixed(2)));
+              });
+              
+              var speedTotal=[];
+              res.SpeedLossTotal.forEach(function(t){
+                speedTotal.push(parseFloat(t.toFixed(2)));
               });
 
-              oppCost.push({
-                  label: partWiseLable[index],
-                  type: "bar",
-                  backgroundColor: color[x],
-                  borderColor: color[x],
-                  borderWidth: 1,
-                  fill: true,
-                  data: performancePart,
-                  speedLoss:speedLoss,
-                  categoryPercentage:1.0,
-                  barPercentage: 0.5, 
+              var partWiseLable = [];
+              res.Part.forEach(function(item){
+                partWiseLable.push(item.part_name);
+              });
+
+              //Find the duration for each machine in each Reason............
+              oppCost = [
+                {
+                  label:"Total" ,
+                  type: "line",
+                  backgroundColor: color[0],
+                  borderColor: "#d9d9ff",  
+                  borderWidth: 1, 
+                  showLine : false,
+                  fill: false, 
+                  data:partTotal,
+                  speedLoss:speedTotal,
+                  pointRadius: 7,
+                }           
+              ];
+
+              var x=1;
+              var index=0;
+              
+              res.dataPart.forEach(function(item){
+                var performancePart=[];
+                var speedLoss=[];
+                item.machineData.forEach(function(val){
+                  var p = parseFloat(val['Opportunity'].toFixed(2));
+                  performancePart.push(p);
+                  speedLoss.push(parseFloat(val['SpeedLoss'].toFixed(2)));
                 });
-                x=x+1;
-                index=index+1;
-            });
 
-            var bar_width = 0.6;
-            var bar_size = 0.7;
+                oppCost.push({
+                    label: partWiseLable[index],
+                    type: "bar",
+                    backgroundColor: color[x],
+                    borderColor: color[x],
+                    borderWidth: 1,
+                    fill: true,
+                    data: performancePart,
+                    speedLoss:speedLoss,
+                    categoryPercentage:1.0,
+                    barPercentage: 0.5, 
+                  });
+                  x=x+1;
+                  index=index+1;
+              });
 
-            while(true){
-              var len= partWiseLable.length;
-              if (len < 8) {
-                partWiseLable.push("");
-              }
-              else if(len > 8){
-                var l = parseInt(len)%parseInt(8);
-                var w= parseInt($('.parent_graph_performance_opportunity').css("width"))+parseInt(l*18*16);
-                $('.child_graph_performance_opportunity').css("width",w+"px");
-                break;
-              }
-              else{
-                break;
-              }
-            }
+              var bar_width = 0.6;
+              var bar_size = 0.7;
 
-            var ctx = document.getElementById("performanceOpportunity").getContext('2d');
-            var myChart = new Chart(ctx, {
-              type: 'bar',
-              data: {
-                labels: partWiseLable,
-                datasets:oppCost,
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,   
-                scales: {
-                    y: {
-                        display:false,
-                        beginAtZero:true,
-                        stacked:true
-                    },
-                    x:{
-                        display:true,
-                        grid:{
-                          display:false
-                        },
-                        stacked:true,
-                    },
-                },
-                plugins: {
-                  legend: {
-                      display: false,
+              while(true){
+                var len= partWiseLable.length;
+                if (len < 8) {
+                  partWiseLable.push("");
+                }
+                else if(len > 8){
+                  var l = parseInt(len)%parseInt(8);
+                  var w= parseInt($('.parent_graph_performance_opportunity').css("width"))+parseInt(l*18*16);
+                  $('.child_graph_performance_opportunity').css("width",w+"px");
+                  break;
+                }
+                else{
+                  break;
+                }
+              }
+
+              var ctx = document.getElementById("performanceOpportunity").getContext('2d');
+              var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                  labels: partWiseLable,
+                  datasets:oppCost,
+              },
+              options: {
+                  responsive: true,
+                  maintainAspectRatio: false,   
+                  scales: {
+                      y: {
+                          display:false,
+                          beginAtZero:true,
+                          stacked:true
+                      },
+                      x:{
+                          display:true,
+                          grid:{
+                            display:false
+                          },
+                          stacked:true,
+                      },
                   },
-                  tooltip: {
-                    enabled: false,
-                    external: performanceOpp,
-                  }
-                },
-              },            
-            });
-
-        // Pre-Loader Off
-        // $("#overlay").fadeOut(300);
-    },
-    error:function(res){
-        // Pre-Loader Off
-        // $("#overlay").fadeOut(300);
-        // alert("Sorry!Try Agian!!!!");
-    }
-  }); 
+                  plugins: {
+                    legend: {
+                        display: false,
+                    },
+                    tooltip: {
+                      enabled: false,
+                      external: performanceOpp,
+                    }
+                  },
+                },            
+              });
+      },
+      error:function(res){
+        console.log("performance opportunity graph error");
+        reject(res);
+      }
+    }); 
+  });
+  
 }
 
 function performanceOpp(context) {  
@@ -1763,22 +1772,24 @@ function performanceOpp(context) {
 function oeeTrendDay() {
   // Pre-Loader On
   // $("#overlay").fadeIn(300);
-
-  f = $('.fromDate').val();
-  t = $('.toDate').val();
-  f = f.replace(" ","T");
-  t = t.replace(" ","T");
+  return new Promise(function(resolve,reject){
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
       // oee trend day
     $.ajax({
         url: "<?php echo base_url('Financial_Metrics/oeeTrendDay'); ?>",
         type: "POST",
         dataType: "json",
-        async:false,
+        // async:false,
         data:{
           from:f,
           to:t
         },
         success:function(res){
+          console.log(res);
+          resolve(res);
           $('#OEETrend').remove();
           $('.child_graph_oee_trend').append('<canvas id="OEETrend"><canvas>');
           $('.chartjs-hidden-iframe').remove();
@@ -1875,18 +1886,17 @@ function oeeTrendDay() {
           },
           });
 
-          // Pre-Loader Off
-          // $("#overlay").fadeOut(300);
         },
         error:function(res){
-          // Pre-Loader Off
-          // $("#overlay").fadeOut(300);
-          // alert("Sorry!Try Agian!!");
+          reject(res);
+          console.log('oee trend graph error');
         }
     });
-  }
+  });
+  
+}
 
-  function oeeTrendOpp(context) {  
+function oeeTrendOpp(context) {  
 
     // Tooltip Element
     let tooltipEl = document.getElementById('tooltip-oeetrend');
