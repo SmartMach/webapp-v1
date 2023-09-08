@@ -63,6 +63,21 @@ class Current_Shift_Performance_Model extends Model{
 	    return $res;
 	}
 
+    //  after click tail open oui screen get live shift
+    public function getShiftLive_oui($sdate,$sid)
+	{
+	    $db = \Config\Database::connect($this->site_connection);
+	    $query = $db->table('pdm_production_info');
+	    $query->select('shift_date,shift_id');
+        $query->where('shift_date',$sdate);
+        $query->where('shift_id',$sid);
+        $query->orderby('shift_date','desc');
+        $query->orderby('shift_id','desc');
+        $query->limit(1);
+	    $res= $query->get()->getResultArray();
+	    return $res;
+	}
+
     public function getMachineLive()
     {
         $db = \Config\Database::connect($this->site_connection);

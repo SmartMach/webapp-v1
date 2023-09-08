@@ -72,9 +72,9 @@ class Current_Shift_Performance extends BaseController{
 
     		$shift_date = $this->request->getVar('shift_date');
     		$shift_id = $this->request->getVar('shift_id');
-      //       $filter = $this->request->getVar('filter');
+            // $filter = $this->request->getVar('filter');
 
-    		// $shift_date = "2023-08-09";
+    		// $shift_date = "2023-08-29";
     		// $shift_id = "A";
             // $filter = 2;
 
@@ -83,6 +83,9 @@ class Current_Shift_Performance extends BaseController{
 
     		// Hourly Production.....
     		$hourly_production = $this->datas->getLiveProduction($shift_date,$shift_id );
+            // echo "shift id :\t".$shift_id."\n";
+            // echo "\n";
+            // echo "\nshift date:\t".$shift_date;
             foreach ($hourly_production as $key => $value) {
                 $hourly_production[$key]['production'] = ((int)$value['production']) + ((int)$value['corrections']);
             }
@@ -96,17 +99,23 @@ class Current_Shift_Performance extends BaseController{
             // print_r($production_target_all);
 
     		// Shift Detailes,.......
-    		$shift_detailes =  $this->datas->getShiftLive();
+    		$shift_detailes =  $this->datas->getShiftLive_oui($shift_date,$shift_id);
+            // echo "shift date:\t".$shift_detailes[0]['shift_date'];
         	$shift = $this->datas->getShiftExact($shift_detailes[0]['shift_date']." 23:59:59");
         	$shiftList=[];
         	$s_time="";
         	$e_time="";
+
+            // echo "shift id:\t".$shift_detailes[0]['shift_id'];
     		foreach ($shift['shift'] as $key => $value) {
+                // echo "\t".str_split($value['shifts'])[0]." \t".$shift_detailes[0]['shift_id'];
 	        	if (str_split($value['shifts'])[0] == $shift_detailes[0]['shift_id']) {
+
 	        		$s_time = $value['start_time'];
 	        		$e_time = $value['end_time'];
 	        	}
 	        }
+            // echo "start time:\t".$s_time;
 	        $ts_date = strtotime($shift_date." ".$s_time);
 	        $te_date = strtotime($shift_date." ".$e_time);
 
@@ -166,7 +175,12 @@ class Current_Shift_Performance extends BaseController{
                                     }
                                     $e_time = $e_time_tmp;                            
                                     
-                                    $temp_target = $temp_target + (($e_time-$s_time)/$part->NICT);
+                                    if ($part->NICT>0) {
+                                        $temp_target = $temp_target + (($e_time-$s_time)/$part->NICT);    
+                                    }else{
+                                        // $temp_target = $temp_target + (($e_time-$s_time)/$part->NICT);
+                                        $temp_target = 0;
+                                    }
                                     $tc=1;  
                                     $h_total=$h_total+$p['production'];
                                 }
