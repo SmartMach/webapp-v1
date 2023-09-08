@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/jquery.datetimepicker.min.css?version=<?php echo rand() ; ?>">
 
     <!-- Pre Loader -->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/standard/pre-loader.css?version=<?php echo rand() ; ?>">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/pre_loader.css?version=<?php echo rand() ; ?>">
 
     <script src="<?php echo base_url(); ?>/assets/js/jquery.datetimepicker.js?version=<?php echo rand() ; ?>"></script>
 
@@ -369,11 +369,14 @@
               $('.toDate').datetimepicker('reset');
               //Terminate
           }
-
-          if (inputDateTime.getDate() == current.getDate()) {
-              if (inputDateTime.getHours() <= (current.getHours())) {
+          
+          // var tmp_current_time = new Date()
+          if (inputDateTime.getDate() == current.getDate() && inputDateTime.getMonth() == current.getMonth()) {
+            var tmp_current = new Date();
+            if (inputDateTime.getHours() <= (current.getHours()) && inputDateTime.getDate()==tmp_current.getDate() && inputDateTime.getMonth()==tmp_current.getMonth()) {
                   $('.toDate').datetimepicker('reset');
               }
+              
               this.setOptions({
                   minTime:(parseInt(current.getHours())+parseInt(1)) + ':00',
                   minDate:c_date
@@ -386,7 +389,7 @@
           }
 
           var tmp = new Date()
-          if (inputDateTime.getDate() == tmp.getDate()) {
+          if (inputDateTime.getDate() == tmp.getDate() && inputDateTime.getMonth() == tmp.getMonth()) {
               this.setOptions({
                   maxTime: (tmp.getHours())+ ':00',
               });
@@ -405,9 +408,12 @@
               if (inputDateTime.getHours() > (current.getHours())) {
                   $('.fromDate').datetimepicker('reset');
               }
-              this.setOptions({
+              if (inputDateTime.getDate() == current.getDate() && inputDateTime.getMonth() == current.getMonth()) {
+                this.setOptions({
                   maxTime: (current.getHours())+ ':00',
-              });
+                });
+              }
+             
           } else {
               this.setOptions({
                   maxTime: false,
@@ -680,7 +686,7 @@
 
 var dt = new Date();
 $('.fromDate').datetimepicker({  
-  format:'Y-m-d H:00:00',
+  format:'Y-m-d H:00',
   // minDate : '0',
   maxDate: new Date(),
   onChangeDateTime:checkPastTime_F,
@@ -706,9 +712,13 @@ $('.toDate').datetimepicker({
   $('.fromDate').val(tdate);
 
   // Pre-Loader On
-  $("#overlay").fadeIn(300);
-  setTimeout(myFun, 500);
+  $(document).ready(function(){
+    $("#overlay").fadeIn(300);
+    // setTimeout(myFun, 500);
+    myFun();
 
+  });
+ 
   /* temporary hdie for this function
   $(document).on('blur','.fromDate',function(){
     // Pre-Loader On
@@ -725,24 +735,25 @@ $('.toDate').datetimepicker({
   $(document).on('click','.overall_filter_btn',function(event){
     event.preventDefault();
     $("#overlay").fadeIn(300);
-    setTimeout(myFun, 500);
+    // setTimeout(myFun, 500);
+    myFun();
   }); 
 
 
 
 
-  function myFun(){
-      f = $('.fromDate').val(); 
-      t = $('.toDate').val();
+  async function myFun(){
+    f = $('.fromDate').val(); 
+    t = $('.toDate').val();
 
-      if ((new Date(f) >= new Date(t)) || (t=="")) {
-        var x = new Date(f)
-        t = x.setHours(x.getHours() + 1);
-        t= new Date(t);
-        var tdate = t.getFullYear()+"-"+("0" + (parseInt(t.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + t.getDate()).slice(-2)+" "+("0" + t.getHours()).slice(-2)+":00:00";
-        $('.toDate').val(tdate);
-        t = $('.toDate').val();
-      }
+    if ((new Date(f) >= new Date(t)) || (t=="")) {
+      var x = new Date(f)
+      t = x.setHours(x.getHours() + 1);
+      t= new Date(t);
+      var tdate = t.getFullYear()+"-"+("0" + (parseInt(t.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + t.getDate()).slice(-2)+" "+("0" + t.getHours()).slice(-2)+":00:00";
+      $('.toDate').val(tdate);
+      t = $('.toDate').val();
+    }
 
     var f_t = new Date(f);
     var t_t = new Date(t);
@@ -762,14 +773,14 @@ $('.toDate').datetimepicker({
       t = $('.toDate').val();
     }
 
-        plopportunity();
-        machineplopportunity();
-        partplopportunity();
-        opportunityTrendDay();
-        opportunitydrilldown();
+    await plopportunity();
+    await machineplopportunity();
+    await partplopportunity();
+    await opportunityTrendDay();
+    await opportunitydrilldown();
 
-        // Pre-Loader Off
-        $("#overlay").fadeOut(300);
+    // Pre-Loader Off
+    $("#overlay").fadeOut(300);
   }
 
   //overallTarget();
@@ -782,6 +793,7 @@ function overallTarget(){
 }
 
 function plopportunity(){
+  return new Promise(function(resolve,reject){
       f = $('.fromDate').val();
       t = $('.toDate').val();
 
@@ -792,13 +804,16 @@ function plopportunity(){
         url: "<?php echo base_url('Financial_Metrics/plopportunity'); ?>",
         type: "POST",
         dataType: "json",
-        async:false,
+        // async:false,
         data:{
           from:f,
           to:t
         },
         success:function(res){      
           
+          console.log("financial p&l improvment graph");
+          console.log(res);
+          resolve(res);
           $('#chart').empty();
           $(".apexcharts-canvas").remove();
           
@@ -822,112 +837,110 @@ function plopportunity(){
           operationDuration.push(res['qualityDuration']);
 
           var options = {
-          series: data,
-          chart: {
-            type: "donut",
-            foreColor: '#B3D7FF',
-          },
-          colors: ["#B3D7FF", "#004A9B"],
-          dataLabels: {
-            enabled: true,
-            style: {
-              colors: ["#004A9B","#FFFFFF"],
-              fontSize: '13px',
-              fontFamily: 'Roboto, Arial, sans-serif',
+            series: data,
+            chart: {
+              type: "donut",
+              foreColor: '#B3D7FF',
             },
-            background: {
-              enabled: false,
-            },
-            dropShadow: {
-              enabled: false,
-              top: 1,
-              left: 1,
-              blur: 1,
-              color: '#000',
-              opacity: 0.45
-            }
-          }, 
+            colors: ["#B3D7FF", "#004A9B"],
+            dataLabels: {
+              enabled: true,
+              style: {
+                colors: ["#004A9B","#FFFFFF"],
+                fontSize: '13px',
+                fontFamily: 'Roboto, Arial, sans-serif',
+              },
+              background: {
+                enabled: false,
+              },
+              dropShadow: {
+                enabled: false,
+                top: 1,
+                left: 1,
+                // blur: 1,
+                color: '#000',
+                // opacity: 0.45
+              }
+            }, 
 
-          plotOptions: {
-
-            pie: {
-              startAngle: 0,
-              expandOnClick: true,
-              offsetX: 0,
-              offsetY: 0,
-              customScale: 1,
-              dataLabels: {
-                offset: 0,
-                minAngleToShowLabel: 10,
-            },
-              donut: {
-                size: "63%",
-                background: "transparent",
-                labels: {
-                  show: true,
-                  name: {
+            plotOptions: {
+              pie: {
+                startAngle: 0,
+                expandOnClick: true,
+                offsetX: 0,
+                offsetY: 0,
+                customScale: 1,
+                dataLabels: {
+                  offset: 0,
+                  minAngleToShowLabel: 10,
+                },
+                donut: {
+                  size: "63%",
+                  background: "transparent",
+                  labels: {
                     show: true,
-                    fontSize: "22px",
-                    fontFamily: "Roboto, Arial, sans-serif",
-                    fontWeight: 100,
-                    color: "black",
-                    offsetY: -10,
-                  },
-                  value: {
-                    show: true,
-                    fontSize: "20px",
-                    fontFamily: "Roboto, Arial, sans-serif",
-                    fontWeight: 5,
-                    fontWeight: "bold",
-                    color: "#005ABC",
-                    offsetY: 2,
-                  },
-                  total: {
-                    show: true,
-                    showAlways: true,
-                    label: "TOTAL",
-                    fontSize: "12px",
-                    fontFamily: "Roboto, Arial, sans-serif",
-                    fontWeight: "bold",
-                    color: "#BFBFBF",
-                    formatter: function (w) {
-                      try {
-                        var a = parseFloat(w.globals.seriesTotals[0]) + w.globals.seriesTotals[1];
-                      }
-                      catch(err) {
-                        var a = parseFloat(w.globals.seriesTotals[0]);
-                      }
-                      return ("₹"+parseInt(a)).toLocaleString("en-IN");
+                    name: {
+                      show: true,
+                      fontSize: "22px",
+                      fontFamily: "Roboto, Arial, sans-serif",
+                      fontWeight: 100,
+                      color: "black",
+                      offsetY: -10,
+                    },
+                    value: {
+                      show: true,
+                      fontSize: "20px",
+                      fontFamily: "Roboto, Arial, sans-serif",
+                      fontWeight: 5,
+                      fontWeight: "bold",
+                      color: "#005ABC",
+                      offsetY: 2,
+                    },
+                    total: {
+                      show: true,
+                      showAlways: true,
+                      label: "TOTAL",
+                      fontSize: "12px",
+                      fontFamily: "Roboto, Arial, sans-serif",
+                      fontWeight: "bold",
+                      color: "#BFBFBF",
+                      formatter: function (w) {
+                        try {
+                          var a = parseFloat(w.globals.seriesTotals[0]) + w.globals.seriesTotals[1];
+                        }
+                        catch(err) {
+                          var a = parseFloat(w.globals.seriesTotals[0]);
+                        }
+                        return ("₹"+parseInt(a)).toLocaleString("en-IN");
+                      },
                     },
                   },
                 },
               },
             },
-          },
-          stroke: {
-            width: 0,
-            colors: ['#fff']
-          },
-          legend: {
-            show: false,
-            position:'bottom'
-          }, 
-          tooltip: {
-            custom: function({series, seriesIndex, dataPointIndex, w}) {
+            stroke: {
+              width: 0,
+              colors: ['#fff']
+            },
+            legend: {
+              show: false,
+              position:'bottom'
+            }, 
+            tooltip: {
+              custom: function({series, seriesIndex, dataPointIndex, w}) {
+                if (seriesIndex=="0") {
+                  l="Business";
+                  var v=res['businessDuration'];
+                }
+                else{
+                  l="Operation";
+                  var v=(parseFloat(res['plannedDuration'])+parseFloat(res['unplannedDuration'])+parseFloat(res['performanceDuration'])+parseFloat(res['qualityDuration']));
+                }
 
-              if (seriesIndex=="0") {
-                l="Business";
-                var v=res['businessDuration'];
-              }
-              else{
-                l="Operation";
-                var v=(parseFloat(res['plannedDuration'])+parseFloat(res['unplannedDuration'])+parseFloat(res['performanceDuration'])+parseFloat(res['qualityDuration']));
-              }
-
-              var days = parseInt(parseInt(v/60)/24);
-              var hours = parseInt(parseInt(v-(days*1440))/60);
-              var min = parseInt(parseInt(v-(days*1440))%60);
-              return '<div class="global" style="border-radius:0;">'+
+                var days = parseInt(parseInt(v/60)/24);
+                var hours = parseInt(parseInt(v-(days*1440))/60);
+                var min = parseInt(parseInt(v-(days*1440))%60);
+                return '<div class="global" style="border-radius:0;">'+
                   '<div class="grid-container">'+ 
                     '<div class="title-bold"><span>'+l+'</span></div>'+
                     '<div class="grid-item title-bold"><span></span></div>'+
@@ -937,79 +950,87 @@ function plopportunity(){
                     '<div class="grid-item content-text-val"><span class="values-op">'+days+"d"+" "+hours+"h"+" "+min+"m"+'</span></div>'+
                   '</div>'+
                 '</div>'
-            }
-          },
-          states: {
-            hover: {
-              filter: {
-                type: "none",
+              }
+            },
+            states: {
+              hover: {
+                filter: {
+                  type: "none",
+                },
               },
             },
-          },
-        };
+          };
     
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.render();
+          var chart = new ApexCharts(document.querySelector("#chart"), options);
+          chart.render();
 
 
-        // pie chart customize by naveen
-        var label_data = ["Planned Downtime","Unplanned Downtime","Performance","Quality"];
-        // apex charts
-        var options = {
-          series: operationData,
-          duration:operationDuration,
-          chart: {
-          width: 230,
-          type: 'pie',
-        },
-        colors: [ "#005FC8", "#057CFF","#53A5FF", "#E7F2FF"],
-        dataLabels: {
-            enabled: true,
-            offsetX: 30,
-            minAngleToShowLabel: 1,
-            style: {
-              colors: ["#FFFFFF","#FFFFFF","#FFFFFF","#057CFF"],
-              fontSize: '13px',
-              fontFamily: 'Roboto, Arial, sans-serif',
-            },
-            background: {
-              enabled: false,
-            },
-            dropShadow: {
-              enabled: false,
-              top: 1,
-              left: 1,
-              blur: 1,
-              color: '#000',
-              opacity: 0.45
-            },
-          },
-        labels: label_data,
-        responsive: [{
-          breakpoint: 150,
-          options: {
+          // pie chart customize by naveen
+          var label_data = ["Planned Downtime","Unplanned Downtime","Performance","Quality"];
+          // apex charts
+          var options = {
+            series: operationData,
+            duration:operationDuration,
             chart: {
-              width: 100
+              width: 230,
+              type: 'pie',
             },
-          }
-        }],
-        stroke: {
-          width: 0,
-          colors: ['#fff']
-        },
-        legend: {
-            show: false,
-          }, 
-        tooltip: {
-          custom: function({series, seriesIndex, dataPointIndex, w}) {
-            var cost = series[seriesIndex];
-            var duration = w.config.duration[seriesIndex];
-            var title = w.config.labels[seriesIndex];
-  
-          var days = parseInt(parseInt(duration/60)/24);
-          var hours = parseInt(parseInt(duration-(days*1440))/60);
-          var min = parseInt(parseInt(duration-(days*1440))%60);
-            return '<div class="global" style="border-radius:0;">'+
+            colors: [ "#005FC8", "#057CFF","#53A5FF", "#E7F2FF"],
+            // colors: [ "#005FC8", "#057CFF","#53A5FF", "#B3D7FF"],
+            dataLabels: {
+              enabled: true,
+              offsetX: 30,
+              minAngleToShowLabel: 1,
+              style: {
+                colors: ["#FFFFFF","#FFFFFF","#FFFFFF","#057CFF"],
+                fontSize: '13px',
+                fontFamily: 'Roboto, Arial, sans-serif',
+              },
+              background: {
+                enabled: false,
+              },
+              dropShadow: {
+                enabled: false,
+                top: 1,
+                left: 1,
+                // blur: 1,
+                // color: '#000',
+                // opacity:1
+              },
+            },
+            states:{
+              hover:{
+                filter:{
+                  type:"none",
+                  value:0,
+                },
+              },
+            },
+            labels: label_data,
+            responsive: [{
+              breakpoint: 150,
+              options: {
+                chart: {
+                  width: 100
+                },
+              }
+            }],
+            stroke: {
+              width: 0,
+              colors: ['#fff']
+            },
+            legend: {
+              show: false,
+            }, 
+            tooltip: {
+              custom: function({series, seriesIndex, dataPointIndex, w}) {
+                var cost = series[seriesIndex];
+                var duration = w.config.duration[seriesIndex];
+                var title = w.config.labels[seriesIndex];
+                var days = parseInt(parseInt(duration/60)/24);
+                var hours = parseInt(parseInt(duration-(days*1440))/60);
+                var min = parseInt(parseInt(duration-(days*1440))%60);
+                return '<div class="global" style="border-radius:0;">'+
                   '<div class="grid-container">'+ 
                     '<div class="title-bold"><span>'+title+'</span></div>'+
                     '<div class="grid-item title-bold"><span></span></div>'+
@@ -1018,166 +1039,178 @@ function plopportunity(){
                     '<div class="grid-item content-text"><span>Duration</span></div>'+
                     '<div class="grid-item content-text-val"><span class="values-op">'+days+"d"+" "+hours+"h"+" "+min+"m"+'</span></div>'+
                   '</div>'+
-                  '</div>'
-          }
+                '</div>'
+              }
+            }
+          };
+          var chart = new ApexCharts(document.getElementById("olichart"), options);
+          chart.render();
+        },
+        error:function(res){
+          console.log("plopportunity graph error function");
+          reject(res);
+          // alert("Sorry!Try Agian!!");
         }
-        };
-        var chart = new ApexCharts(document.getElementById("olichart"), options);
-        chart.render();
-    },
-    error:function(res){
-        // alert("Sorry!Try Agian!!");
-    }
+      });
   });
+     
 }
 
 
 function machineplopportunity() {
-  f = $('.fromDate').val();
-  t = $('.toDate').val();
 
-  f = f.replace(" ","T");
-  t = t.replace(" ","T");
+  return new Promise(function(resolve,reject){
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
 
-  $.ajax({
-    url: "<?php echo base_url('Financial_Metrics/machineplopportunity'); ?>",
-    type: "POST",
-    dataType: "json",
-    async:false,
-    data:{
-      from:f,
-      to:t
-    },
-    success:function(res){
-      $('#machineWiseInsights').remove();
-      $('.child_graph_machine_wise_insig').append('<canvas id="machineWiseInsights"><canvas>');
-      $('.chartjs-hidden-iframe').remove();
-    
-        var op = ['business','planned','unplanned','performance','quality'];
-        var op_l = ['Business','Planned Downtime','Unplanned Downtime','Performance','Quality'];
-        var machineName = [];
-        
-        res.machine.forEach(function(item){
-          machineName.push(item);               
-        });
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
 
-        $('#PLTotal').html(res['grand_total'].toLocaleString("en-IN"));
-        
-        var color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
-        var x=0;
-        var index = 0;
+    $.ajax({
+      url: "<?php echo base_url('Financial_Metrics/machineplopportunity'); ?>",
+      type: "POST",
+      dataType: "json",
+      // async:false,
+      data:{
+        from:f,
+        to:t
+      },
+      success:function(res){
+        console.log("machine wise plopportuntiy graph success");
+        resolve(res);
+        $('#machineWiseInsights').remove();
+        $('.child_graph_machine_wise_insig').append('<canvas id="machineWiseInsights"><canvas>');
+        $('.chartjs-hidden-iframe').remove();
       
-        var totalVal =[];
-        var totalDuartion=[];
-        res['total'].forEach(function(t){
-            totalVal.push(t);
-        });
-        res['totalDuration'].forEach(function(t){
-            totalDuartion.push(t);
-        });
+          var op = ['business','planned','unplanned','performance','quality'];
+          var op_l = ['Business','Planned Downtime','Unplanned Downtime','Performance','Quality'];
+          var machineName = [];
+          
+          res.machine.forEach(function(item){
+            machineName.push(item);               
+          });
 
-        machineWiseReject=[];
-        res['rejects'].forEach(function(t){
-            machineWiseReject.push(t);
-        });
+          $('#PLTotal').html(res['grand_total'].toLocaleString("en-IN"));
+          
+          var color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
+          var x=0;
+          var index = 0;
+        
+          var totalVal =[];
+          var totalDuartion=[];
+          res['total'].forEach(function(t){
+              totalVal.push(t);
+          });
+          res['totalDuration'].forEach(function(t){
+              totalDuartion.push(t);
+          });
 
-        //Find the duration for each reason in each Machine............
-        oppCost = [
-          {
-            label:"Total" ,
-            type: "line",
-            backgroundColor: color[0],
-            borderColor: "#d9d9ff",  
-            borderWidth: 1, 
-            showLine : false,
-            fill: false, 
-            data:totalVal,
-            duration:totalDuartion,
-            reject:machineWiseReject,
-            pointRadius: 7,
-          }           
-        ];
+          machineWiseReject=[];
+          res['rejects'].forEach(function(t){
+              machineWiseReject.push(t);
+          });
 
-        var x=1;
-        var index=0;
-        var category_percent = 1.0;
-        var bar_space = 0.5;
-
-        op.forEach(function(item){
-            oppCost.push({
-              label: op_l[index],
-              type: "bar",
-              backgroundColor: color[x],
-              borderColor: color[x],
-              borderWidth: 1,
-              fill: true,
-              data: res[item],
-              duration:res[item+"Duration"],
+          //Find the duration for each reason in each Machine............
+          oppCost = [
+            {
+              label:"Total" ,
+              type: "line",
+              backgroundColor: color[0],
+              borderColor: "#d9d9ff",  
+              borderWidth: 1, 
+              showLine : false,
+              fill: false, 
+              data:totalVal,
+              duration:totalDuartion,
               reject:machineWiseReject,
-              categoryPercentage:category_percent,
-              barPercentage: bar_space,
-            });
-            x=x+1;
-            index=index+1;
-        });
+              pointRadius: 7,
+            }           
+          ];
 
-        while(true){
-            var len= machineName.length;
-            if (len < 8) {
-              machineName.push("");
-            }
-            else if(len > 8){
-              var l = parseInt(len)%parseInt(8);
-              var w= parseInt($('.parent_graph_machine_wise_insig').css("width"))+parseInt(l*18*16);
-              $('.child_graph_machine_wise_insig').css("width",w+"px");
-              break;
-            }
-            else{
-              break;
-            }
-            
-          }
+          var x=1;
+          var index=0;
+          var category_percent = 1.0;
+          var bar_space = 0.5;
 
-        var ctx = document.getElementById("machineWiseInsights").getContext('2d');
-        var myChart = new Chart(ctx, {
-          type: 'bar',
-        data: {
-            labels: machineName,
-            datasets: oppCost,
-        },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,   
-            scales: {
-                y: {
-                    display:false,
-                    beginAtZero:true,
-                    stacked:true,
-                },
-                x:{
-                    display:true,
-                    grid:{
-                      display:false
-                    },
-                    stacked:true
-                },
-            },
-            plugins: {
-              legend: {
-                  display: false,
-              },
-              tooltip: {
-                enabled: false,
-                external: machinewiseplOpp,
+          op.forEach(function(item){
+              oppCost.push({
+                label: op_l[index],
+                type: "bar",
+                backgroundColor: color[x],
+                borderColor: color[x],
+                borderWidth: 1,
+                fill: true,
+                data: res[item],
+                duration:res[item+"Duration"],
+                reject:machineWiseReject,
+                categoryPercentage:category_percent,
+                barPercentage: bar_space,
+              });
+              x=x+1;
+              index=index+1;
+          });
+
+          while(true){
+              var len= machineName.length;
+              if (len < 8) {
+                machineName.push("");
               }
-            },
+              else if(len > 8){
+                var l = parseInt(len)%parseInt(8);
+                var w= parseInt($('.parent_graph_machine_wise_insig').css("width"))+parseInt(l*18*16);
+                $('.child_graph_machine_wise_insig').css("width",w+"px");
+                break;
+              }
+              else{
+                break;
+              }
+              
+            }
+
+          var ctx = document.getElementById("machineWiseInsights").getContext('2d');
+          var myChart = new Chart(ctx, {
+            type: 'bar',
+          data: {
+              labels: machineName,
+              datasets: oppCost,
           },
-        });
-    },
-    error:function(res){
-        // alert("Sorry!Try Agian!!");
-    }
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,   
+              scales: {
+                  y: {
+                      display:false,
+                      beginAtZero:true,
+                      stacked:true,
+                  },
+                  x:{
+                      display:true,
+                      grid:{
+                        display:false
+                      },
+                      stacked:true
+                  },
+              },
+              plugins: {
+                legend: {
+                    display: false,
+                },
+                tooltip: {
+                  enabled: false,
+                  external: machinewiseplOpp,
+                }
+              },
+            },
+          });
+      },
+      error:function(res){
+        console.log("machine wise pl opportunity graph error");
+        reject(res);
+          // alert("Sorry!Try Agian!!");
+      }
+    });
   });
+  
 }
 
 function machinewiseplOpp(context) {  
@@ -1273,167 +1306,175 @@ function machinewiseplOpp(context) {
 
 
 function partplopportunity(){
-  f = $('.fromDate').val();
-  t = $('.toDate').val();
-  
-  f = f.replace(" ","T");
-  t = t.replace(" ","T");
-  
-  $.ajax({
-    url: "<?php echo base_url('Financial_Metrics/partplopportunity'); ?>",
-    type: "POST",
-    dataType: "json",
-    async:false,
-    data:{
-          from:f,
-          to:t
-        },
-    success:function(res){
-      $('#PartWiseInsights').remove();
-      $('.child_graph_part_wise_pl').append('<canvas id="PartWiseInsights"><canvas>');
-      $('.chartjs-hidden-iframe').remove();
 
-        // res=res["PartWisePLOpportunity"];
-      
-        var production_Cost= [];
-        var material_Cost=[];
-        var profitLoss = [];
-        var GTotal = 0;
-        var partWiseLable = [];
-        res['data'].forEach(function(item){
-          material_Cost.push(parseFloat(item.Material_Cost));
-          production_Cost.push(parseFloat(item.Production_Cost));
-          profitLoss.push(parseFloat(item.Profit_Loss));
-          GTotal = GTotal+parseInt(item.Material_Cost)+parseInt(item.Production_Cost)+parseInt(item.Profit_Loss);
+  return new Promise(function(resolve,reject){
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
+    
+    $.ajax({
+      url: "<?php echo base_url('Financial_Metrics/partplopportunity'); ?>",
+      type: "POST",
+      dataType: "json",
+      // async:false,
+      data:{
+        from:f,
+        to:t
+      },
+      success:function(res){
+        console.log("part wise pl opportunity graph is success");
+        resolve(res);
+        $('#PartWiseInsights').remove();
+        $('.child_graph_part_wise_pl').append('<canvas id="PartWiseInsights"><canvas>');
+        $('.chartjs-hidden-iframe').remove();
+
+          // res=res["PartWisePLOpportunity"];
+        
+          var production_Cost= [];
+          var material_Cost=[];
+          var profitLoss = [];
+          var GTotal = 0;
+          var partWiseLable = [];
+          res['data'].forEach(function(item){
+            material_Cost.push(parseFloat(item.Material_Cost));
+            production_Cost.push(parseFloat(item.Production_Cost));
+            profitLoss.push(parseFloat(item.Profit_Loss));
+            GTotal = GTotal+parseInt(item.Material_Cost)+parseInt(item.Production_Cost)+parseInt(item.Profit_Loss);
+            
+          });
+          res['part'].forEach(function(item){
+            partWiseLable.push(item.Part_Name);
+          });
+
+          if (res['total']<0) {
+            $('#GTotalPL').html("("+res['total'].toLocaleString("en-IN")+")");
+            $('.valueGraph_Loss').css("color","#C00000");
+          }else{
+            $('#GTotalPL').html(res['total'].toLocaleString("en-IN"));
+            $('.valueGraph_Loss').css("color","#004b9b"); 
+          }
           
-        });
-        res['part'].forEach(function(item){
-          partWiseLable.push(item.Part_Name);
-        });
+          
+          // for (var i =0 ; i < res.part.length; i++) {
+          //   partWiseLable.push(res.part[i].Part_Name);
+          // }
 
-        if (res['total']<0) {
-          $('#GTotalPL').html("("+res['total'].toLocaleString("en-IN")+")");
-          $('.valueGraph_Loss').css("color","#C00000");
-        }else{
-          $('#GTotalPL').html(res['total'].toLocaleString("en-IN"));
-          $('.valueGraph_Loss').css("color","#004b9b"); 
-        }
-        
-        
-        // for (var i =0 ; i < res.part.length; i++) {
-        //   partWiseLable.push(res.part[i].Part_Name);
-        // }
+          var category_percent = 1.0;
+          var bar_space = 0.5;
 
-        var category_percent = 1.0;
-        var bar_space = 0.5;
-
-        while(true){
-          var len= partWiseLable.length;
-          if (len < 8) {
-            partWiseLable.push("");
+          while(true){
+            var len= partWiseLable.length;
+            if (len < 8) {
+              partWiseLable.push("");
+            }
+            else if(len > 8){
+              var l = parseInt(len)%parseInt(8);
+              var w= parseInt($('.parent_graph_part_wise_pl').css("width"))+parseInt(l*18*16);
+              $('.child_graph_part_wise_pl').css("width",w+"px");
+              break;
+            }
+            else{
+              break;
+            }  
           }
-          else if(len > 8){
-            var l = parseInt(len)%parseInt(8);
-            var w= parseInt($('.parent_graph_part_wise_pl').css("width"))+parseInt(l*18*16);
-            $('.child_graph_part_wise_pl').css("width",w+"px");
-            break;
-          }
-          else{
-            break;
-          }  
-        }
 
-        var category_percent = 1.0;
-        var bar_space = 0.5;
-        
-        var ctx = document.getElementById("PartWiseInsights").getContext('2d');
-        var myChart = new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: partWiseLable,
-            // labels:['p1','p2'],
-            datasets: [{
-                label:'Material Cost',
-                type:'bar',
-                backgroundColor:'#004A9B',
-                borderColor:'#004A9B',
-                borderWidth:1,
-                fill:true,
-                // yAxisID:"axis-bar",
-                data:material_Cost,
+          var category_percent = 1.0;
+          var bar_space = 0.5;
+          
+          var ctx = document.getElementById("PartWiseInsights").getContext('2d');
+          var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: partWiseLable,
+              // labels:['p1','p2'],
+              datasets: [{
+                  label:'Material Cost',
+                  type:'bar',
+                  backgroundColor:'#004A9B',
+                  borderColor:'#004A9B',
+                  borderWidth:1,
+                  fill:true,
+                  // yAxisID:"axis-bar",
+                  data:material_Cost,
+                  duration:5,
+                  categoryPercentage:category_percent,
+                  barPercentage: bar_space, 
+              },{
+                label: "Production Cost",
+                type: "bar",
+                backgroundColor: "#005FC8",
+                borderColor: "#005FC8", 
+                borderWidth: 1,
+                fill: true,
+                // yAxisID: "axis-bar",
+                data: production_Cost,
                 duration:5,
                 categoryPercentage:category_percent,
-                barPercentage: bar_space, 
-            },{
-              label: "Production Cost",
-              type: "bar",
-              backgroundColor: "#005FC8",
-              borderColor: "#005FC8", 
-              borderWidth: 1,
-              fill: true,
-              // yAxisID: "axis-bar",
-              data: production_Cost,
-              duration:5,
-              categoryPercentage:category_percent,
-              barPercentage: bar_space,
-            },{
-              label: "Profit/Loss",
-              type: "bar",
-              backgroundColor: "#CDE4FF",
-              borderColor: "#CDE4FF",
-              borderWidth: 1,
-              fill: true,
-              // yAxisID: "axis-bar",
-              data: profitLoss,
-              duration:5,
-              categoryPercentage:category_percent,
-              barPercentage: bar_space,
-            }],
-        },
-        
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,   
-            scales: {
-                y: {
-                    display:true,
-                    beginAtZero:true,
-                    grid:{
-                      drawBorder:false,
-                      display:true,
-                      color: (ctx) => (ctx.tick.value === 0 ? 'rgba(0, 0, 0, 0.1)' : 'transparent'),
-                      lineWidth:2
-                    },
-                    ticks: {
-                      display: false,
-                    },
-                    stacked:true,
-                },
-                x:{
-                    display:true,
-                    grid:{
-                      display:false,
-                    },
-                    stacked:true,
-                },
-            },
-            plugins: {
-              legend: {
-                  display: false,
-              },
-              tooltip: {
-                enabled: false,
-                external: partWisePL,
-              }
-            },
+                barPercentage: bar_space,
+              },{
+                label: "Profit/Loss",
+                type: "bar",
+                backgroundColor: "#CDE4FF",
+                borderColor: "#CDE4FF",
+                borderWidth: 1,
+                fill: true,
+                // yAxisID: "axis-bar",
+                data: profitLoss,
+                duration:5,
+                categoryPercentage:category_percent,
+                barPercentage: bar_space,
+              }],
           },
-        
-        });
-    },
-    error:function(res){
-        // alert("Sorry!Try Agian!!");
-    }
+          
+          options: {
+              responsive: true,
+              maintainAspectRatio: false,   
+              scales: {
+                  y: {
+                      display:true,
+                      beginAtZero:true,
+                      grid:{
+                        drawBorder:false,
+                        display:true,
+                        color: (ctx) => (ctx.tick.value === 0 ? 'rgba(0, 0, 0, 0.1)' : 'transparent'),
+                        lineWidth:2
+                      },
+                      ticks: {
+                        display: false,
+                      },
+                      stacked:true,
+                  },
+                  x:{
+                      display:true,
+                      grid:{
+                        display:false,
+                      },
+                      stacked:true,
+                  },
+              },
+              plugins: {
+                legend: {
+                    display: false,
+                },
+                tooltip: {
+                  enabled: false,
+                  external: partWisePL,
+                }
+              },
+            },
+          
+          });
+      },
+      error:function(res){
+        console.log("part wise pl opportunity graph ajax error");
+        reject(res);
+          // alert("Sorry!Try Agian!!");
+      }
+    });
   });
+  
 }
 
 function partWisePL(context) {  
@@ -1507,110 +1548,119 @@ function partWisePL(context) {
 
 
 function opportunitydrilldown(){
-  f = $('.fromDate').val();
-  t = $('.toDate').val();
-  
-  f = f.replace(" ","T");
-  t = t.replace(" ","T");
 
-  $.ajax({
-    url: "<?php echo base_url('Financial_Metrics/opportunitydrilldown'); ?>",
-    type: "POST",
-    dataType: "json",
-    async:false,
-    data:{
-      from:f,
-      to:t
-    },
-    success:function(res){ 
+  return new Promise(function(resolve,reject){
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
 
-      $('#OpportunityDrillDownInsights').remove();
-      $('.child_graph_opportunity_drill_down').append('<canvas id="OpportunityDrillDownInsights"><canvas>');
-      $('.chartjs-hidden-iframe').remove();
-
-      // res=res["OpportunityDrillDown"];
-      var GTotal=0;
-      var reasonPer = [];
-      var reasonPerLabel = res.Reason;
-      res.Total.forEach(function(item){
-        reasonPer.push(item.toFixed(2));
-        GTotal=GTotal+item;
-      });
-      $('#GTotalDrillDown').html(parseInt(GTotal).toLocaleString("en-IN"));
-
-      var category_percent = 1.0;
-      var bar_space = 0.5;
-
-      while(true){
-        var len= reasonPerLabel.length;
-        if (len < 8) {
-          reasonPerLabel.push("");
-        }
-        else if(len > 8){
-          var l = parseInt(len)%parseInt(8);
-          var w= parseInt($('.parent_graph_opportunity_dirll_down').css("width"))+parseInt(l*18*16);
-          $('.child_graph_opportunity_drill_down').css("width",w+"px");
-          break;
-        }
-        else{
-          var w= parseInt($('.parent_graph_opportunity_dirll_down').css("width"));
-          $('.child_graph_opportunity_drill_down').css("width",w+"px");
-          break;
-        }  
-      }
-        
-      var ctx = document.getElementById("OpportunityDrillDownInsights").getContext('2d');
-      var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: reasonPerLabel,
-          datasets: [{
-              label:'Performance',
-              type:'bar',
-              backgroundColor:'#004b9b',
-              borderColor:'#004b9b',
-              borderWidth:1,
-              fill:true,
-              data:reasonPer,
-              duration:res['Duration'],
-              categoryPercentage:1.0,
-              barPercentage: 0.5,
-          }],
+    $.ajax({
+      url: "<?php echo base_url('Financial_Metrics/opportunitydrilldown'); ?>",
+      type: "POST",
+      dataType: "json",
+      // async:false,
+      data:{
+        from:f,
+        to:t
       },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,   
-          scales: {
-              y: {
-                  display:false,
-                  beginAtZero:true,
-              },
-              x:{
-                  display:true,
-                  grid:{
-                    display:false
-                  },
-                  stacked:true
-              },
-          },
-          plugins: {
-            legend: {
-                display: false,
-            },
-            tooltip: {
-              enabled: false,
-              external: drillDownOpp,
-            }
-          },
-        },
-      
-      });
+      success:function(res){ 
 
-    },
-    error:function(res){
+        console.log("opportunity drill down graph")
+        console.log(res);
+        resolve(res);
+        $('#OpportunityDrillDownInsights').remove();
+        $('.child_graph_opportunity_drill_down').append('<canvas id="OpportunityDrillDownInsights"><canvas>');
+        $('.chartjs-hidden-iframe').remove();
+
+        // res=res["OpportunityDrillDown"];
+        var GTotal=0;
+        var reasonPer = [];
+        var reasonPerLabel = res.Reason;
+        res.Total.forEach(function(item){
+          reasonPer.push(item.toFixed(2));
+          GTotal=GTotal+item;
+        });
+        $('#GTotalDrillDown').html(parseInt(GTotal).toLocaleString("en-IN"));
+
+        var category_percent = 1.0;
+        var bar_space = 0.5;
+
+        while(true){
+          var len= reasonPerLabel.length;
+          if (len < 8) {
+            reasonPerLabel.push("");
+          }
+          else if(len > 8){
+            var l = parseInt(len)%parseInt(8);
+            var w= parseInt($('.parent_graph_opportunity_dirll_down').css("width"))+parseInt(l*18*16);
+            $('.child_graph_opportunity_drill_down').css("width",w+"px");
+            break;
+          }
+          else{
+            var w= parseInt($('.parent_graph_opportunity_dirll_down').css("width"));
+            $('.child_graph_opportunity_drill_down').css("width",w+"px");
+            break;
+          }  
+        }
+          
+        var ctx = document.getElementById("OpportunityDrillDownInsights").getContext('2d');
+        var myChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: reasonPerLabel,
+            datasets: [{
+                label:'Performance',
+                type:'bar',
+                backgroundColor:'#004b9b',
+                borderColor:'#004b9b',
+                borderWidth:1,
+                fill:true,
+                data:reasonPer,
+                duration:res['Duration'],
+                categoryPercentage:1.0,
+                barPercentage: 0.5,
+            }],
+        },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,   
+            scales: {
+                y: {
+                    display:false,
+                    beginAtZero:true,
+                },
+                x:{
+                    display:true,
+                    grid:{
+                      display:false
+                    },
+                    stacked:true
+                },
+            },
+            plugins: {
+              legend: {
+                  display: false,
+              },
+              tooltip: {
+                enabled: false,
+                external: drillDownOpp,
+              }
+            },
+          },
+        
+        });
+
+      },
+      error:function(res){
+        console.log("opportunity graph drill down ajax error");
+        reject(res);
         // alert("Sorry!Try Agian!!");
-    }
+      }
+    });
   });
+  
 }
 
 function drillDownOpp(context) {  
@@ -1695,176 +1745,183 @@ function drillDownOpp(context) {
 }
 
 function opportunityTrendDay(){
-  f = $('.fromDate').val();
-  t = $('.toDate').val();
-  
-  f = f.replace(" ","T");
-  t = t.replace(" ","T");
 
-  $.ajax({
-    url: "<?php echo base_url('Financial_Metrics/opportunityTrendDay'); ?>",
-    type: "POST",
-    dataType: "json",
-    async:false,
-    data:{
-          from:f,
-          to:t
-        },
-    success:function(res){
-      // res=res["OpportunityPLTrend"];
-      // res['data'].forEach(function(item){
-      //   alert(item['total']);
-      // });
+  return new Promise(function(resolve,reject){
+    f = $('.fromDate').val();
+    t = $('.toDate').val();
+    
+    f = f.replace(" ","T");
+    t = t.replace(" ","T");
 
-      $('#OpportunityTrendInsights').remove();
-      $('.child_graph_opportunity_trend_insights').append('<canvas id="OpportunityTrendInsights"><canvas>');
-      $('.chartjs-hidden-iframe').remove();
-
-      $("#GTotalTrend").html(res['grand_total'].toLocaleString("en-IN"));
-
-        var op = ['business','planned','unplanned','performance','quality'];
-        var op_l = ['Business','Planned Downtime','Unplanned Downtime','Performance','Quality'];
-        var dayLables = [];
-   
-        res['data'].forEach(function(item){
-          dayLables.push(item['date']);               
-        });
-
-        var color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
-        var x=0;
-        var index = 0;
-      
-        var totalVal =[];
-        res['data'].forEach(function(t){
-            totalVal.push(t['total']);
-        });
-
-        var durationTotal=[];
-        res['data'].forEach(function(t){
-            durationTotal.push(t['totalDuration']);
-        });
-
-        // alert(totalVal);
-        //Find the duration for each reason in each Machine............
-        oppCost = [
-          {
-            label:"Total" ,
-            type: "line",
-            backgroundColor: color[0],
-            borderColor: "#7f7f7f", 
-            pointBorderColor: "#d9d9ff",  
-            borderWidth: 1, 
-            showLine : true,
-            fill: false,
-            lineColor:"black",
-            data:totalVal,
-            duration:durationTotal,
-            pointRadius: 7,
-          }           
-        ];
-
-        // alert(oppCost);
-
-        var x=1;
-        var index=0;
-
-        var bar_width = 0.9;
-        var bar_size = 0.7;
-
-        op.forEach(function(item){
-            var d = [];
-            var durations=[];
-            res['data'].forEach(function(v){
-              d.push(v[item]);
-              durations.push(v[item+"Duration"]);
-            })
-            oppCost.push({
-              label: op_l[index],
-              // label: "x",
-              type: "bar",
-              backgroundColor: color[x],
-              borderColor: color[x],
-              borderWidth: 1,
-              fill: true,
-              data: d,
-              duration:durations,
-              categoryPercentage:bar_width,
-              barPercentage: bar_size,
-            });
-            x=x+1;
-            index=index+1;
-        });
-
-        while(true){
-          var len= dayLables.length;
-          if (len < 15) {
-            dayLables.push("");
-          }
-          else if(len > 15){
-            var l = parseInt(len)%parseInt(8);
-            // alert($('.parent_graph_opportunity_trend_insights').css("width"));
-            var w= parseInt($('.parent_graph_opportunity_trend_insights').css("width"))+parseInt(l*4*16);
-            $('.child_graph_opportunity_trend_insights').css("width",w+"px");
-            // alert($('.child_graph_opportunity_trend_insights').css("width"));
-            break;
-          }
-          else{
-            break;
-          }  
-        }
-        
-      var ctx = document.getElementById("OpportunityTrendInsights").getContext('2d');
-      var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: dayLables,
-          datasets: oppCost,
+    $.ajax({
+      url: "<?php echo base_url('Financial_Metrics/opportunityTrendDay'); ?>",
+      type: "POST",
+      dataType: "json",
+      // async:false,
+      data:{
+        from:f,
+        to:t
       },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,   
-          scales: {
-              y: {
-                  display:true,
-                  beginAtZero:true,
-                  stacked:true,
-                  ticks:{
-                    callback:function(value){
-                      var tmp_val = parseInt(value)/1000;
-                      if (parseInt(tmp_val)>0) {
-                        return "₹"+tmp_val+"k";
-                      }else{
-                        return "₹"+value;
-                      }
-                      
-                    }
-                  }
-              },
-              x:{
-                  display:true,
-                  grid:{
-                    display:false
-                  },
-                  stacked:true
-              },
-          },
-          plugins: {
-            legend: {
-                display: false,
-            },
-            tooltip: {
-              enabled: false,
-              borderColor:"red",
-              external: plTrendOpp,
+      success:function(res){
+        // res=res["OpportunityPLTrend"];
+        // res['data'].forEach(function(item){
+        //   alert(item['total']);
+        // });
+        console.log("opportunity trend day graph success");
+        resolve(res);
+        $('#OpportunityTrendInsights').remove();
+        $('.child_graph_opportunity_trend_insights').append('<canvas id="OpportunityTrendInsights"><canvas>');
+        $('.chartjs-hidden-iframe').remove();
+
+        $("#GTotalTrend").html(res['grand_total'].toLocaleString("en-IN"));
+
+          var op = ['business','planned','unplanned','performance','quality'];
+          var op_l = ['Business','Planned Downtime','Unplanned Downtime','Performance','Quality'];
+          var dayLables = [];
+    
+          res['data'].forEach(function(item){
+            dayLables.push(item['date']);               
+          });
+
+          var color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
+          var x=0;
+          var index = 0;
+        
+          var totalVal =[];
+          res['data'].forEach(function(t){
+              totalVal.push(t['total']);
+          });
+
+          var durationTotal=[];
+          res['data'].forEach(function(t){
+              durationTotal.push(t['totalDuration']);
+          });
+
+          // alert(totalVal);
+          //Find the duration for each reason in each Machine............
+          oppCost = [
+            {
+              label:"Total" ,
+              type: "line",
+              backgroundColor: color[0],
+              borderColor: "#7f7f7f", 
+              pointBorderColor: "#d9d9ff",  
+              borderWidth: 1, 
+              showLine : true,
+              fill: false,
+              lineColor:"black",
+              data:totalVal,
+              duration:durationTotal,
+              pointRadius: 7,
+            }           
+          ];
+
+          // alert(oppCost);
+
+          var x=1;
+          var index=0;
+
+          var bar_width = 0.9;
+          var bar_size = 0.7;
+
+          op.forEach(function(item){
+              var d = [];
+              var durations=[];
+              res['data'].forEach(function(v){
+                d.push(v[item]);
+                durations.push(v[item+"Duration"]);
+              })
+              oppCost.push({
+                label: op_l[index],
+                // label: "x",
+                type: "bar",
+                backgroundColor: color[x],
+                borderColor: color[x],
+                borderWidth: 1,
+                fill: true,
+                data: d,
+                duration:durations,
+                categoryPercentage:bar_width,
+                barPercentage: bar_size,
+              });
+              x=x+1;
+              index=index+1;
+          });
+
+          while(true){
+            var len= dayLables.length;
+            if (len < 15) {
+              dayLables.push("");
             }
-          },
+            else if(len > 15){
+              var l = parseInt(len)%parseInt(8);
+              // alert($('.parent_graph_opportunity_trend_insights').css("width"));
+              var w= parseInt($('.parent_graph_opportunity_trend_insights').css("width"))+parseInt(l*4*16);
+              $('.child_graph_opportunity_trend_insights').css("width",w+"px");
+              // alert($('.child_graph_opportunity_trend_insights').css("width"));
+              break;
+            }
+            else{
+              break;
+            }  
+          }
+          
+        var ctx = document.getElementById("OpportunityTrendInsights").getContext('2d');
+        var myChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: dayLables,
+            datasets: oppCost,
         },
-      });
-    },
-    error:function(res){
-        // alert("Sorry!Try Agian!!");
-    }
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,   
+            scales: {
+                y: {
+                    display:true,
+                    beginAtZero:true,
+                    stacked:true,
+                    ticks:{
+                      callback:function(value){
+                        var tmp_val = parseInt(value)/1000;
+                        if (parseInt(tmp_val)>0) {
+                          return "₹"+tmp_val+"k";
+                        }else{
+                          return "₹"+value;
+                        }
+                        
+                      }
+                    }
+                },
+                x:{
+                    display:true,
+                    grid:{
+                      display:false
+                    },
+                    stacked:true
+                },
+            },
+            plugins: {
+              legend: {
+                  display: false,
+              },
+              tooltip: {
+                enabled: false,
+                borderColor:"red",
+                external: plTrendOpp,
+              }
+            },
+          },
+        });
+      },
+      error:function(res){
+        console.log("opportunity drilldown graph ajax error");
+        reject(res);
+          // alert("Sorry!Try Agian!!");
+      }
+    });
   });
+  
 }
 function plTrendOpp(context) {  
 
@@ -1946,7 +2003,7 @@ function plTrendOpp(context) {
     tooltipEl.style.font = bodyFont.string;
     tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
     tooltipEl.style.pointerEvents = 'none';
-  }
+}
 
 </script>
 

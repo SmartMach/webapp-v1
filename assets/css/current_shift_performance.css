@@ -262,7 +262,7 @@
     .part_completion{
     	margin-left: 8rem;
 		display: none;
-  		transition:transform 2s cubic-bezier(.02,1.23,.79,1.08);
+  		/* transition:transform 2s cubic-bezier(.02,1.23,.79,1.08); */
 	}
     .svg{
         position: absolute;

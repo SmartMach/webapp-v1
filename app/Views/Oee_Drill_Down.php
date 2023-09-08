@@ -117,7 +117,7 @@
           }
 
           var tmp = new Date()
-          if (inputDateTime.getDate() == tmp.getDate()) {
+          if (inputDateTime.getDate() == tmp.getDate() && inputDateTime.getMonth()==tmp.getMonth()) {
               this.setOptions({
                   maxTime: (tmp.getHours())+ ':00',
               });
@@ -136,9 +136,12 @@
               if (inputDateTime.getHours() > (current.getHours())) {
                   $('.fromDate').datetimepicker('reset');
               }
-              this.setOptions({
+              if (inputDateTime.getDate()==current.getDate() && inputDateTime.getMonth()==current.getMonth()) {
+                this.setOptions({
                   maxTime: (current.getHours())+ ':00',
-              });
+                });
+              }
+             
           } else {
               this.setOptions({
                   maxTime: false,
@@ -517,7 +520,7 @@ $session = \Config\Services::session();
 
              <!-- dropdowns -->
             <div  style="" class="marginScroll machine_wise_availability_div">
-                <div style="width:max-content;">
+                <div style="width:16%;">
                     <p class="header_text_val" style="">TOTAL</p>
                     <span class="header_value_pass" style="" id="total_duration_availability">0</span>
                 </div>
@@ -607,7 +610,7 @@ $session = \Config\Services::session();
             </div>
             <!-- flex for dropdown and total -->
             <div class="marginScroll machine_wise_availability_div">
-                <div style="width:max-content;">
+                <div style="width:20%;">
                     <p class="header_text_val" >TOTAL</p>
                     <span class="header_value_pass"  id="total_speed_loss">0</span>
                 </div>

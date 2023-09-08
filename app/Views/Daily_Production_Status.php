@@ -48,7 +48,7 @@
   font-size:0.8rem;
   color:black;
   font-weight:500;
-  text-align:-webkit-center;
+  text-align:center;
   /* margin:auto; */
 
 }
@@ -59,7 +59,7 @@
   opacity: 0.8;
   font-weight:450;
   margin-block:auto;
-  text-align:-webkit-right;
+  text-align:right;
   /* margin-left:1rem; */
   /* margin:auto; */
 }
@@ -70,7 +70,7 @@
   opacity:1;
   font-size:0.8rem;
   margin-block:auto;
-  text-align:-webkit-right;
+  text-align:right;
   /* margin-left:1rem; */
   /* margin:auto; */
 }
@@ -335,8 +335,8 @@ $('#changed_date').datetimepicker({
                     console.log("Ajax Succeed");
                     console.log(res);
                       $('.contentProduction').empty();
-                    if (jQuery.isEmptyObject(res['Machines'])){
-                        $('.contentProduction').html("<p>No Records Found!</p>");
+                    if (jQuery.isEmptyObject(res['Part_details'])){
+                        $('.contentProduction').html('<p class="no_record_css">No Records...</p>');
                     }
 
                     var id = 1;

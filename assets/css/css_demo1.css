@@ -163,6 +163,7 @@
       .edit-menu li ul li:hover{
         background: #eff7ff;
         color: #9d9d9d;
+        border-radius: 0.25rem;
         /*font-weight: bold;*/
       }
       .edit-menu li ul li:nth-child(1):hover{

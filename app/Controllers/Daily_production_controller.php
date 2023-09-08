@@ -176,7 +176,7 @@ class Daily_production_controller extends BaseController{
     // get machine records
     public function getMachine_data(){
         if ($this->request->isAJAX()) {
-            // $date = "2023-06-10";
+            // $date = "2023-08-18";
 
             log_message("info","\n\ndaily production status function calling log");
             log_message("info","\n\ndaily production status function calling log");
@@ -668,12 +668,13 @@ class Daily_production_controller extends BaseController{
         $total=0;
         $min=0;
         $sec=0;
+        // $tmp_count = 0;
         foreach ($raw as $key => $val) {
             $start = strtotime($val['shift_date']." ".$val['start_time']);
             $end = strtotime($val['shift_date']." ".$val['end_time']);
 
-            if ($val['machine_id'] == $m_id and $val['shift_date'] == $date and $val['shift_id'] == $s_id and $val['tool_id'] == $t_id and $val['part_id'] == $p_id and $start >= $s_time and $end <= $e_time) {
-
+            if ($val['machine_id'] == $m_id and $val['shift_date'] == $date and $val['shift_id'] == $s_id and $val['tool_id'] == $t_id and $val['part_id'] == $p_id ) {
+                // $tmp_count = $tmp_count + 1;
                 $split_duration = explode(".",$val['duration']);
                 $min = $min + $split_duration[0];
                 if (sizeof($split_duration)>1) {
@@ -694,6 +695,10 @@ class Daily_production_controller extends BaseController{
                 array_push($final,$t_id);
                 array_push($final,$p_data[$i]['part_produced_cycle']);
                 array_push($final,$p_data[$i]['NICT']);
+                // array_push($final,$tmp_count);
+                // array_push($final,$min);
+                // array_push($final,$p_size);
+
 
                 if (($p_data[$i]['NICT']/60) > 0 ) {
                     $target = (int)(($total/($p_data[$i]['NICT']/60))*$p_data[$i]['part_produced_cycle']);
@@ -703,6 +708,7 @@ class Daily_production_controller extends BaseController{
                 
                 // $final['target'] = $target;
                 array_push($final,$target);
+                
             }
         }
         return $final;

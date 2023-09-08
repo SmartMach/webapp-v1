@@ -660,7 +660,7 @@
                             <div class="col-lg-6">
                                 <div class="wrapper">
                                     <div class="content">
-                                        <ul class="parent_div_input_check" style="position:relative;"><input type="email" class="input_check_to alert_font_css" id="input_check_to" placeholder="TO" spellcheck="false"><span style="position:absolute;margin-top:-1rem;font-size:12px;color:#8c8c8c;background:white;padding:1px;margin-left:1rem;">To Email</span></ul>
+                                        <ul class="parent_div_input_check" style="position:relative;"><input type="email" class="input_check_to alert_font_css" id="input_check_to" placeholder="TO" spellcheck="false"><span class="to_email_label" style="position:absolute;margin-top:-1rem;font-size:12px;color:#8c8c8c;background:white;padding:1px;margin-left:1rem;">To Email</span></ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_check_to_Err"></span>
                                 </div>
@@ -1005,7 +1005,7 @@
                                     <div class="content_edit">
                                         <ul class="edit_parent_div_input_check" style="position:relative;">
                                             <input type="text" class="input_check_to_edit alert_font_css" placeholder="TO" spellcheck="false">
-                                            <span style="position:absolute;margin-top:-1rem;font-size:12px;padding:1px;margin-left:1rem;background:white;color:#8c8c8c;">To Email</span>
+                                            <span style="position:absolute;margin-top:-1rem;font-size:12px;padding:1px;margin-left:1rem;background:white;color:#8c8c8c;" class="edit_email_label">To Email</span>
                                         </ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_check_to_edit_Err"></span>
@@ -2263,7 +2263,7 @@ function add_assignee(t) {
                         }
                     });   
                 }else{
-                    $('.content_alert_settings').append('No Records');
+                    $('.content_alert_settings').append('<p class="no_record_css">No Records...</p>');
                 }
                 
 
@@ -2888,9 +2888,13 @@ $(".selectBtn3").click(function(){
     if (parseInt(clicks_count)%2==0) {
         $('.selectDropdown3').removeClass('new_4');
         $('.email_che').removeClass('checked');
+        $('.parent_div_input_check').css('position','relative');
+        $('.to_email_label').css('display','inline');
     }else{
         $('.selectDropdown3').toggleClass('new_4');
         $('.email_che').toggleClass('checked');
+        $('.parent_div_input_check').css('position','inherit');
+        $('.to_email_label').css('display','none');
     }
    
 });
@@ -2899,8 +2903,26 @@ $(".selectBtn3").click(function(){
 // edit priority dropdown
 $(".select_edit_priority_btn").click(function(){
     // console.log('selectbtn3');
+    var class_arr = $('.email_checkeck_edit').attr('class');
+    console.log("class array");
+    console.log(class_arr);
+    var get_arr = class_arr.split(" ");
+    if (parseInt(get_arr.length)>2) {
+        // $('.select_edit_drp_priority').removeClass('select_new_edit_priority');
+        // $('.email_checkeck_edit').removeClass('checked');
+        $('.edit_email_label').css('display','inline');
+        $('.edit_parent_div_input_check').css('position','relative');
+    }else{
+      
+        $('.edit_email_label').css('display','none');
+        $('.edit_parent_div_input_check').css('position','inherit');
+    }
     $('.select_edit_drp_priority').toggleClass('select_new_edit_priority');
     $('.email_checkeck_edit').toggleClass('checked');
+  
+    // $('.edit_email_label').css('display','none');
+    // $('.edit_parent_div_input_check').css('position','inherit');
+
 });
 
 
@@ -2925,6 +2947,8 @@ function icon_drop(elem){
     }
     $('.selectDropdown3').toggleClass('new_4');
     $('.email_che').toggleClass('checked');
+    $('.parent_div_input_check').css('position','relative');
+    $('.to_email_label').css('display','inline');
 }
 
 // edit priority dropdown
@@ -2946,6 +2970,9 @@ function icon_drop_edit_priority(elem){
     }
     $('.select_edit_drp_priority').toggleClass('select_new_edit_priority');
     $('.email_checkeck_edit').toggleClass('checked');
+    $('.edit_email_label').css('display','inline');
+    $('.edit_parent_div_input_check').css('position','relative');
+
 }
 
 // onclick assignee

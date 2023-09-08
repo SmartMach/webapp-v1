@@ -24,6 +24,15 @@
 
 </head>
 
+<!-- preloader -->
+<div id="overlay">
+    <div class="cv-spinner">
+        <span class="spinner"></span>
+        <span class="loading">Awaiting Completion...</span>
+    </div>
+</div>
+<!-- preloader end -->
+
 <div class="mr_left_content_sec">
     <nav class="sec_nav display_f align_c justify_c sec_nav_c navbar-expand-lg fixsubnav_quality">
         <div class="container-fluid paddingm display_f justify_sb align_c">
@@ -92,7 +101,7 @@
         </div>
     </nav>
      
-    <div class="graph-content">
+    <div class="graph-content" >
         <div class="full_screen_close" onclick="fullscreen_mode_remove();">
             <div class="full-screen">
                 <img src="<?php echo base_url('assets/icons/cancel1.png'); ?>" class="icon_img_wh">
@@ -112,7 +121,7 @@
                 <P class="paddingm part_name" id="part_name_oui"></P>
             </div>
             <div class="">
-                <p class="paddingm machine_name text_align_c" id="event_logo"> Downtime </p>
+                <p class="paddingm machine_name text_align_c" id="event_logo" style="font-size:1.2rem;"> Downtime </p>
                 <P class="paddingm part_name text_align_c" id="event_duration_machine"> </P>
             </div>
             <div class="right_margin" style="display:flex;">
@@ -120,7 +129,7 @@
                     <i class="fa fa-circle" style="font-size:10px;color:white;"></i>
                     <span class="active_duration_oui" style="margin:0;padding:0;margin-right:1rem;font-size:1.4rem;font-family:'Roboto',sans-serif;color:white;font-weight:bold;"></span>
                 </div>
-                 <p class="paddingm machine_name" id="latest_event_machine"> Event </p>
+                 <p class="paddingm machine_name" id="latest_event_machine" style="font-size:1.3rem;font-weight:600;"> Event </p>
             </div> 
         </div>
 
@@ -133,11 +142,11 @@
                             <div class="" style="width: 65%;margin-top: 1rem;">
                                 <div class="skill display_f justify_c align_c">
                                     <div class="inner flex_f display_f justify_c align_c">
-                                        <div id="number_completion">
-                                            60%    
+                                        <div class="text_align_c" id="number_completion">
+                                            
                                         </div>
-                                        <div class="" style="width: 80%;"> 
-                                            <p class="white_s over_h text_e part_name" id="part_name_oui_p">partname</p>
+                                        <div class="text_align_c" style="width: 80%;"> 
+                                            <p class="white_s over_h text_e part_name" id="part_name_oui_p"></p>
                                         </div>
                                     </div>
                                     <svg version="1.1" class="svg_oui">
@@ -154,11 +163,11 @@
                                 <div class="" style="width:65%;">
                                     <p class="paddingm" style="">
                                         <span class="text-small">Target</span>
-                                        <span class="target_text2">0</span>
+                                        <span class="target_text2"></span>
                                     </p>
                                     <div class="target_bar bg_title target_outline" style="width: 100%;">
                                         <div class="target_inline">
-                                            <p class="paddingm target_inline_Cont">0</p>
+                                            <p class="paddingm target_inline_Cont"></p>
                                         </div>
                                     </div>
                                 </div>
@@ -267,19 +276,13 @@
    
 </div>
 
-<!-- preloader -->
-<!-- <div id="overlay">
-    <div class="cv-spinner">
-        <span class="spinner"></span>
-        <span class="loading">Awaiting Completion...</span>
-    </div>
-</div> -->
-<!-- preloader end -->
 
 <script src="<?php echo base_url(); ?>/assets/apexchart/dist/apexcharts.js"></script>
 <script src="<?php echo base_url(); ?>/assets/js/all-fontawesome.js?version=<?php echo rand() ; ?>"></script>
 
 <script type="text/javascript">
+
+$("#overlay").fadeIn(300);
 
 let slideIndex = 0;
 let slideIndexLimit = 10;
@@ -305,11 +308,13 @@ function showSlides(n) {
     }
 
     for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
+        // slides[i].style.display = "none";  
+        $('.grid-item-cont:eq('+i+')').css('display','none');
     }
     let l = slideIndex;
     for (j = l; j < (10); j++) {
-        slides[j].style.display = "block";
+        // slides[j].style.display = "block";
+        $('.grid-item-cont:eq('+j+')').css('display','block');
     }
 }
 
@@ -322,7 +327,7 @@ $('.visibility_div').css('display', 'inline');
 var j_global = "";
 var mx_global="";
 
-$("#overlay").fadeIn(300);
+
 getMachineDataLive();
  
 mx_global = setInterval(function() {
@@ -434,6 +439,8 @@ function getLiveMode(shift_date, shift_id) {
             // filter:x,
         },
         success: function(res) {
+            console.log("current shift performance live mode value");
+            console.log(res);
             $('.grid-container-cont').empty();
             res['latest_event'].forEach(function(machine) {
                 var machine_name = "";
@@ -454,7 +461,7 @@ function getLiveMode(shift_date, shift_id) {
                 // title="' + machine_name + '"
                 elements = elements.add('<div class="grid-item-cont">' +
                     '<div class="item-header" id="item-header-' + machine[0]['machine_id'] +
-                    '">' +
+                    '" style="cursor:pointer;">' +
                     '<div>' +
                     '<p class="paddingm pad-top cen-align fnt-color machine_name_ref" tid_data="'+machine[0]['tool_id']+'" mid_data="' +
                     machine[0]['machine_id'] + '"  id="Machine_name_' + machine[0][
@@ -467,7 +474,7 @@ function getLiveMode(shift_date, shift_id) {
                     '<div class="inner-circle">' +
                     '<div class="inner-val">' +
                     '<p class="paddingm production_completion production_completion_ref"><span id="production_per' +
-                    machine[0]['machine_id'] + '"></span>%</p>' +
+                    machine[0]['machine_id'] + '"></span></p>' +
                     '<p class="paddingm production_completion partname_ref" id="partname_' +
                     machine[0]['machine_id'] + '" title="">Part Name</p>' +
                     '</div>' +
@@ -564,9 +571,23 @@ function getLiveMode(shift_date, shift_id) {
                 $('#latest_status_' + machine[0]['machine_id'] + '').html(res['latest_event'][0][0]
                     .duration + "m " + res['latest_event'][0][0].event);
 
+                
                 // Production Percentage.......
-                var target_production = 5000;
-                var production_percent = parseInt((production_total / target_production) * 100);
+                var target_production = 0;
+                // res['production_target'].forEach(function(pp){
+                //     if (machine[0]['machine_id'] == pp['machine_id']) {
+                //         target_production = pp['target'];
+                //     }
+                // });
+                var shift_production=0;
+                res['shift_production_target'].forEach(function(i){
+                    if (i['machine_id'] == machine[0]['machine_id']) {
+                        target_production = i['shift_production_target'];
+                        shift_production = i['shift_production'];
+                    }
+                });
+
+                var production_percent = parseInt((shift_production / target_production) * 100);
                 var production_percent_val = 470 - (4.7 * production_percent);
                 const MyFSC_container = document.getElementsByClassName("circle");
                 MyFSC_container[0].style.setProperty("--foo", production_percent_val);
@@ -856,9 +877,17 @@ function getLiveMode(shift_date, shift_id) {
                             'latest_event'][0][0].duration + "m " + res['latest_event'][0][
                             0].event);
 
+                        var target_production = 0;  
+                        var shift_production=0;
+                        res['shift_production_target'].forEach(function(i){
+                            if (i['machine_id'] == machine[0]['machine_id']) {
+                                target_production = i['shift_production_target'];
+                                shift_production = i['shift_production'];
+                            }
+                        });
+
                         // Production Percentage.......
-                        var target_production = 5000;
-                        var production_percent = parseInt((production_total / target_production) *
+                        var production_percent = parseInt((shift_production / target_production) *
                             100);
                         var production_percent_val = 470 - (4.7 * production_percent);
                         const MyFSC_container = document.getElementsByClassName("circle");
@@ -927,8 +956,7 @@ $(document).on("mousemove", ".circle", function(e) {
     var relBoxCoords = "(" + relX + "," + relY + ")";
     var count = $('.circle');
     var index_val = count.index($(this));
-    $('.part_completion:eq(' + index_val + ')').css("transform", "translate3d(" + relX + "px," + relY +
-        "px,0px)");
+    // $('.part_completion:eq(' + index_val + ')').css("transform", "translate3d(" + relX + "px," + relY + "px,0px)");
 });
 
 function live_target_update(shift_date) {
@@ -1398,14 +1426,31 @@ function live_MC1001(shift_date, shift_id) {
                     "%");
                 $('#OEETarget_' + machine[0]['machine_id'] + '').html(parseInt(res['targets'][0].oee) + "%");
 
-
                 // Update Production Percentage
-                var target_production = 5000;
-                var production_percent = parseInt((production_total / target_production) * 100);
-                $('#production_per' + machine[0]['machine_id'] + '').html(production_percent);
+                var target_production = 0;  
+                var production_total=0;
+                res['shift_production_target'].forEach(function(i){
+                    if (i['machine_id'] == machine[0]['machine_id']) {
+                        target_production = i['shift_production_target'];
+                        production_total = i['shift_production'];
+                    }
+                });
 
-                $('#part_completion_hover_' + machine[0]['machine_id'] + '').html(
-                    production_percent + "%");
+                var production_percent = parseInt((production_total / target_production) * 100);
+                console.log("current shift performance production target selection");
+                console.log(production_percent);
+                res['production_target'].forEach(function(tmid){
+                    if (tmid['machine_id']==machine[0]['machine_id']) {
+                        if (parseInt(tmid['target'])>0) {
+                            $('#production_per' + machine[0]['machine_id'] + '').html(production_percent+"%");
+                            $('#part_completion_hover_' + machine[0]['machine_id'] + '').html(production_percent + "%");
+                        }else{
+                            $('#production_per' + machine[0]['machine_id'] + '').html('NA');
+                            $('#part_completion_hover_' + machine[0]['machine_id'] + '').html("NA");
+                        }
+                    }
+                }); 
+               
 
                 // Graph Portion
                 var hourly = [];
@@ -1493,16 +1538,19 @@ function live_MC1001(shift_date, shift_id) {
 
 $(document).on('click', '.grid-item-cont', function(event) {
     event.preventDefault();
-   
+    $("#overlay").fadeIn(300);
+    // alert('hi');
     var find_index = $('.grid-item-cont');
     var index_val = find_index.index($(this));
-    $("#overlay").fadeIn(300);
+    
     // #009644 green header card body part graph  #007A37 card header
     oui_functions_call(index_val);
 });
 
 
-function oui_functions_call(index_val){
+ async function oui_functions_call(index_val){
+    // $("#overlay").fadeIn(300);
+
     fullscreen_mode_remove();
 
     var tmp_mid = $('.machine_name_ref:eq(' + index_val + ')').attr('mid_data');
@@ -1560,20 +1608,26 @@ function oui_functions_call(index_val){
     $('.outer').css('border-color', border_color);
     $('.second_header').css('background-color',sub_header);
     
-    
-    getProductionGraph(tmp_mid,shift_date,tmp[1],background_title_color,border_color);
-    getDownTimeGraph(tmp_mid,shift_date,tmp[1]);
-    getLiveOEE(tmp_mid,shift_date,tmp[1]);
-    getDowntimeDuration(tmp_mid,shift_date,tmp[1]);
-    getLiveProduction(tmp_mid,shift_date,tmp[1]);
-    getPartCycleTime(tmp_mid);
-    getRejectCounts(tmp_mid,shift_date,tmp[1]);
-    target_oui_graph(tmp_mid,tid_data,shift_date);
+    // console.log("shift date :\t"+shift_date);
+    // console.log("machine id :\t"+tmp_mid);
+    // console.log("shift id :\t",tmp[1]);
+
+    await getProductionGraph(tmp_mid,shift_date,tmp[1],background_title_color,border_color);
+    await getDownTimeGraph(tmp_mid,shift_date,tmp[1]);
+    await getLiveOEE(tmp_mid,shift_date,tmp[1]);
+    await getDowntimeDuration(tmp_mid,shift_date,tmp[1]);
+  
+    await getLiveProduction(tmp_mid,shift_date,tmp[1]);
+    await getPartCycleTime(tmp_mid);
+    await getRejectCounts(tmp_mid,shift_date,tmp[1]);
+    target_oui_graph(tmp_mid,tid_data,shift_date,tmp[1]);
     $('.graph-content').css('display', 'none');
     $('.oui_screen_view').css('display', 'block');
     $('.oui_arrow_div').css('display', 'inline');
     $('.visibility_div').css('display', 'none');
     $('#full_screen_btn_visibility').css('visibility','hidden');
+
+    $("#overlay").fadeOut(300);
 }
     
 
@@ -1668,12 +1722,13 @@ function fullscreen_mode() {
     showSlides(0);
 
     const element = document.documentElement;
-    if (element.requestFullscreen) {
-      element.requestFullscreen();
-    } else if (element.webkitRequestFullscreen) {
-      element.webkitRequestFullscreen();
-    } else if (element.msRequestFullscreen) {
-      element.msRequestFullscreen();
+   
+    if (document.fullscreenEnabled) {
+        element.requestFullscreen();
+    } else if (document.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+    } else if (document.msRequestFullscreen) {
+        element.msRequestFullscreen();
     }
 
     $('.prev').css('margin-left','-4.5rem');
@@ -1688,37 +1743,37 @@ function fullscreen_mode_remove(){
 
     // return new Promise(function(resolve,reject){
 
-   
-    $('.left-sidebar').css('display','block');
-    $('.topnav').css('display','block');
-    $('.fixsubnav_quality').css('display','block');
+    
+        $('.left-sidebar').css('display','block');
+        $('.topnav').css('display','block');
+        $('.fixsubnav_quality').css('display','block');
 
-    $('.mr_left_content_sec').css('margin-left', '4.5rem');
-    $('.mr_left_content_sec').css('top', '4rem');
+        $('.mr_left_content_sec').css('margin-left', '4.5rem');
+        $('.mr_left_content_sec').css('top', '4rem');
 
-    $('.topnav').css('display','flex');
-    $('.fixsubnav_quality').css('display','flex');
-    $('.graph-content').css('display','block');
-    $('.full_screen_close').css('display','none');
+        $('.topnav').css('display','flex');
+        $('.fixsubnav_quality').css('display','flex');
+        $('.graph-content').css('display','block');
+        $('.full_screen_close').css('display','none');
 
-    $('.prev').css('margin-left','0rem');
-    let slides = document.getElementsByClassName("grid-item-cont");
-    for (j = 0; j < slides.length; j++) {
-        slides[j].style.display = "block";
-    }
+        $('.prev').css('margin-left','0rem');
+        let slides = document.getElementsByClassName("grid-item-cont");
+        for (j = 0; j < slides.length; j++) {
+            slides[j].style.display = "block";
+        }
 
-    const element = document.documentElement;
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen();
-    }
+        // const element = document.documentElement;
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) { /* Safari */
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { /* IE11 */
+            document.msExitFullscreen();
+        }
 
-    $('.slideControl').css('display','none');
-
-// });
+        $('.slideControl').css('display','none');
+        
+    // });
 }
 
 // var full = document.getElementById("full_screen_id");
@@ -1763,162 +1818,175 @@ function oui_arrow_to_card(){
 
 // Production Graph
 function getProductionGraph(machine_id,shift_date,shift,backgroundcolor,border_color){
-    $('#production-graph').remove();
-    $('.production-graph-prod').append('<canvas id="production-graph"><canvas>');
-    $.ajax({
-        url: "<?php echo base_url('Current_Shift_Performance/getLiveMode');?>",
-        type: "POST",
-        dataType: "json",
-        async:false,
-        data:{
-            shift_date: shift_date,
-            shift_id: shift,
-            filter:2,
-        },
-        success: function(res){
-            var hours_list=[];
-            var production_count = [];
-            var production_target =[];
-            var rejection_count =[];
+    console.log("machine id:\t"+machine_id);
+    console.log("shift date:\t"+shift_date);
+    console.log("shift id :\t"+shift);
+    return new Promise(function(resolve,reject){
+        $('#production-graph').remove();
+        $('.production-graph-prod').append('<canvas id="production-graph"><canvas>');
+        $.ajax({
+            url: "<?php echo base_url('Current_Shift_Performance/getLiveMode');?>",
+            type: "POST",
+            dataType: "json",
+            async:false,
+            data:{
+                shift_date: shift_date,
+                shift_id: shift,
+                filter:2,
+            },
+            success: function(res){
+                console.log("production graph ");
+                console.log(res);
+                resolve(res);
+                var hours_list=[];
+                var production_count = [];
+                var production_target =[];
+                var rejection_count =[];
 
-            res['hours'].forEach(function(item){
-                hours_list.push(item);
-            });
-
-            res['data'].forEach(function(item){
-                if (item['machine'] == machine_id) {
-                    item['production'].forEach(function(p){
-                        production_count.push(parseInt(p['production']));
-                    });
-                }
-            });
-
-            res['data'].forEach(function(item){
-                if (item['machine'] == machine_id) {
-                    item['production'].forEach(function(p){
-                        rejection_count.push(parseInt(p['rejections']));
-                    });
-                }
-            });
-
-            res['data'].forEach(function(item){
-                if (item['machine'] == machine_id) {
-                    item['targets'].forEach(function(p){
-                        production_target.push(p);
-                    });
-                }
-            });
-
-                ChartDataLabels.defaults.color = "#ffffff";
-                ChartDataLabels.defaults.font.size=16;
-                ChartDataLabels.defaults.font.family = "Roboto, sans-serif";
-                var ctx = document.getElementById('production-graph').getContext('2d');
-                myChartList = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: hours_list,
-                        datasets: [{
-                                label: "Total Parts",
-                                type: "bar",
-                                backgroundColor: backgroundcolor,
-                                borderWidth: 1,
-                                fill: true,
-                                data:production_count,
-                                // part_name: part_name_list,
-                                // rejections: rejections_list,
-                                categoryPercentage: 1.0,
-                                barPercentage: 0.8,
-                            },
-                            {
-                                label: "Total Rejection",
-                                type: "bar",
-                                backgroundColor: "#595959",
-                                borderWidth: 1,
-                                fill: true,
-                                data:rejection_count,
-                                // part_name: part_name_list,
-                                // rejections: rejections_list,
-                                categoryPercentage: 1.0,
-                                barPercentage: 0.8,
-                            },
-                            {
-                                label: "Production Target",
-                                type: "line",
-                                backgroundColor: "#ffffff",
-                                borderColor: "#ffffff",
-                                borderWidth: 1,
-                                fill: false,
-                                data:production_target,
-                                // part_name: part_name_list,
-                                pointRadius: 0,
-                                stepped: 'before',
-                            },
-                        ],
-                    },
-                    options: {
-                        scalebeginAtZero: false,
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            y: {
-                                display: false,
-                                beginAtZero: true,
-                                grid: {
-                                    display: false,
-                                    color:"#01a149",
-                                },
-                                stacked: true,
-                            },
-                            x: {
-                                display: true,
-                                grid: {
-                                    display: true,
-                                    color:border_color,
-                                },
-                                stacked: true,
-                                ticks:{
-                                    crossAlign: 'far',
-                                    padding:5,
-                                    color:"#ffffff",
-                                }
-                            },
-                        },
-                        plugins: {
-                            datalabels: {
-                                anchor: "start",
-                                align: "end",
-                                offset: 6,
-                                color: "white",
-                                font: {
-                                    size: 12,
-                                },
-                                formatter: (value, context) => context.datasetIndex === 0 ?
-                                    value : '',
-                            },
-                            legend: {
-                                display: false,
-                                labels: {
-                                    font: {
-                                        size: 12
-                                    }
-                                }
-                            },
-                            tooltip: {
-                                // enabled: false,
-                                // external: productionTooltip,
-                            },
-                        },
-                    },
-                    plugins: [ChartDataLabels],
+                res['hours'].forEach(function(item){
+                    hours_list.push(item);
                 });
-        },
-        error: function(err){
-            // error......
-        }
+
+                res['data'].forEach(function(item){
+                    if (item['machine'] == machine_id) {
+                        item['production'].forEach(function(p){
+                            production_count.push(parseInt(p['production']));
+                        });
+                    }
+                });
+
+                res['data'].forEach(function(item){
+                    if (item['machine'] == machine_id) {
+                        item['production'].forEach(function(p){
+                            rejection_count.push(parseInt(p['rejections']));
+                        });
+                    }
+                });
+
+                res['data'].forEach(function(item){
+                    if (item['machine'] == machine_id) {
+                        item['targets'].forEach(function(p){
+                            production_target.push(p);
+                        });
+                    }
+                });
+
+                    ChartDataLabels.defaults.color = "#ffffff";
+                    ChartDataLabels.defaults.font.size=16;
+                    ChartDataLabels.defaults.font.family = "Roboto, sans-serif";
+                    var ctx = document.getElementById('production-graph').getContext('2d');
+                    myChartList = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: hours_list,
+                            datasets: [{
+                                    label: "Total Parts",
+                                    type: "bar",
+                                    backgroundColor: backgroundcolor,
+                                    borderWidth: 1,
+                                    fill: true,
+                                    data:production_count,
+                                    // part_name: part_name_list,
+                                    // rejections: rejections_list,
+                                    categoryPercentage: 1.0,
+                                    barPercentage: 0.8,
+                                },
+                                {
+                                    label: "Total Rejection",
+                                    type: "bar",
+                                    backgroundColor: "#595959",
+                                    borderWidth: 1,
+                                    fill: true,
+                                    data:rejection_count,
+                                    // part_name: part_name_list,
+                                    // rejections: rejections_list,
+                                    categoryPercentage: 1.0,
+                                    barPercentage: 0.8,
+                                },
+                                {
+                                    label: "Production Target",
+                                    type: "line",
+                                    backgroundColor: "#ffffff",
+                                    borderColor: "#ffffff",
+                                    borderWidth: 1,
+                                    fill: false,
+                                    data:production_target,
+                                    // part_name: part_name_list,
+                                    pointRadius: 0,
+                                    stepped: 'before',
+                                },
+                            ],
+                        },
+                        options: {
+                            scalebeginAtZero: false,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    display: false,
+                                    beginAtZero: true,
+                                    grid: {
+                                        display: false,
+                                        color:"#01a149",
+                                    },
+                                    stacked: true,
+                                },
+                                x: {
+                                    display: true,
+                                    grid: {
+                                        display: true,
+                                        color:border_color,
+                                    },
+                                    stacked: true,
+                                    ticks:{
+                                        crossAlign: 'far',
+                                        padding:5,
+                                        color:"#ffffff",
+                                    }
+                                },
+                            },
+                            plugins: {
+                                datalabels: {
+                                    anchor: "start",
+                                    align: "end",
+                                    offset: 6,
+                                    color: "white",
+                                    font: {
+                                        size: 12,
+                                    },
+                                    formatter: (value, context) => context.datasetIndex === 0 ?
+                                        value : '',
+                                },
+                                legend: {
+                                    display: false,
+                                    labels: {
+                                        font: {
+                                            size: 12
+                                        }
+                                    }
+                                },
+                                tooltip: {
+                                    // enabled: false,
+                                    // external: productionTooltip,
+                                },
+                            },
+                        },
+                        plugins: [ChartDataLabels],
+                    });
+            },
+            error: function(err){
+                // error......
+                console.log("production graph error");
+                reject(err);
+            }
+        });
     });
+   
 }
 // Downtime Graph
 function getDownTimeGraph(machine_id, shift_date, s) { 
+
+    return new Promise(function(resolve,reject){
         var url = "<?php echo base_url('PDM_controller/getDownGraph'); ?>";
         $.ajax({
             method: 'POST',
@@ -1931,6 +1999,7 @@ function getDownTimeGraph(machine_id, shift_date, s) {
                 shift: s,
             },
             success:function(response){
+                resolve(response);
                 response['shift']['shift'].forEach(function(item) {
                     var x = item.shifts.split("");
                     if (x[0] == s[0]) {
@@ -2279,212 +2348,305 @@ function getDownTimeGraph(machine_id, shift_date, s) {
             },
             error:function(er){
                 reject(er);
+                console.log("downtime graph error");
             }
         });
     
+    });
+      
 }
 
     function getLiveOEE(machine_id,shift_date,shift){
-        $.ajax({
-            url: "<?php echo base_url('Current_Shift_Performance/getLiveMode');?>",
-            type: "POST",
-            dataType: "json",
-            data:{
-                shift_date: shift_date,
-                shift_id: shift,
-                filter:2,
-            },
-            success: function(res){
-
-                res['oee'].forEach(function(machine) {
-                    if (machine['Machine_Id'] == machine_id) {
-                        $('#oui_availability').text(parseInt(machine['Availability'])+"%");
-                        $('#oui_performance').text(parseInt(machine['Performance'])+"%");
-                        $('#oui_quality').text(parseInt(machine['Quality'])+"%");
-                        $('#oui_oee').text(parseInt(machine['OEE'])+"%");
-                    }
-                });
-
-                res['machine_name'].forEach(function(machine) {
-                    if (machine['machine_id'] == machine_id) {
-                        $('#machine_name_oui').text(machine['machine_name']);
-                    }
-                });
-
-
-                res['latest_event'].forEach(function(machine) {
-                    if (machine[0]['machine_id'] == machine_id) {
-                        $('#latest_event_machine').text(machine[0]['event']);
-                        var t = machine[0]['duration'].split(".");
-                        if (machine[0]['event']==="Active") {
-                            $('#event_duration_machine').css("display",'none');
-                            $('#event_logo').css("display",'none');
-                            $('.oui_duration_only_active').css("display",'inline');
-                            $('.active_duration_oui').text(t[0]+"m");
-                        }else{
-                            $('#event_duration_machine').css("display",'block');
-                            $('#event_logo').css("display",'block');
-                            $('.oui_duration_only_active').css("display",'none');
-                            $('#event_duration_machine').text(t[0]+"m");
+        return new Promise(function(resolve,reject){
+            $.ajax({
+                url: "<?php echo base_url('Current_Shift_Performance/getLiveMode');?>",
+                type: "POST",
+                dataType: "json",
+                data:{
+                    shift_date: shift_date,
+                    shift_id: shift,
+                    filter:2,
+                },
+                success: function(res){
+                    resolve(res);
+                    res['oee'].forEach(function(machine) {
+                        if (machine['Machine_Id'] == machine_id) {
+                            $('#oui_availability').text(parseInt(machine['Availability'])+"%");
+                            $('#oui_performance').text(parseInt(machine['Performance'])+"%");
+                            $('#oui_quality').text(parseInt(machine['Quality'])+"%");
+                            $('#oui_oee').text(parseInt(machine['OEE'])+"%");
                         }
-                        
-                    }
-                });
-            },
-            error: function(err) {
-                // 
-            }
+                    });
+
+                    res['machine_name'].forEach(function(machine) {
+                        if (machine['machine_id'] == machine_id) {
+                            $('#machine_name_oui').text(machine['machine_name']);
+                        }
+                    });
+
+
+                    res['latest_event'].forEach(function(machine) {
+                        if (machine[0]['machine_id'] == machine_id) {
+                            $('#latest_event_machine').text(machine[0]['event']);
+                            var t = machine[0]['duration'].split(".");
+                            if (machine[0]['event']==="Active") {
+                                $('#event_duration_machine').css("display",'none');
+                                $('#event_logo').css("display",'none');
+                                $('.oui_duration_only_active').css("display",'inline');
+                                $('.active_duration_oui').text(t[0]+"m");
+                            }else{
+                                $('#event_duration_machine').css("display",'block');
+                                $('#event_logo').css("display",'block');
+                                $('.oui_duration_only_active').css("display",'none');
+                                $('#event_duration_machine').text(t[0]+"m");
+                            }
+                            
+                        }
+                    });
+                },
+                error: function(err) {
+                    // 
+                    reject(err);
+                    console.log("get live oee erorr");
+                }
+            });
         });
+       
     }
 
     function getDowntimeDuration(machine_id,shift_date,shift){
-        $.ajax({
-            url: "<?php echo base_url('Operator/getLiveDowntime'); ?>",
-            type: "POST",
-            dataType: "json",
-            async: false,
-            data:{
-                machine_ref : machine_id,
-                shift_ref : shift,
-                shift_date_ref : shift_date
-            },
-            success: function(res) {
-                if (res['h'] > 0) {
-                    $('#downtime_duration').text(res['h']+"h"+" "+res['m']+"m");
-                }else{
-                    $('#downtime_duration').text(res['m']+"m");
+        return new Promise(function(resolve,reject){
+            $.ajax({
+                url: "<?php echo base_url('Operator/getLiveDowntime'); ?>",
+                type: "POST",
+                dataType: "json",
+                async: false,
+                data:{
+                    machine_ref : machine_id,
+                    shift_ref : shift,
+                    shift_date_ref : shift_date
+                },
+                success: function(res) {
+                    resolve(res);
+                    if (res['h'] > 0) {
+                        $('#downtime_duration').text(res['h']+"h"+" "+res['m']+"m");
+                    }else{
+                        $('#downtime_duration').text(res['m']+"m");
+                    }
+                },
+                error: function(res) {
+                    // Error Occured!
+                    console.log("downtime duration error");
+                    reject(res);
                 }
-            },
-            error: function(res) {
-                // Error Occured!
-            }
+            });
         });
+       
     }
 
     function getLiveProduction(machine_id,shift_date,shift){
-        $.ajax({
-            url: "<?php echo base_url('Operator/getLiveProduction'); ?>",
-            type: "POST",
-            dataType: "json",
-            async: false,
-            data:{
-                machine_id_ref : machine_id,
-                shift_id_ref : shift,
-                shift_date_ref : shift_date, 
-            },
-            success: function(res) {
-                $('#remaining_time_duration').text(res['duration_min']+" "+"min");
+        return new Promise(function(resolve,reject){
+            $.ajax({
+                url: "<?php echo base_url('Operator/getLiveProduction'); ?>",
+                type: "POST",
+                dataType: "json",
+                async: false,
+                data:{
+                    machine_id_ref : machine_id,
+                    shift_id_ref : shift,
+                    shift_date_ref : shift_date, 
+                },
+                success: function(res) {
+                    resolve(res);
+                    $('#remaining_time_duration').text(res['duration_min']+" "+"min");
 
-                var date = new Date();
-                date.setMinutes (date.getMinutes() + parseInt(res['duration_min']));
+                    var date = new Date();
+                    date.setMinutes (date.getMinutes() + parseInt(res['duration_min']));
 
-                var x_date = ("0" +date.getDate()).slice(-2)+" "+(date.toLocaleString([], { month: 'short' })+" "+(date.getFullYear()))+", "+("0" +date.getHours()).slice(-2)+":"+("0" +date.getMinutes()).slice(-2);
+                    var x_date = ("0" +date.getDate()).slice(-2)+" "+(date.toLocaleString([], { month: 'short' })+" "+(date.getFullYear()))+", "+("0" +date.getHours()).slice(-2)+":"+("0" +date.getMinutes()).slice(-2);
 
-                $('#estimated_time_target').text(x_date);
-            },
-            error: function(res) {
-                // Error Occured!
-            }
+                    $('#estimated_time_target').text(x_date);
+                },
+                error: function(res) {
+                    // Error Occured!
+                    console.log("get live production error");
+                    reject(res);
+                }
+            });
         });
+       
     }
 
     function getPartCycleTime(machine_id){
-        $.ajax({
-            url: "<?php echo base_url('Operator/getPartCycleTime'); ?>",
-            type: "POST",
-            dataType: "json",
-            async: false,
-            data:{
-                machine_ref : machine_id,
-            },
-            success: function(res) {
-                $('#part_cycle_time').text(res[0]['NICT']+"s");
-                $('#part_name_oui').text(res[0]['part_name']);
-                $('#part_name_oui').attr("part_id",""+res[0]['part_id']+"");
+        return new Promise(function(resolve,reject){
+            $.ajax({
+                url: "<?php echo base_url('Operator/getPartCycleTime'); ?>",
+                type: "POST",
+                dataType: "json",
+                async: false,
+                data:{
+                    machine_ref : machine_id,
+                },
+                success: function(res) {
+                    resolve(res);
+                    $('#part_cycle_time').text(res[0]['NICT']+"s");
+                    $('#part_name_oui').text(res[0]['part_name']);
+                    $('#part_name_oui').attr("part_id",""+res[0]['part_id']+"");
 
-                $('#part_name_oui_p').text(res[0]['part_name']);
+                    $('#part_name_oui_p').text(res[0]['part_name']);
 
-            },
-            error: function(res) {
-                // Error Occured!
-            }
+                },
+                error: function(res) {
+                    // Error Occured!
+                    console.log("get partcycle time ajax error");
+                    reject(res);
+                }
+            });
         });
+      
     }
 
     function getRejectCounts(machine_id,shift_date,shift){
-        $.ajax({
-            url: "<?php echo base_url('Operator/getLiveRejectCount'); ?>",
-            type: "POST",
-            dataType: "json",
-            async: false,
-            data:{
-                machine_ref : machine_id,
-                shift_ref : shift,
-                shift_date_ref : shift_date
-            },
-            success: function(res) {
-                if (res[0]['rejections'] != null && res[0]['rejections'] !="") {
-                    $('#liveRejectCount').text(res[0]['rejections']); 
-                }else{
-                    $('#liveRejectCount').text(0); 
+        return new Promise(function(resolve,reject){
+            $.ajax({
+                url: "<?php echo base_url('Operator/getLiveRejectCount'); ?>",
+                type: "POST",
+                dataType: "json",
+                async: false,
+                data:{
+                    machine_ref : machine_id,
+                    shift_ref : shift,
+                    shift_date_ref : shift_date
+                },
+                success: function(res) {
+                    resolve(res);
+                    if (res[0]['rejections'] != null && res[0]['rejections'] !="") {
+                        $('#liveRejectCount').text(res[0]['rejections']); 
+                    }else{
+                        $('#liveRejectCount').text(0); 
+                    }
+                    
+                },
+                error: function(res) {
+                    console.log('get rejection count ajax error');
+                    reject(res);
+                    // Error Occured!
                 }
-                
-            },
-            error: function(res) {
-                // Error Occured!
-            }
+            });
         });
+       
     }
 
 
 
-    function target_oui_graph(mid,tid,sdate){
-        // return new Promise(function(resolve,reject){
-        $.ajax({
-            url:"<?php echo base_url('Current_Shift_Performance/get_target_graph'); ?>",
-            method:"POST",
-            data:{
-                mid:mid,
-                sdate:sdate,
-                tid:tid,
-            },
-            dataType:"JSON",
-            success:function(res){
+    function target_oui_graph(mid,tid,sdate,shift_id){
+        return new Promise(function(resolve,reject){
+            console.log("shift date:\t"+sdate);
+            console.log("shift id :\t"+shift_id);
 
-                var target = 0;
-                if (parseInt(res[0]['production'])>=100) {
-                    target = 100;
-                }else{
-                    target = res[0]['percentage_target'];
+            $.ajax({
+                url:"<?php echo base_url('Current_Shift_Performance/getLiveMode'); ?>",
+                method:"POST",
+                data:{
+                    // mid:mid,
+                    // sdate:sdate,
+                    // tid:tid,
+                    shift_date: sdate,
+                    shift_id: shift_id,
+                },
+                dataType:"JSON",
+                success:function(res){
+                    console.log("oui tool changeover target graph");
+                    console.log(res);
+                    resolve(res);
+                    var target = 0;
+                    res['production_target'].forEach(function(i){
+                        if (i['machine_id'] == mid) {
+                            target = i['target'];
+                        }
+                    });
+
+                    var total_produced=0;
+                    res['target_production'].forEach(function(i){
+                        if (i['machine_id'] == mid) {
+                            total_produced = i['total_part_produced'];
+                        }
+                    });
+                    
+                    var target_percentage=0;
+                    if (target > 0) {
+                        target_percentage = (total_produced/target)*100;
+                    }else{
+                        target_percentage = 100;
+                    }
+                    
+                    console.log("production target percentage");
+                    console.log(target_percentage);
+                    console.log("target tool changeover"+target);
+                    console.log("target production count :\t"+total_produced);
+                    if (target_percentage > 100) {
+                        
+                        $('.target_inline').css('height','100%');
+                    }else{
+                        if (parseInt(target)>0) {
+                            $('.target_inline').css('height',target_percentage+'%');
+                        }else{
+                            $('.target_inline').css('height','2%');
+                        }
+                        
+                    }
+                    if (parseInt(target)>0) {
+                        $('.target_inline_Cont').text(total_produced);
+                        $('.target_text2').text(target);
+                    }else {
+                        $('.target_inline_Cont').text('NA');
+                        $('.target_text2').text('NA');
+                        $('#remaining_time_duration').text('NA');
+                        $('#estimated_time_target').text('NA');
+                    }
+                
+
+                    var shift_target = 0;
+                    var shift_production=0;
+                    res['shift_production_target'].forEach(function(i){
+                        if (i['machine_id'] == mid) {
+                            shift_target = i['shift_production_target'];
+                            shift_production = i['shift_production'];
+                        }
+                    });
+
+                    var production_percent = (shift_production/shift_target)*100;
+                    var production_percent_val = 470 - (4.7 * production_percent);
+                    const circle_container = document.getElementsByClassName("circle_oui");
+                    circle_container[0].style.setProperty("--foo_oui", production_percent_val);
+                    if (parseInt(target)>0) {
+                        $('#number_completion').text(parseInt(production_percent)+"%");
+                    }else{
+                        $('#number_completion').text("NA");
+                    }
+                    
+
+                    var color_code = "";
+                    if (production_percent > 75) {
+                        color_code = "#c2fb05";
+                    } else if (production_percent > 50) {
+                        color_code = "#fae910";
+                    } else if (production_percent > 25) {
+                        color_code = "#c55911";
+                    } else {
+                        color_code = "#d10527";
+                    }
+
+                    document.getElementById('circle_graph_colors').attributes['stop-color'].value = color_code;
+                    document.getElementsByClassName('target_inline')[0].style.backgroundColor  = color_code;
+
+                },
+                error:function(er){
+                    // reject(er);
+                    console.log("target oui ajax error");
+                    reject(er);
                 }
-                $('.target_inline').css('height',target+'%');
-                $('.target_inline_Cont').text(res[0]['production']);
-                $('.target_text2').text(res[0]['target']);
-
-                var production_percent_val = 470 - (4.7 * res[0]['percentage_target']);
-                const circle_container = document.getElementsByClassName("circle_oui");
-                circle_container[0].style.setProperty("stroke-dashoffset", production_percent_val);
-
-                production_percent = res[0]['percentage_target'];
-                var color_code = "";
-                if (production_percent > 75) {
-                    color_code = "#c2fb05";
-                } else if (production_percent > 50) {
-                    color_code = "#fae910";
-                } else if (production_percent > 25) {
-                    color_code = "#c55911";
-                } else {
-                    color_code = "#d10527";
-                }
-
-                document.getElementById('circle_graph_colors').attributes['stop-color'].value = color_code;
-                document.getElementsByClassName('target_inline')[0].style.backgroundColor  = color_code;
-
-            },
-            error:function(er){
-                // reject(er);
-            }
+            });
         });
-        // });
     }
 </script>

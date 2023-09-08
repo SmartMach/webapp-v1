@@ -82,10 +82,10 @@
  -->
                     <?php if($this->data['access'][0]['settings_user_management'] == 3){ ?>
                         <!----add user option----->
-                       <!--  <a style="background: #005abc;color: white;width:8rem;justify-content:center;text-align:center;" class="settings_nav_anchor float-end " data-bs-toggle="modal" data-bs-target="#AddUserModal">
+                        <!-- <a style="width:8rem;justify-content:center;text-align:center;" class="settings_nav_anchor saveBtnStyle float-end " id="add_user_model">
                             <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD USER
-                        </a>   -->
-                        <a style="width:8rem;justify-content:center;text-align:center;" class="settings_nav_anchor saveBtnStyle float-end " id="add_user_model">
+                        </a>  -->
+                        <a style="text-decoration:none;margin-right:0.3rem;cursor:pointer;" class="overall_filter_btn overall_filter_header_css" id="add_user_model">
                             <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD USER
                         </a> 
 
@@ -411,11 +411,12 @@
                                         <input type="radio" id="html" name="ooe_drill_down" value="0">
                                     <?php } ?>
                                 </div>
-                                <!-- <div class="col-sm-2 fn paddingm textCenter">
+                                 <div class="col-sm-2 fn paddingm textCenter">
                                     <?php if ($this->data['access'][0]['oee_drill_down'] >= 1){ ?>
                                         <input type="radio" id="html" name="ooe_drill_down" value="1">
                                     <?php } ?>
                                 </div>
+                                <!--
                                 <div class="col-sm-2 fn paddingm textCenter">
                                     <?php if ($this->data['access'][0]['oee_drill_down'] >= 2){ ?>
                                         <input type="radio" id="html" name="ooe_drill_down" value="2">
@@ -907,12 +908,21 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <div class="box fieldStyle" >
-                                <div class="flex-container textCenter float-start ACControl" id="ACControl" style="display: none;">
-                                    <label for="input" class="float-start" style="margin-right:1rem;">Access Control</label>
-                                    <div class="dotAccess dot-css acsControl_edit" style="margin-left: 2rem;font-size:2rem;"><img src="<?php echo base_url('assets/img/oui_arrow.png'); ?>" class=" dot-cont" style="height: 1.5rem;width: 1.5rem;"></i></div>
+                            <div class="box">
+                                <div class="input-box fieldStyle">
+                                    <select class="inputDepartmentAdd form-select font_weight_modal" name="EditUserDepartment" id="EditUserDepartment">
+                                    </select>
+                                    <label for="input" class="input-padding">Department<span class="paddingm validate">*</span></label>
+                                    <span class="paddingm float-start validate d-none" id="dept_err"></span> 
+                                    <!-- <span class="float-end charCount">Character Count</span> -->
                                 </div>
                             </div>
+                            <!-- <div class="box fieldStyle" >
+                                <div class="flex-container textCenter float-start ACControl" id="ACControl" style="display: none;">
+                                    <label for="input" class="float-start" style="margin-right:1rem;margin-top:0.3rem;">Access Control</label>
+                                    <div class="dotAccess dot-css acsControl_edit" style="margin-left: 2rem;font-size:2rem;"><img src="<?php echo base_url('assets/img/oui_arrow.png'); ?>" class=" dot-cont" style="height: 1.5rem;width: 1.5rem;"></i></div>
+                                </div>
+                            </div> -->
                         </div>
                     </div>    
                     <div class="row">
@@ -933,16 +943,22 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="box">
+                            <div class="box fieldStyle" >
+                                <div class="flex-container textCenter float-start ACControl" id="ACControl" style="display: none;">
+                                    <label for="input" class="float-start" style="margin-right:1rem;margin-top:0.3rem;">Access Control</label>
+                                    <div class="dotAccess dot-css acsControl_edit" style="margin-left: 2rem;font-size:2rem;"><img src="<?php echo base_url('assets/img/oui_arrow.png'); ?>" class=" dot-cont" style="height: 1.5rem;width: 1.5rem;"></i></div>
+                                </div>
+                            </div>
+                            <!-- <div class="box">
                                 <div class="input-box fieldStyle">
                                     <select class="inputDepartmentAdd form-select font_weight_modal" name="EditUserDepartment" id="EditUserDepartment">
                                     </select>
                                     <label for="input" class="input-padding">Department<span class="paddingm validate">*</span></label>
                                     <span class="paddingm float-start validate d-none" id="dept_err"></span> 
-                                    <!-- <span class="float-end charCount">Character Count</span> -->
+                                    <!-- <span class="float-end charCount">Character Count</span> --
                                 </div>
                              
-                            </div>
+                            </div> -->
                            
                         </div>
                         
@@ -2193,6 +2209,15 @@ $(document).ready(function(){
                             $("input[name=settings_part][value='"+res_role[0].settings_part+"']").prop("checked",true);
                             $("input[name=settings_general][value='"+res_role[0].settings_general+"']").prop("checked",true);
                             $("input[name=settings_user][value='"+res_role[0].settings_user_management+"']").prop("checked",true);
+
+                            // new module
+                            $("input[name=dpd][value='"+res_role[0].daily_production_data+"']").prop("checked",true);
+                            $("input[name=csp][value='"+res_role[0].current_shift_performance+"']").prop("checked",true);
+                            $("input[name=pd][value='"+res_role[0].production_downtime+"']").prop("checked",true);
+                            $("input[name=pq][value='"+res_role[0].production_quality+"']").prop("checked",true);
+                            $("input[name=wom][value='"+res_role[0].work_order_management+"']").prop("checked",true);
+                            $("input[name=alm][value='"+res_role[0].alert_management+"']").prop("checked",true);
+
                                 
                         },
                         error:function(res){
@@ -2237,7 +2262,8 @@ $(document).ready(function(){
             },
             dataType: "json",
             success:function(res_csp){
-                // console.log(res_csp);
+                console.log("edit user details");
+                console.log(res_csp);
                 // active inactive user s condition
                 if (res_csp['user_data'][0].status == 1) {
                     $('#EditUserStatus').html('<p style="color: #005CBC;"><i class="fa fa-circle" style="font-size:9px;margin-right:5px;"></i>Active</p>');
@@ -3455,7 +3481,7 @@ $.ajax({
     success:function(res_Site){    
         $('.contentUser').empty();
             if (jQuery.isEmptyObject(res_Site)){
-                $('.contentUser').html("<p>No Records Found!</p>");
+                $('.contentUser').html('<p class="no_record_css">No Records...</p>');
             }
             var active = 0;
             var inactive = 0;
@@ -3464,31 +3490,42 @@ $.ajax({
             res_Site.forEach(function(item){
                 var randomColor = color[Math.floor(Math.random()*color.length)];
                 var elements = $();
-
+                var forgot_border = "";
+                var delete_border = "";
                 if (item.role == "Smart Admin"){
                     var forgot = "none";
                     var colorRole = "#853e2c";
                     var colorBorder = "#ffdad0";
+                    forgot_border = "none";
+                    delete_border="none";
                 }
                 else if(item.role == "Smart Users"){
                     var forgot = "none";
                     var colorRole = "#a2723f";
                     var colorBorder = "#ffe4c4";
+                    forgot_border = "none";
+                    delete_border="none";
                 }
                 else if(item.role == "Site Admin"){
                     var forgot = "none";
                     var colorRole = "#005fc8";
                     var colorBorder = "#c1eaff";
+                    forgot_border = "none";
+                    delete_border="none";
                 }
                 else if(item.role == "Site Users"){
                     var forgot = "none";
                     var colorRole = "#56b8c2";
                     var colorBorder = "#60ebee";
+                    forgot_border = "none";
+                    delete_border="none";
                 }
                 else if(item.role == "Operator"){
                     var forgot = "block";
                     var colorRole = "#7030a0";
                     var colorBorder = "#dfcaee";
+                    forgot_border = "none";
+                    delete_border="1px solid #EEE";
                 }
                 if (item.status == 1) {
                     active = active+1;
@@ -3527,8 +3564,8 @@ $.ajax({
                                         +'<ul class="edit-subMenu" style="z-index:10;">'
                                             // +'<li class="edit-opt info-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" con="'+item.created_on+'"><a href="#"><i class="fa fa-info" style="margin-left:10px;"></i>INFO</a></li>'
                                             +'<li class="edit-opt edit-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" con="'+item.created_on+'" svalue="'+item.status+'" site="'+item.site_id+'"><a href="#"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh" style="margin-left:10px;"></i>EDIT</a></li>'
-                                            +'<li class="edit-opt deactivate-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'" site_id="'+item.site_id+'"><a href="#"><img src="<?php echo base_url('assets/img/delete.png'); ?>" class="img_font_wh1" style="margin-left:10px;"></i>DEACTIVATE</a></li>'
-                                            +'<li class="edit-opt forgot-password forgotwork " style="display:'+forgot+';" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'" site="'+item.site_id+'"><a href="#"><i class="fa fa-key" style="margin-left:15px;font-size:1rem;"></i><span style="margin-left:0.8rem;">RESET PASSWORD</span></a></li>'
+                                            +'<li class="edit-opt deactivate-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'" site_id="'+item.site_id+'"><a href="#" style="border-bottom:'+delete_border+';"><img src="<?php echo base_url('assets/img/delete.png'); ?>" class="img_font_wh1" style="margin-left:10px;"></i>DEACTIVATE</a></li>'
+                                            +'<li class="edit-opt forgot-password forgotwork " style="display:'+forgot+';" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'" site="'+item.site_id+'"><a href="#" style="border-bottom:'+forgot_border+';"><i class="fa fa-key" style="margin-left:15px;font-size:1rem;"></i><span style="margin-left:0.8rem;">RESET PASSWORD</span></a></li>'
                                         +'</ul>'
                                     +'</li>'
                                 +'</ul>'                
@@ -3572,7 +3609,7 @@ $.ajax({
                                         +'</a>'
                                         +'<ul class="edit-subMenu" style="z-index:10;">'
                                             +'<li class="edit-opt info-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" con="'+item.created_on+'" site="'+item.site_id+'"><a href="#"><img src="<?php echo base_url('assets/img/info.png'); ?>" class="img_font_wh2" style="margin-left:10px;"></i>INFO</a></li>'
-                                            +'<li class="edit-opt activate-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'"  site_id="'+item.site_id+'"><a href="#"><img src="<?php echo base_url('assets/img/activate.png'); ?>" class="img_font_wh2" style="margin-left:10px;"></i>ACTIVATE</a></li>'
+                                            +'<li class="edit-opt activate-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'"  site_id="'+item.site_id+'"><a href="#" style="border-bottom:none;"><img src="<?php echo base_url('assets/img/activate.png'); ?>" class="img_font_wh2" style="margin-left:10px;"></i>ACTIVATE</a></li>'
                                         +'</ul>'
                                     +'</li>'
                                 +'</ul>'                
@@ -3622,6 +3659,9 @@ function get_edit_access_control(userid,user_role){
             userName:userid,
         },
         success:function(res_role){
+            console.log("get edit access control");
+            console.log(res_role);
+            // old modules
             $("input[name=ooe_f_drill_down][value='"+res_role[0].oee_financial_drill_down+"']").prop("checked",true);
             $("input[name=opportunity_insights][value='"+res_role[0].opportunity_insights+"']").prop("checked",true);
             $("input[name=ooe_drill_down][value='"+res_role[0].oee_drill_down+"']").prop("checked",true);
@@ -3629,9 +3669,17 @@ function get_edit_access_control(userid,user_role){
             $("input[name=pdm][value='"+res_role[0].production_data_management+"']").prop("checked",true);
             $("input[name=settings_macine][value='"+res_role[0].settings_machine+"']").prop("checked",true);
             $("input[name=settings_part][value='"+res_role[0].settings_part+"']").prop("checked",true);
-            $("input[name=settings_general][value='"+res_role[0].settings_general+"']").prop("checked",true);
-                         
+            $("input[name=settings_general][value='"+res_role[0].settings_general+"']").prop("checked",true);        
             $("input[name=settings_user][value='"+res_role[0].settings_user_management+"']").prop("checked",true);
+        
+            // new modules 
+            $("input[name=dpd][value='"+res_role[0].daily_production_data+"']").prop("checked",true);
+            $("input[name=csp][value='"+res_role[0].current_shift_performance+"']").prop("checked",true);
+            $("input[name=pd][value='"+res_role[0].production_downtime+"']").prop("checked",true);
+            $("input[name=pq][value='"+res_role[0].production_quality+"']").prop("checked",true);
+            $("input[name=wom][value='"+res_role[0].work_order_management+"']").prop("checked",true);
+            $("input[name=alm][value='"+res_role[0].alert_management+"']").prop("checked",true);
+
         },
         error:function(res){
             // alert("Sorry!Try Agian!!");
@@ -3668,12 +3716,12 @@ function get_access_control(user){
                 $("input[name=settings_general][value='"+res_role.Settings_General+"']").prop("checked",true);
                 $("input[name=settings_user][value='"+res_role.Settings_User_Management+"']").prop("checked",true);
 
-                $("input[name=dpd][value='"+res_role.Daily_Production_Data+"']").prop("checked",true);
-                $("input[name=csp][value='"+res_role.Current_Shift_Performance+"']").prop("checked",true);
-                $("input[name=pd][value='"+res_role.Production_Downtime+"']").prop("checked",true);
-                $("input[name=pq][value='"+res_role.Production_Quality+"']").prop("checked",true);
-                $("input[name=wom][value='"+res_role.Work_Order_Management+"']").prop("checked",true);
-                $("input[name=alm][value='"+res_role.Alert_Management+"']").prop("checked",true);
+                $("input[name=dpd][value='"+res_role.daily_production_data+"']").prop("checked",true);
+                $("input[name=csp][value='"+res_role.current_shift_performance+"']").prop("checked",true);
+                $("input[name=pd][value='"+res_role.production_downtime+"']").prop("checked",true);
+                $("input[name=pq][value='"+res_role.production_quality+"']").prop("checked",true);
+                $("input[name=wom][value='"+res_role.work_order_management+"']").prop("checked",true);
+                $("input[name=alm][value='"+res_role.alert_management+"']").prop("checked",true);
 
             },
             error:function(res){

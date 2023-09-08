@@ -35,6 +35,9 @@ class Current_Shift_Performance extends BaseController{
 
 
         return json_encode($shift_detailes);
+        // echo "<pre>";
+        // print_r($shift_detailes);
+        // echo "</pre>";
     }
 
     public function getPreviousShiftLive(){
@@ -60,7 +63,7 @@ class Current_Shift_Performance extends BaseController{
         
         return json_encode($shift_data);
     }
-    
+
     public function getLiveMode(){
     	if ($this->request->isAJAX()) {
 
@@ -69,17 +72,20 @@ class Current_Shift_Performance extends BaseController{
 
     		$shift_date = $this->request->getVar('shift_date');
     		$shift_id = $this->request->getVar('shift_id');
-            $filter = $this->request->getVar('filter');
+            // $filter = $this->request->getVar('filter');
 
-    		// $shift_date = "2023-07-04";
-    		// $shift_id = "B";
-      //       $filter = 2;
+    		// $shift_date = "2023-08-29";
+    		// $shift_id = "A";
+            // $filter = 2;
 
     		// Current Shift OEE Target......
     		$oee_target = $this->datas->getOEETarget();
 
     		// Hourly Production.....
     		$hourly_production = $this->datas->getLiveProduction($shift_date,$shift_id );
+            // echo "shift id :\t".$shift_id."\n";
+            // echo "\n";
+            // echo "\nshift date:\t".$shift_date;
             foreach ($hourly_production as $key => $value) {
                 $hourly_production[$key]['production'] = ((int)$value['production']) + ((int)$value['corrections']);
             }
@@ -87,18 +93,29 @@ class Current_Shift_Performance extends BaseController{
     		// Machine Detailes.......
     		$machine_detailes = $this->datas->getMachineLive();
 
+            $production_target_all = $this->datas->getProductionTarget($shift_date);
+
+            // echo "<pre>";
+            // print_r($production_target_all);
+
     		// Shift Detailes,.......
-    		$shift_detailes =  $this->datas->getShiftLive();
+    		$shift_detailes =  $this->datas->getShiftLive_oui($shift_date,$shift_id);
+            // echo "shift date:\t".$shift_detailes[0]['shift_date'];
         	$shift = $this->datas->getShiftExact($shift_detailes[0]['shift_date']." 23:59:59");
         	$shiftList=[];
         	$s_time="";
         	$e_time="";
+
+            // echo "shift id:\t".$shift_detailes[0]['shift_id'];
     		foreach ($shift['shift'] as $key => $value) {
+                // echo "\t".str_split($value['shifts'])[0]." \t".$shift_detailes[0]['shift_id'];
 	        	if (str_split($value['shifts'])[0] == $shift_detailes[0]['shift_id']) {
+
 	        		$s_time = $value['start_time'];
 	        		$e_time = $value['end_time'];
 	        	}
 	        }
+            // echo "start time:\t".$s_time;
 	        $ts_date = strtotime($shift_date." ".$s_time);
 	        $te_date = strtotime($shift_date." ".$e_time);
 
@@ -155,11 +172,15 @@ class Current_Shift_Performance extends BaseController{
                                         if (date('H', $e_time_tmp) == date('H', $e_time) && date('i', $e_time_tmp)==date('i', $e_time)) {
                                             break;
                                         }
-                                        
                                     }
-                                    $e_time = $e_time_tmp;                                
+                                    $e_time = $e_time_tmp;                            
                                     
-                                    $temp_target = $temp_target + (($e_time-$s_time)/$part->NICT);
+                                    if ($part->NICT>0) {
+                                        $temp_target = $temp_target + (($e_time-$s_time)/$part->NICT);    
+                                    }else{
+                                        // $temp_target = $temp_target + (($e_time-$s_time)/$part->NICT);
+                                        $temp_target = 0;
+                                    }
                                     $tc=1;  
                                     $h_total=$h_total+$p['production'];
                                 }
@@ -240,8 +261,96 @@ class Current_Shift_Performance extends BaseController{
             //Production Data for PDM_Production_Info Table......
             $production = $this->datas->getProductionRec($shift_date,$shift_id);
 
+            $production_t = $this->datas->getProductionData();
+
             // Get the Inactive(Current) Data.............
             $getInactiveMachine = $this->datas->getInactiveMachineData();
+            $machineWiseProduction=[];
+            foreach ($production_target_all as $key => $v) {
+                $production_t_tmp=0;
+                foreach ($production_t as $k => $p) {
+                    if ($p['machine_id'] == $v->machine_id) {
+                        // Filter for Production Info Table Data..........
+                        $s_time_range =  strtotime($p['calendar_date']." ".$p['start_time']);
+                        $s_time_range_limit = strtotime($v->calendar_date." ".$v->event_start_time);
+                        $tm = 0;
+                
+                        if ($s_time_range < $s_time_range_limit) {
+                            $tm = 1;
+                        }
+
+                        // For remove the current data of inactive machines.........
+                        foreach ($getInactiveMachine as $value) {
+                            $start_time_range =  strtotime($value['max(r.last_updated_on)']);
+                            if ($s_time_range_limit > $start_time_range && $value['machine_id'] == $p['machine_id']){
+                                $tm = 1;
+                            }
+                        }
+                        $production_t_tmp= (int)$production_t_tmp + (int)$p['production']  + (int)($p['corrections']);
+                    }
+                }
+                $t_m =  array('machine_id' => $v->machine_id, 'total_part_produced' => $production_t_tmp);
+                array_push($machineWiseProduction, $t_m);
+            }
+
+            // Find the Shift Production Target......
+            $shift_data = json_decode($this->getLive());
+
+            $ts_date_t = date("Y-m-d H:i:s",strtotime($shift_data[0]->shift_date." ".$shift_data[0]->start_time));
+            $te_date_t=$ts_date_t;
+            $shift_process_completion = [];
+            foreach ($production_target_all as $key => $mv) {
+                if ($shift_data[0]->shift_date == $mv->shift_date) {
+                    $xt = strtotime($mv->shift_date." ".$mv->event_start_time);
+                    if ($ts_date_t < $xt) {
+                        $ts_date_t = date("Y-m-d H:i:s",strtotime($mv->shift_date." ".$mv->event_start_time));
+                    }
+                }
+
+                $te_date_t=$ts_date_t;
+
+                while (true) {
+                    if (date("H:i:s",strtotime($te_date_t)) == date("H:i:s",strtotime($shift_data[0]->shift_date." ".$shift_data[0]->end_time))) {
+                        break;
+                    }else{
+                        $te_date_t = date("Y-m-d H:i:s",strtotime($te_date_t.'+1 seconds'));               
+                    }
+                }
+
+                // Find Part
+
+                $time_duration = strtotime($te_date_t) - strtotime($ts_date_t);
+                $target_production_shift =0;
+                $production_shift =0;
+                foreach ($production_target_all as $key => $p) {
+                    if ($p->machine_id == $mv->machine_id) {
+                        $x_t = explode(".", $p->NICT);
+
+                        $nict =1; //By Default
+                        if (sizeof($x_t)>1) {
+                            $nict = $x_t[0] + ($x_t[1]/1000); 
+                        }else{
+                            $nict = $x_t[0];
+                        }
+                        if($nict>0) {
+                            $target_production_shift = ($time_duration/$nict)*$p->part_produced_cycle;
+                        }else{
+                            $target_production_shift = 0*$p->part_produced_cycle;
+                        }
+                    }
+
+                    foreach ($hourly_production as $key => $value) {
+                        if ($value['machine_id'] == $mv->machine_id and $value['part_id'] == $p->part_id)
+                        {   
+                            $production_shift= $production_shift + (int) $value['production'];
+                        }
+                    }
+                }
+
+                $t_m_a = array('machine_id' => $mv->machine_id,'shift_production_target' => (int)$target_production_shift,'shift_production' => $production_shift);
+                array_push($shift_process_completion, $t_m_a);
+            }
+            
 
             // Machine wise Current part........
             // $current_part  =  $this->datas->getCurrentPart();
@@ -339,7 +448,7 @@ class Current_Shift_Performance extends BaseController{
                                     if ($p['part_id'] == $partVal->part_id) {
                                         $mnict = explode(".", $partVal->NICT);
                                         if (sizeof($mnict)>1) {
-                                            $NICT = (($mnict[0]/60)+($mnict[1]/1000));
+                                            $NICT = (($mnict[0])+($mnict[1]/1000))/60;
                                         }else{
                                             $NICT = ($mnict[0]/60);
                                         }
@@ -448,6 +557,9 @@ class Current_Shift_Performance extends BaseController{
 
             $partList = $this->datas->part_list();
 
+            $out['production_target'] = $production_target_all;
+            $out['target_production'] = $machineWiseProduction;
+            $out['shift_production_target'] = $shift_process_completion;
 	       	$out['hours'] = $shiftList;
 	       	$out['data'] = $machineWise;
 	       	$out['targets'] = $oee_target;
@@ -462,6 +574,9 @@ class Current_Shift_Performance extends BaseController{
             // log_message("info","current shift peformance getlive mode graph execution duration is :\t".$execution_time_logger_gerlive_mode);
 
             return json_encode($out);
+            // echo "<pre>";
+            // print_r($out);
+            // echo "</pre>";
 	       	
     	}
     }

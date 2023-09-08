@@ -1075,9 +1075,15 @@
 
         $('#set_hour_minute').val(shift_management_data[0]);
         $('#SSTime').val(shift_management_data[1]);
-        var split_data = shift_management_data[0].split(":");
-        $('#get_hour_val').html(split_data[0]);
-        $('#get_minute_val').html(split_data[1]);
+        
+        if(shift_management_data.length > 0){
+            var split_data = shift_management_data[0].split(":");
+            $('#get_hour_val').html(split_data[0]);
+            $('#get_minute_val').html(split_data[1]);
+        }else{
+            $('#get_hour_val').html("");
+            $('#get_minute_val').html("");
+        }
         $('.click_tooltip').css("visibility","hidden");
         $('#EditWSM').modal('show');
     });
@@ -1164,7 +1170,9 @@ $(document).on('click','#click_thresh_hold',function(){
         dataType: "json",
         cache: false,
         success:function(res){
-            $('#Update_DThreshold').val(res[0].downtime_threshold);
+            if (res.length >0) {
+                $('#Update_DThreshold').val(res[0].downtime_threshold);
+            }
         },
         error:function(res){
             // alert("Sorry!Try Agian!!");
@@ -1188,15 +1196,18 @@ $(document).on('click','#current_shift_click_pencil',function(){
        cache: false,
        // data:{work:work},
        success:function(res){
-            var green_val = res[0].green;
-            var yellow_val = res[0].yellow;
-            var oee_val = res[0].oee ;
-            $('.target_value_edit').val(oee_val);
-            $('.yellow_value_edit').val(yellow_val);
-            $('.green_value_edit').val(green_val);
+            if (res.length > 0) {
+                var green_val = res[0].green;
+                var yellow_val = res[0].yellow;
+                var oee_val = res[0].oee ;
+                $('.target_value_edit').val(oee_val);
+                $('.yellow_value_edit').val(yellow_val);
+                $('.green_value_edit').val(green_val);
+            }
             var current_shift_performance_data = "current_shift_performance";
             error_show_remove(current_shift_performance_data);
             $('#current_shit_performance').modal('show');
+
        },
        error:function(err){
         // alert('something went wrong, try again !!');
@@ -1737,10 +1748,12 @@ function get_shift_data(){
             dataType: "json",
             cache: false,
             success:function(res){
-                $('#ODT').html(res[0].downtime_threshold+" "+"min");
-                $('#range').html('-RED');
-                $("#range").css("color","#C00000");
-                $("#range").css("font-weight","1000");
+                if(res.length>0){
+                    $('#ODT').html(res[0].downtime_threshold+" "+"min");
+                    $('#range').html('-RED');
+                    $("#range").css("color","#C00000");
+                    $("#range").css("font-weight","1000");
+                }
             },
             error:function(res){
                 //alert("Sorry!Try Agian!!");
@@ -2095,15 +2108,17 @@ function get_current_shift_data(){
        cache: false,
        // data:{work:work},
         success:function(res){
-            var green_val = res[0].green+"%";
-            var yellow_val = res[0].yellow+"%";
-            var oee_val = res[0].oee+"%";
-            $('.green_val').html(green_val);
-            $('.yellow_val').html(yellow_val);
-            $('.target_val').html(oee_val);
-            $('.target_value_edit').val(oee_val);
-            $('.yellow_value_edit').val(yellow_val);
-            $('.green_value_edit').val(green_val);
+            if (res.length>0) {
+                var green_val = res[0].green+"%";
+                var yellow_val = res[0].yellow+"%";
+                var oee_val = res[0].oee+"%";
+                $('.green_val').html(green_val);
+                $('.yellow_val').html(yellow_val);
+                $('.target_val').html(oee_val);
+                $('.target_value_edit').val(oee_val);
+                $('.yellow_value_edit').val(yellow_val);
+                $('.green_value_edit').val(green_val);
+            }
         },
         error:function(err){
             // alert('something went wrong, try again !!');

@@ -1,3 +1,8 @@
+:root {
+  --foo_oui: 471;
+  --ref_graph_oui :url("#GradientColor_oui");
+}
+
 .oui_screen{
 	height: 80vh;
 }
@@ -139,7 +144,7 @@
     bottom: 0;
     height: 9rem;
     width: 80%;
-    padding: 0.4rem;
+    /*padding: 0.4rem;*/
     display: flex;
     justify-content: center;
     border-radius: 2px 2px 2px 2px;
@@ -174,7 +179,7 @@
 }
 .circle_oui{
     fill: none;
-    stroke: url("#GradientColor_oui");
+    stroke: var(--ref_graph_oui);
     stroke-width: 1rem !important;
     stroke-dasharray: 472;
     stroke-dashoffset: 472;
@@ -214,7 +219,6 @@
 }
 @keyframes anim_oui{
     100%{
-        /*stroke-dashoffset: var(--foo);*/
-        stroke-dashoffset: 470;
+        stroke-dashoffset: var(--foo_oui);
     }
 }

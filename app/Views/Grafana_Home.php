@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/user_management_sub2.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/pre_loader.css">
     <!-- temporary for strategy wait for part settings input alignment changes -->
-    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/css_demo1.css">
+    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/css_demo1.css?version=<?php echo rand(); ?>">
 
 
 
@@ -75,6 +75,7 @@
     .sidenave-hover:hover{
         background-color:#EFF7FF;
         color:#595959;
+        border-radius:0.45rem;
     }
 
     .icon-font{
@@ -192,7 +193,7 @@
     .tooltip_logout .tooltiptext {
         visibility: hidden;
         /* transition-delay: 2s; */
-        min-width: max-content;
+        min-width: 15rem;
         background-color: white;
         border: 1px solid #d9d9d9;
         color: black;
@@ -236,8 +237,8 @@
     }
 
     .circle_div{
-        height:2.7rem;
-        width:2.7rem;
+        height:2.5rem;
+        width:2.5rem;
         border-radius:50%;
         /* background-color:#005abc; */
         
@@ -703,8 +704,15 @@ var site_id = "<?php echo($this->data['user_details'][0]['site_id']); ?>";
 
                             res_Site.forEach(function(item){ 
                                 if (active_Site.length === 0) {
-                                    elements = elements.add('<option value="'+item.site_id+'-'+item.site_name+'" >'+item.site_name+' -'+item.site_id+'</option>');
+                                    if (item.site_id==="S1001") {
+                                        
+                                        elements = elements.add('<option value="'+item.site_id+'-'+item.site_name+'" selected="true">'+item.site_name+' -'+item.site_id+'</option>');
+                                    }else{
+                                        elements = elements.add('<option value="'+item.site_id+'-'+item.site_name+'" >'+item.site_name+' -'+item.site_id+'</option>');
+                                    }
+                                   
                                     $('#site_id').append(elements);
+                                    site_load_fun();
                                 }else if(active_Site.length > 0){
                                     console.log("ok its selected");
                                     if (item.site_id.localeCompare(active_Site) == 0) {
@@ -772,9 +780,38 @@ var site_id = "<?php echo($this->data['user_details'][0]['site_id']); ?>";
     });
 
     $(document).on('change','#site_id',function(){
+        site_load_fun();
+    //     var site_id_arr = $('#site_id').val();
+    //     var site_id = site_id_arr.split("-");
+    //    //alert(site_id);
+    //    console.log("site arrya");
+    //    console.log(site_id_arr);
+    //     $.ajax({
+    //         url:"<?php echo base_url('Home/session_get_fun');  ?>",
+    //         type:"POST",
+    //         dataType:"json",
+    //         data:{
+    //             site_id:site_id[0],
+    //             site_name:site_id[1],
+
+    //         },
+    //         success:function(res){
+    //             //alert(res);
+    //             location.reload();
+    //         },
+    //         error:function(err){
+    //             console.log(err);
+    //         }
+    //     }); 
+       
+
+    });
+
+    function site_load_fun(){
         var site_id_arr = $('#site_id').val();
         var site_id = site_id_arr.split("-");
-       //alert(site_id);
+        console.log("site arrya");
+        console.log(site_id_arr);
         $.ajax({
             url:"<?php echo base_url('Home/session_get_fun');  ?>",
             type:"POST",
@@ -792,8 +829,8 @@ var site_id = "<?php echo($this->data['user_details'][0]['site_id']); ?>";
                 console.log(err);
             }
         }); 
-
-    });
+       
+    }
 
    
 

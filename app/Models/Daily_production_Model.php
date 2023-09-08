@@ -10,7 +10,7 @@ class Daily_production_Model extends Model{
      protected $session;
     public function __construct(){
  
-         $this->session = \Config\Services::session();
+        $this->session = \Config\Services::session();
  
         $db_name = $this->session->get('active_site');
         
@@ -21,6 +21,7 @@ class Daily_production_Model extends Model{
             'username' => 'root',
             'password' => 'quantanics123',
             'database' => ''.$db_name.'',
+            // 'database' => 'S1001',
             'DBDriver' => 'MySQLi',
             'DBPrefix' => '',
             'pConnect' => false,
@@ -228,7 +229,7 @@ class Daily_production_Model extends Model{
         $db =  \Config\Database::connect($this->site_connection);
         $query = $db->table('settings_machine_current');
         $query->select('machine_id,machine_name,machine_brand,tonnage');
-        $query->where('machine_id!=','MC1005');
+        // $query->where('machine_id!=','MC1005');
         $resm = $query->get()->getResultArray();
         return $resm;
     }

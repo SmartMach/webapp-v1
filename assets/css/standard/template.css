@@ -435,6 +435,12 @@ span{
     color:var(--font_color_save_hover_pop_up) !important;
     font-weight: var(--overall_fitler_header_btn_fw);
 }
+
+.overall_filter_header_css:hover{
+    background-color: var(--save_btn_hover_background_color);
+    color:var(--save_btn_font_color);
+    opacity: 0.8;
+}
 .mar_r_box{
     margin-right:var(--mar_right_add_btn);
     display:var(--overall_filter_header_div_f);
@@ -444,3 +450,20 @@ span{
 }
 
 /* ALL OUTPUT MODULE`S HEADER FILTER BUTTON CSS */
+
+/* no recordsa found css design */
+
+.no_record_css{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    height: 1.4rem;
+    font-size: 1rem;
+    font-weight: 550;
+    font-family: 'Roboto' sans-serif;
+    color: #a6a6a6;
+}
+
+/* no records found css design */

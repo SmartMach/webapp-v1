@@ -338,14 +338,25 @@ class PDM_controller extends BaseController{
             $date_array = $this->request->getVar('date_array');
             $target = $this->request->getvar('target');
 
-            // $dataVal = array('Unplanned', '22', 'TL1031', array("PT1038"), 'ME44601', '1', 'MC1001', '2023-01-10', 'A', '');
-            // $machineRef = "ME44601";
-            // $splitRef = 1;
-            // $timeArray = array('13:13:36', '13:40:51', '13:40:51', '13:54:51', '13:54:51', '14:07:51', '14:07:51', '14:34:51', '14:34:51', '14:48:51', '14:48:51', '14:55:51', '14:55:51', '15:01:51');
-            // $durationArray = array('27.15', '14', '13', '27', '14', '7', '6');
-            // $split_array = array('0', '3', '4', '1', '2', '5', '6');
-            // $date_array = array('2023-01-10', '2023-01-10', '2023-01-10', '2023-01-10', '2023-01-10', '2023-01-10', '2023-01-10');
-           
+            // $dataVal = array('Planned', '2', 'TL1016', array("PT1019"), 'ME427289', '0', 'MC1003', '2023-07-21', 'A');
+            // $machineRef = "ME427289";
+            // $splitRef = 0;
+            // $timeArray = array('09:25:19','11:52:14');
+            // $durationArray = array('146.55');
+            // $split_array = array('0');
+            // $date_array = array('2023-07-21');
+            // $target = 9000;
+
+            
+            // $tmp['dataVal'] = $dataVal;
+            // $tmp['machineRef'] = $machineRef;
+            // $tmp['splitRef'] = $splitRef;
+            // $tmp['timeArray'] = $timeArray;
+            // $tmp['durationArray'] = $durationArray;
+            // $tmp['last_updatedby'] = $last_updated_by;
+            // $tmp['split_Array'] = $split_array;
+            // $tmp['date_array'] = $date_array;
+            // $tmp['target'] = $target;
            
             $res = $this->data->updateDownGraph($dataVal,$machineRef,$splitRef,$timeArray,$durationArray,$last_updated_by,$split_array,$date_array,$target);
             // echo "Process Completed!";
@@ -479,6 +490,22 @@ public function notes_submit(){
 
         
         // echo json_encode('ji');     
+    }
+}
+
+
+// edit purpose get target input 
+public function gettarget_input(){
+    if ($this->request->isAJAX()) {
+        $data['mid'] = $this->request->getVar('mid');
+        $data['sid'] = $this->request->getVar('sid');
+        $data['pid'] = $this->request->getVar('pid');
+        $data['tid'] = $this->request->getVar('tid');
+        $data['sdate'] = $this->request->getVar('sdate');
+        $data['refid'] = $this->request->getVar('refid');
+
+        $get_target = $this->data->getTarget_val($data);
+        echo  json_encode($get_target);
     }
 }
 

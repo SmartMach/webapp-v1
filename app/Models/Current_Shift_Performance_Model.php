@@ -63,6 +63,21 @@ class Current_Shift_Performance_Model extends Model{
 	    return $res;
 	}
 
+    //  after click tail open oui screen get live shift
+    public function getShiftLive_oui($sdate,$sid)
+	{
+	    $db = \Config\Database::connect($this->site_connection);
+	    $query = $db->table('pdm_production_info');
+	    $query->select('shift_date,shift_id');
+        $query->where('shift_date',$sdate);
+        $query->where('shift_id',$sid);
+        $query->orderby('shift_date','desc');
+        $query->orderby('shift_id','desc');
+        $query->limit(1);
+	    $res= $query->get()->getResultArray();
+	    return $res;
+	}
+
     public function getMachineLive()
     {
         $db = \Config\Database::connect($this->site_connection);
@@ -147,7 +162,7 @@ class Current_Shift_Performance_Model extends Model{
     {
         $db = \Config\Database::connect($this->site_connection);
         $query = $db->table('settings_part_current');
-        $query->select('part_id,part_name'); 
+        $query->select('part_id,part_name,NICT,part_produced_cycle'); 
         $res= $query->distinct()->get()->getResultArray();
         return $res;
     }
@@ -181,6 +196,19 @@ class Current_Shift_Performance_Model extends Model{
         $query->distinct('p.tool_id');
         $query->join('settings_tool_table as t', 't.tool_id = p.tool_id');
         $res = $query->get()->getResultArray();
+        return $res;
+    }
+
+    
+    public function getProductionData(){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('pdm_production_info');
+        $query->select('machine_id,calendar_date,shift_date,start_time,end_time,part_id,tool_id,production,corrections,rejections,reject_reason,actual_shot_count');
+        // $query->where('shift_date',$shift_date);
+        // $query->where('shift_id',$shift_id);
+        $query->where('production !=',null);
+
+        $res= $query->get()->getResultArray();
         return $res;
     }
 
@@ -295,6 +323,58 @@ class Current_Shift_Performance_Model extends Model{
         return $res;
     }
 
+    // To get the Production Target value for Every Machine.....
+    public function getProductionTarget($shift_date){
+        $db = \Config\Database::connect($this->site_connection);
+        $sql = 'WITH ToolChangeoverData AS (
+            SELECT 
+                s.machine_id,
+                s.shift_date,
+                s.calendar_date,
+                s.tool_id,
+                s.target,
+                s.event_start_time,
+                t.part_id,
+                p.NICT,
+                p.part_produced_cycle,
+                ROW_NUMBER() OVER (PARTITION BY machine_id ORDER BY shift_date DESC, machine_id ASC) AS row_num
+            FROM
+                pdm_tool_changeover as s
+            INNER JOIN
+                tool_changeover as t
+            ON
+                s.tool_changeover_id=t.id
+            INNER JOIN
+                settings_part_current as p
+            ON 
+                p.part_id = t.part_id
+            WHERE
+                s.shift_date <= "'.$shift_date.'"
+        )
+        SELECT
+            machine_id,
+            shift_date,
+            calendar_date,
+            tool_id,
+            target,
+            event_start_time,
+            part_id,
+            NICT,
+            part_produced_cycle
+        FROM
+            ToolChangeoverData
+        WHERE
+            row_num = 1;';
+
+        $query = $db->query($sql);
+        if ($query) {
+            $results = $query->getResult();
+            return $results;
+        }
+        else {
+            $error = $this->db->error();
+        }
+    }
 
     // target graph get tool chnageover records
     public function get_target_tool_changeover($sdate,$mid,$tid){
@@ -308,7 +388,6 @@ class Current_Shift_Performance_Model extends Model{
         $build->limit(1);
         $res = $build->get()->getResultArray();
         return $res;
-
     }
 
     // that particular tool chnageover production count
