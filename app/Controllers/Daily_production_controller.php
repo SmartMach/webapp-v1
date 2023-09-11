@@ -175,8 +175,8 @@ class Daily_production_controller extends BaseController{
 
     // get machine records
     public function getMachine_data(){
-        if ($this->request->isAJAX()) {
-            // $date = "2023-08-18";
+       if ($this->request->isAJAX()) {
+            // $date = "2023-09-09";
 
             log_message("info","\n\ndaily production status function calling log");
             log_message("info","\n\ndaily production status function calling log");
@@ -199,6 +199,8 @@ class Daily_production_controller extends BaseController{
             $active_time_data = $this->datas->get_active_data($date);
             $production_data = $this->datas->getproduction_data($date);
 
+            // echo "<pre>";
+            // print_r($active_time_data);
             // Machine Wise Total Downtime.....
             $downtime_machine_wise=[];
             foreach ($getmachine_data as $key => $m) {
@@ -606,7 +608,7 @@ class Daily_production_controller extends BaseController{
             $execution_duration_logger_dps = ($end_time_logger_dps - $start_time_logger_dps);
             log_message("info","dps execution duration is :\t".$execution_duration_logger_dps."sec");
            
-            echo json_encode($data);
+           echo json_encode($data);
             // echo "<pre>";
             // print_r($data);
 
@@ -669,6 +671,7 @@ class Daily_production_controller extends BaseController{
         $min=0;
         $sec=0;
         // $tmp_count = 0;
+        // $tmp_count_c = "";
         foreach ($raw as $key => $val) {
             $start = strtotime($val['shift_date']." ".$val['start_time']);
             $end = strtotime($val['shift_date']." ".$val['end_time']);
@@ -680,6 +683,7 @@ class Daily_production_controller extends BaseController{
                 if (sizeof($split_duration)>1) {
                     $sec = $split_duration[1]+$sec;
                 }
+                // $tmp_count_c = $m_id;
             }
         }
 

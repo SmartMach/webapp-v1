@@ -2064,7 +2064,7 @@ function getfilter_duration_reason(){
                           // For Rupee Symbol.....
                           ticks: {
                             callback: function(value, index, values) {
-                              return '₹' + value;
+                              return value;
                             }
                           },
                         },
@@ -2468,7 +2468,7 @@ function getfilter_machine_reason_duration(){
                             // For Rupee Symbol.....
                             ticks: {
                               callback: function(value, index, values) {
-                                return '₹' + value;
+                                return  value;
                               }
                             },
                             },
@@ -3133,7 +3133,7 @@ function first_load_reason_duration(f,t){
                             // For Rupee Symbol.....
                             ticks: {
                               callback: function(value, index, values) {
-                                return '₹' + value;
+                                return value;
                               }
                             },
                             },
@@ -3492,7 +3492,7 @@ function first_load_machine_duration(f,t){
                                 // For Rupee Symbol.....
                                 ticks: {
                                   callback: function(value, index, values) {
-                                    return '₹' + value;
+                                    return value;
                                   }
                                 },
                                 },
