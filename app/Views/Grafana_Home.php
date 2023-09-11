@@ -306,15 +306,19 @@
         padding: 0;
         margin-top: 1.2rem;
       }
+
+      .col-white{
+        background-color:white;
+      }
 </style>
 </head>
 
-<body >
+<body  class="current_shift_color_change col-white">
 <!-- <div> -->
         <?php require_once 'Header.php' ?>
         <div class="row paddingm">
             <!-- side nav bar -->
-            <div class="col-lg paddingm side_nav side_nav_c left-sidebar">
+            <div class="col-lg paddingm side_nav side_nav_c left-sidebar col-white">
                 <ul class="side-menu-area paddingm">
                     <li class="side-menu-li po_relative display_f justify_c align_c">
                         <a href="#" class="po_relative side-menu-element none_dec display_b">
