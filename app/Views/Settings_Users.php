@@ -338,13 +338,13 @@
                             </div>
                     </div>
                     <div style="overflow: auto;height: 24rem;">
-                    <div class="accessControlPaddinghead">
+                        <div class="accessControlPaddinghead">
                             <div class="row paddingm mb-2">
                                 <div class="col-sm-4 fn fntTitle paddingm textCenterTitle">
                                     <p style="margin-left: 0.5rem;">Financial Metrics</p>
                                 </div>
                             </div>
-                    </div>
+                        </div>
                         <div class="accessControlPadding">
                             <div class="row paddingm" id="OEE_Financial_Drill_Down">
                                 <div class="col-sm-4 fn paddingm textCenterTitle">
@@ -401,7 +401,7 @@
                                 </div> -->
                             </div>
                         </div> 
-                    <div class="accessControlPadding mb-3">
+                        <div class="accessControlPadding mb-3">
                             <div class="row paddingm ">
                                 <div class="col-sm-4 fntTitle fn paddingm textCenterTitle">
                                   <p style="margin-left: 0.5rem;">OEE Drill Down</p>
@@ -429,7 +429,7 @@
                                 </div> -->
                             </div>
                         </div>
-                    <div class="accessControlPadding mb-3">
+                        <div class="accessControlPadding mb-3">
                             <div class="row paddingm ">
                                 <div class="col-sm-4 fn fntTitle paddingm textCenterTitle">
                                   <p style="margin-left: 0.5rem;">Operator User Interface</p>
@@ -722,8 +722,7 @@
                                 </div>
                             </div>   
                         </div>
-                        </div>
-                    
+                    </div>   
                 </div>
                 <div class="modal-footer" style="border:none;">
                     <a class="btn fo bn access-save saveBtnStyle" name="" data-bs-dismiss="modal" aria-label="Close" value="Save">Save</a>
