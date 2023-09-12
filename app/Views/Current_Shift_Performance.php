@@ -1570,13 +1570,14 @@ $(document).on('click', '.grid-item-cont', function(event) {
     var sub_header = "";
 
     // event_status = "Inactive";
-
+    var background_col_var = "";
     if (event_status === "Active") {
         backgroundcolor = "#01ab4e";
         background_title_color="#007a37";
         background_light_color="#009a46";
         border_color = "#01a149";
         sub_header = "#01ab4e";
+        background_col_var = "col-active";
 
     } else if (event_status === "Inactive") {
         backgroundcolor = "#d10527";
@@ -1584,6 +1585,7 @@ $(document).on('click', '.grid-item-cont', function(event) {
         background_light_color="#bb0523";
         border_color = "#9e041e";
         sub_header = "";
+        background_col_var = "col-inactive";
 
     } else if (event_status === "Machine OFF") {
         backgroundcolor = "#7f7f7f";
@@ -1591,6 +1593,7 @@ $(document).on('click', '.grid-item-cont', function(event) {
         background_light_color="#565656";
         border_color = "#bfbfbf";
         sub_header = "";
+        background_col_var = "col-machine_off";
 
     } else {
         backgroundcolor = "#ffd966";
@@ -1598,6 +1601,8 @@ $(document).on('click', '.grid-item-cont', function(event) {
         background_light_color="#ffc50d";
         border_color = "#d0a61b";
         sub_header = "";
+
+        background_col_var = "col-others";
     }
 
     
@@ -1626,6 +1631,9 @@ $(document).on('click', '.grid-item-cont', function(event) {
     $('.oui_arrow_div').css('display', 'inline');
     $('.visibility_div').css('display', 'none');
     $('#full_screen_btn_visibility').css('visibility','hidden');
+
+    $('.current_shift_color_change').removeClass('col-white');
+    $('.current_shift_color_change').addClass(background_col_var);
 
     $("#overlay").fadeOut(300);
 }
@@ -1813,6 +1821,14 @@ function oui_arrow_to_card(){
     $('.oui_arrow_div').css("display",'none');
     // $('#full_screen_cards').empty();
     // fullscreen_mode_remove();
+
+    // oui full background color change
+    $('.current_shift_color_change').removeClass('col-active');
+    $('.current_shift_color_change').removeClass('col-inactive');
+    $('.current_shift_color_change').removeClass('col-machine_off');
+    $('.current_shift_color_change').removeClass('col-others');
+    $('.current_shift_color_change').addClass('col-white');
+   
 }
 
 

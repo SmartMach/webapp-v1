@@ -72,11 +72,11 @@
           height: 0;
           border-left: 0.25rem solid transparent;
           border-right: 0.25rem solid transparent;
-          border-bottom: 0.5rem solid #004b9b;
+          border-bottom: 0.5rem solid #000000;
           opacity: 0.8;
         }
         .circleDraw{
-          background-color: #004b9b;
+          background-color: #09BB9F;
           color: #004b9b;
           height: 0.5rem;
           width: 0.5rem;
@@ -85,7 +85,7 @@
           opacity: 0.8;
         }
         .squareDraw{
-          background-color: #004b9b;
+          background-color: #0075F6;
           color: #004b9b;
           height: 0.5rem;
           width: 0.5rem;
@@ -830,7 +830,7 @@ function machineWiseOEE() {
                     {
                       label: "Quality",
                       type: "line",
-                      backgroundColor: "#004b9b",
+                      backgroundColor: "#09BB9F",
                       pointStyle:"circle",
                       radius:"5",
                       borderWidth: 1,
@@ -846,7 +846,7 @@ function machineWiseOEE() {
                     {
                       label: "Performance",
                       type: "line",
-                      backgroundColor: "#004b9b",
+                      backgroundColor: "#0075F6",
                       pointStyle:"rectRot",
                       radius:"5", 
                       borderWidth: 1, 
@@ -864,7 +864,7 @@ function machineWiseOEE() {
                     {
                       label: "Availability",
                       type: "line",
-                      backgroundColor: "#004b9b",
+                      backgroundColor: "#000000",
                       pointStyle:"triangle",
                       // borderColor: "red",  
                       borderWidth: 1, 
