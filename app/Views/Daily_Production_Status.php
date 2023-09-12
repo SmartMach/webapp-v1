@@ -343,7 +343,8 @@ $('#changed_date').datetimepicker({
                     $.each(res['Part_details'],function(k,v){
                         var elements = $();
                         // console.log(v);
-                        // console.log(k);
+                        console.log("machine_id");
+                        console.log(k);
 
                         elements = elements.add('<div class="" style="display:flex;flex-wrap:wrap;flex-direction:row;">'
                             +'<div class=" col paddingm" style="padding-right:2px; width:10%;">'
@@ -370,6 +371,10 @@ $('#changed_date').datetimepicker({
                         $.each(res['Part_details'][k],function(k1,v1){
                           var ele = $();
                           var downtime_ele = $();
+                          //console.log("shift");
+                          //console.log(k1);
+                          //console.log("")
+                          //console.log(v1);
                          
 
                           var height_shift = Object.keys(res['Part_details'][k][k1]).length;
@@ -485,10 +490,12 @@ $('#changed_date').datetimepicker({
 
                           // part wise record alignment
                           $.each(res['Part_details'][k][k1],function(k2,v2){
+                            console.log(v2);
+                            console.log(k2);
 
                             var part_count_pershift = Object.keys(res['Part_details'][k][k1]).length;
-                            console.log("part count pershift:\t"+res['Part_production_details'][k][k1][k2][0]);
-                            console.log(typeof res['Part_production_details'][k][k1][k2][0]);
+                            console.log("part count pershift:\t"+k2);
+                            // console.log(typeof res['Part_production_details'][k][k1][k2][0]);
                             var el = $();
                             var part_name = res['part_names'][k2][0];
                             var tool_name = res['part_names'][k2][1];
