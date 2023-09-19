@@ -2585,7 +2585,7 @@ function qualitybyreasonparts() {
                         // For Rupee Symbol.....
                         ticks: {
                           callback: function(value, index, values) {
-                            return '₹' + value;
+                            return value;
                           }
                         },
                       },
@@ -3648,7 +3648,7 @@ function crbmr() {
                         // For Rupee Symbol.....
                         ticks: {
                           callback: function(value, index, values) {
-                            return '₹' + value;
+                            return  value;
                           }
                         },
                       },
@@ -4357,7 +4357,7 @@ function qrbr() {
                       // For Rupee Symbol.....
                         ticks: {
                           callback: function(value, index, values) {
-                            return '₹' + value;
+                            return value;
                           }
                         },
                     },

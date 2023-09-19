@@ -484,3 +484,20 @@
     align-items: center;
 }
 
+/* oui current shift performance class css */
+
+.col-active{
+    background-color: #07AB4E;
+}
+
+.col-inactive{
+    background-color: #D10527;
+}
+
+.col-machine_off{
+    background-color: #7f7f7f;
+}
+
+.col-others{
+    background-color: #ffd966;
+}

@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.9.5deb2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 29, 2022 at 08:06 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.27
+-- Host: localhost:3306
+-- Generation Time: Sep 19, 2023 at 10:43 AM
+-- Server version: 10.3.38-MariaDB-0ubuntu0.20.04.1
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `s1001`
+-- Database: `S1003`
 --
 
 DELIMITER $$
@@ -99,7 +100,7 @@ END$$
 --
 -- Functions
 --
-CREATE DEFINER=`root`@`localhost` FUNCTION `production_event_id_generation` () RETURNS VARCHAR(90) CHARSET utf8mb4 BEGIN
+CREATE DEFINER=`root`@`localhost` FUNCTION `production_event_id_generation` () RETURNS VARCHAR(90) CHARSET utf8mb4 COLLATE utf8mb4_general_ci BEGIN
 	DECLARE pid varchar(90);
     
 	SELECT MAX(r_no) into pid FROM pdm_production_info ORDER BY last_updated_on DESC LIMIT 1;
@@ -138,7 +139,7 @@ CREATE TABLE `pdm_downtime_reason_mapping` (
   `notes` varchar(45) NOT NULL,
   `last_updated_by` varchar(90) NOT NULL,
   `last_updated_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -165,7 +166,7 @@ CREATE TABLE `pdm_events` (
   `is_split` int(2) NOT NULL,
   `timestamp` datetime DEFAULT NULL,
   `source` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Triggers `pdm_events`
@@ -242,7 +243,7 @@ CREATE TABLE `pdm_production_info` (
   `last_updated_by` varchar(45) DEFAULT NULL,
   `last_updated_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `hierarchy` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -262,7 +263,37 @@ CREATE TABLE `pdm_tool_changeover` (
   `machine_event_id` varchar(90) DEFAULT NULL,
   `last_updated_by` varchar(90) DEFAULT NULL,
   `last_updated_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Triggers `pdm_tool_changeover`
+--
+DELIMITER $$
+CREATE TRIGGER `tool_changeover_log` BEFORE INSERT ON `pdm_tool_changeover` FOR EACH ROW BEGIN
+    INSERT INTO pdm_tool_changeover_log(`tool_changeover_id`, `machine_id`, `no_of_part`, `tool_id`, `shift_date`, `calendar_date`, `event_start_time`, `shift_id`, `machine_event_id`, `last_updated_by`)VALUES(NEW.tool_changeover_id, NEW.machine_id, NEW.no_of_part, NEW.tool_id, NEW.shift_date, NEW.calendar_date, NEW.event_start_time, NEW.shift_id, NEW.machine_event_id, NEW.last_updated_by);
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pdm_tool_changeover_log`
+--
+
+CREATE TABLE `pdm_tool_changeover_log` (
+  `tool_changeover_id` varchar(90) NOT NULL,
+  `machine_id` varchar(99) NOT NULL,
+  `no_of_part` varchar(90) NOT NULL,
+  `tool_id` varchar(90) NOT NULL,
+  `shift_date` varchar(90) DEFAULT NULL,
+  `calendar_date` varchar(90) DEFAULT NULL,
+  `event_start_time` varchar(90) DEFAULT NULL,
+  `shift_id` varchar(98) DEFAULT NULL,
+  `machine_event_id` varchar(90) DEFAULT NULL,
+  `last_updated_by` varchar(90) DEFAULT NULL,
+  `last_updated_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -277,7 +308,7 @@ CREATE TABLE `settings_current_shift_performance` (
   `yellow` int(99) NOT NULL,
   `last_updated_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `last_updated_by` varchar(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `settings_current_shift_performance`
@@ -301,7 +332,7 @@ CREATE TABLE `settings_downtime_reasons` (
   `status` int(1) NOT NULL,
   `last_updated_by` varchar(25) NOT NULL,
   `last_updated_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `settings_downtime_reasons`
@@ -328,7 +359,7 @@ CREATE TABLE `settings_downtime_reasons_images` (
   `uploaded_file_name` varchar(100) NOT NULL,
   `uploaded_file_extension` varchar(45) NOT NULL,
   `status` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -340,7 +371,7 @@ CREATE TABLE `settings_downtime_threshold` (
   `downtime_threshold` bigint(90) NOT NULL,
   `last_updated_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `last_updated_by` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `settings_downtime_threshold`
@@ -365,7 +396,7 @@ CREATE TABLE `settings_financial_metrics_goals` (
   `oee_target` float NOT NULL,
   `last_updated_by` varchar(90) NOT NULL,
   `last_updated_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `settings_financial_metrics_goals`
@@ -391,7 +422,7 @@ CREATE TABLE `settings_machine_current` (
   `status` int(1) NOT NULL,
   `last_updated_by` varchar(90) NOT NULL,
   `last_updated_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Triggers `settings_machine_current`
@@ -435,7 +466,7 @@ CREATE TABLE `settings_machine_iot` (
   `location_id` varchar(45) NOT NULL,
   `last_updated_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `last_updated_by` varchar(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -454,7 +485,7 @@ CREATE TABLE `settings_machine_log` (
   `machine_serial_number` varchar(45) NOT NULL,
   `last_updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
   `last_updated_by` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -475,7 +506,7 @@ CREATE TABLE `settings_part_current` (
   `status` int(1) NOT NULL,
   `last_updated_by` varchar(90) NOT NULL,
   `last_updated_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `settings_part_current`
@@ -503,7 +534,7 @@ CREATE TABLE `settings_part_log` (
   `status` varchar(1) NOT NULL,
   `last_updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
   `last_updated_by` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -518,7 +549,7 @@ CREATE TABLE `settings_quality_reasons` (
   `last_updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
   `last_updated_by` varchar(25) NOT NULL,
   `status` int(99) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -535,7 +566,7 @@ CREATE TABLE `settings_quality_reasons_images` (
   `uploaded_file_name` varchar(100) NOT NULL,
   `uploaded_file_extension` varchar(50) NOT NULL,
   `status` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -549,7 +580,7 @@ CREATE TABLE `settings_shift_management` (
   `duration` varchar(10) NOT NULL,
   `last_updated_by` varchar(45) NOT NULL,
   `last_updated_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `settings_shift_management`
@@ -568,7 +599,7 @@ CREATE TABLE `settings_shift_table` (
   `shifts` varchar(10) NOT NULL,
   `start_time` time NOT NULL,
   `end_time` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `settings_shift_table`
@@ -589,7 +620,7 @@ CREATE TABLE `settings_tool_table` (
   `tool_name` varchar(45) NOT NULL,
   `tool_status` int(1) NOT NULL,
   `last_updated_by` varchar(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `settings_tool_table`
@@ -610,7 +641,7 @@ CREATE TABLE `tool_changeover` (
   `machine_id` varchar(90) DEFAULT NULL,
   `part_id` varchar(90) DEFAULT NULL,
   `part_order` int(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables

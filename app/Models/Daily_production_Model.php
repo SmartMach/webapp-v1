@@ -68,7 +68,24 @@ class Daily_production_Model extends Model{
         $query->where('shift_date',$date);
         $query->where('event',"Active");
         $res = $query->get()->getResultArray();
-        return $res;
+
+        $expand_data = [];
+        foreach ($res as $key => $value) {
+            $part_arr = explode(",",$value['part_id']);
+
+            if (count($part_arr)<1) {
+                array_push($expand_data,$value);
+            }else{
+               foreach($part_arr as $val){
+                    $res[$key]['part_id'] = $val;
+                    array_push($expand_data,$res[$key]);
+               }
+            }
+        }
+
+        
+
+        return $expand_data;
     }
     public function getproduction_data($date){
         $db = \Config\Database::connect($this->site_connection);

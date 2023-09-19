@@ -176,7 +176,7 @@ class Daily_production_controller extends BaseController{
     // get machine records
     public function getMachine_data(){
         if ($this->request->isAJAX()) {
-            // $date = "2023-08-18";
+            // $date = "2023-09-08";
 
             log_message("info","\n\ndaily production status function calling log");
             log_message("info","\n\ndaily production status function calling log");
@@ -199,6 +199,8 @@ class Daily_production_controller extends BaseController{
             $active_time_data = $this->datas->get_active_data($date);
             $production_data = $this->datas->getproduction_data($date);
 
+            // echo "<pre>";
+            // print_r($active_time_data);
             // Machine Wise Total Downtime.....
             $downtime_machine_wise=[];
             foreach ($getmachine_data as $key => $m) {
@@ -286,6 +288,7 @@ class Daily_production_controller extends BaseController{
                             }
                         }
                         if (sizeof($tmp_quality) > 0 || $tmp_quality_tmp==1) {
+                            arsort($tmp_quality);
                             $tmp_part[$p['part_id']]=$tmp_quality;
                         }
                     }
@@ -294,6 +297,7 @@ class Daily_production_controller extends BaseController{
                 $quality_machine_wise[$m['machine_id']]= $tmp_machine;
             }
 
+            
             // Production status...
             // Quality rejection data...
             $quality_machine_production_wise=[];
@@ -669,6 +673,7 @@ class Daily_production_controller extends BaseController{
         $min=0;
         $sec=0;
         // $tmp_count = 0;
+        // $tmp_count_c = "";
         foreach ($raw as $key => $val) {
             $start = strtotime($val['shift_date']." ".$val['start_time']);
             $end = strtotime($val['shift_date']." ".$val['end_time']);
@@ -680,6 +685,7 @@ class Daily_production_controller extends BaseController{
                 if (sizeof($split_duration)>1) {
                     $sec = $split_duration[1]+$sec;
                 }
+                // $tmp_count_c = $m_id;
             }
         }
 

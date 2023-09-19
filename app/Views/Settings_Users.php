@@ -338,13 +338,13 @@
                             </div>
                     </div>
                     <div style="overflow: auto;height: 24rem;">
-                    <div class="accessControlPaddinghead">
+                        <div class="accessControlPaddinghead">
                             <div class="row paddingm mb-2">
                                 <div class="col-sm-4 fn fntTitle paddingm textCenterTitle">
                                     <p style="margin-left: 0.5rem;">Financial Metrics</p>
                                 </div>
                             </div>
-                    </div>
+                        </div>
                         <div class="accessControlPadding">
                             <div class="row paddingm" id="OEE_Financial_Drill_Down">
                                 <div class="col-sm-4 fn paddingm textCenterTitle">
@@ -401,7 +401,7 @@
                                 </div> -->
                             </div>
                         </div> 
-                    <div class="accessControlPadding mb-3">
+                        <div class="accessControlPadding mb-3">
                             <div class="row paddingm ">
                                 <div class="col-sm-4 fntTitle fn paddingm textCenterTitle">
                                   <p style="margin-left: 0.5rem;">OEE Drill Down</p>
@@ -429,7 +429,7 @@
                                 </div> -->
                             </div>
                         </div>
-                    <div class="accessControlPadding mb-3">
+                        <div class="accessControlPadding mb-3">
                             <div class="row paddingm ">
                                 <div class="col-sm-4 fn fntTitle paddingm textCenterTitle">
                                   <p style="margin-left: 0.5rem;">Operator User Interface</p>
@@ -722,8 +722,7 @@
                                 </div>
                             </div>   
                         </div>
-                        </div>
-                    
+                    </div>   
                 </div>
                 <div class="modal-footer" style="border:none;">
                     <a class="btn fo bn access-save saveBtnStyle" name="" data-bs-dismiss="modal" aria-label="Close" value="Save">Save</a>
@@ -1399,6 +1398,8 @@
                                 Alert_Management:Alert_Management,
                             },
                             success:function(res){
+                                console.log("use added succes");
+                                console.log(res);
                                 if (res == true) {
                                     // after insert user load the div function
                                     get_all_user();
@@ -1409,6 +1410,8 @@
                                 }
                             },
                             error:function(res){
+                                console.log("user adding issue");
+                                console.log(res);
                                 // alert("Sorry!Try Agian!!");
                                 // document.body.classList.remove('demo_class');
                                 $("#overlay").fadeOut(300);
@@ -3706,6 +3709,8 @@ function get_access_control(user){
                 userRole:user,
             },
             success:function(res_role){
+                console.log("user access control");
+                console.log(res_role);
                 $("input[name=ooe_f_drill_down][value='"+res_role.Financial_Drill_Down+"']").prop("checked",true);
                 $("input[name=opportunity_insights][value='"+res_role.Financial_Opportunity_Insights+"']").prop("checked",true);
                 $("input[name=ooe_drill_down][value='"+res_role.OEE_Drill_Down+"']").prop("checked",true);
@@ -3716,12 +3721,12 @@ function get_access_control(user){
                 $("input[name=settings_general][value='"+res_role.Settings_General+"']").prop("checked",true);
                 $("input[name=settings_user][value='"+res_role.Settings_User_Management+"']").prop("checked",true);
 
-                $("input[name=dpd][value='"+res_role.daily_production_data+"']").prop("checked",true);
-                $("input[name=csp][value='"+res_role.current_shift_performance+"']").prop("checked",true);
-                $("input[name=pd][value='"+res_role.production_downtime+"']").prop("checked",true);
-                $("input[name=pq][value='"+res_role.production_quality+"']").prop("checked",true);
-                $("input[name=wom][value='"+res_role.work_order_management+"']").prop("checked",true);
-                $("input[name=alm][value='"+res_role.alert_management+"']").prop("checked",true);
+                $("input[name=dpd][value='"+res_role.Daily_Production_Data+"']").prop("checked",true);
+                $("input[name=csp][value='"+res_role.Current_Shift_Performance+"']").prop("checked",true);
+                $("input[name=pd][value='"+res_role.Production_Downtime+"']").prop("checked",true);
+                $("input[name=pq][value='"+res_role.Production_Quality+"']").prop("checked",true);
+                $("input[name=wom][value='"+res_role.Work_Order_Management+"']").prop("checked",true);
+                $("input[name=alm][value='"+res_role.Alert_Management+"']").prop("checked",true);
 
             },
             error:function(res){

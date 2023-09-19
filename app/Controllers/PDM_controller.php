@@ -338,13 +338,13 @@ class PDM_controller extends BaseController{
             $date_array = $this->request->getVar('date_array');
             $target = $this->request->getvar('target');
 
-            // $dataVal = array('Planned', '2', 'TL1016', array("PT1019"), 'ME427289', '0', 'MC1003', '2023-07-21', 'A');
-            // $machineRef = "ME427289";
+            // $dataVal = array('Planned', '2', 'TL1024', array('PT1029'), 'ME24021', '0', 'MC1002', '2023-09-15', 'A');
+            // $machineRef = "ME24021";
             // $splitRef = 0;
-            // $timeArray = array('09:25:19','11:52:14');
-            // $durationArray = array('146.55');
+            // $timeArray = array('06:05:57', '06:12:19');
+            // $durationArray = array('6.22');
             // $split_array = array('0');
-            // $date_array = array('2023-07-21');
+            // $date_array = array('2023-09-15');
             // $target = 9000;
 
             
@@ -359,8 +359,9 @@ class PDM_controller extends BaseController{
             // $tmp['target'] = $target;
            
             $res = $this->data->updateDownGraph($dataVal,$machineRef,$splitRef,$timeArray,$durationArray,$last_updated_by,$split_array,$date_array,$target);
-            // echo "Process Completed!";
             echo json_encode($res);
+            // echo "<pre>";
+            // print_r($res);
         
         }   
     }
