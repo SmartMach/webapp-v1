@@ -518,8 +518,9 @@ class PDM_Model extends Model{
                                     $tmp = $len-1;
                                     if ($j == $tmp) {
                                         $part_str = implode(',',$part_arr);
-                                        $var = $this->updatePDMGraph($machineRef,$tool_changeover_cdate,$tmp_tool_id,$part_str,$tmp_shift_date,$timeArray[2*$splitRef],$sstart,$send,$mid,$last_updated_by);
+                                       $var = $this->updatePDMGraph($machineRef,$tool_changeover_cdate,$tmp_tool_id,$part_str,$tmp_shift_date,$timeArray[2*$splitRef],$sstart,$send,$mid,$last_updated_by);
                                         return $var;
+                                        // return "tool changeover insertion table";
                                     }
                                 }else{  
                                     return false;
@@ -537,7 +538,10 @@ class PDM_Model extends Model{
                         $target_build->where('shift_id',$data[8]);
                         $target_build->where('tool_id',$data[2]);
                         $target_build_res = $target_build->update();
-                        return $target_build_res;
+                        // return $target_build_res;
+                        if ($target_build_res==true) {
+                            return "target update";
+                        }
 
                     }                   
                    
@@ -711,7 +715,7 @@ class PDM_Model extends Model{
         }else{
             $sstpcount_p  = 1;   
         }
-        $manager = new \MongoDB\Driver\Manager("mongodb://admin:quantanics123@165.22.208.52:27017/");
+        $manager = new \MongoDB\Driver\Manager("mongodb://smtechadmin:admin%40smtech@smartories.com:27017/");
         try {
             $machineg = $db->table('settings_machine_iot as i');
             $machineg->select('i.machine_id,i.iot_gateway_topic,m.machine_serial_number');
@@ -730,8 +734,8 @@ class PDM_Model extends Model{
             $query1 = new \MongoDB\Driver\Query($filter1);
             $site = $this->session->get('active_site');
             $mid = $data['machine_id'];
-            $url = "S1001".".".$machinegateway;
-            $url1 = "S1001"."."."/chennai/S1001/offline";
+            $url = $site.".".$machinegateway;
+            $url1 = $site."."."/chennai"."/".$site."/"."offline";
             $rows = $manager->executeQuery("".$url."" , $query);
             $rows1 = $manager->executeQuery("".$url1."" , $query1);
             $k = $rows->toArray();
@@ -1658,18 +1662,21 @@ class PDM_Model extends Model{
     }
     public function findProductionCount($start_time,$end_time,$gateway,$site,$machineSerial){
         // return "Yes";
-        $manager = new \MongoDB\Driver\Manager("mongodb://admin:quantanics123@165.22.208.52:27017/");
+        $manager = new \MongoDB\Driver\Manager("mongodb://smtechadmin:admin%40smtech@smartories.com:27017/");
         $filter = array('data.gateway_time'=>array('$gte'=>$start_time,'$lte'=>$end_time),'data.status'=>'Active');
         $query = new \MongoDB\Driver\Query($filter);
-        $url = "S1001".".".$gateway;
+
+        $tmpsite = $this->session->get('active_site');
+        $url = $tmpsite.".".$gateway;
         $rows = $manager->executeQuery("".$url."" , $query);
         $k = $rows->toArray();
 
         // return sizeof($k);
 
+
         $filter1 = array('data.gateway_time'=>array('$gte'=>$start_time,'$lte'=>$end_time),'data.status'=>'Active','data.machine_id'=>$machineSerial);
         $query2 = new \MongoDB\Driver\Query($filter1);
-        $url1 = "S1001"."."."/chennai/S1001/offline";
+        $url1 = $tmpsite."."."/chennai"."/".$tmpsite."/"."offline";
         $rows1 = $manager->executeQuery("".$url1."" , $query2);
         $k1 = $rows1->toArray();
         return sizeof($k)+sizeof($k1);
