@@ -175,8 +175,8 @@ class Daily_production_controller extends BaseController{
 
     // get machine records
     public function getMachine_data(){
-       if ($this->request->isAJAX()) {
-            // $date = "2023-09-09";
+        if ($this->request->isAJAX()) {
+            // $date = "2023-09-08";
 
             log_message("info","\n\ndaily production status function calling log");
             log_message("info","\n\ndaily production status function calling log");
@@ -288,6 +288,7 @@ class Daily_production_controller extends BaseController{
                             }
                         }
                         if (sizeof($tmp_quality) > 0 || $tmp_quality_tmp==1) {
+                            arsort($tmp_quality);
                             $tmp_part[$p['part_id']]=$tmp_quality;
                         }
                     }
@@ -296,6 +297,7 @@ class Daily_production_controller extends BaseController{
                 $quality_machine_wise[$m['machine_id']]= $tmp_machine;
             }
 
+            
             // Production status...
             // Quality rejection data...
             $quality_machine_production_wise=[];
@@ -608,7 +610,7 @@ class Daily_production_controller extends BaseController{
             $execution_duration_logger_dps = ($end_time_logger_dps - $start_time_logger_dps);
             log_message("info","dps execution duration is :\t".$execution_duration_logger_dps."sec");
            
-           echo json_encode($data);
+            echo json_encode($data);
             // echo "<pre>";
             // print_r($data);
 
