@@ -1961,7 +1961,10 @@ $(document).on('change','#Production_shift_date',function(){
     var m =  formattedDate.getMonth();
     m += 1;  
     var y = formattedDate.getFullYear();
-    production_shift_date = y+"-"+(m > 9 ? m: "0" + m)+"-"+(d > 9 ? d: "0" + d)+" 23:59:59";
+    
+    // production_shift_date = y+"-"+(m > 9 ? m: "0" + m)+"-"+(d > 9 ? d: "0" + d)+" 23:59:59";
+    production_shift_date = y+"-"+(m > 9 ? m: "0" + m)+"-"+(d > 9 ? d: "0" + d)+" 00:00:00";
+
   $.ajax({
       url:"<?php echo base_url('PDM_controller/production_shift_retrive'); ?>",
       method:"post",
