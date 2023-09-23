@@ -574,11 +574,12 @@ function getLiveMode(shift_date, shift_id) {
                 
                 // Production Percentage.......
                 var target_production = 0;
-                // res['production_target'].forEach(function(pp){
-                //     if (machine[0]['machine_id'] == pp['machine_id']) {
-                //         target_production = pp['target'];
-                //     }
-                // });
+                res['production_target'].forEach(function(pp){
+                    if (machine[0]['machine_id'] == pp['machine_id']) {
+                        target_production = pp['target'];
+                    }
+                });
+                // temporary hide for this function for madhan sir instruction follow toolchangeover to target prodcution percentage
                 var shift_production=0;
                 res['shift_production_target'].forEach(function(i){
                     if (i['machine_id'] == machine[0]['machine_id']) {
@@ -587,6 +588,34 @@ function getLiveMode(shift_date, shift_id) {
                     }
                 });
 
+                // its working on strategy
+                // after toolchangeover to total parts production
+                // var total_part_production_after_tool_changeover = 0;
+                // res['target_production'].forEach(function(i){
+                //     if (i['machine_id'] == machine[0]['machine_id']) {
+                //         total_part_production_after_tool_changeover = i['total_part_produced'];    
+                //     }
+                // });
+                // console.log("total production:\t"+total_part_production_after_tool_changeover);
+
+                // // toolchangeover target finding
+                // var find_toolchangeover_target = 0;
+                // res['production_target'].forEach(function(i){
+                //     if (i['machine_id'] == machine[0]['machine_id'] ) {
+                //         find_toolchangeover_target = i['target'];
+                //     }
+                // });
+                // console.log("find the toolchangeover target:\t"+find_toolchangeover_target);
+
+
+                // var tmp_production_percent = parseInt((total_part_production_after_tool_changeover / find_toolchangeover_target) * 100);
+                // var production_percent = 0;
+                // if (parseInt(tmp_production_percent)>100) {
+                //     production_percent = 100;
+                // }else{
+                //     production_percent = parseInt(tmp_production_percent);
+                // }
+                // console.log("production percentage:\t"+production_percent);
                 var production_percent = parseInt((shift_production / target_production) * 100);
                 var production_percent_val = 470 - (4.7 * production_percent);
                 const MyFSC_container = document.getElementsByClassName("circle");
@@ -889,6 +918,32 @@ function getLiveMode(shift_date, shift_id) {
                         // Production Percentage.......
                         var production_percent = parseInt((shift_production / target_production) *
                             100);
+                        // var total_part_production_after_tool_changeover = 0;
+                        // res['target_production'].forEach(function(i){
+                        //     if (i['machine_id'] == machine[0]['machine_id']) {
+                        //         total_part_production_after_tool_changeover = i['total_part_produced'];    
+                        //     }
+                        // });
+                        // console.log("total production:\t"+total_part_production_after_tool_changeover);
+
+                        // // toolchangeover target finding
+                        // var find_toolchangeover_target = 0;
+                        // res['production_target'].forEach(function(i){
+                        //     if (i['machine_id'] == machine[0]['machine_id'] ) {
+                        //         find_toolchangeover_target = i['target'];
+                        //     }
+                        // });
+                        // console.log("find the toolchangeover target:\t"+find_toolchangeover_target);
+
+
+                        // var tmp_production_percent = parseInt((total_part_production_after_tool_changeover / find_toolchangeover_target) * 100);
+                        // var production_percent = 0;
+                        // if (parseInt(tmp_production_percent)>100) {
+                        //     production_percent = 100;
+                        // }else{
+                        //     production_percent = parseInt(tmp_production_percent);
+                        // }
+                        // console.log("production percentage:\t"+production_percent);
                         var production_percent_val = 470 - (4.7 * production_percent);
                         const MyFSC_container = document.getElementsByClassName("circle");
                         MyFSC_container[0].style.setProperty("--foo", production_percent_val);
@@ -1427,16 +1482,36 @@ function live_MC1001(shift_date, shift_id) {
                 $('#OEETarget_' + machine[0]['machine_id'] + '').html(parseInt(res['targets'][0].oee) + "%");
 
                 // Update Production Percentage
-                var target_production = 0;  
-                var production_total=0;
-                res['shift_production_target'].forEach(function(i){
-                    if (i['machine_id'] == machine[0]['machine_id']) {
-                        target_production = i['shift_production_target'];
-                        production_total = i['shift_production'];
+                // var target_production = 0;  
+                // var production_total=0;
+                // res['shift_production_target'].forEach(function(i){
+                //     if (i['machine_id'] == machine[0]['machine_id']) {
+                //         target_production = i['shift_production_target'];
+                //         production_total = i['shift_production'];
+                //     }
+                // });
+
+                var tool_changeover_target = 0;
+                res['production_target'].forEach(function(item){
+                    if (item['machine_id'] == machine[0]['machine_id']) {
+                        tool_changeover_target = item['target'];
                     }
                 });
 
-                var production_percent = parseInt((production_total / target_production) * 100);
+                var after_tool_changeover_total_production = 0;
+                res['target_production'].forEach(function(i){
+                    if (i['machine_id'] == machine[0]['machine_id']) {
+                        after_tool_changeover_total_production = i['total_part_produced'];
+                    }
+                });
+
+                var tmp_production_percent = parseInt((after_tool_changeover_total_production / tool_changeover_target) * 100);
+                var production_percent = 0;
+                if (parseInt(tmp_production_percent)>100) {
+                    production_percent = 100;
+                }else{
+                    production_percent = tmp_production_percent;
+                }
                 console.log("current shift performance production target selection");
                 console.log(production_percent);
                 res['production_target'].forEach(function(tmid){
@@ -1496,7 +1571,7 @@ function live_MC1001(shift_date, shift_id) {
                 myChart.update();
 
                 // Update Prodcution Percentage value
-                var production_percent_val = 470 - (2.4 * production_percent);
+                var production_percent_val = 470 - (2.87 * production_percent);
                 var iterate = document.getElementsByClassName("circle");
                 var refcolor = 'url(' + '#GradientColor_' + machine[0]['machine_id'] + ')';
 
@@ -2576,12 +2651,14 @@ function getDownTimeGraph(machine_id, shift_date, s) {
                     console.log(res);
                     resolve(res);
                     var target = 0;
+
                     res['production_target'].forEach(function(i){
                         if (i['machine_id'] == mid) {
                             target = i['target'];
                         }
                     });
 
+                    // console.log("target:/t"+target);
                     var total_produced=0;
                     res['target_production'].forEach(function(i){
                         if (i['machine_id'] == mid) {
@@ -2596,10 +2673,11 @@ function getDownTimeGraph(machine_id, shift_date, s) {
                         target_percentage = 100;
                     }
                     
-                    console.log("production target percentage");
-                    console.log(target_percentage);
-                    console.log("target tool changeover"+target);
-                    console.log("target production count :\t"+total_produced);
+                    // console.log("total production:\t"+total_produced);
+                    // console.log("production target percentage");
+                    // console.log(target_percentage);
+                    // console.log("target tool changeover"+target);
+                    // console.log("target production count :\t"+total_produced);
                     if (target_percentage > 100) {
                         
                         $('.target_inline').css('height','100%');
@@ -2631,8 +2709,17 @@ function getDownTimeGraph(machine_id, shift_date, s) {
                         }
                     });
 
-                    var production_percent = (shift_production/shift_target)*100;
+                    // console.log("target percentage:\t"+target_percentage);
+                    // var production_percent = (shift_production/shift_target)*100;
+                    var production_percent = 0;
+                    if (parseInt(target_percentage)>100) {
+                        production_percent = 100;
+                    }else{
+                        production_percent = target_percentage;
+                    }
+                    // console.log(production_percent+"percentage");
                     var production_percent_val = 470 - (4.7 * production_percent);
+                    // console.log(production_percent_val);
                     const circle_container = document.getElementsByClassName("circle_oui");
                     circle_container[0].style.setProperty("--foo_oui", production_percent_val);
                     if (parseInt(target)>0) {
