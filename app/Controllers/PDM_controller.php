@@ -80,7 +80,8 @@ class PDM_controller extends BaseController{
 
             $machine_id = $machine_ref;
             $machineData['machineData'] = $this->data->getDownGraph($machine_id,$shift_date,$shift);
-            $machineData['shift']= $this->data->getShiftExact($shift_date." 23:59:59");
+            // $machineData['shift']= $this->data->getShiftExact($shift_date." 23:59:59");
+            $machineData['shift']= $this->data->getShiftExact($shift_date." 00:00:00");
             return json_encode($machineData);
         }
     }

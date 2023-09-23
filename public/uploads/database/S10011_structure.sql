@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 19, 2023 at 10:43 AM
+-- Generation Time: Sep 20, 2023 at 04:34 PM
 -- Server version: 10.3.38-MariaDB-0ubuntu0.20.04.1
--- PHP Version: 7.4.33
+-- PHP Version: 7.4.3-4ubuntu2.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -26,7 +26,9 @@ DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `child_records_create` (IN `production_id` VARCHAR(90))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `child_records_create` (IN `production_id` VARCHAR(90))  NO SQL
+    DETERMINISTIC
+BEGIN
 	
     #production info table value get variable declaration
     DECLARE machinename varchar(90);
@@ -46,14 +48,19 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `child_records_create` (IN `producti
     DECLARE production_count varchar(90);
     DECLARE pmn BIGINT(90);
     DECLARE production_check varchar(90);
+    DECLARE prod_count varchar(90);
     
     SELECT machine_id,calendar_date,shift_date,shift_id,start_time,	end_time,actual_shot_count,production INTO machinename,cal_date,sh_date,sh_id,s_time,e_time,actual_scount,production_check from pdm_production_info WHERE production_event_id = production_id;    
-    SELECT 	tool_changeover_id,no_of_part,count(tool_changeover_id),tool_id INTO tool_cid ,loop_end,pmn,t_id  FROM pdm_tool_changeover WHERE machine_id = machinename ORDER BY last_updated_on DESC LIMIT 1;
     
-    #SELECT machinename;
-    #SELECT tool_cid;
-    #SELECT loop_end;
-    IF pmn > 0 THEN
+  #  SELECT 	tool_changeover_id,no_of_part,count(tool_changeover_id),tool_id INTO tool_cid ,loop_end,pmn,t_id  FROM pdm_tool_changeover WHERE machine_id = machinename ORDER BY last_updated_on DESC LIMIT 1;
+    
+    #new query change for stored procedure
+    SELECT tool_changeover_id,no_of_part,tool_id INTO  tool_cid ,loop_end,t_id FROM `pdm_tool_changeover` WHERE machine_id=machinename ORDER BY shift_date DESC,calendar_date DESC,event_start_time DESC,last_updated_on desc LIMIT 1;
+    
+    SELECT machinename;
+    SELECT tool_cid;
+    SELECT loop_end;
+    #IF pmn > 0 THEN
 	    FOR i IN 1..loop_end
     	DO
     		#tool change over one by one part selection
@@ -62,16 +69,22 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `child_records_create` (IN `producti
             #part based nic selection
             SELECT part_produced_cycle INTO part_pc FROM settings_part_current WHERE part_id = part;
        
-           #SELECT actual_scount;
-           #SELECT part_pc;
-           # each parts based production count assigning
+           SELECT actual_scount;
+           SELECT part_pc;
+            #each parts based production count assigning
            SELECT actual_scount*part_pc INTO production_count;
+
+        IF production_count = 0 THEN
+            SET prod_count = 0;
+        ELSE 
+            SET prod_count = CONCAT('-',production_count);
+        END IF;
         
     	IF i = 1 THEN
             IF production_check = NULL THEN
                 UPDATE `pdm_production_info` SET `part_id`=part,`tool_id`=t_id,`hierarchy`='parent' WHERE production_event_id = production_id;
             ELSE
-                UPDATE `pdm_production_info` SET `part_id`=part,`tool_id`=t_id,`production`=production_count,`correction_min_counts`=CONCAT('-',production_count),`rejection_max_counts`=production_count,`hierarchy`='parent' WHERE production_event_id = production_id;
+                UPDATE `pdm_production_info` SET `part_id`=part,`tool_id`=t_id,`production`=production_count,`correction_min_counts`=prod_count,`rejection_max_counts`=production_count,`hierarchy`='parent' WHERE production_event_id = production_id;
 			END IF;
         	#updation query
     		#SELECT CONCAT('FIRST LOOP',part);
@@ -82,16 +95,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `child_records_create` (IN `producti
             IF production_check = NULL THEN
                 INSERT INTO `pdm_production_info`(`production_event_id`,`machine_id`, `calendar_date`, `shift_date`, `shift_id`, `start_time`, `end_time`, `part_id`, `tool_id`, `actual_shot_count`,`hierarchy`) VALUES(CONCAT('PE',new_pid),machinename,cal_date,sh_date,sh_id,s_time,e_time,part,t_id,actual_scount,production_id); 
             ELSE
-                INSERT INTO `pdm_production_info`(`production_event_id`,`machine_id`, `calendar_date`, `shift_date`, `shift_id`, `start_time`, `end_time`, `part_id`, `tool_id`, `actual_shot_count`, `production`, `correction_min_counts`, `rejection_max_counts`,`hierarchy`) VALUES(CONCAT('PE',new_pid),machinename,cal_date,sh_date,sh_id,s_time,e_time,part,t_id,actual_scount,production_count,CONCAT('-',production_count),production_count,production_id); 
+                INSERT INTO `pdm_production_info`(`production_event_id`,`machine_id`, `calendar_date`, `shift_date`, `shift_id`, `start_time`, `end_time`, `part_id`, `tool_id`, `actual_shot_count`, `production`, `correction_min_counts`, `rejection_max_counts`,`hierarchy`) VALUES(CONCAT('PE',new_pid),machinename,cal_date,sh_date,sh_id,s_time,e_time,part,t_id,actual_scount,production_count,prod_count,production_count,production_id); 
             END IF;
-        	#SELECT part;
-            #SELECT production_count;
+        	SELECT part;
+            SELECT production_count;
         END IF;
     END FOR;
     #SELECT  part_id  FROM tool_changeover WHERE id = tool_cid; 
-    #SELECT tool_cid;
-    #SELECT part;
-	END IF;
+    SELECT tool_cid;
+    SELECT part;
+	#END IF;
 
 
 
@@ -100,7 +113,9 @@ END$$
 --
 -- Functions
 --
-CREATE DEFINER=`root`@`localhost` FUNCTION `production_event_id_generation` () RETURNS VARCHAR(90) CHARSET utf8mb4 COLLATE utf8mb4_general_ci BEGIN
+CREATE DEFINER=`root`@`localhost` FUNCTION `production_event_id_generation` () RETURNS VARCHAR(90) CHARSET utf8mb4 COLLATE utf8mb4_general_ci NO SQL
+    DETERMINISTIC
+BEGIN
 	DECLARE pid varchar(90);
     
 	SELECT MAX(r_no) into pid FROM pdm_production_info ORDER BY last_updated_on DESC LIMIT 1;
@@ -108,13 +123,45 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `production_event_id_generation` () R
     	SET pid = pid+1001;
         RETURN pid;
     ELSE 
-    	SET pid =1001;
+    	SET pid = 1001;
         RETURN pid;
     END IF;
     
 END$$
 
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `alert_settings`
+--
+
+CREATE TABLE `alert_settings` (
+  `alert_id` varchar(90) NOT NULL,
+  `alert_name` varchar(98) DEFAULT NULL,
+  `metrics` varchar(98) DEFAULT NULL,
+  `relation` varchar(98) DEFAULT NULL,
+  `value_val` varchar(98) DEFAULT NULL,
+  `past_hour` varchar(90) DEFAULT NULL,
+  `machine_arr` text DEFAULT NULL,
+  `part_arr` text DEFAULT NULL,
+  `lable_id` varchar(98) DEFAULT NULL,
+  `to_email_arr` varchar(98) DEFAULT NULL,
+  `cc_email_arr` varchar(98) DEFAULT NULL,
+  `work_type` varchar(97) DEFAULT NULL,
+  `work_title` varchar(98) DEFAULT NULL,
+  `assignee` varchar(98) DEFAULT NULL,
+  `deu_days` varchar(98) DEFAULT NULL,
+  `add_alert_subject` varchar(98) DEFAULT NULL,
+  `alert_notes` varchar(98) DEFAULT NULL,
+  `priority` varchar(98) DEFAULT NULL,
+  `last_updated_by` varchar(90) DEFAULT NULL,
+  `last_updated_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `notify_as` varchar(98) NOT NULL,
+  `alert_status` int(20) NOT NULL,
+  `matched_time_stamp` varchar(98) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -168,52 +215,6 @@ CREATE TABLE `pdm_events` (
   `source` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Triggers `pdm_events`
---
-DELIMITER $$
-CREATE TRIGGER `generate_event_id` BEFORE INSERT ON `pdm_events` FOR EACH ROW BEGIN
-	DECLARE x INT;
-    DECLARE k CHARACTER(100);
-    DECLARE l CHARACTER(100);
- 
-    SELECT
-      downtime_reason_id
-    INTO
-      x
-    FROM
-      settings_downtime_reasons
-    WHERE
-      downtime_category = 'Unplanned'
-    AND 
-      downtime_reason='Unnamed';
-      
-    SET NEW.machine_event_id = CONCAT("ME",(SELECT COUNT(machine_event_id) FROM pdm_events)+1000+1);
-   	
-    IF NEW.event != "Active" THEN
-    	INSERT INTO pdm_downtime_reason_mapping(machine_event_id,machine_id,split_id,calendar_date,shift_date,Shift_id,start_time,end_time,downtime_reason_id,split_duration,tool_id,part_id,notes,last_updated_by)VALUES(NEW.machine_event_id,NEW.machine_id,0,NEW.calendar_date,NEW.shift_date,NEW.shift_id,NEW.start_time,NEW.end_time,x,NEW.duration,New.tool_id,New.part_id,"","");
-    END IF;
-    
-    #Update ToolchangeOver
-    SELECT 
-    	tool_changeover_id,machine_event_id
-    INTO
-    	k,l
-    FROM
-    	pdm_tool_changeover
-    WHERE
-    	machine_id = NEW.machine_id
-    ORDER BY
-    	tool_changeover_id  ASC
-    LIMIT 1;
-    
-    IF l is NULL THEN
-    	UPDATE `pdm_tool_changeover` SET shift_date=NEW.shift_date,calendar_date=NEW.calendar_date,event_start_time=NEW.start_time,shift_id=NEW.shift_id,machine_event_id=NEW.machine_event_id WHERE tool_changeover_id=k;
-    END IF;
-END
-$$
-DELIMITER ;
-
 -- --------------------------------------------------------
 
 --
@@ -264,16 +265,6 @@ CREATE TABLE `pdm_tool_changeover` (
   `last_updated_by` varchar(90) DEFAULT NULL,
   `last_updated_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Triggers `pdm_tool_changeover`
---
-DELIMITER $$
-CREATE TRIGGER `tool_changeover_log` BEFORE INSERT ON `pdm_tool_changeover` FOR EACH ROW BEGIN
-    INSERT INTO pdm_tool_changeover_log(`tool_changeover_id`, `machine_id`, `no_of_part`, `tool_id`, `shift_date`, `calendar_date`, `event_start_time`, `shift_id`, `machine_event_id`, `last_updated_by`)VALUES(NEW.tool_changeover_id, NEW.machine_id, NEW.no_of_part, NEW.tool_id, NEW.shift_date, NEW.calendar_date, NEW.event_start_time, NEW.shift_id, NEW.machine_event_id, NEW.last_updated_by);
-END
-$$
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -423,35 +414,6 @@ CREATE TABLE `settings_machine_current` (
   `last_updated_by` varchar(90) NOT NULL,
   `last_updated_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Triggers `settings_machine_current`
---
-DELIMITER $$
-CREATE TRIGGER `default_toolchangeover` AFTER INSERT ON `settings_machine_current` FOR EACH ROW BEGIN
-	DECLARE x CHARACTER(100);
-    DECLARE y CHARACTER(100);
- 
-    SELECT
-      tool_changeover_id
-    INTO
-      x
-    FROM
-      pdm_tool_changeover
-    ORDER BY
-    	tool_changeover_id DESC
-    LIMIT 1;
-    
-    IF x IS NULL THEN
-   		SET y = 1001;
-    ELSE
-    	SET y=x+1;
-    END IF;
-    	INSERT INTO pdm_tool_changeover(tool_changeover_id ,machine_id,no_of_part,tool_id,last_updated_by)VALUES(y,NEW.machine_id,1,"TL1001",NEW.last_updated_by);
-        INSERT INTO tool_changeover(id,machine_id,part_id,part_order) VALUES(y,NEW.machine_id,"PT1001",1);
-END
-$$
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -643,9 +605,163 @@ CREATE TABLE `tool_changeover` (
   `part_order` int(90) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `work_order_management`
+--
+
+CREATE TABLE `work_order_management` (
+  `r_no` bigint(20) NOT NULL,
+  `work_order_id` varchar(45) NOT NULL,
+  `type` varchar(45) NOT NULL,
+  `title` varchar(45) NOT NULL,
+  `description` varchar(100) DEFAULT NULL,
+  `priority_id` varchar(45) NOT NULL,
+  `assignee` varchar(45) NOT NULL,
+  `due_date` date NOT NULL,
+  `status_id` varchar(45) NOT NULL,
+  `cause_id` varchar(45) DEFAULT NULL,
+  `action_id` varchar(45) DEFAULT NULL,
+  `lable_id` varchar(45) NOT NULL,
+  `comment_id` varchar(45) DEFAULT NULL,
+  `attachment_id` varchar(100) DEFAULT NULL,
+  `status` varchar(1) NOT NULL,
+  `last_updated_by` varchar(45) NOT NULL,
+  `last_updated_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `work_order_management_action_taken`
+--
+
+CREATE TABLE `work_order_management_action_taken` (
+  `r_no` bigint(20) NOT NULL,
+  `action_id` varchar(45) NOT NULL,
+  `action` varchar(45) NOT NULL,
+  `status` int(1) NOT NULL,
+  `last_updated_by` varchar(45) NOT NULL,
+  `last_updated_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `work_order_management_attach_file`
+--
+
+CREATE TABLE `work_order_management_attach_file` (
+  `r_no` bigint(20) NOT NULL,
+  `attach_file_id` varchar(20) NOT NULL,
+  `original_file_name` varchar(100) NOT NULL,
+  `original_file_extension` varchar(45) NOT NULL,
+  `original_file_size_kb` float NOT NULL,
+  `uploaded_file_location` varchar(200) NOT NULL,
+  `uploaded_file_name` varchar(100) NOT NULL,
+  `uploaded_file_extension` varchar(45) NOT NULL,
+  `status` int(1) NOT NULL,
+  `last_updated_by` varchar(45) NOT NULL,
+  `last_updated_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `work_order_management_cause`
+--
+
+CREATE TABLE `work_order_management_cause` (
+  `r_no` bigint(20) NOT NULL,
+  `cause_id` varchar(45) NOT NULL,
+  `cause` varchar(120) NOT NULL,
+  `status` int(1) DEFAULT NULL,
+  `last_updated_by` varchar(45) NOT NULL,
+  `last_updated_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `work_order_management_comments`
+--
+
+CREATE TABLE `work_order_management_comments` (
+  `r_no` bigint(20) NOT NULL,
+  `comment_id` varchar(45) NOT NULL,
+  `comment` varchar(120) NOT NULL,
+  `status` int(1) NOT NULL,
+  `last_updated_by` varchar(45) NOT NULL,
+  `last_updated_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `work_order_management_lable`
+--
+
+CREATE TABLE `work_order_management_lable` (
+  `r_no` bigint(20) NOT NULL,
+  `lable_id` varchar(45) NOT NULL,
+  `lable` varchar(45) NOT NULL,
+  `status` int(1) NOT NULL,
+  `last_updated_by` varchar(45) NOT NULL,
+  `last_updated_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `work_order_management_priority`
+--
+
+CREATE TABLE `work_order_management_priority` (
+  `r_no` bigint(20) NOT NULL,
+  `priority_id` varchar(10) NOT NULL,
+  `priority` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `work_order_management_priority`
+--
+
+INSERT INTO `work_order_management_priority` (`r_no`, `priority_id`, `priority`) VALUES
+(1, '1', 'High'),
+(2, '2', 'Medium'),
+(3, '3', 'Low');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `work_order_management_status`
+--
+
+CREATE TABLE `work_order_management_status` (
+  `r_no` bigint(20) NOT NULL,
+  `status_id` varchar(10) NOT NULL,
+  `status` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `work_order_management_status`
+--
+
+INSERT INTO `work_order_management_status` (`r_no`, `status_id`, `status`) VALUES
+(1, '1', 'Open'),
+(2, '2', 'In Progress'),
+(3, '3', 'Closed');
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `alert_settings`
+--
+ALTER TABLE `alert_settings`
+  ADD PRIMARY KEY (`alert_id`);
 
 --
 -- Indexes for table `pdm_downtime_reason_mapping`
@@ -735,6 +851,54 @@ ALTER TABLE `tool_changeover`
   ADD KEY `id` (`id`);
 
 --
+-- Indexes for table `work_order_management`
+--
+ALTER TABLE `work_order_management`
+  ADD PRIMARY KEY (`r_no`);
+
+--
+-- Indexes for table `work_order_management_action_taken`
+--
+ALTER TABLE `work_order_management_action_taken`
+  ADD PRIMARY KEY (`r_no`);
+
+--
+-- Indexes for table `work_order_management_attach_file`
+--
+ALTER TABLE `work_order_management_attach_file`
+  ADD PRIMARY KEY (`r_no`);
+
+--
+-- Indexes for table `work_order_management_cause`
+--
+ALTER TABLE `work_order_management_cause`
+  ADD PRIMARY KEY (`r_no`);
+
+--
+-- Indexes for table `work_order_management_comments`
+--
+ALTER TABLE `work_order_management_comments`
+  ADD PRIMARY KEY (`r_no`);
+
+--
+-- Indexes for table `work_order_management_lable`
+--
+ALTER TABLE `work_order_management_lable`
+  ADD PRIMARY KEY (`r_no`);
+
+--
+-- Indexes for table `work_order_management_priority`
+--
+ALTER TABLE `work_order_management_priority`
+  ADD PRIMARY KEY (`r_no`);
+
+--
+-- Indexes for table `work_order_management_status`
+--
+ALTER TABLE `work_order_management_status`
+  ADD PRIMARY KEY (`r_no`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -773,6 +937,54 @@ ALTER TABLE `settings_quality_reasons`
 --
 ALTER TABLE `tool_changeover`
   MODIFY `r_no` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `work_order_management`
+--
+ALTER TABLE `work_order_management`
+  MODIFY `r_no` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `work_order_management_action_taken`
+--
+ALTER TABLE `work_order_management_action_taken`
+  MODIFY `r_no` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `work_order_management_attach_file`
+--
+ALTER TABLE `work_order_management_attach_file`
+  MODIFY `r_no` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `work_order_management_cause`
+--
+ALTER TABLE `work_order_management_cause`
+  MODIFY `r_no` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `work_order_management_comments`
+--
+ALTER TABLE `work_order_management_comments`
+  MODIFY `r_no` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `work_order_management_lable`
+--
+ALTER TABLE `work_order_management_lable`
+  MODIFY `r_no` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `work_order_management_priority`
+--
+ALTER TABLE `work_order_management_priority`
+  MODIFY `r_no` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `work_order_management_status`
+--
+ALTER TABLE `work_order_management_status`
+  MODIFY `r_no` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
