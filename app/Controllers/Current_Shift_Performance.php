@@ -74,7 +74,7 @@ class Current_Shift_Performance extends BaseController{
     		$shift_id = $this->request->getVar('shift_id');
             // $filter = $this->request->getVar('filter');
 
-    		// $shift_date = "2023-08-29";
+    		// $shift_date = "2023-09-21";
     		// $shift_id = "A";
             // $filter = 2;
 
