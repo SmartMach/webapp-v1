@@ -303,8 +303,8 @@ $session = \Config\Services::session();
                     </a>
 
 
-                    <div class="box rightmar" style="margin-right: 0.5rem;display: flex;justify-content: center;">
-                        <img src="<?php echo base_url('assets/img/filter_reset.png'); ?>" class="undo" style="font-size:20px;color: #b5b8bc;cursor: pointer;width:1.3rem;height:1.3rem;">
+                    <div class="box rightmar undo" style="margin-right: 0.5rem;display: flex;justify-content: center;">
+                        <img src="<?php echo base_url('assets/img/filter_reset.png'); ?>" class="" style="font-size:20px;color: #b5b8bc;cursor: pointer;width:1.3rem;height:1.3rem;">
                     </div>
 
                     <?php 
@@ -1879,8 +1879,6 @@ function getActionID(item,value){
       }
     });
     if (previous==0) {
-      console.log("ation ajax");
-      console.log(value);
       $.ajax({
           url:"<?php echo base_url('Work_Order_Management_controller/getActionID') ?>",
           method:"POST",
@@ -2081,7 +2079,6 @@ inputFieldaction.addEventListener("keyup", function (event) {
 function add_action_val(ack){
   // Get the value from the input field
     const value = inputFieldaction.value.trim();
-    console.log("add actions value:\t"+value);
     if (ack==true) {
       action_list_globle_unique.push(value);
     }
@@ -2091,8 +2088,6 @@ function add_action_val(ack){
       return item_val.toUpperCase() === inputVal;
     });
 
-    console.log("add action condition:\n");
-    console.log(value!="" && present);
     // If the value is not empty, create a new item and append it to the container
     if (value !== "" && present) {
 
@@ -2109,7 +2104,6 @@ function add_action_val(ack){
       itemText.classList.add("font-fam");
       itemText.classList.add("item-text-action");
       itemText.classList.add("stcode-up");
-      console.log("action condition working");
       if (ack == true) {
         getActionID(itemText,value);
       }else{
@@ -2524,8 +2518,6 @@ $(document).on('click','.suggession-action-items-edit',function(event){
       }
     }
 
-    console.log("CK"+ck+"Present"+present);
-    console.log("List"+action_list_globle_unique);
 
     if (!present && ck==0) {
       $('.input-field-action-edit-add').css({
@@ -3036,6 +3028,9 @@ function getAssigneeList(){
             $('.add_record_assignee').empty();
 
             $('.Filter_assignee_div').empty();
+
+            $('#Filter_assignee_val').text('All Assignee');
+
             // Filter Status.........
                 $('.Filter_assignee_div').append('<div class="inbox inbox_filter_assignee" style="display: flex;">'
                     +'<div style="float: left;width: 20%;" class="center-align">'
@@ -3258,6 +3253,8 @@ function getStatusList(){
             $('.Filter_status_div').empty();
             $('.filter_status').empty();
 
+            $('#Filter_status_val').text('All Status');
+
             // Filter Status.........
             $('.Filter_status_div').append('<div class="inbox inbox_filter_status" style="display: flex;">'
                 +'<div style="float: left;width: 20%;" class="center-align">'
@@ -3324,7 +3321,9 @@ function getStatusList(){
         }
     });
 }
-
+$(document).on('click','.undo',function(event){
+  callALL();
+});
 $(document).on('click','.inbox_filter_status',function(event){
   var index = $('.inbox_filter_status').index(this);
 
@@ -3646,6 +3645,8 @@ function getPriorityList(){
             $('.Filter_priority_div').empty();
             $('.filter_priority').empty();
 
+            $('#Filter_priority_val').text('All Priority');
+
             // Filter Status.........
             $('.Filter_priority_div').append('<div class="inbox inbox_filter_priority" style="display: flex;">'
                 +'<div style="float: left;width: 20%;" class="center-align">'
@@ -3731,6 +3732,8 @@ function getLableList(){
             //   lable_list_globle.push(item);  
             // });
             $('.Filter_lables_div').empty();
+
+            $('#Filter_lables_val').text('All Labels');
 
             // Filter Status.........
             $('.Filter_lables_div').append('<div class="inbox inbox_filter_lables" style="display: flex;">'
