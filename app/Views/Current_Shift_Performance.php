@@ -2729,7 +2729,7 @@ var part_name_tooltip = new Array();
                         if (parseInt(target_percentage)>1000) {
                             $('#number_completion').text("NA");
                         }else{
-                            $('#number_completion').text(parseInt(production_percent)+"%");
+                            $('#number_completion').text(parseInt(target_percentage)+"%");
                         }
                     }else{
                         $('#number_completion').text("NA");
