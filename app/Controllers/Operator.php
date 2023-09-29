@@ -146,7 +146,14 @@ class Operator extends \CodeIgniter\Controller{
         $shift =  $this->request->getVar('shift_ref');
         $shift_date =  $this->request->getVar('shift_date_ref');
 
+        // $machine="MC1001";
+        // $shift="A";
+        // $shift_date="2023-09-29";
+
         $res = $this->opertor_model->getLiveDowntime($machine,$shift,$shift_date);
+
+        // echo "<pre>";
+        // print_r($res);
         
         $min=0;
         $hour=0;
@@ -170,6 +177,8 @@ class Operator extends \CodeIgniter\Controller{
         $result['s']= $sec;
 
         return json_encode($result);
+        // echo "<pre>";
+        // print_r($result);
     }
 
     public function getPartCycleTime(){
@@ -245,30 +254,57 @@ class Operator extends \CodeIgniter\Controller{
 
         // $machine =  "MC1001";
         // $shift =  "A";
-        // $shift_date =  "2023-03-03";
+        // $shift_date =  "2023-09-29";
 
-        $res = $this->opertor_model->getLiveProduction($machine,$shift,$shift_date);
+        $production_target_all = $this->opertor_model->getProductionTarget($shift_date,$machine);
 
-        $cycle_time = $this->opertor_model->getPartCycleTime($machine);
+        $cycle_time = $production_target_all[0]->NICT;
+        $production_target = $production_target_all[0]->target;
+        $production_t = $this->opertor_model->getProductionData();
+        $getInactiveMachine = $this->datas->getInactiveMachineData();
+        $total_parts_production = 0;
+        foreach ($production_target_all as $key => $v) {
+            $production_t_tmp=0;
+            foreach ($production_t as $k => $p) {
+                if ($p['machine_id'] == $v->machine_id) {
+                    // Filter for Production Info Table Data..........
+                    $s_time_range =  strtotime($p['calendar_date']." ".$p['start_time']);
+                    $s_time_range_limit = strtotime($v->calendar_date." ".$v->event_start_time);
+                    $tm = 0;
+            
+                    if ($s_time_range < $s_time_range_limit) {
+                        $tm = 1;
+                    }
 
-        // Production Target....
-        $production_target = 5000;
+                    // For remove the current data of inactive machines.........
+                    foreach ($getInactiveMachine as $value) {
+                        $start_time_range =  strtotime($value['max(r.last_updated_on)']);
+                        if ($s_time_range_limit > $start_time_range && $value['machine_id'] == $p['machine_id']){
+                            $tm = 1;
+                        }
+                    }
+                    $production_t_tmp= (int)$production_t_tmp + (int)$p['production']  + (int)($p['corrections']);
+                }
+            }
 
-        $remaining_part = $production_target-(int)$res[0]['production'];
+            $total_parts_production = $production_t_tmp;
+        }
 
-        $duration = $remaining_part*$cycle_time[0]['NICT'];
-
-        // Conevrt to minutes...
+        $remaining_part = $production_target - $total_parts_production;
+        $duration = $remaining_part*$cycle_time;
+        // convert to minutes
         $remaining_duration = (int)($duration/60);
 
         $result['target'] = $production_target;
-        $result['production_count'] = (int)$res[0]['production'];
+        $result['production_count'] = $total_parts_production;
         $result['remaining_part'] = $remaining_part;
-        $result['cycle_time'] = $cycle_time[0]['NICT'];
+        $result['cycle_time'] = $cycle_time;
         $result['remaining_duration'] = $duration;
         $result['duration_min'] = $remaining_duration;
-        
+
         return json_encode($result);
+       
+      
     }
 }
 
