@@ -19,6 +19,7 @@ class Operator_model extends Model{
                     'username' => 'root',
                     'password' => 'quantanics123',
                     'database' => ''.$db_name.'',
+                    // 'database' => 'S1002',
                     'DBDriver' => 'MySQLi',
                     'DBPrefix' => '',
                     'pConnect' => false,
@@ -170,6 +171,7 @@ class Operator_model extends Model{
         $query->where('machine_id',$machine);
         $query->where('shift_id',$shift);
         $query->where('shift_date',$shift_date);
+        $query->where('event=','Inactive');
         $res = $query->get()->getResultArray();
         return $res;
     }
@@ -271,6 +273,85 @@ class Operator_model extends Model{
         $query   = $builder->get()->getResultArray();
 
         return $query;
+    }
+
+    // oui screen production target value getting query strategy
+    public function getProductionTarget($shift_date,$machine_id){
+        $db = \Config\Database::connect($this->site_creation);
+        $sql = 'WITH ToolChangeoverData AS (
+            SELECT 
+                s.machine_id,
+                s.shift_date,
+                s.calendar_date,
+                s.tool_id,
+                s.target,
+                s.event_start_time,
+                t.part_id,
+                p.NICT,
+                p.part_produced_cycle,
+                ROW_NUMBER() OVER (PARTITION BY machine_id ORDER BY shift_date DESC, machine_id ASC) AS row_num
+            FROM
+                pdm_tool_changeover as s
+            INNER JOIN
+                tool_changeover as t
+            ON
+                s.tool_changeover_id=t.id
+            INNER JOIN
+                settings_part_current as p
+            ON 
+                p.part_id = t.part_id
+            WHERE
+                s.shift_date <= "'.$shift_date.'" AND s.machine_id="'.$machine_id.'"
+            
+        )
+        SELECT
+            machine_id,
+            shift_date,
+            calendar_date,
+            tool_id,
+            target,
+            event_start_time,
+            part_id,
+            NICT,
+            part_produced_cycle
+        FROM
+            ToolChangeoverData
+        WHERE
+            row_num = 1;';
+
+        $query = $db->query($sql);
+        if ($query) {
+            $results = $query->getResult();
+            return $results;
+        }
+        else {
+            $error = $this->db->error();
+        }
+    }
+
+    public function getProductionData(){
+        $db = \Config\Database::connect($this->site_creation);
+        $query = $db->table('pdm_production_info');
+        $query->select('machine_id,calendar_date,shift_date,start_time,end_time,part_id,tool_id,production,corrections,rejections,reject_reason,actual_shot_count');
+        // $query->where('shift_date',$shift_date);
+        // $query->where('shift_id',$shift_id);
+        $query->where('production !=',null);
+
+        $res= $query->get()->getResultArray();
+        return $res;
+    }
+
+    public function getInactiveMachineData(){
+        $db = \Config\Database::connect($this->site_creation);
+        $query = $db->table('settings_machine_current as p');
+        $query->select('p.machine_id,max(r.last_updated_on)');
+        $query->where('p.status',0);
+        $query->where('r.status',0);
+        $query->join('settings_machine_log as r', 'r.machine_id = p.machine_id');
+        $query->orderBy('r.last_updated_on', 'DESC');
+        $query->groupby('r.machine_id');
+        $res= $query->get()->getResultArray();
+        return $res;
     }
 }
 
