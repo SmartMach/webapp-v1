@@ -141,9 +141,6 @@
 .cmd-input{
     margin-left: 4rem;
 }
-.DTICursor{
-    cursor: pointer;
-}
 .download-file{
     cursor: pointer;
 }
@@ -200,13 +197,13 @@ $session = \Config\Services::session();
               <div class="d-flex">
                     
                     <p class="float-end fnt_fam style_label open_color">
-                        <span  id="open_total" class="paddingm span-stl"></span>OPEN 
+                        <span  id="open_total" class="paddingm span-stl"></span>Open 
                     </p>
                     <p class="float-end fnt_fam style_label in_progress_color">
-                        <span  id="inprogress_total" class="paddingm span-stl"></span>IN PROGRESS 
+                        <span  id="inprogress_total" class="paddingm span-stl"></span>In progress
                     </p>
                     <p class="float-end fnt_fam style_label overdue_color">
-                        <span  id="overdue_total" class="paddingm span-stl"></span>OVERDUE
+                        <span  id="overdue_total" class="paddingm span-stl"></span>Overdue
                     </p>
               </div>
           </div>
@@ -306,8 +303,8 @@ $session = \Config\Services::session();
                     </a>
 
 
-                    <div class="box rightmar" style="margin-right: 0.5rem;display: flex;justify-content: center;">
-                        <img src="<?php echo base_url('assets/img/filter_reset.png'); ?>" class="undo" style="font-size:20px;color: #b5b8bc;cursor: pointer;width:1.3rem;height:1.3rem;">
+                    <div class="box rightmar undo" style="margin-right: 0.5rem;display: flex;justify-content: center;">
+                        <img src="<?php echo base_url('assets/img/filter_reset.png'); ?>" class="" style="font-size:20px;color: #b5b8bc;cursor: pointer;width:1.3rem;height:1.3rem;">
                     </div>
 
                     <?php 
@@ -318,7 +315,7 @@ $session = \Config\Services::session();
                         <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD ISSUE
                     </a> -->
                     <a style="text-decoration:none;margin-right:0.5rem;cursor:pointer;" class="overall_filter_btn overall_filter_header_css" id="add_issue_button">
-                        <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD ISSUE
+                        <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>Add Issue
                     </a>
 
                     <?php 
@@ -366,7 +363,7 @@ $session = \Config\Services::session();
   <div class="modal-dialog modal-lg modal-dialog-centered rounded ">
     <div class="container modal-content bodercss">
             <div class="modal-header" style="border:none; ">
-                <h5 class="modal-title settings-machineAdd-model" id="AddIssueModal1" style="">ADD WORK</h5>
+                <h5 class="modal-title settings-machineAdd-model" id="AddIssueModal1" style="">ADD WORK ORDER</h5>
             </div>
                 <div class="modal-body model-style">
                     <div class="row">
@@ -532,11 +529,16 @@ $session = \Config\Services::session();
                                     
                                 </div>
                             </div>
-                            <div class="attach-file">
-                                <p class="paddingm DTI DTICursor">
-                                    <span class="unit-val"><i class="fa fa-paperclip clip " aria-hidden="true"></i></span>Attach</p>
-                                <input class="attach_file_class" onchange="displaySelectedFiles()" type="file" name="" id="attach_file" style="display: none;">
+                            <div class="attach-file DTI">
+                                  <i class="fa fa-paperclip unit-val" aria-hidden="true"></i>
+                                  <span>Attach</span>
+
+                                <!-- <p class="paddingm">
+                                    <span class="unit-val"><i class="fa fa-paperclip clip " aria-hidden="true"></i></span>Attach</p> -->
+                                
                             </div>
+                            <input class="attach_file_class" onchange="displaySelectedFiles()" type="file" name="" id="attach_file" style="display: none;">
+
                             <div class="attached_file attached_file_add">
                                 <!-- <div class="attached_file_list"></div> -->
                             </div>
@@ -715,11 +717,14 @@ $session = \Config\Services::session();
                                 <div class="filter_checkboxes_issue po_absolute display_hide edit-status filter_status">
                                 </div>
                             </div>
-                            <div class="attach-file">
-                                <p class="paddingm DTIEdit DTICursor">
-                                    <span class="unit-val"><i class="fa fa-paperclip clip " aria-hidden="true"></i></span>Attach</p>
-                                <input class="attach_file_class" onchange="displaySelectedFilesEdit()" type="file" name="" id="attach_file_edit" style="display: none;">
+                            <div class="attach-file DTIEdit">
+                                  <i class="fa fa-paperclip unit-val" aria-hidden="true"></i>
+                                  <span>Attach</span>
+                                <!-- <p class="paddingm DTIEdit">
+                                    <span class="unit-val"><i class="fa fa-paperclip clip " aria-hidden="true"></i></span>Attach</p> -->
                             </div>
+                            <input class="attach_file_class" onchange="displaySelectedFilesEdit()" type="file" name="" id="attach_file_edit" style="display: none;">
+
                             <div class="attached_file attached_file_edit">
                                 <!-- <div class="attached_file_list"></div> -->
                             </div>
@@ -1874,8 +1879,6 @@ function getActionID(item,value){
       }
     });
     if (previous==0) {
-      console.log("ation ajax");
-      console.log(value);
       $.ajax({
           url:"<?php echo base_url('Work_Order_Management_controller/getActionID') ?>",
           method:"POST",
@@ -2076,7 +2079,6 @@ inputFieldaction.addEventListener("keyup", function (event) {
 function add_action_val(ack){
   // Get the value from the input field
     const value = inputFieldaction.value.trim();
-    console.log("add actions value:\t"+value);
     if (ack==true) {
       action_list_globle_unique.push(value);
     }
@@ -2086,8 +2088,6 @@ function add_action_val(ack){
       return item_val.toUpperCase() === inputVal;
     });
 
-    console.log("add action condition:\n");
-    console.log(value!="" && present);
     // If the value is not empty, create a new item and append it to the container
     if (value !== "" && present) {
 
@@ -2104,7 +2104,6 @@ function add_action_val(ack){
       itemText.classList.add("font-fam");
       itemText.classList.add("item-text-action");
       itemText.classList.add("stcode-up");
-      console.log("action condition working");
       if (ack == true) {
         getActionID(itemText,value);
       }else{
@@ -2519,8 +2518,6 @@ $(document).on('click','.suggession-action-items-edit',function(event){
       }
     }
 
-    console.log("CK"+ck+"Present"+present);
-    console.log("List"+action_list_globle_unique);
 
     if (!present && ck==0) {
       $('.input-field-action-edit-add').css({
@@ -2893,7 +2890,7 @@ $(document).on('click','.done-cmd',function(event){
 
 var file_name_val = "attach_file";
 $(document).on("click", ".DTI", function(event){
-    $('#'+file_name_val+'').click();
+    $('#attach_file').click();
 });
 
 $(document).on("click", ".DTIEdit", function(event){
@@ -3031,6 +3028,9 @@ function getAssigneeList(){
             $('.add_record_assignee').empty();
 
             $('.Filter_assignee_div').empty();
+
+            $('#Filter_assignee_val').text('All Assignee');
+
             // Filter Status.........
                 $('.Filter_assignee_div').append('<div class="inbox inbox_filter_assignee" style="display: flex;">'
                     +'<div style="float: left;width: 20%;" class="center-align">'
@@ -3253,6 +3253,8 @@ function getStatusList(){
             $('.Filter_status_div').empty();
             $('.filter_status').empty();
 
+            $('#Filter_status_val').text('All Status');
+
             // Filter Status.........
             $('.Filter_status_div').append('<div class="inbox inbox_filter_status" style="display: flex;">'
                 +'<div style="float: left;width: 20%;" class="center-align">'
@@ -3319,7 +3321,9 @@ function getStatusList(){
         }
     });
 }
-
+$(document).on('click','.undo',function(event){
+  callALL();
+});
 $(document).on('click','.inbox_filter_status',function(event){
   var index = $('.inbox_filter_status').index(this);
 
@@ -3339,10 +3343,14 @@ $(document).on('click','.inbox_filter_status',function(event){
   }
   var l1 = $('.filter_val_status').length;
   var l2 = $('.filter_val_status:checked').length;
-  if (l2 < l1) {
+  
+
+  if ( (((l2)+1) == l1) && !($('.filter_val_status')[0].checked)) {
+    $( ".filter_val_status:eq(0)").prop( "checked", true);
+  }
+  else if (l2 < l1) {
     $( ".filter_val_status:eq(0)").prop( "checked", false );
   }
-
   
   // Reason  count
   var reason_count = 0;
@@ -3354,21 +3362,35 @@ $(document).on('click','.inbox_filter_status',function(event){
   });
 
   var reason_len = $('.filter_val_status').length;
-  reason_len = parseInt(reason_len)-1;
-  if (parseInt(reason_count)>=parseInt(reason_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#Filter_status_val').text(parseInt(reason_count)-1+' Selected');
-      }else{
-      // reset_reason();
-      $('#Filter_status_val').text('All');
-    }
-  }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
-    $('#Filter_status_val').text(parseInt(reason_count)+' Selected');
-    // check_if[0].checked=false;
-  }else {
-    $('#Filter_status_val').text('No Reason');
+
+  reason_len = parseInt(reason_len);
+  if (check_if[0].checked) {
+    $('#Filter_status_val').text('All Status');
   }
+  else if (!check_if[0].checked && reason_len==(reason_count+1)) {
+    $('#Filter_status_val').text('All Status');
+  }
+  else if (!check_if[0].checked && reason_count>=1) {
+    $('#Filter_status_val').text(parseInt(reason_count)+' Selected');
+  }
+  else{
+    $('#Filter_status_val').text('No Status');
+  }
+  // reason_len = parseInt(reason_len)-1;
+  // if (parseInt(reason_count)>=parseInt(reason_len)) {
+  //     if(check_if[0].checked===true){
+  //       check_if[0].checked=true;
+  //       $('#Filter_status_val').text(parseInt(reason_count)-1+' Selected');
+  //     }else{
+  //     // reset_reason();
+  //     $('#Filter_status_val').text('All');
+  //   }
+  // }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
+  //   $('#Filter_status_val').text(parseInt(reason_count)+' Selected');
+  //   // check_if[0].checked=false;
+  // }else {
+  //   $('#Filter_status_val').text('No Reason');
+  // }
 });
 
 
@@ -3422,7 +3444,12 @@ $(document).on('click','.inbox_filter_assignee',function(event){
   }
   var l1 = $('.filter_val_assignee').length;
   var l2 = $('.filter_val_assignee:checked').length;
-  if (l2 < l1) {
+
+
+  if ( (((l2)+1) == l1) && !($('.filter_val_assignee')[0].checked)) {
+    $( ".filter_val_assignee:eq(0)").prop( "checked", true);
+  }
+  else if (l2 < l1) {
     $( ".filter_val_assignee:eq(0)").prop( "checked", false );
   }
 
@@ -3437,21 +3464,32 @@ $(document).on('click','.inbox_filter_assignee',function(event){
   });
 
   var reason_len = $('.filter_val_assignee').length;
-  reason_len = parseInt(reason_len)-1;
-  if (parseInt(reason_count)>=parseInt(reason_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#Filter_assignee_val').text(parseInt(reason_count)-1+' Selected');
-      }else{
-      // reset_reason();
-      $('#Filter_assignee_val').text('All');
-    }
-  }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
-    $('#Filter_assignee_val').text(parseInt(reason_count)+' Selected');
-    // check_if[0].checked=false;
-  }else {
-    $('#Filter_assignee_val').text('No Reason');
+
+  reason_len = parseInt(reason_len);
+  if (check_if[0].checked) {
+    $('#Filter_assignee_val').text('All Assignee');
   }
+  else if (!check_if[0].checked && reason_len==(reason_count+1)) {
+    $('#Filter_assignee_val').text('All Assignee');
+  }
+  else if (!check_if[0].checked && reason_count>=1) {
+    $('#Filter_assignee_val').text(parseInt(reason_count)+' Selected');
+  }
+  else{
+    $('#Filter_assignee_val').text('No Assignee');
+  }
+
+  // if (parseInt(reason_count)>=parseInt(reason_len)) {
+  //     if(check_if[0].checked){
+  //       $('#Filter_assignee_val').text('All Assignee');
+  //     }else{
+  //       $('#Filter_assignee_val').text(parseInt(reason_count)-1+' Selected');
+  //     }
+  // }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
+  //   $('#Filter_assignee_val').text(parseInt(reason_count)+' Selected');
+  // }else {
+  //   $('#Filter_assignee_val').text('No Reason');
+  // }
 });
 
 $(document).on('click','.inbox_filter_lables',function(event){
@@ -3473,10 +3511,13 @@ $(document).on('click','.inbox_filter_lables',function(event){
   }
   var l1 = $('.filter_val_lables').length;
   var l2 = $('.filter_val_lables:checked').length;
-  if (l2 < l1) {
+
+  if ( (((l2)+1) == l1) && !($('.filter_val_lables')[0].checked)) {
+    $( ".filter_val_lables:eq(0)").prop( "checked", true);
+  }
+  else if (l2 < l1) {
     $( ".filter_val_lables:eq(0)").prop( "checked", false );
   }
-
   
   // Reason  count
   var reason_count = 0;
@@ -3488,21 +3529,34 @@ $(document).on('click','.inbox_filter_lables',function(event){
   });
 
   var reason_len = $('.filter_val_lables').length;
-  reason_len = parseInt(reason_len)-1;
-  if (parseInt(reason_count)>=parseInt(reason_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#Filter_lables_val').text(parseInt(reason_count)-1+' Selected');
-      }else{
-      // reset_reason();
-      $('#Filter_lables_val').text('All');
-    }
-  }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
-    $('#Filter_lables_val').text(parseInt(reason_count)+' Selected');
-    // check_if[0].checked=false;
-  }else {
-    $('#Filter_lables_val').text('No Reason');
+
+  reason_len = parseInt(reason_len);
+  if (check_if[0].checked) {
+    $('#Filter_lables_val').text('All Labels');
   }
+  else if (!check_if[0].checked && reason_len==(reason_count+1)) {
+    $('#Filter_lables_val').text('All Labels');
+  }
+  else if (!check_if[0].checked && reason_count>=1) {
+    $('#Filter_lables_val').text(parseInt(reason_count)+' Selected');
+  }
+  else{
+    $('#Filter_lables_val').text('No Labels');
+  }
+  // if (parseInt(reason_count)>=parseInt(reason_len)) {
+  //     if(check_if[0].checked===true){
+  //       check_if[0].checked=true;
+  //       $('#Filter_lables_val').text(parseInt(reason_count)-1+' Selected');
+  //     }else{
+  //     // reset_reason();
+  //     $('#Filter_lables_val').text('All');
+  //   }
+  // }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
+  //   $('#Filter_lables_val').text(parseInt(reason_count)+' Selected');
+  //   // check_if[0].checked=false;
+  // }else {
+  //   $('#Filter_lables_val').text('No Reason');
+  // }
 });
 
 
@@ -3525,7 +3579,12 @@ $(document).on('click','.inbox_filter_priority',function(event){
   }
   var l1 = $('.filter_val_priority').length;
   var l2 = $('.filter_val_priority:checked').length;
-  if (l2 < l1) {
+
+
+  if ( (((l2)+1) == l1) && !($('.filter_val_priority')[0].checked)) {
+    $( ".filter_val_priority:eq(0)").prop( "checked", true);
+  }
+  else if (l2 < l1) {
     $( ".filter_val_priority:eq(0)").prop( "checked", false );
   }
 
@@ -3540,21 +3599,35 @@ $(document).on('click','.inbox_filter_priority',function(event){
   });
 
   var reason_len = $('.filter_val_priority').length;
-  reason_len = parseInt(reason_len)-1;
-  if (parseInt(reason_count)>=parseInt(reason_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#Filter_priority_val').text(parseInt(reason_count)-1+' Selected');
-      }else{
-      // reset_reason();
-      $('#Filter_priority_val').text('All');
-    }
-  }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
-    $('#Filter_priority_val').text(parseInt(reason_count)+' Selected');
-    // check_if[0].checked=false;
-  }else {
-    $('#Filter_priority_val').text('No Reason');
+  reason_len = parseInt(reason_len);
+  reason_len = parseInt(reason_len);
+
+  if (check_if[0].checked) {
+    $('#Filter_priority_val').text('All Priority');
   }
+  else if (!check_if[0].checked && reason_len==(reason_count+1)) {
+    $('#Filter_priority_val').text('All Priority');
+  }
+  else if (!check_if[0].checked && reason_count>=1) {
+    $('#Filter_priority_val').text(parseInt(reason_count)+' Selected');
+  }
+  else{
+    $('#Filter_priority_val').text('No Priority');
+  }
+  // if (parseInt(reason_count)>=parseInt(reason_len)) {
+  //     if(check_if[0].checked===true){
+  //       check_if[0].checked=true;
+  //       $('#Filter_priority_val').text(parseInt(reason_count)-1+' Selected');
+  //     }else{
+  //     // reset_reason();
+  //     $('#Filter_priority_val').text('All');
+  //   }
+  // }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
+  //   $('#Filter_priority_val').text(parseInt(reason_count)+' Selected');
+  //   // check_if[0].checked=false;
+  // }else {
+  //   $('#Filter_priority_val').text('No Reason');
+  // }
 });
 
 
@@ -3571,6 +3644,8 @@ function getPriorityList(){
             // });
             $('.Filter_priority_div').empty();
             $('.filter_priority').empty();
+
+            $('#Filter_priority_val').text('All Priority');
 
             // Filter Status.........
             $('.Filter_priority_div').append('<div class="inbox inbox_filter_priority" style="display: flex;">'
@@ -3657,6 +3732,8 @@ function getLableList(){
             //   lable_list_globle.push(item);  
             // });
             $('.Filter_lables_div').empty();
+
+            $('#Filter_lables_val').text('All Labels');
 
             // Filter Status.........
             $('.Filter_lables_div').append('<div class="inbox inbox_filter_lables" style="display: flex;">'
@@ -3877,8 +3954,6 @@ function getWorkOrderRecords(status,lables,priority,assignee,filter){
             $("#open_total").html(("0" +open).slice(-2));
             $("#inprogress_total").html(("0" +in_progress).slice(-2));
             $("#overdue_total").html(("0" +overdue).slice(-2));
-
-            // console.log(filter_array);
 
             getFilterData();
         },
