@@ -462,13 +462,13 @@ class Current_Shift_Performance extends BaseController{
 
                                 //For Find Quality.......
                                 $tmpCorrectedTPP = $tmpCorrectedTPP+$corrected_tpp;
-                                $reject_r = explode('&&', $product['rejections']);
+                                $reject_r = explode('&&', $product['reject_reason']);
                                 $reject_temp = 0;
 
                                 foreach ($reject_r as $rp) {
                                     $tx = explode('&', $rp);
                                     if (sizeof($tx) > 1) {
-                                        $reject_temp = $reject_temp + $tx[1];
+                                        $reject_temp = $reject_temp + $tx[0];
                                     }
                                 }
                                 $tmpReject = $tmpReject+$reject_temp;
