@@ -467,3 +467,8 @@ span{
 }
 
 /* no records found css design */
+
+/* default font size for all module inputs getting */
+.default_font_size{
+    font-size: var(--default_font_size) !important;
+}

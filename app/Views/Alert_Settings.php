@@ -154,7 +154,7 @@
 .input-field-lable{
     width: 100px;
     height: 28px;
-    margin: 0.4rem;
+    /* margin: 0.4rem; */
     border: 0.1rem solid #faf7f7;
 }
 .lable-bg{
@@ -201,7 +201,7 @@
                     <!-- part -->
                     <div class="inner_div_align">
                         <div class="box rightmar" style="margin-right: 0.5rem;">
-                            <label class="multi_select_label" style="margin-top:0.1rem;">Part</label>
+                            <label class="multi_select_label" style="margin-top:0.1rem;">Parts</label>
                             <div class="filter_selectBox_categorygp" onclick="alert_filter_part()">
                                 <select class="multi_select_categorygp" style="">
                                     <option id="filter_txt_part" style="">All Parts</option>
@@ -218,10 +218,10 @@
                     <!-- Machine -->
                     <div class="inner_div_align">
                         <div class="box rightmar" style="margin-right: 0.5rem;">
-                            <label class="multi_select_label" style="margin-top:0.1rem;">Machine</label>
+                            <label class="multi_select_label" style="margin-top:0.1rem;">Machines</label>
                             <div class="filter_selectBox_categorygp" onclick="alert_filter_machine()">
                                 <select class="multi_select_categorygp" style="">
-                                    <option id="filter_txt_machine" style="">All Machine</option>
+                                    <option id="filter_txt_machine" style="">All Machines</option>
                                 </select>
                                 <div class="filter_overSelect_categorygp"></div>
                             </div>
@@ -234,7 +234,7 @@
                     <!-- Criteria -->
                     <div class="inner_div_align">
                         <div class="box rightmar" style="margin-right: 0.5rem;">
-                            <label class="multi_select_label" style="margin-top:0.1rem;">Work Order Type</label>
+                            <label class="multi_select_label" style="margin-top:0.1rem;">Notify as</label>
                             <div class="filter_selectBox_categorygp" onclick="alert_filter_work()">
                                 <select class="multi_select_categorygp" style="">
                                     <option id="text_filter_work" style="">All </option>
@@ -254,19 +254,19 @@
 
                                 <div class="add_alert_box_flex alert_filter_work_click" style="position: relative;">
                                     <div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">
-                                        <input type="checkbox" id="one" class="filter_alert_work_checkbox" value="issue" style="margin-right:100px;margin-top:12px"/>
+                                        <input type="checkbox" id="one" class="filter_alert_work_checkbox" value="work" style="margin-right:100px;margin-top:12px"/>
                                     </div>
                                     <div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">
-                                        <p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">Issue </p>
+                                        <p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">Work </p>
                                     </div>
                                 </div>
 
                                 <div class="add_alert_box_flex alert_filter_work_click" style="position: relative;">
                                     <div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">
-                                        <input type="checkbox" id="one" class="filter_alert_work_checkbox" value="task" style="margin-right:100px;margin-top:12px"/>
+                                        <input type="checkbox" id="one" class="filter_alert_work_checkbox" value="email" style="margin-right:100px;margin-top:12px"/>
                                     </div>
                                     <div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">
-                                        <p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">Work </p>
+                                        <p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">Email </p>
                                     </div>
                                 </div>
                             </div>
@@ -276,7 +276,7 @@
                     <!-- updated by -->
                     <div class="inner_div_align">
                         <div class="box rightmar" style="margin-right: 0.5rem;">
-                            <label class="multi_select_label" style="margin-top:0.1rem;">LastUpdated By</label>
+                            <label class="multi_select_label" style="margin-top:0.1rem;">Last Updated By</label>
                             <div class="filter_selectBox_categorygp" onclick="alert_filter_assignee()">
                                 <select class="multi_select_categorygp" style="">
                                     <option id="txt_filter_last_updated_by" style="">All Users</option>
@@ -291,8 +291,7 @@
 
                     <!-- apply button -->
                     <div class="inner_div_align">
-                        <a style="" class="btn apply_btn_style"
-                            id="apply_filter_btn">Apply Filter</a>
+                        <a style="" class="btn apply_btn_style" id="apply_filter_btn">Apply Filter</a>
                     </div>
 
                     <!-- filter reset button -->
@@ -375,7 +374,7 @@
                     <div class="row mb-2 " style="margin-top:0rem;">
                         <div class="box" style="">
                             <div class="input-box" >
-                                <input type="text" class="form-control alert_font_css" id="add_alert_name"    name="add_alert_name">
+                                <input type="text" class="form-control alert_font_css default_font_size" id="add_alert_name"    name="add_alert_name">
                                 <label for="add_alert_name" class="input-padding">Alert Name <span class="paddingm validate">*</span></label>
                                 <span class="paddingm float-start validate" id="inputAlertNameErr"></span> 
                             </div>
@@ -389,7 +388,7 @@
                         <div class="col-lg-6">
                             <div class="box" >
                                 <div class="input-box">
-                                    <select class="form-select alert_font_css add_alert_metrics_change_text" name="add_alert_metrics" id="add_alert_metrics" style="width: 100%;">
+                                    <select class="form-select alert_font_css add_alert_metrics_change_text default_font_size" name="add_alert_metrics" id="add_alert_metrics" style="width: 100%;">
                                         <option value="" disabled selected>Choose Metrics</option>
                                         <option value="planned_downtime">Planned Downtime</option>    
                                         <option value="unplanned_downtime">Unplanned Downtime</option>
@@ -411,7 +410,7 @@
                         <div class="col-lg-3">
                             <div class="box rightmar" style="margin-right: 0.5rem;">
                                 <div class="input-box">
-                                    <select class="form-select alert_font_css" name="add_alert_relation" id="add_alert_relation" style="width: 10rem;">
+                                    <select class="form-select alert_font_css default_font_size" name="add_alert_relation" id="add_alert_relation" style="width: 10rem;">
                                         <option value="" disabled selected>Choose Relation</option>
                                         <option value="<"><</option>
                                         <option value=">">></option>
@@ -427,14 +426,14 @@
                         <div class="col-lg-2">
                             <div class="box" style="padding:0;">
                                 <div class="input-box" >
-                                    <input type="text" class="form-control alert_font_css" id="add_alert_val" name="add_alert_val" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                    <input type="text" class="form-control alert_font_css default_font_size" id="add_alert_val" name="add_alert_val" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                     <label for="add_alert_val" class="input-padding">Value <span class="paddingm validate">*</span></label>
                                 </div>
                                 <span class="paddingm float-start validate" id="inputAlertValueErr"></span> 
                             </div>
                         </div>
                         <div class="col-lg-1" style="display:flex;flex-direction:row;padding:0;justify-content:center;align-items:end;font-size:12px">
-                            <span style="font-size:12px;padding-top:10px;" id="add_alert_change_txt_metrics">Units</span>
+                            <span style="font-size:12px;" id="add_alert_change_txt_metrics">Units</span>
                         </div>
                     
                     </div>
@@ -445,9 +444,9 @@
                             <!-- <label for="">In the Past</label> -->
                             <div class="input-group mb-3">
                                 <span class="label_txt_hour" style="">In The Past <span class="paddingm validate">*</span></span>
-                                <input type="text" class="form-control alert_font_css"  aria-label="Recipient's username" id="add_alert_past_hour" name="add_alert_past_hour" aria-describedby="basic-addon2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" style="border-radius:0.25rem 0rem 0rem 0.25rem;">
+                                <input type="text" class="form-control alert_font_css default_font_size"  aria-label="Recipient's username" id="add_alert_past_hour" name="add_alert_past_hour" aria-describedby="basic-addon2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" style="border-radius:0.25rem 0rem 0rem 0.25rem;">
                                 <div class="input-group-append  bg-white text-primary">
-                                    <span class="input-group-text bg-white" style="font-size:12px;height:2.4rem;" id="basic-addon2">Hours</span>
+                                    <span class="input-group-text bg-white default_font_size" style="font-size:12px;height:2.4rem;" id="basic-addon2">Hours</span>
                                 </div>
                             </div>
                             <span class="paddingm float-start validate" id="inputAlertpastHourErr"></span>
@@ -461,7 +460,7 @@
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="box rightmar" style="margin-right: 0.5rem;position:relative;">
-                                <label class="multi_select_model_drp_label" style="">Machine <span class="paddingm validate">*</span></label>
+                                <label class="multi_select_model_drp_label" style="">Machines <span class="paddingm validate">*</span></label>
                                 <div class="filter_select_box_add_alert" onclick="add_alert_machine()">
                                     <select class="multi_select_drp_model" style="">
                                         <option id="add_alert_machine_txt" style="">All Machines</option>
@@ -478,7 +477,7 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="box rightmar" style="margin-right: 0.5rem;position:relative;">
-                                <label class="multi_select_model_drp_label" style="">Part <span class="paddingm validate">*</span></label>
+                                <label class="multi_select_model_drp_label" style="">Parts <span class="paddingm validate">*</span></label>
                                 <div class="filter_select_box_add_alert" onclick="add_alert_part()">
                                     <select class="multi_select_drp_model" style="">
                                         <option id="add_alert_part_txt" style="">All Parts</option>
@@ -512,7 +511,7 @@
                             <div class="col-lg-6">
                                 <div class="box rightmar" style="margin-right: 0.5rem;">
                                     <div class="input-box">
-                                        <select class="form-select alert_font_css" name="add_alert_work_type" id="add_alert_work_type" style="font-size:15px;">
+                                        <select class="form-select alert_font_css default_font_size" name="add_alert_work_type" id="add_alert_work_type" style="font-size:15px;">
                                             <option value="" disabled selected>Choose Work Type</option>
                                             <option value="issue">Issue</option>
                                             <option value="task">Task</option>
@@ -525,7 +524,7 @@
                             <div class="col-lg-6">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control alert_font_css" id="add_alert_work_title"   name="add_alert_work_title">
+                                        <input type="text" class="form-control alert_font_css default_font_size" id="add_alert_work_title"   name="add_alert_work_title">
                                         <label for="add_alert_work_title" class="input-padding">Title <span class="paddingm validate">*</span></label>
                                     </div>
                                     <span class="paddingm float-start validate" id="inputAlertworktitleErr"></span>
@@ -555,11 +554,11 @@
                                 <div class="lang-select">
                                     <span class="priority_label_txt" style="">Priority  <span class="paddingm validate">*</span></span>
                                     <div class="select3">
-                                        <div class="selectBtn3 priority_get_data_add" data-type="firstOption"></div>
+                                        <div class="selectBtn3 priority_get_data_add default_font_size" data-type="firstOption"></div>
                                         <div class="selectDropdown3">
-                                            <div class="option3" data-type="firstOption" onclick="icon_drop(this)"><i class='fas fa-angle-double-down' style='font: size 18px;; width:20px; margin-top: 5px; color: #2196F3;'></i>&nbsp;Low</div>
-                                            <div class="option3" data-type="secondOption" onclick="icon_drop(this)"><i style='font: size 18px;; color:#FBB80F; margin-top: 5px;' class='fas'>&#xf52c;</i>&nbsp;Medium</div>
-                                            <div class="option3" data-type="thirdOption" onclick="icon_drop(this)"><i class='fas fa-angle-double-up' style='font: size 18px;; color:#E4021B; margin-top: 5px;'></i>&nbsp;High</div>
+                                            <div class="option3 default_font_size" data-type="firstOption" onclick="icon_drop(this)"><i class='fas fa-angle-double-down' style='font: size 18px;; width:20px; margin-top: 5px; color: #2196F3;'></i>&nbsp;Low</div>
+                                            <div class="option3 default_font_size" data-type="secondOption" onclick="icon_drop(this)"><i style='font: size 18px;; color:#FBB80F; margin-top: 5px;' class='fas'>&#xf52c;</i>&nbsp;Medium</div>
+                                            <div class="option3 default_font_size" data-type="thirdOption" onclick="icon_drop(this)"><i class='fas fa-angle-double-up' style='font: size 18px;; color:#E4021B; margin-top: 5px;'></i>&nbsp;High</div>
                                         </div>
                                     </div>
                                 </div>  
@@ -635,7 +634,7 @@
                             <div class="col-lg-2" style="margin:auto;">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control alert_font_css" id="add_alert_deu_days"
+                                        <input type="text" class="form-control alert_font_css default_font_size" id="add_alert_deu_days"
                                             name="add_alert_deu_days" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                         <label for="add_alert_deu_days" class="input-padding">Due Days </label>
                                     </div>
@@ -650,7 +649,7 @@
                         <div class="col-lg-6" style="display:flex;justify-content:start;align-items:center;flex-direction:row;"> 
                             <span style="font-size:12px;margin-right:1rem;">Email</span>                         
                             <label class="switch">
-                                <input type="checkbox" class="toggle_btn_check" id="email_check_toggle">
+                                <input type="checkbox" class="toggle_btn_check " id="email_check_toggle">
                                 <div class="slider email_che"></div>
                             </label>
                         </div>
@@ -660,7 +659,9 @@
                             <div class="col-lg-6">
                                 <div class="wrapper">
                                     <div class="content">
-                                        <ul class="parent_div_input_check" style="position:relative;"><input type="email" class="input_check_to alert_font_css" id="input_check_to" placeholder="TO" spellcheck="false"><span class="to_email_label" style="position:absolute;margin-top:-1rem;font-size:12px;color:#8c8c8c;background:white;padding:1px;margin-left:1rem;">To Email</span></ul>
+                                        <ul class="parent_div_input_check " style="position:relative;">
+                                        <input type="email" class="input_check_to alert_font_css default_font_size" id="input_check_to" placeholder="To Email" spellcheck="false">
+                                        <span class="to_email_label" style="position:absolute;margin-top:-1rem;font-size:12px;color:#8c8c8c;background:white;padding:1px;margin-left:1rem;">To Email</span></ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_check_to_Err"></span>
                                 </div>
@@ -670,7 +671,9 @@
                                
                                 <div class="wrapper_cc">
                                     <div class="content_cc">
-                                        <ul class="parent_div_input_check_cc" style="position:relative;"><input type="email" class="input_check_cc alert_font_css" id="input_check_cc" placeholder="CC" spellcheck="false"><span style="position:absolute;margin-top:-1rem;font-size:12px;color:#8c8c8c;background:white;padding:1px;margin-left:1rem;">Cc Email</span></ul>
+                                        <ul class="parent_div_input_check_cc default_font_size" style="position:relative;">
+                                        <input type="email" class="input_check_cc alert_font_css default_font_size" id="input_check_cc" placeholder="Cc Email" spellcheck="false">
+                                        <span style="position:absolute;margin-top:-1rem;font-size:12px;color:#8c8c8c;background:white;padding:1px;margin-left:1rem;">Cc Email</span></ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_check_cc_Err"></span>
                                 </div>
@@ -682,7 +685,7 @@
                                 <div class="input-group">
                                     <span class="label_txt_font" style="">Subject <span class="paddingm validate">*</span></span>
                                     <span class="input-group-text bg-white text-muted" style="font-size:13px;">SmartMach Alert! </span>
-                                    <input type="text" class="form-control alert_font_css" id="add_alert_mail_subject" name="add_alert_mail_subject">
+                                    <input type="text" class="form-control alert_font_css default_font_size" id="add_alert_mail_subject" name="add_alert_mail_subject">
                                 </div>
                                 <span class="paddingm float-start validate" id="input_email_sub_Err"></span>
                             </div>
@@ -690,9 +693,9 @@
                             <div class="col-lg-6">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control alert_font_css" id="add_alert_mail_notes"
+                                        <input type="text" class="form-control alert_font_css default_font_size" id="add_alert_mail_notes"
                                             name="add_alert_mail_notes">
-                                        <label for="add_alert_mail_notes" class="input-padding">Notes</label>
+                                        <label for="add_alert_mail_notes" class="input-padding">Email Body</label>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_email_note_Err"></span>
                                 </div>
@@ -725,7 +728,7 @@
                     <div class="row mb-2 " style="margin-top:0rem;">
                         <div class="box" style="">
                             <div class="input-box" >
-                                <input type="text" class="form-control alert_font_css" id="edit_alert_name"    name="edit_alert_name">
+                                <input type="text" class="form-control alert_font_css default_font_size" id="edit_alert_name"    name="edit_alert_name">
                                 <label for="edit_alert_name" class="input-padding">Alert Name <span class="paddingm validate">*</span></label>
                             </div>
                             <span class="paddingm float-start validate" id="inputedit_alertNameErr"></span> 
@@ -741,7 +744,7 @@
                         <div class="col-lg-6">
                             <div class="box" >
                                 <div class="input-box">
-                                    <select class="form-select alert_font_css edit_alert_metrics_change_text" name="edit_alert_metrics" id="edit_alert_metrics" style="width: 100%;">
+                                    <select class="form-select alert_font_css edit_alert_metrics_change_text default_font_size" name="edit_alert_metrics" id="edit_alert_metrics" style="width: 100%;">
                                         <option value="" disabled selected>Choose Metrics</option>
                                         <option value="planned_downtime">Planned Downtime</option>    
                                         <option value="unplanned_downtime">Unplanned Downtime</option>
@@ -762,13 +765,13 @@
                         <div class="col-lg-3">
                             <div class="box rightmar" style="margin-right: 0.5rem;">
                                 <div class="input-box">
-                                    <select class="form-select alert_font_css" name="edit_alert_relation" id="edit_alert_relation" style="width: 10rem;">
+                                    <select class="form-select alert_font_css default_font_size" name="edit_alert_relation" id="edit_alert_relation" style="width: 10rem;">
                                         <option value="" disabled selected>Choose Relation</option>
                                         <option value="<"><</option>
                                         <option value=">">></option>
                                         <option value="<="><=</option>
                                         <option value=">=">>=</option>
-                                        <option value="==">==</option>
+                                        <option value="==">=</option>
                                     </select>
                                     <label for="edit_alert_relation" class="input-padding ">Relation  <span class="paddingm validate">*</span></label>
                                     <span class="paddingm float-start validate" id="inputeditAlertrelationerr"></span>
@@ -778,7 +781,7 @@
                         <div class="col-lg-2">
                             <div class="box" style="padding:0;">
                                 <div class="input-box" >
-                                    <input type="text" class="form-control alert_font_css" id="edit_alert_val" name="edit_alert_val">
+                                    <input type="text" class="form-control alert_font_css default_font_size" id="edit_alert_val" name="edit_alert_val">
                                     <label for="" class="input-padding">Value <span class="paddingm validate">*</span></label>
                                 </div>
                                 <span class="paddingm float-start validate" id="inputAlert_edit_ValueErr"></span>
@@ -794,7 +797,7 @@
                             <!-- <label for="">In the Past</label> -->
                             <div class="input-group mb-3">
                                 <span class="label_txt_hour" style="">In The Past <span class="paddingm validate">*</span></span>
-                                <input type="text" class="form-control alert_font_css"  aria-label="Recipient's username" id="edit_alert_past_hour" name="edit_alert_past_hour" aria-describedby="basic-addon2" style="border-radius:0.25rem 0rem 0rem 0.25rem;">
+                                <input type="text" class="form-control alert_font_css default_font_size"  aria-label="Recipient's username" id="edit_alert_past_hour" name="edit_alert_past_hour" aria-describedby="basic-addon2" style="border-radius:0.25rem 0rem 0rem 0.25rem;">
                                 <div class="input-group-append  bg-white text-primary">
                                     <span class="input-group-text bg-white" style="font-size:12px;height:2.4rem;" id="basic-addon2">Hours</span>
                                 </div>
@@ -810,7 +813,7 @@
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="box rightmar" style="margin-right: 0.5rem;position:relative;">
-                                <label class="multi_select_model_drp_label" style="">Machine <span class="paddingm validate">*</span></label>
+                                <label class="multi_select_model_drp_label" style="">Machines <span class="paddingm validate">*</span></label>
                                 <div class="filter_select_box_add_alert" onclick="edit_alert_machine()">
                                     <select class="multi_select_drp_model" style="">
                                         <option id="edit_alert_machine_txt" style="">All Machines</option>
@@ -827,7 +830,7 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="box rightmar" style="margin-right: 0.5rem;position:relative;">
-                                <label class="multi_select_model_drp_label" style="">Part <span class="paddingm validate">*</span></label>
+                                <label class="multi_select_model_drp_label" style="">Parts <span class="paddingm validate">*</span></label>
                                 <div class="filter_select_box_add_alert" onclick="edit_alert_part()">
                                     <select class="multi_select_drp_model" style="">
                                         <option id="edit_alert_part_txt" style="">All Parts</option>
@@ -861,7 +864,7 @@
                             <div class="col-lg-6">
                                 <div class="box rightmar" style="margin-right: 0.5rem;">
                                     <div class="input-box">
-                                        <select class="form-select alert_font_css" name="edit_alert_work_type" id="edit_alert_work_type" style="font-size:15px;">
+                                        <select class="form-select alert_font_css default_font_size" name="edit_alert_work_type" id="edit_alert_work_type" style="font-size:15px;">
                                             <option value=" " disabled selected>Choose Work Type</option>
                                             <option value="issue">Issue</option>
                                             <option value="task">Task</option>
@@ -874,7 +877,7 @@
                             <div class="col-lg-6">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control alert_font_css" id="edit_alert_work_title"   name="edit_alert_work_title">
+                                        <input type="text" class="form-control alert_font_css default_font_size" id="edit_alert_work_title"   name="edit_alert_work_title">
                                         <label for="edit_alert_work_title" class="input-padding">Title <span class="paddingm validate">*</span></label>
                                     </div>
                                     <span class="paddingm float-start validate" id="inputAlert_edit_worktitleErr"></span>
@@ -905,11 +908,11 @@
                                 <div class="lang-select">
                                     <span class="priority_label_txt" style="">Priority  <span class="paddingm validate">*</span></span>
                                     <div class="select_edit_priority">
-                                        <div class="select_edit_priority_btn priority_get_data_add" data-type="firstOption"> <i class='fas fa-angle-double-down' style='font: size 18px; width:18px; color: #2196F3; margin-top: 5px;'></i>&nbsp;Low</div>
+                                        <div class="select_edit_priority_btn priority_get_data_add default_font_size" data-type="firstOption"> <i class='fas fa-angle-double-down' style='font: size 18px; width:18px; color: #2196F3; margin-top: 5px;'></i>&nbsp;Low</div>
                                         <div class="select_edit_drp_priority">
-                                            <div class="select_edit_priority_option" data-type="firstOption" onclick="icon_drop_edit_priority(this)"><i class='fas fa-angle-double-down' style='font: size 18px;; width:20px; margin-top: 5px; color: #2196F3;'></i>&nbsp;Low</div>
-                                            <div class="select_edit_priority_option" data-type="secondOption" onclick="icon_drop_edit_priority(this)"><i style='font: size 18px;; color:#FBB80F; margin-top: 5px;' class='fas'>&#xf52c;</i>&nbsp;Medium</div>
-                                            <div class="select_edit_priority_option" data-type="thirdOption" onclick="icon_drop_edit_priority(this)"><i class='fas fa-angle-double-up' style='font: size 18px;; color:#E4021B; margin-top: 5px;'></i>&nbsp;High</div>
+                                            <div class="select_edit_priority_option default_font_size" data-type="firstOption" onclick="icon_drop_edit_priority(this)"><i class='fas fa-angle-double-down default_font_size'  style='font: size 18px;; width:20px; margin-top: 5px; color: #2196F3;'></i>&nbsp;Low</div>
+                                            <div class="select_edit_priority_option default_font_size" data-type="secondOption" onclick="icon_drop_edit_priority(this)"><i style='font: size 18px;; color:#FBB80F; margin-top: 5px;' class='fas default_font_size'>&#xf52c;</i>&nbsp;Medium</div>
+                                            <div class="select_edit_priority_option default_font_size" data-type="thirdOption" onclick="icon_drop_edit_priority(this)"><i class='fas fa-angle-double-up default_font_size' style='font: size 18px;; color:#E4021B; margin-top: 5px;'></i>&nbsp;High</div>
                                         </div>
                                     </div>
                                 </div>  
@@ -979,7 +982,7 @@
                             <div class="col-lg-2" style="margin:auto;">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control alert_font_css" id="edit_alert_deu_days" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" name="edit_alert_deu_days">
+                                        <input type="text" class="form-control alert_font_css default_font_size" id="edit_alert_deu_days" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" name="edit_alert_deu_days">
                                         <label for="edit_alert_deu_days" class="input-padding">Due Days </label>
                                     </div>
                                     <span class="paddingm float-start validate" id="inputAlert_edit_deudaysErr"></span>
@@ -1004,7 +1007,7 @@
                                 <div class="wrapper_edit">
                                     <div class="content_edit">
                                         <ul class="edit_parent_div_input_check" style="position:relative;">
-                                            <input type="text" class="input_check_to_edit alert_font_css" placeholder="TO" spellcheck="false">
+                                            <input type="text" class="input_check_to_edit alert_font_css default_font_size" placeholder="To Email" spellcheck="false">
                                             <span style="position:absolute;margin-top:-1rem;font-size:12px;padding:1px;margin-left:1rem;background:white;color:#8c8c8c;" class="edit_email_label">To Email</span>
                                         </ul>
                                     </div>
@@ -1017,7 +1020,7 @@
                                 <div class="wrapper_cc_edit">
                                     <div class="content_cc_edit">
                                         <ul class="edit_parent_div_input_check_cc" style="position:relative;">
-                                            <input type="text" class="input_check_cc_edit alert_font_css" placeholder="CC" spellcheck="false">
+                                            <input type="text" class="input_check_cc_edit alert_font_css default_font_size" placeholder="Cc Email" spellcheck="false">
                                             <span style="position:absolute;margin-top:-1rem;font-size:12px;padding:1px;margin-left:1rem;background:white;color:#8c8c8c;">Cc Email</span>
                                         </ul>
                                     </div>
@@ -1031,7 +1034,7 @@
                                 <div class="input-group">
                                     <span class="label_txt_font" style="">Subject <span class="paddingm validate">*</span></span>
                                     <span class="input-group-text bg-white text-muted" style="font-size:13px;">SmartMach Alert! </span>
-                                    <input type="text" class="form-control alert_font_css" id="edit_alert_mail_subject" name="edit_alert_mail_subject">
+                                    <input type="text" class="form-control alert_font_css default_font_size" id="edit_alert_mail_subject" name="edit_alert_mail_subject">
                                 </div>
                                 <span class="paddingm float-start validate" id="input_email_edit_sub_Err"></span>
                             </div>
@@ -1039,9 +1042,9 @@
                             <div class="col-lg-6">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control alert_font_css" id="edit_alert_mail_notes"
+                                        <input type="text" class="form-control alert_font_css default_font_size" id="edit_alert_mail_notes"
                                             name="edit_alert_mail_notes">
-                                        <label for="edit_alert_mail_notes" class="input-padding">Notes</label>
+                                        <label for="edit_alert_mail_notes" class="input-padding">Email Body</label>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_email_edit_note_Err"></span>
                                 </div>
@@ -1111,6 +1114,7 @@ $(document).on('change','.edit_alert_metrics_change_text',function(event){
     $('#edit_metrics_val_limit_txt').text(get_edit_metrics_val_limit);
 });
 
+// this function get metrics dropdown value for example count or hours 
 function get_metrics_limit_val(metrics_val){
     var res = "";
     switch (metrics_val) {
@@ -1249,19 +1253,7 @@ function add_assignee(t) {
 
     });
 
-    // $(document).on('click','#work_click',function(event){
-    //     // var getindex = $('.switch');
-    //     // var final_index = getindex.index($(this));
-    //     // alert(final_index);
-    //     var checked_or_not = $('#work_toggle_click').is(':checked');
-    //     if (checked_or_not == true) {
-    //         alert('already checked');
-    //     }else{
-    //         alert('off');
-    //     }
-    //     // alert(checked_or_not);
-    // });
-
+  
     // add alert machine dropdown
     var add_alert_machine_txt = false;
     function add_alert_machine(){
@@ -1290,6 +1282,7 @@ function add_assignee(t) {
 
     // this function fill all dropdown values using ajax function
     fill_machine_drp();
+
     function fill_machine_drp(){
         // console.log("function ok");
         $('.add_alert_machine_drp').empty();
@@ -1608,11 +1601,11 @@ function add_assignee(t) {
         if (parseInt(machine_gp_select_count1)>=parseInt(machine_gp_len1)) {
             if(check_if1[0].checked===true){
                 check_if1[0].checked=true;
-                $('#add_alert_machine_txt').text(parseInt(machine_gp_select_count1)-1+' Selected');
+                $('#add_alert_machine_txt').text('All Machines');
             }else{
                 // check_if[0].checked=true;
                 reset_add_alert_machine();
-                $('#add_alert_machine_txt').text('All');
+                $('#add_alert_machine_txt').text('All Machines');
             }
         }else if(((parseInt(machine_gp_select_count1)<parseInt(machine_gp_len1))) && (parseInt(machine_gp_select_count1)>0)){
             $('#add_alert_machine_txt').text(parseInt(machine_gp_select_count1)+' Selected');
@@ -1649,20 +1642,20 @@ function add_assignee(t) {
 
         var machine_gp_select_count1 = 0;
         jQuery('.add_alert_part1').each(function(index){
-        if (check_if1[index].checked===true) {
-            machine_gp_select_count1 = parseInt(machine_gp_select_count1)+1;
-        }
+            if (check_if1[index].checked===true) {
+                machine_gp_select_count1 = parseInt(machine_gp_select_count1)+1;
+            }
         });
         var machine_gp_len1 = $('.add_alert_part1').length;
         machine_gp_len1 = parseInt(machine_gp_len1)-1;
         if (parseInt(machine_gp_select_count1)>=parseInt(machine_gp_len1)) {
             if(check_if1[0].checked===true){
                 check_if1[0].checked=true;
-                $('#add_alert_part_txt').text(parseInt(machine_gp_select_count1)-1+' Selected');
+                $('#add_alert_part_txt').text('All Parts');
             }else{
                 // check_if[0].checked=true;
-                reset_add_alert_machine();
-                $('#add_alert_part_txt').text('All');
+                reset_add_alert_part();
+                $('#add_alert_part_txt').text('All Parts');
             }
         }else if(((parseInt(machine_gp_select_count1)<parseInt(machine_gp_len1))) && (parseInt(machine_gp_select_count1)>0)){
             $('#add_alert_part_txt').text(parseInt(machine_gp_select_count1)+' Selected');
@@ -2171,10 +2164,10 @@ function add_assignee(t) {
         });
 
         // work order array
-        var work_order_arr = [];
+        var notify_arr = [];
         $('.filter_alert_work_checkbox').each(function(){
             if ($(this).is(':checked')) {
-                work_order_arr.push($(this).val());
+                notify_arr.push($(this).val());
             }
         });
 
@@ -2189,7 +2182,7 @@ function add_assignee(t) {
         console.log("filter arrays");
         console.log(machine_arr);
         console.log(part_arr);
-        console.log(work_order_arr);
+        console.log(notify_arr);
         console.log(last_updated_arr);
 
         $.ajax({
@@ -2199,7 +2192,7 @@ function add_assignee(t) {
             data:{
                 machine_arr:machine_arr,
                 part_arr:part_arr,
-                work_order_arr:work_order_arr,
+                notify_arr:notify_arr,
                 last_updated_arr:last_updated_arr,
             },
             success:function(res){
@@ -2413,7 +2406,7 @@ function add_assignee(t) {
                     // assignee
                     if (res[0]['assignee']==="Unassigned") {
                         $('#edit_assignee_val').html('<div style="float: left;width: 100%;" class="center-align">'
-                        +'<div class="circle-div-select" style="background:#7f7f7f;color:white;">'
+                        +'<div class="circle-div-select" style="background:#7f7f7f;color:white;margin-right:0.5rem;">'
                             +'<p class="paddingm">UA</p>'
                         +'</div>'
                         +'<span style="color: #7f7f7f">Unassigned</span>'
@@ -2422,7 +2415,7 @@ function add_assignee(t) {
                         $('#edit_assignee_val').attr('data-assignee-val','Unassigned');
                     }else{
                         $('#edit_assignee_val').html('<div style="float: left;width: 100%;" class="center-align">'
-                        +'<div class="circle-div-select" style="background:#7f7f7f;color:white;">'
+                        +'<div class="circle-div-select" style="background:#7f7f7f;color:white;margin-right:0.5rem;">'
                             +'<p class="paddingm">'+res[0]['user_name']['fl_split']+'</p>'
                         +'</div>'
                         +'<span style="color: #7f7f7f">'+res[0]['user_name']['full_name']+'</span>'
@@ -2498,7 +2491,7 @@ function add_assignee(t) {
                     var to_email_arr = res[0]['to_email_arr'].split(',');
                     var cc_email_arr = res[0]['cc_email_arr'].split(',');
                     to_email_get_arr(to_email_arr);
-                       cc_email_get_arr(cc_email_arr);
+                    cc_email_get_arr(cc_email_arr);
                 }
                 else{
                     checkbox_work.checked=false;
@@ -2990,7 +2983,7 @@ $(document).on('click','.inbox_assignee',function(event){
         +'<div class="circle-div-select" style="background:#7f7f7f;color:white;">'
             +'<p class="paddingm">'+$('.inbox_assignee:eq('+index+')').children('.circle-div-root').children('.circle-div').children('p').text()+'</p>'
         +'</div>'
-        +'<span style="color: #7f7f7f">'+$('.inbox_assignee:eq('+index+')').children('.assignee_name_class').children('p').text()+'</span>'
+        +'<span style="color: #7f7f7f;margin-left:0.3rem;">'+$('.inbox_assignee:eq('+index+')').children('.assignee_name_class').children('p').text()+'</span>'
         +'</div>');
         // console.log("assignee");
         // console.log(tmpassignee_id);
@@ -3260,7 +3253,7 @@ function reset_all_input(data_txt){
         $('#email_check_toggle').prop('checked',false);
         $('#add_alert_work_type').val('');
         $('#add_alert_work_title').val('');
-        $('.selectBtn3').html('<div class="selectBtn3 priority_get_data_add" data-type="firstOption"> <i class="fas fa-angle-double-down" style="font: size 18px; width:18px; color: #2196F3; margin-top: 5px;"></i>&nbsp;Low</div>');
+        $('.selectBtn3').html('<div class="selectBtn3 priority_get_data_add" data-type="firstOption"> <i class="fas fa-angle-double-down" style="font: size 18px; width:18px; color: #2196F3; margin-top: 5px;margin-left:0.5rem;margin-right:0.5rem;"></i>&nbsp;Low</div>');
         $('.selectBtn3').attr('data-val', '0');
         $('.lable-div-add').empty();
         $('#add_alert_deu_days').val('');

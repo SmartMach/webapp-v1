@@ -226,4 +226,9 @@
 
 	/* GLOBAL VARIABLES FOR OVERALL HEADER FILTER BUTTON CSS */
 
+
+	/* default font size as per the instruction */
+
+	--default_font_size:12px;
+
 }
