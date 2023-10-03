@@ -435,8 +435,13 @@ function edit_machine_drp_set(data) {
                     }
                 }
             }); 
-            
-            $('#edit_alert_machine_txt').text(tmp_machine_arr.length+' selected');
+            if (tmp_machine_arr[0]==="all") {
+                $('#edit_alert_machine_txt').text('All Machines');
+                
+            }else{
+                $('#edit_alert_machine_txt').text(tmp_machine_arr.length+' selected');
+
+            }
         }
     }
 }
@@ -462,7 +467,14 @@ function edit_part_drp_set(data){
                     }
                 }
             }); 
-            $('#edit_alert_part_txt').text(tmp_part_arr.length+' selected');
+
+            if (tmp_part_arr[0]==="all") {
+                $('#edit_alert_part_txt').text('All Parts');
+                
+            }else{
+                $('#edit_alert_part_txt').text(tmp_part_arr.length+' selected');
+
+            }
         }
     }
 }
