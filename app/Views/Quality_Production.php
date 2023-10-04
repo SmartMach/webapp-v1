@@ -188,7 +188,7 @@
                 <div class="input-box indexing Reasons_COPQP">
 
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Reason</span>
+                    <span class="multi_select_label" style="">Reasons</span>
                     <div class="filter_selectBox" onclick="multiple_drp_reason_copq()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -208,7 +208,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing Reasons_COPQP">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Machine</span>
+                    <span class="multi_select_label" style="">Machines</span>
                     <div class="filter_selectBox" onclick="multiple_drp_machine_copq()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -228,7 +228,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing Reasons_COPQP">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Part</span>
+                    <span class="multi_select_label" style="">Parts</span>
                     <div class="filter_selectBox" onclick="multiple_drp_copq()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -265,7 +265,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Reason</span>
+                    <span class="multi_select_label" style="">Reasons</span>
                     <div class="filter_selectBox" onclick="multiple_drp_reason_crpr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -285,7 +285,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Machine</span>
+                    <span class="multi_select_label" style="">Machines</span>
                     <div class="filter_selectBox" onclick="multiple_drp_machine_crpr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -305,7 +305,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Part</span>
+                    <span class="multi_select_label" style="">Parts</span>
                     <div class="filter_selectBox" onclick="multiple_drp_crpr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -344,7 +344,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Reason</span>
+                    <span class="multi_select_label" style="">Reasons</span>
                     <div class="filter_selectBox" onclick="multiple_drp_reason_copqm()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -364,7 +364,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Machine</span>
+                    <span class="multi_select_label" style="">Machines</span>
                     <div class="filter_selectBox" onclick="multiple_drp_machine_copqm()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -384,7 +384,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Part</span>
+                    <span class="multi_select_label" style="">Parts</span>
                     <div class="filter_selectBox" onclick="multiple_drp_copqm()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -421,7 +421,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Reason</span>
+                    <span class="multi_select_label" style="">Reasons</span>
                     <div class="filter_selectBox" onclick="multiple_drp_reason_qrmr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -441,7 +441,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Machine</span>
+                    <span class="multi_select_label" style="">Machines</span>
                     <div class="filter_selectBox" onclick="multiple_drp_machine_qrmr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -461,7 +461,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Part</span>
+                    <span class="multi_select_label" style="">Parts</span>
                     <div class="filter_selectBox" onclick="multiple_drp_qrmr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -503,7 +503,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Reason</span>
+                    <span class="multi_select_label" style="">Reasons</span>
                     <div class="filter_selectBox" onclick="multiple_drp_reason_copqp()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -523,7 +523,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Machine</span>
+                    <span class="multi_select_label" style="">Machines</span>
                     <div class="filter_selectBox" onclick="multiple_drp_machine_copqp()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -543,7 +543,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Part</span>
+                    <span class="multi_select_label" style="">Parts</span>
                     <div class="filter_selectBox" onclick="multiple_drp_copqp()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -580,7 +580,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Reason</span>
+                    <span class="multi_select_label" style="">Reasons</span>
                     <div class="filter_selectBox" onclick="multiple_drp_reason_qrpr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -600,7 +600,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Machine</span>
+                    <span class="multi_select_label" style="">Machines</span>
                     <div class="filter_selectBox" onclick="multiple_drp_machine_qrpr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -620,7 +620,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Part</span>
+                    <span class="multi_select_label" style="">Parts</span>
                     <div class="filter_selectBox" onclick="multiple_drp_qrpr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -676,7 +676,7 @@
                 <div class="filter_checkboxes filter_part">
                 </div>
               </div>
-              <label for="partNameFilter" class="input-padding">Part Name</label>
+              <label for="partNameFilter" class="input-padding">Parts</label>
             </div>
           </div>
 
@@ -696,7 +696,7 @@
                 <div class="filter_checkboxes filter_machine">
                 </div>
               </div>
-              <label for="machineNameFilter" class="input-padding ">Machine Name</label>
+              <label for="machineNameFilter" class="input-padding ">Machines</label>
             </div>
           </div> 
           
@@ -716,7 +716,7 @@
                 <div class="filter_checkboxes filter_reason">
                 </div>
               </div>
-              <label for="reasonNameFilter" class="input-padding ">Reason</label>
+              <label for="reasonNameFilter" class="input-padding ">Reasons</label>
             </div>
           </div> 
 

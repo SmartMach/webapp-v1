@@ -165,7 +165,7 @@ $session = \Config\Services::session();
                             <div style="width:80%;display:flex;flex-direction:row-reverse;" >
                                 <!-- Machine Dropdown checkbox -->
                                 <div class="box " style="" >
-                                    <label class="multi_select_label" style="">Machine</label>
+                                    <label class="multi_select_label" style="">Machines</label>
                                     <div class="filter_selectBox_machinegp" onclick="machine_multiselect_gp()">
                                         <select  class="multi_select_machinegp" style="" >
                                             <option id="text_machinegp" style="">All Machines</option>
@@ -179,7 +179,7 @@ $session = \Config\Services::session();
 
                                 <!-- Reasons Dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <label class="multi_select_label" style="">Reason</label>
+                                    <label class="multi_select_label" style="">Reasons</label>
                                     <div class="filter_selectBox_reasongp" onclick="reason_multiselect_gp()">
                                         <select  class="multi_select_reasongp" style="" >
                                             <option id="text_reasongp" style="">All Reasons</option>
@@ -197,7 +197,7 @@ $session = \Config\Services::session();
                                     <label class="multi_select_label" style="">Category</label>
                                     <div class="filter_selectBox_categorygp" onclick="category_multiselect_gp()">
                                         <select  class="multi_select_categorygp" style="" >
-                                            <option id="text_categorygp" style="">All Category</option>
+                                            <option id="text_categorygp" style="">All Categories</option>
                                         </select>
                                         <div class="filter_overSelect_categorygp"></div>
                                     </div>
@@ -252,7 +252,7 @@ $session = \Config\Services::session();
                             <div style="width:80%;display:flex;flex-direction:row-reverse;">
                                 <!-- Machine Dropdown checkbox -->
                                 <div class="box " style="" >
-                                    <label class="multi_select_label" style="">Machine</label>
+                                    <label class="multi_select_label" style="">Machines</label>
                                     <div class="filter_selectBox_machinegp1" onclick="machine_multiselect_gp1()">
                                         <select  class="multi_select_machinegp1" style="" >
                                             <option id="text_machinegp1" style="">All Machines</option>
@@ -266,7 +266,7 @@ $session = \Config\Services::session();
 
                                 <!-- Reasons Dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <label class="multi_select_label" style="">Reason</label>
+                                    <label class="multi_select_label" style="">Reasons</label>
                                     <div class="filter_selectBox_reasongp1" onclick="reason_multiselect_gp1();">
                                         <select  class="multi_select_reasongp1" style="" >
                                             <option id="text_reasongp1" style="">All Reasons</option>
@@ -284,7 +284,7 @@ $session = \Config\Services::session();
                                     <label class="multi_select_label" style="">Category</label>
                                     <div class="filter_selectBox_categorygp1" onclick="category_multiselect_gp1()">
                                         <select  class="multi_select_categorygp1" style="" >
-                                            <option id="text_categorygp1" style="">All Category</option>
+                                            <option id="text_categorygp1" style="">All Categories</option>
                                         </select>
                                         <div class="filter_overSelect_categorygp1"></div>
                                     </div>
@@ -341,7 +341,7 @@ $session = \Config\Services::session();
                             <div style="width:80%;display:flex;flex-direction:row-reverse;">
                                 <!-- Machine Dropdown checkbox -->
                                 <div class="box " style="">
-                                    <label class="multi_select_label" style="">Machine</label>
+                                    <label class="multi_select_label" style="">Machines</label>
                                     <div class="filter_selectBox_machinegp2" onclick="machine_multiselect_gp2()">
                                         <select  class="multi_select_machinegp2" style="" >
                                             <option id="text_machinegp2" style="">All Machines</option>
@@ -355,7 +355,7 @@ $session = \Config\Services::session();
 
                                 <!-- Reasons Dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <label class="multi_select_label" style="">Reason</label>
+                                    <label class="multi_select_label" style="">Reasons</label>
                                     <div class="filter_selectBox_reasongp2" onclick="reason_multiselect_gp2();">
                                         <select  class="multi_select_reasongp2" style="" >
                                             <option id="text_reasongp2" style="">All Reasons</option>
@@ -373,7 +373,7 @@ $session = \Config\Services::session();
                                     <label class="multi_select_label" style="">Category</label>
                                     <div class="filter_selectBox_categorygp2" onclick="category_multiselect_gp2()">
                                         <select  class="multi_select_categorygp2" style="" >
-                                            <option id="text_categorygp2" style="">All Category</option>
+                                            <option id="text_categorygp2" style="">All Categories</option>
                                         </select>
                                         <div class="filter_overSelect_categorygp2"></div>
                                     </div>
@@ -428,7 +428,7 @@ $session = \Config\Services::session();
                             <div style="width:88%;display:flex;flex-direction:row-reverse;">
                                 <!-- Machine Dropdown checkbox -->
                                 <div class="box " style="" >
-                                    <label class="multi_select_label" style="">Machine</label>
+                                    <label class="multi_select_label" style="">Machines</label>
                                     <div class="filter_selectBox_machinegp3" onclick="machine_multiselect_gp3()">
                                         <select  class="multi_select_machinegp3" style="" >
                                             <option id="text_machinegp3" style="">All Machines</option>
@@ -442,7 +442,7 @@ $session = \Config\Services::session();
 
                                 <!-- Reasons Dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <label class="multi_select_label" style="">Reason</label>
+                                    <label class="multi_select_label" style="">Reasons</label>
                                     <div class="filter_selectBox_reasongp3" onclick="reason_multiselect_gp3();">
                                         <select  class="multi_select_reasongp3" style="" >
                                             <option id="text_reasongp3" style="">All Reasons</option>
@@ -460,7 +460,7 @@ $session = \Config\Services::session();
                                     <label class="multi_select_label" style="">Category</label>
                                     <div class="filter_selectBox_categorygp3" onclick="category_multiselect_gp3()">
                                         <select  class="multi_select_categorygp3" style="" >
-                                            <option id="text_categorygp3" style="">All Category</option>
+                                            <option id="text_categorygp3" style="">All Categories</option>
                                         </select>
                                         <div class="filter_overSelect_categorygp3"></div>
                                     </div>
@@ -544,10 +544,10 @@ $session = \Config\Services::session();
 
                         <!-- Reason dropdown checkbox -->
                         <div class="box rightmar" style="margin-right: 0.5rem;" >
-                            <label class="multi_select_label" style="">Reason</label>
+                            <label class="multi_select_label" style="">Reasons</label>
                             <div class="filter_selectBox_drpr" onclick="reason_drp()">
                                 <select  class="multi_select_drp_r" style="" >
-                                    <option id="text_reason_drp" style="">Reason</option>
+                                    <option id="text_reason_drp" style="">Reasons</option>
                                 </select>
                                 <div class="filter_overSelect_r"></div>
                             </div>
@@ -605,10 +605,10 @@ $session = \Config\Services::session();
                         
                         <!-- dropdown checkbox partname -->
                         <div class="box rightmar" style="margin-right: 0.5rem;" >
-                            <label class="multi_select_label" style="">PartName</label>
+                            <label class="multi_select_label" style="">Parts</label>
                             <div class="filter_selectBox_part" onclick="partname_drp()">
                                 <select  class="multi_select_drp_part" style="" >
-                                    <option id="text_category_drp_part" style="">All PartName</option>
+                                    <option id="text_category_drp_part" style="">All Parts</option>
                                 </select>
                                 <div class="filter_overSelect_part"></div>
                             </div>
@@ -627,10 +627,10 @@ $session = \Config\Services::session();
 
                         <!-- dropdown checkbox machine -->
                         <div class="box rightmar" style="margin-right: 0.5rem;" >
-                            <label class="multi_select_label" style="">Machine Name</label>
+                            <label class="multi_select_label" style="">Machines</label>
                             <div class="filter_selectBox_machine" onclick="machinename_drp()">
                             <select  class="multi_select_drp_machine" style="" >
-                                <option id="text_machine_drp" style="">All Machine</option>
+                                <option id="text_machine_drp" style="">All Machines</option>
                             </select>
                             <div class="filter_overSelect_part"></div>
                             </div>

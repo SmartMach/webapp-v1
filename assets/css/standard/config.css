@@ -230,5 +230,6 @@
 	/* default font size as per the instruction */
 
 	--default_font_size:12px;
+	--default_input_height:2.5rem;
 
 }

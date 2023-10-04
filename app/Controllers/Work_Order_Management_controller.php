@@ -229,19 +229,19 @@ class Work_Order_Management_controller extends BaseController{
             if ($filter == false || $filter == "false") {
                 foreach ($res as $value) {
                     $temp=0;
-                    if (($value['assignee']=="" || !$value['assignee'] || $value['assignee']==null || $value['assignee']=="undefined" || $value['assignee']=="Unassigned") and $temp==0) {
+                    if (($value['assignee']=="" || !$value['assignee'] || $value['assignee']==null || $value['assignee']=="undefined") and $temp==0) {
                         array_push($final_list, $value);
                         $temp=1;
                     }
-                    if (($value['priority_id']=="" || !$value['priority_id'] || $value['priority_id']==null || $value['priority_id']=="undefined" || $value['priority_id']=="Unassigned") and $temp==0) {
+                    if (($value['priority_id']=="" || !$value['priority_id'] || $value['priority_id']==null || $value['priority_id']=="undefined") and $temp==0) {
                         array_push($final_list, $value);
                         $temp=1;
                     }
-                    if (($value['lable_id']=="" || !$value['lable_id'] || $value['lable_id']==null || $value['lable_id']=="undefined" || $value['lable_id']=="Unassigned") and $temp==0) {
+                    if (($value['lable_id']=="" || !$value['lable_id'] || $value['lable_id']==null || $value['lable_id']=="undefined") and $temp==0) {
                         array_push($final_list, $value);
                         $temp=1;
                     }
-                    if (($value['status_id']=="" || !$value['status_id'] || $value['status_id']==null || $value['status_id']=="undefined" || $value['status_id']=="Unassigned") and $temp==0) {
+                    if (($value['status_id']=="" || !$value['status_id'] || $value['status_id']==null || $value['status_id']=="undefined") and $temp==0) {
                         array_push($final_list, $value);
                         $temp=1;
                     }

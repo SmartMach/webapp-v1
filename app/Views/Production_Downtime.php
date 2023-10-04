@@ -357,6 +357,7 @@ input[type=number] {
   .filter_selectBox select {
     width: 100%;
     font-weight: bold;
+    background-color:white;
   }
 
   
@@ -366,6 +367,7 @@ input[type=number] {
     right: 0;
     top: 0;
     bottom: 0;
+   
   }
 
   
@@ -440,6 +442,7 @@ input[type=number] {
   .filter_selectBox_reason select{
     width: 100%;
     font-weight: bold;
+    background:white;
   }
   .filter_overSelect_reason{
     position: absolute;
@@ -594,7 +597,7 @@ input[type=number] {
               <div class="input-box">
                   <select class="form-select font_weight select_input_width input_padd" name="" id="Production_MachineName" style="width: 10rem;padding-right:1.8rem;">
                   </select>
-                  <label for="inputSiteNameAdd" class="input-padding ">Machine Name</label>
+                  <label for="inputSiteNameAdd" class="input-padding ">Machines</label>
               </div>
             </div>
             <div class="box display_f align_c" style="margin-right: 0.5rem;">
@@ -607,7 +610,7 @@ input[type=number] {
               <div class="input-box">
                   <select class="form-select select_input_width input_padd font_weight" name="" id="RejectShift" style="width: 10rem;">
                   </select>
-                  <label for="inputSiteNameAdd" class="input-padding ">Shift</label>
+                  <label for="inputSiteNameAdd" class="input-padding ">Shifts</label>
               </div>
             </div>
                  
@@ -649,7 +652,7 @@ input[type=number] {
                 </div>
               </div> -->
               <div class="box rightmar" style="margin-right: 0.5rem;">
-                <label class="multi_select_label" style="">Reason</label>
+                <label class="multi_select_label" style="">Reasons</label>
                 <div class="filter_selectBox_reason" onclick="reason_multi_drp()">
                   <select  class="multi_select_drp" style="">
                     <option style="text-align:center;" id="text_reason">All Reasons</option>

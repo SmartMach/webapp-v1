@@ -335,6 +335,7 @@ mx_global = setInterval(function() {
 }, 1000);
 
 $(document).on('click','.Previous_Shift_Live',function(event){
+    $("#overlay").fadeIn(300);
     myChartList =[];
     $(".Previous_Shift_Live").attr("status",1);
     $.ajax({
@@ -348,6 +349,7 @@ $(document).on('click','.Previous_Shift_Live',function(event){
             clearInterval(i_global);
             clearInterval(j_global);
             getTileupdate(res);
+            $("#overlay").fadeOut(300);
         },
         error: function(res) {
             // Error Occured!

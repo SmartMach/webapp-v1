@@ -740,11 +740,11 @@ $(document).on('click','.filter_check_categorygb',function(event){
     if (parseInt(category_gp_select_count)>=parseInt(category_gp_len)) {
         if(check_if[0].checked===true){
             check_if[0].checked=true;
-            $('#text_categorygp').text(parseInt(category_gp_select_count)-1+' Selected');
+            $('#text_categorygp').text('All Categories');
         }else{
             // check_if[0].checked=true;
             reset_category_gp();
-            $('#text_categorygp').text('All');
+            $('#text_categorygp').text('All Categories');
         }
     }else if(((parseInt(category_gp_select_count)<parseInt(category_gp_len))) && (parseInt(category_gp_select_count)>0)){
         $('#text_categorygp').text(parseInt(category_gp_select_count)+' Selected');
@@ -792,11 +792,11 @@ $(document).on('click','.filter_check_reasongp',function(event){
     if (parseInt(reason_gp_select_count)>=parseInt(reason_gp_len)) {
         if(check_if[0].checked===true){
             check_if[0].checked=true;
-            $('#text_reasongp').text(parseInt(reason_gp_select_count)-1+' Selected');
+            $('#text_reasongp').text('All Reasons');
         }else{
             // check_if[0].checked=true;
             reset_reason_gp();
-            $('#text_reasongp').text('All');
+            $('#text_reasongp').text('All Reasons');
         }
     }else if(((parseInt(reason_gp_select_count)<parseInt(reason_gp_len))) && (parseInt(reason_gp_select_count)>0)){
         $('#text_reasongp').text(parseInt(reason_gp_select_count)+' Selected');
@@ -843,11 +843,11 @@ $(document).on('click','.filter_check_machinegp',function(event){
     if (parseInt(machine_gp_select_count)>=parseInt(machine_gp_len)) {
         if(check_if[0].checked===true){
             check_if[0].checked=true;
-            $('#text_machinegp').text(parseInt(machine_gp_select_count)-1+' Selected');
+            $('#text_machinegp').text('All Machines');
         }else{
             // check_if[0].checked=true;
             reset_machine_gp();
-            $('#text_machinegp').text('All');
+            $('#text_machinegp').text('All Machines');
         }
     }else if(((parseInt(machine_gp_select_count)<parseInt(machine_gp_len))) && (parseInt(machine_gp_select_count)>0)){
         $('#text_machinegp').text(parseInt(machine_gp_select_count)+' Selected');
@@ -897,11 +897,11 @@ $(document).on('click','.filter_check_reasongp1',function(event){
     if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
         if(check_if1[0].checked===true){
             check_if1[0].checked=true;
-            $('#text_reasongp1').text(parseInt(reason_gp_select_count1)-1+' Selected');
+            $('#text_reasongp1').text('All Reasons');
         }else{
             // check_if[0].checked=true;
             reset_reason_gp1();
-            $('#text_reasongp1').text('All');
+            $('#text_reasongp1').text('All Reasons');
         }
     }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
         $('#text_reasongp1').text(parseInt(reason_gp_select_count1)+' Selected');
@@ -947,11 +947,11 @@ $(document).on('click','.filter_check_categorygb1',function(event){
     if (parseInt(category_gp_select_count1)>=parseInt(category_gp_len1)) {
         if(check_if1[0].checked===true){
             check_if1[0].checked=true;
-            $('#text_categorygp1').text(parseInt(category_gp_select_count1)-1+' Selected');
+            $('#text_categorygp1').text('All Categories');
         }else{
             // check_if[0].checked=true;
             reset_category_gp1();
-            $('#text_categorygp1').text('All');
+            $('#text_categorygp1').text('All Categories');
         }
     }else if(((parseInt(category_gp_select_count1)<parseInt(category_gp_len1))) && (parseInt(category_gp_select_count1)>0)){
         $('#text_categorygp1').text(parseInt(category_gp_select_count1)+' Selected');
@@ -1000,11 +1000,11 @@ $(document).on('click','.filter_check_machinegp2',function(event){
     if (parseInt(machine_gp_select_count2)>=parseInt(machine_gp_len2)) {
         if(check_if2[0].checked===true){
             check_if2[0].checked=true;
-            $('#text_machinegp2').text(parseInt(machine_gp_select_count2)-1+' Selected');
+            $('#text_machinegp2').text('All Machines');
         }else{
             // check_if[0].checked=true;
             reset_machine_gp2();
-            $('#text_machinegp2').text('All');
+            $('#text_machinegp2').text('All Machines');
         }
     }else if(((parseInt(machine_gp_select_count2)<parseInt(machine_gp_len2))) && (parseInt(machine_gp_select_count2)>0)){
         $('#text_machinegp2').text(parseInt(machine_gp_select_count2)+' Selected');
@@ -1049,11 +1049,11 @@ $(document).on('click','.filter_check_reasongp2',function(event){
     if (parseInt(reason_gp_select_count2)>=parseInt(reason_gp_len2)) {
         if(check_if2[0].checked===true){
             check_if2[0].checked=true;
-            $('#text_reasongp2').text(parseInt(reason_gp_select_count2)-1+' Selected');
+            $('#text_reasongp2').text('All Reasons');
         }else{
             // check_if[0].checked=true;
             reset_reason_gp2();
-            $('#text_reasongp2').text('All');
+            $('#text_reasongp2').text('All Reasons');
         }
     }else if(((parseInt(reason_gp_select_count2)<parseInt(reason_gp_len2))) && (parseInt(reason_gp_select_count2)>0)){
         $('#text_reasongp2').text(parseInt(reason_gp_select_count2)+' Selected');
@@ -1098,11 +1098,11 @@ $(document).on('click','.filter_check_categorygb2',function(event){
     if (parseInt(category_gp_select_count2)>=parseInt(category_gp_len2)) {
         if(check_if2[0].checked===true){
             check_if2[0].checked=true;
-            $('#text_categorygp2').text(parseInt(category_gp_select_count2)-1+' Selected');
+            $('#text_categorygp2').text('All Categories');
         }else{
             // check_if[0].checked=true;
             reset_category_gp2();
-            $('#text_categorygp2').text('All');
+            $('#text_categorygp2').text('All Categories');
         }
     }else if(((parseInt(category_gp_select_count2)<parseInt(category_gp_len2))) && (parseInt(category_gp_select_count2)>0)){
         $('#text_categorygp2').text(parseInt(category_gp_select_count2)+' Selected');
@@ -1151,7 +1151,7 @@ $(document).on('click','.filter_check_machinegp3',function(event){
     if (parseInt(machine_gp_select_count3)>=parseInt(machine_gp_len3)) {
         if(check_if3[0].checked===true){
             check_if3[0].checked=true;
-            $('#text_machinegp3').text(parseInt(machine_gp_select_count3)-1+' Selected');
+            $('#text_machinegp3').text('All Machines');
         }else{
             // check_if[0].checked=true;
             reset_machine_gp3();
@@ -1200,11 +1200,11 @@ $(document).on('click','.filter_check_reasongp3',function(event){
     if (parseInt(reason_gp_select_count3)>=parseInt(reason_gp_len3)) {
         if(check_if3[0].checked===true){
             check_if3[0].checked=true;
-            $('#text_reasongp3').text(parseInt(reason_gp_select_count3)-1+' Selected');
+            $('#text_reasongp3').text('All Reasons');
         }else{
             // check_if[0].checked=true;
             reset_reason_gp3();
-            $('#text_reasongp3').text('All');
+            $('#text_reasongp3').text('All Reasons');
         }
     }else if(((parseInt(reason_gp_select_count3)<parseInt(reason_gp_len3))) && (parseInt(reason_gp_select_count3)>0)){
         $('#text_reasongp3').text(parseInt(reason_gp_select_count3)+' Selected');
@@ -1249,11 +1249,11 @@ $(document).on('click','.filter_check_categorygb3',function(event){
     if (parseInt(category_gp_select_count3)>=parseInt(category_gp_len3)) {
         if(check_if3[0].checked===true){
             check_if3[0].checked=true;
-            $('#text_categorygp3').text(parseInt(category_gp_select_count3)-1+' Selected');
+            $('#text_categorygp3').text('All Categories');
         }else{
             // check_if[0].checked=true;
             reset_category_gp3();
-            $('#text_categorygp3').text('All');
+            $('#text_categorygp3').text('All Categories');
         }
     }else if(((parseInt(category_gp_select_count3)<parseInt(category_gp_len3))) && (parseInt(category_gp_select_count3)>0)){
         $('#text_categorygp3').text(parseInt(category_gp_select_count3)+' Selected');
@@ -1455,11 +1455,11 @@ $(document).on('click','.filter_check_machinegp1',function(event){
     if (parseInt(machine_gp_select_count1)>=parseInt(machine_gp_len1)) {
         if(check_if1[0].checked===true){
             check_if1[0].checked=true;
-            $('#text_machinegp1').text(parseInt(machine_gp_select_count1)-1+' Selected');
+            $('#text_machinegp1').text('All Machines');
         }else{
             // check_if[0].checked=true;
             reset_machine_gp1();
-            $('#text_machinegp1').text('All');
+            $('#text_machinegp1').text('All Machines');
         }
     }else if(((parseInt(machine_gp_select_count1)<parseInt(machine_gp_len1))) && (parseInt(machine_gp_select_count1)>0)){
         $('#text_machinegp1').text(parseInt(machine_gp_select_count1)+' Selected');

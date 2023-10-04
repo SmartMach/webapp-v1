@@ -911,7 +911,7 @@ function plopportunity(){
                         catch(err) {
                           var a = parseFloat(w.globals.seriesTotals[0]);
                         }
-                        return ("₹"+parseInt(a)).toLocaleString("en-IN");
+                        return ("₹"+parseInt(a).toLocaleString("en-IN"));
                       },
                     },
                   },

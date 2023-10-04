@@ -219,6 +219,9 @@ class Alert_Settings_Controller extends BaseController{
             $alert_id = $this->request->getvar('alert_id');
             $notify_as = $this->request->getvar('get_notify');
 
+            // $alert_id="S2-A10";
+            // $notify_as="work";
+
             $result = $this->data->getparticular_rec($alert_id,$notify_as);
 
             foreach ($result as $key => $value) {
@@ -226,6 +229,8 @@ class Alert_Settings_Controller extends BaseController{
             }
 
             echo json_encode($result);
+            // echo "<pre>";
+            // print_r($result);
         }
     }
 
