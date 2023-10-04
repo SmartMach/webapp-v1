@@ -1126,10 +1126,10 @@ $(document).on('click','.inbox_status',function(event){
         $('#status_val_lable').html('<i class="fa fa-stop" style="color: #7f7f7f"></i> <span style="color: #7f7f7f">OPEN</span>');
     }
     else if (index ==1) {
-        $('#status_val_lable').html('<i class="fa fa-stop" style="color: #4195f6"></i> <span style="color: #4195f6">IN PROGRESS</span>');
+        $('#status_val_lable').html('<i class="fa fa-stop" style="color: #005CBC"></i> <span style="color:#005CBC">IN PROGRESS</span>');
     }
     else{
-         $('#status_val_lable').html('<i class="fa fa-stop" style="color: #6ac950"></i> <span style="color: #6ac950">CLOSED</span>');
+         $('#status_val_lable').html('<i class="fa fa-stop" style="color: #01bb55"></i> <span style="color: #01bb55">CLOSED</span>');
     }    
 });
 
@@ -1143,10 +1143,10 @@ $(document).on('click','.inbox_status_edit',function(event){
         $('#status_val_edit_lable').html('<i class="fa fa-stop" style="color: #7f7f7f"></i> <span style="color: #7f7f7f">OPEN</span>');
     }
     else if (index ==1) {
-        $('#status_val_edit_lable').html('<i class="fa fa-stop" style="color: #4195f6"></i> <span style="color: #4195f6">IN PROGRESS</span>');
+        $('#status_val_edit_lable').html('<i class="fa fa-stop" style="color: #005CBC"></i> <span style="color: #005CBC">IN PROGRESS</span>');
     }
     else{
-         $('#status_val_edit_lable').html('<i class="fa fa-stop" style="color: #6ac950"></i> <span style="color: #6ac950">CLOSED</span>');
+         $('#status_val_edit_lable').html('<i class="fa fa-stop" style="color: #01bb55"></i> <span style="color: #01bb55">CLOSED</span>');
     }    
 });
 
@@ -1251,11 +1251,11 @@ $(document).on("click", ".info-work-order", function(event){
                 }
                 else if (st['status_id'] ==2) {
                     val = "IN PROGRESS";
-                    background_color = "#4195f6";
+                    background_color = "#005CBC";
                 }
                 else{
                     val = "CLOSED";
-                    background_color = "#6ac950";
+                    background_color = "#01bb55";
                 }
                 var elements = $();
                 if (st['status_id'] == res[0]['status_id']) {
@@ -1607,11 +1607,11 @@ $(document).on("click", ".edit-work-order", function(event){
                 }
                 else if (st['status_id'] ==2) {
                     val = "IN PROGRESS";
-                    background_color = "#4195f6";
+                    background_color = "#005CBC";
                 }
                 else{
                     val = "CLOSED";
-                    background_color = "#6ac950";
+                    background_color = "#01bb55";
                 }
                 var elements = $();
                 if (st['status_id'] == res[0]['status_id']) {
@@ -3283,10 +3283,10 @@ function getStatusList(){
                     status_color = "#7f7f7f";
                     status_val_rec = "OPEN";
                 }else if (item['status_id'] == 2) {
-                    status_color = "#4195f6";
+                    status_color = "#005CBC";
                     status_val_rec = "IN PROGRESS";
                 }else{
-                    status_color = "#6ac950";
+                    status_color = "#01bb55";
                     status_val_rec = "CLOSED";
                 }
 
@@ -3772,10 +3772,10 @@ function getFilterData(){
             d_date = `${d_date.getFullYear()}-${d_date.getMonth()+1}-${d_date.getDate()}`;
 
             if (c_date == d_date) {
-                due_date_color = "#4195f6";
+                due_date_color = "#005CBC";
                 due_date = "Today";
             }else if (new Date(d_date) < new Date(c_date)) {
-                due_date_color = "#ff0000";
+                due_date_color = "#C00000";
             }else{
                 due_date_color = "#black";
             }
@@ -3803,10 +3803,10 @@ function getFilterData(){
                 status_color = "#7f7f7f";
                 status_val_rec = "OPEN";
             }else if (item['status_id'] == 2) {
-                status_color = "#4195f6";
+                status_color = "#005CBC";
                 status_val_rec = "IN PROGRESS";
             }else{
-                status_color = "#6ac950";
+                status_color = "#01bb55";
                 status_val_rec = "CLOSED";
             }
             
