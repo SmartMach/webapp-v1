@@ -310,7 +310,7 @@ function selection_data(){
             async: false,
         },
         success:function(res){
-
+            
             var elements = $();
             var count =0;
             var startTime = "";
