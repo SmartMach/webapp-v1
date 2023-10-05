@@ -194,7 +194,7 @@ $session = \Config\Services::session();
 
                                 <!-- category dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <label class="multi_select_label" style="">Category</label>
+                                    <label class="multi_select_label" style="">Categories</label>
                                     <div class="filter_selectBox_categorygp" onclick="category_multiselect_gp()">
                                         <select  class="multi_select_categorygp" style="" >
                                             <option id="text_categorygp" style="">All Categories</option>
@@ -281,7 +281,7 @@ $session = \Config\Services::session();
 
                                 <!-- category dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <label class="multi_select_label" style="">Category</label>
+                                    <label class="multi_select_label" style="">Categories</label>
                                     <div class="filter_selectBox_categorygp1" onclick="category_multiselect_gp1()">
                                         <select  class="multi_select_categorygp1" style="" >
                                             <option id="text_categorygp1" style="">All Categories</option>
@@ -370,7 +370,7 @@ $session = \Config\Services::session();
 
                                 <!-- category dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <label class="multi_select_label" style="">Category</label>
+                                    <label class="multi_select_label" style="">Categories</label>
                                     <div class="filter_selectBox_categorygp2" onclick="category_multiselect_gp2()">
                                         <select  class="multi_select_categorygp2" style="" >
                                             <option id="text_categorygp2" style="">All Categories</option>
@@ -457,7 +457,7 @@ $session = \Config\Services::session();
 
                                 <!-- category dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <label class="multi_select_label" style="">Category</label>
+                                    <label class="multi_select_label" style="">Categories</label>
                                     <div class="filter_selectBox_categorygp3" onclick="category_multiselect_gp3()">
                                         <select  class="multi_select_categorygp3" style="" >
                                             <option id="text_categorygp3" style="">All Categories</option>
@@ -565,7 +565,7 @@ $session = \Config\Services::session();
 
                         <!-- dropdown checkbox category -->
                         <div class="box rightmar" style="margin-right: 0.5rem;" >
-                            <label class="multi_select_label" style="">Category</label>
+                            <label class="multi_select_label" style="">Categories</label>
                             <div class="filter_selectBox" onclick="category_drp()">
                             <select  class="multi_select_drp" style="" >
                                 <option id="text_category_drp" style="">All Categories</option>

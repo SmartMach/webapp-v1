@@ -527,7 +527,7 @@ $session = \Config\Services::session();
                 <div style="" class="availability_drp_div">
                     <!-- category multi select dropdown -->
                     <div class="box rightmar" style="margin-right: 0.5rem;" >
-                        <label class="multi_select_label" style="">Category</label>
+                        <label class="multi_select_label" style="">Categories</label>
                         <div class="filter_selectBox" onclick="category_drp2()">
                             <select  class="multi_select_drp" style="" >
                                 <option id="text_category_drp2" style="">All Categories</option>

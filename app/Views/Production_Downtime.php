@@ -683,7 +683,7 @@ input[type=number] {
                 </div>
               </div> -->
               <div class="box rightmar" style="margin-right: 0.5rem;" >
-                <label class="multi_select_label" style="">Category</label>
+                <label class="multi_select_label" style="">Categories</label>
                 <div class="filter_selectBox" onclick="category_drp()">
                   <select  class="multi_select_drp" style="" >
                     <option id="text_category_drp" style="text-align:center;">All Categories</option>
