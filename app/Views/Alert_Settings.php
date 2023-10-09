@@ -395,7 +395,8 @@
                                         <option value="planned_machine_off">Planned Machine Off</option>
                                         <option value="unplanned_machine_off">Unplanned Machine Off</option>
                                         <option value="total_downtime">Total Downtime</option>
-                                        <option value="total_unamed">Total Unamed</option>
+                                        <option value="total_unnamed_hour">Total Unnamed (hours)</option>
+                                        <option value="total_unnamed_count">Total Unnamed (count)</option>
                                         <option value="total_rejection">No Of Rejection</option>
                                         <option value="oee">OEE</option>
                                         <option value="teep">TEEP</option>
@@ -586,9 +587,9 @@
                                             </div>
                                             <input type="text" class="form-control alert_font_css input-field-lable input-field-lable-add" id="input_field_label" name="" >
                                         </div>
-                                        <div class="dropdown-div" style=" width: 20% !important">
+                                        <!-- <div class="dropdown-div" style=" width: 20% !important">
                                           <i class="fa fa-angle-down icon-style"></i>
-                                        </div>
+                                        </div> -->
                                       </div>
                                     </div>
                                     <span class="paddingm float-start validate" id="label_action_Err"></span> 
@@ -668,7 +669,6 @@
                             </div>
 
                             <div class="col-lg-6">
-                               
                                 <div class="wrapper_cc">
                                     <div class="content_cc">
                                         <ul class="parent_div_input_check_cc default_font_size" style="position:relative;">
@@ -751,7 +751,8 @@
                                         <option value="planned_machine_off">Planned Machine Off</option>
                                         <option value="unplanned_machine_off">Unplanned Machine Off</option>
                                         <option value="total_downtime">Total Downtime</option>
-                                        <option value="total_unamed">Total Unamed</option>
+                                        <option value="total_unnamed_hour">Total Unnamed (hours)</option>
+                                        <option value="total_unnamed_count">Total Unnamed (count)</option>
                                         <option value="total_rejection">No Of Rejection</option>
                                         <option value="oee">OEE</option>
                                         <option value="teep">TEEP</option>
@@ -934,9 +935,9 @@
                                             </div>
                                             <input type="text" class="form-control alert_font_css input-field-lable input-field-lable-edit" id="input-field-lable-edit" name="" >
                                         </div>
-                                        <div class="dropdown-div" style=" width: 20% !important">
+                                        <!-- <div class="dropdown-div" style=" width: 20% !important">
                                           <i class="fa fa-angle-down icon-style"></i>
-                                        </div>
+                                        </div> -->
                                       </div>
                                     </div>
                                     <span class="paddingm float-start validate" id="label_edit_Err"></span> 
@@ -1008,7 +1009,7 @@
                                     <div class="content_edit">
                                         <ul class="edit_parent_div_input_check" style="position:relative;">
                                             <input type="text" class="input_check_to_edit alert_font_css default_font_size " placeholder="To Email" spellcheck="false">
-                                            <span style="position:absolute;margin-top:-1rem;font-size:12px;padding:1px;margin-left:1rem;background:white;color:#8c8c8c;" class="edit_email_label">To Email</span>
+                                            <span style="position:absolute;margin-top:-1rem;font-size:12px;padding:1px;margin-left:1rem;background:white;color:#8c8c8c;" class="edit_email_label">To Email <span class="paddingm validate">*</span></span>
                                         </ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_check_to_edit_Err"></span>
@@ -1044,7 +1045,7 @@
                                     <div class="input-box" >
                                         <input type="text" class="form-control alert_font_css default_font_size default_input_height" id="edit_alert_mail_notes"
                                             name="edit_alert_mail_notes">
-                                        <label for="edit_alert_mail_notes" class="input-padding">Email Body</label>
+                                        <label for="edit_alert_mail_notes" class="input-padding">Email Body <span class="paddingm validate">*</span></label>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_email_edit_note_Err"></span>
                                 </div>
@@ -1094,7 +1095,57 @@
 
 <script type="text/javascript">
 
+// get metrics in user format
+function get_materics_userformat(metrics){
+    var result="";
+    switch (metrics) {
+        case 'planned_downtime':
+            result = "Planned Downtime";
+            break;
+    
+        case 'unplanned_downtime':
+            result = "Unplanned Downtime";
+            break;
 
+        case 'planned_machine_off':
+            result = "Planned Machine Off";
+            break;
+        
+        case 'unplanned_machine_off':
+            result = "Unplanned Machine Off";
+            break;
+        
+        case 'total_downtime':
+            result = "Total Downtime";
+            break;
+        
+        case 'total_unnamed_hour':
+            result = "Total Unnamed";
+            break;
+
+        case 'total_unnamed_count':
+            result="Total Unnamed";
+            break;
+        
+        case 'total_rejection':
+            result = "Total Rejection";
+            break;
+
+        case 'oee':
+            result ="OEE";
+            break;
+        
+        case 'teep':
+            result = "TEEP";
+            break;
+
+        case 'ooe':
+            result = "OOE";
+            break;
+    }
+
+    return result;
+}
 
 // add  alert settings module if change metrics change text 
 $(document).on('change','.add_alert_metrics_change_text',function(event){
@@ -1138,8 +1189,11 @@ function get_metrics_limit_val(metrics_val){
             res = "Hours";
             break;
         
-        case 'total_unamed':
+        case 'total_unnamed_hour':
             res = "Hours";
+            break;
+        case 'total_unnamed_count':
+            res="Count";
             break;
         
         case 'total_rejection':
@@ -2030,14 +2084,14 @@ function add_assignee(t) {
             var pc = inputAlertcc(cc_tmp_email);
             var note_error = 0; 
             if (notify_as==="all") { 
-                if (f!="" || g!="" || h!="" || i!="" || j!="" || nt!="" || pc!="") {
+                if (f!="" || g!="" || h!="" || i!="" || j!="" || nt!="") {
                     $('#inputAlertworktypeErr').html(f);
                     $('#inputAlertworktitleErr').html(g);
                     $('#inputAlertdeudaysErr').html(h);
                     $('#input_email_sub_Err').html(i);
                     $('#input_email_note_Err').html(j);
                     // $('#label_action_Err').html(ml);
-                    $('#input_check_cc_Err').html(pc);
+                    // $('#input_check_cc_Err').html(pc);
                     $('#input_check_to_Err').html(nt);
                     // $('#label_action_Err').html(la);
 
@@ -2228,6 +2282,11 @@ function add_assignee(t) {
                                 mail_img = "none";
                                 work_img = "none";
                             }
+
+                            var get_materics_value = get_metrics_limit_val(item.metrics);
+                            var materics_value_user_format = get_materics_userformat(item.metrics);
+                            console.log(item.metrics);
+                            console.log("metrics:\t"+materics_value_user_format);
                             var chnage_letter_sm_up = item.user_data.fl_split;
                             element = element.add('<div id="settings_div">'
                                 +'<div class="row paddingm">'
@@ -2244,7 +2303,7 @@ function add_assignee(t) {
                                 +'<p>'+item.part_count+' Parts</p>'
                                 +'</div>'
                                 +' <div class="col-sm-1 col marleft" style="width:22%;">'
-                                +'<p>'+item.metrics+' '+item.relation+' '+item.value_val+' In Past '+item.past_hour+' Hours</p>'
+                                +'<p>'+materics_value_user_format+' '+item.relation+' '+item.value_val+' '+get_materics_value+' In Past '+item.past_hour+' Hours</p>'
                                 +'</div>'
                                 +' <div class="col-sm-1 col marleft img_div_out" style="">'
                                 +'<img src="<?php echo base_url('assets/img/mail_demo.png'); ?>" alt="" class="img_div_css" style="display:'+mail_img+'"> <img src="<?php echo base_url('assets/img/issue.png'); ?>" alt="" class="img_div_Css1" style="display:'+work_img+'"> </div>'
@@ -2405,7 +2464,18 @@ function add_assignee(t) {
                     console.log(to_email_arr);
                     console.log(cc_email_arr);
                     to_email_get_arr(to_email_arr);
-                    cc_email_get_arr(cc_email_arr);
+                    console.log(cc_email_arr);
+                    if (parseInt(cc_email_arr.length)<=1) {
+                        console.log("empty cc email");
+                        if (cc_email_arr[0]=="empty") {
+                            document.querySelector('.edit_parent_div_input_check_cc').querySelectorAll("li").forEach(li => li.remove());
+                        }else{
+                            cc_email_get_arr(cc_email_arr);
+                        }
+                    }else{
+                        cc_email_get_arr(cc_email_arr);
+                    }
+                    
                     $('#edit_alert_mail_subject').val(res[0]['add_alert_subject']);
                     $('#edit_alert_mail_notes').val(res[0]['alert_notes']);
 
@@ -2729,18 +2799,18 @@ function add_assignee(t) {
             var i = inputAlert_mail_sub(add_alert_subject);
             var j = inputAlert_email_note(add_alert_notes);
             var k = inputAlertto(input_check_to);
-            var l = inputAlertcc(input_check_cc);
+            // var l = inputAlertcc(input_check_cc);
 
             var note_error = 0; 
             if (notify_as==="all") { 
-                if (f!="" || g!="" || h!="" || i!="" || j!="" || k!="" || l!="") {
+                if (f!="" || g!="" || h!="" || i!="" || j!="" || k!="") {
                     $('#inputAlert_edit_worktypeErr').html(f);
                     $('#inputAlert_edit_worktitleErr').html(g);
                     $('#inputAlert_edit_deudaysErr').html(h);
                     $('#input_email_edit_sub_Err').html(i);
                     $('#input_email_edit_note_Err').html(j);
                     $('#input_check_to_edit_Err').html(k);
-                    $('#input_check_cc_edit_Err').html(l);
+                    // $('#input_check_cc_edit_Err').html(l);
                     // $('#label_edit_Err').html(lae);
                 }else{
                   
