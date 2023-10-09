@@ -381,6 +381,7 @@
                         </div>
                     </div>
                     <div class=" row d-flex flex-row mb-2">
+
                         <div class="" style="width:9.5%;padding:0;display:flex;flex-direction:row;align-items:center;"><span style="font-size:12px;">Alert Criteria</span></div>
                         <div class="" style="width:90.4%;padding:0;"><hr></div>
                     </div>
@@ -492,7 +493,7 @@
                         </div>
                     </div>
 
-                    <div class=" row d-flex flex-row mb-2">
+                    <div class=" row mt-2 d-flex flex-row mb-2">
                         <div class="" style="width:8%;padding:0;display:flex;flex-direction:row;align-items:center;"><span style="font-size:12px;">Notify as</span></div>
                         <div class="" style="width:91.4%;padding:0;"><hr></div>
                     </div>
@@ -661,7 +662,7 @@
                                 <div class="wrapper">
                                     <div class="content">
                                         <ul class="parent_div_input_check " style="position:relative;">
-                                        <input type="email" class="input_check_to alert_font_css default_font_size" id="input_check_to" placeholder="To Email" spellcheck="false">
+                                        <input type="email" class="input_check_to alert_font_css default_font_size" id="input_check_to"  spellcheck="false">
                                         <span class="to_email_label" style="position:absolute;margin-top:-1rem;font-size:12px;color:#8c8c8c;background:white;padding:1px;margin-left:1rem;">To Email <span class="paddingm validate">*</span></span></ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_check_to_Err"></span>
@@ -672,7 +673,7 @@
                                 <div class="wrapper_cc">
                                     <div class="content_cc">
                                         <ul class="parent_div_input_check_cc default_font_size" style="position:relative;">
-                                        <input type="email" class="input_check_cc alert_font_css default_font_size" id="input_check_cc" placeholder="Cc Email" spellcheck="false">
+                                        <input type="email" class="input_check_cc alert_font_css default_font_size" id="input_check_cc"  spellcheck="false">
                                         <span style="position:absolute;margin-top:-1rem;font-size:12px;color:#8c8c8c;background:white;padding:1px;margin-left:1rem;">Cc Email</span></ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_check_cc_Err"></span>
@@ -735,7 +736,7 @@
                         </div>
                     </div>
 
-                    <div class=" row d-flex flex-row mb-2">
+                    <div class=" row  d-flex flex-row mb-2">
                         <div class="" style="width:9.5%;padding:0;display:flex;flex-direction:row;align-items:center;"><span style="font-size:12px;">Alert Criteria</span></div>
                         <div class="" style="width:90.4%;padding:0;"><hr></div>
                     </div>
@@ -845,7 +846,7 @@
                         </div>
                     </div>
 
-                    <div class=" row d-flex flex-row mb-2">
+                    <div class=" row mt-2 d-flex flex-row mb-2">
                         <div class="" style="width:8%;padding:0;display:flex;flex-direction:row;align-items:center;"><span style="font-size:12px;">Notify as</span></div>
                         <div class="" style="width:91.4%;padding:0;"><hr></div>
                     </div>
@@ -1008,7 +1009,7 @@
                                 <div class="wrapper_edit">
                                     <div class="content_edit">
                                         <ul class="edit_parent_div_input_check" style="position:relative;">
-                                            <input type="text" class="input_check_to_edit alert_font_css default_font_size " placeholder="To Email" spellcheck="false">
+                                            <input type="text" class="input_check_to_edit alert_font_css default_font_size "  spellcheck="false">
                                             <span style="position:absolute;margin-top:-1rem;font-size:12px;padding:1px;margin-left:1rem;background:white;color:#8c8c8c;" class="edit_email_label">To Email <span class="paddingm validate">*</span></span>
                                         </ul>
                                     </div>
@@ -1021,7 +1022,7 @@
                                 <div class="wrapper_cc_edit">
                                     <div class="content_cc_edit">
                                         <ul class="edit_parent_div_input_check_cc" style="position:relative;">
-                                            <input type="text" class="input_check_cc_edit alert_font_css default_font_size" placeholder="Cc Email" spellcheck="false">
+                                            <input type="text" class="input_check_cc_edit alert_font_css default_font_size"  spellcheck="false">
                                             <span style="position:absolute;margin-top:-1rem;font-size:12px;padding:1px;margin-left:1rem;background:white;color:#8c8c8c;">Cc Email</span>
                                         </ul>
                                     </div>
