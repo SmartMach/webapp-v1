@@ -398,7 +398,7 @@
                                         <option value="total_downtime">Total Downtime</option>
                                         <option value="total_unnamed_hour">Total Unnamed (hours)</option>
                                         <option value="total_unnamed_count">Total Unnamed (count)</option>
-                                        <option value="total_rejection">No Of Rejection</option>
+                                        <option value="total_rejection">Total Rejection</option>
                                         <option value="oee">OEE</option>
                                         <option value="teep">TEEP</option>
                                         <option value="ooe">OOE</option>
@@ -754,7 +754,7 @@
                                         <option value="total_downtime">Total Downtime</option>
                                         <option value="total_unnamed_hour">Total Unnamed (hours)</option>
                                         <option value="total_unnamed_count">Total Unnamed (count)</option>
-                                        <option value="total_rejection">No Of Rejection</option>
+                                        <option value="total_rejection">Total Rejection</option>
                                         <option value="oee">OEE</option>
                                         <option value="teep">TEEP</option>
                                         <option value="ooe">OOE</option>
