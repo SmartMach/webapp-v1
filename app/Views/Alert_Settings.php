@@ -536,31 +536,14 @@
                         <div class="row mb-4">
                             <div class="col-lg-3" style="margin:auto;">
                               
-                                <!-- temporary hide  -->
-                                <!-- <select class="vodiapicker">
-                                    <option value="low" id="low_default" data-thumbnail="<?php echo base_url('assets/img/low.png'); ?>">Low</option>
-                                    <option value="medium" data-thumbnail="<?php echo base_url('assets/img/medium.png'); ?>">Medium</option>
-                                    <option value="high" data-thumbnail="<?php echo base_url('assets/img/high.png'); ?>">High</option>                    
-                                </select>
-                                <div class="lang-select">
-                                    <span class="priority_label_txt" style="">Priority  <span class="paddingm validate">*</span></span>
-                                    <div class="btn-select" value="">
-                                        <!-- <div style="display:flex;flex-direction:row;width:20%;justify-cotnent:center;align-items:center;">
-                                            <i class="fa-solid fa-angle-down"></i>
-                                        </div> --
-                                    </div>
-                                    <div class="b">
-                                        <ul id="a"></ul>
-                                    </div>
-                                </div> -->
                                 <div class="lang-select">
                                     <span class="priority_label_txt" style="">Priority  <span class="paddingm validate">*</span></span>
                                     <div class="select3">
                                         <div class="selectBtn3 priority_get_data_add default_font_size" data-type="firstOption"></div>
                                         <div class="selectDropdown3">
-                                            <div class="option3 default_font_size" data-type="firstOption" onclick="icon_drop(this)"><i class='fas fa-angle-double-down' style='font: size 18px;; width:20px; margin-top: 5px; color: #2196F3;'></i>&nbsp;Low</div>
-                                            <div class="option3 default_font_size" data-type="secondOption" onclick="icon_drop(this)"><i style='font: size 18px;; color:#FBB80F; margin-top: 5px;' class='fas'>&#xf52c;</i>&nbsp;Medium</div>
-                                            <div class="option3 default_font_size" data-type="thirdOption" onclick="icon_drop(this)"><i class='fas fa-angle-double-up' style='font: size 18px;; color:#E4021B; margin-top: 5px;'></i>&nbsp;High</div>
+                                            <div class="option3 default_font_size" data-type="firstOption" onclick="icon_drop(this)"><i class='fas fa-angle-double-down' style=' width:20px; margin-top: 5px; color: #2196F3;'></i>&nbsp;Low</div>
+                                            <div class="option3 default_font_size" data-type="secondOption" onclick="icon_drop(this)"><i style=' color:#FBB80F; margin-top: 5px;width:20px;' class='fas'>&#xf52c;</i>&nbsp;Medium</div>
+                                            <div class="option3 default_font_size" data-type="thirdOption" onclick="icon_drop(this)"><i class='fas fa-angle-double-up' style=' color:#E4021B; margin-top: 5px;width:20px;'></i>&nbsp;High</div>
                                         </div>
                                     </div>
                                 </div>  
@@ -888,24 +871,6 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col-lg-3" style="margin:auto;">
-                              
-                                <!-- <select class="vodiapicker_edit">
-                                    <option value="low" id="low_default" data-thumbnail-edit="<?php echo base_url('assets/img/low.png'); ?>">Low</option>
-                                    <option value="medium" ata-thumbnail-edit="<?php echo base_url('assets/img/medium.png'); ?>">Medium</option>
-                                    <option value="high" ata-thumbnail-edit="<?php echo base_url('assets/img/high.png'); ?>">High</option>                    
-                                </select>
-                                
-                                <div class="lang-select_edit">
-                                    <span class="priority_label_txt_edit" style="">Priority  <span class="paddingm validate">*</span></span>
-                                    <div class="btn-select_edit" value="">
-                                        <!-- <div style="display:flex;flex-direction:row;width:20%;justify-cotnent:center;align-items:center;">
-                                            <i class="fa-solid fa-angle-down"></i>
-                                        </div> --
-                                    </div>
-                                    <div class="b_edit">
-                                        <ul id="a_edit"></ul>
-                                    </div>
-                                </div> -->
 
                                 <div class="lang-select">
                                     <span class="priority_label_txt" style="">Priority  <span class="paddingm validate">*</span></span>
@@ -1096,6 +1061,19 @@
 
 <script type="text/javascript">
 
+
+// gloabl variables 
+
+// add alert machine drp variable
+var add_alert_machine_txt = false;
+// add alert part drp variable
+var add_alert_part_drp = false;
+
+// priority dropdown variable
+var  clicks_count = 0;
+
+
+
 // get metrics in user format
 function get_materics_userformat(metrics){
     var result="";
@@ -1238,6 +1216,7 @@ function add_assignee(t) {
         var data_txt = "insert";
         reset_all_input(data_txt);
         $('#addAlert_modal').modal('show');
+        clicks_count = 0;
     }
 
 
@@ -1310,7 +1289,7 @@ function add_assignee(t) {
 
   
     // add alert machine dropdown
-    var add_alert_machine_txt = false;
+  
     function add_alert_machine(){
         // alert('ko');
         if (!add_alert_machine_txt) {
@@ -1323,7 +1302,7 @@ function add_assignee(t) {
     }
 
     // add alert parts dropdown
-    var add_alert_part_drp = false;
+  
     function add_alert_part(){
         if (!add_alert_part_drp) {
             $('.add_alert_part_drp').css('display','block');
@@ -2198,9 +2177,6 @@ function add_assignee(t) {
     });
 
 
-    function alert_ajax_func(){
-        console.log("ajax calling");
-    }
 
     // retrive function records display function
     function retrive_alert_data(start_index,end_index){
@@ -2611,6 +2587,8 @@ function add_assignee(t) {
 
                 $('.edit_alert_btn_submit').attr('alert_data_id',res[0]['alert_id']);
 
+
+               
                 $('#edit_alert').modal('show');
             },
             error:function(er){
@@ -2967,13 +2945,21 @@ function add_assignee(t) {
 
 // priority dropdown
 // for select2 priority dropdown
-var  clicks_count = 0;
+
 $(".selectBtn3").click(function(){
-    // console.log('selectbtn3');
-    // var class_Arr = $('.selectDropdown3').attr('class');
+    
     clicks_count = clicks_count+1;
-    // console.log(clicks_count);
-    if (parseInt(clicks_count)%2==0) {
+    console.log(clicks_count);
+    console.log($('.selectDropdown3').css('display'));
+    if (parseInt(clicks_count)===1) {
+        $('.selectDropdown3').removeClass('new_4');
+        $('.email_che').toggleClass('checked');
+        $('.parent_div_input_check').css('position','inherit');
+        $('.to_email_label').css('display','none');
+      
+    }
+   
+    if ($('.selectDropdown3').css('display')==="block") {
         $('.selectDropdown3').removeClass('new_4');
         $('.email_che').removeClass('checked');
         $('.parent_div_input_check').css('position','relative');
@@ -2995,22 +2981,18 @@ $(".select_edit_priority_btn").click(function(){
     console.log("class array");
     console.log(class_arr);
     var get_arr = class_arr.split(" ");
+    console.log($('.select_edit_drp_priority').css('display'));
+
     if (parseInt(get_arr.length)>2) {
-        // $('.select_edit_drp_priority').removeClass('select_new_edit_priority');
-        // $('.email_checkeck_edit').removeClass('checked');
         $('.edit_email_label').css('display','inline');
         $('.edit_parent_div_input_check').css('position','relative');
     }else{
-      
         $('.edit_email_label').css('display','none');
         $('.edit_parent_div_input_check').css('position','inherit');
     }
     $('.select_edit_drp_priority').toggleClass('select_new_edit_priority');
     $('.email_checkeck_edit').toggleClass('checked');
   
-    // $('.edit_email_label').css('display','none');
-    // $('.edit_parent_div_input_check').css('position','inherit');
-
 });
 
 
@@ -3348,7 +3330,7 @@ function reset_all_input(data_txt){
         $('#email_check_toggle').prop('checked',false);
         $('#add_alert_work_type').val('');
         $('#add_alert_work_title').val('');
-        $('.selectBtn3').html('<div class="selectBtn3 priority_get_data_add" data-type="firstOption"> <i class="fas fa-angle-double-down" style="font: size 18px; width:18px; color: #2196F3; margin-top: 5px;margin-left:0.5rem;margin-right:0.5rem;"></i>&nbsp;Low</div>');
+        $('.selectBtn3').html('<div class="selectBtn3 priority_get_data_add" data-type="firstOption"> <i class="fas fa-angle-double-down" style="font: size 18px; width:20px; color: #2196F3; margin-top: 5px;margin-left:0.5rem;margin-right:0.5rem;"></i>&nbsp;Low</div>');
         $('.selectBtn3').attr('data-val', '3');
         $('.lable-div-add').empty();
         $('#add_alert_deu_days').val('');
@@ -3415,9 +3397,6 @@ function reset_all_input(data_txt){
 
 
     }
-
-
-
 }
 
 </script>
