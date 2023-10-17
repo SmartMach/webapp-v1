@@ -10,14 +10,7 @@
 
 </head>
 <style>
-    /* select 3 */
-/* .select3 {
-  position: relative;
-  margin-bottom: 15px;
-  width: 250px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-} */
-
+  
 
 .email_che.checked{
     z-index: -1;
@@ -170,6 +163,120 @@
 .lable_items{
     margin:2px 2.5px;
 }
+
+
+/* priority dropdown css change custome dropdown */
+.prioirty_label_txt{
+            position: absolute;
+            margin-top: -0.5rem;
+            margin-left: 0.8rem;
+            z-index: 1;
+            padding-left: 0.2rem;
+            padding-right: 0.2rem;
+            background-color: whitesmoke;
+            font-size: 12px;
+            color: #8c8c8c;
+            font-family: 'Roboto' sans-serif;
+
+        }
+
+        .priority_drp_click_div{
+            height: 2.3rem;
+            /* margin-top: 0.5rem; */
+            position: relative;
+            width:max-content;
+            font-size: 12px;
+            font-weight: 500;
+            color: #8c8c8c;
+            border-radius: 0.25rem;
+        }
+
+        .priority_drp_select_div{
+            height: 2.3rem;
+            position: relative;
+            min-width: 10rem;
+            font-size: 12px;
+            font-weight: 500;
+            color: #8c8c8c;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            padding-left: 0.3rem;
+            background-color: white;
+        }
+
+        .priority_overselect_drp{
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+        .add_priority_drp_option{
+            border: 1px solid #dadada;
+            z-index: 250;
+            position: absolute;
+            background-color: white;
+            border-radius: 0.25rem;
+            min-width: 9.7rem;
+            min-height: max-content;
+            max-height: 10rem;
+        }
+
+        .edit_priority_drp_option{
+            border: 1px solid #dadada;
+            z-index: 250;
+            position: absolute;
+            background-color: white;
+            border-radius: 0.25rem;
+            min-width: 9.7rem;
+            min-height: max-content;
+            max-height: 10rem;
+        }
+
+
+
+        /* image dropdown row css */
+        .img_drp_row{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem;
+        }
+        .row_flex_img{
+            width: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+        }
+        .row_flex_txt{
+            width: 80%;
+            font-size: 12px;
+        }
+
+        .img_alignment{
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* div hovering effect */
+        .img_drp_row:hover{
+            background-color: #eff7ff;
+            cursor: pointer;
+        }
+
+        /* select dropdown selected dropdown */
+        .priority_selected_val{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100%;
+        }
+
+
+        /* priority dropdown css end */
 </style>
 <br>
 <br>
@@ -434,7 +541,7 @@
                                 <span class="paddingm float-start validate" id="inputAlertValueErr"></span> 
                             </div>
                         </div>
-                        <div class="col-lg-1" style="display:flex;flex-direction:row;padding:0;justify-content:center;align-items:end;font-size:12px">
+                        <div class="col-lg-1" style="display:flex;flex-direction:row;padding:0;justify-content:center;align-items:end;font-size:12px;height:2.4rem;">
                             <span style="font-size:12px;" id="add_alert_change_txt_metrics">Units</span>
                         </div>
                     
@@ -536,17 +643,52 @@
                         <div class="row mb-4">
                             <div class="col-lg-3" style="margin:auto;">
                               
-                                <div class="lang-select">
-                                    <span class="priority_label_txt" style="">Priority  <span class="paddingm validate">*</span></span>
-                                    <div class="select3">
-                                        <div class="selectBtn3 priority_get_data_add default_font_size" data-type="firstOption"></div>
-                                        <div class="selectDropdown3">
-                                            <div class="option3 default_font_size" data-type="firstOption" onclick="icon_drop(this)"><i class='fas fa-angle-double-down' style=' width:20px; margin-top: 5px; color: #2196F3;'></i>&nbsp;Low</div>
-                                            <div class="option3 default_font_size" data-type="secondOption" onclick="icon_drop(this)"><i style=' color:#FBB80F; margin-top: 5px;width:20px;' class='fas'>&#xf52c;</i>&nbsp;Medium</div>
-                                            <div class="option3 default_font_size" data-type="thirdOption" onclick="icon_drop(this)"><i class='fas fa-angle-double-up' style=' color:#E4021B; margin-top: 5px;width:20px;'></i>&nbsp;High</div>
+                            
+
+                                <div class="input-box" style="position:relative;">
+                                    <label class="prioirty_label_txt" >Priority <span class="paddingm validate">*</span></label>
+                                    <div class="priority_drp_click_div" onclick="add_alert_priority_drp(this)">
+                                        <div class="priority_drp_select_div">
+                                            <div  class="priority_selected_val" id="priority_selected_id" priority-data-val="3">
+                                                <div class="row_flex_img ">
+                                                    <i class="fa fa-angle-double-down img_alignment" style="color:#2196F3;"></i>
+                                                </div>
+                                                <div class="row_flex_txt d-flex flex-row justify-content-between align-items-center">
+                                                    <span>Low</span>
+                                                    <i class="fa fa-angle-down" style="color: #8d8686;padding-right: 0.4rem;font-size: 14px;"></i>
+                                                </div>
+                                            </div>
                                         </div>
+                                        <div class="priority_overselect_drp"></div>
                                     </div>
-                                </div>  
+                                    <div class="add_priority_drp_option add_priority_drp_opt d-none" >
+                                        <div class="img_drp_row priority_val_get" priority-data-val="1">
+                                            <div class="row_flex_img ">
+                                                <i class="fa fa-angle-double-up img_alignment" style="color:#E4021B;"></i>
+                                            </div>
+                                            <div class="row_flex_txt">
+                                                <span>High</span>
+                                            </div>
+                                        </div>
+                                        <div class="img_drp_row priority_val_get" priority-data-val="2">
+                                            <div class="row_flex_img ">
+                                                <i class="fa fa-equals img_alignment" style="color:#FBB80F;">=</i>
+                                            </div>
+                                            <div class="row_flex_txt">
+                                                <span>Medium</span>
+                                            </div>
+                                        </div>
+                                        <div class="img_drp_row priority_val_get" priority-data-val="3">
+                                            <div class="row_flex_img ">
+                                                <i class="fa fa-angle-double-down img_alignment" style="color: #2196F3;"></i>
+                                            </div>
+                                            <div class="row_flex_txt">
+                                                <span>Low</span>
+                                            </div>
+                                        </div>
+                                            
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-lg-4">
                                 <!-- <div class="box rightmar" style="margin-right: 0.5rem;">
@@ -772,7 +914,7 @@
                                 <span class="paddingm float-start validate" id="inputAlert_edit_ValueErr"></span>
                             </div>
                         </div>
-                        <div class="col-lg-1" style="display:flex;flex-direction:row;padding:0;justify-content:center;align-items:end;font-size:12px">
+                        <div class="col-lg-1" style="display:flex;flex-direction:row;padding:0;justify-content:center;align-items:end;font-size:12px;height:2.4rem;">
                             <span style="font-size:12px;" id="edit_metrics_val_limit_txt">Units</span>
                         </div>
                     </div>
@@ -872,17 +1014,51 @@
                         <div class="row mb-4">
                             <div class="col-lg-3" style="margin:auto;">
 
-                                <div class="lang-select">
-                                    <span class="priority_label_txt" style="">Priority  <span class="paddingm validate">*</span></span>
-                                    <div class="select_edit_priority">
-                                        <div class="select_edit_priority_btn priority_get_data_add default_font_size" data-type="firstOption"> <i class='fas fa-angle-double-down' style='font: size 18px; width:18px; color: #2196F3; margin-top: 5px;'></i>&nbsp;Low</div>
-                                        <div class="select_edit_drp_priority">
-                                            <div class="select_edit_priority_option default_font_size" data-type="firstOption" onclick="icon_drop_edit_priority(this)"><i class='fas fa-angle-double-down default_font_size'  style='font: size 18px;; width:20px; margin-top: 5px; color: #2196F3;'></i>&nbsp;Low</div>
-                                            <div class="select_edit_priority_option default_font_size" data-type="secondOption" onclick="icon_drop_edit_priority(this)"><i style='font: size 18px;; color:#FBB80F; margin-top: 5px;' class='fas default_font_size'>&#xf52c;</i>&nbsp;Medium</div>
-                                            <div class="select_edit_priority_option default_font_size" data-type="thirdOption" onclick="icon_drop_edit_priority(this)"><i class='fas fa-angle-double-up default_font_size' style='font: size 18px;; color:#E4021B; margin-top: 5px;'></i>&nbsp;High</div>
+                              
+                                <div class="input-box" style="position:relative;">
+                                    <label class="prioirty_label_txt" >Priority <span class="paddingm validate">*</span></label>
+                                    <div class="priority_drp_click_div" onclick="edit_alert_priority_drp(this)">
+                                        <div class="priority_drp_select_div">
+                                            <div  class="priority_selected_val" id="priority_selected_edit_id" priority-data-val-edit="3">
+                                                <div class="row_flex_img ">
+                                                    <i class="fa fa-angle-double-down img_alignment" style="color:#2196F3;"></i>
+                                                </div>
+                                                <div class="row_flex_txt d-flex flex-row justify-content-between align-items-center">
+                                                    <span>Low</span>
+                                                    <i class="fa fa-angle-down img_alignment" style="color: #8d8686;padding-right: 0.4rem;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="priority_overselect_drp"></div>
+                                    </div>
+                                    <div class="edit_priority_drp_option edit_priority_drp_opt d-none" >
+                                        <div class="img_drp_row edit_priority_val_get" priority-data-val-edit="1">
+                                            <div class="row_flex_img ">
+                                                <i class="fa fa-angle-double-up img_alignment" style="color:#E4021B;"></i>
+                                            </div>
+                                            <div class="row_flex_txt">
+                                                <span>High</span>
+                                            </div>
+                                        </div>
+                                        <div class="img_drp_row edit_priority_val_get" priority-data-val-edit="2">
+                                            <div class="row_flex_img ">
+                                                <i class="fa fa-equals img_alignment" style="color:#FBB80F;">=</i>
+                                            </div>
+                                            <div class="row_flex_txt">
+                                                <span>Medium</span>
+                                            </div>
+                                        </div>
+                                        <div class="img_drp_row edit_priority_val_get" priority-data-val-edit="3">
+                                            <div class="row_flex_img ">
+                                                <i class="fa fa-angle-double-down img_alignment" style="color: #2196F3;"></i>
+                                            </div>
+                                            <div class="row_flex_txt">
+                                                <span>Low</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>  
+                                </div>
+
                             </div>
                             <div class="col-lg-4">
                                 <!-- <div class="edit_wrapper_label">
@@ -1074,6 +1250,135 @@ var  clicks_count = 0;
 
 
 
+// prioirty dropdown new function work
+
+        //  add alert priority dropdown
+        function add_alert_priority_drp(t){
+           $('.add_priority_drp_opt').addClass('d-none');
+           if ($('.add_priority_drp_option').css('display')=="none") {
+                $('.add_priority_drp_option').removeClass('d-none');
+                $('.add_priority_drp_option').addClass('d-inline');
+           }else{
+                $('.add_priority_drp_option').removeClass('d-inline');
+                $('.add_priority_drp_option').addClass('d-none');
+           }
+
+           $('.add_priority_drp_option').click(function(){
+                $('.add_priority_drp_option').removeClass('d-inline');
+                $('.add_priority_drp_option').addClass('d-none');
+           });
+          
+        }
+
+        // edit alert priority dropdown
+        function edit_alert_priority_drp(t){
+
+            $('.edit_priority_drp_opt').addClass('d-none');
+           if ($('.edit_priority_drp_option').css('display')=="none") {
+                $('.edit_priority_drp_option').removeClass('d-none');
+                $('.edit_priority_drp_option').addClass('d-inline');
+           }else{
+                $('.edit_priority_drp_option').removeClass('d-inline');
+                $('.edit_priority_drp_option').addClass('d-none');
+           }
+
+            $('.edit_priority_drp_option').click(function(){
+                $('.edit_priority_drp_option').removeClass('d-inline');
+                $('.edit_priority_drp_option').addClass('d-none');
+            });
+        }
+
+        // add alert priority dropdown option click selection function
+        $(document).on('click','.priority_val_get',function(){
+            // event.preventDefault();
+            var find_row_val = $('.priority_val_get');
+            var find_priority_index = find_row_val.index($(this));
+            $('#priority_selected_id').empty();
+            var ele = $();
+            var priority_val=3;
+
+            if (find_priority_index===1) {
+                ele = ele.add('<div class="row_flex_img" priority-data-val="2">'
+                    +'<i class="fa fa-equals img_alignment" style="color:#FBB80F;">=</i>'
+                    +'</div>'
+                    +'<div class="row_flex_txt d-flex flex-row justify-content-between">'
+                        +'<span>Medium</span>'
+                        +'<i class="fa fa-angle-down img_alignment" style="color: #8d8686;padding-right: 0.4rem;"></i>'
+                +'</div>'); 
+                priority_val=2;
+                   
+            }else if(find_priority_index ===2){
+                ele = ele.add('<div class="row_flex_img" priority-data-val="3">'
+                    +'<i class="fa fa-angle-double-down img_alignment" style="color:#2196F3;"></i>'
+                    +'</div>'
+                    +'<div class="row_flex_txt d-flex flex-row justify-content-between">'
+                        +'<span>Low</span>'
+                        +'<i class="fa fa-angle-down img_alignment" style="color: #8d8686;padding-right: 0.4rem;"></i>'
+                +'</div>');
+                priority_val=3;
+            }
+            else if(find_priority_index==0){
+                ele = ele.add('<div class="row_flex_img" >'
+                    +'<i class="fa fa-angle-double-up img_alignment" style="color:#E4021B;"></i>'
+                    +'</div>'
+                    +'<div class="row_flex_txt d-flex flex-row justify-content-between">'
+                        +'<span>High</span>'
+                        +'<i class="fa fa-angle-down img_alignment" style="color: #8d8686;padding-right: 0.4rem;"></i>'
+                +'</div>'); 
+                priority_val=1;
+            }
+
+            $('#priority_selected_id').append(ele);
+            $('#priority_selected_id').attr('priority-data-val',priority_val);
+        });
+
+        // edit alert priority dropdown option click selection function
+        $(document).on('click','.edit_priority_val_get',function(){
+            var find_row_val = $('.edit_priority_val_get');
+            var find_priority_index = find_row_val.index($(this));
+            $('#priority_selected_edit_id').empty();
+            var ele = $();
+            var priority_val=3;
+
+            if (find_priority_index===1) {
+                ele = ele.add('<div class="row_flex_img" priority-data-val-edit="2">'
+                    +'<i class="fa fa-equals img_alignment" style="color:#FBB80F;">=</i>'
+                    +'</div>'
+                    +'<div class="row_flex_txt d-flex flex-row justify-content-between">'
+                        +'<span>Medium</span>'
+                        +'<i class="fa fa-angle-down img_alignment" style="color: #8d8686;padding-right: 0.4rem;"></i>'
+                +'</div>'); 
+                priority_val=2;
+                   
+            }else if(find_priority_index ===2){
+                ele = ele.add('<div class="row_flex_img" priority-data-val-edit="3">'
+                    +'<i class="fa fa-angle-double-down img_alignment" style="color:#2196F3;"></i>'
+                    +'</div>'
+                    +'<div class="row_flex_txt d-flex flex-row justify-content-between">'
+                        +'<span>Low</span>'
+                        +'<i class="fa fa-angle-down img_alignment" style="color: #8d8686;padding-right: 0.4rem;"></i>'
+                +'</div>');
+                priority_val=3;
+            }
+            else if(find_priority_index==0){
+                ele = ele.add('<div class="row_flex_img" priority-data-val-edit="1">'
+                    +'<i class="fa fa-angle-double-up img_alignment" style="color:#E4021B;"></i>'
+                    +'</div>'
+                    +'<div class="row_flex_txt d-flex flex-row justify-content-between">'
+                        +'<span>High</span>'
+                        +'<i class="fa fa-angle-down img_alignment" style="color: #8d8686;padding-right: 0.4rem;"></i>'
+                +'</div>'); 
+                priority_val=1;
+            }
+
+            $('#priority_selected_edit_id').append(ele);
+            $('#priority_selected_edit_id').attr('priority-data-val-edit',priority_val);
+        });
+    
+
+
+// priority dropdown new function end
+
 // get metrics in user format
 function get_materics_userformat(metrics){
     var result="";
@@ -1212,7 +1517,7 @@ function add_assignee(t) {
     // add modal click function 
     function show_modal_add_alert(){
        
-        // $('.selectDropdown3').toggleClass('new_4');
+       
         var data_txt = "insert";
         reset_all_input(data_txt);
         $('#addAlert_modal').modal('show');
@@ -1764,11 +2069,21 @@ function add_assignee(t) {
         }
 
         // priority dropdown
-        var add_alert_priority = $('.selectDropdown3');
-        if (!add_alert_priority.is(event.target) && add_alert_priority.has(event.target).length==0) {
-            $('.selectDropdown3').removeClass('new_4');
-            $('.email_che').removeClass('checked');   
+        // add alert priority dropdown 
+        var add_alert_priority_drp = $('.add_priority_drp_option');
+        if (!add_alert_priority_drp.is(event.target) && add_alert_priority_drp.has(event.target).length==0) {
+            $('.add_priority_drp_option').removeClass('d-inline');
+            $('.add_priority_drp_option').addClass('d-none');
         }
+
+        // edit alert priority dropdown
+        var edit_alert_priority_drp1 = $('.edit_priority_drp_option');
+        if (!edit_alert_priority_drp1.is(event.target) && edit_alert_priority_drp1.has(event.target).length==0) {
+            $('.edit_priority_drp_option').removeClass('d-inline');
+            $('.edit_priority_drp_option').addClass('d-none');
+            // console.log("match priority dropdown is closed");
+        }
+
 
 
     });
@@ -1924,11 +2239,6 @@ function add_assignee(t) {
                 
                 notify_as = "all";
             
-                // $('.label_input_tags_txt').each(function(){
-                //     if ($(this).text()) {
-                //         label_txt_arr.push($(this).text());
-                //     }
-                // });
                 var lable = $('.lable-div-add').children('.lable-bg').children('.lable_items');
                 $.each(lable, function(key,valueObj){
                     lable_list.push(valueObj.getAttribute('lable_list_id'));
@@ -1955,11 +2265,9 @@ function add_assignee(t) {
                 var add_alert_notes = $('#add_alert_mail_notes').val();
                 // var priority = $('.btn-select .priority_txt').text().toLowerCase();
 
-                var priority = $('.selectBtn3').attr('data-val');
-                // var n = m.split(/\s(.+)/)[1]
-                // var priority = n.split(/\s(.+)/)[1];
-                // console.log(m);
-                // console.log("priority text");
+                // getting priority value for add alert insertion records
+                var priority = $('#priority_selected_id').attr('priority-data-val');
+                console.log(priority);
 
                 
             }
@@ -1977,11 +2285,9 @@ function add_assignee(t) {
                     lable_list.push(valueObj.getAttribute('lable_list_id'));
                 });
                 // var priority = $('.btn-select .priority_txt').text().toLowerCase();
-                var priority = $('.selectBtn3').attr('data-val');
-                // var n = m.split(/\s(.+)/)[1];
-                // var priority = n.split(/\s(.+)/)[1];
-                // console.log(m);
-                // console.log("priority");
+                 // getting priority value for add alert insertion records
+                var priority = $('#priority_selected_id').attr('priority-data-val');
+                console.log(priority);
 
 
                 var work_type = $('#add_alert_work_type').val();
@@ -2114,11 +2420,7 @@ function add_assignee(t) {
                 cc_email_arr.push("empty");
             }
             
-            console.log("priority");
-            console.log(priority);
-            console.log(note_error);
-            console.log(notify_as); 
-            console.log(lable_list+"...list name ");
+        
             if (parseInt(note_error)>=1) {
                 console.log("ok");
                 $.ajax({
@@ -2564,6 +2866,9 @@ function add_assignee(t) {
                     $('.edit_email_div_visibility').css('display','none');
                 }
                
+                var edit_priority_name="";
+                var edit_priority_id=0;
+                $('#priority_selected_edit_id').empty();
                 if ((res[0]['priority']!=null) && (res[0]['priority']!="")) {
                     var img_drp = "";
                     var color_tmp = "";
@@ -2577,18 +2882,36 @@ function add_assignee(t) {
                         img_drp = "fa-angle-double-up";
                         color_tmp="#E4021B";
                     }
-                    $('.select_edit_priority_btn').html('<div class="select_edit_priority_option" data-type="secondOption" onclick="icon_drop_edit_priority(this)"><i class="fas '+img_drp+'" style="font: size 18px;; width:20px; margin-top: 5px; color:'+color_tmp+';"></i>&nbsp;'+res[0]['priority']+'</div>');
-                    // console.log(langArray[0]);
-                    $('.select_edit_priority_btn').attr('data-val', res[0]['priority_id']);
+
+
+                    // // edit alert dropdown this value is temporary hide
+                    // $('.select_edit_priority_btn').html('<div class="select_edit_priority_option" data-type="secondOption" onclick="icon_drop_edit_priority(this)"><i class="fas '+img_drp+'" style="font: size 18px;; width:20px; margin-top: 5px; color:'+color_tmp+';"></i>&nbsp;'+res[0]['priority']+'</div>');
+                    // // console.log(langArray[0]);
+                    // $('.select_edit_priority_btn').attr('data-val', res[0]['priority_id']);
+
+                    edit_priority_name = res[0]['priority'];
+                    edit_priority_id = res[0]['priority_id'];
+                   
                 }else{
-                    $('.select_edit_priority_btn').html('<div class="select_edit_priority_option" data-type="secondOption" onclick="icon_drop_edit_priority(this)"><i class="fas fa-angle-double-down" style="font: size 18px;; width:20px; margin-top: 5px; color:#2196F3;"></i>&nbsp;Low</div>');
-                    $('.select_edit_priority_btn').attr('data-val', '3');
+                    edit_priority_name = "Low";
+                    edit_priority_id = 3;
+                        // // edit alert dropdown this value is temporary hide
+                        // $('.select_edit_priority_btn').html('<div class="select_edit_priority_option" data-type="secondOption" onclick="icon_drop_edit_priority(this)"><i class="fas fa-angle-double-down" style="font: size 18px;; width:20px; margin-top: 5px; color:#2196F3;"></i>&nbsp;Low</div>');
+                        // $('.select_edit_priority_btn').attr('data-val', '3');
                 }
 
-                $('.edit_alert_btn_submit').attr('alert_data_id',res[0]['alert_id']);
+                $('#priority_selected_edit_id').append('<div class="row_flex_img" priority-data-val-edit="'+edit_priority_id+'">'
+                    +'<i class="fa '+img_drp+' img_alignment" style="color:'+color_tmp+';"></i>'
+                    +'</div>'
+                    +'<div class="row_flex_txt d-flex flex-row justify-content-between">'
+                        +'<span>'+edit_priority_name+'</span>'
+                        +'<i class="fa fa-angle-down img_alignment" style="color: #8d8686;padding-right: 0.4rem;"></i>'
+                +'</div>');
+                $('#priority_selected_edit_id').attr('priority-data-val-edit',edit_priority_id);
 
 
-               
+
+                $('.edit_alert_btn_submit').attr('alert_data_id',res[0]['alert_id']);               
                 $('#edit_alert').modal('show');
             },
             error:function(er){
@@ -2684,8 +3007,8 @@ function add_assignee(t) {
                 var add_alert_subject = $('#edit_alert_mail_subject').val();
                 var add_alert_notes = $('#edit_alert_mail_notes').val();
 
-                // var priority = $('.btn-select_edit .priority_txt_edit').text().toLowerCase();
-                var priority = $('.select_edit_priority_btn').attr('data-val');
+                // edit alert submission value div
+                var priority = $('#priority_selected_edit_id').attr('priority-data-val-edit');
 
                 
             }
@@ -2702,8 +3025,10 @@ function add_assignee(t) {
                 $.each(lable, function(key,valueObj){
                     lable_list.push(valueObj.getAttribute('lable_list_id'));
                 });
-                // var priority = $('.btn-select_edit .priority_txt_edit').text().toLowerCase();
-                var priority = $('.select_edit_priority_btn').attr('data-val');
+
+                // edit alert submission value div
+                var priority = $('#priority_selected_edit_id').attr('priority-data-val-edit');
+
                 var work_type = $('#edit_alert_work_type').val();
                 var work_title = $('#edit_alert_work_title').val();
                 // var assignee = $('#edit_alert_assignee').val();
@@ -2941,109 +3266,6 @@ function add_assignee(t) {
         
         })
     });
-
-
-// priority dropdown
-// for select2 priority dropdown
-
-$(".selectBtn3").click(function(){
-    
-    clicks_count = clicks_count+1;
-    console.log(clicks_count);
-    console.log($('.selectDropdown3').css('display'));
-    if (parseInt(clicks_count)===1) {
-        $('.selectDropdown3').removeClass('new_4');
-        $('.email_che').toggleClass('checked');
-        $('.parent_div_input_check').css('position','inherit');
-        $('.to_email_label').css('display','none');
-      
-    }
-   
-    if ($('.selectDropdown3').css('display')==="block") {
-        $('.selectDropdown3').removeClass('new_4');
-        $('.email_che').removeClass('checked');
-        $('.parent_div_input_check').css('position','relative');
-        $('.to_email_label').css('display','inline');
-    }else{
-        $('.selectDropdown3').toggleClass('new_4');
-        $('.email_che').toggleClass('checked');
-        $('.parent_div_input_check').css('position','inherit');
-        $('.to_email_label').css('display','none');
-    }
-   
-});
-
-
-// edit priority dropdown
-$(".select_edit_priority_btn").click(function(){
-    // console.log('selectbtn3');
-    var class_arr = $('.email_checkeck_edit').attr('class');
-    console.log("class array");
-    console.log(class_arr);
-    var get_arr = class_arr.split(" ");
-    console.log($('.select_edit_drp_priority').css('display'));
-
-    if (parseInt(get_arr.length)>2) {
-        $('.edit_email_label').css('display','inline');
-        $('.edit_parent_div_input_check').css('position','relative');
-    }else{
-        $('.edit_email_label').css('display','none');
-        $('.edit_parent_div_input_check').css('position','inherit');
-    }
-    $('.select_edit_drp_priority').toggleClass('select_new_edit_priority');
-    $('.email_checkeck_edit').toggleClass('checked');
-  
-});
-
-
-
-
-// priority dropdown
-function icon_drop(elem){
-    // console.log('icons');
-    // console.log(elem);
-    var das = $(elem).html();
-    $(".selectBtn3").html(das);
-    var tmp_arr = das.split('&nbsp;')
-    // console.log(tmp_arr[1]);
-    if (tmp_arr[1]==="Low") {
-        $('.selectBtn3').attr('data-val','1');
-    }
-    else if(tmp_arr[1]==="Medium"){
-        $('.selectBtn3').attr('data-val','2');
-    }
-    else if(tmp_arr[1]==="High"){
-        $('.selectBtn3').attr('data-val','3');
-    }
-    $('.selectDropdown3').toggleClass('new_4');
-    $('.email_che').toggleClass('checked');
-    $('.parent_div_input_check').css('position','relative');
-    $('.to_email_label').css('display','inline');
-}
-
-// edit priority dropdown
-function icon_drop_edit_priority(elem){
-    // console.log('icons');
-    // console.log(elem);
-    var das = $(elem).html();
-    $(".select_edit_priority_btn").html(das);
-    var tmp_arr = das.split('&nbsp;')
-    // console.log(tmp_arr[1]);
-    if (tmp_arr[1]==="Low") {
-        $('.select_edit_priority_btn').attr('data-val','3');
-    }
-    else if(tmp_arr[1]==="Medium"){
-        $('.select_edit_priority_btn').attr('data-val','2');
-    }
-    else if(tmp_arr[1]==="High"){
-        $('.select_edit_priority_btn').attr('data-val','1');
-    }
-    $('.select_edit_drp_priority').toggleClass('select_new_edit_priority');
-    $('.email_checkeck_edit').toggleClass('checked');
-    $('.edit_email_label').css('display','inline');
-    $('.edit_parent_div_input_check').css('position','relative');
-
-}
 
 // onclick assignee
 
@@ -3330,8 +3552,16 @@ function reset_all_input(data_txt){
         $('#email_check_toggle').prop('checked',false);
         $('#add_alert_work_type').val('');
         $('#add_alert_work_title').val('');
-        $('.selectBtn3').html('<div class="selectBtn3 priority_get_data_add" data-type="firstOption"> <i class="fas fa-angle-double-down" style="font: size 18px; width:20px; color: #2196F3; margin-top: 5px;margin-left:0.5rem;margin-right:0.5rem;"></i>&nbsp;Low</div>');
-        $('.selectBtn3').attr('data-val', '3');
+        $('#priority_selected_id').empty();
+        $('#priority_selected_id').append('<div class="row_flex_img" priority-data-val="3">'
+                    +'<i class="fa fa-angle-double-down img_alignment" style="color:#2196F3;"></i>'
+                    +'</div>'
+                    +'<div class="row_flex_txt d-flex flex-row justify-content-between">'
+                        +'<span>Low</span>'
+                        +'<i class="fa fa-angle-down img_alignment" style="color: #8d8686;padding-right: 0.4rem;"></i>'
+                +'</div>');
+        $('#priority_selected_id').attr('priority-data-val',3);
+       
         $('.lable-div-add').empty();
         $('#add_alert_deu_days').val('');
         $('#assignee_val').text('Unassigned');
@@ -3369,9 +3599,19 @@ function reset_all_input(data_txt){
         $('#edit_email_check_toggle').prop('checked',false);
         $('#edit_alert_work_type').val('');
         $('#edit_alert_work_title').val('');
-        // $('.select_edit_priority_btn ').val('');
-        $('.select_edit_priority_btn').html('<div class="select_edit_priority_option" data-type="secondOption" onclick="icon_drop_edit_priority(this)"><i class="fas fa-angle-double-down" style="font: size 18px;; width:20px; margin-top: 5px; color:#2196F3;"></i>&nbsp;Low</div>');
-        $('.select_edit_priority_btn').attr('data-val', '3');
+
+      
+        $('#priority_selected_edit_id').empty();
+        $('#priority_selected_edit_id').append('<div class="row_flex_img" priority-data-val-edit="3">'
+                +'<i class="fa fa-angle-double-down  img_alignment" style="color:#2196F3;"></i>'
+            +'</div>'
+            +'<div class="row_flex_txt d-flex flex-row justify-content-between">'
+                +'<span>Low</span>'
+                +'<i class="fa fa-angle-down img_alignment" style="color: #8d8686;padding-right: 0.4rem;"></i>'
+            +'</div>');
+        $('#priority_selected_edit_id').attr('priority-data-val-edit',3);
+
+       
         $('.lable-div-edit').empty();
         $('#edit_assignee_val').text('Unassigned');
         $('#edit_alert_deu_days').val('');
@@ -3394,8 +3634,6 @@ function reset_all_input(data_txt){
         $('#input_check_cc_edit_Err').text('');
         $('#input_email_edit_sub_Err').text('');
         $('#input_email_edit_note_Err').text('');
-
-
     }
 }
 
