@@ -2592,6 +2592,7 @@ var part_name_tooltip = new Array();
                     $('#part_name_oui').attr("part_id",""+res[0]['part_id']+"");
 
                     $('#part_name_oui_p').text(res[0]['part_name']);
+                    $('#part_name_oui_p').attr('title',res[0]['part_name']);
 
                 },
                 error: function(res) {
