@@ -335,6 +335,7 @@ mx_global = setInterval(function() {
 }, 1000);
 
 $(document).on('click','.Previous_Shift_Live',function(event){
+    $("#overlay").fadeIn(300);
     myChartList =[];
     $(".Previous_Shift_Live").attr("status",1);
     $.ajax({
@@ -348,6 +349,7 @@ $(document).on('click','.Previous_Shift_Live',function(event){
             clearInterval(i_global);
             clearInterval(j_global);
             getTileupdate(res);
+            $("#overlay").fadeOut(300);
         },
         error: function(res) {
             // Error Occured!
@@ -2590,6 +2592,7 @@ var part_name_tooltip = new Array();
                     $('#part_name_oui').attr("part_id",""+res[0]['part_id']+"");
 
                     $('#part_name_oui_p').text(res[0]['part_name']);
+                    $('#part_name_oui_p').attr('title',res[0]['part_name']);
 
                 },
                 error: function(res) {

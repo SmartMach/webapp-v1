@@ -29,7 +29,7 @@ to_email_createTag();
 function to_email_createTag(){
     to_email_add.querySelectorAll('li').forEach(li => li.remove());
     add_to_email_arr.slice().reverse().forEach(res =>{
-        let list_tiem = `<li class="to_email_txt_tags_arr noselect_txt">${res} <i class="fa fa-close" style="margin-left:0.4rem;" onclick="remove(this, '${res}')"></i></li>`;
+        let list_tiem = `<li class="to_email_txt_tags_arr noselect_txt default_font_size">${res} <i class="fa fa-close" style="margin-left:0.4rem;" onclick="remove(this, '${res}')"></i></li>`;
         to_email_add.insertAdjacentHTML("afterbegin", list_tiem);
     });
 }
@@ -69,7 +69,7 @@ cc_email_createTag();
 function cc_email_createTag(){
     cc_email_add.querySelectorAll("li").forEach(li => li.remove());
     add_cc_email_arr.slice().reverse().forEach(res =>{
-        let list_item_cc = `<li class="cc_email_txt_arr noselect_txt">${res} <i class="fa fa-close" style="margin-left:0.4rem;" onclick="cc_email_remove(this, '${res}');"></i></li>`;
+        let list_item_cc = `<li class="cc_email_txt_arr noselect_txt default_font_size">${res} <i class="fa fa-close" style="margin-left:0.4rem;" onclick="cc_email_remove(this, '${res}');"></i></li>`;
         cc_email_add.insertAdjacentHTML("afterbegin", list_item_cc);
     });
 }
@@ -111,7 +111,7 @@ function to_email_get_arr(to_email_demo_arr){
 function createTag_to_email_edit(){
     to_email_edit.querySelectorAll("li").forEach(li => li.remove());
     edit_to_email_arr.slice().reverse().forEach(tag =>{
-        let liTag = `<li class="to_email_input_tags_txt_edit">${tag} <i class="fa fa-close" style="margin-left:0.4rem;" onclick="remove_to_email_edit(this, '${tag}')"></i></li>`;
+        let liTag = `<li class="to_email_input_tags_txt_edit default_font_size">${tag} <i class="fa fa-close" style="margin-left:0.4rem;" onclick="remove_to_email_edit(this, '${tag}')"></i></li>`;
         to_email_edit.insertAdjacentHTML("afterbegin", liTag);
     });
 }
@@ -152,7 +152,7 @@ function cc_email_get_arr(mydata){
 function createTag_cc_email_edit(){
     cc_email_edit.querySelectorAll("li").forEach(li => li.remove());
     edit_cc_email_arr.slice().reverse().forEach(tag =>{
-        let list_item = `<li class="cc_email_input_tags_txt_edit noselect_txt">${tag} <i class="fa fa-close" style="margin-left:0.4rem;" onclick="remove_cc_email_edit(this, '${tag}')"></i></li>`;
+        let list_item = `<li class="cc_email_input_tags_txt_edit noselect_txt default_font_size">${tag} <i class="fa fa-close" style="margin-left:0.4rem;" onclick="remove_cc_email_edit(this, '${tag}')"></i></li>`;
         cc_email_edit.insertAdjacentHTML("afterbegin", list_item);
     });
 }

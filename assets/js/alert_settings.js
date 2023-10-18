@@ -87,6 +87,7 @@ $(document).on('click','.filter_drp_part',function(event){
     if (parseInt(index_val)===0) {
         if (check_if[0].checked==false) {
             reset_filter_part();
+            $('#filter_txt_part').text('All Parts');
 
         }else{
             $('.filter_Drp_part_checkbox').removeAttr('checked');
@@ -114,7 +115,7 @@ $(document).on('click','.filter_drp_part',function(event){
     if (parseInt(createdby_select_count)>=parseInt(createdby_len)) {
         if (check_if[0].checked==true) {
             check_if[0].checked=true;
-            $('#filter_txt_part').text(parseInt(createdby_select_count)-1+' Selected');
+            $('#filter_txt_part').text('All Parts');
         }else{
             reset_filter_part();
             $('#filter_txt_part').text('All Parts');
@@ -163,7 +164,7 @@ $(document).on('click','.filter_drp_machine_click',function(event){
     if (parseInt(createdby_select_count)>=parseInt(createdby_len)) {
         if (check_if[0].checked==true) {
             check_if[0].checked=true;
-            $('#filter_txt_machine').text(parseInt(createdby_select_count)-1+' Selected');
+            $('#filter_txt_machine').text('All Machines');
         }else{
             reset_filter_machine_alert();
             $('#filter_txt_machine').text('All Machines');
@@ -212,16 +213,16 @@ $(document).on('click','.alert_filter_work_click',function(event){
     if (parseInt(createdby_select_count)>=parseInt(createdby_len)) {
         if (check_if[0].checked==true) {
             check_if[0].checked=true;
-            $('#text_filter_work').text(parseInt(createdby_select_count)-1+' Selected');
+            $('#text_filter_work').text('All ');
         }else{
             reset_work_order_drp();
-            $('#text_filter_work').text('All Machines');
+            $('#text_filter_work').text('All ');
         }
     }
     else if((parseInt(createdby_select_count)<parseInt(createdby_len)) && (parseInt(createdby_select_count)>0)){
         $('#text_filter_work').text(parseInt(createdby_select_count)+' selected');
     }else{
-        $('#text_filter_work').text('No Machine');  
+        $('#text_filter_work').text('No Selection');  
     }
 });
 
@@ -313,7 +314,7 @@ $(document).on('click','.edit_drp_machine_click',function(event){
     if (parseInt(createdby_select_count)>=parseInt(createdby_len)) {
         if (check_if[0].checked==true) {
             check_if[0].checked=true;
-            $('#edit_alert_machine_txt').text(parseInt(createdby_select_count)-1+' Selected');
+            $('#edit_alert_machine_txt').text('All Machines');
         }else{
             edit_machine_drp_set(temp_pass_data);
             $('#edit_alert_machine_txt').text('All Machines');
@@ -363,7 +364,7 @@ $(document).on('click','.edit_part_drp_click',function(event){
     if (parseInt(createdby_select_count)>=parseInt(createdby_len)) {
         if (check_if[0].checked==true) {
             check_if[0].checked=true;
-            $('#edit_alert_part_txt').text(parseInt(createdby_select_count)-1+' Selected');
+            $('#edit_alert_part_txt').text('All Parts');
         }else{
             edit_part_drp_set(temp_pass_data);
             $('#edit_alert_part_txt').text('All Parts');
@@ -424,6 +425,7 @@ function edit_machine_drp_set(data) {
     }else{
         var tmp_machine_arr = data.split(",");
         if (parseInt(tmp_machine_arr.length)>0) {
+            
             jQuery('.edit_drp_machine_checkbox').each(function(index){
                 var tmp_mid = $('.edit_drp_machine_checkbox:eq('+index+')').val();
                 
@@ -433,7 +435,13 @@ function edit_machine_drp_set(data) {
                     }
                 }
             }); 
-            $('#edit_alert_machine_txt').text(tmp_machine_arr.length+' selected');
+            if (tmp_machine_arr[0]==="all") {
+                $('#edit_alert_machine_txt').text('All Machines');
+                
+            }else{
+                $('#edit_alert_machine_txt').text(tmp_machine_arr.length+' selected');
+
+            }
         }
     }
 }
@@ -459,7 +467,14 @@ function edit_part_drp_set(data){
                     }
                 }
             }); 
-            $('#edit_alert_part_txt').text(tmp_part_arr.length+' selected');
+
+            if (tmp_part_arr[0]==="all") {
+                $('#edit_alert_part_txt').text('All Parts');
+                
+            }else{
+                $('#edit_alert_part_txt').text(tmp_part_arr.length+' selected');
+
+            }
         }
     }
 }

@@ -467,3 +467,13 @@ span{
 }
 
 /* no records found css design */
+
+/* alert management jira bugs as per the instruction madhan sir  */
+/* default font size for all module inputs getting */
+.default_font_size{
+    font-size: var(--default_font_size) !important;
+}
+/* deafult dropdown height */
+.default_input_height{
+    height: var(--default_input_height)!important;
+}

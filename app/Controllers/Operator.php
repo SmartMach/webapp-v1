@@ -148,7 +148,7 @@ class Operator extends \CodeIgniter\Controller{
 
         // $machine="MC1001";
         // $shift="A";
-        // $shift_date="2023-09-29";
+        // $shift_date="2023-10-06";
 
         $res = $this->opertor_model->getLiveDowntime($machine,$shift,$shift_date);
 
@@ -252,11 +252,13 @@ class Operator extends \CodeIgniter\Controller{
         $shift =  $this->request->getVar('shift_id_ref');
         $shift_date =  $this->request->getVar('shift_date_ref');
 
-        // $machine =  "MC1001";
+        // $machine = "MC1001";
         // $shift =  "A";
-        // $shift_date =  "2023-09-29";
+        // $shift_date = "2023-10-06";
 
-        $production_target_all = $this->opertor_model->getProductionTarget($shift_date,$machine);
+        $production_target_all = $this->opertor_model->getProductionTarget($shift_date);
+
+      
 
         $cycle_time = $production_target_all[0]->NICT;
         $production_target = $production_target_all[0]->target;
@@ -264,31 +266,38 @@ class Operator extends \CodeIgniter\Controller{
         $getInactiveMachine = $this->datas->getInactiveMachineData();
         $total_parts_production = 0;
         foreach ($production_target_all as $key => $v) {
-            $production_t_tmp=0;
-            foreach ($production_t as $k => $p) {
-                if ($p['machine_id'] == $v->machine_id) {
-                    // Filter for Production Info Table Data..........
-                    $s_time_range =  strtotime($p['calendar_date']." ".$p['start_time']);
-                    $s_time_range_limit = strtotime($v->calendar_date." ".$v->event_start_time);
-                    $tm = 0;
-            
-                    if ($s_time_range < $s_time_range_limit) {
-                        $tm = 1;
-                    }
-
-                    // For remove the current data of inactive machines.........
-                    foreach ($getInactiveMachine as $value) {
-                        $start_time_range =  strtotime($value['max(r.last_updated_on)']);
-                        if ($s_time_range_limit > $start_time_range && $value['machine_id'] == $p['machine_id']){
+            if ($v->machine_id==$machine) {
+                $production_t_tmp=0;
+                foreach ($production_t as $k => $p) {
+                    if ($p['machine_id'] == $v->machine_id) {
+                        // Filter for Production Info Table Data..........
+                        $s_time_range =  strtotime($p['calendar_date']." ".$p['start_time']);
+                        $s_time_range_limit = strtotime($v->calendar_date." ".$v->event_start_time);
+                        $tm = 0;
+                
+                        if ($s_time_range < $s_time_range_limit) {
                             $tm = 1;
                         }
+    
+                        // For remove the current data of inactive machines.........
+                        foreach ($getInactiveMachine as $value) {
+                            $start_time_range =  strtotime($value['max(r.last_updated_on)']);
+                            if ($s_time_range_limit > $start_time_range && $value['machine_id'] == $p['machine_id']){
+                                $tm = 1;
+                            }
+                        }
+                        if ($tm==0) {
+                            $production_t_tmp= (int)$production_t_tmp + (int)$p['production']  + (int)($p['corrections']);                        
+                        }
                     }
-                    $production_t_tmp= (int)$production_t_tmp + (int)$p['production']  + (int)($p['corrections']);
                 }
+    
+                $total_parts_production = $production_t_tmp;
             }
-
-            $total_parts_production = $production_t_tmp;
+           
         }
+
+        // echo $total_parts_production;
 
         $remaining_part = $production_target - $total_parts_production;
         $duration = $remaining_part*$cycle_time;

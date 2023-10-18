@@ -276,7 +276,7 @@ class Operator_model extends Model{
     }
 
     // oui screen production target value getting query strategy
-    public function getProductionTarget($shift_date,$machine_id){
+    public function getProductionTarget($shift_date){
         $db = \Config\Database::connect($this->site_creation);
         $sql = 'WITH ToolChangeoverData AS (
             SELECT 
@@ -301,7 +301,7 @@ class Operator_model extends Model{
             ON 
                 p.part_id = t.part_id
             WHERE
-                s.shift_date <= "'.$shift_date.'" AND s.machine_id="'.$machine_id.'"
+                s.shift_date <= "'.$shift_date.'"
             
         )
         SELECT
