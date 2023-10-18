@@ -1042,8 +1042,11 @@ $(document).mouseup(function(event){
     if (!action.is(event.target) && action.has(event.target).length==0) {
         action.hide();
     }
+
     var lables = $('#dropdown-list-lables');
-    if (!lables.is(event.target) && lables.has(event.target).length==0) {
+    var lables_ex = $(".input-field-lable-add");
+
+    if (!lables.is(event.target) && lables.has(event.target).length==0 && !lables_ex.is(event.target)) {
         lables.hide();
     }
 
@@ -1055,8 +1058,11 @@ $(document).mouseup(function(event){
     if (!action_edit.is(event.target) && action_edit.has(event.target).length==0) {
         action_edit.hide();
     }
+
     var lables_edit = $('#dropdown-list-lables-edit');
-    if (!lables_edit.is(event.target) && lables_edit.has(event.target).length==0) {
+    var lables_ex_edit = $(".input-field-lable-edit");
+
+    if (!lables_edit.is(event.target) && lables_edit.has(event.target).length==0 && !lables_ex_edit.is(event.target)) {
         lables_edit.hide();
     }
 
@@ -2051,20 +2057,21 @@ inputFieldaction.addEventListener("keyup", function (event) {
                 +'</div>');
             }
         });
-        // Add as Final
-        
-        var option = suggession_list.find(function (item_val) {
-          return item_val['action'].toUpperCase() === inputVal;
-        });
 
-        if (!option && !present) {
-          $('#dropdown-list-action').append('<div class="inbox suggession-action-items" style="display: flex;">'
-                  +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
-                      +'<p class="inbox-span paddingm"><span class="suggession-action-val">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
-                  +'</div>'
-                  +'<input type="text" class="action-input-suggession radio-visible" value="'+inputValue.trim()+'">'
-              +'</div>');
-        }
+
+        // //Add as Final        
+        // var option = suggession_list.find(function (item_val) {
+        //   return item_val['action'].toUpperCase() === inputVal;
+        // });
+
+        // if (!option && !present) {
+        //   $('#dropdown-list-action').append('<div class="inbox suggession-action-items" style="display: flex;">'
+        //           +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
+        //               +'<p class="inbox-span paddingm"><span class="suggession-action-val">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
+        //           +'</div>'
+        //           +'<input type="text" class="action-input-suggession radio-visible" value="'+inputValue.trim()+'">'
+        //       +'</div>');
+        // }
     }else{
         $('#dropdown-list-action').empty();
         document.getElementById("dropdown-list-action").style.display="none";
@@ -2214,15 +2221,15 @@ inputFieldactionEdit.addEventListener("keyup", function (event) {
                 +'</div>');
             }
         });
-        // Add as Final
-        if (!present) {
-          $('#dropdown-list-action-edit').append('<div class="inbox suggession-action-items-edit" style="display: flex;">'
-                +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
-                    +'<p class="inbox-span paddingm"><span class="suggession-action-val-edit">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
-                +'</div>'
-                +'<input type="text" class="action-input-suggession-edit radio-visible" value="'+inputValue.trim()+'">'
-            +'</div>');
-        }
+        // // Add as Final
+        // if (!present) {
+        //   $('#dropdown-list-action-edit').append('<div class="inbox suggession-action-items-edit" style="display: flex;">'
+        //         +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
+        //             +'<p class="inbox-span paddingm"><span class="suggession-action-val-edit">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
+        //         +'</div>'
+        //         +'<input type="text" class="action-input-suggession-edit radio-visible" value="'+inputValue.trim()+'">'
+        //     +'</div>');
+        // }
     }else{
         $('#dropdown-list-action-edit').empty();
         document.getElementById("dropdown-list-action-edit").style.display="none";
@@ -2403,6 +2410,35 @@ itemsFieldEdit.addEventListener("click", function (event) {
 // Comments
 const inputFieldlables = document.getElementsByClassName("input-field-lable-add")[0];
 const itemsContainerlables = document.getElementsByClassName("lable-div-add")[0];
+
+inputFieldlables.addEventListener("focus", function (event) {
+    
+    $('#dropdown-list-lables').empty();
+
+    var inputValue = inputFieldlables.value;
+    var inputVal = inputValue.trim().toUpperCase();
+    var present = lable_list_globle_unique.find(function (item_val) {
+      return item_val.toUpperCase() === inputVal;
+    });
+
+    
+    var suggession_list = lable_list_globle.filter(item => item['lable'].toUpperCase().includes(inputValue.trim().toUpperCase()));
+
+    suggession_list.forEach((item,index)=>{
+        if (index < 3 && !present) {
+            $('#dropdown-list-lables').append('<div class="inbox suggession-lable-items" style="display: flex;">'
+                +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
+                    +'<p class="inbox-span paddingm"><span class="suggession-lable-val">'+item['lable']+'</span></p>'
+                +'</div>'
+                +'<input type="text" class="lable-input-suggession radio-visible" value="'+item['lable']+'">'
+            +'</div>');
+        }
+    });
+
+    document.getElementById("dropdown-list-lables").style.display="block";
+});
+
+
 inputFieldlables.addEventListener("keyup", function (event) {
     var inputValue = inputFieldlables.value;
     var inputVal = inputValue.trim().toUpperCase();
@@ -2410,7 +2446,7 @@ inputFieldlables.addEventListener("keyup", function (event) {
       return item_val.toUpperCase() === inputVal;
     });
 
-    if (inputValue.length>0) {
+    if (inputVal.length>=0) {
         document.getElementById("dropdown-list-lables").style.display="block";
         var suggession_list = lable_list_globle.filter(item => item['lable'].toUpperCase().includes(inputValue.trim().toUpperCase()));
         
@@ -2432,7 +2468,7 @@ inputFieldlables.addEventListener("keyup", function (event) {
           return item_val['lable'].toUpperCase() === inputVal;
         });
 
-        if (!option && !present) {
+        if (!option && !present && inputVal.length>0) {
           $('#dropdown-list-lables').append('<div class="inbox  suggession-lable-items" style="display: flex;">'
                       +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
                           +'<p class="inbox-span paddingm"><span class="suggession-lable-val">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
@@ -2761,13 +2797,41 @@ $(document).on('click','.suggession-lable-items-edit',function(event){
 
 const inputFieldlablesEdit = document.getElementsByClassName("input-field-lable-edit")[0];
 const itemsContainerlablesEdit = document.getElementsByClassName("lable-div-edit")[0];
+
+
+inputFieldlablesEdit.addEventListener("focus", function (event) {
+    var inputValue = inputFieldlablesEdit.value;
+    var inputVal = inputValue.trim().toUpperCase();
+    var present = lable_list_globle_unique.find(function (item_val) {
+      return item_val.toUpperCase() === inputVal;
+    });
+
+    document.getElementById("dropdown-list-lables-edit").style.display="block";
+    var suggession_list = lable_list_globle.filter(item => item['lable'].toUpperCase().includes(inputValue.trim().toUpperCase()));
+    
+    $('#dropdown-list-lables-edit').empty();
+
+    suggession_list.forEach((item,index)=>{
+        if (index < 3 && !present) {
+            $('#dropdown-list-lables-edit').append('<div class="inbox suggession-lable-items-edit" style="display: flex;">'
+                +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
+                    +'<p class="inbox-span paddingm"><span class="suggession-lable-val-edit">'+item['lable']+'</span></p>'
+                +'</div>'
+                +'<input type="text" class="lable-input-suggession-edit radio-visible" value="'+item['lable']+'">'
+            +'</div>');
+        }
+    });
+
+});
+
+
 inputFieldlablesEdit.addEventListener("keyup", function (event) {
     var inputValue = inputFieldlablesEdit.value;
     var inputVal = inputValue.trim().toUpperCase();
     var present = lable_list_globle_unique.find(function (item_val) {
       return item_val.toUpperCase() === inputVal;
     });
-    if (inputValue.length>0) {
+    if (inputVal.length>=0) {
         document.getElementById("dropdown-list-lables-edit").style.display="block";
         var suggession_list = lable_list_globle.filter(item => item['lable'].toUpperCase().includes(inputValue.trim().toUpperCase()));
         
@@ -2789,7 +2853,7 @@ inputFieldlablesEdit.addEventListener("keyup", function (event) {
           return item_val['lable'].toUpperCase() === inputVal;
         });
 
-        if (!option && !present) {
+        if (!option && !present && inputVal.length>0) {
           $('#dropdown-list-lables-edit').append('<div class="inbox suggession-lable-items-edit" style="display: flex;">'
                   +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
                       +'<p class="inbox-span paddingm"><span class="suggession-lable-val-edit">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
