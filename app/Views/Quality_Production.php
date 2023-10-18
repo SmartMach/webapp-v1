@@ -188,11 +188,11 @@
                 <div class="input-box indexing Reasons_COPQP">
 
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Reason</span>
+                    <span class="multi_select_label" style="">Reasons</span>
                     <div class="filter_selectBox" onclick="multiple_drp_reason_copq()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
-                          <p class="paddingm" id="reason_text_copqp">All Reasons</p>
+                          <p class="paddingm" id="reason_text_copq">All Reasons</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
                           <i class="fa fa-angle-down icon-style"></i>
@@ -208,7 +208,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing Reasons_COPQP">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Machine</span>
+                    <span class="multi_select_label" style="">Machines</span>
                     <div class="filter_selectBox" onclick="multiple_drp_machine_copq()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -228,7 +228,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing Reasons_COPQP">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Part</span>
+                    <span class="multi_select_label" style="">Parts</span>
                     <div class="filter_selectBox" onclick="multiple_drp_copq()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -265,7 +265,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Reason</span>
+                    <span class="multi_select_label" style="">Reasons</span>
                     <div class="filter_selectBox" onclick="multiple_drp_reason_crpr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -285,7 +285,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Machine</span>
+                    <span class="multi_select_label" style="">Machines</span>
                     <div class="filter_selectBox" onclick="multiple_drp_machine_crpr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -305,7 +305,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Part</span>
+                    <span class="multi_select_label" style="">Parts</span>
                     <div class="filter_selectBox" onclick="multiple_drp_crpr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -344,7 +344,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Reason</span>
+                    <span class="multi_select_label" style="">Reasons</span>
                     <div class="filter_selectBox" onclick="multiple_drp_reason_copqm()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -364,7 +364,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Machine</span>
+                    <span class="multi_select_label" style="">Machines</span>
                     <div class="filter_selectBox" onclick="multiple_drp_machine_copqm()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -384,7 +384,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Part</span>
+                    <span class="multi_select_label" style="">Parts</span>
                     <div class="filter_selectBox" onclick="multiple_drp_copqm()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -421,7 +421,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Reason</span>
+                    <span class="multi_select_label" style="">Reasons</span>
                     <div class="filter_selectBox" onclick="multiple_drp_reason_qrmr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -441,7 +441,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Machine</span>
+                    <span class="multi_select_label" style="">Machines</span>
                     <div class="filter_selectBox" onclick="multiple_drp_machine_qrmr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -461,7 +461,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Part</span>
+                    <span class="multi_select_label" style="">Parts</span>
                     <div class="filter_selectBox" onclick="multiple_drp_qrmr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -503,7 +503,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Reason</span>
+                    <span class="multi_select_label" style="">Reasons</span>
                     <div class="filter_selectBox" onclick="multiple_drp_reason_copqp()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -523,7 +523,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Machine</span>
+                    <span class="multi_select_label" style="">Machines</span>
                     <div class="filter_selectBox" onclick="multiple_drp_machine_copqp()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -543,7 +543,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Part</span>
+                    <span class="multi_select_label" style="">Parts</span>
                     <div class="filter_selectBox" onclick="multiple_drp_copqp()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -580,7 +580,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Reason</span>
+                    <span class="multi_select_label" style="">Reasons</span>
                     <div class="filter_selectBox" onclick="multiple_drp_reason_qrpr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -600,7 +600,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Machine</span>
+                    <span class="multi_select_label" style="">Machines</span>
                     <div class="filter_selectBox" onclick="multiple_drp_machine_qrpr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -620,7 +620,7 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Part</span>
+                    <span class="multi_select_label" style="">Parts</span>
                     <div class="filter_selectBox" onclick="multiple_drp_qrpr()">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
@@ -676,7 +676,7 @@
                 <div class="filter_checkboxes filter_part">
                 </div>
               </div>
-              <label for="partNameFilter" class="input-padding">Part Name</label>
+              <label for="partNameFilter" class="input-padding">Parts</label>
             </div>
           </div>
 
@@ -696,7 +696,7 @@
                 <div class="filter_checkboxes filter_machine">
                 </div>
               </div>
-              <label for="machineNameFilter" class="input-padding ">Machine Name</label>
+              <label for="machineNameFilter" class="input-padding ">Machines</label>
             </div>
           </div> 
           
@@ -716,7 +716,7 @@
                 <div class="filter_checkboxes filter_reason">
                 </div>
               </div>
-              <label for="reasonNameFilter" class="input-padding ">Reason</label>
+              <label for="reasonNameFilter" class="input-padding ">Reasons</label>
             </div>
           </div> 
 
@@ -740,9 +740,9 @@
             </div>
           </div> 
 
-          <!-- <div class="box rightmar" style="margin-right: 0.5rem;">
-          <button class="btn fo bn filterbtnstyle settings_nav_anchor float-end" style="margin-right:0.5rem;border-radius:0.25rem;margin-left: 0;margin-top: 0;margin-bottom: 0;" id="add_machine_button" onclick="getFilterval()">Apply Filter</button>
-          <!-- </div> -->
+          <div class="box rightmar" style="margin-right: 0.5rem;">
+            <button class="btn fo bn filterbtnstyle settings_nav_anchor float-end" style="margin-right:0.5rem;border-radius:0.25rem;margin-left: 0;margin-top: 0;margin-bottom: 0;" id="add_machine_button" onclick="getFilterval()">Apply Filter</button>
+          </div>
           <div class="box rightmar" style="margin-right: 0.5rem;display: flex;justify-content: center;">
             <img src="<?php echo base_url('assets/img/filter_reset.png'); ?>" class="undo" style="font-size:20px;color: #b5b8bc;cursor: pointer;width:1.3rem;height:1.3rem;">
           </div>
@@ -912,7 +912,7 @@
     maxDate: new Date()
   });
 
-    var now = new Date();
+  var now = new Date();
 
   var fdate = now.getFullYear()+"-"+("0" + (parseInt(now.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + now.getDate()).slice(-2)+" "+("0" + (now.getHours()-1)).slice(-2)+":00";
 
@@ -1234,11 +1234,11 @@ $(document).on('click','.inbox_part',function(event){
   if (parseInt(part_count)>=parseInt(part_len)) {
       if(check_if[0].checked===true){
         check_if[0].checked=true;
-        $('#part_text').text(parseInt(part_count)-1+' Selected');
+        $('#part_text').text('All Parts');
       }else{
       // check_if[0].checked=true;
       reset_part();
-      $('#part_text').text('All');
+      $('#part_text').text('All Parts');
     }
   }else if(((parseInt(part_count)<parseInt(part_len))) && (parseInt(part_count)>0)){
     $('#part_text').text(parseInt(part_count)+' Selected');
@@ -1248,7 +1248,6 @@ $(document).on('click','.inbox_part',function(event){
   }
 
 });
-
 
 $(document).on('click','.inbox_part_copq',function(event){
   var index = $('.inbox_part_copq').index(this);
@@ -1286,11 +1285,11 @@ $(document).on('click','.inbox_part_copq',function(event){
   if (parseInt(part_count)>=parseInt(part_len)) {
       if(check_if[0].checked===true){
         check_if[0].checked=true;
-        $('#part_text_copq').text(parseInt(part_count)-1+' Selected');
+        $('#part_text_copq').text('All Parts');
       }else{
       // check_if[0].checked=true;
-      reset_part();
-      $('#part_text_copq').text('All');
+      reset_part_copq();
+      $('#part_text_copq').text('All Parts');
     }
   }else if(((parseInt(part_count)<parseInt(part_len))) && (parseInt(part_count)>0)){
     $('#part_text_copq').text(parseInt(part_count)+' Selected');
@@ -1300,8 +1299,6 @@ $(document).on('click','.inbox_part_copq',function(event){
   }
 
 });
-
-
 
 $(document).on('click','.inbox_machine',function(event){
   var index = $('.inbox_machine').index(this);
@@ -1341,11 +1338,11 @@ $(document).on('click','.inbox_machine',function(event){
   if (parseInt(machine_count)>=parseInt(machine_len)) {
       if(check_if[0].checked===true){
         check_if[0].checked=true;
-        $('#machine_text').text(parseInt(machine_count)-1+' Selected');
+        $('#machine_text').text('All Machines');
       }else{
       // check_if[0].checked=true;
       reset_machine();
-      $('#machine_text').text('All');
+      $('#machine_text').text('All Machines');
     }
   }else if(((parseInt(machine_count)<parseInt(machine_len))) && (parseInt(machine_count)>0)){
     $('#machine_text').text(parseInt(machine_count)+' Selected');
@@ -1355,7 +1352,6 @@ $(document).on('click','.inbox_machine',function(event){
   }
 
 });
-
 
 $(document).on('click','.inbox_machine_copq',function(event){
   var index = $('.inbox_machine_copq').index(this);
@@ -1392,10 +1388,10 @@ $(document).on('click','.inbox_machine_copq',function(event){
   if (parseInt(machine_count)>=parseInt(machine_len)) {
       if(check_if[0].checked===true){
         check_if[0].checked=true;
-        $('#machine_text_copq').text(parseInt(machine_count)-1+' Selected');
+        $('#machine_text_copq').text('All Machines');
       }else{
-      reset_machine();
-      $('#machine_text_copq').text('All');
+      reset_machine_copq();
+      $('#machine_text_copq').text('All Machines');
     }
   }else if(((parseInt(machine_count)<parseInt(machine_len))) && (parseInt(machine_count)>0)){
     $('#machine_text_copq').text(parseInt(machine_count)+' Selected');
@@ -1443,11 +1439,11 @@ $(document).on('click','.inbox_reason',function(event){
   if (parseInt(reason_count)>=parseInt(reason_len)) {
       if(check_if[0].checked===true){
         check_if[0].checked=true;
-        $('#reason_text').text(parseInt(reason_count)-1+' Selected');
+        $('#reason_text').text('All Reasons');
       }else{
       // check_if[0].checked=true;
       reset_reason();
-      $('#reason_text').text('All');
+      $('#reason_text').text('All Reasons');
     }
   }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
     $('#reason_text').text(parseInt(reason_count)+' Selected');
@@ -1456,7 +1452,6 @@ $(document).on('click','.inbox_reason',function(event){
     $('#reason_text').text('No Reason');
   }
 });
-
 
 $(document).on('click','.inbox_reason_copq',function(event){
   var index = $('.inbox_reason_copq').index(this);
@@ -1496,21 +1491,19 @@ $(document).on('click','.inbox_reason_copq',function(event){
   if (parseInt(reason_count)>=parseInt(reason_len)) {
       if(check_if[0].checked===true){
         check_if[0].checked=true;
-        $('#reason_text_copqp').text(parseInt(reason_count)-1+' Selected');
+        $('#reason_text_copq').text(parseInt(reason_count)-1+' Selected');
       }else{
       // check_if[0].checked=true;
-      reset_reason();
-      $('#reason_text_copqp').text('All');
+      reset_reason_copq();
+      $('#reason_text_copq').text('All Reasons');
     }
   }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
-    $('#reason_text_copqp').text(parseInt(reason_count)+' Selected');
+    $('#reason_text_copq').text(parseInt(reason_count)+' Selected');
     // check_if[0].checked=false;
   }else {
-    $('#reason_text_copqp').text('No Reason');
+    $('#reason_text_copq').text('No Reason');
   }
 });
-
-
 
 $(document).on('click','.inbox_reason_crpr',function(event){
   var index = $('.inbox_reason_crpr').index(this);
@@ -1550,11 +1543,11 @@ $(document).on('click','.inbox_reason_crpr',function(event){
   if (parseInt(reason_count)>=parseInt(reason_len)) {
       if(check_if[0].checked===true){
         check_if[0].checked=true;
-        $('#reason_text_crpr').text(parseInt(reason_count)-1+' Selected');
+        $('#reason_text_crpr').text('All Reasons');
       }else{
       // check_if[0].checked=true;
-      reset_reason();
-      $('#reason_text_crpr').text('All');
+      reset_reason_crpr();
+      $('#reason_text_crpr').text('All Reasons');
     }
   }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
     $('#reason_text_crpr').text(parseInt(reason_count)+' Selected');
@@ -1600,11 +1593,11 @@ $(document).on('click','.inbox_part_crpr',function(event){
   if (parseInt(part_count)>=parseInt(part_len)) {
       if(check_if[0].checked===true){
         check_if[0].checked=true;
-        $('#part_text_crpr').text(parseInt(part_count)-1+' Selected');
+        $('#part_text_crpr').text('All Parts');
       }else{
       // check_if[0].checked=true;
-      reset_part();
-      $('#part_text_crpr').text('All');
+      reset_part_crpr();
+      $('#part_text_crpr').text('All Parts');
     }
   }else if(((parseInt(part_count)<parseInt(part_len))) && (parseInt(part_count)>0)){
     $('#part_text_crpr').text(parseInt(part_count)+' Selected');
@@ -1650,10 +1643,10 @@ $(document).on('click','.inbox_machine_crpr',function(event){
   if (parseInt(machine_count)>=parseInt(machine_len)) {
       if(check_if[0].checked===true){
         check_if[0].checked=true;
-        $('#machine_text_crpr').text(parseInt(machine_count)-1+' Selected');
+        $('#machine_text_crpr').text('All Machines');
       }else{
-      reset_machine();
-      $('#machine_text_crpr').text('All');
+      reset_machine_crpr();
+      $('#machine_text_crpr').text('All Machines');
     }
   }else if(((parseInt(machine_count)<parseInt(machine_len))) && (parseInt(machine_count)>0)){
     $('#machine_text_crpr').text(parseInt(machine_count)+' Selected');
@@ -1701,11 +1694,11 @@ $(document).on('click','.inbox_reason_copqm',function(event){
   if (parseInt(reason_count)>=parseInt(reason_len)) {
       if(check_if[0].checked===true){
         check_if[0].checked=true;
-        $('#reason_text_copqm').text(parseInt(reason_count)-1+' Selected');
+        $('#reason_text_copqm').text('All Reasons');
       }else{
       // check_if[0].checked=true;
-      reset_reason();
-      $('#reason_text_copqm').text('All');
+      reset_reason_copqm();
+      $('#reason_text_copqm').text('All Reasons');
     }
   }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
     $('#reason_text_copqm').text(parseInt(reason_count)+' Selected');
@@ -1751,11 +1744,11 @@ $(document).on('click','.inbox_part_copqm',function(event){
   if (parseInt(part_count)>=parseInt(part_len)) {
       if(check_if[0].checked===true){
         check_if[0].checked=true;
-        $('#part_text_copqm').text(parseInt(part_count)-1+' Selected');
+        $('#part_text_copqm').text('All Parts');
       }else{
       // check_if[0].checked=true;
-      reset_part();
-      $('#part_text_copqm').text('All');
+      reset_part_copqm();
+      $('#part_text_copqm').text('All Parts');
     }
   }else if(((parseInt(part_count)<parseInt(part_len))) && (parseInt(part_count)>0)){
     $('#part_text_copqm').text(parseInt(part_count)+' Selected');
@@ -1800,10 +1793,10 @@ $(document).on('click','.inbox_machine_copqm',function(event){
   if (parseInt(machine_count)>=parseInt(machine_len)) {
       if(check_if[0].checked===true){
         check_if[0].checked=true;
-        $('#machine_text_copqm').text(parseInt(machine_count)-1+' Selected');
+        $('#machine_text_copqm').text('All Machines');
       }else{
-      reset_machine();
-      $('#machine_text_copqm').text('All');
+      reset_machine_copqm();
+      $('#machine_text_copqm').text('All Machines');
     }
   }else if(((parseInt(machine_count)<parseInt(machine_len))) && (parseInt(machine_count)>0)){
     $('#machine_text_copqm').text(parseInt(machine_count)+' Selected');
@@ -1812,8 +1805,6 @@ $(document).on('click','.inbox_machine_copqm',function(event){
   }
 
 });
-
-
 
 $(document).on('click','.inbox_reason_copqp',function(event){
   var index = $('.inbox_reason_copqp').index(this);
@@ -1852,11 +1843,11 @@ $(document).on('click','.inbox_reason_copqp',function(event){
   if (parseInt(reason_count)>=parseInt(reason_len)) {
       if(check_if[0].checked===true){
         check_if[0].checked=true;
-        $('#reason_text_copqp').text(parseInt(reason_count)-1+' Selected');
+        $('#reason_text_copqp').text('All Reasons');
       }else{
       // check_if[0].checked=true;
-      reset_reason();
-      $('#reason_text_copqp').text('All');
+      reset_reason_copqp();
+      $('#reason_text_copqp').text('All Reasons');
     }
   }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
     $('#reason_text_copqp').text(parseInt(reason_count)+' Selected');
@@ -1902,11 +1893,11 @@ $(document).on('click','.inbox_part_copqp',function(event){
   if (parseInt(part_count)>=parseInt(part_len)) {
       if(check_if[0].checked===true){
         check_if[0].checked=true;
-        $('#part_text_copqp').text(parseInt(part_count)-1+' Selected');
+        $('#part_text_copqp').text('All Parts');
       }else{
       // check_if[0].checked=true;
-      reset_part();
-      $('#part_text_copqp').text('All');
+      reset_part_copqp();
+      $('#part_text_copqp').text('All Parts');
     }
   }else if(((parseInt(part_count)<parseInt(part_len))) && (parseInt(part_count)>0)){
     $('#part_text_copqp').text(parseInt(part_count)+' Selected');
@@ -1951,10 +1942,10 @@ $(document).on('click','.inbox_machine_copqp',function(event){
   if (parseInt(machine_count)>=parseInt(machine_len)) {
       if(check_if[0].checked===true){
         check_if[0].checked=true;
-        $('#machine_text_copqp').text(parseInt(machine_count)-1+' Selected');
+        $('#machine_text_copqp').text('All Machines');
       }else{
-      reset_machine();
-      $('#machine_text_copqp').text('All');
+      reset_machine_copqp();
+      $('#machine_text_copqp').text('All Machines');
     }
   }else if(((parseInt(machine_count)<parseInt(machine_len))) && (parseInt(machine_count)>0)){
     $('#machine_text_copqp').text(parseInt(machine_count)+' Selected');
@@ -2000,11 +1991,11 @@ $(document).on('click','.inbox_reason_qrmr',function(event){
   if (parseInt(reason_count)>=parseInt(reason_len)) {
       if(check_if[0].checked===true){
         check_if[0].checked=true;
-        $('#reason_text_qrmr').text(parseInt(reason_count)-1+' Selected');
+        $('#reason_text_qrmr').text('All Machines');
       }else{
       // check_if[0].checked=true;
-      reset_reason();
-      $('#reason_text_qrmr').text('All');
+      reset_reason_qrmr();
+      $('#reason_text_qrmr').text('All Machines');
     }
   }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
     $('#reason_text_qrmr').text(parseInt(reason_count)+' Selected');
@@ -2050,11 +2041,11 @@ $(document).on('click','.inbox_part_qrmr',function(event){
   if (parseInt(part_count)>=parseInt(part_len)) {
       if(check_if[0].checked===true){
         check_if[0].checked=true;
-        $('#part_text_qrmr').text(parseInt(part_count)-1+' Selected');
+        $('#part_text_qrmr').text('All Parts');
       }else{
       // check_if[0].checked=true;
-      reset_part();
-      $('#part_text_qrmr').text('All');
+      reset_part_qrmr();
+      $('#part_text_qrmr').text('All Parts');
     }
   }else if(((parseInt(part_count)<parseInt(part_len))) && (parseInt(part_count)>0)){
     $('#part_text_qrmr').text(parseInt(part_count)+' Selected');
@@ -2099,10 +2090,10 @@ $(document).on('click','.inbox_machine_qrmr',function(event){
   if (parseInt(machine_count)>=parseInt(machine_len)) {
       if(check_if[0].checked===true){
         check_if[0].checked=true;
-        $('#machine_text_qrmr').text(parseInt(machine_count)-1+' Selected');
+        $('#machine_text_qrmr').text('All Machines');
       }else{
-      reset_machine();
-      $('#machine_text_qrmr').text('All');
+      reset_machine_qrmr();
+      $('#machine_text_qrmr').text('All Machines');
     }
   }else if(((parseInt(machine_count)<parseInt(machine_len))) && (parseInt(machine_count)>0)){
     $('#machine_text_qrmr').text(parseInt(machine_count)+' Selected');
@@ -2148,11 +2139,11 @@ $(document).on('click','.inbox_reason_qrpr',function(event){
   if (parseInt(reason_count)>=parseInt(reason_len)) {
       if(check_if[0].checked===true){
         check_if[0].checked=true;
-        $('#reason_text_qrpr').text(parseInt(reason_count)-1+' Selected');
+        $('#reason_text_qrpr').text('All Reasons');
       }else{
       // check_if[0].checked=true;
-      reset_reason();
-      $('#reason_text_qrpr').text('All');
+      reset_reason_qrpr();
+      $('#reason_text_qrpr').text('All Reasons');
     }
   }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
     $('#reason_text_qrpr').text(parseInt(reason_count)+' Selected');
@@ -2198,11 +2189,11 @@ $(document).on('click','.inbox_part_qrpr',function(event){
   if (parseInt(part_count)>=parseInt(part_len)) {
       if(check_if[0].checked===true){
         check_if[0].checked=true;
-        $('#part_text_qrpr').text(parseInt(part_count)-1+' Selected');
+        $('#part_text_qrpr').text('All Parts');
       }else{
       // check_if[0].checked=true;
-      reset_part();
-      $('#part_text_qrpr').text('All');
+      reset_part_qrpr();
+      $('#part_text_qrpr').text('All Parts');
     }
   }else if(((parseInt(part_count)<parseInt(part_len))) && (parseInt(part_count)>0)){
     $('#part_text_qrpr').text(parseInt(part_count)+' Selected');
@@ -2247,10 +2238,10 @@ $(document).on('click','.inbox_machine_qrpr',function(event){
   if (parseInt(machine_count)>=parseInt(machine_len)) {
       if(check_if[0].checked===true){
         check_if[0].checked=true;
-        $('#machine_text_qrpr').text(parseInt(machine_count)-1+' Selected');
+        $('#machine_text_qrpr').text('All Machines');
       }else{
-      reset_machine();
-      $('#machine_text_qrpr').text('All');
+      reset_machine_qrpr();
+      $('#machine_text_qrpr').text('All Machines');
     }
   }else if(((parseInt(machine_count)<parseInt(machine_len))) && (parseInt(machine_count)>0)){
     $('#machine_text_qrpr').text(parseInt(machine_count)+' Selected');
@@ -2319,11 +2310,11 @@ $(document).on('click','.inbox_user',function(event){
   if (parseInt(user_count)>=parseInt(user_len)) {
       if(check_if[0].checked===true){
         check_if[0].checked=true;
-        $('#user_text').text(parseInt(user_count)-1+' Selected');
+        $('#user_text').text('All Users');
       }else{
       // check_if[0].checked=true;
       reset_created();
-      $('#user_text').text('All');
+      $('#user_text').text('All Users');
     }
   }else if(((parseInt(user_count)<parseInt(user_len))) && (parseInt(user_count)>0)){
     $('#user_text').text(parseInt(user_count)+' Selected');
@@ -5017,6 +5008,7 @@ function getTableData(part,machine,reason,user){
         if(filter_array.length<=0){
           $("#pagination_val").val(1);
           $('#total_pagination').text('1');
+          $('.contentQualityFilter').empty();
           $('.contentQualityFilter').append('<div style="margin-top:1rem;display:flex;flex-direction:row;justify-content:center;align-items:center;height:1.4rem;color:#a6a6a6;font-weight:500;">No Records Found...</div>');
         }else{
           $("#pagination_val").val(1);
@@ -5269,6 +5261,176 @@ function reset_created(){
   });
   $('#user_text').text('All Machine');
 }
+
+// Reset graph filter
+// copq graph dropdowns
+// machine
+function reset_machine_copq(){
+  var machine_arr = $('.filter_machine_val_copq');
+  jQuery('.filter_machine_val_copq').each(function(index){
+    machine_arr[index].checked=true;
+  });
+  $('#machine_text_copq').text('All Machines');
+}
+
+// part
+function reset_part_copq(){
+  var part_arr = $('.filter_part_val_copq');
+  jQuery('.filter_part_val_copq').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#part_text_copq').text('All Parts');
+}
+
+// reason 
+function reset_reason_copq(){
+  var part_arr = $('.filter_reason_val_copq');
+  jQuery('.filter_reason_val_copq').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#reason_text_copqp').text('All Reasons');
+}
+
+// crpr
+// part
+function reset_part_crpr(){
+  var part_arr = $('.filter_part_val_crpr');
+  jQuery('.filter_part_val_crpr').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#part_text_crpr').text('All Parts');
+}
+
+// machine
+function reset_machine_crpr(){
+  var machine_arr = $('.filter_machine_val_crpr');
+  jQuery('.filter_machine_val_crpr').each(function(index){
+    machine_arr[index].checked=true;
+  });
+  $('#part_text_crpr').text('All Machines');
+}
+
+// Reasons
+function reset_reason_crpr(){
+  var reason_arr = $('.filter_reason_val_crpr');
+  jQuery('.filter_reason_val_crpr').each(function(index){
+    reason_arr[index].checked=true;
+  });
+  $('#reason_text_crpr').text('All Reasons');
+}
+
+// copqm
+// parts
+function reset_part_copqm(){
+  var part_arr = $('.filter_part_val_copqm');
+  jQuery('.filter_part_val_copqm').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#part_text_copqm').text('All Machines');
+}
+
+// machine
+function reset_machine_copqm(){
+  var machine_arr = $('.filter_machine_val_copqm');
+  jQuery('.filter_machine_val_copqm').each(function(index){
+    machine_arr[index].checked=true;
+  });
+  $('#machine_text_copqm').text('All Machines');
+}
+
+// reason
+function reset_reason_copqm(){
+  var reason_arr = $('.filter_reason_val_copqm');
+  jQuery('.filter_reason_val_copqm').each(function(index){
+    reason_arr[index].checked=true;
+  });
+  $('#reason_text_copqm').text('All Reasons');
+}
+
+// qrmr 
+
+// part
+function reset_part_qrmr(){
+  var part_arr = $('.filter_part_val_qrmr');
+  jQuery('.filter_part_val_qrmr').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#part_text_qrmr').text('All Parts')
+}
+// machine
+function reset_machine_qrmr(){
+  var machine_arr = $('.filter_machine_val_qrmr');
+  jQuery('.filter_machine_val_qrmr').each(function(index){
+    machine_arr[index].checked=true;
+  });
+  $('#machine_text_qrmr').text('All Machines')
+}
+
+// reason
+function reset_reason_qrmr(){
+  var reason_arr = $('.filter_reason_val_qrmr');
+  jQuery('.filter_reason_val_qrmr').each(function(index){
+    reason_arr[index].checked=true;
+  });
+  $('#reason_text_qrmr').text('All Reasons');
+}
+
+// copqp
+// part
+function reset_part_copqp(){
+  var part_arr = $('.filter_part_val_copqp');
+  jQuery('.filter_part_val_copqp').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#part_text_copqp').text('All Parts');
+}
+
+// machine 
+function reset_machine_copqp(){
+  var machine_arr = $('.filter_machine_val_copqp');
+  jQuery('.filter_machine_val_copqp').each(function(index){
+    machine_arr[index].checked=true;
+  });
+  $('#machine_text_copqp').text('All Machines')
+}
+
+// reason
+function reset_reason_copqp(){
+  var reason_arr = $('.filter_reason_val_copqp');
+  jQuery('.filter_reason_val_copqp').each(function(index){
+    reason_arr[index].checked=true;
+  });
+  $('#reason_text_copqp').text('All Reasons');
+}
+
+// qrpr
+// part
+function reset_part_qrpr(){
+  var part_arr = $('.filter_part_val_qrpr');
+  jQuery('.filter_part_val_qrpr').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#part_text_qrpr').text('All Parts');
+}
+
+// machine
+function reset_machine_qrpr(){
+  var machine_arr = $('.filter_machine_val_qrpr');
+  jQuery('.filter_machine_val_qrpr').each(function(index){
+    machine_arr[index].checked=true;
+  });
+  $('#machine_text_qrpr').text('All Machines');
+}
+
+// reason
+function reset_reason_qrpr(){
+  var reason_arr = $('.filter_reason_val_qrpr');
+  jQuery('.filter_reason_val_qrpr').each(function(index){
+    reason_arr[index].checked=true;
+  });
+  $('#reason_text_qrpr').text('All Reasons');
+}
+
 
 
 // Graph Filters......

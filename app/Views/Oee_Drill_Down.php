@@ -219,7 +219,7 @@ $session = \Config\Services::session();
                             </div>
                             Target
                         </div>
-                        <div style="width:50%;text-align:end;"><span id="target_teep_val_hover">30</span></div>
+                        <div style="width:50%;text-align:end;"><span id="target_teep_val_hover">30</span>%</div>
                     </div>
                 </div>
             </div>
@@ -251,7 +251,7 @@ $session = \Config\Services::session();
                             </div>
                             Target
                         </div>
-                        <div style="width:50%;text-align:end;"><span id="target_ooe_val_hover">30</span></div>
+                        <div style="width:50%;text-align:end;"><span id="target_ooe_val_hover">30</span>%</div>
                     </div>
                 </div>
             </div>
@@ -283,7 +283,7 @@ $session = \Config\Services::session();
                             </div>
                             Target
                         </div>
-                        <div style="width:50%;text-align:end;"><span id="target_oee_val_hover">30</span></div>
+                        <div style="width:50%;text-align:end;"><span id="target_oee_val_hover">30</span>%</div>
                     </div>
                 </div>
             </div>
@@ -465,7 +465,7 @@ $session = \Config\Services::session();
                
                 <!-- Machine multi select dropdown -->
                 <div class="box " style="" >
-                    <label class="multi_select_label" style="">Machine</label>
+                    <label class="multi_select_label" style="">Machines</label>
                     <div class="filter_selectBox" onclick="machine_drp1()">
                         <select  class="multi_select_drp" style="" >
                             <option id="text_machine1" style="">All Machines</option>
@@ -527,7 +527,7 @@ $session = \Config\Services::session();
                 <div style="" class="availability_drp_div">
                     <!-- category multi select dropdown -->
                     <div class="box rightmar" style="margin-right: 0.5rem;" >
-                        <label class="multi_select_label" style="">Categorie</label>
+                        <label class="multi_select_label" style="">Categories</label>
                         <div class="filter_selectBox" onclick="category_drp2()">
                             <select  class="multi_select_drp" style="" >
                                 <option id="text_category_drp2" style="">All Categories</option>
@@ -566,7 +566,7 @@ $session = \Config\Services::session();
 
                     <!-- reason multi select dropdown -->
                     <div class="box " style="margin-right:0.5rem;" >
-                        <label class="multi_select_label" style="">Reason</label>
+                        <label class="multi_select_label" style="">Reasons</label>
                         <div class="filter_selectBox" onclick="reason_drp2()">
                             <select  class="multi_select_drp" style="" >
                                 <option id="text_reason2" style="">All Reasons</option>
@@ -578,7 +578,7 @@ $session = \Config\Services::session();
                 
                     <!-- Machine multi select dropdown -->
                     <div class="box " style="" >
-                        <label class="multi_select_label" style="">Machine</label>
+                        <label class="multi_select_label" style="">Machines</label>
                         <div class="filter_selectBox" onclick="machine_drp2()">
                             <select  class="multi_select_drp" style="" >
                                 <option id="text_machine2" style="">All Machines</option>
@@ -617,7 +617,7 @@ $session = \Config\Services::session();
                 <div style="" class="performance_drp_div">    
                     <!-- reason multi select dropdown -->
                     <div class="box rightmar" style="margin-right: 0.5rem;" >
-                        <label class="multi_select_label" style="">Part</label>
+                        <label class="multi_select_label" style="">Parts</label>
                         <div class="filter_selectBox" onclick="part_drp()">
                             <select  class="multi_select_drp" style="" >
                                 <option id="text_part" style="">All Parts</option>
@@ -629,7 +629,7 @@ $session = \Config\Services::session();
                
                     <!-- Machine multi select dropdown -->
                     <div class="box"  >
-                        <label class="multi_select_label" style="">Machine</label>
+                        <label class="multi_select_label" style="">Machines</label>
                         <div class="filter_selectBox" onclick="machine_drp3()">
                             <select  class="multi_select_drp" style="" >
                                 <option id="text_machine3" style="">All Machines</option>
@@ -665,7 +665,7 @@ $session = \Config\Services::session();
                 <div style="" class="quality_drp_div">    
                     <!-- reason multi select dropdown -->
                     <div class="box rightmar" style="margin-right: 0.5rem;" >
-                        <label class="multi_select_label" style="">Reason</label>
+                        <label class="multi_select_label" style="">Reasons</label>
                         <div class="filter_selectBox" onclick="quality_reason_drp()">
                             <select  class="multi_select_drp" style="" >
                                 <option id="text_quality_reason" style="">All Reasons</option>
@@ -677,7 +677,7 @@ $session = \Config\Services::session();
                
                     <!-- Machine multi select dropdown -->
                     <div class="box " >
-                        <label class="multi_select_label" style="">Machine</label>
+                        <label class="multi_select_label" style="">Machines</label>
                         <div class="filter_selectBox" onclick="machine_drp4()">
                             <select  class="multi_select_drp" style="" >
                                 <option id="text_machine4" style="">All Machines</option>
@@ -817,7 +817,7 @@ function reset_category2(){
     jQuery('.category_drp_checkbox2').each(function(in2){
         category_arr[in2].checked=true;
     });
-    $('#text_category_drp2').text('All Categorys');
+    $('#text_category_drp2').text('All Categories');
 }
 
 
@@ -1186,7 +1186,7 @@ $(document).on('click','.category_click2',function(event){
     if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
         if(check_if1[0].checked===true){
             check_if1[0].checked=true;
-            $('#text_category_drp2').text(parseInt(reason_gp_select_count1)-1+' Selected');
+            $('#text_category_drp2').text('All Categories');
         }else{
             // check_if[0].checked=true;
             reset_category2();
@@ -1236,7 +1236,7 @@ $(document).on('click','.reason_click2',function(event){
     if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
         if(check_if1[0].checked===true){
             check_if1[0].checked=true;
-            $('#text_reason2').text(parseInt(reason_gp_select_count1)-1+' Selected');
+            $('#text_reason2').text('All Reasons');
         }else{
             // check_if[0].checked=true;
             reset_reason2();
@@ -1286,7 +1286,7 @@ $(document).on('click','.quality_click',function(event){
     if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
         if(check_if1[0].checked===true){
             check_if1[0].checked=true;
-            $('#text_quality_reason').text(parseInt(reason_gp_select_count1)-1+' Selected');
+            $('#text_quality_reason').text('All Reasons');
         }else{
             // check_if[0].checked=true;
             reset_quality_reason();
@@ -1336,7 +1336,7 @@ $(document).on('click','.machine_click',function(event){
     if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
         if(check_if1[0].checked===true){
             check_if1[0].checked=true;
-            $('#text_machine').text(parseInt(reason_gp_select_count1)-1+' Selected');
+            $('#text_machine').text('All Machines');
         }else{
             // check_if[0].checked=true;
             reset_machine();
@@ -1385,7 +1385,7 @@ $(document).on('click','.machine_click1',function(event){
     if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
         if(check_if1[0].checked===true){
             check_if1[0].checked=true;
-            $('#text_machine1').text(parseInt(reason_gp_select_count1)-1+' Selected');
+            $('#text_machine1').text('All Machines');
         }else{
             // check_if[0].checked=true;
             reset_machine1();
@@ -1435,7 +1435,7 @@ $(document).on('click','.machine_click2',function(event){
     if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
         if(check_if1[0].checked===true){
             check_if1[0].checked=true;
-            $('#text_machine2').text(parseInt(reason_gp_select_count1)-1+' Selected');
+            $('#text_machine2').text('All Machines');
         }else{
             // check_if[0].checked=true;
             reset_machine2();
@@ -1485,7 +1485,7 @@ $(document).on('click','.machine_click3',function(event){
     if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
         if(check_if1[0].checked===true){
             check_if1[0].checked=true;
-            $('#text_machine3').text(parseInt(reason_gp_select_count1)-1+' Selected');
+            $('#text_machine3').text('All Machines');
         }else{
             // check_if[0].checked=true;
             reset_machine3();
@@ -1536,7 +1536,7 @@ $(document).on('click','.part_click',function(event){
     if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
         if(check_if1[0].checked===true){
             check_if1[0].checked=true;
-            $('#text_part').text(parseInt(reason_gp_select_count1)-1+' Selected');
+            $('#text_part').text('All Parts');
         }else{
             // check_if[0].checked=true;
             reset_part();
@@ -1586,7 +1586,7 @@ $(document).on('click','.machine_click4',function(event){
     if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
         if(check_if1[0].checked===true){
             check_if1[0].checked=true;
-            $('#text_machine4').text(parseInt(reason_gp_select_count1)-1+' Selected');
+            $('#text_machine4').text('All Machines');
         }else{
             // check_if[0].checked=true;
             reset_machine4();
@@ -1635,7 +1635,7 @@ $(document).on('click','.all_data_field_click',function(event){
     if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
         if(check_if1[0].checked===true){
             check_if1[0].checked=true;
-            $('#text_all_data_field').text(parseInt(reason_gp_select_count1)-1+' Selected');
+            $('#text_all_data_field').text('All Data Fields');
         }else{
             // check_if[0].checked=true;
             reset_all_data_field();

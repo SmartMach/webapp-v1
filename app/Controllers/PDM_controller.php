@@ -214,8 +214,10 @@ class PDM_controller extends BaseController{
             $update['shift'] = $this->request->getVar('shift');
             $update['shift_date'] = $this->request->getVar('shiftdate');
             $update['part_id'] = $this->request->getVar('partname');
+           
             $output = $this->data->getRejectionData($update);
             echo json_encode($output);
+            
         }
     } 
 

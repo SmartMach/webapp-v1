@@ -1800,7 +1800,7 @@ function get_shift_data(){
                         if (item.downtime_category == "Planned") {
                             elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
                             +'<div class="dot col float-start" style="overflow:hidden"><img src="'+item.uploaded_file_location+item.uploaded_file_name+'.'+item.original_file_extension+'" alt="" width="100%" height="100%"></div>'
-                            +'<div class="col.float-start down d-flex fontheight fontbox"><p class="three_dots_css font_weight " >'+item.downtime_reason+'</p></div>'
+                            +'<div class="col.float-start down d-flex fontheight fontbox"><p  title="'+item.downtime_reason+'" class="three_dots_css font_weight " >'+item.downtime_reason+'</p></div>'
                             +'<div class="dotHover dclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh  reason-pen" style="color:grey; "></i></div>'
                             +'<div class="dotHover1 drclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/delete.png'); ?>" class="img_font_wh reason-pen" ></i></div>'
                             +'</div>');
@@ -1808,7 +1808,7 @@ function get_shift_data(){
                         else{
                             elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
                             +'<div class="dot col float-start" style="overflow:hidden"><img src="'+item.uploaded_file_location+item.uploaded_file_name+'.'+item.original_file_extension+'" alt="" width="100%" height="100%"></div>'
-                            +'<div class="col.float-start down d-flex fontheight fontbox"><p class="three_dots_css font_weight " >'+item.downtime_reason+'</p></div>'
+                            +'<div class="col.float-start down d-flex fontheight fontbox"><p class="three_dots_css font_weight " title="'+item.downtime_reason+'">'+item.downtime_reason+'</p></div>'
                             +'<div class="dotHover dclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh reason-pen" style="color:grey;"></div>'
                             +'<div class="dotHover1 drclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="img_font_wh reason-pen"></i></div>'
                             +'</div>');
@@ -1818,7 +1818,7 @@ function get_shift_data(){
                         if (item.downtime_category == "Planned") {
                             elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
                             +'<div class="dot col float-start" style="overflow:hidden"><div class="no_img_circle" width="100%" height="100%"></div></div>'
-                            +'<div class="col.float-start down d-flex fontheight fontbox"><p class="three_dots_css font_weight" >'+item.downtime_reason+'</p></div>'
+                            +'<div class="col.float-start down d-flex fontheight fontbox"><p class="three_dots_css font_weight" title="'+item.downtime_reason+'">'+item.downtime_reason+'</p></div>'
                             +'<div class="dotHover dclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh  reason-pen" style="color:grey; "></i></div>'
                             +'<div class="dotHover1 drclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/delete.png'); ?>" class="img_font_wh reason-pen" ></i></div>'
                             +'</div>');
@@ -1826,7 +1826,7 @@ function get_shift_data(){
                         else{
                             elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
                             +'<div class="dot col float-start" style="overflow:hidden"><div class="no_img_circle" width="100%" height="100%"></div></div>'
-                            +'<div class="col.float-start down d-flex fontheight fontbox"><p class=" font_weight three_dots_css" >'+item.downtime_reason+'</p></div>'
+                            +'<div class="col.float-start down d-flex fontheight fontbox"><p class=" font_weight three_dots_css" title="'+item.downtime_reason+'">'+item.downtime_reason+'</p></div>'
                             +'<div class="dotHover dclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh reason-pen" style="color:grey;"></div>'
                             +'<div class="dotHover1 drclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="img_font_wh reason-pen"></i></div>'
                             +'</div>');
@@ -1867,14 +1867,14 @@ function get_shift_data(){
                     if (quality_imgError(file_name) == true) {
                         elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
                         +'<div class="dot col float-start" style="overflow:hidden"><img src="'+item.uploaded_file_location+item.uploaded_file_name+'.'+item.uploaded_file_extension+'" alt="" width="100%" height="100%"></div>'
-                        +'<div class="col.float-start down d-flex fontheight fontbox" style="padding:unset;"><p class="font_weight three_dots_css" >'+item.quality_reason_name+'</p></div>'
+                        +'<div class="col.float-start down d-flex fontheight fontbox" style="padding:unset;"><p class="font_weight three_dots_css" title="'+item.quality_reason_name+'">'+item.quality_reason_name+'</p></div>'
                         +'<div class="dotHover qclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_qreason+'"><img src="<?php echo base_url('assets/img/pencil.png') ?>" class="reason-pen img_font_wh"></i></div>'
                         +'<div class="dotHover1 qrclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_qreason+'"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="img_font_wh reason-pen"></i></div>'
                         +'</div>');   
                     }else{
                         elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
                         +'<div class="dot col float-start" style="overflow:hidden"><div class="no_img_circle" width="100%" height="100%"></div></div>'
-                        +'<div class="col.float-start down d-flex fontheight fontbox"><p class=" font_weight three_dots_css" >'+item.quality_reason_name+'</p></div>'
+                        +'<div class="col.float-start down d-flex fontheight fontbox"><p class=" font_weight three_dots_css" title="'+item.quality_reason_name+'">'+item.quality_reason_name+'</p></div>'
                         +'<div class="dotHover qclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_qreason+'"><img src="<?php echo base_url('assets/img/pencil.png') ?>" class="reason-pen img_font_wh"></i></div>'
                         +'<div class="dotHover1 qrclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_qreason+'"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="img_font_wh reason-pen"></i></div>'
                         +'</div>');  

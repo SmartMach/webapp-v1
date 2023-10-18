@@ -451,52 +451,67 @@ $(document).on('click','.filter_check_cate',function(event){
       check_if[2].checked=true;
       $('.category_drp_checkbox').attr('checked','checked');
       count_category = 2;
+      $('#text_category_drp').text('All Categories');
       
     }else{
       count_category = 0
       $('.category_drp_checkbox').removeAttr('checked');
+      $('#text_category_drp').text('No Categories');
     }
   }else{
-    if (check_if[index_val].checked === false) {
-      check_if[index_val].checked=true;
-      count_category = parseInt(count_category)+1
-      $('.category_drp_checkbox:eq('+index_val+')').attr('checked','checked');
-    }else{
-      count_category = parseInt(count_category)-1
-      if (parseInt(count_category)<2) {
-        check_if[0].checked=false;
-      }
-      $('.category_drp_checkbox:eq('+index_val+')').removeAttr('checked');
-    }
+        if (check_if[index_val].checked === false) {
+            check_if[index_val].checked=true;
+            count_category = parseInt(count_category)+1
+            $('.category_drp_checkbox:eq('+index_val+')').attr('checked','checked');
+        }else{
+            count_category = parseInt(count_category)-1
+            if (parseInt(count_category)<2) {
+                check_if[0].checked=false;
+            }
+            $('.category_drp_checkbox:eq('+index_val+')').removeAttr('checked');
+        }
+                
+        // check the count
+        var count_cate = 0;
+        jQuery('.category_drp_checkbox').each(function(index){
+            if (check_if[index].checked===true) {
+            count_cate = parseInt(count_cate)+1;
+            }
+        });
+        if (parseInt(count_cate)>=2) {
+            check_if[0].checked=true;
+            $('#text_category_drp').text('All Categories');
+        }else if(parseInt(count_cate)>0){
+            $('#text_category_drp').text(count_cate+' Selected');       
+        }
+        else{
+            $('#text_category_drp').text('No Selected');
+        }
+        // $('#text_category_drp').text(count_cate+' Selected');
+
+
   }
 
-  // check the count
-  var count_cate = 0;
-  jQuery('.category_drp_checkbox').each(function(index){
-    if (check_if[index].checked===true) {
-      count_cate = parseInt(count_cate)+1;
-    }
-  });
 
-  // text alignment
-  // var temp_reason = "";
-  if (parseInt(count_cate)>=2) {
-    check_if[0].checked=true;
-    var temp_reason = null;
-    downtime_reason_filter(temp_reason);
-    $('#text_category_drp').text('All Categories');
-  }else if(parseInt(count_cate)>0){
-    var temp_reason = getcategory_arr();
-    downtime_reason_filter(temp_reason[0]);
-    $('#text_category_drp').text(count_cate+' Selected');
+//   // text alignment
+//   // var temp_reason = "";
+//   if (parseInt(count_cate)>=2) {
+//     check_if[0].checked=true;
+//     var temp_reason = null;
+//     downtime_reason_filter(temp_reason);
+//     $('#text_category_drp').text('All Categories');
+//   }else if(parseInt(count_cate)>0){
+//     var temp_reason = getcategory_arr();
+//     downtime_reason_filter(temp_reason[0]);
+//     $('#text_category_drp').text(count_cate+' Selected');
    
-  }
-  else{
-    var temp_reason = null;
-    downtime_reason_filter(temp_reason);
-    // reset_category();
-    $('#text_category_drp').text('No Selected');
-  }
+//   }
+//   else{
+//     var temp_reason = null;
+//     downtime_reason_filter(temp_reason);
+//     // reset_category();
+//     $('#text_category_drp').text('No Selected');
+//   }
 });
 
 // created by dropdown checkbox label onclick created by code
@@ -536,16 +551,16 @@ $(document).on('click','.filter_check_cb',function(event){
     if (parseInt(createdby_select_count)>=parseInt(createdby_len)) {
         if (check_if[0].checked==true) {
             check_if[0].checked=true;
-            $('#text_created_by_drp').text(parseInt(createdby_select_count)-1+' Selected');
+            $('#text_created_by_drp').text('All Users');
         }else{
             reset_created_by();
-            $('#text_created_by_drp').text('All');
+            $('#text_created_by_drp').text('All Users');
         }
     }
     else if((parseInt(createdby_select_count)<parseInt(createdby_len)) && (parseInt(createdby_select_count)>0)){
         $('#text_created_by_drp').text(parseInt(createdby_select_count)+' selected');
     }else{
-        $('#text_created_by_drp').text('No Reason');  
+        $('#text_created_by_drp').text('No Users');  
     }
 
 });
@@ -586,10 +601,10 @@ $(document).on('click','.filter_check_r',function(event){
     if (parseInt(reason_select_count)>=parseInt(reason_len)) {
         if (check_if[0].checked==true) {
             check_if[0].checked=true;
-            $('#text_reason_drp').text(parseInt(reason_select_count)-1+' Selected');
+            $('#text_reason_drp').text('All Reasons');
         }else{
             reset_reason();
-            $('#text_reason_drp').text('All');
+            $('#text_reason_drp').text('All Reasons');
         }
     }
     else if((parseInt(reason_select_count)<parseInt(reason_len)) && (parseInt(reason_select_count)>0)){
@@ -637,10 +652,10 @@ $(document).on('click','.filter_check_part',function(event){
     if (parseInt(part_select_count)>=parseInt(part_len)) {
         if (check_if[0].checked==true) {
             check_if[0].checked=true;
-            $('#text_category_drp_part').text(parseInt(part_select_count)-1+' Selected');
+            $('#text_category_drp_part').text('All Parts');
         }else{
             reset_part();
-            $('#text_category_drp_part').text('All');
+            $('#text_category_drp_part').text('All Parts');
         }
     }
     else if((parseInt(part_select_count)<parseInt(part_len)) && (parseInt(part_select_count)>0)){
@@ -688,11 +703,11 @@ $(document).on('click','.filter_check_machine',function(event){
     if (parseInt(machine_select_count)>=parseInt(machine_len)) {
         if(check_if[0].checked===true){
             check_if[0].checked=true;
-            $('#text_machine_drp').text(parseInt(machine_select_count)-1+' Selected');
+            $('#text_machine_drp').text('All Machines');
         }else{
             // check_if[0].checked=true;
             reset_machine();
-            $('#text_machine_drp').text('All');
+            $('#text_machine_drp').text('All Machines');
         }
     }else if(((parseInt(machine_select_count)<parseInt(machine_len))) && (parseInt(machine_select_count)>0)){
         $('#text_machine_drp').text(parseInt(machine_select_count)+' Selected');
@@ -740,18 +755,18 @@ $(document).on('click','.filter_check_categorygb',function(event){
     if (parseInt(category_gp_select_count)>=parseInt(category_gp_len)) {
         if(check_if[0].checked===true){
             check_if[0].checked=true;
-            $('#text_categorygp').text(parseInt(category_gp_select_count)-1+' Selected');
+            $('#text_categorygp').text('All Categories');
         }else{
             // check_if[0].checked=true;
             reset_category_gp();
-            $('#text_categorygp').text('All');
+            $('#text_categorygp').text('All Categories');
         }
     }else if(((parseInt(category_gp_select_count)<parseInt(category_gp_len))) && (parseInt(category_gp_select_count)>0)){
         $('#text_categorygp').text(parseInt(category_gp_select_count)+' Selected');
 
         // check_if[0].checked=false;
     }else {
-        $('#text_categorygp').text('No Category');
+        $('#text_categorygp').text('No Categories');
     }
 
 });
@@ -792,11 +807,11 @@ $(document).on('click','.filter_check_reasongp',function(event){
     if (parseInt(reason_gp_select_count)>=parseInt(reason_gp_len)) {
         if(check_if[0].checked===true){
             check_if[0].checked=true;
-            $('#text_reasongp').text(parseInt(reason_gp_select_count)-1+' Selected');
+            $('#text_reasongp').text('All Reasons');
         }else{
             // check_if[0].checked=true;
             reset_reason_gp();
-            $('#text_reasongp').text('All');
+            $('#text_reasongp').text('All Reasons');
         }
     }else if(((parseInt(reason_gp_select_count)<parseInt(reason_gp_len))) && (parseInt(reason_gp_select_count)>0)){
         $('#text_reasongp').text(parseInt(reason_gp_select_count)+' Selected');
@@ -843,11 +858,11 @@ $(document).on('click','.filter_check_machinegp',function(event){
     if (parseInt(machine_gp_select_count)>=parseInt(machine_gp_len)) {
         if(check_if[0].checked===true){
             check_if[0].checked=true;
-            $('#text_machinegp').text(parseInt(machine_gp_select_count)-1+' Selected');
+            $('#text_machinegp').text('All Machines');
         }else{
             // check_if[0].checked=true;
             reset_machine_gp();
-            $('#text_machinegp').text('All');
+            $('#text_machinegp').text('All Machines');
         }
     }else if(((parseInt(machine_gp_select_count)<parseInt(machine_gp_len))) && (parseInt(machine_gp_select_count)>0)){
         $('#text_machinegp').text(parseInt(machine_gp_select_count)+' Selected');
@@ -897,11 +912,11 @@ $(document).on('click','.filter_check_reasongp1',function(event){
     if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
         if(check_if1[0].checked===true){
             check_if1[0].checked=true;
-            $('#text_reasongp1').text(parseInt(reason_gp_select_count1)-1+' Selected');
+            $('#text_reasongp1').text('All Reasons');
         }else{
             // check_if[0].checked=true;
             reset_reason_gp1();
-            $('#text_reasongp1').text('All');
+            $('#text_reasongp1').text('All Reasons');
         }
     }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
         $('#text_reasongp1').text(parseInt(reason_gp_select_count1)+' Selected');
@@ -947,18 +962,18 @@ $(document).on('click','.filter_check_categorygb1',function(event){
     if (parseInt(category_gp_select_count1)>=parseInt(category_gp_len1)) {
         if(check_if1[0].checked===true){
             check_if1[0].checked=true;
-            $('#text_categorygp1').text(parseInt(category_gp_select_count1)-1+' Selected');
+            $('#text_categorygp1').text('All Categories');
         }else{
             // check_if[0].checked=true;
             reset_category_gp1();
-            $('#text_categorygp1').text('All');
+            $('#text_categorygp1').text('All Categories');
         }
     }else if(((parseInt(category_gp_select_count1)<parseInt(category_gp_len1))) && (parseInt(category_gp_select_count1)>0)){
         $('#text_categorygp1').text(parseInt(category_gp_select_count1)+' Selected');
 
         // check_if[0].checked=false;
     }else {
-        $('#text_categorygp1').text('No Category');
+        $('#text_categorygp1').text('No Categories');
     }
 
 });
@@ -1000,11 +1015,11 @@ $(document).on('click','.filter_check_machinegp2',function(event){
     if (parseInt(machine_gp_select_count2)>=parseInt(machine_gp_len2)) {
         if(check_if2[0].checked===true){
             check_if2[0].checked=true;
-            $('#text_machinegp2').text(parseInt(machine_gp_select_count2)-1+' Selected');
+            $('#text_machinegp2').text('All Machines');
         }else{
             // check_if[0].checked=true;
             reset_machine_gp2();
-            $('#text_machinegp2').text('All');
+            $('#text_machinegp2').text('All Machines');
         }
     }else if(((parseInt(machine_gp_select_count2)<parseInt(machine_gp_len2))) && (parseInt(machine_gp_select_count2)>0)){
         $('#text_machinegp2').text(parseInt(machine_gp_select_count2)+' Selected');
@@ -1049,11 +1064,11 @@ $(document).on('click','.filter_check_reasongp2',function(event){
     if (parseInt(reason_gp_select_count2)>=parseInt(reason_gp_len2)) {
         if(check_if2[0].checked===true){
             check_if2[0].checked=true;
-            $('#text_reasongp2').text(parseInt(reason_gp_select_count2)-1+' Selected');
+            $('#text_reasongp2').text('All Reasons');
         }else{
             // check_if[0].checked=true;
             reset_reason_gp2();
-            $('#text_reasongp2').text('All');
+            $('#text_reasongp2').text('All Reasons');
         }
     }else if(((parseInt(reason_gp_select_count2)<parseInt(reason_gp_len2))) && (parseInt(reason_gp_select_count2)>0)){
         $('#text_reasongp2').text(parseInt(reason_gp_select_count2)+' Selected');
@@ -1098,18 +1113,18 @@ $(document).on('click','.filter_check_categorygb2',function(event){
     if (parseInt(category_gp_select_count2)>=parseInt(category_gp_len2)) {
         if(check_if2[0].checked===true){
             check_if2[0].checked=true;
-            $('#text_categorygp2').text(parseInt(category_gp_select_count2)-1+' Selected');
+            $('#text_categorygp2').text('All Categories');
         }else{
             // check_if[0].checked=true;
             reset_category_gp2();
-            $('#text_categorygp2').text('All');
+            $('#text_categorygp2').text('All Categories');
         }
     }else if(((parseInt(category_gp_select_count2)<parseInt(category_gp_len2))) && (parseInt(category_gp_select_count2)>0)){
         $('#text_categorygp2').text(parseInt(category_gp_select_count2)+' Selected');
 
         // check_if[0].checked=false;
     }else {
-        $('#text_categorygp2').text('No Category');
+        $('#text_categorygp2').text('No Categories');
     }
 
 });
@@ -1151,7 +1166,7 @@ $(document).on('click','.filter_check_machinegp3',function(event){
     if (parseInt(machine_gp_select_count3)>=parseInt(machine_gp_len3)) {
         if(check_if3[0].checked===true){
             check_if3[0].checked=true;
-            $('#text_machinegp3').text(parseInt(machine_gp_select_count3)-1+' Selected');
+            $('#text_machinegp3').text('All Machines');
         }else{
             // check_if[0].checked=true;
             reset_machine_gp3();
@@ -1200,11 +1215,11 @@ $(document).on('click','.filter_check_reasongp3',function(event){
     if (parseInt(reason_gp_select_count3)>=parseInt(reason_gp_len3)) {
         if(check_if3[0].checked===true){
             check_if3[0].checked=true;
-            $('#text_reasongp3').text(parseInt(reason_gp_select_count3)-1+' Selected');
+            $('#text_reasongp3').text('All Reasons');
         }else{
             // check_if[0].checked=true;
             reset_reason_gp3();
-            $('#text_reasongp3').text('All');
+            $('#text_reasongp3').text('All Reasons');
         }
     }else if(((parseInt(reason_gp_select_count3)<parseInt(reason_gp_len3))) && (parseInt(reason_gp_select_count3)>0)){
         $('#text_reasongp3').text(parseInt(reason_gp_select_count3)+' Selected');
@@ -1249,18 +1264,18 @@ $(document).on('click','.filter_check_categorygb3',function(event){
     if (parseInt(category_gp_select_count3)>=parseInt(category_gp_len3)) {
         if(check_if3[0].checked===true){
             check_if3[0].checked=true;
-            $('#text_categorygp3').text(parseInt(category_gp_select_count3)-1+' Selected');
+            $('#text_categorygp3').text('All Categories');
         }else{
             // check_if[0].checked=true;
             reset_category_gp3();
-            $('#text_categorygp3').text('All');
+            $('#text_categorygp3').text('All Categories');
         }
     }else if(((parseInt(category_gp_select_count3)<parseInt(category_gp_len3))) && (parseInt(category_gp_select_count3)>0)){
         $('#text_categorygp3').text(parseInt(category_gp_select_count3)+' Selected');
 
         // check_if[0].checked=false;
     }else {
-        $('#text_categorygp3').text('No Category');
+        $('#text_categorygp3').text('No Categories');
     }
 
 });
@@ -1300,7 +1315,7 @@ function reset_category(){
     jQuery('.category_drp_checkbox').each(function(in2){
         category_arr[in2].checked=true;
     });
-    $('#text_category_drp').text('All Category');
+    $('#text_category_drp').text('All Categories');
 }
 
 // reset created by
@@ -1319,7 +1334,7 @@ function reset_category_gp(){
     jQuery('.categorygp_checkbox').each(function(in3){
         created_by_arr[in3].checked=true;
     });
-    $('#text_categorygp').text('All Category');
+    $('#text_categorygp').text('All Categories');
 }
 
 // reset reason graph filter
@@ -1366,7 +1381,7 @@ function reset_category_gp1(){
     jQuery('.categorygp_checkbox1').each(function(in3){
         created_by_arr[in3].checked=true;
     });
-    $('#text_categorygp1').text('All Category');
+    $('#text_categorygp1').text('All Categories');
 }
 
 // machine wise oppcost reset dropdown
@@ -1391,7 +1406,7 @@ function reset_category_gp2(){
     jQuery('.categorygp_checkbox2').each(function(in3){
         created_by_arr[in3].checked=true;
     });
-    $('#text_categorygp2').text('All Category');
+    $('#text_categorygp2').text('All Categories');
 }
 
 // machine and reason wise duration
@@ -1416,7 +1431,7 @@ function reset_category_gp3(){
     jQuery('.categorygp_checkbox3').each(function(in3){
         created_by_arr[in3].checked=true;
     });
-    $('#text_categorygp3').text('All Category');
+    $('#text_categorygp3').text('All Categories');
 }
 
 // reason duration
@@ -1455,11 +1470,11 @@ $(document).on('click','.filter_check_machinegp1',function(event){
     if (parseInt(machine_gp_select_count1)>=parseInt(machine_gp_len1)) {
         if(check_if1[0].checked===true){
             check_if1[0].checked=true;
-            $('#text_machinegp1').text(parseInt(machine_gp_select_count1)-1+' Selected');
+            $('#text_machinegp1').text('All Machines');
         }else{
             // check_if[0].checked=true;
             reset_machine_gp1();
-            $('#text_machinegp1').text('All');
+            $('#text_machinegp1').text('All Machines');
         }
     }else if(((parseInt(machine_gp_select_count1)<parseInt(machine_gp_len1))) && (parseInt(machine_gp_select_count1)>0)){
         $('#text_machinegp1').text(parseInt(machine_gp_select_count1)+' Selected');
