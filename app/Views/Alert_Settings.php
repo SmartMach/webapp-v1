@@ -293,7 +293,7 @@
             <!-- <p class="float-start"></p> -->
             <div class="d-flex innerNav">
 
-                <div class="filter_div" style="padding-right:2rem;">
+                <div class="filter_div noselect_txt" style="padding-right:0.7rem;">
                     
                     <!-- search keyword -->
                     <!-- <div class="box rightmar" style="margin-right:0.5rem;">
@@ -2617,11 +2617,12 @@ function add_assignee(t) {
         var start_index = 0;
         var end_index = 50;
         $('.pagination_onchange').val('1');
-        retrive_alert_data(start_index,end_index);
+        
         reset_filter_last_updated_by();
         reset_work_order_drp();
         reset_filter_machine_alert();
         reset_filter_part();
+        retrive_alert_data(start_index,end_index);
     }
 
     // apply filter button onclick function
