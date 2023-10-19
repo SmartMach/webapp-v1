@@ -3,6 +3,10 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/styles_production_quality.css?version=<?php echo rand() ; ?>">
 </head>
 <style type="text/css">
+    .input_new_style{
+        font-size: 14px !important;
+        margin-top: -4px;
+    }
     .input-field-lable{
         width: 100px;
         height: 28px;
@@ -440,9 +444,9 @@ $session = \Config\Services::session();
                                   <div class="filter_multiselect filter_multiselect_input">
                                     <span class="multi_select_label" style="">Priority</span>
                                     <div class="filter_selectBox priority" onclick="multiple_priority(this)">
-                                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                      <div class="inbox-span fontStyle input_new_style dropdown-arrow">
                                         <div style="width: 80% !important">
-                                          <p class="paddingm input-index" id="priority_val_lable">Select</p>
+                                          <p class="paddingm input-index font_weight_modal" id="priority_val_lable">Select</p>
                                         </div>
                                         <div class="dropdown-div" style=" width: 20% !important">
                                           <i class="fa fa-angle-down icon-style"></i>
@@ -484,9 +488,9 @@ $session = \Config\Services::session();
                                   <div class="filter_multiselect filter_multiselect_input">
                                     <span class="multi_select_label" style="">Assignee</span>
                                     <div class="filter_selectBox assignee" onclick="multiple_assignee(this)">
-                                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                      <div class="inbox-span fontStyle input_new_style dropdown-arrow">
                                         <div style="width: 80% !important">
-                                          <p class="paddingm input-index" id="assignee_val">Select</p>
+                                          <p class="paddingm input-index font_weight_modal" id="assignee_val">Select</p>
                                         </div>
                                         <div class="dropdown-div" style=" width: 20% !important">
                                           <i class="fa fa-angle-down icon-style"></i>
@@ -513,9 +517,9 @@ $session = \Config\Services::session();
                                   <div class="filter_multiselect filter_multiselect_input">
                                     <span class="multi_select_label" style="">Status</span>
                                     <div class="filter_selectBox status" onclick="multiple_status(this)">
-                                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                      <div class="inbox-span fontStyle input_new_style dropdown-arrow">
                                         <div style="width: 80% !important">
-                                          <p class="paddingm input-index" id="status_val_lable">Select</p>
+                                          <p class="paddingm input-index font_weight_modal" id="status_val_lable">Select</p>
                                         </div>
                                         <div class="dropdown-div" style=" width: 20% !important">
                                           <i class="fa fa-angle-down icon-style"></i>
@@ -630,9 +634,9 @@ $session = \Config\Services::session();
                                   <div class="filter_multiselect filter_multiselect_input">
                                     <span class="multi_select_label" style="">Priority</span>
                                     <div class="filter_selectBox" onclick="multiple_priority(this)">
-                                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                      <div class="inbox-span fontStyle input_new_style dropdown-arrow">
                                         <div style="width: 80% !important">
-                                          <p class="paddingm input-index" id="priority_val_edit_lable">Select</p>
+                                          <p class="paddingm input-index font_weight_modal" id="priority_val_edit_lable">Select</p>
                                         </div>
                                         <div class="dropdown-div" style=" width: 20% !important">
                                           <i class="fa fa-angle-down icon-style"></i>
@@ -674,9 +678,9 @@ $session = \Config\Services::session();
                                   <div class="filter_multiselect filter_multiselect_input">
                                     <span class="multi_select_label" style="">Assignee</span>
                                     <div class="filter_selectBox assignee" onclick="multiple_assignee(this)">
-                                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                      <div class="inbox-span fontStyle input_new_style dropdown-arrow">
                                         <div style="width: 80% !important">
-                                          <p class="paddingm input-index" id="assignee_edit_val">Select</p>
+                                          <p class="paddingm input-index font_weight_modal" id="assignee_edit_val">Select</p>
                                         </div>
                                         <div class="dropdown-div" style=" width: 20% !important">
                                           <i class="fa fa-angle-down icon-style"></i>
@@ -703,9 +707,9 @@ $session = \Config\Services::session();
                                   <div class="filter_multiselect filter_multiselect_input">
                                     <span class="multi_select_label" style="">Status </span>
                                     <div class="filter_selectBox" onclick="multiple_status(this)">
-                                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                      <div class="inbox-span fontStyle input_new_style dropdown-arrow">
                                         <div style="width: 80% !important">
-                                          <p class="paddingm input-index" id="status_val_edit_lable">Select</p>
+                                          <p class="paddingm input-index font_weight_modal" id="status_val_edit_lable">Select</p>
                                         </div>
                                         <div class="dropdown-div" style=" width: 20% !important">
                                           <i class="fa fa-angle-down icon-style"></i>
@@ -1165,7 +1169,7 @@ $(document).on('click','.inbox_assignee',function(event){
         +'<div class="circle-div-select" style="background:#7f7f7f;color:white;">'
             +'<p class="paddingm">'+$('.inbox_assignee:eq('+index+')').children('.circle-div-root').children('.circle-div').children('p').text()+'</p>'
         +'</div>'
-        +'<span style="color: #7f7f7f">'+$('.inbox_assignee:eq('+index+')').children('.assignee_name_class').children('p').text()+'</span>'
+        +'<span>'+$('.inbox_assignee:eq('+index+')').children('.assignee_name_class').children('p').text()+'</span>'
         +'</div>');
 });
 
@@ -1178,7 +1182,7 @@ $(document).on('click','.inbox_assignee_edit',function(event){
         +'<div class="circle-div-select" style="background:#7f7f7f;color:white;">'
             +'<p class="paddingm">'+$('.inbox_assignee_edit:eq('+index+')').children('.circle-div-root').children('.circle-div').children('p').text()+'</p>'
         +'</div>'
-        +'<span style="color: #7f7f7f">'+$('.inbox_assignee_edit:eq('+index+')').children('.assignee_name_class').children('p').text()+'</span>'
+        +'<span>'+$('.inbox_assignee_edit:eq('+index+')').children('.assignee_name_class').children('p').text()+'</span>'
         +'</div>');
 });
 
@@ -1238,7 +1242,7 @@ $(document).on("click", ".info-work-order", function(event){
                       +'<div class="circle-div-select" style="background:'+randomColor+';color:white;">'
                         +'<p class="paddingm">'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p>'
                       +'</div>'
-                      +'<span style="color: #7f7f7f;margin-left:0.5rem;">'+item['first_name']+' '+item['last_name']+'</span>'
+                      +'<span style="margin-left:0.5rem;">'+item['first_name']+' '+item['last_name']+'</span>'
                     +'</div>');
                 }
             });
@@ -1581,7 +1585,7 @@ $(document).on("click", ".edit-work-order", function(event){
                         +'<div class="circle-div-select" style="background:'+randomColor+';color:white;">'
                             +'<p class="paddingm">'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p>'
                         +'</div>'
-                        +'<span style="color: #7f7f7f">'+item['first_name']+' '+item['last_name']+'</span>'
+                        +'<span>'+item['first_name']+' '+item['last_name']+'</span>'
                         +'</div>');
                 }else{
                     elements = elements.add('<div class="inbox inbox_assignee_edit" style="display: flex;">'
