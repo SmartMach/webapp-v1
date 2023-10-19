@@ -1534,7 +1534,7 @@ class Production_Downtime_controller extends BaseController{
             $min_index = $i;
            
             for ($j=$i+1; $j<count($arr['data']); $j++) { 
-                if ($arr['data'][$j]['total']>$arr['graph'][$i]['total']) {
+                if ($arr['data'][$j]['total']>$arr['data'][$i]['total']) {
                    
                     // $temp = $arr['graph'][$i];
                     // $arr['graph'][$i] = $arr['graph'][$min_index];
