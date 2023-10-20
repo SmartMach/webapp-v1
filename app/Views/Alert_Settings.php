@@ -741,7 +741,7 @@
                                             <span class="multi_select_label" style="margin-top:-0.7rem;">Assignee <span class="paddingm validate">*</span></span>
                                             <div class="filter_selectBox" onclick="add_assignee(this)">
                                                 <div class="inbox-span fontStyle search_style dropdown-arrow">
-                                                    <div style="width: 80% !important">
+                                                    <div style="width: 80% !important" >
                                                     <p class="paddingm input-index" id="assignee_val" data-assignee-val="Unassigned">
                                                         Unassigned
                                                     </p>
@@ -1248,6 +1248,8 @@ var add_alert_part_drp = false;
 // priority dropdown variable
 var  clicks_count = 0;
 
+var assignee_color = new Array();
+
 
 
 // prioirty dropdown new function work
@@ -1638,6 +1640,7 @@ function add_assignee(t) {
             type:"POST",
             dataType:"json",
             success:function(res){
+                console.log("dropdown array");
                 console.log(res);
 
                 var element = $();
@@ -1802,9 +1805,16 @@ function add_assignee(t) {
                    
                     var elements = $();
                     var edit_elements = $();
+                    var user_color_code="";
+                    var color_arr = [];
+                    if (item.user_profile==="" || item.user_profile===null) {
+                        user_color_code="#005abc";
+                    }else{
+                        user_color_code="#"+item.user_profile;
+                    }
                     elements = elements.add('<div class="inbox inbox_assignee" data-assignee-val="'+item.user_id+'" style="display: flex;">'
                         +'<div style="float: left;width: 20%;" class="center-align circle-div-root">'
-                            +'<div class="circle-div" style="background:#7f7f7f;color:white;">'
+                            +'<div class="circle-div" style="background:'+user_color_code+';color:white;">'
                                 +'<p class="paddingm">'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p>'
                             +'</div>'
                         +'</div>'
@@ -1817,7 +1827,7 @@ function add_assignee(t) {
 
                     edit_elements = edit_elements.add('<div class="inbox inbox_edit_assignee" data-assignee-val="'+item.user_id+'" style="display: flex;">'
                         +'<div style="float: left;width: 20%;" class="center-align circle-div-root">'
-                            +'<div class="circle-div" style="background:#7f7f7f;color:white;">'
+                            +'<div class="circle-div" style="background:'+user_color_code+';color:white;">'
                                 +'<p class="paddingm">'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p>'
                             +'</div>'
                         +'</div>'
@@ -1826,6 +1836,9 @@ function add_assignee(t) {
                         +'</div>'
                         +'<input type="radio" class="assignee_add radio-visible" name="assignee_edit_val" value="'+item['user_id']+'">'
                     +'</div>');
+
+                    color_arr['assignee_id'] = item['user_id'];
+                    color_arr['assignee_color'] = user_color_code;
 
                     $('.add_record_assignee').append(elements);
                     $('.edit_record_assignee').append(edit_elements);
@@ -1842,6 +1855,8 @@ function add_assignee(t) {
 
                     
                     $('#add_alert_assignee').append(ele_assignee);
+
+                    assignee_color.push(color_arr);
                    
                 });
 
@@ -2562,6 +2577,22 @@ function add_assignee(t) {
                                 work_img = "none";
                             }
 
+                            var user_color_find = "";
+                            assignee_color.forEach(element => {
+                                
+                                if (element.assignee_id===item.last_updated_by) {
+                                    user_color_find = element.assignee_color;
+                                }
+                            });
+
+                            var tmp_profile_color = "";
+                            if (user_color_find==="" || user_color_find===null) {
+                                tmp_profile_color = "#005abc";
+                            }else{
+                                tmp_profile_color=user_color_find;
+                            }
+
+
                             var get_materics_value = get_metrics_limit_val(item.metrics);
                             var materics_value_user_format = get_materics_userformat(item.metrics);
                             console.log(item.metrics);
@@ -2587,7 +2618,7 @@ function add_assignee(t) {
                                 +' <div class="col-sm-1 col marleft img_div_out" style="">'
                                 +'<img src="<?php echo base_url('assets/img/mail_demo.png'); ?>" alt="" class="img_div_css" style="display:'+mail_img+'"> <img src="<?php echo base_url('assets/img/issue.png'); ?>" alt="" class="img_div_Css1" style="display:'+work_img+'"> </div>'
                                 +' <div class="col-sm-2 col marleft" style="">'
-                                +'<div class="circle_div_out" style="">'+chnage_letter_sm_up.toUpperCase()+'</div><span class="small_txt_out" style="">'+item.user_data.full_name+'</span>'
+                                +'<div class="circle_div_out" style="background:'+tmp_profile_color+';">'+chnage_letter_sm_up.toUpperCase()+'</div><span class="small_txt_out" style="">'+item.user_data.full_name+'</span>'
                                 +'</div>'
                                 +'<div class="col-sm-1 col marleft img_action_out" style="width:9%;justify-content:center;">'
                                 +'<div class="action_hover"> <img src="<?php echo base_url('assets/img/pencil.png'); ?>" alt="" class="img_action_icon edit_click" style="" data_id="'+item.alert_id+'" data_notify="'+item.notify_as+'"></div>'
@@ -2689,6 +2720,8 @@ function add_assignee(t) {
             success:function(res){
                 console.log("Alert settings");
                 console.log(res);
+                console.log("assignee color array");
+                console.log(assignee_color);
                 // alert(res);
                
                 $('#title_alert_id').text(res[0]['alert_id']);
@@ -2707,7 +2740,7 @@ function add_assignee(t) {
                 $('#edit_metrics_val_limit_txt').text(metrics_val_limit);
                 
                 if (res[0]['notify_as']==="all") {
-                    
+                    console.log(res[0]['notify_as']);
                     checkbox_work.checked=true;
                     checkbox_email.checked=true;
                     $('#edit_alert_work_type').val(res[0]['work_type']);
@@ -2761,27 +2794,43 @@ function add_assignee(t) {
 
                     // assignee
                     if (res[0]['assignee']==="Unassigned") {
-                        $('#edit_assignee_val').html('<div style="float: left;width: 100%;" class="center-align">'
-                        +'<div class="circle-div-select" style="background:#7f7f7f;color:white;margin-right:0.5rem;">'
+                        $('#edit_assignee_val').html('<div style="float: left;width: 100%;" class="d-flex">'
+                        +'<div class="circle-div-select" style="background:#005abc;color:white;margin-right:0.5rem;">'
                             +'<p class="paddingm">UA</p>'
                         +'</div>'
-                        +'<span style="color: #7f7f7f">Unassigned</span>'
+                        +'<span style="color: #7f7f7f;margin-left:0.3rem;" class="text_ellipse">Unassigned</span>'
                         +'</div>');
                         
                         $('#edit_assignee_val').attr('data-assignee-val','Unassigned');
                     }else{
-                        $('#edit_assignee_val').html('<div style="float: left;width: 100%;" class="center-align">'
-                        +'<div class="circle-div-select" style="background:#7f7f7f;color:white;margin-right:0.5rem;">'
-                            +'<p class="paddingm">'+res[0]['user_name']['fl_split']+'</p>'
-                        +'</div>'
-                        +'<span style="color: #7f7f7f">'+res[0]['user_name']['full_name']+'</span>'
+
+                        var user_color_find = "";
+                        assignee_color.forEach(element => {
+                            
+                            if (element.assignee_id===res[0]['assignee']) {
+                                user_color_find = element.assignee_color;
+                            }
+                        });
+                        var tmp_profile_color = "";
+                        if (user_color_find==="" || user_color_find===null) {
+                            tmp_profile_color="#005abc";
+                        }else{
+                            tmp_profile_color=user_color_find;
+                        }
+                        $('#edit_assignee_val').html('<div style="float: left;width: 100%;" class="d-flex">'
+                                +'<div class="circle-div-select" style="background:'+tmp_profile_color+';color:white;">'
+                                    +'<p class="paddingm">'+res[0]['user_name']['fl_split']+'</p>'
+                                +'</div>'
+                                +'<span style="color: #7f7f7f;margin-left:0.3rem;" class="text_ellipse">'+res[0]['user_name']['full_name']+'</span>'
                         +'</div>');
                         
                         $('#edit_assignee_val').attr('data-assignee-val',res[0]['assignee']);
                     }
                     
                 }
+
                 else if(res[0]['notify_as']==="work"){
+                    
                     checkbox_work.checked=true;
                     checkbox_email.checked=false;
                     $('#edit_alert_work_type').val(res[0]['work_type']);
@@ -2816,20 +2865,35 @@ function add_assignee(t) {
 
                     // assginee
                     if (res[0]['assignee']==="Unassigned") {
-                        $('#edit_assignee_val').html('<div style="float: left;width: 100%;" class="center-align">'
-                        +'<div class="circle-div-select" style="background:#7f7f7f;color:white;">'
+                        $('#edit_assignee_val').html('<div style="float: left;width: 100%;" class="d-flex">'
+                        +'<div class="circle-div-select" style="background:#005abc;color:white;">'
                             +'<p class="paddingm">UA</p>'
                         +'</div>'
-                        +'<span style="color: #7f7f7f">Unassigned</span>'
+                        +'<span style="color: #7f7f7f;margin-left:0.3rem;" class="text_ellipse">Unassigned</span>'
                         +'</div>');
                         
                         $('#edit_assignee_val').attr('data-assignee-val','Unassigned');
                     }else{
-                        $('#edit_assignee_val').html('<div style="float: left;width: 100%;" class="center-align">'
-                        +'<div class="circle-div-select" style="background:#7f7f7f;color:white;">'
+
+                        var user_color_find = "";
+                        assignee_color.forEach(element => {
+                            
+                            if (element.assignee_id===res[0]['assignee']) {
+                                // console.log("selected assignee id"+element.assignee_id);
+                                user_color_find = element.assignee_color;
+                            }
+                        });
+                        var tmp_profile_color = "";
+                        if (user_color_find==="" || user_color_find===null) {
+                            tmp_profile_color="#005abc";
+                        }else{
+                            tmp_profile_color=user_color_find;
+                        }
+                        $('#edit_assignee_val').html('<div style="float: left;width: 100%;" class="d-flex">'
+                        +'<div class="circle-div-select" style="background:'+tmp_profile_color+';color:white;">'
                             +'<p class="paddingm">'+res[0]['user_name']['fl_split']+'</p>'
                         +'</div>'
-                        +'<span style="color: #7f7f7f">'+res[0]['user_name']['full_name']+'</span>'
+                        +'<span style="color: #7f7f7f;margin-left:0.3rem;" class="text_ellipse">'+res[0]['user_name']['full_name']+'</span>'
                         +'</div>');
                         
                         $('#edit_assignee_val').attr('data-assignee-val',res[0]['assignee']);
@@ -3278,16 +3342,29 @@ $(document).on('click','.inbox_assignee',function(event){
     $('.inbox_assignee:eq('+index+')').children("input[name=assignee_val]").attr('checked', true);
 
     var tmpassignee_id = $('.inbox_assignee:eq('+index+')').attr('data-assignee-val');
+    var user_color_find="";
+    assignee_color.forEach(element => {
+        if (element.assignee_id===tmpassignee_id) {
+            user_color_find = element.assignee_color;
+        }
+    });
+    var final_color = "";
+    if (user_color_find==="" || user_color_find===null) {
+        final_color ="#005abc";
+    }else{
+        final_color=user_color_find;
+    }
     // $('#assignee_val').empty();
-    $('#assignee_val').html('<div style="float: left;width: 100%;" class="center-align">'
-        +'<div class="circle-div-select" style="background:#7f7f7f;color:white;">'
+    $('#assignee_val').html('<div style="float: left;width: 100%;" class="d-flex">'
+        +'<div class="circle-div-select" style="background:'+final_color+';color:white;">'
             +'<p class="paddingm">'+$('.inbox_assignee:eq('+index+')').children('.circle-div-root').children('.circle-div').children('p').text()+'</p>'
         +'</div>'
-        +'<span style="color: #7f7f7f;margin-left:0.3rem;">'+$('.inbox_assignee:eq('+index+')').children('.assignee_name_class').children('p').text()+'</span>'
-        +'</div>');
+        +'<span style="color: #7f7f7f;margin-left:0.3rem;" class="text_ellipse">'+$('.inbox_assignee:eq('+index+')').children('.assignee_name_class').children('p').text()+'</span>'
+    +'</div>');
         // console.log("assignee");
         // console.log(tmpassignee_id);
     $('#assignee_val').attr('data-assignee-val',tmpassignee_id);
+    
 });
 
 
@@ -3301,13 +3378,25 @@ $(document).on('click','.inbox_edit_assignee',function(event){
     $('.inbox_edit_assignee:eq('+index+')').children("input[name=assignee_val]").attr('checked', true);
 
     var tmpassignee_id = $('.inbox_edit_assignee:eq('+index+')').attr('data-assignee-val');
+    var user_color_find="";
+    assignee_color.forEach(element => {
+        if (element.assignee_id===tmpassignee_id) {
+            user_color_find = element.assignee_color;
+        }
+    });
+    var final_color = "";
+    if (user_color_find==="" || user_color_find===null) {
+        final_color ="#005abc";
+    }else{
+        final_color=user_color_find;
+    }
     $('#edit_assignee_val').empty();
-    $('#edit_assignee_val').html('<div style="float: left;width: 100%;" class="center-align">'
-        +'<div class="circle-div-select" style="background:#7f7f7f;color:white;">'
+    $('#edit_assignee_val').html('<div style="float: left;width: 100%;" class="d-flex">'
+        +'<div class="circle-div-select" style="background:'+final_color+';color:white;">'
             +'<p class="paddingm">'+$('.inbox_edit_assignee:eq('+index+')').children('.circle-div-root').children('.circle-div').children('p').text()+'</p>'
         +'</div>'
-        +'<span style="color: #7f7f7f">'+$('.inbox_edit_assignee:eq('+index+')').children('.assignee_name_class').children('p').text()+'</span>'
-        +'</div>');
+        +'<span style="color: #7f7f7f;margin-left:0.3rem;" class="text_ellipse">'+$('.inbox_edit_assignee:eq('+index+')').children('.assignee_name_class').children('p').text()+'</span>'
+    +'</div>');
         
     $('#edit_assignee_val').attr('data-assignee-val',tmpassignee_id);
 });

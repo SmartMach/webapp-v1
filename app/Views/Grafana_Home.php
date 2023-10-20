@@ -848,6 +848,7 @@ $(document).ready(function(){
     var lname = "<?php echo $this->data['user_details'][0]['last_name'] ?>";
     var role = "<?php echo $this->data['user_details'][0]['role'] ?>";
 
+    var user_profile_color_code = "<?php echo $this->data['user_details'][0]['user_profile'] ?>";
 
     var first_letter = fname.charAt(0).toUpperCase();
     var last_letter = lname.charAt(0).toUpperCase();
@@ -862,8 +863,16 @@ $(document).ready(function(){
     $('#role_display').html(role);
 
     // info circle random colors circle colors alignment
-    var info_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
-    var random_info_color = info_color[Math.floor(Math.random()*info_color.length)];
+    var info_color = ["#005ABC"];
+    var random_info_color = "";
+    if (user_profile_color_code==="" || user_profile_color_code===null) {
+        // console.log("color code is not in db");
+        random_info_color = info_color[0];
+    }else{
+        // console.log("color code is in db");
+        random_info_color = '#'+user_profile_color_code;
+    }
+    // var random_info_color = info_color[Math.floor(Math.random()*info_color.length)];
     $('#info_circle_color').css("background-color",random_info_color);
     $('.circle_div').css("background-color",random_info_color);
     $('#get_text_info').html(first_letter+''+last_letter);

@@ -1329,6 +1329,8 @@
                   var new_site_location = $('#location_name').val();
 
                   var role = $('#inputRoleAdd').val();
+
+                  var user_color_code = Math.floor(Math.random()*16777215).toString(16);
                 if (role != "Operator") {
                     //alert(site_name);
                     if ((site_name!=null)) {
@@ -1396,6 +1398,7 @@
                                 Production_Downtime:Production_Downtime,
                                 Work_Order_Management:Work_Order_Management,
                                 Alert_Management:Alert_Management,
+                                user_color_code:user_color_code,
                             },
                             success:function(res){
                                 console.log("use added succes");
@@ -1456,6 +1459,7 @@
                                     User_Designation:User_Designation,
                                     user_id:UserNameRef,
                                     pass:pass,
+                                    user_color_code:user_color_code,
                                 },
                                 dataType: "json",
                                 success:function(res){
@@ -3488,13 +3492,21 @@ $.ajax({
             }
             var active = 0;
             var inactive = 0;
-            var color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
+            // var color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
             // this foreach function for rows updation 
             res_Site.forEach(function(item){
-                var randomColor = color[Math.floor(Math.random()*color.length)];
+                // var randomColor = color[Math.floor(Math.random()*color.length)];
+                var randomColor = "";
                 var elements = $();
                 var forgot_border = "";
                 var delete_border = "";
+                // var color = "";
+                if (item.user_profile==="" || item.user_profile===null) {
+                    randomColor = "#005ABC";
+                }else{
+                    randomColor = '#'+item.user_profile;
+                }
+
                 if (item.role == "Smart Admin"){
                     var forgot = "none";
                     var colorRole = "#853e2c";
