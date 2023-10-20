@@ -525,7 +525,7 @@
                                         <option value=">">></option>
                                         <option value="<="><=</option>
                                         <option value=">=">>=</option>
-                                        <option value="==">==</option>
+                                        <option value="==">=</option>
                                     </select>
                                     <label for="add_alert_relation" class="input-padding ">Relation  <span class="paddingm validate">*</span></label>
                                 </div>
