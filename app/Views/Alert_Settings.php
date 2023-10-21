@@ -555,7 +555,7 @@
                                 <span class="label_txt_hour" style="">In The Past <span class="paddingm validate">*</span></span>
                                 <input type="text" class="form-control alert_font_css default_font_size"  aria-label="Recipient's username" id="add_alert_past_hour" name="add_alert_past_hour" aria-describedby="basic-addon2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" style="border-radius:0.25rem 0rem 0rem 0.25rem;">
                                 <div class="input-group-append  bg-white text-primary">
-                                    <span class="input-group-text bg-white default_font_size" style="font-size:12px;height:2.4rem;" id="basic-addon2">Hours</span>
+                                    <span class="input-group-text bg-white default_font_size" style="font-size:12px;height:2.4rem;border-radius:0rem 0.25rem 0.25rem 0rem;" id="basic-addon2">Hours</span>
                                 </div>
                             </div>
                             <span class="paddingm float-start validate" id="inputAlertpastHourErr"></span>
@@ -810,8 +810,8 @@
                                 
                                 <div class="input-group default_input_height">
                                     <span class="label_txt_font" style="">Subject <span class="paddingm validate">*</span></span>
-                                    <span class="input-group-text bg-white text-muted" style="font-size:13px;">SmartMach Alert! </span>
-                                    <input type="text" class="form-control alert_font_css default_font_size" id="add_alert_mail_subject" name="add_alert_mail_subject">
+                                    <span class="input-group-text bg-white text-muted" style="font-size:13px;border-radius:0.25rem 0rem 0rem 0.25rem;">SmartMach Alert! </span>
+                                    <input type="text" class="form-control alert_font_css default_font_size" id="add_alert_mail_subject" name="add_alert_mail_subject" style="border-radius:0rem 0.25rem 0.25rem 0rem;">
                                 </div>
                                 <span class="paddingm float-start validate" id="input_email_sub_Err"></span>
                             </div>
@@ -926,7 +926,7 @@
                                 <span class="label_txt_hour" style="">In The Past <span class="paddingm validate">*</span></span>
                                 <input type="text" class="form-control alert_font_css default_font_size"  aria-label="Recipient's username" id="edit_alert_past_hour" name="edit_alert_past_hour" aria-describedby="basic-addon2" style="border-radius:0.25rem 0rem 0rem 0.25rem;">
                                 <div class="input-group-append  bg-white text-primary">
-                                    <span class="input-group-text bg-white" style="font-size:12px;height:2.4rem;" id="basic-addon2">Hours</span>
+                                    <span class="input-group-text bg-white" style="font-size:12px;height:2.4rem;border-radius:0rem 0.25rem 0.25rem 0rem;" id="basic-addon2">Hours</span>
                                 </div>
                             </div>
                             <span class="paddingm float-start validate" id="inputAlert_edit_pastHourErr"></span>
@@ -1176,8 +1176,8 @@
                                 
                                 <div class="input-group default_input_height">
                                     <span class="label_txt_font" style="">Subject <span class="paddingm validate">*</span></span>
-                                    <span class="input-group-text bg-white text-muted" style="font-size:13px;">SmartMach Alert! </span>
-                                    <input type="text" class="form-control alert_font_css default_font_size" id="edit_alert_mail_subject" name="edit_alert_mail_subject">
+                                    <span class="input-group-text bg-white text-muted" style="font-size:13px;border-radius:0.25rem 0rem 0rem 0.25rem;">SmartMach Alert! </span>
+                                    <input type="text" class="form-control alert_font_css default_font_size" id="edit_alert_mail_subject" name="edit_alert_mail_subject" style="border-radius:0rem 0.25rem 0.25rem 0rem;">
                                 </div>
                                 <span class="paddingm float-start validate" id="input_email_edit_sub_Err"></span>
                             </div>
