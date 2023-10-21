@@ -1235,8 +1235,7 @@ $(document).on("click", ".info-work-order", function(event){
             assignee_list.forEach(function(item){
                 var elements = $();
                 if (item['user_id'] == res[0]['assignee']) {
-                    var user_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
-                    var randomColor = user_color[Math.floor(Math.random()*user_color.length)];
+                    var randomColor = item['user_profile'];
 
                     $('#info_assignee').html('<div style="float: left;width: 100%;display:flex">'
                       +'<div class="circle-div-select" style="background:'+randomColor+';color:white;">'
@@ -1559,8 +1558,7 @@ $(document).on("click", ".edit-work-order", function(event){
             // Privious Assignee....
             $('.edit_record_assignee').empty();
             assignee_list.forEach(function(item){
-                var user_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
-                var randomColor = user_color[Math.floor(Math.random()*user_color.length)];
+                var randomColor = item['user_profile'];
 
                 var elements = $();
                 if (item['user_id'] == res[0]['assignee']) {
@@ -3110,8 +3108,9 @@ function getAssigneeList(){
                     +'</div>'
                 +'</div>');
             res.forEach(function(item){
-                var user_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
-                var randomColor = user_color[Math.floor(Math.random()*user_color.length)];
+                // var user_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
+
+                var randomColor = item['user_profile'];
 
                 assignee_list.push(item);
                 var elements = $();
@@ -3891,15 +3890,13 @@ function getFilterData(){
             var user_id="";
             var user_first="";
             var user_last="";
-            // var assignee="";
-            var user_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
 
             var assignee_option = "";
-            var randomColor = user_color[Math.floor(Math.random()*user_color.length)];
             assignee_list.forEach(function(u){
                 if (item['assignee'] == u['user_id']) {
                     user_first = u['first_name'];
                     user_last = u['last_name'];
+                    var randomColor = u['user_profile'];
 
                     assignee_option = ('<div style="width: 25%">'
                             +'<div class="dotUser" style="background:'+randomColor+';color:white;"><p class="paddingm">'+user_first.trim().slice(0,1).toUpperCase()+''+user_last.trim().slice(0,1).toUpperCase()+'</p></div>'
