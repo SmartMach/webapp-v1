@@ -606,7 +606,7 @@ $session = \Config\Services::session();
                             <p class="Comments">Comments</p>
                             <div class="center-align reduce_width">
                                 <div style="float: left;width: 10%;" class="center-align">
-                                    <div class="circle-div" style="background:#7f7f7f;color:white;"><p class="paddingm Edit_Current_User"></p></div>
+                                    <div class="circle-div Edit_Current_User_bg" style="color:white;"><p class="paddingm Edit_Current_User"></p></div>
                                 </div>
                                 <div class="input-box" style="width: 90%">      
                                     <input type="text" class="form-control font_weight_modal input-field-comments-edit" id="" name="" >
@@ -1235,8 +1235,7 @@ $(document).on("click", ".info-work-order", function(event){
             assignee_list.forEach(function(item){
                 var elements = $();
                 if (item['user_id'] == res[0]['assignee']) {
-                    var user_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
-                    var randomColor = user_color[Math.floor(Math.random()*user_color.length)];
+                    var randomColor = item['user_profile'];
 
                     $('#info_assignee').html('<div style="float: left;width: 100%;display:flex">'
                       +'<div class="circle-div-select" style="background:'+randomColor+';color:white;">'
@@ -1363,10 +1362,12 @@ function previous_comments(res){
                     if (cm == comment_item['comment_id']) {
                         var u_name = "";
                         var u_logo="";
+                        var u_profile="";
                         assignee_list.forEach(function(item){
                             if (item['user_id'] == comment_item['last_updated_by']) {
                                 u_logo = item['first_name'].trim().slice(0,1).toUpperCase()+''+item['last_name'].trim().slice(0,1).toUpperCase();
                                 u_name = item['first_name']+" "+item['last_name'];
+                                u_profile = item['user_profile'];
                             }
                         });
 
@@ -1380,7 +1381,7 @@ function previous_comments(res){
                         elements = elements.add('<div class="Comments-list">'
                             +'<div class="center-align">'
                                 +'<div style="float: left;width: 10%;" class="center-align">'
-                                    +'<div class="circle-div" style="background:#7f7f7f;color:white;"><p class="paddingm">'+u_logo+'</p></div>'
+                                    +'<div class="circle-div" style="background:'+u_profile+';color:white;"><p class="paddingm">'+u_logo+'</p></div>'
                                 +'</div>'
                                 +'<div class="input-box" style="width: 90%">'
                                     +'<div class="center-align-center">'
@@ -1559,8 +1560,7 @@ $(document).on("click", ".edit-work-order", function(event){
             // Privious Assignee....
             $('.edit_record_assignee').empty();
             assignee_list.forEach(function(item){
-                var user_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
-                var randomColor = user_color[Math.floor(Math.random()*user_color.length)];
+                var randomColor = item['user_profile'];
 
                 var elements = $();
                 if (item['user_id'] == res[0]['assignee']) {
@@ -1676,6 +1676,7 @@ $(document).on("click", ".edit-work-order", function(event){
             assignee_list.forEach(function(item){
               if (item['user_id'] == user_id_ref) {
                   u_logo = item['first_name'].trim().slice(0,1).toUpperCase()+''+item['last_name'].trim().slice(0,1).toUpperCase();
+                  $('.Edit_Current_User_bg').css("background",item['user_profile']);
                   $('.Edit_Current_User').text(u_logo);
               }
             });
@@ -1706,10 +1707,12 @@ function previous_comments_edit(res){
                     if (cm == comment_item['comment_id']) {
                         var u_name = "";
                         var u_logo="";
+                        var u_profile="";
                         assignee_list.forEach(function(item){
                             if (item['user_id'] == comment_item['last_updated_by']) {
                                 u_logo = item['first_name'].trim().slice(0,1).toUpperCase()+''+item['last_name'].trim().slice(0,1).toUpperCase();
                                 u_name = item['first_name']+" "+item['last_name'];
+                                u_profile = item['user_profile'];
                             }
                         });
 
@@ -1724,7 +1727,7 @@ function previous_comments_edit(res){
                             +'<div class="Comments-list">'
                               +'<div class="center-align">'
                                   +'<div style="float: left;width: 10%;" class="center-align">'
-                                      +'<div class="circle-div" style="background:#7f7f7f;color:white;"><p class="paddingm">'+u_logo+'</p></div>'
+                                      +'<div class="circle-div" style="background:'+u_profile+';color:white;"><p class="paddingm">'+u_logo+'</p></div>'
                                   +'</div>'
                                   +'<div class="input-box" style="width: 90%">'
                                       +'<div class="center-align-center">'
@@ -3109,9 +3112,38 @@ function getAssigneeList(){
                         +'<p class="inbox-span paddingm">All</p>'
                     +'</div>'
                 +'</div>');
+
+            // Default Unassignee --> Unassignee for Filter
+            $('.Filter_assignee_div').append('<div class="inbox inbox_filter_assignee" style="display: flex;">'
+                    +'<div style="float: left;width: 20%;" class="center-align">'
+                        +'<input class="filter_val_assignee" name="filter_val_assignee_name" value="Unassigned" type="checkbox" checked/>'
+                    +'</div>'
+                    +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                        +'<p class="inbox-span paddingm">Unassigned</p>'
+                    +'</div>'
+                +'</div>');
+
+            // Default Unassignee --> Unassignee for Add Issue
+            // var elements = $();
+            // randomColor_Unassignee = "#005bbc";
+            // elements = elements.add('<div class="inbox inbox_assignee" style="display: flex;">'
+            //     +'<div style="float: left;width: 20%;" class="center-align circle-div-root">'
+            //         +'<div class="circle-div" style="background:'+randomColor_Unassignee+';color:white;">'
+            //             +'<p class="paddingm">'+("UA").toUpperCase()+'</p>'
+            //         +'</div>'
+            //     +'</div>'
+            //     +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt assignee_name_class">'
+            //         +'<p class="inbox-span paddingm">'+'Unassigned'+'</p>'
+            //     +'</div>'
+            //     +'<input type="radio" class="assignee_add radio-visible" name="assignee_val" value="Unassigned">'
+            // +'</div>');
+            // $('.add_record_assignee').append(elements);
+
+
             res.forEach(function(item){
-                var user_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
-                var randomColor = user_color[Math.floor(Math.random()*user_color.length)];
+                // var user_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
+
+                var randomColor = item['user_profile'];
 
                 assignee_list.push(item);
                 var elements = $();
@@ -3795,6 +3827,18 @@ function getLableList(){
                     +'<p class="inbox-span paddingm">All</p>'
                 +'</div>'
             +'</div>');
+
+            // Default label --> Unlabeled
+            $('.Filter_lables_div').append('<div class="inbox inbox_filter_lables" style="display: flex;">'
+                +'<div style="float: left;width: 20%;" class="center-align">'
+                    +'<input class="filter_val_lables" name="filter_val_lables_name" value="Unlabeled" type="checkbox" checked/>'
+                +'</div>'
+                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                    +'<p class="inbox-span paddingm">Unlabeled</p>'
+                +'</div>'
+            +'</div>');
+
+
             res.forEach(function(item){
                 lable_list_globle.push(item);
 
@@ -3891,15 +3935,13 @@ function getFilterData(){
             var user_id="";
             var user_first="";
             var user_last="";
-            // var assignee="";
-            var user_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
 
             var assignee_option = "";
-            var randomColor = user_color[Math.floor(Math.random()*user_color.length)];
             assignee_list.forEach(function(u){
                 if (item['assignee'] == u['user_id']) {
                     user_first = u['first_name'];
                     user_last = u['last_name'];
+                    var randomColor = u['user_profile'];
 
                     assignee_option = ('<div style="width: 25%">'
                             +'<div class="dotUser" style="background:'+randomColor+';color:white;"><p class="paddingm">'+user_first.trim().slice(0,1).toUpperCase()+''+user_last.trim().slice(0,1).toUpperCase()+'</p></div>'
@@ -3959,7 +4001,6 @@ function getFilterData(){
 }
 
 function getWorkOrderRecords(status,lables,priority,assignee,filter){
-
     $.ajax({
         url:"<?php echo base_url('Work_Order_Management_controller/get_work_order_data') ?>",
         method:"POST",
@@ -3974,12 +4015,12 @@ function getWorkOrderRecords(status,lables,priority,assignee,filter){
             filter:filter,
         },
         success:function(data_res){
-
             $('.contentWorkOrder').empty();
             filter_array=[];
             var open=0;
             var in_progress=0;
             var overdue =0;
+
             data_res.forEach(function(item){
                 filter_array.push(item);
                 if (item['status_id'] == 1) {
@@ -3998,7 +4039,7 @@ function getWorkOrderRecords(status,lables,priority,assignee,filter){
                 c_date = new Date(c_date);
                 ac_date = new Date(ac_date);
 
-                if (item['status_id'] != 3 && ac_date<c_date) {
+                if ((item['status_id'] == 1 || item['status_id'] == 2) && ac_date<c_date) {
                     overdue = parseInt(overdue) + 1;
                 }
             });
@@ -4078,7 +4119,7 @@ $(document).on('click','.Add_Work_Data',function(event){
     formData.append('due_date', $('#add_due_date').val());
     formData.append('status', $('input[name="status_val"]:checked').val());
     if (!$('input[name="assignee_val"]:checked').val()) {
-      formData.append('assignee', "");
+      formData.append('assignee', "Unassigned");
     }else{
       formData.append('assignee', $('input[name="assignee_val"]:checked').val());
     }
@@ -4116,10 +4157,6 @@ $(document).on('click','.Add_Work_Data',function(event){
     });
 
     formData.append('file_list_collection', file_list_collection);
-
-      // for (var pair of formData.entries()) {
-      //     console.log(pair[0]+ ', ' + pair[1]); 
-      // }
 
           $.ajax({
               url:"<?php echo base_url('Work_Order_Management_controller/save_work_order_data') ?>",

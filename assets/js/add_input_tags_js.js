@@ -20,6 +20,7 @@ var edit_to_email_arr = new Array();
 var cc_email_edit = document.querySelector('.edit_parent_div_input_check_cc');
 var input_cc_email_edit = document.querySelector('.input_check_cc_edit');
 var edit_cc_email_arr = new Array();
+var email_pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 
 
@@ -49,8 +50,13 @@ function addTag_to_email(e){
         if(tag.length > 1 && !add_to_email_arr.includes(tag)){
             if(add_to_email_arr.length < 10){
                 tag.split(',').forEach(tag => {
-                    add_to_email_arr.push(tag);
-                    to_email_createTag();
+                    if (email_pattern.test(tag)) {
+                        add_to_email_arr.push(tag);
+                        to_email_createTag();
+                    }else{
+                        $('#input_check_to_Err').text('Valid Email**');
+                    }
+                   
                 });
             }
         }
@@ -89,8 +95,13 @@ function addTag_cc_email(e){
         if(tag.length > 1 && !add_cc_email_arr.includes(tag)){
             if(add_cc_email_arr.length < 10){
                 tag.split(',').forEach(tag => {
-                    add_cc_email_arr.push(tag);
-                    cc_email_createTag();
+                    if (email_pattern.test(tag)) {
+                        add_cc_email_arr.push(tag);
+                        cc_email_createTag();
+                    }else{
+                        $('#input_check_cc_Err').text('Valid Email**');
+                    }
+                   
                 });
             }
         }
@@ -123,8 +134,13 @@ function addTag_to_email_edit(e){
         if(tag.length > 1 && !edit_to_email_arr.includes(tag)){
             if(edit_to_email_arr.length < 10){
                 tag.split(',').forEach(tag => {
-                    edit_to_email_arr.push(tag);
-                    createTag_to_email_edit();
+                    if (email_pattern.test(tag)) {
+                        edit_to_email_arr.push(tag);
+                        createTag_to_email_edit();
+                    }else{
+                        $('#input_check_to_edit_Err').text('valid Email**');
+                    }
+                   
                 });
             }
         }
@@ -164,8 +180,13 @@ function addTag_cc_email_edit(e){
         if(tag.length > 1 && !edit_cc_email_arr.includes(tag)){
             if(edit_cc_email_arr.length < 10){
                 tag.split(',').forEach(tag => {
-                    edit_cc_email_arr.push(tag);
-                    createTag_cc_email_edit();
+                    if (email_pattern.test(tag)) {
+                        edit_cc_email_arr.push(tag);
+                        createTag_cc_email_edit();
+                    }else{
+                        $('#').text('valid Email**');
+                    }
+                   
                 });
             }
         }

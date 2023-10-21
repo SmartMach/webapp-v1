@@ -657,6 +657,8 @@
 
             listSubMenu[i].style = "color:#005abc;font-weight:bold";
             subicon[i].style = "color:#005abc;font-weight:bold;padding-left:0px;fonst-size:1rem;";
+            console.log(img_name);
+            console.log("image name");
             subicon[i].setAttribute('src', '<?php echo base_url()?>/assets/icons/'+img_name+'.png?version=<?php echo rand() ; ?>');
             if (y == "Users") {
                 $('.site_based_header_visibility').css("display","none");   
