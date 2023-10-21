@@ -13,7 +13,7 @@ class Work_Order_Management_Model extends Model{
             'DSN'      => '',
             'hostname' => 'localhost',
             'username' => 'root',
-            'password' => 'quantanics123',
+            'password' => '',
             'database' => ''.$db_name.'',
             'DBDriver' => 'MySQLi',
             'DBPrefix' => '',
@@ -33,7 +33,7 @@ class Work_Order_Management_Model extends Model{
             'DSN'      => '',
             'hostname' => 'localhost',
             'username' => 'root',
-            'password' => 'quantanics123',
+            'password' => '',
             'database' => 'smartories_roof',
             'DBDriver' => 'MySQLi',
             'DBPrefix' => '',
@@ -61,7 +61,7 @@ class Work_Order_Management_Model extends Model{
     public function getAssigneeId($site){
         $db = \Config\Database::connect($this->site_connection_assignee);
         $query = $db->table('user');
-        $query->select('user_id,first_name,last_name,site_id');
+        $query->select('user_id,first_name,last_name,site_id,user_profile');
         // if ($site != "smartories") {
         $query->where('site_id',$site);
         $query->orWhere('site_id',"smartories");
