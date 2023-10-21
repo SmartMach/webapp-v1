@@ -3112,6 +3112,34 @@ function getAssigneeList(){
                         +'<p class="inbox-span paddingm">All</p>'
                     +'</div>'
                 +'</div>');
+
+            // Default Unassignee --> Unassignee for Filter
+            $('.Filter_assignee_div').append('<div class="inbox inbox_filter_assignee" style="display: flex;">'
+                    +'<div style="float: left;width: 20%;" class="center-align">'
+                        +'<input class="filter_val_assignee" name="filter_val_assignee_name" value="Unassigned" type="checkbox" checked/>'
+                    +'</div>'
+                    +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                        +'<p class="inbox-span paddingm">Unassigned</p>'
+                    +'</div>'
+                +'</div>');
+
+            // Default Unassignee --> Unassignee for Add Issue
+            // var elements = $();
+            // randomColor_Unassignee = "#005bbc";
+            // elements = elements.add('<div class="inbox inbox_assignee" style="display: flex;">'
+            //     +'<div style="float: left;width: 20%;" class="center-align circle-div-root">'
+            //         +'<div class="circle-div" style="background:'+randomColor_Unassignee+';color:white;">'
+            //             +'<p class="paddingm">'+("UA").toUpperCase()+'</p>'
+            //         +'</div>'
+            //     +'</div>'
+            //     +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt assignee_name_class">'
+            //         +'<p class="inbox-span paddingm">'+'Unassigned'+'</p>'
+            //     +'</div>'
+            //     +'<input type="radio" class="assignee_add radio-visible" name="assignee_val" value="Unassigned">'
+            // +'</div>');
+            // $('.add_record_assignee').append(elements);
+
+
             res.forEach(function(item){
                 // var user_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
 
@@ -3799,6 +3827,18 @@ function getLableList(){
                     +'<p class="inbox-span paddingm">All</p>'
                 +'</div>'
             +'</div>');
+
+            // Default label --> Unlabeled
+            $('.Filter_lables_div').append('<div class="inbox inbox_filter_lables" style="display: flex;">'
+                +'<div style="float: left;width: 20%;" class="center-align">'
+                    +'<input class="filter_val_lables" name="filter_val_lables_name" value="Unlabeled" type="checkbox" checked/>'
+                +'</div>'
+                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                    +'<p class="inbox-span paddingm">Unlabeled</p>'
+                +'</div>'
+            +'</div>');
+
+
             res.forEach(function(item){
                 lable_list_globle.push(item);
 
@@ -3975,7 +4015,6 @@ function getWorkOrderRecords(status,lables,priority,assignee,filter){
             filter:filter,
         },
         success:function(data_res){
-
             $('.contentWorkOrder').empty();
             filter_array=[];
             var open=0;
@@ -4080,7 +4119,7 @@ $(document).on('click','.Add_Work_Data',function(event){
     formData.append('due_date', $('#add_due_date').val());
     formData.append('status', $('input[name="status_val"]:checked').val());
     if (!$('input[name="assignee_val"]:checked').val()) {
-      formData.append('assignee', "");
+      formData.append('assignee', "Unassigned");
     }else{
       formData.append('assignee', $('input[name="assignee_val"]:checked').val());
     }
@@ -4118,10 +4157,6 @@ $(document).on('click','.Add_Work_Data',function(event){
     });
 
     formData.append('file_list_collection', file_list_collection);
-
-      // for (var pair of formData.entries()) {
-      //     console.log(pair[0]+ ', ' + pair[1]); 
-      // }
 
           $.ajax({
               url:"<?php echo base_url('Work_Order_Management_controller/save_work_order_data') ?>",
