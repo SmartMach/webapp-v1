@@ -3959,7 +3959,6 @@ function getFilterData(){
 }
 
 function getWorkOrderRecords(status,lables,priority,assignee,filter){
-
     $.ajax({
         url:"<?php echo base_url('Work_Order_Management_controller/get_work_order_data') ?>",
         method:"POST",
@@ -3980,6 +3979,7 @@ function getWorkOrderRecords(status,lables,priority,assignee,filter){
             var open=0;
             var in_progress=0;
             var overdue =0;
+
             data_res.forEach(function(item){
                 filter_array.push(item);
                 if (item['status_id'] == 1) {
@@ -3998,7 +3998,7 @@ function getWorkOrderRecords(status,lables,priority,assignee,filter){
                 c_date = new Date(c_date);
                 ac_date = new Date(ac_date);
 
-                if (item['status_id'] != 3 && ac_date<c_date) {
+                if ((item['status_id'] == 1 || item['status_id'] == 2) && ac_date<c_date) {
                     overdue = parseInt(overdue) + 1;
                 }
             });
