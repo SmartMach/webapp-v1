@@ -931,7 +931,7 @@ function category_drp2() {
 
       
      
-      $('#text_category_drp2').text('All category');
+      $('#text_category_drp2').text('All categories');
       $('.category_fill2').css("display","none");
       filter_expanded2 = false;
     //   availabilityReason_machine();
@@ -1197,7 +1197,7 @@ $(document).on('click','.category_click2',function(event){
 
         // check_if[0].checked=false;
     }else {
-        $('#text_category_drp2').text('No Category');
+        $('#text_category_drp2').text('No Categories');
     }
 });
 
