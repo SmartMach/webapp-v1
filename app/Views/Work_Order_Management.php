@@ -606,7 +606,7 @@ $session = \Config\Services::session();
                             <p class="Comments">Comments</p>
                             <div class="center-align reduce_width">
                                 <div style="float: left;width: 10%;" class="center-align">
-                                    <div class="circle-div" style="background:#7f7f7f;color:white;"><p class="paddingm Edit_Current_User"></p></div>
+                                    <div class="circle-div Edit_Current_User_bg" style="color:white;"><p class="paddingm Edit_Current_User"></p></div>
                                 </div>
                                 <div class="input-box" style="width: 90%">      
                                     <input type="text" class="form-control font_weight_modal input-field-comments-edit" id="" name="" >
@@ -1362,10 +1362,12 @@ function previous_comments(res){
                     if (cm == comment_item['comment_id']) {
                         var u_name = "";
                         var u_logo="";
+                        var u_profile="";
                         assignee_list.forEach(function(item){
                             if (item['user_id'] == comment_item['last_updated_by']) {
                                 u_logo = item['first_name'].trim().slice(0,1).toUpperCase()+''+item['last_name'].trim().slice(0,1).toUpperCase();
                                 u_name = item['first_name']+" "+item['last_name'];
+                                u_profile = item['user_profile'];
                             }
                         });
 
@@ -1379,7 +1381,7 @@ function previous_comments(res){
                         elements = elements.add('<div class="Comments-list">'
                             +'<div class="center-align">'
                                 +'<div style="float: left;width: 10%;" class="center-align">'
-                                    +'<div class="circle-div" style="background:#7f7f7f;color:white;"><p class="paddingm">'+u_logo+'</p></div>'
+                                    +'<div class="circle-div" style="background:'+u_profile+';color:white;"><p class="paddingm">'+u_logo+'</p></div>'
                                 +'</div>'
                                 +'<div class="input-box" style="width: 90%">'
                                     +'<div class="center-align-center">'
@@ -1674,6 +1676,7 @@ $(document).on("click", ".edit-work-order", function(event){
             assignee_list.forEach(function(item){
               if (item['user_id'] == user_id_ref) {
                   u_logo = item['first_name'].trim().slice(0,1).toUpperCase()+''+item['last_name'].trim().slice(0,1).toUpperCase();
+                  $('.Edit_Current_User_bg').css("background",item['user_profile']);
                   $('.Edit_Current_User').text(u_logo);
               }
             });
@@ -1704,10 +1707,12 @@ function previous_comments_edit(res){
                     if (cm == comment_item['comment_id']) {
                         var u_name = "";
                         var u_logo="";
+                        var u_profile="";
                         assignee_list.forEach(function(item){
                             if (item['user_id'] == comment_item['last_updated_by']) {
                                 u_logo = item['first_name'].trim().slice(0,1).toUpperCase()+''+item['last_name'].trim().slice(0,1).toUpperCase();
                                 u_name = item['first_name']+" "+item['last_name'];
+                                u_profile = item['user_profile'];
                             }
                         });
 
@@ -1722,7 +1727,7 @@ function previous_comments_edit(res){
                             +'<div class="Comments-list">'
                               +'<div class="center-align">'
                                   +'<div style="float: left;width: 10%;" class="center-align">'
-                                      +'<div class="circle-div" style="background:#7f7f7f;color:white;"><p class="paddingm">'+u_logo+'</p></div>'
+                                      +'<div class="circle-div" style="background:'+u_profile+';color:white;"><p class="paddingm">'+u_logo+'</p></div>'
                                   +'</div>'
                                   +'<div class="input-box" style="width: 90%">'
                                       +'<div class="center-align-center">'
