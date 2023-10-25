@@ -1810,7 +1810,7 @@ function add_assignee(t) {
                     if (item.user_profile==="" || item.user_profile===null) {
                         user_color_code="#005abc";
                     }else{
-                        user_color_code="#"+item.user_profile;
+                        user_color_code=item.user_profile;
                     }
                     elements = elements.add('<div class="inbox inbox_assignee" data-assignee-val="'+item.user_id+'" style="display: flex;">'
                         +'<div style="float: left;width: 20%;" class="center-align circle-div-root">'
@@ -1856,12 +1856,13 @@ function add_assignee(t) {
                     
                     $('#add_alert_assignee').append(ele_assignee);
 
-                    assignee_color.push(color_arr);
+                  
                    
                 });
 
                 // last updated by filter array
                 res['last_updated_by_arr'].forEach(function(item) {
+                    var color_arr = [];
                     filter_drp_assignee = filter_drp_assignee.add('<div class="add_alert_box_flex filter_drp_last_updated_click" style="position: relative;">'
                     +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
                     +'<input type="checkbox" id="one" class="filter_drp_last_updated_checkbox" value="'+item.user_id+'" style="margin-right:100px;margin-top:12px"/>'
@@ -1870,6 +1871,9 @@ function add_assignee(t) {
                     +'<p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">'+item.first_name+' '+item.last_name+'</p>'
                     +'</div>'
                     +'</div>');
+                    color_arr['assignee_id'] = item.user_id;
+                    color_arr['assignee_color'] = item.user_profile;
+                    assignee_color.push(color_arr);
 
                     $('.filter_alert_assignee_div').append(filter_drp_assignee);
                 });

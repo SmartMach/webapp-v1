@@ -872,7 +872,7 @@ $(document).ready(function(){
         random_info_color = info_color[0];
     }else{
         // console.log("color code is in db");
-        random_info_color = '#'+user_profile_color_code;
+        random_info_color = user_profile_color_code;
     }
     // var random_info_color = info_color[Math.floor(Math.random()*info_color.length)];
     $('#info_circle_color').css("background-color",random_info_color);
