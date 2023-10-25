@@ -420,7 +420,7 @@
         </div>
     </nav>
     <div class="tableContent">
-        <div class="settings_machine_header sticky-top fixtabletitle" style="margin-top:1rem;top:11.5rem;z-index:95;">
+        <div class="settings_machine_header sticky-top fixtabletitle" style="margin-top:0.7rem;top:11.3rem;z-index:95;">
             <div class="row paddingm">
                 <div class="col-sm-1 p3 paddingm" style="width:6%;">
                     <p class="basic_header">ID</p>
@@ -450,8 +450,6 @@
         </div>
 
         <div class="contentMachine contentContainer paddingm content_alert_settings" style="margin-bottom:0rem;">
-            
-
           
         </div>
     </div>

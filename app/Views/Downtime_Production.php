@@ -154,7 +154,7 @@ $session = \Config\Services::session();
                 <div  class="graph_1div" >
                     <div class="graph_01 border" style="">
                         <!-- reason wise opportunity cost graph-->
-                        <p  class="font graph_mar_align"> Downtime opportunity Cost by Reasons</p>
+                        <p  class="font graph_mar_align"> Downtime Opportunity Cost by Reasons</p>
                         <div style="display:flex;flex-direction:row;" class="marginScroll">
                             <div style="width:20%;">
                                 <div style="display:flex;flex-direction:column">
@@ -240,7 +240,7 @@ $session = \Config\Services::session();
                         </div>
                     </div>
                     <div class="graph_02 border">
-                    <!-- Reason wise duration graph-->
+                        <!-- Reason wise duration graph-->
                         <p class="font graph_mar_align"> Downtime Duration by Reasons</p>
                         <div style="display:flex;flex-direction:row;" class="marginScroll">
                             <div style="width:20%;">
