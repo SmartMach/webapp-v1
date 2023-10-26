@@ -63,6 +63,11 @@
     display:none;
    }
 
+   .valueMarLeftQP{
+    padding-left: 1rem;
+    padding-right: 1rem;
+   }
+
 </style>
 <script type="text/javascript">
   var checkPastTime = function(inputDateTime) {
@@ -178,13 +183,13 @@
           <div class="graph-div-header" style="margin-left:1rem;">
             <p class="paddingm fontBold financial_font" style="margin-left:0;">Cost of Poor Quality (COPQ) by Reason</p>
           </div>
-          <div class="valueMarLeft" style="margin-left:1rem;">
+          <div class="valueMarLeftQP">
             <div style="float: left;width: 20%;">
               <p class="paddingm headTitle total-margin" style="margin-left:0rem;">TOTAL</p>
               <p class="paddingm valueGraph" ><i class="fa fa-inr inr_font" aria-hidden="true" style="font-size:1rem;"></i><span class="paddingm COPQP" style="font-size:1rem;"></span></p>
             </div>
             <div style="float: left;width:80%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
-              <div class="box rightmar" style="margin-right: 0.5rem;">
+              <div class="box">
                 <div class="input-box indexing Reasons_COPQP">
 
                   <div class="filter_multiselect filter_option" style="width:9rem;">
@@ -256,13 +261,13 @@
           <div class="graph-div-header" style="margin-left:1rem;">
             <p class="paddingm fontBold financial_font" style="margin-left:0;">Quality Rejection by Reason</p>
           </div> 
-          <div class="valueMarLeft" style="margin-left:1rem;">
+          <div class="valueMarLeftQP">
             <div style="float: left;width: 17%">
               <p class="paddingm headTitle total-margin" style="margin-left:0rem;">TOTAL</p>
               <p class="paddingm valueGraph" ><span class="paddingm  CRBR" style="font-size:1rem;"></span></p>
             </div>
             <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
-              <div class="box rightmar" style="margin-right: 0.5rem;">
+              <div class="box">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Reasons</span>
@@ -335,13 +340,13 @@
           <div class="graph-div-header" style="margin-left:1rem;">
             <p class="paddingm fontBold financial_font" style="margin-left:0rem;">Cost of Poor Quality (COPQ) by Machines</p>
           </div>
-          <div class="valueMarLeft" style="margin-left:1rem;">
+          <div class="valueMarLeftQP">
             <div style="float: left;width: 17%;">
               <p class="paddingm headTitle total-margin" style="margin-left:0;">TOTAL</p>
               <p class="paddingm valueGraph" ><i class="fa fa-inr inr_font" aria-hidden="true" style="font-size:1rem;"></i><span class="paddingm COPQM" style="font-size:1rem;"></span></p>
             </div>
             <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
-              <div class="box rightmar" style="margin-right: 0.5rem;">
+              <div class="box">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Reasons</span>
@@ -412,13 +417,13 @@
           <div class="graph-div-header" style="margin-left:1rem;">
             <p class="paddingm fontBold financial_font" style="margin-left:0rem;">Quality Rejection by Machines with Reasons</p>
           </div>
-          <div class="valueMarLeft" style="margin-left:1rem;">
+          <div class="valueMarLeftQP">
             <div style="float: left;width: 17%;">
               <p class="paddingm headTitle total-margin" style="margin-left:0;">TOTAL</p>
               <p class="paddingm valueGraph" ><span class="paddingm  CRBMR" style="font-size:1rem;"></span></p>
             </div>
             <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
-              <div class="box rightmar" style="margin-right: 0.5rem;">
+              <div class="box">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Reasons</span>
@@ -494,13 +499,13 @@
           <div class="graph-div-header" style="margin-left:1rem;">
             <p class="paddingm fontBold financial_font" style="margin-left:0rem;">Cost of Poor Quality (COPQ) by Parts</p>
           </div>
-          <div class="valueMarLeft" style="margin-left:1rem;">
+          <div class="valueMarLeftQP">
             <div style="float: left;width: 17%;">
               <p class="paddingm headTitle total-margin" style="margin:0;">TOTAL</p>
               <p class="paddingm valueGraph" ><i class="fa fa-inr inr_font" aria-hidden="true" style="font-size:1rem;"></i><span class="paddingm CQRP" style="font-size:1rem;"></span></p>
             </div>
             <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
-              <div class="box rightmar" style="margin-right: 0.5rem;">
+              <div class="box">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Reasons</span>
@@ -571,13 +576,13 @@
           <div class="graph-div-header" style="margin-left:1rem;">
             <p class="paddingm fontBold financial_font" style="margin-left:0rem;">Quality Rejection by Parts with Reasons</p>
           </div>
-          <div class="valueMarLeft" style="margin-left:1rem;">
+          <div class="valueMarLeftQP">
             <div style="float: left;width: 17%;">
               <p class="paddingm headTitle total-margin" style="margin-left:0;">TOTAL</p>
               <p class="paddingm valueGraph" ><span class="paddingm  CQRPR" style="font-size:1rem;"></span></p>
             </div>
             <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
-              <div class="box rightmar" style="margin-right: 0.5rem;">
+              <div class="box">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Reasons</span>
