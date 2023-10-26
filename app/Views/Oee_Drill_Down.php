@@ -406,7 +406,7 @@ $session = \Config\Services::session();
                 
                 <!-- reason multi select dropdown -->
                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                    <label class="multi_select_label" style="">All Data Field</label>
+                    <label class="multi_select_label" style="">All Data Fields</label>
                     <div class="filter_selectBox" onclick="all_data_field_click_fun()">
                         <select  class="multi_select_drp" style="" >
                             <option id="text_all_data_field" style="">All Data Fields</option>
@@ -928,10 +928,7 @@ function category_drp2() {
       $('.category_fill2').css("display","block");
       filter_expanded2 = true;
   } else  {
-
-      
-     
-      $('#text_category_drp2').text('All categories');
+    //   $('#text_category_drp2').text('All categories');
       $('.category_fill2').css("display","none");
       filter_expanded2 = false;
     //   availabilityReason_machine();
@@ -951,7 +948,7 @@ function reason_drp2() {
       filter_expanded_reason2 = true;
   } else  {
       
-      $('#text_reason2').text('All Reason');
+    //   $('#text_reason2').text('All Reason');
       $('.reason_fill2').css("display","none");
       filter_expanded_reason2 = false;
     //   availabilityReason_machine();
@@ -970,7 +967,7 @@ function quality_reason_drp() {
       reason_expand_filter_quality = true;
   } else  {
      
-      $('#text_quality_reason').text('All Reason');
+    //   $('#text_quality_reason').text('All Reason');
       $('.quality_reason_fill').css("display","none");
       reason_expand_filter_quality = false;
     //   availabilityReason_machine();
@@ -1075,7 +1072,7 @@ function part_drp(){
         filterexpand_part = true;
     }else{
        
-        $('#text_part').text('All Part');
+        // $('#text_part').text('All Part');
         $('.part_fill').css('display','none');
         filterexpand_part = false;
         // performance_opportunity();

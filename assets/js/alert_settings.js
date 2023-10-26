@@ -264,7 +264,7 @@ $(document).on('click','.filter_drp_last_updated_click',function(event){
     if (parseInt(createdby_select_count)>=parseInt(createdby_len)) {
         if (check_if[0].checked==true) {
             check_if[0].checked=true;
-            $('#txt_filter_last_updated_by').text(parseInt(createdby_select_count)-1+' Selected');
+            $('#txt_filter_last_updated_by').text('All Users');
         }else{
             reset_filter_last_updated_by();
             $('#txt_filter_last_updated_by').text('All Users');
