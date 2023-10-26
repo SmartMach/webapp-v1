@@ -89,10 +89,10 @@ $session = \Config\Services::session();
                     <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
                       <p class="h_mar_l paddingm">MACHINE NAME</p>
                     </div>
-                    <div class="col-sm-2 p3 paddingm mar_right table_header_sec display_f justify_l align_c text_align_c">
+                    <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_e align_c text_align_c">
                       <p class="paddingm h_mar_r">MACHINE RATE HOUR</p>
                     </div>
-                    <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                    <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_e align_c text_align_c">
                       <p class="paddingm h_mar_r">MACHINE OFF RATE HOUR</p>
                     </div>
                     <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
@@ -1171,11 +1171,11 @@ function get_machine_data(){
                         +'<div class="row paddingm">'
                             +'<div class="col-sm-1 col marleft table_data_section display_f align_c" ><p class="table_data_element fnt_fam">'+item.machine_id+'</p></div>'
                             +'<div class="col-sm-2 col marleft table_data_section display_f align_c" ><p class="table_data_element fnt_fam" title='+item.machine_name+'>'+item.machine_name+'</p></div>'         
-                            +'<div class="col-sm-2 col marright table_data_section display_f align_c" >'
-                                +'<p class="table_data_element fnt_fam"><i class="fa fa-inr mar_right_logo" style="font-size:0.70rem;"></i>'+machine_rph+'</p>'
+                            +'<div class="col-sm-2 col marright table_data_section display_f justify_e align_c" >'
+                                +'<p class="paddingm h_mar_r table_data_element fnt_fam"><i class="fa fa-inr mar_right_logo" style="font-size:0.70rem;"></i>'+machine_rph+'</p>'
                             +'</div>'
-                            +'<div class="col-sm-2 col marright table_data_section display_f align_c" >'
-                                +'<p class="table_data_element fnt_fam"><i class="fa fa-inr mar_right_logo" style="font-size:0.70rem;"></i>'+machine_orh+'</p>'
+                            +'<div class="col-sm-2 col paddingm table_data_section display_f justify_e align_c" >'
+                                +'<p class="paddingm h_mar_r table_data_element fnt_fam"><i class="fa fa-inr mar_right_logo" style="font-size:0.70rem;"></i>'+machine_orh+'</p>'
                             +'</div>'
                             +'<div class="col-sm-1 col marleft table_data_section display_f align_c" ><p class="table_data_element fnt_fam">'+item.tonnage+'T</p></div>'
                             +'<div class="col-sm-2 col marleft table_data_section display_f align_c" ><p class="table_data_element fnt_fam">'+item.machine_brand+'</p></div>'
