@@ -3504,7 +3504,7 @@ $.ajax({
                 if (item.user_profile==="" || item.user_profile===null) {
                     randomColor = "#005ABC";
                 }else{
-                    randomColor = '#'+item.user_profile;
+                    randomColor = item.user_profile;
                 }
 
                 if (item.role == "Smart Admin"){
