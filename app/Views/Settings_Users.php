@@ -1331,6 +1331,7 @@
                   var role = $('#inputRoleAdd').val();
 
                   var user_color_code = Math.floor(Math.random()*16777215).toString(16);
+                  user_color_code = "#"+user_color_code
                 if (role != "Operator") {
                     //alert(site_name);
                     if ((site_name!=null)) {
@@ -3502,7 +3503,7 @@ $.ajax({
                 var delete_border = "";
                 // var color = "";
                 if (item.user_profile==="" || item.user_profile===null) {
-                    randomColor = "#005ABC";
+                    randomColor = "#005abc";
                 }else{
                     randomColor = item.user_profile;
                 }
