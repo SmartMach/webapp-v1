@@ -714,9 +714,9 @@ $.ajax({
     $('#ViewOverallOEE').css('width',''+res[0].overall_oee+'%');
     $('#ViewOverallOOE').css('width',''+res[0].overall_ooe+'%');
 
-    $('.teepTarget').html(res[0].overall_teep);
-    $('.oeeTarget').html(res[0].overall_oee);
-    $('.ooeTarget').html(res[0].overall_ooe);
+    $('.teepTarget').html(res[0].overall_teep+'%');
+    $('.oeeTarget').html(res[0].overall_oee+'%');
+    $('.ooeTarget').html(res[0].overall_ooe+'%');
     
   },
   error:function(res){
