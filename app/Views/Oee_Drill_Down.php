@@ -2432,15 +2432,16 @@ function availabilityReason_machine() {
 
             // console.log("Availability graph total");
             // console.log(machine_wise_total);
-            var reasonList =[];
-            res['reason'].forEach(function(reason){
-                reasonList.push(reason.downtime_reason);
-            });
+            // var reasonList =[];
+            
+            // res['reason'].forEach(function(reason){
+            //     reasonList.push(reason.downtime_reason);
+            // });
 
-            var totalVal =[];
-            res['total'].forEach(function(total){
-                totalVal.push(total.toFixed(2));
-            });
+            // var totalVal =[];
+            // res['total'].forEach(function(total){
+            //     totalVal.push(total.toFixed(2));
+            // });
 
             var totalDuration=[];
             res['totalDuration'].forEach(function(duration){
