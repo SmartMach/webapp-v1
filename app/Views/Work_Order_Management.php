@@ -227,7 +227,7 @@ $session = \Config\Services::session();
                     <div class="box rightmar display_f align_c" style="margin-right: 0.5rem;">
                         <div class="input-box">
                           <div class="filter_multiselect_outer">
-                            <div class="filter_selectBox_inner po_relative display_f align_c status" onclick="multiple_drp_status()">
+                            <div class="filter_selectBox_inner po_relative display_f align_c status_filter status" onclick="multiple_drp_status()">
                               <div class="inbox-span fontStyle search_style dropdown-arrow">
                                 <div style="width: 80% !important;">
                                   <p class="paddingm" id="Filter_status_val">All Status</p>
@@ -246,7 +246,7 @@ $session = \Config\Services::session();
                     <div class="box rightmar display_f align_c" style="margin-right: 0.5rem;">
                         <div class="input-box">
                           <div class="filter_multiselect_outer">
-                            <div class="filter_selectBox_inner po_relative display_f align_c" onclick="multiple_drp_lables()">
+                            <div class="filter_selectBox_inner po_relative display_f align_c label_filter" onclick="multiple_drp_lables()">
                               <div class="inbox-span fontStyle search_style dropdown-arrow">
                                 <div style="width: 80% !important;">
                                   <p class="paddingm" id="Filter_lables_val">All Labels</p>
@@ -265,7 +265,7 @@ $session = \Config\Services::session();
                     <div class="box rightmar display_f align_c" style="margin-right: 0.5rem;">
                         <div class="input-box">
                           <div class="filter_multiselect_outer">
-                            <div class="filter_selectBox_inner po_relative display_f align_c" onclick="multiple_drp_priority()">
+                            <div class="filter_selectBox_inner po_relative display_f align_c priority_filter" onclick="multiple_drp_priority()">
                               <div class="inbox-span fontStyle search_style dropdown-arrow">
                                 <div style="width: 80% !important;">
                                   <p class="paddingm" id="Filter_priority_val">All Priority</p>
@@ -284,7 +284,7 @@ $session = \Config\Services::session();
                     <div class="box rightmar display_f align_c" style="margin-right: 0.5rem;">
                         <div class="input-box">
                           <div class="filter_multiselect_outer">
-                            <div class="filter_selectBox_inner po_relative display_f align_c" onclick="multiple_drp_assignee()">
+                            <div class="filter_selectBox_inner po_relative display_f align_c assignee_filter" onclick="multiple_drp_assignee()">
                               <div class="inbox-span fontStyle search_style dropdown-arrow">
                                 <div style="width: 80% !important;">
                                   <p class="paddingm" id="Filter_assignee_val">All Assignee</p>
@@ -864,6 +864,12 @@ $session = \Config\Services::session();
     var cause_list_globle_unique=[];
     var lable_list_globle_unique=[];
 
+
+    var drp_status = false;
+    var drp_label= false;
+    var drp_priority = false;
+    var drp_assignee = false;
+
     function change_type(item){
         if (item.value == "task") {
           document.getElementById("cause-add").style.display = "none";
@@ -982,37 +988,67 @@ $session = \Config\Services::session();
       });
     }
 
+
+
 function multiple_drp_status() {
-    $('.filter_checkboxes_issue').css("display","none");
-    if ($('.Filter_status_div').css("display") == "none") {
+    if (!drp_status) {
         $('.Filter_status_div').css("display","block");
-    } else {
+        drp_status = true;
+    }else{
         $('.Filter_status_div').css("display","none");
+        drp_status = false;
     }
+    //$('.filter_checkboxes_issue').css("display","none");
+    // if ($('.Filter_status_div').css("display") == "none") {
+    //     $('.Filter_status_div').css("display","block");
+    // } else {
+    //     $('.Filter_status_div').css("display","none");
+    // }
 }
 function multiple_drp_lables() {
-    $('.filter_checkboxes_issue').css("display","none");
-    if ($('.Filter_lables_div').css("display") == "none") {
+    if (!drp_label) {
         $('.Filter_lables_div').css("display","block");
-    } else {
+        drp_label = true;
+    }else{
         $('.Filter_lables_div').css("display","none");
+        drp_label = false;
     }
+    // $('.filter_checkboxes_issue').css("display","none");
+    // if ($('.Filter_lables_div').css("display") == "none") {
+    //     $('.Filter_lables_div').css("display","block");
+    // } else {
+    //     $('.Filter_lables_div').css("display","none");
+    // }
 }
 function multiple_drp_priority() {
-    $('.filter_checkboxes_issue').css("display","none");
-    if ($('.Filter_priority_div').css("display") == "none") {
+    if (!drp_priority) {
         $('.Filter_priority_div').css("display","block");
-    } else {
+        drp_priority = true;
+    }else{
         $('.Filter_priority_div').css("display","none");
+        drp_priority = false;
     }
+    // $('.filter_checkboxes_issue').css("display","none");
+    // if ($('.Filter_priority_div').css("display") == "none") {
+    //     $('.Filter_priority_div').css("display","block");
+    // } else {
+    //     $('.Filter_priority_div').css("display","none");
+    // }
 }
 function multiple_drp_assignee() {
-    $('.filter_checkboxes_issue').css("display","none");
-    if ($('.Filter_assignee_div').css("display") == "none") {
+    if (!drp_assignee) {
         $('.Filter_assignee_div').css("display","block");
-    } else {
+        drp_assignee = true;
+    }else{
         $('.Filter_assignee_div').css("display","none");
+        drp_assignee = false;
     }
+    // $('.filter_checkboxes_issue').css("display","none");
+    // if ($('.Filter_assignee_div').css("display") == "none") {
+    //     $('.Filter_assignee_div').css("display","block");
+    // } else {
+    //     $('.Filter_assignee_div').css("display","none");
+    // }
 }
 
 
@@ -1020,21 +1056,40 @@ function multiple_drp_assignee() {
 
 $(document).mouseup(function(event){
     // Filter
+
     var filter_status = $('.Filter_status_div');
-    if (!filter_status.is(event.target) && filter_status.has(event.target).length==0) {
-        filter_status.hide();
+    var status_f = $('.status_filter');
+    if (!status_f.is(event.target) && status_f.has(event.target).length==0 && !filter_status.is(event.target) && filter_status.has(event.target).length==0) {
+        if(drp_status==true){
+            $('.Filter_status_div').css("display","none");
+            drp_status=false;
+        }
     }
+
     var filter_lables = $('.Filter_lables_div');
-    if (!filter_lables.is(event.target) && filter_lables.has(event.target).length==0) {
-        filter_lables.hide();
+    var label_f = $('.label_filter');
+    if (!filter_lables.is(event.target) && filter_lables.has(event.target).length==0 && !label_f.is(event.target) && label_f.has(event.target).length==0) {
+        if(drp_label==true){
+            $('.Filter_lables_div').css("display","none");
+            drp_label=false;
+        }
+        // filter_lables.hide();
     }
     var filter_priority = $('.Filter_priority_div');
-    if (!filter_priority.is(event.target) && filter_priority.has(event.target).length==0) {
-        filter_priority.hide();
+    var priority_f = $('.priority_filter');
+    if (!filter_priority.is(event.target) && filter_priority.has(event.target).length==0 && !priority_f.is(event.target) && priority_f.has(event.target).length==0) {
+        if(drp_priority==true){
+            $('.Filter_priority_div').css("display","none");
+            drp_priority=false;
+        }
     }
     var filter_assignee = $('.Filter_assignee_div');
-    if (!filter_assignee.is(event.target) && filter_assignee.has(event.target).length==0) {
-        filter_assignee.hide();
+    var assignee_f = $('.assignee_filter');
+    if (!filter_assignee.is(event.target) && filter_assignee.has(event.target).length==0 && !assignee_f.is(event.target) && assignee_f.has(event.target).length==0) {
+        if(drp_assignee==true){
+            $('.Filter_assignee_div').css("display","none");
+            drp_assignee=false;
+        }
     }
 
     // Suggession...

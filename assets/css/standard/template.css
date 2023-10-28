@@ -236,7 +236,7 @@ span{
 
 .table_data_element{
 	font-size: var(--font_size_table_data) !important;
-	width: var(--width_table_data) !important;
+/*	width: var(--width_table_data) !important;*/
 	margin-bottom: var(--mr_botm_table_data) !important;
 }
 /*GLOBAL CLASS FOR TABLE TABLE DATA END*/ 

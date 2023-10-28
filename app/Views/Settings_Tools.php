@@ -86,7 +86,7 @@
                 <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
                   <p class="h_mar_l paddingm">PARTS PRODUCED / CYCLE</p>
                 </div>
-                <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_e align_c text_align_c">
                   <p class="h_mar_r paddingm">PART PRICE</p>
                 </div>
                 <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
