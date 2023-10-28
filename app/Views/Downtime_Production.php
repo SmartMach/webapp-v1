@@ -2339,7 +2339,8 @@ function getfilter_machine_reason_duration(){
             category_arr:graph_category_arr
         },
         success:function(res){
-
+            console.log("machine duration graph filter");
+            console.log(res);
             $('#machine_reason_duration').remove();
             $('.child_machine_reason_duration').append('<canvas id="machine_reason_duration"></canvas>');
             $('.chartjs-hidden-iframe').remove();
@@ -2349,8 +2350,19 @@ function getfilter_machine_reason_duration(){
             var minute_text = parseInt(parseInt(res['total_duration'])%60);
             $('#machine_reason_duration_text').text(hour_text+'h'+' '+minute_text+'m');
 
-
-            var color = ["white","#004591","#0071EE","#97C9FF","#595959","#A6A6A6","#D9D9D9","#09BB9F","#39F3BB"];
+            var color = ["white","#004b9b","#0071EE","#DE5B88","#53a6ff","#cde5ff",
+                    "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
+                    "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
+                    "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
+                    "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
+                    "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
+                    "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
+                    "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
+                    "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
+                    "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
+                    "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
+                ];
+            // var color = ["white","#004591","#0071EE","#97C9FF","#595959","#A6A6A6","#D9D9D9","#09BB9F","#39F3BB"];
             var demo = [];
             var x= 1;
             var machineName = [];
@@ -2456,8 +2468,8 @@ function getfilter_machine_reason_duration(){
                                 return value + '%';
                               }
                             },
-                            },
-                            B:{
+                        },
+                        B:{
                             type: 'linear',
                             position: 'left',
                             beginAtZero: true,
@@ -2465,17 +2477,18 @@ function getfilter_machine_reason_duration(){
                             grid:{
                                 display:false
                             },
+                            stacked:true,
                             // For Rupee Symbol.....
                             ticks: {
-                              callback: function(value, index, values) {
-                                return  value;
-                              }
+                                callback: function(value, index, values) {
+                                    return  value;
+                                }
                             },
-                            },
+                        },
                         x:{
                             display:true,
                             grid:{
-                            display:false
+                                display:false
                             },
                             stacked:true
                         },
@@ -3336,11 +3349,7 @@ function first_load_machine_oppcost(f,t){
 // downtime duration by machine 
 function first_load_machine_duration(f,t){
     return  new Promise(function (resolve,reject){
-        // f = $('.fromDate').val();
-        // t = $('.toDate').val();
-        // f = f.replace(" ","T");
-        // t = t.replace(" ","T");
-
+       
         $.ajax({
             url:"<?php echo  base_url('Production_Downtime_controller/first_machine_duration'); ?>",
             method:"POST",
@@ -3360,8 +3369,7 @@ function first_load_machine_duration(f,t){
                 var minute_text = parseInt(parseInt(res['total_duration'])%60);
                 $('#machine_reason_duration_text').text(hour_text+'h'+' '+minute_text+'m');
 
-                // var color = ["white","#004591","#0071EE","#97C9FF","#595959","#A6A6A6","#D9D9D9","#09BB9F","#39F3BB"];
-                color = ["white","#004b9b","#58808f","#DE5B88","#53a6ff","#cde5ff",
+                color = ["white","#004b9b","#0071EE","#DE5B88","#53a6ff","#cde5ff",
                     "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
                     "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
                     "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
@@ -3417,6 +3425,7 @@ function first_load_machine_duration(f,t){
                         type: "bar",
                         backgroundColor: color[x],
                         borderColor: color[x],
+                        // borderColor:'white',
                         borderWidth: 1,
                         fill: true,
                         data: arr_1,
@@ -3430,7 +3439,8 @@ function first_load_machine_duration(f,t){
                     console.log("color code is :\t"+color[x]);
                     x = x+1;
                 });
-
+                console.log(demo);
+                console.log('loading time descending order');
                 while(true){
                     var len= machineName.length;
                     if (len < 8) {
@@ -3459,11 +3469,6 @@ function first_load_machine_duration(f,t){
                         responsive: true,
                         maintainAspectRatio: false,   
                         scales: {
-                            // y: {
-                            //     display:false,
-                            //     beginAtZero:true,
-                            //     stacked:true,
-                            // },
                             A:{
                                 type: 'linear',
                                 position: 'right',
@@ -3489,6 +3494,7 @@ function first_load_machine_duration(f,t){
                                 grid:{
                                     display:false
                                 },
+                                stacked:true,
                                 // For Rupee Symbol.....
                                 ticks: {
                                   callback: function(value, index, values) {
@@ -3499,24 +3505,24 @@ function first_load_machine_duration(f,t){
                             x:{
                                 display:true,
                                 grid:{
-                                display:false
+                                display:false,
+                                
                                 },
                                 stacked:true
                             },
                         },
                         plugins: {
-                        legend: {
-                            display: false,
-                        },
-                        tooltip: {
-                            enabled: false,
-                            external: machine_and_reason_wise_tooltip,
-                        }
+                            legend: {
+                                display: false,
+                            },
+                            tooltip: {
+                                enabled: false,
+                                external: machine_and_reason_wise_tooltip,
+                            }
                         },
                     },
                 });
 
-                // $('#overlay').fadeOut(300);
             },
             error:function(er){
               reject(er);

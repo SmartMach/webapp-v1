@@ -2753,6 +2753,8 @@ function qualitybyreasonparts() {
         part:part
       },
       success:function(res){
+        console.log("CQRPR GRAPH DATA");
+        console.log(res);
         resolve(res);
         // $('#qualityOpportunity').remove();
         // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
@@ -2873,6 +2875,8 @@ function qualitybyreasonparts() {
           });
           x=x+1;
         });
+        console.log("graph data");
+        console.log(oppCost);
               var ctx = document.getElementById("CQRPR").getContext('2d');
               var myChart = new Chart(ctx, {
                 type: 'bar',
