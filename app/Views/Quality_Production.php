@@ -194,7 +194,7 @@
 
                   <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Reasons</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_reason_copq()">
+                    <div class="filter_selectBox copq_reason" onclick="multiple_drp_hide_seek('filter_reason_copq','copq_reason')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="reason_text_copq">All Reasons</p>
@@ -214,7 +214,7 @@
                 <div class="input-box indexing Reasons_COPQP">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Machines</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_machine_copq()">
+                    <div class="filter_selectBox copq_machine" onclick="multiple_drp_hide_seek('filter_machine_copq','copq_machine')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="machine_text_copq">All Machines</p>
@@ -234,7 +234,7 @@
                 <div class="input-box indexing Reasons_COPQP">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Parts</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_copq()">
+                    <div class="filter_selectBox copq_part" onclick="multiple_drp_hide_seek('filter_part_copq','copq_part')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="part_text_copq">All Parts</p>
@@ -271,7 +271,7 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Reasons</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_reason_crpr()">
+                    <div class="filter_selectBox qrr_reason" onclick="multiple_drp_hide_seek('filter_reason_crpr','qrr_reason')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="reason_text_crpr">All Reasons</p>
@@ -291,7 +291,7 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Machines</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_machine_crpr()">
+                    <div class="filter_selectBox qrr_machine" onclick="multiple_drp_hide_seek('filter_machine_crpr','qrr_machine')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="machine_text_crpr">All Machines</p>
@@ -311,7 +311,7 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Parts</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_crpr()">
+                    <div class="filter_selectBox qrr_part" onclick="multiple_drp_hide_seek('filter_part_crpr','qrr_part')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="part_text_crpr">All Parts</p>
@@ -350,7 +350,7 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Reasons</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_reason_copqm()">
+                    <div class="filter_selectBox copqm_reason" onclick="multiple_drp_hide_seek('filter_reason_copqm','copqm_reason')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="reason_text_copqm">All Reasons</p>
@@ -370,7 +370,7 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Machines</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_machine_copqm()">
+                    <div class="filter_selectBox copqm_machine" onclick="multiple_drp_hide_seek('filter_machine_copqm','copqm_machine')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="machine_text_copqm">All Machines</p>
@@ -390,7 +390,7 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Parts</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_copqm()">
+                    <div class="filter_selectBox copqm_part" onclick="multiple_drp_hide_seek('filter_part_copqm','copqm_part')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="part_text_copqm">All Parts</p>
@@ -427,7 +427,7 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Reasons</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_reason_qrmr()">
+                    <div class="filter_selectBox qrmr_reason" onclick="multiple_drp_hide_seek('filter_reason_qrmr','qrmr_reason')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="reason_text_qrmr">All Reasons</p>
@@ -447,7 +447,7 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Machines</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_machine_qrmr()">
+                    <div class="filter_selectBox qrmr_machine" onclick="multiple_drp_hide_seek('filter_machine_qrmr','qrmr_machine')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="machine_text_qrmr">All Machines</p>
@@ -467,7 +467,7 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Parts</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_qrmr()">
+                    <div class="filter_selectBox qrmr_part" onclick="multiple_drp_hide_seek('filter_part_qrmr','qrmr_part')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="part_text_qrmr">All Parts</p>
@@ -509,7 +509,7 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Reasons</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_reason_copqp()">
+                    <div class="filter_selectBox copqp_reason" onclick="multiple_drp_hide_seek('filter_reason_copqp','copqp_reason')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="reason_text_copqp">All Reasons</p>
@@ -529,7 +529,7 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Machines</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_machine_copqp()">
+                    <div class="filter_selectBox copqp_machine" onclick="multiple_drp_hide_seek('filter_machine_copqp','copqp_machine')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="machine_text_copqp">All Machines</p>
@@ -549,7 +549,7 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Parts</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_copqp()">
+                    <div class="filter_selectBox copqp_part" onclick="multiple_drp_hide_seek('filter_part_copqp','copqp_part')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="part_text_copqp">All Parts</p>
@@ -586,7 +586,7 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Reasons</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_reason_qrpr()">
+                    <div class="filter_selectBox qrpr_reason" onclick="multiple_drp_hide_seek('filter_reason_qrpr','qrpr_reason')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="reason_text_qrpr">All Reasons</p>
@@ -606,7 +606,7 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Machines</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_machine_qrpr()">
+                    <div class="filter_selectBox qrpr_machine" onclick="multiple_drp_hide_seek('filter_machine_qrpr','qrpr_machine')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="machine_text_qrpr">All Machines</p>
@@ -626,7 +626,7 @@
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
                     <span class="multi_select_label" style="">Parts</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_qrpr()">
+                    <div class="filter_selectBox qrpr_part" onclick="multiple_drp_hide_seek('filter_part_qrpr','qrpr_part')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="part_text_qrpr">All Parts</p>
@@ -668,7 +668,7 @@
           <div class="box rightmar" style="margin-right: 0.5rem;">
             <div class="input-box">
               <div class="filter_multiselect">
-                <div class="filter_selectBox" onclick="multiple_drp()">
+                <div class="filter_selectBox qp_part" onclick="multiple_drp_hide_seek('filter_part','production_quality_part')">
                   <div class="inbox-span fontStyle search_style dropdown-arrow">
                     <div style="width: 80% !important;">
                       <p class="paddingm" id="part_text">All Parts</p>
@@ -688,7 +688,7 @@
           <div class="box rightmar" style="margin-right: 0.5rem;">
             <div class="input-box">
               <div class="filter_multiselect">
-                <div class="filter_selectBox" onclick="multiple_drp_machine()">
+                <div class="filter_selectBox qp_machine" onclick="multiple_drp_hide_seek('filter_machine','production_quality_machine')">
                   <div class="inbox-span fontStyle search_style dropdown-arrow">
                     <div style="width: 80% !important;">
                       <p class="paddingm" id="machine_text">All Machines</p>
@@ -708,7 +708,7 @@
           <div class="box rightmar" style="margin-right: 0.5rem;">
             <div class="input-box">
               <div class="filter_multiselect">
-                <div class="filter_selectBox" onclick="multiple_drp_reason()">
+                <div class="filter_selectBox qp_reason" onclick="multiple_drp_hide_seek('filter_reason','production_quality_reason')">
                   <div class="inbox-span fontStyle search_style dropdown-arrow">
                     <div style="width: 80% !important;">
                       <p class="paddingm" id="reason_text">All Reasons</p>
@@ -728,7 +728,7 @@
           <div class="box rightmar" style="margin-right: 0.5rem;">
             <div class="input-box">
               <div class="filter_multiselect">
-                <div class="filter_selectBox" onclick="multiple_drp_user()">
+                <div class="filter_selectBox qp_created" onclick="multiple_drp_hide_seek('filter_user','production_quality_created')">
                   <div class="inbox-span fontStyle search_style dropdown-arrow">
                     <div style="width: 80% !important;">
                       <p class="paddingm" id="user_text">All Users</p>
@@ -985,9 +985,6 @@
       t = $('.toDate').val();
     }
 
-    console.log("from date and to date");
-    console.log(t);
-    console.log(f);
     await getfilterdata();
     await copqp();
     await qrbr();
@@ -1000,206 +997,57 @@
   }
   
 
-function multiple_drp() {
+const hide_seek_obj = {
+  // Cost of Poor Quality (COPQ) by Reason graph
+  copq_part: false,
+  copq_machine: false,
+  copq_reason: false,
+
+  // Quality Rejection by Reason graph
+  qrr_part: false,
+  qrr_machine: false,
+  qrr_reason: false,
+
+  // Cost of Poor Quality (COPQ) by Machines graph
+  copqm_part: false,
+  copqm_machine: false,
+  copqm_reason: false,
+
+  // Cost of Poor Quality (COPQ) by Parts
+  copqp_part: false,
+  copqp_machine: false,
+  copqp_reason: false,
+
+  // Quality Rejection by Machines with Reasons
+  qrmr_part: false,
+  qrmr_machine: false,
+  qrmr_reason: false,
+
+  // Quality Rejection by Parts with Reasons
+  qrpr_part: false,
+  qrpr_machine: false,
+  qrpr_reason: false,
+
+  // Quality Production - Table view
+  production_quality_part: false,
+  production_quality_machine: false,
+  production_quality_reason: false,
+  production_quality_created: false,
+};
+
+
+function multiple_drp_hide_seek(classRef,keyRef){
   $('.filter_checkboxes').css("display","none");
-  if ($('.filter_part').css("display") == "none") {
-      $('.filter_part').css("display","block");
-  } else {
-      $('.filter_part').css("display","none");
+  if (!hide_seek_obj[keyRef]) {
+    $('.'+classRef+'').css("display","block");
+    hide_seek_obj[keyRef] = true;
+  }
+  else{
+    $('.'+classRef+'').css("display","none");
+    hide_seek_obj[keyRef] = false;
   }
 }
 
-
-function multiple_drp_machine() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_machine').css("display") == "none") {
-      $('.filter_machine').css("display","block");
-  } else {
-      $('.filter_machine').css("display","none");
-  }
-}
-
-function multiple_drp_reason() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_reason').css("display") == "none") {
-      $('.filter_reason').css("display","block");
-  } else {
-      $('.filter_reason').css("display","none");
-  }
-}
-
-function multiple_drp_user() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_user').css("display") == "none") {
-      $('.filter_user').css("display","block");
-  } else {
-      $('.filter_user').css("display","none");
-  }
-}
-
-function multiple_drp_reason_copq() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_reason_copq').css("display") == "none") {
-      $('.filter_reason_copq').css("display","block");
-  } else {
-      $('.filter_reason_copq').css("display","none");
-  }
-}
-
-function multiple_drp_machine_copq() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_machine_copq').css("display") == "none") {
-      $('.filter_machine_copq').css("display","block");
-  } else {
-      $('.filter_machine_copq').css("display","none");
-  }
-}
-
-function multiple_drp_copq() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_part_copq').css("display") == "none") {
-      $('.filter_part_copq').css("display","block");
-  } else {
-      $('.filter_part_copq').css("display","none");
-  }
-}
-
-
-function multiple_drp_reason_crpr() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_reason_crpr').css("display") == "none") {
-      $('.filter_reason_crpr').css("display","block");
-  } else {
-      $('.filter_reason_crpr').css("display","none");
-  }
-}
-
-function multiple_drp_machine_crpr() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_machine_crpr').css("display") == "none") {
-      $('.filter_machine_crpr').css("display","block");
-  } else {
-      $('.filter_machine_crpr').css("display","none");
-  }
-}
-
-function multiple_drp_crpr() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_part_crpr').css("display") == "none") {
-      $('.filter_part_crpr').css("display","block");
-  } else {
-      $('.filter_part_crpr').css("display","none");
-  }
-}
-
-function multiple_drp_reason_copqm() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_reason_copqm').css("display") == "none") {
-      $('.filter_reason_copqm').css("display","block");
-  } else {
-      $('.filter_reason_copqm').css("display","none");
-  }
-}
-
-function multiple_drp_machine_copqm() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_machine_copqm').css("display") == "none") {
-      $('.filter_machine_copqm').css("display","block");
-  } else {
-      $('.filter_machine_copqm').css("display","none");
-  }
-}
-
-function multiple_drp_copqm() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_part_copqm').css("display") == "none") {
-      $('.filter_part_copqm').css("display","block");
-  } else {
-      $('.filter_part_copqm').css("display","none");
-  }
-}
-
-function multiple_drp_reason_copqp() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_reason_copqp').css("display") == "none") {
-      $('.filter_reason_copqp').css("display","block");
-  } else {
-      $('.filter_reason_copqp').css("display","none");
-  }
-}
-
-function multiple_drp_machine_copqp() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_machine_copqp').css("display") == "none") {
-      $('.filter_machine_copqp').css("display","block");
-  } else {
-      $('.filter_machine_copqp').css("display","none");
-  }
-}
-
-function multiple_drp_copqp() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_part_copqp').css("display") == "none") {
-      $('.filter_part_copqp').css("display","block");
-  } else {
-      $('.filter_part_copqp').css("display","none");
-  }
-}
-
-function multiple_drp_reason_qrmr() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_reason_qrmr').css("display") == "none") {
-      $('.filter_reason_qrmr').css("display","block");
-  } else {
-      $('.filter_reason_qrmr').css("display","none");
-  }
-}
-
-function multiple_drp_machine_qrmr() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_machine_qrmr').css("display") == "none") {
-      $('.filter_machine_qrmr').css("display","block");
-  } else {
-      $('.filter_machine_qrmr').css("display","none");
-  }
-}
-
-function multiple_drp_qrmr() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_part_qrmr').css("display") == "none") {
-      $('.filter_part_qrmr').css("display","block");
-  } else {
-      $('.filter_part_qrmr').css("display","none");
-  }
-}
-
-
-function multiple_drp_reason_qrpr() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_reason_qrpr').css("display") == "none") {
-      $('.filter_reason_qrpr').css("display","block");
-  } else {
-      $('.filter_reason_qrpr').css("display","none");
-  }
-}
-
-function multiple_drp_machine_qrpr() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_machine_qrpr').css("display") == "none") {
-      $('.filter_machine_qrpr').css("display","block");
-  } else {
-      $('.filter_machine_qrpr').css("display","none");
-  }
-}
-
-function multiple_drp_qrpr() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_part_qrpr').css("display") == "none") {
-      $('.filter_part_qrpr').css("display","block");
-  } else {
-      $('.filter_part_qrpr').css("display","none");
-  }
-}
 
 
 function inbox_part(classRef,thisRef) {
@@ -1610,120 +1458,15 @@ $(document).on('click','.filter_part_val_crpr',function(event){
     multiple_drp_fun("filter_part_val_crpr","filter_part_val_crpr","part_text_crpr","Parts",this);
 });
 
+
 // Standard Code for Drop-down funciton completed...................................
+$(document).on('click','.inbox_machine_crpr',function(event){     
+    inbox_machine_crpr("inbox_machine_crpr",this);
+});
 
-
-// function inbox_reason_crpr(classRef,thisRef) {
-//     var index = $('.'+classRef+'').index(thisRef);
-
-//     if(index==0 && $( ".filter_reason_val_crpr:eq('"+index+"')").prop( "checked")==true){
-//       $( ".filter_reason_val_crpr").prop( "checked", false );
-//     }
-//     else if(index==0 && $( ".filter_reason_val_crpr:eq('"+index+"')").prop( "checked")==false){
-//       $( ".filter_reason_val_crpr").prop( "checked", true );
-//     }
-//     else{
-//       if ($( ".filter_reason_val_crpr:eq('"+index+"')").prop( "checked")==true) {
-//         $( ".filter_reason_val_crpr:eq('"+index+"')").prop( "checked", false );
-//       }
-//       else{
-//         $( ".filter_reason_val_crpr:eq('"+index+"')").prop( "checked", true );
-//       }
-//     }
-
-//     var l1 = $('.filter_reason_val_crpr').length;
-//     var l2 = $('.filter_reason_val_crpr:checked').length;
-    
-
-//     if ( (((l2)+1) == l1) && !($('.filter_reason_val_crpr')[0].checked)) {
-//       $( ".filter_reason_val_crpr:eq(0)").prop( "checked", true);
-//     }
-//     else if (l2 < l1) {
-//       $( ".filter_reason_val_crpr:eq(0)").prop( "checked", false );
-//     }
-
-//     // reason count
-//     var reason_count = 0;
-//     var check_if = $('.filter_reason_val_crpr');
-//     jQuery('.filter_reason_val_crpr').each(function(index){
-//       if (check_if[index].checked===true) {
-//         reason_count = parseInt(reason_count)+1;
-//       }
-//     });
-
-//     var reason_len = $('.filter_reason_val_crpr').length;
-
-//     reason_len = parseInt(reason_len);
-//     if (check_if[0].checked) {
-//       $('#reason_text_crpr').text('All Reasons');
-//     }
-//     else if (!check_if[0].checked && reason_len==(reason_count+1)) {
-//       $('#reason_text_crpr').text('All Reasons');
-//     }
-//     else if (!check_if[0].checked && reason_count>=1) {
-//       $('#reason_text_crpr').text(parseInt(reason_count)+' Selected');
-//     }
-//     else{
-//       $('#reason_text_crpr').text('No Reasons');
-//     }
-// }
-
-
-// function inbox_part_crpr(classRef,thisRef) {
-//     var index = $('.'+classRef+'').index(thisRef);
-
-//     if(index==0 && $( ".filter_part_val_crpr:eq('"+index+"')").prop( "checked")==true){
-//       $( ".filter_part_val_crpr").prop( "checked", false );
-//     }
-//     else if(index==0 && $( ".filter_part_val_crpr:eq('"+index+"')").prop( "checked")==false){
-//       $( ".filter_part_val_crpr").prop( "checked", true );
-//     }
-//     else{
-//       if ($( ".filter_part_val_crpr:eq('"+index+"')").prop( "checked")==true) {
-//         $( ".filter_part_val_crpr:eq('"+index+"')").prop( "checked", false );
-//       }
-//       else{
-//         $( ".filter_part_val_crpr:eq('"+index+"')").prop( "checked", true );
-//       }
-//     }
-
-//     var l1 = $('.filter_part_val_crpr').length;
-//     var l2 = $('.filter_part_val_crpr:checked').length;
-    
-
-//     if ( (((l2)+1) == l1) && !($('.filter_part_val_crpr')[0].checked)) {
-//       $( ".filter_part_val_crpr:eq(0)").prop( "checked", true);
-//     }
-//     else if (l2 < l1) {
-//       $( ".filter_part_val_crpr:eq(0)").prop( "checked", false );
-//     }
-
-//     // part count
-//     var part_count = 0;
-//     var check_if = $('.filter_part_val_crpr');
-//     jQuery('.filter_part_val_crpr').each(function(index){
-//       if (check_if[index].checked===true) {
-//         part_count = parseInt(part_count)+1;
-//       }
-//     });
-
-//     var part_len = $('.filter_part_val_crpr').length;
-
-//     part_len = parseInt(part_len);
-//     if (check_if[0].checked) {
-//       $('#part_text_crpr').text('All Parts');
-//     }
-//     else if (!check_if[0].checked && part_len==(part_count+1)) {
-//       $('#part_text_crpr').text('All Parts');
-//     }
-//     else if (!check_if[0].checked && part_count>=1) {
-//       $('#part_text_crpr').text(parseInt(part_count)+' Selected');
-//     }
-//     else{
-//       $('#part_text_crpr').text('No Parts');
-//     }
-// }
-
+$(document).on('click','.filter_machine_val_crpr',function(event){
+    inbox_machine_crpr("filter_machine_val_crpr",this);
+});
 
 function inbox_machine_crpr(classRef,thisRef) {
     var index = $('.'+classRef+'').index(thisRef);
@@ -1780,14 +1523,6 @@ function inbox_machine_crpr(classRef,thisRef) {
     }
 }
 
-
-$(document).on('click','.inbox_machine_crpr',function(event){     
-    inbox_machine_crpr("inbox_machine_crpr",this);
-});
-
-$(document).on('click','.filter_machine_val_crpr',function(event){
-    inbox_machine_crpr("filter_machine_val_crpr",this);
-});
 
 
 function inbox_reason_copqm(classRef,thisRef) {
@@ -2753,8 +2488,6 @@ function qualitybyreasonparts() {
         part:part
       },
       success:function(res){
-        console.log("CQRPR GRAPH DATA");
-        console.log(res);
         resolve(res);
         // $('#qualityOpportunity').remove();
         // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
@@ -2875,8 +2608,6 @@ function qualitybyreasonparts() {
           });
           x=x+1;
         });
-        console.log("graph data");
-        console.log(oppCost);
               var ctx = document.getElementById("CQRPR").getContext('2d');
               var myChart = new Chart(ctx, {
                 type: 'bar',
@@ -3116,10 +2847,6 @@ function copqp() {
     f = f.replace(" ","T");
     t = t.replace(" ","T");
 
-    console.log("machine part reason");
-    console.log(machine);
-    console.log(part);
-    console.log(reason);
     $.ajax({
       url: "<?php echo base_url('Production_Quality/qualityOpportunity'); ?>",
       type: "POST",
@@ -3132,8 +2859,6 @@ function copqp() {
         reason:reason
       },
       success:function(res){
-        console.log("first graph");
-        console.log(res);
         resolve(res);
         // $('#qualityOpportunity').remove();
         // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
@@ -3304,7 +3029,6 @@ function copqp() {
           },
       error:function(er){
         // alert("Sorry!Try Agian!!!!");
-        console.log("first graph error");
         reject(er);
       }
     }); 
@@ -4501,10 +4225,6 @@ function qrbr() {
     });
     }
 
-    // console.log("second graph ");
-    // console.log(reason.length);
-    // console.log(machine.length);
-    // console.log(part.length);
     if(reason.length ==0 || machine.length ==0 || part.length ==0){
       resolve("One Reason Empty");
       return;  
@@ -4859,8 +4579,6 @@ $(document).on('click','#table-cont',function(event){
       dataType: "json",
       success:function(res){
 
-        console.log("dropdown value");
-        console.log(res);
         resolve(res);
         // Part Filter
         var elements = $();
@@ -5416,141 +5134,232 @@ $(document).mouseup(function(event){
 
   // part dropdown outside click
   var part_check = $('.filter_part');
-  if (!part_check.is(event.target) && part_check.has(event.target).length==0) {
-    part_check.hide();
-    
-  }
-
-  // part dropdown outside click
-  var part_check_copq = $('.filter_part_copq');
-  if (!part_check_copq.is(event.target) && part_check_copq.has(event.target).length==0) {
-    part_check_copq.hide();
+  var qp_part_c = $('.qp_part');
+  if (!part_check.is(event.target) && part_check.has(event.target).length==0 && !qp_part_c.is(event.target) && qp_part_c.has(event.target).length==0) { 
+    if(hide_seek_obj['production_quality_part']==true){
+      part_check.hide();
+      hide_seek_obj['production_quality_part']=false;
+    }
   }
 
   // machine dropdown outside click
   var machine_check = $('.filter_machine');
-  if (!machine_check.is(event.target) && machine_check.has(event.target).length==0) {
-    machine_check.hide();
-  }
-  // machine dropdown outside click
-  var machine_check_copq = $('.filter_machine_copq');
-  if (!machine_check_copq.is(event.target) && machine_check_copq.has(event.target).length==0) {
-    machine_check_copq.hide();
+  var qp_machine_c = $('.qp_machine');
+  if (!machine_check.is(event.target) && machine_check.has(event.target).length==0 && !qp_machine_c.is(event.target) && qp_machine_c.has(event.target).length==0) {
+    if(hide_seek_obj['production_quality_machine']==true){
+      machine_check.hide();
+      hide_seek_obj['production_quality_machine']=false;
+    }
   }
 
   // reason dropdown outside click
   var reason_check = $('.filter_reason');
-  if (!reason_check.is(event.target) && reason_check.has(event.target).length==0) {
-    reason_check.hide();
+  var qp_reason_c = $('.qp_reason');
+  if (!reason_check.is(event.target) && reason_check.has(event.target).length==0 && !qp_reason_c.is(event.target) && qp_reason_c.has(event.target).length==0) {
+    if(hide_seek_obj['production_quality_reason']==true){
+      reason_check.hide();
+      hide_seek_obj['production_quality_reason']=false;
+    }
   }
-
-  // reason dropdown outside click
-  var reason_check_copq = $('.filter_reason_copq');
-  if (!reason_check_copq.is(event.target) && reason_check_copq.has(event.target).length==0) {
-    reason_check_copq.hide();
-  }
-  
 
   // created by dropdown outside click
   var created_check = $('.filter_user');
-  if (!created_check.is(event.target) && created_check.has(event.target).length==0) {
-    created_check.hide();
+  var qp_created_c = $('.qp_created');
+  if (!created_check.is(event.target) && created_check.has(event.target).length==0 && !qp_created_c.is(event.target) && qp_created_c.has(event.target).length==0) {
+    if(hide_seek_obj['production_quality_created']==true){
+      created_check.hide();
+      hide_seek_obj['production_quality_created']=false;
+    }
   }
 
+
+
+  // part dropdown outside click
+  var part_check_copq = $('.filter_part_copq');
+  var copq_part_c = $('.copq_part');
+  if (!part_check_copq.is(event.target) && part_check_copq.has(event.target).length==0 && !copq_part_c.is(event.target) && copq_part_c.has(event.target).length==0) {
+    if(hide_seek_obj['copq_part']==true){
+      part_check_copq.hide();
+      hide_seek_obj['copq_part']=false;
+    }
+  }
+
+  
+  // machine dropdown outside click
+  var machine_check_copq = $('.filter_machine_copq');
+  var copq_machine_c = $('.copq_machine');
+  if (!machine_check_copq.is(event.target) && machine_check_copq.has(event.target).length==0 && !copq_machine_c.is(event.target) && copq_machine_c.has(event.target).length==0) {
+    if(hide_seek_obj['copq_machine']==true){
+      machine_check_copq.hide();
+      hide_seek_obj['copq_machine']=false;
+    }
+  }
+
+  
+
+  // reason dropdown outside click
+  var reason_check_copq = $('.filter_reason_copq');
+  var copq_reason_c = $('.copq_reason');
+  if (!reason_check_copq.is(event.target) && reason_check_copq.has(event.target).length==0 && !copq_reason_c.is(event.target) && copq_reason_c.has(event.target).length==0) {
+    if(hide_seek_obj['copq_reason']==true){
+      reason_check_copq.hide();
+      hide_seek_obj['copq_reason']=false;
+    }
+  }
 
 
     // part dropdown outside click
   var part_check_crpr = $('.filter_part_crpr');
-  if (!part_check_crpr.is(event.target) && part_check_crpr.has(event.target).length==0) {
-    part_check_crpr.hide();
+  var qrr_part_c = $('.qrr_part');
+  if (!part_check_crpr.is(event.target) && part_check_crpr.has(event.target).length==0 && !qrr_part_c.is(event.target) && qrr_part_c.has(event.target).length==0) {
+    if(hide_seek_obj['qrr_part']==true){
+      part_check_crpr.hide();
+      hide_seek_obj['qrr_part']=false;
+    }
   }
 
   // machine dropdown outside click
   var machine_check_crpr = $('.filter_machine_crpr');
-  if (!machine_check_crpr.is(event.target) && machine_check_crpr.has(event.target).length==0) {
-    machine_check_crpr.hide();
+  var qrr_machine_c = $('.qrr_machine');
+  if (!machine_check_crpr.is(event.target) && machine_check_crpr.has(event.target).length==0 && !qrr_machine_c.is(event.target) && qrr_machine_c.has(event.target).length==0) {
+    if(hide_seek_obj['qrr_machine']==true){
+      machine_check_crpr.hide();
+      hide_seek_obj['qrr_machine']=false;
+    }
   }
 
     // reason dropdown outside click
   var reason_check_crpr = $('.filter_reason_crpr');
-  if (!reason_check_crpr.is(event.target) && reason_check_crpr.has(event.target).length==0) {
-    reason_check_crpr.hide();
+  var qrr_reason_c = $('.qrr_reason');
+  if (!reason_check_crpr.is(event.target) && reason_check_crpr.has(event.target).length==0 && !qrr_reason_c.is(event.target) && qrr_reason_c.has(event.target).length==0) {
+    if(hide_seek_obj['qrr_reason']==true){
+      reason_check_crpr.hide();
+      hide_seek_obj['qrr_reason']=false;
+    }
   }
 
 
    // part dropdown outside click
   var part_check_copqm = $('.filter_part_copqm');
-  if (!part_check_copqm.is(event.target) && part_check_copqm.has(event.target).length==0) {
-    part_check_copqm.hide();
+  var copqm_part_c = $('.copqm_part');
+  if (!part_check_copqm.is(event.target) && part_check_copqm.has(event.target).length==0 && !copqm_part_c.is(event.target) && copqm_part_c.has(event.target).length==0) {
+    if(hide_seek_obj['copqm_part']==true){
+      part_check_copqm.hide();
+      hide_seek_obj['copqm_part']=false;
+    }
   }
 
   // machine dropdown outside click
   var machine_check_copqm = $('.filter_machine_copqm');
-  if (!machine_check_copqm.is(event.target) && machine_check_copqm.has(event.target).length==0) {
-    machine_check_copqm.hide();
+  var copqm_machine_c = $('.copqm_machine');
+  if (!machine_check_copqm.is(event.target) && machine_check_copqm.has(event.target).length==0 && !copqm_machine_c.is(event.target) && copqm_machine_c.has(event.target).length==0) {
+    if(hide_seek_obj['copqm_machine']==true){
+      machine_check_copqm.hide();
+      hide_seek_obj['copqm_machine']=false;
+    }
   }
 
     // reason dropdown outside click
   var reason_check_copqm = $('.filter_reason_copqm');
-  if (!reason_check_copqm.is(event.target) && reason_check_copqm.has(event.target).length==0) {
-    reason_check_copqm.hide();
+  var copqm_reason_c = $('.copqm_reason');
+  if (!reason_check_copqm.is(event.target) && reason_check_copqm.has(event.target).length==0 && !copqm_reason_c.is(event.target) && copqm_reason_c.has(event.target).length==0) {
+    if(hide_seek_obj['copqm_reason']==true){
+      reason_check_copqm.hide();
+      hide_seek_obj['copqm_reason']=false;
+    }
+  }
+
+
+    // part dropdown outside click
+  var part_check_qrmr = $('.filter_part_qrmr');
+  var qrmr_part_c = $('.qrmr_part');
+  if (!part_check_qrmr.is(event.target) && part_check_qrmr.has(event.target).length==0 && !qrmr_part_c.is(event.target) && qrmr_part_c.has(event.target).length==0) {
+    if(hide_seek_obj['qrmr_part']==true){
+      part_check_qrmr.hide();
+      hide_seek_obj['qrmr_part']=false;
+    }
+  }
+
+  // machine dropdown outside click
+  var machine_check_qrmr = $('.filter_machine_qrmr');
+  var qrmr_machine_c = $('.qrmr_machine');
+  if (!machine_check_qrmr.is(event.target) && machine_check_qrmr.has(event.target).length==0 && !qrmr_machine_c.is(event.target) && qrmr_machine_c.has(event.target).length==0) {
+    if(hide_seek_obj['qrmr_machine']==true){
+      machine_check_qrmr.hide();
+      hide_seek_obj['qrmr_machine']=false;
+    }
+  }
+
+    // reason dropdown outside click
+  var reason_check_qrmr = $('.filter_reason_qrmr');
+  var qrmr_reason_c = $('.qrmr_reason');
+  if (!reason_check_qrmr.is(event.target) && reason_check_qrmr.has(event.target).length==0 && !qrmr_reason_c.is(event.target) && qrmr_reason_c.has(event.target).length==0) {
+    if(hide_seek_obj['qrmr_reason']==true){
+      reason_check_qrmr.hide();
+      hide_seek_obj['qrmr_reason']=false;
+    }
   }
 
 
 
    // part dropdown outside click
   var part_check_copqp = $('.filter_part_copqp');
-  if (!part_check_copqp.is(event.target) && part_check_copqp.has(event.target).length==0) {
-    part_check_copqp.hide();
+  var copqp_part_c = $('.copqp_part');
+  if (!part_check_copqp.is(event.target) && part_check_copqp.has(event.target).length==0 && !copqp_part_c.is(event.target) && copqp_part_c.has(event.target).length==0) {
+    if(hide_seek_obj['copqp_part']==true){
+      part_check_copqp.hide();
+      hide_seek_obj['copqp_part']=false;
+    }
   }
 
   // machine dropdown outside click
   var machine_check_copqp = $('.filter_machine_copqp');
-  if (!machine_check_copqp.is(event.target) && machine_check_copqp.has(event.target).length==0) {
-    machine_check_copqp.hide();
+  var copqp_machine_c = $('.copqp_machine');
+  if (!machine_check_copqp.is(event.target) && machine_check_copqp.has(event.target).length==0 && !copqp_machine_c.is(event.target) && copqp_machine_c.has(event.target).length==0) {
+    if(hide_seek_obj['copqp_machine']==true){
+      machine_check_copqp.hide();
+      hide_seek_obj['copqp_machine']=false;
+    }
   }
 
     // reason dropdown outside click
   var reason_check_copqp = $('.filter_reason_copqp');
-  if (!reason_check_copqp.is(event.target) && reason_check_copqp.has(event.target).length==0) {
-    reason_check_copqp.hide();
+  var copqp_reason_c = $('.copqp_reason');
+  if (!reason_check_copqp.is(event.target) && reason_check_copqp.has(event.target).length==0 && !copqp_reason_c.is(event.target) && copqp_reason_c.has(event.target).length==0) {
+    if(hide_seek_obj['copqp_reason']==true){
+      reason_check_copqp.hide();
+      hide_seek_obj['copqp_reason']=false;
+    }
   }
 
-     // part dropdown outside click
+  // part dropdown outside click
   var part_check_qrpr = $('.filter_part_qrpr');
-  if (!part_check_qrpr.is(event.target) && part_check_qrpr.has(event.target).length==0) {
-    part_check_qrpr.hide();
+  var qrpr_part_c = $('.qrpr_part');
+  if (!part_check_qrpr.is(event.target) && part_check_qrpr.has(event.target).length==0 && !qrpr_part_c.is(event.target) && qrpr_part_c.has(event.target).length==0) {
+    if(hide_seek_obj['qrpr_part']==true){
+      part_check_qrpr.hide();
+      hide_seek_obj['qrpr_part']=false;
+    }
   }
 
   // machine dropdown outside click
   var machine_check_qrpr = $('.filter_machine_qrpr');
-  if (!machine_check_qrpr.is(event.target) && machine_check_qrpr.has(event.target).length==0) {
-    machine_check_qrpr.hide();
+  var qrpr_machine_c = $('.qrpr_machine');
+  if (!machine_check_qrpr.is(event.target) && machine_check_qrpr.has(event.target).length==0 && !qrpr_machine_c.is(event.target) && qrpr_machine_c.has(event.target).length==0) {
+    if(hide_seek_obj['qrpr_machine']==true){
+      machine_check_qrpr.hide();
+      hide_seek_obj['qrpr_machine']=false;
+    }
   }
 
     // reason dropdown outside click
   var reason_check_qrpr = $('.filter_reason_qrpr');
-  if (!reason_check_qrpr.is(event.target) && reason_check_qrpr.has(event.target).length==0) {
-    reason_check_qrpr.hide();
-  }
-
-
-  // part dropdown outside click
-  var part_check_qrmr = $('.filter_part_qrmr');
-  if (!part_check_qrmr.is(event.target) && part_check_qrmr.has(event.target).length==0) {
-    part_check_qrmr.hide();
-  }
-
-  // machine dropdown outside click
-  var machine_check_qrmr = $('.filter_machine_qrmr');
-  if (!machine_check_qrmr.is(event.target) && machine_check_qrmr.has(event.target).length==0) {
-    machine_check_qrmr.hide();
-  }
-
-    // reason dropdown outside click
-  var reason_check_qrmr = $('.filter_reason_qrmr');
-  if (!reason_check_qrmr.is(event.target) && reason_check_qrmr.has(event.target).length==0) {
-    reason_check_qrmr.hide();
+  var qrpr_reason_c = $('.qrpr_reason');
+  if (!reason_check_qrpr.is(event.target) && reason_check_qrpr.has(event.target).length==0 && !qrpr_reason_c.is(event.target) && qrpr_reason_c.has(event.target).length==0) {
+    if(hide_seek_obj['qrpr_reason']==true){
+      reason_check_qrpr.hide();
+      hide_seek_obj['qrpr_reason']=false;
+    }
   }
 
 });
