@@ -1049,332 +1049,6 @@ function multiple_drp_hide_seek(classRef,keyRef){
 }
 
 
-
-function inbox_part(classRef,thisRef) {
-    var index = $('.'+classRef+'').index(thisRef);
-
-    if(index==0 && $( ".filter_part_val:eq('"+index+"')").prop( "checked")==true){
-      $( ".filter_part_val").prop( "checked", false );
-    }
-    else if(index==0 && $( ".filter_part_val:eq('"+index+"')").prop( "checked")==false){
-      $( ".filter_part_val").prop( "checked", true );
-    }
-    else{
-      if ($( ".filter_part_val:eq('"+index+"')").prop( "checked")==true) {
-        $( ".filter_part_val:eq('"+index+"')").prop( "checked", false );
-      }
-      else{
-        $( ".filter_part_val:eq('"+index+"')").prop( "checked", true );
-      }
-    }
-
-    var l1 = $('.filter_part_val').length;
-    var l2 = $('.filter_part_val:checked').length;
-    
-
-    if ( (((l2)+1) == l1) && !($('.filter_part_val')[0].checked)) {
-      $( ".filter_part_val:eq(0)").prop( "checked", true);
-    }
-    else if (l2 < l1) {
-      $( ".filter_part_val:eq(0)").prop( "checked", false );
-    }
-
-    // part count
-    var part_count = 0;
-    var check_if = $('.filter_part_val');
-    jQuery('.filter_part_val').each(function(index){
-      if (check_if[index].checked===true) {
-        part_count = parseInt(part_count)+1;
-      }
-    });
-
-    var part_len = $('.filter_part_val').length;
-
-    part_len = parseInt(part_len);
-    if (check_if[0].checked) {
-      $('#part_text').text('All Parts');
-    }
-    else if (!check_if[0].checked && part_len==(part_count+1)) {
-      $('#part_text').text('All Parts');
-    }
-    else if (!check_if[0].checked && part_count>=1) {
-      $('#part_text').text(parseInt(part_count)+' Selected');
-    }
-    else{
-      $('#part_text').text('No Parts');
-    }
-}
-
-
-$(document).on('click','.inbox_part',function(event){     
-    inbox_part("inbox_part",this);
-});
-
-$(document).on('click','.filter_part_val',function(event){
-    inbox_part("filter_part_val",this);
-});
-
-
-$(document).on('click','.inbox_part_copq',function(event){     
-    inbox_part_copq("inbox_part_copq",this);
-});
-
-$(document).on('click','.filter_part_val_copq',function(event){
-    inbox_part_copq("filter_part_val_copq",this);
-});
-
-function inbox_part_copq(classRef,thisRef) {
-    var index = $('.'+classRef+'').index(thisRef);
-
-    if(index==0 && $( ".filter_part_val_copq:eq('"+index+"')").prop( "checked")==true){
-      $( ".filter_part_val_copq").prop( "checked", false );
-    }
-    else if(index==0 && $( ".filter_part_val_copq:eq('"+index+"')").prop( "checked")==false){
-      $( ".filter_part_val_copq").prop( "checked", true );
-    }
-    else{
-      if ($( ".filter_part_val_copq:eq('"+index+"')").prop( "checked")==true) {
-        $( ".filter_part_val_copq:eq('"+index+"')").prop( "checked", false );
-      }
-      else{
-        $( ".filter_part_val_copq:eq('"+index+"')").prop( "checked", true );
-      }
-    }
-
-    var l1 = $('.filter_part_val_copq').length;
-    var l2 = $('.filter_part_val_copq:checked').length;
-    
-
-    if ( (((l2)+1) == l1) && !($('.filter_part_val_copq')[0].checked)) {
-      $( ".filter_part_val_copq:eq(0)").prop( "checked", true);
-    }
-    else if (l2 < l1) {
-      $( ".filter_part_val_copq:eq(0)").prop( "checked", false );
-    }
-
-    // part count
-    var part_count = 0;
-    var check_if = $('.filter_part_val_copq');
-    jQuery('.filter_part_val_copq').each(function(index){
-      if (check_if[index].checked===true) {
-        part_count = parseInt(part_count)+1;
-      }
-    });
-
-    var part_len = $('.filter_part_val_copq').length;
-
-    part_len = parseInt(part_len);
-    if (check_if[0].checked) {
-      $('#part_text_copq').text('All Parts');
-    }
-    else if (!check_if[0].checked && part_len==(part_count+1)) {
-      $('#part_text_copq').text('All Parts');
-    }
-    else if (!check_if[0].checked && part_count>=1) {
-      $('#part_text_copq').text(parseInt(part_count)+' Selected');
-    }
-    else{
-      $('#part_text_copq').text('No Parts');
-    }
-}
-
-
-function inbox_machine(classRef,thisRef) {
-    var index = $('.'+classRef+'').index(thisRef);
-
-    if(index==0 && $( ".filter_machine_val:eq('"+index+"')").prop( "checked")==true){
-      $( ".filter_machine_val").prop( "checked", false );
-    }
-    else if(index==0 && $( ".filter_machine_val:eq('"+index+"')").prop( "checked")==false){
-      $( ".filter_machine_val").prop( "checked", true );
-    }
-    else{
-      if ($( ".filter_machine_val:eq('"+index+"')").prop( "checked")==true) {
-        $( ".filter_machine_val:eq('"+index+"')").prop( "checked", false );
-      }
-      else{
-        $( ".filter_machine_val:eq('"+index+"')").prop( "checked", true );
-      }
-    }
-
-    var l1 = $('.filter_machine_val').length;
-    var l2 = $('.filter_machine_val:checked').length;
-    
-
-    if ( (((l2)+1) == l1) && !($('.filter_machine_val')[0].checked)) {
-      $( ".filter_machine_val:eq(0)").prop( "checked", true);
-    }
-    else if (l2 < l1) {
-      $( ".filter_machine_val:eq(0)").prop( "checked", false );
-    }
-
-    // part count
-    var machine_count = 0;
-    var check_if = $('.filter_machine_val');
-    jQuery('.filter_machine_val').each(function(index){
-      if (check_if[index].checked===true) {
-        machine_count = parseInt(machine_count)+1;
-      }
-    });
-
-    var machine_len = $('.filter_machine_val').length;
-
-    machine_len = parseInt(machine_len);
-    if (check_if[0].checked) {
-      $('#machine_text').text('All Machines');
-    }
-    else if (!check_if[0].checked && machine_len==(machine_count+1)) {
-      $('#machine_text').text('All Machines');
-    }
-    else if (!check_if[0].checked && machine_count>=1) {
-      $('#machine_text').text(parseInt(machine_count)+' Selected');
-    }
-    else{
-      $('#machine_text').text('No Machines');
-    }
-}
-
-
-$(document).on('click','.inbox_machine',function(event){     
-    inbox_machine("inbox_machine",this);
-});
-
-$(document).on('click','.filter_machine_val',function(event){
-    inbox_machine("filter_machine_val",this);
-});
-
-
-function inbox_machine_copq(classRef,thisRef) {
-    var index = $('.'+classRef+'').index(thisRef);
-
-    if(index==0 && $( ".filter_machine_val_copq:eq('"+index+"')").prop( "checked")==true){
-      $( ".filter_machine_val_copq").prop( "checked", false );
-    }
-    else if(index==0 && $( ".filter_machine_val_copq:eq('"+index+"')").prop( "checked")==false){
-      $( ".filter_machine_val_copq").prop( "checked", true );
-    }
-    else{
-      if ($( ".filter_machine_val_copq:eq('"+index+"')").prop( "checked")==true) {
-        $( ".filter_machine_val_copq:eq('"+index+"')").prop( "checked", false );
-      }
-      else{
-        $( ".filter_machine_val_copq:eq('"+index+"')").prop( "checked", true );
-      }
-    }
-
-    var l1 = $('.filter_machine_val_copq').length;
-    var l2 = $('.filter_machine_val_copq:checked').length;
-    
-
-    if ( (((l2)+1) == l1) && !($('.filter_machine_val_copq')[0].checked)) {
-      $( ".filter_machine_val_copq:eq(0)").prop( "checked", true);
-    }
-    else if (l2 < l1) {
-      $( ".filter_machine_val_copq:eq(0)").prop( "checked", false );
-    }
-
-    // part count
-    var part_count = 0;
-    var check_if = $('.filter_machine_val_copq');
-    jQuery('.filter_machine_val_copq').each(function(index){
-      if (check_if[index].checked===true) {
-        part_count = parseInt(part_count)+1;
-      }
-    });
-
-    var part_len = $('.filter_machine_val_copq').length;
-
-    part_len = parseInt(part_len);
-    if (check_if[0].checked) {
-      $('#machine_text_copq').text('All Machines');
-    }
-    else if (!check_if[0].checked && part_len==(part_count+1)) {
-      $('#machine_text_copq').text('All Machines');
-    }
-    else if (!check_if[0].checked && part_count>=1) {
-      $('#machine_text_copq').text(parseInt(part_count)+' Selected');
-    }
-    else{
-      $('#machine_text_copq').text('No Machines');
-    }
-}
-
-
-$(document).on('click','.inbox_machine_copq',function(event){     
-    inbox_machine_copq("inbox_machine_copq",this);
-});
-
-$(document).on('click','.filter_machine_val_copq',function(event){
-    inbox_machine_copq("filter_machine_val_copq",this);
-});
-
-
-function inbox_reason(classRef,thisRef) {
-    var index = $('.'+classRef+'').index(thisRef);
-
-    if(index==0 && $( ".filter_reason_val:eq('"+index+"')").prop( "checked")==true){
-      $( ".filter_reason_val").prop( "checked", false );
-    }
-    else if(index==0 && $( ".filter_reason_val:eq('"+index+"')").prop( "checked")==false){
-      $( ".filter_reason_val").prop( "checked", true );
-    }
-    else{
-      if ($( ".filter_reason_val:eq('"+index+"')").prop( "checked")==true) {
-        $( ".filter_reason_val:eq('"+index+"')").prop( "checked", false );
-      }
-      else{
-        $( ".filter_reason_val:eq('"+index+"')").prop( "checked", true );
-      }
-    }
-
-    var l1 = $('.filter_reason_val').length;
-    var l2 = $('.filter_reason_val:checked').length;
-    
-
-    if ( (((l2)+1) == l1) && !($('.filter_reason_val')[0].checked)) {
-      $( ".filter_reason_val:eq(0)").prop( "checked", true);
-    }
-    else if (l2 < l1) {
-      $( ".filter_reason_val:eq(0)").prop( "checked", false );
-    }
-
-    // part count
-    var reason_count = 0;
-    var check_if = $('.filter_reason_val');
-    jQuery('.filter_reason_val').each(function(index){
-      if (check_if[index].checked===true) {
-        reason_count = parseInt(reason_count)+1;
-      }
-    });
-
-    var reason_len = $('.filter_reason_val').length;
-
-    reason_len = parseInt(reason_len);
-    if (check_if[0].checked) {
-      $('#reason_text').text('All Reasons');
-    }
-    else if (!check_if[0].checked && reason_len==(reason_count+1)) {
-      $('#reason_text').text('All Reasons');
-    }
-    else if (!check_if[0].checked && reason_count>=1) {
-      $('#reason_text').text(parseInt(reason_count)+' Selected');
-    }
-    else{
-      $('#reason_text').text('No Reasons');
-    }
-}
-
-
-$(document).on('click','.inbox_reason',function(event){     
-    inbox_reason("inbox_reason",this);
-});
-
-$(document).on('click','.filter_reason_val',function(event){
-    inbox_reason("filter_reason_val",this);
-});
-
-
-
 // Standard Code for Drop-down funciton Start...................................
 
 function multiple_drp_fun(classRef,eleRef,labRef,dropRef,thisRef) {
@@ -1431,7 +1105,33 @@ function multiple_drp_fun(classRef,eleRef,labRef,dropRef,thisRef) {
       $('#'+labRef+'').text('No '+dropRef+'');
     }
 }
+
+$(document).on('click','.inbox_reason',function(event){
+    multiple_drp_fun("inbox_reason","filter_reason_val","reason_text","Reasons",this);
+});
+
+$(document).on('click','.filter_reason_val',function(event){
+    multiple_drp_fun("filter_reason_val","filter_reason_val","reason_text","Reasons",this);
+});
+
+$(document).on('click','.inbox_part',function(event){
+    multiple_drp_fun("inbox_part","filter_part_val","part_text","Parts",this);
+});
+
+$(document).on('click','.filter_part_val',function(event){
+    multiple_drp_fun("filter_part_val","filter_part_val","part_text","Parts",this);
+});
+
+$(document).on('click','.inbox_machine',function(event){
+    multiple_drp_fun("inbox_machine","filter_machine_val","machine_text","Machines",this);
+});
+
+$(document).on('click','.filter_machine_val',function(event){
+    multiple_drp_fun("filter_machine_val","filter_machine_val","machine_text","Machines",this);
+});
+
 // -----------
+
 $(document).on('click','.inbox_reason_copq',function(event){     
     multiple_drp_fun("inbox_reason_copq","filter_reason_val_copq","reason_text_copq","Reasons",this);
 });
@@ -1439,8 +1139,23 @@ $(document).on('click','.inbox_reason_copq',function(event){
 $(document).on('click','.filter_reason_val_copq',function(event){
     multiple_drp_fun("filter_reason_val_copq","filter_reason_val_copq","reason_text_copq","Reasons",this);
 });
+$(document).on('click','.inbox_part_copq',function(event){
+    multiple_drp_fun("inbox_part_copq","filter_part_val_copq","part_text_copq","Parts",this);
+});
+
+$(document).on('click','.filter_part_val_copq',function(event){
+    multiple_drp_fun("filter_part_val_copq","filter_part_val_copq","part_text_copq","Parts",this);
+});
+$(document).on('click','.inbox_machine_copq',function(event){
+    multiple_drp_fun("inbox_machine_copq","filter_machine_val_copq","machine_text_copq","Machines",this);
+});
+
+$(document).on('click','.filter_machine_val_copq',function(event){
+  multiple_drp_fun("filter_machine_val_copq","filter_machine_val_copq","machine_text_copq","Machines",this);
+});
 
 // -----------
+
 $(document).on('click','.inbox_reason_crpr',function(event){     
     multiple_drp_fun("inbox_reason_crpr","filter_reason_val_crpr","reason_text_crpr","Reasons",this);
 });
@@ -1449,7 +1164,6 @@ $(document).on('click','.filter_reason_val_crpr',function(event){
     multiple_drp_fun("filter_reason_val_crpr","filter_reason_val_crpr","reason_text_crpr","Reasons",this);
 });
 
-// -----------
 $(document).on('click','.inbox_part_crpr',function(event){     
     multiple_drp_fun("inbox_part_crpr","filter_part_val_crpr","part_text_crpr","Parts",this);
 });
@@ -1458,856 +1172,116 @@ $(document).on('click','.filter_part_val_crpr',function(event){
     multiple_drp_fun("filter_part_val_crpr","filter_part_val_crpr","part_text_crpr","Parts",this);
 });
 
-
-// Standard Code for Drop-down funciton completed...................................
-$(document).on('click','.inbox_machine_crpr',function(event){     
-    inbox_machine_crpr("inbox_machine_crpr",this);
+$(document).on('click','.inbox_machine_crpr',function(event){ 
+    multiple_drp_fun("inbox_machine_crpr","filter_machine_val_crpr","machine_text_crpr","Machines",this);
 });
 
 $(document).on('click','.filter_machine_val_crpr',function(event){
-    inbox_machine_crpr("filter_machine_val_crpr",this);
+  multiple_drp_fun("filter_machine_val_crpr","filter_machine_val_crpr","machine_text_crpr","Machines",this);
 });
 
-function inbox_machine_crpr(classRef,thisRef) {
-    var index = $('.'+classRef+'').index(thisRef);
-
-    if(index==0 && $( ".filter_machine_val_crpr:eq('"+index+"')").prop( "checked")==true){
-      $( ".filter_machine_val_crpr").prop( "checked", false );
-    }
-    else if(index==0 && $( ".filter_machine_val_crpr:eq('"+index+"')").prop( "checked")==false){
-      $( ".filter_machine_val_crpr").prop( "checked", true );
-    }
-    else{
-      if ($( ".filter_machine_val_crpr:eq('"+index+"')").prop( "checked")==true) {
-        $( ".filter_machine_val_crpr:eq('"+index+"')").prop( "checked", false );
-      }
-      else{
-        $( ".filter_machine_val_crpr:eq('"+index+"')").prop( "checked", true );
-      }
-    }
-
-    var l1 = $('.filter_machine_val_crpr').length;
-    var l2 = $('.filter_machine_val_crpr:checked').length;
-    
-
-    if ( (((l2)+1) == l1) && !($('.filter_machine_val_crpr')[0].checked)) {
-      $( ".filter_machine_val_crpr:eq(0)").prop( "checked", true);
-    }
-    else if (l2 < l1) {
-      $( ".filter_machine_val_crpr:eq(0)").prop( "checked", false );
-    }
-
-    // part count
-    var part_count = 0;
-    var check_if = $('.filter_machine_val_crpr');
-    jQuery('.filter_machine_val_crpr').each(function(index){
-      if (check_if[index].checked===true) {
-        part_count = parseInt(part_count)+1;
-      }
-    });
-
-    var part_len = $('.filter_machine_val_crpr').length;
-
-    part_len = parseInt(part_len);
-    if (check_if[0].checked) {
-      $('#machine_text_crpr').text('All Machines');
-    }
-    else if (!check_if[0].checked && part_len==(part_count+1)) {
-      $('#machine_text_crpr').text('All Machines');
-    }
-    else if (!check_if[0].checked && part_count>=1) {
-      $('#machine_text_crpr').text(parseInt(part_count)+' Selected');
-    }
-    else{
-      $('#machine_text_crpr').text('No Machines');
-    }
-}
-
-
-
-function inbox_reason_copqm(classRef,thisRef) {
-    var index = $('.'+classRef+'').index(thisRef);
-
-    if(index==0 && $( ".filter_reason_val_copqm:eq('"+index+"')").prop( "checked")==true){
-      $( ".filter_reason_val_copqm").prop( "checked", false );
-    }
-    else if(index==0 && $( ".filter_reason_val_copqm:eq('"+index+"')").prop( "checked")==false){
-      $( ".filter_reason_val_copqm").prop( "checked", true );
-    }
-    else{
-      if ($( ".filter_reason_val_copqm:eq('"+index+"')").prop( "checked")==true) {
-        $( ".filter_reason_val_copqm:eq('"+index+"')").prop( "checked", false );
-      }
-      else{
-        $( ".filter_reason_val_copqm:eq('"+index+"')").prop( "checked", true );
-      }
-    }
-
-    var l1 = $('.filter_reason_val_copqm').length;
-    var l2 = $('.filter_reason_val_copqm:checked').length;
-    
-
-    if ( (((l2)+1) == l1) && !($('.filter_reason_val_copqm')[0].checked)) {
-      $( ".filter_reason_val_copqm:eq(0)").prop( "checked", true);
-    }
-    else if (l2 < l1) {
-      $( ".filter_reason_val_copqm:eq(0)").prop( "checked", false );
-    }
-
-    // reason count
-    var reason_count = 0;
-    var check_if = $('.filter_reason_val_copqm');
-    jQuery('.filter_reason_val_copqm').each(function(index){
-      if (check_if[index].checked===true) {
-        reason_count = parseInt(reason_count)+1;
-      }
-    });
-
-    var reason_len = $('.filter_reason_val_copqm').length;
-
-    reason_len = parseInt(reason_len);
-    if (check_if[0].checked) {
-      $('#reason_text_copqm').text('All Reasons');
-    }
-    else if (!check_if[0].checked && reason_len==(reason_count+1)) {
-      $('#reason_text_copqm').text('All Reasons');
-    }
-    else if (!check_if[0].checked && reason_count>=1) {
-      $('#reason_text_copqm').text(parseInt(reason_count)+' Selected');
-    }
-    else{
-      $('#reason_text_copqm').text('No Reasons');
-    }
-}
-
-
+// -----------
 $(document).on('click','.inbox_reason_copqm',function(event){     
-    inbox_reason_copqm("inbox_reason_copqm",this);
+  multiple_drp_fun("inbox_reason_copqm","filter_reason_val_copqm","reason_text_copqm","Reasons",this);
 });
 
 $(document).on('click','.filter_reason_val_copqm',function(event){
-    inbox_reason_copqm("filter_reason_val_copqm",this);
+  multiple_drp_fun("filter_reason_val_copqm","filter_reason_val_copqm","reason_text_copqm","Reasons",this);
 });
 
-
-function inbox_part_copqm(classRef,thisRef) {
-    var index = $('.'+classRef+'').index(thisRef);
-
-    if(index==0 && $( ".filter_part_val_copqm:eq('"+index+"')").prop( "checked")==true){
-      $( ".filter_part_val_copqm").prop( "checked", false );
-    }
-    else if(index==0 && $( ".filter_part_val_copqm:eq('"+index+"')").prop( "checked")==false){
-      $( ".filter_part_val_copqm").prop( "checked", true );
-    }
-    else{
-      if ($( ".filter_part_val_copqm:eq('"+index+"')").prop( "checked")==true) {
-        $( ".filter_part_val_copqm:eq('"+index+"')").prop( "checked", false );
-      }
-      else{
-        $( ".filter_part_val_copqm:eq('"+index+"')").prop( "checked", true );
-      }
-    }
-
-    var l1 = $('.filter_part_val_copqm').length;
-    var l2 = $('.filter_part_val_copqm:checked').length;
-    
-
-    if ( (((l2)+1) == l1) && !($('.filter_part_val_copqm')[0].checked)) {
-      $( ".filter_part_val_copqm:eq(0)").prop( "checked", true);
-    }
-    else if (l2 < l1) {
-      $( ".filter_part_val_copqm:eq(0)").prop( "checked", false );
-    }
-
-    // part count
-    var part_count = 0;
-    var check_if = $('.filter_part_val_copqm');
-    jQuery('.filter_part_val_copqm').each(function(index){
-      if (check_if[index].checked===true) {
-        part_count = parseInt(part_count)+1;
-      }
-    });
-
-    var part_len = $('.filter_part_val_copqm').length;
-
-    part_len = parseInt(part_len);
-    if (check_if[0].checked) {
-      $('#part_text_copqm').text('All Parts');
-    }
-    else if (!check_if[0].checked && part_len==(part_count+1)) {
-      $('#part_text_copqm').text('All Parts');
-    }
-    else if (!check_if[0].checked && part_count>=1) {
-      $('#part_text_copqm').text(parseInt(part_count)+' Selected');
-    }
-    else{
-      $('#part_text_copqm').text('No Parts');
-    }
-}
-
-
-$(document).on('click','.inbox_part_copqm',function(event){     
-    inbox_part_copqm("inbox_part_copqm",this);
+$(document).on('click','.inbox_part_copqm',function(event){
+  multiple_drp_fun("inbox_part_copqm","filter_part_val_copqm","part_text_copqm","Parts",this);
 });
 
 $(document).on('click','.filter_part_val_copqm',function(event){
-    inbox_part_copqm("filter_part_val_copqm",this);
+  multiple_drp_fun("filter_part_val_copqm","filter_part_val_copqm","part_text_copqm","Parts",this);
 });
 
-
-
-function inbox_machine_copqm(classRef,thisRef) {
-    var index = $('.'+classRef+'').index(thisRef);
-
-    if(index==0 && $( ".filter_machine_val_copqm:eq('"+index+"')").prop( "checked")==true){
-      $( ".filter_machine_val_copqm").prop( "checked", false );
-    }
-    else if(index==0 && $( ".filter_machine_val_copqm:eq('"+index+"')").prop( "checked")==false){
-      $( ".filter_machine_val_copqm").prop( "checked", true );
-    }
-    else{
-      if ($( ".filter_machine_val_copqm:eq('"+index+"')").prop( "checked")==true) {
-        $( ".filter_machine_val_copqm:eq('"+index+"')").prop( "checked", false );
-      }
-      else{
-        $( ".filter_machine_val_copqm:eq('"+index+"')").prop( "checked", true );
-      }
-    }
-
-    var l1 = $('.filter_machine_val_copqm').length;
-    var l2 = $('.filter_machine_val_copqm:checked').length;
-    
-
-    if ( (((l2)+1) == l1) && !($('.filter_machine_val_copqm')[0].checked)) {
-      $( ".filter_machine_val_copqm:eq(0)").prop( "checked", true);
-    }
-    else if (l2 < l1) {
-      $( ".filter_machine_val_copqm:eq(0)").prop( "checked", false );
-    }
-
-    // machine count
-    var machine_count = 0;
-    var check_if = $('.filter_machine_val_copqm');
-    jQuery('.filter_machine_val_copqm').each(function(index){
-      if (check_if[index].checked===true) {
-        machine_count = parseInt(machine_count)+1;
-      }
-    });
-
-    var machine_len = $('.filter_machine_val_copqm').length;
-
-    machine_len = parseInt(machine_len);
-    if (check_if[0].checked) {
-      $('#machine_text_copqm').text('All Machines');
-    }
-    else if (!check_if[0].checked && machine_len==(machine_count+1)) {
-      $('#machine_text_copqm').text('All Machines');
-    }
-    else if (!check_if[0].checked && machine_count>=1) {
-      $('#machine_text_copqm').text(parseInt(machine_count)+' Selected');
-    }
-    else{
-      $('#machine_text_copqm').text('No Machines');
-    }
-}
-
-
-$(document).on('click','.inbox_machine_copqm',function(event){     
-    inbox_machine_copqm("inbox_machine_copqm",this);
+$(document).on('click','.inbox_machine_copqm',function(event){
+  multiple_drp_fun("inbox_machine_copqm","filter_machine_val_copqm","machine_text_copqm","Machines",this);
 });
 
 $(document).on('click','.filter_machine_val_copqm',function(event){
-    inbox_machine_copqm("filter_machine_val_copqm",this);
+  multiple_drp_fun("filter_machine_val_copqm","filter_machine_val_copqm","machine_text_copqm","Machines",this);
 });
 
-
-function inbox_reason_copqp(classRef,thisRef) {
-    var index = $('.'+classRef+'').index(thisRef);
-
-    if(index==0 && $( ".filter_reason_val_copqp:eq('"+index+"')").prop( "checked")==true){
-      $( ".filter_reason_val_copqp").prop( "checked", false );
-    }
-    else if(index==0 && $( ".filter_reason_val_copqp:eq('"+index+"')").prop( "checked")==false){
-      $( ".filter_reason_val_copqp").prop( "checked", true );
-    }
-    else{
-      if ($( ".filter_reason_val_copqp:eq('"+index+"')").prop( "checked")==true) {
-        $( ".filter_reason_val_copqp:eq('"+index+"')").prop( "checked", false );
-      }
-      else{
-        $( ".filter_reason_val_copqp:eq('"+index+"')").prop( "checked", true );
-      }
-    }
-
-    var l1 = $('.filter_reason_val_copqp').length;
-    var l2 = $('.filter_reason_val_copqp:checked').length;
-    
-
-    if ( (((l2)+1) == l1) && !($('.filter_reason_val_copqp')[0].checked)) {
-      $( ".filter_reason_val_copqp:eq(0)").prop( "checked", true);
-    }
-    else if (l2 < l1) {
-      $( ".filter_reason_val_copqp:eq(0)").prop( "checked", false );
-    }
-
-    // reason count
-    var reason_count = 0;
-    var check_if = $('.filter_reason_val_copqp');
-    jQuery('.filter_reason_val_copqp').each(function(index){
-      if (check_if[index].checked===true) {
-        reason_count = parseInt(reason_count)+1;
-      }
-    });
-
-    var reason_len = $('.filter_reason_val_copqp').length;
-
-    reason_len = parseInt(reason_len);
-    if (check_if[0].checked) {
-      $('#reason_text_copqp').text('All Reasons');
-    }
-    else if (!check_if[0].checked && reason_len==(reason_count+1)) {
-      $('#reason_text_copqp').text('All Reasons');
-    }
-    else if (!check_if[0].checked && reason_count>=1) {
-      $('#reason_text_copqp').text(parseInt(reason_count)+' Selected');
-    }
-    else{
-      $('#reason_text_copqp').text('No Reasons');
-    }
-}
-
-
-$(document).on('click','.inbox_reason_copqp',function(event){     
-    inbox_reason_copqp("inbox_reason_copqp",this);
+// -----------
+$(document).on('click','.inbox_reason_copqp',function(event){
+  multiple_drp_fun("inbox_reason_copqp","filter_reason_val_copqp","reason_text_copqp","Reasons",this);
 });
 
 $(document).on('click','.filter_reason_val_copqp',function(event){
-    inbox_reason_copqp("filter_reason_val_copqp",this);
+  multiple_drp_fun("filter_reason_val_copqp","filter_reason_val_copqp","reason_text_copqp","Reasons",this);
 });
 
-
-
-function inbox_part_copqp(classRef,thisRef) {
-    var index = $('.'+classRef+'').index(thisRef);
-
-    if(index==0 && $( ".filter_part_val_copqp:eq('"+index+"')").prop( "checked")==true){
-      $( ".filter_part_val_copqp").prop( "checked", false );
-    }
-    else if(index==0 && $( ".filter_part_val_copqp:eq('"+index+"')").prop( "checked")==false){
-      $( ".filter_part_val_copqp").prop( "checked", true );
-    }
-    else{
-      if ($( ".filter_part_val_copqp:eq('"+index+"')").prop( "checked")==true) {
-        $( ".filter_part_val_copqp:eq('"+index+"')").prop( "checked", false );
-      }
-      else{
-        $( ".filter_part_val_copqp:eq('"+index+"')").prop( "checked", true );
-      }
-    }
-
-    var l1 = $('.filter_part_val_copqp').length;
-    var l2 = $('.filter_part_val_copqp:checked').length;
-    
-
-    if ( (((l2)+1) == l1) && !($('.filter_part_val_copqp')[0].checked)) {
-      $( ".filter_part_val_copqp:eq(0)").prop( "checked", true);
-    }
-    else if (l2 < l1) {
-      $( ".filter_part_val_copqp:eq(0)").prop( "checked", false );
-    }
-
-    // part count
-    var part_count = 0;
-    var check_if = $('.filter_part_val_copqp');
-    jQuery('.filter_part_val_copqp').each(function(index){
-      if (check_if[index].checked===true) {
-        part_count = parseInt(part_count)+1;
-      }
-    });
-
-    var part_len = $('.filter_part_val_copqp').length;
-
-    part_len = parseInt(part_len);
-    if (check_if[0].checked) {
-      $('#part_text_copqp').text('All Parts');
-    }
-    else if (!check_if[0].checked && part_len==(part_count+1)) {
-      $('#part_text_copqp').text('All Parts');
-    }
-    else if (!check_if[0].checked && part_count>=1) {
-      $('#part_text_copqp').text(parseInt(part_count)+' Selected');
-    }
-    else{
-      $('#part_text_copqp').text('No Parts');
-    }
-}
-
-
-$(document).on('click','.inbox_part_copqp',function(event){     
-    inbox_part_copqp("inbox_part_copqp",this);
+$(document).on('click','.inbox_part_copqp',function(event){
+  multiple_drp_fun("inbox_part_copqp","filter_part_val_copqp","part_text_copqp","Parts",this);
 });
 
 $(document).on('click','.filter_part_val_copqp',function(event){
-    inbox_part_copqp("filter_part_val_copqp",this);
+  multiple_drp_fun("filter_part_val_copqp","filter_part_val_copqp","part_text_copqp","Parts",this);
 });
 
-
-
-function inbox_machine_copqp(classRef,thisRef) {
-    var index = $('.'+classRef+'').index(thisRef);
-
-    if(index==0 && $( ".filter_machine_val_copqp:eq('"+index+"')").prop( "checked")==true){
-      $( ".filter_machine_val_copqp").prop( "checked", false );
-    }
-    else if(index==0 && $( ".filter_machine_val_copqp:eq('"+index+"')").prop( "checked")==false){
-      $( ".filter_machine_val_copqp").prop( "checked", true );
-    }
-    else{
-      if ($( ".filter_machine_val_copqp:eq('"+index+"')").prop( "checked")==true) {
-        $( ".filter_machine_val_copqp:eq('"+index+"')").prop( "checked", false );
-      }
-      else{
-        $( ".filter_machine_val_copqp:eq('"+index+"')").prop( "checked", true );
-      }
-    }
-
-    var l1 = $('.filter_machine_val_copqp').length;
-    var l2 = $('.filter_machine_val_copqp:checked').length;
-    
-
-    if ( (((l2)+1) == l1) && !($('.filter_machine_val_copqp')[0].checked)) {
-      $( ".filter_machine_val_copqp:eq(0)").prop( "checked", true);
-    }
-    else if (l2 < l1) {
-      $( ".filter_machine_val_copqp:eq(0)").prop( "checked", false );
-    }
-
-    // machine count
-    var machine_count = 0;
-    var check_if = $('.filter_machine_val_copqp');
-    jQuery('.filter_machine_val_copqp').each(function(index){
-      if (check_if[index].checked===true) {
-        machine_count = parseInt(machine_count)+1;
-      }
-    });
-
-    var machine_len = $('.filter_machine_val_copqp').length;
-
-    machine_len = parseInt(machine_len);
-    if (check_if[0].checked) {
-      $('#machine_text_copqp').text('All Machines');
-    }
-    else if (!check_if[0].checked && machine_len==(machine_count+1)) {
-      $('#machine_text_copqp').text('All Machines');
-    }
-    else if (!check_if[0].checked && machine_count>=1) {
-      $('#machine_text_copqp').text(parseInt(machine_count)+' Selected');
-    }
-    else{
-      $('#machine_text_copqp').text('No Machines');
-    }
-}
-
-
-$(document).on('click','.inbox_machine_copqp',function(event){     
-    inbox_machine_copqp("inbox_machine_copqp",this);
+$(document).on('click','.inbox_machine_copqp',function(event){
+  multiple_drp_fun("inbox_machine_copqp","filter_machine_val_copqp","machine_text_copqp","Machines",this);
 });
 
 $(document).on('click','.filter_machine_val_copqp',function(event){
-    inbox_machine_copqp("filter_machine_val_copqp",this);
+  multiple_drp_fun("filter_machine_val_copqp","filter_machine_val_copqp","machine_text_copqp","Machines",this);
 });
+// -----------
 
-
-
-function inbox_reason_qrmr(classRef,thisRef) {
-    var index = $('.'+classRef+'').index(thisRef);
-
-    if(index==0 && $( ".filter_reason_val_qrmr:eq('"+index+"')").prop( "checked")==true){
-      $( ".filter_reason_val_qrmr").prop( "checked", false );
-    }
-    else if(index==0 && $( ".filter_reason_val_qrmr:eq('"+index+"')").prop( "checked")==false){
-      $( ".filter_reason_val_qrmr").prop( "checked", true );
-    }
-    else{
-      if ($( ".filter_reason_val_qrmr:eq('"+index+"')").prop( "checked")==true) {
-        $( ".filter_reason_val_qrmr:eq('"+index+"')").prop( "checked", false );
-      }
-      else{
-        $( ".filter_reason_val_qrmr:eq('"+index+"')").prop( "checked", true );
-      }
-    }
-
-    var l1 = $('.filter_reason_val_qrmr').length;
-    var l2 = $('.filter_reason_val_qrmr:checked').length;
-    
-
-    if ( (((l2)+1) == l1) && !($('.filter_reason_val_qrmr')[0].checked)) {
-      $( ".filter_reason_val_qrmr:eq(0)").prop( "checked", true);
-    }
-    else if (l2 < l1) {
-      $( ".filter_reason_val_qrmr:eq(0)").prop( "checked", false );
-    }
-
-    // reason count
-    var reason_count = 0;
-    var check_if = $('.filter_reason_val_qrmr');
-    jQuery('.filter_reason_val_qrmr').each(function(index){
-      if (check_if[index].checked===true) {
-        reason_count = parseInt(reason_count)+1;
-      }
-    });
-
-    var machine_len = $('.filter_reason_val_qrmr').length;
-
-    machine_len = parseInt(machine_len);
-    if (check_if[0].checked) {
-      $('#reason_text_qrmr').text('All Reasons');
-    }
-    else if (!check_if[0].checked && machine_len==(reason_count+1)) {
-      $('#reason_text_qrmr').text('All Reasons');
-    }
-    else if (!check_if[0].checked && reason_count>=1) {
-      $('#reason_text_qrmr').text(parseInt(reason_count)+' Selected');
-    }
-    else{
-      $('#reason_text_qrmr').text('No Reasons');
-    }
-}
-
-
-$(document).on('click','.inbox_reason_qrmr',function(event){     
-    inbox_reason_qrmr("inbox_reason_qrmr",this);
+$(document).on('click','.inbox_reason_qrmr',function(event){
+  multiple_drp_fun("inbox_reason_qrmr","filter_reason_val_qrmr","reason_text_qrmr","Reasons",this);
 });
 
 $(document).on('click','.filter_reason_val_qrmr',function(event){
-    inbox_reason_qrmr("filter_reason_val_qrmr",this);
+  multiple_drp_fun("filter_reason_val_qrmr","filter_reason_val_qrmr","reason_text_qrmr","Reasons",this);
 });
 
-
-function inbox_part_qrmr(classRef,thisRef) {
-    var index = $('.'+classRef+'').index(thisRef);
-
-    if(index==0 && $( ".filter_part_val_qrmr:eq('"+index+"')").prop( "checked")==true){
-      $( ".filter_part_val_qrmr").prop( "checked", false );
-    }
-    else if(index==0 && $( ".filter_part_val_qrmr:eq('"+index+"')").prop( "checked")==false){
-      $( ".filter_part_val_qrmr").prop( "checked", true );
-    }
-    else{
-      if ($( ".filter_part_val_qrmr:eq('"+index+"')").prop( "checked")==true) {
-        $( ".filter_part_val_qrmr:eq('"+index+"')").prop( "checked", false );
-      }
-      else{
-        $( ".filter_part_val_qrmr:eq('"+index+"')").prop( "checked", true );
-      }
-    }
-
-    var l1 = $('.filter_part_val_qrmr').length;
-    var l2 = $('.filter_part_val_qrmr:checked').length;
-    
-
-    if ( (((l2)+1) == l1) && !($('.filter_part_val_qrmr')[0].checked)) {
-      $( ".filter_part_val_qrmr:eq(0)").prop( "checked", true);
-    }
-    else if (l2 < l1) {
-      $( ".filter_part_val_qrmr:eq(0)").prop( "checked", false );
-    }
-
-    // part count
-    var part_count = 0;
-    var check_if = $('.filter_part_val_qrmr');
-    jQuery('.filter_part_val_qrmr').each(function(index){
-      if (check_if[index].checked===true) {
-        part_count = parseInt(part_count)+1;
-      }
-    });
-
-    var part_len = $('.filter_part_val_qrmr').length;
-
-    part_len = parseInt(part_len);
-    if (check_if[0].checked) {
-      $('#part_text_qrmr').text('All Parts');
-    }
-    else if (!check_if[0].checked && part_len==(part_count+1)) {
-      $('#part_text_qrmr').text('All Parts');
-    }
-    else if (!check_if[0].checked && part_count>=1) {
-      $('#part_text_qrmr').text(parseInt(part_count)+' Selected');
-    }
-    else{
-      $('#part_text_qrmr').text('No Parts');
-    }
-}
-
-
-$(document).on('click','.inbox_part_qrmr',function(event){     
-    inbox_part_qrmr("inbox_part_qrmr",this);
+$(document).on('click','.inbox_part_qrmr',function(event){
+  multiple_drp_fun("inbox_part_qrmr","filter_part_val_qrmr","part_text_qrmr","Parts",this);
 });
+
 
 $(document).on('click','.filter_part_val_qrmr',function(event){
-    inbox_part_qrmr("filter_part_val_qrmr",this);
+  multiple_drp_fun("filter_part_val_qrmr","filter_part_val_qrmr","part_text_qrmr","Parts",this);
 });
 
-
-function inbox_machine_qrmr(classRef,thisRef) {
-    var index = $('.'+classRef+'').index(thisRef);
-
-    if(index==0 && $( ".filter_machine_val_qrmr:eq('"+index+"')").prop( "checked")==true){
-      $( ".filter_machine_val_qrmr").prop( "checked", false );
-    }
-    else if(index==0 && $( ".filter_machine_val_qrmr:eq('"+index+"')").prop( "checked")==false){
-      $( ".filter_machine_val_qrmr").prop( "checked", true );
-    }
-    else{
-      if ($( ".filter_machine_val_qrmr:eq('"+index+"')").prop( "checked")==true) {
-        $( ".filter_machine_val_qrmr:eq('"+index+"')").prop( "checked", false );
-      }
-      else{
-        $( ".filter_machine_val_qrmr:eq('"+index+"')").prop( "checked", true );
-      }
-    }
-
-    var l1 = $('.filter_machine_val_qrmr').length;
-    var l2 = $('.filter_machine_val_qrmr:checked').length;
-    
-
-    if ( (((l2)+1) == l1) && !($('.filter_machine_val_qrmr')[0].checked)) {
-      $( ".filter_machine_val_qrmr:eq(0)").prop( "checked", true);
-    }
-    else if (l2 < l1) {
-      $( ".filter_machine_val_qrmr:eq(0)").prop( "checked", false );
-    }
-
-    // machine count
-    var machine_count = 0;
-    var check_if = $('.filter_machine_val_qrmr');
-    jQuery('.filter_machine_val_qrmr').each(function(index){
-      if (check_if[index].checked===true) {
-        machine_count = parseInt(machine_count)+1;
-      }
-    });
-
-    var machine_len = $('.filter_machine_val_qrmr').length;
-
-    machine_len = parseInt(machine_len);
-    if (check_if[0].checked) {
-      $('#machine_text_qrmr').text('All Machines');
-    }
-    else if (!check_if[0].checked && machine_len==(machine_count+1)) {
-      $('#machine_text_qrmr').text('All Machines');
-    }
-    else if (!check_if[0].checked && machine_count>=1) {
-      $('#machine_text_qrmr').text(parseInt(machine_count)+' Selected');
-    }
-    else{
-      $('#machine_text_qrmr').text('No Machines');
-    }
-}
-
-
-$(document).on('click','.inbox_machine_qrmr',function(event){     
-    inbox_machine_qrmr("inbox_machine_qrmr",this);
+$(document).on('click','.inbox_machine_qrmr',function(event){
+  multiple_drp_fun("inbox_machine_qrmr","filter_machine_val_qrmr","machine_text_qrmr","Machines",this);
 });
 
 $(document).on('click','.filter_machine_val_qrmr',function(event){
-    inbox_machine_qrmr("filter_machine_val_qrmr",this);
+  multiple_drp_fun("filter_machine_val_qrmr","filter_machine_val_qrmr","machine_text_qrmr","Machines",this);
 });
+// -----------
 
-
-function inbox_reason_qrpr(classRef,thisRef) {
-    var index = $('.'+classRef+'').index(thisRef);
-
-    if(index==0 && $( ".filter_reason_val_qrpr:eq('"+index+"')").prop( "checked")==true){
-      $( ".filter_reason_val_qrpr").prop( "checked", false );
-    }
-    else if(index==0 && $( ".filter_reason_val_qrpr:eq('"+index+"')").prop( "checked")==false){
-      $( ".filter_reason_val_qrpr").prop( "checked", true );
-    }
-    else{
-      if ($( ".filter_reason_val_qrpr:eq('"+index+"')").prop( "checked")==true) {
-        $( ".filter_reason_val_qrpr:eq('"+index+"')").prop( "checked", false );
-      }
-      else{
-        $( ".filter_reason_val_qrpr:eq('"+index+"')").prop( "checked", true );
-      }
-    }
-
-    var l1 = $('.filter_reason_val_qrpr').length;
-    var l2 = $('.filter_reason_val_qrpr:checked').length;
-    
-
-    if ( (((l2)+1) == l1) && !($('.filter_reason_val_qrpr')[0].checked)) {
-      $( ".filter_reason_val_qrpr:eq(0)").prop( "checked", true);
-    }
-    else if (l2 < l1) {
-      $( ".filter_reason_val_qrpr:eq(0)").prop( "checked", false );
-    }
-
-    // reason count
-    var reason_count = 0;
-    var check_if = $('.filter_reason_val_qrpr');
-    jQuery('.filter_reason_val_qrpr').each(function(index){
-      if (check_if[index].checked===true) {
-        reason_count = parseInt(reason_count)+1;
-      }
-    });
-
-    var reason_len = $('.filter_reason_val_qrpr').length;
-
-    reason_len = parseInt(reason_len);
-    if (check_if[0].checked) {
-      $('#reason_text_qrpr').text('All Reasons');
-    }
-    else if (!check_if[0].checked && reason_len==(reason_count+1)) {
-      $('#reason_text_qrpr').text('All Reasons');
-    }
-    else if (!check_if[0].checked && reason_count>=1) {
-      $('#reason_text_qrpr').text(parseInt(reason_count)+' Selected');
-    }
-    else{
-      $('#reason_text_qrpr').text('No Reasons');
-    }
-}
-
-
-$(document).on('click','.inbox_reason_qrpr',function(event){     
-    inbox_reason_qrpr("inbox_reason_qrpr",this);
+$(document).on('click','.inbox_reason_qrpr',function(event){
+  multiple_drp_fun("inbox_reason_qrpr","filter_reason_val_qrpr","reason_text_qrpr","Reasons",this);
 });
 
 $(document).on('click','.filter_reason_val_qrpr',function(event){
-    inbox_reason_qrpr("filter_reason_val_qrpr",this);
+  multiple_drp_fun("filter_reason_val_qrpr","filter_reason_val_qrpr","reason_text_qrpr","Reasons",this);
 });
 
-
-function inbox_part_qrpr(classRef,thisRef) {
-    var index = $('.'+classRef+'').index(thisRef);
-
-    if(index==0 && $( ".filter_part_val_qrpr:eq('"+index+"')").prop( "checked")==true){
-      $( ".filter_part_val_qrpr").prop( "checked", false );
-    }
-    else if(index==0 && $( ".filter_part_val_qrpr:eq('"+index+"')").prop( "checked")==false){
-      $( ".filter_part_val_qrpr").prop( "checked", true );
-    }
-    else{
-      if ($( ".filter_part_val_qrpr:eq('"+index+"')").prop( "checked")==true) {
-        $( ".filter_part_val_qrpr:eq('"+index+"')").prop( "checked", false );
-      }
-      else{
-        $( ".filter_part_val_qrpr:eq('"+index+"')").prop( "checked", true );
-      }
-    }
-
-    var l1 = $('.filter_part_val_qrpr').length;
-    var l2 = $('.filter_part_val_qrpr:checked').length;
-    
-
-    if ( (((l2)+1) == l1) && !($('.filter_part_val_qrpr')[0].checked)) {
-      $( ".filter_part_val_qrpr:eq(0)").prop( "checked", true);
-    }
-    else if (l2 < l1) {
-      $( ".filter_part_val_qrpr:eq(0)").prop( "checked", false );
-    }
-
-    // reason count
-    var part_count = 0;
-    var check_if = $('.filter_part_val_qrpr');
-    jQuery('.filter_part_val_qrpr').each(function(index){
-      if (check_if[index].checked===true) {
-        part_count = parseInt(part_count)+1;
-      }
-    });
-
-    var part_len = $('.filter_part_val_qrpr').length;
-
-    part_len = parseInt(part_len);
-    if (check_if[0].checked) {
-      $('#part_text_qrpr').text('All Parts');
-    }
-    else if (!check_if[0].checked && part_len==(part_count+1)) {
-      $('#part_text_qrpr').text('All Parts');
-    }
-    else if (!check_if[0].checked && part_count>=1) {
-      $('#part_text_qrpr').text(parseInt(part_count)+' Selected');
-    }
-    else{
-      $('#part_text_qrpr').text('No Parts');
-    }
-}
-
-
-$(document).on('click','.inbox_part_qrpr',function(event){     
-    inbox_part_qrpr("inbox_part_qrpr",this);
+$(document).on('click','.inbox_part_qrpr',function(event){
+  multiple_drp_fun("inbox_part_qrpr","filter_part_val_qrpr","part_text_qrpr","Parts",this);
 });
 
 $(document).on('click','.filter_part_val_qrpr',function(event){
-    inbox_part_qrpr("filter_part_val_qrpr",this);
+  multiple_drp_fun("filter_part_val_qrpr","filter_part_val_qrpr","part_text_qrpr","Parts",this);
 });
 
-
-
-function inbox_machine_qrpr(classRef,thisRef) {
-    var index = $('.'+classRef+'').index(thisRef);
-
-    if(index==0 && $( ".filter_machine_val_qrpr:eq('"+index+"')").prop( "checked")==true){
-      $( ".filter_machine_val_qrpr").prop( "checked", false );
-    }
-    else if(index==0 && $( ".filter_machine_val_qrpr:eq('"+index+"')").prop( "checked")==false){
-      $( ".filter_machine_val_qrpr").prop( "checked", true );
-    }
-    else{
-      if ($( ".filter_machine_val_qrpr:eq('"+index+"')").prop( "checked")==true) {
-        $( ".filter_machine_val_qrpr:eq('"+index+"')").prop( "checked", false );
-      }
-      else{
-        $( ".filter_machine_val_qrpr:eq('"+index+"')").prop( "checked", true );
-      }
-    }
-
-    var l1 = $('.filter_machine_val_qrpr').length;
-    var l2 = $('.filter_machine_val_qrpr:checked').length;
-    
-
-    if ( (((l2)+1) == l1) && !($('.filter_machine_val_qrpr')[0].checked)) {
-      $( ".filter_machine_val_qrpr:eq(0)").prop( "checked", true);
-    }
-    else if (l2 < l1) {
-      $( ".filter_machine_val_qrpr:eq(0)").prop( "checked", false );
-    }
-
-    // machine count
-    var machine_count = 0;
-    var check_if = $('.filter_machine_val_qrpr');
-    jQuery('.filter_machine_val_qrpr').each(function(index){
-      if (check_if[index].checked===true) {
-        machine_count = parseInt(machine_count)+1;
-      }
-    });
-
-    var machine_len = $('.filter_machine_val_qrpr').length;
-
-    machine_len = parseInt(machine_len);
-    if (check_if[0].checked) {
-      $('#machine_text_qrpr').text('All Machines');
-    }
-    else if (!check_if[0].checked && machine_len==(machine_count+1)) {
-      $('#machine_text_qrpr').text('All Machines');
-    }
-    else if (!check_if[0].checked && machine_count>=1) {
-      $('#machine_text_qrpr').text(parseInt(machine_count)+' Selected');
-    }
-    else{
-      $('#machine_text_qrpr').text('No Machines');
-    }
-}
-
-
-$(document).on('click','.inbox_machine_qrpr',function(event){     
-    inbox_machine_qrpr("inbox_machine_qrpr",this);
+$(document).on('click','.inbox_machine_qrpr',function(event){
+  multiple_drp_fun("inbox_machine_qrpr","filter_machine_val_qrpr","machine_text_qrpr","Machines",this);
 });
 
 $(document).on('click','.filter_machine_val_qrpr',function(event){
-    inbox_machine_qrpr("filter_machine_val_qrpr",this);
+  multiple_drp_fun("filter_machine_val_qrpr","filter_machine_val_qrpr","machine_text_qrpr","Machines",this);
 });
+// -----------
+// Standard Code for Drop-down funciton completed...................................
 
 
 $(document).on('click','.copq_filter',function(event){
