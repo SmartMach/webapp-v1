@@ -1639,6 +1639,7 @@ $(document).on('click', '.grid-item-cont', function(event) {
         var tmp_mid = $('.machine_name_ref:eq(' + index_val + ')').attr('mid_data');
         var tid_data = $('.machine_name_ref:eq('+index_val+')').attr('tid_data');
         var shift_date = $('#shift_date').attr("sdate_format");
+        // var shift_date="2023-09-26";
         var shift_id = $('#shift_id').text();
         var event_status = $('.current_event:eq(' + index_val + ')').attr('event');
         var machine_name = $('.machine_name_ref:eq(' + index_val + ')').text();
@@ -1696,9 +1697,9 @@ $(document).on('click', '.grid-item-cont', function(event) {
         $('.outer').css('border-color', border_color);
         $('.second_header').css('background-color',sub_header);
         
-        // console.log("shift date :\t"+shift_date);
-        // console.log("machine id :\t"+tmp_mid);
-        // console.log("shift id :\t",tmp[1]);
+        console.log("shift date :\t"+shift_date);
+        console.log("machine id :\t"+tmp_mid);
+        console.log("shift id :\t",tmp[1]);
 
         await getProductionGraph(tmp_mid,shift_date,tmp[1],background_title_color,border_color);
         await getDownTimeGraph(tmp_mid,shift_date,tmp[1]);
@@ -1721,45 +1722,6 @@ $(document).on('click', '.grid-item-cont', function(event) {
         $("#overlay").fadeOut(300);
     }
     
-
-   
-//     var tmp_mid = $('.machine_name_ref:eq(' + index_val + ')').attr('mid_data');
-//     var tid_data = $('.machine_name_ref:eq('+index_val+')').attr('tid_data');
-//     var shift_date = $('#shift_date').attr("sdate_format");
-//     var shift_id = $('#shift_id').text();
-//     var event_status = $('.current_event:eq(' + index_val + ')').attr('event');
-//     var machine_name = $('.machine_name_ref:eq(' + index_val + ')').text();
-//     // alert(shift_id.split(" "));
-//     const tmp = shift_id.split(" ");
-
-
-//     const shift_arr = [];
-//     shift_arr.push(tmp[1]);
-//     await getDownTimeGraph(tmp_mid, shift_date, shift_arr);
-//     await target_oui_graph(tmp_mid,tid_data,shift_date);
-//     await part_by_hour(tmp_mid, shift_date, tmp[1], bar_color);
-//     await div_records(tmp_mid, shift_date, tmp[1], bar_color, card_body);
-//     await circle_data_oui(tmp_mid,shift_date,tmp[1]);
-//     $('.target_graph_child_div').css('background-color',circle_target_color);
-//     $('#oui_circle_graph_color').attr('stop-color',circle_target_color);
-//     
-//     //alert(backgroundcolor);
-//     $('.cycle_time_val_div').css('background-color',backgroundcolor);
-//     $('.oui_header_div').css('background-color', backgroundcolor);
-//     $('.label_header').css('background-color', backgroundcolor);
-//     $('.oui_sub_header').css('background-color', card_body);
-//     $('.target_graph_parent_div').css('background-color', bar_color);
-//     $('.line_color_border').css('border', '1px solid ' + line);
-//     $('.label_text_color').css('color', label_text);
-//     $('#machine_status').text(event_status);
-//     $('#machine_name_text').text(machine_name);
-
-//     $('.downtime_second_val').css('display', downtime_display_property);
-//     $('.oui_arrow_div').css('display', 'inline');
-//     $('.visibility_div').css('display', 'none');
-//     $('#full_screen_btn_visibility').css('visibility','hidden');
-//     $("#overlay").fadeOut(300);
-// }
 
 
 
@@ -2587,12 +2549,23 @@ var part_name_tooltip = new Array();
                 },
                 success: function(res) {
                     resolve(res);
-                    $('#part_cycle_time').text(res[0]['NICT']+"s");
-                    $('#part_name_oui').text(res[0]['part_name']);
-                    $('#part_name_oui').attr("part_id",""+res[0]['part_id']+"");
+                    console.log("part cycle");
+                    console.log(res);
+                    const part_name_arr = [];
+                    const part_id_arr = [];
+                    res.forEach(element => {
+                        part_name_arr.push(element.part_name);
+                        part_id_arr.push(element.part_id);
+                    });
 
-                    $('#part_name_oui_p').text(res[0]['part_name']);
-                    $('#part_name_oui_p').attr('title',res[0]['part_name']);
+                    var tmp_part_name = part_name_arr.join();
+                    var tmp_part_id = part_id_arr.join();
+                    $('#part_cycle_time').text(res[0]['NICT']+"s");
+                    $('#part_name_oui').text(tmp_part_name);
+                    $('#part_name_oui').attr("part_id",tmp_part_id);
+
+                    $('#part_name_oui_p').text(tmp_part_name);
+                    $('#part_name_oui_p').attr('title',tmp_part_name);
 
                 },
                 error: function(res) {
