@@ -334,8 +334,6 @@ var j_global = "";
 var mx_global="";
 
 async function base_func(){
-
-    
     const result = await getMachineDataLive();
     await  getTileupdate(result);
     await getLiveMode(result[0]['shift_date'], result[0]['shift_id']);
@@ -352,33 +350,46 @@ async function base_func(){
 }
 // getMachineDataLive();
  
-mx_global = setInterval(function() {
-    getMachineDataLiveUpdate();
-    console.log("live update");
-}, 1000);
+// mx_global = setInterval(function() {
+//     getMachineDataLiveUpdate();
+//     console.log("live update");
+// }, 1000);
+
+async function previous_shift(){
+    const get_previous_shift_record = await get_previous_shift_value();
+    await  getTileupdate(get_previous_shift_record);
+    await getLiveMode(get_previous_shift_record[0]['shift_date'], get_previous_shift_record[0]['shift_id']);
+    await live_MC1001(get_previous_shift_record[0]['shift_date'], get_previous_shift_record[0]['shift_id']);
+    await live_target_update(get_previous_shift_record[0]['shift_date']);
+    $("#overlay").fadeOut(300);
+}
+
+function get_previous_shift_value(){
+    return new Promise(function(resolve,reject){
+        $.ajax({
+            url: "<?php echo base_url('Current_Shift_Performance/getPreviousShiftLive'); ?>",
+            type: "POST",
+            dataType: "json",
+            cache: false,
+            // async: false,
+            success: function(res) {
+               console.log("previous shift ajax success");
+               resolve(res);
+            },
+            error: function(res) {
+                // Error Occured!
+                console.log("previous shift ajax error function get_previous_shift_value ");
+                reject(res);
+            }
+        });
+    });
+}
 
 $(document).on('click','.Previous_Shift_Live',function(event){
     $("#overlay").fadeIn(300);
     myChartList =[];
     $(".Previous_Shift_Live").attr("status",1);
-    $.ajax({
-        url: "<?php echo base_url('Current_Shift_Performance/getPreviousShiftLive'); ?>",
-        type: "POST",
-        dataType: "json",
-        cache: false,
-        async: false,
-        success: function(res) {
-            // clearInterval(mx_global);
-            clearInterval(i_global);
-            clearInterval(j_global);
-            getTileupdate(res);
-            $("#overlay").fadeOut(300);
-        },
-        error: function(res) {
-            // Error Occured!
-        }
-    });
-    
+    previous_shift();
 });
 
 
