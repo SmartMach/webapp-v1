@@ -1648,6 +1648,8 @@ function live_MC1001(shift_date, shift_id) {
 $(document).on('click', '.grid-item-cont', function(event) {
     event.preventDefault();
     $("#overlay").fadeIn(300);
+    clearInterval(i_global);
+            clearInterval(j_global);
     // alert('hi');
     var find_index = $('.grid-item-cont');
     var index_val = find_index.index($(this));
@@ -1735,7 +1737,7 @@ $(document).on('click', '.grid-item-cont', function(event) {
         await getLiveProduction(tmp_mid,shift_date,tmp[1]);
         await getPartCycleTime(tmp_mid);
         await getRejectCounts(tmp_mid,shift_date,tmp[1]);
-        target_oui_graph(tmp_mid,tid_data,shift_date,tmp[1]);
+        await target_oui_graph(tmp_mid,tid_data,shift_date,tmp[1]);
         $('.graph-content').css('display', 'none');
         $('.oui_screen_view').css('display', 'block');
         $('.oui_arrow_div').css('display', 'inline');
@@ -1744,7 +1746,7 @@ $(document).on('click', '.grid-item-cont', function(event) {
 
         $('.current_shift_color_change').removeClass('col-white');
         $('.current_shift_color_change').addClass(background_col_var);
-
+       
         $("#overlay").fadeOut(300);
     }
     
