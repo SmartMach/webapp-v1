@@ -205,7 +205,7 @@ class Operator_model extends Model{
         $query = $db->table('tool_changeover as p');
         $query->select('p.part_id,r.NICT,r.part_name');
         $query->where('p.id',$res[0]['tool_changeover_id']);
-        $query->limit(1);
+        // $query->limit(1);
         $query->join('settings_part_current as r', 'r.part_id = p.part_id');
         $result = $query->get()->getResultArray();
         return $result;
