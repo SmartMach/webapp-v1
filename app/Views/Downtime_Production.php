@@ -164,29 +164,30 @@ $session = \Config\Services::session();
                             </div>
                             <div style="width:80%;display:flex;flex-direction:row-reverse;" >
                                 <!-- Machine Dropdown checkbox -->
-                                <div class="box " style="" >
-                                    <label class="multi_select_label" style="">Machines</label>
-                                    <div class="filter_selectBox_machinegp" onclick="machine_multiselect_gp()">
+                                <div class="box ">
+                                    <label class="multi_select_label non-select" style="">Machines</label>
+                                    <div class="filter_selectBox_machinegp oppcost_reason_machine_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_machinegp','oppcost_reason_machine_drp')">
                                         <select  class="multi_select_machinegp" style="" >
-                                            <option id="text_machinegp" style="">All Machines</option>
+                                            <option class="text_machinegp_drp non-select" style="">All Machines</option>
                                         </select>
                                         <div class="filter_overSelect_machinegp"></div>
                                     </div>
-                                    <div class="filter_checkboxes_machinegp" style="" >
+                                    <div class="filter_checkboxes_machinegp filter_checkbox_opt " style="display:none;" >
                                         <!-- options in progress -->
                                     </div>
                                 </div>
 
                                 <!-- Reasons Dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <label class="multi_select_label" style="">Reasons</label>
-                                    <div class="filter_selectBox_reasongp" onclick="reason_multiselect_gp()">
+                                    <label class="multi_select_label non-select" style="">Reasons</label>
+                                    <!-- <div class="filter_selectBox_reasongp" onclick="reason_multiselect_gp()"> -->
+                                    <div class="filter_selectBox_reasongp oppcost_reason_reason_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_reasongp','oppcost_reason_reason_drp')">
                                         <select  class="multi_select_reasongp" style="" >
-                                            <option id="text_reasongp" style="">All Reasons</option>
+                                            <option class="text_reasongp non-select">All Reasons</option>
                                         </select>
                                         <div class="filter_overSelect_reasongp"></div>
                                     </div>
-                                    <div class="filter_checkboxes_reasongp" style="" >
+                                    <div class="filter_checkboxes_reasongp filter_checkbox_opt" style="display:none;" >
                                         <!-- options in progress -->
 
                                     </div>
@@ -194,14 +195,15 @@ $session = \Config\Services::session();
 
                                 <!-- category dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <label class="multi_select_label" style="">Categories</label>
-                                    <div class="filter_selectBox_categorygp" onclick="category_multiselect_gp()">
+                                    <label class="multi_select_label non-select" style="">Categories</label>
+                                    <!-- <div class="filter_selectBox_categorygp" onclick="category_multiselect_gp()"> -->
+                                    <div class="filter_selectBox_categorygp oppcost_reason_category_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_categorygp','oppcost_reason_category_drp')">
                                         <select  class="multi_select_categorygp" style="" >
-                                            <option id="text_categorygp" style="">All Categories</option>
+                                            <option class="text_categorygp non-select" style="">All Categories</option>
                                         </select>
                                         <div class="filter_overSelect_categorygp"></div>
                                     </div>
-                                    <div class="filter_checkboxes_categorygp " style="" >
+                                    <div class="filter_checkboxes_categorygp filter_checkbox_opt" style="" >
                                         <!-- options in progress -->
                                         <div class="filter_check_categorygb reason_oppcost_common" style="">
                                             <div class="cate_drp_check" style="">
@@ -252,10 +254,11 @@ $session = \Config\Services::session();
                             <div style="width:80%;display:flex;flex-direction:row-reverse;">
                                 <!-- Machine Dropdown checkbox -->
                                 <div class="box " style="" >
-                                    <label class="multi_select_label" style="">Machines</label>
-                                    <div class="filter_selectBox_machinegp1" onclick="machine_multiselect_gp1()">
+                                    <label class="multi_select_label non-select" style="">Machines</label>
+                                    <!-- <div class="filter_selectBox_machinegp1" onclick="machine_multiselect_gp1()">  -->
+                                    <div class="filter_selectBox_machinegp1 duration_reason_machine_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_machinegp1','duration_reason_machine_drp')">
                                         <select  class="multi_select_machinegp1" style="" >
-                                            <option id="text_machinegp1" style="">All Machines</option>
+                                            <option class="text_machinegp1 non-select" style="">All Machines</option>
                                         </select>
                                         <div class="filter_overSelect_machinegp1"></div>
                                     </div>
@@ -266,10 +269,11 @@ $session = \Config\Services::session();
 
                                 <!-- Reasons Dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <label class="multi_select_label" style="">Reasons</label>
-                                    <div class="filter_selectBox_reasongp1" onclick="reason_multiselect_gp1();">
+                                    <label class="multi_select_label non-select" style="">Reasons</label>
+                                    <!-- <div class="filter_selectBox_reasongp1" onclick="reason_multiselect_gp1();"> -->
+                                    <div class="filter_selectBox_reasongp1 duration_reason_reason_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_reasongp1','duration_reason_reason_drp');">
                                         <select  class="multi_select_reasongp1" style="" >
-                                            <option id="text_reasongp1" style="">All Reasons</option>
+                                            <option class="text_reasongp1 non-select" style="">All Reasons</option>
                                         </select>
                                         <div class="filter_overSelect_reasongp1"></div>
                                     </div>
@@ -281,10 +285,11 @@ $session = \Config\Services::session();
 
                                 <!-- category dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <label class="multi_select_label" style="">Categories</label>
-                                    <div class="filter_selectBox_categorygp1" onclick="category_multiselect_gp1()">
+                                    <label class="multi_select_label non-select" style="">Categories</label>
+                                    <!-- <div class="filter_selectBox_categorygp1" onclick="category_multiselect_gp1()"> -->
+                                    <div class="filter_selectBox_categorygp1 duration_reason_category_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_categorygp1','duration_reason_category_drp')"> 
                                         <select  class="multi_select_categorygp1" style="" >
-                                            <option id="text_categorygp1" style="">All Categories</option>
+                                            <option class="text_categorygp1 non-select" style="">All Categories</option>
                                         </select>
                                         <div class="filter_overSelect_categorygp1"></div>
                                     </div>
@@ -341,10 +346,11 @@ $session = \Config\Services::session();
                             <div style="width:80%;display:flex;flex-direction:row-reverse;">
                                 <!-- Machine Dropdown checkbox -->
                                 <div class="box " style="">
-                                    <label class="multi_select_label" style="">Machines</label>
-                                    <div class="filter_selectBox_machinegp2" onclick="machine_multiselect_gp2()">
+                                    <label class="multi_select_label non-select" style="">Machines</label>
+                                    <!-- <div class="filter_selectBox_machinegp2" onclick="machine_multiselect_gp2()"> -->
+                                    <div class="filter_selectBox_machinegp2 oppcost_machine_machine_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_machinegp2','oppcost_machine_machine_drp')">
                                         <select  class="multi_select_machinegp2" style="" >
-                                            <option id="text_machinegp2" style="">All Machines</option>
+                                            <option class="text_machinegp2 non-select" style="">All Machines</option>
                                         </select>
                                         <div class="filter_overSelect_machinegp2"></div>
                                     </div>
@@ -355,10 +361,11 @@ $session = \Config\Services::session();
 
                                 <!-- Reasons Dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <label class="multi_select_label" style="">Reasons</label>
-                                    <div class="filter_selectBox_reasongp2" onclick="reason_multiselect_gp2();">
+                                    <label class="multi_select_label non-select" style="">Reasons</label>
+                                    <!-- <div class="filter_selectBox_reasongp2" onclick="reason_multiselect_gp2();"> -->
+                                    <div class="filter_selectBox_reasongp2 oppcost_machine_reason_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_reasongp2','oppcost_machine_reason_drp');"> 
                                         <select  class="multi_select_reasongp2" style="" >
-                                            <option id="text_reasongp2" style="">All Reasons</option>
+                                            <option class="text_reasongp2 non-select" style="">All Reasons</option>
                                         </select>
                                         <div class="filter_overSelect_reasongp2"></div>
                                     </div>
@@ -370,10 +377,11 @@ $session = \Config\Services::session();
 
                                 <!-- category dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <label class="multi_select_label" style="">Categories</label>
-                                    <div class="filter_selectBox_categorygp2" onclick="category_multiselect_gp2()">
+                                    <label class="multi_select_label non-select" style="">Categories</label>
+                                    <!-- <div class="filter_selectBox_categorygp2" onclick="category_multiselect_gp2()"> -->
+                                    <div class="filter_selectBox_categorygp2 oppcost_machine_category_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_categorygp2','oppcost_machine_category_drp')">
                                         <select  class="multi_select_categorygp2" style="" >
-                                            <option id="text_categorygp2" style="">All Categories</option>
+                                            <option class="text_categorygp2 non-select" style="">All Categories</option>
                                         </select>
                                         <div class="filter_overSelect_categorygp2"></div>
                                     </div>
@@ -428,10 +436,11 @@ $session = \Config\Services::session();
                             <div style="width:88%;display:flex;flex-direction:row-reverse;">
                                 <!-- Machine Dropdown checkbox -->
                                 <div class="box " style="" >
-                                    <label class="multi_select_label" style="">Machines</label>
-                                    <div class="filter_selectBox_machinegp3" onclick="machine_multiselect_gp3()">
+                                    <label class="multi_select_label non-select" style="">Machines</label>
+                                    <!-- <div class="filter_selectBox_machinegp3" onclick="machine_multiselect_gp3()"> -->
+                                    <div class="filter_selectBox_machinegp3 duration_machine_reason_machine_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_machinegp3','duration_machine_reason_machine_drp')">
                                         <select  class="multi_select_machinegp3" style="" >
-                                            <option id="text_machinegp3" style="">All Machines</option>
+                                            <option class="text_machinegp3 non-select" style="">All Machines</option>
                                         </select>
                                         <div class="filter_overSelect_machinegp3"></div>
                                     </div>
@@ -442,10 +451,11 @@ $session = \Config\Services::session();
 
                                 <!-- Reasons Dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <label class="multi_select_label" style="">Reasons</label>
-                                    <div class="filter_selectBox_reasongp3" onclick="reason_multiselect_gp3();">
+                                    <label class="multi_select_label non-select" style="">Reasons</label>
+                                    <!-- <div class="filter_selectBox_reasongp3" onclick="reason_multiselect_gp3();"> -->
+                                    <div class="filter_selectBox_reasongp3 duration_machine_reason_reason_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_reasongp3','duration_machine_reason_reason_drp');">
                                         <select  class="multi_select_reasongp3" style="" >
-                                            <option id="text_reasongp3" style="">All Reasons</option>
+                                            <option class="text_reasongp3 non-select" style="">All Reasons</option>
                                         </select>
                                         <div class="filter_overSelect_reasongp3"></div>
                                     </div>
@@ -457,10 +467,11 @@ $session = \Config\Services::session();
 
                                 <!-- category dropdown checkbox -->
                                 <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <label class="multi_select_label" style="">Categories</label>
-                                    <div class="filter_selectBox_categorygp3" onclick="category_multiselect_gp3()">
+                                    <label class="multi_select_label non-select" style="">Categories</label>
+                                    <!-- <div class="filter_selectBox_categorygp3" onclick="category_multiselect_gp3()"> -->
+                                    <div class="filter_selectBox_categorygp3 duration_machine_reason_category_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_categorygp3','duration_machine_reason_category_drp')">
                                         <select  class="multi_select_categorygp3" style="" >
-                                            <option id="text_categorygp3" style="">All Categories</option>
+                                            <option class="text_categorygp3 non-select" style="">All Categories</option>
                                         </select>
                                         <div class="filter_overSelect_categorygp3"></div>
                                     </div>
@@ -523,31 +534,26 @@ $session = \Config\Services::session();
                         
                         <!-- created by dropdown checkbox -->
                         <div class="box rightmar" style="margin-right: 0.5rem;" >
-                            <label class="multi_select_label" style="">Created by</label>
-                            <div class="filter_selectBox_cb" onclick="created_by_drp()">
+                            <label class="multi_select_label non-select" style="">Created by</label>
+                            <!-- <div class="filter_selectBox_cb" onclick="created_by_drp()"> -->
+                            <div class="filter_selectBox_cb table_filter_created_by_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_cb','table_filter_created_by_drp')">
                                 <select  class="multi_select_drp_cb" style="" >
-                                    <option id="text_created_by_drp" style="">Created by</option>
+                                    <option class="text_created_by_drp non-select" style="">Created by</option>
                                 </select>
                                 <div class="filter_overSelect_cb"></div>
                             </div>
                             <div class="filter_checkboxes_cb" style="" >
-                                <!-- <div class="filter_check_cb" style="">
-                                    <div class="cate_drp_check" style="">
-                                    <input type="checkbox" id="one" class="created_by_checkbox" value="all"/>
-                                    </div>
-                                    <div class="cate_drp_text" style="">
-                                    <p class="font_multi_drp" style="margin:auto;">All </p>
-                                    </div>
-                                </div> -->
+                               
                             </div>
                         </div>
 
                         <!-- Reason dropdown checkbox -->
                         <div class="box rightmar" style="margin-right: 0.5rem;" >
-                            <label class="multi_select_label" style="">Reasons</label>
-                            <div class="filter_selectBox_drpr" onclick="reason_drp()">
+                            <label class="multi_select_label non-select" style="">Reasons</label>
+                            <!-- <div class="filter_selectBox_drpr" onclick="reason_drp()"> -->
+                            <div class="filter_selectBox_drpr table_reason_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_r','table_reason_drp')">
                                 <select  class="multi_select_drp_r" style="" >
-                                    <option id="text_reason_drp" style="">Reasons</option>
+                                    <option class="text_reason_drp non-select" style="">Reasons</option>
                                 </select>
                                 <div class="filter_overSelect_r"></div>
                             </div>
@@ -565,12 +571,13 @@ $session = \Config\Services::session();
 
                         <!-- dropdown checkbox category -->
                         <div class="box rightmar" style="margin-right: 0.5rem;" >
-                            <label class="multi_select_label" style="">Categories</label>
-                            <div class="filter_selectBox" onclick="category_drp()">
-                            <select  class="multi_select_drp" style="" >
-                                <option id="text_category_drp" style="">All Categories</option>
-                            </select>
-                            <div class="filter_overSelect"></div>
+                            <label class="multi_select_label non-select" style="">Categories</label>
+                            <!-- <div class="filter_selectBox" onclick="category_drp()"> -->
+                            <div class="filter_selectBox table_filter_category_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes','table_filter_category_drp')">   
+                                <select  class="multi_select_drp" style="" >
+                                    <option class="text_category_drp non-select" style="">All Categories</option>
+                                </select>
+                                <div class="filter_overSelect"></div>
                             </div>
                             <div class="filter_checkboxes" style="" >
                                 <div class="filter_check_cate" style="">
@@ -605,44 +612,31 @@ $session = \Config\Services::session();
                         
                         <!-- dropdown checkbox partname -->
                         <div class="box rightmar" style="margin-right: 0.5rem;" >
-                            <label class="multi_select_label" style="">Parts</label>
-                            <div class="filter_selectBox_part" onclick="partname_drp()">
+                            <label class="multi_select_label non-select" style="">Parts</label>
+                            <!-- <div class="filter_selectBox_part" onclick="partname_drp()"> -->
+                            <div class="filter_selectBox_part table_filter_part_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_part','table_filter_part_drp')">
                                 <select  class="multi_select_drp_part" style="" >
-                                    <option id="text_category_drp_part" style="">All Parts</option>
+                                    <option class="text_category_drp_part non-select" style="">All Parts</option>
                                 </select>
                                 <div class="filter_overSelect_part"></div>
                             </div>
                             <div class="filter_checkboxes_part" style="" >
-                                <!-- <div class="filter_check_part" style="">
-                                    <div class="cate_drp_check" style="">
-                                        <input type="checkbox" id="one" class="partname_checkbox" value="all"/>
-                                    </div>
-                                    <div class="cate_drp_text" style="">
-                                        <p class="font_multi_drp" style="margin:auto;">All</p>
-                                    </div>
-                                </div> -->
-
+                               
                             </div>
                         </div>
 
                         <!-- dropdown checkbox machine -->
                         <div class="box rightmar" style="margin-right: 0.5rem;" >
-                            <label class="multi_select_label" style="">Machines</label>
-                            <div class="filter_selectBox_machine" onclick="machinename_drp()">
-                            <select  class="multi_select_drp_machine" style="" >
-                                <option id="text_machine_drp" style="">All Machines</option>
-                            </select>
-                            <div class="filter_overSelect_part"></div>
+                            <label class="multi_select_label non-select" style="">Machines</label>
+                            <!-- <div class="filter_selectBox_machine" onclick="machinename_drp()"> -->
+                            <div class="filter_selectBox_machine table_filter_machine_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_machine','table_filter_machine_drp')">
+                                <select  class="multi_select_drp_machine non-select" style="" >
+                                    <option class="text_machine_drp non-select" style="">All Machines</option>
+                                </select>
+                                <div class="filter_overSelect_part"></div>
                             </div>
                             <div class="filter_checkboxes_machine" style="" >
-                                <!-- <div class="filter_check_machine" style="">
-                                    <div class="cate_drp_check" style="">
-                                        <input type="checkbox" id="one" class="machine_checkbox" value="all"/>
-                                    </div>
-                                    <div class="cate_drp_text" style="">
-                                        <p class="font_multi_drp" style="margin:auto;">All</p>
-                                    </div>
-                                </div> -->
+                              
                             </div>
                         </div>
 
@@ -657,50 +651,7 @@ $session = \Config\Services::session();
                     <!-- </div> -->
                 </div>
             </div>
-            <!-- table tamil code -->
-            <!-- <div id="container_table" class="container_table" >
-               
-                <div style="width: 110rem;">
-                    
-                    <div class="table_row_flex">
-                        <div class="fixed_col_class" >
-                            <div class="fixed_col_width" >
-                                <div class="fixed_col_common alignflex header_fixed_col" style="border-radius:10px 0px 0px 10px;box-shadow:0px 2px 3px 0px #e6e6e6;width:100%;">
-                                    <div class=" font alignflex" style="width:30%;height:100%"> <span style="margin-left:1rem;">MACHINE</span></div>
-                                    <div class="font alignflex"style="width:42%;height: 100%" > <span style="margin:auto;">FROM DATE & TIME</span></div>
-                                    <div class="font alignflex"style="width:28%;height:100%"><span style="margin-left:1rem;">DURATION</span>
-                                    </div>
-                                </div>
-                               
-                                <div class="fixed_rows">
-                                  
-                                </div>
-                            </div>   
-                        </div>
-                                              <div class="fixed_col_class2" style="">
-                            <div style="margin-left:0rem;margin-right:1rem;width:98%;">
-                                <div  class="fixed_col_common2 alignflex header_fixed_col" style="border-radius:0px 10px 10px 0px;box-shadow:0px 2px 3px 0px #e6e6e6;border-left:0px;width:83%;">
-                                    <div class="font alignflex " style="height:100%;width:15%;"> <span style="margin:auto   ;">TO DATE & TIME </span> </div>
-                                    <div class="font alignflex" style="height:100%;width:10%;"> <span style="margin-left:1rem;">CATEGORY</span></div>
-                                    <div class="font alignflex" style="height:100%;width:15%;"> <span style="margin-left:1rem;">REASON</span></div>
-                                    <div class="font alignflex" style="height:100%;width:12%;"><span style="margin-left:1rem;">TOOL NAME</span></div>
-                                    <div class="font alignflex" style="height:100%;width:15%;"><span style="margin-left:1rem;">PART NAME</span></div>
-                                    <div class="font alignflex" style="height:100%;width:10%;"><span style="margin-left:1rem;">UPDATED BY</span></div>
-                                    <div class="font alignflex" style="height:100%;width:15%;"><span style="margin-left:1rem;">UPDATED AT</span></div>
-                                    <div class="font alignflex" style="height:100%;width: 8%;"><span style="margin:auto;">NOTES</span></div>
-                                </div>
-                                <div class="scroll_rows">
-                                  
-                                </div>
-                               
-                            </div>
-                            
-                        </div>
-                    </div>
-
-                </div > 
-             
-            </div>  -->
+           
             <div class="table_height_width" style="width:100%;height:10rem;margin-top:0.2rem;overflow:scroll;padding-left:0.2rem;padding-right:0.2rem;">
                 <div style="width:90rem;">
                     <div class="header_fixed_col" style="z-index:95;">
@@ -766,6 +717,53 @@ $session = \Config\Services::session();
 <script src="<?php echo base_url(); ?>/assets/js/Downtime_Production.js?version=<?php echo rand() ; ?>"></script>
 <script type="text/javascript">
 
+
+// hide and seek gloable variables
+const drp_obj = {
+    // cost by reason graph variable
+    oppcost_reason_machine_drp:false,
+    oppcost_reason_reason_drp:false,
+    oppcost_reason_category_drp:false,
+
+    // duration by reason graph varaiable
+    duration_reason_machine_drp:false,
+    duration_reason_category_drp:false,
+    duration_reason_reason_drp:false,
+
+    // oppcost by machine graph variables
+    oppcost_machine_machine_drp:false,
+    oppcost_machine_reason_drp:false,
+    oppcost_machine_category_drp:false,
+
+    // duration by machine with reasons graph
+    duration_machine_reason_machine_drp:false,
+    duration_machine_reason_category_drp:false,
+    duration_machine_reason_reason_drp:false,
+
+
+    // table filter drp function key
+    table_filter_created_by_drp:false,
+    table_reason_drp:false,
+    table_filter_category_drp:false,
+    table_filter_part_drp:false,
+    table_filter_machine_drp:false,
+
+
+};
+
+// dropdown click open close global function 
+function multiple_drp_hide_seek_pd(classref,keyref){
+    $('.filter_checkbox_opt').css('display','none');
+    if (!drp_obj[keyref]) {
+        $('.'+classref+'').css('display','inline');
+        drp_obj[keyref]=true;
+    }else{
+        $('.'+classref+'').css('display','none');
+        drp_obj[keyref]=false;
+    }
+}
+
+
 // from  date time 
 $('.fromDate').datetimepicker({  
   format:'Y-m-d H:00',
@@ -794,6 +792,7 @@ now.setDate(now.getDate() - 6);
 var tdate = now.getFullYear()+"-"+("0" + (parseInt(now.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + now.getDate()).slice(-2)+" "+("0" + now.getHours()).slice(-2)+":00";
 $('.toDate').val(fdate);
 $('.fromDate').val(tdate);
+
 
 // reason wise opportunitycost graph tooltip
 function reason_oppcost_tooltip(context) { 
@@ -1330,105 +1329,170 @@ $(document).mouseup(function(event){
 
     // machine multi select dropdown
     var machine_reason = $('.filter_checkboxes_machine');
-    if (!machine_reason.is(event.target) && machine_reason.has(event.target).length==0) {
-        machine_reason.hide();
+    var table_filter_machine_drp = $('.table_filter_machine_drp');
+    if (!machine_reason.is(event.target) && machine_reason.has(event.target).length==0 && !table_filter_machine_drp.is(event.target) && table_filter_machine_drp.has(event.target).length==0) {
+        if (drp_obj['table_filter_machine_drp']==true) {
+            drp_obj['table_filter_machine_drp']=false;
+            machine_reason.hide();
+        }
     }
 
     // part name multi select dropdown
     var partname_checkbox = $('.filter_checkboxes_part');
-    if (!partname_checkbox.is(event.target) && partname_checkbox.has(event.target).length==0) {
-        partname_checkbox.hide();
+    var table_filter_part_drp = $('.table_filter_part_drp');
+    if (!partname_checkbox.is(event.target) && partname_checkbox.has(event.target).length==0 && !table_filter_part_drp.is(event.target) && table_filter_part_drp.has(event.target).length==0) {
+        if (drp_obj['table_filter_part_drp']==true) {
+            drp_obj['table_filter_part_drp']=false;
+            partname_checkbox.hide();
+        }
     }
 
     // created by multi seelct dropdown
     var created_by_checkbox = $('.filter_checkboxes_cb');
-    if (!created_by_checkbox.is(event.target) && created_by_checkbox.has(event.target).length==0) {
-        created_by_checkbox.hide();
+    var created_by_drp_tmp = $('.table_filter_created_by_drp');
+    if (!created_by_checkbox.is(event.target) && created_by_checkbox.has(event.target).length==0 && !created_by_drp_tmp.is(event.target) && created_by_drp_tmp.has(event.target).length==0) {
+        if (drp_obj['table_filter_created_by_drp']==true) {
+            drp_obj['table_filter_created_by_drp']=false;
+            created_by_checkbox.hide();
+
+        }
     }
 
     // category dropdown multi select dropdown
     var category_drp_checkbox = $('.filter_checkboxes');
-    if (!category_drp_checkbox.is(event.target) && category_drp_checkbox.has(event.target).length==0) {
-        category_drp_checkbox.hide();
+    var table_filter_category_drp = $('.table_filter_category_drp');
+    if (!category_drp_checkbox.is(event.target) && category_drp_checkbox.has(event.target).length==0 && !table_filter_category_drp.is(event.target) && table_filter_category_drp.has(event.target).length==0 ) {
+        if (drp_obj['table_filter_category_drp']==true) {
+            drp_obj['table_filter_category_drp']=false;
+            category_drp_checkbox.hide();
+        }
     }
 
     // reason dropdown multi select dropdown
     var reason_drp_checkbox = $('.filter_checkboxes_r');
-    if (!reason_drp_checkbox.is(event.target) && reason_drp_checkbox.has(event.target).length==0) {
-        reason_drp_checkbox.hide();
+    var table_filter_reason_drp = $('.table_reason_drp');
+    if (!reason_drp_checkbox.is(event.target) && reason_drp_checkbox.has(event.target).length==0 && !table_filter_reason_drp.is(event.target) && table_filter_reason_drp.has(event.target).length==0) {
+        if (drp_obj['table_reason_drp']==true) {
+            drp_obj['table_reason_drp']=false;
+            reason_drp_checkbox.hide();
+        }
     }
 
     // graph filter mouse out side click functions
     // category dropdown out side click hide
     var gp_category = $('.filter_checkboxes_categorygp');
-    if (!gp_category.is(event.target) && gp_category.has(event.target).length==0) {
-        gp_category.hide();
-      
+    var oppcost_reason_category_drp = $('.oppcost_reason_category_drp')
+    if (!gp_category.is(event.target) && gp_category.has(event.target).length==0 && !oppcost_reason_category_drp.is(event.target) && oppcost_reason_category_drp.has(event.target).length==0) {
+        if (drp_obj['oppcost_reason_category_drp']==true) {
+            gp_category.hide();
+            drp_obj['oppcost_reason_category_drp']=false;
+        }
     }
 
     // // reasons dropdown outside click hide
     var gp_reason = $('.filter_checkboxes_reasongp');
-    if (!gp_reason.is(event.target) && gp_reason.has(event.target).length==0) {
-        gp_reason.hide();
-        // getfilter_oppcost_reason();
-       
+    var oppcost_reason_rdrp = $('.oppcost_reason_reason_drp');
+    if (!gp_reason.is(event.target) && gp_reason.has(event.target).length==0 && !oppcost_reason_rdrp.is(event.target) && oppcost_reason_rdrp.has(event.target).length==0) {
+        if (drp_obj['oppcost_reason_reason_drp']==true) {
+            gp_reason.hide();
+            drp_obj['oppcost_reason_reason_drp']=false;
+        }
     }
 
-    // // machine dropdown outside click hide
+    // machine dropdown outside click hide
     var gp_machine = $('.filter_checkboxes_machinegp');
-    if (!gp_machine.is(event.target) && gp_machine.has(event.target).length==0) {
-        gp_machine.hide();
-        // getfilter_oppcost_reason();
+    var cost_by_reason_m = $('.oppcost_reason_machine_drp');
+    if (!gp_machine.is(event.target) && gp_machine.has(event.target).length==0 && !cost_by_reason_m.is(event.target) && cost_by_reason_m.has(event.target).length==0) {
+        if (drp_obj['oppcost_reason_machine_drp']==true) {
+            gp_machine.hide();
+            drp_obj['oppcost_reason_machine_drp']=false;
+        }
     }
 
     // reason wise duration dropdown close
     var gp_category1 = $('.filter_checkboxes_categorygp1');
-    if (!gp_category1.is(event.target) && gp_category1.has(event.target).length==0) {
-        gp_category1.hide();
+    var duration_reason_category_drp = $('.duration_reason_category_drp');
+    if (!gp_category1.is(event.target) && gp_category1.has(event.target).length==0 && !duration_reason_category_drp.is(event.target) && duration_reason_category_drp.has(event.target).length==0) {
+        if (drp_obj['duration_reason_category_drp']==true) {
+            drp_obj['duration_reason_category_drp']=false;
+            gp_category1.hide();
+        }
     }
 
     var gp_reason1 = $('.filter_checkboxes_reasongp1');
-    if (!gp_reason1.is(event.target) && gp_reason1.has(event.target).length==0) {
-        gp_reason1.hide();
+    var duration_reason_reason_drp = $('.duration_reason_reason_drp');
+    if (!gp_reason1.is(event.target) && gp_reason1.has(event.target).length==0 && !duration_reason_reason_drp.is(event.target) && duration_reason_reason_drp.has(event.target).length==0) {
+        if (drp_obj['duration_reason_reason_drp']==true) {
+            drp_obj['duration_reason_reason_drp']=false;
+            gp_reason1.hide();
+        }
     }
 
     var gp_machine1 = $('.filter_checkboxes_machinegp1');
-    if (!gp_machine1.is(event.target) && gp_machine1.has(event.target).length==0) {
-        gp_machine1.hide();
+    var duration_reason_machine_drp = $('.duration_reason_machine_drp');
+    if (!gp_machine1.is(event.target) && gp_machine1.has(event.target).length==0 && !duration_reason_machine_drp.is(event.target) && duration_reason_machine_drp.has(event.target).length==0) {
+        if (drp_obj['duration_reason_machine_drp']==true) {
+            drp_obj['duration_reason_machine_drp']=false;
+            gp_machine1.hide();
+        }
     }
 
     // machine wise oppcost dropdown close
     var gp_category2 = $('.filter_checkboxes_categorygp2');
-    if (!gp_category2.is(event.target) && gp_category2.has(event.target).length==0) {
-        gp_category2.hide();
+    var oppcost_machine_category_drp = $('.oppcost_machine_category_drp');
+    if (!gp_category2.is(event.target) && gp_category2.has(event.target).length==0 && !oppcost_machine_category_drp.is(event.target) && oppcost_machine_category_drp.has(event.target).length==0) {
+        if (drp_obj['oppcost_machine_category_drp']==true) {
+            drp_obj['oppcost_machine_category_drp']=false;
+            gp_category2.hide();
+        }
+        
     }
 
     var gp_reason2 = $('.filter_checkboxes_reasongp2');
-    if (!gp_reason2.is(event.target) && gp_reason2.has(event.target).length==0) {
-        gp_reason2.hide();
+    var oppcost_machine_reason_drp = $('.oppcost_machine_reason_drp');
+    if (!gp_reason2.is(event.target) && gp_reason2.has(event.target).length==0 && !oppcost_machine_reason_drp.is(event.target) && oppcost_machine_reason_drp.has(event.target).length==0) {
+        if (drp_obj['oppcost_machine_reason_drp']==true) {
+            drp_obj['oppcost_machine_reason_drp']=false;
+            gp_reason2.hide();
+        }
     }
 
     var gp_machine2 = $('.filter_checkboxes_machinegp2');
-    if (!gp_machine2.is(event.target) && gp_machine2.has(event.target).length==0) {
-        gp_machine2.hide();
+    var oppcost_machine_machine_drp = $('.oppcost_machine_machine_drp');
+    if (!gp_machine2.is(event.target) && gp_machine2.has(event.target).length==0 && !oppcost_machine_machine_drp.is(event.target) && oppcost_machine_machine_drp.has(event.target).length==0) {
+        if (drp_obj['oppcost_machine_machine_drp']==true) {
+            drp_obj['oppcost_machine_machine_drp']=false;
+            gp_machine2.hide();
+        }
     }
 
     // machine reason duration dropdown close
     var gp_category3 = $('.filter_checkboxes_categorygp3');
-    if (!gp_category3.is(event.target) && gp_category3.has(event.target).length==0) {
-        gp_category3.hide();
+    var duration_machine_reason_category_drp = $('.duration_machine_reason_category_drp');
+    if (!gp_category3.is(event.target) && gp_category3.has(event.target).length==0 && !duration_machine_reason_category_drp.is(event.target) && duration_machine_reason_category_drp.has(event.target).length==0) {
+        if (drp_obj['duration_machine_reason_category_drp']==true) {
+            drp_obj['duration_machine_reason_category_drp']=false;
+            gp_category3.hide();
+        }
     }
 
     var gp_reason3 = $('.filter_checkboxes_reasongp3');
-    if (!gp_reason3.is(event.target) && gp_reason3.has(event.target).length==0) {
-        gp_reason3.hide();
+    var duration_machine_reason_reason_drp  =$('.duration_machine_reason_reason_drp');
+    if (!gp_reason3.is(event.target) && gp_reason3.has(event.target).length==0 && !duration_machine_reason_reason_drp.is(event.target) && duration_machine_reason_reason_drp.has(event.target).length==0) {
+        if (drp_obj['duration_machine_reason_reason_drp']==true) {
+            drp_obj['duration_machine_reason_reason_drp']=false;
+            gp_reason3.hide();
+        }
     }
 
     var gp_machine3 = $('.filter_checkboxes_machinegp3');
-    if (!gp_machine3.is(event.target) && gp_machine3.has(event.target).length==0) {
-        gp_machine3.hide();
+    var duration_machine_reason_machine_drp = $('.duration_machine_reason_machine_drp');
+    if (!gp_machine3.is(event.target) && gp_machine3.has(event.target).length==0 && !duration_machine_reason_machine_drp.is(event.target) && duration_machine_reason_machine_drp.has(event.target).length==0) {
+        if (drp_obj['duration_machine_reason_machine_drp']==true) {
+            drp_obj['duration_machine_reason_machine_drp']=false;
+            gp_machine3.hide();
+        }
     }
-
 
 });
 
