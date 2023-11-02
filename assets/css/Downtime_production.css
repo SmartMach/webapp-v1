@@ -622,7 +622,7 @@ top: 0;
 bottom: 0;  
 }
 .filter_checkboxes_machinegp{
-display: none;
+/* display: none; */
 border: 1px #dadada solid;
 z-index:250;
 position: absolute;
@@ -690,7 +690,7 @@ top: 0;
 bottom: 0;  
 }
 .filter_checkboxes_reasongp{
-display: none;
+/* display: none; */
 border: 1px #dadada solid;
 z-index:250;
 position: absolute;
@@ -1400,6 +1400,17 @@ height:2rem;
     align-items:center;
     height:2rem;
     
+}
+
+
+.non-select{
+    user-select: none; 
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  
+}
+.select-pointer{
+    cursor: pointer;
 }
 
 
