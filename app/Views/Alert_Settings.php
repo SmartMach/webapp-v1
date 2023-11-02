@@ -308,10 +308,11 @@
                     <!-- part -->
                     <div class="inner_div_align">
                         <div class="box rightmar" style="margin-right: 0.5rem;">
-                            <label class="multi_select_label" style="margin-top:0.1rem;">Parts</label>
-                            <div class="filter_selectBox_categorygp" onclick="alert_filter_part()">
+                            <label class="multi_select_label noselect_txt" style="margin-top:0.1rem;">Parts</label>
+                            <!-- <div class="filter_selectBox_categorygp" onclick="alert_filter_part()"> -->
+                            <div class="filter_selectBox_categorygp table_filter_part noselect_txt select_pointer" onclick="multiple_drp_hide_seek_pd('alert_file_part_div','table_filter_part')">
                                 <select class="multi_select_categorygp" style="">
-                                    <option id="filter_txt_part" style="">All Parts</option>
+                                    <option class="filter_txt_part noselect_txt" style="">All Parts</option>
                                 </select>
                                 <div class="filter_overSelect_categorygp"></div>
                             </div>
@@ -325,10 +326,11 @@
                     <!-- Machine -->
                     <div class="inner_div_align">
                         <div class="box rightmar" style="margin-right: 0.5rem;">
-                            <label class="multi_select_label" style="margin-top:0.1rem;">Machines</label>
-                            <div class="filter_selectBox_categorygp" onclick="alert_filter_machine()">
+                            <label class="multi_select_label noselect_txt" style="margin-top:0.1rem;">Machines</label>
+                            <!-- <div class="filter_selectBox_categorygp  " onclick="alert_filter_machine()"> -->
+                            <div class="filter_selectBox_categorygp noselect_txt select_pointer table_filter_machine" onclick="multiple_drp_hide_seek_pd('alert_filter_machine_div','table_filter_machine')">
                                 <select class="multi_select_categorygp" style="">
-                                    <option id="filter_txt_machine" style="">All Machines</option>
+                                    <option class="filter_txt_machine noselect_txt" style="">All Machines</option>
                                 </select>
                                 <div class="filter_overSelect_categorygp"></div>
                             </div>
@@ -341,10 +343,10 @@
                     <!-- Criteria -->
                     <div class="inner_div_align">
                         <div class="box rightmar" style="margin-right: 0.5rem;">
-                            <label class="multi_select_label" style="margin-top:0.1rem;">Notify as</label>
-                            <div class="filter_selectBox_categorygp" onclick="alert_filter_work()">
+                            <label class="multi_select_label noselect_txt" style="margin-top:0.1rem;">Notify as</label>
+                            <div class="filter_selectBox_categorygp noselect_txt select_pointer table_fitler_notify_as" onclick="multiple_drp_hide_seek_pd('alert_filter_work_order_dive','table_fitler_notify_as')">
                                 <select class="multi_select_categorygp" style="">
-                                    <option id="text_filter_work" style="">All </option>
+                                    <option class="text_filter_work noselect_txt" style="">All </option>
                                 </select>
                                 <div class="filter_overSelect_categorygp"></div>
                             </div>
@@ -383,10 +385,10 @@
                     <!-- updated by -->
                     <div class="inner_div_align">
                         <div class="box rightmar" style="margin-right: 0.5rem;">
-                            <label class="multi_select_label" style="margin-top:0.1rem;">Last Updated By</label>
-                            <div class="filter_selectBox_categorygp" onclick="alert_filter_assignee()">
+                            <label class="multi_select_label noselect_txt" style="margin-top:0.1rem;">Last Updated By</label>
+                            <div class="filter_selectBox_categorygp noselect_txt select_pointer table_filter_lastupdated_by" onclick="multiple_drp_hide_seek_pd('filter_alert_assignee_div','table_filter_lastupdated_by')">
                                 <select class="multi_select_categorygp" style="">
-                                    <option id="txt_filter_last_updated_by" style="">All Users</option>
+                                    <option class="txt_filter_last_updated_by noselect_txt" style="">All Users</option>
                                 </select>
                                 <div class="filter_overSelect_categorygp"></div>
                             </div>
@@ -567,10 +569,11 @@
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="box rightmar" style="margin-right: 0.5rem;position:relative;">
-                                <label class="multi_select_model_drp_label" style="">Machines <span class="paddingm validate">*</span></label>
-                                <div class="filter_select_box_add_alert" onclick="add_alert_machine()">
+                                <label class="multi_select_model_drp_label noselect_txt " style="">Machines <span class="paddingm validate">*</span></label>
+                                <!-- <div class="filter_select_box_add_alert" onclick="add_alert_machine()"> -->
+                                <div class="filter_select_box_add_alert noselect_txt select_pointer add_alert_drp_machine" onclick="multiple_drp_alert_seek_pd('add_alert_machine_drp','add_alert_drp_machine')">
                                     <select class="multi_select_drp_model" style="">
-                                        <option id="add_alert_machine_txt" style="">All Machines</option>
+                                        <option class="add_alert_machine_txt noselect_txt" style="">All Machines</option>
                                     </select>
                                     <div class="filter_overselect_add_alert"></div>
                                 </div>
@@ -584,10 +587,11 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="box rightmar" style="margin-right: 0.5rem;position:relative;">
-                                <label class="multi_select_model_drp_label" style="">Parts <span class="paddingm validate">*</span></label>
-                                <div class="filter_select_box_add_alert" onclick="add_alert_part()">
+                                <label class="multi_select_model_drp_label noselect_txt" style="">Parts <span class="paddingm validate">*</span></label>
+                                <!-- <div class="filter_select_box_add_alert" onclick="add_alert_part()"> -->
+                                <div class="filter_select_box_add_alert noselect_txt select_pointer add_alert_drp_part" onclick="multiple_drp_alert_seek_pd('add_alert_part_drp','add_alert_drp_part')">
                                     <select class="multi_select_drp_model" style="">
-                                        <option id="add_alert_part_txt" style="">All Parts</option>
+                                        <option class="add_alert_part_txt noselect_txt" style="">All Parts</option>
                                     </select>
                                     <div class="filter_overselect_add_alert"></div>
                                 </div>
@@ -938,10 +942,11 @@
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="box rightmar" style="margin-right: 0.5rem;position:relative;">
-                                <label class="multi_select_model_drp_label" style="">Machines <span class="paddingm validate">*</span></label>
-                                <div class="filter_select_box_add_alert" onclick="edit_alert_machine()">
+                                <label class="multi_select_model_drp_label noselect_txt" style="">Machines <span class="paddingm validate">*</span></label>
+                                <!-- <div class="filter_select_box_add_alert  " onclick="edit_alert_machine()"> -->
+                                <div class="filter_select_box_add_alert noselect_txt select_pointer edit_alert_drp_machine" onclick="multiple_drp_alert_seek_pd('edit_alert_machine_drp','edit_alert_drp_machine')">
                                     <select class="multi_select_drp_model" style="">
-                                        <option id="edit_alert_machine_txt" style="">All Machines</option>
+                                        <option class="edit_alert_machine_txt noselect_txt" style="">All Machines</option>
                                     </select>
                                     <div class="filter_overselect_add_alert"></div>
                                 </div>
@@ -955,10 +960,11 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="box rightmar" style="margin-right: 0.5rem;position:relative;">
-                                <label class="multi_select_model_drp_label" style="">Parts <span class="paddingm validate">*</span></label>
-                                <div class="filter_select_box_add_alert" onclick="edit_alert_part()">
+                                <label class="multi_select_model_drp_label noselect_txt" style="">Parts <span class="paddingm validate">*</span></label>
+                                <!-- <div class="filter_select_box_add_alert" onclick="edit_alert_part()"> -->
+                                <div class="filter_select_box_add_alert noselect_txt select_pointer edit_alert_drp_part" onclick="multiple_drp_alert_seek_pd('edit_alert_part_drp','edit_alert_drp_part')">
                                     <select class="multi_select_drp_model" style="">
-                                        <option id="edit_alert_part_txt" style="">All Parts</option>
+                                        <option class="edit_alert_part_txt noselect_txt" style="">All Parts</option>
                                     </select>
                                     <div class="filter_overselect_add_alert"></div>
                                 </div>
@@ -1059,12 +1065,6 @@
 
                             </div>
                             <div class="col-lg-4">
-                                <!-- <div class="edit_wrapper_label">
-                                    <div class="edit_content_label">
-                                        <ul class="edit_parent_div_input_check_label"><input type="text" class="edit_input_check_label" placeholder="Label" spellcheck="false"></ul>
-                                    </div>
-                                    <span class="paddingm float-start validate" id="inputlabel_edit_Err"></span>
-                                </div> -->
                                 <div class="input-box indexing">
                                   <div class="filter_multiselect_lable filter_multiselect_input">
                                     <span class="multi_select_label" style="">Label <span class="paddingm validate">*</span></span>
@@ -1075,9 +1075,6 @@
                                             </div>
                                             <input type="text" class="form-control alert_font_css input-field-lable input-field-lable-edit" id="input-field-lable-edit" name="" >
                                         </div>
-                                        <!-- <div class="dropdown-div" style=" width: 20% !important">
-                                          <i class="fa fa-angle-down icon-style"></i>
-                                        </div> -->
                                       </div>
                                     </div>
                                     <span class="paddingm float-start validate" id="label_edit_Err"></span> 
@@ -1593,31 +1590,8 @@ function add_assignee(t) {
     });
 
   
-    // add alert machine dropdown
-  
-    function add_alert_machine(){
-        // alert('ko');
-        if (!add_alert_machine_txt) {
-            $('.add_alert_machine_drp').css('display','block');
-            add_alert_machine_txt = true;
-        }else{
-            $('.add_alert_machine_drp').css('display','none');
-            add_alert_machine_txt = false;
-        }
-    }
+   
 
-    // add alert parts dropdown
-  
-    function add_alert_part(){
-        if (!add_alert_part_drp) {
-            $('.add_alert_part_drp').css('display','block');
-            add_alert_part_drp = true;
-            
-        }else{
-            add_alert_part_drp = false;
-            $('.add_alert_part_drp').css('display','none');
-        }
-    }
 
     // this function fill all dropdown values using ajax function
     fill_machine_drp();
@@ -1909,7 +1883,7 @@ function add_assignee(t) {
         jQuery('.add_alert_machine1').each(function(index){
             machine_gparr[index].checked=true;
         });
-        $('#add_alert_machine_txt').text('All Machines');
+        $('.add_alert_machine_txt').text('All Machines');
     }
 
 
@@ -1919,107 +1893,23 @@ function add_assignee(t) {
         jQuery('.add_alert_part1').each(function(index){
             part_arr[index].checked=true;
         });
-        $('#add_alert_part_txt').text('All Parts');
+        $('.add_alert_part_txt').text('All Parts');
     }
 
 
     // onclick flex using multi select dropdown
     $(document).on('click','.add_alert_machine_click',function(event){
         event.preventDefault();
-        var count_machine_gp1  = $('.add_alert_machine_click');
-        var index_machine_gp1 = count_machine_gp1.index($(this));
-        var check_if1 = $('.add_alert_machine1');
-        if (index_machine_gp1 === 0) {
-            if (check_if1[0].checked==false) {
-                reset_add_alert_machine();
-
-            }else{
-                $('.add_alert_machine1').removeAttr('checked');
-            }
-        }else{
-            if (check_if1[index_machine_gp1].checked==false) {
-                check_if1[index_machine_gp1].checked=true;
-                $('.add_alert_machine1:eq('+index_machine_gp1+')').attr('checked','checked');
-            }else{
-                $('.add_alert_machine1:eq('+index_machine_gp1+')').removeAttr('checked');
-                check_if1[0].checked=false;
-            }
-        }
-
-        var machine_gp_select_count1 = 0;
-        jQuery('.add_alert_machine1').each(function(index){
-        if (check_if1[index].checked===true) {
-            machine_gp_select_count1 = parseInt(machine_gp_select_count1)+1;
-        }
-        });
-        var machine_gp_len1 = $('.add_alert_machine1').length;
-        machine_gp_len1 = parseInt(machine_gp_len1)-1;
-        if (parseInt(machine_gp_select_count1)>=parseInt(machine_gp_len1)) {
-            if(check_if1[0].checked===true){
-                check_if1[0].checked=true;
-                $('#add_alert_machine_txt').text('All Machines');
-            }else{
-                // check_if[0].checked=true;
-                reset_add_alert_machine();
-                $('#add_alert_machine_txt').text('All Machines');
-            }
-        }else if(((parseInt(machine_gp_select_count1)<parseInt(machine_gp_len1))) && (parseInt(machine_gp_select_count1)>0)){
-            $('#add_alert_machine_txt').text(parseInt(machine_gp_select_count1)+' Selected');
-
-            // check_if[0].checked=false;
-        }else {
-            $('#add_alert_machine_txt').text('No Machines');
-        }
+        onclick_common_div_fun('add_alert_machine_click','add_alert_machine1','add_alert_machine_txt','Machines','add_alert_drp_machine_call',this)
+       
     });
     
     
     // onclick flex using multi select dropdown part
     $(document).on('click','.add_alert_part_click',function(event){
         event.preventDefault();
-        var count_machine_gp1  = $('.add_alert_part_click');
-        var index_machine_gp1 = count_machine_gp1.index($(this));
-        var check_if1 = $('.add_alert_part1');
-        if (index_machine_gp1 === 0) {
-            if (check_if1[0].checked==false) {
-                reset_add_alert_part();
-
-            }else{
-                $('.add_alert_part1').removeAttr('checked');
-            }
-        }else{
-            if (check_if1[index_machine_gp1].checked==false) {
-                check_if1[index_machine_gp1].checked=true;
-                $('.add_alert_part1:eq('+index_machine_gp1+')').attr('checked','checked');
-            }else{
-                $('.add_alert_part1:eq('+index_machine_gp1+')').removeAttr('checked');
-                check_if1[0].checked=false;
-            }
-        }
-
-        var machine_gp_select_count1 = 0;
-        jQuery('.add_alert_part1').each(function(index){
-            if (check_if1[index].checked===true) {
-                machine_gp_select_count1 = parseInt(machine_gp_select_count1)+1;
-            }
-        });
-        var machine_gp_len1 = $('.add_alert_part1').length;
-        machine_gp_len1 = parseInt(machine_gp_len1)-1;
-        if (parseInt(machine_gp_select_count1)>=parseInt(machine_gp_len1)) {
-            if(check_if1[0].checked===true){
-                check_if1[0].checked=true;
-                $('#add_alert_part_txt').text('All Parts');
-            }else{
-                // check_if[0].checked=true;
-                reset_add_alert_part();
-                $('#add_alert_part_txt').text('All Parts');
-            }
-        }else if(((parseInt(machine_gp_select_count1)<parseInt(machine_gp_len1))) && (parseInt(machine_gp_select_count1)>0)){
-            $('#add_alert_part_txt').text(parseInt(machine_gp_select_count1)+' Selected');
-
-            // check_if[0].checked=false;
-        }else {
-            $('#add_alert_part_txt').text('No Parts');
-        }
+        onclick_common_div_fun('add_alert_part_click','add_alert_part1','add_alert_part_txt','Parts','add_alert_drp_part_call',this)
+       
     });
 
 
@@ -2028,53 +1918,85 @@ function add_assignee(t) {
 
         // machine multi select dropdown add alert
         var machine_reason = $('.add_alert_machine_drp');
-        if (!machine_reason.is(event.target) && machine_reason.has(event.target).length==0) {
-            machine_reason.hide();
+        var add_alert_tmp_drp_machine = $('.add_alert_drp_machine');
+        if (!machine_reason.is(event.target) && machine_reason.has(event.target).length==0 && !add_alert_tmp_drp_machine.is(event.target) && add_alert_tmp_drp_machine.has(event.target).length==0) {
+            if (drp_obj['add_alert_drp_machine']==true) {
+                drp_obj['add_alert_drp_machine']=false;
+                machine_reason.hide();
+            }
         }
 
 
         // part multi select dropdown add alert
         var part_add_alert = $('.add_alert_part_drp');
-        if (!part_add_alert.is(event.target) && part_add_alert.has(event.target).length==0) {
-            part_add_alert.hide();
+        var add_alert_tmp_drp_part=$('.add_alert_drp_part');
+        if (!part_add_alert.is(event.target) && part_add_alert.has(event.target).length==0 && !add_alert_tmp_drp_part.is(event.target) && add_alert_tmp_drp_part.has(event.target).length==0) {
+            if (drp_obj['add_alert_drp_part']==true) {
+                drp_obj['add_alert_drp_part']=false;
+                part_add_alert.hide();
+            }
         }
 
         // machine multi select dropdown edit alert
         var machine_reason_edit = $('.edit_alert_machine_drp');
-        if (!machine_reason_edit.is(event.target) && machine_reason_edit.has(event.target).length==0) {
-            machine_reason_edit.hide();
+        var edit_alert_tmp_drp = $('.edit_alert_drp_machine');
+        if (!machine_reason_edit.is(event.target) && machine_reason_edit.has(event.target).length==0 && !edit_alert_tmp_drp.is(event.target) && edit_alert_tmp_drp.has(event.target).length==0 ) {
+            if (drp_obj['edit_alert_drp_machine']==true) {
+                drp_obj['edit_alert_drp_machine']=false;
+                machine_reason_edit.hide();
+            }
         }
 
         // part multi select dropdown edit alert
         var part_reason_edit = $('.edit_alert_part_drp');
-        if (!part_reason_edit.is(event.target) && part_reason_edit.has(event.target).length==0) {
-            part_reason_edit.hide();
+        var edit_alert_tmp_part = $('.edit_alert_drp_part');
+        if (!part_reason_edit.is(event.target) && part_reason_edit.has(event.target).length==0 && !edit_alert_tmp_part.is(event.target) && edit_alert_tmp_part.has(event.target).length==0) {
+            if (drp_obj['edit_alert_drp_part']==true) {
+                drp_obj['edit_alert_drp_part']=false;
+                part_reason_edit.hide();
+            }
         }
 
 
         // table filter dropdown closing
         var machine_filter = $('.alert_filter_machine_div');
-        if (!machine_filter.is(event.target) && machine_filter.has(event.target).length==0) {
-            machine_filter.hide();
+        var machine_drp_tmp = $('.table_filter_machine');
+        if (!machine_filter.is(event.target) && machine_filter.has(event.target).length==0 && !machine_drp_tmp.is(event.target) && machine_drp_tmp.has(event.target).length==0) {
+            if (drp_obj['table_filter_machine']==true) {
+                drp_obj['table_filter_machine']=false;
+                machine_filter.hide();
+            }
         }
 
 
         // part filter
         var part_filter = $('.alert_file_part_div');
-        if (!part_filter.is(event.target) && part_filter.has(event.target).length==0) {
-            part_filter.hide();
+        var part_filter_div = $('.table_filter_part');
+        if (!part_filter.is(event.target) && part_filter.has(event.target).length==0 && !part_filter_div.is(event.target) && part_filter_div.has(event.target).length==0) {
+            if (drp_obj['table_filter_part']==true) {
+                drp_obj['table_filter_part']=false;
+                part_filter.hide();
+            }
         }
 
         // work order type
         var work_order_type = $('.alert_filter_work_order_dive');
-        if (!work_order_type.is(event.target) && work_order_type.has(event.target).length==0) {
-            work_order_type.hide();
+        var notify_as_tmp = $('.table_fitler_notify_as');
+        if (!work_order_type.is(event.target) && work_order_type.has(event.target).length==0 && !notify_as_tmp.is(event.target) && notify_as_tmp.has(event.target).length==0) {
+            if (drp_obj['table_fitler_notify_as']==true) {
+                drp_obj['table_fitler_notify_as']=false;
+                work_order_type.hide();
+           }
         }
 
         // last_updated_by dropdown
         var last_updated_by = $('.filter_alert_assignee_div');
-        if (!last_updated_by.is(event.target) && last_updated_by.has(event.target).length==0) {
-            last_updated_by.hide();
+        var table_filter_last_updated_bt = $('.table_filter_lastupdated_by');
+        if (!last_updated_by.is(event.target) && last_updated_by.has(event.target).length==0 && !table_filter_last_updated_bt.is(event.target) && table_filter_last_updated_bt.has(event.target).length==0) {
+            if (drp_obj['table_filter_lastupdated_by']==true) {
+                drp_obj['table_filter_lastupdated_by']=false;
+                last_updated_by.hide();
+            }
         }
 
         // assigne
