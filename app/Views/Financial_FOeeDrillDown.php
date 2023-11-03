@@ -271,7 +271,7 @@
           var tmp = new Date()
           if (inputDateTime.getDate() == tmp.getDate() && inputDateTime.getMonth()==tmp.getMonth()) {
               this.setOptions({
-                  maxTime: (tmp.getHours()+parseInt(1))+ ':00',
+                  maxTime: (tmp.getHours())+ ':00',
               });
           } else {
               this.setOptions({
@@ -614,7 +614,7 @@ $('.toDate').datetimepicker({
 
 var now = new Date();
 
-var fdate = now.getFullYear()+"-"+("0" + (parseInt(now.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + now.getDate()).slice(-2)+" "+("0" + (now.getHours())).slice(-2)+":00";
+var fdate = now.getFullYear()+"-"+("0" + (parseInt(now.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + now.getDate()).slice(-2)+" "+("0" + (now.getHours()-1)).slice(-2)+":00";
 
 //One week back
 now.setDate(now.getDate() - 6);

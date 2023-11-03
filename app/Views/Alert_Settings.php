@@ -693,18 +693,6 @@
                                 </div>
                             </div>
                             <div class="col-lg-4">
-                                <!-- <div class="box rightmar" style="margin-right: 0.5rem;">
-                                    <div class="input-box wrapper_label">
-                                    
-                                        <div class="content_label">
-                                        
-                                            <ul class="parent_div_input_check_label"><input type="text" class="input_check_label" id="input_check_label" placeholder="Label" spellcheck="false"></ul>
-                                        </div>
-                                        <label for="inputSiteNameAdd" class="input-padding ">Label  <span class="paddingm validate">*</span></label>
-                                        <span class="paddingm float-start validate" id="inputlabelErr"></span>
-                                        
-                                    </div>
-                                </div> -->
                                 <div class="input-box indexing">
                                   <div class="filter_multiselect_lable filter_multiselect_input">
                                     <span class="multi_select_label" style="">Label </span>
@@ -728,15 +716,6 @@
                                 </div>
                             </div>
                             <div class="col-lg-3" style="margin:auto;">
-                                <!-- <div class="box rightmar" style="margin-right: 0.5rem;">
-                                    <div class="input-box">
-                                        <select class="form-select font_weight" name="add_alert_assignee" class="add_alert_assignee" id="add_alert_assignee" style="width: 10rem;">
-                                            <option value="Unassigned" selected disabled>Unassigned</option>
-                                        </select>
-                                        <label for="inputSiteNameAdd" class="input-padding ">Assignee  <span class="paddingm validate">*</span></label>
-                                        <span class="paddingm float-start validate" id="input_alert_assign_Err"></span>
-                                    </div>
-                                </div> -->
                                 <div class="box inbox-top" style="position:relative;">
                                     <div class="input-box indexing">
                                         <div class="filter_multiselect filter_multiselect_input">
@@ -1086,14 +1065,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-3" style="margin:auto;">
-                                <!-- <div class="box rightmar" style="margin-right: 0.5rem;">
-                                    <div class="input-box">
-                                        <select class="form-select font_weight" name="edit_alert_assignee" class="edit_alert_assignee" id="edit_alert_assignee" style="width: 10rem;">
-                                            <option value="Unassigned" selected disabled>Unassigned</option>
-                                        </select>
-                                        <label for="edit_alert_assignee" class="input-padding ">Assignee  <span class="paddingm validate">*</span></label>
-                                    </div>
-                                </div> -->
+                                
                                 <div class="box inbox-top" style="position:relative;">
                                     <div class="input-box indexing">
                                         <div class="filter_multiselect filter_multiselect_input">
