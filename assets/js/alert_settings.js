@@ -154,137 +154,19 @@ $(document).on('click','.filter_drp_last_updated_click',function(event){
 
 
 
-// edit multi select machine dropdown
-// var edit_machine_drp = false;
-// function edit_alert_machine(){
-//     if (!edit_machine_drp) {
-//         $('.edit_alert_machine_drp').css('display','block');
-//         edit_machine_drp = true;
-//     }else{
-//         $('.edit_alert_machine_drp').css('display','none');
-//         edit_machine_drp = false;
-//     }
-// }
-
-
-// edit multi select part dropdown
-// var edit_part_drp_v = false;
-// function edit_alert_part(){
-//     if (!edit_part_drp_v) {
-//         $('.edit_alert_part_drp').css('display','block');
-//         edit_part_drp_v = true;
-//     }else{
-//         $('.edit_alert_part_drp').css('display','none');
-//         edit_part_drp_v = false;
-//     }
-// }
-
 // edit machine drp click function on going
 $(document).on('click','.edit_drp_machine_click',function(event){
     event.preventDefault();
     onclick_common_div_fun('edit_drp_machine_click','edit_drp_machine_checkbox','edit_alert_machine_txt','Machines','edit_alert_drp_machine_call',this);
 
-    /*
-        var count1 = $('.edit_drp_machine_click');
-        var index_val = count1.index($(this));
-        var check_if = $('.edit_drp_machine_checkbox');
-        var temp_pass_data = null;
-        if (parseInt(index_val)===0) {
-            if (check_if[0].checked==false) {
-                edit_machine_drp_set(temp_pass_data);
-
-            }else{
-                $('.edit_drp_machine_checkbox').removeAttr('checked');
-            }
-        }else if(parseInt(index_val)>0){
-            if (check_if[index_val].checked === false) {
-            check_if[index_val].checked=true;
-            $('.edit_drp_machine_checkbox:eq('+index_val+')').attr('checked','checked');
-            }else{
-            $('.edit_drp_machine_checkbox:eq('+index_val+')').removeAttr('checked');
-            check_if[0].checked=false;
-            }
-        }
-
-        var createdby_select_count = 0;
-        jQuery('.edit_drp_machine_checkbox').each(function(index){
-            if (check_if[index].checked===true) {
-                createdby_select_count = parseInt(createdby_select_count)+1;
-            }
-        });
-        var createdby_len = $('.edit_drp_machine_checkbox').length;
-        // console.log("reason length:\t"+reason_len);
-        // console.log("reason select count:\t"+reason_select_count);
-        createdby_len = parseInt(createdby_len)-1;
-        if (parseInt(createdby_select_count)>=parseInt(createdby_len)) {
-            if (check_if[0].checked==true) {
-                check_if[0].checked=true;
-                $('#edit_alert_machine_txt').text('All Machines');
-            }else{
-                edit_machine_drp_set(temp_pass_data);
-                $('#edit_alert_machine_txt').text('All Machines');
-            }
-        }
-        else if((parseInt(createdby_select_count)<parseInt(createdby_len)) && (parseInt(createdby_select_count)>0)){
-            $('#edit_alert_machine_txt').text(parseInt(createdby_select_count)+' selected');
-        }else{
-            $('#edit_alert_machine_txt').text('No Machine');  
-        }
-    */
+   
 });
 
 // edit part drp click function on going
 $(document).on('click','.edit_part_drp_click',function(event){
     event.preventDefault();
     onclick_common_div_fun('edit_part_drp_click','editpart_drp_checkbox','edit_alert_part_txt','Parts','edit_alert_drp_part_call',this);
-    /*
-        var count1 = $('.edit_part_drp_click');
-        var index_val = count1.index($(this));
-        var check_if = $('.editpart_drp_checkbox');
-        var temp_pass_data = null;
-        if (parseInt(index_val)===0) {
-            if (check_if[0].checked==false) {
-                edit_part_drp_set(temp_pass_data);
-
-            }else{
-                $('.editpart_drp_checkbox').removeAttr('checked');
-            }
-        }else if(parseInt(index_val)>0){
-            if (check_if[index_val].checked === false) {
-            check_if[index_val].checked=true;
-            $('.editpart_drp_checkbox:eq('+index_val+')').attr('checked','checked');
-            }else{
-            $('.editpart_drp_checkbox:eq('+index_val+')').removeAttr('checked');
-            check_if[0].checked=false;
-            }
-        }
-
-        var createdby_select_count = 0;
-        jQuery('.editpart_drp_checkbox').each(function(index){
-            if (check_if[index].checked===true) {
-                createdby_select_count = parseInt(createdby_select_count)+1;
-            }
-        });
-        var createdby_len = $('.editpart_drp_checkbox').length;
-        // console.log("reason length:\t"+reason_len);
-        // console.log("reason select count:\t"+reason_select_count);
-        createdby_len = parseInt(createdby_len)-1;
-        if (parseInt(createdby_select_count)>=parseInt(createdby_len)) {
-            if (check_if[0].checked==true) {
-                check_if[0].checked=true;
-                $('#edit_alert_part_txt').text('All Parts');
-            }else{
-                edit_part_drp_set(temp_pass_data);
-                $('#edit_alert_part_txt').text('All Parts');
-            }
-        }
-        else if((parseInt(createdby_select_count)<parseInt(createdby_len)) && (parseInt(createdby_select_count)>0)){
-            $('#edit_alert_part_txt').text(parseInt(createdby_select_count)+' selected');
-        }else{
-            $('#edit_alert_part_txt').text('No Part');  
-        }
-    */
-
+   
 })
 
 

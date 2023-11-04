@@ -751,48 +751,12 @@ $('.fromDate').val(tdate);
 
 
 
-/*
-// from date on blur function
-$(document).on('blur','.fromDate',function(event){
-   // event.preventDefault();
-    $('#overlay').fadeIn(400);
-    //    overall dropdown values and graph visible this function only
-    // get_all_filter_drp_fill();
-    all_graph_fun();
-});
-
-// todate onblur function
-$(document).on('blur','.toDate',function(event){
-    //event.preventDefault();
-
-    $('#overlay').fadeIn(400);
-    //    overall dropdown values and graph visible this function only
-    // get_all_filter_drp_fill();
-    all_graph_fun();
-
-});
-
-*/
-
 // overall filter onclick function
 $(document).on('click','.overall_filter_btn',function(event){
     event.preventDefault();
     $('#overlay').fadeIn(400);
     all_graph_fun();
 });
-
-// async function all_graph_blur_fromdate(){
-//     console.log("on blur to date filter");
-//     await fill_target_bar.then(x=>console.log(x));
-//     await over_all_target_graph.then(x=>console.log(x));
-//     await first_load_oee_trend_day.then(x=>console.log(x));
-//     await first_load_quality
-//     await first_machine_wise_oee
-//     await first_loader_performance
-//     await first_load_availability
-//     await get_all_filter_drp_fill
-//     $('#overlay').fadeOut(500);
-// }
 
 // in Document ready function calling
 $(document).ready(function(){
@@ -843,198 +807,9 @@ function byday_click(){
   }
 }
 
-// availability graph
-/*
-var filter_expanded2 = false;
-function category_drp2() {
-  // event.preventDefault();
-  var checkboxes = document.getElementsByClassName("category_fill2");
-  if (!filter_expanded2) {
-      // checkboxes.style.display = "block";
-    //   console.log("just click");
-      $('.category_fill2').css("display","block");
-      filter_expanded2 = true;
-  } else  {
-    //   $('#text_category_drp2').text('All categories');
-      $('.category_fill2').css("display","none");
-      filter_expanded2 = false;
-    //   availabilityReason_machine();
-  }
-}
-*/
-
-// reason
-// availability graph
-/*
-var filter_expanded_reason2 = false;
-function reason_drp2() {
-  // event.preventDefault();
-  var checkboxes2 = document.getElementsByClassName("reason_fill2");
-  if (!filter_expanded_reason2) {
-      // checkboxes.style.display = "block";
-    //   console.log("just click");
-      $('.reason_fill2').css("display","block");
-      filter_expanded_reason2 = true;
-  } else  {
-      
-    //   $('#text_reason2').text('All Reason');
-      $('.reason_fill2').css("display","none");
-      filter_expanded_reason2 = false;
-    //   availabilityReason_machine();
-  }
-}
-*/
-
-/*
-var reason_expand_filter_quality = false;
-function quality_reason_drp() {
-  // event.preventDefault();
-  var checkboxes2 = document.getElementsByClassName("quality_reason_fill");
-  if (!reason_expand_filter_quality) {
-      // checkboxes.style.display = "block";
-    //   console.log("just click");
-      $('.quality_reason_fill').css("display","block");
-      reason_expand_filter_quality = true;
-  } else  {
-     
-    //   $('#text_quality_reason').text('All Reason');
-      $('.quality_reason_fill').css("display","none");
-      reason_expand_filter_quality = false;
-    //   availabilityReason_machine();
-    // quality_reason_machine();
-  }
-}
-*/
-
-// machine
-/*
-var filter_expanded_machine1 = false;
-function machine_drp1() {
- 
-  var checkboxes1 = document.getElementsByClassName("filter_checkboxes_machine1");
-  if (!filter_expanded_machine1) {
-   
-      $('.filter_checkboxes_machine1').css("display","block");
-      filter_expanded_machine1 = true;
-  } else  {
-     
-       
-        $('.filter_checkboxes_machine1').css("display","none");
-        filter_expanded_machine1 = false;
-        // machineWiseOEE();
-
-  }
-}
-*/
-
-/* oee trend machine dropdown
-var filter_expanded_machine = false;
-function machine_drp() {
-
-  var checkboxes2 = document.getElementsByClassName("filter_checkboxes_machine");
-  if (!filter_expanded_machine) {
-   
-    $('.filter_checkboxes_machine').css("display","block");
-    filter_expanded_machine = true;
-  } else  {
-   
-    $('.filter_checkboxes_machine').css("display","none");
-    filter_expanded_machine = false;
-  }
-}
-*/
-/*
-var filter_expanded_machine2 = false;
-function machine_drp2() {
- 
-  var checkboxes2 = document.getElementsByClassName("filter_checkboxes_machine2");
-  if (!filter_expanded_machine2) {
-   
-      $('.filter_checkboxes_machine2').css("display","block");
-      filter_expanded_machine2 = true;
-  } else  {
-      
-    //   $('#text_machine2').text('All Machine');
-      $('.filter_checkboxes_machine2').css("display","none");
-      filter_expanded_machine2 = false;
-    //   availabilityReason_machine();
-  }
-}
-*/
-/*
-var filter_expanded_machine3 = false;
-function machine_drp3() {
- 
-  var checkboxes3 = document.getElementsByClassName("filter_checkboxes_machine3");
-  if (!filter_expanded_machine3) {
-   
-      $('.filter_checkboxes_machine3').css("display","block");
-      filter_expanded_machine3 = true;
-  } else  {
-
-      
-    //   $('#text_machine3').text('All Machine');
-      $('.filter_checkboxes_machine3').css("display","none");
-      filter_expanded_machine3 = false;
-    //   performance_opportunity();
-  }
-}
-*/
-/*
-var filter_expanded_machine4 = false;
-function machine_drp4() {
- 
-  var checkboxes4 = document.getElementsByClassName("filter_checkboxes_machine4");
-  if (!filter_expanded_machine4) {
-   
-    $('.filter_checkboxes_machine4').css("display","block");
-    filter_expanded_machine4 = true;
-    
-  } else  {
-     
-    // $('#text_machine4').text('All Machine');
-    $('.filter_checkboxes_machine4').css("display","none");
-    filter_expanded_machine4 = false;
-    // quality_reason_machine();
-  }
-}
-*/
-/*
-var filterexpand_part = false;
-function part_drp(){
-    var checkbox1 = document.getElementsByClassName("part_fill");
-    if (!filterexpand_part) {
-        $('.part_fill').css('display','block');
-        filterexpand_part = true;
-    }else{
-       
-        // $('#text_part').text('All Part');
-        $('.part_fill').css('display','none');
-        filterexpand_part = false;
-        // performance_opportunity();
-    }
-}
-*/
-/*
-var all_data_field_expand = false;
-function all_data_field_click_fun(){
-    // var checkbox1 = document.getElementsByClassName("all_data_field_fill");
-    // alert('hi');
-    if (!all_data_field_expand) {
-        $('.all_data_field_fill').css('display','block');
-        all_data_field_expand = true;
-    }else{
-        // $('#text_all_data_field').text('All Data Field');
-       
-        $('.all_data_field_fill').css('display','none');
-        all_data_field_expand = false;
-        // machineWiseOEE();
-    } 
-}
-*/
 
 
-
+// temporary hold this code
 $(document).on('click','.byday_click',function(event){
     event.preventDefault();
     // event.preventDefault();
@@ -1090,53 +865,7 @@ $(document).on('click','.category_click2',function(event){
     event.preventDefault();
     common_click_div_fun('category_click2','category_drp_checkbox2','text_category_drp2','Categories','machine_wise_availability_category_call',this);
 
-    /*
-        var count_reason_gp1  = $('.category_click2');
-        var index_reason_gp1 = count_reason_gp1.index($(this));
-        var check_if1 = $('.category_drp_checkbox2');
-        if (index_reason_gp1 === 0) {
-            if (check_if1[0].checked==false) {
-                reset_category2();
-
-            }
-            else{
-                $('.category_drp_checkbox2').removeAttr('checked');
-            }
-        }else{
-            if (check_if1[index_reason_gp1].checked==false) {
-                check_if1[index_reason_gp1].checked=true;
-                $('.category_drp_checkbox2:eq('+index_reason_gp1+')').attr('checked','checked');
-            }else{
-                $('.category_drp_checkbox2:eq('+index_reason_gp1+')').removeAttr('checked');
-                check_if1[0].checked=false;
-            }
-        }
-
-        var reason_gp_select_count1 = 0;
-        jQuery('.category_drp_checkbox2').each(function(index){
-        if (check_if1[index].checked===true) {
-            reason_gp_select_count1 = parseInt(reason_gp_select_count1)+1;
-        }
-        });
-        var reason_gp_len1 = $('.category_drp_checkbox2').length;
-        reason_gp_len1 = parseInt(reason_gp_len1)-1;
-        if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
-            if(check_if1[0].checked===true){
-                check_if1[0].checked=true;
-                $('#text_category_drp2').text('All Categories');
-            }else{
-                // check_if[0].checked=true;
-                reset_category2();
-                // $('#text_category_drp2').text('All');
-            }
-        }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
-            $('#text_category_drp2').text(parseInt(reason_gp_select_count1)+' Selected');
-
-            // check_if[0].checked=false;
-        }else {
-            $('#text_category_drp2').text('No Categories');
-        }
-    */
+  
 });
 
 // availability graph
@@ -1144,53 +873,7 @@ $(document).on('click','.reason_click2',function(event){
     event.preventDefault();
     common_click_div_fun('reason_click2','reason_checkbox2','text_reason2','Reasons','machine_wise_availability_reason_call',this);
 
-    /*
-        var count_reason_gp1  = $('.reason_click2');
-        var index_reason_gp1 = count_reason_gp1.index($(this));
-        var check_if1 = $('.reason_checkbox2');
-        if (index_reason_gp1 === 0) {
-            if (check_if1[0].checked==false) {
-                reset_reason2();
-
-            }
-            else{
-                $('.reason_checkbox2').removeAttr('checked');
-            }
-        }else{
-            if (check_if1[index_reason_gp1].checked==false) {
-                check_if1[index_reason_gp1].checked=true;
-                $('.reason_checkbox2:eq('+index_reason_gp1+')').attr('checked','checked');
-            }else{
-                $('.reason_checkbox2:eq('+index_reason_gp1+')').removeAttr('checked');
-                check_if1[0].checked=false;
-            }
-        }
-
-        var reason_gp_select_count1 = 0;
-        jQuery('.reason_checkbox2').each(function(index){
-        if (check_if1[index].checked===true) {
-            reason_gp_select_count1 = parseInt(reason_gp_select_count1)+1;
-        }
-        });
-        var reason_gp_len1 = $('.reason_checkbox2').length;
-        reason_gp_len1 = parseInt(reason_gp_len1)-1;
-        if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
-            if(check_if1[0].checked===true){
-                check_if1[0].checked=true;
-                $('#text_reason2').text('All Reasons');
-            }else{
-                // check_if[0].checked=true;
-                reset_reason2();
-                // $('#text_reason2').text('All');
-            }
-        }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
-            $('#text_reason2').text(parseInt(reason_gp_select_count1)+' Selected');
-
-            // check_if[0].checked=false;
-        }else {
-            $('#text_reason2').text('No Reason');
-        }
-    */
+    
 });
 
 // machine wise quality graph
@@ -1198,115 +881,21 @@ $(document).on('click','.reason_click2',function(event){
 $(document).on('click','.quality_click',function(event){
     event.preventDefault();
     common_click_div_fun('quality_click','quality_checkbox','text_quality_reason','Reasons','machine_wise_quality_reason_call',this);
-    /*
-        var count_reason_gp1  = $('.quality_click');
-        var index_reason_gp1 = count_reason_gp1.index($(this));
-        var check_if1 = $('.quality_checkbox');
-        if (index_reason_gp1 === 0) {
-            if (check_if1[0].checked==false) {
-                reset_quality_reason();
-
-            }
-            else{
-                $('.quality_checkbox').removeAttr('checked');
-            }
-        }else{
-            if (check_if1[index_reason_gp1].checked==false) {
-                check_if1[index_reason_gp1].checked=true;
-                $('.quality_checkbox:eq('+index_reason_gp1+')').attr('checked','checked');
-            }else{
-                $('.quality_checkbox:eq('+index_reason_gp1+')').removeAttr('checked');
-                check_if1[0].checked=false;
-            }
-        }
-
-        var reason_gp_select_count1 = 0;
-        jQuery('.quality_checkbox').each(function(index){
-        if (check_if1[index].checked===true) {
-            reason_gp_select_count1 = parseInt(reason_gp_select_count1)+1;
-        }
-        });
-        var reason_gp_len1 = $('.quality_checkbox').length;
-        reason_gp_len1 = parseInt(reason_gp_len1)-1;
-        if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
-            if(check_if1[0].checked===true){
-                check_if1[0].checked=true;
-                $('#text_quality_reason').text('All Reasons');
-            }else{
-                // check_if[0].checked=true;
-                reset_quality_reason();
-                // $('#text_quality_reason').text('All');
-            }
-        }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
-            $('#text_quality_reason').text(parseInt(reason_gp_select_count1)+' Selected');
-
-            // check_if[0].checked=false;
-        }else {
-            $('#text_quality_reason').text('No Reason');
-        }
-    */
+  
 });
 
 
 $(document).on('click','.machine_click',function(event){
     event.preventDefault();
     common_click_div_fun('machine_click','machine_checkbox','text_machine','Machines','oee_trend_machine_call',this);
-    /*
-        
-    */
+   
 });
 
 // machine wise oee graph machine drp click function
 $(document).on('click','.machine_click1',function(event){
     event.preventDefault();
     common_click_div_fun('machine_click1','machine_checkbox1','text_machine1','Machines','machine_wise_oee_machine_call',this);
-    /*
-        var count_reason_gp1  = $('.machine_click1');
-        var index_reason_gp1 = count_reason_gp1.index($(this));
-        var check_if1 = $('.machine_checkbox1');
-        if (index_reason_gp1 === 0) {
-            if (check_if1[0].checked==false) {
-                reset_machine1();
-
-            }
-            else{
-                $('.machine_checkbox1').removeAttr('checked');
-            }
-        }else{
-            if (check_if1[index_reason_gp1].checked==false) {
-                check_if1[index_reason_gp1].checked=true;
-                $('.machine_checkbox1:eq('+index_reason_gp1+')').attr('checked','checked');
-            }else{
-                $('.machine_checkbox1:eq('+index_reason_gp1+')').removeAttr('checked');
-                check_if1[0].checked=false;
-            }
-        }
-
-        var reason_gp_select_count1 = 0;
-        jQuery('.machine_checkbox1').each(function(index){
-        if (check_if1[index].checked===true) {
-            reason_gp_select_count1 = parseInt(reason_gp_select_count1)+1;
-        }
-        });
-        var reason_gp_len1 = $('.machine_checkbox1').length;
-        reason_gp_len1 = parseInt(reason_gp_len1)-1;
-        if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
-            if(check_if1[0].checked===true){
-                check_if1[0].checked=true;
-                $('#text_machine1').text('All Machines');
-            }else{
-                // check_if[0].checked=true;
-                reset_machine1();
-                // $('#text_machine1').text('All');
-            }
-        }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
-            $('#text_machine1').text(parseInt(reason_gp_select_count1)+' Selected');
-
-            // check_if[0].checked=false;
-        }else {
-            $('#text_machine1').text('No Machine');
-        }
-    */
+   
 });
 
 // availability graph
@@ -1314,53 +903,7 @@ $(document).on('click','.machine_click2',function(event){
     event.preventDefault();
     common_click_div_fun('machine_click2','machine_checkbox2','text_machine2','Machines','machine_wise_availability_machine_call',this);
 
-    /*
-        var count_reason_gp1  = $('.machine_click2');
-        var index_reason_gp1 = count_reason_gp1.index($(this));
-        var check_if1 = $('.machine_checkbox2');
-        if (index_reason_gp1 === 0) {
-            if (check_if1[0].checked==false) {
-                reset_machine2();
-
-            }
-            else{
-                $('.machine_checkbox2').removeAttr('checked');
-            }
-        }else{
-            if (check_if1[index_reason_gp1].checked==false) {
-                check_if1[index_reason_gp1].checked=true;
-                $('.machine_checkbox2:eq('+index_reason_gp1+')').attr('checked','checked');
-            }else{
-                $('.machine_checkbox2:eq('+index_reason_gp1+')').removeAttr('checked');
-                check_if1[0].checked=false;
-            }
-        }
-
-        var reason_gp_select_count1 = 0;
-        jQuery('.machine_checkbox2').each(function(index){
-        if (check_if1[index].checked===true) {
-            reason_gp_select_count1 = parseInt(reason_gp_select_count1)+1;
-        }
-        });
-        var reason_gp_len1 = $('.machine_checkbox2').length;
-        reason_gp_len1 = parseInt(reason_gp_len1)-1;
-        if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
-            if(check_if1[0].checked===true){
-                check_if1[0].checked=true;
-                $('#text_machine2').text('All Machines');
-            }else{
-                // check_if[0].checked=true;
-                reset_machine2();
-                // $('#text_machine2').text('All');
-            }
-        }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
-            $('#text_machine2').text(parseInt(reason_gp_select_count1)+' Selected');
-
-            // check_if[0].checked=false;
-        }else {
-            $('#text_machine2').text('No Machine');
-        }
-    */
+   
 });
 
 
@@ -1368,53 +911,7 @@ $(document).on('click','.machine_click3',function(event){
     event.preventDefault();
     common_click_div_fun('machine_click3','machine_checkbox3','text_machine3','Machines','machine_wise_performance_machine_call',this);
 
-    /*
-        var count_reason_gp1  = $('.machine_click3');
-        var index_reason_gp1 = count_reason_gp1.index($(this));
-        var check_if1 = $('.machine_checkbox3');
-        if (index_reason_gp1 === 0) {
-            if (check_if1[0].checked==false) {
-                reset_machine3();
-
-            }
-            else{
-                $('.machine_checkbox3').removeAttr('checked');
-            }
-        }else{
-            if (check_if1[index_reason_gp1].checked==false) {
-                check_if1[index_reason_gp1].checked=true;
-                $('.machine_checkbox3:eq('+index_reason_gp1+')').attr('checked','checked');
-            }else{
-                $('.machine_checkbox3:eq('+index_reason_gp1+')').removeAttr('checked');
-                check_if1[0].checked=false;
-            }
-        }
-
-        var reason_gp_select_count1 = 0;
-        jQuery('.machine_checkbox3').each(function(index){
-        if (check_if1[index].checked===true) {
-            reason_gp_select_count1 = parseInt(reason_gp_select_count1)+1;
-        }
-        });
-        var reason_gp_len1 = $('.machine_checkbox3').length;
-        reason_gp_len1 = parseInt(reason_gp_len1)-1;
-        if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
-            if(check_if1[0].checked===true){
-                check_if1[0].checked=true;
-                $('#text_machine3').text('All Machines');
-            }else{
-                // check_if[0].checked=true;
-                reset_machine3();
-                // $('#text_machine3').text('All');
-            }
-        }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
-            $('#text_machine3').text(parseInt(reason_gp_select_count1)+' Selected');
-
-            // check_if[0].checked=false;
-        }else {
-            $('#text_machine3').text('No Machine');
-        }
-    */
+   
 });
 
 
@@ -1423,106 +920,14 @@ $(document).on('click','.part_click',function(event){
     event.preventDefault();
     common_click_div_fun('part_click','part_checkbox','text_part','Parts','machine_wise_performance_part_call',this);
 
-    /*
-        var count_reason_gp1  = $('.part_click');
-        var index_reason_gp1 = count_reason_gp1.index($(this));
-        var check_if1 = $('.part_checkbox');
-        if (index_reason_gp1 === 0) {
-            if (check_if1[0].checked==false) {
-                reset_part();
-
-            }
-            else{
-                $('.part_checkbox').removeAttr('checked');
-            }
-        }else{
-            if (check_if1[index_reason_gp1].checked==false) {
-                check_if1[index_reason_gp1].checked=true;
-                $('.part_checkbox:eq('+index_reason_gp1+')').attr('checked','checked');
-            }else{
-                $('.part_checkbox:eq('+index_reason_gp1+')').removeAttr('checked');
-                check_if1[0].checked=false;
-            }
-        }
-
-        var reason_gp_select_count1 = 0;
-        jQuery('.part_checkbox').each(function(index){
-        if (check_if1[index].checked===true) {
-            reason_gp_select_count1 = parseInt(reason_gp_select_count1)+1;
-        }
-        });
-        var reason_gp_len1 = $('.part_checkbox').length;
-        reason_gp_len1 = parseInt(reason_gp_len1)-1;
-        if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
-            if(check_if1[0].checked===true){
-                check_if1[0].checked=true;
-                $('#text_part').text('All Parts');
-            }else{
-                // check_if[0].checked=true;
-                reset_part();
-                // $('#text_part').text('All');
-            }
-        }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
-            $('#text_part').text(parseInt(reason_gp_select_count1)+' Selected');
-
-            // check_if[0].checked=false;
-        }else {
-            $('#text_part').text('No Part');
-        }
-    */
+   
 });
 
 // machine wise quality graph machine dropdown onclick
 $(document).on('click','.machine_click4',function(event){
     event.preventDefault();
     common_click_div_fun('machine_click4','machine_checkbox4','text_machine4','Machines','machine_wise_quality_machine_call',this);
-    /*
-        var count_reason_gp1  = $('.machine_click4');
-        var index_reason_gp1 = count_reason_gp1.index($(this));
-        var check_if1 = $('.machine_checkbox4');
-        if (index_reason_gp1 === 0) {
-            if (check_if1[0].checked==false) {
-                reset_machine4();
-
-            }
-            else{
-                $('.machine_checkbox4').removeAttr('checked');
-            }
-        }else{
-            if (check_if1[index_reason_gp1].checked==false) {
-                check_if1[index_reason_gp1].checked=true;
-                $('.machine_checkbox4:eq('+index_reason_gp1+')').attr('checked','checked');
-            }else{
-                $('.machine_checkbox4:eq('+index_reason_gp1+')').removeAttr('checked');
-                check_if1[0].checked=false;
-            }
-        }
-
-        var reason_gp_select_count1 = 0;
-        jQuery('.machine_checkbox4').each(function(index){
-        if (check_if1[index].checked===true) {
-            reason_gp_select_count1 = parseInt(reason_gp_select_count1)+1;
-        }
-        });
-        var reason_gp_len1 = $('.machine_checkbox4').length;
-        reason_gp_len1 = parseInt(reason_gp_len1)-1;
-        if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
-            if(check_if1[0].checked===true){
-                check_if1[0].checked=true;
-                $('#text_machine4').text('All Machines');
-            }else{
-                // check_if[0].checked=true;
-                reset_machine4();
-                // $('#text_machine4').text('All');
-            }
-        }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
-            $('#text_machine4').text(parseInt(reason_gp_select_count1)+' Selected');
-
-            // check_if[0].checked=false;
-        }else {
-            $('#text_machine4').text('No Machine');
-        }
-    */
+   
 });
 
 // machine wise oee graph datafield  dropdown onclick
@@ -1530,53 +935,7 @@ $(document).on('click','.all_data_field_click',function(event){
     event.preventDefault();
     common_click_div_fun('all_data_field_click','all_data_field_checkbox','text_all_data_field','DataFields','machine_wise_oee_datafield_call',this);
 
-    /*
-        var count_reason_gp1  = $('.all_data_field_click');
-        var index_reason_gp1 = count_reason_gp1.index($(this));
-        var check_if1 = $('.all_data_field_checkbox');
-        if (index_reason_gp1 === 0) {
-            if (check_if1[0].checked==false) {
-                reset_all_data_field();
-
-            }
-            else{
-                $('.all_data_field_checkbox').removeAttr('checked');
-            }
-        }else{
-            if (check_if1[index_reason_gp1].checked==false) {
-                check_if1[index_reason_gp1].checked=true;
-                $('.all_data_field_checkbox:eq('+index_reason_gp1+')').attr('checked','checked');
-            }else{
-                $('.all_data_field_checkbox:eq('+index_reason_gp1+')').removeAttr('checked');
-                check_if1[0].checked=false;
-            }
-        }
-
-        var reason_gp_select_count1 = 0;
-        jQuery('.all_data_field_checkbox').each(function(index){
-        if (check_if1[index].checked===true) {
-            reason_gp_select_count1 = parseInt(reason_gp_select_count1)+1;
-        }
-        });
-        var reason_gp_len1 = $('.all_data_field_checkbox').length;
-        reason_gp_len1 = parseInt(reason_gp_len1)-1;
-        if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
-            if(check_if1[0].checked===true){
-                check_if1[0].checked=true;
-                $('#text_all_data_field').text('All Data Fields');
-            }else{
-                // check_if[0].checked=true;
-                reset_all_data_field();
-                // $('#text_all_data_field').text('All');
-            }
-        }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
-            $('#text_all_data_field').text(parseInt(reason_gp_select_count1)+' Selected');
-
-            // check_if[0].checked=false;
-        }else {
-            $('#text_all_data_field').text('No Data Field');
-        }
-    */
+   
 });
 
 

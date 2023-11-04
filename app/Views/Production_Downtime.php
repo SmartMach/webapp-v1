@@ -1346,23 +1346,6 @@ function getcategory_arr(){
 
 }
 
-// after change category update the downtime reason dropdwon
-/* this function not now
-function after_cate(){
-  alert('ji');
-  var category_drp = "";
-  var category_arr_drp_tmp = getcategory_arr();
-  var cate_leng = category_arr_drp_tmp.length;
-  if (parseInt(cate_leng)>2) {
-    category_drp = null;
-  }else{
-    category_drp = category_arr_drp_tmp[0];
-  }
-  console.log("after select category dropdwon");
-  console.log(category_drp);
-  downtime_reason_filter(category_drp);
-}
-*/
 
 // get filter reason array
 function getreason_arr(){
