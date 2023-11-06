@@ -834,7 +834,7 @@ class Financial_Metrics extends BaseController
             $UnplannedDown = floatval($UnplannedDown) + floatval($UnplannedDownSec/60);
 
             $tempCalc = $MachineOFFDown + $UnplannedDown + $PlannedDown;
-            if ((int)$tempCalc>0) {
+            if ((float)$tempCalc>=0) {
                $tmpDown = array("Machine_ID"=>$MachineId,"Planned"=>$PlannedDown,"Unplanned"=>$UnplannedDown,"Machine_OFF"=>$MachineOFFDown,"All"=>$tempCalc,"Part_Wise"=>$PartWiseDowntime);
                 array_push($DowntimeTimeData, $tmpDown);
             }
