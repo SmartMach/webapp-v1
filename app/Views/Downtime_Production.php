@@ -1233,17 +1233,14 @@ function graph_view_click(){
 function notes_hover(ele){
     var els = Array.prototype.slice.call( document.getElementsByClassName('icon_img_wh'), 0 );
     var index_val = els.indexOf(event.currentTarget);
-    //   alert(index_val);
-    $('.notes_display:eq('+index_val+')').css('display','block');
-    // $('.hover_check_index:eq('+index_val+')').css('margin-left','-10rem');
+    $('.demo_notes:eq('+index_val+')').css('visibility','visible');
 }
 
 
 function mouse_out_check(ele1){
   var els = Array.prototype.slice.call( document.getElementsByClassName('icon_img_wh'), 0 );
   var index_val1 = els.indexOf(event.currentTarget);
-  $('.notes_display:eq('+index_val1+')').css("display","none");
-//   $('.hover_check_index:eq('+index_val+')').css('margin-left','0');
+  $('.demo_notes:eq('+index_val1+')').css("visibility","hidden");
 }
 
 // date formate change function
@@ -1632,42 +1629,46 @@ function filter_after_filter(end_index,start_index){
                         }
 
                         elements = elements.add('<div style="display:flex;flex-direction:row;border:1px solid rgba(242,242,242);border-radius:10px;margin-bottom:0.5rem;height:3.5rem;width:100%;">'
-                            +'<div class="font_row alignflex" style="width:9.5%;position: sticky;left:0px;background:white;height:100%;border-radius:10px 0px 0px 10px;">'
+                            +'<div class="font_row alignflex fixed_record" style="width:9.5%;left:0px;border-radius:10px 0px 0px 10px;">'
                                 +'<span style="margin: auto;">'+val.machine_name+'</span>'
                             +' </div>'
-                            +'<div class="font_row alignflex" style="width:14%;position: sticky;left:118px;background:white;height:100%">'
+                            +'<div class="font_row alignflex fixed_record" style="width:14%;left:118px;">'
                                 +'<span style="margin: auto;">'+from_date+'</span>'
                             +'</div>'
-                            +'<div class="red alignflex" style="width:9.6%;position: sticky;left:290px;background:white;height:100%;">'
+                            +'<div class="red alignflex fixed_record" style="width:9.6%;left:290px;">'
                                 +'<span style="margin: auto;">'+final_tmp_duration+'</span>'
                             +'</div>'
-                            +'<div class="font_row alignflex" style="width:14.8%;">'
+                            +'<div class="font_row alignflex to_date_width" style="">'
                                 +'<span style="margin: auto;">'+to_date+'</span>'
                             +' </div>'
-                            +'<div class="font_row alignflex" style="width:9.5%;">'
+                            +'<div class="font_row alignflex dcategory_width" style="">'
                                 +'<span style="margin-left:1rem;">'+val.downtime_category+'</span>'
                             +'</div>'
-                            +' <div class="font_row alignflex" style="width:12.4%;">'
+                            +' <div class="font_row alignflex dreason_width" style="">'
                                 +'<span style="margin-left:1rem;">'+val.downtime_reason+'</span>'
                             +'</div>'
-                            +'<div class="font_row alignflex" style="width:10.6%;">'
+                            +'<div class="font_row alignflex tool_name_width" style="">'
                                 +'<span style="margin-left:1rem;">'+val.tool_name+'</span>'
                             +'</div>'
-                            +'<div class="font_row alignflex" style="width:10.5%;">'
+                            +'<div class="font_row alignflex part_name_width" style="">'
                                 +'<span style="margin-left:1rem;">'+val.part_name+'</span>'
                             +'</div>'
-                            +'<div class="font_row alignflex" style="width:9.5%;">'
+                            +'<div class="font_row alignflex last_updated_width" style="">'
                                 +'<span style="margin:auto;">'+val.last_updated_by+'</span>'
                             +'</div>'
-                            +'<div class="font_row alignflex" style="width:9.6%;">'
-                                +'<span style="margin:auto;">'+updated_at+'</span>'
+                            +'<div class="font_row alignflex updated_at_width" style="">'
+                                +'<span style="margin:auto;" title="'+updated_at+'">'+updated_at+'</span>'
                             +'</div>'
-                            +'<div class="font_row alignflex " style="width:6.5%;">'
-                                +'<div class="notes_check"><img src="<?php  echo base_url(); ?>/assets/img/info.png" class="icon_img_wh" onmouseover="notes_hover(this)"  onmouseout="mouse_out_check(this)"/></div>'
+                            // +'<div class="font_row alignflex " style="width:6.5%;">'
+                            //     +'<div class="notes_check"><img src="<?php  echo base_url(); ?>/assets/img/info.png" class="icon_img_wh"  data-bs-toggle="tooltip" data-bs-placement="left" title="Tooltip on left"/></div>'
+                            // +'</div>'
+                             +'<div class="font_row alignflex " style="width:6.5%;">'
+                                +'<div class="notes_check"><img src="<?php  echo base_url(); ?>/assets/img/info.png" class="icon_img_wh"  data-bs-toggle="tooltip" data-bs-placement="left" title="Tooltip on left" onmouseover="notes_hover(this)"  onmouseout="mouse_out_check(this)"></div>'
+                                +'<div class="demo_notes" style="">'
+                                +'<p>'+val.notes+'</p>'
+                                +'</div>'
                             +'</div>'
-                            +'<div class="notes_display" style="">'
-                                +'<p >'+val.notes+'</p>'
-                            +'</div>'
+                           
                         +'</div>');
 
 
