@@ -1663,7 +1663,7 @@ function filter_after_filter(end_index,start_index){
                             //     +'<div class="notes_check"><img src="<?php  echo base_url(); ?>/assets/img/info.png" class="icon_img_wh"  data-bs-toggle="tooltip" data-bs-placement="left" title="Tooltip on left"/></div>'
                             // +'</div>'
                              +'<div class="font_row alignflex " style="width:6.5%;">'
-                                +'<div class="notes_check"><img src="<?php  echo base_url(); ?>/assets/img/info.png" class="icon_img_wh"    onmouseover="notes_hover(this)"  onmouseout="mouse_out_check(this)"></div>'
+                                +'<div class="notes_check"><img src="<?php  echo base_url(); ?>/assets/img/info.png" class="icon_img_wh"   onmouseover="notes_hover(this)"  onmouseout="mouse_out_check(this)"></div>'
                                 +'<div class="demo_notes" style="">'
                                 +'<p>'+val.notes+'</p>'
                                 +'</div>'
