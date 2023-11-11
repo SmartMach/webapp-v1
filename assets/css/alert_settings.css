@@ -1012,3 +1012,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.select_pointer{
+  cursor: pointer;
+}
