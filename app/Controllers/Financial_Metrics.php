@@ -34,8 +34,8 @@ class Financial_Metrics extends BaseController
         $ref="Overall";
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
-        // $fromTime = "2023-06-01T09:00:00";
-        // $toTime = "2023-07-01T09:00:00";
+        // $fromTime = "2023-10-16T06:00:00";
+        // $toTime = "2023-10-22T22:00:00";
 
         // $url = "http://localhost:8080/graph/overallMonitoringValues/".$fromTime."/".$toTime."/";
         // $ch = curl_init($url);
@@ -432,10 +432,11 @@ class Financial_Metrics extends BaseController
                         }
                     }
                 }
-                $duration = $duration_min + ($duration_sec/60);
+                $duration = number_format((float)($duration_min + ($duration_sec/60)), 2, '.', '');
                 $tmp = array('machine_id' => $m['machine_id'],'duration'=>$duration);
                 array_push($alltime, $tmp);
             }
+
         return $alltime;
     }
 
@@ -468,7 +469,7 @@ class Financial_Metrics extends BaseController
                         }
                     }
                 }
-                $duration = $duration_min + ($duration_sec / 60);
+                $duration = number_format((float)($duration_min + ($duration_sec/60)), 2, '.', '');
                 $tmp = array('machine_id' => $m['machine_id'],'duration'=>$duration);
                 array_push($alltime, $tmp);
             }
@@ -492,9 +493,9 @@ class Financial_Metrics extends BaseController
         }
 
         //Average of the OEE to calculate Overall OEE....
-        $OverallOEE['Overall_OEE'] = number_format((($tmpOEE/(sizeof($MachineWiseData)))),2);
-        $OverallOEE['Overall_OOE'] = number_format((($tmpOOE/(sizeof($MachineWiseData)))),2);
-        $OverallOEE['Overall_TEEP'] = number_format((($tmpTEEP/(sizeof($MachineWiseData)))),2);
+        $OverallOEE['Overall_OEE'] = sizeof($MachineWiseData) > 0 ? number_format((($tmpOEE/(sizeof($MachineWiseData)))),2):0;
+        $OverallOEE['Overall_OOE'] = sizeof($MachineWiseData) > 0 ? number_format((($tmpOOE/(sizeof($MachineWiseData)))),2):0;
+        $OverallOEE['Overall_TEEP'] = sizeof($MachineWiseData) > 0 ? number_format((($tmpTEEP/(sizeof($MachineWiseData)))),2):0;
 
         return $OverallOEE;
     }
@@ -802,11 +803,11 @@ class Financial_Metrics extends BaseController
                     $PlannedDownSec = $PartPlannedDownSec + $PlannedDownSec;
 
                     if ($part_id != "") {
-                        $PartMachineOFFDown = floatval($PartMachineOFFDown)+floatval($PartMachineOFFDownSec/60);
-                        $PartPlannedDown = floatval($PartPlannedDown)+floatval($PartPlannedDownSec/60);
-                        $PartUnplannedDown = floatval($PartUnplannedDown) + floatval($PartUnplannedDownSec/60);
+                        $PartMachineOFFDown = number_format((float)(floatval($PartMachineOFFDown)+floatval($PartMachineOFFDownSec/60)), 2, '.', '');
+                        $PartPlannedDown = number_format((float)(floatval($PartPlannedDown)+floatval($PartPlannedDownSec/60)), 2, '.', '');
+                        $PartUnplannedDown = number_format((float)(floatval($PartUnplannedDown) + floatval($PartUnplannedDownSec/60)), 2, '.', '');
 
-                        $PartInMachine = floatval($PartInMachine)+floatval($PartInMachineSec/60);
+                        $PartInMachine = number_format((float)(floatval($PartInMachine)+floatval($PartInMachineSec/60)), 2, '.', '');
 
                         $tmpUpTimeMin = 0;
                         $tmpUpTimeSec = 0;
@@ -822,18 +823,18 @@ class Financial_Metrics extends BaseController
                                 $tmpUpTimeMin = $tmpUpTimeMin + $stu[0];
                             }
                         }
-                        $tmpPartTime = floatval($PartInMachine) +  floatval($tmpUpTimeMin) + floatval($tmpUpTimeSec/60);
+                        $tmpPartTime = number_format((float)(floatval($PartInMachine) +  floatval($tmpUpTimeMin) + floatval($tmpUpTimeSec/60)), 2, '.', '');
                         $tmp= array('part_id' => $part_id,'Planed'=>$PartPlannedDown,'Unplanned'=>$PartUnplannedDown,'Machine_OFF'=>$PartMachineOFFDown,'PartInMachine' => $tmpPartTime);
                         array_push($PartWiseDowntime, $tmp);
                     }
                 }
             }
 
-            $MachineOFFDown = floatval($MachineOFFDown)+floatval($MachineOFFDownSec/60);
-            $PlannedDown = floatval($PlannedDown)+floatval($PlannedDownSec/60);
-            $UnplannedDown = floatval($UnplannedDown) + floatval($UnplannedDownSec/60);
+            $MachineOFFDown = number_format((float)(floatval($MachineOFFDown)+floatval($MachineOFFDownSec/60)), 2, '.', '');
+            $PlannedDown = number_format((float)(floatval($PlannedDown)+floatval($PlannedDownSec/60)), 2, '.', '');
+            $UnplannedDown = number_format((float)(floatval($UnplannedDown) + floatval($UnplannedDownSec/60)), 2, '.', '');
 
-            $tempCalc = $MachineOFFDown + $UnplannedDown + $PlannedDown;
+            $tempCalc = number_format((float)($MachineOFFDown + $UnplannedDown + $PlannedDown), 2, '.', '');;
             if ((float)$tempCalc>=0) {
                $tmpDown = array("Machine_ID"=>$MachineId,"Planned"=>$PlannedDown,"Unplanned"=>$UnplannedDown,"Machine_OFF"=>$MachineOFFDown,"All"=>$tempCalc,"Part_Wise"=>$PartWiseDowntime);
                 array_push($DowntimeTimeData, $tmpDown);
