@@ -25,64 +25,12 @@ class Database extends Config
      */
     public $defaultGroup = 'default';
 
-    /**
-     * The default database connection.
-     *
-     * @var array
-     */
-    public $default = [
-        'DSN'      => '',
-        'hostname' => 'localhost',
-        'username' => 'root',
-        'password' => 'quantanics123',
-        'database' => 'S1001',
-        //'database' => 'dub1',
-        'DBDriver' => 'MySQLi',
-        'DBPrefix' => '',
-        'pConnect' => false,
-        'DBDebug'  => (ENVIRONMENT !== 'production'),
-        'charset'  => 'utf8',
-        'DBCollat' => 'utf8_general_ci',
-        'swapPre'  => '',
-        'encrypt'  => false,
-        'compress' => false,
-        'strictOn' => false,
-        'failover' => [],
-        'port'     => 3306,
-    ];
-
-
-
-     public $another_db = [
-        'DSN'      => '',
-        'hostname' => 'localhost',
-        'username' => 'root',
-        'password' => 'quantanics123',
-        //'database' => 'S10011',
-        'database' => 'smartories_roof',
-        'DBDriver' => 'MySQLi',
-        'DBPrefix' => '',
-        'pConnect' => false,
-        'DBDebug'  => (ENVIRONMENT !== 'production'),
-        'charset'  => 'utf8',
-        'DBCollat' => 'utf8_general_ci',
-        'swapPre'  => '',
-        'encrypt'  => false,
-        'compress' => false,
-        'strictOn' => false,
-        'failover' => [],
-        'port'     => 3306,
-    ];
-
-
-
     // tester
      public $tester = [
         'DSN'      => '',
         'hostname' => 'localhost',
-        'username' => 'root',
-        'password' => 'quantanics123',
-        //'database' => 'S10011',
+        'username' => '',
+        'password' => '',
         'database' => '',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
@@ -125,6 +73,9 @@ class Database extends Config
         'port'     => 3306,
     ];
 
+    public $default;
+    public $another_db;
+
     public function __construct()
     {
         parent::__construct();
@@ -135,5 +86,52 @@ class Database extends Config
         if (ENVIRONMENT === 'testing') {
             $this->defaultGroup = 'tests';
         }
+
+
+        /**
+         * The default database connection.
+         *
+         * @var array
+         */
+        $this->default = [
+            'DSN'      => '',
+            'hostname' => 'localhost',
+            'username' => env('database.default.username'),
+            'password' => env('database.default.password'),
+            'database' => '',
+            'DBDriver' => 'MySQLi',
+            'DBPrefix' => '',
+            'pConnect' => false,
+            'DBDebug'  => (ENVIRONMENT !== 'production'),
+            'charset'  => 'utf8',
+            'DBCollat' => 'utf8_general_ci',
+            'swapPre'  => '',
+            'encrypt'  => false,
+            'compress' => false,
+            'strictOn' => false,
+            'failover' => [],
+            'port'     => 3306,
+        ];
+
+
+        $this->another_db = [
+            'DSN'      => '',
+            'hostname' => 'localhost',
+            'username' => env('database.default.username'),
+            'password' => env('database.default.password'),
+            'database' => env('database.default'),
+            'DBDriver' => 'MySQLi',
+            'DBPrefix' => '',
+            'pConnect' => false,
+            'DBDebug'  => (ENVIRONMENT !== 'production'),
+            'charset'  => 'utf8',
+            'DBCollat' => 'utf8_general_ci',
+            'swapPre'  => '',
+            'encrypt'  => false,
+            'compress' => false,
+            'strictOn' => false,
+            'failover' => [],
+            'port'     => 3306,
+        ];
     }
 }

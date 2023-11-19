@@ -17,9 +17,9 @@ class Financial_Model extends Model{
         // echo($db_name);
         $this->site_connection = [
                     'DSN'      => '',
-                    'hostname' => 'localhost',
-                    'username' => 'root',
-                    'password' => 'quantanics123',
+                    'hostname' => env('database.default.hostname'),
+                    'username' => env('database.default.username'),
+                    'password' => env('database.default.password'),
                     'database' => ''.$db_name.'',
                     'DBDriver' => 'MySQLi',
                     'DBPrefix' => '',

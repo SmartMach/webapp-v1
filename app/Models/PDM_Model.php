@@ -15,9 +15,9 @@ class PDM_Model extends Model{
 
         $this->site_creation = [
                     'DSN'      => '',
-                    'hostname' => 'localhost',
-                    'username' => 'root',
-                    'password' => 'quantanics123',
+                    'hostname' => env('database.default.hostname'),
+                    'username' => env('database.default.username'),
+                    'password' => env('database.default.password'),
                     'database' => ''.$db_name.'',
                     'DBDriver' => 'MySQLi',
                     'DBPrefix' => '',

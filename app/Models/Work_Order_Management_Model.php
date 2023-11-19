@@ -11,9 +11,9 @@ class Work_Order_Management_Model extends Model{
 
         $this->site_connection = [
             'DSN'      => '',
-            'hostname' => 'localhost',
-            'username' => 'root',
-            'password' => 'quantanics123',
+            'hostname' => env('database.default.hostname'),
+            'username' => env('database.default.username'),
+            'password' => env('database.default.password'),
             'database' => ''.$db_name.'',
             'DBDriver' => 'MySQLi',
             'DBPrefix' => '',
@@ -31,10 +31,10 @@ class Work_Order_Management_Model extends Model{
 
         $this->site_connection_assignee = [
             'DSN'      => '',
-            'hostname' => 'localhost',
-            'username' => 'root',
-            'password' => 'quantanics123',
-            'database' => 'smartories_roof',
+            'hostname' => env('database.default.hostname'),
+            'username' => env('database.default.username'),
+            'password' => env('database.default.password'),
+            'database' => env('database.default'),
             'DBDriver' => 'MySQLi',
             'DBPrefix' => '',
             'pConnect' => false,
