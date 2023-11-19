@@ -1193,7 +1193,7 @@ class Financial_Metrics extends BaseController
         echo json_encode($out);
     }
 
-        public function selectionSortQualityOpp($arr, $n)
+    public function selectionSortQualityOpp($arr, $n)
     {
         //int i, j, min_idx;
       
@@ -2047,129 +2047,129 @@ class Financial_Metrics extends BaseController
         $ref = "PerformanceOpportunity";
         $res = $this->getDataRaw($ref,$fromTime,$toTime);
 
-    //Performance Opportunity.........
-    $opportunityTrendDay=[];
-    $GrantTotalPL = 0;
-    foreach ($downtime as $d) {
-        $MachinePLB=0;
-        $MachinePLP=0;
-        $MachinePLU=0;
-        $MachinePLPer=0;
-        $MachinePLQ=0; 
-        $MachinePLT= 0;
-        $Machine=[];
+        //Performance Opportunity.........
+        $opportunityTrendDay=[];
+        $GrantTotalPL = 0;
+        foreach ($downtime as $d) {
+            $MachinePLB=0;
+            $MachinePLP=0;
+            $MachinePLU=0;
+            $MachinePLPer=0;
+            $MachinePLQ=0; 
+            $MachinePLT= 0;
+            $Machine=[];
 
-        $MachinePLBDuration=0;
-        $MachinePLPDuration=0;
-        $MachinePLUDuration=0;
-        $MachinePLPerDuration=0;
-        $MachinePLQDuration=0; 
-        $MachinePLTDuration=0;
-        foreach ($d['data'] as $machine) {
-            $NICTCorrectTPP = 0;
-            $machineRate=1;
-            $machineoffopportunity=0;
-            $plannedopportunity=0;
-            $unplannedopportunity=0;
-            $qualityopportunity=0;
-            $machineName="";
+            $MachinePLBDuration=0;
+            $MachinePLPDuration=0;
+            $MachinePLUDuration=0;
+            $MachinePLPerDuration=0;
+            $MachinePLQDuration=0; 
+            $MachinePLTDuration=0;
+            foreach ($d['data'] as $machine) {
+                $NICTCorrectTPP = 0;
+                $machineRate=1;
+                $machineoffopportunity=0;
+                $plannedopportunity=0;
+                $unplannedopportunity=0;
+                $qualityopportunity=0;
+                $machineName="";
 
-            $AllTime=0;
-            foreach ($rawData['downtimeTime'] as $dayDown) {
-                if ($dayDown['date'] == $d['date']) {
-                    foreach ($dayDown['data'] as $dd) {
-                        if ($dd['machine_id'] == $machine['Machine_ID']) {
-                            $AllTime = $dd['duration'];
-                        }
-                    }
-                }
-            }
-            if ($AllTime > 0) {
-                foreach ($machineDetails as $m) {
-                    if ($m['machine_id'] == $machine['Machine_ID']) {
-                        $machineoffopportunity = $m['machine_offrate_per_hour']*($machine['Machine_OFF']/60);
-                        $plannedopportunity = $m['rate_per_hour']*($machine['Planned']/60);
-                        $unplannedopportunity = $m['rate_per_hour']*($machine['Unplanned']/60);
-
-                        $MachinePLBDuration=$MachinePLBDuration+$machine['Machine_OFF'];
-                        $MachinePLPDuration=$MachinePLPDuration+$machine['Planned'];
-                        $MachinePLUDuration=$MachinePLUDuration+$machine['Unplanned'];
-                    }
-                }
-                foreach ($partDetails as $key => $part) {
-                    foreach ($res['production'] as $val) {
-                        if ($machine['Machine_ID']==$val['machine_id'] AND $part['part_id']==$val['part_id'] AND $val['shift_date']==$d['date']) {
-                            $TCorrected = (int)$val['production']+(int)($val['corrections']);
-                            $qualityopportunity = $qualityopportunity +($part['part_price']*$val['rejections']);
-                            $NICT=0;
-                            $mnict = explode(".", $part['NICT']);
-                            if (sizeof($mnict)>1) {
-                                $NICT = (($mnict[0])+($mnict[1]/1000))/60;
-                            }else{
-                                $NICT = ($mnict[0]/60);
+                $AllTime=0;
+                foreach ($rawData['downtimeTime'] as $dayDown) {
+                    if ($dayDown['date'] == $d['date']) {
+                        foreach ($dayDown['data'] as $dd) {
+                            if ($dd['machine_id'] == $machine['Machine_ID']) {
+                                $AllTime = $dd['duration'];
                             }
-                            $NICTCorrectTPP = (($TCorrected*$NICT)+$NICTCorrectTPP);
-
-                            $MachinePLQDuration=$MachinePLQDuration+($NICT*$val['rejections']);
                         }
                     }
                 }
-                foreach ($machineDetails as $m) {
-                    if ($m['machine_id'] == $machine['Machine_ID']) {
-                        $machineRate = $m['rate_per_hour'];
-                        $machineName=$m['machine_name'];
+                if ($AllTime > 0) {
+                    foreach ($machineDetails as $m) {
+                        if ($m['machine_id'] == $machine['Machine_ID']) {
+                            $machineoffopportunity = $m['machine_offrate_per_hour']*($machine['Machine_OFF']/60);
+                            $plannedopportunity = $m['rate_per_hour']*($machine['Planned']/60);
+                            $unplannedopportunity = $m['rate_per_hour']*($machine['Unplanned']/60);
+
+                            $MachinePLBDuration=$MachinePLBDuration+$machine['Machine_OFF'];
+                            $MachinePLPDuration=$MachinePLPDuration+$machine['Planned'];
+                            $MachinePLUDuration=$MachinePLUDuration+$machine['Unplanned'];
+                        }
                     }
+                    foreach ($partDetails as $key => $part) {
+                        foreach ($res['production'] as $val) {
+                            if ($machine['Machine_ID']==$val['machine_id'] AND $part['part_id']==$val['part_id'] AND $val['shift_date']==$d['date']) {
+                                $TCorrected = (int)$val['production']+(int)($val['corrections']);
+                                $qualityopportunity = $qualityopportunity +($part['part_price']*$val['rejections']);
+                                $NICT=0;
+                                $mnict = explode(".", $part['NICT']);
+                                if (sizeof($mnict)>1) {
+                                    $NICT = (($mnict[0])+($mnict[1]/1000))/60;
+                                }else{
+                                    $NICT = ($mnict[0]/60);
+                                }
+                                $NICTCorrectTPP = (($TCorrected*$NICT)+$NICTCorrectTPP);
+
+                                $MachinePLQDuration=$MachinePLQDuration+($NICT*$val['rejections']);
+                            }
+                        }
+                    }
+                    foreach ($machineDetails as $m) {
+                        if ($m['machine_id'] == $machine['Machine_ID']) {
+                            $machineRate = $m['rate_per_hour'];
+                            $machineName=$m['machine_name'];
+                        }
+                    }
+
+                    $t=($AllTime-($machine['All']+$NICTCorrectTPP));
+                    $performance = ($t)/(60*$machineRate);
+                    if ($performance<0) {
+                        $performance=0;
+                    }
+                    $MachinePLPerDuration=$MachinePLPerDuration+$t;
+
+                    //Machine Wise P&L
+                    $MachinePLTotalTmp = floatval($machineoffopportunity)+floatval($plannedopportunity)+floatval($unplannedopportunity)+floatval($performance)+floatval($qualityopportunity);
+
+                    $GrantTotalPL = $GrantTotalPL+$MachinePLTotalTmp;
+                    $MachinePLB=$MachinePLB+ $machineoffopportunity;
+                    $MachinePLP=$MachinePLP+ $plannedopportunity;
+                    $MachinePLU=$MachinePLU+ $unplannedopportunity;
+                    $MachinePLPer=$MachinePLPer+ $performance;
+                    $MachinePLQ=$MachinePLQ+ $qualityopportunity;
+                    $MachinePLT=$MachinePLT+ $MachinePLTotalTmp;
                 }
-
-                $t=($AllTime-($machine['All']+$NICTCorrectTPP));
-                $performance = ($t)/(60*$machineRate);
-                if ($performance<0) {
-                    $performance=0;
-                }
-                $MachinePLPerDuration=$MachinePLPerDuration+$t;
-
-                //Machine Wise P&L
-                $MachinePLTotalTmp = floatval($machineoffopportunity)+floatval($plannedopportunity)+floatval($unplannedopportunity)+floatval($performance)+floatval($qualityopportunity);
-
-                $GrantTotalPL = $GrantTotalPL+$MachinePLTotalTmp;
-                $MachinePLB=$MachinePLB+ $machineoffopportunity;
-                $MachinePLP=$MachinePLP+ $plannedopportunity;
-                $MachinePLU=$MachinePLU+ $unplannedopportunity;
-                $MachinePLPer=$MachinePLPer+ $performance;
-                $MachinePLQ=$MachinePLQ+ $qualityopportunity;
-                $MachinePLT=$MachinePLT+ $MachinePLTotalTmp;
+                // array_push($Machine+$machineName);
             }
-            // array_push($Machine+$machineName);
+            $timestamp = strtotime($d['date']);
+            $m = date('m', $timestamp);
+            $y = date('Y', $timestamp);
+            $dd = date('d', $timestamp);
+
+            $date = $dd."-".$m;
+
+            $MachinePLTDuration= floatval($MachinePLBDuration)+floatval($MachinePLPDuration)+floatval($MachinePLUDuration)+floatval($MachinePLQDuration)+floatval($MachinePLPerDuration);
+
+            $tmp = array(
+                    "date"=>$date,
+                    "business"=>$MachinePLB,
+                    "planned"=>$MachinePLP,
+                    "unplanned"=>$MachinePLU,
+                    "performance"=>$MachinePLPer,
+                    "quality"=>$MachinePLQ,
+                    "total"=>$MachinePLT,
+                    "businessDuration"=>$MachinePLBDuration,
+                    "plannedDuration"=>$MachinePLPDuration,
+                    "unplannedDuration"=>$MachinePLUDuration,
+                    "performanceDuration"=>$MachinePLPerDuration,
+                    "qualityDuration"=>$MachinePLQDuration,
+                    "totalDuration"=>$MachinePLTDuration,
+
+                );
+
+            array_push($opportunityTrendDay,$tmp);
+
         }
-        $timestamp = strtotime($d['date']);
-        $m = date('m', $timestamp);
-        $y = date('Y', $timestamp);
-        $dd = date('d', $timestamp);
-
-        $date = $dd."-".$m;
-
-        $MachinePLTDuration= floatval($MachinePLBDuration)+floatval($MachinePLPDuration)+floatval($MachinePLUDuration)+floatval($MachinePLQDuration)+floatval($MachinePLPerDuration);
-
-        $tmp = array(
-                "date"=>$date,
-                "business"=>$MachinePLB,
-                "planned"=>$MachinePLP,
-                "unplanned"=>$MachinePLU,
-                "performance"=>$MachinePLPer,
-                "quality"=>$MachinePLQ,
-                "total"=>$MachinePLT,
-                "businessDuration"=>$MachinePLBDuration,
-                "plannedDuration"=>$MachinePLPDuration,
-                "unplannedDuration"=>$MachinePLUDuration,
-                "performanceDuration"=>$MachinePLPerDuration,
-                "qualityDuration"=>$MachinePLQDuration,
-                "totalDuration"=>$MachinePLTDuration,
-
-            );
-
-        array_push($opportunityTrendDay,$tmp);
-
-    }
         // echo "<pre>";
         // print_r($opportunityTrendDay);
         $out['data']=$opportunityTrendDay;
@@ -2258,7 +2258,7 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days,$noplan=false)
         array_push($downData,$tmp);
     }
         return $downData;
-    }
+}
 
     public function oeeTrendDay(){
         log_message("info","\n\n financial metrics oee drill down oee trend function calling !!");
