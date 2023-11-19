@@ -960,8 +960,8 @@ function overallTarget(f,t){
                 to:t
             },
             success:function(res){
-                // console.log("overall graph value");
-                // console.log(res);
+                console.log("overall graph value");
+                console.log(res);
                 resolve(res);
 
                 var teep_graph_width = parseInt(res.Overall_TEEP)>100? parseInt(133) : parseInt(res.Overall_TEEP);
