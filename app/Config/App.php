@@ -24,7 +24,7 @@ class App extends BaseConfig
      * @var string
      */
     //http://209.97.177.78/smart-oee/oee-module/
-    public $baseURL = 'http://localhost/oee-module_new/';
+    public $baseURL = 'http://localhost/oee-module/';
 
     /**
      * --------------------------------------------------------------------------
@@ -356,7 +356,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $CSRFTokenName = 'csrf_test_name';
+    public $CSRFTokenName = 'csrf_token_smartmach';
 
     /**
      * --------------------------------------------------------------------------
@@ -382,7 +382,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $CSRFCookieName = 'csrf_cookie_name';
+    public $CSRFCookieName = 'csrf_cookie_smartmach';
 
     /**
      * --------------------------------------------------------------------------
