@@ -216,7 +216,7 @@ class Work_Order_Management_controller extends BaseController{
                 if (in_array($value['priority_id'], $priority)) {
                     if (in_array($value['status_id'], $status)) {
                         if (in_array($value['assignee'], $assignee)) {
-                            if (in_array("Unlabeled",$lables)) {
+                            if (in_array("Blank",$lables)) {
                                 array_push($final_list, $value);
                             }else{
                                 $temp = explode(",", $value['lable_id']);

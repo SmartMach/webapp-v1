@@ -213,6 +213,12 @@
 	/******** GLOBAL VARIABLES FOR GRAPH SECTION END********/
 
 
+	/******** GLOBAL VARIABLES FOR ICONS********/
+
+
+	/******** GLOBAL VARIABLES FOR ICONS END********/
+
+
 
 	/* GLOBAL VARIABLES FOR OVERALL  HEADER  FILTER BUTTON CSS */
 		--overall_filter_header_btn_pd:5px 25px;
@@ -227,7 +233,10 @@
 		--overall_filter_header_div_ac:center;
 
 	/* GLOBAL VARIABLES FOR OVERALL HEADER FILTER BUTTON CSS */
-
+		--icon_height:1.2rem;
+		--icon_width:1.9rem;
+		--icon_padding_right:0.6rem;
+		--icon_color:#a6a6a6;
 
 	/* default font size as per the instruction */
 
