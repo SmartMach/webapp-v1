@@ -3883,13 +3883,13 @@ function getLableList(){
                 +'</div>'
             +'</div>');
 
-            // Default label --> Unlabeled
+            // Default label --> Unlabeled or Blank
             $('.Filter_lables_div').append('<div class="inbox inbox_filter_lables" style="display: flex;">'
                 +'<div style="float: left;width: 20%;" class="center-align">'
-                    +'<input class="filter_val_lables" name="filter_val_lables_name" value="Unlabeled" type="checkbox" checked/>'
+                    +'<input class="filter_val_lables" name="filter_val_lables_name" value="Blank" type="checkbox" checked/>'
                 +'</div>'
                 +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                    +'<p class="inbox-span paddingm">Unlabeled</p>'
+                    +'<p class="inbox-span paddingm">(Blank)</p>'
                 +'</div>'
             +'</div>');
 
