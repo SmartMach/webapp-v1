@@ -451,6 +451,13 @@ span{
 
 /* ALL OUTPUT MODULE`S HEADER FILTER BUTTON CSS */
 
+.icons_style{
+    width: var(--icon_width) !important;
+    height: var(--icon_height) !important;
+    padding-right: var(--icon_padding_right) !important;
+    color: var(--icon_color) !important;
+}
+
 /* no recordsa found css design */
 
 .no_record_css{
