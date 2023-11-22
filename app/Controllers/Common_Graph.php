@@ -354,7 +354,7 @@ class Common_Graph extends BaseController
         if ($graphRef == "Overall") {
             return $Overall;
         }
-}
+    }
 
 
     public function calculateOverallOEE($MachineWiseData){
@@ -655,7 +655,7 @@ class Common_Graph extends BaseController
         return $DowntimeTimeData;
     }
 
-
+    // 
     public function getDuration($f,$t){
         $from_time = strtotime($f); 
         $to_time = strtotime($t); 
@@ -741,7 +741,7 @@ class Common_Graph extends BaseController
             return $downData;
     }
 
-    
+    // 
 
 }
 
