@@ -120,7 +120,20 @@ class Financial_Metrics extends BaseController
                     }
                     else{
                         $s_time_range =  strtotime($value['calendar_date']." ".$value['start_time']);
-                        $e_time_range =  strtotime($value['calendar_date']." ".$value['end_time']);
+                        // $e_time_range =  strtotime($value['calendar_date']." ".$value['end_time']);
+                        $duration_min =0;
+                        $duration_sec =0;
+
+                        $tmp = explode(".", $value['split_duration']);
+                        if (sizeof($tmp) >1) {
+                            $duration_min = floatval($tmp[0]);
+                            $duration_sec = floatval($tmp[1]);
+                        }
+                        else{
+                            $duration_min = floatval($tmp[0]);
+                        }
+                        $duration = (int)(($duration_min*60) + ($duration_sec));
+                        $e_time_range = $s_time_range + $duration;
 
                         if ($s_time_range <= $s_time_range_limit && $e_time_range >= $s_time_range_limit) {
                             $output[$key]['start_time'] = $FromTime;
@@ -161,7 +174,20 @@ class Financial_Metrics extends BaseController
                 }
                 else{
                     $s_time_range =  strtotime($value['calendar_date']." ".$value['start_time']);
-                    $e_time_range =  strtotime($value['calendar_date']." ".$value['end_time']);
+                    // $e_time_range =  strtotime($value['calendar_date']." ".$value['end_time']);
+                    $duration_min =0;
+                    $duration_sec =0;
+
+                    $tmp = explode(".", $value['duration']);
+                    if (sizeof($tmp) >1) {
+                        $duration_min = floatval($tmp[0]);
+                        $duration_sec = floatval($tmp[1]);
+                    }
+                    else{
+                        $duration_min = floatval($tmp[0]);
+                    }
+                    $duration = (int)(($duration_min*60) + ($duration_sec));
+                    $e_time_range = $s_time_range + $duration;
 
                     if ($s_time_range <= $s_time_range_limit && $e_time_range >= $s_time_range_limit) {
                         $getAllTimeValues[$key]['start_time'] = $FromTime;
@@ -859,8 +885,8 @@ class Financial_Metrics extends BaseController
 
         $ref = "AvailabilityReasonWise";
 
-        // $fromTime = "2023-11-16T11:00:00";
-        // $toTime = "2023-11-22T10:00:00";
+        // $fromTime = "2022-12-18T09:00:00";
+        // $toTime = "2022-12-18T21:00:00";
 
         $fromTime = $this->request->getVar("from");
         $toTime = $this->request->getVar("to");
@@ -880,9 +906,6 @@ class Financial_Metrics extends BaseController
             //Raw data from Reason mapping Table...........
             $rawData = $this->getDataRaw($ref,$fromTime,$toTime);
 
-            // echo "<pre>";
-            // print_r($rawData);
-            // echo "</pre>";
             //Difference between two dates......
             $diff = abs(strtotime($toTime) - strtotime($fromTime));
             $AllTime = (int)($diff/60);
@@ -1014,8 +1037,7 @@ class Financial_Metrics extends BaseController
         log_message("info","\n\n financial oee drill down availability duration is :\t".$execution_time_logger_availability);
 
 
-        echo json_encode($out); 
-        
+        echo json_encode($out);   
     }
     public function selectionSortAvailability($arr, $n)
     {   
