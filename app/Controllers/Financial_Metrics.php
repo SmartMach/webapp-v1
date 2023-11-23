@@ -120,7 +120,20 @@ class Financial_Metrics extends BaseController
                     }
                     else{
                         $s_time_range =  strtotime($value['calendar_date']." ".$value['start_time']);
-                        $e_time_range =  strtotime($value['calendar_date']." ".$value['end_time']);
+                        // $e_time_range =  strtotime($value['calendar_date']." ".$value['end_time']);
+                        $duration_min =0;
+                        $duration_sec =0;
+
+                        $tmp = explode(".", $value['split_duration']);
+                        if (sizeof($tmp) >1) {
+                            $duration_min = floatval($tmp[0]);
+                            $duration_sec = floatval($tmp[1]);
+                        }
+                        else{
+                            $duration_min = floatval($tmp[0]);
+                        }
+                        $duration = (int)(($duration_min*60) + ($duration_sec));
+                        $e_time_range = $s_time_range + $duration;
 
                         if ($s_time_range <= $s_time_range_limit && $e_time_range >= $s_time_range_limit) {
                             $output[$key]['start_time'] = $FromTime;
@@ -161,7 +174,20 @@ class Financial_Metrics extends BaseController
                 }
                 else{
                     $s_time_range =  strtotime($value['calendar_date']." ".$value['start_time']);
-                    $e_time_range =  strtotime($value['calendar_date']." ".$value['end_time']);
+                    // $e_time_range =  strtotime($value['calendar_date']." ".$value['end_time']);
+                    $duration_min =0;
+                    $duration_sec =0;
+
+                    $tmp = explode(".", $value['duration']);
+                    if (sizeof($tmp) >1) {
+                        $duration_min = floatval($tmp[0]);
+                        $duration_sec = floatval($tmp[1]);
+                    }
+                    else{
+                        $duration_min = floatval($tmp[0]);
+                    }
+                    $duration = (int)(($duration_min*60) + ($duration_sec));
+                    $e_time_range = $s_time_range + $duration;
 
                     if ($s_time_range <= $s_time_range_limit && $e_time_range >= $s_time_range_limit) {
                         $getAllTimeValues[$key]['start_time'] = $FromTime;
