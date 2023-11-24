@@ -6,6 +6,7 @@ use App\Models\OEE_Drill_Down_Model;
 class OEE_Drill_Down_controller extends BaseController
 {   
     protected $graph_obj;
+    // constructor
     function __construct(){
         //parent::__construct();
         $this->session = \Config\Services::session();
@@ -15,7 +16,7 @@ class OEE_Drill_Down_controller extends BaseController
         // $this->Financial = new Financial_Model();
     } 
 
-
+    // overall oee teep and ooe  value getting 
     public function OverallOEETarget(){
         if ($this->request->isAJAX()) {
             log_message("info","\n\n oee drill down over all graph function calling !!");
@@ -24,24 +25,14 @@ class OEE_Drill_Down_controller extends BaseController
             $ref="Overall";
             $fromTime = $this->request->getVar("from");
             $toTime = $this->request->getVar("to");
-            // $fromTime = "2023-11-12T09:00:00";
-            // $toTime = "2023-11-18T08:00:00";
-
-          
-
-            // $start_time = microtime(true);
-            // $Overall = $this->getDataRaw($ref,$fromTime,$toTime);
+            // $fromTime = "2023-11-18T14:00:00";
+            // $toTime = "2023-11-24T13:00:00";
             $Overall = $this->graph_obj->getDataRaw($ref,$fromTime,$toTime);
-            // $end_time = microtime(true);
-            // $execution_time = ($end_time - $start_time);
-            // echo " Execution time of script = ".$execution_time." sec";
             $end_time_logger_overall_g = microtime(true);
             $execution_time_logger_overall_g = ($end_time_logger_overall_g - $start_time_logger_overall_g);
             log_message("info","oee drill down overall graph execution duration is :\t".$execution_time_logger_overall_g);
 
-
             echo json_encode($Overall);
-
             // echo "<pre>";
             // print_r($Overall);
            
@@ -49,6 +40,7 @@ class OEE_Drill_Down_controller extends BaseController
        
     }
 
+    // general settings get oee and teep and ooe target value
     public function getOverallTarget(){
         log_message("oee drill down graph overall graph function calling !!");
         $start_time_logger_oa = microtime(true);
@@ -252,7 +244,7 @@ class OEE_Drill_Down_controller extends BaseController
         
     }
 
-    
+    // oee trend graph filter and array arrange function
     public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days,$noplan=false,$filter_data)
     {
         $downData=[];
@@ -405,6 +397,7 @@ class OEE_Drill_Down_controller extends BaseController
         
     }
 
+    // machine wise oee sorting function
     public function selectionSortOEE($arr, $n)
     {
         // One by one move boundary of unsorted subarray
@@ -454,45 +447,45 @@ class OEE_Drill_Down_controller extends BaseController
         // $toTime="2023-03-03T11:00:00";
         
         // // Calculation for to find ALL time value
-            $tmpFromDate =explode("T", $fromTime);
-            $tmpToDate = explode("T", $toTime);
+        $tmpFromDate =explode("T", $fromTime);
+        $tmpToDate = explode("T", $toTime);
 
 
-            //Raw data from Reason mapping Table...........
-            $rawData = $this->graph_obj->getDataRaw($ref,$fromTime,$toTime);
+        //Raw data from Reason mapping Table...........
+        $rawData = $this->graph_obj->getDataRaw($ref,$fromTime,$toTime);
 
-            // machine wise records
-            $ref1 = "MachinewiseOEE"; 
-            $MachinewiseData = $this->graph_obj->getDataRaw($ref1,$fromTime,$toTime);
+        // machine wise records
+        $ref1 = "MachinewiseOEE"; 
+        $MachinewiseData = $this->graph_obj->getDataRaw($ref1,$fromTime,$toTime);
 
-            //Difference between two dates......
-            $diff = abs(strtotime($toTime) - strtotime($fromTime));
-            $AllTime = (int)($diff/60);
+        //Difference between two dates......
+        $diff = abs(strtotime($toTime) - strtotime($fromTime));
+        $AllTime = (int)($diff/60);
 
-            //time split for date+time seperated values
-            $tmpFrom = explode("T",$fromTime);
-            $tmpTo = explode("T",$toTime);
-            // temporary time......
-            $tempFrom = explode(":",$tmpFrom[1]);
-            $tempTo = explode(":",$tmpTo[1]);
-            //From date
-            $FromDate = $tmpFrom[0];
-            //milli seconds added ":00", because in real data milli seconds added
-            $FromTime = $tempFrom[0].":00".":00";
-            //Exact value
-            //$FromTime = $tmpFrom[1];
-            //To Date
-            $ToDate = $tmpTo[0];
-            //milli seconds added ":00"
-            $ToTime = $tempTo[0].":00".":00";
+        //time split for date+time seperated values
+        $tmpFrom = explode("T",$fromTime);
+        $tmpTo = explode("T",$toTime);
+        // temporary time......
+        $tempFrom = explode(":",$tmpFrom[1]);
+        $tempTo = explode(":",$tmpTo[1]);
+        //From date
+        $FromDate = $tmpFrom[0];
+        //milli seconds added ":00", because in real data milli seconds added
+        $FromTime = $tempFrom[0].":00".":00";
+        //Exact value
+        //$FromTime = $tmpFrom[1];
+        //To Date
+        $ToDate = $tmpTo[0];
+        //milli seconds added ":00"
+        $ToTime = $tempTo[0].":00".":00";
 
         //Machine Wise Calculated Data...........
-            //$MachinewiseData = $this->getDataRaw($ref);
+        //$MachinewiseData = $this->getDataRaw($ref);
         // Machine Name and ID Reference............
         $MachineName = $this->data->getMachineRecGraph();
         // Need not change, because machine id updated........
         // Machine Id Conversion as per the Machine data.......
-        // $MachineName = $this->convertMachineId($MachineName);
+
         // Downtime Reason.......
         $DowntimeReason = $this->data->downtimeReason();
 
@@ -609,7 +602,7 @@ class OEE_Drill_Down_controller extends BaseController
         return $out;  
     }
 
-
+    // availability opportunity graph for reason wise sorting function
     public function selectionSortAvailability($arr, $n)
     {   
         // One by one move boundary of unsorted subarray
@@ -666,7 +659,7 @@ class OEE_Drill_Down_controller extends BaseController
         return $arr;
     }
 
-
+    // machine wise availability graph for graph filter function
     public function getmachine_reason_availability(){
         if ($this->request->isAJAX()) {
             $fromTime = $this->request->getVar("from");
@@ -770,7 +763,7 @@ class OEE_Drill_Down_controller extends BaseController
 
         }
     }
-
+    // sub function for availability graph for graph filter function
     public function getoppcost_arr($rid,$res,$machine_arr){
         $temp_arr = [];
         foreach ($res['data'] as $key => $value) {
@@ -786,7 +779,7 @@ class OEE_Drill_Down_controller extends BaseController
 
         return $temp_arr;
     }
-
+    // sub function for availability graph for graph filter function 
     public function getduration_arr($rid,$res,$machine_arr){
 
         $tmpid_arr = [];
@@ -969,6 +962,7 @@ class OEE_Drill_Down_controller extends BaseController
         // print_r($out);
     }
 
+    // sorting function for  performance opportunity graph
     public function selectionSortQuality($arr, $n){
         //int i, j, min_idx;
       
@@ -1594,6 +1588,7 @@ class OEE_Drill_Down_controller extends BaseController
         return $temp_arr;
     }
 
+    // sub function for availability graph 
     public function getduration_arr_first_loader($rid,$res){
 
         $tmpid_arr = [];

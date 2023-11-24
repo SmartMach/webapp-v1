@@ -737,9 +737,9 @@ public function import_db($db_name){
      //$db_name = 'demo_db';
                  $site_creation = [
                     'DSN'      => '',
-                    'hostname' => env('database.default.hostname'),
-                    'username' => env('database.default.username'),
-                    'password' => env('database.default.password'),
+                    'hostname' => 'localhost',
+                    'username' => 'root',
+                    'password' => 'quantanics123',
                     'database' => ''.$db_name.'',
                     'DBDriver' => 'MySQLi',
                     'DBPrefix' => '',
