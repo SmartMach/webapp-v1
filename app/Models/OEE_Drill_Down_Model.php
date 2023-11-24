@@ -34,11 +34,12 @@ class OEE_Drill_Down_Model extends Model{
         ];
     }
 
+    // getdata raw function its using common function for all module model its adding shiftid,lastupdated_on lastupdated_by,notes
     public function getDataRaw($FromDate,$FromTime,$ToDate,$ToTime)
 	{
 	    $db = \Config\Database::connect($this->site_connection);
 	    $query = $db->table('pdm_downtime_reason_mapping as t');
-	    $query->select('t.machine_event_id,t.machine_id,t.downtime_reason_id,t.tool_id,t.part_id,t.shift_date,t.start_time,t.end_time,t.split_duration,t.calendar_date,r.downtime_category,r.downtime_reason');
+	    $query->select('t.machine_event_id,t.machine_id,t.downtime_reason_id,t.tool_id,t.part_id,t.shift_date,t.start_time,t.end_time,t.split_duration,t.calendar_date,r.downtime_category,r.downtime_reason,t.Shift_id,t.last_updated_on,t.notes,t.last_updated_by');
         $query->where('t.shift_date >=',$FromDate);
         $query->where('t.shift_date <=',$ToDate);
 	    $query->join('settings_downtime_reasons as r', 'r.downtime_reason_id = t.downtime_reason_id');
