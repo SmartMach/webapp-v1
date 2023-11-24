@@ -15,9 +15,9 @@ class OEE_Drill_Down_Model extends Model{
 
         $this->site_connection = [
             'DSN'      => '',
-            'hostname' => env('database.default.hostname'),
-            'username' => env('database.default.username'),
-            'password' => env('database.default.password'),
+            'hostname' => 'localhost',
+            'username' => 'root',
+            'password' => 'quantanics123',
             'database' => ''.$db_name.'',
             'DBDriver' => 'MySQLi',
             'DBPrefix' => '',
