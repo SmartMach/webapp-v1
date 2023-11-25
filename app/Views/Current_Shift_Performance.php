@@ -2455,6 +2455,8 @@ var part_name_tooltip = new Array();
                     filter:2,
                 },
                 success: function(res){
+                    console.log("oui screen availability performance quality oee");
+                    console.log(res);
                     resolve(res);
                     res['oee'].forEach(function(machine) {
                         if (machine['Machine_Id'] == machine_id) {

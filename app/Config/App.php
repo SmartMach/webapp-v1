@@ -24,7 +24,7 @@ class App extends BaseConfig
      * @var string
      */
     //http://209.97.177.78/smart-oee/oee-module/
-    public $baseURL = 'http://localhost/oee-module/';
+    public $baseURL = 'http://localhost/oee-module_new/';
 
     /**
      * --------------------------------------------------------------------------
@@ -342,7 +342,7 @@ class App extends BaseConfig
      * Array: ['10.0.1.200', '192.168.5.0/24']
      *
      * @var string|string[]
-     */
+    */
     public $proxyIPs = '';
 
     /**
@@ -355,7 +355,7 @@ class App extends BaseConfig
      * @deprecated Use `Config\Security` $tokenName property instead of using this property.
      *
      * @var string
-     */
+    */
     public $CSRFTokenName = 'csrf_token_smartmach';
 
     /**
