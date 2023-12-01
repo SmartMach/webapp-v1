@@ -236,7 +236,7 @@ span{
 
 .table_data_element{
 	font-size: var(--font_size_table_data) !important;
-	width: var(--width_table_data) !important;
+/*	width: var(--width_table_data) !important;*/
 	margin-bottom: var(--mr_botm_table_data) !important;
 }
 /*GLOBAL CLASS FOR TABLE TABLE DATA END*/ 
@@ -451,6 +451,13 @@ span{
 
 /* ALL OUTPUT MODULE`S HEADER FILTER BUTTON CSS */
 
+.icons_style{
+    width: var(--icon_width) !important;
+    height: var(--icon_height) !important;
+    padding-right: var(--icon_padding_right) !important;
+    color: var(--icon_color) !important;
+}
+
 /* no recordsa found css design */
 
 .no_record_css{
@@ -467,3 +474,13 @@ span{
 }
 
 /* no records found css design */
+
+/* alert management jira bugs as per the instruction madhan sir  */
+/* default font size for all module inputs getting */
+.default_font_size{
+    font-size: var(--default_font_size) !important;
+}
+/* deafult dropdown height */
+.default_input_height{
+    height: var(--default_input_height)!important;
+}

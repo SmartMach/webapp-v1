@@ -342,7 +342,7 @@ class App extends BaseConfig
      * Array: ['10.0.1.200', '192.168.5.0/24']
      *
      * @var string|string[]
-     */
+    */
     public $proxyIPs = '';
 
     /**
@@ -355,8 +355,8 @@ class App extends BaseConfig
      * @deprecated Use `Config\Security` $tokenName property instead of using this property.
      *
      * @var string
-     */
-    public $CSRFTokenName = 'csrf_test_name';
+    */
+    public $CSRFTokenName = 'csrf_token_smartmach';
 
     /**
      * --------------------------------------------------------------------------
@@ -382,7 +382,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $CSRFCookieName = 'csrf_cookie_name';
+    public $CSRFCookieName = 'csrf_cookie_smartmach';
 
     /**
      * --------------------------------------------------------------------------

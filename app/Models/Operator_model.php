@@ -19,7 +19,6 @@ class Operator_model extends Model{
                     'username' => 'root',
                     'password' => 'quantanics123',
                     'database' => ''.$db_name.'',
-                    // 'database' => 'S1002',
                     'DBDriver' => 'MySQLi',
                     'DBPrefix' => '',
                     'pConnect' => false,
@@ -205,7 +204,7 @@ class Operator_model extends Model{
         $query = $db->table('tool_changeover as p');
         $query->select('p.part_id,r.NICT,r.part_name');
         $query->where('p.id',$res[0]['tool_changeover_id']);
-        $query->limit(1);
+        // $query->limit(1);
         $query->join('settings_part_current as r', 'r.part_id = p.part_id');
         $result = $query->get()->getResultArray();
         return $result;
@@ -276,7 +275,7 @@ class Operator_model extends Model{
     }
 
     // oui screen production target value getting query strategy
-    public function getProductionTarget($shift_date,$machine_id){
+    public function getProductionTarget($shift_date){
         $db = \Config\Database::connect($this->site_creation);
         $sql = 'WITH ToolChangeoverData AS (
             SELECT 
@@ -301,7 +300,7 @@ class Operator_model extends Model{
             ON 
                 p.part_id = t.part_id
             WHERE
-                s.shift_date <= "'.$shift_date.'" AND s.machine_id="'.$machine_id.'"
+                s.shift_date <= "'.$shift_date.'"
             
         )
         SELECT

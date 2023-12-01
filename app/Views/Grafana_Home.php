@@ -526,7 +526,7 @@
                     <?php if ($this->data['access'][0]['work_order_management']  >=1) {?>
                     <li class="side-menu-li po_relative display_f justify_c align_c mr_right_side_nav">
                         <a href="<?php echo base_url('Home/load_option/Work_Order_Management'); ?>" class="po_relative side-menu-element none_dec display_b">
-                            <img src="<?php echo base_url()?>/assets/icons/nav_icon_issue.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-alert nav-icon nav-icon-hover" dvalue="Work">
+                            <img src="<?php echo base_url()?>/assets/icons/nav_icon_issue.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-work nav-icon nav-icon-hover" dvalue="Work">
                         </a>
                         <ul class="side-nav-hover-content po_absolute paddingm">
                             <nav class="hover_elem_height display_f align_c">
@@ -627,7 +627,6 @@
             else{
                 listIcons[i].style = "background-color:#005abc;color:white;font-size:29px;padding:9px;";
             }
-
             listIcons[i].setAttribute('src', '<?php echo base_url()?>/assets/icons/'+img_side_name+'.png?version=<?php echo rand() ; ?>');
         }
       }
@@ -657,6 +656,7 @@
 
             listSubMenu[i].style = "color:#005abc;font-weight:bold";
             subicon[i].style = "color:#005abc;font-weight:bold;padding-left:0px;fonst-size:1rem;";
+          
             subicon[i].setAttribute('src', '<?php echo base_url()?>/assets/icons/'+img_name+'.png?version=<?php echo rand() ; ?>');
             if (y == "Users") {
                 $('.site_based_header_visibility').css("display","none");   
@@ -848,6 +848,7 @@ $(document).ready(function(){
     var lname = "<?php echo $this->data['user_details'][0]['last_name'] ?>";
     var role = "<?php echo $this->data['user_details'][0]['role'] ?>";
 
+    var user_profile_color_code = "<?php echo $this->data['user_details'][0]['user_profile'] ?>";
 
     var first_letter = fname.charAt(0).toUpperCase();
     var last_letter = lname.charAt(0).toUpperCase();
@@ -862,8 +863,16 @@ $(document).ready(function(){
     $('#role_display').html(role);
 
     // info circle random colors circle colors alignment
-    var info_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
-    var random_info_color = info_color[Math.floor(Math.random()*info_color.length)];
+    var info_color = ["#005ABC"];
+    var random_info_color = "";
+    if (user_profile_color_code==="" || user_profile_color_code===null) {
+        // console.log("color code is not in db");
+        random_info_color = info_color[0];
+    }else{
+        // console.log("color code is in db");
+        random_info_color = user_profile_color_code;
+    }
+    // var random_info_color = info_color[Math.floor(Math.random()*info_color.length)];
     $('#info_circle_color').css("background-color",random_info_color);
     $('.circle_div').css("background-color",random_info_color);
     $('#get_text_info').html(first_letter+''+last_letter);

@@ -3,15 +3,19 @@
 namespace App\Controllers;
 use App\Models\Production_Downtime_Model;
 
+
 class Production_Downtime_controller extends BaseController{
 
 	protected $data;
     protected $pagination_value = 50;
+    protected $graph_demo;
+    // constructor
 	function __construct(){
 
 		$this->session = \Config\Services::session();
 
 		$this->data = new Production_Downtime_Model();
+        $this->graph_demo = new Common_Graph();
 	}
 
     // duration calculation function
@@ -25,126 +29,16 @@ class Production_Downtime_controller extends BaseController{
     }
 
 
-
-    // raw data main function
-    public function getDataRaw($fromTime=null,$toTime=null){
-        // Calculation for to find ALL time value
-        $tmpFromDate =explode("T", $fromTime);
-        $tmpToDate = explode("T", $toTime);
-
-        //Difference between two dates......
-        $diff = abs(strtotime($toTime) - strtotime($fromTime)); 
-        $AllTime = 0;   
-
-        //time split for date+time seperated values
-        $tmpFrom = explode("T",$fromTime);
-        $tmpTo = explode("T",$toTime);
-        // temporary time......
-        $tempFrom = explode(":",$tmpFrom[1]);
-        $tempTo = explode(":",$tmpTo[1]);
-
-        //From date
-        $FromDate = $tmpFrom[0];
-        //milli seconds added ":00", because in real data milli seconds added
-        $FromTime = $tempFrom[0].":00".":00";
-        //To Date
-        $ToDate = $tmpTo[0];
-        $ToTime = $tempTo[0].":00".":00";
-
-        // // Data from reason mapping table...........
-        $output = $this->data->getDataRaw($FromDate,$FromTime,$ToDate,$ToTime);
-    
-        // Data from PDM Events table for find the All Time Duration...........
-        $getAllTimeValues = $this->data->getDataRawAll($FromDate,$ToDate);
-
-        // return $getAllTimeValues;
-
-        $getOfflineId = $this->data->getOfflineEventId($FromDate,$FromTime,$ToDate,$ToTime);
-
-        // Get the Machine Record.............
-        $machine = $this->data->getMachineRecActive($FromDate,$ToDate);
-
-        //Part list Details from Production Info Table between the given from and To durations......
-        $part = $this->data->getPartRec($FromDate,$ToDate);
-
-        //Production Data for PDM_Production_Info Table......
-        $production = $this->data->getProductionRec($FromDate,$ToDate);
-
-        // Get the Inactive(Current) Data.............
-        $getInactiveMachine = $this->data->getInactiveMachineData();
-
-        // return $getInactiveMachine;
-        // Date Filte for PDM Reason Mapping Data........
-        $len_id = sizeof($getOfflineId);
-        $s_time_range_limit =  strtotime($FromDate." ".$FromTime);
-        $e_time_range_limit =  strtotime($ToDate." ".$ToTime);
-
-        foreach ($output as $key => $value) {
-            $check_no = 0;
-            for($i=0;$i<$len_id;$i++){
-                if ($getOfflineId[$i]['machine_event_id'] == $value['machine_event_id']) {
-                    unset($output[$key]);
-                    $check_no = 1;
-                    break;
-                }
-            }
-            if($check_no == 0){
-                if ($value['split_duration']<0) {
-                    unset($output[$key]);
-                }
-                else{
-                    $s_time_range =  strtotime($value['calendar_date']." ".$value['start_time']);
-                    $e_time_range =  strtotime($value['calendar_date']." ".$value['end_time']);
-
-                    if ($s_time_range <= $s_time_range_limit && $e_time_range >= $s_time_range_limit) {
-                        $output[$key]['start_time'] = $FromTime;
-                        if ($e_time_range >= $e_time_range_limit) {
-                            $output[$key]['end_time'] = $ToTime;
-                        }
-                        $output[$key]['split_duration'] = $this->getDuration($value['calendar_date']." ".$output[$key]['start_time'],$value['calendar_date']." ".$output[$key]['end_time']);
-                    }
-                    else if ($s_time_range < $e_time_range_limit && $e_time_range > $e_time_range_limit) {
-                        $output[$key]['end_time'] = $ToTime;
-                        $output[$key]['split_duration'] = $this->getDuration($value['calendar_date']." ".$output[$key]['start_time'],$value['calendar_date']." ".$output[$key]['end_time']);
-                    }
-                    else{
-                        if ($e_time_range <= $s_time_range_limit){
-                            unset($output[$key]);
-                        }
-                        if ($s_time_range >= $e_time_range_limit){
-                            unset($output[$key]);
-                        }
-                    }
-
-                    //For remove the current data of inactive machines.........
-                    foreach ($getInactiveMachine as $v) {
-                        $t = explode(" ", $v['max(r.last_updated_on)']);
-                        $start_time_range =  strtotime($v['max(r.last_updated_on)']);
-                        if ($s_time_range_limit > $start_time_range && $value['machine_id'] == $v['machine_id']){
-                            unset($output[$key]);
-                        }
-                    }
-                }
-            }
-        }
-
-
-        // if ($graphRef  == "AvailabilityReasonWise") {
-        //     return $output;
-        // }
-
-        return $output;
-    }
-
+    // main fucntion for all production downtime graph
     public function getAvailabilityReasonWise($fromTime,$toTime){
         // public function getAvailabilityReasonWise(){
-        // $ref = "AvailabilityReasonWise";
+        $ref = "AvailabilityReasonWise";
 
         // $fromTime = $this->request->getVar("from");
         // $toTime = $this->request->getVar("to");
 
-        // $fromTime = "2023-02-14T10:00:00";
-        // $toTime = "2023-02-20T10:00:00";
+        // $fromTime = "2023-11-16T11:00:00";
+        // $toTime = "2023-11-22T10:00:00";
 
         // // Calculation for to find ALL time value
         $tmpFromDate =explode("T", $fromTime);
@@ -152,11 +46,11 @@ class Production_Downtime_controller extends BaseController{
 
 
         //Raw data from Reason mapping Table...........
-        $rawData = $this->getDataRaw($fromTime,$toTime);
+        $rawData = $this->graph_demo->getDataRaw($ref,$fromTime,$toTime);
 
         // return $rawData;
         // echo "<pre>";
-        // print_r($fromTime);
+        // print_r($rawData);
         // echo "</pre>";
 
         //Difference between two dates......
@@ -392,24 +286,7 @@ class Production_Downtime_controller extends BaseController{
             //array_push($reason_id_arr,$reason_arr);
         }
 
-       /*
-        $opporuntiy_cost_reason_arr = [];
-       
-        foreach ($result['reason'] as $key => $value) {
-            $tmp['downtime_reason_id'] = $value['downtime_reason_id'];
-            $tmp['downtime_reason'] = $value['downtime_reason'];
-            $tmp['downtime_category'] = $value['downtime_category'];
-            $tmp['opportunity_cost'] = $result['total'][$key];
-            $tmp['duration'] = $result['totalDuration'][$key];
-            $tmp['machine_id'] = $value['machine_id'];
-            array_push($opporuntiy_cost_reason_arr,$tmp);  
-        }
-       
-
-        $final_arr['graph'] = $opporuntiy_cost_reason_arr;
-        $final_arr['grandTotal'] = $result['grandTotal'];
-        $final_arr['total_duration'] = array_sum($result['totalDuration']);
-        */
+      
         // echo "<pre>";
         // print_r($result);
         // echo json_encode($final_arr);
@@ -449,186 +326,6 @@ class Production_Downtime_controller extends BaseController{
         $final_arr['total_duration'] = array_sum($result['totalDuration']);
         return $final_arr;
     }
-
-    // machine wise opportunity cost
-    /* tempoary
-    public function getMachine_wise_opporuntiy_cost(){
-        // $fromdate = "2023-02-10T10:00:00";
-        // $todate = "2023-02-20T10:00:00";
-        $fromdate = $this->request->getVar('from');
-        $todate = $this->request->getVar('to');
-        $result = $this->getAvailabilityReasonWise($fromdate,$todate);
-
-       
-        $machine_wise_arr = [];
-        foreach ($result['data'] as $key => $value) {
-            $machine_arr=[];
-            $duration = 0;
-            $oppcost = 0;
-            foreach ($value as $k1 => $v1) {
-                $oppcost = $oppcost+$v1['oppCost'];
-                $duration = $duration+$v1['duration'];
-            }
-            $tmp['machine_id'] = $value[0]['machine_id'];
-            $tmp['machine_name'] = $value[0]['machine_name'];
-            $tmp['oppcost'] = $oppcost;
-            // $tmp['duration'] = $duration;
-
-            array_push($machine_wise_arr,$tmp);
-        }
-
-        // echo "<pre>";
-        // print_r($result);
-        // echo "</pre>";
-        // echo "<br>";
-        $final_arr['graph'] = $machine_wise_arr;
-        $final_arr['grant_total'] = $result['grandTotal'];
-        // echo "machine wise opportunity cost";
-        // echo "<pre>";
-        // print_r($final_arr);
-        // echo "</pre>";
-        echo json_encode($final_arr);
-    }
-    
-
-
-    // get stacked bar graph this function also temporary hide because the reason for graph filter
-    public function getmachine_reason_duration(){
-        // echo "get Downtime duration machine with reasons";
-        // $fromdate = "2023-01-10T10:00:00";
-        // $todate = "2023-01-10T10:00:00";
-        $fromdate = $this->request->getVar('from');
-        $todate = $this->request->getVar('to');
-        $result = $this->getAvailabilityReasonWise($fromdate,$todate);
-
-        $farr = [];
-        foreach ($result['data'] as $key => $value) {
-            $machine_arr = [];
-            $machine_arr['machine_id'] = $value[0]['machine_id'];
-            $machine_arr['machine_name'] = $value[0]['machine_name'];
-            $tmp_reason = [];
-            $tmp_duration = [];
-            $tmp_reason_id = [];
-            $tmp_total = 0;
-            foreach ($value as $k1 => $v1) {       
-                array_push($tmp_duration,$v1['duration']);
-                array_push($tmp_reason,$v1['reason']);
-                array_push($tmp_reason_id,$v1['reason_id']);
-            }
-            $machine_arr['reason_id'] = $tmp_reason_id;
-            $machine_arr['reason_name']  = $tmp_reason;
-            $machine_arr['total'] = array_sum($tmp_duration);
-            $machine_arr['reason_duration'] = $tmp_duration;
-            array_push($farr,$machine_arr);
-        }
-
-        $out=[];
-        $out['reason']=$result['reason'];
-        $out['data']=$farr;
-        $out['total_duration'] = array_sum($result['totalDuration']);
-        echo json_encode($out);
-    }
-    */
-
-    // get tableview records
-    public function get_table_view($fromdate,$todate){
-        // $fromdate = "2023-02-14T10:00:00";
-        // $todate = "2023-02-20T10:00:00";
-        $from_date = explode("T",$fromdate);
-        $to_date = explode("T",$todate);
-        // $result = $this->data->getpdmreason_data($from_date[0],$to_date[0]);
-        $result = $this->getDataRaw($fromdate,$todate);
-        
-        // echo "<pre>";
-        // print_r($result);
-        // echo "</pre>";
-        // return $result;
-        $machine_data = $this->data->getmachine_name();
-        $part_arr = $this->data->getpart_arr();
-        $getuser_arr = $this->data->getuser_data($this->session->get('active_site'));
-        // $getpart_data = $this->data->getpart_data();
-
-        $demo_arr = [];
-        foreach ($result as $key => $value) {
-            // $result[$key]['machine_name'] = $machine_data[$value['machine_id']];
-            // $result[$key]['tool_name'] = $part_arr['tool'][$value['tool_id']];
-            $part_demo_arr = explode(",",$value['part_id']);
-            foreach ($part_demo_arr as $k1 => $v1) {
-                $temp['machine_event_id'] = $value['machine_event_id'];
-                $temp['machine_id'] = $value['machine_id'];
-                $temp['shift_date'] = $value['shift_date'];
-                $temp['Shift_id'] = $value['Shift_id'];
-                $temp['downtime_reason_id'] = $value['downtime_reason_id'];
-                $temp['split_duration'] = $value['split_duration'];
-                $temp['tool_id'] = $value['tool_id'];
-                $temp['part_id'] = $v1;
-                $temp['notes'] = $value['notes'];
-                if ($getuser_arr[$value['last_updated_by']]) {
-                    // echo "not ok";
-                    $temp['last_updated_by'] =  $getuser_arr[$value['last_updated_by']];
-                }else{
-                    $temp['last_updated_by'] =  " ";
-                }
-               
-                $temp['last_updated_on'] = $value['last_updated_on'];
-                $temp['downtime_category'] = $value['downtime_category'];
-                $temp['downtime_reason'] = $value['downtime_reason'];
-                $temp['machine_name'] = $machine_data[$value['machine_id']];
-                $temp['part_name'] = $part_arr['part'][$v1];
-                $temp['tool_name'] = $part_arr['tool'][$value['tool_id']];
-
-                array_push($demo_arr,$temp);
-            }
-
-        }
-        return $demo_arr;
-      
-    }
-
-
-    // first visible 0 to 49 records
-    public function gettable_data(){
-
-        // $from_date = "2023-02-12T09:00:00";
-        // $to_date = "2023-02-20T08:00:00";
-        $from_date = $this->request->getVar('from');
-        $to_date = $this->request->getVar('to');
-        // $from_arr = explode("T",$from_date);
-        // $to_arr = explode("T",$to_date);
-        $res = $this->get_table_view($from_date,$to_date);
-
-
-
-        // echo "data filtering records";
-        $final['total'] = count($res);
-        $final['data'] = $res;
-        // echo "<pre>";
-        // print_r($final);
-        // echo "</pre>";
-       
-        // return $final;
-        echo json_encode($final);
-
-    }
-
-
-
-
-
- 
-
-    // category based reason 
-    public function category_based_reason(){
-        if ($this->request->isAJAX()) {
-            $category = $this->request->getVar('category_temp');
-            $res = $this->data->getcategory_based_record($category);
-            echo json_encode($res);
-        }
-    }
-
-
-    
-
 
     // filter records getting
     public function filter_records(){
@@ -696,342 +393,13 @@ class Production_Downtime_controller extends BaseController{
 
 
             echo  json_encode($final1);
-            /*
-            if (($machine_arr==null)&&($machine_arr=="")) {
-                if (($part_arr==null) && ($part_arr=="")) {
-                    if (($reason_arr==null)&&($reason_arr=="")) {
-                        if (($category_arr==null)&&($category_arr=="")) {
-                            if (($created_by_arr==null) && ($created_by_arr=="")) {
-                                // echo json_encode("all fields are empty start time end time work");
-                                $res = $this->get_table_view($from_date,$to_date);
-                                $final['total'] = count($res);
-                                $final['data'] = $res;
-                                echo json_encode($final);
-
-
-                            }else{
-                                // echo json_encode($temp); // getdata_time_filter
-                                $name = "created_by";
-                                $result = $this->data->single_arr_filter($fdate[0],$tdate[0],$created_by_arr,$name);
-                                $final_res = $this->getdata_time_filter($from_date,$to_date,$result);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo  json_encode($final);
-                            }
-                        }else{
-                            // return "created by array and category array";
-                            if (($created_by_arr==null)&&($created_by_arr=="")) {
-                                $name="category";
-                                $result = $this->data->single_arr_filter($fdate[0],$tdate[0],$category_arr,$name);
-                                $final_res1 = $this->getdata_time_filter($from_date,$to_date,$result);
-                                $final1['total'] = count($final_res1);
-                                $final1['data'] = $final_res1;
-                                echo  json_encode($final1);
-
-                            }else{
-                                //echo json_encode("created by array and category array");
-                                $name = "created_category";
-                                $res = $this->data->two_arr_filter($fdate[0],$tdate[0],$created_by_arr,$category_arr,$name);
-                                $final_res = $this->getdata_time_filter($from_date,$to_date,$res);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo json_encode($final);
-                            }
-                        }
-                    }else{
-                        //return "reason array and category array and created by array";
-                        if (($category_arr==null)&&($category_arr=="")) {
-                            if (($created_by_arr==null) && ($created_by_arr=="")) {
-                                // echo json_encode("reason array only");
-                                $name="reasons";
-                                $result = $this->data->single_arr_filter($fdate[0],$tdate[0],$reason_arr,$name);
-                                $final_res1 = $this->getdata_time_filter($from_date,$to_date,$result);
-                                $final1['total'] = count($final_res1);
-                                $final1['data'] = $final_res1;
-                                echo  json_encode($final1);
-
-                            }else{
-
-                                $name = "reason_created";
-                                $res = $this->data->two_arr_filter($fdate[0],$tdate[0],$reason_arr,$created_by_arr,$name);
-                                $final_res = $this->getdata_time_filter($from_date,$to_date,$res);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo json_encode($final);
-                                //echo json_encode("reason array and created by array ");
-                            }
-                        }else{
-                            if (($created_by_arr==null) && ($created_by_arr=="")) {
-                                $name = "reason_category";
-                                $res = $this->data->two_arr_filter($fdate[0],$tdate[0],$reason_arr,$category_arr,$name);
-                                $final_res = $this->getdata_time_filter($from_date,$to_date,$res);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo json_encode($final);
-                                //echo json_encode("reason array category array");
-                            }else{
-                                //echo json_encode("reason array and category and  created by array ");
-                                $name="reason_category_created";
-                                $res = $this->data->three_arr_filter($fdate[0],$tdate[0],$reason_arr,$category_arr,$created_by_arr,$name);
-                                $final_res = $this->getdata_time_filter($from_date,$to_date,$res);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo json_encode($final);
-                            }
-                        }
-                    }
-                }else{
-                    if (($reason_arr==null)&&($reason_arr=="")) {
-                        if (($category_arr==null)&&($category_arr=="")) {
-                            if (($created_by_arr==null) && ($created_by_arr=="")) {
-                                // echo json_encode("parts array only");
-                                $res = $this->getpart_based_filter($part_arr,$from_date,$to_date);
-                                $final['total'] = count($res);
-                                $final['data'] = $res;
-                                echo json_encode($final);
-                                
-                            }else{
-                                $name="created_by";
-                                $result = $this->data->single_arr_filter($fdate[0],$tdate[0],$created_by_arr,$name);
-                                $final_res = $this->getdata_time_part_filter($from_date,$to_date,$result,$part_arr);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo  json_encode($final);
-                                //echo  json_encode("parts array and created by array");
-                            }
-                        }else{
-                            if (($created_by_arr==null) && ($created_by_arr=="")) {
-                                $name="category";
-                                $result = $this->data->single_arr_filter($fdate[0],$tdate[0],$category_arr,$name);
-                                $final_res = $this->getdata_time_part_filter($from_date,$to_date,$result,$part_arr);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo  json_encode($final);
-                                // echo json_encode("parts array and category array");
-                            }else{
-
-                                $name = "created_category";
-                                $res = $this->data->two_arr_filter($fdate[0],$tdate[0],$created_by_arr,$category_arr,$name);
-                                $final_res = $this->getdata_time_part_filter($from_date,$to_date,$res,$part_arr);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo json_encode($final);
-                                //echo  json_encode("parts array and category array and created by array");
-                            }
-                        }
-                    }else{
-                        if (($category_arr==null)&&($category_arr=="")) {
-                            if (($created_by_arr==null) && ($created_by_arr=="")) {
-                                $name="reasons";
-                                $result = $this->data->single_arr_filter($fdate[0],$tdate[0],$reason_arr,$name);
-                                $final_res = $this->getdata_time_part_filter($from_date,$to_date,$result,$part_arr);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo  json_encode($final);
-                                //echo json_encode("parts array and reason array");
-                            }else{
-                                $name = "reason_created";
-                                $res = $this->data->two_arr_filter($fdate[0],$tdate[0],$reason_arr,$created_by_arr,$name);
-                                $final_res = $this->getdata_time_part_filter($from_date,$to_date,$res,$part_arr);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo json_encode($final);
-                                // echo  json_encode("parts array and reason array created by array");
-                            }
-                        }else{
-                            if (($created_by_arr==null) && ($created_by_arr=="")) {
-                                $name = "reason_category";
-                                $res = $this->data->two_arr_filter($fdate[0],$tdate[0],$reason_arr,$category_arr,$name);
-                                $final_res = $this->getdata_time_part_filter($from_date,$to_date,$res,$part_arr);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo json_encode($final);
-                                //echo json_encode("parts array and reason array and category array");
-                            }else{
-                                $name="reason_category_created";
-                                $res = $this->data->three_arr_filter($fdate[0],$tdate[0],$reason_arr,$category_arr,$created_by_arr,$name);
-                                $final_res = $this->getdata_time_part_filter($from_date,$to_date,$res,$part_arr);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo json_encode($final);
-                                //echo  json_encode("parts array and reason array and category array and created by array");
-                            }
-                        }
-                    }
-                }
-            }else{
-                //return "all fields are filling";
-                if (($part_arr==null) && ($part_arr=="")) {
-                    if (($reason_arr==null)&&($reason_arr=="")) {
-                        if (($category_arr==null)&&($category_arr=="")) {
-                            if (($created_by_arr==null) && ($created_by_arr=="")) {
-                                // echo json_encode("Machine array only");
-                                $name="machine";
-                                $result = $this->data->single_arr_filter($fdate[0],$tdate[0],$machine_arr,$name);
-                                $final_res1 = $this->getdata_time_filter($from_date,$to_date,$result);
-                                $final1['total'] = count($final_res1);
-                                $final1['data'] = $final_res1;
-                                echo  json_encode($final1);
-                                
-                            }else{
-                                $name = "machine_created";
-                                $res = $this->data->two_arr_filter($fdate[0],$tdate[0],$machine_arr,$created_by_arr,$name);
-                                $final_res = $this->getdata_time_filter($from_date,$to_date,$res);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo json_encode($final);
-                                // echo json_encode(" machine array and created by array");
-                            }
-                        }else{
-                            // return "created by array and category array";
-                            if (($created_by_arr==null)&&($created_by_arr=="")) {
-                                $name = "machine_category";
-                                $res = $this->data->two_arr_filter($fdate[0],$tdate[0],$machine_arr,$category_arr,$name);
-                                $final_res = $this->getdata_time_filter($from_date,$to_date,$res);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo json_encode($final);
-                                //echo  json_encode(" machine array and category by array");
-                            }else{
-                                $name="machine_created_category";
-                                $res = $this->data->three_arr_filter($fdate[0],$tdate[0],$machine_arr,$created_by_arr,$category_arr,$name);
-                                $final_res = $this->getdata_time_filter($from_date,$to_date,$res);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo json_encode($final);
-                                //echo json_encode(" machine array and  created by array and category array");
-                            }
-                        }
-                    }else{
-                        //return "reason array and category array and created by array";
-                        if (($category_arr==null)&&($category_arr=="")) {
-                            if (($created_by_arr==null) && ($created_by_arr=="")) {
-                                $name = "machine_reason";
-                                $res = $this->data->two_arr_filter($fdate[0],$tdate[0],$machine_arr,$reason_arr,$name);
-                                $final_res = $this->getdata_time_filter($from_date,$to_date,$res);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo json_encode($final);
-                                // echo json_encode("machine array and reason array");
-                            }else{
-                                $name="machine_reason_created";
-                                $res = $this->data->three_arr_filter($fdate[0],$tdate[0],$machine_arr,$reason_arr,$created_by_arr,$name);
-                                $final_res = $this->getdata_time_filter($from_date,$to_date,$res);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo json_encode($final);
-                                // echo json_encode("machine array and reason array and created by array ");
-                            }
-                        }else{
-                            if (($created_by_arr==null) && ($created_by_arr=="")) {
-                                $name="machine_reason_category";
-                                $res = $this->data->three_arr_filter($fdate[0],$tdate[0],$machine_arr,$reason_arr,$category_arr,$name);
-                                $final_res = $this->getdata_time_filter($from_date,$to_date,$res);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo json_encode($final);
-                                //echo json_encode("machine array and reason array category array");
-
-                            }else{
-                                $name = "machine_reason_category_created";
-                                $res = $this->data->four_arr_filter($fdate[0],$tdate[0],$machine_arr,$reason_arr,$category_arr,$created_by_arr,$name);
-                                $final_res = $this->getdata_time_filter($from_date,$to_date,$res);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo json_encode($final);
-                               // echo json_encode("machine array and reason array and category and  created by array ");
-                            }
-                        }
-                    }
-                }else{
-                    if (($reason_arr==null)&&($reason_arr=="")) {
-                        if (($category_arr==null)&&($category_arr=="")) {
-                            if (($created_by_arr==null) && ($created_by_arr=="")) {
-                                //echo json_encode("machine array and parts array");
-                                $name="machine";
-                                $result = $this->data->single_arr_filter($fdate[0],$tdate[0],$machine_arr,$name);
-                                $final_res = $this->getdata_time_part_filter($from_date,$to_date,$result,$part_arr);
-                                $final1['total'] = count($final_res);
-                                $final1['data'] = $final_res;
-                                echo  json_encode($final1);
-                            }else{
-                                $name = "machine_created";
-                                $res = $this->data->two_arr_filter($fdate[0],$tdate[0],$machine_arr,$created_by_arr,$name);
-                                $final_res = $this->getdata_time_part_filter($from_date,$to_date,$res,$part_arr);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo json_encode($final);
-                                // echo  json_encode("machine array and parts array and created by array");
-                            }
-                        }else{
-                            if (($created_by_arr==null) && ($created_by_arr=="")) {
-                                $name = "machine_category";
-                                $res = $this->data->two_arr_filter($fdate[0],$tdate[0],$machine_arr,$category_arr,$name);
-                                $final_res = $this->getdata_time_part_filter($from_date,$to_date,$res,$part_arr);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo json_encode($final);
-                                // echo json_encode("machine array and  parts array and category array");
-                            }else{
-                                $name="machine_created_category";
-                                $res = $this->data->three_arr_filter($fdate[0],$tdate[0],$machine_arr,$created_by_arr,$category_arr,$name);
-                                $final_res = $this->getdata_time_part_filter($from_date,$to_date,$res,$part_arr);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo json_encode($final);
-                                //echo  json_encode("machine array and  parts array and category array and created by array");
-                            }
-                        }
-                    }else{
-                        if (($category_arr==null)&&($category_arr=="")) {
-                            if (($created_by_arr==null) && ($created_by_arr=="")) {
-                                $name = "machine_reason";
-                                $res = $this->data->two_arr_filter($fdate[0],$tdate[0],$machine_arr,$reason_arr,$name);
-                                $final_res = $this->getdata_time_part_filter($from_date,$to_date,$res,$part_arr);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo json_encode($final);
-                                // echo json_encode("machine array and parts array and reason array");
-                            }else{
-                                $name="machine_reason_created";
-                                $res = $this->data->three_arr_filter($fdate[0],$tdate[0],$machine_arr,$reason_arr,$created_by_arr,$name);
-                                $final_res = $this->getdata_time_part_filter($from_date,$to_date,$res,$part_arr);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo json_encode($final);
-                               // echo  json_encode("machine array and  parts array and reason array created by array");
-                            }
-                        }else{
-                            if (($created_by_arr==null) && ($created_by_arr=="")) {
-                                $name="machine_reason_category";
-                                $res = $this->data->three_arr_filter($fdate[0],$tdate[0],$machine_arr,$reason_arr,$category_arr,$name);
-                                $final_res = $this->getdata_time_part_filter($from_date,$to_date,$res,$part_arr);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo json_encode($final);
-                                //echo json_encode("machine array and parts array and reason array and category array");
-                            }else{
-                                $name = "machine_reason_category_created";
-                                $res = $this->data->four_arr_filter($fdate[0],$tdate[0],$machine_arr,$reason_arr,$category_arr,$created_by_arr,$name);
-                                $final_res = $this->getdata_time_part_filter($from_date,$to_date,$res,$part_arr);
-                                $final['total'] = count($final_res);
-                                $final['data'] = $final_res;
-                                echo json_encode($final);
-                               // echo  json_encode("machine array and parts array and reason array and category array and created by array");
-                            }
-                        }
-                    }
-                }
-            }
-
-            */
+            
             // $res = $this->data->filter_records($temp);
             // echo json_encode($res);
         }
     }
 
-  
-    // time filter record
+    // time filter record for the table records
     public function getdata_time_filter($fromTime,$toTime,$res){
         // Calculation for to find ALL time value
         $tmpFromDate =explode("T", $fromTime);
@@ -1187,40 +555,6 @@ class Production_Downtime_controller extends BaseController{
         return $demo_arr;
     }
 
-
-    // part based filtering
-    public function getpart_based_filter($part_arr,$from_date,$to_date){
-        $res = $this->getDataRaw($from_date,$to_date);
-        $final = $this->records_arrangement($res);
-        $demo_arr = [];
-        foreach ($part_arr as $key => $value) {
-            foreach ($final as $k1 => $val) {
-                if ($value===$val['part_id']) {
-                    array_push($demo_arr,$final[$k1]);
-                }
-            }
-        }
-
-        return $demo_arr;
-    }
-
-    // part based filter double array
-    public function getdata_time_part_filter($fdate,$tdate,$res,$part_arr){
-        $final = $this->getdata_time_filter($fdate,$tdate,$res);
-        $demo_arr = [];
-        foreach ($part_arr as $key => $value) {
-            foreach ($final as $k1 => $val) {
-                if ($value===$val['part_id']) {
-                    array_push($demo_arr,$final[$k1]);
-                }
-            }
-        }
-
-        return $demo_arr;
-
-    }
-
-
     // // graph filte reason wise opportunity cost
     public function graph_filter_reason_wise_oppcost(){
         if ($this->request->isAJAX()) {
@@ -1272,6 +606,7 @@ class Production_Downtime_controller extends BaseController{
         }
     }
 
+    // cost based graph sorting
     public function cost_based_sorting($arr){
         for($i=0;$i<count($arr['graph']);$i++){
             $min_index = $i;
@@ -1346,6 +681,7 @@ class Production_Downtime_controller extends BaseController{
         }
     }
 
+    // duration based graph sorting
     public function sort_duration_based($arr){
         for($i=0;$i<count($arr['graph']);$i++){
             $min_index = $i;
@@ -1370,7 +706,7 @@ class Production_Downtime_controller extends BaseController{
     }
 
         
-    // machine wise oppcost
+    // machine wise opportunity cost graph filter
     public function filter_machine_wise_oppcost(){
        if ($this->request->isAJAX()) {
             
@@ -1432,6 +768,7 @@ class Production_Downtime_controller extends BaseController{
         }
     }
 
+    // machin wise opportunity cost 
     public function machine_wise_oppcost_sort($arr){
         for($i=0;$i<count($arr['graph']);$i++){
             $min_index = $i;
@@ -1454,7 +791,7 @@ class Production_Downtime_controller extends BaseController{
         return $arr;
     }
 
-    // machine and reason wise duration
+    // machine and reason wise duration graph filter fucntion
     public function filter_machine_reason_duration(){
         if ($this->request->isAJAX()) {
             $reason_arr = $this->request->getVar('reason_arr');
@@ -1528,13 +865,13 @@ class Production_Downtime_controller extends BaseController{
             // echo json_encode($temp);
         }
     }
-
+    // machine and reason wise duration sorting
     public function getmachine_reason_sorting($arr){
         for($i=0;$i<count($arr['data']);$i++){
             $min_index = $i;
            
             for ($j=$i+1; $j<count($arr['data']); $j++) { 
-                if ($arr['data'][$j]['total']>$arr['graph'][$i]['total']) {
+                if ($arr['data'][$j]['total']>$arr['data'][$i]['total']) {
                    
                     // $temp = $arr['graph'][$i];
                     // $arr['graph'][$i] = $arr['graph'][$min_index];
@@ -1736,7 +1073,7 @@ class Production_Downtime_controller extends BaseController{
        
 
     }
-
+    // production downtime loader machine wise machines with duration  
     public function first_machine_duration(){
         if ($this->request->isAJAX()) {
             log_message("info","\n\nproduction downtime machine wise duration  graph calling");

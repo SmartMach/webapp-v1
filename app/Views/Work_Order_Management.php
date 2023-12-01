@@ -3,6 +3,10 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/styles_production_quality.css?version=<?php echo rand() ; ?>">
 </head>
 <style type="text/css">
+    .input_new_style{
+        font-size: 14px !important;
+        margin-top: -4px;
+    }
     .input-field-lable{
         width: 100px;
         height: 28px;
@@ -223,7 +227,7 @@ $session = \Config\Services::session();
                     <div class="box rightmar display_f align_c" style="margin-right: 0.5rem;">
                         <div class="input-box">
                           <div class="filter_multiselect_outer">
-                            <div class="filter_selectBox_inner po_relative display_f align_c status" onclick="multiple_drp_status()">
+                            <div class="filter_selectBox_inner po_relative display_f align_c status_filter status" onclick="multiple_drp_status()">
                               <div class="inbox-span fontStyle search_style dropdown-arrow">
                                 <div style="width: 80% !important;">
                                   <p class="paddingm" id="Filter_status_val">All Status</p>
@@ -242,7 +246,7 @@ $session = \Config\Services::session();
                     <div class="box rightmar display_f align_c" style="margin-right: 0.5rem;">
                         <div class="input-box">
                           <div class="filter_multiselect_outer">
-                            <div class="filter_selectBox_inner po_relative display_f align_c" onclick="multiple_drp_lables()">
+                            <div class="filter_selectBox_inner po_relative display_f align_c label_filter" onclick="multiple_drp_lables()">
                               <div class="inbox-span fontStyle search_style dropdown-arrow">
                                 <div style="width: 80% !important;">
                                   <p class="paddingm" id="Filter_lables_val">All Labels</p>
@@ -261,7 +265,7 @@ $session = \Config\Services::session();
                     <div class="box rightmar display_f align_c" style="margin-right: 0.5rem;">
                         <div class="input-box">
                           <div class="filter_multiselect_outer">
-                            <div class="filter_selectBox_inner po_relative display_f align_c" onclick="multiple_drp_priority()">
+                            <div class="filter_selectBox_inner po_relative display_f align_c priority_filter" onclick="multiple_drp_priority()">
                               <div class="inbox-span fontStyle search_style dropdown-arrow">
                                 <div style="width: 80% !important;">
                                   <p class="paddingm" id="Filter_priority_val">All Priority</p>
@@ -280,7 +284,7 @@ $session = \Config\Services::session();
                     <div class="box rightmar display_f align_c" style="margin-right: 0.5rem;">
                         <div class="input-box">
                           <div class="filter_multiselect_outer">
-                            <div class="filter_selectBox_inner po_relative display_f align_c" onclick="multiple_drp_assignee()">
+                            <div class="filter_selectBox_inner po_relative display_f align_c assignee_filter" onclick="multiple_drp_assignee()">
                               <div class="inbox-span fontStyle search_style dropdown-arrow">
                                 <div style="width: 80% !important;">
                                   <p class="paddingm" id="Filter_assignee_val">All Assignee</p>
@@ -440,9 +444,9 @@ $session = \Config\Services::session();
                                   <div class="filter_multiselect filter_multiselect_input">
                                     <span class="multi_select_label" style="">Priority</span>
                                     <div class="filter_selectBox priority" onclick="multiple_priority(this)">
-                                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                      <div class="inbox-span fontStyle input_new_style dropdown-arrow">
                                         <div style="width: 80% !important">
-                                          <p class="paddingm input-index" id="priority_val_lable">Select</p>
+                                          <p class="paddingm input-index font_weight_modal" id="priority_val_lable">Select</p>
                                         </div>
                                         <div class="dropdown-div" style=" width: 20% !important">
                                           <i class="fa fa-angle-down icon-style"></i>
@@ -484,9 +488,9 @@ $session = \Config\Services::session();
                                   <div class="filter_multiselect filter_multiselect_input">
                                     <span class="multi_select_label" style="">Assignee</span>
                                     <div class="filter_selectBox assignee" onclick="multiple_assignee(this)">
-                                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                      <div class="inbox-span fontStyle input_new_style dropdown-arrow">
                                         <div style="width: 80% !important">
-                                          <p class="paddingm input-index" id="assignee_val">Select</p>
+                                          <p class="paddingm input-index font_weight_modal" id="assignee_val">Select</p>
                                         </div>
                                         <div class="dropdown-div" style=" width: 20% !important">
                                           <i class="fa fa-angle-down icon-style"></i>
@@ -513,9 +517,9 @@ $session = \Config\Services::session();
                                   <div class="filter_multiselect filter_multiselect_input">
                                     <span class="multi_select_label" style="">Status</span>
                                     <div class="filter_selectBox status" onclick="multiple_status(this)">
-                                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                      <div class="inbox-span fontStyle input_new_style dropdown-arrow">
                                         <div style="width: 80% !important">
-                                          <p class="paddingm input-index" id="status_val_lable">Select</p>
+                                          <p class="paddingm input-index font_weight_modal" id="status_val_lable">Select</p>
                                         </div>
                                         <div class="dropdown-div" style=" width: 20% !important">
                                           <i class="fa fa-angle-down icon-style"></i>
@@ -602,7 +606,7 @@ $session = \Config\Services::session();
                             <p class="Comments">Comments</p>
                             <div class="center-align reduce_width">
                                 <div style="float: left;width: 10%;" class="center-align">
-                                    <div class="circle-div" style="background:#7f7f7f;color:white;"><p class="paddingm Edit_Current_User"></p></div>
+                                    <div class="circle-div Edit_Current_User_bg" style="color:white;"><p class="paddingm Edit_Current_User"></p></div>
                                 </div>
                                 <div class="input-box" style="width: 90%">      
                                     <input type="text" class="form-control font_weight_modal input-field-comments-edit" id="" name="" >
@@ -630,9 +634,9 @@ $session = \Config\Services::session();
                                   <div class="filter_multiselect filter_multiselect_input">
                                     <span class="multi_select_label" style="">Priority</span>
                                     <div class="filter_selectBox" onclick="multiple_priority(this)">
-                                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                      <div class="inbox-span fontStyle input_new_style dropdown-arrow">
                                         <div style="width: 80% !important">
-                                          <p class="paddingm input-index" id="priority_val_edit_lable">Select</p>
+                                          <p class="paddingm input-index font_weight_modal" id="priority_val_edit_lable">Select</p>
                                         </div>
                                         <div class="dropdown-div" style=" width: 20% !important">
                                           <i class="fa fa-angle-down icon-style"></i>
@@ -674,9 +678,9 @@ $session = \Config\Services::session();
                                   <div class="filter_multiselect filter_multiselect_input">
                                     <span class="multi_select_label" style="">Assignee</span>
                                     <div class="filter_selectBox assignee" onclick="multiple_assignee(this)">
-                                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                      <div class="inbox-span fontStyle input_new_style dropdown-arrow">
                                         <div style="width: 80% !important">
-                                          <p class="paddingm input-index" id="assignee_edit_val">Select</p>
+                                          <p class="paddingm input-index font_weight_modal" id="assignee_edit_val">Select</p>
                                         </div>
                                         <div class="dropdown-div" style=" width: 20% !important">
                                           <i class="fa fa-angle-down icon-style"></i>
@@ -703,9 +707,9 @@ $session = \Config\Services::session();
                                   <div class="filter_multiselect filter_multiselect_input">
                                     <span class="multi_select_label" style="">Status </span>
                                     <div class="filter_selectBox" onclick="multiple_status(this)">
-                                      <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                      <div class="inbox-span fontStyle input_new_style dropdown-arrow">
                                         <div style="width: 80% !important">
-                                          <p class="paddingm input-index" id="status_val_edit_lable">Select</p>
+                                          <p class="paddingm input-index font_weight_modal" id="status_val_edit_lable">Select</p>
                                         </div>
                                         <div class="dropdown-div" style=" width: 20% !important">
                                           <i class="fa fa-angle-down icon-style"></i>
@@ -860,6 +864,12 @@ $session = \Config\Services::session();
     var cause_list_globle_unique=[];
     var lable_list_globle_unique=[];
 
+
+    var drp_status = false;
+    var drp_label= false;
+    var drp_priority = false;
+    var drp_assignee = false;
+
     function change_type(item){
         if (item.value == "task") {
           document.getElementById("cause-add").style.display = "none";
@@ -978,37 +988,67 @@ $session = \Config\Services::session();
       });
     }
 
+
+
 function multiple_drp_status() {
-    $('.filter_checkboxes_issue').css("display","none");
-    if ($('.Filter_status_div').css("display") == "none") {
+    if (!drp_status) {
         $('.Filter_status_div').css("display","block");
-    } else {
+        drp_status = true;
+    }else{
         $('.Filter_status_div').css("display","none");
+        drp_status = false;
     }
+    //$('.filter_checkboxes_issue').css("display","none");
+    // if ($('.Filter_status_div').css("display") == "none") {
+    //     $('.Filter_status_div').css("display","block");
+    // } else {
+    //     $('.Filter_status_div').css("display","none");
+    // }
 }
 function multiple_drp_lables() {
-    $('.filter_checkboxes_issue').css("display","none");
-    if ($('.Filter_lables_div').css("display") == "none") {
+    if (!drp_label) {
         $('.Filter_lables_div').css("display","block");
-    } else {
+        drp_label = true;
+    }else{
         $('.Filter_lables_div').css("display","none");
+        drp_label = false;
     }
+    // $('.filter_checkboxes_issue').css("display","none");
+    // if ($('.Filter_lables_div').css("display") == "none") {
+    //     $('.Filter_lables_div').css("display","block");
+    // } else {
+    //     $('.Filter_lables_div').css("display","none");
+    // }
 }
 function multiple_drp_priority() {
-    $('.filter_checkboxes_issue').css("display","none");
-    if ($('.Filter_priority_div').css("display") == "none") {
+    if (!drp_priority) {
         $('.Filter_priority_div').css("display","block");
-    } else {
+        drp_priority = true;
+    }else{
         $('.Filter_priority_div').css("display","none");
+        drp_priority = false;
     }
+    // $('.filter_checkboxes_issue').css("display","none");
+    // if ($('.Filter_priority_div').css("display") == "none") {
+    //     $('.Filter_priority_div').css("display","block");
+    // } else {
+    //     $('.Filter_priority_div').css("display","none");
+    // }
 }
 function multiple_drp_assignee() {
-    $('.filter_checkboxes_issue').css("display","none");
-    if ($('.Filter_assignee_div').css("display") == "none") {
+    if (!drp_assignee) {
         $('.Filter_assignee_div').css("display","block");
-    } else {
+        drp_assignee = true;
+    }else{
         $('.Filter_assignee_div').css("display","none");
+        drp_assignee = false;
     }
+    // $('.filter_checkboxes_issue').css("display","none");
+    // if ($('.Filter_assignee_div').css("display") == "none") {
+    //     $('.Filter_assignee_div').css("display","block");
+    // } else {
+    //     $('.Filter_assignee_div').css("display","none");
+    // }
 }
 
 
@@ -1016,21 +1056,40 @@ function multiple_drp_assignee() {
 
 $(document).mouseup(function(event){
     // Filter
+
     var filter_status = $('.Filter_status_div');
-    if (!filter_status.is(event.target) && filter_status.has(event.target).length==0) {
-        filter_status.hide();
+    var status_f = $('.status_filter');
+    if (!status_f.is(event.target) && status_f.has(event.target).length==0 && !filter_status.is(event.target) && filter_status.has(event.target).length==0) {
+        if(drp_status==true){
+            $('.Filter_status_div').css("display","none");
+            drp_status=false;
+        }
     }
+
     var filter_lables = $('.Filter_lables_div');
-    if (!filter_lables.is(event.target) && filter_lables.has(event.target).length==0) {
-        filter_lables.hide();
+    var label_f = $('.label_filter');
+    if (!filter_lables.is(event.target) && filter_lables.has(event.target).length==0 && !label_f.is(event.target) && label_f.has(event.target).length==0) {
+        if(drp_label==true){
+            $('.Filter_lables_div').css("display","none");
+            drp_label=false;
+        }
+        // filter_lables.hide();
     }
     var filter_priority = $('.Filter_priority_div');
-    if (!filter_priority.is(event.target) && filter_priority.has(event.target).length==0) {
-        filter_priority.hide();
+    var priority_f = $('.priority_filter');
+    if (!filter_priority.is(event.target) && filter_priority.has(event.target).length==0 && !priority_f.is(event.target) && priority_f.has(event.target).length==0) {
+        if(drp_priority==true){
+            $('.Filter_priority_div').css("display","none");
+            drp_priority=false;
+        }
     }
     var filter_assignee = $('.Filter_assignee_div');
-    if (!filter_assignee.is(event.target) && filter_assignee.has(event.target).length==0) {
-        filter_assignee.hide();
+    var assignee_f = $('.assignee_filter');
+    if (!filter_assignee.is(event.target) && filter_assignee.has(event.target).length==0 && !assignee_f.is(event.target) && assignee_f.has(event.target).length==0) {
+        if(drp_assignee==true){
+            $('.Filter_assignee_div').css("display","none");
+            drp_assignee=false;
+        }
     }
 
     // Suggession...
@@ -1042,8 +1101,11 @@ $(document).mouseup(function(event){
     if (!action.is(event.target) && action.has(event.target).length==0) {
         action.hide();
     }
+
     var lables = $('#dropdown-list-lables');
-    if (!lables.is(event.target) && lables.has(event.target).length==0) {
+    var lables_ex = $(".input-field-lable-add");
+
+    if (!lables.is(event.target) && lables.has(event.target).length==0 && !lables_ex.is(event.target)) {
         lables.hide();
     }
 
@@ -1055,8 +1117,11 @@ $(document).mouseup(function(event){
     if (!action_edit.is(event.target) && action_edit.has(event.target).length==0) {
         action_edit.hide();
     }
+
     var lables_edit = $('#dropdown-list-lables-edit');
-    if (!lables_edit.is(event.target) && lables_edit.has(event.target).length==0) {
+    var lables_ex_edit = $(".input-field-lable-edit");
+
+    if (!lables_edit.is(event.target) && lables_edit.has(event.target).length==0 && !lables_ex_edit.is(event.target)) {
         lables_edit.hide();
     }
 
@@ -1126,10 +1191,10 @@ $(document).on('click','.inbox_status',function(event){
         $('#status_val_lable').html('<i class="fa fa-stop" style="color: #7f7f7f"></i> <span style="color: #7f7f7f">OPEN</span>');
     }
     else if (index ==1) {
-        $('#status_val_lable').html('<i class="fa fa-stop" style="color: #4195f6"></i> <span style="color: #4195f6">IN PROGRESS</span>');
+        $('#status_val_lable').html('<i class="fa fa-stop" style="color: #005CBC"></i> <span style="color:#005CBC">IN PROGRESS</span>');
     }
     else{
-         $('#status_val_lable').html('<i class="fa fa-stop" style="color: #6ac950"></i> <span style="color: #6ac950">CLOSED</span>');
+         $('#status_val_lable').html('<i class="fa fa-stop" style="color: #01bb55"></i> <span style="color: #01bb55">CLOSED</span>');
     }    
 });
 
@@ -1143,10 +1208,10 @@ $(document).on('click','.inbox_status_edit',function(event){
         $('#status_val_edit_lable').html('<i class="fa fa-stop" style="color: #7f7f7f"></i> <span style="color: #7f7f7f">OPEN</span>');
     }
     else if (index ==1) {
-        $('#status_val_edit_lable').html('<i class="fa fa-stop" style="color: #4195f6"></i> <span style="color: #4195f6">IN PROGRESS</span>');
+        $('#status_val_edit_lable').html('<i class="fa fa-stop" style="color: #005CBC"></i> <span style="color: #005CBC">IN PROGRESS</span>');
     }
     else{
-         $('#status_val_edit_lable').html('<i class="fa fa-stop" style="color: #6ac950"></i> <span style="color: #6ac950">CLOSED</span>');
+         $('#status_val_edit_lable').html('<i class="fa fa-stop" style="color: #01bb55"></i> <span style="color: #01bb55">CLOSED</span>');
     }    
 });
 
@@ -1159,7 +1224,7 @@ $(document).on('click','.inbox_assignee',function(event){
         +'<div class="circle-div-select" style="background:#7f7f7f;color:white;">'
             +'<p class="paddingm">'+$('.inbox_assignee:eq('+index+')').children('.circle-div-root').children('.circle-div').children('p').text()+'</p>'
         +'</div>'
-        +'<span style="color: #7f7f7f">'+$('.inbox_assignee:eq('+index+')').children('.assignee_name_class').children('p').text()+'</span>'
+        +'<span>'+$('.inbox_assignee:eq('+index+')').children('.assignee_name_class').children('p').text()+'</span>'
         +'</div>');
 });
 
@@ -1172,7 +1237,7 @@ $(document).on('click','.inbox_assignee_edit',function(event){
         +'<div class="circle-div-select" style="background:#7f7f7f;color:white;">'
             +'<p class="paddingm">'+$('.inbox_assignee_edit:eq('+index+')').children('.circle-div-root').children('.circle-div').children('p').text()+'</p>'
         +'</div>'
-        +'<span style="color: #7f7f7f">'+$('.inbox_assignee_edit:eq('+index+')').children('.assignee_name_class').children('p').text()+'</span>'
+        +'<span>'+$('.inbox_assignee_edit:eq('+index+')').children('.assignee_name_class').children('p').text()+'</span>'
         +'</div>');
 });
 
@@ -1225,14 +1290,13 @@ $(document).on("click", ".info-work-order", function(event){
             assignee_list.forEach(function(item){
                 var elements = $();
                 if (item['user_id'] == res[0]['assignee']) {
-                    var user_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
-                    var randomColor = user_color[Math.floor(Math.random()*user_color.length)];
+                    var randomColor = item['user_profile'];
 
                     $('#info_assignee').html('<div style="float: left;width: 100%;display:flex">'
                       +'<div class="circle-div-select" style="background:'+randomColor+';color:white;">'
                         +'<p class="paddingm">'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p>'
                       +'</div>'
-                      +'<span style="color: #7f7f7f;margin-left:0.5rem;">'+item['first_name']+' '+item['last_name']+'</span>'
+                      +'<span style="margin-left:0.5rem;">'+item['first_name']+' '+item['last_name']+'</span>'
                     +'</div>');
                 }
             });
@@ -1251,11 +1315,11 @@ $(document).on("click", ".info-work-order", function(event){
                 }
                 else if (st['status_id'] ==2) {
                     val = "IN PROGRESS";
-                    background_color = "#4195f6";
+                    background_color = "#005CBC";
                 }
                 else{
                     val = "CLOSED";
-                    background_color = "#6ac950";
+                    background_color = "#01bb55";
                 }
                 var elements = $();
                 if (st['status_id'] == res[0]['status_id']) {
@@ -1353,10 +1417,12 @@ function previous_comments(res){
                     if (cm == comment_item['comment_id']) {
                         var u_name = "";
                         var u_logo="";
+                        var u_profile="";
                         assignee_list.forEach(function(item){
                             if (item['user_id'] == comment_item['last_updated_by']) {
                                 u_logo = item['first_name'].trim().slice(0,1).toUpperCase()+''+item['last_name'].trim().slice(0,1).toUpperCase();
                                 u_name = item['first_name']+" "+item['last_name'];
+                                u_profile = item['user_profile'];
                             }
                         });
 
@@ -1370,7 +1436,7 @@ function previous_comments(res){
                         elements = elements.add('<div class="Comments-list">'
                             +'<div class="center-align">'
                                 +'<div style="float: left;width: 10%;" class="center-align">'
-                                    +'<div class="circle-div" style="background:#7f7f7f;color:white;"><p class="paddingm">'+u_logo+'</p></div>'
+                                    +'<div class="circle-div" style="background:'+u_profile+';color:white;"><p class="paddingm">'+u_logo+'</p></div>'
                                 +'</div>'
                                 +'<div class="input-box" style="width: 90%">'
                                     +'<div class="center-align-center">'
@@ -1549,8 +1615,7 @@ $(document).on("click", ".edit-work-order", function(event){
             // Privious Assignee....
             $('.edit_record_assignee').empty();
             assignee_list.forEach(function(item){
-                var user_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
-                var randomColor = user_color[Math.floor(Math.random()*user_color.length)];
+                var randomColor = item['user_profile'];
 
                 var elements = $();
                 if (item['user_id'] == res[0]['assignee']) {
@@ -1575,7 +1640,7 @@ $(document).on("click", ".edit-work-order", function(event){
                         +'<div class="circle-div-select" style="background:'+randomColor+';color:white;">'
                             +'<p class="paddingm">'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p>'
                         +'</div>'
-                        +'<span style="color: #7f7f7f">'+item['first_name']+' '+item['last_name']+'</span>'
+                        +'<span>'+item['first_name']+' '+item['last_name']+'</span>'
                         +'</div>');
                 }else{
                     elements = elements.add('<div class="inbox inbox_assignee_edit" style="display: flex;">'
@@ -1607,11 +1672,11 @@ $(document).on("click", ".edit-work-order", function(event){
                 }
                 else if (st['status_id'] ==2) {
                     val = "IN PROGRESS";
-                    background_color = "#4195f6";
+                    background_color = "#005CBC";
                 }
                 else{
                     val = "CLOSED";
-                    background_color = "#6ac950";
+                    background_color = "#01bb55";
                 }
                 var elements = $();
                 if (st['status_id'] == res[0]['status_id']) {
@@ -1666,6 +1731,7 @@ $(document).on("click", ".edit-work-order", function(event){
             assignee_list.forEach(function(item){
               if (item['user_id'] == user_id_ref) {
                   u_logo = item['first_name'].trim().slice(0,1).toUpperCase()+''+item['last_name'].trim().slice(0,1).toUpperCase();
+                  $('.Edit_Current_User_bg').css("background",item['user_profile']);
                   $('.Edit_Current_User').text(u_logo);
               }
             });
@@ -1696,10 +1762,12 @@ function previous_comments_edit(res){
                     if (cm == comment_item['comment_id']) {
                         var u_name = "";
                         var u_logo="";
+                        var u_profile="";
                         assignee_list.forEach(function(item){
                             if (item['user_id'] == comment_item['last_updated_by']) {
                                 u_logo = item['first_name'].trim().slice(0,1).toUpperCase()+''+item['last_name'].trim().slice(0,1).toUpperCase();
                                 u_name = item['first_name']+" "+item['last_name'];
+                                u_profile = item['user_profile'];
                             }
                         });
 
@@ -1714,7 +1782,7 @@ function previous_comments_edit(res){
                             +'<div class="Comments-list">'
                               +'<div class="center-align">'
                                   +'<div style="float: left;width: 10%;" class="center-align">'
-                                      +'<div class="circle-div" style="background:#7f7f7f;color:white;"><p class="paddingm">'+u_logo+'</p></div>'
+                                      +'<div class="circle-div" style="background:'+u_profile+';color:white;"><p class="paddingm">'+u_logo+'</p></div>'
                                   +'</div>'
                                   +'<div class="input-box" style="width: 90%">'
                                       +'<div class="center-align-center">'
@@ -2051,20 +2119,21 @@ inputFieldaction.addEventListener("keyup", function (event) {
                 +'</div>');
             }
         });
-        // Add as Final
-        
-        var option = suggession_list.find(function (item_val) {
-          return item_val['action'].toUpperCase() === inputVal;
-        });
 
-        if (!option && !present) {
-          $('#dropdown-list-action').append('<div class="inbox suggession-action-items" style="display: flex;">'
-                  +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
-                      +'<p class="inbox-span paddingm"><span class="suggession-action-val">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
-                  +'</div>'
-                  +'<input type="text" class="action-input-suggession radio-visible" value="'+inputValue.trim()+'">'
-              +'</div>');
-        }
+
+        // //Add as Final        
+        // var option = suggession_list.find(function (item_val) {
+        //   return item_val['action'].toUpperCase() === inputVal;
+        // });
+
+        // if (!option && !present) {
+        //   $('#dropdown-list-action').append('<div class="inbox suggession-action-items" style="display: flex;">'
+        //           +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
+        //               +'<p class="inbox-span paddingm"><span class="suggession-action-val">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
+        //           +'</div>'
+        //           +'<input type="text" class="action-input-suggession radio-visible" value="'+inputValue.trim()+'">'
+        //       +'</div>');
+        // }
     }else{
         $('#dropdown-list-action').empty();
         document.getElementById("dropdown-list-action").style.display="none";
@@ -2214,15 +2283,15 @@ inputFieldactionEdit.addEventListener("keyup", function (event) {
                 +'</div>');
             }
         });
-        // Add as Final
-        if (!present) {
-          $('#dropdown-list-action-edit').append('<div class="inbox suggession-action-items-edit" style="display: flex;">'
-                +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
-                    +'<p class="inbox-span paddingm"><span class="suggession-action-val-edit">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
-                +'</div>'
-                +'<input type="text" class="action-input-suggession-edit radio-visible" value="'+inputValue.trim()+'">'
-            +'</div>');
-        }
+        // // Add as Final
+        // if (!present) {
+        //   $('#dropdown-list-action-edit').append('<div class="inbox suggession-action-items-edit" style="display: flex;">'
+        //         +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
+        //             +'<p class="inbox-span paddingm"><span class="suggession-action-val-edit">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
+        //         +'</div>'
+        //         +'<input type="text" class="action-input-suggession-edit radio-visible" value="'+inputValue.trim()+'">'
+        //     +'</div>');
+        // }
     }else{
         $('#dropdown-list-action-edit').empty();
         document.getElementById("dropdown-list-action-edit").style.display="none";
@@ -2403,6 +2472,35 @@ itemsFieldEdit.addEventListener("click", function (event) {
 // Comments
 const inputFieldlables = document.getElementsByClassName("input-field-lable-add")[0];
 const itemsContainerlables = document.getElementsByClassName("lable-div-add")[0];
+
+inputFieldlables.addEventListener("focus", function (event) {
+    
+    $('#dropdown-list-lables').empty();
+
+    var inputValue = inputFieldlables.value;
+    var inputVal = inputValue.trim().toUpperCase();
+    var present = lable_list_globle_unique.find(function (item_val) {
+      return item_val.toUpperCase() === inputVal;
+    });
+
+    
+    var suggession_list = lable_list_globle.filter(item => item['lable'].toUpperCase().includes(inputValue.trim().toUpperCase()));
+
+    suggession_list.forEach((item,index)=>{
+        if (index < 3 && !present) {
+            $('#dropdown-list-lables').append('<div class="inbox suggession-lable-items" style="display: flex;">'
+                +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
+                    +'<p class="inbox-span paddingm"><span class="suggession-lable-val">'+item['lable']+'</span></p>'
+                +'</div>'
+                +'<input type="text" class="lable-input-suggession radio-visible" value="'+item['lable']+'">'
+            +'</div>');
+        }
+    });
+
+    document.getElementById("dropdown-list-lables").style.display="block";
+});
+
+
 inputFieldlables.addEventListener("keyup", function (event) {
     var inputValue = inputFieldlables.value;
     var inputVal = inputValue.trim().toUpperCase();
@@ -2410,7 +2508,7 @@ inputFieldlables.addEventListener("keyup", function (event) {
       return item_val.toUpperCase() === inputVal;
     });
 
-    if (inputValue.length>0) {
+    if (inputVal.length>=0) {
         document.getElementById("dropdown-list-lables").style.display="block";
         var suggession_list = lable_list_globle.filter(item => item['lable'].toUpperCase().includes(inputValue.trim().toUpperCase()));
         
@@ -2432,7 +2530,7 @@ inputFieldlables.addEventListener("keyup", function (event) {
           return item_val['lable'].toUpperCase() === inputVal;
         });
 
-        if (!option && !present) {
+        if (!option && !present && inputVal.length>0) {
           $('#dropdown-list-lables').append('<div class="inbox  suggession-lable-items" style="display: flex;">'
                       +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
                           +'<p class="inbox-span paddingm"><span class="suggession-lable-val">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
@@ -2761,13 +2859,41 @@ $(document).on('click','.suggession-lable-items-edit',function(event){
 
 const inputFieldlablesEdit = document.getElementsByClassName("input-field-lable-edit")[0];
 const itemsContainerlablesEdit = document.getElementsByClassName("lable-div-edit")[0];
+
+
+inputFieldlablesEdit.addEventListener("focus", function (event) {
+    var inputValue = inputFieldlablesEdit.value;
+    var inputVal = inputValue.trim().toUpperCase();
+    var present = lable_list_globle_unique.find(function (item_val) {
+      return item_val.toUpperCase() === inputVal;
+    });
+
+    document.getElementById("dropdown-list-lables-edit").style.display="block";
+    var suggession_list = lable_list_globle.filter(item => item['lable'].toUpperCase().includes(inputValue.trim().toUpperCase()));
+    
+    $('#dropdown-list-lables-edit').empty();
+
+    suggession_list.forEach((item,index)=>{
+        if (index < 3 && !present) {
+            $('#dropdown-list-lables-edit').append('<div class="inbox suggession-lable-items-edit" style="display: flex;">'
+                +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
+                    +'<p class="inbox-span paddingm"><span class="suggession-lable-val-edit">'+item['lable']+'</span></p>'
+                +'</div>'
+                +'<input type="text" class="lable-input-suggession-edit radio-visible" value="'+item['lable']+'">'
+            +'</div>');
+        }
+    });
+
+});
+
+
 inputFieldlablesEdit.addEventListener("keyup", function (event) {
     var inputValue = inputFieldlablesEdit.value;
     var inputVal = inputValue.trim().toUpperCase();
     var present = lable_list_globle_unique.find(function (item_val) {
       return item_val.toUpperCase() === inputVal;
     });
-    if (inputValue.length>0) {
+    if (inputVal.length>=0) {
         document.getElementById("dropdown-list-lables-edit").style.display="block";
         var suggession_list = lable_list_globle.filter(item => item['lable'].toUpperCase().includes(inputValue.trim().toUpperCase()));
         
@@ -2789,7 +2915,7 @@ inputFieldlablesEdit.addEventListener("keyup", function (event) {
           return item_val['lable'].toUpperCase() === inputVal;
         });
 
-        if (!option && !present) {
+        if (!option && !present && inputVal.length>0) {
           $('#dropdown-list-lables-edit').append('<div class="inbox suggession-lable-items-edit" style="display: flex;">'
                   +'<div style="float: left;width: 100%;overflow: hidden;" class="center-align_cnt">'
                       +'<p class="inbox-span paddingm"><span class="suggession-lable-val-edit">'+inputValue.trim()+'</span><span> (Add New)</span></p>'
@@ -3025,6 +3151,7 @@ function getAssigneeList(){
         async:false,
         dataType:"json",
         success:function(res){
+
             $('.add_record_assignee').empty();
 
             $('.Filter_assignee_div').empty();
@@ -3040,9 +3167,38 @@ function getAssigneeList(){
                         +'<p class="inbox-span paddingm">All</p>'
                     +'</div>'
                 +'</div>');
+
+            // Default Unassignee --> Unassignee for Filter
+            $('.Filter_assignee_div').append('<div class="inbox inbox_filter_assignee" style="display: flex;">'
+                    +'<div style="float: left;width: 20%;" class="center-align">'
+                        +'<input class="filter_val_assignee" name="filter_val_assignee_name" value="Unassigned" type="checkbox" checked/>'
+                    +'</div>'
+                    +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                        +'<p class="inbox-span paddingm">Unassigned</p>'
+                    +'</div>'
+                +'</div>');
+
+            // Default Unassignee --> Unassignee for Add Issue
+            // var elements = $();
+            // randomColor_Unassignee = "#005bbc";
+            // elements = elements.add('<div class="inbox inbox_assignee" style="display: flex;">'
+            //     +'<div style="float: left;width: 20%;" class="center-align circle-div-root">'
+            //         +'<div class="circle-div" style="background:'+randomColor_Unassignee+';color:white;">'
+            //             +'<p class="paddingm">'+("UA").toUpperCase()+'</p>'
+            //         +'</div>'
+            //     +'</div>'
+            //     +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt assignee_name_class">'
+            //         +'<p class="inbox-span paddingm">'+'Unassigned'+'</p>'
+            //     +'</div>'
+            //     +'<input type="radio" class="assignee_add radio-visible" name="assignee_val" value="Unassigned">'
+            // +'</div>');
+            // $('.add_record_assignee').append(elements);
+
+
             res.forEach(function(item){
-                var user_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
-                var randomColor = user_color[Math.floor(Math.random()*user_color.length)];
+                // var user_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
+
+                var randomColor = item['user_profile'];
 
                 assignee_list.push(item);
                 var elements = $();
@@ -3282,10 +3438,10 @@ function getStatusList(){
                     status_color = "#7f7f7f";
                     status_val_rec = "OPEN";
                 }else if (item['status_id'] == 2) {
-                    status_color = "#4195f6";
+                    status_color = "#005CBC";
                     status_val_rec = "IN PROGRESS";
                 }else{
-                    status_color = "#6ac950";
+                    status_color = "#01bb55";
                     status_val_rec = "CLOSED";
                 }
 
@@ -3324,73 +3480,69 @@ function getStatusList(){
 $(document).on('click','.undo',function(event){
   callALL();
 });
-$(document).on('click','.inbox_filter_status',function(event){
-  var index = $('.inbox_filter_status').index(this);
 
-  if(index==0 && $( ".filter_val_status:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_val_status").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_val_status:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_val_status").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_val_status:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_val_status:eq('"+index+"')").prop( "checked", false );
-    }
-    else{
-      $( ".filter_val_status:eq('"+index+"')").prop( "checked", true );
-    }
-  }
-  var l1 = $('.filter_val_status').length;
-  var l2 = $('.filter_val_status:checked').length;
-  
 
-  if ( (((l2)+1) == l1) && !($('.filter_val_status')[0].checked)) {
-    $( ".filter_val_status:eq(0)").prop( "checked", true);
-  }
-  else if (l2 < l1) {
-    $( ".filter_val_status:eq(0)").prop( "checked", false );
-  }
-  
-  // Reason  count
-  var reason_count = 0;
-  var check_if = $('.filter_val_status');
-  jQuery('.filter_val_status').each(function(index){
-    if (check_if[index].checked===true) {
-      reason_count = parseInt(reason_count)+1;
-    }
-  });
 
-  var reason_len = $('.filter_val_status').length;
+function inbox_filter_status(classRef,thisRef) {
+    var index = $('.'+classRef+'').index(thisRef);
 
-  reason_len = parseInt(reason_len);
-  if (check_if[0].checked) {
-    $('#Filter_status_val').text('All Status');
-  }
-  else if (!check_if[0].checked && reason_len==(reason_count+1)) {
-    $('#Filter_status_val').text('All Status');
-  }
-  else if (!check_if[0].checked && reason_count>=1) {
-    $('#Filter_status_val').text(parseInt(reason_count)+' Selected');
-  }
-  else{
-    $('#Filter_status_val').text('No Status');
-  }
-  // reason_len = parseInt(reason_len)-1;
-  // if (parseInt(reason_count)>=parseInt(reason_len)) {
-  //     if(check_if[0].checked===true){
-  //       check_if[0].checked=true;
-  //       $('#Filter_status_val').text(parseInt(reason_count)-1+' Selected');
-  //     }else{
-  //     // reset_reason();
-  //     $('#Filter_status_val').text('All');
-  //   }
-  // }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
-  //   $('#Filter_status_val').text(parseInt(reason_count)+' Selected');
-  //   // check_if[0].checked=false;
-  // }else {
-  //   $('#Filter_status_val').text('No Reason');
-  // }
+      if(index==0 && $( ".filter_val_status:eq('"+index+"')").prop( "checked")==true){
+        $( ".filter_val_status").prop( "checked", false );
+      }
+      else if(index==0 && $( ".filter_val_status:eq('"+index+"')").prop( "checked")==false){
+        $( ".filter_val_status").prop( "checked", true );
+      }
+      else{
+        if ($( ".filter_val_status:eq('"+index+"')").prop( "checked")==true) {
+          $( ".filter_val_status:eq('"+index+"')").prop( "checked", false );
+        }
+        else{
+          $( ".filter_val_status:eq('"+index+"')").prop( "checked", true );
+        }
+      }
+      var l1 = $('.filter_val_status').length;
+      var l2 = $('.filter_val_status:checked').length;
+      
+
+      if ( (((l2)+1) == l1) && !($('.filter_val_status')[0].checked)) {
+        $( ".filter_val_status:eq(0)").prop( "checked", true);
+      }
+      else if (l2 < l1) {
+        $( ".filter_val_status:eq(0)").prop( "checked", false );
+      }
+      
+      // Reason  count
+      var reason_count = 0;
+      var check_if = $('.filter_val_status');
+      jQuery('.filter_val_status').each(function(index){
+        if (check_if[index].checked===true) {
+          reason_count = parseInt(reason_count)+1;
+        }
+      });
+
+      var reason_len = $('.filter_val_status').length;
+
+      reason_len = parseInt(reason_len);
+      if (check_if[0].checked) {
+        $('#Filter_status_val').text('All Status');
+      }
+      else if (!check_if[0].checked && reason_len==(reason_count+1)) {
+        $('#Filter_status_val').text('All Status');
+      }
+      else if (!check_if[0].checked && reason_count>=1) {
+        $('#Filter_status_val').text(parseInt(reason_count)+' Selected');
+      }
+      else{
+        $('#Filter_status_val').text('No Status');
+      }
+}
+
+$(document).on('click','.inbox_filter_status',function(event){     
+    inbox_filter_status("inbox_filter_status",this);
+});
+
+$(document).on('click','.filter_val_status',function(event){
+    inbox_filter_status("filter_val_status",this);
 });
 
 
@@ -3425,209 +3577,195 @@ $(document).on('click','.download-file',function(event){
 });
 
 
+function inbox_filter_assignee(classRef,thisRef){
+    var index = $('.'+classRef+'').index(thisRef);
+      if(index==0 && $( ".filter_val_assignee:eq('"+index+"')").prop( "checked")==true){
+        $( ".filter_val_assignee").prop( "checked", false );
+      }
+      else if(index==0 && $( ".filter_val_assignee:eq('"+index+"')").prop( "checked")==false){
+        $( ".filter_val_assignee").prop( "checked", true );
+      }
+      else{
+        if ($( ".filter_val_assignee:eq('"+index+"')").prop( "checked")==true) {
+          $( ".filter_val_assignee:eq('"+index+"')").prop( "checked", false );
+        }
+        else{
+          $( ".filter_val_assignee:eq('"+index+"')").prop( "checked", true );
+        }
+      }
+      var l1 = $('.filter_val_assignee').length;
+      var l2 = $('.filter_val_assignee:checked').length;
+
+
+      if ( (((l2)+1) == l1) && !($('.filter_val_assignee')[0].checked)) {
+        $( ".filter_val_assignee:eq(0)").prop( "checked", true);
+      }
+      else if (l2 < l1) {
+        $( ".filter_val_assignee:eq(0)").prop( "checked", false );
+      }
+
+      
+      // Reason  count
+      var reason_count = 0;
+      var check_if = $('.filter_val_assignee');
+      jQuery('.filter_val_assignee').each(function(index){
+        if (check_if[index].checked===true) {
+          reason_count = parseInt(reason_count)+1;
+        }
+      });
+
+      var reason_len = $('.filter_val_assignee').length;
+
+      reason_len = parseInt(reason_len);
+      if (check_if[0].checked) {
+        $('#Filter_assignee_val').text('All Assignee');
+      }
+      else if (!check_if[0].checked && reason_len==(reason_count+1)) {
+        $('#Filter_assignee_val').text('All Assignee');
+      }
+      else if (!check_if[0].checked && reason_count>=1) {
+        $('#Filter_assignee_val').text(parseInt(reason_count)+' Selected');
+      }
+      else{
+        $('#Filter_assignee_val').text('No Assignee');
+      }
+}
+
+
 $(document).on('click','.inbox_filter_assignee',function(event){
-  var index = $('.inbox_filter_assignee').index(this);
-
-  if(index==0 && $( ".filter_val_assignee:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_val_assignee").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_val_assignee:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_val_assignee").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_val_assignee:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_val_assignee:eq('"+index+"')").prop( "checked", false );
-    }
-    else{
-      $( ".filter_val_assignee:eq('"+index+"')").prop( "checked", true );
-    }
-  }
-  var l1 = $('.filter_val_assignee').length;
-  var l2 = $('.filter_val_assignee:checked').length;
-
-
-  if ( (((l2)+1) == l1) && !($('.filter_val_assignee')[0].checked)) {
-    $( ".filter_val_assignee:eq(0)").prop( "checked", true);
-  }
-  else if (l2 < l1) {
-    $( ".filter_val_assignee:eq(0)").prop( "checked", false );
-  }
-
-  
-  // Reason  count
-  var reason_count = 0;
-  var check_if = $('.filter_val_assignee');
-  jQuery('.filter_val_assignee').each(function(index){
-    if (check_if[index].checked===true) {
-      reason_count = parseInt(reason_count)+1;
-    }
-  });
-
-  var reason_len = $('.filter_val_assignee').length;
-
-  reason_len = parseInt(reason_len);
-  if (check_if[0].checked) {
-    $('#Filter_assignee_val').text('All Assignee');
-  }
-  else if (!check_if[0].checked && reason_len==(reason_count+1)) {
-    $('#Filter_assignee_val').text('All Assignee');
-  }
-  else if (!check_if[0].checked && reason_count>=1) {
-    $('#Filter_assignee_val').text(parseInt(reason_count)+' Selected');
-  }
-  else{
-    $('#Filter_assignee_val').text('No Assignee');
-  }
-
-  // if (parseInt(reason_count)>=parseInt(reason_len)) {
-  //     if(check_if[0].checked){
-  //       $('#Filter_assignee_val').text('All Assignee');
-  //     }else{
-  //       $('#Filter_assignee_val').text(parseInt(reason_count)-1+' Selected');
-  //     }
-  // }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
-  //   $('#Filter_assignee_val').text(parseInt(reason_count)+' Selected');
-  // }else {
-  //   $('#Filter_assignee_val').text('No Reason');
-  // }
+  inbox_filter_assignee('inbox_filter_assignee',this);
 });
+
+$(document).on('click','.filter_val_assignee',function(event){
+  inbox_filter_assignee('filter_val_assignee',this);
+});
+
+
+function inbox_filter_lables(classRef,thisRef) {
+    var index = $('.'+classRef+'').index(thisRef);
+
+      if(index==0 && $( ".filter_val_lables:eq('"+index+"')").prop( "checked")==true){
+        $( ".filter_val_lables").prop( "checked", false );
+      }
+      else if(index==0 && $( ".filter_val_lables:eq('"+index+"')").prop( "checked")==false){
+        $( ".filter_val_lables").prop( "checked", true );
+      }
+      else{
+        if ($( ".filter_val_lables:eq('"+index+"')").prop( "checked")==true) {
+          $( ".filter_val_lables:eq('"+index+"')").prop( "checked", false );
+        }
+        else{
+          $( ".filter_val_lables:eq('"+index+"')").prop( "checked", true );
+        }
+      }
+      var l1 = $('.filter_val_lables').length;
+      var l2 = $('.filter_val_lables:checked').length;
+
+      if ( (((l2)+1) == l1) && !($('.filter_val_lables')[0].checked)) {
+        $( ".filter_val_lables:eq(0)").prop( "checked", true);
+      }
+      else if (l2 < l1) {
+        $( ".filter_val_lables:eq(0)").prop( "checked", false );
+      }
+      
+      // Reason  count
+      var reason_count = 0;
+      var check_if = $('.filter_val_lables');
+      jQuery('.filter_val_lables').each(function(index){
+        if (check_if[index].checked===true) {
+          reason_count = parseInt(reason_count)+1;
+        }
+      });
+
+      var reason_len = $('.filter_val_lables').length;
+
+      reason_len = parseInt(reason_len);
+      if (check_if[0].checked) {
+        $('#Filter_lables_val').text('All Labels');
+      }
+      else if (!check_if[0].checked && reason_len==(reason_count+1)) {
+        $('#Filter_lables_val').text('All Labels');
+      }
+      else if (!check_if[0].checked && reason_count>=1) {
+        $('#Filter_lables_val').text(parseInt(reason_count)+' Selected');
+      }
+      else{
+        $('#Filter_lables_val').text('No Labels');
+      }
+}
+
 
 $(document).on('click','.inbox_filter_lables',function(event){
-  var index = $('.inbox_filter_lables').index(this);
+    inbox_filter_lables("inbox_filter_lables",this);
+});
 
-  if(index==0 && $( ".filter_val_lables:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_val_lables").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_val_lables:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_val_lables").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_val_lables:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_val_lables:eq('"+index+"')").prop( "checked", false );
-    }
-    else{
-      $( ".filter_val_lables:eq('"+index+"')").prop( "checked", true );
-    }
-  }
-  var l1 = $('.filter_val_lables').length;
-  var l2 = $('.filter_val_lables:checked').length;
-
-  if ( (((l2)+1) == l1) && !($('.filter_val_lables')[0].checked)) {
-    $( ".filter_val_lables:eq(0)").prop( "checked", true);
-  }
-  else if (l2 < l1) {
-    $( ".filter_val_lables:eq(0)").prop( "checked", false );
-  }
-  
-  // Reason  count
-  var reason_count = 0;
-  var check_if = $('.filter_val_lables');
-  jQuery('.filter_val_lables').each(function(index){
-    if (check_if[index].checked===true) {
-      reason_count = parseInt(reason_count)+1;
-    }
-  });
-
-  var reason_len = $('.filter_val_lables').length;
-
-  reason_len = parseInt(reason_len);
-  if (check_if[0].checked) {
-    $('#Filter_lables_val').text('All Labels');
-  }
-  else if (!check_if[0].checked && reason_len==(reason_count+1)) {
-    $('#Filter_lables_val').text('All Labels');
-  }
-  else if (!check_if[0].checked && reason_count>=1) {
-    $('#Filter_lables_val').text(parseInt(reason_count)+' Selected');
-  }
-  else{
-    $('#Filter_lables_val').text('No Labels');
-  }
-  // if (parseInt(reason_count)>=parseInt(reason_len)) {
-  //     if(check_if[0].checked===true){
-  //       check_if[0].checked=true;
-  //       $('#Filter_lables_val').text(parseInt(reason_count)-1+' Selected');
-  //     }else{
-  //     // reset_reason();
-  //     $('#Filter_lables_val').text('All');
-  //   }
-  // }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
-  //   $('#Filter_lables_val').text(parseInt(reason_count)+' Selected');
-  //   // check_if[0].checked=false;
-  // }else {
-  //   $('#Filter_lables_val').text('No Reason');
-  // }
+$(document).on('click','.filter_val_lables',function(event){
+    inbox_filter_lables("filter_val_lables",this);
 });
 
 
+function inbox_filter_priority(classRef,thisRef) {
+    var index = $('.'+classRef+'').index(thisRef);
+
+      if(index==0 && $( ".filter_val_priority:eq('"+index+"')").prop( "checked")==true){
+        $( ".filter_val_priority").prop( "checked", false );
+      }
+      else if(index==0 && $( ".filter_val_priority:eq('"+index+"')").prop( "checked")==false){
+        $( ".filter_val_priority").prop( "checked", true );
+      }
+      else{
+        if ($( ".filter_val_priority:eq('"+index+"')").prop( "checked")==true) {
+          $( ".filter_val_priority:eq('"+index+"')").prop( "checked", false );
+        }
+        else{
+          $( ".filter_val_priority:eq('"+index+"')").prop( "checked", true );
+        }
+      }
+      var l1 = $('.filter_val_priority').length;
+      var l2 = $('.filter_val_priority:checked').length;
+
+
+      if ( (((l2)+1) == l1) && !($('.filter_val_priority')[0].checked)) {
+        $( ".filter_val_priority:eq(0)").prop( "checked", true);
+      }
+      else if (l2 < l1) {
+        $( ".filter_val_priority:eq(0)").prop( "checked", false );
+      }
+
+      
+      // Reason  count
+      var reason_count = 0;
+      var check_if = $('.filter_val_priority');
+      jQuery('.filter_val_priority').each(function(index){
+        if (check_if[index].checked===true) {
+          reason_count = parseInt(reason_count)+1;
+        }
+      });
+
+      var reason_len = $('.filter_val_priority').length;
+      reason_len = parseInt(reason_len);
+      reason_len = parseInt(reason_len);
+
+      if (check_if[0].checked) {
+        $('#Filter_priority_val').text('All Priority');
+      }
+      else if (!check_if[0].checked && reason_len==(reason_count+1)) {
+        $('#Filter_priority_val').text('All Priority');
+      }
+      else if (!check_if[0].checked && reason_count>=1) {
+        $('#Filter_priority_val').text(parseInt(reason_count)+' Selected');
+      }
+      else{
+        $('#Filter_priority_val').text('No Priority');
+      }
+}
+
 $(document).on('click','.inbox_filter_priority',function(event){
-  var index = $('.inbox_filter_priority').index(this);
+    inbox_filter_priority('inbox_filter_priority',this);
+});
 
-  if(index==0 && $( ".filter_val_priority:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_val_priority").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_val_priority:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_val_priority").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_val_priority:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_val_priority:eq('"+index+"')").prop( "checked", false );
-    }
-    else{
-      $( ".filter_val_priority:eq('"+index+"')").prop( "checked", true );
-    }
-  }
-  var l1 = $('.filter_val_priority').length;
-  var l2 = $('.filter_val_priority:checked').length;
-
-
-  if ( (((l2)+1) == l1) && !($('.filter_val_priority')[0].checked)) {
-    $( ".filter_val_priority:eq(0)").prop( "checked", true);
-  }
-  else if (l2 < l1) {
-    $( ".filter_val_priority:eq(0)").prop( "checked", false );
-  }
-
-  
-  // Reason  count
-  var reason_count = 0;
-  var check_if = $('.filter_val_priority');
-  jQuery('.filter_val_priority').each(function(index){
-    if (check_if[index].checked===true) {
-      reason_count = parseInt(reason_count)+1;
-    }
-  });
-
-  var reason_len = $('.filter_val_priority').length;
-  reason_len = parseInt(reason_len);
-  reason_len = parseInt(reason_len);
-
-  if (check_if[0].checked) {
-    $('#Filter_priority_val').text('All Priority');
-  }
-  else if (!check_if[0].checked && reason_len==(reason_count+1)) {
-    $('#Filter_priority_val').text('All Priority');
-  }
-  else if (!check_if[0].checked && reason_count>=1) {
-    $('#Filter_priority_val').text(parseInt(reason_count)+' Selected');
-  }
-  else{
-    $('#Filter_priority_val').text('No Priority');
-  }
-  // if (parseInt(reason_count)>=parseInt(reason_len)) {
-  //     if(check_if[0].checked===true){
-  //       check_if[0].checked=true;
-  //       $('#Filter_priority_val').text(parseInt(reason_count)-1+' Selected');
-  //     }else{
-  //     // reset_reason();
-  //     $('#Filter_priority_val').text('All');
-  //   }
-  // }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
-  //   $('#Filter_priority_val').text(parseInt(reason_count)+' Selected');
-  //   // check_if[0].checked=false;
-  // }else {
-  //   $('#Filter_priority_val').text('No Reason');
-  // }
+$(document).on('click','.filter_val_priority',function(event){
+    inbox_filter_priority('filter_val_priority',this);
 });
 
 
@@ -3744,6 +3882,18 @@ function getLableList(){
                     +'<p class="inbox-span paddingm">All</p>'
                 +'</div>'
             +'</div>');
+
+            // Default label --> Unlabeled or Blank
+            $('.Filter_lables_div').append('<div class="inbox inbox_filter_lables" style="display: flex;">'
+                +'<div style="float: left;width: 20%;" class="center-align">'
+                    +'<input class="filter_val_lables" name="filter_val_lables_name" value="Blank" type="checkbox" checked/>'
+                +'</div>'
+                +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                    +'<p class="inbox-span paddingm">(Blank)</p>'
+                +'</div>'
+            +'</div>');
+
+
             res.forEach(function(item){
                 lable_list_globle.push(item);
 
@@ -3789,10 +3939,10 @@ function getFilterData(){
             d_date = `${d_date.getFullYear()}-${d_date.getMonth()+1}-${d_date.getDate()}`;
 
             if (c_date == d_date) {
-                due_date_color = "#4195f6";
+                due_date_color = "#005CBC";
                 due_date = "Today";
             }else if (new Date(d_date) < new Date(c_date)) {
-                due_date_color = "#ff0000";
+                due_date_color = "#C00000";
             }else{
                 due_date_color = "#black";
             }
@@ -3820,10 +3970,10 @@ function getFilterData(){
                 status_color = "#7f7f7f";
                 status_val_rec = "OPEN";
             }else if (item['status_id'] == 2) {
-                status_color = "#4195f6";
+                status_color = "#005CBC";
                 status_val_rec = "IN PROGRESS";
             }else{
-                status_color = "#6ac950";
+                status_color = "#01bb55";
                 status_val_rec = "CLOSED";
             }
             
@@ -3840,15 +3990,13 @@ function getFilterData(){
             var user_id="";
             var user_first="";
             var user_last="";
-            // var assignee="";
-            var user_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
 
             var assignee_option = "";
-            var randomColor = user_color[Math.floor(Math.random()*user_color.length)];
             assignee_list.forEach(function(u){
                 if (item['assignee'] == u['user_id']) {
                     user_first = u['first_name'];
                     user_last = u['last_name'];
+                    var randomColor = u['user_profile'];
 
                     assignee_option = ('<div style="width: 25%">'
                             +'<div class="dotUser" style="background:'+randomColor+';color:white;"><p class="paddingm">'+user_first.trim().slice(0,1).toUpperCase()+''+user_last.trim().slice(0,1).toUpperCase()+'</p></div>'
@@ -3927,6 +4075,7 @@ function getWorkOrderRecords(status,lables,priority,assignee,filter){
             var open=0;
             var in_progress=0;
             var overdue =0;
+
             data_res.forEach(function(item){
                 filter_array.push(item);
                 if (item['status_id'] == 1) {
@@ -3945,7 +4094,7 @@ function getWorkOrderRecords(status,lables,priority,assignee,filter){
                 c_date = new Date(c_date);
                 ac_date = new Date(ac_date);
 
-                if (item['status_id'] != 3 && ac_date<c_date) {
+                if ((item['status_id'] == 1 || item['status_id'] == 2) && ac_date<c_date) {
                     overdue = parseInt(overdue) + 1;
                 }
             });
@@ -4025,7 +4174,7 @@ $(document).on('click','.Add_Work_Data',function(event){
     formData.append('due_date', $('#add_due_date').val());
     formData.append('status', $('input[name="status_val"]:checked').val());
     if (!$('input[name="assignee_val"]:checked').val()) {
-      formData.append('assignee', "");
+      formData.append('assignee', "Unassigned");
     }else{
       formData.append('assignee', $('input[name="assignee_val"]:checked').val());
     }
@@ -4063,10 +4212,6 @@ $(document).on('click','.Add_Work_Data',function(event){
     });
 
     formData.append('file_list_collection', file_list_collection);
-
-      // for (var pair of formData.entries()) {
-      //     console.log(pair[0]+ ', ' + pair[1]); 
-      // }
 
           $.ajax({
               url:"<?php echo base_url('Work_Order_Management_controller/save_work_order_data') ?>",

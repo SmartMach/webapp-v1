@@ -818,7 +818,7 @@
                         </div>
                         <div class="col-sm-3 box">
                             <div class="input-box fieldStyle">
-                                <select class="inputSiteNameAdd form-select font_weight_modal" name="EditUserSiteName" id="EditUserSiteName">
+                                <select class="inputSiteNameAdd form-select font_weight_modal EditUserSiteName_class" name="EditUserSiteName" id="EditUserSiteName">
                                 </select>
                                 <label for="input" class="input-padding">Site Name<span class="paddingm validate">*</span></label>
                                 <span class="paddingm float-start validate" id="sitename_error_edit"></span> 
@@ -890,7 +890,7 @@
                                         </div> 
                                     </div> 
                                 </div>
-                            </div> -->
+                        </div> -->
 
                         <!-- temporary hide end  -->
                         </div>
@@ -947,18 +947,7 @@
                                     <label for="input" class="float-start" style="margin-right:1rem;margin-top:0.3rem;">Access Control</label>
                                     <div class="dotAccess dot-css acsControl_edit" style="margin-left: 2rem;font-size:2rem;"><img src="<?php echo base_url('assets/img/oui_arrow.png'); ?>" class=" dot-cont" style="height: 1.5rem;width: 1.5rem;"></i></div>
                                 </div>
-                            </div>
-                            <!-- <div class="box">
-                                <div class="input-box fieldStyle">
-                                    <select class="inputDepartmentAdd form-select font_weight_modal" name="EditUserDepartment" id="EditUserDepartment">
-                                    </select>
-                                    <label for="input" class="input-padding">Department<span class="paddingm validate">*</span></label>
-                                    <span class="paddingm float-start validate d-none" id="dept_err"></span> 
-                                    <!-- <span class="float-end charCount">Character Count</span> --
-                                </div>
-                             
-                            </div> -->
-                           
+                            </div>                           
                         </div>
                         
                     </div>
@@ -1221,6 +1210,7 @@
 
 <script src="<?php echo base_url()?>/assets/js/settings_user_validation.js?version=<?php echo rand() ; ?>"></script>
 <script src="<?php echo base_url()?>/assets/js/custom_date_format.js?version=<?php echo rand() ; ?>"></script>
+
 <script type="text/javascript">
     var UserNameRef = "<?php echo($this->data['user_details'][0]['user_id'])?>";
     var UserRoleRef ="<?php  echo($this->data['user_details'][0]['role'])?>";
@@ -1329,6 +1319,9 @@
                   var new_site_location = $('#location_name').val();
 
                   var role = $('#inputRoleAdd').val();
+
+                  var user_color_code = Math.floor(Math.random()*16777215).toString(16);
+                  user_color_code = "#"+user_color_code
                 if (role != "Operator") {
                     //alert(site_name);
                     if ((site_name!=null)) {
@@ -1396,6 +1389,7 @@
                                 Production_Downtime:Production_Downtime,
                                 Work_Order_Management:Work_Order_Management,
                                 Alert_Management:Alert_Management,
+                                user_color_code:user_color_code,
                             },
                             success:function(res){
                                 console.log("use added succes");
@@ -1456,6 +1450,7 @@
                                     User_Designation:User_Designation,
                                     user_id:UserNameRef,
                                     pass:pass,
+                                    user_color_code:user_color_code,
                                 },
                                 dataType: "json",
                                 success:function(res){
@@ -2243,6 +2238,8 @@ $(document).ready(function(){
 // edit modal for ajax function
     $(document).on("click", ".edit-user", function(event){
         event.preventDefault(); 
+        edit_user_data_view(this);
+        /*
         var id = $(this).attr("lvalue");
         var role = $(this).attr("rvalue");
         var status = $(this).attr("svalue");
@@ -2298,38 +2295,26 @@ $(document).ready(function(){
                 }
                  
                 // get sitename for particular users site dropdown
-                $('#EditUserSiteName').empty();
-                var role = res_csp['user_data'][0].role;
-                var site_id = res_csp['user_data'][0].site_id;
-                $("#EditUserSiteName").css("display","inline");
-                edit_user_site_name(role , site_id);
+              
                
 
                 // get deparment for update modal
                 $('#EditUserDepartment').empty();
-                // if ((res_csp['user_data'][0].role == "Smart Users") || (res_csp['user_data'][0].role == "Site Admin")) {
-                //     var elements = $('<option value="4" selected="true">General</option>');
-                //     $('#EditUserDepartment').append(elements);
-                //     $('#EditUserDepartment').attr("disabled",true);
-                // }else if(res_csp['user_data'][0].role == "Operator"){
-                //     var elements = $('<option value="1" selected="true">Production</option>');
-                //     $('#EditUserDepartment').append(elements);
-                // }else{
-                    $.ajax({
-                        url: "<?php echo base_url('User_controller/getdept'); ?>",
-                        type: "POST",
-                        dataType: "json",
-                        cache: false,
-                        async:false,
-                        success:function(res_Site){
-                            var datetime = getdate_time(res_csp['user_data'][0].last_updated_on);
-                            var elements = $('<option value="" disabled>Select deparment</option>');
-                            res_Site.forEach(function(item){
-                                if (res_csp['user_data'][0].department===item.dept_id) {        
-                                    elements = elements.add('<option value="'+item.dept_id+'" selected="true">'+item.department+'</option>');
-                                }
-                                else{
-                                    elements = elements.add('<option value="'+item.dept_id+'">'+item.department+'</option>');
+                $.ajax({
+                    url: "<?php echo base_url('User_controller/getdept'); ?>",
+                    type: "POST",
+                    dataType: "json",
+                    cache: false,
+                    async:false,
+                    success:function(res_Site){
+                        var datetime = getdate_time(res_csp['user_data'][0].last_updated_on);
+                        var elements = $('<option value="" disabled>Select deparment</option>');
+                        res_Site.forEach(function(item){
+                            if (res_csp['user_data'][0].department===item.dept_id) {        
+                                elements = elements.add('<option value="'+item.dept_id+'" selected="true">'+item.department+'</option>');
+                            }
+                            else{
+                                elements = elements.add('<option value="'+item.dept_id+'">'+item.department+'</option>');
                                 }
                             }); 
                             $('#EditUserDepartment').append(elements);
@@ -2359,8 +2344,6 @@ $(document).ready(function(){
                 var elements = $('<option value="null">Select Role</option>');
                 // this condition get role based datas
                 if (res_csp['user_data'][0].role == "Smart Users" ) {
-                    $('#EditUserSiteName option[value="new_site-test"]').remove();
-                    $('#EditUserSiteName').attr("disabled",true);
                     // temporary hide for edit add new site input in edit for mathan sir instruction
                     // $('#visible_creation_edit').css('display',"none");
                     // $('#display_edit_add').css("display","none");
@@ -2376,7 +2359,7 @@ $(document).ready(function(){
                     // temporary hide for edit add new site input in edit for mathan sir instruction
                     // $('#visible_creation_edit').css('display',"inline");
                     $('#display_edit_add').css("display","inline");
-                    $('#EditUserSiteName').attr("disabled",true);
+                   
                     $('#EditUserDepartment').val(4);
                     $('#EditUserDepartment').attr("disabled",true);
                     elements = elements.add('<option value="Site Admin" selected>Site Admin</option>');
@@ -2386,7 +2369,9 @@ $(document).ready(function(){
                 }
                 else if(res_csp['user_data'][0].role == "Site Users"){
                     // alert('ok');
-                    $('#EditUserDepartment').removeAttr("disabled");
+                    
+                    // $('#EditUserDepartment').removeAttr("disabled");
+                    // edit_user_site_name(res_csp['user_data'][0].role , res_csp['user_data'][0].site_id);
                     // document.getElementById("EditUserDepartment").value=res_csp['user_data'][0].department;
                     //alert(res_csp['user_data'][0].department);
                     $('#EditUserDepartment').val(res_csp['user_data'][0].department);
@@ -2399,7 +2384,7 @@ $(document).ready(function(){
                     $('#display_edit_add').css("display","none");
                     $('#EditUserDepartment').val(1);
                     $('#EditUserDepartment').attr("disabled",true);
-                    $('#EditUserSiteName').removeAttr('disabled');
+                    // $('#EditUserSiteName').removeAttr('disabled');
                     elements = elements.add('<option value="Operator" selected>Operator</option>');
                 }
                 else{
@@ -2410,14 +2395,10 @@ $(document).ready(function(){
                 $('.access-save').css("display","inline");
                 $('#EditUserRole').append(elements);
                 $("#AccessControlModal :input").removeAttr("disabled");
-               // console.log('user role'+res_csp['user_data'][0].role);
-                // if not equal to operator the access control for edit modal function
+
                 if(res_csp['user_data'][0].role != "Operator"){
                     // this ajax get particular user access data
-                   get_edit_access_control(res_csp['user_data'][0].user_id,res_csp['user_data'][0].role);
-                  
-
-
+                    get_edit_access_control(res_csp['user_data'][0].user_id,res_csp['user_data'][0].role);
                     if ((res_csp['user_data'][0].role != 'Site Users') && (res_csp['user_data'][0].role !='Site Admin') ) {
                         // this conditions for only not equal to site user
                         $('#settings_user_noaccess').removeAttr('disabled');
@@ -2473,8 +2454,14 @@ $(document).ready(function(){
                     }
                 }
 
-                // temporary hide for strategy
+                $('#EditUserSiteName').empty();
+                var role = res_csp['user_data'][0].role;
+                var site_id = res_csp['user_data'][0].site_id;
+                $("#EditUserSiteName").css("display","inline");
+                console.log("user details in site dropdown:\t"+role+" site id:\t"+site_id);
+                edit_user_site_name(role , site_id);
 
+                // temporary hide for strategy
                 $('.EditUserData').attr("data_val",id);
             },
             error:function(res){
@@ -2484,64 +2471,321 @@ $(document).ready(function(){
         var edit_data = "edit_user";
         error_show_remove(edit_data);
         $('#EditUserModal').modal('show');
-    });     
-
-    // after click edit open the modal then load the site name dropdown
-    function edit_user_site_name(role ,site_id){
+        */
+    }); 
+    
+    async function edit_user_data_view(thisref){
+        var id = $(thisref).attr("lvalue");
+        var role = $(thisref).attr("rvalue");
+        var status = $(thisref).attr("svalue");
+        var sitename = $(thisref).attr('site');
+        var created_on = $(thisref).attr('con');
         var UserNameRef = "<?php echo($this->data['user_details'][0]['user_id'])?>";
         var UserRoleRef ="<?php  echo($this->data['user_details'][0]['role'])?>";
 
-        $.ajax({
-            url: "<?php echo base_url('User_controller/getSiteName'); ?>",
-            type: "POST",
-            dataType: "json",
-            cache: false,
-            data:{
-                UserNameRef:UserNameRef,
-                UserRoleRef:UserRoleRef,
-            },
-            success:function(res_Site){
-                if(role == "Smart Users"){
-                    var elements = $('<option value="'+res_Site[0].site_id+'" id="display_edit_add">'+res_Site[0].site_name+'</option>');
-                    $('#EditUserSiteName').append(elements);
-                    $('#EditUserSiteName').attr("disabled",true);
-                }
-                else if(role == "Site Admin"){
-                    $('#EditUserSiteName').attr("disabled",true);
-                    var elements = $('<option value="new_site-test" id="display_edit_add">Add Site</option>');                  
-                    res_Site.forEach(function(item){
-                        if (item.site_id != "smartories") {
-                            if (item.site_id == site_id) {                     
-                                elements = elements.add('<option value="'+item.site_id+'" selected class="edit_opt_sname">'+item.site_name+' -'+item.site_id+'</option>');
-                            }
-                            else{          
-                                elements = elements.add('<option value="'+item.site_id+'" class="edit_opt_sname">'+item.site_name+' -'+item.site_id+'</option>');
-                            }
-                            $('#EditUserSiteName').append(elements);
-                        }
-                    });            
-                }
-                else {
-                    $('#EditUserSiteName').removeAttr("disabled");
-                    var elements = $('<option value=" " id="display_edit_add" selected disabled>Select Site</option>');
-                    res_Site.forEach(function(item){
-                        if (item.site_id != "smartories") {
-                            if (item.site_id == site_id) {                             
-                                elements = elements.add('<option value="'+item.site_id+'" selected class="edit_opt_sname">'+item.site_name+' -'+item.site_id+'</option>');
-                            }
-                            else{                 
-                                elements = elements.add('<option value="'+item.site_id+'" class="edit_opt_sname">'+item.site_name+' -'+item.site_id+'</option>');
-                            }     
-                            $('#EditUserSiteName').append(elements);
-                        }            
-                    });
-                }              
-            },
-            error:function(res){
-                // alert("Sorry!Try Agian!!");
+        const result = await get_particular_userdata(id,role,status,sitename,created_on,UserNameRef,UserRoleRef);
+        console.log("ajax array");
+        console.log(result);
+        if (result['user_data'][0].status == 1) {
+            $('#EditUserStatus').html('<p style="color: #005CBC;"><i class="fa fa-circle" style="font-size:9px;margin-right:5px;"></i>Active</p>');
+        }
+        else{
+            $('#EditUserStatus').html('<p style="color: #C00000;"><i class="fa fa-circle" style="font-size:9px;margin-right:5px;margin-top:5px;"></i>Inactive</p>');
+        }
+        // permissions for particular users condition
+        $('#EditUserRegisteredOn').html(created_on);
+        $('#ExceptOpEdit').css("display","none");
+        $('#OperatorCredentialEdit').css("display","none");
+        $('.ACControl').css("display","none");
+
+        if(result['user_data'][0].role != "Operator"){
+            // access control and basic adding  management user and operator
+            $('#EditUserEmail').val(result['user_data'][0].username);
+            $("#EditUserEmail").attr("disabled", true);
+            $('#ExceptOpEdit').css("display","block");
+            $('#OperatorCredentialEdit').css("display","none");
+            $('.ACControl').css("display","block");
+        }
+        else{
+            // access control and basic adding operator user management user
+            $('#EditOpUserID').val(result['user_data'][0].username);
+            $("#EditOpUserID").attr("disabled", true);
+            $('#ExceptOpEdit').css("display","none");
+            $('#OperatorCredentialEdit').css("display","block");
+            $('.ACControl').css("display","none");
+        }
+
+        await edit_dept_fill(result['user_data'][0].department);
+        // after selection site dropdown then display site id and location
+        $('#EditUserSiteId').html(result['user_data'][0].site_id);
+        $('#EditUserFName').val(result['user_data'][0].first_name);
+        $('#EditUserLName').val(result['user_data'][0].last_name );
+        $('#EditUserLocation').html(result['location']);
+        $('#EditUserPhone').val(result['user_data'][0].phone);
+        $('#EditUserDesignation').val(result['user_data'][0].designation);
+        $('#EditUserUpdatedBy').html(result['last_updated_by'][0].first_name + " " +result['last_updated_by'][0].last_name);
+        $('#EditUserUpdatedOn').html(getdate_time(result['user_data'][0].last_updated_on));
+
+        $('#EditUserFNameCunt').html($('#EditUserFName').val().length+' / ' + text_max);
+        $('#EditUserLNameCunt').html($('#EditUserLName').val().length+' / ' + text_max);
+        $('#EditUserDesignationCunt').html($('#EditUserDesignation').val().length+' / ' + text_max_val);
+
+        $('#EditUserRole').empty();
+        var elements = $('<option value="null">Select Role</option>');
+        // this condition get role based datas
+        // empty array 
+        let user_role_arr =new Array();
+        console.log(result['user_data'][0].role);
+        if (result['user_data'][0].role == "Smart Users" ) {
+            user_role_arr = ['Smart Users','Site Admin','Site Users','Operator'];
+        }
+        else if(result['user_data'][0].role == "Site Admin"){      
+            $('#display_edit_add').css("display","inline");
+            user_role_arr = ['Site Admin','Site Users','Operator'];
+        }
+        else if(result['user_data'][0].role == "Site Users"){
+            user_role_arr = ['Site Users','Operator'];          
+        }
+        else if(result['user_data'][0].role == "Operator"){
+            $('#display_edit_add').css("display","none");
+            user_role_arr = ['Operator'];
+        }
+        else{
+            user_role_arr = ['Smart Admin'];
+        }
+        
+        // user role dropdown adding value array function
+        user_role_arr.forEach((item_val,index,array) => {
+            if (index===0) {
+                elements = elements.add('<option value="'+item_val+'" selected>'+item_val+'</option>');
+            }
+            else{
+                elements = elements.add('<option value="'+item_val+'">'+item_val+'</option>');
+            }
+        });       
+        // this line is remove for radio button none property
+        $('.access-save').css("display","inline");
+        $('#EditUserRole').append(elements);
+        if(result['user_data'][0].role != "Operator"){
+            // this ajax get particular user access data
+            $("#AccessControlModal :input").removeAttr("disabled");
+            get_edit_access_control(result['user_data'][0].user_id,result['user_data'][0].role);
+            if ((result['user_data'][0].role != 'Site Users') && (result['user_data'][0].role !='Site Admin') ) {
+                // this conditions for only not equal to site user
+                $('#settings_user_noaccess').removeAttr('disabled');
+                $('#settings_user_view').removeAttr('disabled');
+                $('#settings_user_edit').removeAttr('disabled');
+                $('#settings_user_add_del').removeAttr('disabled');
+ 
+                // this condtion for only allowed in smart user
+                $('#ooe_f_drill_down_add_del').removeAttr('disabled');
+                $('#opportunity_insights_add_del').removeAttr('disabled');
+                $('#ooe_drill_down_add_del').removeAttr('disabled');
+                $('#oui_add_del').removeAttr('disabled');
+                $('#pdm_add_del').removeAttr('disabled');
+                $('#settings_macine_add_del').removeAttr('disabled');
+                $('#settings_part_add_del').removeAttr('disabled');
+                $('#settings_general_add_del').removeAttr('disabled');
+
+            }else if((result['user_data'][0].role !='Site Users') && (result['user_data'][0].role =='Site Admin')){
+                // this condition if you not equal to the site user at the same is site admin remove add delete radio button
+                $('#ooe_f_drill_down_add_del').attr('disabled',true);
+                $('#opportunity_insights_add_del').attr('disabled',true);
+                $('#ooe_drill_down_add_del').attr('disabled',true);
+                $('#oui_add_del').attr('disabled',true);
+                $('#pdm_add_del').attr('disabled',true);
+                $('#settings_macine_add_del').attr('disabled',true);
+                $('#settings_part_add_del').attr('disabled',true);
+                $('#settings_general_add_del').attr('disabled',true);
+                $('#settings_user_add_del').attr('disabled',true);
+
+                // and enable user account radio button
+                $('#settings_user_noaccess').removeAttr('disabled');
+                $('#settings_user_view').removeAttr('disabled');
+                $('#settings_user_edit').removeAttr('disabled');          
+                //document.getElementById('settings_user_add_del').disabled = false;                        
+
+            }else{
+                // this condition only available in site users for remove all add and remove machine part site users
+                $('#ooe_f_drill_down_add_del').attr('disabled',true);
+                $('#opportunity_insights_add_del').attr('disabled',true);
+                $('#ooe_drill_down_add_del').attr('disabled',true);
+                $('#oui_add_del').attr('disabled',true);
+                $('#pdm_add_del').attr('disabled',true);
+                $('#settings_macine_add_del').attr('disabled',true);
+                $('#settings_general_add_del').attr('disabled',true);
+                $('#settings_part_add_del').attr('disabled',true);
+                        
+                // this conditions remove user acocunt for site users
+                $('#settings_user_noaccess').attr('disabled',true);
+                $('#settings_user_view').attr('disabled',true);
+                $('#settings_user_edit').attr('disabled',true);
+                $('#settings_user_add_del').attr('disabled',true);
+            }
+        }
+
+        $('#EditUserSiteName').empty();
+        $("#EditUserSiteName").css("display","inline");
+        console.log("user details in site dropdown:\t"+result['user_data'][0].role+" site id:\t"+result['user_data'][0].site_id);
+        const result_data = await edit_user_site_name(result['user_data'][0].role , result['user_data'][0].site_id);
+        var drp_element = $();
+        drp_element = drp_element.add('<option value="" disabled>Select Site</option>')
+        result_data.forEach(element => {
+            if (result['user_data'][0].site_id===element.site_id) {
+                drp_element = drp_element.add('<option value="'+element.site_id+'" class="'+element.site_id+'_edit_sname" selected="true">'+element.site_name+'-'+element.site_id+'</option>');
+            }else{
+                drp_element = drp_element.add('<option value="'+element.site_id+'" class="'+element.site_id+'_edit_sname">'+element.site_name+'-'+element.site_id+'</option>');
             }
         });
+        $('#EditUserSiteName').append(drp_element);
+        if (result['user_data'][0].role==="Smart Users") {
+            $('#EditUserSiteName').attr('disabled',true);
+            $('.smartories_edit_sname').css('display','block');
+        }
+        else if(result['user_data'][0].role==="Site Admin"){
+            $('#EditUserSiteName').attr('disabled',true);
+            $('.smartories_edit_sname').css('display','block');
+        }
+        else if(result['user_data'][0].role==="Site Users" || result['user_data'][0].role==="Operator"){
+            $('#EditUserSiteName').removeAttr('disabled',true);
+            $('.smartories_edit_sname').css('display','none');
+        }
+       
+        console.log("sitename");
+        console.log(result_data);
+        $('.EditUserData').attr("data_val",id);
+        // $('.EditUserSiteName_class').val(result['user_data'][0].site_id);
+        var edit_data = "edit_user";
+        error_show_remove(edit_data);
+        $('#EditUserModal').modal('show');         
+
     }
+
+    // edpartment function
+    function edit_dept_fill(dept){
+        return new Promise(function(resolve,reject){
+            $('#EditUserDepartment').empty();
+            $.ajax({
+                url: "<?php echo base_url('User_controller/getdept'); ?>",
+                type: "POST",
+                dataType: "json",
+                cache: false,
+                // async:false,
+                success:function(res_Site){
+                    // var datetime = getdate_time(res_csp['user_data'][0].last_updated_on);
+                    var elements = $('<option value="" disabled>Select deparment</option>');
+                    res_Site.forEach(function(item){
+                        if (dept===item.dept_id) {        
+                            elements = elements.add('<option value="'+item.dept_id+'" selected="true">'+item.department+'</option>');
+                        }
+                        else{
+                            elements = elements.add('<option value="'+item.dept_id+'">'+item.department+'</option>');
+                        }
+                    }); 
+                    $('#EditUserDepartment').append(elements);
+                    resolve("success");
+                },
+                error:function(err_drp_edit){
+                    reject("department dropdown filling ajax issue:\t"+err_drp_edit)
+                    // alert("Sorry!Try Agian!!");
+                }
+            });
+        });           
+    }
+
+    // after click edit open the modal then load the site name dropdown
+    function edit_user_site_name(role ,site_id){
+        return new Promise(function(resolve,reject){
+            var UserNameRef = "<?php echo($this->data['user_details'][0]['user_id'])?>";
+            var UserRoleRef ="<?php  echo($this->data['user_details'][0]['role'])?>";
+
+            $.ajax({
+                url: "<?php echo base_url('User_controller/getSiteName'); ?>",
+                type: "POST",
+                dataType: "json",
+                cache: false,
+                data:{
+                    UserNameRef:UserNameRef,
+                    UserRoleRef:UserRoleRef,
+                },
+                success:function(res_Site){
+
+                    // if(role === "Smart Users"){
+                    //     var elements = $('<option value="'+res_Site[0].site_id+'" id="display_edit_add">'+res_Site[0].site_name+'</option>');
+                       
+                    //     // $('#EditUserSiteName').attr("disabled",true);
+                    // }
+                    // else if(role === "Site Admin"){
+                    //     $('#EditUserSiteName').attr("disabled",true);
+                    //     var elements = $('<option value="new_site-test" id="display_edit_add">Add Site</option>');                  
+                    //     res_Site.forEach(function(item){
+                    //         if (item.site_id != "smartories") {
+                    //             if (item.site_id == site_id) {                     
+                    //                 elements = elements.add('<option value="'+item.site_id+'" selected="true" class="edit_opt_sname">'+item.site_name+' -'+item.site_id+'</option>');
+                    //             }
+                    //             else{          
+                    //                 elements = elements.add('<option value="'+item.site_id+'" class="edit_opt_sname">'+item.site_name+' -'+item.site_id+'</option>');
+                    //             }
+                    //             // $('#EditUserSiteName').append(elements);
+                    //         }
+                    //     });            
+                    // }
+                    // else {
+                    //     $('#EditUserSiteName').removeAttr("disabled");
+                    //     var elements = $('<option value=" " id="display_edit_add"  disabled>Select Site</option>');
+                    //     res_Site.forEach(function(item){
+                    //         if (item.site_id != "smartories") {
+                    //             if (item.site_id == site_id) {                             
+                    //                 elements = elements.add('<option value="'+item.site_id+'"   class="edit_opt_sname" selected="true">'+item.site_name+' -'+item.site_id+'</option>');
+                    //             }
+                    //             else{                 
+                    //                 elements = elements.add('<option value="'+item.site_id+'" class="edit_opt_sname">'+item.site_name+' -'+item.site_id+'</option>');
+                    //             }     
+                    //             $('#EditUserSiteName').append(elements);
+                    //         }            
+                    //     });
+                    // }
+                    // $('#EditUserSiteName').append(elements);  
+                    resolve(res_Site);            
+                },
+                error:function(err_edit_sitename){
+                    reject("sitename dropdown ajax issue:\t"+err_edit_sitename);
+                    // alert("Sorry!Try Agian!!");
+                }
+            });
+        });
+    }
+
+
+// settings user account how to get particular record
+    function get_particular_userdata(id,role,status,sitename,created_on,user_name_ref,user_role_ref){
+        return new Promise(function(resolve,reject){
+            $.ajax({
+                url: "<?php echo base_url('User_controller/getUserData'); ?>",
+                type: "POST",
+                cache: false,
+                // async:false,
+                data: {
+                    UserId : id,
+                    Role:role,
+                    Site_id:sitename,
+
+                },
+                dataType: "json",
+                success:function(res_csp){
+                    // console.log("edit user details");
+                    // console.log(res_csp);
+                    resolve(res_csp);
+        
+                },
+                error:function(err_get_Data){
+                    reject("get particular user data error"+err_get_Data);
+                    // alert("Sorry!Try Agian!!");
+                }
+            });
+        });
+    }
+   
 
     // on change site name function
     // on change sitename this function on changeing the site chnage some elements in edit modal 
@@ -2571,13 +2815,15 @@ $(document).ready(function(){
     // hode some function for mathan sir instruction based on edit modal
     $(document).on("click", ".EditUserData", function(event){
         event.preventDefault();
-        event.stopPropagation();
+        // event.stopPropagation();
        
         var UserNameRef = "<?php echo($this->data['user_details'][0]['user_id'])?>";     
         var condition = $('.EditUserData').attr("disabled");
+        console.log("username ref:\t"+UserNameRef);
         if (condition == "disabled") {
             $('.EditMachine').css('border',"none");
         }else{
+            console.log("else condition is okay");
             var a = EditUserFName();
             var b = EditUserLName();
             var c = EditUserPhone();
@@ -2674,6 +2920,7 @@ $(document).ready(function(){
                             }
                         });
                     }else{
+                        
                         $.ajax({
                             url: "<?php echo base_url('User_controller/updateUserData'); ?>",
                             type: "POST",
@@ -3465,194 +3712,202 @@ function error_show_remove(data){
 
 function get_all_user(){
 
-// retrive all users for rows
-var SiteUserRef = "<?php echo($this->data['user_details'][0]['user_id']); ?>";
-var role = "<?php echo($this->data['user_details'][0]['role']); ?>";
-var sitename = "<?php echo($this->data['user_details'][0]['site_id']);  ?>";
+    // retrive all users for rows
+    var SiteUserRef = "<?php echo($this->data['user_details'][0]['user_id']); ?>";
+    var role = "<?php echo($this->data['user_details'][0]['role']); ?>";
+    var sitename = "<?php echo($this->data['user_details'][0]['site_id']);  ?>";
 
-//  this ajax function for document ready ajax function
-$.ajax({
-    url: "<?php echo base_url('User_controller/getSiteUser'); ?>",
-    type: 'post',
-    dataType: 'json',
-    cache: false,
-    data: {
-        SiteUserRef:SiteUserRef,
-        role:role,
-        sitename:sitename,
-    },
-    success:function(res_Site){    
-        $('.contentUser').empty();
-            if (jQuery.isEmptyObject(res_Site)){
-                $('.contentUser').html('<p class="no_record_css">No Records...</p>');
-            }
-            var active = 0;
-            var inactive = 0;
-            var color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
-            // this foreach function for rows updation 
-            res_Site.forEach(function(item){
-                var randomColor = color[Math.floor(Math.random()*color.length)];
-                var elements = $();
-                var forgot_border = "";
-                var delete_border = "";
-                if (item.role == "Smart Admin"){
-                    var forgot = "none";
-                    var colorRole = "#853e2c";
-                    var colorBorder = "#ffdad0";
-                    forgot_border = "none";
-                    delete_border="none";
+    //  this ajax function for document ready ajax function
+    $.ajax({
+        url: "<?php echo base_url('User_controller/getSiteUser'); ?>",
+        type: 'post',
+        dataType: 'json',
+        cache: false,
+        data: {
+            SiteUserRef:SiteUserRef,
+            role:role,
+            sitename:sitename,
+        },
+        success:function(res_Site){    
+            $('.contentUser').empty();
+                if (jQuery.isEmptyObject(res_Site)){
+                    $('.contentUser').html('<p class="no_record_css">No Records...</p>');
                 }
-                else if(item.role == "Smart Users"){
-                    var forgot = "none";
-                    var colorRole = "#a2723f";
-                    var colorBorder = "#ffe4c4";
-                    forgot_border = "none";
-                    delete_border="none";
-                }
-                else if(item.role == "Site Admin"){
-                    var forgot = "none";
-                    var colorRole = "#005fc8";
-                    var colorBorder = "#c1eaff";
-                    forgot_border = "none";
-                    delete_border="none";
-                }
-                else if(item.role == "Site Users"){
-                    var forgot = "none";
-                    var colorRole = "#56b8c2";
-                    var colorBorder = "#60ebee";
-                    forgot_border = "none";
-                    delete_border="none";
-                }
-                else if(item.role == "Operator"){
-                    var forgot = "block";
-                    var colorRole = "#7030a0";
-                    var colorBorder = "#dfcaee";
-                    forgot_border = "none";
-                    delete_border="1px solid #EEE";
-                }
-                if (item.status == 1) {
-                    active = active+1;
-                
-                    elements = elements.add('<div id="settings_div">'
+                var active = 0;
+                var inactive = 0;
+                // var color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
+                // this foreach function for rows updation 
+                res_Site.forEach(function(item){
+                    // var randomColor = color[Math.floor(Math.random()*color.length)];
+                    var randomColor = "";
+                    var elements = $();
+                    var forgot_border = "";
+                    var delete_border = "";
+                    // var color = "";
+                    if (item.user_profile==="" || item.user_profile===null) {
+                        randomColor = "#005abc";
+                    }else{
+                        randomColor = item.user_profile;
+                    }
+
+                    if (item.role == "Smart Admin"){
+                        var forgot = "none";
+                        var colorRole = "#853e2c";
+                        var colorBorder = "#ffdad0";
+                        forgot_border = "none";
+                        delete_border="none";
+                    }
+                    else if(item.role == "Smart Users"){
+                        var forgot = "none";
+                        var colorRole = "#a2723f";
+                        var colorBorder = "#ffe4c4";
+                        forgot_border = "none";
+                        delete_border="none";
+                    }
+                    else if(item.role == "Site Admin"){
+                        var forgot = "none";
+                        var colorRole = "#005fc8";
+                        var colorBorder = "#c1eaff";
+                        forgot_border = "none";
+                        delete_border="none";
+                    }
+                    else if(item.role == "Site Users"){
+                        var forgot = "none";
+                        var colorRole = "#56b8c2";
+                        var colorBorder = "#60ebee";
+                        forgot_border = "none";
+                        delete_border="none";
+                    }
+                    else if(item.role == "Operator"){
+                        var forgot = "block";
+                        var colorRole = "#7030a0";
+                        var colorBorder = "#dfcaee";
+                        forgot_border = "none";
+                        delete_border="1px solid #EEE";
+                    }
+                    if (item.status == 1) {
+                        active = active+1;
+                    
+                        elements = elements.add('<div id="settings_div">'
+                                +'<div class="row paddingm">'
+                                +'<div class="col-sm-2 col" style="display: flex;">'
+                                    +'<div style="width: 30%">'
+                                        +'<div class="dotUser" style="background:'+randomColor+';color:white;"><p>'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p></div>'
+                                    +'</div>'
+                                    +'<div style="width: 70%">'
+                                        +'<p title="'+item.username+'">'+item.username+'</p>'
+                                        +'<p><span>'+item.first_name+'</span><span class="LastNameMarg">'+item.last_name+'</span></p>'
+                                        
+                                    +'</div>'                
+                                +'</div>'
+                                +'<div class="col-sm-2 col marleft" ><p title="'+item.site_id+'">'+item.site_name+'</p></div>'        
+                                +'<div class="col-sm-2 col marleft" >'
+                                    +'<p>'+item.designation+'</p>'
+                                +'</div>'
+                                +'<div class="col-sm-2 col marleft" >'
+                                    +'<p>'+register_date(item.created_on)+'</p>'
+                                +'</div>'
+                                +'<div class="col-sm-2 col ">'
+                                    +'<div class="userRole siteAdmin textCenter" style="border:1px solid '+colorBorder+';margin-left:1rem;">'
+                                        +'<p style="color:'+colorRole+'" class="user_get_role">'+item.role+'</p>'
+                                    +'</div>'
+                                +'</div>'
+                                +'<div class="col-sm-1 col settings_active marleft" ><p style="color: #005CBC;"><i class="fa fa-circle" style="font-size:9px;margin-right:5px;margin-top:5px;"></i>Active</p></div>'
+                                +'<div class="col-sm-1 col d-flex justify-content-center fasdiv">'
+                                    +'<ul class="edit-menu">'
+                                        +'<li class="d-flex justify-content-center">'
+                                            +'<a href="javascript:function(){return false;}">'
+                                                +'<i class="edit fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
+                                            +'</a>'
+                                            +'<ul class="edit-subMenu" style="z-index:10;">'
+                                                // +'<li class="edit-opt info-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" con="'+item.created_on+'"><a href="#"><i class="fa fa-info" style="margin-left:10px;"></i>INFO</a></li>'
+                                                +'<li class="edit-opt edit-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" con="'+item.created_on+'" svalue="'+item.status+'" site="'+item.site_id+'"><a href="#"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh" style="margin-left:10px;"></i>EDIT</a></li>'
+                                                +'<li class="edit-opt deactivate-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'" site_id="'+item.site_id+'"><a href="#" style="border-bottom:'+delete_border+';"><img src="<?php echo base_url('assets/img/delete.png'); ?>" class="img_font_wh1" style="margin-left:10px;"></i>DEACTIVATE</a></li>'
+                                                +'<li class="edit-opt forgot-password forgotwork " style="display:'+forgot+';" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'" site="'+item.site_id+'"><a href="#" style="border-bottom:'+forgot_border+';"><i class="fa fa-key" style="margin-left:15px;font-size:1rem;"></i><span style="margin-left:0.8rem;">RESET PASSWORD</span></a></li>'
+                                            +'</ul>'
+                                        +'</li>'
+                                    +'</ul>'                
+                                +'</div>'
+                            +'</div>'
+                            +'</div>');
+                        $('.contentUser').append(elements);
+                    }
+                    else{
+                        inactive = inactive+1;
+                        elements = elements.add('<div id="settings_div">'
                             +'<div class="row paddingm">'
-                            +'<div class="col-sm-2 col" style="display: flex;">'
-                                +'<div style="width: 30%">'
-                                    +'<div class="dotUser" style="background:'+randomColor+';color:white;"><p>'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p></div>'
+                                +'<div class="col-sm-2 col" style="display: flex;">'
+                                    +'<div style="width: 30%">'
+                                        +'<div class="dotUser" style="background:'+randomColor+';color:white;"><p>'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p></div>'
+                                    +'</div>'
+                                    +'<div style="width: 70%">'
+                                        +'<p title="'+item.username+'">'+item.username+'</p>'
+                                        +'<p><span>'+item.first_name+'</span><span class="LastNameMarg">'+item.last_name+'</span></p>'
+                                        
+                                    +'</div>'                
                                 +'</div>'
-                                +'<div style="width: 70%">'
-                                    +'<p title="'+item.username+'">'+item.username+'</p>'
-                                    +'<p><span>'+item.first_name+'</span><span class="LastNameMarg">'+item.last_name+'</span></p>'
-                                    
-                                +'</div>'                
-                            +'</div>'
-                            +'<div class="col-sm-2 col marleft" ><p title="'+item.site_id+'">'+item.site_name+'</p></div>'        
-                            +'<div class="col-sm-2 col marleft" >'
-                                +'<p>'+item.designation+'</p>'
-                            +'</div>'
-                            +'<div class="col-sm-2 col marleft" >'
-                                +'<p>'+register_date(item.created_on)+'</p>'
-                            +'</div>'
-                            +'<div class="col-sm-2 col ">'
-                                +'<div class="userRole siteAdmin textCenter" style="border:1px solid '+colorBorder+';margin-left:1rem;">'
-                                    +'<p style="color:'+colorRole+'" class="user_get_role">'+item.role+'</p>'
+                                +'<div class="col-sm-2 col marleft" ><p title="'+item.site_id+'">'+item.site_name+'</p></div>'        
+                                +'<div class="col-sm-2 col marleft" >'
+                                    +'<p>'+item.designation+'</p>'
+                                +'</div>'
+                                +'<div class="col-sm-2 col marleft" >'
+                                    +'<p>'+register_date(item.created_on)+'</p>'
+                                +'</div>'
+                                +'<div class="col-sm-2 col ">'
+                                    +'<div class="userRole siteAdmin textCenter" style="border:1px solid '+colorBorder+';margin-left:1rem;">'
+                                        +'<p style="color:'+colorRole+'" class="user_get_role">'+item.role+'</p>'
+                                    +'</div>'
+                                +'</div>'
+                                +'<div class="col-sm-1 col settings_active marleft"><p style="color:#C00000;"><i class="fa fa-circle" style="font-size:9px;margin-right:5px;margin-top:5px;"></i>Inactive</p></div>'
+                                +'<div class="col-sm-1 col d-flex justify-content-center fasdiv">'
+                                    +'<ul class="edit-menu">'
+                                        +'<li class="d-flex justify-content-center">'
+                                            +'<a href="javascript:function(){return false;}">'
+                                                +'<i class="edit fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
+                                            +'</a>'
+                                            +'<ul class="edit-subMenu" style="z-index:10;">'
+                                                +'<li class="edit-opt info-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" con="'+item.created_on+'" site="'+item.site_id+'"><a href="#"><img src="<?php echo base_url('assets/img/info.png'); ?>" class="img_font_wh2" style="margin-left:10px;"></i>INFO</a></li>'
+                                                +'<li class="edit-opt activate-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'"  site_id="'+item.site_id+'"><a href="#" style="border-bottom:none;"><img src="<?php echo base_url('assets/img/activate.png'); ?>" class="img_font_wh2" style="margin-left:10px;"></i>ACTIVATE</a></li>'
+                                            +'</ul>'
+                                        +'</li>'
+                                    +'</ul>'                
                                 +'</div>'
                             +'</div>'
-                            +'<div class="col-sm-1 col settings_active marleft" ><p style="color: #005CBC;"><i class="fa fa-circle" style="font-size:9px;margin-right:5px;margin-top:5px;"></i>Active</p></div>'
-                            +'<div class="col-sm-1 col d-flex justify-content-center fasdiv">'
-                                +'<ul class="edit-menu">'
-                                    +'<li class="d-flex justify-content-center">'
-                                        +'<a href="javascript:function(){return false;}">'
-                                            +'<i class="edit fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
-                                        +'</a>'
-                                        +'<ul class="edit-subMenu" style="z-index:10;">'
-                                            // +'<li class="edit-opt info-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" con="'+item.created_on+'"><a href="#"><i class="fa fa-info" style="margin-left:10px;"></i>INFO</a></li>'
-                                            +'<li class="edit-opt edit-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" con="'+item.created_on+'" svalue="'+item.status+'" site="'+item.site_id+'"><a href="#"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh" style="margin-left:10px;"></i>EDIT</a></li>'
-                                            +'<li class="edit-opt deactivate-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'" site_id="'+item.site_id+'"><a href="#" style="border-bottom:'+delete_border+';"><img src="<?php echo base_url('assets/img/delete.png'); ?>" class="img_font_wh1" style="margin-left:10px;"></i>DEACTIVATE</a></li>'
-                                            +'<li class="edit-opt forgot-password forgotwork " style="display:'+forgot+';" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'" site="'+item.site_id+'"><a href="#" style="border-bottom:'+forgot_border+';"><i class="fa fa-key" style="margin-left:15px;font-size:1rem;"></i><span style="margin-left:0.8rem;">RESET PASSWORD</span></a></li>'
-                                        +'</ul>'
-                                    +'</li>'
-                                +'</ul>'                
-                            +'</div>'
-                        +'</div>'
                         +'</div>');
-                    $('.contentUser').append(elements);
-                }
-                else{
-                    inactive = inactive+1;
-                    elements = elements.add('<div id="settings_div">'
-                        +'<div class="row paddingm">'
-                            +'<div class="col-sm-2 col" style="display: flex;">'
-                                +'<div style="width: 30%">'
-                                    +'<div class="dotUser" style="background:'+randomColor+';color:white;"><p>'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p></div>'
-                                +'</div>'
-                                +'<div style="width: 70%">'
-                                    +'<p title="'+item.username+'">'+item.username+'</p>'
-                                    +'<p><span>'+item.first_name+'</span><span class="LastNameMarg">'+item.last_name+'</span></p>'
-                                    
-                                +'</div>'                
-                            +'</div>'
-                            +'<div class="col-sm-2 col marleft" ><p title="'+item.site_id+'">'+item.site_name+'</p></div>'        
-                            +'<div class="col-sm-2 col marleft" >'
-                                +'<p>'+item.designation+'</p>'
-                            +'</div>'
-                            +'<div class="col-sm-2 col marleft" >'
-                                +'<p>'+register_date(item.created_on)+'</p>'
-                            +'</div>'
-                            +'<div class="col-sm-2 col ">'
-                                +'<div class="userRole siteAdmin textCenter" style="border:1px solid '+colorBorder+';margin-left:1rem;">'
-                                    +'<p style="color:'+colorRole+'" class="user_get_role">'+item.role+'</p>'
-                                +'</div>'
-                            +'</div>'
-                            +'<div class="col-sm-1 col settings_active marleft"><p style="color:#C00000;"><i class="fa fa-circle" style="font-size:9px;margin-right:5px;margin-top:5px;"></i>Inactive</p></div>'
-                            +'<div class="col-sm-1 col d-flex justify-content-center fasdiv">'
-                                +'<ul class="edit-menu">'
-                                    +'<li class="d-flex justify-content-center">'
-                                        +'<a href="javascript:function(){return false;}">'
-                                            +'<i class="edit fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
-                                        +'</a>'
-                                        +'<ul class="edit-subMenu" style="z-index:10;">'
-                                            +'<li class="edit-opt info-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" con="'+item.created_on+'" site="'+item.site_id+'"><a href="#"><img src="<?php echo base_url('assets/img/info.png'); ?>" class="img_font_wh2" style="margin-left:10px;"></i>INFO</a></li>'
-                                            +'<li class="edit-opt activate-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'"  site_id="'+item.site_id+'"><a href="#" style="border-bottom:none;"><img src="<?php echo base_url('assets/img/activate.png'); ?>" class="img_font_wh2" style="margin-left:10px;"></i>ACTIVATE</a></li>'
-                                        +'</ul>'
-                                    +'</li>'
-                                +'</ul>'                
-                            +'</div>'
-                        +'</div>'
-                    +'</div>');
-                    $('.contentUser').append(elements);
-                    // var text_val = $('.userRole').children('p').text();
-                    // alert(text_val);
-                }
-            });
-            $('#Iactive').empty();
-            $('#Active').empty();
-            // active and inactvie count checking for two digits
+                        $('.contentUser').append(elements);
+                        // var text_val = $('.userRole').children('p').text();
+                        // alert(text_val);
+                    }
+                });
+                $('#Iactive').empty();
+                $('#Active').empty();
+                // active and inactvie count checking for two digits
 
-            inactive_len = inactive.toString().length;
-            active_len = active.toString().length;
-            if (parseInt(inactive_len) > 1) {
-                $('#Iactive').html(inactive);
-            }else{
-                $('#Iactive').html('0'+inactive);
-            }
+                inactive_len = inactive.toString().length;
+                active_len = active.toString().length;
+                if (parseInt(inactive_len) > 1) {
+                    $('#Iactive').html(inactive);
+                }else{
+                    $('#Iactive').html('0'+inactive);
+                }
 
-            if (parseInt(active_len) > 1) {
-                $('#Active').html(active);
-            }else{
-                $('#Active').html('0'+active);
-            }
-    },
-    error:function(res){
-        // alert("Sorry!Try Agian!!");
-    }
-});
+                if (parseInt(active_len) > 1) {
+                    $('#Active').html(active);
+                }else{
+                    $('#Active').html('0'+active);
+                }
+        },
+        error:function(res){
+            // alert("Sorry!Try Agian!!");
+        }
+    });
 
 }
 
 
 // edit access control db configuration
 function get_edit_access_control(userid,user_role){
-   
+   console.log("user id:\t"+userid);
     $.ajax({
         url: "<?php echo base_url('User_controller/EditUserRoleMaster'); ?>",
         type: "POST",

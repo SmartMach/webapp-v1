@@ -357,6 +357,7 @@ input[type=number] {
   .filter_selectBox select {
     width: 100%;
     font-weight: bold;
+    background-color:white;
   }
 
   
@@ -366,6 +367,7 @@ input[type=number] {
     right: 0;
     top: 0;
     bottom: 0;
+   
   }
 
   
@@ -440,6 +442,7 @@ input[type=number] {
   .filter_selectBox_reason select{
     width: 100%;
     font-weight: bold;
+    background:white;
   }
   .filter_overSelect_reason{
     position: absolute;
@@ -594,7 +597,7 @@ input[type=number] {
               <div class="input-box">
                   <select class="form-select font_weight select_input_width input_padd" name="" id="Production_MachineName" style="width: 10rem;padding-right:1.8rem;">
                   </select>
-                  <label for="inputSiteNameAdd" class="input-padding ">Machine Name</label>
+                  <label for="inputSiteNameAdd" class="input-padding ">Machines</label>
               </div>
             </div>
             <div class="box display_f align_c" style="margin-right: 0.5rem;">
@@ -607,7 +610,7 @@ input[type=number] {
               <div class="input-box">
                   <select class="form-select select_input_width input_padd font_weight" name="" id="RejectShift" style="width: 10rem;">
                   </select>
-                  <label for="inputSiteNameAdd" class="input-padding ">Shift</label>
+                  <label for="inputSiteNameAdd" class="input-padding ">Shifts</label>
               </div>
             </div>
                  
@@ -649,7 +652,7 @@ input[type=number] {
                 </div>
               </div> -->
               <div class="box rightmar" style="margin-right: 0.5rem;">
-                <label class="multi_select_label" style="">Reason</label>
+                <label class="multi_select_label" style="">Reasons</label>
                 <div class="filter_selectBox_reason" onclick="reason_multi_drp()">
                   <select  class="multi_select_drp" style="">
                     <option style="text-align:center;" id="text_reason">All Reasons</option>
@@ -680,7 +683,7 @@ input[type=number] {
                 </div>
               </div> -->
               <div class="box rightmar" style="margin-right: 0.5rem;" >
-                <label class="multi_select_label" style="">Category</label>
+                <label class="multi_select_label" style="">Categories</label>
                 <div class="filter_selectBox" onclick="category_drp()">
                   <select  class="multi_select_drp" style="" >
                     <option id="text_category_drp" style="text-align:center;">All Categories</option>
@@ -1343,23 +1346,6 @@ function getcategory_arr(){
 
 }
 
-// after change category update the downtime reason dropdwon
-/* this function not now
-function after_cate(){
-  alert('ji');
-  var category_drp = "";
-  var category_arr_drp_tmp = getcategory_arr();
-  var cate_leng = category_arr_drp_tmp.length;
-  if (parseInt(cate_leng)>2) {
-    category_drp = null;
-  }else{
-    category_drp = category_arr_drp_tmp[0];
-  }
-  console.log("after select category dropdwon");
-  console.log(category_drp);
-  downtime_reason_filter(category_drp);
-}
-*/
 
 // get filter reason array
 function getreason_arr(){

@@ -195,7 +195,7 @@ min-height:4.8rem;
 max-width:10.9rem;
 min-width:10rem;
 background-color:white;
-margin-left:-14rem; 
+margin-left:-15.9rem; 
 border:1px solid #e6e6e6;
 padding:0.7rem;
 border-radius:10px;
@@ -622,7 +622,7 @@ top: 0;
 bottom: 0;  
 }
 .filter_checkboxes_machinegp{
-display: none;
+/* display: none; */
 border: 1px #dadada solid;
 z-index:250;
 position: absolute;
@@ -690,7 +690,7 @@ top: 0;
 bottom: 0;  
 }
 .filter_checkboxes_reasongp{
-display: none;
+/* display: none; */
 border: 1px #dadada solid;
 z-index:250;
 position: absolute;
@@ -1403,3 +1403,85 @@ height:2rem;
 }
 
 
+.non-select{
+    user-select: none; 
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  
+}
+.select-pointer{
+    cursor: pointer;
+}
+
+
+/* table responsive css 2023-11-06 starting this date */
+.fixed_record{
+    position: sticky;
+    background:white;
+    height:100%;
+}
+
+/* downtime table media query css */
+.to_date_width{
+    width:14.8%;
+}
+
+.dcategory_width{
+    width:9.5%;
+}
+
+.dreason_width{
+    width:12.4%;
+}
+
+.tool_name_width{
+    width:10.6%;
+}
+
+.part_name_width{
+    width:10.5%;
+}
+
+.last_updated_width{
+    width:9.5%;
+}
+
+.updated_at_width{
+    width:9.6%;
+}
+
+/* hovering time width adjustment */
+/* .icon_img_wh:hover  .to_date_width{
+    width: 8%;
+}
+
+.icon_img_wh:hover  .dcategory_width{
+    width: 5%;
+}
+
+.icon_img_wh:hover  .dreason_width{
+    width: 5%;
+} */
+
+.demo_notes{
+    min-height:4.8rem;
+    max-width:10.9rem;
+    min-width: 10rem;
+    background:rgb(246, 249, 246);
+    border-radius:0.25rem;
+    visibility:hidden;
+    margin-left:-12rem;
+    border: 1px solid #e6e6e6;
+}
+/* 
+.notes_check .demo_notes{
+    visibility: hidden;
+}
+
+.notes_check:hover .demo_notes{
+    visibility: visible;
+} */
+
+/* .icon_img_wh:hover ,.demo_notes:eq(1){
+visibility: visible;
+} */
