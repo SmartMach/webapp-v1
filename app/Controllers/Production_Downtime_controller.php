@@ -906,6 +906,7 @@ class Production_Downtime_controller extends BaseController{
             $res['part'] = $part_drp;
             $res['created_by'] = $created_drp;
             $res['downtime_reason'] = $downtime_reason_drp;
+            $res['downtime_category'] = $this->data->downtime_category_filter_con();
 
             $end_time_logger_drp = microtime(true);
             $execution_time_logger_drp = ($end_time_logger_drp - $start_time_logger_drp);

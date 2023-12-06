@@ -70,198 +70,194 @@ function get_reset_fun(res){
     }
 }
 
-// filter 
-// onclick div function 
-// global checkbox div click function
-function drp_div_selection_fun(classref,check_box_class,text_id,name_ref,function_name,thiref){
-    var count_machine_gp  = $('.'+classref+'');
-    var index_machine_gp = count_machine_gp.index($(thiref));
-    var check_if = $('.'+check_box_class+'');
-    if (index_machine_gp === 0) {
-        if (check_if[0].checked==false) {
-            get_reset_fun(function_name); 
-            
-        }
-        else{
-            $('.'+check_box_class+'').removeAttr('checked');
-        }
-    }else{
-        if (check_if[index_machine_gp].checked==false) {
-            check_if[index_machine_gp].checked=true;
-            $('.'+check_box_class+':eq('+index_machine_gp+')').attr('checked','checked');
-        }else{
-            $('.'+check_box_class+':eq('+index_machine_gp+')').removeAttr('checked');
-            check_if[0].checked=false;
-        }
+
+function multiple_drp_fun(classRef,eleRef,labRef,dropRef,thisRef) {
+    var index = $('.'+classRef+'').index(thisRef);
+
+    if(index==0 && $( '.'+eleRef+':eq('+index+')').prop( "checked")==true){
+      $( '.'+eleRef+'').prop( "checked", false );
+    }
+    else if(index==0 && $('.'+eleRef+':eq('+index+')').prop( "checked")==false){
+      $( '.'+eleRef+'').prop( "checked", true );
+    }
+    else{
+      if ($( '.'+eleRef+':eq('+index+')').prop( "checked")==true) {
+        $( '.'+eleRef+':eq('+index+')').prop( "checked", false );
+      }
+      else{
+        $( '.'+eleRef+':eq('+index+')').prop( "checked", true );
+      }
     }
 
-    var machine_gp_select_count = 0;
-    jQuery('.'+check_box_class+'').each(function(index){
+    var l1 = $('.'+eleRef+'').length;
+    var l2 = $('.'+eleRef+':checked').length;
+    
+
+    if ( (((l2)+1) == l1) && !($('.'+eleRef+'')[0].checked)) {
+      $( '.'+eleRef+':eq(0)').prop( "checked", true);
+    }
+    else if (l2 < l1) {
+      $( '.'+eleRef+':eq(0)').prop( "checked", false );
+    }
+
+    // part count
+    var element_count = 0;
+    var check_if = $('.'+eleRef+'');
+    jQuery('.'+eleRef+'').each(function(index){
       if (check_if[index].checked===true) {
-        machine_gp_select_count = parseInt(machine_gp_select_count)+1;
+        element_count = parseInt(element_count)+1;
       }
     });
-    var machine_gp_len = $('.'+check_box_class+'').length;
-    machine_gp_len = parseInt(machine_gp_len)-1;
-    // console.log("machine onclick"+machine_gp_len);
-    if (parseInt(machine_gp_select_count)>=parseInt(machine_gp_len)) {
-        if(check_if[0].checked===true){
-            check_if[0].checked=true;
-            $('.'+text_id+'').html('All '+name_ref);
-        }else{
-            // check_if[0].checked=true;
-            get_reset_fun(function_name);
 
-            $('.'+text_id+'').html('All '+name_ref);
-        }
-    }else if(((parseInt(machine_gp_select_count)<parseInt(machine_gp_len))) && (parseInt(machine_gp_select_count)>0)){
-        $('.'+text_id+'').html(parseInt(machine_gp_select_count)+' Selected');
-        console.log("selection count"+parseInt(machine_gp_select_count)+""+parseInt(machine_gp_len));
-        // check_if[0].checked=false;
-    }else {
-        $('.'+text_id+'').html('No '+name_ref);
+    var element_len = $('.'+eleRef+'').length;
+
+    element_len = parseInt(element_len);
+    if (check_if[0].checked) {
+      $('#'+labRef+'').text('All '+dropRef+'');
+    }
+    else if (!check_if[0].checked && element_len==(element_count+1)) {
+      $('#'+labRef+'').text('All '+dropRef+'');
+    }
+    else if (!check_if[0].checked && element_count>=1) {
+      $('#'+labRef+'').text(parseInt(element_count)+' Selected');
+    }
+    else{
+      $('#'+labRef+'').text('No '+dropRef+'');
     }
 }
 
 // Downtime Opportunity Cost by Reasons
-// graph filter machine div onclick function
-$(document).on('click','.filter_check_machinegp',function(event){
-    event.preventDefault();
-    drp_div_selection_fun('filter_check_machinegp','machinegp_checkbox','text_machinegp_drp','Machines','oppcost_reason_machine',this);
+$(document).on('click','.inbox_reason_docr',function(event){
+    multiple_drp_fun("inbox_reason_docr","filter_reason_val_docr","reason_text_docr","Reasons",this);
 });
 
-// graph filter reason div onclick function
-$(document).on('click','.filter_check_reasongp',function(event){
-    event.preventDefault();
-    drp_div_selection_fun('filter_check_reasongp','reasongp_checkbox','text_reasongp','Reasons','oppcost_reason_reason',this);
-  
+$(document).on('click','.filter_reason_val_docr',function(event){
+    multiple_drp_fun("filter_reason_val_docr","filter_reason_val_docr","reason_text_docr","Reasons",this);
+});
+$(document).on('click','.inbox_machine_docr',function(event){
+    multiple_drp_fun("inbox_machine_docr","filter_machine_val_docr","machine_text_docr","Machines",this);
 });
 
-// graph filter category div onclick function
-$(document).on('click','.filter_check_categorygb',function(event){
-    event.preventDefault();
-    drp_div_selection_fun('filter_check_categorygb','categorygp_checkbox','text_categorygp','Categories','oppcost_reason_category',this);
-
-   
+$(document).on('click','.filter_machine_val_docr',function(event){
+    multiple_drp_fun("filter_machine_val_docr","filter_machine_val_docr","machine_text_docr","Machines",this);
+});
+$(document).on('click','.inbox_category_docr',function(event){
+    multiple_drp_fun("inbox_category_docr","filter_category_val_docr","category_text_docr","Categories",this);
 });
 
-// Downtime duration by Reason Graph
-// Graph filter machine div onclick function
-$(document).on('click','.filter_check_machinegp1',function(event){
-    event.preventDefault();
-    drp_div_selection_fun('filter_check_machinegp1','machinegp_checkbox1','text_machinegp1','Machines','duration_reason_machine',this);
-
-    
+$(document).on('click','.filter_category_val_docr',function(event){
+    multiple_drp_fun("filter_category_val_docr","filter_category_val_docr","category_text_docr","Categories",this);
 });
 
-
-// Graph filter Reason div onclick function
-$(document).on('click','.filter_check_reasongp1',function(event){
-    event.preventDefault();
-    drp_div_selection_fun('filter_check_reasongp1','reasongp_checkbox1','text_reasongp1','Reasons','duration_reason_reason',this);
-   
+// Downtime Duration by Reasons
+$(document).on('click','.inbox_reason_ddr',function(event){
+    multiple_drp_fun("inbox_reason_ddr","filter_reason_val_ddr","reason_text_ddr","Reasons",this);
 });
 
-// Graph filter Category div onclick function
-$(document).on('click','.filter_check_categorygb1',function(event){
-    event.preventDefault();
-    drp_div_selection_fun('filter_check_categorygb1','categorygp_checkbox1','text_categorygp1','Categories','duration_reason_category',this);
-   
+$(document).on('click','.filter_reason_val_ddr',function(event){
+    multiple_drp_fun("filter_reason_val_ddr","filter_reason_val_ddr","reason_text_ddr","Reasons",this);
+});
+$(document).on('click','.inbox_machine_ddr',function(event){
+    multiple_drp_fun("inbox_machine_ddr","filter_machine_val_ddr","machine_text_ddr","Machines",this);
 });
 
-
-// Downtime Opportunity cost by Machines Graph
-// Graph filter machine div onclick function
-$(document).on('click','.filter_check_machinegp2',function(event){
-    event.preventDefault();
-    drp_div_selection_fun('filter_check_machinegp2','machinegp_checkbox2','text_machinegp2','Machines','oppcost_machine_machine',this);
-  
+$(document).on('click','.filter_machine_val_ddr',function(event){
+    multiple_drp_fun("filter_machine_val_ddr","filter_machine_val_ddr","machine_text_ddr","Machines",this);
+});
+$(document).on('click','.inbox_category_ddr',function(event){
+    multiple_drp_fun("inbox_category_ddr","filter_category_val_ddr","category_text_ddr","Categories",this);
 });
 
-
-// Graph filter Reasons div onclick function
-$(document).on('click','.filter_check_reasongp2',function(event){
-    event.preventDefault();
-    drp_div_selection_fun('filter_check_reasongp2','reasongp_checkbox2','text_reasongp2','Reasons','oppcost_machine_reason',this);
-  
+$(document).on('click','.filter_category_val_ddr',function(event){
+    multiple_drp_fun("filter_category_val_ddr","filter_category_val_ddr","category_text_ddr","Categories",this);
 });
 
-// Graph filter Categories div onclick function
-$(document).on('click','.filter_check_categorygb2',function(event){
-    event.preventDefault();
-    drp_div_selection_fun('filter_check_categorygb2','categorygp_checkbox2','text_categorygp2','Categories','oppcost_machine_category',this);
-
+// Downtime Opportunity Cost by Machines
+$(document).on('click','.inbox_reason_docm',function(event){
+    multiple_drp_fun("inbox_reason_docm","filter_reason_val_docm","reason_text_docm","Reasons",this);
 });
 
-
-
-// Downtime Duration by Machines With Reasons Graph
-// Graph filter Machines div onclick function
-
-// graph filter machine and reason duration
-$(document).on('click','.filter_check_machinegp3',function(event){
-    event.preventDefault();
-    drp_div_selection_fun('filter_check_machinegp3','machinegp_checkbox3','text_machinegp3','Machines','duration_machine_machine',this);
-   
+$(document).on('click','.filter_reason_val_docm',function(event){
+    multiple_drp_fun("filter_reason_val_docm","filter_reason_val_docm","reason_text_docm","Reasons",this);
+});
+$(document).on('click','.inbox_machine_docm',function(event){
+    multiple_drp_fun("inbox_machine_docm","filter_machine_val_docm","machine_text_docm","Machines",this);
 });
 
-
-// Graph filter Reasons div onclick function
-$(document).on('click','.filter_check_reasongp3',function(event){
-    event.preventDefault();
-    drp_div_selection_fun('filter_check_reasongp3','reasongp_checkbox3','text_reasongp3','Reasons','duration_machine_reason',this);
-
+$(document).on('click','.filter_machine_val_docm',function(event){
+    multiple_drp_fun("filter_machine_val_docm","filter_machine_val_docm","machine_text_docm","Machines",this);
+});
+$(document).on('click','.inbox_category_docm',function(event){
+    multiple_drp_fun("inbox_category_docm","filter_category_val_docm","category_text_docm","Categories",this);
 });
 
+$(document).on('click','.filter_category_val_docm',function(event){
+    multiple_drp_fun("filter_category_val_docm","filter_category_val_docm","category_text_docm","Categories",this);
+});
 
-// Graph filter Category div onclick function
-$(document).on('click','.filter_check_categorygb3',function(event){
-    event.preventDefault();
-    drp_div_selection_fun('filter_check_categorygb3','categorygp_checkbox3','text_categorygp3','Categories','duration_machine_category',this);
+// Downtime Duration by Machines With Reasons
+$(document).on('click','.inbox_reason_ddmr',function(event){
+    multiple_drp_fun("inbox_reason_ddmr","filter_reason_val_ddmr","reason_text_ddmr","Reasons",this);
+});
 
+$(document).on('click','.filter_reason_val_ddmr',function(event){
+    multiple_drp_fun("filter_reason_val_ddmr","filter_reason_val_ddmr","reason_text_ddmr","Reasons",this);
+});
+$(document).on('click','.inbox_machine_ddmr',function(event){
+    multiple_drp_fun("inbox_machine_ddmr","filter_machine_val_ddmr","machine_text_ddmr","Machines",this);
+});
+
+$(document).on('click','.filter_machine_val_ddmr',function(event){
+    multiple_drp_fun("filter_machine_val_ddmr","filter_machine_val_ddmr","machine_text_ddmr","Machines",this);
+});
+$(document).on('click','.inbox_category_ddmr',function(event){
+    multiple_drp_fun("inbox_category_ddmr","filter_category_val_ddmr","category_text_ddmr","Categories",this);
+});
+
+$(document).on('click','.filter_category_val_ddmr',function(event){
+    multiple_drp_fun("filter_category_val_ddmr","filter_category_val_ddmr","category_text_ddmr","Categories",this);
 });
 
 
+// Table View
+$(document).on('click','.inbox_reason_down',function(event){
+    multiple_drp_fun("inbox_reason_down","filter_reason_val_down","reason_text_down","Reasons",this);
+});
 
-// Production Downtime Table filter filter dropdown click functions
-// created by dropdown checkbox label onclick created by code
-$(document).on('click','.filter_check_cb',function(event){
-    event.preventDefault();
-    drp_div_selection_fun('filter_check_cb','created_by_checkbox','text_created_by_drp','Users','table_filter_user',this);
- 
+$(document).on('click','.filter_reason_val_down',function(event){
+    multiple_drp_fun("filter_reason_val_down","filter_reason_val_down","reason_text_down","Reasons",this);
+});
+$(document).on('click','.inbox_machine_down',function(event){
+    multiple_drp_fun("inbox_machine_down","filter_machine_val_down","machine_text_down","Machines",this);
+});
+
+$(document).on('click','.filter_machine_val_down',function(event){
+    multiple_drp_fun("filter_machine_val_down","filter_machine_val_down","machine_text_down","Machines",this);
+});
+$(document).on('click','.inbox_category_down',function(event){
+    multiple_drp_fun("inbox_category_down","filter_category_val_down","category_text_down","Categories",this);
+});
+
+$(document).on('click','.filter_category_val_down',function(event){
+    multiple_drp_fun("filter_category_val_down","filter_category_val_down","category_text_down","Categories",this);
+});
+$(document).on('click','.inbox_part_down',function(event){
+    multiple_drp_fun("inbox_part_down","filter_part_val_down","part_text_down","Parts",this);
+});
+
+$(document).on('click','.filter_part_val_down',function(event){
+    multiple_drp_fun("filter_part_val_down","filter_part_val_down","part_text_down","Parts",this);
+});
+
+$(document).on('click','.inbox_user_down',function(event){
+    multiple_drp_fun("inbox_user_down","filter_user_val_down","user_text_down","Users",this);
+});
+
+$(document).on('click','.filter_user_val_down',function(event){
+    multiple_drp_fun("filter_user_val_down","filter_user_val_down","user_text_down","Users",this);
 });
 
 
-// downtime reason dropdown checkbox label onclick function code
-$(document).on('click','.filter_check_r',function(event){
-    event.preventDefault();
-    drp_div_selection_fun('filter_check_r','reason_checkbox','text_reason_drp','Reasons','table_filter_reason',this);
-
-});
-
-
-// category dropdown checkbox label onclick category reasons code
-$(document).on('click','.filter_check_cate',function(event){
-  event.preventDefault();
-  drp_div_selection_fun('filter_check_cate','category_drp_checkbox','text_category_drp','Categories','table_filter_category',this);
-
-});
-
-
-// downtime part dropdown checkbox label onclick function
-$(document).on('click','.filter_check_part',function(event){
-    event.preventDefault();
-    drp_div_selection_fun('filter_check_part','partname_checkbox','text_category_drp_part','Parts','table_filter_part',this);
-
-});
-
-
-// downtime machine dropdown checkbox label onclick function
-$(document).on('click','.filter_check_machine',function(event){
-    event.preventDefault();
-    drp_div_selection_fun('filter_check_machine','machine_checkbox','text_machine_drp','Machines','table_filter_machine',this);
-     
-});
 
 
 

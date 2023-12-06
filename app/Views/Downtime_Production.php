@@ -102,7 +102,7 @@ $session = \Config\Services::session();
 <br>
 <br>
 <div class="tmp_header" style="margin-left: 4.5rem;margin-top:1rem;overflow:hidden; ">
-    <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav" style="position:fixed;margin-top:0;width:95%;z-index:98;">
+    <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav" style="position:fixed;margin-top:0;width:95%;">
         <div class="container-fluid paddingm">
             <p class="float-start" id="logo">Production Downtime</p>
             <div class="d-flex">
@@ -163,76 +163,66 @@ $session = \Config\Services::session();
                                 </div>
                             </div>
                             <div style="width:80%;display:flex;flex-direction:row-reverse;" >
-                                <!-- Machine Dropdown checkbox -->
-                                <div class="box ">
-                                    <label class="multi_select_label non-select" style="">Machines</label>
-                                    <div class="filter_selectBox_machinegp oppcost_reason_machine_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_machinegp','oppcost_reason_machine_drp')">
-                                        <select  class="multi_select_machinegp" style="" >
-                                            <option class="text_machinegp_drp non-select" style="">All Machines</option>
-                                        </select>
-                                        <div class="filter_overSelect_machinegp"></div>
-                                    </div>
-                                    <div class="filter_checkboxes_machinegp filter_checkbox_opt " style="display:none;" >
-                                        <!-- options in progress -->
+                                <div class="box">
+                                    <div class="input-box indexing">
+                                      <div class="filter_multiselect filter_option" style="width:9rem;">
+                                        <span class="multi_select_label" style="">Machines</span>
+                                        <div class="filter_selectBox docr_machine" onclick="multiple_drp_hide_seek('filter_machine_docr','docr_machine')">
+                                          <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                            <div style="width: 80% !important">
+                                              <p class="paddingm" id="machine_text_docr">All Machines</p>
+                                            </div>
+                                            <div class="dropdown-div" style=" width: 20% !important">
+                                              <i class="fa fa-angle-down icon-style"></i>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="filter_checkboxes filter_machine_docr">
+                                        </div>
+                                      </div>
                                     </div>
                                 </div>
 
-                                <!-- Reasons Dropdown checkbox -->
-                                <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <label class="multi_select_label non-select" style="">Reasons</label>
-                                    <!-- <div class="filter_selectBox_reasongp" onclick="reason_multiselect_gp()"> -->
-                                    <div class="filter_selectBox_reasongp oppcost_reason_reason_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_reasongp','oppcost_reason_reason_drp')">
-                                        <select  class="multi_select_reasongp" style="" >
-                                            <option class="text_reasongp non-select">All Reasons</option>
-                                        </select>
-                                        <div class="filter_overSelect_reasongp"></div>
-                                    </div>
-                                    <div class="filter_checkboxes_reasongp filter_checkbox_opt" style="display:none;" >
-                                        <!-- options in progress -->
-
+                                <div class="box rightmar">
+                                    <div class="input-box indexing">
+                                      <div class="filter_multiselect filter_option" style="width:9rem;">
+                                        <span class="multi_select_label" style="">Reasons</span>
+                                        <div class="filter_selectBox docr_reason" onclick="multiple_drp_hide_seek('filter_reason_docr','docr_reason')">
+                                          <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                            <div style="width: 80% !important">
+                                              <p class="paddingm" id="reason_text_docr">All Reasons</p>
+                                            </div>
+                                            <div class="dropdown-div" style=" width: 20% !important">
+                                              <i class="fa fa-angle-down icon-style"></i>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="filter_checkboxes filter_reason_docr">
+                                        </div>
+                                      </div>
                                     </div>
                                 </div>
 
-                                <!-- category dropdown checkbox -->
-                                <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <label class="multi_select_label non-select" style="">Categories</label>
-                                    <!-- <div class="filter_selectBox_categorygp" onclick="category_multiselect_gp()"> -->
-                                    <div class="filter_selectBox_categorygp oppcost_reason_category_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_categorygp','oppcost_reason_category_drp')">
-                                        <select  class="multi_select_categorygp" style="" >
-                                            <option class="text_categorygp non-select" style="">All Categories</option>
-                                        </select>
-                                        <div class="filter_overSelect_categorygp"></div>
-                                    </div>
-                                    <div class="filter_checkboxes_categorygp filter_checkbox_opt" style="" >
-                                        <!-- options in progress -->
-                                        <div class="filter_check_categorygb reason_oppcost_common" style="">
-                                            <div class="cate_drp_check" style="">
-                                                <input type="checkbox" id="one" class="categorygp_checkbox" value="all"/>
+                                <div class="box rightmar">
+                                    <div class="input-box indexing">
+                                      <div class="filter_multiselect filter_option" style="width:9rem;">
+                                        <span class="multi_select_label" style="">Categories</span>
+                                        <div class="filter_selectBox docr_category" onclick="multiple_drp_hide_seek('filter_category_docr','docr_category')">
+                                          <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                            <div style="width: 80% !important">
+                                              <p class="paddingm" id="category_text_docr">All Categories</p>
                                             </div>
-                                            <div class="cate_drp_text" style="">
-                                                <p class="font_multi_drp" style="margin:auto;">All Categories</p>
+                                            <div class="dropdown-div" style=" width: 20% !important">
+                                              <i class="fa fa-angle-down icon-style"></i>
                                             </div>
+                                          </div>
                                         </div>
-
-                                        <div class="filter_check_categorygb reason_oppcost_common" style="">
-                                            <div class="cate_drp_check" style="">
-                                                <input type="checkbox" id="one" class="categorygp_checkbox" value="Planned"/>
-                                            </div>
-                                            <div class="cate_drp_text" style="">
-                                                <p class="font_multi_drp" style="margin:auto;">Planned</p>
-                                            </div>
+                                        <div class="filter_checkboxes filter_category_docr">
                                         </div>
-
-                                        <div class="filter_check_categorygb reason_oppcost_common" style="">
-                                            <div class="cate_drp_check" style="">
-                                                <input type="checkbox" id="one" class="categorygp_checkbox" value="Unplanned"/>
-                                            </div>
-                                            <div class="cate_drp_text" style="">
-                                                <p class="font_multi_drp" style="margin:auto;">UnPlanned</p>
-                                            </div>
-                                        </div>
+                                      </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                         <div class="parent_reason_wise_oppcost prodcution_downtime_graph parent_div marginScroll" >
@@ -252,75 +242,63 @@ $session = \Config\Services::session();
                                 </div>
                             </div>
                             <div style="width:80%;display:flex;flex-direction:row-reverse;">
-                                <!-- Machine Dropdown checkbox -->
-                                <div class="box " style="" >
-                                    <label class="multi_select_label non-select" style="">Machines</label>
-                                    <!-- <div class="filter_selectBox_machinegp1" onclick="machine_multiselect_gp1()">  -->
-                                    <div class="filter_selectBox_machinegp1 duration_reason_machine_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_machinegp1','duration_reason_machine_drp')">
-                                        <select  class="multi_select_machinegp1" style="" >
-                                            <option class="text_machinegp1 non-select" style="">All Machines</option>
-                                        </select>
-                                        <div class="filter_overSelect_machinegp1"></div>
-                                    </div>
-                                    <div class="filter_checkboxes_machinegp1" style="" >
-                                        <!-- options in progress -->
+                                <div class="box">
+                                    <div class="input-box indexing">
+                                      <div class="filter_multiselect filter_option" style="width:9rem;">
+                                        <span class="multi_select_label" style="">Machines</span>
+                                        <div class="filter_selectBox ddr_machine" onclick="multiple_drp_hide_seek('filter_machine_ddr','ddr_machine')">
+                                          <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                            <div style="width: 80% !important">
+                                              <p class="paddingm" id="machine_text_ddr">All Machines</p>
+                                            </div>
+                                            <div class="dropdown-div" style=" width: 20% !important">
+                                              <i class="fa fa-angle-down icon-style"></i>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="filter_checkboxes filter_machine_ddr">
+                                        </div>
+                                      </div>
                                     </div>
                                 </div>
 
-                                <!-- Reasons Dropdown checkbox -->
-                                <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <label class="multi_select_label non-select" style="">Reasons</label>
-                                    <!-- <div class="filter_selectBox_reasongp1" onclick="reason_multiselect_gp1();"> -->
-                                    <div class="filter_selectBox_reasongp1 duration_reason_reason_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_reasongp1','duration_reason_reason_drp');">
-                                        <select  class="multi_select_reasongp1" style="" >
-                                            <option class="text_reasongp1 non-select" style="">All Reasons</option>
-                                        </select>
-                                        <div class="filter_overSelect_reasongp1"></div>
-                                    </div>
-                                    <div class="filter_checkboxes_reasongp1" style="" >
-                                        <!-- options in progress -->
-
+                                <div class="box rightmar">
+                                    <div class="input-box indexing">
+                                      <div class="filter_multiselect filter_option" style="width:9rem;">
+                                        <span class="multi_select_label" style="">Reasons</span>
+                                        <div class="filter_selectBox ddr_reason" onclick="multiple_drp_hide_seek('filter_reason_ddr','ddr_reason')">
+                                          <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                            <div style="width: 80% !important">
+                                              <p class="paddingm" id="reason_text_ddr">All Reasons</p>
+                                            </div>
+                                            <div class="dropdown-div" style=" width: 20% !important">
+                                              <i class="fa fa-angle-down icon-style"></i>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="filter_checkboxes filter_reason_ddr">
+                                        </div>
+                                      </div>
                                     </div>
                                 </div>
 
-                                <!-- category dropdown checkbox -->
-                                <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <label class="multi_select_label non-select" style="">Categories</label>
-                                    <!-- <div class="filter_selectBox_categorygp1" onclick="category_multiselect_gp1()"> -->
-                                    <div class="filter_selectBox_categorygp1 duration_reason_category_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_categorygp1','duration_reason_category_drp')"> 
-                                        <select  class="multi_select_categorygp1" style="" >
-                                            <option class="text_categorygp1 non-select" style="">All Categories</option>
-                                        </select>
-                                        <div class="filter_overSelect_categorygp1"></div>
-                                    </div>
-                                    <div class="filter_checkboxes_categorygp1" style="" >
-                                        <!-- options in progress -->
-                                        <div class="filter_check_categorygb1 reason_duration_common" style="">
-                                            <div class="cate_drp_check" style="">
-                                                <input type="checkbox" id="one" class="categorygp_checkbox1" value="all"/>
+                                <div class="box rightmar">
+                                    <div class="input-box indexing">
+                                      <div class="filter_multiselect filter_option" style="width:9rem;">
+                                        <span class="multi_select_label" style="">Categories</span>
+                                        <div class="filter_selectBox ddr_category" onclick="multiple_drp_hide_seek('filter_category_ddr','ddr_category')">
+                                          <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                            <div style="width: 80% !important">
+                                              <p class="paddingm" id="category_text_ddr">All Categories</p>
                                             </div>
-                                            <div class="cate_drp_text" style="">
-                                                <p class="font_multi_drp" style="margin:auto;">All Categories</p>
+                                            <div class="dropdown-div" style=" width: 20% !important">
+                                              <i class="fa fa-angle-down icon-style"></i>
                                             </div>
+                                          </div>
                                         </div>
-
-                                        <div class="filter_check_categorygb1 reason_duration_common" style="">
-                                            <div class="cate_drp_check" style="">
-                                                <input type="checkbox" id="one" class="categorygp_checkbox1" value="Planned"/>
-                                            </div>
-                                            <div class="cate_drp_text" style="">
-                                                <p class="font_multi_drp" style="margin:auto;">Planned</p>
-                                            </div>
+                                        <div class="filter_checkboxes filter_category_ddr">
                                         </div>
-
-                                        <div class="filter_check_categorygb1 reason_duration_common" style="">
-                                            <div class="cate_drp_check" style="">
-                                                <input type="checkbox" id="one" class="categorygp_checkbox1" value="Unplanned"/>
-                                            </div>
-                                            <div class="cate_drp_text" style="">
-                                                <p class="font_multi_drp" style="margin:auto;">UnPlanned</p>
-                                            </div>
-                                        </div>
+                                      </div>
                                     </div>
                                 </div>
                             </div>
@@ -344,75 +322,63 @@ $session = \Config\Services::session();
                                 </div>
                             </div>
                             <div style="width:80%;display:flex;flex-direction:row-reverse;">
-                                <!-- Machine Dropdown checkbox -->
-                                <div class="box " style="">
-                                    <label class="multi_select_label non-select" style="">Machines</label>
-                                    <!-- <div class="filter_selectBox_machinegp2" onclick="machine_multiselect_gp2()"> -->
-                                    <div class="filter_selectBox_machinegp2 oppcost_machine_machine_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_machinegp2','oppcost_machine_machine_drp')">
-                                        <select  class="multi_select_machinegp2" style="" >
-                                            <option class="text_machinegp2 non-select" style="">All Machines</option>
-                                        </select>
-                                        <div class="filter_overSelect_machinegp2"></div>
-                                    </div>
-                                    <div class="filter_checkboxes_machinegp2" style="" >
-                                        <!-- options in progress -->
+                                <div class="box">
+                                    <div class="input-box indexing">
+                                      <div class="filter_multiselect filter_option" style="width:9rem;">
+                                        <span class="multi_select_label" style="">Machines</span>
+                                        <div class="filter_selectBox docm_machine" onclick="multiple_drp_hide_seek('filter_machine_docm','docm_machine')">
+                                          <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                            <div style="width: 80% !important">
+                                              <p class="paddingm" id="machine_text_docm">All Machines</p>
+                                            </div>
+                                            <div class="dropdown-div" style=" width: 20% !important">
+                                              <i class="fa fa-angle-down icon-style"></i>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="filter_checkboxes filter_machine_docm">
+                                        </div>
+                                      </div>
                                     </div>
                                 </div>
 
-                                <!-- Reasons Dropdown checkbox -->
-                                <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <label class="multi_select_label non-select" style="">Reasons</label>
-                                    <!-- <div class="filter_selectBox_reasongp2" onclick="reason_multiselect_gp2();"> -->
-                                    <div class="filter_selectBox_reasongp2 oppcost_machine_reason_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_reasongp2','oppcost_machine_reason_drp');"> 
-                                        <select  class="multi_select_reasongp2" style="" >
-                                            <option class="text_reasongp2 non-select" style="">All Reasons</option>
-                                        </select>
-                                        <div class="filter_overSelect_reasongp2"></div>
-                                    </div>
-                                    <div class="filter_checkboxes_reasongp2" style="" >
-                                        <!-- options in progress -->
-
+                                <div class="box rightmar">
+                                    <div class="input-box indexing">
+                                      <div class="filter_multiselect filter_option" style="width:9rem;">
+                                        <span class="multi_select_label" style="">Reasons</span>
+                                        <div class="filter_selectBox docm_reason" onclick="multiple_drp_hide_seek('filter_reason_docm','docm_reason')">
+                                          <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                            <div style="width: 80% !important">
+                                              <p class="paddingm" id="reason_text_docm">All Reasons</p>
+                                            </div>
+                                            <div class="dropdown-div" style=" width: 20% !important">
+                                              <i class="fa fa-angle-down icon-style"></i>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="filter_checkboxes filter_reason_docm">
+                                        </div>
+                                      </div>
                                     </div>
                                 </div>
 
-                                <!-- category dropdown checkbox -->
-                                <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <label class="multi_select_label non-select" style="">Categories</label>
-                                    <!-- <div class="filter_selectBox_categorygp2" onclick="category_multiselect_gp2()"> -->
-                                    <div class="filter_selectBox_categorygp2 oppcost_machine_category_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_categorygp2','oppcost_machine_category_drp')">
-                                        <select  class="multi_select_categorygp2" style="" >
-                                            <option class="text_categorygp2 non-select" style="">All Categories</option>
-                                        </select>
-                                        <div class="filter_overSelect_categorygp2"></div>
-                                    </div>
-                                    <div class="filter_checkboxes_categorygp2" style="" >
-                                        <!-- options in progress -->
-                                        <div class="filter_check_categorygb2 machine_oppcost_common" style="">
-                                            <div class="cate_drp_check" style="">
-                                                <input type="checkbox" id="one" class="categorygp_checkbox2" value="all"/>
+                                <div class="box rightmar">
+                                    <div class="input-box indexing">
+                                      <div class="filter_multiselect filter_option" style="width:9rem;">
+                                        <span class="multi_select_label" style="">Categories</span>
+                                        <div class="filter_selectBox docm_category" onclick="multiple_drp_hide_seek('filter_category_docm','docm_category')">
+                                          <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                            <div style="width: 80% !important">
+                                              <p class="paddingm" id="category_text_docm">All Categories</p>
                                             </div>
-                                            <div class="cate_drp_text" style="">
-                                                <p class="font_multi_drp" style="margin:auto;">All Categories</p>
+                                            <div class="dropdown-div" style=" width: 20% !important">
+                                              <i class="fa fa-angle-down icon-style"></i>
                                             </div>
+                                          </div>
                                         </div>
-
-                                        <div class="filter_check_categorygb2 machine_oppcost_common" style="">
-                                            <div class="cate_drp_check" style="">
-                                                <input type="checkbox" id="one" class="categorygp_checkbox2" value="Planned"/>
-                                            </div>
-                                            <div class="cate_drp_text" style="">
-                                                <p class="font_multi_drp" style="margin:auto;">Planned</p>
-                                            </div>
+                                        <div class="filter_checkboxes filter_category_docm">
                                         </div>
-
-                                        <div class="filter_check_categorygb2 machine_oppcost_common" style="">
-                                            <div class="cate_drp_check" style="">
-                                                <input type="checkbox" id="one" class="categorygp_checkbox2" value="Unplanned"/>
-                                            </div>
-                                            <div class="cate_drp_text" style="">
-                                                <p class="font_multi_drp" style="margin:auto;">UnPlanned</p>
-                                            </div>
-                                        </div>
+                                      </div>
                                     </div>
                                 </div>
                             </div>
@@ -434,77 +400,67 @@ $session = \Config\Services::session();
                                 </div>
                             </div>
                             <div style="width:88%;display:flex;flex-direction:row-reverse;">
-                                <!-- Machine Dropdown checkbox -->
-                                <div class="box " style="" >
-                                    <label class="multi_select_label non-select" style="">Machines</label>
-                                    <!-- <div class="filter_selectBox_machinegp3" onclick="machine_multiselect_gp3()"> -->
-                                    <div class="filter_selectBox_machinegp3 duration_machine_reason_machine_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_machinegp3','duration_machine_reason_machine_drp')">
-                                        <select  class="multi_select_machinegp3" style="" >
-                                            <option class="text_machinegp3 non-select" style="">All Machines</option>
-                                        </select>
-                                        <div class="filter_overSelect_machinegp3"></div>
-                                    </div>
-                                    <div class="filter_checkboxes_machinegp3" style="" >
-                                        <!-- options in progress -->
+                                
+                                <div class="box">
+                                    <div class="input-box indexing">
+                                      <div class="filter_multiselect filter_option" style="width:9rem;">
+                                        <span class="multi_select_label" style="">Machines</span>
+                                        <div class="filter_selectBox ddmr_machine" onclick="multiple_drp_hide_seek('filter_machine_ddmr','ddmr_machine')">
+                                          <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                            <div style="width: 80% !important">
+                                              <p class="paddingm" id="machine_text_ddmr">All Machines</p>
+                                            </div>
+                                            <div class="dropdown-div" style=" width: 20% !important">
+                                              <i class="fa fa-angle-down icon-style"></i>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="filter_checkboxes filter_machine_ddmr">
+                                        </div>
+                                      </div>
                                     </div>
                                 </div>
 
-                                <!-- Reasons Dropdown checkbox -->
-                                <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <label class="multi_select_label non-select" style="">Reasons</label>
-                                    <!-- <div class="filter_selectBox_reasongp3" onclick="reason_multiselect_gp3();"> -->
-                                    <div class="filter_selectBox_reasongp3 duration_machine_reason_reason_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_reasongp3','duration_machine_reason_reason_drp');">
-                                        <select  class="multi_select_reasongp3" style="" >
-                                            <option class="text_reasongp3 non-select" style="">All Reasons</option>
-                                        </select>
-                                        <div class="filter_overSelect_reasongp3"></div>
-                                    </div>
-                                    <div class="filter_checkboxes_reasongp3" style="" >
-                                        <!-- options in progress -->
-
+                                <div class="box rightmar">
+                                    <div class="input-box indexing">
+                                      <div class="filter_multiselect filter_option" style="width:9rem;">
+                                        <span class="multi_select_label" style="">Reasons</span>
+                                        <div class="filter_selectBox ddmr_reason" onclick="multiple_drp_hide_seek('filter_reason_ddmr','ddmr_reason')">
+                                          <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                            <div style="width: 80% !important">
+                                              <p class="paddingm" id="reason_text_ddmr">All Reasons</p>
+                                            </div>
+                                            <div class="dropdown-div" style=" width: 20% !important">
+                                              <i class="fa fa-angle-down icon-style"></i>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="filter_checkboxes filter_reason_ddmr">
+                                        </div>
+                                      </div>
                                     </div>
                                 </div>
 
-                                <!-- category dropdown checkbox -->
-                                <div class="box rightmar" style="margin-right: 0.5rem;" >
-                                    <label class="multi_select_label non-select" style="">Categories</label>
-                                    <!-- <div class="filter_selectBox_categorygp3" onclick="category_multiselect_gp3()"> -->
-                                    <div class="filter_selectBox_categorygp3 duration_machine_reason_category_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_categorygp3','duration_machine_reason_category_drp')">
-                                        <select  class="multi_select_categorygp3" style="" >
-                                            <option class="text_categorygp3 non-select" style="">All Categories</option>
-                                        </select>
-                                        <div class="filter_overSelect_categorygp3"></div>
-                                    </div>
-                                    <div class="filter_checkboxes_categorygp3" style="" >
-                                        <!-- options in progress -->
-                                        <div class="filter_check_categorygb3 machine_reason_duration_common" style="">
-                                            <div class="cate_drp_check" style="">
-                                                <input type="checkbox" id="one" class="categorygp_checkbox3" value="all"/>
+                                <div class="box rightmar">
+                                    <div class="input-box indexing">
+                                      <div class="filter_multiselect filter_option" style="width:9rem;">
+                                        <span class="multi_select_label" style="">Categories</span>
+                                        <div class="filter_selectBox ddmr_category" onclick="multiple_drp_hide_seek('filter_category_ddmr','ddmr_category')">
+                                          <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                            <div style="width: 80% !important">
+                                              <p class="paddingm" id="category_text_ddmr">All Categories</p>
                                             </div>
-                                            <div class="cate_drp_text" style="">
-                                                <p class="font_multi_drp" style="margin:auto;">All Categories</p>
+                                            <div class="dropdown-div" style=" width: 20% !important">
+                                              <i class="fa fa-angle-down icon-style"></i>
                                             </div>
+                                          </div>
                                         </div>
-
-                                        <div class="filter_check_categorygb3 machine_reason_duration_common" style="">
-                                            <div class="cate_drp_check" style="">
-                                                <input type="checkbox" id="one" class="categorygp_checkbox3" value="Planned"/>
-                                            </div>
-                                            <div class="cate_drp_text" style="">
-                                                <p class="font_multi_drp" style="margin:auto;">Planned</p>
-                                            </div>
+                                        <div class="filter_checkboxes filter_category_ddmr">
                                         </div>
-
-                                        <div class="filter_check_categorygb3 machine_reason_duration_common" style="">
-                                            <div class="cate_drp_check" style="">
-                                                <input type="checkbox" id="one" class="categorygp_checkbox3" value="Unplanned"/>
-                                            </div>
-                                            <div class="cate_drp_text" style="">
-                                                <p class="font_multi_drp" style="margin:auto;">UnPlanned</p>
-                                            </div>
-                                        </div>
+                                      </div>
                                     </div>
                                 </div>
+                            
                             </div>
                         </div>
                         <div class="parent_machine_reason_duration prodcution_downtime_graph parent_div marginScroll">
@@ -526,117 +482,111 @@ $session = \Config\Services::session();
                 <div style="width:80%;display:flex;flex-direction:row-reverse;align-items:center;margin-right:0.6rem;">
                     <!-- <div style=""> -->
                         <!-- reset -->
-                        <div class="" style="margin-top:0.5rem;">
+                        <div class="">
                            <img src="<?php echo base_url(); ?>/assets/img/filter_reset.png" style="height:1.5rem;width:1.5rem;" class="table_reset" alt="">
                         </div>
                         <!-- filter button -->
                         <button class="btn fo bn saveNotes filterbtnstyle" style="" id="apply_filter_btn">Apply Filter</button>
                         
-                        <!-- created by dropdown checkbox -->
-                        <div class="box rightmar" style="margin-right: 0.5rem;" >
-                            <label class="multi_select_label non-select" style="">Created by</label>
-                            <!-- <div class="filter_selectBox_cb" onclick="created_by_drp()"> -->
-                            <div class="filter_selectBox_cb table_filter_created_by_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_cb','table_filter_created_by_drp')">
-                                <select  class="multi_select_drp_cb" style="" >
-                                    <option class="text_created_by_drp non-select" style="">Created by</option>
-                                </select>
-                                <div class="filter_overSelect_cb"></div>
-                            </div>
-                            <div class="filter_checkboxes_cb" style="" >
-                               
+                        <div class="box rightmar">
+                            <div class="input-box indexing">
+                              <div class="filter_multiselect filter_option" style="width:9rem;">
+                                <span class="multi_select_label" style="">Created by</span>
+                                <div class="filter_selectBox down_user" onclick="multiple_drp_hide_seek('filter_user_down','down_user')">
+                                  <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                    <div style="width: 80% !important">
+                                      <p class="paddingm" id="user_text_down">All Users</p>
+                                    </div>
+                                    <div class="dropdown-div" style=" width: 20% !important">
+                                      <i class="fa fa-angle-down icon-style"></i>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="filter_checkboxes filter_user_down">
+                                </div>
+                              </div>
                             </div>
                         </div>
 
-                        <!-- Reason dropdown checkbox -->
-                        <div class="box rightmar" style="margin-right: 0.5rem;" >
-                            <label class="multi_select_label non-select" style="">Reasons</label>
-                            <!-- <div class="filter_selectBox_drpr" onclick="reason_drp()"> -->
-                            <div class="filter_selectBox_drpr table_reason_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_r','table_reason_drp')">
-                                <select  class="multi_select_drp_r" style="" >
-                                    <option class="text_reason_drp non-select" style="">Reasons</option>
-                                </select>
-                                <div class="filter_overSelect_r"></div>
-                            </div>
-                            <div class="filter_checkboxes_r" style="" >
-                                <div class="filter_check_r" style="">
-                                    <div class="cate_drp_check" style="">
-                                        <input type="checkbox" id="one" class="reason_checkbox" value="all"/>
-                                    </div>
-                                    <div class="cate_drp_text" style="">
-                                        <p class="font_multi_drp" style="margin:auto;">All </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- dropdown checkbox category -->
-                        <div class="box rightmar" style="margin-right: 0.5rem;" >
-                            <label class="multi_select_label non-select" style="">Categories</label>
-                            <!-- <div class="filter_selectBox" onclick="category_drp()"> -->
-                            <div class="filter_selectBox table_filter_category_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes','table_filter_category_drp')">   
-                                <select  class="multi_select_drp" style="" >
-                                    <option class="text_category_drp non-select" style="">All Categories</option>
-                                </select>
-                                <div class="filter_overSelect"></div>
-                            </div>
-                            <div class="filter_checkboxes" style="" >
-                                <div class="filter_check_cate" style="">
-                                    <div class="cate_drp_check" style="">
-                                    <input type="checkbox" id="one" class="category_drp_checkbox" value="all"/>
-                                    </div>
-                                    <div class="cate_drp_text" style="">
-                                    <p class="font_multi_drp" style="margin:auto;">All Categories</p>
-                                    </div>
-                                </div>
-
-                                <div class="filter_check_cate" style="">
-                                    <div class="cate_drp_check" style="">
-                                    <input type="checkbox" id="one" class="category_drp_checkbox" value="Planned"/>
-                                    </div>
-                                    <div class="cate_drp_text" style="">
-                                    <p class="font_multi_drp" style="margin:auto;">Planned</p>
-                                    </div>
-                                </div>
-
-                                <div class="filter_check_cate" style="">
-                                    <div class="cate_drp_check" style="">
-                                    <input type="checkbox" id="one" class="category_drp_checkbox" value="Unplanned"/>
-                                    </div>
-                                    <div class="cate_drp_text" style="">
-                                    <p class="font_multi_drp" style="margin:auto;">UnPlanned</p>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
                         
-                        <!-- dropdown checkbox partname -->
-                        <div class="box rightmar" style="margin-right: 0.5rem;" >
-                            <label class="multi_select_label non-select" style="">Parts</label>
-                            <!-- <div class="filter_selectBox_part" onclick="partname_drp()"> -->
-                            <div class="filter_selectBox_part table_filter_part_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_part','table_filter_part_drp')">
-                                <select  class="multi_select_drp_part" style="" >
-                                    <option class="text_category_drp_part non-select" style="">All Parts</option>
-                                </select>
-                                <div class="filter_overSelect_part"></div>
-                            </div>
-                            <div class="filter_checkboxes_part" style="" >
-                               
+                        <!-- dropdown checkbox machine -->
+                        <div class="box rightmar">
+                            <div class="input-box indexing">
+                              <div class="filter_multiselect filter_option" style="width:9rem;">
+                                <span class="multi_select_label" style="">Categories</span>
+                                <div class="filter_selectBox down_category" onclick="multiple_drp_hide_seek('filter_category_down','down_category')">
+                                  <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                    <div style="width: 80% !important">
+                                      <p class="paddingm" id="category_text_down">All Categories</p>
+                                    </div>
+                                    <div class="dropdown-div" style=" width: 20% !important">
+                                      <i class="fa fa-angle-down icon-style"></i>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="filter_checkboxes filter_category_down">
+                                </div>
+                              </div>
                             </div>
                         </div>
 
-                        <!-- dropdown checkbox machine -->
-                        <div class="box rightmar" style="margin-right: 0.5rem;" >
-                            <label class="multi_select_label non-select" style="">Machines</label>
-                            <!-- <div class="filter_selectBox_machine" onclick="machinename_drp()"> -->
-                            <div class="filter_selectBox_machine table_filter_machine_drp non-select select-pointer" onclick="multiple_drp_hide_seek_pd('filter_checkboxes_machine','table_filter_machine_drp')">
-                                <select  class="multi_select_drp_machine non-select" style="" >
-                                    <option class="text_machine_drp non-select" style="">All Machines</option>
-                                </select>
-                                <div class="filter_overSelect_part"></div>
+                        <div class="box rightmar">
+                            <div class="input-box indexing">
+                              <div class="filter_multiselect filter_option" style="width:9rem;">
+                                <span class="multi_select_label" style="">Reasons</span>
+                                <div class="filter_selectBox down_reason" onclick="multiple_drp_hide_seek('filter_reason_down','down_reason')">
+                                  <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                    <div style="width: 80% !important">
+                                      <p class="paddingm" id="reason_text_down">All Reasons</p>
+                                    </div>
+                                    <div class="dropdown-div" style=" width: 20% !important">
+                                      <i class="fa fa-angle-down icon-style"></i>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="filter_checkboxes filter_reason_down">
+                                </div>
+                              </div>
                             </div>
-                            <div class="filter_checkboxes_machine" style="" >
-                              
+                        </div> 
+
+                        <div class="box rightmar">
+                            <div class="input-box indexing">
+                              <div class="filter_multiselect filter_option" style="width:9rem;">
+                                <span class="multi_select_label" style="">Parts</span>
+                                <div class="filter_selectBox down_part" onclick="multiple_drp_hide_seek('filter_part_down','down_part')">
+                                  <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                    <div style="width: 80% !important">
+                                      <p class="paddingm" id="part_text_down">All Parts</p>
+                                    </div>
+                                    <div class="dropdown-div" style=" width: 20% !important">
+                                      <i class="fa fa-angle-down icon-style"></i>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="filter_checkboxes filter_part_down">
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+
+                        <div class="box rightmar">
+                            <div class="input-box indexing">
+                              <div class="filter_multiselect filter_option" style="width:9rem;">
+                                <span class="multi_select_label" style="">Machines</span>
+                                <div class="filter_selectBox down_machine" onclick="multiple_drp_hide_seek('filter_machine_down','down_machine')">
+                                  <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                    <div style="width: 80% !important">
+                                      <p class="paddingm" id="machine_text_down">All Machines</p>
+                                    </div>
+                                    <div class="dropdown-div" style=" width: 20% !important">
+                                      <i class="fa fa-angle-down icon-style"></i>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="filter_checkboxes filter_machine_down">
+                                </div>
+                              </div>
                             </div>
                         </div>
 
@@ -707,60 +657,62 @@ $session = \Config\Services::session();
 
 <!-- preloader -->
 <!-- preloader -->
-<div id="overlay">
+<!-- <div id="overlay">
     <div class="cv-spinner">
         <span class="spinner"></span>
         <span class="loading">Awaiting Completion...</span>
     </div>
-</div>
+</div> -->
 <!-- preloader end -->
 <script src="<?php echo base_url(); ?>/assets/js/Downtime_Production.js?version=<?php echo rand() ; ?>"></script>
 <script type="text/javascript">
 
 
 // hide and seek gloable variables
-const drp_obj = {
-    // cost by reason graph variable
-    oppcost_reason_machine_drp:false,
-    oppcost_reason_reason_drp:false,
-    oppcost_reason_category_drp:false,
+const hide_seek_obj = {
+    // Downtime Opportunity Cost by Reasons
+    docr_machine:false,
+    docr_reason:false,
+    docr_category:false,
 
-    // duration by reason graph varaiable
-    duration_reason_machine_drp:false,
-    duration_reason_category_drp:false,
-    duration_reason_reason_drp:false,
+    // Downtime Duration by Reasons
+    ddr_machine:false,
+    ddr_reason:false,
+    ddr_category:false,
 
-    // oppcost by machine graph variables
-    oppcost_machine_machine_drp:false,
-    oppcost_machine_reason_drp:false,
-    oppcost_machine_category_drp:false,
+    // Downtime Opportunity Cost by Machines
+    docm_machine:false,
+    docm_reason:false,
+    docm_category:false,
 
-    // duration by machine with reasons graph
-    duration_machine_reason_machine_drp:false,
-    duration_machine_reason_category_drp:false,
-    duration_machine_reason_reason_drp:false,
+    // Downtime Duration by Machines With Reasons
+    ddmr_machine:false,
+    ddmr_reason:false,
+    ddmr_category:false,
 
+    // Downtime Opportunity Cost by Reasons
+    down_machine:false,
+    down_reason:false,
+    down_category:false,
+    down_part:false,
+    down_user:false
 
-    // table filter drp function key
-    table_filter_created_by_drp:false,
-    table_reason_drp:false,
-    table_filter_category_drp:false,
-    table_filter_part_drp:false,
-    table_filter_machine_drp:false,
+    
 
-
+ 
 };
 
-// dropdown click open close global function 
-function multiple_drp_hide_seek_pd(classref,keyref){
-    $('.filter_checkbox_opt').css('display','none');
-    if (!drp_obj[keyref]) {
-        $('.'+classref+'').css('display','inline');
-        drp_obj[keyref]=true;
-    }else{
-        $('.'+classref+'').css('display','none');
-        drp_obj[keyref]=false;
-    }
+
+function multiple_drp_hide_seek(classRef,keyRef){
+  $('.filter_checkboxes').css("display","none");
+  if (!hide_seek_obj[keyRef]) {
+    $('.'+classRef+'').css("display","block");
+    hide_seek_obj[keyRef] = true;
+  }
+  else{
+    $('.'+classRef+'').css("display","none");
+    hide_seek_obj[keyRef] = false;
+  }
 }
 
 
@@ -1323,173 +1275,162 @@ function getreason_arr(){
 
 // on mouse up function
 $(document).mouseup(function(event){
-
-    // machine multi select dropdown
-    var machine_reason = $('.filter_checkboxes_machine');
-    var table_filter_machine_drp = $('.table_filter_machine_drp');
-    if (!machine_reason.is(event.target) && machine_reason.has(event.target).length==0 && !table_filter_machine_drp.is(event.target) && table_filter_machine_drp.has(event.target).length==0) {
-        if (drp_obj['table_filter_machine_drp']==true) {
-            drp_obj['table_filter_machine_drp']=false;
-            machine_reason.hide();
+    // part dropdown outside click
+    var machine_check_docr = $('.filter_machine_docr');
+    var docr_machine_c = $('.docr_machine');
+    if (!machine_check_docr.is(event.target) && machine_check_docr.has(event.target).length==0 && !docr_machine_c.is(event.target) && docr_machine_c.has(event.target).length==0) {
+        if(hide_seek_obj['docr_machine']==true){
+          machine_check_docr.hide();
+          hide_seek_obj['docr_machine']=false;
         }
     }
 
-    // part name multi select dropdown
-    var partname_checkbox = $('.filter_checkboxes_part');
-    var table_filter_part_drp = $('.table_filter_part_drp');
-    if (!partname_checkbox.is(event.target) && partname_checkbox.has(event.target).length==0 && !table_filter_part_drp.is(event.target) && table_filter_part_drp.has(event.target).length==0) {
-        if (drp_obj['table_filter_part_drp']==true) {
-            drp_obj['table_filter_part_drp']=false;
-            partname_checkbox.hide();
+    var reason_check_docr = $('.filter_reason_docr');
+    var docr_reason_c = $('.docr_reason');
+    if (!reason_check_docr.is(event.target) && reason_check_docr.has(event.target).length==0 && !docr_reason_c.is(event.target) && docr_reason_c.has(event.target).length==0) {
+        if(hide_seek_obj['docr_reason']==true){
+          reason_check_docr.hide();
+          hide_seek_obj['docr_reason']=false;
         }
     }
 
-    // created by multi seelct dropdown
-    var created_by_checkbox = $('.filter_checkboxes_cb');
-    var created_by_drp_tmp = $('.table_filter_created_by_drp');
-    if (!created_by_checkbox.is(event.target) && created_by_checkbox.has(event.target).length==0 && !created_by_drp_tmp.is(event.target) && created_by_drp_tmp.has(event.target).length==0) {
-        if (drp_obj['table_filter_created_by_drp']==true) {
-            drp_obj['table_filter_created_by_drp']=false;
-            created_by_checkbox.hide();
-
+    var category_check_docr = $('.filter_category_docr');
+    var docr_category_c = $('.docr_category');
+    if (!category_check_docr.is(event.target) && category_check_docr.has(event.target).length==0 && !docr_category_c.is(event.target) && docr_category_c.has(event.target).length==0) {
+        if(hide_seek_obj['docr_category']==true){
+          category_check_docr.hide();
+          hide_seek_obj['docr_category']=false;
         }
     }
 
-    // category dropdown multi select dropdown
-    var category_drp_checkbox = $('.filter_checkboxes');
-    var table_filter_category_drp = $('.table_filter_category_drp');
-    if (!category_drp_checkbox.is(event.target) && category_drp_checkbox.has(event.target).length==0 && !table_filter_category_drp.is(event.target) && table_filter_category_drp.has(event.target).length==0 ) {
-        if (drp_obj['table_filter_category_drp']==true) {
-            drp_obj['table_filter_category_drp']=false;
-            category_drp_checkbox.hide();
+
+    var machine_check_ddr = $('.filter_machine_ddr');
+    var ddr_machine_c = $('.ddr_machine');
+    if (!machine_check_ddr.is(event.target) && machine_check_ddr.has(event.target).length==0 && !ddr_machine_c.is(event.target) && ddr_machine_c.has(event.target).length==0) {
+        if(hide_seek_obj['ddr_machine']==true){
+          machine_check_ddr.hide();
+          hide_seek_obj['ddr_machine']=false;
         }
     }
 
-    // reason dropdown multi select dropdown
-    var reason_drp_checkbox = $('.filter_checkboxes_r');
-    var table_filter_reason_drp = $('.table_reason_drp');
-    if (!reason_drp_checkbox.is(event.target) && reason_drp_checkbox.has(event.target).length==0 && !table_filter_reason_drp.is(event.target) && table_filter_reason_drp.has(event.target).length==0) {
-        if (drp_obj['table_reason_drp']==true) {
-            drp_obj['table_reason_drp']=false;
-            reason_drp_checkbox.hide();
+    var reason_check_ddr = $('.filter_reason_ddr');
+    var ddr_reason_c = $('.ddr_reason');
+    if (!reason_check_ddr.is(event.target) && reason_check_ddr.has(event.target).length==0 && !ddr_reason_c.is(event.target) && ddr_reason_c.has(event.target).length==0) {
+        if(hide_seek_obj['ddr_reason']==true){
+          reason_check_ddr.hide();
+          hide_seek_obj['ddr_reason']=false;
         }
     }
 
-    // graph filter mouse out side click functions
-    // category dropdown out side click hide
-    var gp_category = $('.filter_checkboxes_categorygp');
-    var oppcost_reason_category_drp = $('.oppcost_reason_category_drp')
-    if (!gp_category.is(event.target) && gp_category.has(event.target).length==0 && !oppcost_reason_category_drp.is(event.target) && oppcost_reason_category_drp.has(event.target).length==0) {
-        if (drp_obj['oppcost_reason_category_drp']==true) {
-            gp_category.hide();
-            drp_obj['oppcost_reason_category_drp']=false;
+    var category_check_ddr = $('.filter_category_ddr');
+    var ddr_category_c = $('.ddr_category');
+    if (!category_check_ddr.is(event.target) && category_check_ddr.has(event.target).length==0 && !ddr_category_c.is(event.target) && ddr_category_c.has(event.target).length==0) {
+        if(hide_seek_obj['ddr_category']==true){
+          category_check_ddr.hide();
+          hide_seek_obj['ddr_category']=false;
         }
     }
 
-    // // reasons dropdown outside click hide
-    var gp_reason = $('.filter_checkboxes_reasongp');
-    var oppcost_reason_rdrp = $('.oppcost_reason_reason_drp');
-    if (!gp_reason.is(event.target) && gp_reason.has(event.target).length==0 && !oppcost_reason_rdrp.is(event.target) && oppcost_reason_rdrp.has(event.target).length==0) {
-        if (drp_obj['oppcost_reason_reason_drp']==true) {
-            gp_reason.hide();
-            drp_obj['oppcost_reason_reason_drp']=false;
+
+    var machine_check_docm = $('.filter_machine_docm');
+    var docm_machine_c = $('.docm_machine');
+    if (!machine_check_docm.is(event.target) && machine_check_docm.has(event.target).length==0 && !docm_machine_c.is(event.target) && docm_machine_c.has(event.target).length==0) {
+        if(hide_seek_obj['docm_machine']==true){
+          machine_check_docm.hide();
+          hide_seek_obj['docm_machine']=false;
         }
     }
 
-    // machine dropdown outside click hide
-    var gp_machine = $('.filter_checkboxes_machinegp');
-    var cost_by_reason_m = $('.oppcost_reason_machine_drp');
-    if (!gp_machine.is(event.target) && gp_machine.has(event.target).length==0 && !cost_by_reason_m.is(event.target) && cost_by_reason_m.has(event.target).length==0) {
-        if (drp_obj['oppcost_reason_machine_drp']==true) {
-            gp_machine.hide();
-            drp_obj['oppcost_reason_machine_drp']=false;
+    var reason_check_docm = $('.filter_reason_docm');
+    var docm_reason_c = $('.docm_reason');
+    if (!reason_check_docm.is(event.target) && reason_check_docm.has(event.target).length==0 && !docm_reason_c.is(event.target) && docm_reason_c.has(event.target).length==0) {
+        if(hide_seek_obj['docm_reason']==true){
+          reason_check_docm.hide();
+          hide_seek_obj['docm_reason']=false;
         }
     }
 
-    // reason wise duration dropdown close
-    var gp_category1 = $('.filter_checkboxes_categorygp1');
-    var duration_reason_category_drp = $('.duration_reason_category_drp');
-    if (!gp_category1.is(event.target) && gp_category1.has(event.target).length==0 && !duration_reason_category_drp.is(event.target) && duration_reason_category_drp.has(event.target).length==0) {
-        if (drp_obj['duration_reason_category_drp']==true) {
-            drp_obj['duration_reason_category_drp']=false;
-            gp_category1.hide();
+    var category_check_docm = $('.filter_category_docm');
+    var docm_category_c = $('.docm_category');
+    if (!category_check_docm.is(event.target) && category_check_docm.has(event.target).length==0 && !docm_category_c.is(event.target) && docm_category_c.has(event.target).length==0) {
+        if(hide_seek_obj['docm_category']==true){
+          category_check_docm.hide();
+          hide_seek_obj['docm_category']=false;
         }
     }
 
-    var gp_reason1 = $('.filter_checkboxes_reasongp1');
-    var duration_reason_reason_drp = $('.duration_reason_reason_drp');
-    if (!gp_reason1.is(event.target) && gp_reason1.has(event.target).length==0 && !duration_reason_reason_drp.is(event.target) && duration_reason_reason_drp.has(event.target).length==0) {
-        if (drp_obj['duration_reason_reason_drp']==true) {
-            drp_obj['duration_reason_reason_drp']=false;
-            gp_reason1.hide();
+    var machine_check_ddmr = $('.filter_machine_ddmr');
+    var ddmr_machine_c = $('.ddmr_machine');
+    if (!machine_check_ddmr.is(event.target) && machine_check_ddmr.has(event.target).length==0 && !ddmr_machine_c.is(event.target) && ddmr_machine_c.has(event.target).length==0) {
+        if(hide_seek_obj['ddmr_machine']==true){
+          machine_check_ddmr.hide();
+          hide_seek_obj['ddmr_machine']=false;
         }
     }
 
-    var gp_machine1 = $('.filter_checkboxes_machinegp1');
-    var duration_reason_machine_drp = $('.duration_reason_machine_drp');
-    if (!gp_machine1.is(event.target) && gp_machine1.has(event.target).length==0 && !duration_reason_machine_drp.is(event.target) && duration_reason_machine_drp.has(event.target).length==0) {
-        if (drp_obj['duration_reason_machine_drp']==true) {
-            drp_obj['duration_reason_machine_drp']=false;
-            gp_machine1.hide();
+    var reason_check_ddmr = $('.filter_reason_ddmr');
+    var ddmr_reason_c = $('.ddmr_reason');
+    if (!reason_check_ddmr.is(event.target) && reason_check_ddmr.has(event.target).length==0 && !ddmr_reason_c.is(event.target) && ddmr_reason_c.has(event.target).length==0) {
+        if(hide_seek_obj['ddmr_reason']==true){
+          reason_check_ddmr.hide();
+          hide_seek_obj['ddmr_reason']=false;
         }
     }
 
-    // machine wise oppcost dropdown close
-    var gp_category2 = $('.filter_checkboxes_categorygp2');
-    var oppcost_machine_category_drp = $('.oppcost_machine_category_drp');
-    if (!gp_category2.is(event.target) && gp_category2.has(event.target).length==0 && !oppcost_machine_category_drp.is(event.target) && oppcost_machine_category_drp.has(event.target).length==0) {
-        if (drp_obj['oppcost_machine_category_drp']==true) {
-            drp_obj['oppcost_machine_category_drp']=false;
-            gp_category2.hide();
-        }
-        
-    }
-
-    var gp_reason2 = $('.filter_checkboxes_reasongp2');
-    var oppcost_machine_reason_drp = $('.oppcost_machine_reason_drp');
-    if (!gp_reason2.is(event.target) && gp_reason2.has(event.target).length==0 && !oppcost_machine_reason_drp.is(event.target) && oppcost_machine_reason_drp.has(event.target).length==0) {
-        if (drp_obj['oppcost_machine_reason_drp']==true) {
-            drp_obj['oppcost_machine_reason_drp']=false;
-            gp_reason2.hide();
+    var category_check_ddmr = $('.filter_category_ddmr');
+    var ddmr_category_c = $('.ddmr_category');
+    if (!category_check_ddmr.is(event.target) && category_check_ddmr.has(event.target).length==0 && !ddmr_category_c.is(event.target) && ddmr_category_c.has(event.target).length==0) {
+        if(hide_seek_obj['ddmr_category']==true){
+          category_check_ddmr.hide();
+          hide_seek_obj['ddmr_category']=false;
         }
     }
 
-    var gp_machine2 = $('.filter_checkboxes_machinegp2');
-    var oppcost_machine_machine_drp = $('.oppcost_machine_machine_drp');
-    if (!gp_machine2.is(event.target) && gp_machine2.has(event.target).length==0 && !oppcost_machine_machine_drp.is(event.target) && oppcost_machine_machine_drp.has(event.target).length==0) {
-        if (drp_obj['oppcost_machine_machine_drp']==true) {
-            drp_obj['oppcost_machine_machine_drp']=false;
-            gp_machine2.hide();
+    var machine_check_down = $('.filter_machine_down');
+    var down_machine_c = $('.down_machine');
+    if (!machine_check_down.is(event.target) && machine_check_down.has(event.target).length==0 && !down_machine_c.is(event.target) && down_machine_c.has(event.target).length==0) {
+        if(hide_seek_obj['down_machine']==true){
+          machine_check_down.hide();
+          hide_seek_obj['down_machine']=false;
         }
     }
 
-    // machine reason duration dropdown close
-    var gp_category3 = $('.filter_checkboxes_categorygp3');
-    var duration_machine_reason_category_drp = $('.duration_machine_reason_category_drp');
-    if (!gp_category3.is(event.target) && gp_category3.has(event.target).length==0 && !duration_machine_reason_category_drp.is(event.target) && duration_machine_reason_category_drp.has(event.target).length==0) {
-        if (drp_obj['duration_machine_reason_category_drp']==true) {
-            drp_obj['duration_machine_reason_category_drp']=false;
-            gp_category3.hide();
+    var part_check_down = $('.filter_part_down');
+    var down_part_c = $('.down_part');
+    if (!part_check_down.is(event.target) && part_check_down.has(event.target).length==0 && !down_part_c.is(event.target) && down_part_c.has(event.target).length==0) {
+        if(hide_seek_obj['down_part']==true){
+          part_check_down.hide();
+          hide_seek_obj['down_part']=false;
         }
     }
 
-    var gp_reason3 = $('.filter_checkboxes_reasongp3');
-    var duration_machine_reason_reason_drp  =$('.duration_machine_reason_reason_drp');
-    if (!gp_reason3.is(event.target) && gp_reason3.has(event.target).length==0 && !duration_machine_reason_reason_drp.is(event.target) && duration_machine_reason_reason_drp.has(event.target).length==0) {
-        if (drp_obj['duration_machine_reason_reason_drp']==true) {
-            drp_obj['duration_machine_reason_reason_drp']=false;
-            gp_reason3.hide();
+    var reason_check_down = $('.filter_reason_down');
+    var down_reason_c = $('.down_reason');
+    if (!reason_check_down.is(event.target) && reason_check_down.has(event.target).length==0 && !down_reason_c.is(event.target) && down_reason_c.has(event.target).length==0) {
+        if(hide_seek_obj['down_reason']==true){
+          reason_check_down.hide();
+          hide_seek_obj['down_reason']=false;
         }
     }
 
-    var gp_machine3 = $('.filter_checkboxes_machinegp3');
-    var duration_machine_reason_machine_drp = $('.duration_machine_reason_machine_drp');
-    if (!gp_machine3.is(event.target) && gp_machine3.has(event.target).length==0 && !duration_machine_reason_machine_drp.is(event.target) && duration_machine_reason_machine_drp.has(event.target).length==0) {
-        if (drp_obj['duration_machine_reason_machine_drp']==true) {
-            drp_obj['duration_machine_reason_machine_drp']=false;
-            gp_machine3.hide();
+    var category_check_down = $('.filter_category_down');
+    var down_category_c = $('.down_category');
+    if (!category_check_down.is(event.target) && category_check_down.has(event.target).length==0 && !down_category_c.is(event.target) && down_category_c.has(event.target).length==0) {
+        if(hide_seek_obj['down_category']==true){
+          category_check_down.hide();
+          hide_seek_obj['down_category']=false;
         }
     }
+
+    var user_check_down = $('.filter_user_down');
+    var down_user_c = $('.down_user');
+    if (!user_check_down.is(event.target) && user_check_down.has(event.target).length==0 && !down_user_c.is(event.target) && down_user_c.has(event.target).length==0) {
+        if(hide_seek_obj['down_user']==true){
+          user_check_down.hide();
+          hide_seek_obj['down_user']=false;
+        }
+    }
+
 
 });
 
@@ -2624,262 +2565,345 @@ $(document).on('blur','.toDate',function(event){
 */
 // all dropdwon functions 
 function getall_filter_arr(){
+
+    
+    $('.filter_machine_docr').empty();
+    $('.filter_reason_docr').empty();
+    $('.filter_category_docr').empty();
+
+    $('.filter_machine_ddr').empty();
+    $('.filter_reason_ddr').empty();
+    $('.filter_category_ddr').empty();
+
+    $('.filter_machine_docm').empty();
+    $('.filter_reason_docm').empty();
+    $('.filter_category_docm').empty();
+
+    $('.filter_machine_ddmr').empty();
+    $('.filter_reason_ddmr').empty();
+    $('.filter_category_ddmr').empty();
+
+    $('.filter_machine_down').empty();
+    $('.filter_reason_down').empty();
+    $('.filter_category_down').empty();
+    $('.filter_part_down').empty();
+    $('.filter_user_down').empty();
+
     $.ajax({
         url:"<?php echo base_url('Production_Downtime_controller/getall_filter_arr') ?>",
         method:"POST",
         dataType:"json",
         success:function(res){
 
-            // machine
-            $('.filter_checkboxes_machine').empty();
-            $('.filter_checkboxes_machinegp').empty();
-            $('.filter_checkboxes_machinegp1').empty();
-            $('.filter_checkboxes_machinegp2').empty();
-            $('.filter_checkboxes_machinegp3').empty();
-
-
-            $('.filter_checkboxes_machine').append('<div class="filter_check_machine" style="">'
-            +'<div class="cate_drp_check" style="">'
-            +'<input type="checkbox" id="one" class="machine_checkbox"  value="all"/>'
-            +'</div>'
-            +'<div class="cate_drp_text" style="">'
-            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
-            +'</div>'
+            // Machine
+            $('.filter_machine_docr').append('<div class="inbox inbox_machine_docr" style="display: flex;">'
+              +'<div style="float: left;width: 20%;" class="center-align">'
+                +'<input class="checkbox_part filter_machine_val_docr" name="machine_filter_val_docr" value="all" type="checkbox" checked/>'
+              +'</div>'
+              +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                  +'<p class="inbox-span paddingm">All</p>'
+              +'</div>'
             +'</div>');
 
-            $('.filter_checkboxes_machinegp').append('<div class="filter_check_machinegp reason_oppcost_common"  style="">'
-                +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="machinegp_checkbox" value="all"/>'
-                +'</div>'
-                +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">All</p>'
-                +'</div>'
+            $('.filter_machine_ddr').append('<div class="inbox inbox_machine_ddr" style="display: flex;">'
+              +'<div style="float: left;width: 20%;" class="center-align">'
+                +'<input class="checkbox_part filter_machine_val_ddr" name="machine_filter_val_ddr" value="all" type="checkbox" checked/>'
+              +'</div>'
+              +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                  +'<p class="inbox-span paddingm">All</p>'
+              +'</div>'
+            +'</div>');
+            $('.filter_machine_docm').append('<div class="inbox inbox_machine_docm" style="display: flex;">'
+              +'<div style="float: left;width: 20%;" class="center-align">'
+                +'<input class="checkbox_part filter_machine_val_docm" name="machine_filter_val_docm" value="all" type="checkbox" checked/>'
+              +'</div>'
+              +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                  +'<p class="inbox-span paddingm">All</p>'
+              +'</div>'
+            +'</div>');
+            $('.filter_machine_ddmr').append('<div class="inbox inbox_machine_ddmr" style="display: flex;">'
+              +'<div style="float: left;width: 20%;" class="center-align">'
+                +'<input class="checkbox_part filter_machine_val_ddmr" name="machine_filter_val_ddmr" value="all" type="checkbox" checked/>'
+              +'</div>'
+              +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                  +'<p class="inbox-span paddingm">All</p>'
+              +'</div>'
+            +'</div>');
+            $('.filter_machine_down').append('<div class="inbox inbox_machine_down" style="display: flex;">'
+              +'<div style="float: left;width: 20%;" class="center-align">'
+                +'<input class="checkbox_part filter_machine_val_down" name="machine_filter_val_down" value="all" type="checkbox" checked/>'
+              +'</div>'
+              +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                  +'<p class="inbox-span paddingm">All</p>'
+              +'</div>'
             +'</div>');
 
-       
-            $('.filter_checkboxes_machinegp1').append('<div class="filter_check_machinegp1 reason_duration_common" style="">'
-            +'<div class="cate_drp_check" style="">'
-            +'<input type="checkbox" id="one" class="machinegp_checkbox1" value="all"/>'
-            +'</div>'
-            +'<div class="cate_drp_text" style="">'
-            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
-            +'</div>'
+            // Reason
+            $('.filter_reason_docr').append('<div class="inbox inbox_reason_docr" style="display: flex;">'
+              +'<div style="float: left;width: 20%;" class="center-align">'
+                +'<input class="checkbox_part filter_reason_val_docr" name="reason_filter_val_docr" value="all" type="checkbox" checked/>'
+              +'</div>'
+              +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                  +'<p class="inbox-span paddingm">All</p>'
+              +'</div>'
             +'</div>');
 
-            $('.filter_checkboxes_machinegp2').append('<div class="filter_check_machinegp2 machine_oppcost_common" style="">'
-            +'<div class="cate_drp_check" style="">'
-            +'<input type="checkbox" id="one" class="machinegp_checkbox2" value="all"/>'
-            +'</div>'
-            +'<div class="cate_drp_text" style="">'
-            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
-            +'</div>'
+            $('.filter_reason_ddr').append('<div class="inbox inbox_reason_ddr" style="display: flex;">'
+              +'<div style="float: left;width: 20%;" class="center-align">'
+                +'<input class="checkbox_part filter_reason_val_ddr" name="reason_filter_val_ddr" value="all" type="checkbox" checked/>'
+              +'</div>'
+              +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                  +'<p class="inbox-span paddingm">All</p>'
+              +'</div>'
+            +'</div>');
+            $('.filter_reason_docm').append('<div class="inbox inbox_reason_docm" style="display: flex;">'
+              +'<div style="float: left;width: 20%;" class="center-align">'
+                +'<input class="checkbox_part filter_reason_val_docm" name="reason_filter_val_docm" value="all" type="checkbox" checked/>'
+              +'</div>'
+              +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                  +'<p class="inbox-span paddingm">All</p>'
+              +'</div>'
+            +'</div>');
+            $('.filter_reason_ddmr').append('<div class="inbox inbox_reason_ddmr" style="display: flex;">'
+              +'<div style="float: left;width: 20%;" class="center-align">'
+                +'<input class="checkbox_part filter_reason_val_ddmr" name="reason_filter_val_ddmr" value="all" type="checkbox" checked/>'
+              +'</div>'
+              +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                  +'<p class="inbox-span paddingm">All</p>'
+              +'</div>'
+            +'</div>');
+            $('.filter_reason_down').append('<div class="inbox inbox_reason_down" style="display: flex;">'
+              +'<div style="float: left;width: 20%;" class="center-align">'
+                +'<input class="checkbox_part filter_reason_val_down" name="reason_filter_val_down" value="all" type="checkbox" checked/>'
+              +'</div>'
+              +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                  +'<p class="inbox-span paddingm">All</p>'
+              +'</div>'
             +'</div>');
 
-            $('.filter_checkboxes_machinegp3').append('<div class="filter_check_machinegp3 machine_reason_duration_common" style="">'
-            +'<div class="cate_drp_check" style="">'
-            +'<input type="checkbox" id="one" class="machinegp_checkbox3" value="all"/>'
-            +'</div>'
-            +'<div class="cate_drp_text" style="">'
-            +'<p class="font_multi_drp" style="margin:auto;">All</p>'
-            +'</div>'
+            // Category
+            $('.filter_category_docr').append('<div class="inbox inbox_category_docr" style="display: flex;">'
+              +'<div style="float: left;width: 20%;" class="center-align">'
+                +'<input class="checkbox_part filter_category_val_docr" name="category_filter_val_docr" value="all" type="checkbox" checked/>'
+              +'</div>'
+              +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                  +'<p class="inbox-span paddingm">All</p>'
+              +'</div>'
             +'</div>');
+
+            $('.filter_category_ddr').append('<div class="inbox inbox_category_ddr" style="display: flex;">'
+              +'<div style="float: left;width: 20%;" class="center-align">'
+                +'<input class="checkbox_part filter_category_val_ddr" name="category_filter_val_ddr" value="all" type="checkbox" checked/>'
+              +'</div>'
+              +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                  +'<p class="inbox-span paddingm">All</p>'
+              +'</div>'
+            +'</div>');
+            $('.filter_category_docm').append('<div class="inbox inbox_category_docm" style="display: flex;">'
+              +'<div style="float: left;width: 20%;" class="center-align">'
+                +'<input class="checkbox_part filter_category_val_docm" name="category_filter_val_docm" value="all" type="checkbox" checked/>'
+              +'</div>'
+              +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                  +'<p class="inbox-span paddingm">All</p>'
+              +'</div>'
+            +'</div>');
+            $('.filter_category_ddmr').append('<div class="inbox inbox_category_ddmr" style="display: flex;">'
+              +'<div style="float: left;width: 20%;" class="center-align">'
+                +'<input class="checkbox_part filter_category_val_ddmr" name="category_filter_val_ddmr" value="all" type="checkbox" checked/>'
+              +'</div>'
+              +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                  +'<p class="inbox-span paddingm">All</p>'
+              +'</div>'
+            +'</div>');
+            $('.filter_category_down').append('<div class="inbox inbox_category_down" style="display: flex;">'
+              +'<div style="float: left;width: 20%;" class="center-align">'
+                +'<input class="checkbox_part filter_category_val_down" name="category_filter_val_down" value="all" type="checkbox" checked/>'
+              +'</div>'
+              +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                  +'<p class="inbox-span paddingm">All</p>'
+              +'</div>'
+            +'</div>');
+
+            // Part
+            $('.filter_part_down').append('<div class="inbox inbox_part_down" style="display: flex;">'
+              +'<div style="float: left;width: 20%;" class="center-align">'
+                +'<input class="checkbox_part filter_part_val_down" name="part_filter_val_down" value="all" type="checkbox" checked/>'
+              +'</div>'
+              +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                  +'<p class="inbox-span paddingm">All</p>'
+              +'</div>'
+            +'</div>');
+
+            // User
+            $('.filter_user_down').append('<div class="inbox inbox_user_down" style="display: flex;">'
+                  +'<div style="float: left;width: 20%;" class="center-align">'
+                    +'<input class="checkbox_user filter_user_val_down" name="user_filter_val_down" value="all" type="checkbox" checked/>'
+                  +'</div>'
+                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                      +'<p class="inbox-span paddingm">All</p>'
+                  +'</div>'
+                +'</div>');
+
+        
 
             res['machine'].forEach(function(val){
-                var elements_mdrp = $();
-                var element_mdrp = $();
-                var ele_mdrp = $();
-                var ele_1_mdrp = $();
-                var ele_2_mdrp = $();
 
-
-
-                // elements_mdrp = elements_mdrp.add('<div class="filter_check_machine" style="">'
-                // +'<div class="cate_drp_check " style="">'
-                // +'<input type="checkbox" id="one" class="machine_checkbox" value="'+val.machine_id+'"/>'
-                // +'</div>'
-                // +'<div class="cate_drp_text" style="">'
-                // +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
-                // +'</div>'
-                // +'</div>');
-
-                elements_mdrp = elements_mdrp.add('<div class="filter_check_machine" style="display:flex;flex-direction:row;height:2.3rem;position:relative;padding:12px 0;">'
-                +'<div class="cate_drp_check " style="">'
-                +'<input type="checkbox" id="one" class="machine_checkbox" value="'+val.machine_id+'"/>'
-                +'</div>'
-                +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
-                +'</div>'
+                $('.filter_machine_docr').append('<div class="inbox inbox_machine_docr" style="display: flex;">'
+                  +'<div style="float: left;width: 20%;" class="center-align">'
+                    +'<input class="checkbox_part filter_machine_val_docr" name="machine_filter_val_docr" value="'+val.machine_id+'" type="checkbox" checked/>'
+                  +'</div>'
+                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                      +'<p class="inbox-span paddingm">'+val.machine_id+"-"+val.machine_name+'</p>'
+                  +'</div>'
                 +'</div>');
-
-
-                element_mdrp = element_mdrp.add('<div class="filter_check_machinegp reason_oppcost_common" style="">'
-                    +'<div class="cate_drp_check" style="">'
-                    +'<input type="checkbox" id="one" class="machinegp_checkbox" value="'+val.machine_id+'"/>'
-                    +'</div>'
-                    +'<div class="cate_drp_text" style="">'
-                    +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
-                    +'</div>'
+                $('.filter_machine_ddr').append('<div class="inbox inbox_machine_ddr" style="display: flex;">'
+                  +'<div style="float: left;width: 20%;" class="center-align">'
+                    +'<input class="checkbox_part filter_machine_val_ddr" name="machine_filter_val_ddr" value="'+val.machine_id+'" type="checkbox" checked/>'
+                  +'</div>'
+                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                      +'<p class="inbox-span paddingm">'+val.machine_id+"-"+val.machine_name+'</p>'
+                  +'</div>'
                 +'</div>');
-
-
-
-                ele_mdrp = ele_mdrp.add('<div class="filter_check_machinegp1 reason_duration_common" style="">'
-                +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="machinegp_checkbox1" value="'+val.machine_id+'"/>'
-                +'</div>'
-                +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
-                +'</div>'
+                $('.filter_machine_docm').append('<div class="inbox inbox_machine_docm" style="display: flex;">'
+                  +'<div style="float: left;width: 20%;" class="center-align">'
+                    +'<input class="checkbox_part filter_machine_val_docm" name="machine_filter_val_docm" value="'+val.machine_id+'" type="checkbox" checked/>'
+                  +'</div>'
+                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                      +'<p class="inbox-span paddingm">'+val.machine_id+"-"+val.machine_name+'</p>'
+                  +'</div>'
                 +'</div>');
-
-                ele_1_mdrp = ele_1_mdrp.add('<div class="filter_check_machinegp2 machine_oppcost_common" style="">'
-                +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="machinegp_checkbox2" value="'+val.machine_id+'"/>'
-                +'</div>'
-                +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
-                +'</div>'
+                $('.filter_machine_ddmr').append('<div class="inbox inbox_machine_ddmr" style="display: flex;">'
+                  +'<div style="float: left;width: 20%;" class="center-align">'
+                    +'<input class="checkbox_part filter_machine_val_ddmr" name="machine_filter_val_ddmr" value="'+val.machine_id+'" type="checkbox" checked/>'
+                  +'</div>'
+                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                      +'<p class="inbox-span paddingm">'+val.machine_id+"-"+val.machine_name+'</p>'
+                  +'</div>'
                 +'</div>');
-
-                ele_2_mdrp = ele_2_mdrp.add('<div class="filter_check_machinegp3 machine_reason_duration_common" style="">'
-                +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="machinegp_checkbox3" value="'+val.machine_id+'"/>'
-                +'</div>'
-                +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
-                +'</div>'
+                $('.filter_machine_down').append('<div class="inbox inbox_machine_down" style="display: flex;">'
+                  +'<div style="float: left;width: 20%;" class="center-align">'
+                    +'<input class="checkbox_part filter_machine_val_down" name="machine_filter_val_down" value="'+val.machine_id+'" type="checkbox" checked/>'
+                  +'</div>'
+                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                      +'<p class="inbox-span paddingm">'+val.machine_id+"-"+val.machine_name+'</p>'
+                  +'</div>'
                 +'</div>');
-
-                $('.filter_checkboxes_machine').append(elements_mdrp);
-                $('.filter_checkboxes_machinegp').append(element_mdrp);
-                $('.filter_checkboxes_machinegp1').append(ele_mdrp);
-                $('.filter_checkboxes_machinegp2').append(ele_1_mdrp);
-                $('.filter_checkboxes_machinegp3').append(ele_2_mdrp);
 
             });
 
+            res['downtime_reason'].forEach(function(val){
 
-            // part 
-            $('.filter_checkboxes_part').empty();
-            $('.filter_checkboxes_part').append('<div class="filter_check_part" style="">'
-            +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="partname_checkbox" value="all"/>'
-            +'</div>'
-            +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">All</p>'
-            +'</div>'
-            +'</div>');
+                $('.filter_reason_docr').append('<div class="inbox inbox_reason_docr" style="display: flex;">'
+                  +'<div style="float: left;width: 20%;" class="center-align">'
+                    +'<input class="checkbox_part filter_reason_val_docr" name="reason_filter_val_docr" value="'+val.downtime_reason_id+'" type="checkbox" checked/>'
+                  +'</div>'
+                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                      +'<p class="inbox-span paddingm">'+val.downtime_reason_id+"-"+val.downtime_reason+'</p>'
+                  +'</div>'
+                +'</div>');
+                $('.filter_reason_ddr').append('<div class="inbox inbox_reason_ddr" style="display: flex;">'
+                  +'<div style="float: left;width: 20%;" class="center-align">'
+                    +'<input class="checkbox_part filter_reason_val_ddr" name="reason_filter_val_ddr" value="'+val.downtime_reason_id+'" type="checkbox" checked/>'
+                  +'</div>'
+                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                      +'<p class="inbox-span paddingm">'+val.downtime_reason_id+"-"+val.downtime_reason+'</p>'
+                  +'</div>'
+                +'</div>');
+
+                $('.filter_reason_docm').append('<div class="inbox inbox_reason_docm" style="display: flex;">'
+                  +'<div style="float: left;width: 20%;" class="center-align">'
+                    +'<input class="checkbox_part filter_reason_val_docm" name="reason_filter_val_docm" value="'+val.downtime_reason_id+'" type="checkbox" checked/>'
+                  +'</div>'
+                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                      +'<p class="inbox-span paddingm">'+val.downtime_reason_id+"-"+val.downtime_reason+'</p>'
+                  +'</div>'
+                +'</div>');
+                $('.filter_reason_ddmr').append('<div class="inbox inbox_reason_ddmr" style="display: flex;">'
+                  +'<div style="float: left;width: 20%;" class="center-align">'
+                    +'<input class="checkbox_part filter_reason_val_ddmr" name="reason_filter_val_ddmr" value="'+val.downtime_reason_id+'" type="checkbox" checked/>'
+                  +'</div>'
+                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                      +'<p class="inbox-span paddingm">'+val.downtime_reason_id+"-"+val.downtime_reason+'</p>'
+                  +'</div>'
+                +'</div>');
+                $('.filter_reason_down').append('<div class="inbox inbox_reason_down" style="display: flex;">'
+                  +'<div style="float: left;width: 20%;" class="center-align">'
+                    +'<input class="checkbox_part filter_reason_val_down" name="reason_filter_val_down" value="'+val.downtime_reason_id+'" type="checkbox" checked/>'
+                  +'</div>'
+                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                      +'<p class="inbox-span paddingm">'+val.downtime_reason_id+"-"+val.downtime_reason+'</p>'
+                  +'</div>'
+                +'</div>');
+            });
+
+            res['downtime_category'].forEach(function(val){
+
+                $('.filter_category_docr').append('<div class="inbox inbox_category_docr" style="display: flex;">'
+                  +'<div style="float: left;width: 20%;" class="center-align">'
+                    +'<input class="checkbox_part filter_category_val_docr" name="category_filter_val_docr" value="'+val.downtime_category+'" type="checkbox" checked/>'
+                  +'</div>'
+                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                      +'<p class="inbox-span paddingm">'+val.downtime_category+'</p>'
+                  +'</div>'
+                +'</div>');
+                $('.filter_category_ddr').append('<div class="inbox inbox_category_ddr" style="display: flex;">'
+                  +'<div style="float: left;width: 20%;" class="center-align">'
+                    +'<input class="checkbox_part filter_category_val_ddr" name="category_filter_val_ddr" value="'+val.downtime_category+'" type="checkbox" checked/>'
+                  +'</div>'
+                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                      +'<p class="inbox-span paddingm">'+val.downtime_category+'</p>'
+                  +'</div>'
+                +'</div>');
+
+                $('.filter_category_docm').append('<div class="inbox inbox_category_docm" style="display: flex;">'
+                  +'<div style="float: left;width: 20%;" class="center-align">'
+                    +'<input class="checkbox_part filter_category_val_docm" name="category_filter_val_docm" value="'+val.downtime_category+'" type="checkbox" checked/>'
+                  +'</div>'
+                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                      +'<p class="inbox-span paddingm">'+val.downtime_category+'</p>'
+                  +'</div>'
+                +'</div>');
+                $('.filter_category_ddmr').append('<div class="inbox inbox_category_ddmr" style="display: flex;">'
+                  +'<div style="float: left;width: 20%;" class="center-align">'
+                    +'<input class="checkbox_part filter_category_val_ddmr" name="category_filter_val_ddmr" value="'+val.downtime_category+'" type="checkbox" checked/>'
+                  +'</div>'
+                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                      +'<p class="inbox-span paddingm">'+val.downtime_category+'</p>'
+                  +'</div>'
+                +'</div>');
+                $('.filter_category_down').append('<div class="inbox inbox_category_down" style="display: flex;">'
+                  +'<div style="float: left;width: 20%;" class="center-align">'
+                    +'<input class="checkbox_part filter_category_val_down" name="category_filter_val_down" value="'+val.downtime_category+'" type="checkbox" checked/>'
+                  +'</div>'
+                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                      +'<p class="inbox-span paddingm">'+val.downtime_category+'</p>'
+                  +'</div>'
+                +'</div>');
+            });
+
+
             res['part'].forEach(function(val){
-                var elements_pdrp = $();
-                elements_pdrp = elements_pdrp.add('<div class="filter_check_part" style="">'
-                +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="partname_checkbox" value="'+val.part_id+'"/>'
-                +'</div>'
-                +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">'+val.part_name+'</p>'
-                +'</div>'
+                $('.filter_part_down').append('<div class="inbox inbox_part_down" style="display: flex;">'
+                  +'<div style="float: left;width: 20%;" class="center-align">'
+                    +'<input class="checkbox_part filter_part_val_down" name="part_filter_val_down" value="'+val.part_id+'" type="checkbox" checked/>'
+                  +'</div>'
+                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                      +'<p class="inbox-span paddingm">'+val.part_id+"-"+val.part_name+'</p>'
+                  +'</div>'
                 +'</div>');
-
-                $('.filter_checkboxes_part').append(elements_pdrp);
             });
 
 
-            // created by dropdown
-            $('.filter_checkboxes_cb').empty();
-            $('.filter_checkboxes_cb').append('<div class="filter_check_cb" style="">'
-            +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="created_by_checkbox" value="all"/>'
-            +'</div>'
-            +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">All</p>'
-            +'</div>'
-            +'</div>')
             res['created_by'].forEach(function(val){
-                var elements_cdrp = $();
-                elements_cdrp = elements_cdrp.add('<div class="filter_check_cb" style="">'
-                +'<div class="cate_drp_check" style="">'
-                +'<input type="checkbox" id="one" class="created_by_checkbox" value="'+val.user_id+'"/>'
-                +'</div>'
-                +'<div class="cate_drp_text" style="">'
-                +'<p class="font_multi_drp" style="margin:auto;">'+val.first_name+''+val.last_name+'</p>'
-                +'</div>'
+                $('.filter_user_down').append('<div class="inbox inbox_user_down" style="display: flex;">'
+                  +'<div style="float: left;width: 20%;" class="center-align">'
+                    +'<input class="checkbox_user filter_user_val_down" name="user_filter_val_down" value="'+val.user_id+'" type="checkbox" checked/>'
+                  +'</div>'
+                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                      +'<p class="inbox-span paddingm">'+val.first_name+''+val.last_name+'</p>'
+                  +'</div>'
                 +'</div>');
-
-                $('.filter_checkboxes_cb').append(elements_cdrp);
             });
-
-            // downtime reason
-            $('.filter_checkboxes_r').empty();
-            $('.filter_checkboxes_reasongp').empty();
-            $('.filter_checkboxes_reasongp1').empty();
-            $('.filter_checkboxes_reasongp2').empty();
-            $('.filter_checkboxes_reasongp3').empty();
-
-            var element_ddrp = $();
-            var elements_ddrp = $();
-            var ele_ddrp = $();
-            var ele_1_ddrp = $();
-            var ele_2_ddrp = $();
-
-            $('.filter_checkboxes_r').append('<div class="filter_check_r" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
-            $('.filter_checkboxes_reasongp').append('<div class="filter_check_reasongp reason_oppcost_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
-            $('.filter_checkboxes_reasongp1').append('<div class="filter_check_reasongp1 reason_duration_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox1" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
-            $('.filter_checkboxes_reasongp2').append('<div class="filter_check_reasongp2 machine_oppcost_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox2" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
-            $('.filter_checkboxes_reasongp3').append('<div class="filter_check_reasongp3 machine_reason_duration_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox3" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
-
-
-            res['downtime_reason'].forEach(function(item){
-                
-                element_ddrp = element_ddrp.add('<div class="filter_check_r" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox" value="'+item.downtime_reason_id+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
-                
-                elements_ddrp = elements_ddrp.add('<div class="filter_check_reasongp reason_oppcost_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
-
-                ele_ddrp = ele_ddrp.add('<div class="filter_check_reasongp1 reason_duration_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox1" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
-                
-                ele_1_ddrp = ele_1_ddrp.add('<div class="filter_check_reasongp2 machine_oppcost_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox2" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
-                ele_2_ddrp = ele_2_ddrp.add('<div class="filter_check_reasongp3 machine_reason_duration_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reasongp_checkbox3" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
-            
-                $('.filter_checkboxes_r').append(element_ddrp);
-                $('.filter_checkboxes_reasongp').append(elements_ddrp);
-                $('.filter_checkboxes_reasongp1').append(ele_ddrp);
-                $('.filter_checkboxes_reasongp2').append(ele_1_ddrp);
-                $('.filter_checkboxes_reasongp3').append(ele_2_ddrp);             
-            });
-            // downtime reasons all reasons selection funciton [reset the multiselect dropdwon]
-            reset_reason();
-            reset_reason_gp();
-            reset_reason_gp1();
-            reset_reason_gp2();
-            reset_reason_gp3();
-            //graph filter reset category dropdown
-            reset_category_gp();
-            reset_category_gp1();
-            reset_category_gp2();
-            reset_category_gp3();
-            reset_created_by();
-            reset_part();
-            reset_category();
-            reset_machine();
-            reset_machine_gp();
-            reset_machine_gp1();
-            reset_machine_gp2();
-            reset_machine_gp3();
-
-
-            // all graph 
-            $('#pagination_val').val('1');
-            // getfilter_oppcost_reason();
-            // getfilter_duration_reason();
-            // getfilter_machine_oppcost();
-            // getfilter_machine_reason_duration();
-            
-            var end_index = 50;
-            var start_index = 0;
-            // filter function apply
-            filter_after_filter(end_index,start_index);
-            
-
-
         },
         error:function(er){
           // alert("Error");
