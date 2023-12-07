@@ -1215,64 +1215,6 @@ function date_formate_change(date_format){
 
 
 
-// this function get category value 
-function getcategory_arr(){
-  const temp_arr = [];
-  var loop_cate = $('.category_drp_checkbox').val();
-  $('.category_drp_checkbox').each(function(){ 
-    if($(this).is(':checked')){
-      temp_arr.push($(this).val());
-    }           
-  });
-  return temp_arr;
-}
-
-// machine array
-function getmachine_arr(){
-    const temp_arr = [];
-    $('.machine_checkbox').each(function(){
-        if ($(this).is(':checked')) {
-            temp_arr.push($(this).val());
-        }
-    });
-
-    return temp_arr;
-}
-
-// part array
-function getpart_arr(){
-    const tmp_arr = [];
-    $('.partname_checkbox').each(function(){
-        if ($(this).is(':checked')) {
-            tmp_arr.push($(this).val());
-        }
-    });
-    return tmp_arr;
-}
-
-// created_by array
-function getcreated_by_arr(){
-    const tmp_arr = [];
-    $('.created_by_checkbox').each(function(){
-        if ($(this).is(':checked')) {
-            tmp_arr.push($(this).val());
-        }
-    });
-    return tmp_arr;
-}
-
-// reason array function
-function getreason_arr(){
-    const temp = [];
-    $('.reason_checkbox').each(function(){
-        if ($(this).is(':checked')) {
-            temp.push($(this).val());
-        }
-    });
-
-    return temp;
-}
-
 // on mouse up function
 $(document).mouseup(function(event){
     // part dropdown outside click
@@ -1438,11 +1380,107 @@ $(document).mouseup(function(event){
 $(document).on('click','#apply_filter_btn',function(event){
     event.preventDefault();
     
-    var get_category_data = getcategory_arr();
-    var machine_arr = getmachine_arr();
-    var part_arr = getpart_arr();
-    var reason_arr = getreason_arr();
-    var created_by = getcreated_by_arr();
+    var get_category_data = [];
+    var machine_arr = [];
+    var part_arr = [];
+    var reason_arr = [];
+    var created_by = [];
+
+    // Machine Values...
+    var machine_flag=0;
+    $.each($("input[name='machine_filter_val_down']:checked"), function(){
+        if (($(this).val() == "all")) {
+            machine_flag =1;
+        }
+        else{
+            machine_arr.push($(this).val());
+        }
+    });
+    if (machine_flag==1) {
+        machine_arr=[];
+        $.each($("input[name='machine_filter_val_down']"), function(){
+            if (($(this).val() != "all")) {
+                machine_arr.push($(this).val());
+            }
+        });
+    }
+
+    // Part Values...
+    var part_flag=0;
+    $.each($("input[name='part_filter_val_down']:checked"), function(){
+        if (($(this).val() == "all")) {
+            part_flag =1;
+        }
+        else{
+            part_arr.push($(this).val());
+        }
+    });
+    if (part_flag==1) {
+        part_arr=[];
+        $.each($("input[name='part_filter_val_down']"), function(){
+            if (($(this).val() != "all")) {
+                part_arr.push($(this).val());
+            }
+        });
+    }
+
+    // Reason Values...
+    var reason_flag=0;
+    $.each($("input[name='reason_filter_val_down']:checked"), function(){
+        if (($(this).val() == "all")) {
+            reason_flag =1;
+        }
+        else{
+            reason_arr.push($(this).val());
+        }
+    });
+    if (reason_flag==1) {
+        reason_arr=[];
+        $.each($("input[name='reason_filter_val_down']"), function(){
+            if (($(this).val() != "all")) {
+                reason_arr.push($(this).val());
+            }
+        });
+    }
+
+    // User Values...
+    var user_flag=0;
+    $.each($("input[name='user_filter_val_down']:checked"), function(){
+        if (($(this).val() == "all")) {
+            user_flag =1;
+        }
+        else{
+            created_by.push($(this).val());
+        }
+    });
+    if (user_flag==1) {
+        created_by=[];
+        $.each($("input[name='user_filter_val_down']"), function(){
+            if (($(this).val() != "all")) {
+                created_by.push($(this).val());
+            }
+        });
+    }
+
+    // Category Values...
+    var category_flag=0;
+    $.each($("input[name='category_filter_val_down']:checked"), function(){
+        if (($(this).val() == "all")) {
+            category_flag =1;
+        }
+        else{
+            get_category_data.push($(this).val());
+        }
+    });
+    if (category_flag==1) {
+        get_category_data=[];
+        $.each($("input[name='category_filter_val_down']"), function(){
+            if (($(this).val() != "all")) {
+                get_category_data.push($(this).val());
+            }
+        });
+    }
+
     if ((parseInt(get_category_data.length)>0) && (parseInt(machine_arr.length)>0) && (parseInt(part_arr.length)>0) && (parseInt(reason_arr.length)>0) && (parseInt(created_by.length)>0)) {
             $('#pagination_val').val('1');
         $("#overlay").fadeIn(400);
@@ -1463,84 +1501,126 @@ $(document).on('click','#apply_filter_btn',function(event){
 // after click filter and document ready function and after pagination uusing filter
 function filter_after_filter(end_index,start_index){
 
-    var get_category_data = getcategory_arr();
-    var machine_arr = getmachine_arr();
-    var part_arr = getpart_arr();
-    var reason_arr = getreason_arr();
-    var created_by = getcreated_by_arr();
+    var get_category_data = [];
+    var machine_arr = [];
+    var part_arr = [];
+    var reason_arr = [];
+    var created_by = [];
 
-    // var machine_len = $('.machine_checkbox').length;
-    // var part_len = $('.partname_checkbox').length;
-    // var category_len = $('.category_drp_checkbox').length;
-    // var reason_len = $('.reason_checkbox').length;
-    // var created_by_len = $('.created_by_checkbox').length;
+    // Machine Values...
+    var machine_flag=0;
+    $.each($("input[name='machine_filter_val_down']:checked"), function(){
+        if (($(this).val() == "all")) {
+            machine_flag =1;
+        }
+        else{
+            machine_arr.push($(this).val());
+        }
+    });
+    if (machine_flag==1) {
+        machine_arr=[];
+        $.each($("input[name='machine_filter_val_down']"), function(){
+            if (($(this).val() != "all")) {
+                machine_arr.push($(this).val());
+            }
+        });
+    }
 
-  
+    // Part Values...
+    var part_flag=0;
+    $.each($("input[name='part_filter_val_down']:checked"), function(){
+        if (($(this).val() == "all")) {
+            part_flag =1;
+        }
+        else{
+            part_arr.push($(this).val());
+        }
+    });
+    if (part_flag==1) {
+        part_arr=[];
+        $.each($("input[name='part_filter_val_down']"), function(){
+            if (($(this).val() != "all")) {
+                part_arr.push($(this).val());
+            }
+        });
+    }
 
-    // // machine condition 
-    // var pass_machine = "";
-    // if (parseInt(machine_len)===parseInt(machine_arr.length)) {
-    //     pass_machine = null;
-    // }else{
-        pass_machine = machine_arr;
-    // }
+    // Reason Values...
+    var reason_flag=0;
+    $.each($("input[name='reason_filter_val_down']:checked"), function(){
+        if (($(this).val() == "all")) {
+            reason_flag =1;
+        }
+        else{
+            reason_arr.push($(this).val());
+        }
+    });
+    if (reason_flag==1) {
+        reason_arr=[];
+        $.each($("input[name='reason_filter_val_down']"), function(){
+            if (($(this).val() != "all")) {
+                reason_arr.push($(this).val());
+            }
+        });
+    }
 
-    // // part condition
-    // var pass_part = "";
-    // if (parseInt(part_len)===parseInt(part_arr.length)) {
-    //     pass_part = null;
-    // }else{
-        pass_part = part_arr;
-    // }
+    // User Values...
+    var user_flag=0;
+    $.each($("input[name='user_filter_val_down']:checked"), function(){
+        if (($(this).val() == "all")) {
+            user_flag =1;
+        }
+        else{
+            created_by.push($(this).val());
+        }
+    });
+    if (user_flag==1) {
+        created_by=[];
+        $.each($("input[name='user_filter_val_down']"), function(){
+            if (($(this).val() != "all")) {
+                created_by.push($(this).val());
+            }
+        });
+    }
 
-    // // category_arr
-    // var pass_cate = "";
-    // if (parseInt(category_len)===parseInt(get_category_data.length)) {
-    //     pass_cate = null;
-    // }else{
-        pass_cate = get_category_data;
-    // }
-
-    // // reason condition
-    // var pass_reason = "";
-    // if (parseInt(reason_len)===parseInt(reason_arr.length)) {
-    //     pass_reason = null;
-    // }else{
-        pass_reason = reason_arr;
-    // }
-
-    // // created by condition
-    // var pass_created_by = "";
-    // if (parseInt(created_by_len)===parseInt(created_by.length)) {
-    //     pass_created_by = null;
-    // }else{
-        pass_created_by = created_by;
-    // }
+    // Category Values...
+    var category_flag=0;
+    $.each($("input[name='category_filter_val_down']:checked"), function(){
+        if (($(this).val() == "all")) {
+            category_flag =1;
+        }
+        else{
+            get_category_data.push($(this).val());
+        }
+    });
+    if (category_flag==1) {
+        get_category_data=[];
+        $.each($("input[name='category_filter_val_down']"), function(){
+            if (($(this).val() != "all")) {
+                get_category_data.push($(this).val());
+            }
+        });
+    }
 
     // from date and to date
     f = $('.fromDate').val();
     t = $('.toDate').val();
     from = f.replace(" ","T");
     to = t.replace(" ","T");
-    // console.log(from);
-    // console.log(to);
-    // console.log("prodcution downtime table filter values");
     $.ajax({
         url:"<?php echo base_url('Production_Downtime_controller/filter_records'); ?>",
         method:"POST",
         dataType:"json",
         data:{
-            pass_machine:pass_machine,
-            pass_part:pass_part,
-            pass_cate:pass_cate,
-            pass_reason:pass_reason,
-            pass_created_by:pass_created_by,
+            pass_machine:machine_arr,
+            pass_part:part_arr,
+            pass_cate:get_category_data,
+            pass_reason:reason_arr,
+            pass_created_by:created_by,
             from:from,
             to:to,   
         },
         success:function(res){
-            // console.log("prouction downtime records table");
-            // console.log(res);
             $('.production_downtime_content').empty();
             // $('.scroll_rows').empty();
             var from_len = 0;
@@ -1659,11 +1739,12 @@ $(document).on('click','.table_reset',function(event){
     $('.scroll_rows').empty();
     $("#overlay").fadeIn(400);
     // reset all dropdown values
-    reset_category();
-    reset_created_by();
-    reset_machine();
-    reset_part();
-    reset_reason();
+
+    reset_part_down();
+    reset_user_down();
+    reset_machine_down();
+    reset_reason_down();
+    reset_category_down();
 
     // filter function calling
     var start_index = 0;
@@ -1677,22 +1758,22 @@ $(document).on('click','.table_reset',function(event){
 
 
 // graph onclick
-$(document).on('click','.reason_oppcost_common',function(event){
+$(document).on('click','.docr_filter',function(event){
     event.preventDefault();
     getfilter_oppcost_reason();
 });
-$(document).on('click','.reason_duration_common',function(event){
+$(document).on('click','.ddr_filter',function(event){
     event.preventDefault();
     getfilter_duration_reason();
 
 });
 
-$(document).on('click','.machine_oppcost_common',function(event){
+$(document).on('click','.docm_filter',function(event){
     event.preventDefault();
     getfilter_machine_oppcost();
 });
 
-$(document).on('click','.machine_reason_duration_common',function(event){
+$(document).on('click','.ddmr_filter',function(event){
     event.preventDefault();
     getfilter_machine_reason_duration();
 
@@ -1703,35 +1784,75 @@ $(document).on('click','.machine_reason_duration_common',function(event){
 
 // Downtime opportunity Cost by Reasons
 function getfilter_oppcost_reason(){
-    //alert('hi');
+    return new Promise(function(resolve,reject){
+
+    var graph_category_arr=[];
+    var graph_machine_arr =[];
+    var graph_reason_arr= [];
+
+    // Machine Values...
+    var machine_flag=0;
+    $.each($("input[name='machine_filter_val_docr']:checked"), function(){
+        if (($(this).val() == "all")) {
+            machine_flag =1;
+        }
+        else{
+            graph_machine_arr.push($(this).val());
+        }
+    });
+    if (machine_flag==1) {
+        graph_machine_arr=[];
+        $.each($("input[name='machine_filter_val_docr']"), function(){
+            if (($(this).val() != "all")) {
+                graph_machine_arr.push($(this).val());
+            }
+        });
+    }
+
+    // Reason array
+    var reason_flag=0;
+    $.each($("input[name='reason_filter_val_docr']:checked"), function(){
+        if (($(this).val() == "all")) {
+            reason_flag =1;
+        }
+        else{
+            graph_reason_arr.push($(this).val());
+        }
+    });
+    if (reason_flag==1) {
+        graph_reason_arr=[];
+        $.each($("input[name='reason_filter_val_docr']"), function(){
+            if (($(this).val() != "all")) {
+                graph_reason_arr.push($(this).val());
+            }
+        });
+    }
+
+
+    // Category array
+    var category_flag=0;
+    $.each($("input[name='category_filter_val_docr']:checked"), function(){
+        if (($(this).val() == "all")) {
+            category_flag =1;
+        }
+        else{
+            graph_category_arr.push($(this).val());
+        }
+    });
+    if (category_flag==1) {
+        graph_category_arr=[];
+        $.each($("input[name='category_filter_val_docr']"), function(){
+            if (($(this).val() != "all")) {
+                graph_category_arr.push($(this).val());
+            }
+        });
+    }
+
+
     $('#reason_wise_oppcost').remove();
     $('.child_reason_wise_oppcost').append('<canvas id="reason_wise_oppcost"></canvas>');
     $('.chartjs-hidden-iframe').remove();
 
-    // machine array
-    var graph_machine_arr = [];
-    $('.machinegp_checkbox').each(function(){
-        if ($(this).is(':checked')) {
-            graph_machine_arr.push($(this).val().trim());
-        }
-    });
-
-    // reason array
-    var graph_reason_arr = [];
-    $('.reasongp_checkbox').each(function(){
-        if ($(this).is(':checked')) {
-            graph_reason_arr.push($(this).val());
-        }
-    });
-
-    
-    // category
-    var graph_category_arr = [];
-    $('.categorygp_checkbox').each(function(){
-        if ($(this).is(':checked')) {
-            graph_category_arr.push($(this).val());
-        }
-    });
 
     f = $('.fromDate').val();
     t = $('.toDate').val();
@@ -1750,6 +1871,7 @@ function getfilter_oppcost_reason(){
             to:t,
         },
         success:function(res){
+            resolve(res);
             $('#reason_wise_oppcost_total').text(parseInt(res['grandTotal']).toLocaleString("en-IN"));
             // total hour and minute
             var thour = parseInt(res['total_duration'])/60;
@@ -1901,41 +2023,79 @@ function getfilter_oppcost_reason(){
         }
 
     });
-}
 
+    });
+}
 
 // Downtime Duration by Reasons
 function getfilter_duration_reason(){
-     
+    return new Promise(function(resolve,reject){
     $('#reason_wise_duration').remove();
     $('.child_reason_wise_duration').append('<canvas id="reason_wise_duration"></canvas>');
     $('.chartjs-hidden-iframe').remove();
 
 
-    // machine array
-    var graph_machine_arr = [];
-    $('.machinegp_checkbox1').each(function(){
-        if ($(this).is(':checked')) {
-            graph_machine_arr.push($(this).val().trim());
+    var graph_category_arr=[];
+    var graph_machine_arr =[];
+    var graph_reason_arr= [];
+
+    // Machine Values...
+    var machine_flag=0;
+    $.each($("input[name='machine_filter_val_ddr']:checked"), function(){
+        if (($(this).val() == "all")) {
+            machine_flag =1;
+        }
+        else{
+            graph_machine_arr.push($(this).val());
         }
     });
+    if (machine_flag==1) {
+        graph_machine_arr=[];
+        $.each($("input[name='machine_filter_val_ddr']"), function(){
+            if (($(this).val() != "all")) {
+                graph_machine_arr.push($(this).val());
+            }
+        });
+    }
 
-    // reason array
-    var graph_reason_arr = [];
-    $('.reasongp_checkbox1').each(function(){
-        if ($(this).is(':checked')) {
+    // Reason array
+    var reason_flag=0;
+    $.each($("input[name='reason_filter_val_ddr']:checked"), function(){
+        if (($(this).val() == "all")) {
+            reason_flag =1;
+        }
+        else{
             graph_reason_arr.push($(this).val());
         }
     });
+    if (reason_flag==1) {
+        graph_reason_arr=[];
+        $.each($("input[name='reason_filter_val_ddr']"), function(){
+            if (($(this).val() != "all")) {
+                graph_reason_arr.push($(this).val());
+            }
+        });
+    }
 
-    
-    // category
-    var graph_category_arr = [];
-    $('.categorygp_checkbox1').each(function(){
-        if ($(this).is(':checked')) {
+
+    // Category array
+    var category_flag=0;
+    $.each($("input[name='category_filter_val_ddr']:checked"), function(){
+        if (($(this).val() == "all")) {
+            category_flag =1;
+        }
+        else{
             graph_category_arr.push($(this).val());
         }
     });
+    if (category_flag==1) {
+        graph_category_arr=[];
+        $.each($("input[name='category_filter_val_ddr']"), function(){
+            if (($(this).val() != "all")) {
+                graph_category_arr.push($(this).val());
+            }
+        });
+    }
 
 
 
@@ -1955,7 +2115,7 @@ function getfilter_duration_reason(){
             category_arr:graph_category_arr
         },
         success:function(res){
-
+            resolve(res);
             var hour_text = parseInt(parseInt(res['total_duration'])/60);
             var minute_text = parseInt(parseInt(res['total_duration'])%60);
             $('#reason_duration_text').text(hour_text+'h'+' '+minute_text+'m');
@@ -2097,42 +2257,80 @@ function getfilter_duration_reason(){
             
         }
     });
+
+    });
     
 }
 
-
 // machine wise oppcost graph filter function 
 function getfilter_machine_oppcost(){
-
+    return new Promise(function(resolve,reject){
     $('#machine_wise_oppcost').remove();
     $('.child_machine_wise_oppcost').append('<canvas id="machine_wise_oppcost"></canvas>');
     $('.chartjs-hidden-iframe').remove();
 
 
-    // machine array
-    var graph_machine_arr = [];
-    $('.machinegp_checkbox2').each(function(){
-        if ($(this).is(':checked')) {
-            graph_machine_arr.push($(this).val().trim());
+    var graph_category_arr=[];
+    var graph_machine_arr =[];
+    var graph_reason_arr= [];
+
+    // Machine Values...
+    var machine_flag=0;
+    $.each($("input[name='machine_filter_val_docm']:checked"), function(){
+        if (($(this).val() == "all")) {
+            machine_flag =1;
+        }
+        else{
+            graph_machine_arr.push($(this).val());
         }
     });
+    if (machine_flag==1) {
+        graph_machine_arr=[];
+        $.each($("input[name='machine_filter_val_docm']"), function(){
+            if (($(this).val() != "all")) {
+                graph_machine_arr.push($(this).val());
+            }
+        });
+    }
 
-    // reason array
-    var graph_reason_arr = [];
-    $('.reasongp_checkbox2').each(function(){
-        if ($(this).is(':checked')) {
+    // Reason array
+    var reason_flag=0;
+    $.each($("input[name='reason_filter_val_docm']:checked"), function(){
+        if (($(this).val() == "all")) {
+            reason_flag =1;
+        }
+        else{
             graph_reason_arr.push($(this).val());
         }
     });
+    if (reason_flag==1) {
+        graph_reason_arr=[];
+        $.each($("input[name='reason_filter_val_docm']"), function(){
+            if (($(this).val() != "all")) {
+                graph_reason_arr.push($(this).val());
+            }
+        });
+    }
 
-    
-    // category
-    var graph_category_arr = [];
-    $('.categorygp_checkbox2').each(function(){
-        if ($(this).is(':checked')) {
+
+    // Category array
+    var category_flag=0;
+    $.each($("input[name='category_filter_val_docm']:checked"), function(){
+        if (($(this).val() == "all")) {
+            category_flag =1;
+        }
+        else{
             graph_category_arr.push($(this).val());
         }
     });
+    if (category_flag==1) {
+        graph_category_arr=[];
+        $.each($("input[name='category_filter_val_docm']"), function(){
+            if (($(this).val() != "all")) {
+                graph_category_arr.push($(this).val());
+            }
+        });
+    }
 
     f = $('.fromDate').val();
     t = $('.toDate').val();
@@ -2150,6 +2348,7 @@ function getfilter_machine_oppcost(){
             category_arr:graph_category_arr
         },
         success:function(res){
+            resolve(res);
             $('#machine_wise_oppcost_total').text(parseInt(res['grant_total']).toLocaleString("en-IN"));
             var machine_label = [];
             var oppcost_arr = [];
@@ -2295,38 +2494,76 @@ function getfilter_machine_oppcost(){
         }
     });
 
-}
+    });
 
+}
 
 // machine and reason duration graph filter function
 function getfilter_machine_reason_duration(){
 
 
-   
-    // machine array
-    var graph_machine_arr = [];
-    $('.machinegp_checkbox3').each(function(){
-        if ($(this).is(':checked')) {
-            graph_machine_arr.push($(this).val().trim());
+   return new Promise(function(resolve,reject){
+    var graph_category_arr=[];
+    var graph_machine_arr =[];
+    var graph_reason_arr= [];
+
+    // Machine Values...
+    var machine_flag=0;
+    $.each($("input[name='machine_filter_val_ddmr']:checked"), function(){
+        if (($(this).val() == "all")) {
+            machine_flag =1;
+        }
+        else{
+            graph_machine_arr.push($(this).val());
         }
     });
+    if (machine_flag==1) {
+        graph_machine_arr=[];
+        $.each($("input[name='machine_filter_val_ddmr']"), function(){
+            if (($(this).val() != "all")) {
+                graph_machine_arr.push($(this).val());
+            }
+        });
+    }
 
-    // reason array
-    var graph_reason_arr = [];
-    $('.reasongp_checkbox3').each(function(){
-        if ($(this).is(':checked')) {
+    // Reason array
+    var reason_flag=0;
+    $.each($("input[name='reason_filter_val_ddmr']:checked"), function(){
+        if (($(this).val() == "all")) {
+            reason_flag =1;
+        }
+        else{
             graph_reason_arr.push($(this).val());
         }
     });
+    if (reason_flag==1) {
+        graph_reason_arr=[];
+        $.each($("input[name='reason_filter_val_ddmr']"), function(){
+            if (($(this).val() != "all")) {
+                graph_reason_arr.push($(this).val());
+            }
+        });
+    }
 
-    
-    // category
-    var graph_category_arr = [];
-    $('.categorygp_checkbox3').each(function(){
-        if ($(this).is(':checked')) {
+
+    // Category array
+    var category_flag=0;
+    $.each($("input[name='category_filter_val_ddmr']:checked"), function(){
+        if (($(this).val() == "all")) {
+            category_flag =1;
+        }
+        else{
             graph_category_arr.push($(this).val());
         }
     });
+    if (category_flag==1) {
+        graph_category_arr=[];
+        $.each($("input[name='category_filter_val_ddmr']"), function(){
+            if (($(this).val() != "all")) {
+                graph_category_arr.push($(this).val());
+            }
+        });
+    }
 
 
     f = $('.fromDate').val();
@@ -2345,8 +2582,7 @@ function getfilter_machine_reason_duration(){
             category_arr:graph_category_arr
         },
         success:function(res){
-            console.log("machine duration graph filter");
-            console.log(res);
+            resolve(res);
             $('#machine_reason_duration').remove();
             $('.child_machine_reason_duration').append('<canvas id="machine_reason_duration"></canvas>');
             $('.chartjs-hidden-iframe').remove();
@@ -2516,7 +2752,7 @@ function getfilter_machine_reason_duration(){
             // alert(er);
         }
     });
-
+    });
 }
 
 
@@ -2526,8 +2762,6 @@ $(document).ready(function(){
     // preloader on function
     $("#overlay").fadeIn(500);
 
-    // filter_drp_graph_all and graph always calling this function();
-    // getall_filter_arr();
     graph_loader();
 
 });
@@ -2536,36 +2770,37 @@ $(document).ready(function(){
 $(document).on('click','.overall_filter_btn',function(event){
     event.preventDefault();
     $("#overlay").fadeIn(400);
+
+    reset_reason_docr();
+    reset_reason_ddr();
+    reset_reason_docm();
+    reset_reason_ddmr();
+    reset_reason_down();
+
+    reset_machine_docr();
+    reset_machine_ddr();
+    reset_machine_docm();
+    reset_machine_ddmr();
+    reset_machine_down();
+
+    reset_category_docr();
+    reset_category_ddr();
+    reset_category_docm();
+    reset_category_ddmr();
+    reset_category_down();
+
+    reset_part_down();
+
+    reset_user_down();
+
     graph_loader();
 }); 
 
-/* temporary hide for this function 
-// onblur function change input filter
-// from date on blur function
-$(document).on('blur','.fromDate',function(event){
-    // event.preventDefault();
 
-    // preloader function on load
-    $("#overlay").fadeIn(400);
-    graph_loader();
-  
-});
-
-// to date onblur function
-$(document).on('blur','.toDate',function(event){
-
-    // event.preventDefault();  
-
-    // // preloader function on load
-    $("#overlay").fadeIn(400);
-    graph_loader();
-
-});
-
-*/
 // all dropdwon functions 
 function getall_filter_arr(){
 
+    return new Promise(function(resolve,reject){
     
     $('.filter_machine_docr').empty();
     $('.filter_reason_docr').empty();
@@ -2594,9 +2829,10 @@ function getall_filter_arr(){
         method:"POST",
         dataType:"json",
         success:function(res){
+            resolve(res);
 
             // Machine
-            $('.filter_machine_docr').append('<div class="inbox inbox_machine_docr" style="display: flex;">'
+            $('.filter_machine_docr').append('<div class="inbox inbox_machine_docr docr_filter" style="display: flex;">'
               +'<div style="float: left;width: 20%;" class="center-align">'
                 +'<input class="checkbox_part filter_machine_val_docr" name="machine_filter_val_docr" value="all" type="checkbox" checked/>'
               +'</div>'
@@ -2605,7 +2841,7 @@ function getall_filter_arr(){
               +'</div>'
             +'</div>');
 
-            $('.filter_machine_ddr').append('<div class="inbox inbox_machine_ddr" style="display: flex;">'
+            $('.filter_machine_ddr').append('<div class="inbox inbox_machine_ddr ddr_filter" style="display: flex;">'
               +'<div style="float: left;width: 20%;" class="center-align">'
                 +'<input class="checkbox_part filter_machine_val_ddr" name="machine_filter_val_ddr" value="all" type="checkbox" checked/>'
               +'</div>'
@@ -2613,7 +2849,7 @@ function getall_filter_arr(){
                   +'<p class="inbox-span paddingm">All</p>'
               +'</div>'
             +'</div>');
-            $('.filter_machine_docm').append('<div class="inbox inbox_machine_docm" style="display: flex;">'
+            $('.filter_machine_docm').append('<div class="inbox inbox_machine_docm docm_filter" style="display: flex;">'
               +'<div style="float: left;width: 20%;" class="center-align">'
                 +'<input class="checkbox_part filter_machine_val_docm" name="machine_filter_val_docm" value="all" type="checkbox" checked/>'
               +'</div>'
@@ -2621,7 +2857,7 @@ function getall_filter_arr(){
                   +'<p class="inbox-span paddingm">All</p>'
               +'</div>'
             +'</div>');
-            $('.filter_machine_ddmr').append('<div class="inbox inbox_machine_ddmr" style="display: flex;">'
+            $('.filter_machine_ddmr').append('<div class="inbox inbox_machine_ddmr ddmr_filter" style="display: flex;">'
               +'<div style="float: left;width: 20%;" class="center-align">'
                 +'<input class="checkbox_part filter_machine_val_ddmr" name="machine_filter_val_ddmr" value="all" type="checkbox" checked/>'
               +'</div>'
@@ -2629,7 +2865,7 @@ function getall_filter_arr(){
                   +'<p class="inbox-span paddingm">All</p>'
               +'</div>'
             +'</div>');
-            $('.filter_machine_down').append('<div class="inbox inbox_machine_down" style="display: flex;">'
+            $('.filter_machine_down').append('<div class="inbox inbox_machine_down down_filter" style="display: flex;">'
               +'<div style="float: left;width: 20%;" class="center-align">'
                 +'<input class="checkbox_part filter_machine_val_down" name="machine_filter_val_down" value="all" type="checkbox" checked/>'
               +'</div>'
@@ -2639,7 +2875,7 @@ function getall_filter_arr(){
             +'</div>');
 
             // Reason
-            $('.filter_reason_docr').append('<div class="inbox inbox_reason_docr" style="display: flex;">'
+            $('.filter_reason_docr').append('<div class="inbox inbox_reason_docr docr_filter" style="display: flex;">'
               +'<div style="float: left;width: 20%;" class="center-align">'
                 +'<input class="checkbox_part filter_reason_val_docr" name="reason_filter_val_docr" value="all" type="checkbox" checked/>'
               +'</div>'
@@ -2648,7 +2884,7 @@ function getall_filter_arr(){
               +'</div>'
             +'</div>');
 
-            $('.filter_reason_ddr').append('<div class="inbox inbox_reason_ddr" style="display: flex;">'
+            $('.filter_reason_ddr').append('<div class="inbox inbox_reason_ddr ddr_filter" style="display: flex;">'
               +'<div style="float: left;width: 20%;" class="center-align">'
                 +'<input class="checkbox_part filter_reason_val_ddr" name="reason_filter_val_ddr" value="all" type="checkbox" checked/>'
               +'</div>'
@@ -2656,7 +2892,7 @@ function getall_filter_arr(){
                   +'<p class="inbox-span paddingm">All</p>'
               +'</div>'
             +'</div>');
-            $('.filter_reason_docm').append('<div class="inbox inbox_reason_docm" style="display: flex;">'
+            $('.filter_reason_docm').append('<div class="inbox inbox_reason_docm docm_filter" style="display: flex;">'
               +'<div style="float: left;width: 20%;" class="center-align">'
                 +'<input class="checkbox_part filter_reason_val_docm" name="reason_filter_val_docm" value="all" type="checkbox" checked/>'
               +'</div>'
@@ -2664,7 +2900,7 @@ function getall_filter_arr(){
                   +'<p class="inbox-span paddingm">All</p>'
               +'</div>'
             +'</div>');
-            $('.filter_reason_ddmr').append('<div class="inbox inbox_reason_ddmr" style="display: flex;">'
+            $('.filter_reason_ddmr').append('<div class="inbox inbox_reason_ddmr ddmr_filter" style="display: flex;">'
               +'<div style="float: left;width: 20%;" class="center-align">'
                 +'<input class="checkbox_part filter_reason_val_ddmr" name="reason_filter_val_ddmr" value="all" type="checkbox" checked/>'
               +'</div>'
@@ -2672,7 +2908,7 @@ function getall_filter_arr(){
                   +'<p class="inbox-span paddingm">All</p>'
               +'</div>'
             +'</div>');
-            $('.filter_reason_down').append('<div class="inbox inbox_reason_down" style="display: flex;">'
+            $('.filter_reason_down').append('<div class="inbox inbox_reason_down down_filter" style="display: flex;">'
               +'<div style="float: left;width: 20%;" class="center-align">'
                 +'<input class="checkbox_part filter_reason_val_down" name="reason_filter_val_down" value="all" type="checkbox" checked/>'
               +'</div>'
@@ -2682,7 +2918,7 @@ function getall_filter_arr(){
             +'</div>');
 
             // Category
-            $('.filter_category_docr').append('<div class="inbox inbox_category_docr" style="display: flex;">'
+            $('.filter_category_docr').append('<div class="inbox inbox_category_docr docr_filter" style="display: flex;">'
               +'<div style="float: left;width: 20%;" class="center-align">'
                 +'<input class="checkbox_part filter_category_val_docr" name="category_filter_val_docr" value="all" type="checkbox" checked/>'
               +'</div>'
@@ -2691,7 +2927,7 @@ function getall_filter_arr(){
               +'</div>'
             +'</div>');
 
-            $('.filter_category_ddr').append('<div class="inbox inbox_category_ddr" style="display: flex;">'
+            $('.filter_category_ddr').append('<div class="inbox inbox_category_ddr ddr_filter" style="display: flex;">'
               +'<div style="float: left;width: 20%;" class="center-align">'
                 +'<input class="checkbox_part filter_category_val_ddr" name="category_filter_val_ddr" value="all" type="checkbox" checked/>'
               +'</div>'
@@ -2699,7 +2935,7 @@ function getall_filter_arr(){
                   +'<p class="inbox-span paddingm">All</p>'
               +'</div>'
             +'</div>');
-            $('.filter_category_docm').append('<div class="inbox inbox_category_docm" style="display: flex;">'
+            $('.filter_category_docm').append('<div class="inbox inbox_category_docm docm_filter" style="display: flex;">'
               +'<div style="float: left;width: 20%;" class="center-align">'
                 +'<input class="checkbox_part filter_category_val_docm" name="category_filter_val_docm" value="all" type="checkbox" checked/>'
               +'</div>'
@@ -2707,7 +2943,7 @@ function getall_filter_arr(){
                   +'<p class="inbox-span paddingm">All</p>'
               +'</div>'
             +'</div>');
-            $('.filter_category_ddmr').append('<div class="inbox inbox_category_ddmr" style="display: flex;">'
+            $('.filter_category_ddmr').append('<div class="inbox inbox_category_ddmr ddmr_filter" style="display: flex;">'
               +'<div style="float: left;width: 20%;" class="center-align">'
                 +'<input class="checkbox_part filter_category_val_ddmr" name="category_filter_val_ddmr" value="all" type="checkbox" checked/>'
               +'</div>'
@@ -2715,7 +2951,7 @@ function getall_filter_arr(){
                   +'<p class="inbox-span paddingm">All</p>'
               +'</div>'
             +'</div>');
-            $('.filter_category_down').append('<div class="inbox inbox_category_down" style="display: flex;">'
+            $('.filter_category_down').append('<div class="inbox inbox_category_down down_filter" style="display: flex;">'
               +'<div style="float: left;width: 20%;" class="center-align">'
                 +'<input class="checkbox_part filter_category_val_down" name="category_filter_val_down" value="all" type="checkbox" checked/>'
               +'</div>'
@@ -2725,7 +2961,7 @@ function getall_filter_arr(){
             +'</div>');
 
             // Part
-            $('.filter_part_down').append('<div class="inbox inbox_part_down" style="display: flex;">'
+            $('.filter_part_down').append('<div class="inbox inbox_part_down down_filter" style="display: flex;">'
               +'<div style="float: left;width: 20%;" class="center-align">'
                 +'<input class="checkbox_part filter_part_val_down" name="part_filter_val_down" value="all" type="checkbox" checked/>'
               +'</div>'
@@ -2735,7 +2971,7 @@ function getall_filter_arr(){
             +'</div>');
 
             // User
-            $('.filter_user_down').append('<div class="inbox inbox_user_down" style="display: flex;">'
+            $('.filter_user_down').append('<div class="inbox inbox_user_down down_filter" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_user filter_user_val_down" name="user_filter_val_down" value="all" type="checkbox" checked/>'
                   +'</div>'
@@ -2748,7 +2984,7 @@ function getall_filter_arr(){
 
             res['machine'].forEach(function(val){
 
-                $('.filter_machine_docr').append('<div class="inbox inbox_machine_docr" style="display: flex;">'
+                $('.filter_machine_docr').append('<div class="inbox inbox_machine_docr docr_filter" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_part filter_machine_val_docr" name="machine_filter_val_docr" value="'+val.machine_id+'" type="checkbox" checked/>'
                   +'</div>'
@@ -2756,7 +2992,7 @@ function getall_filter_arr(){
                       +'<p class="inbox-span paddingm">'+val.machine_id+"-"+val.machine_name+'</p>'
                   +'</div>'
                 +'</div>');
-                $('.filter_machine_ddr').append('<div class="inbox inbox_machine_ddr" style="display: flex;">'
+                $('.filter_machine_ddr').append('<div class="inbox inbox_machine_ddr ddr_filter" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_part filter_machine_val_ddr" name="machine_filter_val_ddr" value="'+val.machine_id+'" type="checkbox" checked/>'
                   +'</div>'
@@ -2764,7 +3000,7 @@ function getall_filter_arr(){
                       +'<p class="inbox-span paddingm">'+val.machine_id+"-"+val.machine_name+'</p>'
                   +'</div>'
                 +'</div>');
-                $('.filter_machine_docm').append('<div class="inbox inbox_machine_docm" style="display: flex;">'
+                $('.filter_machine_docm').append('<div class="inbox inbox_machine_docm docm_filter" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_part filter_machine_val_docm" name="machine_filter_val_docm" value="'+val.machine_id+'" type="checkbox" checked/>'
                   +'</div>'
@@ -2772,7 +3008,7 @@ function getall_filter_arr(){
                       +'<p class="inbox-span paddingm">'+val.machine_id+"-"+val.machine_name+'</p>'
                   +'</div>'
                 +'</div>');
-                $('.filter_machine_ddmr').append('<div class="inbox inbox_machine_ddmr" style="display: flex;">'
+                $('.filter_machine_ddmr').append('<div class="inbox inbox_machine_ddmr ddmr_filter" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_part filter_machine_val_ddmr" name="machine_filter_val_ddmr" value="'+val.machine_id+'" type="checkbox" checked/>'
                   +'</div>'
@@ -2780,7 +3016,7 @@ function getall_filter_arr(){
                       +'<p class="inbox-span paddingm">'+val.machine_id+"-"+val.machine_name+'</p>'
                   +'</div>'
                 +'</div>');
-                $('.filter_machine_down').append('<div class="inbox inbox_machine_down" style="display: flex;">'
+                $('.filter_machine_down').append('<div class="inbox inbox_machine_down down_filter" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_part filter_machine_val_down" name="machine_filter_val_down" value="'+val.machine_id+'" type="checkbox" checked/>'
                   +'</div>'
@@ -2793,7 +3029,7 @@ function getall_filter_arr(){
 
             res['downtime_reason'].forEach(function(val){
 
-                $('.filter_reason_docr').append('<div class="inbox inbox_reason_docr" style="display: flex;">'
+                $('.filter_reason_docr').append('<div class="inbox inbox_reason_docr docr_filter" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_part filter_reason_val_docr" name="reason_filter_val_docr" value="'+val.downtime_reason_id+'" type="checkbox" checked/>'
                   +'</div>'
@@ -2801,7 +3037,7 @@ function getall_filter_arr(){
                       +'<p class="inbox-span paddingm">'+val.downtime_reason_id+"-"+val.downtime_reason+'</p>'
                   +'</div>'
                 +'</div>');
-                $('.filter_reason_ddr').append('<div class="inbox inbox_reason_ddr" style="display: flex;">'
+                $('.filter_reason_ddr').append('<div class="inbox inbox_reason_ddr ddr_filter" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_part filter_reason_val_ddr" name="reason_filter_val_ddr" value="'+val.downtime_reason_id+'" type="checkbox" checked/>'
                   +'</div>'
@@ -2810,7 +3046,7 @@ function getall_filter_arr(){
                   +'</div>'
                 +'</div>');
 
-                $('.filter_reason_docm').append('<div class="inbox inbox_reason_docm" style="display: flex;">'
+                $('.filter_reason_docm').append('<div class="inbox inbox_reason_docm docm_filter" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_part filter_reason_val_docm" name="reason_filter_val_docm" value="'+val.downtime_reason_id+'" type="checkbox" checked/>'
                   +'</div>'
@@ -2818,7 +3054,7 @@ function getall_filter_arr(){
                       +'<p class="inbox-span paddingm">'+val.downtime_reason_id+"-"+val.downtime_reason+'</p>'
                   +'</div>'
                 +'</div>');
-                $('.filter_reason_ddmr').append('<div class="inbox inbox_reason_ddmr" style="display: flex;">'
+                $('.filter_reason_ddmr').append('<div class="inbox inbox_reason_ddmr ddmr_filter" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_part filter_reason_val_ddmr" name="reason_filter_val_ddmr" value="'+val.downtime_reason_id+'" type="checkbox" checked/>'
                   +'</div>'
@@ -2826,7 +3062,7 @@ function getall_filter_arr(){
                       +'<p class="inbox-span paddingm">'+val.downtime_reason_id+"-"+val.downtime_reason+'</p>'
                   +'</div>'
                 +'</div>');
-                $('.filter_reason_down').append('<div class="inbox inbox_reason_down" style="display: flex;">'
+                $('.filter_reason_down').append('<div class="inbox inbox_reason_down down_filter" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_part filter_reason_val_down" name="reason_filter_val_down" value="'+val.downtime_reason_id+'" type="checkbox" checked/>'
                   +'</div>'
@@ -2838,7 +3074,7 @@ function getall_filter_arr(){
 
             res['downtime_category'].forEach(function(val){
 
-                $('.filter_category_docr').append('<div class="inbox inbox_category_docr" style="display: flex;">'
+                $('.filter_category_docr').append('<div class="inbox inbox_category_docr docr_filter" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_part filter_category_val_docr" name="category_filter_val_docr" value="'+val.downtime_category+'" type="checkbox" checked/>'
                   +'</div>'
@@ -2846,7 +3082,7 @@ function getall_filter_arr(){
                       +'<p class="inbox-span paddingm">'+val.downtime_category+'</p>'
                   +'</div>'
                 +'</div>');
-                $('.filter_category_ddr').append('<div class="inbox inbox_category_ddr" style="display: flex;">'
+                $('.filter_category_ddr').append('<div class="inbox inbox_category_ddr ddr_filter" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_part filter_category_val_ddr" name="category_filter_val_ddr" value="'+val.downtime_category+'" type="checkbox" checked/>'
                   +'</div>'
@@ -2855,7 +3091,7 @@ function getall_filter_arr(){
                   +'</div>'
                 +'</div>');
 
-                $('.filter_category_docm').append('<div class="inbox inbox_category_docm" style="display: flex;">'
+                $('.filter_category_docm').append('<div class="inbox inbox_category_docm docm_filter" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_part filter_category_val_docm" name="category_filter_val_docm" value="'+val.downtime_category+'" type="checkbox" checked/>'
                   +'</div>'
@@ -2863,7 +3099,7 @@ function getall_filter_arr(){
                       +'<p class="inbox-span paddingm">'+val.downtime_category+'</p>'
                   +'</div>'
                 +'</div>');
-                $('.filter_category_ddmr').append('<div class="inbox inbox_category_ddmr" style="display: flex;">'
+                $('.filter_category_ddmr').append('<div class="inbox inbox_category_ddmr ddmr_filter" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_part filter_category_val_ddmr" name="category_filter_val_ddmr" value="'+val.downtime_category+'" type="checkbox" checked/>'
                   +'</div>'
@@ -2871,7 +3107,7 @@ function getall_filter_arr(){
                       +'<p class="inbox-span paddingm">'+val.downtime_category+'</p>'
                   +'</div>'
                 +'</div>');
-                $('.filter_category_down').append('<div class="inbox inbox_category_down" style="display: flex;">'
+                $('.filter_category_down').append('<div class="inbox inbox_category_down down_filter" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_part filter_category_val_down" name="category_filter_val_down" value="'+val.downtime_category+'" type="checkbox" checked/>'
                   +'</div>'
@@ -2883,7 +3119,7 @@ function getall_filter_arr(){
 
 
             res['part'].forEach(function(val){
-                $('.filter_part_down').append('<div class="inbox inbox_part_down" style="display: flex;">'
+                $('.filter_part_down').append('<div class="inbox inbox_part_down down_filter" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_part filter_part_val_down" name="part_filter_val_down" value="'+val.part_id+'" type="checkbox" checked/>'
                   +'</div>'
@@ -2895,7 +3131,7 @@ function getall_filter_arr(){
 
 
             res['created_by'].forEach(function(val){
-                $('.filter_user_down').append('<div class="inbox inbox_user_down" style="display: flex;">'
+                $('.filter_user_down').append('<div class="inbox inbox_user_down down_filter" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_user filter_user_val_down" name="user_filter_val_down" value="'+val.user_id+'" type="checkbox" checked/>'
                   +'</div>'
@@ -2909,714 +3145,18 @@ function getall_filter_arr(){
           // alert("Error");
         }
     });
+    
+    });
+
 }
 
 async function graph_loader(){
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
-    f = f.replace(" ","T");
-    t = t.replace(" ","T");
-    await first_load_reason_oppcost(f,t);
-    await first_load_reason_duration(f,t);
-    await first_load_machine_oppcost(f,t);
-    await first_load_machine_duration(f,t);
+    await getall_filter_arr();
 
-    getall_filter_arr();
-
-    // $('#overlay').fadeOut(300);
+    await getfilter_oppcost_reason();
+    await getfilter_duration_reason();
+    await getfilter_machine_oppcost();
+    await getfilter_machine_reason_duration();
 }
 
-// first loader functions
-function first_load_reason_oppcost(f,t){
-    return  new Promise(function (resolve,reject){
-        $('#reason_wise_oppcost').remove();
-        $('.child_reason_wise_oppcost').append('<canvas id="reason_wise_oppcost"></canvas>');
-        $('.chartjs-hidden-iframe').remove();
-
-       
-        $.ajax({
-            url:"<?php echo base_url('Production_Downtime_controller/first_reason_oppcost'); ?>",
-            method:"POST",
-            dataType:"json",
-            data:{
-                from:f,
-                to:t
-            },
-            success:function(res){
-                resolve(res);
-                $('#reason_wise_oppcost_total').text(parseInt(res['grandTotal']).toLocaleString("en-IN"));
-                // total hour and minute
-                var thour = parseInt(res['total_duration'])/60;
-                var tminute = parseInt(res['total_duration']%60);
-                $('#total_duration_header').html(parseInt(thour)+'h'+' '+parseInt(tminute)+'m');
-
-                var category_percent = 1.0;
-                var bar_space = 0.5;
-
-                var reason_label = [];
-                var oppcost_arr = [];
-                var reason_id_arr = [];
-            
-
-                var oppcost_percent_arr = [];
-                var temp_cost_ini = 0;
-                res['graph'].forEach(function(val){
-                    reason_label.push(val.downtime_reason);
-                    var tempcost = parseInt(val.opportunity_cost);
-                    oppcost_arr.push(tempcost);
-                    reason_id_arr.push(val.downtime_reason_id);
-                    temp_cost_ini = parseInt(temp_cost_ini)+parseInt(tempcost);
-                    oppcost_percent_arr.push(temp_cost_ini);
-                });
-
-                // calculate percentage array
-                var percentage_arr = [];
-                oppcost_percent_arr.forEach(function(item){
-                    var temp_data = parseFloat(parseInt(item)/parseInt(res['grandTotal'])*100).toFixed(2);
-                    percentage_arr.push(temp_data);
-                });
-
-                var bar_width = 0.6;
-                var bar_size = 0.7;
-            
-                while(true){
-                    var len= reason_label.length;
-                    if (len < 8) {
-                        reason_label.push("");
-                    }
-                    else if(len > 8){
-                        var l = parseInt(len)%parseInt(8);
-                        var w= parseInt($('.parent_reason_wise_oppcost').css("width"))+parseInt(l*18*4);
-                    
-                        $('.child_reason_wise_oppcost').css("width",w+"px");
-                        break;
-                    }
-                    else{
-                        break;
-                    }
-                }
-            
-                var ctx = document.getElementById("reason_wise_oppcost").getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: reason_label,
-                        datasets:[{
-                            type: 'line',
-                            label: 'Total',
-                            data: percentage_arr,
-                            percentage_data:percentage_arr,
-                            backgroundColor: 'white',
-                            borderColor: "#7f7f7f", 
-                            pointBorderColor: "#d9d9ff",  
-                            borderWidth: 1, 
-                            showLine : true,
-                            fill: false,
-                            lineColor:"black",
-                            pointRadius:7,
-                            yAxisID: 'A',  
-                        
-                        }
-                        ,{
-                            type: 'bar',
-                            label:reason_label ,
-                            data: oppcost_arr,
-                            percentage_data:0,
-                            // borderColor: 'rgb(255, 99, 132)',
-                            backgroundColor: '#0075F6',
-                            categoryPercentage:category_percent,
-                            barPercentage: bar_space,
-                            yAxisID: 'B',
-                        }
-                    ],
-                    },
-                    // borderColor: "#004b9b", 
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,   
-                        scales: {
-                            // y: {
-                            //     display:false,
-                            //     beginAtZero:true,
-                            //     stacked:true
-                            // },
-                            A:{
-                            type: 'linear',
-                            position: 'right',
-                            // beginAtZero: true,
-                            suggestedMin: 0,
-                            suggestedMax: 100,
-                            display:true,
-                            grid:{
-                                display:false
-                            },
-                            // For Percentage.....
-                            ticks: {
-                              callback: function(value, index, values) {
-                                return value + '%';
-                              }
-                            },
-                            },
-                            B:{
-                            type: 'linear',
-                            position: 'left',
-                            beginAtZero: true,
-                            display:true,
-                            grid:{
-                                display:false
-                            },
-                            // For Rupee Symbol.....
-                            ticks: {
-                              callback: function(value, index, values) {
-                                return '₹' + value;
-                              }
-                            },
-                            },
-                            x:{
-                                display:true,
-                                grid:{
-                                display:false
-                                },
-                                stacked:true,
-                            },
-                        },
-                        plugins: {
-                        legend: {
-                            display: false,
-                        },
-                        tooltip: {
-                            enabled: false,
-                            external: reason_oppcost_tooltip,
-                        }
-                        },
-                    },            
-                });
-            },
-            error:function(er){
-                reject(er);
-            }
-        });
-    });  
-}
-
-// reason duration graph
-function first_load_reason_duration(f,t){
-    return  new Promise(function (resolve,reject){
-        $('#reason_wise_duration').remove();
-        $('.child_reason_wise_duration').append('<canvas id="reason_wise_duration"></canvas>');
-        $('.chartjs-hidden-iframe').remove();
-
-      
-        $.ajax({
-            url:"<?php echo base_url('Production_Downtime_controller/first_reason_duration'); ?>",
-            method:"POST",
-            dataType:"json",
-            data:{
-                from:f,
-                to:t,
-            },
-            success:function(res){
-                console.log("downtime duration reason")
-                console.log(res);
-                resolve(res);
-
-                var hour_text = parseInt(parseInt(res['total_duration'])/60);
-                var minute_text = parseInt(parseInt(res['total_duration'])%60);
-                $('#reason_duration_text').text(hour_text+'h'+' '+minute_text+'m');
-
-                var category_percent = 1.0;
-                var bar_space = 0.5;
-
-                var reason_label = [];
-                var duration_arr = [];
-                var reason_id_arr = [];
-
-                var duration_percentage_arr = [];
-                var duration_arr_cumulative = [];
-                var total_duration = 0;
-                res['graph'].forEach(function(val){
-                    reason_label.push(val.downtime_reason);
-                    var tempcost = parseInt(val.duration);
-                    duration_arr.push(tempcost);
-                    reason_id_arr.push(val.downtime_reason_id);
-                    total_duration = parseInt(total_duration) + parseInt(tempcost);
-                    duration_arr_cumulative.push(total_duration);
-                    var temp_data = parseFloat(parseInt(total_duration)/parseInt(res['total_duration'])*100).toFixed(2);
-                    duration_percentage_arr.push(temp_data);
-                });
-
-                var bar_width = 0.6;
-                var bar_size = 0.7;
-                
-                while(true){
-                    var len= reason_label.length;
-                    if (len < 8) {
-                        reason_label.push("");
-                    }
-                    else if(len > 8){
-                        var l = parseInt(len)%parseInt(8);
-                        var w= parseInt($('.parent_reason_wise_duration').css("width"))+parseInt(l*18*4);
-                        $('.child_reason_wise_duration').css("width",w+"px");
-                        break;
-                    }
-                    else{
-                        break;
-                    }
-                }
-            
-                var ctx = document.getElementById("reason_wise_duration").getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: reason_label,
-                        datasets: [{
-
-                            type: 'line',
-                            label: 'Percentage',
-                            data:duration_percentage_arr,
-                            percentage_data: duration_percentage_arr,
-                            backgroundColor: 'white',
-                            borderColor: "#7f7f7f", 
-                            pointBorderColor: "#d9d9ff",  
-                            borderWidth: 1, 
-                            showLine : true,
-                            fill: false,
-                            lineColor:"black",
-                            pointRadius:7,
-                            yAxisID: 'A',
-
-                        
-
-                        },{
-                            type:'bar',
-                            label:reason_label,
-                            data:duration_arr,
-                            percentage_data:0,
-                            backgroundColor: "#0075F6",
-                            categoryPercentage:category_percent,
-                            barPercentage: bar_space,
-                            yAxisID: 'B',  
-                        }],
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,   
-                        scales: {
-                            // y: {
-                            //     display:false,
-                            //     beginAtZero:true,
-                            //     stacked:true
-                            // },
-                            A:{
-                            type: 'linear',
-                            position: 'right',
-                            // beginAtZero: true,
-                            suggestedMin: 0,
-                            suggestedMax: 100,
-                            display:true,
-                            grid:{
-                                display:false
-                            },
-                            // For Percentage.....
-                            ticks: {
-                              callback: function(value, index, values) {
-                                return value + '%';
-                              }
-                            },
-                            },
-                            B:{
-                            type: 'linear',
-                            position: 'left',
-                            beginAtZero: true,
-                            display:true,
-                            grid:{
-                                display:false
-                            },
-                            // For Rupee Symbol.....
-                            ticks: {
-                              callback: function(value, index, values) {
-                                return value;
-                              }
-                            },
-                            },
-                            x:{
-                                display:true,
-                                grid:{
-                                display:false
-                                },
-                                stacked:true,
-                            },
-                        },
-                        plugins: {
-                            legend: {
-                                display: false,
-                            },
-                            tooltip: {
-                                enabled: false,
-                                external: reason_wise_duration_tooltip,
-                            }
-                        },
-                    },            
-                });
-
-
-            },
-            error:function(er){
-                reject(er);
-            }
-        });
-    });
-}
-
-//  downtime oppcost by machine 
-function first_load_machine_oppcost(f,t){
-    return  new Promise(function (resolve,reject){
-        $('#machine_wise_oppcost').remove();
-        $('.child_machine_wise_oppcost').append('<canvas id="machine_wise_oppcost"></canvas>');
-        $('.chartjs-hidden-iframe').remove();
-
-        // f = $('.fromDate').val();
-        // t = $('.toDate').val();
-        // f = f.replace(" ","T");
-        // t = t.replace(" ","T");
-
-        $.ajax({
-            url:"<?php echo  base_url('Production_Downtime_controller/first_machine_oppcost'); ?>",
-            method:"POST",
-            dataType:"json",
-            data:{
-                from:f,
-                to:t
-            },
-            success:function(res){
-                resolve(res);
-                $('#machine_wise_oppcost_total').text(parseInt(res['grant_total']).toLocaleString("en-IN"));
-                var machine_label = [];
-                var oppcost_arr = [];
-                var machine_id_arr = [];
-
-                var category_percent = 1.0;
-                var bar_space = 0.5;
-                
-                var machine_duration_percentage = 0;
-                var mdarr = [];
-                var oppcost_arr_cumulative = [];
-                res['graph'].forEach(function(val){
-                    machine_label.push(val.machine_name);
-                    var tempcost = parseInt(val.oppcost);
-                    oppcost_arr.push(tempcost);
-                    machine_id_arr.push(val.machine_id);
-                    machine_duration_percentage = parseInt(machine_duration_percentage)+parseInt(tempcost);
-                    oppcost_arr_cumulative.push(machine_duration_percentage);
-                    var temp_d = parseFloat(parseInt(machine_duration_percentage)/parseInt(res['grant_total'])*100).toFixed(2);
-                    mdarr.push(temp_d);
-                    
-                });
-
-                var bar_width = 0.6;
-                var bar_size = 0.7;
-            
-                while(true){
-                    var len= machine_label.length;
-                    if (len < 8) {
-                        machine_label.push("");
-                    }
-                    else if(len > 8){
-                    var l = parseInt(len)%parseInt(8);
-                    var w= parseInt($('.parent_machine_wise_oppcost').css("width"))+parseInt(l*18*16);
-                    $('.child_machine_wise_oppcost').css("width",w+"px");
-                    break;
-                    }
-                    else{
-                    break;
-                    }
-                }
-
-                var ctx = document.getElementById("machine_wise_oppcost").getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: machine_label,
-                        datasets: [{
-                            type: 'line',
-                            label: 'Percentage',
-                            // data: oppcost_arr_cumulative,
-                            percentage_data:mdarr,
-                            data:mdarr,
-                            backgroundColor: 'white',
-                            borderColor: "#7f7f7f", 
-                            pointBorderColor: "#d9d9ff",  
-                            borderWidth: 1, 
-                            showLine : true,
-                            fill: false,
-                            lineColor:"black", 
-                            pointRadius:7,
-                            yAxisID: 'A',  
-
-                        
-                        },{
-                            label:machine_label,
-                            data:oppcost_arr,
-                            backgroundColor: "#0075F6",
-                            percentage_data:0,
-                            categoryPercentage:category_percent,
-                            barPercentage: bar_space,
-                            yAxisID: 'B',
-                        }],
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,   
-                        scales: {
-                            // y: {
-                            //     id: 'A',
-                            //     type:'linear',
-                            //     position:'left',
-                            //     display:true,
-                            //     // beginAtZero:true,
-                            //     stacked:true
-                            // },
-                            A:{
-                            type: 'linear',
-                            position: 'right',
-                            // beginAtZero: true,
-                            suggestedMin: 0,
-                            suggestedMax: 100,
-                            display:true,
-                            grid:{
-                                display:false
-                            },
-                            // For Percentage.....
-                            ticks: {
-                              callback: function(value, index, values) {
-                                return value + '%';
-                              }
-                            },
-                            },
-                            B:{
-                            type: 'linear',
-                            position: 'left',
-                            beginAtZero: true,
-                            display:true,
-                            grid:{
-                                display:false
-                            },
-                            // For Rupee Symbol.....
-                            ticks: {
-                              callback: function(value, index, values) {
-                                return '₹' + value;
-                              }
-                            },
-                            },
-                            x:{
-                                display:true,
-                                grid:{
-                                display:false
-                                },
-                                stacked:true,
-                            },
-                        },
-                        plugins: {
-                            legend: {
-                                display: false,
-                            },
-                            tooltip: {
-                                enabled: false,
-                                external: machine_wise_oppcost_tooltip,
-                            }
-                        },
-                    },            
-                });
-            },
-            error:function(er){
-                reject(er);
-            }
-        });
-    });
-}
-
-// downtime duration by machine 
-function first_load_machine_duration(f,t){
-    return  new Promise(function (resolve,reject){
-       
-        $.ajax({
-            url:"<?php echo  base_url('Production_Downtime_controller/first_machine_duration'); ?>",
-            method:"POST",
-            dataType:"JSON",
-            data:{
-                from:f,
-                to:t
-            },
-            success:function(res){
-                resolve(res);
-                console.log("machine duration");
-                console.log(res);
-                $('#machine_reason_duration').remove();
-                $('.child_machine_reason_duration').append('<canvas id="machine_reason_duration"></canvas>');
-                $('.chartjs-hidden-iframe').remove();           
-                var hour_text = parseInt(parseInt(res['total_duration'])/60);
-                var minute_text = parseInt(parseInt(res['total_duration'])%60);
-                $('#machine_reason_duration_text').text(hour_text+'h'+' '+minute_text+'m');
-
-                color = ["white","#004b9b","#0071EE","#DE5B88","#53a6ff","#cde5ff",
-                    "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
-                    "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
-                    "#662d91", "#720e9e", "#4B0082", "#33006F", "#023047",
-                    "#0071c5", "#0066b2", "#004792", "#002387", "#000080",
-                    "#4B9CD3", "#1F75FE", "#1034A6", "#003399", "#0a2351",
-                    "#0000FF", "#0000CD", "#00008B", "#012169", "#011F5B",
-                    "#034694", "#3457D5", "#002fa7", "#2c3968", "#14213d",
-                    "#eaac8b", "#D8BFD8", "#DDA0DD", "#e56b6f", "#850000",
-                    "#219ebc", "#00a8e8", "#00509d", "#0530ad", "#0018A8",
-                    "#00BFFF", "#fcbf49", "#fb8500", "#8f2d56", "#323031",
-                ];
-                var demo = [];
-                var x= 1;
-                var machineName = [];
-                var category_percent = 1.0;
-                var bar_space = 0.5;
-                var percentage_arr = [];
-                var temp_duration = 0;
-                res['data'].forEach(function(value){
-                    machineName.push(value.machine_name);
-                    temp_duration = parseInt(temp_duration)+parseInt(value.total);
-                    var temp_data =  parseFloat(parseInt(temp_duration)/parseInt(res['total_duration'])*100).toFixed(2);
-                    percentage_arr.push(temp_data);
-                });
-
-                demo.push({
-                    label:"Total",
-                    type: "line",
-                    backgroundColor: color[0],
-                    borderColor: "#7f7f7f", 
-                    pointBorderColor: "#d9d9ff",  
-                    borderWidth: 1, 
-                    showLine : true,
-                    fill: false,
-                    lineColor:"black", 
-                    percentage_data:percentage_arr,
-                    data:percentage_arr,
-                    pointRadius: 7,
-                    yAxisID: 'A',  
-                });
-
-                res['reason'].forEach(function(k,val) {
-                    var arr_1 =[];
-                    var rname = [];
-                    res['data'].forEach(function(item){
-                        arr_1.push(item.reason_duration[val]);
-                        rname.push(item.reason_name[val]);
-                        console.log(item.reason_name[val]);
-                        
-                    });
-                    demo.push({
-                        label:res['reason'][val]['downtime_reason'],
-                        type: "bar",
-                        backgroundColor: color[x],
-                        borderColor: color[x],
-                        // borderColor:'white',
-                        borderWidth: 1,
-                        fill: true,
-                        data: arr_1,
-                        reasonid:val,
-                        percentage_data:0,
-                        // reject:machineWiseReject,
-                        categoryPercentage:category_percent,
-                        barPercentage: bar_space,
-                        yAxisID: 'B',
-                    });
-                    console.log("color code is :\t"+color[x]);
-                    x = x+1;
-                });
-                console.log(demo);
-                console.log('loading time descending order');
-                while(true){
-                    var len= machineName.length;
-                    if (len < 8) {
-                        machineName.push("");
-                    }
-                    else if(len > 8){
-                        var l = parseInt(len)%parseInt(8);
-                        var w= parseInt($('.parent_machine_reason_duration').css("width"))+parseInt(l*18*16);
-                        $('.child_machine_reason_duration').css("width",w+"px");
-                        break;
-                    }
-                    else{
-                        break;
-                    }
-                    
-                }
-
-                var ctx = document.getElementById("machine_reason_duration").getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: machineName,
-                        datasets: demo,
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,   
-                        scales: {
-                            A:{
-                                type: 'linear',
-                                position: 'right',
-                                // beginAtZero: true,
-                                suggestedMin: 0,
-                                suggestedMax: 100,
-                                display:true,
-                                grid:{
-                                    display:false
-                                },
-                                // For Percentage.....
-                                ticks: {
-                                  callback: function(value, index, values) {
-                                    return value + '%';
-                                  }
-                                },
-                                },
-                                B:{
-                                type: 'linear',
-                                position: 'left',
-                                beginAtZero: true,
-                                display:true,
-                                grid:{
-                                    display:false
-                                },
-                                stacked:true,
-                                // For Rupee Symbol.....
-                                ticks: {
-                                  callback: function(value, index, values) {
-                                    return value;
-                                  }
-                                },
-                                },
-                            x:{
-                                display:true,
-                                grid:{
-                                display:false,
-                                
-                                },
-                                stacked:true
-                            },
-                        },
-                        plugins: {
-                            legend: {
-                                display: false,
-                            },
-                            tooltip: {
-                                enabled: false,
-                                external: machine_and_reason_wise_tooltip,
-                            }
-                        },
-                    },
-                });
-
-            },
-            error:function(er){
-              reject(er);
-            }
-        });
-    });  
-}
 </script>

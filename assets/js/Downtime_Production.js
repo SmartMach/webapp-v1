@@ -1,73 +1,128 @@
+function reset_reason_docr(){
+  var part_arr = $('.filter_reason_val_docr');
+  jQuery('.filter_reason_val_docr').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#reason_text_docr').text('All Reasons');
+}
+function reset_reason_ddr(){
+  var part_arr = $('.filter_reason_val_ddr');
+  jQuery('.filter_reason_val_ddr').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#reason_text_ddr').text('All Reasons');
+}
+function reset_reason_docm(){
+  var part_arr = $('.filter_reason_val_docm');
+  jQuery('.filter_reason_val_docm').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#reason_text_docm').text('All Reasons');
+}
+function reset_reason_ddmr(){
+  var part_arr = $('.filter_reason_val_ddmr');
+  jQuery('.filter_reason_val_ddmr').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#reason_text_ddmr').text('All Reasons');
+}
+function reset_reason_down(){
+  var part_arr = $('.filter_reason_val_down');
+  jQuery('.filter_reason_val_down').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#reason_text_down').text('All Reasons');
+}
 
-// switch case function for reset function name get
-function get_reset_fun(res){
-    switch (res) {
-        case 'oppcost_reason_machine':
-            reset_machine_gp();
-            break;
-        case 'oppcost_reason_reason':
-            reset_reason_gp();
-            break;
-        
-        case 'oppcost_reason_category':
-            reset_category_gp();
-            break;
 
-        case 'duration_reason_machine':
-            reset_machine_gp1();
-            break;
+function reset_machine_docr(){
+  var part_arr = $('.filter_machine_val_docr');
+  jQuery('.filter_machine_val_docr').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#machine_text_docr').text('All Machines');
+}
+function reset_machine_ddr(){
+  var part_arr = $('.filter_machine_val_ddr');
+  jQuery('.filter_machine_val_ddr').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#machine_text_ddr').text('All Machines');
+}
+function reset_machine_docm(){
+  var part_arr = $('.filter_machine_val_docm');
+  jQuery('.filter_machine_val_docm').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#machine_text_docm').text('All Machines');
+}
+function reset_machine_ddmr(){
+  var part_arr = $('.filter_machine_val_ddmr');
+  jQuery('.filter_machine_val_ddmr').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#machine_text_ddmr').text('All Machines');
+}
+function reset_machine_down(){
+  var part_arr = $('.filter_machine_val_down');
+  jQuery('.filter_machine_val_down').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#machine_text_down').text('All Machines');
+}
 
-        case 'duration_reason_reason':
-            reset_reason_gp1();
-            break;
 
-        case 'duration_reason_category':
-            reset_category_gp1();
-            break;
-        
-        case 'oppcost_machine_machine':
-            reset_machine_gp2();
-            break;
 
-        case 'oppcost_machine_reason':
-            reset_reason_gp2();
-            break;
+function reset_category_docr(){
+  var part_arr = $('.filter_category_val_docr');
+  jQuery('.filter_category_val_docr').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#category_text_docr').text('All Categories');
+}
+function reset_category_ddr(){
+  var part_arr = $('.filter_category_val_ddr');
+  jQuery('.filter_category_val_ddr').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#category_text_ddr').text('All Categories');
+}
+function reset_category_docm(){
+  var part_arr = $('.filter_category_val_docm');
+  jQuery('.filter_category_val_docm').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#category_text_docm').text('All Categories');
+}
+function reset_category_ddmr(){
+  var part_arr = $('.filter_category_val_ddmr');
+  jQuery('.filter_category_val_ddmr').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#category_text_ddmr').text('All Categories');
+}
+function reset_category_down(){
+  var part_arr = $('.filter_category_val_down');
+  jQuery('.filter_category_val_down').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#category_text_down').text('All Categories');
+}
 
-        case 'oppcost_machine_category':
-            reset_category_gp2();
-            break;
 
-        case 'duration_machine_machine':
-            reset_machine_gp3();
-            break;
-
-        case 'duration_machine_reason':
-            reset_reason_gp3();
-            break;
-        case 'duration_machine_category':
-            reset_category_gp3();
-            break;
-
-        case 'table_filter_user':
-            reset_created_by();
-            break;
-
-        case 'table_filter_reason':
-            reset_reason();
-            break;
-
-        case 'table_filter_category':
-            reset_category()
-            break;
-        
-        case 'table_filter_part':
-            reset_part();
-            break;
-        
-        case 'table_filter_machine':
-            reset_machine();
-            break;
-    }
+function reset_part_down(){
+  var part_arr = $('.filter_part_val_down');
+  jQuery('.filter_part_val_down').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#part_text_down').text('All Parts');
+}
+function reset_user_down(){
+  var part_arr = $('.filter_user_val_down');
+  jQuery('.filter_user_val_down').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#user_text_down').text('All Users');
 }
 
 
@@ -271,179 +326,3 @@ $(document).on('click','.filter_user_val_down',function(event){
 
 
 
-// graph filter multi select dropdown
-
-
-
-
-// graph filter machine onclick function
-
-
-
-// graph filter reason1 onclick function
-
-
-
-
-
-// graph filter machine wise oppcost onclick function 
-
-
-
-
-
-
-
-
-// reset machine dropdown
-function reset_machine(){
-  var machine_arr = $('.machine_checkbox');
-  jQuery('.machine_checkbox').each(function(index){
-    machine_arr[index].checked=true;
-  });
-  $('#text_machine_drp').text('All Machines');
-}
-
-
-// reset part dropdown
-function reset_part(){
-    var part_arr = $('.partname_checkbox');
-    jQuery('.partname_checkbox').each(function(index){
-        part_arr[index].checked=true;
-    });
-    $('#text_category_drp_part').text('All Parts');
-}
-
-// reset downtime reasons dropdown
-function reset_reason(){
-    var reason_arr = $('.reason_checkbox');
-    jQuery('.reason_checkbox').each(function(in1){
-        reason_arr[in1].checked=true;
-    });
-    $('#text_reason_drp').text('All Reasons');
-}
-
-// reset downtime category
-function reset_category(){
-    var category_arr = $('.category_drp_checkbox');
-    jQuery('.category_drp_checkbox').each(function(in2){
-        category_arr[in2].checked=true;
-    });
-    $('#text_category_drp').text('All Categories');
-}
-
-// reset created by
-function reset_created_by(){
-    var created_by_arr = $('.created_by_checkbox');
-    jQuery('.created_by_checkbox').each(function(in3){
-        created_by_arr[in3].checked=true;
-    });
-    $('#text_created_by_drp').text('All Users');
-}
-
-// reset graph filter function
-// reset category graph filter
-function reset_category_gp(){
-    var created_by_arr = $('.categorygp_checkbox');
-    jQuery('.categorygp_checkbox').each(function(in3){
-        created_by_arr[in3].checked=true;
-    });
-    $('#text_categorygp').text('All Categories');
-}
-
-// reset reason graph filter
-function reset_reason_gp(){
-    var reason_gparr = $('.reasongp_checkbox');
-    jQuery('.reasongp_checkbox').each(function(index){
-        reason_gparr[index].checked=true;
-    });
-    $('#text_reasongp').text('All Reasons');
-}
-
-// reset machine graph filter
-function reset_machine_gp(){
-    var machine_gparr = $('.machinegp_checkbox');
-    jQuery('.machinegp_checkbox').each(function(index){
-        machine_gparr[index].checked=true;
-    });
-    $('#text_machinegp_drp').text('All Machines');
-}
-
-// reset machine1 reason duration graph filter
-function reset_machine_gp1(){
-    var machine_gparr = $('.machinegp_checkbox1');
-    jQuery('.machinegp_checkbox1').each(function(index){
-        machine_gparr[index].checked=true;
-    });
-    $('#text_machinegp1').text('All Machines');
-} 
-
-
-// reset reason graph filter
-function reset_reason_gp1(){
-    var reason_gparr1 = $('.reasongp_checkbox1');
-    jQuery('.reasongp_checkbox1').each(function(index){
-        reason_gparr1[index].checked=true;
-    });
-    $('#text_reasongp1').text('All Reasons');
-}
-
-
-// category1 graph filter 
-function reset_category_gp1(){
-    var created_by_arr = $('.categorygp_checkbox1');
-    jQuery('.categorygp_checkbox1').each(function(in3){
-        created_by_arr[in3].checked=true;
-    });
-    $('#text_categorygp1').text('All Categories');
-}
-
-// machine wise oppcost reset dropdown
-function reset_machine_gp2(){
-    var machine_gparr = $('.machinegp_checkbox2');
-    jQuery('.machinegp_checkbox2').each(function(index){
-        machine_gparr[index].checked=true;
-    });
-    $('#text_machinegp2').text('All Machines');
-} 
-
-function reset_reason_gp2(){
-    var reason_gparr1 = $('.reasongp_checkbox2');
-    jQuery('.reasongp_checkbox2').each(function(index){
-        reason_gparr1[index].checked=true;
-    });
-    $('#text_reasongp2').text('All Reasons');
-}
-
-function reset_category_gp2(){
-    var created_by_arr = $('.categorygp_checkbox2');
-    jQuery('.categorygp_checkbox2').each(function(in3){
-        created_by_arr[in3].checked=true;
-    });
-    $('#text_categorygp2').text('All Categories');
-}
-
-// machine and reason wise duration
-function reset_machine_gp3(){
-    var machine_gparr = $('.machinegp_checkbox3');
-    jQuery('.machinegp_checkbox3').each(function(index){
-        machine_gparr[index].checked=true;
-    });
-    $('#text_machinegp3').text('All Machines');
-} 
-
-function reset_reason_gp3(){
-    var reason_gparr1 = $('.reasongp_checkbox3');
-    jQuery('.reasongp_checkbox3').each(function(index){
-        reason_gparr1[index].checked=true;
-    });
-    $('#text_reasongp3').text('All Reasons');
-}
-
-function reset_category_gp3(){
-    var created_by_arr = $('.categorygp_checkbox3');
-    jQuery('.categorygp_checkbox3').each(function(in3){
-        created_by_arr[in3].checked=true;
-    });
-    $('#text_categorygp3').text('All Categories');
-}
