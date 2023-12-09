@@ -645,7 +645,6 @@ $(document).on('blur','.toDate',function(){
 $(document).on('click','.overall_filter_btn',function(event){
   event.preventDefault();
   $("#overlay").fadeIn(300);
-  console.log("filter button click");
   myFun();
 });
 
@@ -747,7 +746,6 @@ function overallTarget(){
         to:t
       },
       success:function(res){
-        console.log('overall target');
         resolve(res);
         // res=res['OverallMonitoring'];
         $('#viewTEEP').css('width',''+parseInt(res.Overall_TEEP)+'%');
@@ -796,7 +794,6 @@ function machineWiseOEE() {
         to:t
       },
       success:function(res){
-        console.log('machine wise oee graph');
         resolve(res);
         $('#machine_wise_OEE').remove();
         $('.child_graph_machine_wise_oee').append('<canvas id="machine_wise_OEE"><canvas>');
@@ -931,7 +928,6 @@ function machineWiseOEE() {
           // Pre-Loader Off
       },
       error:function(res){
-        console.log('machine wise oee error');
         reject(res);
           // Pre-Loader Off
           // alert("No Data Records!");
@@ -1045,7 +1041,6 @@ function availabilityReason() {
         to:t
       },
       success:function(res){
-        console.log("availability opportunity graph ");
         resolve(res);
         $('#avalabilityOpportunity').remove();
         $('.child_graph_availability_opportunity').append('<canvas id="avalabilityOpportunity"><canvas>');
@@ -1178,7 +1173,6 @@ function availabilityReason() {
           // Pre-Loader Off
       },
       error:function(res){
-        console.log("availability opportunity graph");
         reject(res);
           // Pre-Loader Off
           // alert("Sorry!Try Agian!!!!");
@@ -1289,7 +1283,6 @@ function qualityOpportunity() {
         to:t
       },
       success:function(res){
-        console.log('qualityOpportunity');
         resolve(res);
         $('#qualityOpportunity').remove();
         $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
@@ -1455,7 +1448,6 @@ function qualityOpportunity() {
           },
       error:function(res){
         reject(res);
-        console.log('quality opportunity graph error');
           // Pre-Loader Off
           // alert("Sorry!Try Agian!!!!");
       }
@@ -1560,7 +1552,6 @@ function performanceOpportunity() {
         to:t
       },
       success:function(res){
-        console.log("performance opportunity graph");
         resolve(res);
               var color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff"];
               $(".PerformanceGrand").html(parseInt(res.GrandTotal).toLocaleString("en-IN"));
@@ -1680,7 +1671,6 @@ function performanceOpportunity() {
               });
       },
       error:function(res){
-        console.log("performance opportunity graph error");
         reject(res);
       }
     }); 
@@ -1788,7 +1778,6 @@ function oeeTrendDay() {
           to:t
         },
         success:function(res){
-          console.log(res);
           resolve(res);
           $('#OEETrend').remove();
           $('.child_graph_oee_trend').append('<canvas id="OEETrend"><canvas>');
@@ -1889,7 +1878,6 @@ function oeeTrendDay() {
         },
         error:function(res){
           reject(res);
-          console.log('oee trend graph error');
         }
     });
   });

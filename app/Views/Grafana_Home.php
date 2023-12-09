@@ -696,13 +696,10 @@ var site_id = "<?php echo($this->data['user_details'][0]['site_id']); ?>";
                         UserRoleRef:UserRoleRef,
                     },
                     success:function(res_Site){
-                        console.log('sites'+res_Site);
                         <?php 
                             $session = \Config\Services::session();
                         ?>
                         var active_Site = "<?php echo $session->get('active_site'); ?>";
-                        // if (active_Site == " ") {
-                        //     console.log(res_Site[0].site_id);
                             
                             var elements = $('');
 
@@ -718,7 +715,6 @@ var site_id = "<?php echo($this->data['user_details'][0]['site_id']); ?>";
                                     $('#site_id').append(elements);
                                     site_load_fun();
                                 }else if(active_Site.length > 0){
-                                    console.log("ok its selected");
                                     if (item.site_id.localeCompare(active_Site) == 0) {
                                         //  elements = elements.add('<option value="'+item.site_id+'" selected="true" disabled="true">'+item.site_name+'-'+item.site_id+'</option>');
                                     }else{
@@ -733,7 +729,6 @@ var site_id = "<?php echo($this->data['user_details'][0]['site_id']); ?>";
                         // }else{
                         //     var elements = $('');
                         //     res_Site.forEach(function(item){
-                        //         console.log(active_Site);
                         //         if (item.site_id.localeCompare(active_Site) == 0) {
                         //             elements = elements.add('<option value="'+item.site_id+'" selected="true" disabled="true">'+item.site_name+' -'+item.site_id+'</option>');
  
@@ -770,7 +765,6 @@ var site_id = "<?php echo($this->data['user_details'][0]['site_id']); ?>";
                     //location.reload();
                 },
                 error:function(err){
-                    console.log(err);
                 }
             }); 
             var elements = $('<option value="'+site_id+'" selected="true" disbled="true">'+site_id+'</option>');
@@ -788,8 +782,6 @@ var site_id = "<?php echo($this->data['user_details'][0]['site_id']); ?>";
     //     var site_id_arr = $('#site_id').val();
     //     var site_id = site_id_arr.split("-");
     //    //alert(site_id);
-    //    console.log("site arrya");
-    //    console.log(site_id_arr);
     //     $.ajax({
     //         url:"<?php echo base_url('Home/session_get_fun');  ?>",
     //         type:"POST",
@@ -804,7 +796,6 @@ var site_id = "<?php echo($this->data['user_details'][0]['site_id']); ?>";
     //             location.reload();
     //         },
     //         error:function(err){
-    //             console.log(err);
     //         }
     //     }); 
        
@@ -814,8 +805,6 @@ var site_id = "<?php echo($this->data['user_details'][0]['site_id']); ?>";
     function site_load_fun(){
         var site_id_arr = $('#site_id').val();
         var site_id = site_id_arr.split("-");
-        console.log("site arrya");
-        console.log(site_id_arr);
         $.ajax({
             url:"<?php echo base_url('Home/session_get_fun');  ?>",
             type:"POST",
@@ -830,7 +819,6 @@ var site_id = "<?php echo($this->data['user_details'][0]['site_id']); ?>";
                 location.reload();
             },
             error:function(err){
-                console.log(err);
             }
         }); 
        
@@ -856,7 +844,6 @@ $(document).ready(function(){
     $('#short_name').html(first_letter+''+last_letter);
     var char_leng = fname+' '+lname;
     var len_char = char_leng.length;
-    console.log("text length:\t"+len_char);
     // $('.tooltiptext').css("max-width",len_char+"rem");
     $('#full_name').html(char_leng);
     $('#full_name').css("text-overflow","ellipsis");
@@ -866,10 +853,8 @@ $(document).ready(function(){
     var info_color = ["#005ABC"];
     var random_info_color = "";
     if (user_profile_color_code==="" || user_profile_color_code===null) {
-        // console.log("color code is not in db");
         random_info_color = info_color[0];
     }else{
-        // console.log("color code is in db");
         random_info_color = user_profile_color_code;
     }
     // var random_info_color = info_color[Math.floor(Math.random()*info_color.length)];
