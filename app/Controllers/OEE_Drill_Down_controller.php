@@ -1203,16 +1203,13 @@ class OEE_Drill_Down_controller extends BaseController
 
             log_message("info","\n\n oee drill down dropdown funciton calling !!");
             $start_time_logger_drp  = microtime(true);
-
-            $downtime_drp = $this->data->downtime_reason_filter_con();
-            $machine_drp = $this->data->getmachine_record_data();
-            $part_drp = $this->data->getpart_data();
-            $quality_drp = $this->data->get_quality_reject();
     
-            $res['machine'] = $machine_drp;
-            $res['downtime'] = $downtime_drp;
-            $res['part'] = $part_drp;
-            $res['quality'] = $quality_drp;
+            $res['machine'] = $this->data->getmachine_record_data();
+            $res['downtime'] = $this->data->downtime_reason_filter_con();
+            $res['part'] = $this->data->getpart_data();
+            $res['quality'] = $this->data->get_quality_reject();
+            $res['category'] = $this->data->downtime_category_filter_con();
+            $res['data_field'] = array('OEE','Availability','Performance','Quality');
 
             $end_time_logger_drp = microtime(true);
             $execution_time_logger_drp = ($end_time_logger_drp - $start_time_logger_drp);
