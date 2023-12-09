@@ -564,22 +564,21 @@ class Production_Downtime_controller extends BaseController{
 
             $FromDate = $this->request->getVar('from');
             $todate = $this->request->getVar('to');
-            // $FromDate = "2023-02-02T10:00:00";
-            // $todate = "2023-03-06T14:00:00";
-            // $machine_arr = array('all','MC1001','MC1002','MC1003','MC1004');
-            // $category_arr = array('all','Planned','Unplanned');
+            // $FromDate = "2023-12-03T13:00:00";
+            // $todate = "2023-12-09T12:00:00";
+            // $reason_arr = array("27", "29", "31", "23","37", "40","32","13","14","41", "19", "38","1","8","26","24", "10", "16","18", "20", "11", "9","7", "30","28","17","21","5","12", "35", "34","25","22","36","39","15","33","42","2","3","6","0");
+            // $machine_arr = array('MC1001', 'MC1002', 'MC1003', 'MC1004', 'MC1005', 'MC1006');
+            // $category_arr = array('Planned', 'Unplanned');
             $res = $this->getdowntime_reason_whise_graph($FromDate,$todate);
 
+           
             $reason_arr = array_map('strtolower',$reason_arr);
 
             $demo_arr = [];
             $oppcost_total = [];
             foreach ($res['graph'] as $key => $value) {
                 if (in_array($value['downtime_category'],$category_arr)) {
-                    // $tmp_reason = explode("(",$value['downtime_reason']);
-                    // if (in_array(trim($tmp_reason[0]),$reason_arr)) {
-                        //array_push($demo_arr,$res['graph'][$key]);
-                    if (in_array(strtolower($value['normal_reason']),$reason_arr)) {
+                    if (in_array(strtolower($value['downtime_reason_id']),$reason_arr)) {
                         $temp_opportunity_cost=0;
                         foreach ($machine_arr as $key_machine => $val) {
                             if ($val!="all") {
@@ -599,9 +598,11 @@ class Production_Downtime_controller extends BaseController{
             $temp['total_duration'] = $res['total_duration'];
             // $out['old'] = $temp['graph'];
             $out = $this->cost_based_sorting($temp);
-            // echo "<pre>";
-            // print_r($out);
-
+                // echo "<pre>";
+                // print_r($out);
+            // $t['machine_arr'] = $machine_arr;
+            // $t['part_arr'] = $reason_arr;
+            // $t['category_arr'] = $category_arr;
             echo json_encode($out);
         }
     }
@@ -656,7 +657,7 @@ class Production_Downtime_controller extends BaseController{
             $total_duration_arr = [];
             foreach ($res['graph'] as $key => $value) {
                 if (in_array($value['downtime_category'],$category_arr)) {
-                    if (in_array(strtolower($value['normal_reason']),$reason_arr)) {     
+                    if (in_array(strtolower($value['downtime_reason_id']),$reason_arr)) {     
                         $temp_duration=0;
                         foreach ($machine_arr as $key_machine => $val) {
                             if ($val!="all") {
@@ -719,13 +720,16 @@ class Production_Downtime_controller extends BaseController{
             $fromdate = $this->request->getVar('from');
             $todate = $this->request->getVar('to');
 
-            // $fromdate = "2023-02-02T10:00:00";
-            // $todate = "2023-03-06T14:00:00";
-            // $machine_arr= array('all','MC1001','MC1002','MC1003','MC1004');
-            // $category_arr = array('all','Planned','Unplanned');
+            // $fromdate = "2023-12-03T14:00:00";
+            // $todate = "2023-12-09T13:00:00";
+            // $machine_arr= array('MC1001', 'MC1002', 'MC1003', 'MC1004', 'MC1005', 'MC1006');
+            // $category_arr = array('Planned', 'Unplanned');
+            // $reason_arr = array('27', '29', '31', '23', '37', '40', '32', '13', '14', '41', '19', '38', '1', '8', '26', '24', '10', '16', '18', '20', '11', '9', '7', '30', '28', '17', '21', '5', "12","35", "34", "25", "22", "36" , "39" , "15","33","42", "2","3","6","0");
 
             $result = $this->getAvailabilityReasonWise($fromdate,$todate);
            
+            // echo "<pre>";
+            // print_r($result);
             $machine_wise_arr = [];
             $total_oppcost_arr = [];
             foreach ($result['data'] as $key => $value) {
@@ -735,7 +739,7 @@ class Production_Downtime_controller extends BaseController{
                 foreach ($value as $k1 => $v1) {
                     if (in_array($v1['machine_id'],$machine_arr)) {
                         if (in_array($v1['category'],$category_arr)) {
-                            if (in_array(strtolower($v1['normal_reason']),$reason_arr)) {
+                            if (in_array(strtolower($v1['reason_id']),$reason_arr)) {
                                 $oppcost = $oppcost+$v1['oppCost'];
                                 array_push($demo_reason_arr,$v1['normal_reason']);
                                 
@@ -764,6 +768,10 @@ class Production_Downtime_controller extends BaseController{
             $out = $this->machine_wise_oppcost_sort($final_arr);
             // echo "<pre>";
             // print_r($out);
+
+            // $t['machine_arr'] = $machine_arr;
+            // $t['category_arr'] = $category_arr;
+            // $t['reason_Arr'] = $reason_arr;
             echo json_encode($out);
         }
     }
@@ -824,7 +832,7 @@ class Production_Downtime_controller extends BaseController{
                     if (in_array($v1['machine_id'],$machine_arr)) {
                         if (in_array($v1['category'],$category_arr)) {
                             // $tmp_reason = explode("(",$v1['reason']);
-                            if (in_array(strtolower($v1['normal_reason']),$reason_arr)) {     
+                            if (in_array(strtolower($v1['reason_id']),$reason_arr)) {     
                                 array_push($tmp_duration,$v1['duration']);
                                 array_push($tmp_reason,$v1['reason']);
                                 array_push($tmp_reason_id,$v1['reason_id']);
@@ -913,6 +921,8 @@ class Production_Downtime_controller extends BaseController{
             log_message("info","production downtime graph filter dorpdown function execution duration is :\t".$execution_time_logger_drp);
 
             echo json_encode($res); 
+            // echo "<pre>";
+            // print_r($res);
         }
        
     }
