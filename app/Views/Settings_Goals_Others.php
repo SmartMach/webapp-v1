@@ -1269,7 +1269,6 @@ $('#submit_downtime_reason').on('click',function(event){
                     cache: false,  
                     processData:false,
                     success:function(data){
-                        // console.log(data);
                         // alert(data);
                         if (data == true) {
                             // close the modal 
@@ -1296,7 +1295,6 @@ $('#submit_downtime_reason').on('click',function(event){
                     cache: false,  
                     processData:false,
                     success:function(data){
-                        // console.log(data);
                         // alert(data);
                         if (data == true) {
                             // close the modal 
@@ -1838,11 +1836,11 @@ function get_shift_data(){
             statusCode: {
                
                500: function(){
-                console.log("Record Issue 500 in based on images");
+                // console.log("Record Issue 500 in based on images");
                },
                404:function(){
                 
-                 console.log("Data Passing Issue 404  image found the particular location ");
+                 // console.log("Data Passing Issue 404  image found the particular location ");
                }
             },
             error:function(res){
@@ -1885,11 +1883,11 @@ function get_shift_data(){
             statusCode: {
                
                500: function(){
-                console.log("Record Issue 500 in based on images");
+                // console.log("Record Issue 500 in based on images");
                },
                404:function(){
                 
-                 console.log("Data Passing Issue 404  image found the particular location ");
+                 // console.log("Data Passing Issue 404  image found the particular location ");
                }
             },
             error:function(res){

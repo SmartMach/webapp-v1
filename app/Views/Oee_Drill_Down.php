@@ -795,7 +795,6 @@ function byday_click(){
     var checkboxes = document.getElementsByClassName("byday_fill");
   if (!filter_expand_by_day) {
       // checkboxes.style.display = "block";
-    //   console.log("just click");
       $('.byday_fill').css("display","block");
       filter_expand_by_day = true;
   } else  {
@@ -960,8 +959,6 @@ function overallTarget(f,t){
                 to:t
             },
             success:function(res){
-                console.log("overall graph value");
-                console.log(res);
                 resolve(res);
 
                 var teep_graph_width = parseInt(res.Overall_TEEP)>100? parseInt(133) : parseInt(res.Overall_TEEP);
@@ -984,7 +981,6 @@ function overallTarget(f,t){
             
             },
             error:function(er){
-                console.log("No Data Records!");
                 $('#teep_graph').css('width','0%');
                 $('#ooe_graph').css('width','0%');
                 $('#oee_graph').css('width','0%');
@@ -1003,8 +999,6 @@ function overallTarget(f,t){
             type: "POST",
             dataType: "json",
             success:function(res){
-                console.log("graph target");
-                console.log(res);
                 resolve(res);
             
                 $('#teep_target').css('width',''+res[0].overall_teep+'%');
@@ -1206,9 +1200,6 @@ function oeeTrendDay() {
   t = $('.toDate').val();
   f = f.replace(" ","T");
   t = t.replace(" ","T");
-    //   console.log(graph_reason_arr);
-    //   console.log(graph_category_arr);
-    //   console.log(graph_machine_arr);
     // oee trend day
     $.ajax({
         url: "<?php echo base_url('OEE_Drill_Down_controller/oeeTrendDay'); ?>",
@@ -1222,9 +1213,6 @@ function oeeTrendDay() {
           machine_arr:graph_machine_arr,
         },
         success:function(res){
-
-            console.log("oee trend graph");
-            console.log(res);
             
           $('#oee_trend').remove();
           $('.child_oee_trend').append('<canvas id="oee_trend"><canvas>');
@@ -1426,9 +1414,6 @@ function machineWiseOEE() {
     t = $('.toDate').val();
     f = f.replace(" ","T");
     t = t.replace(" ","T");
-    // console.log("machine wise oee");
-    // console.log(graph_machine_arr);
-    // console.log(all_data_field);
     $.ajax({
         url: "<?php echo base_url('OEE_Drill_Down_controller/getMachineWiseOEE');?>",
         type: "POST",
@@ -1443,8 +1428,6 @@ function machineWiseOEE() {
             $('#machine_wise_oee').remove();
             $('.child_machine_wise_oee').append('<canvas id="machine_wise_oee"></canvas>');
             $('.chartjs-hidden-iframe').remove();
-            // console.log("machine wise oee");
-            // console.log(res);
             
             var category_percent = 1.0;
             var bar_space = 0.5;
@@ -1466,7 +1449,6 @@ function machineWiseOEE() {
                 }
             }
 
-            // console.log("all data field array");
             var graph_demo_arr = [];
             all_data_field.forEach(function(item){
                 if(item === "quality"){
@@ -1589,7 +1571,6 @@ function machineWiseOEE() {
         },
         error:function(res){
             // alert("No Data Records!");
-            console.log("No Data Records!");
         }
     });
     // return;
@@ -1710,11 +1691,6 @@ function availabilityReason_machine() {
         }
     });
 
-    // console.log("availability graph");
-    // console.log(graph_machine_arr);
-    // console.log(graph_reason_arr);
-    // console.log(graph_category_arr);
-
 	$.ajax({
         url: "<?php echo base_url('OEE_Drill_Down_controller/getmachine_reason_availability');?>",
         type: "POST",
@@ -1727,9 +1703,6 @@ function availabilityReason_machine() {
             category_arr:graph_category_arr,
         },
         success:function(res){
-            // console.log("Availability reasons");
-            // console.log(res);
-            //console.log(typeof res);
 
             $('#machine_reason_availability').remove();
             $('.child_machine_reason_availability').append('<canvas id="machine_reason_availability"></canvas>');
@@ -1754,8 +1727,6 @@ function availabilityReason_machine() {
             // Find the Reason Names as Lables..........
             var machine_wise_total = [];
             res['data'].forEach(function(item){
-                // console.log("Availability ");
-                // console.log(item);
                 var tmp_total_duration = 0;
                 item.forEach(function(val){
                     tmp_total_duration = tmp_total_duration + val['duration'];
@@ -1764,9 +1735,6 @@ function availabilityReason_machine() {
     
             });
 
-
-            // console.log("Availability graph total");
-            // console.log(machine_wise_total);
             // var reasonList =[];
             
             // res['reason'].forEach(function(reason){
@@ -1860,8 +1828,6 @@ function availabilityReason_machine() {
                 x=x+1;
                 index=index+1;
             });
-            // console.log("machine array");
-            // console.log(machine)
             var avlOpp = document.getElementById("machine_reason_availability").getContext('2d');
             var avlOppChart = new Chart(avlOpp, {
                 type: 'bar',
@@ -1904,8 +1870,6 @@ function availabilityReason_machine() {
         },
         error:function(er){
             // alert("Sorry!Try Agian!!!!");
-            console.log("Sorry!Try Agian!!!!");
-            console.log(er);
         }
     }); 
 }
@@ -2040,9 +2004,6 @@ function performance_opportunity(){
     f = f.replace(" ","T");
     t = t.replace(" ","T");
 
-    console.log("performance graph");
-    console.log(graph_machine_arr);
-    console.log(part_arr);
     $.ajax({
         url: "<?php echo base_url('OEE_Drill_Down_controller/performanceOpportunity'); ?>",
         type: "POST",
@@ -2054,8 +2015,6 @@ function performance_opportunity(){
         part_arr:part_arr,
         },
         success:function(res){
-            // console.log("performance opportunity graph");
-            // console.log(res);
             color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
                 "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
                 "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
@@ -2085,8 +2044,6 @@ function performance_opportunity(){
                 var minute_text = parseInt(parseInt(sum)%60);
                 $('#total_speed_loss').text(hour_text+'h'+' '+minute_text+'m');
 
-                // console.log("total speed loss");
-                // console.log(sum);
                 var partWiseLable = [];
                 res.Part.forEach(function(item){
                 partWiseLable.push(item.part_name);
@@ -2164,9 +2121,6 @@ function performance_opportunity(){
                    
                 });
 
-                // console.log("Graph array")
-                // console.log(oppCost);
-
                 var bar_width = 0.6;
                 var bar_size = 0.7;
 
@@ -2185,8 +2139,6 @@ function performance_opportunity(){
                         break;
                     }
                 }
-                // console.log("Machine name lable");
-                // console.log(mname_arr);
             var ctx = document.getElementById("performanceOpportunity").getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'bar',
@@ -2224,8 +2176,6 @@ function performance_opportunity(){
             });
         },
         error:function(er){
-            console.log("No Records");
-            console.log(er);
             // alert("Sorry!Try Agian!!!!");
         }
     }); 
@@ -2233,7 +2183,6 @@ function performance_opportunity(){
 
 // tooltip function
 function performanceOpp(context){
-    // console.log(context);
     let tooltipEl = document.getElementById('tooltip-machine_part_performance');
 
     // Create element on first render
@@ -2354,9 +2303,6 @@ function quality_reason_machine() {
     f = f.replace(" ","T");
     t = t.replace(" ","T");
 
-    // console.log("quality graph");
-    // console.log(machine_arr);
-    // console.log(graph_quality_arr);
     $.ajax({
         url: "<?php echo base_url('OEE_Drill_Down_controller/qualityOpportunity'); ?>",
         type: "POST",
@@ -2369,15 +2315,10 @@ function quality_reason_machine() {
         },
         success:function(res){
 
-            console.log("quality reasons array");
-            console.log(res);
             $('#quality_reason_machine').remove();
             $('.child_quality_reason_machine').append('<canvas id="quality_reason_machine"></canvas>');
             $('.chartjs-hidden-iframe').remove();
 
-
-            // console.log("Quality Opportunity graph");
-            // console.log(res);
             color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
                 "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
                 "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
@@ -2454,8 +2395,6 @@ function quality_reason_machine() {
                 index=index+1;
             });
 
-
-            // console.log(quality_reason_arr);
             var bar_width = 0.6;
             var bar_size = 0.7;
             while(true){
@@ -2473,8 +2412,6 @@ function quality_reason_machine() {
                     break;
                 }
             }
-            // console.log("quality graph array");
-            // console.log(quality_reason_arr);
 
             var ctx = document.getElementById("quality_reason_machine").getContext('2d');
                 var myChart = new Chart(ctx, {
@@ -2514,8 +2451,6 @@ function quality_reason_machine() {
         
         },
         error:function(er){
-            console.log(er);
-            // console.log("Sorry!Try Agian!!!!");
             // alert("Sorry!Try Agian!!!!");
         }
     }); 
@@ -2562,7 +2497,6 @@ function quality_reason_machine_tooltip(context){
         var performance = parseInt(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
         var percentage = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].percentage_data[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
       
-        // console.log(percentage);
         let innerHtml = '<div>';
 
         innerHtml += '<div class="grid-container">';
@@ -2580,8 +2514,7 @@ function quality_reason_machine_tooltip(context){
         }else{
             //innerHtml += '<div class="grid-container">';
             var parts_arr = context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].reason_arr[context.tooltip.dataPoints[0].dataIndex]
-            // console.log("quality graph hovering");
-            // console.log(parts_arr);
+
             innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
             innerHtml += '<div class="grid-item title-bold"><span></span></div>';
             innerHtml += '<div class="content-text sub-title margin-top"><span>'+context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label+'</span></div>';
@@ -2594,10 +2527,7 @@ function quality_reason_machine_tooltip(context){
             //     innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+hours+"h"+" "+min+"m"+'</span></div>';
             // }
             const tmp_part_arr = parts_arr.split(',');
-            // console.log("temporary part array");
-            // console.log(tmp_part_arr);
             tmp_part_arr.forEach(function(item){
-                // console.log(item);
                 var part_val = item.split('&');
 
                 innerHtml += '<div class="grid-item content-text"><span>'+part_val[0]+'</span></div>'; 
@@ -2635,8 +2565,6 @@ function quality_reason_machine_tooltip(context){
             dataType:"JSON",
             // async:false,
             success:function(res){
-                console.log("all dropdown ajax value");
-                console.log(res);
                 resolve(res);
 
                 // machine 
@@ -2802,7 +2730,6 @@ function quality_reason_machine_tooltip(context){
                         +'<p class="font_multi_drp" style="margin:auto;">'+val.quality_reason_name+'</p>'
                         +'</div>'
                     +'</div>');
-                        // console.log(val.quality_reason_id);
 
 
                     $('.quality_reason_fill').append(elements_qdrp);
@@ -2837,8 +2764,6 @@ function quality_reason_machine_tooltip(context){
                 
             },
             error:function(er){
-                console.log("all dropdown ajax error");
-                console.log(er);
                 reject(er);
             }
         });
@@ -2856,7 +2781,6 @@ async function all_graph_fun(){
     f = f.replace(" ","T");
     t = t.replace(" ","T");
 
-    console.log("function calling");
     await fill_target_bar
     await overallTarget(f,t);
     await oee_trend_first_load(f,t);
@@ -2889,8 +2813,6 @@ function oee_trend_first_load(f,t){
                 to:t
             },
             success:function(res){
-                console.log("oee drill down graph first loader");
-                console.log(res);
                 resolve(res);
                 
                 $('#oee_trend').remove();
@@ -2993,7 +2915,6 @@ function oee_trend_first_load(f,t){
 
             },
             error:function(er){
-                console.log("Oee drill down graph first loader ajax funtion issue");
                 reject(er);
             }
         });
@@ -3016,15 +2937,11 @@ function first_loader_machine_oee(f,t){
                 to:t
             },
             success:function(res){
-                console.log("first laoder machine wise oee");
-                console.log(res);
 
                 resolve(res);
                 $('#machine_wise_oee').remove();
                 $('.child_machine_wise_oee').append('<canvas id="machine_wise_oee"></canvas>');
                 $('.chartjs-hidden-iframe').remove();
-                // console.log("machine wise oee");
-                // console.log(res);
                 
                 var category_percent = 1.0;
                 var bar_space = 0.5;
@@ -3047,7 +2964,6 @@ function first_loader_machine_oee(f,t){
                 }
 
                 all_data_field = ['quality','performance','availability','oee'];
-                // console.log("all data field array");
                 var graph_demo_arr = [];
                 all_data_field.forEach(function(item){
                     if(item === "quality"){
@@ -3175,8 +3091,6 @@ function first_loader_machine_oee(f,t){
                 
             },
             error:function(er){
-                console.log("first loader machine wise oee ajax issue");
-                console.log(er);
                 reject(er);
             }
         });
@@ -3199,8 +3113,6 @@ function first_loader_availability(f,t){
                 to:t
             },
             success:function(res){
-                console.log("first loader availability graph ");
-                console.log(res);
                 resolve(res);
 
                 
@@ -3227,8 +3139,6 @@ function first_loader_availability(f,t){
                 // Find the Reason Names as Lables..........
                 var machine_wise_total = [];
                 res['data'].forEach(function(item){
-                    // console.log("Availability ");
-                    // console.log(item);
                     var tmp_total_duration = 0;
                     item.forEach(function(val){
                         tmp_total_duration = tmp_total_duration + val['duration'];
@@ -3237,9 +3147,6 @@ function first_loader_availability(f,t){
         
                 });
 
-
-                // console.log("Availability graph total");
-                // console.log(machine_wise_total);
                 var reasonList =[];
                 res['reason'].forEach(function(reason){
                     reasonList.push(reason.downtime_reason);
@@ -3327,8 +3234,6 @@ function first_loader_availability(f,t){
                     x=x+1;
                     index=index+1;
                 });
-                // console.log("machine array");
-                // console.log(machine)
                 var avlOpp = document.getElementById("machine_reason_availability").getContext('2d');
                 var avlOppChart = new Chart(avlOpp, {
                     type: 'bar',
@@ -3369,8 +3274,6 @@ function first_loader_availability(f,t){
 
             },
             error:function(er){
-                console.log("first loader availability graph ajax issue");
-                console.log(er);
                 reject(er);
             }
         });
@@ -3396,8 +3299,6 @@ function first_loader_performance(f,t){
                 to:t
             },
             success:function(res){
-                console.log("first loader performance graph");
-                console.log(res);
                 resolve(res);
 
 
@@ -3430,8 +3331,6 @@ function first_loader_performance(f,t){
                 var minute_text = parseInt(parseInt(sum)%60);
                 $('#total_speed_loss').text(hour_text+'h'+' '+minute_text+'m');
 
-                // console.log("total speed loss");
-                // console.log(sum);
                 var partWiseLable = [];
                 res.Part.forEach(function(item){
                     partWiseLable.push(item.part_name);
@@ -3508,9 +3407,6 @@ function first_loader_performance(f,t){
                     
                 });
 
-                // console.log("Graph array")
-                // console.log(oppCost);
-
                 var bar_width = 0.6;
                 var bar_size = 0.7;
 
@@ -3529,8 +3425,6 @@ function first_loader_performance(f,t){
                         break;
                     }
                 }
-                // console.log("Machine name lable");
-                // console.log(mname_arr);
                 var ctx = document.getElementById("performanceOpportunity").getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'bar',
@@ -3569,8 +3463,6 @@ function first_loader_performance(f,t){
 
             },
             error:function(er){
-                console.log("first loader performance graph ajax issue");
-                console.log(er);
                 reject(er);
             }
         });
@@ -3592,16 +3484,11 @@ function first_loader_quality(f,t){
                 to:t
             },
             success:function(res){
-                console.log("first loader quality graph");
-                console.log(res);
                 resolve(res);
                 $('#quality_reason_machine').remove();
                 $('.child_quality_reason_machine').append('<canvas id="quality_reason_machine"></canvas>');
                 $('.chartjs-hidden-iframe').remove();
 
-
-                // console.log("Quality Opportunity graph");
-                // console.log(res);
                 var color = ["white","#004b9b","#005dc8","#057eff","#53a6ff","#cde5ff",
                     "#fedc97", "#b5b682", "#7c9885", "#28666e", "#033f63",
                     "#eae2b7", "#a69cac", "#474973", "#161b33", "#0d0c1d",
@@ -3678,8 +3565,6 @@ function first_loader_quality(f,t){
                     index=index+1;
                 });
 
-
-                // console.log(quality_reason_arr);
                 var bar_width = 0.6;
                 var bar_size = 0.7;
                 while(true){
@@ -3736,8 +3621,6 @@ function first_loader_quality(f,t){
 
             },
             error:function(er){
-                console.log("first loader quality graph aja issue");
-                console.log(er);
                 reject(er);
             }
         });
