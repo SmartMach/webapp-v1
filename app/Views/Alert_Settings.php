@@ -1469,15 +1469,11 @@ function get_metrics_limit_val(metrics_val){
 }
 
 function add_assignee(t) {
-    console.log($(this).children());
     $(".filter_checkboxes_issue ").addClass("display_hide");
-    console.log($('.filter_assignee').css("display"));
     if ($('.filter_assignee').css("display") === "none") {
-        console.log("select");
         $(".filter_assignee").removeClass("display_hide");
         $(".filter_assignee").addClass("display_visible");
     } else {
-        console.log("non select");
         $(".filter_assignee").removeClass("display_visible");
         $(".filter_assignee").addClass("display_hide");
     }
@@ -1514,12 +1510,10 @@ function add_assignee(t) {
         checkbox.addEventListener('change', function () {
             if (checkbox.checked) {
             // do this
-            // console.log('Checked');
                 $('.toggle_work_div').css('display','block');
 
             } else {
             // do that
-            // console.log('Not checked');
             $('.toggle_work_div').css('display','none');
             }
         });
@@ -1529,12 +1523,8 @@ function add_assignee(t) {
         email_toggle.addEventListener('change',function(){
             if (email_toggle.checked) {
                 $('.email_div_visibility').css('display','block');
-              
-                // console.log("email  checked");
-
             }else{
                 $('.email_div_visibility').css('display','none');
-                // console.log("unchecked email");
             }
         });
 
@@ -1569,7 +1559,6 @@ function add_assignee(t) {
     fill_machine_drp();
 
     function fill_machine_drp(){
-        // console.log("function ok");
         $('.add_alert_machine_drp').empty();
         $('#add_alert_assignee').empty();
         $('.alert_file_part_div').empty();
@@ -1584,8 +1573,6 @@ function add_assignee(t) {
             type:"POST",
             dataType:"json",
             success:function(res){
-                console.log("dropdown array");
-                console.log(res);
 
                 var element = $();
 
@@ -1787,10 +1774,7 @@ function add_assignee(t) {
                     $('.add_record_assignee').append(elements);
                     $('.edit_record_assignee').append(edit_elements);
 
-
-                    // console.log(item);
                     ele_assignee = ele_assignee.add('<option value="'+item.user_id+'">'+item.first_name+' '+item.last_name+'</option>');
-                    // console.log(ele_assignee);
 
                    
 
@@ -1824,7 +1808,6 @@ function add_assignee(t) {
 
                 $( ".option1" ).each(function( index ) {
                         var str = $( this ).text();
-                // console.log($( this ).text() );
                     var matches = str.match(/\b(\w)/g); // ['J','S','O','N']
                     var acronym = matches.join(''); // JSON
                     $('.option1').eq(index).prepend("<div class='circle-div1' style='background:#7f7f7f;color:white;  width:24px;'><p class='paddingm'>"+acronym+"</p></div>");
@@ -1843,7 +1826,7 @@ function add_assignee(t) {
                 retrive_alert_data(start_index,end_index);
             },
             error:function(er){
-                console.log("Machine Dropdown error");
+                // console.log("Machine Dropdown error");
             }
         });
     }
@@ -1992,7 +1975,6 @@ function add_assignee(t) {
         if (!edit_alert_priority_drp1.is(event.target) && edit_alert_priority_drp1.has(event.target).length==0) {
             $('.edit_priority_drp_option').removeClass('d-inline');
             $('.edit_priority_drp_option').addClass('d-none');
-            // console.log("match priority dropdown is closed");
         }
 
 
@@ -2029,7 +2011,6 @@ function add_assignee(t) {
         //Set the button value to the first el of the array
         var img_drp = $('#low_default').attr("data-thumbnail");
         $('.btn-select').html('<li style="width:80%;"><img src="'+img_drp+'" alt="" value="low"> <span style="font-size:14px;" class="priority_txt">LOW</span></li><div style="display:flex;flex-direction:row;justify-content:center;align-items:center;width:20%;"><i class="fa-solid fa-angle-down"></li></div>');
-        // console.log(langArray[0]);
         $('.btn-select').attr('value', 'en');
 
         //change button stuff on click
@@ -2041,8 +2022,6 @@ function add_assignee(t) {
             $('.btn-select').html(item);
             $('.btn-select').attr('value', value);
             $(".b").toggle();
-            //   alert('ji');
-            //console.log(value);
         });
 
         $('#a_edit li').click(function(){
@@ -2053,8 +2032,6 @@ function add_assignee(t) {
             $('.btn-select_edit').html(item1);
             $('.btn-select_edit').attr('value', value1);
             $(".b_edit").toggle();
-            //   alert('ji');
-            //console.log(value);
         });
 
 
@@ -2071,14 +2048,10 @@ function add_assignee(t) {
         if (sessionLang){
             //find an item with value of sessionLang
             var langIndex = langArray.indexOf(sessionLang);
-            // console.log(langArray[langIndex]);
             $('.btn-select').html(langArray[langIndex]);
             $('.btn-select').attr('value', sessionLang);
         } else {
             var langIndex = langArray.indexOf('ch');
-            // console.log("dropdown index");
-            // console.log(langIndex);
-            // console.log(langArray[langIndex]);
             $('.btn-select').html(langArray[langIndex]);
         }
 
@@ -2128,7 +2101,6 @@ function add_assignee(t) {
         var checkbox_email = document.querySelector('#email_check_toggle');
         var a = inputAlertName(alert_name);
         var b = inputAlertRateHour(past_hour);
-        // console.log(value_val);
         var c = inputAlertValue(value_val);
         var d = inputAlertmetrics(metrics);
         var e = inputAlertrelation(relation);
@@ -2178,7 +2150,6 @@ function add_assignee(t) {
 
                 // getting priority value for add alert insertion records
                 var priority = $('#priority_selected_id').attr('priority-data-val');
-                console.log(priority);
 
                 
             }
@@ -2198,13 +2169,11 @@ function add_assignee(t) {
                 // var priority = $('.btn-select .priority_txt').text().toLowerCase();
                  // getting priority value for add alert insertion records
                 var priority = $('#priority_selected_id').attr('priority-data-val');
-                console.log(priority);
 
 
                 var work_type = $('#add_alert_work_type').val();
                 var work_title = $('#add_alert_work_title').val();
                 var assignee = $('#assignee_val').attr('data-assignee-val');
-                // console.log(assignee);
                 var deu_days = $('#add_alert_deu_days').val();
                 to_email_arr.push("empty");
                 cc_email_arr.push("empty");
@@ -2255,20 +2224,13 @@ function add_assignee(t) {
                 var add_alert_notes = null;
 
             }
-            console.log(notify_as);
-            console.log(priority);
-            console.log("assignee");
-            console.log(assignee);
 
             // work
             var f = inputAlertworktype(work_type);
             var g = inputAlertworktitle(work_title);
             var h = inputAlertdue_days(deu_days);
-            console.log("add alert submit");
-            console.log(deu_days);
             var add_label = $('.lable-div-add .lable-bg').length;
             // var la = inputlabel(add_label);
-            console.log(add_label+"...label length...");
 
             // email
             var i = inputAlert_mail_sub(add_alert_subject);
@@ -2293,7 +2255,6 @@ function add_assignee(t) {
                     // $('#label_action_Err').html(la);
 
                 }else{
-                    console.log("email and work");
                     note_error = 1;
                 }
             }
@@ -2304,19 +2265,16 @@ function add_assignee(t) {
                     // $('#input_check_cc_Err').html(pc);
                     $('#input_check_to_Err').html(nt);
                 }else{
-                    console.log("email");
                     note_error = 1;
                 }
             }
             else if(notify_as==="work"){
-                console.log(h);
                 if (f!="" || g!="" || h!="") {
                     $('#inputAlertworktypeErr').html(f);
                     $('#inputAlertworktitleErr').html(g);
                     $('#inputAlertdeudaysErr').html(h);
                     // $('#label_action_Err').html(la);
                 }else{
-                    console.log("email");
                     note_error = 1;
                 }
             }
@@ -2333,7 +2291,6 @@ function add_assignee(t) {
             
         
             if (parseInt(note_error)>=1) {
-                console.log("ok");
                 $.ajax({
                         url:"<?php echo base_url('Alert_Settings_Controller/add_alert'); ?>",
                         method:"POST",
@@ -2359,8 +2316,6 @@ function add_assignee(t) {
                         },
                         dataType:"json",
                         success:function(res){
-                            console.log("alert settings success message");
-                            console.log(res);
                             if (res) {
                                 // alert('Alert Insertion SuccessFully');
                                 var start_index = 0;
@@ -2369,14 +2324,11 @@ function add_assignee(t) {
                                 retrive_alert_data(start_index,end_index);
                                 $('#addAlert_modal').modal('hide');
                                 $("#overlay").fadeOut(300);
-                                console.log(res);
                             }
                         
                             
                         },
                         error:function(er){
-                            console.log("Alert Settings Error message");
-                            console.log(er);
                         }
                 });
             }      
@@ -2428,12 +2380,6 @@ function add_assignee(t) {
             }
         });
 
-        console.log("filter arrays");
-        console.log(machine_arr);
-        console.log(part_arr);
-        console.log(notify_arr);
-        console.log(last_updated_arr);
-
         $.ajax({
             url:"<?php echo base_url('Alert_Settings_Controller/retrive_data'); ?>",
             method:"POST",
@@ -2445,15 +2391,11 @@ function add_assignee(t) {
                 last_updated_arr:last_updated_arr,
             },
             success:function(res){
-                console.log("Alert Data retrive");
-                console.log(res);
-                // console.log(res.length);
                 var total_page = parseInt(res.length)/50;
                 total_page = Math.ceil(total_page);
                 $('#pagination_val').html(total_page);
                 if (parseInt(res.length)>0) {
                     res.forEach(function(item,key) {
-                        console.log("alert data keys");
                         if ((parseInt(key)<parseInt(end_index)) && (parseInt(key)>=parseInt(start_index))) {  
                             var element = $();
                             var mail_img = " ";
@@ -2491,8 +2433,6 @@ function add_assignee(t) {
 
                             var get_materics_value = get_metrics_limit_val(item.metrics);
                             var materics_value_user_format = get_materics_userformat(item.metrics);
-                            console.log(item.metrics);
-                            console.log("metrics:\t"+materics_value_user_format);
                             var chnage_letter_sm_up = item.user_data.fl_split;
                             element = element.add('<div id="settings_div">'
                                 +'<div class="row paddingm">'
@@ -2532,8 +2472,7 @@ function add_assignee(t) {
 
             },
             error:function(er){
-                console.log("alert data retrvie error");
-                console.log(er);
+              
             }
         });
     }
@@ -2600,9 +2539,6 @@ function add_assignee(t) {
         // alert(find_tmp_index);
         var get_alert_id = $('.edit_click:eq('+find_tmp_index+')').attr('data_id');
         var get_notify = $('.edit_click:eq('+find_tmp_index+')').attr('data_notify');
-        console.log(get_alert_id);
-        console.log(get_notify);
-        console.log("alert id");
         // alert(get_alert_id);
         reset_all_input("edit");
         $.ajax({
@@ -2614,10 +2550,6 @@ function add_assignee(t) {
                 get_notify:get_notify,
             },
             success:function(res){
-                console.log("Alert settings");
-                console.log(res);
-                console.log("assignee color array");
-                console.log(assignee_color);
                 // alert(res);
                
                 $('#title_alert_id').text(res[0]['alert_id']);
@@ -2636,7 +2568,6 @@ function add_assignee(t) {
                 $('#edit_metrics_val_limit_txt').text(metrics_val_limit);
                 
                 if (res[0]['notify_as']==="all") {
-                    console.log(res[0]['notify_as']);
                     checkbox_work.checked=true;
                     checkbox_email.checked=true;
                     $('#edit_alert_work_type').val(res[0]['work_type']);
@@ -2644,11 +2575,9 @@ function add_assignee(t) {
                     $('.edit_toggle_work_div').css('display','inline');
                     $('.edit_email_div_visibility').css('display','inline');
                     // var label_arr = res[0]['label_txt_arr'].split(',');
-                    // console.log(label_arr);
                     // label_get_arr(label_arr);
                     $(".lable-div-edit").empty();
                     const value_lable = res[0]['lable_id'].split(',');
-                    // console.log(value_lable);
                     value_lable.forEach(function(lable){
                         lable_list_globle.forEach(function(lable_item){
                             var itemsContainerlable = $();
@@ -2670,12 +2599,8 @@ function add_assignee(t) {
                     $('#edit_alert_deu_days').val(res[0]['deu_days']);
                     var to_email_arr = res[0]['to_email_arr'].split(',');
                     var cc_email_arr = res[0]['cc_email_arr'].split(',');
-                    console.log(to_email_arr);
-                    console.log(cc_email_arr);
                     to_email_get_arr(to_email_arr);
-                    console.log(cc_email_arr);
                     if (parseInt(cc_email_arr.length)<=1) {
-                        console.log("empty cc email");
                         if (cc_email_arr[0]=="empty") {
                             document.querySelector('.edit_parent_div_input_check_cc').querySelectorAll("li").forEach(li => li.remove());
                         }else{
@@ -2740,7 +2665,6 @@ function add_assignee(t) {
 
                     $(".lable-div-edit").empty();
                     const value_lable = res[0]['lable_id'].split(',');
-                    // console.log(value_lable);
                     value_lable.forEach(function(lable){
                         lable_list_globle.forEach(function(lable_item){
                             var itemsContainerlable = $();
@@ -2775,7 +2699,6 @@ function add_assignee(t) {
                         assignee_color.forEach(element => {
                             
                             if (element.assignee_id===res[0]['assignee']) {
-                                // console.log("selected assignee id"+element.assignee_id);
                                 user_color_find = element.assignee_color;
                             }
                         });
@@ -2800,17 +2723,13 @@ function add_assignee(t) {
                     checkbox_work.checked=false;
                     $('.edit_toggle_work_div').css('display','none');
                     $('.edit_email_div_visibility').css('display','inline');
-                    console.log(res[0]['to_email_arr']);
-                    console.log(res[0]['cc_email_arr']);
                     $('#edit_alert_mail_subject').val(res[0]['add_alert_subject']);
                     $('#edit_alert_mail_notes').val(res[0]['alert_notes']);
                     var to_email_arr = res[0]['to_email_arr'].split(',');
                     var cc_email_arr = res[0]['cc_email_arr'].split(',');
                     to_email_get_arr(to_email_arr);
                    
-                    console.log(cc_email_arr);
                     if (parseInt(cc_email_arr.length)<=1) {
-                        console.log("empty cc email");
                         if (cc_email_arr[0]=="empty") {
                             document.querySelector('.edit_parent_div_input_check_cc').querySelectorAll("li").forEach(li => li.remove());
                         }else{
@@ -2847,7 +2766,6 @@ function add_assignee(t) {
 
                     // // edit alert dropdown this value is temporary hide
                     // $('.select_edit_priority_btn').html('<div class="select_edit_priority_option" data-type="secondOption" onclick="icon_drop_edit_priority(this)"><i class="fas '+img_drp+'" style="font: size 18px;; width:20px; margin-top: 5px; color:'+color_tmp+';"></i>&nbsp;'+res[0]['priority']+'</div>');
-                    // // console.log(langArray[0]);
                     // $('.select_edit_priority_btn').attr('data-val', res[0]['priority_id']);
 
                     edit_priority_name = res[0]['priority'];
@@ -2876,8 +2794,6 @@ function add_assignee(t) {
                 $('#edit_alert').modal('show');
             },
             error:function(er){
-                console.log("Alert Settings Particular record get error");
-                console.log(res);
             }
         });
 
@@ -2918,13 +2834,11 @@ function add_assignee(t) {
         var checkbox_email = document.querySelector('#edit_email_check_toggle');
         var a = inputAlertName(alert_title);
         var b = inputAlertRateHour(alert_past_hour);
-        // console.log(alert_value);
         var c = inputAlertValue(alert_value);
         var d = inputAlertmetrics(alert_metrics);
         var e = inputAlertrelation(alert_relation);
 
         if (a!="" || b!="" || c!="" || d!="" || e!="") {
-            // console.log('for all check');
             $('#inputedit_alertNameErr').html(a);
             $('#inputAlertEditmetricserr').html(d);
             $('#inputeditAlertrelationerr').html(e);
@@ -3055,9 +2969,6 @@ function add_assignee(t) {
             // var m = inputAlertlabel(work_label);
             // var lae = inputlabel(add_label);
 
-
-            console.log(deu_days);
-
             // email
             var input_check_to = $('.edit_parent_div_input_check li').length;
             var input_check_cc = $('.edit_parent_div_input_check_cc li').length;
@@ -3083,38 +2994,27 @@ function add_assignee(t) {
                 }
             }
             else if(notify_as==="email"){
-                console.log('only for email');
                 if (i!="" || j!="" || k!="" ) {
                     $('#input_email_edit_sub_Err').html(i);
                     $('#input_email_edit_note_Err').html(j);
                     $('#input_check_to_edit_Err').html(k);
                     // $('#input_check_cc_edit_Err').html(l);
                 }else{
-                    console.log("email");
                     note_error = 1;
                 }
             }
             else if(notify_as==="work"){
-                console.log(h);
                 if (f!="" || g!="" || h!="") {
-                    console.log('only for work');
                     $('#inputAlert_edit_worktypeErr').html(f);
                     $('#inputAlert_edit_worktitleErr').html(g);
                     $('#inputAlert_edit_deudaysErr').html(h);
                     // $('#label_edit_Err').html(lae);
 
                 }else{
-                    console.log("email");
                     note_error = 1;
                 }
             }
 
-            console.log("edit alert modal notify as status");
-            console.log(notify_as);
-            console.log(note_error);
-            console.log("priority");
-            console.log(priority);
-            console.log(assignee);
             // if edit time lable is empty is submission is allowed
             if (parseInt(lable_list.length)<=0) {
                 lable_list.push("empty");
@@ -3125,11 +3025,9 @@ function add_assignee(t) {
                 cc_email_arr.push("empty");
             }
             
-            // console.log(lable_list+"...edit");
             // alert('ji');
            
             if (parseInt(note_error)>=1) {
-                console.log("ok");
                 $.ajax({
                     url:"<?php  echo base_url('Alert_Settings_Controller/edit_alert_submission'); ?>",
                     method:"POST",
@@ -3156,7 +3054,6 @@ function add_assignee(t) {
                         priority:priority,
                     },
                     success:function(datasss){
-                        console.log("Edit alert Settings module success ");
                         // console.log(datasss);
                         if (datasss == true) {
                             // alert('Updation SuccessFully');
@@ -3170,8 +3067,6 @@ function add_assignee(t) {
                         }
                     },
                     error:function(er){
-                        console.log("Edit alert Settings submission error");
-                        console.log(er);
                     }
                 });
             }
@@ -3207,8 +3102,6 @@ function add_assignee(t) {
                 get_id:get_id,
             },
             success:function(res){
-                console.log("Delete click function final result");
-                console.log(res);
                 if (res) {
                     // alert('Deletion Successfully');
                     var start_index = 0;
@@ -3221,8 +3114,6 @@ function add_assignee(t) {
 
             },
             error:function(er){
-                console.log("Alert Settings Delete Operation Error");
-                console.log(er);
             }
         
         })
@@ -3232,8 +3123,6 @@ function add_assignee(t) {
 
 $(document).on('click','.inbox_assignee',function(event){
     var index = $('.inbox_assignee').index(this);
-    // console.log("check box index");
-    // console.log(index);
     $('.inbox_assignee').children("input[name=assignee_val]").attr('checked', false);
     $('.inbox_assignee:eq('+index+')').children("input[name=assignee_val]").attr('checked', true);
 
@@ -3257,8 +3146,6 @@ $(document).on('click','.inbox_assignee',function(event){
         +'</div>'
         +'<span style="color: #7f7f7f;margin-left:0.3rem;" class="text_ellipse">'+$('.inbox_assignee:eq('+index+')').children('.assignee_name_class').children('p').text()+'</span>'
     +'</div>');
-        // console.log("assignee");
-        // console.log(tmpassignee_id);
     $('#assignee_val').attr('data-assignee-val',tmpassignee_id);
     
 });
@@ -3268,8 +3155,6 @@ $(document).on('click','.inbox_assignee',function(event){
 
 $(document).on('click','.inbox_edit_assignee',function(event){
     var index = $('.inbox_edit_assignee').index(this);
-    // console.log("check box index");
-    // console.log(index);
     $('.inbox_edit_assignee').children("input[name=assignee_val]").attr('checked', false);
     $('.inbox_edit_assignee:eq('+index+')').children("input[name=assignee_val]").attr('checked', true);
 
@@ -3376,7 +3261,6 @@ function callALL(){
     getLableList();
 }
 function getLableID(item,value){
-    console.log('id'+value);
     $.ajax({
         url:"<?php echo base_url('Alert_Settings_Controller/getLableID') ?>",
         method:"POST",
@@ -3397,7 +3281,6 @@ function getLableID(item,value){
     });
 }
 function getLableList(){
-    console.log('Value');
     $.ajax({
         url:"<?php echo base_url('Alert_Settings_Controller/getLable') ?>",
         method:"POST",

@@ -811,8 +811,6 @@ function plopportunity(){
         },
         success:function(res){      
           
-          console.log("financial p&l improvment graph");
-          console.log(res);
           resolve(res);
           $('#chart').empty();
           $(".apexcharts-canvas").remove();
@@ -1047,7 +1045,6 @@ function plopportunity(){
           chart.render();
         },
         error:function(res){
-          console.log("plopportunity graph error function");
           reject(res);
           // alert("Sorry!Try Agian!!");
         }
@@ -1076,7 +1073,6 @@ function machineplopportunity() {
         to:t
       },
       success:function(res){
-        console.log("machine wise plopportuntiy graph success");
         resolve(res);
         $('#machineWiseInsights').remove();
         $('.child_graph_machine_wise_insig').append('<canvas id="machineWiseInsights"><canvas>');
@@ -1204,7 +1200,6 @@ function machineplopportunity() {
           });
       },
       error:function(res){
-        console.log("machine wise pl opportunity graph error");
         reject(res);
           // alert("Sorry!Try Agian!!");
       }
@@ -1324,7 +1319,6 @@ function partplopportunity(){
         to:t
       },
       success:function(res){
-        console.log("part wise pl opportunity graph is success");
         resolve(res);
         $('#PartWiseInsights').remove();
         $('.child_graph_part_wise_pl').append('<canvas id="PartWiseInsights"><canvas>');
@@ -1468,7 +1462,6 @@ function partplopportunity(){
           });
       },
       error:function(res){
-        console.log("part wise pl opportunity graph ajax error");
         reject(res);
           // alert("Sorry!Try Agian!!");
       }
@@ -1567,8 +1560,6 @@ function opportunitydrilldown(){
       },
       success:function(res){ 
 
-        console.log("opportunity drill down graph")
-        console.log(res);
         resolve(res);
         $('#OpportunityDrillDownInsights').remove();
         $('.child_graph_opportunity_drill_down').append('<canvas id="OpportunityDrillDownInsights"><canvas>');
@@ -1654,7 +1645,6 @@ function opportunitydrilldown(){
 
       },
       error:function(res){
-        console.log("opportunity graph drill down ajax error");
         reject(res);
         // alert("Sorry!Try Agian!!");
       }
@@ -1767,7 +1757,6 @@ function opportunityTrendDay(){
         // res['data'].forEach(function(item){
         //   alert(item['total']);
         // });
-        console.log("opportunity trend day graph success");
         resolve(res);
         $('#OpportunityTrendInsights').remove();
         $('.child_graph_opportunity_trend_insights').append('<canvas id="OpportunityTrendInsights"><canvas>');
@@ -1915,7 +1904,6 @@ function opportunityTrendDay(){
         });
       },
       error:function(res){
-        console.log("opportunity drilldown graph ajax error");
         reject(res);
           // alert("Sorry!Try Agian!!");
       }
