@@ -2912,18 +2912,18 @@ function quality_reason_machine_tooltip(context){
 
 
                 // reset_reason();
-                reset_reason2();
+                // reset_reason2();
                 
-                reset_quality_reason();
-                reset_part();
-                reset_machine();
-                reset_machine1();
-                reset_machine2();
-                reset_machine3();
-                reset_machine4();
-                resetbyday_click();
-                reset_category2();
-                reset_all_data_field();
+                // reset_quality_reason();
+                // reset_part();
+                // reset_machine();
+                // reset_machine1();
+                // reset_machine2();
+                // reset_machine3();
+                // reset_machine4();
+                // resetbyday_click();
+                // reset_category2();
+                // reset_all_data_field();
 
               
                 
