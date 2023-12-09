@@ -17,7 +17,7 @@ class OEE_Drill_Down_Model extends Model{
             'DSN'      => '',
             'hostname' => 'localhost',
             'username' => 'root',
-            'password' => 'quantanics123',
+            'password' => '',
             'database' => ''.$db_name.'',
             'DBDriver' => 'MySQLi',
             'DBPrefix' => '',
@@ -56,6 +56,15 @@ class OEE_Drill_Down_Model extends Model{
         $query->where("(event !='Offline' OR event != 'No Data')", NULL, FALSE);
         $res= $query->get()->getResultArray();
         return $res;
+    }
+
+    public function downtime_category_filter_con(){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('settings_downtime_reasons');
+        $query->select('DISTINCT(downtime_category)');
+        $query->orderBy('downtime_category','ASC');
+        $res = $query->get()->getResultArray();
+        return $res;    
     }
 
     public function getOfflineEventId($FromDate,$FromTime,$ToDate,$ToTime)
@@ -143,7 +152,7 @@ class OEE_Drill_Down_Model extends Model{
         $db = \Config\Database::connect($this->site_connection);
         $query = $db->table('settings_downtime_reasons');
         // $query->select('DISTINCT(downtime_reason),downtime_reason_id');
-        $query->select('DISTINCT(downtime_reason)');
+        $query->select('DISTINCT(downtime_reason),downtime_reason_id');
         $query->orderBy('downtime_reason','ASC');
         $res = $query->get()->getResultArray();
         return $res;    
