@@ -1581,9 +1581,6 @@ function filter_after_filter(end_index,start_index){
     t = $('.toDate').val();
     from = f.replace(" ","T");
     to = t.replace(" ","T");
-    // console.log(from);
-    // console.log(to);
-    // console.log("prodcution downtime table filter values");
     $.ajax({
         url:"<?php echo base_url('Production_Downtime_controller/filter_records'); ?>",
         method:"POST",
@@ -1598,8 +1595,6 @@ function filter_after_filter(end_index,start_index){
             to:to,   
         },
         success:function(res){
-            // console.log("prouction downtime records table");
-            // console.log(res);
             $('.production_downtime_content').empty();
             // $('.scroll_rows').empty();
             var from_len = 0;
@@ -2404,8 +2399,6 @@ function getfilter_machine_reason_duration(){
             category_arr:graph_category_arr
         },
         success:function(res){
-            console.log("machine duration graph filter");
-            console.log(res);
             $('#machine_reason_duration').remove();
             $('.child_machine_reason_duration').append('<canvas id="machine_reason_duration"></canvas>');
             $('.chartjs-hidden-iframe').remove();
@@ -3092,8 +3085,6 @@ function first_load_reason_duration(f,t){
                 to:t,
             },
             success:function(res){
-                console.log("downtime duration reason")
-                console.log(res);
                 resolve(res);
 
                 var hour_text = parseInt(parseInt(res['total_duration'])/60);
@@ -3425,8 +3416,6 @@ function first_load_machine_duration(f,t){
             },
             success:function(res){
                 resolve(res);
-                console.log("machine duration");
-                console.log(res);
                 $('#machine_reason_duration').remove();
                 $('.child_machine_reason_duration').append('<canvas id="machine_reason_duration"></canvas>');
                 $('.chartjs-hidden-iframe').remove();           
@@ -3482,7 +3471,6 @@ function first_load_machine_duration(f,t){
                     res['data'].forEach(function(item){
                         arr_1.push(item.reason_duration[val]);
                         rname.push(item.reason_name[val]);
-                        console.log(item.reason_name[val]);
                         
                     });
                     demo.push({
@@ -3501,11 +3489,8 @@ function first_load_machine_duration(f,t){
                         barPercentage: bar_space,
                         yAxisID: 'B',
                     });
-                    console.log("color code is :\t"+color[x]);
                     x = x+1;
                 });
-                console.log(demo);
-                console.log('loading time descending order');
                 while(true){
                     var len= machineName.length;
                     if (len < 8) {
