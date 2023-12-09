@@ -1,6 +1,6 @@
 <head>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/alert_settings.css?version=<?php echo rand(); ?>">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/alert_settings.css?version=<?php echo rand(); ?>">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script> 
@@ -501,7 +501,7 @@
                                         <option value="planned_downtime">Planned Downtime</option>    
                                         <option value="unplanned_downtime">Unplanned Downtime</option>
                                         <option value="planned_machine_off">Planned Machine Off</option>
-                                        <option value="unplanned_machine_off">Unplanned Machine Off</option>
+                                        <!-- <option value="unplanned_machine_off">Unplanned Machine Off</option> -->
                                         <option value="total_downtime">Total Downtime</option>
                                         <option value="total_unnamed_hour">Total Unnamed (hours)</option>
                                         <option value="total_unnamed_count">Total Unnamed (count)</option>
@@ -856,7 +856,7 @@
                                         <option value="planned_downtime">Planned Downtime</option>    
                                         <option value="unplanned_downtime">Unplanned Downtime</option>
                                         <option value="planned_machine_off">Planned Machine Off</option>
-                                        <option value="unplanned_machine_off">Unplanned Machine Off</option>
+                                        <!-- <option value="unplanned_machine_off">Unplanned Machine Off</option> -->
                                         <option value="total_downtime">Total Downtime</option>
                                         <option value="total_unnamed_hour">Total Unnamed (hours)</option>
                                         <option value="total_unnamed_count">Total Unnamed (count)</option>
