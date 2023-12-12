@@ -670,17 +670,17 @@ class OEE_Drill_Down_controller extends BaseController
             $machine_arr = $this->request->getVar('machine_arr');
             $reason_arr = array_map( 'strtolower', $reason_arr);
             
-            // $fromTime = "2023-10-21T16:00:00";
-            // $toTime="2023-10-28T15:00:00";
+            // $fromTime = "2023-12-06T16:00:00";
+            // $toTime="2023-12-12T15:00:00";
             // $category_arr = array('all','Planned','Unplanned');
-            // $reason_arr = array('all_reason', 'apply spray', 'Break time', 'Colour change', 'door problem', 'ejection pin broken', 'ejection pin stuck up', 'Extra mould change', 'Facility', 'lunch break', 'Machine breakdown', 'Machine OFF', 'Mold Trial', 'Mould breakdown', 'mould change', 'Mould trail', 'no man power', 'No material In store', 'No material production', 'No packing', 'No plan', 'part catching', 'Preheating', 'Preventic maintenance', 'Preventive Maintanence', 'Process adjustment', 'QC approval', 'remove lumps', 'rib catch', 'Robot adjustment', 'runner catching', 'SEMIAUTO', 'Start up', 'Tool Changeover', 'Unnamed');
-            // $machine_arr = array('all', 'MC1001', 'MC1002', 'MC1003', 'MC1004');
+            // $reason_arr = array('all', '27', '29', '31', '23', '37', '40', '32', '13', '14', '41', '19', '38', '1', '8', '26', '24', '10', '16', '18', '20', '11', '9', '7', '30', '28', '17', '21', '5', '12', '35', '34', '25', '22', '36', '39', '15', '33', '42', '2', '3', '6', '0');
+            // $machine_arr = array('all', 'MC1001', 'MC1002', 'MC1003', 'MC1004','MC1005','MC1006');
             
             // $reason_arr = array_map( 'strtolower', $reason_arr);
 
             $res = $this->getAvailabilityReasonWise($fromTime,$toTime);
 
-             
+            
             // data array sorting concept
             for($i=0;$i<count($res['data']);$i++){
                 for ($j=$i+1; $j <count($res['data']); $j++) { 
@@ -709,7 +709,7 @@ class OEE_Drill_Down_controller extends BaseController
             
             foreach ($res['reason'] as $key => $value) {
                 if (in_array($value['downtime_category'],$category_arr)) {
-                    if (in_array(strtolower($value['normal_reason']),$reason_arr)) {
+                    if (in_array(strtolower($value['downtime_reason_id']),$reason_arr)) {
 
                         $res['reason'][$key]['oppcost'] = $this->getoppcost_arr($value['downtime_reason_id'],$res,$machine_arr);
                         $res['reason'][$key]['duration'] = $this->getduration_arr($value['downtime_reason_id'],$res,$machine_arr);
@@ -729,7 +729,7 @@ class OEE_Drill_Down_controller extends BaseController
                     foreach ($value as $k => $val) {
                         if (in_array($val['machine_id'],$machine_arr)) {
                             if (in_array($val['category'],$category_arr)) {
-                                if (in_array(strtolower($val['normal_reason']),$reason_arr)) {
+                                if (in_array(strtolower($val['reason_id']),$reason_arr)) {
                                     array_push($tmp_filter_ar,$value[$k]); 
                                 }                           
                             }

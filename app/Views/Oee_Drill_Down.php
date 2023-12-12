@@ -728,12 +728,12 @@ $session = \Config\Services::session();
 
 <!-- preloader -->
 <!-- preloader -->
-<!-- <div id="overlay">
+<div id="overlay">
     <div class="cv-spinner">
         <span class="spinner"></span>
         <span class="loading">Awaiting Completion...</span>
     </div>
-</div> -->
+</div>
 <!-- preloader end -->
 <script src="<?php echo base_url(); ?>/assets/js/oee_drill_down.js?version=<?php echo rand() ; ?>"></script>
 <script type="text/javascript">
@@ -891,86 +891,6 @@ $(document).on('click','.byday_click',function(event){
         $('#text_category_drp').text('By Shift');
     }
 });
-
-// availability
-$(document).on('click','.category_click2',function(event){
-    event.preventDefault();
-    common_click_div_fun('category_click2','category_drp_checkbox2','text_category_drp2','Categories','machine_wise_availability_category_call',this);
-
-  
-});
-
-// availability graph
-$(document).on('click','.reason_click2',function(event){
-    event.preventDefault();
-    common_click_div_fun('reason_click2','reason_checkbox2','text_reason2','Reasons','machine_wise_availability_reason_call',this);
-
-    
-});
-
-// machine wise quality graph
-// reason dropdown onclick div function
-$(document).on('click','.quality_click',function(event){
-    event.preventDefault();
-    common_click_div_fun('quality_click','quality_checkbox','text_quality_reason','Reasons','machine_wise_quality_reason_call',this);
-  
-});
-
-
-$(document).on('click','.machine_click',function(event){
-    event.preventDefault();
-    common_click_div_fun('machine_click','machine_checkbox','text_machine','Machines','oee_trend_machine_call',this);
-   
-});
-
-// machine wise oee graph machine drp click function
-$(document).on('click','.machine_click1',function(event){
-    event.preventDefault();
-    common_click_div_fun('machine_click1','machine_checkbox1','text_machine1','Machines','machine_wise_oee_machine_call',this);
-   
-});
-
-// availability graph
-$(document).on('click','.machine_click2',function(event){
-    event.preventDefault();
-    common_click_div_fun('machine_click2','machine_checkbox2','text_machine2','Machines','machine_wise_availability_machine_call',this);
-
-   
-});
-
-
-$(document).on('click','.machine_click3',function(event){
-    event.preventDefault();
-    common_click_div_fun('machine_click3','machine_checkbox3','text_machine3','Machines','machine_wise_performance_machine_call',this);
-
-   
-});
-
-
-
-$(document).on('click','.part_click',function(event){
-    event.preventDefault();
-    common_click_div_fun('part_click','part_checkbox','text_part','Parts','machine_wise_performance_part_call',this);
-
-   
-});
-
-// machine wise quality graph machine dropdown onclick
-$(document).on('click','.machine_click4',function(event){
-    event.preventDefault();
-    common_click_div_fun('machine_click4','machine_checkbox4','text_machine4','Machines','machine_wise_quality_machine_call',this);
-   
-});
-
-// machine wise oee graph datafield  dropdown onclick
-$(document).on('click','.all_data_field_click',function(event){
-    event.preventDefault();
-    common_click_div_fun('all_data_field_click','all_data_field_checkbox','text_all_data_field','DataFields','machine_wise_oee_datafield_call',this);
-
-   
-});
-
-
 
 
 
@@ -1153,142 +1073,35 @@ $(document).mouseup(function(event){
     
         
 
-    // // oee trend graph
-    // // machine multi select dropdown
-    // var machine = $('.filter_checkboxes_machine');
-    // var oee_trend_machine_drp = $('.oee_trend_drp_machine');
-    // if (!machine.is(event.target) && machine.has(event.target).length==0 && !oee_trend_machine_drp.is(event.target) && oee_trend_machine_drp.has(event.target).length==0) {
-    //     if (drp_obj['oee_trend_drp_machine']==true) {
-    //         drp_obj['oee_trend_drp_machine']=false;
-    //         machine.hide();     
-    //     }
-    // }
-
-    // // machine wise OEE %
-    // // all data field dropdown
-    // var all_data_field = $('.all_data_field_fill');
-    // var machine_wise_oee_field_drp = $('.machine_wise_oee_field_drp');
-    // if (!all_data_field.is(event.target) && all_data_field.has(event.target).length==0 && !machine_wise_oee_field_drp.is(event.target) && machine_wise_oee_field_drp.has(event.target).length==0) {
-    //     if (drp_obj['machine_wise_oee_field_drp']==true) {
-    //         drp_obj['machine_wise_oee_field_drp']=false;
-    //         all_data_field.hide();
-    //     }
-    // }
-
-    // // machine dropdown
-    // var machine1 = $('.filter_checkboxes_machine1');
-    // var machine_wise_oee_machine_drp = $('.machine_wise_oee_machine_drp');
-    // if (!machine1.is(event.target) && machine1.has(event.target).length==0 && !machine_wise_oee_machine_drp.is(event.target) && machine_wise_oee_machine_drp.has(event.target).length==0) {
-    //     if (drp_obj['machine_wise_oee_machine_drp']==true) {
-    //         drp_obj['machine_wise_oee_machine_drp']=false;
-    //         machine1.hide();
-    //     }
-    // }
-
-    // // machine wise availability 
-    // // category dropdown
-    // var category1 = $('.category_fill2');
-    // var machine_wise_availability_category = $('.machine_availability_category_drp');
-    // if (!category1.is(event.target) && category1.has(event.target).length==0 && !machine_wise_availability_category.is(event.target) && machine_wise_availability_category.has(event.target).length==0) {
-    //     if (drp_obj['machine_availability_category_drp']==true) {
-    //         drp_obj['machine_availability_category_drp']=false;
-    //         category1.hide();
-    //     }
-    // }
-    // // reason dropdown
-    // var reason1 = $('.reason_fill2');
-    // var machine_wise_availability_reason = $('.machine_availability_reason_drp');
-    // if (!reason1.is(event.target) && reason1.has(event.target).length==0 && !machine_wise_availability_reason.is(event.target) && machine_wise_availability_reason.has(event.target).length==0) {
-    //     if (drp_obj['machine_availability_reason_drp']==true) {
-    //         drp_obj['machine_availability_reason_drp']=false;
-    //         reason1.hide();
-    //     }
-    // }
-
-    // // machine 
-    // var machine2 = $('.filter_checkboxes_machine2');
-    // var machine_wise_availability_machine = $('.machine_availability_machine_drp');
-    // if (!machine2.is(event.target) && machine2.has(event.target).length==0 && !machine_wise_availability_machine.is(event.target) && machine_wise_availability_machine.has(event.target).length==0) {
-    //     if (drp_obj['machine_availability_machine_drp']==true) {
-    //         drp_obj['machine_availability_machine_drp']=false;
-    //         machine2.hide();
-    //     }
-    // }
-
-    // // Machine-wise Performance with Parts
-    // // parts
-    // var part1 = $('.part_fill');
-    // var machine_wise_performance_part_tmp = $('.machine_wise_performance_part_drp');
-    // if (!part1.is(event.target) && part1.has(event.target).length==0 && !machine_wise_performance_part_tmp.is(event.target) && machine_wise_performance_part_tmp.has(event.target).length==0) {
-    //     if (drp_obj['machine_wise_performance_part_drp']==true) {
-    //         drp_obj['machine_wise_performance_part_drp']=false;
-    //         part1.hide();
-    //     }
-    // }
-
-    // // machine
-    // var machine3 = $('.filter_checkboxes_machine3');
-    // var machine_wise_performance_machine_tmp = $('.machine_wise_performance_machine_drp');
-    // if (!machine3.is(event.target) && machine3.has(event.target).length==0 && !machine_wise_performance_machine_tmp.is(event.target) && machine_wise_performance_machine_tmp.has(event.target).length==0) {
-    //     if (drp_obj['machine_wise_performance_machine_drp']==true) {
-    //         drp_obj['machine_wise_performance_machine_drp']=false;
-    //         machine3.hide();
-    //     }
-    // }
-
-    // // machine quality with reasons
-    // // machine
-    // var machine4 = $('.filter_checkboxes_machine4');
-    // var machine_wise_quality_machine_tmp = $('.machine_wise_quality_machine_drp');
-    // if (!machine4.is(event.target) && machine4.has(event.target).length==0 && !machine_wise_quality_machine_tmp.is(event.target) && machine_wise_quality_machine_tmp.has(event.target).length==0) {
-    //     if (drp_obj['machine_wise_quality_machine_drp']==true) {
-    //         drp_obj['machine_wise_quality_machine_drp']=false;
-    //         machine4.hide();
-    //     }
-    // }
-
-    // // quality 
-    // var quality = $('.quality_reason_fill');
-    // var machine_wise_quality_reason_tmp = $('.machine_wise_quality_reason_drp');
-    // if (!quality.is(event.target) && quality.has(event.target).length==0 && !machine_wise_quality_reason_tmp.is(event.target) && machine_wise_quality_reason_tmp.has(event.target).length==0) {
-    //     if (drp_obj['machine_wise_quality_reason_drp']==true) {
-    //         drp_obj['machine_wise_quality_reason_drp']=false;
-    //         quality.hide();
-    //     }
-    // }
-
-
-
 
 });
 
 // graph onclick ajax function call
-$(document).on('click','.oee_trend_common',function(event){
-    event.preventDefault();
-    oeeTrendDay();
+$(document).on('click','.oee_trend_common',function(){
+   console.log("oee trend graph click function");
+   oeeTrendDay();
 });
 
 // graph onclick ajax function call machine wise oee
-$(document).on('click','.machine_oee_common',function(event){
-    event.preventDefault();
-    machineWiseOEE();
+$(document).on('click','.machine_oee_common',function(){
+  console.log("machine wise oee");
+  machineWiseOEE();
 });
 
 // graph onclickajax function call machine wise availability
-$(document).on('click','.machine_availability_common',function(event){
-    event.preventDefault();
+$(document).on('click','.machine_availability_common',function(){
+  
     availabilityReason_machine();
 });
 
 // graph onclick ajax function call machine wise performance 
-$(document).on('click','.machine_performance_common',function(event){
-    event.preventDefault();
+$(document).on('click','.machine_performance_common',function(){
+  
     performance_opportunity();
 });
 
 // graph onclick ajax function call machine wise quality
-$(document).on('click','.machine_quality_common',function(event){
-    event.preventDefault();
+$(document).on('click','.machine_quality_common',function(){
     quality_reason_machine();
 });
 
@@ -1296,32 +1109,13 @@ $(document).on('click','.machine_quality_common',function(event){
 function oeeTrendDay() {
      // machine array
      var graph_machine_arr = [];
-    $('.machine_checkbox').each(function(){
+    $('.checkbox_machine_dd_trend').each(function(){
         if ($(this).is(':checked')) {
             graph_machine_arr.push($(this).val().trim());
         }
     });
 
-    // // reason array
-    // var graph_reason_arr = [];
-    // $('.reason_checkbox').each(function(){
-    //     if ($(this).is(':checked')) {
-    //         graph_reason_arr.push($(this).val());
-    //     }
-    // });
-
-    
-    // // category
-    // var graph_category_arr = [];
-    // $('.category_drp_checkbox').each(function(){
-    //     if ($(this).is(':checked')) {
-    //         graph_category_arr.push($(this).val());
-    //     }
-    // });
-
-
-
-
+ 
   f = $('.fromDate').val();
   t = $('.toDate').val();
   f = f.replace(" ","T");
@@ -1442,7 +1236,7 @@ function oeeTrendDay() {
 }
 
 
-  function oeeTrendOpp(context) {  
+function oeeTrendOpp(context) {  
 
     // Tooltip Element
     let tooltipEl = document.getElementById('tooltip-oeetrend');
@@ -1523,14 +1317,14 @@ function oeeTrendDay() {
 function machineWiseOEE() {
 
     var graph_machine_arr = [];
-    $('.machine_checkbox1').each(function(){
+    $('.filter_machine_dd_moeeb_val').each(function(){
         if ($(this).is(':checked')) {
             graph_machine_arr.push($(this).val().trim());
         }
     });
 
     var all_data_field = [];
-    $('.all_data_field_checkbox').each(function(){
+    $('.filter_dataField_dd_moeeb_val').each(function(){
         if ($(this).is(':checked')) {
             all_data_field.push($(this).val().trim());
         }
@@ -1551,6 +1345,8 @@ function machineWiseOEE() {
         // all_data_field:all_data_field,
         },
         success:function(res){
+            console.log("machine wise oee graph value");
+            console.log(res);
             $('#machine_wise_oee').remove();
             $('.child_machine_wise_oee').append('<canvas id="machine_wise_oee"></canvas>');
             $('.chartjs-hidden-iframe').remove();
@@ -1561,23 +1357,23 @@ function machineWiseOEE() {
             while(true){
                 var len= res["OEE"].length;
                 if (len < 8) {
-                res["OEE"].push("");
-                res.MachineName.push("");
+                    res["OEE"].push("");
+                    res.MachineName.push("");
                 }
                 else if(len > 8){
-                var l = parseInt(len)%parseInt(8);
-                var w= parseInt($('.parent_machine_wise_oee').css("width"))+parseInt(l*18*16);
-                $('.child_machine_wise_oee').css("width",w+"px");
-                break;
+                    var l = parseInt(len)%parseInt(8);
+                    var w= parseInt($('.parent_machine_wise_oee').css("width"))+parseInt(l*18*16);
+                    $('.child_machine_wise_oee').css("width",w+"px");
+                    break;
                 }
                 else{
-                break;
+                    break;
                 }
             }
 
             var graph_demo_arr = [];
             all_data_field.forEach(function(item){
-                if(item === "quality"){
+                if(item === "Quality"){
                     graph_demo_arr.push({
                         label: "Quality",
                         type: "line",
@@ -1595,7 +1391,7 @@ function machineWiseOEE() {
                         oeeTarget:res['OEETarget'],
                     });
                 }
-                else if(item === "performance"){
+                else if(item === "Performance"){
                     graph_demo_arr.push({
                         label: "Performance",
                         type: "line",
@@ -1616,7 +1412,7 @@ function machineWiseOEE() {
                     });
 
                 }
-                else if(item === "availability"){
+                else if(item === "Availability"){
                     graph_demo_arr.push({
                         label: "Availability",
                         type: "line",
@@ -1635,7 +1431,7 @@ function machineWiseOEE() {
                         oeeTarget:res['OEETarget'],
                     });
                 }
-                else if (item==="oee") {
+                else if (item==="OEE") {
                     graph_demo_arr.push({
                         label: "Machine OEE",
                         type: "bar",
@@ -1653,6 +1449,7 @@ function machineWiseOEE() {
                     });
                 }
             });
+            
             var ctx = document.getElementById("machine_wise_oee").getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'bar',
@@ -1696,6 +1493,7 @@ function machineWiseOEE() {
                
         },
         error:function(res){
+            console.log("machine wise oee error");
             // alert("No Data Records!");
         }
     });
@@ -1794,7 +1592,7 @@ function availabilityReason_machine() {
     
     // machine array
     var graph_category_arr = [];
-    $('.category_drp_checkbox2').each(function(){
+    $('.checkbox_category_dd_mawr').each(function(){
         if ($(this).is(':checked')) {
             graph_category_arr.push($(this).val().trim());
         }
@@ -1802,7 +1600,7 @@ function availabilityReason_machine() {
 
     // reason array
     var graph_reason_arr = [];
-    $('.reason_checkbox2').each(function(){
+    $('.checkbox_reason_dd_mawr').each(function(){
         if ($(this).is(':checked')) {
             graph_reason_arr.push($(this).val());
         }
@@ -1811,12 +1609,15 @@ function availabilityReason_machine() {
     
     // category
     var graph_machine_arr = [];
-    $('.machine_checkbox2').each(function(){
+    $('.checkbox_machine_dd_mawr').each(function(){
         if ($(this).is(':checked')) {
             graph_machine_arr.push($(this).val());
         }
     });
-
+    console.log("before ajax array");
+    console.log(graph_machine_arr);
+    console.log(graph_reason_arr);
+    console.log(graph_category_arr);
 	$.ajax({
         url: "<?php echo base_url('OEE_Drill_Down_controller/getmachine_reason_availability');?>",
         type: "POST",
@@ -1829,7 +1630,7 @@ function availabilityReason_machine() {
             category_arr:graph_category_arr,
         },
         success:function(res){
-
+           
             $('#machine_reason_availability').remove();
             $('.child_machine_reason_availability').append('<canvas id="machine_reason_availability"></canvas>');
             $('.chartjs-hidden-iframe').remove();
@@ -1861,17 +1662,7 @@ function availabilityReason_machine() {
     
             });
 
-            // var reasonList =[];
-            
-            // res['reason'].forEach(function(reason){
-            //     reasonList.push(reason.downtime_reason);
-            // });
-
-            // var totalVal =[];
-            // res['total'].forEach(function(total){
-            //     totalVal.push(total.toFixed(2));
-            // });
-
+          
             var totalDuration=[];
             res['totalDuration'].forEach(function(duration){
                 totalDuration.push(duration);
@@ -1896,13 +1687,13 @@ function availabilityReason_machine() {
                     machineName.push("");
                 }
                 else if(len > 8){
-                var l = parseInt(len)%parseInt(8);
-                var w= parseInt($('.parent_machine_reason_availability').css("width"))+parseInt(l*18*16);
-                $('.child_machine_reason_availability').css("width",w+"px");
-                break;
+                    var l = parseInt(len)%parseInt(8);
+                    var w= parseInt($('.parent_machine_reason_availability').css("width"))+parseInt(l*18*16);
+                    $('.child_machine_reason_availability').css("width",w+"px");
+                    break;
                 }
                 else{
-                break;
+                    break;
                 }
             }
 
@@ -1954,6 +1745,9 @@ function availabilityReason_machine() {
                 x=x+1;
                 index=index+1;
             });
+            console.log("machine reason availability");
+            console.log(machineName);
+            console.log(machine);
             var avlOpp = document.getElementById("machine_reason_availability").getContext('2d');
             var avlOppChart = new Chart(avlOpp, {
                 type: 'bar',
@@ -2111,14 +1905,14 @@ function performance_opportunity(){
     $('.chartjs-hidden-iframe').remove();
 
     var graph_machine_arr = [];
-    $('.machine_checkbox3').each(function(){
+    $('.checkbox_machine_dd_mpwp').each(function(){
         if ($(this).is(':checked')) {
             graph_machine_arr.push($(this).val().trim());
         }
     });
 
     var part_arr = [];
-    $('.part_checkbox').each(function(){
+    $('.checkbox_part_dd_mpwp').each(function(){
         if ($(this).is(':checked')) {
             part_arr.push($(this).val().trim());
         }
@@ -2411,14 +2205,14 @@ function performanceOpp(context){
 function quality_reason_machine() {
 
     var graph_quality_arr = [];
-    $('.quality_checkbox').each(function(){
+    $('.checkbox_reason_dd_mqwr').each(function(){
         if ($(this).is(':checked')) {
             graph_quality_arr.push($(this).val().trim());
         }
     });
 
     var machine_arr = [];
-    $('.machine_checkbox4').each(function(){
+    $('.checkbox_machine_dd_mqwr').each(function(){
         if ($(this).is(':checked')) {
             machine_arr.push($(this).val().trim());
         }
@@ -2440,7 +2234,8 @@ function quality_reason_machine() {
         quality_arr:graph_quality_arr,
         },
         success:function(res){
-
+            console.log("quality graph output");
+            console.log(res);
             $('#quality_reason_machine').remove();
             $('.child_quality_reason_machine').append('<canvas id="quality_reason_machine"></canvas>');
             $('.chartjs-hidden-iframe').remove();
@@ -2710,7 +2505,7 @@ function quality_reason_machine_tooltip(context){
             success:function(res){
                 resolve(res);
 
-                $('.filter_machine_dd_moeeb').append('<div class="inbox inbox_machine_dd_moeeb" style="display: flex;">'
+                $('.filter_machine_dd_moeeb').append('<div class="inbox inbox_machine_dd_moeeb machine_oee_common" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_machine_dd_moeeb filter_machine_dd_moeeb_val" name="machine_dd_moeeb_filter_val" value="all" type="checkbox" checked/>'
                   +'</div>'
@@ -2730,7 +2525,7 @@ function quality_reason_machine_tooltip(context){
 
                 
 
-                $('.filter_machine_dd_mawr').append('<div class="inbox inbox_machine_dd_mawr" style="display: flex;">'
+                $('.filter_machine_dd_mawr').append('<div class="inbox inbox_machine_dd_mawr machine_availability_common" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_machine_dd_mawr filter_machine_dd_mawr_val" name="machine_dd_mawr_filter_val" value="all" type="checkbox" checked/>'
                   +'</div>'
@@ -2739,7 +2534,7 @@ function quality_reason_machine_tooltip(context){
                   +'</div>'
                 +'</div>');
 
-                $('.filter_category_dd_mawr').append('<div class="inbox inbox_category_dd_mawr" style="display: flex;">'
+                $('.filter_category_dd_mawr').append('<div class="inbox inbox_category_dd_mawr machine_availability_common" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_category_dd_mawr filter_category_dd_mawr_val" name="category_dd_mawr_filter_val" value="all" type="checkbox" checked/>'
                   +'</div>'
@@ -2748,7 +2543,7 @@ function quality_reason_machine_tooltip(context){
                   +'</div>'
                 +'</div>');
 
-                $('.filter_machine_dd_mqwr').append('<div class="inbox inbox_machine_dd_mqwr" style="display: flex;">'
+                $('.filter_machine_dd_mqwr').append('<div class="inbox inbox_machine_dd_mqwr machine_quality_common" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_machine_dd_mqwr filter_machine_dd_mqwr_val" name="machine_dd_mqwr_filter_val" value="all" type="checkbox" checked/>'
                   +'</div>'
@@ -2757,7 +2552,7 @@ function quality_reason_machine_tooltip(context){
                   +'</div>'
                 +'</div>');
 
-                $('.filter_machine_dd_trend').append('<div class="inbox inbox_machine_dd_trend" style="display: flex;">'
+                $('.filter_machine_dd_trend').append('<div class="inbox inbox_machine_dd_trend oee_trend_common" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_machine_dd_trend filter_machine_dd_trend_val" name="machine_dd_trend_filter_val" value="all" type="checkbox" checked/>'
                   +'</div>'
@@ -2766,7 +2561,7 @@ function quality_reason_machine_tooltip(context){
                   +'</div>'
                 +'</div>');
 
-                $('.filter_machine_dd_mpwp').append('<div class="inbox inbox_machine_dd_mpwp" style="display: flex;">'
+                $('.filter_machine_dd_mpwp').append('<div class="inbox inbox_machine_dd_mpwp machine_performance_common" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_machine_dd_mpwp filter_machine_dd_mpwp_val" name="machine_dd_mpwp_filter_val" value="all" type="checkbox" checked/>'
                   +'</div>'
@@ -2775,7 +2570,7 @@ function quality_reason_machine_tooltip(context){
                   +'</div>'
                 +'</div>');
 
-                $('.filter_reason_dd_mawr').append('<div class="inbox inbox_reason_dd_mawr" style="display: flex;">'
+                $('.filter_reason_dd_mawr').append('<div class="inbox inbox_reason_dd_mawr machine_availability_common" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_reason_dd_mawr filter_reason_dd_mawr_val" name="reason_dd_mawr_filter_val" value="all" type="checkbox" checked/>'
                   +'</div>'
@@ -2784,7 +2579,7 @@ function quality_reason_machine_tooltip(context){
                   +'</div>'
                 +'</div>');
 
-                $('.filter_reason_dd_mqwr').append('<div class="inbox inbox_reason_dd_mqwr" style="display: flex;">'
+                $('.filter_reason_dd_mqwr').append('<div class="inbox inbox_reason_dd_mqwr machine_quality_common" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_reason_dd_mqwr filter_reason_dd_mqwr_val" name="reason_dd_mqwr_filter_val" value="all" type="checkbox" checked/>'
                   +'</div>'
@@ -2793,7 +2588,7 @@ function quality_reason_machine_tooltip(context){
                   +'</div>'
                 +'</div>');
 
-                $('.filter_part_dd_mpwp').append('<div class="inbox inbox_part_dd_mpwp" style="display: flex;">'
+                $('.filter_part_dd_mpwp').append('<div class="inbox inbox_part_dd_mpwp machine_performance_common" style="display: flex;">'
                   +'<div style="float: left;width: 20%;" class="center-align">'
                     +'<input class="checkbox_part_dd_mpwp filter_part_dd_mpwp_val" name="part_dd_mpwp_filter_val" value="all" type="checkbox" checked/>'
                   +'</div>'
@@ -2801,11 +2596,21 @@ function quality_reason_machine_tooltip(context){
                       +'<p class="inbox-span paddingm">All</p>'
                   +'</div>'
                 +'</div>');
+
+
+                $('.filter_dataField_dd_moeeb').append('<div class="inbox inbox_dataField_dd_moeeb machine_oee_common" style="display: flex;">'
+                      +'<div style="float: left;width: 20%;" class="center-align">'
+                        +'<input class="checkbox_dataField_dd_moeeb filter_dataField_dd_moeeb_val" name="dataField_dd_moeeb_filter_val" value="all" type="checkbox" checked/>'
+                      +'</div>'
+                      +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+                          +'<p class="inbox-span paddingm">All Data Fields</p>'
+                      +'</div>'
+                +'</div>');
                 
                 
 
                 res['data_field'].forEach(function(val){
-                    $('.filter_dataField_dd_moeeb').append('<div class="inbox inbox_dataField_dd_moeeb" style="display: flex;">'
+                    $('.filter_dataField_dd_moeeb').append('<div class="inbox inbox_dataField_dd_moeeb machine_oee_common" style="display: flex;">'
                       +'<div style="float: left;width: 20%;" class="center-align">'
                         +'<input class="checkbox_dataField_dd_moeeb filter_dataField_dd_moeeb_val" name="dataField_dd_moeeb_filter_val" value="'+val+'" type="checkbox" checked/>'
                       +'</div>'
@@ -2816,7 +2621,7 @@ function quality_reason_machine_tooltip(context){
                 });
 
                 res['machine'].forEach(function(val){
-                        $('.filter_machine_dd_trend').append('<div class="inbox inbox_machine_dd_trend" style="display: flex;">'
+                        $('.filter_machine_dd_trend').append('<div class="inbox inbox_machine_dd_trend oee_trend_common" style="display: flex;">'
                           +'<div style="float: left;width: 20%;" class="center-align">'
                             +'<input class="checkbox_machine_dd_trend filter_machine_dd_trend_val" name="machine_dd_trend_filter_val" value="'+val.machine_id+'" type="checkbox" checked/>'
                           +'</div>'
@@ -2825,7 +2630,7 @@ function quality_reason_machine_tooltip(context){
                           +'</div>'
                         +'</div>');
 
-                        $('.filter_machine_dd_moeeb').append('<div class="inbox inbox_machine_dd_moeeb" style="display: flex;">'
+                        $('.filter_machine_dd_moeeb').append('<div class="inbox inbox_machine_dd_moeeb machine_oee_common" style="display: flex;">'
                           +'<div style="float: left;width: 20%;" class="center-align">'
                             +'<input class="checkbox_machine_dd_moeeb filter_machine_dd_moeeb_val" name="machine_dd_moeeb_filter_val" value="'+val.machine_id+'" type="checkbox" checked/>'
                           +'</div>'
@@ -2834,7 +2639,7 @@ function quality_reason_machine_tooltip(context){
                           +'</div>'
                         +'</div>');
 
-                        $('.filter_machine_dd_mawr').append('<div class="inbox inbox_machine_dd_mawr" style="display: flex;">'
+                        $('.filter_machine_dd_mawr').append('<div class="inbox inbox_machine_dd_mawr machine_availability_common" style="display: flex;">'
                           +'<div style="float: left;width: 20%;" class="center-align">'
                             +'<input class="checkbox_machine_dd_mawr filter_machine_dd_mawr_val" name="machine_dd_mawr_filter_val" value="'+val.machine_id+'" type="checkbox" checked/>'
                           +'</div>'
@@ -2843,7 +2648,7 @@ function quality_reason_machine_tooltip(context){
                           +'</div>'
                         +'</div>');
 
-                        $('.filter_machine_dd_mqwr').append('<div class="inbox inbox_machine_dd_mqwr" style="display: flex;">'
+                        $('.filter_machine_dd_mqwr').append('<div class="inbox inbox_machine_dd_mqwr machine_quality_common" style="display: flex;">'
                           +'<div style="float: left;width: 20%;" class="center-align">'
                             +'<input class="checkbox_machine_dd_mqwr filter_machine_dd_mqwr_val" name="machine_dd_mqwr_filter_val" value="'+val.machine_id+'" type="checkbox" checked/>'
                           +'</div>'
@@ -2852,7 +2657,7 @@ function quality_reason_machine_tooltip(context){
                           +'</div>'
                         +'</div>');
 
-                        $('.filter_machine_dd_mpwp').append('<div class="inbox inbox_machine_dd_mpwp" style="display: flex;">'
+                        $('.filter_machine_dd_mpwp').append('<div class="inbox inbox_machine_dd_mpwp machine_performance_common" style="display: flex;">'
                           +'<div style="float: left;width: 20%;" class="center-align">'
                             +'<input class="checkbox_machine_dd_mpwp filter_machine_dd_mpwp_val" name="machine_dd_mpwp_filter_val" value="'+val.machine_id+'" type="checkbox" checked/>'
                           +'</div>'
@@ -2865,7 +2670,7 @@ function quality_reason_machine_tooltip(context){
 
                 res['downtime'].forEach(function(val){
 
-                    $('.filter_reason_dd_mawr').append('<div class="inbox inbox_reason_dd_mawr" style="display: flex;">'
+                    $('.filter_reason_dd_mawr').append('<div class="inbox inbox_reason_dd_mawr machine_availability_common" style="display: flex;">'
                           +'<div style="float: left;width: 20%;" class="center-align">'
                             +'<input class="checkbox_reason_dd_mawr filter_reason_dd_mawr_val" name="reason_dd_mawr_filter_val" value="'+val.downtime_reason_id+'" type="checkbox" checked/>'
                           +'</div>'
@@ -2877,7 +2682,7 @@ function quality_reason_machine_tooltip(context){
 
                 res['category'].forEach(function(val){
 
-                    $('.filter_category_dd_mawr').append('<div class="inbox inbox_category_dd_mawr" style="display: flex;">'
+                    $('.filter_category_dd_mawr').append('<div class="inbox inbox_category_dd_mawr machine_availability_common" style="display: flex;">'
                           +'<div style="float: left;width: 20%;" class="center-align">'
                             +'<input class="checkbox_category_dd_mawr filter_category_dd_mawr_val" name="category_dd_mawr_filter_val" value="'+val.downtime_category+'" type="checkbox" checked/>'
                           +'</div>'
@@ -2889,7 +2694,7 @@ function quality_reason_machine_tooltip(context){
 
                 res['quality'].forEach(function(val){
                     var elements_qdrp = $();
-                    $('.filter_reason_dd_mqwr').append('<div class="inbox inbox_reason_dd_mqwr" style="display: flex;">'
+                    $('.filter_reason_dd_mqwr').append('<div class="inbox inbox_reason_dd_mqwr machine_quality_common" style="display: flex;">'
                           +'<div style="float: left;width: 20%;" class="center-align">'
                             +'<input class="checkbox_reason_dd_mqwr filter_reason_dd_mqwr_val" name="reason_dd_mqwr_filter_val" value="'+val.quality_reason_id+'" type="checkbox" checked/>'
                           +'</div>'
@@ -2900,7 +2705,7 @@ function quality_reason_machine_tooltip(context){
                 });
 
                 res['part'].forEach(function(val){
-                    $('.filter_part_dd_mpwp').append('<div class="inbox inbox_part_dd_mpwp" style="display: flex;">'
+                    $('.filter_part_dd_mpwp').append('<div class="inbox inbox_part_dd_mpwp machine_performance_common" style="display: flex;">'
                           +'<div style="float: left;width: 20%;" class="center-align">'
                             +'<input class="checkbox_part_dd_mpwp filter_part_dd_mpwp_val" name="part_dd_mpwp_filter_val" value="'+val.part_id+'" type="checkbox" checked/>'
                           +'</div>'
@@ -2950,13 +2755,15 @@ async function all_graph_fun(){
     await overallTarget(f,t);
     await oee_trend_first_load(f,t);
     await first_loader_machine_oee(f,t);
-    await first_loader_availability(f,t);
+    //await first_loader_availability(f,t);
+    availabilityReason_machine();
     await first_loader_performance(f,t);
     await first_loader_quality(f,t);
     // await first_load_quality
     // await first_machine_wise_oee
     // await first_loader_performance
     // await first_load_availability
+   
     await get_all_filter_drp_fill
     $('#overlay').fadeOut(500);
 }
