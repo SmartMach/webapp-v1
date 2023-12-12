@@ -1760,23 +1760,19 @@ $(document).on('click','.table_reset',function(event){
 
 
 // graph onclick
-$(document).on('click','.docr_filter',function(event){
-    event.preventDefault();
+$(document).on('click','.docr_filter',function(){
     getfilter_oppcost_reason();
 });
-$(document).on('click','.ddr_filter',function(event){
-    event.preventDefault();
+$(document).on('click','.ddr_filter',function(){
     getfilter_duration_reason();
 
 });
 
-$(document).on('click','.docm_filter',function(event){
-    event.preventDefault();
+$(document).on('click','.docm_filter',function(){
     getfilter_machine_oppcost();
 });
 
-$(document).on('click','.ddmr_filter',function(event){
-    event.preventDefault();
+$(document).on('click','.ddmr_filter',function(){
     getfilter_machine_reason_duration();
 
 });
@@ -3166,15 +3162,12 @@ function getall_filter_arr(){
 
 async function graph_loader(){
     await getall_filter_arr();
-
     await getfilter_oppcost_reason();
     await getfilter_duration_reason();
     await getfilter_machine_oppcost();
     await getfilter_machine_reason_duration();
     console.log("first loader function");
     filter_after_filter(50,0);
-
-
 }
 
 </script>

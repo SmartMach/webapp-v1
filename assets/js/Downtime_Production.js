@@ -182,133 +182,133 @@ function multiple_drp_fun(classRef,eleRef,labRef,dropRef,thisRef) {
 }
 
 // Downtime Opportunity Cost by Reasons
-$(document).on('click','.inbox_reason_docr',function(event){
+$(document).on('click','.inbox_reason_docr',function(){
     multiple_drp_fun("inbox_reason_docr","filter_reason_val_docr","reason_text_docr","Reasons",this);
 });
 
-$(document).on('click','.filter_reason_val_docr',function(event){
+$(document).on('click','.filter_reason_val_docr',function(){
     multiple_drp_fun("filter_reason_val_docr","filter_reason_val_docr","reason_text_docr","Reasons",this);
 });
-$(document).on('click','.inbox_machine_docr',function(event){
+$(document).on('click','.inbox_machine_docr',function(){
     multiple_drp_fun("inbox_machine_docr","filter_machine_val_docr","machine_text_docr","Machines",this);
 });
 
-$(document).on('click','.filter_machine_val_docr',function(event){
+$(document).on('click','.filter_machine_val_docr',function(){
     multiple_drp_fun("filter_machine_val_docr","filter_machine_val_docr","machine_text_docr","Machines",this);
 });
-$(document).on('click','.inbox_category_docr',function(event){
+$(document).on('click','.inbox_category_docr',function(){
     multiple_drp_fun("inbox_category_docr","filter_category_val_docr","category_text_docr","Categories",this);
 });
 
-$(document).on('click','.filter_category_val_docr',function(event){
+$(document).on('click','.filter_category_val_docr',function(){
     multiple_drp_fun("filter_category_val_docr","filter_category_val_docr","category_text_docr","Categories",this);
 });
 
 // Downtime Duration by Reasons
-$(document).on('click','.inbox_reason_ddr',function(event){
+$(document).on('click','.inbox_reason_ddr',function(){
     multiple_drp_fun("inbox_reason_ddr","filter_reason_val_ddr","reason_text_ddr","Reasons",this);
 });
 
-$(document).on('click','.filter_reason_val_ddr',function(event){
+$(document).on('click','.filter_reason_val_ddr',function(){
     multiple_drp_fun("filter_reason_val_ddr","filter_reason_val_ddr","reason_text_ddr","Reasons",this);
 });
-$(document).on('click','.inbox_machine_ddr',function(event){
+$(document).on('click','.inbox_machine_ddr',function(){
     multiple_drp_fun("inbox_machine_ddr","filter_machine_val_ddr","machine_text_ddr","Machines",this);
 });
 
-$(document).on('click','.filter_machine_val_ddr',function(event){
+$(document).on('click','.filter_machine_val_ddr',function(){
     multiple_drp_fun("filter_machine_val_ddr","filter_machine_val_ddr","machine_text_ddr","Machines",this);
 });
-$(document).on('click','.inbox_category_ddr',function(event){
+$(document).on('click','.inbox_category_ddr',function(){
     multiple_drp_fun("inbox_category_ddr","filter_category_val_ddr","category_text_ddr","Categories",this);
 });
 
-$(document).on('click','.filter_category_val_ddr',function(event){
+$(document).on('click','.filter_category_val_ddr',function(){
     multiple_drp_fun("filter_category_val_ddr","filter_category_val_ddr","category_text_ddr","Categories",this);
 });
 
 // Downtime Opportunity Cost by Machines
-$(document).on('click','.inbox_reason_docm',function(event){
+$(document).on('click','.inbox_reason_docm',function(){
     multiple_drp_fun("inbox_reason_docm","filter_reason_val_docm","reason_text_docm","Reasons",this);
 });
 
-$(document).on('click','.filter_reason_val_docm',function(event){
+$(document).on('click','.filter_reason_val_docm',function(){
     multiple_drp_fun("filter_reason_val_docm","filter_reason_val_docm","reason_text_docm","Reasons",this);
 });
-$(document).on('click','.inbox_machine_docm',function(event){
+$(document).on('click','.inbox_machine_docm',function(){
     multiple_drp_fun("inbox_machine_docm","filter_machine_val_docm","machine_text_docm","Machines",this);
 });
 
-$(document).on('click','.filter_machine_val_docm',function(event){
+$(document).on('click','.filter_machine_val_docm',function(){
     multiple_drp_fun("filter_machine_val_docm","filter_machine_val_docm","machine_text_docm","Machines",this);
 });
-$(document).on('click','.inbox_category_docm',function(event){
+$(document).on('click','.inbox_category_docm',function(){
     multiple_drp_fun("inbox_category_docm","filter_category_val_docm","category_text_docm","Categories",this);
 });
 
-$(document).on('click','.filter_category_val_docm',function(event){
+$(document).on('click','.filter_category_val_docm',function(){
     multiple_drp_fun("filter_category_val_docm","filter_category_val_docm","category_text_docm","Categories",this);
 });
 
 // Downtime Duration by Machines With Reasons
-$(document).on('click','.inbox_reason_ddmr',function(event){
+$(document).on('click','.inbox_reason_ddmr',function(){
     multiple_drp_fun("inbox_reason_ddmr","filter_reason_val_ddmr","reason_text_ddmr","Reasons",this);
 });
 
-$(document).on('click','.filter_reason_val_ddmr',function(event){
+$(document).on('click','.filter_reason_val_ddmr',function(){
     multiple_drp_fun("filter_reason_val_ddmr","filter_reason_val_ddmr","reason_text_ddmr","Reasons",this);
 });
-$(document).on('click','.inbox_machine_ddmr',function(event){
+$(document).on('click','.inbox_machine_ddmr',function(){
     multiple_drp_fun("inbox_machine_ddmr","filter_machine_val_ddmr","machine_text_ddmr","Machines",this);
 });
 
-$(document).on('click','.filter_machine_val_ddmr',function(event){
+$(document).on('click','.filter_machine_val_ddmr',function(){
     multiple_drp_fun("filter_machine_val_ddmr","filter_machine_val_ddmr","machine_text_ddmr","Machines",this);
 });
-$(document).on('click','.inbox_category_ddmr',function(event){
+$(document).on('click','.inbox_category_ddmr',function(){
     multiple_drp_fun("inbox_category_ddmr","filter_category_val_ddmr","category_text_ddmr","Categories",this);
 });
 
-$(document).on('click','.filter_category_val_ddmr',function(event){
+$(document).on('click','.filter_category_val_ddmr',function(){
     multiple_drp_fun("filter_category_val_ddmr","filter_category_val_ddmr","category_text_ddmr","Categories",this);
 });
 
 
 // Table View
-$(document).on('click','.inbox_reason_down',function(event){
+$(document).on('click','.inbox_reason_down',function(){
     multiple_drp_fun("inbox_reason_down","filter_reason_val_down","reason_text_down","Reasons",this);
 });
 
-$(document).on('click','.filter_reason_val_down',function(event){
+$(document).on('click','.filter_reason_val_down',function(){
     multiple_drp_fun("filter_reason_val_down","filter_reason_val_down","reason_text_down","Reasons",this);
 });
-$(document).on('click','.inbox_machine_down',function(event){
+$(document).on('click','.inbox_machine_down',function(){
     multiple_drp_fun("inbox_machine_down","filter_machine_val_down","machine_text_down","Machines",this);
 });
 
-$(document).on('click','.filter_machine_val_down',function(event){
+$(document).on('click','.filter_machine_val_down',function(){
     multiple_drp_fun("filter_machine_val_down","filter_machine_val_down","machine_text_down","Machines",this);
 });
-$(document).on('click','.inbox_category_down',function(event){
+$(document).on('click','.inbox_category_down',function(){
     multiple_drp_fun("inbox_category_down","filter_category_val_down","category_text_down","Categories",this);
 });
 
-$(document).on('click','.filter_category_val_down',function(event){
+$(document).on('click','.filter_category_val_down',function(){
     multiple_drp_fun("filter_category_val_down","filter_category_val_down","category_text_down","Categories",this);
 });
-$(document).on('click','.inbox_part_down',function(event){
+$(document).on('click','.inbox_part_down',function(){
     multiple_drp_fun("inbox_part_down","filter_part_val_down","part_text_down","Parts",this);
 });
 
-$(document).on('click','.filter_part_val_down',function(event){
+$(document).on('click','.filter_part_val_down',function(){
     multiple_drp_fun("filter_part_val_down","filter_part_val_down","part_text_down","Parts",this);
 });
 
-$(document).on('click','.inbox_user_down',function(event){
+$(document).on('click','.inbox_user_down',function(){
     multiple_drp_fun("inbox_user_down","filter_user_val_down","user_text_down","Users",this);
 });
 
-$(document).on('click','.filter_user_val_down',function(event){
+$(document).on('click','.filter_user_val_down',function(){
     multiple_drp_fun("filter_user_val_down","filter_user_val_down","user_text_down","Users",this);
 });
 
