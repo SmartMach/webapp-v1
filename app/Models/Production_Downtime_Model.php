@@ -279,9 +279,16 @@ class Production_Downtime_Model extends Model{
         // $db = \Config\Database::connect($this->site_creation);
         $db = \Config\Database::connect($this->site_connection);
         $query = $db->table('settings_downtime_reasons');
-        // $query->select('DISTINCT(downtime_reason),downtime_reason_id');
         $query->select('DISTINCT(downtime_reason),downtime_reason_id');
         $query->orderBy('downtime_reason','ASC');
+        $res = $query->get()->getResultArray();
+        return $res;    
+    }
+    public function downtime_category_filter_con(){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('settings_downtime_reasons');
+        $query->select('DISTINCT(downtime_category)');
+        $query->orderBy('downtime_category','ASC');
         $res = $query->get()->getResultArray();
         return $res;    
     }

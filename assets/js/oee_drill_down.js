@@ -1,230 +1,248 @@
 
 // Global variable 
-const drp_obj = {
-    // oee trend graph machine drp 
-    oee_trend_drp_machine:false,
+const hide_seek_obj = {
+    // OEE Trend
+    dd_trend_machine:false,
+    dd_moeeb_machine:false,
+    dd_mawr_machine:false,
+    dd_mpwp_machine:false,
+    dd_mqwr_machine:false,
 
-    // machine wise oee graph
-    machine_wise_oee_field_drp:false,
-    machine_wise_oee_machine_drp:false,
+    dd_mawr_reason:false,
+    dd_mqwr_reason:false,
 
-    // Machine wise Availability
-    machine_availability_category_drp:false,
-    machine_availability_reason_drp:false,
-    machine_availability_machine_drp:false,
+    dd_mpwp_part:false,
 
-    // machine wise performance with parts
-    machine_wise_performance_part_drp:false,
-    machine_wise_performance_machine_drp:false,
+    dd_mawr_category:false,
 
+    dd_moeeb_dataField:false,
 
-    // machine wise quality with reasons graph
-    machine_wise_quality_machine_drp:false,
-    machine_wise_quality_reason_drp:false,
+    
 
 }
 
 // graph fitler onclick function its show options common function
-function common_drp_click(classref,keyref){
-    $('.filter_checkboxes').css('display','none');
-    if (!drp_obj[keyref]) {
-        $('.'+classref+'').css('display','inline');
-        drp_obj[keyref]=true;
-    }else{
-        $('.'+classref+'').css('display','none');
-        drp_obj[keyref]=false;
+function multiple_drp_hide_seek(classRef,keyRef){
+  $('.filter_checkboxes').css("display","none");
+  if (!hide_seek_obj[keyRef]) {
+    $('.'+classRef+'').css("display","block");
+    hide_seek_obj[keyRef] = true;
+  }
+  else{
+    $('.'+classRef+'').css("display","none");
+    hide_seek_obj[keyRef] = false;
+  }
+}
+
+function multiple_drp_fun(classRef,eleRef,labRef,dropRef,thisRef) {
+    var index = $('.'+classRef+'').index(thisRef);
+
+    if(index==0 && $( '.'+eleRef+':eq('+index+')').prop( "checked")==true){
+      $( '.'+eleRef+'').prop( "checked", false );
+    }
+    else if(index==0 && $('.'+eleRef+':eq('+index+')').prop( "checked")==false){
+      $( '.'+eleRef+'').prop( "checked", true );
+    }
+    else{
+      if ($( '.'+eleRef+':eq('+index+')').prop( "checked")==true) {
+        $( '.'+eleRef+':eq('+index+')').prop( "checked", false );
+      }
+      else{
+        $( '.'+eleRef+':eq('+index+')').prop( "checked", true );
+      }
     }
 
-}
+    var l1 = $('.'+eleRef+'').length;
+    var l2 = $('.'+eleRef+':checked').length;
+    
 
-// switch case calling funciton in global function
-function call_particular_fun(res){
-    switch (res) {
-        case 'oee_trend_machine_call':
-            reset_machine();
-            break;
-        case 'machine_wise_oee_datafield_call':
-            reset_all_data_field();
-            break;
+    if ( (((l2)+1) == l1) && !($('.'+eleRef+'')[0].checked)) {
+      $( '.'+eleRef+':eq(0)').prop( "checked", true);
+    }
+    else if (l2 < l1) {
+      $( '.'+eleRef+':eq(0)').prop( "checked", false );
+    }
 
-        case 'machine_wise_oee_machine_call':
-            reset_machine1();
-            break;
+    // part count
+    var element_count = 0;
+    var check_if = $('.'+eleRef+'');
+    jQuery('.'+eleRef+'').each(function(index){
+      if (check_if[index].checked===true) {
+        element_count = parseInt(element_count)+1;
+      }
+    });
 
-        case 'machine_wise_availability_category_call':
-            reset_category2();
-            break;
+    var element_len = $('.'+eleRef+'').length;
 
-        case 'machine_wise_availability_reason_call':
-            reset_reason2();
-            break;
-
-        case 'machine_wise_availability_machine_call':
-            reset_machine2();
-            break;
-
-        case 'machine_wise_performance_part_call':
-            reset_part();
-            break;
-
-        case 'machine_wise_performance_machine_call':
-            reset_machine3();
-            break;
-
-        case 'machine_wise_quality_reason_call':
-            reset_quality_reason();
-            break;
-
-        case 'machine_wise_quality_machine_call':
-            reset_machine4();
-            break;
-
-        
+    element_len = parseInt(element_len);
+    if (check_if[0].checked) {
+      $('#'+labRef+'').text('All '+dropRef+'');
+    }
+    else if (!check_if[0].checked && element_len==(element_count+1)) {
+      $('#'+labRef+'').text('All '+dropRef+'');
+    }
+    else if (!check_if[0].checked && element_count>=1) {
+      $('#'+labRef+'').text(parseInt(element_count)+' Selected');
+    }
+    else{
+      $('#'+labRef+'').text('No '+dropRef+'');
     }
 }
 
-// graph filter onclick text to check checkbox common function
-function common_click_div_fun(classref,checkbox_ref,text_ref,name_ref,fun_Call_ref,thisref){
-    var count_reason_gp1  = $('.'+classref+'');
-        var index_reason_gp1 = count_reason_gp1.index($(thisref));
-        var check_if1 = $('.'+checkbox_ref+'');
-        if (index_reason_gp1 === 0) {
-            if (check_if1[0].checked==false) {
-                call_particular_fun(fun_Call_ref);
 
-            }
-            else{
-                $('.'+checkbox_ref+'').removeAttr('checked');
-            }
-        }else{
-            if (check_if1[index_reason_gp1].checked==false) {
-                check_if1[index_reason_gp1].checked=true;
-                $('.'+checkbox_ref+':eq('+index_reason_gp1+')').attr('checked','checked');
-            }else{
-                $('.'+checkbox_ref+':eq('+index_reason_gp1+')').removeAttr('checked');
-                check_if1[0].checked=false;
-            }
-        }
+$(document).on('click','.inbox_machine_dd_trend',function(event){
+    multiple_drp_fun("inbox_machine_dd_trend","filter_machine_dd_trend_val","machine_text_dd_trend","Machines",this);
+});
 
-        var reason_gp_select_count1 = 0;
-        jQuery('.'+checkbox_ref+'').each(function(index){
-        if (check_if1[index].checked===true) {
-            reason_gp_select_count1 = parseInt(reason_gp_select_count1)+1;
-        }
-        });
-        var reason_gp_len1 = $('.'+checkbox_ref+'').length;
-        reason_gp_len1 = parseInt(reason_gp_len1)-1;
-        if (parseInt(reason_gp_select_count1)>=parseInt(reason_gp_len1)) {
-            if(check_if1[0].checked===true){
-                check_if1[0].checked=true;
-                $('.'+text_ref+'').text('All '+name_ref);
-            }else{
-                // check_if[0].checked=true;
-                // reset_machine();
-                call_particular_fun(fun_Call_ref);
-            }
-        }else if(((parseInt(reason_gp_select_count1)<parseInt(reason_gp_len1))) && (parseInt(reason_gp_select_count1)>0)){
-            $('.'+text_ref+'').text(parseInt(reason_gp_select_count1)+' Selected');
+$(document).on('click','.filter_machine_dd_trend_val',function(event){
+    multiple_drp_fun("filter_machine_dd_trend_val","filter_machine_dd_trend_val","machine_text_dd_trend","Machines",this);
+});
 
-            // check_if[0].checked=false;
-        }else {
-            $('.'+text_ref+'').text('No '+name_ref);
-        }
+
+$(document).on('click','.inbox_machine_dd_moeeb',function(event){
+    multiple_drp_fun("inbox_machine_dd_moeeb","filter_machine_dd_moeeb_val","machine_text_dd_moeeb","Machines",this);
+});
+
+$(document).on('click','.filter_machine_dd_moeeb_val',function(event){
+    multiple_drp_fun("filter_machine_dd_moeeb_val","filter_machine_dd_moeeb_val","machine_text_dd_moeeb","Machines",this);
+});
+$(document).on('click','.inbox_dataField_dd_moeeb',function(event){
+    multiple_drp_fun("inbox_dataField_dd_moeeb","filter_dataField_dd_moeeb_val","dataField_text_dd_moeeb","Data Fields",this);
+});
+
+$(document).on('click','.filter_dataField_dd_moeeb_val',function(event){
+    multiple_drp_fun("filter_dataField_dd_moeeb_val","filter_dataField_dd_moeeb_val","dataField_text_dd_moeeb","Data Fields",this);
+});
+
+$(document).on('click','.inbox_machine_dd_mawr',function(event){
+    multiple_drp_fun("inbox_machine_dd_mawr","filter_machine_dd_mawr_val","machine_text_dd_mawr","Machines",this);
+});
+
+$(document).on('click','.filter_machine_dd_mawr_val',function(event){
+    multiple_drp_fun("filter_machine_dd_mawr_val","filter_machine_dd_mawr_val","machine_text_dd_mawr","Machines",this);
+});
+$(document).on('click','.inbox_reason_dd_mawr',function(event){
+    multiple_drp_fun("inbox_reason_dd_mawr","filter_reason_dd_mawr_val","reason_text_dd_mawr","Reasons",this);
+});
+
+$(document).on('click','.filter_reason_dd_mawr_val',function(event){
+    multiple_drp_fun("filter_reason_dd_mawr_val","filter_reason_dd_mawr_val","reason_text_dd_mawr","Reasons",this);
+});
+$(document).on('click','.inbox_category_dd_mawr',function(event){
+    multiple_drp_fun("inbox_category_dd_mawr","filter_category_dd_mawr_val","category_text_dd_mawr","Categories",this);
+});
+
+$(document).on('click','.filter_category_dd_mawr_val',function(event){
+    multiple_drp_fun("filter_category_dd_mawr_val","filter_category_dd_mawr_val","category_text_dd_mawr","Categories",this);
+});
+
+
+$(document).on('click','.inbox_machine_dd_mpwp',function(event){
+    multiple_drp_fun("inbox_machine_dd_mpwp","filter_machine_dd_mpwp_val","machine_text_dd_mpwp","Machines",this);
+});
+
+$(document).on('click','.filter_machine_dd_mpwp_val',function(event){
+    multiple_drp_fun("filter_machine_dd_mpwp_val","filter_machine_dd_mpwp_val","machine_text_dd_mpwp","Machines",this);
+});
+$(document).on('click','.inbox_part_dd_mpwp',function(event){
+    multiple_drp_fun("inbox_part_dd_mpwp","filter_part_dd_mpwp_val","part_text_dd_mpwp","Parts",this);
+});
+
+$(document).on('click','.filter_part_dd_mpwp_val',function(event){
+    multiple_drp_fun("filter_part_dd_mpwp_val","filter_part_dd_mpwp_val","part_text_dd_mpwp","Parts",this);
+});
+
+
+
+$(document).on('click','.inbox_machine_dd_mqwr',function(event){
+    multiple_drp_fun("inbox_machine_dd_mqwr","filter_machine_dd_mqwr_val","machine_text_dd_mqwr","Machines",this);
+});
+
+$(document).on('click','.filter_machine_dd_mqwr_val',function(event){
+    multiple_drp_fun("filter_machine_dd_mqwr_val","filter_machine_dd_mqwr_val","machine_text_dd_mqwr","Machines",this);
+});
+$(document).on('click','.inbox_reason_dd_mqwr',function(event){
+    multiple_drp_fun("inbox_reason_dd_mqwr","filter_reason_dd_mqwr_val","reason_text_dd_mqwr","Reasons",this);
+});
+
+$(document).on('click','.filter_reason_dd_mqwr_val',function(event){
+    multiple_drp_fun("filter_reason_dd_mqwr_val","filter_reason_dd_mqwr_val","reason_text_dd_mqwr","Reasons",this);
+});
+
+
+function reset_machine_dd_trend(){
+  var machine_arr = $('.filter_machine_dd_trend_val');
+  jQuery('.filter_machine_dd_trend_val').each(function(index){
+    machine_arr[index].checked=true;
+  });
+  $('#machine_text_dd_trend').text('All Machines');
+}
+function reset_machine_dd_moeeb(){
+  var machine_arr = $('.filter_machine_dd_moeeb_val');
+  jQuery('.filter_machine_dd_moeeb_val').each(function(index){
+    machine_arr[index].checked=true;
+  });
+  $('#machine_text_dd_moeeb').text('All Machines');
+}
+function reset_machine_dd_mawr(){
+  var machine_arr = $('.filter_machine_dd_mawr_val');
+  jQuery('.filter_machine_dd_mawr_val').each(function(index){
+    machine_arr[index].checked=true;
+  });
+  $('#machine_text_dd_mawr').text('All Machines');
+}
+function reset_machine_dd_mpwp(){
+  var machine_arr = $('.filter_machine_dd_mpwp_val');
+  jQuery('.filter_machine_dd_mpwp_val').each(function(index){
+    machine_arr[index].checked=true;
+  });
+  $('#machine_text_dd_mpwp').text('All Machines');
 }
 
-
-//  oee trend graph 
-// machine dropdown
-function reset_machine(){
-    var category_arr = $('.machine_checkbox');
-    jQuery('.machine_checkbox').each(function(in2){
-        category_arr[in2].checked=true;
-    });
-    $('.text_machine').text('All Machines');
+function reset_machine_dd_mqwr(){
+  var machine_arr = $('.filter_machine_dd_mqwr_val');
+  jQuery('.filter_machine_dd_mqwr_val').each(function(index){
+    machine_arr[index].checked=true;
+  });
+  $('#machine_text_dd_mqwr').text('All Machines');
 }
 
-// machine wise oee graph
-// datafield  dropdown 
-function reset_all_data_field(){
-    var category_arr = $('.all_data_field_checkbox');
-    jQuery('.all_data_field_checkbox').each(function(in2){
-        category_arr[in2].checked=true;
-    });
-    $('.text_all_data_field').text('All Data Fields');
+function reset_reason_dd_mawr(){
+  var reason_arr = $('.filter_reason_dd_mawr_val');
+  jQuery('.filter_reason_dd_mawr_val').each(function(index){
+    reason_arr[index].checked=true;
+  });
+  $('#reason_text_dd_mawr').text('All Reasons');
 }
 
-// machine dropdown
-function reset_machine1(){
-    var category_arr = $('.machine_checkbox1');
-    jQuery('.machine_checkbox1').each(function(in2){
-        category_arr[in2].checked=true;
-    });
-    $('.text_machine1').text('All Machines');
+function reset_reason_dd_mqwr(){
+  var reason_arr = $('.filter_reason_dd_mqwr_val');
+  jQuery('.filter_reason_dd_mqwr_val').each(function(index){
+    reason_arr[index].checked=true;
+  });
+  $('#reason_text_dd_mqwr').text('All Reasons');
 }
 
-
-// machine wise availability dropdown
-//  categroy dropdown
-function reset_category2(){
-    var category_arr = $('.category_drp_checkbox2');
-    jQuery('.category_drp_checkbox2').each(function(in2){
-        category_arr[in2].checked=true;
-    });
-    $('.text_category_drp2').text('All Categories');
+function reset_part_dd_mpwp(){
+  var part_arr = $('.filter_part_dd_mpwp_val');
+  jQuery('.filter_part_dd_mpwp_val').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#part_text_dd_mpwp').text('All Parts');
 }
 
-// Reason dropdown
-function reset_reason2(){
-    var category_arr = $('.reason_checkbox2');
-    jQuery('.reason_checkbox2').each(function(in2){
-        category_arr[in2].checked=true;
-    });
-    $('.text_reason2').text('All Reasons');
+function reset_dataField_dd_moeeb(){
+  var dataField_arr = $('.filter_dataField_dd_moeeb_val');
+  jQuery('.filter_dataField_dd_moeeb_val').each(function(index){
+    dataField_arr[index].checked=true;
+  });
+  $('#dataField_text_dd_moeeb').text('All Data Fields');
 }
 
-// Machine Dropdown
-function reset_machine2(){
-    var category_arr = $('.machine_checkbox2');
-    jQuery('.machine_checkbox2').each(function(in2){
-        category_arr[in2].checked=true;
-    });
-    $('.text_machine2').text('All Machines');
+function reset_category_dd_mawr(){
+  var category_arr = $('.filter_category_dd_mawr_val');
+  jQuery('.filter_category_dd_mawr_val').each(function(index){
+    category_arr[index].checked=true;
+  });
+  $('#category_text_dd_mawr').text('All Data Fields');
 }
-
-// machine wise performance with parts
-// parts dropdown
-function reset_part(){
-    var category_arr = $('.part_checkbox');
-    jQuery('.part_checkbox').each(function(in2){
-        category_arr[in2].checked=true;
-    });
-    $('.text_part').text('All Parts');
-}
-
-// machine dropdown
-function reset_machine3(){
-    var category_arr = $('.machine_checkbox3');
-    jQuery('.machine_checkbox3').each(function(in2){
-        category_arr[in2].checked=true;
-    });
-    $('.text_machine3').text('All Machines');
-}
-
-// machine wise quality with reasons
-// reasons dropdown
-function reset_quality_reason(){
-    var category_arr = $('.quality_checkbox');
-    jQuery('.quality_checkbox').each(function(in2){
-        category_arr[in2].checked=true;
-    });
-    $('.text_quality_reason').text('All Reasons');
-}
-// machine dropdown
-function reset_machine4(){
-    var category_arr = $('.machine_checkbox4');
-    jQuery('.machine_checkbox4').each(function(in2){
-        category_arr[in2].checked=true;
-    });
-    $('.text_machine4').text('All Machines');
-}
-
