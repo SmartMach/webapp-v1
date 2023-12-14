@@ -2,9 +2,7 @@
     .fieldStyleInfo{
     height: 3.5rem;
 }
-.fieldStyleSubInfo{
-    margin-left: 1rem;
-}
+
 .LastNameMarg{
     margin-left: 0.2rem;
 }
@@ -80,14 +78,10 @@
                 
                     <a style="background: #cde4ff;color: #005abc; width: 8rem;justify-content: center; text-align: center;" class="settings_nav_anchor float-end" data-bs-toggle="modal" data-bs-target="#FilterUserModal" id="filterData" >FILTER</a>
  -->
-                    <?php if($this->data['access'][0]['settings_user_management'] == 3){ ?>
-                        <!----add user option----->
-                        <!-- <a style="width:8rem;justify-content:center;text-align:center;" class="settings_nav_anchor saveBtnStyle float-end " id="add_user_model">
-                            <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD USER
-                        </a>  -->
-                        <a style="text-decoration:none;margin-right:0.3rem;cursor:pointer;" class="overall_filter_btn overall_filter_header_css" id="add_user_model">
-                            <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD USER
-                        </a> 
+                    <?php if($this->data['access'][0]['settings_user_management'] == 3){ ?>   
+                        <a class="overall_filter_btn mr_right_ele cursor none_dec overall_filter_header_css" id="add_user_model">
+                            <i class="fa fa-plus mr_right_ele"></i>Add User
+                        </a>
 
                     <?php }?>
               </div>
@@ -110,7 +104,7 @@
                         <div class="col-sm-2 p3  paddingm table_header_sec display_f justify_l align_c text_align_c">
                           <p class="h_mar_l paddingm">REGISTERED ON</p>
                         </div>
-                        <div class="col-sm-2  p3 paddingm table_header_sec display_f justify_l align_c text_align_c " style="text-align:center;padding-left:1.4rem;">
+                        <div class="col-sm-2  p3 paddingm table_header_sec display_f justify_l align_c text_align_c ">
                           <p class="h_mar_l paddingm">ROLE</p>
                         </div>
                         <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
@@ -121,7 +115,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="contentUser paddingm" style="margin-top:1rem;">
+                <div class="contentUser tableDataContainer paddingm">
                    
                 </div>
         </div>
@@ -131,12 +125,12 @@
 <div class="modal fade" id="AddUserModal" tabindex="-1" aria-labelledby="AddUserModal1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered rounded">
     <div class="container modal-content bodercss">
-            <div class="modal-header" style="border:none; ">
-                <h5 class="modal-title settings-machineAdd-model " id="AddUserModal1" style="">ADD USER</h5>
+            <div class="modal-header border_no">
+                <p class="modal-title header_popup fnt_fam" id="AddUserModal1" style="">ADD USER DETAILS</p>
             </div>
               <!-- <form method="post" id="form_add_user"> -->
                 <div class="modal-body">
-                    <div class="row paddingm">
+                    <div class="row">
                         <div class="col-sm-6 box">
                             <div class="input-box fieldStyle">     
                                 <select class="form-select font_weight_modal" name="inputRoleAdd" id="inputRoleAdd">
@@ -150,7 +144,7 @@
                                     <option value="Site Users">Site User</option>
                                     <option value="Operator">Operator</option>
                                 </select>
-                                <label for="input" class="input-padding">Role <span class="paddingm validate">*</span></label> 
+                                <label for="input" class="input_lable fnt_fam">Role <span class="paddingm validate">*</span></label> 
                                 <span class="paddingm float-start validate" id="validate_role"></span> 
                             </div>
                         </div>
@@ -158,28 +152,28 @@
                             <div class="input-box fieldStyle">
                                 <select class="inputSiteNameAdd form-select font_weight_modal" name="inputUserSiteName" id="inputUserSiteName">
                                 </select>
-                                <label for="input" class="input-padding">Site Name <span class="paddingm validate">*</span></label>
+                                <label for="input" class="input_lable fnt_fam">Site Name <span class="paddingm validate">*</span></label>
                                 <span class="paddingm float-start validate" style="display: none;" id="sitename_error"></span> 
                             </div>
                         </div>
                         <div class="col-sm-3 box">
                                 <div class="input-box fieldStyle font_weight">
-                                    <label for="" class="col-form-label paddingm headTitle">Site ID</label>
+                                    <label for="" class="input_lable fnt_fam">Site ID</label>
                                     <p class="fieldStyleSub" style="position: absolute;"><span id="SiteID" class="font_weight_modal"></span></p>
                                 </div>
                         </div>
                     </div>
-                    <div class="row paddingm">
+                    <div class="row">
                         <div class="col-lg-6">
                             <div class="box">
                                 <div class="input-box fieldStyle" id="ExceptOp">
                                     <input type="text" class="form-control input font_weight_modal" id="inputUserEMail" name="inputUserEMail" oninput="this.value=this.value.trim();">
-                                    <label for="input" class="input-padding">User ID <span class="paddingm validate">*</span></label>
+                                    <label for="input" class="input_lable fnt_fam">User ID <span class="paddingm validate">*</span></label>
                                     <span class="paddingm float-start validate" id="inputUserEMailErr"></span> 
                                 </div>
                                 <div class="input-box fieldStyle" id="OperatorCredential" style="display: none;">
                                     <input type="text" class="form-control input font_weight_modal" id="inputOpUserID" name="inputOpUserID">
-                                    <label for="input" class="input-padding">User ID <span class="paddingm validate">*</span></label>
+                                    <label for="input" class="input_lable fnt_fam">User ID <span class="paddingm validate">*</span></label>
                                     <span class="paddingm float-start validate" id="inputOpUserIDErr"></span>
                                 </div>
                             </div>
@@ -187,16 +181,16 @@
 
                         <div class="col-lg-6 box">
                             <div class="input-box fieldStyle">
-                                <label for="" class="col-form-label paddingm headTitle ">Site Location</label>
+                                <label for="" class="input_lable fnt_fam">Site Location</label>
                                 <p class="fieldStyleSub" style="position: absolute;"><span id="SiteLocation" class="font_weight_modal"></span></p>
                             </div>  
                         </div>
                     </div>
-                    <div class="row paddingm">
+                    <div class="row">
                         <div class="col-sm-3 box fieldStyle">
                             <div class="input-box">
                                 <input type="text" class="form-control font_weight_modal" id="inputUserFirstName" name="inputUserFirstName">
-                                <label for="inputMachineRateHour" class="input-padding">First Name <span class="paddingm validate">*</span></label>
+                                <label for="inputMachineRateHour" class="input_lable fnt_fam">First Name <span class="paddingm validate">*</span></label>
                                 <span class="paddingm float-start validate" id="inputUserFirstNameErr"></span> 
                                 <span class="float-end charCount" id="inputUserFirstNameCunt"></span>
                             </div>
@@ -204,7 +198,7 @@
                         <div class="col-sm-3 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" class="form-control input font_weight_modal" id="inputUserLastName" name="inputUserLastName">
-                                <label for="inputMachineOffRateHour" class="input-padding">Last Name <span class="paddingm validate">*</span></label>
+                                <label for="inputMachineOffRateHour" class="input_lable fnt_fam">Last Name <span class="paddingm validate">*</span></label>
                                 <span class="paddingm float-start validate" id="inputUserLastNameErr"></span> 
                                 <span class="float-end charCount" id="inputUserLastNameCunt"></span>
                             </div>
@@ -215,7 +209,7 @@
                                     <div class="box new_site_box">
                                         <div class="input-box fieldStyle">
                                             <input type="text" class="form-control input font_weight_modal" id="new_site_name" name="new_site_name">
-                                            <label for="input" class="input-padding">Site Name <span class="paddingm validate">*</span></label>
+                                            <label for="input" class="input_lable fnt_fam">Site Name <span class="paddingm validate">*</span></label>
                                             <span class="paddingm float-start validate" id="inputUsernew_site_err"></span><span class="float-end charCount" id="inputUsernew_site_err_count"></span>
                                         </div>
                                     </div>
@@ -224,7 +218,7 @@
                                     <div class="box new_site_box">
                                         <div class="input-box fieldStyle">
                                             <input type="text" class="form-control input font_weight_modal" id="location_name" name="location_name">
-                                            <label for="input" class="input-padding">Location <span class="paddingm validate">*</span></label>
+                                            <label for="input" class="input_lable fnt_fam">Location <span class="paddingm validate">*</span></label>
                                             <span class="paddingm float-start validate" id="location_name_err"></span><span class="float-end charCount" id="location_name_count"></span>
                                         </div>
                                     </div>
@@ -232,13 +226,12 @@
                             </div>
                         </div>
                         </div>
-                    </div>
-                    <div class="row paddingm" style="margin-left:1rem;margin-right:1rem;">
+                    <div class="row">
                         <div class="col-lg-6">
                             <div class="box">
                                 <div class="input-box fieldStyle">
                                     <input type="text" class="form-control input font_weight_modal" id="inputUserPhone" name="inputUserPhone" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                    <label for="input" class="input-padding">Phone <span class="paddingm validate">*</span></label>
+                                    <label for="input" class="input_lable fnt_fam">Phone <span class="paddingm validate">*</span></label>
                                     <span class="paddingm float-start validate" id="inputUserPhoneErr"></span>
                                 </div>
                             </div>
@@ -258,7 +251,7 @@
                                     <div class="box">
                                         <div class="input-box fieldStyle">
                                             <input type="password" class="form-control input font_weight_modal" id="pass_op" name="pass_op" oninput="this.value=this.value.trimStart().trimEnd();" style="padding-right:2rem;">
-                                            <label for="pass_op" class="input-padding">Password <span class="paddingm validate">*</span></label>
+                                            <label for="pass_op" class="input_lable fnt_fam">Password <span class="paddingm validate">*</span></label>
                                             <span class="unit"><i id="eye_pass_op" class="fa fa-eye-slash clip showpass" style="font-size: 20px;" aria-hidden="true"></i></span>
                                             <span class="paddingm float-start validate" id="pass_op_err"></span><span class="float-end charCount" id="pass_op_count"></span>
                                         </div>
@@ -268,7 +261,7 @@
                                     <div class="box">
                                         <div class="input-box fieldStyle">
                                             <input type="password" class="form-control input font_weight_modal" id="re_pass_op" name="re_pass_op" oninput="this.value=this.value.trimStart().trimEnd();" style="padding-right:2rem;">
-                                            <label for="re_pass_op" class="input-padding">Re-Type Password <span class="paddingm validate">*</span></label>
+                                            <label for="re_pass_op" class="iinput_lable fnt_fam">Re-Type Password <span class="paddingm validate">*</span></label>
                                             <span class="unit"><i id="eye_repass_op" class="fa fa-eye-slash clip showpass" style="font-size: 20px;" aria-hidden="true"></i></span>
                                             <span class="paddingm float-start validate" id="re_pass_op_err"></span><span class="float-end charCount" id="re_pass_op_count"></span>
                                         </div>
@@ -278,12 +271,12 @@
                         </div>
                         </div>
                     </div>
-                    <div class="row paddingm" style="margin-left:1rem;margin-right:1rem;">
+                    <div class="row">
                         <div class="col-lg-6">
                             <div class="box">
                                 <div class="input-box fieldStyle">
                                     <input type="text" class="form-control input font_weight_modal" id="inputUserDesignation" name="inputUserDesignation">
-                                    <label for="input" class="input-padding">Designation <span class="paddingm validate">*</span></label>
+                                    <label for="input" class="input_lable fnt_fam">Designation <span class="paddingm validate">*</span></label>
                                     <span class="paddingm float-start validate" id="inputUserDesignationErr"></span><span class="float-end charCount" id="inputUserDesignationCunt"></span>
                                 </div>
                             </div>
@@ -294,16 +287,17 @@
                                         <select class="inputDepartmentAdd form-select font_weight_modal" name="inputUserSiteDepartment" id="inputUserSiteDepartment">
                                            
                                         </select>
-                                        <label for="input" class="input-padding">Department <span class="paddingm validate">*</span></label>
+                                        <label for="input" class="input_lable fnt_fam">Department <span class="paddingm validate">*</span></label>
                                         <span class="paddingm float-start validate" id="input_dept_err"></span>
                                     </div>
                             </div>
                             
                     </div>
                 </div>
-                <div class="modal-footer" style="border:none;">
-                    <button class="CreateUser btn fo bn saveBtnStyle" name="" value="Save">Save</button>
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                </div>
+                <div class="modal-footer border_no">
+                    <input type="submit" class="btn fnt_fam btn_fnt_size btn_padd btn_save CreateUser" name="CreateUser" value="Save">
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
                 </div>
             <!-- </form> -->
     </div>
@@ -314,8 +308,8 @@
 <div class="modal fade" id="AccessControlModal" tabindex="-1" aria-labelledby="AccessControlModal1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered rounded" style="margin: auto;">
     <div class="modal-content bodercss">
-            <div class="modal-header" style="border:none;margin-bottom: none;">
-                <p class="modal-title settings-machineAdd-model " id="AccessControlModal1" style="">ACCESS CONTROL</p>
+            <div class="modal-header border_no" style="margin-bottom: none;">
+                <p class="modal-title header_popup fnt_fam" id="AccessControlModal1" style="">ACCESS CONTROL</p>
             </div>
                 <div class="modal-body">
                     <div class="dot dot-css back_btn_access" data-bs-dismiss="modal" aria-label="Close"><img src="<?php echo base_url('assets/img/back.png') ?>" class="img_font_wh dot-cont" style="width: max-content;height: 2rem;margin-left:0.6rem;"></div>
@@ -724,9 +718,9 @@
                         </div>
                     </div>   
                 </div>
-                <div class="modal-footer" style="border:none;">
-                    <a class="btn fo bn access-save saveBtnStyle" name="" data-bs-dismiss="modal" aria-label="Close" value="Save">Save</a>
-                    <a class="btn fo bn cancelBtnStyle cancel_access_control" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                <div class="modal-footer border_no">
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_save access-save" name="access-save" value="SAVE" >Save</a>
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
                 </div>
     </div>
   </div>
@@ -734,17 +728,17 @@
 <!-- inactive modal start -->
 <div class="modal fade" id="DeactiveToolModal" tabindex="-1" aria-labelledby="DeactiveToolModal1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered rounded">
-    <div class="modal-content bodercss">
-        <div class="modal-header" style="border:none; ">
-            <p class="modal-title settings-machineAdd-model" id="DeactiveToolModal1" style="">CONFIRMATION MESSAGE</p>
+    <div class="modal-content container bodercss">
+        <div class="modal-header border_no">
+            <p class="modal-title header_popup fnt_fam" id="DeactiveToolModal1" style="">CONFIRMATION MESSAGE</p>
         </div>
         <div class="modal-body">
             <?php  ?>
-            <label style="color: black;" id="inactive_confirmation_msg"></label>
+            <label class="conf_message" id="inactive_confirmation_msg"></label>
         </div>
-        <div class="modal-footer" style="border:none;">
-            <a class="btn fo bn Status-deactivate saveBtnStyle" name="" value="Save">Save</a>
-            <a class="btn fo bn cancelBtnStyle " data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+        <div class="modal-footer border_no"> 
+            <a class="btn fnt_fam btn_fnt_size btn_padd btn_save Status-deactivate" name="Status-deactivate" value="SAVE" >Save</a>
+            <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a> 
         </div>
     </div>
   </div>
@@ -754,16 +748,16 @@
 <!-- active madal start -->
 <div class="modal fade" id="ActiveToolModal" tabindex="-1" aria-labelledby="ActiveToolModal1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered rounded">
-    <div class="modal-content bodercss">
-        <div class="modal-header" style="border:none; ">
+    <div class="modal-content container bodercss">
+        <div class="modal-header border_no">
             <p class="modal-title settings-machineAdd-model" id="ActiveToolModal1" style="">CONFIRMATION MESSAGE</p>
         </div>
         <div class="modal-body">
-            <label style="color: black;" id="active_confirmation_msg"></label>        
+            <label class="conf_message" id="active_confirmation_msg"></label>        
         </div>
-        <div class="modal-footer" style="border:none;">
-            <a class="btn fo bn Status-activate saveBtnStyle" name="" value="Save">Save</a>
-            <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+        <div class="modal-footer border_no">
+            <a class="btn fnt_fam btn_fnt_size btn_padd btn_save Status-activate" name="Status-activate" value="SAVE" >Save</a>
+            <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>  
         </div>
     </div>
   </div>
@@ -774,8 +768,8 @@
 <div class="modal fade" id="EditUserModal" tabindex="-1" aria-labelledby="EditUserModal1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered rounded">
     <div class="modal-content container bodercss">
-            <div class="modal-header" style="border:none; ">
-                <p class="modal-title settings-machineAdd-model" id="EditUserModal1" style="">EDIT USER DETAILS</p>
+            <div class="modal-header border_no">
+                <p class="modal-title header_popup fnt_fam" id="EditUserModal1">EDIT USER DETAILS</p>
             </div>
             <!-- <form method="" class="addMachineForm" action="" > -->
                 <div class="modal-body">     
@@ -784,19 +778,19 @@
                             <div class="input-box fieldStyle">     
                                 <select class="form-select font_weight_modal" name="input" id="EditUserRole" disabled>
                                 </select>
-                                <label for="input" class="input-padding">Role<span class="paddingm validate">*</span></label> 
+                                <label for="input" class="input_lable fnt_fam">Role<span class="paddingm validate">*</span></label> 
                                 <span class="paddingm float-start validate" id="site_error_edit"></span>
                             </div>
                         </div>
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
-                                <label for="" class="col-form-label paddingm headTitle">Status</label>
+                                <label for="" class="input_lable fnt_fam">Status</label>
                                 <p class="fieldStyleSub p1" style="position: absolute;opacity:1;"><span id="EditUserStatus" class="font_weight_modal"></span></p>
                             </div>  
                         </div>
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
-                                <label for="" class="col-form-label paddingm headTitle">Registered on</label>
+                                <label for="" class="input_lable fnt_fam">Registered on</label>
                                 <p class="fieldStyleSub" style="position: absolute;"><span id="EditUserRegisteredOn" class="font_weight_modal"></span></p>
                             </div>  
                         </div>
@@ -806,12 +800,12 @@
                             <div class="box">
                                 <div class="input-box fieldStyle" id="ExceptOpEdit">
                                     <input type="email" class="form-control input font_weight_modal" id="EditUserEmail" name="EditUserEmail" disabled="disabled" >
-                                    <label for="input" class="input-padding">User Email<span class="paddingm validate">*</span></label>
+                                    <label for="input" class="input_lable fnt_fam">User Email<span class="paddingm validate">*</span></label>
                                     <span class="paddingm float-start validate" id="email_err"></span> 
                                 </div>
                                 <div class="input-box fieldStyle" id="OperatorCredentialEdit" style="display: none;">
                                     <input type="text" class="form-control input font_weight_modal" id="EditOpUserID" name="EditOpUserID" disabled="disabled">
-                                    <label for="input" class="input-padding">User ID<span class="paddingm validate">*</span></label>
+                                    <label for="input" class="input_lable fnt_fam">User ID<span class="paddingm validate">*</span></label>
                                     <span class="paddingm float-start validate" id="email_err"></span> 
                                 </div>
                             </div>
@@ -820,13 +814,13 @@
                             <div class="input-box fieldStyle">
                                 <select class="inputSiteNameAdd form-select font_weight_modal EditUserSiteName_class" name="EditUserSiteName" id="EditUserSiteName">
                                 </select>
-                                <label for="input" class="input-padding">Site Name<span class="paddingm validate">*</span></label>
+                                <label for="input" class="input_lable fnt_fam">Site Name<span class="paddingm validate">*</span></label>
                                 <span class="paddingm float-start validate" id="sitename_error_edit"></span> 
                             </div>
                         </div>
                         <div class="col-sm-3 box">
                             <div class="input-box fieldStyle">
-                                <label for="" class="col-form-label paddingm headTitle">Site ID</label>
+                                <label for="" class="input_lable fnt_fam">Site ID</label>
                                 <p class="fieldStyleSub" style="position: absolute;"><span id="EditUserSiteId" class="font_weight_modal"></span></p>
                             </div>
                         </div>
@@ -835,7 +829,7 @@
                         <div class="col-sm-3 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" class="form-control font_weight_modal" id="EditUserFName" name="EditUserFName">
-                                <label for="inputMachineRateHour" class="input-padding">First Name<span class="paddingm validate">*</span></label>
+                                <label for="inputMachineRateHour" class="input_lable fnt_fam">First Name<span class="paddingm validate">*</span></label>
                                 <span class="paddingm float-start validate" id="EditUserFNameErr"></span> 
                                 <span class="float-end charCount" id="EditUserFNameCunt"></span>
                             </div>
@@ -843,14 +837,14 @@
                         <div class="col-sm-3 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" class="form-control input font_weight_modal" id="EditUserLName" name="EditUserLName">
-                                <label for="inputMachineOffRateHour" class="input-padding">Last Name<span class="paddingm validate">*</span></label>
+                                <label for="inputMachineOffRateHour" class="input_lable fnt_fam">Last Name<span class="paddingm validate">*</span></label>
                                 <span class="paddingm float-start validate" id="EditUserLNameErr"></span> 
                                 <span class="float-end charCount" id="EditUserLNameCunt"></span>
                             </div>
                         </div>
                         <div class="col-lg-6 box">
                             <div class="input-box fieldStyle">
-                                <label for="" class="col-form-label paddingm headTitle">Site Location</label>
+                                <label for="" class="input_lable fnt_fam">Site Location</label>
                                 <p class="fieldStyleSub" style="position: absolute;"><span id="EditUserLocation" class="font_weight_modal">Sample</span></p>
                             </div>  
                         </div>
@@ -859,7 +853,7 @@
                         <div class="col-sm-6 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" class="form-control input font_weight_modal" id="EditUserPhone" name="EditUserPhone" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                <label for="inputMachineOffRateHour" class="input-padding">Phone<span class="paddingm validate">*</span></label>
+                                <label for="inputMachineOffRateHour" class="input_lable fnt_fam">Phone<span class="paddingm validate">*</span></label>
                                 <span class="paddingm float-start validate" id="EditUserPhoneErr"></span> 
                                 <!-- <span class="float-end charCount">Character Count</span> -->
                             </div>
@@ -900,7 +894,7 @@
                             <div class="box">
                                 <div class="input-box fieldStyle">
                                     <input type="text" class="form-control input font_weight_modal" id="EditUserDesignation" name="EditUserDesignation">
-                                    <label for="input" class="input-padding">Designation<span class="paddingm validate">*</span></label>
+                                    <label for="input" class="input_lable fnt_fam">Designation<span class="paddingm validate">*</span></label>
                                     <span class="paddingm float-start validate" id="EditUserDesignationErr"></span>
                                     <span class="float-end charCount" id="EditUserDesignationCunt"></span>
                                 </div>
@@ -911,7 +905,7 @@
                                 <div class="input-box fieldStyle">
                                     <select class="inputDepartmentAdd form-select font_weight_modal" name="EditUserDepartment" id="EditUserDepartment">
                                     </select>
-                                    <label for="input" class="input-padding">Department<span class="paddingm validate">*</span></label>
+                                    <label for="input" class="input_lable fnt_fam">Department<span class="paddingm validate">*</span></label>
                                     <span class="paddingm float-start validate d-none" id="dept_err"></span> 
                                     <!-- <span class="float-end charCount">Character Count</span> -->
                                 </div>
@@ -929,14 +923,14 @@
                             <div class="row">
                                 <div class="col-sm-6 box">
                                     <div class="input-box fieldStyle">
-                                        <label for="" class="col-form-label paddingm headTitle">Last Updated By</label>
-                                        <p class="fieldStyleSub" style="position: absolute;word-wrap: break-word;"><span id="EditUserUpdatedBy" class="font_weight_modal"></span></p>
+                                        <label for="" class="input_lable fnt_fam">Last Updated By</label>
+                                        <p class="fieldStyleSub po_absolute" style="word-wrap: break-word;"><span id="EditUserUpdatedBy" class="font_weight_modal"></span></p>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 box">
                                     <div class="input-box fieldStyle">
-                                        <label for="" class="col-form-label paddingm headTitle">Last Updated On</label>
-                                        <p class="fieldStyleSub" style="position: absolute;"><span id="EditUserUpdatedOn" class="font_weight_modal"></span></p>
+                                        <label for="" class="input_lable fnt_fam">Last Updated On</label>
+                                        <p class="fieldStyleSub po_absolute"><span id="EditUserUpdatedOn" class="font_weight_modal"></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -952,9 +946,9 @@
                         
                     </div>
                 </div>
-                <div class="modal-footer" style="border:none;">
-                    <a class="EditUserData btn fo bn saveBtnStyle" name="" value="Save" data_val="">Save</a>
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                <div class="modal-footer border_no">
+                    <a class="EditUserData btn fnt_fam btn_fnt_size btn_padd btn_save" name="EditUserData" id="" value="SAVE">Save</a>
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>      
                 </div>
             <!-- </form> -->
     </div>
@@ -3766,42 +3760,65 @@ function get_all_user(){
                     if (item.status == 1) {
                         active = active+1;
                     
-                        elements = elements.add('<div id="settings_div">'
+                        elements = elements.add('<div class="table_data">'
                                 +'<div class="row paddingm">'
-                                +'<div class="col-sm-2 col" style="display: flex;">'
+                                +'<div class="col-sm-2 col marleft paddingm table_data_section display_f align_c">'
                                     +'<div style="width: 30%">'
-                                        +'<div class="dotUser" style="background:'+randomColor+';color:white;"><p>'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p></div>'
+                                        +'<div class="dotUser user_profile_ele" style="background:'+randomColor+';color:white;"><p class="table_data_element fnt_fam">'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p></div>'
                                     +'</div>'
                                     +'<div style="width: 70%">'
-                                        +'<p title="'+item.username+'">'+item.username+'</p>'
-                                        +'<p><span>'+item.first_name+'</span><span class="LastNameMarg">'+item.last_name+'</span></p>'
+                                        +'<p class="table_data_element fnt_fam" title="'+item.username+'">'+item.username+'</p>'
+                                        +'<p class="table_data_element fnt_fam"><span>'+item.first_name+'</span><span class="LastNameMarg">'+item.last_name+'</span></p>'
                                         
                                     +'</div>'                
                                 +'</div>'
-                                +'<div class="col-sm-2 col marleft" ><p title="'+item.site_id+'">'+item.site_name+'</p></div>'        
-                                +'<div class="col-sm-2 col marleft" >'
-                                    +'<p>'+item.designation+'</p>'
+                                +'<div class="col-sm-2 col marleft table_data_section display_f align_c" ><p title="'+item.site_id+'" class="table_data_element fnt_fam">'+item.site_name+'</p></div>'        
+                                +'<div class="col-sm-2 col marleft table_data_section display_f align_c" >'
+                                    +'<p class="table_data_element fnt_fam">'+item.designation+'</p>'
                                 +'</div>'
-                                +'<div class="col-sm-2 col marleft" >'
-                                    +'<p>'+register_date(item.created_on)+'</p>'
+                                +'<div class="col-sm-2 col marleft table_data_section display_f align_c" >'
+                                    +'<p class="table_data_element fnt_fam">'+register_date(item.created_on)+'</p>'
                                 +'</div>'
-                                +'<div class="col-sm-2 col ">'
-                                    +'<div class="userRole siteAdmin textCenter" style="border:1px solid '+colorBorder+';margin-left:1rem;">'
-                                        +'<p style="color:'+colorRole+'" class="user_get_role">'+item.role+'</p>'
+                                +'<div class="col-sm-2 col table_data_section display_f align_c">'
+                                    +'<div class="userRole siteAdmin textCenter" style="border:1px solid '+colorBorder+';">'
+                                        +'<p style="color:'+colorRole+'" class="user_get_role table_data_element fnt_fam">'+item.role+'</p>'
                                     +'</div>'
                                 +'</div>'
-                                +'<div class="col-sm-1 col settings_active marleft" ><p style="color: #005CBC;"><i class="fa fa-circle" style="font-size:9px;margin-right:5px;margin-top:5px;"></i>Active</p></div>'
-                                +'<div class="col-sm-1 col d-flex justify-content-center fasdiv">'
-                                    +'<ul class="edit-menu">'
-                                        +'<li class="d-flex justify-content-center">'
+                                +'<div class="col-sm-1 col settings_active marleft table_data_section display_f align_c fnt_active" ><p class="table_data_element fnt_bold fnt_fam fnt_active"><i class="fa fa-circle active_dot"></i>Active</p></div>'
+                                +'<div class="col-sm-1 col d-flex justify_c">'
+                                    +'<ul class="edit-menu d-flex justify_c align_c paddingm">'
+                                        +'<li class="d-flex justify_c po_relative">'
                                             +'<a href="javascript:function(){return false;}">'
-                                                +'<i class="edit fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
+                                                +'<i class="editOpt fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
                                             +'</a>'
-                                            +'<ul class="edit-subMenu" style="z-index:10;">'
-                                                // +'<li class="edit-opt info-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" con="'+item.created_on+'"><a href="#"><i class="fa fa-info" style="margin-left:10px;"></i>INFO</a></li>'
-                                                +'<li class="edit-opt edit-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" con="'+item.created_on+'" svalue="'+item.status+'" site="'+item.site_id+'"><a href="#"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh" style="margin-left:10px;"></i>EDIT</a></li>'
-                                                +'<li class="edit-opt deactivate-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'" site_id="'+item.site_id+'"><a href="#" style="border-bottom:'+delete_border+';"><img src="<?php echo base_url('assets/img/delete.png'); ?>" class="img_font_wh1" style="margin-left:10px;"></i>DEACTIVATE</a></li>'
-                                                +'<li class="edit-opt forgot-password forgotwork " style="display:'+forgot+';" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'" site="'+item.site_id+'"><a href="#" style="border-bottom:'+forgot_border+';"><i class="fa fa-key" style="margin-left:15px;font-size:1rem;"></i><span style="margin-left:0.8rem;">RESET PASSWORD</span></a></li>'
+                                            +'<ul class="paddingm element-hover-content po_absolute">'
+                                                +'<li class="hover_elem_height side-menu-hover-btom display_f align_c sidenave-hover cursor edit-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" con="'+item.created_on+'" svalue="'+item.status+'" site="'+item.site_id+'">'
+                                                // +'<a href="#"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh" style="margin-left:10px;"></i>EDIT</a></li>'
+                                                    +'<div class="icon-option display_f justify_c align_c">'
+                                                        +'<img src="<?php echo base_url('assets/img/pencil.png') ?>" class="icons-smart icon-sub">'
+                                                    +'</div>'
+                                                    +'<div class="lable-option display_f align_c">'
+                                                        +'<a href="#" id="" class="nav-sub lable-option-val none_dec">EDIT</a>'
+                                                    +'</div>'
+                                                +'</li>'
+                                                +'<li class="hover_elem_height display_f align_c sidenave-hover cursor deactivate-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'" site_id="'+item.site_id+'">'
+                                                //+'<a href="#" style="border-bottom:'+delete_border+';"><img src="<?php echo base_url('assets/img/delete.png'); ?>" class="img_font_wh1" style="margin-left:10px;"></i>DEACTIVATE</a></li>'
+                                                    +'<div class="icon-option display_f justify_c align_c">'
+                                                        +'<img src="<?php echo base_url('assets/img/delete.png') ?>" class="icons-smart icon-sub">'
+                                                    +'</div>'
+                                                    +'<div class="lable-option display_f align_c">'
+                                                        +'<a href="#" id="" class="nav-sub lable-option-val none_dec">DEACTIVATE</a>'
+                                                    +'</div>'
+                                                +'</li>'
+                                                +'<li class="hover_elem_height display_f align_c sidenave-hover cursor forgot-password forgotwork " style="display:'+forgot+';" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'" site="'+item.site_id+'">'
+                                                //+'<a href="#" style="border-bottom:'+forgot_border+';"><i class="fa fa-key" style="margin-left:15px;font-size:1rem;"></i><span style="margin-left:0.8rem;">RESET PASSWORD</span></a></li>'
+                                                    +'<div class="icon-option display_f justify_c align_c">'
+                                                        +'<img src="<?php echo base_url('assets/img/info.png') ?>" class="icons-smart icon-sub">'
+                                                    +'</div>'
+                                                    +'<div class="lable-option display_f align_c">'
+                                                        +'<a href="#" id="" class="nav-sub lable-option-val none_dec">RESET PASSWORD</a>'
+                                                    +'</div>'
+                                                +'</li>'
                                             +'</ul>'
                                         +'</li>'
                                     +'</ul>'                
@@ -3812,40 +3829,56 @@ function get_all_user(){
                     }
                     else{
                         inactive = inactive+1;
-                        elements = elements.add('<div id="settings_div">'
+                        elements = elements.add('<div class="table_data">'
                             +'<div class="row paddingm">'
-                                +'<div class="col-sm-2 col" style="display: flex;">'
+                                +'<div class="col-sm-2 col marleft paddingm table_data_section display_f align_c">'
                                     +'<div style="width: 30%">'
-                                        +'<div class="dotUser" style="background:'+randomColor+';color:white;"><p>'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p></div>'
+                                        +'<div class="dotUser user_profile_ele" style="background:'+randomColor+';color:white;"><p class="table_data_element fnt_fam">'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p></div>'
                                     +'</div>'
                                     +'<div style="width: 70%">'
-                                        +'<p title="'+item.username+'">'+item.username+'</p>'
-                                        +'<p><span>'+item.first_name+'</span><span class="LastNameMarg">'+item.last_name+'</span></p>'
+                                        +'<p class="table_data_element fnt_fam" title="'+item.username+'">'+item.username+'</p>'
+                                        +'<p class="table_data_element fnt_fam"><span>'+item.first_name+'</span><span class="LastNameMarg">'+item.last_name+'</span></p>'
                                         
                                     +'</div>'                
                                 +'</div>'
-                                +'<div class="col-sm-2 col marleft" ><p title="'+item.site_id+'">'+item.site_name+'</p></div>'        
-                                +'<div class="col-sm-2 col marleft" >'
-                                    +'<p>'+item.designation+'</p>'
+                                +'<div class="col-sm-2 col marleft table_data_section display_f align_c" ><p title="'+item.site_id+'" class="table_data_element fnt_fam">'+item.site_name+'</p></div>'        
+                                +'<div class="col-sm-2 col marleft table_data_section display_f align_c" >'
+                                    +'<p class="table_data_element fnt_fam">'+item.designation+'</p>'
                                 +'</div>'
-                                +'<div class="col-sm-2 col marleft" >'
-                                    +'<p>'+register_date(item.created_on)+'</p>'
+                                +'<div class="col-sm-2 col marleft table_data_section display_f align_c" >'
+                                    +'<p class="table_data_element fnt_fam">'+register_date(item.created_on)+'</p>'
                                 +'</div>'
-                                +'<div class="col-sm-2 col ">'
-                                    +'<div class="userRole siteAdmin textCenter" style="border:1px solid '+colorBorder+';margin-left:1rem;">'
-                                        +'<p style="color:'+colorRole+'" class="user_get_role">'+item.role+'</p>'
+                                +'<div class="col-sm-2 col table_data_section display_f align_c">'
+                                    +'<div class="userRole siteAdmin textCenter" style="border:1px solid '+colorBorder+';">'
+                                        +'<p style="color:'+colorRole+'" class="user_get_role table_data_element fnt_fam">'+item.role+'</p>'
                                     +'</div>'
                                 +'</div>'
-                                +'<div class="col-sm-1 col settings_active marleft"><p style="color:#C00000;"><i class="fa fa-circle" style="font-size:9px;margin-right:5px;margin-top:5px;"></i>Inactive</p></div>'
-                                +'<div class="col-sm-1 col d-flex justify-content-center fasdiv">'
-                                    +'<ul class="edit-menu">'
-                                        +'<li class="d-flex justify-content-center">'
+                                +'<div class="col-sm-1 col settings_active marleft table_data_section display_f align_c"><p class="table_data_element fnt_bold fnt_fam fnt_inactive"><i class="fa fa-circle active_dot"></i>Inactive</p></div>'
+                                +'<div class="col-sm-1 col d-flex justify_c">'
+                                    +'<ul class="edit-menu paddingm display_f justify_c align_c">'
+                                        +'<li class="d-flex justify_c po_relative">'
                                             +'<a href="javascript:function(){return false;}">'
-                                                +'<i class="edit fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
+                                                +'<i class="editOpt fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
                                             +'</a>'
-                                            +'<ul class="edit-subMenu" style="z-index:10;">'
-                                                +'<li class="edit-opt info-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" con="'+item.created_on+'" site="'+item.site_id+'"><a href="#"><img src="<?php echo base_url('assets/img/info.png'); ?>" class="img_font_wh2" style="margin-left:10px;"></i>INFO</a></li>'
-                                                +'<li class="edit-opt activate-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'"  site_id="'+item.site_id+'"><a href="#" style="border-bottom:none;"><img src="<?php echo base_url('assets/img/activate.png'); ?>" class="img_font_wh2" style="margin-left:10px;"></i>ACTIVATE</a></li>'
+                                            +'<ul class="paddingm element-hover-content po_absolute">'
+                                                +'<li class="hover_elem_height side-menu-hover-btom display_f align_c sidenave-hover cursor info-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" con="'+item.created_on+'" site="'+item.site_id+'">'
+                                                //+'<a href="#"><img src="<?php echo base_url('assets/img/info.png'); ?>" class="img_font_wh2" style="margin-left:10px;"></i>INFO</a></li>'
+                                                    +'<div class="icon-option display_f justify_c align_c">'
+                                                        +'<img src="<?php echo base_url('assets/img/info.png') ?>" class="icons-smart icon-sub">'
+                                                    +'</div>'
+                                                    +'<div class="lable-option display_f align_c">'
+                                                        +'<a href="#" id="" class="nav-sub lable-option-val none_dec">INFO</a>'
+                                                    +'</div>'
+                                                 +'</li>'
+                                                +'<li class="hover_elem_height display_f align_c sidenave-hover cursor activate-user" rvalue="'+item.role+'" lvalue="'+item.user_id+'" svalue="'+item.status+'"  site_id="'+item.site_id+'">'
+                                                // +'<a href="#" style="border-bottom:none;"><img src="<?php echo base_url('assets/img/activate.png'); ?>" class="img_font_wh2" style="margin-left:10px;"></i>ACTIVATE</a></li>'
+                                                    +'<div class="icon-option display_f justify_c align_c">'
+                                                        +'<img src="<?php echo base_url('assets/img/activate.png') ?>" class="icons-smart icon-sub">'
+                                                    +'</div>'
+                                                    +'<div class="lable-option display_f align_c">'
+                                                        +'<a href="#" id="" class="nav-sub lable-option-val none_dec">ACTIVATE</a>'
+                                                    +'</div>'
+                                                 +'</li>'
                                             +'</ul>'
                                         +'</li>'
                                     +'</ul>'                

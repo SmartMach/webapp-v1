@@ -16,31 +16,36 @@
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/standard/template.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/standard/template_oui.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/standard/layout.css?version=<?php echo rand() ; ?>">
+    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/general_settings.css?version=<?php echo rand() ; ?>">
+    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/user_management.css?version=<?php echo rand() ; ?>">
+    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/pre_loader.css">
 
     <!-- CSS STANDARDS END-->
+
     
     <!--Link For CSS-->
-    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/config.css?version=<?php echo rand() ; ?>">
+    <!-- <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/config.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/css_general.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/production.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/multi-dropdown.css?version=<?php echo rand() ; ?>">
-    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/user_management_sub.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/model_size_css.css?version=<?php echo rand() ; ?>">
-    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/user_management.css?version=<?php echo rand() ; ?>">
-    <!-- <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/sidemenubar.css?version=<?php echo rand() ; ?>"> -->
-    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/general_settings_sub.css?version=<?php echo rand() ; ?>">
-    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/general_settings.css?version=<?php echo rand() ; ?>">
+
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/model_sub_test.css?version=<?php echo rand() ; ?>">
-    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/model_test1.css?version=<?php echo rand() ; ?>">
+
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/main.css?version=<?php echo rand() ; ?>">
-    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/common.css?version=<?php echo rand() ; ?>">
-    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/graph.css">
-    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/user_management_sub2.css?version=<?php echo rand() ; ?>">
-    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/pre_loader.css">
+    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/graph.css">-->
+
     <!-- temporary for strategy wait for part settings input alignment changes -->
-    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/css_demo1.css?version=<?php echo rand(); ?>">
+    <!-- <link rel="stylesheet" href="<?php //echo base_url()?>/assets/css/css_demo1.css?version=<?php //echo rand(); ?>"> -->
 
+    <!-- <link rel="stylesheet" href="<?php //echo base_url()?>/assets/css/model_test1.css?version=<?php // echo rand() ; ?>"> -->
 
+    <!-- <link rel="stylesheet" href="<?php //echo base_url()?>/assets/css/sidemenubar.css?version=<?php //echo rand() ; ?>"> -->
+
+    <!-- <link rel="stylesheet" href="<?php //echo base_url()?>/assets/css/user_management_sub2.css?version=<?php //echo rand() ; ?>"> -->
+
+    <!-- <link rel="stylesheet" href="<?php //echo base_url()?>/assets/css/user_management_sub.css?version=<?php //echo rand() ; ?>"> -->
+    <!-- <link rel="stylesheet" href="<?php //echo base_url()?>/assets/css/common.css?version=<?php //echo rand() ; ?>"> -->
 
     
     <!-- javascript link for date time -->
@@ -67,17 +72,6 @@
     <script type="text/javascript" src="<?php echo base_url() ?>/assets/js/all-fontawesome.js"></script>
 
 <style>    
-    .paddingm{
-      padding: 0;
-      margin: 0;
-    }
-
-    .sidenave-hover:hover{
-        background-color:#EFF7FF;
-        color:#595959;
-        border-radius:0.45rem;
-    }
-
     .icon-font{
         font-size:1.4rem;
         justify-content:center;
@@ -235,20 +229,7 @@
     .out{
         transition-duration: 2s;
     }
-
-    .circle_div{
-        height:2.5rem;
-        width:2.5rem;
-        border-radius:50%;
-        /* background-color:#005abc; */
-        
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        color:white;
-
-    }
-
+    
     .font_design{
         font-size:16.2px;
         /* padding:1px; */
@@ -291,20 +272,6 @@
        float:left;
        text-align:start;
        text-transform:capitalize;
-      }
-
-      #info_circle_color{
-        height:2.4rem;
-        width:2.4rem;
-        border-radius:50%;
-        color:white;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-      }
-      #get_text_info{
-        padding: 0;
-        margin-top: 1.2rem;
       }
 
       .col-white{
@@ -557,6 +524,11 @@
         </div>
     <!-- </div> -->
 <!-- </div> -->
+    
+    <!-- JS STANDARDS START-->
+        <script type="text/javascript" src="<?php echo base_url() ?>/assets/js/standard/main_smach.js"></script>
+    <!-- JS STANDARDS END-->
+
 </body>
 </html>
 <script>

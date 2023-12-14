@@ -1,6 +1,5 @@
-
 <style type="text/css">
-    .hrColor{
+        .hrColor{
         color:#848484;
     }
     .img_validate{
@@ -25,14 +24,6 @@
         font-weight: 400;
         color: #A6A6A6;
         font-family: 'Roboto' sans-serif;
-       /* opacity: 10%;*/
-    }
-    .general_header_model{
-        font-size: 1rem;
-        /* font-weight: 400; */
-        color: #A6A6A6;
-        font-family: 'Roboto' sans-serif;
-        opacity: 70%;
     }
 
     .no_img_circle{
@@ -42,26 +33,7 @@
         border-radius:50%;
 
     }
-    /* workshift management new custom css */
 
-    .form_custome_design{
-        width:100%;
-        height:2.3rem;
-        border-radius:4px;
-        border:1px solid #ced4da;
-        position: relative;
-        display:inline-block;
-    }
-
-    .form_custome_design:focus{
-        color: #495057;
-        background-color: #fff;
-        border-color:	#00BFFF ; 
-        border:2px;
-        outline: 0;
-        box-shadow: 0 0 0 0.3rem rgba(0, 123, 255, 0.25);
-
-    }
 
     .click_tooltip{
             visibility: hidden;
@@ -85,69 +57,6 @@
             height:2.7rem;
         }
 
-        
-.col_align_6{
-    width: 45%;
-    display: flex;
-    flex-direction: column;
-}
-.incre_div{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    color:#989fac;
-}
-.hour_dis{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 2.5rem;
-    background-color:var(--save_btn_background_color);
-    color:var(--save_btn_font_color);
-    border:1px solid;
-    border-radius:7px;
-}
-.decre_div{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color:#989fac;
-    cursor: pointer;
-}
-.col_align_6_1{
-    width: 10%;
-    font-size: xx-large;
-    justify-content: center;
-    align-items: center;
-    align-self: center;
-    color:#989fac;
-}
-
-
-.col_align_6_2{
-    width: 45%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.custome_lable{
-    position: absolute;
-    top:0.5rem;
-    left:1.6rem;
-    font-size:12px;
-    background-color:white;
-    color:#8c8c8c;
-    padding-left:3px;
-    padding-right:3px;
-}
-
 #set_hour_minute option{
     padding: 0.3rem;
 }
@@ -170,8 +79,6 @@
     line-height: 1rem;
 }
 
-
-/* three dots css 2023-09-27 */
 .three_dots_css{
     overflow:hidden;
     text-overflow:ellipsis;
@@ -180,8 +87,8 @@
     margin:auto;
     padding-left:1rem;
     text-align:start;
+    font-size: 1rem;
 }
-
 </style>
 
 <div class="mr_left_content_sec">
@@ -192,9 +99,9 @@
     </nav>
     <div>
         <div class="contentGeneralSettings">
-            <div style="margin:2.5rem;">
+            <div class="contentGeneral">
                     <div class="card bodercss">
-                        <p class="fieldTitle input-padding">GOALS</p>
+                        <p class="fieldTitle po_absolute fnt_fam input-padding">GOALS</p>
                         <div class="content-container">
                             <div class="row paddingm"> 
                                 <div class="col paddingm">
@@ -214,17 +121,17 @@
                                 <div class="float-start col-lg-3 paddingm FMalign">
                                         <label class="headTitle">Overall TEEP % Target</label>
                                         <!----over all TEEP id is OTEEP------->
-                                        <p class="paddingm"><span id="OTEEP" class="font_weight"></span>%</p>
+                                        <p class="paddingm"><span id="OTEEP" class=""></span>%</p>
                                 </div>
                                 <div class="float-start col-lg-3 paddingm FMalign">
                                         <label class="headTitle">Overall OOE % Target</label>
                                         <!----over all TEEP id is OOOE------->
-                                        <p class="paddingm"><span id="OOOE" class="font_weight"></span>%</p>
+                                        <p class="paddingm"><span id="OOOE" class=""></span>%</p>
                                 </div>
                                 <div class="float-start col-lg-3 paddingm FMalign">
                                         <label class="headTitle">Overall OEE % Target</label>
                                         <!----over all TEEP id is OOEE------->
-                                        <p class="paddingm"><span id="OOEE" class="font_weight"></span>%</p>
+                                        <p class="paddingm"><span id="OOEE" class=""></span>%</p>
                                 </div>
                             </div>
                         </div>
@@ -233,22 +140,22 @@
                                 <div class="float-start col-lg-3 paddingm">
                                         <label class="headTitle">Availability % Target</label>
                                         <!-------Availability--------->
-                                        <p class="paddingm"><span id="Availability" class="font_weight"></span>%</p>
+                                        <p class="paddingm"><span id="Availability" class=""></span>%</p>
                                 </div>
                                 <div class="float-start col-lg-3 paddingm">
                                         <label class="headTitle">Performance % Target</label>
                                            <!-------------Performance----------->
-                                        <p class="paddingm"><span id="Performance" class="font_weight"></span>%</p>
+                                        <p class="paddingm"><span id="Performance" class=""></span>%</p>
                                 </div>
                                 <div class="float-start col-lg-3 paddingm">
                                         <label class="headTitle">Quality % Target</label>
                                           <!-----Quality------>
-                                        <p class="paddingm"><span id="Quality" class="font_weight"></span>%</p>
+                                        <p class="paddingm"><span id="Quality" class=""></span>%</p>
                                 </div>
                                 <div class="float-start col-lg-3 paddingm ">
                                         <label class="headTitle">OEE % Target</label>
                                         <!----OEE------>
-                                        <p class="paddingm"><span id="OEE" class="font_weight"></span>%</p>
+                                        <p class="paddingm"><span id="OEE" class=""></span>%</p>
                                 </div>
                             </div>
                         </div>
@@ -266,7 +173,7 @@
                                     <div class="" style="width: 97%;">
                                         <div class="container">
                                             <label class="headTitle" style="margin-left: 18px;">Downtime Threshold<span id="range" style="color:#C00000;"></span></label>
-                                            <p class="paddingm" style="margin-left: 18px;"><span id="ODT" class="font_weight"></span></p>
+                                            <p class="paddingm" style="margin-left: 18px;"><span id="ODT" class=""></span></p>
                                         </div>
                                     </div>
                                     <div style="width: 3%;">
@@ -347,7 +254,7 @@
                                         <div class="flex-container" style="padding:0.4rem;justify-content:space-around;align-item:center;">
                                             <div class="float-start paddingm FMalign" style="width:20%;">
                                                 <label class="headTitle">OEE%   Target</label>
-                                                <p class="paddingm"><span class="target_val font_weight"></span></p>
+                                                <p class="paddingm"><span class="target_val "></span></p>
                                             </div>
                                             <div class="reason-box-cf" >
                                                 <div class="flex-container" style="justify-content:space-evenly;text-align:center;align-items:center;padding:0rem;height:3rem;">
@@ -359,7 +266,7 @@
                                                         <img src="<?php echo base_url('assets/img/greater.png'); ?>" class=" " style="font-weight: 550;width:1.3rem;height:1.3rem;"></i>
                                                     </div>
                                                     <div class="" style="width:20%;">
-                                                        <p style="text-align:center;justify-content:center;margin:auto;" class="green_val font_weight"></p>
+                                                        <p style="text-align:center;justify-content:center;margin:auto;" class="green_val "></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -373,7 +280,7 @@
                                                     <img src="<?php echo base_url('assets/img/greater.png'); ?>" class=" " style="font-weight: 550;width:1.3rem;height:1.3rem;"></i>
                                                     </div>
                                                     <div class="" style="width:20%;">
-                                                        <p style="text-align:center;justify-content:center;margin:auto;" class="yellow_val font_weight"></p>
+                                                        <p style="text-align:center;justify-content:center;margin:auto;" class="yellow_val "></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -397,19 +304,19 @@
                     </div><!----current shift performance ending------>
                      <!----work shift performance starting------>
                     <div class="card genmtop bodercss">
-                        <p class="fieldTitle input-padding">WORK SHIFT MANAGEMENT</p>   
+                        <p class="fieldTitle po_absolute fnt_fam input-padding">WORK SHIFT MANAGEMENT</p>   
                         <div class="container genmtop" style="margin-bottom: 20px;margin-top: 20px;">
                             <div class="flex-container paddingm">
                                 <div class="float-start col-lg-3">
                                     <div>
                                         <label class="headTitle">No.of Hours / shift</label>
-                                        <p class="paddingm"><span id="NoOfHourShift" class="font_weight"></span></p>
+                                        <p class="paddingm"><span id="NoOfHourShift" class=""></span></p>
                                     </div>
                                 </div>
                                 <div class="float-start col-lg-3">
                                     <div>
                                         <label class="headTitle">1<sup>st</sup> Shift Start Time</label>
-                                        <p class="paddingm"><span id="ShiftStart" class="font_weight"></span></p>                                    
+                                        <p class="paddingm"><span id="ShiftStart" class=""></span></p>                                    
                                     </div>
                                 </div>
                                 <div class="float-start col-lg-5">
@@ -449,30 +356,30 @@
 <div class="modal fade" id="EditFMModal" tabindex="-1" aria-labelledby="EditFMModal1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered rounded">
     <div class="container modal-content bodercss">
-            <div class="modal-header" style="border:none; ">
-                <h5 class="modal-title general_header_model" id="EditFMModal1" style="">FINANCIAL METRICS</h5>
+            <div class="modal-header border_no">
+                <p class="modal-title header_popup fnt_fam" id="EditFMModal1" style="">FINANCIAL METRICS</p>
             </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="float-start col-lg-3 box">
                             <div class="input-box fieldStyle">
-                                <input type="text" class="form-control font_weight" id="EOTEEP" value="" required="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                <label class="input-padding">Overall TEEP % Target <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id="EOTEEPErr"></span>
+                                <input type="text" class="form-control " id="EOTEEP" value="" required="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                <label class="input_lable fnt_fam">Overall TEEP % Target <span class="paddingm validate">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam" id="EOTEEPErr"></span>
                             </div>
                         </div>
                         <div class="box float-start col-lg-3 box">
                             <div class="input-box fieldStyle">
-                                <input type="text" class="form-control font_weight" id="EOOOE" value="" required="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                <label class="input-padding">Overall OOE % Target <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id="EOOOEErr"></span>
+                                <input type="text" class="form-control " id="EOOOE" value="" required="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                <label class="input_lable fnt_fam">Overall OOE % Target <span class="paddingm validate">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam" id="EOOOEErr"></span>
                             </div>
                         </div>
                         <div class="box float-start col-lg-3 box">
                             <div class="input-box fieldStyle">
-                                <input type="text" class="form-control font_weight" id="EOOEE" value="" required="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                <label class="input-padding">Overall OEE % Target <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id="EOOEEErr"></span>
+                                <input type="text" class="form-control " id="EOOEE" value="" required="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                <label class="input_lable fnt_fam">Overall OEE % Target <span class="paddingm validate">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam" id="EOOEEErr"></span>
                             </div>
                         </div>
                         <div class="col-lg-3">
@@ -482,29 +389,29 @@
                     <div class="row">
                             <div class="box float-start col-lg-3">
                                 <div class="input-box fieldStyle">
-                                    <input type="text" class="form-control font_weight" id="EAvailability" value="" required="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                    <label class="input-padding">Availability % Target <span class="paddingm validate">*</span></label>
-                                    <span class="paddingm float-start validate" id="EAvailabilityErr"></span>
+                                    <input type="text" class="form-control " id="EAvailability" value="" required="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                    <label class="input_lable fnt_fam">Availability % Target <span class="paddingm validate">*</span></label>
+                                    <span class="paddingm float-start validate fnt_fam" id="EAvailabilityErr"></span>
                                 </div>
                             </div>
                             <div class="box float-start col-lg-3 ">
                                 <div class="input-box fieldStyle">
-                                    <input type="text" class="form-control font_weight" id="EPerformance" value="" required="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                    <label class="input-padding">Performance % Target <span class="paddingm validate">*</span></label>
-                                    <span class="paddingm float-start validate" id="EPerformanceErr"></span>
+                                    <input type="text" class="form-control " id="EPerformance" value="" required="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                    <label class="input_lable fnt_fam">Performance % Target <span class="paddingm validate">*</span></label>
+                                    <span class="paddingm float-start validate fnt_fam" id="EPerformanceErr"></span>
                                 </div>
                             </div>
                             <div class="box float-start col-lg-3">
                                 <div class="input-box fieldStyle">
-                                    <input type="text" class="form-control font_weight" id="EQuality" value="" required="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                    <label class="input-padding">Quality % Target <span class="paddingm validate">*</span></label>
-                                    <span class="paddingm float-start validate" id="EQualityErr"></span>
+                                    <input type="text" class="form-control " id="EQuality" value="" required="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                    <label class="input_lable fnt_fam">Quality % Target <span class="paddingm validate">*</span></label>
+                                    <span class="paddingm float-start validate fnt_fam" id="EQualityErr"></span>
                                 </div>
                             </div>
                             <div class="box float-start col-lg-3">
                                 <div class="input-box fieldStyle">
-                                    <input type="text" class="form-control font_weight" id="EOEE" value="" style="display: none;">
-                                    <label class="input-padding">OEE % Target</label>
+                                    <input type="text" class="form-control " id="EOEE" value="" style="display: none;">
+                                    <label class="input_lable fnt_fam">OEE % Target</label>
 
                                     <p class="paddingm OEECalcStyle"><span id="OEECalc">70</span>%</p>
                                     <!-- <span class="paddingm float-start validate" id="EOEEErr"></span> -->
@@ -513,9 +420,9 @@
                         </div>             
                     
                 </div>
-                <div class="modal-footer" style="border:none;">
-                    <input type="submit" class="btn fo bn Update_GFM saveBtnStyle" name="Update_GFM" value="Save">
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                <div class="modal-footer border_no">
+                    <input type="submit" class="btn fnt_fam btn_fnt_size btn_padd btn_save Update_GFM" name="Update_GFM" value="Save">
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
                 </div>
     </div>
   </div>
@@ -524,25 +431,25 @@
 <div class="modal fade" id="EditDTModal" tabindex="-1" aria-labelledby="EditDTModal1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered rounded">
     <div class="container modal-content bodercss">
-            <div class="modal-header" style="border:none; ">
-                <h5 class="modal-title general_header_model" id="EditDTModal1" style="">DOWNTIME THRESHOLD</h5>
+            <div class="modal-header border_no">
+                <p class="modal-title header_popup fnt_fam" id="EditDTModal1" style="">DOWNTIME THRESHOLD</p>
             </div>
             <!-- <form > -->
                 <div class="modal-body">
                     <div class="row">
                         <div class="box float-start col-lg-3">
                             <div class="input-box fieldStyle">
-                                <input type="text" class="form-control font_weight" name="Update_DThreshold" id="Update_DThreshold" required="" style="padding-right:2.1rem;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                <label class="input-padding">Downtime Threshold <span class="paddingm validate">*</span></label>
+                                <input type="text" class="form-control " name="Update_DThreshold" id="Update_DThreshold" required="" style="padding-right:2.1rem;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                <label class="input_lable fnt_fam">Downtime Threshold <span class="paddingm validate">*</span></label>
                                 <span class="unit clip">min</span>
-                                <span class="paddingm float-start validate" id="Update_DThresholdErr"></span>
+                                <span class="paddingm float-start validate fnt_fam" id="Update_DThresholdErr"></span>
                             </div>
                         </div>
                     </div>            
                 </div>
-                <div class="modal-footer" style="border:none;">
-                    <button type="button" class="btn fo bn Update_DT saveBtnStyle" name="" value="Save">Save</button>
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                <div class="modal-footer border_no">
+                    <input type="submit" class="btn fnt_fam btn_fnt_size btn_padd btn_save Update_DT" name="Update_DT" value="Save">
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
                 </div>
             <!-- </form> -->
     </div>
@@ -554,8 +461,8 @@
 <div class="modal fade" id="EditDRModal" tabindex="-1" aria-labelledby="EditDRModal1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered rounded">
     <div class="container modal-content bodercss">
-            <div class="modal-header" style="border:none; ">
-                <h5 class="modal-title general_header_model" id="EditDRModal1" style="">DOWNTIME REASONS</h5>
+            <div class="modal-header border_no">
+                <p class="modal-title header_popup fnt_fam" id="EditDRModal1" style="">DOWNTIME REASONS</p>
             </div>
             <form method="post" enctype="multipart/form-data"  id="EditDRModalSubmit" class="addMachineForm" >
             <!-- temporary hidding for strategy -->  
@@ -574,28 +481,28 @@
                         <div class="row">
                             <div class="box float-start col-lg-6">
                                 <div class="input-box fieldStyle">
-                                    <input type="text" class="form-control font_weight" name="DTName" id="DTName" required="">
-                                    <label class="input-padding">Reason Name <span class="paddingm validate">*</span></label>
-                                    <span class="paddingm float-start validate" id="DTNameErr"></span>
-                                    <span class="float-end charCount" id="DTNameCunt"></span>
+                                    <input type="text" class="form-control " name="DTName" id="DTName" required="">
+                                    <label class="input_lable fnt_fam">Reason Name <span class="paddingm validate">*</span></label>
+                                    <span class="paddingm float-start validate fnt_fam" id="DTNameErr"></span>
+                                    <span class="float-end charCount fnt_fam" id="DTNameCunt"></span>
                                 </div>
                             </div>
                             <div class="box float-start col-lg-6">
                                 <div class="input-box fieldStyle">
-                                    <select class="form-select font_weight" name="DTRCategory" id="DTRCategory">
+                                    <select class="form-select " name="DTRCategory" id="DTRCategory">
                                     <option value="select" selected="true" disabled>Select</option>
                                         <option value="Planned">Planned</option>
                                         <option value="Unplanned">Unplanned</option>
                                     </select>
-                                    <label class="input-padding">Downtime Category <span class="paddingm validate">*</span></label>
-                                    <span class="paddingm float-start validate" id="DTCategoryErr"></span>
+                                    <label class="input_lable fnt_fam">Downtime Category <span class="paddingm validate">*</span></label>
+                                    <span class="paddingm float-start validate fnt_fam" id="DTCategoryErr"></span>
                                 </div>
                             </div>
                             <div class="row paddingm">
                             <div class="box float-start col-lg-6">
                                 <div class="input-box fieldStyle">
-                                <input type="text" class="form-control font_weight paddinginright" id="DTReasonVal" name="" value="" class="DTReason" required="" autocomplete="off" onkeydown="return false" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" >
-                                    <label class="input-padding">Reason Image <span class="paddingm validate">*</span></label>
+                                <input type="text" class="form-control  paddinginright" id="DTReasonVal" name="" value="" class="DTReason" required="" autocomplete="off" onkeydown="return false" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" >
+                                    <label class="input_lable fnt_fam">Reason Image <span class="paddingm validate">*</span></label>
                                     <input type="file" style="display: none;" class="downtime_img form-control form-control-md" id="attach_file" name="DTReasonimg" required="true" >
                                     <span class="unit"><i class="fa fa-paperclip clip DTI " style="font-size: 20px;" aria-hidden="true"></i></span>
 
@@ -608,9 +515,9 @@
                         
                     </div>          
                 </div>
-                <div class="modal-footer" style="border:none;">
-                    <input type="submit" class="btn fo bn submit_downtime_reason saveBtnStyle" id="submit_downtime_reason" name="Upload_Downtime_Reason" value="Save">
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                <div class="modal-footer border_no">
+                    <input type="submit" class="btn fnt_fam btn_fnt_size btn_padd btn_save submit_downtime_reason" id="submit_downtime_reason" name="Upload_Downtime_Reason" value="Save">
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
                 </div>
             </form>
     </div>
@@ -622,8 +529,8 @@
 <div class="modal fade" id="updateDRModal" tabindex="-1" aria-labelledby="updateDRModal1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered rounded">
     <div class="container modal-content bodercss">
-            <div class="modal-header" style="border:none; ">
-                <h5 class="modal-title general_header_model" id="updateDRModal1" style="">EDIT DOWNTIME REASONS</h5>
+            <div class="modal-header border_no">
+                <p class="modal-title header_popup fnt_fam" id="updateDRModal1" style="">EDIT DOWNTIME REASONS</p>
             </div>
             <form method="post" enctype="multipart/form-data" id="updateDRModalForm" class="addMachineForm" >
                 <div class="modal-body DRModal" style="max-height: 400px;overflow: auto;">
@@ -631,26 +538,26 @@
                         <div class="row">
                             <div class="box float-start col-lg-6">
                                 <div class="input-box fieldStyle">
-                                    <input type="text" class="form-control font_weight" name="UDTName" id="UDTName" value="" required="">
-                                    <label class="input-padding">Reason Name <span class="paddingm validate">*</span></label>
-                                    <span class="paddingm float-start validate" id="UDTNameErr"></span>
-                                    <span class="float-end charCount" id="UDTNameCunt"></span>
+                                    <input type="text" class="form-control " name="UDTName" id="UDTName" value="" required="">
+                                    <label class="input_lable fnt_fam">Reason Name <span class="paddingm validate">*</span></label>
+                                    <span class="paddingm float-start validate fnt_fam" id="UDTNameErr"></span>
+                                    <span class="float-end charCount fnt_fam" id="UDTNameCunt"></span>
                                 </div>
                             </div>
                             <div class="box float-start col-lg-6">
                                 <div class="input-box fieldStyle">
-                                    <select class="form-select font_weight" name="UDTRCategory" id="UDTRCategory" >
+                                    <select class="form-select " name="UDTRCategory" id="UDTRCategory" >
                                        
                                     </select>
-                                    <label class="input-padding">Downtime Category <span class="paddingm validate">*</span></label>
+                                    <label class="input_lable fnt_fam">Downtime Category <span class="paddingm validate">*</span></label>
                                 </div>
                             </div>
                         </div> 
                         <div class="row">
                             <div class="box float-start col-lg-6">
                                 <div class="input-box fieldStyle">
-                                    <input type="text" class="form-control UDTReason font_weight paddinginright" name="" value="" id="UDTReason" required="" autocomplete="off" onkeydown="return false" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" >
-                                    <label class="input-padding">Reason Image <span class="paddingm validate">*</span></label>
+                                    <input type="text" class="form-control UDTReason  paddinginright" name="" value="" id="UDTReason" required="" autocomplete="off" onkeydown="return false" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" >
+                                    <label class="input_lable fnt_fam">Reason Image <span class="paddingm validate">*</span></label>
                                     <input type="file" style="display: none;" id="update_attach_file" name="UDTReasonImg">
                                     <span class="unit"><i class="fa fa-paperclip clip UDTI " style="font-size: 20px;" aria-hidden="true"></i></span>
                                     <span class="grey_label float-end">(100 px x 100 px), preferably JPG, WEBP format</span>
@@ -667,9 +574,9 @@
                         </div>
                     </div>          
                 </div>
-                <div class="modal-footer" style="border:none;">
-                    <input type="submit" class="btn fo bn Update_Downtime_Reason saveBtnStyle" id="Update_Downtime_Reason" name="Update_Downtime_Reason" value="Save">
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                <div class="modal-footer border_no">
+                    <input type="submit" class="btn fnt_fam btn_fnt_size btn_padd btn_save Update_Downtime_Reason" name="Update_Downtime_Reason" id="Update_Downtime_Reason" value="Save">
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
                 </div>
             </form>
     </div>
@@ -681,8 +588,8 @@
 <div class="modal fade" id="EditQRModal" tabindex="-1" aria-labelledby="EditQRModal1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered rounded">
     <div class="container modal-content bodercss">
-            <div class="modal-header" style="border:100;border-bottom:0; ">
-                <h5 class="modal-title general_header_model" id="EditQRModal1" style="">QUALITY REASONS</h5>
+            <div class="modal-header border_no">
+                <p class="modal-title header_popup fnt_fam" id="EditQRModal1" style="">QUALITY REASONS</p>
             </div>
             <form method="post" enctype="multipart/form-data" id="EditQRModalForm" class="addMachineForm"  >
                 <!-- temporary hidding for strategy -->
@@ -699,16 +606,16 @@
                         <div class="row">
                             <div class="box float-start col-lg-6">
                                 <div class="input-box fieldStyle">
-                                    <input type="text" class="form-control font_weight" name="QReasonName" id="QReasonName" required="">
-                                    <label class="input-padding">Reason Name <span class="paddingm validate">*</span></label>
-                                    <span class="paddingm float-start validate" id="QReasonNameErr"></span>
-                                    <span class="float-end charCount" id="QReasonNameCunt"></span>
+                                    <input type="text" class="form-control " name="QReasonName" id="QReasonName" required="">
+                                    <label class="input_lable fnt_fam">Reason Name <span class="paddingm validate">*</span></label>
+                                    <span class="paddingm float-start validate fnt_fam" id="QReasonNameErr"></span>
+                                    <span class="float-end charCount fnt_fam" id="QReasonNameCunt"></span>
                                 </div>
                             </div>
                             <div class="box float-start col-lg-6">
                                 <div class="input-box fieldStyle">
-                                    <input type="text" class="form-control font_weight paddinginright" name="" id="Qreason" value="" required="" autocomplete="off" onkeydown="return false" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" >
-                                    <label class="input-padding">Reason Image <span class="paddingm validate">*</span></label>
+                                    <input type="text" class="form-control  paddinginright" name="" id="Qreason" value="" required="" autocomplete="off" onkeydown="return false" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" >
+                                    <label class="input_lable fnt_fam">Reason Image <span class="paddingm validate">*</span></label>
                                     <input type="file" style="display: none;" id="attach_file_Quality" name="QReasonImg">
                                     <span class="unit"><i class="fa fa-paperclip clip QRI" style="font-size: 20px;" aria-hidden="true"></i></span>
                                     <span class="grey_label float-end">(100 px x 100 px), preferably JPG, WEBP format</span>
@@ -718,9 +625,10 @@
                         </div>
                     </div>            
                 </div>
-                <div class="modal-footer" style="border:none;">
-                    <input type="submit" class="btn fo bn submit_quality_reason saveBtnStyle" id="submit_quality_reasons" name="" value="Save">
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                <div class="modal-footer border_no">
+
+                    <input type="submit" class="btn fnt_fam btn_fnt_size btn_padd btn_save submit_quality_reason" name="submit_quality_reason" id="submit_quality_reason" value="Save">
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
                 </div>
             </form>
     </div>
@@ -732,8 +640,8 @@
 <div class="modal fade" id="updateQRModal" tabindex="-1" aria-labelledby="UpdateQRModal1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered rounded">
     <div class="container modal-content bodercss">
-            <div class="modal-header" style="border:none; ">
-                <h5 class="modal-title general_header_model" id="UpdateQRModal1" style="">QUALITY REASONS</h5>
+            <div class="modal-header border_no">
+                <p class="modal-title header_popup fnt_fam" id="UpdateQRModal1" style="">QUALITY REASONS</p>
             </div>
             <form method="post" enctype="multipart/form-data" id="updateQRModalForm" class="addMachineForm"  >
                 <!-- <div class="">
@@ -749,16 +657,16 @@
                         <div class="row">
                             <div class="box float-start col-lg-6">
                                 <div class="input-box fieldStyle">
-                                    <input type="text" class="form-control font_weight" name="UQReasonName" value id="UQReasonName" required="">
-                                    <label class="input-padding">Reason Name <span class="paddingm validate">*</span></label>
-                                    <span class="paddingm float-start validate" id="UQReasonNameErr"></span>
-                                    <span class="float-end charCount" id="UQReasonNameCunt"></span>
+                                    <input type="text" class="form-control " name="UQReasonName" value id="UQReasonName" required="">
+                                    <label class="input_lable fnt_fam">Reason Name <span class="paddingm validate">*</span></label>
+                                    <span class="paddingm float-start validate fnt_fam" id="UQReasonNameErr"></span>
+                                    <span class="float-end charCount fnt_fam" id="UQReasonNameCunt"></span>
                                 </div>
                             </div>
                             <div class="box float-start col-lg-6">
                                 <div class="input-box fieldStyle">
-                                    <input type="text" class="form-control font_weight paddinginright" name="" id="UQReasonImg" value="" required="" autocomplete="off" onkeydown="return false" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" >
-                                    <label class="input-padding">Reason Image <span class="paddingm validate">*</span></label>
+                                    <input type="text" class="form-control  paddinginright" name="" id="UQReasonImg" value="" required="" autocomplete="off" onkeydown="return false" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" >
+                                    <label class="input_lable fnt_fam">Reason Image <span class="paddingm validate">*</span></label>
                                     <input type="file" style="display: none;" id="update_file_Quality" name="UQReasonImg">
                                     <span class="unit"><i class="fa fa-paperclip clip UQRI" style="font-size: 20px;" aria-hidden="true"></i></span>
                                     <span class="grey_label float-end">(100 px x 100 px), preferably JPG, WEBP format</span>
@@ -775,9 +683,9 @@
                         </div>
                     </div>            
                 </div>
-                <div class="modal-footer" style="border:none;">
-                    <input type="submit" class="btn fo bn submit_qualityup_reason saveBtnStyle" id="edit_quality_reasons" name="" value="Save">
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                <div class="modal-footer border_no">
+                    <input type="submit" class="btn fnt_fam btn_fnt_size btn_padd btn_save submit_qualityup_reason" name="submit_qualityup_reason" id="submit_qualityup_reason" value="Save">
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
                 </div>
             </form>
     </div>
@@ -789,8 +697,8 @@
 <div class="modal fade" id="EditWSM" tabindex="-1" aria-labelledby="EditWSM1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered rounded">
     <div class="container modal-content bodercss">
-            <div class="modal-header" style="border:none; ">
-                <h5 class="modal-title general_header_model" id="EditWSM1" style="">WORK SHIFT MANAGEMENT</h5>
+            <div class="modal-header border_no">
+                <p class="modal-title header_popup fnt_fam" id="EditWSM1" style="">WORK SHIFT MANAGEMENT</p>
             </div>
             <!-- <form method="post" class="addMachineForm" action="" > -->
                 <div class="modal-body">
@@ -799,7 +707,7 @@
                             <div style="width:50%;">
                                 <div class="box">
                                     <div class="input-box fieldStyle">
-                                        <select class="form-select font_weight" onfocus='this.size=10;' onblur='this.size=1;' onchange='this.size=1; this.blur();' name="set_hour_minute" id="set_hour_minute">
+                                        <select class="form-select " onfocus='this.size=10;' onblur='this.size=1;' onchange='this.size=1; this.blur();' name="set_hour_minute" id="set_hour_minute">
                                             <option value="00:00">00:00</option>
                                             <option value="00:30">00:30</option>
                                             <option value="01:00">01:00</option>
@@ -849,10 +757,10 @@
                                             <option value="23:00">23:00</option>
                                             <option value="23:30">23:30</option>
                                         </select>
-                                        <label class="input-padding">No.of Hours / Shift<span class="paddingm validate">*</span></label>
+                                        <label class="input_lable fnt_fam">No.of Hours / Shift<span class="paddingm validate">*</span></label>
                                     </div>
                                 </div>
-                                        <!-- <input type="text" name="" onclick="open_tooltip();" class=" font_weight form_custome_design" id="set_hour_minute" required="true" style="padding-left:1rem;">
+                                        <!-- <input type="text" name="" onclick="open_tooltip();" class="  form_custome_design" id="set_hour_minute" required="true" style="padding-left:1rem;">
                                         <label class="custome_lable">No.of Hours / Shift<span class="paddingm validate">*</span></label>
                                         <div class="click_tooltip">
                                             <div class="" style="display:flex;padding:5px;">
@@ -893,8 +801,8 @@
                             <div class="" style="width:50%;">
                             <div class="box">
                                 <div class="input-box fieldStyle">
-                                    <input type="time" class="form-control font_weight" id="SSTime" required="" onfocus="$('.click_tooltip').css('visibility','hidden');">
-                                    <label class="input-padding">1<sup>st</sup> Shift Start Time<span class="paddingm validate">*</span></label>
+                                    <input type="time" class="form-control " id="SSTime" required="" onfocus="$('.click_tooltip').css('visibility','hidden');">
+                                    <label class="input_lable fnt_fam">1<sup>st</sup> Shift Start Time<span class="paddingm validate">*</span></label>
                                 </div>
                             </div>
                                
@@ -902,9 +810,9 @@
                         </div>
                     </div>            
                 </div>
-                <div class="modal-footer" style="border:none;">
-                    <a class="btn fo bn updateSST saveBtnStyle" name="" value="Save">Save</a>
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                <div class="modal-footer border_no">
+                    <input type="submit" class="btn fnt_fam btn_fnt_size btn_padd btn_save updateSST" name="updateSST" value="Save">
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
                 </div>
             <!-- </form> -->
     </div>
@@ -916,16 +824,16 @@
 <div class="modal fade" id="DeactiveReasonModal" tabindex="-1" aria-labelledby="DeactiveReasonModal1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered rounded">
     <div class="container modal-content bodercss">
-            <div class="modal-header" style="border:none; ">
-                <h5 class="modal-title settings-machineAdd-model" id="DeactiveReasonModal1" style="">CONFIRMATION MESSAGE</h5>
+            <div class="modal-header border_no">
+                <p class="modal-title header_popup fnt_fam" id="DeactiveReasonModal1" style="">CONFIRMATION MESSAGE</p>
             </div>
                 <div class="modal-body">
-                    <label style="color: black;">Are you sure you want to delete this reason record?</label>
+                    <label class="conf_message">Are you sure you want to delete this reason record?</label>
                     
                 </div>
-                <div class="modal-footer" style="border:none;">
-                    <a class="btn fo bn Update_RReason saveBtnStyle" name="Edit_Machine" value="Save">Save</a>
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                <div class="modal-footer border_no">
+                    <input type="submit" class="btn fnt_fam btn_fnt_size btn_padd btn_save Update_RReason" name="Update_RReason" value="Save">
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
                 </div>
     </div>
   </div>
@@ -934,16 +842,16 @@
 <div class="modal fade" id="DeactiveQReasonModal" tabindex="-1" aria-labelledby="DeactiveQReasonModal1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered rounded">
     <div class="container modal-content bodercss">
-            <div class="modal-header" style="border:none; ">
-                <h5 class="modal-title settings-machineAdd-model" id="DeactiveQReasonModal1" style="">CONFIRMATION MESSAGE</h5>
+            <div class="modal-header border_no">
+                <p class="modal-title header_popup fnt_fam" id="DeactiveQReasonModal1" style="">CONFIRMATION MESSAGE</p>
             </div>
                 <div class="modal-body">
-                    <label style="color: black;">Are you sure you want to delete this reason record?</label>
+                    <label class="conf_message">Are you sure you want to delete this reason record?</label>
                     
                 </div>
-                <div class="modal-footer" style="border:none;">
-                    <a class="btn fo bn Update_QReason saveBtnStyle" name="" value="Save">Save</a>
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                <div class="modal-footer border_no">
+                    <input type="submit" class="btn fnt_fam btn_fnt_size btn_padd btn_save Update_QReason" name="Update_QReason" value="Save">
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
                 </div>
     </div>
   </div>
@@ -954,7 +862,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered rounded">
         <div class="container modal-content bodercss">
             <div class="modal-header" style="border:none; ">
-                <h5 class="modal-title general_header_model" id="current_shit_performance" style="">CURRENT SHIFT PERFORMANCE</h5>
+                <p class="modal-title header_popup fnt_fam" id="current_shit_performance" style="">CURRENT SHIFT PERFORMANCE</p>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -964,9 +872,9 @@
                             <div class="box " style="text-align:end;">
                                 <div class="input-box fieldStyle" sytle="text-align:end;">
                                     
-                                    <input type="text" class="form-control form-control-lg target_value_edit font_weight" style="font-size:0.9rem;text-align:end;padding-right:1.5rem;position:relative;" name="targetvalue" id="targetvalue" value="" required="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                    <input type="text" class="form-control form-control-lg target_value_edit " style="font-size:0.9rem;text-align:end;padding-right:1.5rem;position:relative;" name="targetvalue" id="targetvalue" value="" required="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                     <span style="position:absolute;top:0.5rem;font-size:1rem;margin-left:-1.4rem;">%</span>
-                                    <label class="input-padding">OEE% Target <span class="paddingm validate">*</span></label>
+                                    <label class="input_lable fnt_fam">OEE% Target <span class="paddingm validate">*</span></label>
                                     <span class="add_target_data" style="color:red;font-size:0.8rem;"></span>
                                 </div>
                             </div>
@@ -982,7 +890,7 @@
                                        <img src="<?php echo base_url('assets/img/greater.png'); ?>" class=" " style="font-weight: 550;width:1.3rem;height:1.3rem;"></i>
                                     </div>
                                     <div class="" style="width:25%;">
-                                        <input type="text" class="form-control form-control-md green_value_edit font_weight" value="" name="green" id="green" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                        <input type="text" class="form-control form-control-md green_value_edit " value="" name="green" id="green" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                     </div>
                                     <div class="" style="width:9%;font-weight:bolder;">
                                             <span>%</span>
@@ -1003,7 +911,7 @@
                                     </div>
                                     <div class="" style="width:25%;">
                                         <!-- <p style="text-align:center;justify-content:center;margin:auto;">85%</p> -->
-                                        <input type="text" class="form-control form-control-md yellow_value_edit font_weight" id="yellow" name="yellow" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                        <input type="text" class="form-control form-control-md yellow_value_edit " id="yellow" name="yellow" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                     </div>
                                     <div class="" style="width:9%;font-weight:bolder;">
                                             <span>%</span>
@@ -1034,9 +942,9 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer" style="border:none;">
-                <a class="btn fo bn btn_current_shift saveBtnStyle" name="" id="btn_current_shift" value="Save">Save</a>
-                <a class="btn fo bn cancel_modal cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+            <div class="modal-footer" style="border:none;">  
+                <input type="submit" class="btn fnt_fam btn_fnt_size btn_padd btn_save btn_current_shift" name="btn_current_shift" id="btn_current_shift" value="Save">
+                <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
             </div>
         </div>
     </div>
@@ -1796,37 +1704,37 @@ function get_shift_data(){
                     if (imgError(file_name) == true) {
                         // if image is found in the location execute the block
                         if (item.downtime_category == "Planned") {
-                            elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
-                            +'<div class="dot col float-start" style="overflow:hidden"><img src="'+item.uploaded_file_location+item.uploaded_file_name+'.'+item.original_file_extension+'" alt="" width="100%" height="100%"></div>'
-                            +'<div class="col.float-start down d-flex fontheight fontbox"><p  title="'+item.downtime_reason+'" class="three_dots_css font_weight " >'+item.downtime_reason+'</p></div>'
-                            +'<div class="dotHover dclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh  reason-pen" style="color:grey; "></i></div>'
-                            +'<div class="dotHover1 drclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/delete.png'); ?>" class="img_font_wh reason-pen" ></i></div>'
+                            elements = elements.add('<div class="col-lg-3 reason-box po_relative">'
+                            +'<div class="dot col float-start" style="overflow:hidden"><img src="'+item.uploaded_file_location+item.uploaded_file_name+'.'+item.original_file_extension+'" alt="" ></div>'
+                            +'<div class="col float-start down d-flex fontheight fontbox"><p  title="'+item.downtime_reason+'" class="three_dots_css  " >'+item.downtime_reason+'</p></div>'
+                            +'<div class="dotHover dclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="icons-smart" ></i></div>'
+                            +'<div class="dotHover1 drclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/delete.png'); ?>" class="icons-smart" ></i></div>'
                             +'</div>');
                         } 
                         else{
-                            elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
-                            +'<div class="dot col float-start" style="overflow:hidden"><img src="'+item.uploaded_file_location+item.uploaded_file_name+'.'+item.original_file_extension+'" alt="" width="100%" height="100%"></div>'
-                            +'<div class="col.float-start down d-flex fontheight fontbox"><p class="three_dots_css font_weight " title="'+item.downtime_reason+'">'+item.downtime_reason+'</p></div>'
-                            +'<div class="dotHover dclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh reason-pen" style="color:grey;"></div>'
-                            +'<div class="dotHover1 drclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="img_font_wh reason-pen"></i></div>'
+                            elements = elements.add('<div class="col-lg-3 reason-box po_relative">'
+                            +'<div class="dot col float-start" style="overflow:hidden"><img src="'+item.uploaded_file_location+item.uploaded_file_name+'.'+item.original_file_extension+'" alt="" ></div>'
+                            +'<div class="col float-start down d-flex fontheight fontbox"><p class="three_dots_css  " title="'+item.downtime_reason+'">'+item.downtime_reason+'</p></div>'
+                            +'<div class="dotHover dclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="icons-smart" style="color:grey;"></div>'
+                            +'<div class="dotHover1 drclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="icons-smart"></i></div>'
                             +'</div>');
                         }    
                     }else{
                         // if image not found the location execute the block
                         if (item.downtime_category == "Planned") {
-                            elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
-                            +'<div class="dot col float-start" style="overflow:hidden"><div class="no_img_circle" width="100%" height="100%"></div></div>'
-                            +'<div class="col.float-start down d-flex fontheight fontbox"><p class="three_dots_css font_weight" title="'+item.downtime_reason+'">'+item.downtime_reason+'</p></div>'
-                            +'<div class="dotHover dclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh  reason-pen" style="color:grey; "></i></div>'
-                            +'<div class="dotHover1 drclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/delete.png'); ?>" class="img_font_wh reason-pen" ></i></div>'
+                            elements = elements.add('<div class="col-lg-3 reason-box po_relative">'
+                            +'<div class="dot col float-start" style="overflow:hidden"><div class="no_img_circle" ></div></div>'
+                            +'<div class="col float-start down d-flex fontheight fontbox"><p class="three_dots_css " title="'+item.downtime_reason+'">'+item.downtime_reason+'</p></div>'
+                            +'<div class="dotHover dclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="icons-smart" ></i></div>'
+                            +'<div class="dotHover1 drclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/delete.png'); ?>" class="icons-smart" ></i></div>'
                             +'</div>');
                         } 
                         else{
-                            elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
-                            +'<div class="dot col float-start" style="overflow:hidden"><div class="no_img_circle" width="100%" height="100%"></div></div>'
-                            +'<div class="col.float-start down d-flex fontheight fontbox"><p class=" font_weight three_dots_css" title="'+item.downtime_reason+'">'+item.downtime_reason+'</p></div>'
-                            +'<div class="dotHover dclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh reason-pen" style="color:grey;"></div>'
-                            +'<div class="dotHover1 drclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="img_font_wh reason-pen"></i></div>'
+                            elements = elements.add('<div class="col-lg-3 reason-box po_relative">'
+                            +'<div class="dot col float-start" style="overflow:hidden"><div class="no_img_circle" ></div></div>'
+                            +'<div class="col float-start down d-flex fontheight fontbox"><p class="  three_dots_css" title="'+item.downtime_reason+'">'+item.downtime_reason+'</p></div>'
+                            +'<div class="dotHover dclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="icons-smart" style="color:grey;"></div>'
+                            +'<div class="dotHover1 drclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="icons-smart"></i></div>'
                             +'</div>');
                         }   
                     }
@@ -1863,18 +1771,18 @@ function get_shift_data(){
                 res.forEach(function(item){  
                     var file_name = item.uploaded_file_location+item.uploaded_file_name+'.'+item.uploaded_file_extension;
                     if (quality_imgError(file_name) == true) {
-                        elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
-                        +'<div class="dot col float-start" style="overflow:hidden"><img src="'+item.uploaded_file_location+item.uploaded_file_name+'.'+item.uploaded_file_extension+'" alt="" width="100%" height="100%"></div>'
-                        +'<div class="col.float-start down d-flex fontheight fontbox" style="padding:unset;"><p class="font_weight three_dots_css" title="'+item.quality_reason_name+'">'+item.quality_reason_name+'</p></div>'
-                        +'<div class="dotHover qclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_qreason+'"><img src="<?php echo base_url('assets/img/pencil.png') ?>" class="reason-pen img_font_wh"></i></div>'
-                        +'<div class="dotHover1 qrclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_qreason+'"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="img_font_wh reason-pen"></i></div>'
+                        elements = elements.add('<div class="col-lg-3 reason-box po_relative">'
+                        +'<div class="dot col float-start" style="overflow:hidden"><img src="'+item.uploaded_file_location+item.uploaded_file_name+'.'+item.uploaded_file_extension+'" alt="" ></div>'
+                        +'<div class="col float-start down d-flex fontheight fontbox" style="padding:unset;"><p class=" three_dots_css" title="'+item.quality_reason_name+'">'+item.quality_reason_name+'</p></div>'
+                        +'<div class="dotHover qclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_qreason+'"><img src="<?php echo base_url('assets/img/pencil.png') ?>" class="icons-smart"></i></div>'
+                        +'<div class="dotHover1 qrclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_qreason+'"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="icons-smart"></i></div>'
                         +'</div>');   
                     }else{
-                        elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
-                        +'<div class="dot col float-start" style="overflow:hidden"><div class="no_img_circle" width="100%" height="100%"></div></div>'
-                        +'<div class="col.float-start down d-flex fontheight fontbox"><p class=" font_weight three_dots_css" title="'+item.quality_reason_name+'">'+item.quality_reason_name+'</p></div>'
-                        +'<div class="dotHover qclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_qreason+'"><img src="<?php echo base_url('assets/img/pencil.png') ?>" class="reason-pen img_font_wh"></i></div>'
-                        +'<div class="dotHover1 qrclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_qreason+'"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="img_font_wh reason-pen"></i></div>'
+                        elements = elements.add('<div class="col-lg-3 reason-box po_relative">'
+                        +'<div class="dot col float-start" style="overflow:hidden"><div class="no_img_circle" ></div></div>'
+                        +'<div class="col float-start down d-flex fontheight fontbox"><p class="  three_dots_css" title="'+item.quality_reason_name+'">'+item.quality_reason_name+'</p></div>'
+                        +'<div class="dotHover qclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_qreason+'"><img src="<?php echo base_url('assets/img/pencil.png') ?>" class="icons-smart"></i></div>'
+                        +'<div class="dotHover1 qrclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_qreason+'"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="icons-smart"></i></div>'
                         +'</div>');  
                     }
                     $('#QReasonContent').append(elements);
@@ -2355,60 +2263,60 @@ function open_tooltip(){
     $('.click_tooltip').css("visibility","visible");
 }
 
-$(document).on('click','.incre_div',function(event){
-            event.preventDefault();
-            var find_index_incre = $('.incre_div').index(this);
-            // hour increment condition
-            if (find_index_incre == "0") {
-                var get_val = $('#get_hour_val').text();
-                if (parseInt(get_val) == 23) {
-                    get_val = 0;
-                }
-                else{
-                    get_val = parseInt(get_val) + 1;
-                }
-                get_val_h  = parseInt(get_val) <= 9? "0"+get_val:get_val;
-                $('#get_hour_val').html(get_val_h);
-                // minute increment condition
-            }else if(find_index_incre == "1"){
-                var get_minute_val = $('#get_minute_val').text();
-                if (parseInt(get_minute_val) == 30) {
-                    get_minute_val = 0;
-                }else{
-                    get_minute_val = 30;
-                }
-                get_minute_val = parseInt(get_minute_val) <=9? "0"+get_minute_val:get_minute_val;
-                $('#get_minute_val').html(get_minute_val);
-            }
+// $(document).on('click','.incre_div',function(event){
+//             event.preventDefault();
+//             var find_index_incre = $('.incre_div').index(this);
+//             // hour increment condition
+//             if (find_index_incre == "0") {
+//                 var get_val = $('#get_hour_val').text();
+//                 if (parseInt(get_val) == 23) {
+//                     get_val = 0;
+//                 }
+//                 else{
+//                     get_val = parseInt(get_val) + 1;
+//                 }
+//                 get_val_h  = parseInt(get_val) <= 9? "0"+get_val:get_val;
+//                 $('#get_hour_val').html(get_val_h);
+//                 // minute increment condition
+//             }else if(find_index_incre == "1"){
+//                 var get_minute_val = $('#get_minute_val').text();
+//                 if (parseInt(get_minute_val) == 30) {
+//                     get_minute_val = 0;
+//                 }else{
+//                     get_minute_val = 30;
+//                 }
+//                 get_minute_val = parseInt(get_minute_val) <=9? "0"+get_minute_val:get_minute_val;
+//                 $('#get_minute_val').html(get_minute_val);
+//             }
 
-        });
+// });
 
-        $(document).on('click','.decre_div',function(event){
-            event.preventDefault();
-            var find_index_decre = $('.decre_div').index(this); 
-            // decrement function condition for hour and minute
-            if (parseInt(find_index_decre) == 0) {
-                var get_hour_val = $('#get_hour_val').text();
-                if (parseInt(get_hour_val) == 0) {
-                    get_hour_val = 23;
-                }else{
-                    get_hour_val = parseInt(get_hour_val) -1;
-                }
-                get_hour_val = parseInt(get_hour_val) <= 9? "0"+get_hour_val:get_hour_val;
+        // $(document).on('click','.decre_div',function(event){
+        //     event.preventDefault();
+        //     var find_index_decre = $('.decre_div').index(this); 
+        //     // decrement function condition for hour and minute
+        //     if (parseInt(find_index_decre) == 0) {
+        //         var get_hour_val = $('#get_hour_val').text();
+        //         if (parseInt(get_hour_val) == 0) {
+        //             get_hour_val = 23;
+        //         }else{
+        //             get_hour_val = parseInt(get_hour_val) -1;
+        //         }
+        //         get_hour_val = parseInt(get_hour_val) <= 9? "0"+get_hour_val:get_hour_val;
                     
-                $('#get_hour_val').html(get_hour_val);
-            }
-            else if(parseInt(find_index_decre) == 1){
-                var get_minute_val = $('#get_minute_val').text();
-                if (parseInt(get_minute_val) == 30) {
-                    get_minute_val = 0;
-                }else{
-                    get_minute_val = 30;
-                }
-                get_minute_val = parseInt(get_minute_val) <=9? "0"+get_minute_val:get_minute_val;
-                $('#get_minute_val').html(get_minute_val);
-            }
-        });
+        //         $('#get_hour_val').html(get_hour_val);
+        //     }
+        //     else if(parseInt(find_index_decre) == 1){
+        //         var get_minute_val = $('#get_minute_val').text();
+        //         if (parseInt(get_minute_val) == 30) {
+        //             get_minute_val = 0;
+        //         }else{
+        //             get_minute_val = 30;
+        //         }
+        //         get_minute_val = parseInt(get_minute_val) <=9? "0"+get_minute_val:get_minute_val;
+        //         $('#get_minute_val').html(get_minute_val);
+        //     }
+        // });
 
     $('.click_tooltip').mouseleave(function(event){
         event.preventDefault();

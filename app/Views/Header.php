@@ -67,13 +67,13 @@
         ?>
         <div class="d-flex" onfocus="myFunction(event);">
             <div class="tooltip_logout ">
-                <div id="info_circle_color">
-                    <p id="get_text_info"></p>
+                <div id="info_circle_color" class="user_profile_ele">
+                    <p class="paddingm" id="get_text_info"></p>
                 </div>
                 <div class="tooltiptext out">
                     <div class="" style="display:flex; height:max-content; margin-bottom:0.2rem;">
                         <div class="" style="width:20%;display:flex;justify-content:center;align-items:center;margin:3px;">
-                            <div class="circle_div" id="short_name"></div>
+                            <div class="circle_div user_profile_ele" id="short_name"></div>
                         </div>
                        <div style="width:80%;">
                             <b class="name_div_logout" id="full_name"></b>

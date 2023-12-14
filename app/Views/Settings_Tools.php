@@ -1,34 +1,4 @@
 <style type="text/css">
-    .contentContainer{
-        margin-top: 0.3rem;
-        overflow-anchor: none;
-    }
-   .img_font_wh{
-        width: 1.9rem;
-        height: 1.4rem;
-        padding-right: 0.6rem;
-    }
-    .img_font_wh1{
-        width: 1.8rem;
-        height: 1.2rem;
-        padding-right: 0.6rem;
-        color: #a6a6a6;
-    }
-    .img_font_wh2{
-        width: 1.9rem;
-        height: 1.2rem;
-        padding-right: 0.6rem;
-        color: #a6a6a6;
-    }
-    .menu-font-change{
-        font-size: 0.5rem;
-
-    }
-    .font_weight_editp{
-        font-weight: 500;
-        font-size: 0.9rem;
-
-    }
     .left-align{
        padding-left:1.4rem;
     }
@@ -59,9 +29,10 @@
                     <?php 
                          if($this->data['access'][0]['settings_part'] == 3){ 
                     ?>
-                        <a style="text-decoration:none;margin-right:0.3rem;cursor:pointer;" class="overall_filter_btn overall_filter_header_css" id="add_part_modal">
-                            <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>ADD PART
+                        <a class="overall_filter_btn mr_right_ele cursor none_dec overall_filter_header_css" id="add_part_modal">
+                            <i class="fa fa-plus mr_right_ele"></i>Add Part
                         </a> 
+
                     <?php 
                          }
                     ?> 
@@ -105,36 +76,37 @@
 </div>
 <div>
 
-<div class="modal fade rounded" id="AddPartModal" tabindex="-1" aria-labelledby="AddPartModal1" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal fade" id="AddPartModal" tabindex="-1" aria-labelledby="AddPartModal1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered rounded">
     <div class="container modal-content bodercss">
             <div class="modal-header" style="border:none; ">
-                <p class="modal-title settings-machineAdd-model" id="AddPartModal1" style="">ADD PART DETAILS</p>
+                <!-- <p class="modal-title settings-machineAdd-model" id="AddPartModal1" style="">ADD PART DETAILS</p> -->
+                <p class="modal-title header_popup fnt_fam" id="AddPartModal1" style="">ADD PART DETAILS</p>
             </div>
-            <!-- <form method="post" class="addToolForm" id="AddPartFormSub" action="<?= base_url('Settings_controller/addTool/'.$this->data['select_opt'].'/'.$this->data['select_sub_opt'].'')?>" > -->
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-6 box">
                             <div class="input-box fieldStyle">
-                                <input type="text" class="form-control font_weight_modal" id="inputPartName" name="inputPartName"><label for="inputPartName" class="input-padding">Part Name <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id="inputPartNameErr"></span> 
-                                <span class="float-end charCount" id="inputPartNameCunt"></span>
+                                <input type="text" class="form-control font_weight_modal" id="inputPartName" name="inputPartName">
+                                <label for="inputPartName" class="input_lable fnt_fam">Part Name <span class="paddingm validate fnt_fam">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam" id="inputPartNameErr"></span> 
+                                <span class="float-end charCount fnt_fam" id="inputPartNameCunt"></span>
                             </div>
                         </div>
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
                                 <select class="form-select font_weight_modal" name="inputToolName" id="inputToolName">
                                 </select>
-                                <label for="inputToolName" class="input-padding">Tool Name <span class="paddingm validate">*</span></label>
-                                <span id="tool_select_err" class="validate"></span>
+                                <label for="inputToolName" class="input_lable fnt_fam">Tool Name <span class="paddingm validate">*</span></label>
+                                <span id="tool_select_err" class="paddingm float-start validate fnt_fam"></span>
                             </div>
                         </div>
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" class="form-control font_weight_modal" id="inputNewToolName" name="inputNewToolName">
-                                <label for="inputNewToolName" class="input-padding">New Tool Name</label>
-                                <span class="paddingm float-start validate" id="inputNewToolNameErr"></span> 
-                                <span class="float-end charCount" id="inputNewToolNameCunt"></span>
+                                <label for="inputNewToolName" class="input_lable fnt_fam">New Tool Name</label>
+                                <span class="paddingm float-start validate fnt_fam" id="inputNewToolNameErr"></span> 
+                                <span class="float-end charCount fnt_fam" id="inputNewToolNameCunt"></span>
                             </div>
                         </div>
                     </div>
@@ -142,21 +114,21 @@
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" class="form-control font_weight_modal" id="inputNICT" name="inputNICT" style="padding-right:1.1rem;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                <label for="inputNICT" class="input-padding">NICT (in seconds) <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id="inputNICTErr"></span> 
-                                <span class="unit clip">S</span>
+                                <label for="inputNICT" class="input_lable fnt_fam">NICT (in seconds) <span class="paddingm validate">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam" id="inputNICTErr"></span> 
+                                <span class="unit clip cursor">S</span>
                             </div>
                         </div>
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" class="form-control font_weight_modal" id="inputNoOfPartsPerCycle" name="inputNoOfPartsPerCycle" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                <label for="inputNoOfPartsPerCycle" class="input-padding">No of Parts / Cycle <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id="inputNoOfPartsPerCycleErr"></span> 
+                                <label for="inputNoOfPartsPerCycle" class="input_lable fnt_fam">No of Parts / Cycle <span class="paddingm validate">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam" id="inputNoOfPartsPerCycleErr"></span> 
                             </div>
                         </div>
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
-                                <label for="" class="col-form-label paddingm headTitle">Tool ID</label>
+                                <label for="" class="input_lable fnt_fam">Tool ID</label>
                                 <p class="fieldStyleSub" style="position: absolute;"><span id="tid" class="font_weight_modal"></span></p>
                             </div>
                         </div>
@@ -165,39 +137,42 @@
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" class="form-control left-align font_weight_modal" id="inputPartPrice" name="inputPartPrice" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                <label for="inputPartPrice" class="input-padding">Part Price <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id="inputPartPriceErr"></span> 
-                                <span class="unit-input"><i class="fa fa-inr  clip" aria-hidden="true"></i></span>
+                                <label for="inputPartPrice" class="input_lable fnt_fam">Part Price <span class="paddingm validate">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam" id="inputPartPriceErr"></span> 
+                                <span class="unit-input cursor"><i class="fa fa-inr  clip" aria-hidden="true"></i></span>
                             </div>
                         </div>
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" class="form-control font_weight_modal" id="inputPartWeight" name="inputPartWeight" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                <label for="inputPartWeight" class="input-padding">Part Weight (in grams) <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id="inputPartWeightErr"></span> 
+                                <label for="inputPartWeight" class="input_lable fnt_fam">Part Weight (in grams) <span class="paddingm validate">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam" id="inputPartWeightErr"></span> 
                             </div>
                         </div>
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" class="form-control left-align font_weight_modal" id="inputMaterialPrice" name="inputMaterialPrice" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                <label for="inputMaterialPrice" class="input-padding">Material Price (per kg) <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id="inputMaterialPriceErr"></span>
-                                <span class="unit-input"><i class="fa fa-inr clip" aria-hidden="true"></i></span>
+                                <label for="inputMaterialPrice" class="input_lable fnt_fam">Material Price (per kg) <span class="paddingm validate">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam" id="inputMaterialPriceErr"></span>
+                                <span class="unit-input cursor"><i class="fa fa-inr clip" aria-hidden="true"></i></span>
                             </div>
                         </div>
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" class="form-control font_weight_modal" id="inputMaterialName" name="inputMaterialName">
-                                <label for="inputMaterialName" class="input-padding">Material Name <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate" id="inputMaterialNameErr"></span> 
-                                <span class="float-end charCount" id="inputMaterialNameCunt"></span>
+                                <label for="inputMaterialName" class="input_lable fnt_fam">Material Name <span class="paddingm validate">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam" id="inputMaterialNameErr"></span> 
+                                <span class="float-end charCount fnt_fam" id="inputMaterialNameCunt"></span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer" style="border:none;">
-                    <input type="submit" class="btn fo bn Add_Tool_Data saveBtnStyle" name="Add_Tool" value="Save">
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                    <!-- <input type="submit" class="btn fo bn Add_Tool_Data saveBtnStyle" name="Add_Tool" value="Save">
+                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>  
+                     -->
+                    <input type="submit" class="btn fnt_fam btn_fnt_size btn_padd btn_save Add_Tool_Data" name="Add_Tool" value="Save">
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
                 </div>
             <!-- </form> -->
     </div>
@@ -206,34 +181,34 @@
 
 <div class="modal fade" id="DeactiveToolModal" tabindex="-1" aria-labelledby="DeactiveToolModal1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered rounded">
-    <div class="modal-content bodercss">
-            <div class="modal-header" style="border:none; ">
-                <p class="modal-title settings-machineAdd-model" id="DeactiveToolModal1" style="">CONFIRMATION MESSAGE</p>
+    <div class="modal-content container bodercss">
+            <div class="modal-header border_no">
+                <p class="modal-title header_popup fnt_fam" id="DeactiveToolModal1">CONFIRMATION MESSAGE</p>
             </div>
             <div class="modal-body">
-                <label style="color: black;">Are you sure you want to delete this part record?</label>
+                <label class="conf_message">Are you sure you want to delete this part record?</label>
             </div>
-            <div class="modal-footer" style="border:none;">
-                <a class="btn fo bn Status-deactivate saveBtnStyle" name="Edit_Tool" value="Save">Save</a>
-                <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+            <div class="modal-footer border_no">
+                <a class="btn fnt_fam btn_fnt_size btn_padd btn_save Status-deactivate" name="Edit_Tool" value="Save" >Save</a>
+                <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a> 
             </div>
     </div>
   </div>
 </div>
 <div class="modal fade" id="ActiveToolModal" tabindex="-1" aria-labelledby="ActiveToolModal1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered rounded">
-    <div class="modal-content bodercss">
-            <div class="modal-header" style="border:none; ">
-                <p class="modal-title settings-machineAdd-model" id="ActiveToolModal1" style="">CONFIRMATION MESSAGE</p>
+    <div class="modal-content container bodercss">
+            <div class="modal-header border_no">
+                <p class="modal-title header_popup fnt_fam" id="ActiveToolModal1">CONFIRMATION MESSAGE</p>
             </div>
             <!-- <form method="post" class="addToolForm" action="" > -->
                 <div class="modal-body">
-                    <label style="color: black;">Are you sure you want to activate this part record?</label>
+                    <label class="conf_message">Are you sure you want to activate this part record?</label>
                     
                 </div>
-                <div class="modal-footer" style="border:none;">
-                    <a class="btn fo bn Status-activate saveBtnStyle" name="Edit_Tool" value="Save">Save</a>
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                <div class="modal-footer border_no">
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_save Status-activate" name="Edit_Tool" value="Save" >Save</a>
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
                 </div>
     </div>
   </div>
@@ -244,7 +219,7 @@
   <div class="modal-dialog modal-lg modal-dialog-centered rounded">
     <div class="modal-content container bodercss">
             <div class="modal-header" style="border:none; ">
-                <p class="modal-title settings-machineAdd-model" id="EditToolModal1" style="">EDIT PART DETAILS</p>
+                <p class="modal-title header_popup fnt_fam" id="EditToolModal1">EDIT PART DETAILS</p>
             </div>
             <!-- <form method="post" class="addToolForm EditMachine" action="" > -->
                 <div class="modal-body">
@@ -253,14 +228,14 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="mb-3">
-                                        <label for="" class="col-form-label">Part ID</label>
+                                        <label for="" class="col-form-label headTitle fnt_fam">Part ID</label>
                                         <p><span id="partid" class="font_weight_modal"></span></p>
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
-                                    <div class="mb-3 float-end">
-                                        <label for="" class="col-form-label">Status</label>
-                                        <p><span id="partstatus" style="font-weight:bold;" class="font_weight_modal"></span></p>
+                                <div class="col-sm-4">
+                                    <div class="float-end">
+                                        <label for="" class="col-form-label headTitle fnt_fam">Status</label>
+                                        <p><span id="partstatus" class="font_weight_modal"></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -271,16 +246,17 @@
                         <div class="col-lg-6 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" value="" class="form-control font_weight_modal" id="EditPartName" name="EditPartName">
-                                <label for="EditPartName" class="input-padding ">Part Name <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate EditPartNameErr"></span> 
-                                <span class="float-end charCount" id="EditPartNameCunt"></span>
+                                <label for="EditPartName" class="input_lable fnt_fam">Part Name <span class="paddingm validate">*</span></label>
+                                <span class="paddingm float-start validate   EditPartNameErr"></span> 
+                                <span class="float-end charCount fnt_fam" id="EditPartNameCunt"></span>
                             </div>
                         </div>
+
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
                                 <select class="form-select font_weight_modal" name="inputToolNameEdit" id="inputToolNameEdit">
                                 </select>
-                                <label for="inputToolNameEdit" class="input-padding">Tool Name <span class="paddingm validate">*</span></label>
+                                <label for="inputToolNameEdit" class="input_lable fnt_fam">Tool Name <span class="paddingm validate">*</span></label>
                             </div>
                         </div>
                         
@@ -288,17 +264,17 @@
                             <!-- new tool add input -->
                             <div class="input-box fieldStyle display_new_tool" >
                                 <input type="text" class="form-control font_weight_modal" id="inputNewToolNameEdit" name="inputNewToolNameEdit">
-                                <label for="inputNewToolNameEdit" class="input-padding">New Tool Name</label>
-                                <span class="paddingm float-start validate inputNewToolNameEditErr" id ="inputNewToolNameEditErr"></span> 
-                                <span class="float-end charCount" id="inputNewToolNameEditCunt"></span>
+                                <label for="inputNewToolNameEdit" class="input_lable fnt_fam">New Tool Name</label>
+                                <span class="paddingm float-start validate fnt_fam inputNewToolNameEditErr" id ="inputNewToolNameEditErr"></span> 
+                                <span class="float-end charCount fnt_fam" id="inputNewToolNameEditCunt"></span>
                             </div>
 
                             <!-- tool name edit input -->
                             <div class="input-box fieldStyle display_edit_tool">
                                 <input type="text" name="inputEditToolName" id="inputEditToolName" class="form-control font_weight_modal" >
-                                <label for="inputEditToolName" class="input-padding">Edit Tool Name <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate edit_tool_name_err" id="edit_tool_name_err"></span>
-                                <span class="float-end charCount" id="edit_tool_name_cunt"></span>
+                                <label for="inputEditToolName" class="input_lable fnt_fam">Edit Tool Name <span class="paddingm validate">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam edit_tool_name_err" id="edit_tool_name_err"></span>
+                                <span class="float-end charCount fnt_fam" id="edit_tool_name_cunt"></span>
                             </div>
                         </div>
                     </div>
@@ -306,21 +282,21 @@
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" value="" class="form-control right-type font_weight_modal" id="EditNICT" name="EditNICT" style="padding-right:1.2rem;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                <label for="EditNICT" class="input-padding">NICT (in seconds) <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate EditNICTErr"></span> 
-                                <span class="unit clip">S</span>
+                                <label for="EditNICT" class="input_lable fnt_fam">NICT (in seconds) <span class="paddingm validate">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam EditNICTErr"></span> 
+                                <span class="unit clip cursor">S</span>
                             </div>
                         </div>
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" value="" class="form-control right-type font_weight_modal" id="EditNoOfPartsPerCycle" name="EditNoOfPartsPerCycle" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                <label for="EditNoOfPartsPerCycle" class="input-padding">No of Parts / Cycle <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate EditNoOfPartsPerCycleErr"></span> 
+                                <label for="EditNoOfPartsPerCycle" class="input_lable fnt_fam">No of Parts / Cycle <span class="paddingm validate">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam EditNoOfPartsPerCycleErr"></span> 
                             </div>
                         </div>
                         <div class="col-lg-3 box">
                             <div class="fieldStyle input-box">
-                                <label for="toolidedit" class="col-form-label paddingm headTitle ">Tool ID</label>
+                                <label for="toolidedit" class="input_lable fnt_fam">Tool ID</label>
                                 <p class="fieldStyleSub" style="position: absolute;"><span id="toolidedit" class="font_weight_modal"></span></p>
                             </div>
                         </div>
@@ -329,53 +305,53 @@
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" value="'+res_csp[0].Part_Price+'" class="form-control left-align  font_weight_modal" id="EditPartPrice" name="EditPartPrice" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                <label for="EditPartPrice" class="input-padding">Part Price <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate EditPartPriceErr"></span> 
-                                <span class="unit-input"><i class="fa fa-inr clip" aria-hidden="true"></i></span>
+                                <label for="EditPartPrice" class="input_lable fnt_fam">Part Price <span class="paddingm validate">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam EditPartPriceErr"></span> 
+                                <span class="unit-input cursor"><i class="fa fa-inr clip" aria-hidden="true"></i></span>
                             </div>
                         </div>
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" value="'+res_csp[0].Part_Weight+'" class="form-control right-type font_weight_modal" id="EditPartWeight" name="EditPartWeight" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                <label for="EditPartWeight" class="input-padding">Part Weight (in grams) <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate EditPartWeightErr"></span> 
+                                <label for="EditPartWeight" class="input_lable fnt_fam">Part Weight (in grams) <span class="paddingm validate">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam EditPartWeightErr"></span> 
                             </div>
                         </div>
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" value="'+res_csp[0].Material_Price+'" class="form-control left-align font_weight_modal" id="EditMaterialPrice" name="EditMaterialPrice" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                <label for="EditMaterialPrice" class="input-padding">Material Price (per kg) <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate EditMaterialPriceErr"></span> 
-                                <span class="unit-input"><i class="fa fa-inr clip" aria-hidden="true"></i></span>
+                                <label for="EditMaterialPrice" class="input_lable fnt_fam">Material Price (per kg) <span class="paddingm validate">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam EditMaterialPriceErr"></span> 
+                                <span class="unit-input cursor"><i class="fa fa-inr clip" aria-hidden="true"></i></span>
                             </div>
                         </div>
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" value="'+res_csp[0].Material_Name+'" class="form-control font_weight_modal" id="EditMaterialName" name="EditMaterialName">
-                                <label for="EditMaterialName" class="input-padding">Material Name <span class="paddingm validate">*</span></label>
-                                <span class="paddingm float-start validate EditMaterialNameErr"></span> 
-                                <span class="float-end charCount" id="EditMaterialNameCunt"></span>
+                                <label for="EditMaterialName" class="input_lable fnt_fam">Material Name <span class="paddingm validate">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam EditMaterialNameErr"></span> 
+                                <span class="float-end charCount fnt_fam" id="EditMaterialNameCunt"></span>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-3 box">
                             <div class="fieldStyle input-box">
-                                <label for="" class="col-form-label paddingm">Last Updated By</label>
-                                <p class="fieldStyleSub" style="position: absolute;"><span id="last_updated_by" class="font_weight_modal"></span></p>
+                                <label for="" class="input_lable fnt_fam">Last Updated By</label>
+                                <p class="fieldStyleSub po_absolute"><span id="last_updated_by" class="font_weight_modal"></span></p>
                             </div>
                         </div>
                         <div class="col-lg-4 box">
                             <div class="fieldStyle input-box">
-                                <label for="" class="col-form-label paddingm">Last Updated On</label>
-                                <p class="fieldStyleSub" style="position: absolute;"><span id='date-time' class="font_weight_modal"></span></p>
+                                <label for="" class="input_lable fnt_fam">Last Updated On</label>
+                                <p class="fieldStyleSub po_absolute"><span id='date-time' class="font_weight_modal"></span></p>
                             </div>
                         </div>
                     </div>    
                 </div>
                 <div class="modal-footer" style="border:none;">
-                    <a class="EditTool btn fo bn saveBtnStyle" name="EditTool" value="Save">Save</a>
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                    <a class="EditTool btn fnt_fam btn_fnt_size btn_padd btn_save" name="EditTool" id="edit_machine_data" value="SAVE">Save</a>
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>  
                 </div>
             <!-- </form> -->
     </div>
@@ -387,27 +363,27 @@
 <div class="modal fade" id="InfoToolModal" tabindex="-1" aria-labelledby="InfoToolModal1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered rounded">
     <div class="modal-content container bodercss">
-            <div class="modal-header" style="border:none; ">
-                <p class="modal-title settings-machineAdd-model" id="InfoToolModal1" style="">INFO PART</p>
+            <div class="modal-header border_no">
+                <p class="modal-title header_popup fnt_fam" id="InfoToolModal1" style="">INFO PART</p>
             </div>
             <!-- <form method="post" class="addToolForm EditMachine" action="" > -->
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="mb-3">
-                                <label for="Ipartid" class="col-form-label headTitle">Part ID</label>
+                                <label for="Ipartid" class="col-form-label headTitle fnt_fam">Part ID</label>
                                 <p><span id="Ipartid" class="font_weight_modal"></span></p>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="mb-3">
-                                <label for="Ipartstatus" class="col-form-label headTitle">Status</label>
+                                <label for="Ipartstatus" class="col-form-label headTitle fnt_fam">Status</label>
                                 <p><span id="Ipartstatus" class="font_weight_modal"></span></p>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="mb-3">
-                                <label for="Ipartname" class="col-form-label headTitle">Part Name</label>
+                                <label for="Ipartname" class="col-form-label headTitle fnt_fam">Part Name</label>
                                 <p><span id="Ipartname" class="font_weight_modal"></span></p> 
                             </div>
                         </div>
@@ -415,19 +391,19 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="mb-3">
-                                <label for="Inict" class="col-form-label headTitle">NICT (in seconds)</label>
+                                <label for="Inict" class="col-form-label headTitle fnt_fam">NICT (in seconds)</label>
                                 <p><span id="Inict" class="font_weight_modal"></span></p>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="mb-3">
-                                <label for="Inop" class="col-form-label headTitle">No of Parts / Cycle</label>
+                                <label for="Inop" class="col-form-label headTitle fnt_fam">No of Parts / Cycle</label>
                                 <p><span id="Inop" class="font_weight_modal"></span></p>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="mb-3">
-                                <label for="Ipp" class="col-form-label headTitle">Part Price</label>
+                                <label for="Ipp" class="col-form-label headTitle fnt_fam">Part Price</label>
                                 <p><span id="Ipp" class="font_weight_modal"></span></p>
                             </div>
                         </div>
@@ -435,19 +411,19 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="mb-3">
-                                <label for="Ipw" class="col-form-label headTitle">Part Weight (in grams)</label>
+                                <label for="Ipw" class="col-form-label headTitle fnt_fam">Part Weight (in grams)</label>
                                 <p><span id="Ipw" class="font_weight_modal"></span></p>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="mb-3">
-                                <label for="ITN" class="col-form-label headTitle">Tool Name</label>
+                                <label for="ITN" class="col-form-label headTitle fnt_fam">Tool Name</label>
                                 <p><span id="ITN" class="font_weight_modal"></span></p>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="mb-3">
-                                <label for="Itoolid" class="col-form-label headTitle">Tool ID</label>
+                                <label for="Itoolid" class="col-form-label headTitle fnt_fam">Tool ID</label>
                                 <p><span id="Itoolid" class="font_weight_modal"></span></p>
                             </div>
                         </div>
@@ -455,35 +431,36 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="mb-3">
-                                <label for="Imname" class="col-form-label headTitle">Material Name  </label>
+                                <label for="Imname" class="col-form-label headTitle fnt_fam">Material Name  </label>
                                 <p><span id="Imname" class="font_weight_modal"></span></p>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="mb-3">
-                                <label for="Imp" class="col-form-label headTitle">Material Price (per kg)</label>
+                                <label for="Imp" class="col-form-label headTitle fnt_fam">Material Price (per kg)</label>
                                 <p><span id="Imp" class="font_weight_modal"></span></p>
                             </div>
                         </div>
-                        <div class="col-sm-4">
-                            <div class="mb-3">
-                                <label for="IUpdatedBy" class="col-form-label headTitle">Last Updated By</label>
-                                <p><span id="IUpdatedBy" class="font_weight_modal"></span></p>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="mb-3">
-                                <label for="IUpdatedOn" class="col-form-label headTitle">Last Updated On</label>
+                                <label for="IUpdatedBy" class="col-form-label headTitle fnt_fam">Last Updated By</label>
+                                <p><span id="IUpdatedBy" class="font_weight_modal"></span></p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="mb-3">
+                                <label for="IUpdatedOn" class="col-form-label headTitle fnt_fam">Last Updated On</label>
                                 <p><span id="IUpdatedOn" class="font_weight_modal"></span></p>
                             </div>
                         </div>
-                    </div>               
+                    </div>       
                     
                 </div>
-                <div class="modal-footer" style="border:none;">
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                <div class="modal-footer border_no"> 
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
                 </div>
             <!-- </form> -->
     </div>
@@ -770,18 +747,19 @@
         // Access controll Previliages ........
         var acsCon = "<?php echo $this->data['access'][0]['settings_part']; ?>";
         var display_var = " ";
-        if(parseInt(acsCon) < 2){
-            $('.edit-tool').css("display","none");
-            $('.activate-tool').css("display","none");
-            $('.deactivate-tool').css("display","none");
-            $('.info-tool1').css("display","block");
-        }
-        else{
-            $('.edit-tool').css("display","block");
-            $('.activate-tool').css("display","block");
-            $('.deactivate-tool').css("display","block");
-            $('.info-tool1').css("display","none");
-        }
+        
+        // if(parseInt(acsCon) < 2){
+        //     $('.edit-tool').css("display","none");
+        //     $('.activate-tool').css("display","none");
+        //     $('.deactivate-tool').css("display","none");
+        //     $('.info-tool1').css("display","block");
+        // }
+        // else{
+        //     $('.edit-tool').css("display","block");
+        //     $('.activate-tool').css("display","block");
+        //     $('.deactivate-tool').css("display","block");
+        //     $('.info-tool1').css("display","none");
+        // }
 
         $(document).on("click", ".edit", function(event){
             event.preventDefault();
@@ -1322,22 +1300,22 @@
 function get_part_data(){
     var acsCon = "<?php echo $this->data['access'][0]['settings_part']; ?>";
     var display_var = " ";
-    var activate_machine = "";
-    var deactivate_machine = "";
-    var edit_machine = "";
-    var info_machine = "";
+    var activate_part = "";
+    var deactivate_part = "";
+    var edit_part = "";
+    var info_part = "";
 
     if(parseInt(acsCon) < 2){
-        edit_machine = "none";
-        activate_machine = "none";
-        deactivate_machine = "none";
-        info_machine = "block";
+        edit_part = "display:none;";
+        activate_part = "display:none;";
+        deactivate_part = "display:none;";
+        // info_part = "display:block;";
     }
     else{
-        edit_machine = "block";
-        activate_machine = "block";
-        deactivate_machine = "block";
-        info_machine = "none";
+        // edit_part = "display:block;";
+        // activate_part = "display:block;";
+        // deactivate_part = "display:block;";
+        info_part = "display:none;";
     }
     $('.contentTool').empty();
     $.ajax({
@@ -1374,17 +1352,43 @@ function get_part_data(){
                             +'<div class="col col-sm-1 marright table_data_section display_f align_c" >'
                                 +'<p class="table_data_element fnt_fm"><i class="fa fa-inr" style="margin-right:5px;"></i>'+part_p+'</p>'
                             +'</div>'
-                            +'<div class="col col-sm-1 marleft settings_active table_data_section display_f align_c" ><p class="table_data_element fnt_fm" style="color: #005CBC"><i class="fa fa-circle" style="font-size:9px;margin-right:5px;margin-top:5px; color:#005CBC;"></i>Active</p></div>'
-                            +'<div class="col col-sm-1 d-flex justify-content-center fasdiv">'
-                                +'<ul class="edit-menu">'
-                                    +'<li class="d-flex justify-content-center">'
+                            +'<div class="col col-sm-1 marleft settings_active table_data_section display_f align_c" ><p class="table_data_element fnt_bold fnt_fam fnt_active"><i class="fa fa-circle active_dot"></i>Active</p></div>'
+                            +'<div class="col col-sm-1 d-flex justify_c">'
+                                +'<ul class="edit-menu paddingm display_f justify_c align_c">'
+                                    +'<li class="d-flex justify_c po_relative">'
                                         +'<a href="javascript:function(){return false;}">'
-                                            +'<i  class="edit fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
+                                            +'<i  class="editOpt fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
                                         +'</a>'
-                                        +'<ul class="edit-subMenu" style="z-index:10;">'
-                                            +'<li class="edit-opt info-tool1" lvalue="'+item.part_id+'" style="display:'+info_machine+';"><a href="#"><img src="<?php echo base_url('assets/img/info.png'); ?>" class="img_font_wh2" style="margin-left:10px;">INFO</a></li>'
-                                            +'<li class="edit-opt edit-tool menu-font-change text-right" lvalue="'+item.part_id+'" style="display:'+edit_machine+';"><a href="#"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh" style="margin-left:10px;">EDIT</a></li>'
-                                            +'<li class="deactivate-tool " lvalue="'+item.part_id+'" svalue="'+item.status+'" style="display:'+deactivate_machine+';"><a href="#" style="border-bottom:none;"><img  src="<?php echo base_url('assets/img/delete.png'); ?>" class="img_font_wh1" style="margin-left:10px;">DEACTIVATE</a></li>'
+                                        +'<ul class="paddingm element-hover-content po_absolute">'
+                                            +'<li class="hover_elem_height side-menu-hover-btom display_f align_c sidenave-hover cursor info-tool1" lvalue="'+item.part_id+'" style="'+info_part+';">'
+                                            // +'<a href="#"><img src="<?php echo base_url('assets/img/info.png'); ?>" class="img_font_wh2" style="margin-left:10px;">INFO</a></li>'
+                                                +'<div class="icon-option display_f justify_c align_c">'
+                                                    +'<img src="<?php echo base_url('assets/img/info.png') ?>" class="icons-smart icon-sub">'
+                                                +'</div>'
+                                                +'<div class="lable-option display_f align_c">'
+                                                    +'<a href="#" id="" class="nav-sub lable-option-val none_dec">INFO</a>'
+                                                +'</div>'
+                                            +'</li>'
+                                            +'<li class="hover_elem_height side-menu-hover-btom display_f align_c sidenave-hover cursor edit-tool" lvalue="'+item.part_id+'" style="'+edit_part+';">'
+                                            // +'<a href="#"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh" style="margin-left:10px;">EDIT</a></li>'
+
+                                            +'<div class="icon-option display_f justify_c align_c">'
+                                                    +'<img src="<?php echo base_url('assets/img/pencil.png') ?>" class="icons-smart icon-sub">'
+                                                +'</div>'
+                                                +'<div class="lable-option display_f align_c">'
+                                                    +'<a href="#" id="" class="nav-sub lable-option-val none_dec">EDIT</a>'
+                                                +'</div>'
+                                            +'</li>'
+
+                                            +'<li class="hover_elem_height display_f align_c sidenave-hover cursor deactivate-tool " lvalue="'+item.part_id+'" svalue="'+item.status+'" style="'+deactivate_part+';">'
+                                            // +'<a href="#" style="border-bottom:none;"><img  src="<?php echo base_url('assets/img/delete.png'); ?>" class="img_font_wh1" style="margin-left:10px;">DEACTIVATE</a></li>'
+                                            +'<div class="icon-option display_f justify_c align_c">'
+                                                    +'<img src="<?php echo base_url('assets/img/delete.png') ?>" class="icons-smart icon-sub">'
+                                                +'</div>'
+                                                +'<div class="lable-option display_f align_c">'
+                                                    +'<a href="#" id="" class="nav-sub lable-option-val none_dec">DEACTIVATE</a>'
+                                                +'</div>'
+                                            +'</li>'
                                         +'</ul>'
                                     +'</li>'
                                 +'</ul>'               
@@ -1409,18 +1413,35 @@ function get_part_data(){
                             +'<div class="col col-sm-1 marright table_data_section display_f align_c" >'
                             +'<p class="table_data_element fnt_fm"><i class="fa fa-inr" style="margin-right:5px;"></i>'+part_p+'</p>'
                             +'</div>'
-                            +'<div class="col col-sm-1 marlef settings_active table_data_section display_f align_c" style="color:#C00000;"><p class="table_data_element fnt_fm" style="color: #C00000"><i class="fa fa-circle" style="font-size:9px;margin-right:5px;margin-top:5px;"></i>Inactive</p></div>'
-                            +'<div class="col col-sm-1 d-flex justify-content-center fasdiv table_data_section display_f align_c">'
-                            +'<ul class="edit-menu">'
-                            +'<li class="d-flex justify-content-center">'
-                            +'<a href="javascript:function(){return false;}">'
-                            +'<i class="edit fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
-                            +'</a>'
-                            +'<ul class="edit-subMenu" style="z-index:10;">'
-                            +'<li class="edit-opt info-tool" lvalue="'+item.part_id+'"><a href="#"><img src="<?php echo base_url('assets/img/info.png'); ?>" class="img_font_wh2" style="margin-left:10px;">INFO</a></li>'
-                            +'<li class="activate-tool active_not" lvalue="'+item.part_id+'" svalue="'+item.status+'" style="display:'+activate_machine+';"><a href="#" style="border-bottom:none;"><img src="<?php  echo base_url('assets/img/activate.png') ?>" class="img_font_wh2" style="margin-left:10px;"></i>ACTIVATE</a></li>'
-                            +'</ul>'
-                            +'</li>'
+                            +'<div class="col col-sm-1 marlef settings_active table_data_section display_f align_c"><p class="table_data_element fnt_bold fnt_fam fnt_inactive"><i class="fa fa-circle active_dot"></i>Inactive</p></div>'
+                            +'<div class="col col-sm-1 display_f justify_c align_c">'
+                            +'<ul class="edit-menu paddingm display_f justify_c align_c">'
+                                +'<li class="d-flex justify_c po_relative">'
+                                    +'<a href="javascript:function(){return false;}">'
+                                        +'<i class="editOpt fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
+                                    +'</a>'
+                                    +'<ul class="paddingm element-hover-content po_absolute">'
+                                        +'<li class="hover_elem_height side-menu-hover-btom display_f align_c sidenave-hover cursor info-tool" lvalue="'+item.part_id+'">'
+                                        // +'<a href="#"><img src="<?php echo base_url('assets/img/info.png'); ?>" class="img_font_wh2" style="margin-left:10px;">INFO</a></li>'
+                                            +'<div class="icon-option display_f justify_c align_c">'
+                                                    +'<img src="<?php echo base_url('assets/img/info.png') ?>" class="icons-smart icon-sub">'
+                                                +'</div>'
+                                                +'<div class="lable-option display_f align_c">'
+                                                    +'<a href="#" id="" class="nav-sub lable-option-val none_dec">INFO</a>'
+                                                +'</div>'
+                                            +'</li>'
+                                        +'<li class="hover_elem_height display_f align_c sidenave-hover cursor activate-tool" lvalue="'+item.part_id+'" svalue="'+item.status+'" style="'+activate_part+';">'
+                                        // +'<a href="#" style="border-bottom:none;"><img src="<?php  echo base_url('assets/img/activate.png') ?>" class="img_font_wh2" style="margin-left:10px;"></i>ACTIVATE</a></li>'
+                                            +'<div class="icon-option display_f justify_c align_c">'
+                                                +'<img src="<?php echo base_url('assets/img/activate.png') ?>" class="icons-smart icon-sub">'
+                                            +'</div>'
+                                            +'<div class="lable-option display_f align_c">'
+                                                +'<a href="#" id="" class="nav-sub lable-option-val none_dec">ACTIVATE</a>'
+                                            +'</div>'
+                                        +'</li>'
+                                            
+                                    +'</ul>'
+                                +'</li>'
                             +'</ul>'                
                             +'</div>'
                             +'</div>'

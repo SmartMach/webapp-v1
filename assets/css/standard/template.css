@@ -5,6 +5,9 @@ p{
 span{
 	font-family: var(--font_family) !important;
 }
+label{
+    font-family: var(--font_family) !important;   
+}
 .fnt_fam{
 	font-family: var(--font_family) !important;
 }
@@ -14,6 +17,7 @@ span{
 .fnt_inactive{
 	color: var(--inactive_count_color) !important;
 }
+
 .float_l{
     float: left;
 }
@@ -112,6 +116,50 @@ span{
     height: 1rem !important;
     width: 1rem !important;
 }
+.border_no{
+    border: none;
+}
+
+.mr_right_ele{
+    margin-right: 0.5rem;
+}
+
+/* LOGO START*/
+#smartlogo{
+    width: 9rem;
+}
+/* LOGO END */
+
+/* SIDE NAV BAR START */
+.icons-side-nav{
+    height: 2.7rem;
+    width: 2.7rem;
+}
+.nav-icon {
+    color: #005abc;
+    padding: 9px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.nav-icon:hover{
+  padding: 9px;
+  background: #eff7ff;
+}
+/* SIDE NAV BAR END */
+
+/* USER PROFILE START */
+
+.user_profile_ele{
+    height:38px;
+    width:38px;
+    border-radius:50%;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* USER PROFILE END */
 
 /*INPUT LABLES*/
 
@@ -238,6 +286,16 @@ span{
 	font-size: var(--font_size_table_data) !important;
 /*	width: var(--width_table_data) !important;*/
 	margin-bottom: var(--mr_botm_table_data) !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+} 
+.charCount{
+    font-size:12px;
+    color:#8c8c8c;
+}
+.validate{
+    font-size:12px;
+    color:red;
 }
 /*GLOBAL CLASS FOR TABLE TABLE DATA END*/ 
 
@@ -286,6 +344,10 @@ span{
 	font-size: 12px !important;
 	color: red !important;
 }
+.fieldStyleSub{
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
 /*GLOBAL CLASS FOR INPUT LABLE END*/
 
 
@@ -300,10 +362,6 @@ span{
 }
 .graph_lable_header_top{
 	margin-top: 0.8rem !important;
-}
-.headTitle{
-    font-size: 12px !important;
-    color: #8c8c8c !important;
 }
 
 .valueGraph {
@@ -420,6 +478,18 @@ span{
 .unit-input .clip{
     font-size: 1rem !important;
 }
+
+.unit { 
+  position: absolute; 
+  display: block; 
+  right: 5px !important; 
+  top: 9px !important; 
+  z-index: 9; 
+}
+.clip{
+    color:#b5b8bc;
+    font-size: 1rem !important;
+}
 /*GLOBAL CLASS FOR INPUT FIELDS END*/
 
 
@@ -457,6 +527,30 @@ span{
     padding-right: var(--icon_padding_right) !important;
     color: var(--icon_color) !important;
 }
+.editOpt{
+    color: #595959;
+    font-size: 12px;
+}
+
+/* ALL CONFIRMATION BOX CSS */
+.conf_message{
+    color: black;
+    font-size: 0.9rem;
+}
+
+/* GENERAL SETTINGS */
+.fieldTitle{
+    top: -10px;
+    left: 20px;
+    background: white;
+    font-size:13px;
+    color:#595959;
+}
+.input-padding{
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
 
 /* no recordsa found css design */
 
@@ -471,6 +565,13 @@ span{
     font-weight: 550;
     font-family: 'Roboto' sans-serif;
     color: #a6a6a6;
+}
+
+/************* TABLE HEADER ************/
+.p3 {
+    font-size: 0.8rem;
+    color: #979a9a;
+    opacity: 50%;
 }
 
 /* no records found css design */

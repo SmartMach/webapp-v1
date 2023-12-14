@@ -1,4 +1,32 @@
 
+/******** SCROLL BAR **********/
+::-webkit-scrollbar {
+  width: 0.8rem;
+  background-color: transparent;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(0,0,0,.125);
+  background-clip: content-box;
+  border: 2px solid transparent;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0  ,0.5);
+}
+::-webkit-scrollbar:horizontal{
+    height: 0.8rem;
+    border-radius: 10px;
+    border: 2px solid transparent;
+}
+::-webkit-scrollbar-thumb:horizontal:hover{
+  background-color: rgba(0, 0, 0  ,0.5);
+}
+/******** SCROLL BAR END *******/
+
 /******* TOP NAVIGATION MENU ********/
 .nav_top{ 
     white-space: nowrap;
@@ -116,7 +144,37 @@
 .lable-option-val:hover{
   color: #595959;
 }
+.sidenave-hover:hover{
+    background-color:#EFF7FF;
+    color:#595959;
+    border-radius:0.45rem;
+}
 /******** SIDE NAVIGATION MENU END ********/
+
+/************************ HOVER MENU START **************************/
+.element-hover-content{
+  list-style: none;
+  height: auto;
+  min-width: 200px;
+  width: fit-content;
+  white-space: nowrap;
+  background: #FFF;
+  border-radius: 10px 10px 10px 10px;
+  border:1px solid #d9d9d9;
+  font-size: 13px;
+  transition: all 300ms linear;
+  -o-transition: all 300ms linear;
+  -ms-transition: all 300ms linear;
+  -moz-transition: all 300ms linear;
+  -webkit-transition: all 300ms linear;
+  z-index: 94;
+  right: 20px;
+  top: 0px;
+  box-shadow: 3px 3px 4px 0px #d9d9d9;
+  display: none;
+}
+
+/************************ HOVER MENU END **************************/
 
 /******** SECONDARY NAVIGATION MENU ********/
 .sec_nav{ 
@@ -169,6 +227,26 @@
 
 /*GRAPH SECTIONS END*/
 
+.fieldStyle{
+    height: 4.2rem;
+}
+
+.reason-box{
+    padding: 10px;
+    border:1px solid rgb(232,232,232,232);
+    border-radius: 10px;
+    margin:10px;
+}
+.dot {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
 
 /*MULTIPLE INPUT BOX*/
 .filter_multiselect_outer{
@@ -181,3 +259,42 @@
   height: 100%;
 }
 /*MULTIPLE INPUT BOX END*/
+
+
+/* MODEL BOX DESIGN START*/
+.bodercss {
+    border-radius: 15px 15px 15px 15px;
+}
+/* MODEL BOX DESIGN END */
+
+/* INPUT BOX DESIGN START */
+.input-box { 
+  position: relative; 
+}
+
+.input-box .input { 
+  display: block; 
+  background: #fff; 
+}
+
+/* INPUT BOX DESIGN END */
+
+/* GENERAL SETTINGS START*/
+.contentGeneralSettings::-webkit-scrollbar {
+    width: 10px;
+}
+
+.contentGeneralSettings::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+
+.contentGeneralSettings::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+.contentGeneral{
+    margin:2.5rem;
+}
+
+/* GENERAL SETTINGS END*/

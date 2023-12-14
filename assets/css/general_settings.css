@@ -1,8 +1,46 @@
+.dotHover{
+    margin-left:-20%;
+    background: #f2f2f2;
+    height:2rem;
+    width:2rem;
+    border-radius: 50%;
+    top:-18px;
+    position:absolute;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+}
+.dotHover1{
+    margin-left:-5%;
+    background: #f2f2f2;
+    height:2rem;
+    width:2rem;
+    border-radius: 50%;
+    top:-18px;
+    position:absolute;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+}
+.reason-box:hover .dotHover{
+    opacity: 1;
+}
+.reason-box:hover .dotHover1{
+    opacity: 1;
+}
+hr{
+    color: black;
+}
 
-/*.box{
-    margin-top: 10px;
-    margin-bottom: 10px;
-}*/
+#range{
+    margin-left: 2px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
 
 .font{
     font-family: 'Roboto', sans-serif;
@@ -23,23 +61,6 @@
     float: right;
     margin-left: 1rem;
 }
-.clip{
-    color:#b5b8bc;
-    cursor: pointer;
-}
-.clip:hover{
-    color:#b3b3b3;
-    cursor: pointer;
-}
-.dot {
-  height: 3rem;
-  width: 3rem;
-  border-radius: 50%;
-  display: flex;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-}
 
 .dot p{
     margin-top: 0px;
@@ -48,16 +69,7 @@
     left: 50%;
 }
 
-.fieldTitle{
-    position: absolute;
-    top: -10px;
-    left: 20px;
-    background: white;
-    font-family: 'Roboto', sans-serif;
-    font-size:13px;
-    color:#595959;
-    /*font-weight: bold;*/
-}
+
 .ttitle{
     font-family: 'Roboto', sans-serif;
     font-size:13px;
@@ -87,14 +99,6 @@ thead tr th{
   background: #fff; 
 }
 
-.unit { 
-  position: absolute; 
-  display: block; 
-  right: 5px; 
-  top: 9px; 
-  z-index: 9; 
-}
-
 #count_message{
     font-family: 'Roboto', sans-serif;
     font-size:12px;  
@@ -116,20 +120,6 @@ thead tr th{
 }
 
 
- .contentGeneralSettings::-webkit-scrollbar {
-    width: 10px;
-}
-
-.contentGeneralSettings::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-    border-radius: 10px;
-}
-
-.contentGeneralSettings::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
-}
-
 .genmtop{
     margin-top: 1rem; 
 }
@@ -147,13 +137,7 @@ thead tr th{
   margin-left: 2rem;
   margin-right: 2rem;
 }
-.reason-box{
-  padding: 10px;
-  border:1px solid rgb(232,232,232,232);
-  border-radius: 10px;
-  margin:10px;
-  position: relative;
-}
+
 .flex-container{
   display: flex;
 }

@@ -16,3 +16,63 @@
 	/* required field color */
 	--required_font_color:red;
 }
+
+.contentContainer{
+  margin-top: 4.5rem;
+}
+.textAlignCenter{
+  text-align: center;
+}
+.saveBtnStyle{
+  color: var(--save_btn_font_color);
+  background: var(--save_btn_background_color);
+}
+.cancelBtnStyle{
+  color: var(--cancel_btn_font_color);
+  background: var(--cancel_btn_background_color);
+}
+.saveBtnStyle:hover{
+  color: var(--save_btn_font_color);
+  background: var(--save_btn_hover_background_color);
+  /* opacity: 0.8; */
+}
+.cancelBtnStyle:hover{
+  color: var(--cancel_btn_hover_font_color);
+  background: var(--cancel_btn_hover_background_color);
+  /* opacity: 0.8; */
+}
+
+
+.dotAccess {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.dotAccess1 {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.dotAccess i{
+  font-size: 12px;
+}
+.dotAccess1 i{
+  font-size: 12px;
+}
+
+.icons-smart{
+  height: 1rem;
+  width: 1rem;
+}
+
+.nav-icon-align{
+  margin-right: 0.8rem;
+}

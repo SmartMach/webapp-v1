@@ -40,9 +40,9 @@ $session = \Config\Services::session();
                         if($this->data['access'][0]['settings_machine'] == 3){ 
                     ?>
 
-                    <a style="text-decoration:none;margin-right:0.3rem;cursor:pointer;" class="overall_filter_btn overall_filter_header_css" id="add_machine_button">
-                        <i class="fa fa-plus" style="font-size: 13px;margin-right: 7px;"></i>Add Machine
-                    </a>  
+                    <a class="overall_filter_btn mr_right_ele cursor none_dec overall_filter_header_css" id="add_machine_button">
+                        <i class="fa fa-plus mr_right_ele"></i>Add Machine
+                    </a>
 
                     <?php 
                          }
@@ -89,7 +89,7 @@ $session = \Config\Services::session();
   <div class="modal-dialog modal-lg modal-dialog-centered rounded ">
     <div class="container modal-content bodercss">
             <div class="modal-header" style="border:none; ">
-                <h5 class="modal-title header_popup fnt_fam" id="AddMachineModal1" style="">ADD MACHINE</h5>
+                <p class="modal-title header_popup fnt_fam" id="AddMachineModal1" style="">ADD MACHINE DETAILS</p>
             </div> 
                 <div class="modal-body">
                     <div class="row">
@@ -106,7 +106,7 @@ $session = \Config\Services::session();
                         <div class="col-lg-3 box">
                             <div class=" input-box fieldStyle">
                                 <input type="text" class="form-control padin font_weight_modal" id="inputMachineRateHour" name="inputMachineRateHour" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                <span class="unit-input"><i class="fa fa-inr clip" aria-hidden="true"></i></span>
+                                <span class="unit-input cursor"><i class="fa fa-inr clip" aria-hidden="true"></i></span>
                                 <label for="inputMachineRateHour" class="input_lable fnt_fam">Machine Rate Hour <span class="paddingm validate fnt_fam">*</span></label></label>
                                 <span class="paddingm float-start validate fnt_fam" id="inputMachineRateHourErr"></span> 
                                 
@@ -115,7 +115,7 @@ $session = \Config\Services::session();
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" class="form-control input padin font_weight_modal" id="inputMachineOffRateHour" name="inputMachineOffRateHour" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                <span class="unit-input"><i class="fa fa-inr clip" aria-hidden="true"></i></span>
+                                <span class="unit-input cursor"><i class="fa fa-inr clip" aria-hidden="true"></i></span>
                                 <label for="inputMachineOffRateHour" class="input_lable fnt_fam">Machine OFF Rate Hour <span class="paddingm validate fnt_fam">*</span></label></label>
                                 <span class="paddingm float-start validate fnt_fam" id="inputMachineOffRateHourErr"></span> 
                                 <!-- <span class="float-end charCount fnt_fam">Character Count</span> -->
@@ -128,7 +128,7 @@ $session = \Config\Services::session();
                                 <input type="text" class="form-control input font_weight_modal paddinginright" id="inputTonnage" name="inputTonnage" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                 <label for="inputTonnage" class="input_lable fnt_fam">Tonnage <span class="paddingm validate fnt_fam">*</span></label></label>
                                 <span class="paddingm float-start validate fnt_fam" id="inputTonnageErr"></span> 
-                                <span class="unit clip">T</span>
+                                <span class="unit clip cursor">T</span>
                             </div>
                         </div>
                         <div class="col-lg-3 box">
@@ -163,15 +163,15 @@ $session = \Config\Services::session();
 
 <div class="modal fade" id="DeactiveMachineModal" tabindex="-1" aria-labelledby="DeactiveMachineModal1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered rounded">
-    <div class="modal-content bodercss">
-            <div class="modal-header" style="border:none; ">
-                <h5 class="modal-title header_popup fnt_fam" id="DeactiveMachineModal1" style="">CONFIRMATION MESSAGE</h5>
+    <div class="modal-content container bodercss">
+            <div class="modal-header border_no">
+                <p class="modal-title header_popup fnt_fam" id="DeactiveMachineModal1" style="">CONFIRMATION MESSAGE</p>
             </div>
-                <div class="modal-body" style="max-width:max-content;">
-                    <label style="color: black;font-size:0.9rem;">Are you sure you want to delete this machine record?</label>
+                <div class="modal-body">
+                    <label class="conf_message">Are you sure you want to delete this machine record?</label>
                     
                 </div>
-                <div class="modal-footer" style="border:none;">
+                <div class="modal-footer border_no">
                     <a class="btn fnt_fam btn_fnt_size btn_padd btn_save Status-Machine Status-deactive" name="Edit_Machine" value="SAVE" >Save</a>
                     <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
                 </div>
@@ -180,14 +180,14 @@ $session = \Config\Services::session();
 </div>
 <div class="modal fade" id="ActiveMachineModal" tabindex="-1" aria-labelledby="ActiveMachineModal1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered rounded">
-    <div class="modal-content bodercss">
-        <div class="modal-header" style="border:none; ">
+    <div class="modal-content container bodercss">
+        <div class="modal-header border_no">
             <h5 class="modal-title header_popup fnt_fam" id="ActiveMachineModal1" style="">CONFIRMATION MESSAGE</h5>
         </div>
         <div class="modal-body">
-            <label style="color: black;font-size:0.9rem;">Are you sure you want to activate this machine record?</label>            
+            <label class="conf_message">Are you sure you want to activate this machine record?</label>            
         </div>
-        <div class="modal-footer" style="border:none;">
+        <div class="modal-footer border_no">
             <a class="btn fnt_fam btn_fnt_size btn_padd btn_save Status-active" name="Edit_Machine" value="SAVE" >Save</a>
             <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
         </div>
@@ -197,7 +197,7 @@ $session = \Config\Services::session();
 <div class="modal fade" id="EditMachineModal" tabindex="-1" aria-labelledby="EditMachineModal1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered rounded">
     <div class="modal-content container bodercss">
-            <div class="modal-header" style="border:none; ">
+            <div class="modal-header border_no">
                 <p class="modal-title header_popup fnt_fam" id="EditMachineModal1" style="">EDIT MACHINE DETAILS</p>
             </div>
                 <div class="modal-body">
@@ -211,9 +211,9 @@ $session = \Config\Services::session();
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
-                                    <div class=" float-end">
+                                    <div class="float-end">
                                         <label for="" class="col-form-label headTitle fnt_fam">Status</label>
-                                        <p><b><span id="machinestatus" class="font_weight_modal" style="font-weight:bold;opacity:1;font-size:0.9rem;"></span></b></p>
+                                        <p><span id="machinestatus" class="font_weight_modal"></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -234,7 +234,7 @@ $session = \Config\Services::session();
                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
                                 <input type="text" class="form-control input left-align font_weight_modal" id="editMachineRateHour" name="" required=""  value=" " oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                <span class="unit-input"><i class="fa fa-inr clip" aria-hidden="true"></i></span>
+                                <span class="unit-input cursor"><i class="fa fa-inr clip" aria-hidden="true"></i></span>
                                 <label class="input_lable fnt_fam">Machine Rate Hour <span class="paddingm validate fnt_fam">*</span></label>
                                 <span class="paddingm float-start validate fnt_fam" id="editMachineRateHourErr"></span>
                             </div>
@@ -289,21 +289,22 @@ $session = \Config\Services::session();
                     <?php }?>
                     </div>
                     <div class="row">
-                        <div class="col-lg-3 box">
+                         <div class="col-lg-3 box">
                             <div class="input-box fieldStyle">
-                                <label for="" class="col-form-label headTitle fnt_fam">Last Updated By</label>
-                                <p class="fieldStyleSub" style="position: absolute;"><span id="last_updated_by" class="font_weight_modal"></span></p>
+                                <label for="" class="input_lable fnt_fam">Last Updated By</label>
+                                <p class="fieldStyleSub po_absolute"><span id="last_updated_by" class="font_weight_modal"></span></p>
                             </div>
                         </div>
+                        
                         <div class="col-lg-4 box">
                             <div class="input-box fieldStyle">
-                                <label for="" class="col-form-label headTitle fnt_fam">Last Updated On</label>
-                                <p class="fieldStyleSub" style="position: absolute;"><span id='last_updated_on' class="font_weight_modal"></span></p>
+                                <label for="" class="input_lable fnt_fam">Last Updated On</label>
+                                <p class="fieldStyleSub po_absolute"><span id='last_updated_on' class="font_weight_modal"></span></p>
                             </div>
-                        </div>
+                        </div> 
                     </div>
                 </div>
-                <div class="modal-footer" style="border:none;">
+                <div class="modal-footer border_no">
                     <a class="EditMachine btn fnt_fam btn_fnt_size btn_padd btn_save" name="EditMachine" id="edit_machine_data" value="SAVE">Save</a>
                     <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
                 </div>
@@ -598,24 +599,6 @@ $session = \Config\Services::session();
             location.reload();
         });
 
-        // Edit.........
-        $(document).on("click", ".edit", function(event){
-            event.preventDefault();
-            event.stopPropagation();
-            if($(this).parent().siblings(".edit-subMenu").css('display').toLowerCase() == 'none'){
-                $(this).parent().siblings(".edit-subMenu").css("display","block");
-            }
-            else{
-                $(this).parent().siblings(".edit-subMenu").css("display","none");
-            }
-            $(document).mouseup(function(e){ 
-                var container = $(".edit-subMenu");
-                if (!container.is(e.target) && container.has(e.target).length === 0) 
-                {
-                    container.hide();
-                }
-            });
-        });
 
         //  Deactivate Machine Acknowledge ........... 
         $(document).on("click", ".deactivate-machine", function(event){
@@ -1090,23 +1073,23 @@ function get_machine_data(){
     var info_machine = "";
     var edit_machine = "";
     if(parseInt(acsCon) < 2){
-        activate_machine = "none";
-        deactivate_machine = "none";
-        edit_machine = "none";
-        info_machine = "block";
+        activate_machine = "display:none;";
+        deactivate_machine = "display:none;";
+        edit_machine = "display:none;";
+        // info_machine = "display:block;";
     }
     else if((parseInt(acsCon) == 2) ){
         // alert('site admin');
-        activate_machine = "none";
-        deactivate_machine = "none";
-        edit_machine = "block";
-        info_machine = "none";
+        activate_machine = "display:none;";
+        deactivate_machine = "display:none;";
+        //edit_machine = "display:block;";
+        info_machine = "display:none;";
     }
     else{
-        activate_machine = "block";
-        deactivate_machine = "block";
-        edit_machine = "block";
-        info_machine = "none";
+        //activate_machine = "display:block;";
+        //deactivate_machine = "display:block;";
+        //edit_machine = "display:block;";
+        info_machine = "display:none;";
     }
     $.ajax({
         url:"<?php echo base_url('Settings_controller/get_machine_data'); ?>",
@@ -1149,17 +1132,41 @@ function get_machine_data(){
                             +'</div>'
                             +'<div class="col-sm-1 col marleft table_data_section display_f align_c" ><p class="table_data_element fnt_fam">'+item.tonnage+'T</p></div>'
                             +'<div class="col-sm-2 col marleft table_data_section display_f align_c" ><p class="table_data_element fnt_fam">'+item.machine_brand+'</p></div>'
-                            +'<div class="col-sm-1 col marleft settings_active marleft table_data_section display_f align_c fnt_active" ><p class="table_data_element fnt_fam fnt_active"><i class="fa fa-circle active_dot"></i>Active</p></div>'
-                                +'<div class="col-sm-1 col d-flex justify-content-center fasdiv">'
-                                    +'<ul class="edit-menu" style="z-index:10;">'
-                                        +'<li class="d-flex justify-content-center">'
+                            +'<div class="col-sm-1 col settings_active marleft table_data_section display_f align_c fnt_active" ><p class="table_data_element fnt_bold fnt_fam fnt_active"><i class="fa fa-circle active_dot"></i>Active</p></div>'
+                                +'<div class="col-sm-1 col d-flex justify_c">'
+                                    +'<ul class="edit-menu d-flex justify_c align_c paddingm">'
+                                        +'<li class="d-flex justify_c po_relative">'
                                             +'<a href="javascript:function(){return false;}">'
-                                                +'<i class="edit fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
+                                                +'<i class="editOpt fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
                                             +'</a>'
-                                            +'<ul class="edit-subMenu" style="z-index:10;">'
-                                                +'<li class="edit-opt info-machine1" lvalue="'+item.machine_id+'" style="display:'+info_machine+';"><a href="#"><img src="<?php echo base_url('assets/img/info.png') ?>" class="icons_style" style="margin-left:5px;">INFO</a></li>'
-                                                +'<li class="edit-opt edit-machine hover_work" lvalue="'+item.machine_id+'" style="display:'+edit_machine+';"><a href="#" style=""><img src="<?php echo base_url('assets/img/pencil.png') ?>" class="icons_style" style="margin-left:10px;">EDIT</a></li>'
-                                                +'<li class="edit-opt deactivate-machine" lvalue="'+item.machine_id+'" svalue="'+item.status+'" style="display:'+deactivate_machine+';"><a href="#" style="border-bottom:none;"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="icons_style" style="margin-left:10px;">DEACTIVATE</a></li>'
+                                            +'<ul class="paddingm element-hover-content po_absolute">'
+                                                +'<li class="hover_elem_height side-menu-hover-btom display_f align_c info-machine1 sidenave-hover cursor" lvalue="'+item.machine_id+'" style="'+info_machine+'">'
+                                                    //+'<a href="#"><img src="<?php echo base_url('assets/img/info.png') ?>" class="icons_style" style="margin-left:5px;">INFO</a></li>'
+                                                    +'<div class="icon-option display_f justify_c align_c">'
+                                                        +'<img src="<?php echo base_url('assets/img/info.png') ?>" class="icons-smart icon-sub">'
+                                                    +'</div>'
+                                                    +'<div class="lable-option display_f align_c">'
+                                                        +'<a href="#" id="" class="nav-sub lable-option-val none_dec">INFO</a>'
+                                                    +'</div>'
+                                                    +'</li>'
+                                                +'<li class="hover_elem_height side-menu-hover-btom display_f align_c  edit-machine hover_work cursor sidenave-hover" lvalue="'+item.machine_id+'" style="'+edit_machine+'">'
+                                                    // +'<a href="#" style=""><img src="<?php echo base_url('assets/img/pencil.png') ?>" class="icons_style" style="margin-left:10px;">EDIT</a></li>'
+                                                    +'<div class="icon-option display_f justify_c align_c">'
+                                                        +'<img src="<?php echo base_url('assets/img/pencil.png') ?>" class="icons-smart icon-sub">'
+                                                    +'</div>'
+                                                    +'<div class="lable-option display_f align_c">'
+                                                        +'<a href="#" id="" class="nav-sub lable-option-val none_dec">EDIT</a>'
+                                                    +'</div>'
+                                                +'</li>'
+                                                +'<li class="hover_elem_height display_f align_c deactivate-machine sidenave-hover cursor" lvalue="'+item.machine_id+'" svalue="'+item.status+'" style="'+deactivate_machine+'">'
+                                                    // +'<a href="#" style="border-bottom:none;"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="icons_style" style="margin-left:10px;">DEACTIVATE</a></li>'
+                                                    +'<div class="icon-option display_f justify_c align_c">'
+                                                        +'<img src="<?php echo base_url('assets/img/delete.png') ?>" class="icons-smart icon-sub">'
+                                                    +'</div>'
+                                                    +'<div class="lable-option display_f align_c">'
+                                                        +'<a href="#" id="" class="nav-sub lable-option-val none_dec">DEACTIVATE</a>'
+                                                    +'</div>'
+                                                +'</li>'
                                             +'</ul>'
                                         +'</li>'
                                     +'</ul>'                
@@ -1182,16 +1189,32 @@ function get_machine_data(){
                             +'</div>'
                             +'<div class="col-sm-1 col marleft table_data_section display_f align_c" ><p class="table_data_element fnt_fam">'+item.tonnage+'T</p></div>'
                             +'<div class="col-sm-2 col marleft table_data_section display_f align_c" ><p class="table_data_element fnt_fam">'+item.machine_brand+'</p></div>'
-                            +'<div class="col-sm-1 col marleft settings_active table_data_section display_f align_c fnt_inactive"><p class="table_data_element fnt_fam fnt_inactive"><i class="fa fa-circle active_dot"></i>Inactive</p></div>'
-                            +'<div class="col-sm-1 col d-flex justify-content-center fasdiv">'
-                                +'<ul class="edit-menu">'
-                                    +'<li class="d-flex justify-content-center">'
+                            +'<div class="col-sm-1 col marleft settings_active table_data_section display_f align_c fnt_inactive"><p class="table_data_element fnt_bold fnt_fam fnt_inactive"><i class="fa fa-circle active_dot"></i>Inactive</p></div>'
+                            +'<div class="col-sm-1 col d-flex justify_c">'
+                                +'<ul class="edit-menu paddingm display_f justify_c align_c">'
+                                    +'<li class="d-flex justify_c po_relative">'
                                         +'<a href="javascript:function(){return false;}">'
-                                            +'<i class="edit fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
+                                            +'<i class="editOpt fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
                                         +'</a>'
-                                        +'<ul class="edit-subMenu" style="z-index:10;">'
-                                            +'<li class="edit-opt info-machine" lvalue="'+item.machine_id+'"><a href="#"><img src="<?php echo base_url('assets/img/info.png'); ?>" class="icons_style" style="margin-left:5px;">INFO</a></li>'
-                                            +'<li class="edit-opt activate-machine" lvalue="'+item.machine_id+'" svalue="'+item.status+'" style="display:'+activate_machine+';"><a href="#" style="border-bottom:none;"><img src="<?php echo base_url('assets/img/activate.png'); ?>" class="icons_style" style="margin-left:5px;font-size:15px;">ACTIVATE</a></li>'
+                                        +'<ul class="paddingm element-hover-content po_absolute">'
+                                            +'<li class="hover_elem_height side-menu-hover-btom display_f align_c info-machine sidenave-hover cursor" lvalue="'+item.machine_id+'">'
+                                            // +'<a href="#"><img src="<?php echo base_url('assets/img/info.png'); ?>" class="icons_style" style="margin-left:5px;">INFO</a></li>'
+                                                +'<div class="icon-option display_f justify_c align_c">'
+                                                    +'<img src="<?php echo base_url('assets/img/info.png') ?>" class="icons-smart icon-sub">'
+                                                +'</div>'
+                                                +'<div class="lable-option display_f align_c">'
+                                                    +'<a href="#" id="" class="nav-sub lable-option-val none_dec">INFO</a>'
+                                                +'</div>'
+                                             +'</li>'
+                                            +'<li class="hover_elem_height display_f align_c activate-machine sidenave-hover cursor" lvalue="'+item.machine_id+'" svalue="'+item.status+'" style="'+activate_machine+';">'
+                                                +'<div class="icon-option display_f justify_c align_c">'
+                                                    +'<img src="<?php echo base_url('assets/img/activate.png') ?>" class="icons-smart icon-sub">'
+                                                +'</div>'
+                                                +'<div class="lable-option display_f align_c">'
+                                                    +'<a href="#" id="" class="nav-sub lable-option-val none_dec">ACTIVATE</a>'
+                                                +'</div>'
+                                            +'</li>'
+                                            // +'<a href="#" style="border-bottom:none;"><img src="<?php echo base_url('assets/img/activate.png'); ?>" class="icons_style" style="margin-left:5px;font-size:15px;">ACTIVATE</a></li>'
                                         +'</ul>'
                                     +'</li>'
                                 +'</ul>'                

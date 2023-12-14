@@ -1,3 +1,22 @@
+.siteAdmin{
+  border:1px solid #ffdad0;
+}
+.siteAdmin p{
+  color: #853e2c;
+}
+.dotUser{
+  margin-left: 10px;
+}
+.userRole{
+	padding: 7px 0px;
+  width: 100px;
+	border-radius: 20px 20px 20px 20px;
+	/*border:1px solid #d9d9d9;*/*/
+}
+.userRole p{
+  font-weight: bold;
+}
+
 
 .accessControlPadding{
 	border-radius:5px 5px 5px 5px;
