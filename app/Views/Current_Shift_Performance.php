@@ -343,8 +343,7 @@ async function base_func(){
     await live_MC1001(result[0]['shift_date'], result[0]['shift_id']);
     // await live_target();
     await live_target_update(result[0]['shift_date']);
-    console.log("async function result");
-    console.log(result);
+
     $("#overlay").fadeOut(300);
 
 }
@@ -352,7 +351,6 @@ async function base_func(){
  
 // mx_global = setInterval(function() {
 //     getMachineDataLiveUpdate();
-//     console.log("live update");
 // }, 1000);
 
 async function previous_shift(){
@@ -373,12 +371,10 @@ function get_previous_shift_value(){
             cache: false,
             // async: false,
             success: function(res) {
-               console.log("previous shift ajax success");
                resolve(res);
             },
             error: function(res) {
                 // Error Occured!
-                console.log("previous shift ajax error function get_previous_shift_value ");
                 reject(res);
             }
         });
@@ -458,13 +454,11 @@ function getMachineDataLive() {
             // async: false,
             contentType: "application/json; charset=utf-8",
             success: function(res) {
-                console.log("success for first function");
                 resolve(res);
                 // getTileupdate(res);
             },
             error: function(res) {
                 // Error Occured!
-                console.log("erro for getMachineDataLive function ajax is failed");
                 reject(res);
             }
         });
@@ -487,8 +481,6 @@ function getLiveMode(shift_date, shift_id) {
                 // filter:x,
             },
             success: function(res) {
-                console.log("current shift performance live mode value");
-                console.log(res);
                 $('.grid-container-cont').empty();
                 res['latest_event'].forEach(function(machine) {
                     var machine_name = "";
@@ -636,9 +628,6 @@ function getLiveMode(shift_date, shift_id) {
                         }
                     });
 
-                
-
-                    // console.log("production percentage:\t"+production_percent);
                     var production_percent = parseInt((shift_production / target_production) * 100);
                     var production_percent_val = 470 - (4.7 * production_percent);
                     const MyFSC_container = document.getElementsByClassName("circle");
@@ -947,7 +936,6 @@ function getLiveMode(shift_date, shift_id) {
                             //         total_part_production_after_tool_changeover = i['total_part_produced'];    
                             //     }
                             // });
-                            // console.log("total production:\t"+total_part_production_after_tool_changeover);
 
                             // // toolchangeover target finding
                             // var find_toolchangeover_target = 0;
@@ -956,7 +944,6 @@ function getLiveMode(shift_date, shift_id) {
                             //         find_toolchangeover_target = i['target'];
                             //     }
                             // });
-                            // console.log("find the toolchangeover target:\t"+find_toolchangeover_target);
 
 
                             // var tmp_production_percent = parseInt((total_part_production_after_tool_changeover / find_toolchangeover_target) * 100);
@@ -966,7 +953,6 @@ function getLiveMode(shift_date, shift_id) {
                             // }else{
                             //     production_percent = parseInt(tmp_production_percent);
                             // }
-                            // console.log("production percentage:\t"+production_percent);
                             var production_percent_val = 470 - (4.7 * production_percent);
                             const MyFSC_container = document.getElementsByClassName("circle");
                             MyFSC_container[0].style.setProperty("--foo", production_percent_val);
@@ -1014,7 +1000,6 @@ function getLiveMode(shift_date, shift_id) {
             },
             error: function(res) {
                 // Error Occured!
-                console.log("failer in get live mode function");
                 reject(res);
             }
         });
@@ -1546,8 +1531,6 @@ function live_MC1001(shift_date, shift_id) {
                     }else{
                         production_percent = tmp_production_percent;
                     }
-                    console.log("current shift performance production target selection");
-                    console.log(production_percent);
                     res['production_target'].forEach(function(tmid){
                         if (tmid['machine_id']==machine[0]['machine_id']) {
                             if (parseInt(tmid['target'])>0) {
@@ -1641,11 +1624,9 @@ function live_MC1001(shift_date, shift_id) {
                     n = n + 1;
                 });
                 // $("#overlay").fadeOut(300);
-                console.log("success live mc1001 function");
                 resolve(res);
             },
             error: function(res) {
-                console.log('LIve MC1001 function error');
                 reject(res);
             }
         });
@@ -1735,10 +1716,6 @@ $(document).on('click', '.grid-item-cont', function(event) {
         $('.bg_light').css('background-color', background_light_color);
         $('.outer').css('border-color', border_color);
         $('.second_header').css('background-color',sub_header);
-        
-        console.log("shift date :\t"+shift_date);
-        console.log("machine id :\t"+tmp_mid);
-        console.log("shift id :\t",tmp[1]);
 
         await getProductionGraph(tmp_mid,shift_date,tmp[1],background_title_color,border_color);
         await getDownTimeGraph(tmp_mid,shift_date,tmp[1]);
@@ -1905,9 +1882,7 @@ var part_name_tooltip = new Array();
 
     // Production Graph
     function getProductionGraph(machine_id,shift_date,shift,backgroundcolor,border_color){
-        console.log("machine id:\t"+machine_id);
-        console.log("shift date:\t"+shift_date);
-        console.log("shift id :\t"+shift);
+
         return new Promise(function(resolve,reject){
             $('#production-graph').remove();
             $('.production-graph-prod').append('<canvas id="production-graph"><canvas>');
@@ -1922,8 +1897,6 @@ var part_name_tooltip = new Array();
                     filter:2,
                 },
                 success: function(res){
-                    console.log("production graph ");
-                    console.log(res);
                     resolve(res);
                     var hours_list=[];
                     var production_count = [];
@@ -2063,7 +2036,6 @@ var part_name_tooltip = new Array();
                 },
                 error: function(err){
                     // error......
-                    console.log("production graph error");
                     reject(err);
                 }
             });
@@ -2435,7 +2407,6 @@ var part_name_tooltip = new Array();
                 },
                 error:function(er){
                     reject(er);
-                    console.log("downtime graph error");
                 }
             });
         
@@ -2455,8 +2426,6 @@ var part_name_tooltip = new Array();
                     filter:2,
                 },
                 success: function(res){
-                    console.log("oui screen availability performance quality oee");
-                    console.log(res);
                     resolve(res);
                     res['oee'].forEach(function(machine) {
                         if (machine['Machine_Id'] == machine_id) {
@@ -2496,7 +2465,6 @@ var part_name_tooltip = new Array();
                 error: function(err) {
                     // 
                     reject(err);
-                    console.log("get live oee erorr");
                 }
             });
         });
@@ -2517,8 +2485,6 @@ var part_name_tooltip = new Array();
                     shift_date_ref : shift_date
                 },
                 success: function(res) {
-                    console.log("total downtime duration is :\t");
-                    console.log(res);
                     resolve(res);
                     if (res['h'] > 0) {
                         $('#downtime_duration').text(res['h']+"h"+" "+res['m']+"m");
@@ -2528,7 +2494,6 @@ var part_name_tooltip = new Array();
                 },
                 error: function(res) {
                     // Error Occured!
-                    console.log("downtime duration error");
                     reject(res);
                 }
             });
@@ -2549,8 +2514,6 @@ var part_name_tooltip = new Array();
                     shift_date_ref : shift_date, 
                 },
                 success: function(res) {
-                    console.log("prodcution duration and minutes");
-                    console.log(res);
                     resolve(res);
                     if (parseInt(res['duration_min'])>0) {
                         $('#remaining_time_duration').text(res['duration_min']+" "+"min");
@@ -2570,7 +2533,6 @@ var part_name_tooltip = new Array();
                 },
                 error: function(res) {
                     // Error Occured!
-                    console.log("get live production error");
                     reject(res);
                 }
             });
@@ -2590,8 +2552,6 @@ var part_name_tooltip = new Array();
                 },
                 success: function(res) {
                     resolve(res);
-                    console.log("part cycle");
-                    console.log(res);
                     const part_name_arr = [];
                     const part_id_arr = [];
                     res.forEach(element => {
@@ -2611,7 +2571,6 @@ var part_name_tooltip = new Array();
                 },
                 error: function(res) {
                     // Error Occured!
-                    console.log("get partcycle time ajax error");
                     reject(res);
                 }
             });
@@ -2641,7 +2600,6 @@ var part_name_tooltip = new Array();
                     
                 },
                 error: function(res) {
-                    console.log('get rejection count ajax error');
                     reject(res);
                     // Error Occured!
                 }
@@ -2652,8 +2610,6 @@ var part_name_tooltip = new Array();
 
     function target_oui_graph(mid,tid,sdate,shift_id){
         return new Promise(function(resolve,reject){
-            console.log("shift date:\t"+sdate);
-            console.log("shift id :\t"+shift_id);
 
             $.ajax({
                 url:"<?php echo base_url('Current_Shift_Performance/getLiveMode'); ?>",
@@ -2667,8 +2623,6 @@ var part_name_tooltip = new Array();
                 },
                 dataType:"JSON",
                 success:function(res){
-                    console.log("oui tool changeover target graph");
-                    console.log(res);
                     resolve(res);
                     var target = 0;
 
@@ -2678,7 +2632,6 @@ var part_name_tooltip = new Array();
                         }
                     });
 
-                    // console.log("target:/t"+target);
                     var total_produced=0;
                     res['target_production'].forEach(function(i){
                         if (i['machine_id'] == mid) {
@@ -2693,11 +2646,6 @@ var part_name_tooltip = new Array();
                         target_percentage = 100;
                     }
                     
-                    // console.log("total production:\t"+total_produced);
-                    // console.log("production target percentage");
-                    // console.log(target_percentage);
-                    // console.log("target tool changeover"+target);
-                    // console.log("target production count :\t"+total_produced);
                     if (target_percentage > 100) {
                         
                         $('.target_inline').css('height','100%');
@@ -2729,7 +2677,6 @@ var part_name_tooltip = new Array();
                         }
                     });
 
-                    // console.log("target percentage:\t"+target_percentage);
                     // var production_percent = (shift_production/shift_target)*100;
                     var production_percent = 0;
                     if (parseInt(target_percentage)>100) {
@@ -2737,9 +2684,7 @@ var part_name_tooltip = new Array();
                     }else{
                         production_percent = target_percentage;
                     }
-                    console.log(target_percentage+"percentage");
                     var production_percent_val = 470 - (4.7 * production_percent);
-                    // console.log(production_percent_val);
                     const circle_container = document.getElementsByClassName("circle_oui");
                     circle_container[0].style.setProperty("--foo_oui", production_percent_val);
                     if (parseInt(target)>0) {
@@ -2770,7 +2715,6 @@ var part_name_tooltip = new Array();
                 },
                 error:function(er){
                     // reject(er);
-                    console.log("target oui ajax error");
                     reject(er);
                 }
             });

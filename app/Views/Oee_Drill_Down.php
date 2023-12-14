@@ -1614,10 +1614,6 @@ function availabilityReason_machine() {
             graph_machine_arr.push($(this).val());
         }
     });
-    console.log("before ajax array");
-    console.log(graph_machine_arr);
-    console.log(graph_reason_arr);
-    console.log(graph_category_arr);
 	$.ajax({
         url: "<?php echo base_url('OEE_Drill_Down_controller/getmachine_reason_availability');?>",
         type: "POST",
@@ -1630,7 +1626,6 @@ function availabilityReason_machine() {
             category_arr:graph_category_arr,
         },
         success:function(res){
-           
             $('#machine_reason_availability').remove();
             $('.child_machine_reason_availability').append('<canvas id="machine_reason_availability"></canvas>');
             $('.chartjs-hidden-iframe').remove();
@@ -1662,7 +1657,6 @@ function availabilityReason_machine() {
     
             });
 
-          
             var totalDuration=[];
             res['totalDuration'].forEach(function(duration){
                 totalDuration.push(duration);
@@ -1745,9 +1739,7 @@ function availabilityReason_machine() {
                 x=x+1;
                 index=index+1;
             });
-            console.log("machine reason availability");
-            console.log(machineName);
-            console.log(machine);
+
             var avlOpp = document.getElementById("machine_reason_availability").getContext('2d');
             var avlOppChart = new Chart(avlOpp, {
                 type: 'bar',
@@ -2234,8 +2226,7 @@ function quality_reason_machine() {
         quality_arr:graph_quality_arr,
         },
         success:function(res){
-            console.log("quality graph output");
-            console.log(res);
+
             $('#quality_reason_machine').remove();
             $('.child_quality_reason_machine').append('<canvas id="quality_reason_machine"></canvas>');
             $('.chartjs-hidden-iframe').remove();
@@ -2434,7 +2425,6 @@ function quality_reason_machine_tooltip(context){
         }else{
             //innerHtml += '<div class="grid-container">';
             var parts_arr = context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].reason_arr[context.tooltip.dataPoints[0].dataIndex]
-      
             innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
             innerHtml += '<div class="grid-item title-bold"><span></span></div>';
             innerHtml += '<div class="content-text sub-title margin-top"><span>'+context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label+'</span></div>';
@@ -3376,7 +3366,6 @@ function first_loader_performance(f,t){
                     index=index+1;
                     
                 });
-
 
                 var bar_width = 0.6;
                 var bar_size = 0.7;

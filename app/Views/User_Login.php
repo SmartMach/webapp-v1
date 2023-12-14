@@ -150,7 +150,6 @@
      $(document).ready(function(){
 
         var user_status = "<?php echo $inactive;?>";
-        // console.log(user_status);
         user_status = user_status.trim();
         if(user_status!=""){
             $('#alert_check').removeClass('d-none');
@@ -312,8 +311,6 @@
                 method:"POST",
                 data:{username:username},
                 success:function(res){
-                     // console.log(res);
-                    // console.log("console"+res);
                     // alert(res);
                     // if (res !== "output") {
                     //     //alert('new user');

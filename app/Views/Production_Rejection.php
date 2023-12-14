@@ -777,16 +777,12 @@ $(document).ready(function(){
             }
         }
         var max_reject_count = $('#MaxReject').text();
-        console.log(totalrj_count);
-        console.log(max_reject_count);
         
         if (parseInt(totalrj_count)>parseInt(max_reject_count)) {
             $('.EditReject_submit').attr("disabled",true);
-            // console.log("total rejection is greater");
         }else{
             $('.reject_count_err').html(" ");
             $('.EditReject_submit').removeAttr("disabled");
-            // console.log("total rejection is lesser");
         }
 
        
@@ -849,7 +845,6 @@ $(document).ready(function(){
                         document.getElementsByClassName('reject_count_err')[k].textContent = "*Total reject counts shouldn't be greater than Max rejects"; 
 
                     }
-                    console.log(parseInt(tmpcount));
                 }
                 $('.EditReject_submit').attr("disabled",true);
             }   
@@ -879,7 +874,6 @@ $(document).ready(function(){
         event.preventDefault();
         $("#overlay").fadeIn(300);
         var condition = $('.EditReject_submit').attr("disabled");
-        console.log(condition);
         if (condition != "disabled" ) {
         
             var reason = $('.RejectReason').length;

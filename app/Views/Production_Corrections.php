@@ -300,7 +300,6 @@ function  gedt_correction_data(){
             var i=0;
             $('.contentCorrection').empty();
             res.forEach(function(item){
-              //  console.log(item);
                 if (item.corrections != null) {
                     count = parseInt(count)+parseInt(item.corrections);
                 }
@@ -579,7 +578,6 @@ function datePick(date_shift){
                 machine_id:machine_id,
             },
             success:function(res){
-               // console.log(res);
                 var datetime = getdate_time(res['correction'][0].last_updated_on);
                 $('#QPID').html(res['part_name']);
                 $('#QPID').attr("part_data",res['correction'][0].part_id);

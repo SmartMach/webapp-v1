@@ -1392,8 +1392,6 @@
                                 user_color_code:user_color_code,
                             },
                             success:function(res){
-                                console.log("use added succes");
-                                console.log(res);
                                 if (res == true) {
                                     // after insert user load the div function
                                     get_all_user();
@@ -1404,8 +1402,6 @@
                                 }
                             },
                             error:function(res){
-                                console.log("user adding issue");
-                                console.log(res);
                                 // alert("Sorry!Try Agian!!");
                                 // document.body.classList.remove('demo_class');
                                 $("#overlay").fadeOut(300);
@@ -2262,8 +2258,6 @@ $(document).ready(function(){
             },
             dataType: "json",
             success:function(res_csp){
-                console.log("edit user details");
-                console.log(res_csp);
                 // active inactive user s condition
                 if (res_csp['user_data'][0].status == 1) {
                     $('#EditUserStatus').html('<p style="color: #005CBC;"><i class="fa fa-circle" style="font-size:9px;margin-right:5px;"></i>Active</p>');
@@ -2458,7 +2452,6 @@ $(document).ready(function(){
                 var role = res_csp['user_data'][0].role;
                 var site_id = res_csp['user_data'][0].site_id;
                 $("#EditUserSiteName").css("display","inline");
-                console.log("user details in site dropdown:\t"+role+" site id:\t"+site_id);
                 edit_user_site_name(role , site_id);
 
                 // temporary hide for strategy
@@ -2484,8 +2477,6 @@ $(document).ready(function(){
         var UserRoleRef ="<?php  echo($this->data['user_details'][0]['role'])?>";
 
         const result = await get_particular_userdata(id,role,status,sitename,created_on,UserNameRef,UserRoleRef);
-        console.log("ajax array");
-        console.log(result);
         if (result['user_data'][0].status == 1) {
             $('#EditUserStatus').html('<p style="color: #005CBC;"><i class="fa fa-circle" style="font-size:9px;margin-right:5px;"></i>Active</p>');
         }
@@ -2535,7 +2526,6 @@ $(document).ready(function(){
         // this condition get role based datas
         // empty array 
         let user_role_arr =new Array();
-        console.log(result['user_data'][0].role);
         if (result['user_data'][0].role == "Smart Users" ) {
             user_role_arr = ['Smart Users','Site Admin','Site Users','Operator'];
         }
@@ -2626,7 +2616,6 @@ $(document).ready(function(){
 
         $('#EditUserSiteName').empty();
         $("#EditUserSiteName").css("display","inline");
-        console.log("user details in site dropdown:\t"+result['user_data'][0].role+" site id:\t"+result['user_data'][0].site_id);
         const result_data = await edit_user_site_name(result['user_data'][0].role , result['user_data'][0].site_id);
         var drp_element = $();
         drp_element = drp_element.add('<option value="" disabled>Select Site</option>')
@@ -2651,8 +2640,6 @@ $(document).ready(function(){
             $('.smartories_edit_sname').css('display','none');
         }
        
-        console.log("sitename");
-        console.log(result_data);
         $('.EditUserData').attr("data_val",id);
         // $('.EditUserSiteName_class').val(result['user_data'][0].site_id);
         var edit_data = "edit_user";
@@ -2773,8 +2760,6 @@ $(document).ready(function(){
                 },
                 dataType: "json",
                 success:function(res_csp){
-                    // console.log("edit user details");
-                    // console.log(res_csp);
                     resolve(res_csp);
         
                 },
@@ -2819,11 +2804,9 @@ $(document).ready(function(){
        
         var UserNameRef = "<?php echo($this->data['user_details'][0]['user_id'])?>";     
         var condition = $('.EditUserData').attr("disabled");
-        console.log("username ref:\t"+UserNameRef);
         if (condition == "disabled") {
             $('.EditMachine').css('border',"none");
         }else{
-            console.log("else condition is okay");
             var a = EditUserFName();
             var b = EditUserLName();
             var c = EditUserPhone();
@@ -3391,7 +3374,6 @@ $(document).on('click','.active_click',function(){
                 sitename:sitename,
             },
             success:function(res_Site){
-               // console.log(res_Site);
                 
                 //alert(res_Site);
                 
@@ -3507,7 +3489,6 @@ $(document).on('click','.active_click',function(){
                            
             },
             error:function(res){
-               // console.log(res);
                 alert("Sorry!Try Agian!!");
             }
         });
@@ -3538,7 +3519,6 @@ $(document).on('click','.inactive_click',function(){
                 sitename:sitename,
             },
             success:function(res_Site){
-               // console.log(res_Site);
                 
                 //alert(res_Site);
                 
@@ -3654,7 +3634,6 @@ $(document).on('click','.inactive_click',function(){
                            
             },
             error:function(res){
-               // console.log(res);
                 alert("Sorry!Try Agian!!");
             }
         });
@@ -3682,7 +3661,6 @@ function error_show_remove(data){
         $('#inputUserDesignationErr').html('');
         $('#validate_role').html('');
         $("#input_dept_err").html('');
-        // console.log("its worked");
     }
     else if (data == "edit_user") {
         $('#email_err').html(' ');
@@ -3907,7 +3885,6 @@ function get_all_user(){
 
 // edit access control db configuration
 function get_edit_access_control(userid,user_role){
-   console.log("user id:\t"+userid);
     $.ajax({
         url: "<?php echo base_url('User_controller/EditUserRoleMaster'); ?>",
         type: "POST",
@@ -3917,8 +3894,6 @@ function get_edit_access_control(userid,user_role){
             userName:userid,
         },
         success:function(res_role){
-            console.log("get edit access control");
-            console.log(res_role);
             // old modules
             $("input[name=ooe_f_drill_down][value='"+res_role[0].oee_financial_drill_down+"']").prop("checked",true);
             $("input[name=opportunity_insights][value='"+res_role[0].opportunity_insights+"']").prop("checked",true);
@@ -3964,8 +3939,6 @@ function get_access_control(user){
                 userRole:user,
             },
             success:function(res_role){
-                console.log("user access control");
-                console.log(res_role);
                 $("input[name=ooe_f_drill_down][value='"+res_role.Financial_Drill_Down+"']").prop("checked",true);
                 $("input[name=opportunity_insights][value='"+res_role.Financial_Opportunity_Insights+"']").prop("checked",true);
                 $("input[name=ooe_drill_down][value='"+res_role.OEE_Drill_Down+"']").prop("checked",true);

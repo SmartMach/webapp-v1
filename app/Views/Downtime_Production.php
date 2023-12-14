@@ -1621,8 +1621,6 @@ function filter_after_filter(end_index,start_index){
             to:to,   
         },
         success:function(res){
-            console.log('production downtime table filter');
-            console.log(res);
             $('.production_downtime_content').empty();
             // $('.scroll_rows').empty();
             var from_len = 0;
@@ -3155,7 +3153,6 @@ function getall_filter_arr(){
           // alert("Error");
         }
     });
-    
     });
 
 }
@@ -3168,6 +3165,7 @@ async function graph_loader(){
     await getfilter_machine_reason_duration();
     console.log("first loader function");
     filter_after_filter(50,0);
+
 }
 
 </script>
