@@ -986,6 +986,37 @@
     }
 
     await getfilterdata();
+
+    reset_part();
+    reset_machine();
+    reset_reason();
+    reset_created();
+
+    reset_part_copq();
+    reset_machine_copq();
+    reset_reason_copq();
+
+    reset_part_crpr();
+    reset_machine_crpr();
+    reset_reason_crpr();
+
+    reset_part_copqm();
+    reset_machine_copqm();
+    reset_reason_copqm();
+
+    reset_part_qrmr();
+    reset_machine_qrmr();
+    reset_reason_qrmr();
+
+    reset_part_copqp();
+    reset_machine_copqp();
+    reset_reason_copqp();
+
+    reset_part_qrpr();
+    reset_machine_qrpr();
+    reset_reason_qrpr();
+
+
     await copqp();
     await qrbr();
     await copqm();
@@ -4365,7 +4396,7 @@ function reset_machine(){
   jQuery('.filter_machine_val').each(function(index){
     machine_arr[index].checked=true;
   });
-  $('#filter_machine_val').text('All Machine');
+  $('#machine_text').text('All Machine');
 }
 
 // reset reason
@@ -4374,7 +4405,7 @@ function reset_reason(){
   jQuery('.filter_reason_val').each(function(index){
     reason_arr[index].checked=true;
   });
-  $('#reason_text').text('All Machine');
+  $('#reason_text').text('All Reasons');
 }
 
 // reset created by
@@ -4383,7 +4414,7 @@ function reset_created(){
   jQuery('.filter_user_val').each(function(index){
     created_arr[index].checked=true;
   });
-  $('#user_text').text('All Machine');
+  $('#user_text').text('All Users');
 }
 
 // Reset graph filter
@@ -4412,7 +4443,7 @@ function reset_reason_copq(){
   jQuery('.filter_reason_val_copq').each(function(index){
     part_arr[index].checked=true;
   });
-  $('#reason_text_copqp').text('All Reasons');
+  $('#reason_text_copq').text('All Reasons');
 }
 
 // crpr
@@ -4431,7 +4462,7 @@ function reset_machine_crpr(){
   jQuery('.filter_machine_val_crpr').each(function(index){
     machine_arr[index].checked=true;
   });
-  $('#part_text_crpr').text('All Machines');
+  $('#machine_text_crpr').text('All Machines');
 }
 
 // Reasons
@@ -4450,7 +4481,7 @@ function reset_part_copqm(){
   jQuery('.filter_part_val_copqm').each(function(index){
     part_arr[index].checked=true;
   });
-  $('#part_text_copqm').text('All Machines');
+  $('#part_text_copqm').text('All Parts');
 }
 
 // machine
