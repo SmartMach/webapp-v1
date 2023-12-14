@@ -1,6 +1,6 @@
 <head>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/alert_settings.css?version=<?php echo rand(); ?>">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/alert_settings.css?version=<?php echo rand(); ?>">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script> 
@@ -10,14 +10,7 @@
 
 </head>
 <style>
-    /* select 3 */
-/* .select3 {
-  position: relative;
-  margin-bottom: 15px;
-  width: 250px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-} */
-
+  
 
 .email_che.checked{
     z-index: -1;
@@ -154,7 +147,7 @@
 .input-field-lable{
     width: 100px;
     height: 28px;
-    margin: 0.4rem;
+    /* margin: 0.4rem; */
     border: 0.1rem solid #faf7f7;
 }
 .lable-bg{
@@ -170,6 +163,120 @@
 .lable_items{
     margin:2px 2.5px;
 }
+
+
+/* priority dropdown css change custome dropdown */
+.prioirty_label_txt{
+            position: absolute;
+            margin-top: -0.5rem;
+            margin-left: 0.8rem;
+            z-index: 1;
+            padding-left: 0.2rem;
+            padding-right: 0.2rem;
+            background-color: whitesmoke;
+            font-size: 12px;
+            color: #8c8c8c;
+            font-family: 'Roboto' sans-serif;
+
+        }
+
+        .priority_drp_click_div{
+            height: 2.3rem;
+            /* margin-top: 0.5rem; */
+            position: relative;
+            width:max-content;
+            font-size: 12px;
+            font-weight: 500;
+            color: #8c8c8c;
+            border-radius: 0.25rem;
+        }
+
+        .priority_drp_select_div{
+            height: 2.3rem;
+            position: relative;
+            min-width: 10rem;
+            font-size: 12px;
+            font-weight: 500;
+            color: #8c8c8c;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            padding-left: 0.3rem;
+            background-color: white;
+        }
+
+        .priority_overselect_drp{
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+        .add_priority_drp_option{
+            border: 1px solid #dadada;
+            z-index: 250;
+            position: absolute;
+            background-color: white;
+            border-radius: 0.25rem;
+            min-width: 9.7rem;
+            min-height: max-content;
+            max-height: 10rem;
+        }
+
+        .edit_priority_drp_option{
+            border: 1px solid #dadada;
+            z-index: 250;
+            position: absolute;
+            background-color: white;
+            border-radius: 0.25rem;
+            min-width: 9.7rem;
+            min-height: max-content;
+            max-height: 10rem;
+        }
+
+
+
+        /* image dropdown row css */
+        .img_drp_row{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem;
+        }
+        .row_flex_img{
+            width: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+        }
+        .row_flex_txt{
+            width: 80%;
+            font-size: 12px;
+        }
+
+        .img_alignment{
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* div hovering effect */
+        .img_drp_row:hover{
+            background-color: #eff7ff;
+            cursor: pointer;
+        }
+
+        /* select dropdown selected dropdown */
+        .priority_selected_val{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100%;
+        }
+
+
+        /* priority dropdown css end */
 </style>
 <br>
 <br>
@@ -186,7 +293,7 @@
             <!-- <p class="float-start"></p> -->
             <div class="d-flex innerNav">
 
-                <div class="filter_div" style="padding-right:2rem;">
+                <div class="filter_div noselect_txt" style="padding-right:0.7rem;">
                     
                     <!-- search keyword -->
                     <!-- <div class="box rightmar" style="margin-right:0.5rem;">
@@ -201,10 +308,11 @@
                     <!-- part -->
                     <div class="inner_div_align">
                         <div class="box rightmar" style="margin-right: 0.5rem;">
-                            <label class="multi_select_label" style="margin-top:0.1rem;">Part</label>
-                            <div class="filter_selectBox_categorygp" onclick="alert_filter_part()">
+                            <label class="multi_select_label noselect_txt" style="margin-top:0.1rem;">Parts</label>
+                            <!-- <div class="filter_selectBox_categorygp" onclick="alert_filter_part()"> -->
+                            <div class="filter_selectBox_categorygp table_filter_part noselect_txt select_pointer" onclick="multiple_drp_hide_seek_pd('alert_file_part_div','table_filter_part')">
                                 <select class="multi_select_categorygp" style="">
-                                    <option id="filter_txt_part" style="">All Parts</option>
+                                    <option class="filter_txt_part noselect_txt" style="">All Parts</option>
                                 </select>
                                 <div class="filter_overSelect_categorygp"></div>
                             </div>
@@ -218,10 +326,11 @@
                     <!-- Machine -->
                     <div class="inner_div_align">
                         <div class="box rightmar" style="margin-right: 0.5rem;">
-                            <label class="multi_select_label" style="margin-top:0.1rem;">Machine</label>
-                            <div class="filter_selectBox_categorygp" onclick="alert_filter_machine()">
+                            <label class="multi_select_label noselect_txt" style="margin-top:0.1rem;">Machines</label>
+                            <!-- <div class="filter_selectBox_categorygp  " onclick="alert_filter_machine()"> -->
+                            <div class="filter_selectBox_categorygp noselect_txt select_pointer table_filter_machine" onclick="multiple_drp_hide_seek_pd('alert_filter_machine_div','table_filter_machine')">
                                 <select class="multi_select_categorygp" style="">
-                                    <option id="filter_txt_machine" style="">All Machine</option>
+                                    <option class="filter_txt_machine noselect_txt" style="">All Machines</option>
                                 </select>
                                 <div class="filter_overSelect_categorygp"></div>
                             </div>
@@ -234,10 +343,10 @@
                     <!-- Criteria -->
                     <div class="inner_div_align">
                         <div class="box rightmar" style="margin-right: 0.5rem;">
-                            <label class="multi_select_label" style="margin-top:0.1rem;">Work Order Type</label>
-                            <div class="filter_selectBox_categorygp" onclick="alert_filter_work()">
+                            <label class="multi_select_label noselect_txt" style="margin-top:0.1rem;">Notify as</label>
+                            <div class="filter_selectBox_categorygp noselect_txt select_pointer table_fitler_notify_as" onclick="multiple_drp_hide_seek_pd('alert_filter_work_order_dive','table_fitler_notify_as')">
                                 <select class="multi_select_categorygp" style="">
-                                    <option id="text_filter_work" style="">All </option>
+                                    <option class="text_filter_work noselect_txt" style="">All </option>
                                 </select>
                                 <div class="filter_overSelect_categorygp"></div>
                             </div>
@@ -254,19 +363,19 @@
 
                                 <div class="add_alert_box_flex alert_filter_work_click" style="position: relative;">
                                     <div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">
-                                        <input type="checkbox" id="one" class="filter_alert_work_checkbox" value="issue" style="margin-right:100px;margin-top:12px"/>
+                                        <input type="checkbox" id="one" class="filter_alert_work_checkbox" value="work" style="margin-right:100px;margin-top:12px"/>
                                     </div>
                                     <div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">
-                                        <p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">Issue </p>
+                                        <p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">Work </p>
                                     </div>
                                 </div>
 
                                 <div class="add_alert_box_flex alert_filter_work_click" style="position: relative;">
                                     <div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">
-                                        <input type="checkbox" id="one" class="filter_alert_work_checkbox" value="task" style="margin-right:100px;margin-top:12px"/>
+                                        <input type="checkbox" id="one" class="filter_alert_work_checkbox" value="email" style="margin-right:100px;margin-top:12px"/>
                                     </div>
                                     <div class="add_alert_text_div" style="background-color:rgb(0, 255, 255,0);z-index:2;position: absolute;">
-                                        <p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">Work </p>
+                                        <p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">Email </p>
                                     </div>
                                 </div>
                             </div>
@@ -276,10 +385,10 @@
                     <!-- updated by -->
                     <div class="inner_div_align">
                         <div class="box rightmar" style="margin-right: 0.5rem;">
-                            <label class="multi_select_label" style="margin-top:0.1rem;">LastUpdated By</label>
-                            <div class="filter_selectBox_categorygp" onclick="alert_filter_assignee()">
+                            <label class="multi_select_label noselect_txt" style="margin-top:0.1rem;">Last Updated By</label>
+                            <div class="filter_selectBox_categorygp noselect_txt select_pointer table_filter_lastupdated_by" onclick="multiple_drp_hide_seek_pd('filter_alert_assignee_div','table_filter_lastupdated_by')">
                                 <select class="multi_select_categorygp" style="">
-                                    <option id="txt_filter_last_updated_by" style="">All Users</option>
+                                    <option class="txt_filter_last_updated_by noselect_txt" style="">All Users</option>
                                 </select>
                                 <div class="filter_overSelect_categorygp"></div>
                             </div>
@@ -291,8 +400,7 @@
 
                     <!-- apply button -->
                     <div class="inner_div_align">
-                        <a style="" class="btn apply_btn_style"
-                            id="apply_filter_btn">Apply Filter</a>
+                        <a style="" class="btn apply_btn_style" id="apply_filter_btn">Apply Filter</a>
                     </div>
 
                     <!-- filter reset button -->
@@ -314,7 +422,7 @@
         </div>
     </nav>
     <div class="tableContent">
-        <div class="settings_machine_header sticky-top fixtabletitle" style="margin-top:1rem;top:11.5rem;z-index:95;">
+        <div class="settings_machine_header sticky-top fixtabletitle" style="margin-top:0.7rem;top:11.3rem;z-index:95;">
             <div class="row paddingm">
                 <div class="col-sm-1 p3 paddingm" style="width:6%;">
                     <p class="basic_header">ID</p>
@@ -344,8 +452,6 @@
         </div>
 
         <div class="contentMachine contentContainer paddingm content_alert_settings" style="margin-bottom:0rem;">
-            
-
           
         </div>
     </div>
@@ -375,13 +481,14 @@
                     <div class="row mb-2 " style="margin-top:0rem;">
                         <div class="box" style="">
                             <div class="input-box" >
-                                <input type="text" class="form-control alert_font_css" id="add_alert_name"    name="add_alert_name">
+                                <input type="text" class="form-control alert_font_css default_font_size default_input_height" id="add_alert_name"    name="add_alert_name">
                                 <label for="add_alert_name" class="input-padding">Alert Name <span class="paddingm validate">*</span></label>
                                 <span class="paddingm float-start validate" id="inputAlertNameErr"></span> 
                             </div>
                         </div>
                     </div>
                     <div class=" row d-flex flex-row mb-2">
+
                         <div class="" style="width:9.5%;padding:0;display:flex;flex-direction:row;align-items:center;"><span style="font-size:12px;">Alert Criteria</span></div>
                         <div class="" style="width:90.4%;padding:0;"><hr></div>
                     </div>
@@ -389,15 +496,16 @@
                         <div class="col-lg-6">
                             <div class="box" >
                                 <div class="input-box">
-                                    <select class="form-select alert_font_css add_alert_metrics_change_text" name="add_alert_metrics" id="add_alert_metrics" style="width: 100%;">
+                                    <select class="form-select alert_font_css add_alert_metrics_change_text default_font_size default_input_height" name="add_alert_metrics" id="add_alert_metrics" style="width: 100%;">
                                         <option value="" disabled selected>Choose Metrics</option>
                                         <option value="planned_downtime">Planned Downtime</option>    
                                         <option value="unplanned_downtime">Unplanned Downtime</option>
                                         <option value="planned_machine_off">Planned Machine Off</option>
-                                        <option value="unplanned_machine_off">Unplanned Machine Off</option>
+                                        <!-- <option value="unplanned_machine_off">Unplanned Machine Off</option> -->
                                         <option value="total_downtime">Total Downtime</option>
-                                        <option value="total_unamed">Total Unamed</option>
-                                        <option value="total_rejection">No Of Rejection</option>
+                                        <option value="total_unnamed_hour">Total Unnamed (hours)</option>
+                                        <option value="total_unnamed_count">Total Unnamed (count)</option>
+                                        <option value="total_rejection">Total Rejection</option>
                                         <option value="oee">OEE</option>
                                         <option value="teep">TEEP</option>
                                         <option value="ooe">OOE</option>
@@ -411,13 +519,13 @@
                         <div class="col-lg-3">
                             <div class="box rightmar" style="margin-right: 0.5rem;">
                                 <div class="input-box">
-                                    <select class="form-select alert_font_css" name="add_alert_relation" id="add_alert_relation" style="width: 10rem;">
+                                    <select class="form-select alert_font_css default_font_size default_input_height" name="add_alert_relation" id="add_alert_relation" style="width: 10rem;">
                                         <option value="" disabled selected>Choose Relation</option>
                                         <option value="<"><</option>
                                         <option value=">">></option>
                                         <option value="<="><=</option>
                                         <option value=">=">>=</option>
-                                        <option value="==">==</option>
+                                        <option value="==">=</option>
                                     </select>
                                     <label for="add_alert_relation" class="input-padding ">Relation  <span class="paddingm validate">*</span></label>
                                 </div>
@@ -427,14 +535,14 @@
                         <div class="col-lg-2">
                             <div class="box" style="padding:0;">
                                 <div class="input-box" >
-                                    <input type="text" class="form-control alert_font_css" id="add_alert_val" name="add_alert_val" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                    <input type="text" class="form-control alert_font_css default_font_size default_input_height" id="add_alert_val" name="add_alert_val" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                     <label for="add_alert_val" class="input-padding">Value <span class="paddingm validate">*</span></label>
                                 </div>
                                 <span class="paddingm float-start validate" id="inputAlertValueErr"></span> 
                             </div>
                         </div>
-                        <div class="col-lg-1" style="display:flex;flex-direction:row;padding:0;justify-content:center;align-items:end;font-size:12px">
-                            <span style="font-size:12px;padding-top:10px;" id="add_alert_change_txt_metrics">Units</span>
+                        <div class="col-lg-1" style="display:flex;flex-direction:row;padding:0;justify-content:center;align-items:end;font-size:12px;height:2.4rem;">
+                            <span style="font-size:12px;" id="add_alert_change_txt_metrics">Units</span>
                         </div>
                     
                     </div>
@@ -445,9 +553,9 @@
                             <!-- <label for="">In the Past</label> -->
                             <div class="input-group mb-3">
                                 <span class="label_txt_hour" style="">In The Past <span class="paddingm validate">*</span></span>
-                                <input type="text" class="form-control alert_font_css"  aria-label="Recipient's username" id="add_alert_past_hour" name="add_alert_past_hour" aria-describedby="basic-addon2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" style="border-radius:0.25rem 0rem 0rem 0.25rem;">
+                                <input type="text" class="form-control alert_font_css default_font_size"  aria-label="Recipient's username" id="add_alert_past_hour" name="add_alert_past_hour" aria-describedby="basic-addon2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" style="border-radius:0.25rem 0rem 0rem 0.25rem;">
                                 <div class="input-group-append  bg-white text-primary">
-                                    <span class="input-group-text bg-white" style="font-size:12px;height:2.4rem;" id="basic-addon2">Hours</span>
+                                    <span class="input-group-text bg-white default_font_size" style="font-size:12px;height:2.4rem;border-radius:0rem 0.25rem 0.25rem 0rem;" id="basic-addon2">Hours</span>
                                 </div>
                             </div>
                             <span class="paddingm float-start validate" id="inputAlertpastHourErr"></span>
@@ -461,10 +569,11 @@
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="box rightmar" style="margin-right: 0.5rem;position:relative;">
-                                <label class="multi_select_model_drp_label" style="">Machine <span class="paddingm validate">*</span></label>
-                                <div class="filter_select_box_add_alert" onclick="add_alert_machine()">
+                                <label class="multi_select_model_drp_label noselect_txt " style="">Machines <span class="paddingm validate">*</span></label>
+                                <!-- <div class="filter_select_box_add_alert" onclick="add_alert_machine()"> -->
+                                <div class="filter_select_box_add_alert noselect_txt select_pointer add_alert_drp_machine" onclick="multiple_drp_alert_seek_pd('add_alert_machine_drp','add_alert_drp_machine')">
                                     <select class="multi_select_drp_model" style="">
-                                        <option id="add_alert_machine_txt" style="">All Machines</option>
+                                        <option class="add_alert_machine_txt noselect_txt" style="">All Machines</option>
                                     </select>
                                     <div class="filter_overselect_add_alert"></div>
                                 </div>
@@ -478,10 +587,11 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="box rightmar" style="margin-right: 0.5rem;position:relative;">
-                                <label class="multi_select_model_drp_label" style="">Part <span class="paddingm validate">*</span></label>
-                                <div class="filter_select_box_add_alert" onclick="add_alert_part()">
+                                <label class="multi_select_model_drp_label noselect_txt" style="">Parts <span class="paddingm validate">*</span></label>
+                                <!-- <div class="filter_select_box_add_alert" onclick="add_alert_part()"> -->
+                                <div class="filter_select_box_add_alert noselect_txt select_pointer add_alert_drp_part" onclick="multiple_drp_alert_seek_pd('add_alert_part_drp','add_alert_drp_part')">
                                     <select class="multi_select_drp_model" style="">
-                                        <option id="add_alert_part_txt" style="">All Parts</option>
+                                        <option class="add_alert_part_txt noselect_txt" style="">All Parts</option>
                                     </select>
                                     <div class="filter_overselect_add_alert"></div>
                                 </div>
@@ -492,7 +602,7 @@
                         </div>
                     </div>
 
-                    <div class=" row d-flex flex-row mb-2">
+                    <div class=" row mt-2 d-flex flex-row mb-2">
                         <div class="" style="width:8%;padding:0;display:flex;flex-direction:row;align-items:center;"><span style="font-size:12px;">Notify as</span></div>
                         <div class="" style="width:91.4%;padding:0;"><hr></div>
                     </div>
@@ -512,7 +622,7 @@
                             <div class="col-lg-6">
                                 <div class="box rightmar" style="margin-right: 0.5rem;">
                                     <div class="input-box">
-                                        <select class="form-select alert_font_css" name="add_alert_work_type" id="add_alert_work_type" style="font-size:15px;">
+                                        <select class="form-select alert_font_css default_font_size default_input_height" name="add_alert_work_type" id="add_alert_work_type" style="font-size:15px;">
                                             <option value="" disabled selected>Choose Work Type</option>
                                             <option value="issue">Issue</option>
                                             <option value="task">Task</option>
@@ -525,7 +635,7 @@
                             <div class="col-lg-6">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control alert_font_css" id="add_alert_work_title"   name="add_alert_work_title">
+                                        <input type="text" class="form-control alert_font_css default_font_size default_input_height" id="add_alert_work_title"   name="add_alert_work_title">
                                         <label for="add_alert_work_title" class="input-padding">Title <span class="paddingm validate">*</span></label>
                                     </div>
                                     <span class="paddingm float-start validate" id="inputAlertworktitleErr"></span>
@@ -535,51 +645,57 @@
                         <div class="row mb-4">
                             <div class="col-lg-3" style="margin:auto;">
                               
-                                <!-- temporary hide  -->
-                                <!-- <select class="vodiapicker">
-                                    <option value="low" id="low_default" data-thumbnail="<?php echo base_url('assets/img/low.png'); ?>">Low</option>
-                                    <option value="medium" data-thumbnail="<?php echo base_url('assets/img/medium.png'); ?>">Medium</option>
-                                    <option value="high" data-thumbnail="<?php echo base_url('assets/img/high.png'); ?>">High</option>                    
-                                </select>
-                                <div class="lang-select">
-                                    <span class="priority_label_txt" style="">Priority  <span class="paddingm validate">*</span></span>
-                                    <div class="btn-select" value="">
-                                        <!-- <div style="display:flex;flex-direction:row;width:20%;justify-cotnent:center;align-items:center;">
-                                            <i class="fa-solid fa-angle-down"></i>
-                                        </div> --
-                                    </div>
-                                    <div class="b">
-                                        <ul id="a"></ul>
-                                    </div>
-                                </div> -->
-                                <div class="lang-select">
-                                    <span class="priority_label_txt" style="">Priority  <span class="paddingm validate">*</span></span>
-                                    <div class="select3">
-                                        <div class="selectBtn3 priority_get_data_add" data-type="firstOption"></div>
-                                        <div class="selectDropdown3">
-                                            <div class="option3" data-type="firstOption" onclick="icon_drop(this)"><i class='fas fa-angle-double-down' style='font: size 18px;; width:20px; margin-top: 5px; color: #2196F3;'></i>&nbsp;Low</div>
-                                            <div class="option3" data-type="secondOption" onclick="icon_drop(this)"><i style='font: size 18px;; color:#FBB80F; margin-top: 5px;' class='fas'>&#xf52c;</i>&nbsp;Medium</div>
-                                            <div class="option3" data-type="thirdOption" onclick="icon_drop(this)"><i class='fas fa-angle-double-up' style='font: size 18px;; color:#E4021B; margin-top: 5px;'></i>&nbsp;High</div>
+                            
+
+                                <div class="input-box" style="position:relative;">
+                                    <label class="prioirty_label_txt" >Priority <span class="paddingm validate">*</span></label>
+                                    <div class="priority_drp_click_div" onclick="add_alert_priority_drp(this)">
+                                        <div class="priority_drp_select_div">
+                                            <div  class="priority_selected_val" id="priority_selected_id" priority-data-val="3">
+                                                <div class="row_flex_img ">
+                                                    <i class="fa fa-angle-double-down img_alignment" style="color:#2196F3;"></i>
+                                                </div>
+                                                <div class="row_flex_txt d-flex flex-row justify-content-between align-items-center">
+                                                    <span>Low</span>
+                                                    <i class="fa fa-angle-down" style="color: #8d8686;padding-right: 0.4rem;font-size: 14px;"></i>
+                                                </div>
+                                            </div>
                                         </div>
+                                        <div class="priority_overselect_drp"></div>
                                     </div>
-                                </div>  
+                                    <div class="add_priority_drp_option add_priority_drp_opt d-none" >
+                                        <div class="img_drp_row priority_val_get" priority-data-val="1">
+                                            <div class="row_flex_img ">
+                                                <i class="fa fa-angle-double-up img_alignment" style="color:#E4021B;"></i>
+                                            </div>
+                                            <div class="row_flex_txt">
+                                                <span>High</span>
+                                            </div>
+                                        </div>
+                                        <div class="img_drp_row priority_val_get" priority-data-val="2">
+                                            <div class="row_flex_img ">
+                                                <i class="fa fa-equals img_alignment" style="color:#FBB80F;">=</i>
+                                            </div>
+                                            <div class="row_flex_txt">
+                                                <span>Medium</span>
+                                            </div>
+                                        </div>
+                                        <div class="img_drp_row priority_val_get" priority-data-val="3">
+                                            <div class="row_flex_img ">
+                                                <i class="fa fa-angle-double-down img_alignment" style="color: #2196F3;"></i>
+                                            </div>
+                                            <div class="row_flex_txt">
+                                                <span>Low</span>
+                                            </div>
+                                        </div>
+                                            
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-lg-4">
-                                <!-- <div class="box rightmar" style="margin-right: 0.5rem;">
-                                    <div class="input-box wrapper_label">
-                                    
-                                        <div class="content_label">
-                                        
-                                            <ul class="parent_div_input_check_label"><input type="text" class="input_check_label" id="input_check_label" placeholder="Label" spellcheck="false"></ul>
-                                        </div>
-                                        <label for="inputSiteNameAdd" class="input-padding ">Label  <span class="paddingm validate">*</span></label>
-                                        <span class="paddingm float-start validate" id="inputlabelErr"></span>
-                                        
-                                    </div>
-                                </div> -->
                                 <div class="input-box indexing">
                                   <div class="filter_multiselect_lable filter_multiselect_input">
-                                    <span class="multi_select_label" style="">Label <span class="paddingm validate">*</span></span>
+                                    <span class="multi_select_label" style="">Label </span>
                                     <div class="filter_selectBox">
                                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                                         <div style="width: 80% !important">
@@ -587,9 +703,9 @@
                                             </div>
                                             <input type="text" class="form-control alert_font_css input-field-lable input-field-lable-add" id="input_field_label" name="" >
                                         </div>
-                                        <div class="dropdown-div" style=" width: 20% !important">
+                                        <!-- <div class="dropdown-div" style=" width: 20% !important">
                                           <i class="fa fa-angle-down icon-style"></i>
-                                        </div>
+                                        </div> -->
                                       </div>
                                     </div>
                                     <span class="paddingm float-start validate" id="label_action_Err"></span> 
@@ -600,22 +716,13 @@
                                 </div>
                             </div>
                             <div class="col-lg-3" style="margin:auto;">
-                                <!-- <div class="box rightmar" style="margin-right: 0.5rem;">
-                                    <div class="input-box">
-                                        <select class="form-select font_weight" name="add_alert_assignee" class="add_alert_assignee" id="add_alert_assignee" style="width: 10rem;">
-                                            <option value="Unassigned" selected disabled>Unassigned</option>
-                                        </select>
-                                        <label for="inputSiteNameAdd" class="input-padding ">Assignee  <span class="paddingm validate">*</span></label>
-                                        <span class="paddingm float-start validate" id="input_alert_assign_Err"></span>
-                                    </div>
-                                </div> -->
                                 <div class="box inbox-top" style="position:relative;">
                                     <div class="input-box indexing">
                                         <div class="filter_multiselect filter_multiselect_input">
                                             <span class="multi_select_label" style="margin-top:-0.7rem;">Assignee <span class="paddingm validate">*</span></span>
                                             <div class="filter_selectBox" onclick="add_assignee(this)">
                                                 <div class="inbox-span fontStyle search_style dropdown-arrow">
-                                                    <div style="width: 80% !important">
+                                                    <div style="width: 80% !important" >
                                                     <p class="paddingm input-index" id="assignee_val" data-assignee-val="Unassigned">
                                                         Unassigned
                                                     </p>
@@ -635,9 +742,9 @@
                             <div class="col-lg-2" style="margin:auto;">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control alert_font_css" id="add_alert_deu_days"
+                                        <input type="text" class="form-control alert_font_css default_font_size default_input_height" id="add_alert_deu_days"
                                             name="add_alert_deu_days" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                        <label for="add_alert_deu_days" class="input-padding">Due Days </label>
+                                        <label for="add_alert_deu_days" class="input-padding">Due Days <span class="paddingm validate">*</span></label>
                                     </div>
                                     <span class="paddingm float-start validate" id="inputAlertdeudaysErr"></span>
                                 </div>
@@ -650,7 +757,7 @@
                         <div class="col-lg-6" style="display:flex;justify-content:start;align-items:center;flex-direction:row;"> 
                             <span style="font-size:12px;margin-right:1rem;">Email</span>                         
                             <label class="switch">
-                                <input type="checkbox" class="toggle_btn_check" id="email_check_toggle">
+                                <input type="checkbox" class="toggle_btn_check " id="email_check_toggle">
                                 <div class="slider email_che"></div>
                             </label>
                         </div>
@@ -660,17 +767,20 @@
                             <div class="col-lg-6">
                                 <div class="wrapper">
                                     <div class="content">
-                                        <ul class="parent_div_input_check" style="position:relative;"><input type="email" class="input_check_to alert_font_css" id="input_check_to" placeholder="TO" spellcheck="false"><span class="to_email_label" style="position:absolute;margin-top:-1rem;font-size:12px;color:#8c8c8c;background:white;padding:1px;margin-left:1rem;">To Email</span></ul>
+                                        <ul class="parent_div_input_check " style="position:relative;">
+                                        <input type="email" class="input_check_to alert_font_css default_font_size" id="input_check_to"  spellcheck="false">
+                                        <span class="to_email_label" style="position:absolute;margin-top:-1rem;font-size:12px;color:#8c8c8c;background:white;padding:1px;margin-left:1rem;">To Email <span class="paddingm validate">*</span></span></ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_check_to_Err"></span>
                                 </div>
                             </div>
 
                             <div class="col-lg-6">
-                               
                                 <div class="wrapper_cc">
                                     <div class="content_cc">
-                                        <ul class="parent_div_input_check_cc" style="position:relative;"><input type="email" class="input_check_cc alert_font_css" id="input_check_cc" placeholder="CC" spellcheck="false"><span style="position:absolute;margin-top:-1rem;font-size:12px;color:#8c8c8c;background:white;padding:1px;margin-left:1rem;">Cc Email</span></ul>
+                                        <ul class="parent_div_input_check_cc default_font_size" style="position:relative;">
+                                        <input type="email" class="input_check_cc alert_font_css default_font_size" id="input_check_cc"  spellcheck="false">
+                                        <span style="position:absolute;margin-top:-1rem;font-size:12px;color:#8c8c8c;background:white;padding:1px;margin-left:1rem;">Cc Email</span></ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_check_cc_Err"></span>
                                 </div>
@@ -679,10 +789,10 @@
                         <div class="row mb-4">
                             <div class="col-lg-6">
                                 
-                                <div class="input-group">
+                                <div class="input-group default_input_height">
                                     <span class="label_txt_font" style="">Subject <span class="paddingm validate">*</span></span>
-                                    <span class="input-group-text bg-white text-muted" style="font-size:13px;">SmartMach Alert! </span>
-                                    <input type="text" class="form-control alert_font_css" id="add_alert_mail_subject" name="add_alert_mail_subject">
+                                    <span class="input-group-text bg-white text-muted" style="font-size:13px;border-radius:0.25rem 0rem 0rem 0.25rem;">SmartMach Alert! </span>
+                                    <input type="text" class="form-control alert_font_css default_font_size" id="add_alert_mail_subject" name="add_alert_mail_subject" style="border-radius:0rem 0.25rem 0.25rem 0rem;">
                                 </div>
                                 <span class="paddingm float-start validate" id="input_email_sub_Err"></span>
                             </div>
@@ -690,9 +800,9 @@
                             <div class="col-lg-6">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control alert_font_css" id="add_alert_mail_notes"
+                                        <input type="text" class="form-control alert_font_css default_font_size default_input_height" id="add_alert_mail_notes"
                                             name="add_alert_mail_notes">
-                                        <label for="add_alert_mail_notes" class="input-padding">Notes</label>
+                                        <label for="add_alert_mail_notes" class="input-padding">Email Body<span class="paddingm validate">*</span></label>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_email_note_Err"></span>
                                 </div>
@@ -725,14 +835,14 @@
                     <div class="row mb-2 " style="margin-top:0rem;">
                         <div class="box" style="">
                             <div class="input-box" >
-                                <input type="text" class="form-control alert_font_css" id="edit_alert_name"    name="edit_alert_name">
+                                <input type="text" class="form-control alert_font_css default_font_size default_input_height" id="edit_alert_name"    name="edit_alert_name">
                                 <label for="edit_alert_name" class="input-padding">Alert Name <span class="paddingm validate">*</span></label>
                             </div>
                             <span class="paddingm float-start validate" id="inputedit_alertNameErr"></span> 
                         </div>
                     </div>
 
-                    <div class=" row d-flex flex-row mb-2">
+                    <div class=" row  d-flex flex-row mb-2">
                         <div class="" style="width:9.5%;padding:0;display:flex;flex-direction:row;align-items:center;"><span style="font-size:12px;">Alert Criteria</span></div>
                         <div class="" style="width:90.4%;padding:0;"><hr></div>
                     </div>
@@ -741,15 +851,16 @@
                         <div class="col-lg-6">
                             <div class="box" >
                                 <div class="input-box">
-                                    <select class="form-select alert_font_css edit_alert_metrics_change_text" name="edit_alert_metrics" id="edit_alert_metrics" style="width: 100%;">
+                                    <select class="form-select alert_font_css edit_alert_metrics_change_text default_font_size default_input_height" name="edit_alert_metrics" id="edit_alert_metrics" style="width: 100%;">
                                         <option value="" disabled selected>Choose Metrics</option>
                                         <option value="planned_downtime">Planned Downtime</option>    
                                         <option value="unplanned_downtime">Unplanned Downtime</option>
                                         <option value="planned_machine_off">Planned Machine Off</option>
-                                        <option value="unplanned_machine_off">Unplanned Machine Off</option>
+                                        <!-- <option value="unplanned_machine_off">Unplanned Machine Off</option> -->
                                         <option value="total_downtime">Total Downtime</option>
-                                        <option value="total_unamed">Total Unamed</option>
-                                        <option value="total_rejection">No Of Rejection</option>
+                                        <option value="total_unnamed_hour">Total Unnamed (hours)</option>
+                                        <option value="total_unnamed_count">Total Unnamed (count)</option>
+                                        <option value="total_rejection">Total Rejection</option>
                                         <option value="oee">OEE</option>
                                         <option value="teep">TEEP</option>
                                         <option value="ooe">OOE</option>
@@ -762,13 +873,13 @@
                         <div class="col-lg-3">
                             <div class="box rightmar" style="margin-right: 0.5rem;">
                                 <div class="input-box">
-                                    <select class="form-select alert_font_css" name="edit_alert_relation" id="edit_alert_relation" style="width: 10rem;">
+                                    <select class="form-select alert_font_css default_font_size default_input_height" name="edit_alert_relation" id="edit_alert_relation" style="width: 10rem;">
                                         <option value="" disabled selected>Choose Relation</option>
                                         <option value="<"><</option>
                                         <option value=">">></option>
                                         <option value="<="><=</option>
                                         <option value=">=">>=</option>
-                                        <option value="==">==</option>
+                                        <option value="==">=</option>
                                     </select>
                                     <label for="edit_alert_relation" class="input-padding ">Relation  <span class="paddingm validate">*</span></label>
                                     <span class="paddingm float-start validate" id="inputeditAlertrelationerr"></span>
@@ -778,13 +889,13 @@
                         <div class="col-lg-2">
                             <div class="box" style="padding:0;">
                                 <div class="input-box" >
-                                    <input type="text" class="form-control alert_font_css" id="edit_alert_val" name="edit_alert_val">
+                                    <input type="text" class="form-control alert_font_css default_font_size default_input_height" id="edit_alert_val" name="edit_alert_val">
                                     <label for="" class="input-padding">Value <span class="paddingm validate">*</span></label>
                                 </div>
                                 <span class="paddingm float-start validate" id="inputAlert_edit_ValueErr"></span>
                             </div>
                         </div>
-                        <div class="col-lg-1" style="display:flex;flex-direction:row;padding:0;justify-content:center;align-items:end;font-size:12px">
+                        <div class="col-lg-1" style="display:flex;flex-direction:row;padding:0;justify-content:center;align-items:end;font-size:12px;height:2.4rem;">
                             <span style="font-size:12px;" id="edit_metrics_val_limit_txt">Units</span>
                         </div>
                     </div>
@@ -794,9 +905,9 @@
                             <!-- <label for="">In the Past</label> -->
                             <div class="input-group mb-3">
                                 <span class="label_txt_hour" style="">In The Past <span class="paddingm validate">*</span></span>
-                                <input type="text" class="form-control alert_font_css"  aria-label="Recipient's username" id="edit_alert_past_hour" name="edit_alert_past_hour" aria-describedby="basic-addon2" style="border-radius:0.25rem 0rem 0rem 0.25rem;">
+                                <input type="text" class="form-control alert_font_css default_font_size"  aria-label="Recipient's username" id="edit_alert_past_hour" name="edit_alert_past_hour" aria-describedby="basic-addon2" style="border-radius:0.25rem 0rem 0rem 0.25rem;">
                                 <div class="input-group-append  bg-white text-primary">
-                                    <span class="input-group-text bg-white" style="font-size:12px;height:2.4rem;" id="basic-addon2">Hours</span>
+                                    <span class="input-group-text bg-white" style="font-size:12px;height:2.4rem;border-radius:0rem 0.25rem 0.25rem 0rem;" id="basic-addon2">Hours</span>
                                 </div>
                             </div>
                             <span class="paddingm float-start validate" id="inputAlert_edit_pastHourErr"></span>
@@ -810,10 +921,11 @@
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="box rightmar" style="margin-right: 0.5rem;position:relative;">
-                                <label class="multi_select_model_drp_label" style="">Machine <span class="paddingm validate">*</span></label>
-                                <div class="filter_select_box_add_alert" onclick="edit_alert_machine()">
+                                <label class="multi_select_model_drp_label noselect_txt" style="">Machines <span class="paddingm validate">*</span></label>
+                                <!-- <div class="filter_select_box_add_alert  " onclick="edit_alert_machine()"> -->
+                                <div class="filter_select_box_add_alert noselect_txt select_pointer edit_alert_drp_machine" onclick="multiple_drp_alert_seek_pd('edit_alert_machine_drp','edit_alert_drp_machine')">
                                     <select class="multi_select_drp_model" style="">
-                                        <option id="edit_alert_machine_txt" style="">All Machines</option>
+                                        <option class="edit_alert_machine_txt noselect_txt" style="">All Machines</option>
                                     </select>
                                     <div class="filter_overselect_add_alert"></div>
                                 </div>
@@ -827,10 +939,11 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="box rightmar" style="margin-right: 0.5rem;position:relative;">
-                                <label class="multi_select_model_drp_label" style="">Part <span class="paddingm validate">*</span></label>
-                                <div class="filter_select_box_add_alert" onclick="edit_alert_part()">
+                                <label class="multi_select_model_drp_label noselect_txt" style="">Parts <span class="paddingm validate">*</span></label>
+                                <!-- <div class="filter_select_box_add_alert" onclick="edit_alert_part()"> -->
+                                <div class="filter_select_box_add_alert noselect_txt select_pointer edit_alert_drp_part" onclick="multiple_drp_alert_seek_pd('edit_alert_part_drp','edit_alert_drp_part')">
                                     <select class="multi_select_drp_model" style="">
-                                        <option id="edit_alert_part_txt" style="">All Parts</option>
+                                        <option class="edit_alert_part_txt noselect_txt" style="">All Parts</option>
                                     </select>
                                     <div class="filter_overselect_add_alert"></div>
                                 </div>
@@ -841,7 +954,7 @@
                         </div>
                     </div>
 
-                    <div class=" row d-flex flex-row mb-2">
+                    <div class=" row mt-2 d-flex flex-row mb-2">
                         <div class="" style="width:8%;padding:0;display:flex;flex-direction:row;align-items:center;"><span style="font-size:12px;">Notify as</span></div>
                         <div class="" style="width:91.4%;padding:0;"><hr></div>
                     </div>
@@ -861,7 +974,7 @@
                             <div class="col-lg-6">
                                 <div class="box rightmar" style="margin-right: 0.5rem;">
                                     <div class="input-box">
-                                        <select class="form-select alert_font_css" name="edit_alert_work_type" id="edit_alert_work_type" style="font-size:15px;">
+                                        <select class="form-select alert_font_css default_font_size default_input_height" name="edit_alert_work_type" id="edit_alert_work_type" style="font-size:15px;">
                                             <option value=" " disabled selected>Choose Work Type</option>
                                             <option value="issue">Issue</option>
                                             <option value="task">Task</option>
@@ -874,7 +987,7 @@
                             <div class="col-lg-6">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control alert_font_css" id="edit_alert_work_title"   name="edit_alert_work_title">
+                                        <input type="text" class="form-control alert_font_css default_font_size default_input_height" id="edit_alert_work_title"   name="edit_alert_work_title">
                                         <label for="edit_alert_work_title" class="input-padding">Title <span class="paddingm validate">*</span></label>
                                     </div>
                                     <span class="paddingm float-start validate" id="inputAlert_edit_worktitleErr"></span>
@@ -883,44 +996,54 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col-lg-3" style="margin:auto;">
-                              
-                                <!-- <select class="vodiapicker_edit">
-                                    <option value="low" id="low_default" data-thumbnail-edit="<?php echo base_url('assets/img/low.png'); ?>">Low</option>
-                                    <option value="medium" ata-thumbnail-edit="<?php echo base_url('assets/img/medium.png'); ?>">Medium</option>
-                                    <option value="high" ata-thumbnail-edit="<?php echo base_url('assets/img/high.png'); ?>">High</option>                    
-                                </select>
-                                
-                                <div class="lang-select_edit">
-                                    <span class="priority_label_txt_edit" style="">Priority  <span class="paddingm validate">*</span></span>
-                                    <div class="btn-select_edit" value="">
-                                        <!-- <div style="display:flex;flex-direction:row;width:20%;justify-cotnent:center;align-items:center;">
-                                            <i class="fa-solid fa-angle-down"></i>
-                                        </div> --
-                                    </div>
-                                    <div class="b_edit">
-                                        <ul id="a_edit"></ul>
-                                    </div>
-                                </div> -->
 
-                                <div class="lang-select">
-                                    <span class="priority_label_txt" style="">Priority  <span class="paddingm validate">*</span></span>
-                                    <div class="select_edit_priority">
-                                        <div class="select_edit_priority_btn priority_get_data_add" data-type="firstOption"> <i class='fas fa-angle-double-down' style='font: size 18px; width:18px; color: #2196F3; margin-top: 5px;'></i>&nbsp;Low</div>
-                                        <div class="select_edit_drp_priority">
-                                            <div class="select_edit_priority_option" data-type="firstOption" onclick="icon_drop_edit_priority(this)"><i class='fas fa-angle-double-down' style='font: size 18px;; width:20px; margin-top: 5px; color: #2196F3;'></i>&nbsp;Low</div>
-                                            <div class="select_edit_priority_option" data-type="secondOption" onclick="icon_drop_edit_priority(this)"><i style='font: size 18px;; color:#FBB80F; margin-top: 5px;' class='fas'>&#xf52c;</i>&nbsp;Medium</div>
-                                            <div class="select_edit_priority_option" data-type="thirdOption" onclick="icon_drop_edit_priority(this)"><i class='fas fa-angle-double-up' style='font: size 18px;; color:#E4021B; margin-top: 5px;'></i>&nbsp;High</div>
+                              
+                                <div class="input-box" style="position:relative;">
+                                    <label class="prioirty_label_txt" >Priority <span class="paddingm validate">*</span></label>
+                                    <div class="priority_drp_click_div" onclick="edit_alert_priority_drp(this)">
+                                        <div class="priority_drp_select_div">
+                                            <div  class="priority_selected_val" id="priority_selected_edit_id" priority-data-val-edit="3">
+                                                <div class="row_flex_img ">
+                                                    <i class="fa fa-angle-double-down img_alignment" style="color:#2196F3;"></i>
+                                                </div>
+                                                <div class="row_flex_txt d-flex flex-row justify-content-between align-items-center">
+                                                    <span>Low</span>
+                                                    <i class="fa fa-angle-down img_alignment" style="color: #8d8686;padding-right: 0.4rem;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="priority_overselect_drp"></div>
+                                    </div>
+                                    <div class="edit_priority_drp_option edit_priority_drp_opt d-none" >
+                                        <div class="img_drp_row edit_priority_val_get" priority-data-val-edit="1">
+                                            <div class="row_flex_img ">
+                                                <i class="fa fa-angle-double-up img_alignment" style="color:#E4021B;"></i>
+                                            </div>
+                                            <div class="row_flex_txt">
+                                                <span>High</span>
+                                            </div>
+                                        </div>
+                                        <div class="img_drp_row edit_priority_val_get" priority-data-val-edit="2">
+                                            <div class="row_flex_img ">
+                                                <i class="fa fa-equals img_alignment" style="color:#FBB80F;">=</i>
+                                            </div>
+                                            <div class="row_flex_txt">
+                                                <span>Medium</span>
+                                            </div>
+                                        </div>
+                                        <div class="img_drp_row edit_priority_val_get" priority-data-val-edit="3">
+                                            <div class="row_flex_img ">
+                                                <i class="fa fa-angle-double-down img_alignment" style="color: #2196F3;"></i>
+                                            </div>
+                                            <div class="row_flex_txt">
+                                                <span>Low</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>  
+                                </div>
+
                             </div>
                             <div class="col-lg-4">
-                                <!-- <div class="edit_wrapper_label">
-                                    <div class="edit_content_label">
-                                        <ul class="edit_parent_div_input_check_label"><input type="text" class="edit_input_check_label" placeholder="Label" spellcheck="false"></ul>
-                                    </div>
-                                    <span class="paddingm float-start validate" id="inputlabel_edit_Err"></span>
-                                </div> -->
                                 <div class="input-box indexing">
                                   <div class="filter_multiselect_lable filter_multiselect_input">
                                     <span class="multi_select_label" style="">Label <span class="paddingm validate">*</span></span>
@@ -930,9 +1053,6 @@
                                             <div class="lable-div lable-div-edit">
                                             </div>
                                             <input type="text" class="form-control alert_font_css input-field-lable input-field-lable-edit" id="input-field-lable-edit" name="" >
-                                        </div>
-                                        <div class="dropdown-div" style=" width: 20% !important">
-                                          <i class="fa fa-angle-down icon-style"></i>
                                         </div>
                                       </div>
                                     </div>
@@ -945,14 +1065,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-3" style="margin:auto;">
-                                <!-- <div class="box rightmar" style="margin-right: 0.5rem;">
-                                    <div class="input-box">
-                                        <select class="form-select font_weight" name="edit_alert_assignee" class="edit_alert_assignee" id="edit_alert_assignee" style="width: 10rem;">
-                                            <option value="Unassigned" selected disabled>Unassigned</option>
-                                        </select>
-                                        <label for="edit_alert_assignee" class="input-padding ">Assignee  <span class="paddingm validate">*</span></label>
-                                    </div>
-                                </div> -->
+                                
                                 <div class="box inbox-top" style="position:relative;">
                                     <div class="input-box indexing">
                                         <div class="filter_multiselect filter_multiselect_input">
@@ -979,7 +1092,7 @@
                             <div class="col-lg-2" style="margin:auto;">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control alert_font_css" id="edit_alert_deu_days" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" name="edit_alert_deu_days">
+                                        <input type="text" class="form-control alert_font_css default_font_size default_input_height" id="edit_alert_deu_days" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" name="edit_alert_deu_days">
                                         <label for="edit_alert_deu_days" class="input-padding">Due Days </label>
                                     </div>
                                     <span class="paddingm float-start validate" id="inputAlert_edit_deudaysErr"></span>
@@ -1004,8 +1117,8 @@
                                 <div class="wrapper_edit">
                                     <div class="content_edit">
                                         <ul class="edit_parent_div_input_check" style="position:relative;">
-                                            <input type="text" class="input_check_to_edit alert_font_css" placeholder="TO" spellcheck="false">
-                                            <span style="position:absolute;margin-top:-1rem;font-size:12px;padding:1px;margin-left:1rem;background:white;color:#8c8c8c;" class="edit_email_label">To Email</span>
+                                            <input type="text" class="input_check_to_edit alert_font_css default_font_size "  spellcheck="false">
+                                            <span style="position:absolute;margin-top:-1rem;font-size:12px;padding:1px;margin-left:1rem;background:white;color:#8c8c8c;" class="edit_email_label">To Email <span class="paddingm validate">*</span></span>
                                         </ul>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_check_to_edit_Err"></span>
@@ -1017,7 +1130,7 @@
                                 <div class="wrapper_cc_edit">
                                     <div class="content_cc_edit">
                                         <ul class="edit_parent_div_input_check_cc" style="position:relative;">
-                                            <input type="text" class="input_check_cc_edit alert_font_css" placeholder="CC" spellcheck="false">
+                                            <input type="text" class="input_check_cc_edit alert_font_css default_font_size"  spellcheck="false">
                                             <span style="position:absolute;margin-top:-1rem;font-size:12px;padding:1px;margin-left:1rem;background:white;color:#8c8c8c;">Cc Email</span>
                                         </ul>
                                     </div>
@@ -1028,10 +1141,10 @@
                         <div class="row mb-4">
                             <div class="col-lg-6">
                                 
-                                <div class="input-group">
+                                <div class="input-group default_input_height">
                                     <span class="label_txt_font" style="">Subject <span class="paddingm validate">*</span></span>
-                                    <span class="input-group-text bg-white text-muted" style="font-size:13px;">SmartMach Alert! </span>
-                                    <input type="text" class="form-control alert_font_css" id="edit_alert_mail_subject" name="edit_alert_mail_subject">
+                                    <span class="input-group-text bg-white text-muted" style="font-size:13px;border-radius:0.25rem 0rem 0rem 0.25rem;">SmartMach Alert! </span>
+                                    <input type="text" class="form-control alert_font_css default_font_size" id="edit_alert_mail_subject" name="edit_alert_mail_subject" style="border-radius:0rem 0.25rem 0.25rem 0rem;">
                                 </div>
                                 <span class="paddingm float-start validate" id="input_email_edit_sub_Err"></span>
                             </div>
@@ -1039,9 +1152,9 @@
                             <div class="col-lg-6">
                                 <div class="box" style="">
                                     <div class="input-box" >
-                                        <input type="text" class="form-control alert_font_css" id="edit_alert_mail_notes"
+                                        <input type="text" class="form-control alert_font_css default_font_size default_input_height" id="edit_alert_mail_notes"
                                             name="edit_alert_mail_notes">
-                                        <label for="edit_alert_mail_notes" class="input-padding">Notes</label>
+                                        <label for="edit_alert_mail_notes" class="input-padding">Email Body <span class="paddingm validate">*</span></label>
                                     </div>
                                     <span class="paddingm float-start validate" id="input_email_edit_note_Err"></span>
                                 </div>
@@ -1073,7 +1186,7 @@
                 <h5 class="modal-title settings-machineAdd-model" id="alert_delete_confirmation_box" style="">CONFIRMATION MESSAGE</h5>
             </div>
             <div class="modal-body alert_font_css" style="max-width:max-content;">
-                <label style="" class="alert_font_css" >Are you sure you want to delete this Alert record?</label>
+                <label style="" class="alert_font_css default_font_size" >Are you sure you want to delete this Alert record?</label>
             </div>
             <div class="modal-footer" style="border:none;">
                 <a class="btn fo bn  alert_delete_confirmation_submit saveBtnStyle" name="alert_delete_confirmation_submit" value="SAVE" >Confirm</a>
@@ -1092,6 +1205,200 @@
 <script type="text/javascript">
 
 
+// gloabl variables 
+
+// add alert machine drp variable
+var add_alert_machine_txt = false;
+// add alert part drp variable
+var add_alert_part_drp = false;
+
+// priority dropdown variable
+var  clicks_count = 0;
+
+var assignee_color = new Array();
+
+
+
+// prioirty dropdown new function work
+
+        //  add alert priority dropdown
+        function add_alert_priority_drp(t){
+           $('.add_priority_drp_opt').addClass('d-none');
+           if ($('.add_priority_drp_option').css('display')=="none") {
+                $('.add_priority_drp_option').removeClass('d-none');
+                $('.add_priority_drp_option').addClass('d-inline');
+           }else{
+                $('.add_priority_drp_option').removeClass('d-inline');
+                $('.add_priority_drp_option').addClass('d-none');
+           }
+
+           $('.add_priority_drp_option').click(function(){
+                $('.add_priority_drp_option').removeClass('d-inline');
+                $('.add_priority_drp_option').addClass('d-none');
+           });
+          
+        }
+
+        // edit alert priority dropdown
+        function edit_alert_priority_drp(t){
+
+            $('.edit_priority_drp_opt').addClass('d-none');
+           if ($('.edit_priority_drp_option').css('display')=="none") {
+                $('.edit_priority_drp_option').removeClass('d-none');
+                $('.edit_priority_drp_option').addClass('d-inline');
+           }else{
+                $('.edit_priority_drp_option').removeClass('d-inline');
+                $('.edit_priority_drp_option').addClass('d-none');
+           }
+
+            $('.edit_priority_drp_option').click(function(){
+                $('.edit_priority_drp_option').removeClass('d-inline');
+                $('.edit_priority_drp_option').addClass('d-none');
+            });
+        }
+
+        // add alert priority dropdown option click selection function
+        $(document).on('click','.priority_val_get',function(){
+            // event.preventDefault();
+            var find_row_val = $('.priority_val_get');
+            var find_priority_index = find_row_val.index($(this));
+            $('#priority_selected_id').empty();
+            var ele = $();
+            var priority_val=3;
+
+            if (find_priority_index===1) {
+                ele = ele.add('<div class="row_flex_img" priority-data-val="2">'
+                    +'<i class="fa fa-equals img_alignment" style="color:#FBB80F;">=</i>'
+                    +'</div>'
+                    +'<div class="row_flex_txt d-flex flex-row justify-content-between">'
+                        +'<span>Medium</span>'
+                        +'<i class="fa fa-angle-down img_alignment" style="color: #8d8686;padding-right: 0.4rem;"></i>'
+                +'</div>'); 
+                priority_val=2;
+                   
+            }else if(find_priority_index ===2){
+                ele = ele.add('<div class="row_flex_img" priority-data-val="3">'
+                    +'<i class="fa fa-angle-double-down img_alignment" style="color:#2196F3;"></i>'
+                    +'</div>'
+                    +'<div class="row_flex_txt d-flex flex-row justify-content-between">'
+                        +'<span>Low</span>'
+                        +'<i class="fa fa-angle-down img_alignment" style="color: #8d8686;padding-right: 0.4rem;"></i>'
+                +'</div>');
+                priority_val=3;
+            }
+            else if(find_priority_index==0){
+                ele = ele.add('<div class="row_flex_img" >'
+                    +'<i class="fa fa-angle-double-up img_alignment" style="color:#E4021B;"></i>'
+                    +'</div>'
+                    +'<div class="row_flex_txt d-flex flex-row justify-content-between">'
+                        +'<span>High</span>'
+                        +'<i class="fa fa-angle-down img_alignment" style="color: #8d8686;padding-right: 0.4rem;"></i>'
+                +'</div>'); 
+                priority_val=1;
+            }
+
+            $('#priority_selected_id').append(ele);
+            $('#priority_selected_id').attr('priority-data-val',priority_val);
+        });
+
+        // edit alert priority dropdown option click selection function
+        $(document).on('click','.edit_priority_val_get',function(){
+            var find_row_val = $('.edit_priority_val_get');
+            var find_priority_index = find_row_val.index($(this));
+            $('#priority_selected_edit_id').empty();
+            var ele = $();
+            var priority_val=3;
+
+            if (find_priority_index===1) {
+                ele = ele.add('<div class="row_flex_img" priority-data-val-edit="2">'
+                    +'<i class="fa fa-equals img_alignment" style="color:#FBB80F;">=</i>'
+                    +'</div>'
+                    +'<div class="row_flex_txt d-flex flex-row justify-content-between">'
+                        +'<span>Medium</span>'
+                        +'<i class="fa fa-angle-down img_alignment" style="color: #8d8686;padding-right: 0.4rem;"></i>'
+                +'</div>'); 
+                priority_val=2;
+                   
+            }else if(find_priority_index ===2){
+                ele = ele.add('<div class="row_flex_img" priority-data-val-edit="3">'
+                    +'<i class="fa fa-angle-double-down img_alignment" style="color:#2196F3;"></i>'
+                    +'</div>'
+                    +'<div class="row_flex_txt d-flex flex-row justify-content-between">'
+                        +'<span>Low</span>'
+                        +'<i class="fa fa-angle-down img_alignment" style="color: #8d8686;padding-right: 0.4rem;"></i>'
+                +'</div>');
+                priority_val=3;
+            }
+            else if(find_priority_index==0){
+                ele = ele.add('<div class="row_flex_img" priority-data-val-edit="1">'
+                    +'<i class="fa fa-angle-double-up img_alignment" style="color:#E4021B;"></i>'
+                    +'</div>'
+                    +'<div class="row_flex_txt d-flex flex-row justify-content-between">'
+                        +'<span>High</span>'
+                        +'<i class="fa fa-angle-down img_alignment" style="color: #8d8686;padding-right: 0.4rem;"></i>'
+                +'</div>'); 
+                priority_val=1;
+            }
+
+            $('#priority_selected_edit_id').append(ele);
+            $('#priority_selected_edit_id').attr('priority-data-val-edit',priority_val);
+        });
+    
+
+
+// priority dropdown new function end
+
+// get metrics in user format
+function get_materics_userformat(metrics){
+    var result="";
+    switch (metrics) {
+        case 'planned_downtime':
+            result = "Planned Downtime";
+            break;
+    
+        case 'unplanned_downtime':
+            result = "Unplanned Downtime";
+            break;
+
+        case 'planned_machine_off':
+            result = "Planned Machine Off";
+            break;
+        
+        case 'unplanned_machine_off':
+            result = "Unplanned Machine Off";
+            break;
+        
+        case 'total_downtime':
+            result = "Total Downtime";
+            break;
+        
+        case 'total_unnamed_hour':
+            result = "Total Unnamed";
+            break;
+
+        case 'total_unnamed_count':
+            result="Total Unnamed";
+            break;
+        
+        case 'total_rejection':
+            result = "Total Rejection";
+            break;
+
+        case 'oee':
+            result ="OEE";
+            break;
+        
+        case 'teep':
+            result = "TEEP";
+            break;
+
+        case 'ooe':
+            result = "OOE";
+            break;
+    }
+
+    return result;
+}
 
 // add  alert settings module if change metrics change text 
 $(document).on('change','.add_alert_metrics_change_text',function(event){
@@ -1111,6 +1418,7 @@ $(document).on('change','.edit_alert_metrics_change_text',function(event){
     $('#edit_metrics_val_limit_txt').text(get_edit_metrics_val_limit);
 });
 
+// this function get metrics dropdown value for example count or hours 
 function get_metrics_limit_val(metrics_val){
     var res = "";
     switch (metrics_val) {
@@ -1134,8 +1442,11 @@ function get_metrics_limit_val(metrics_val){
             res = "Hours";
             break;
         
-        case 'total_unamed':
+        case 'total_unnamed_hour':
             res = "Hours";
+            break;
+        case 'total_unnamed_count':
+            res="Count";
             break;
         
         case 'total_rejection':
@@ -1158,15 +1469,11 @@ function get_metrics_limit_val(metrics_val){
 }
 
 function add_assignee(t) {
-    console.log($(this).children());
     $(".filter_checkboxes_issue ").addClass("display_hide");
-    console.log($('.filter_assignee').css("display"));
     if ($('.filter_assignee').css("display") === "none") {
-        console.log("select");
         $(".filter_assignee").removeClass("display_hide");
         $(".filter_assignee").addClass("display_visible");
     } else {
-        console.log("non select");
         $(".filter_assignee").removeClass("display_visible");
         $(".filter_assignee").addClass("display_hide");
     }
@@ -1175,10 +1482,11 @@ function add_assignee(t) {
     // add modal click function 
     function show_modal_add_alert(){
        
-        // $('.selectDropdown3').toggleClass('new_4');
+       
         var data_txt = "insert";
         reset_all_input(data_txt);
         $('#addAlert_modal').modal('show');
+        clicks_count = 0;
     }
 
 
@@ -1202,12 +1510,10 @@ function add_assignee(t) {
         checkbox.addEventListener('change', function () {
             if (checkbox.checked) {
             // do this
-            // console.log('Checked');
                 $('.toggle_work_div').css('display','block');
 
             } else {
             // do that
-            // console.log('Not checked');
             $('.toggle_work_div').css('display','none');
             }
         });
@@ -1217,12 +1523,8 @@ function add_assignee(t) {
         email_toggle.addEventListener('change',function(){
             if (email_toggle.checked) {
                 $('.email_div_visibility').css('display','block');
-              
-                // console.log("email  checked");
-
             }else{
                 $('.email_div_visibility').css('display','none');
-                // console.log("unchecked email");
             }
         });
 
@@ -1249,49 +1551,14 @@ function add_assignee(t) {
 
     });
 
-    // $(document).on('click','#work_click',function(event){
-    //     // var getindex = $('.switch');
-    //     // var final_index = getindex.index($(this));
-    //     // alert(final_index);
-    //     var checked_or_not = $('#work_toggle_click').is(':checked');
-    //     if (checked_or_not == true) {
-    //         alert('already checked');
-    //     }else{
-    //         alert('off');
-    //     }
-    //     // alert(checked_or_not);
-    // });
+  
+   
 
-    // add alert machine dropdown
-    var add_alert_machine_txt = false;
-    function add_alert_machine(){
-        // alert('ko');
-        if (!add_alert_machine_txt) {
-            $('.add_alert_machine_drp').css('display','block');
-            add_alert_machine_txt = true;
-        }else{
-            $('.add_alert_machine_drp').css('display','none');
-            add_alert_machine_txt = false;
-        }
-    }
-
-    // add alert parts dropdown
-    var add_alert_part_drp = false;
-    function add_alert_part(){
-        if (!add_alert_part_drp) {
-            $('.add_alert_part_drp').css('display','block');
-            add_alert_part_drp = true;
-            
-        }else{
-            add_alert_part_drp = false;
-            $('.add_alert_part_drp').css('display','none');
-        }
-    }
 
     // this function fill all dropdown values using ajax function
     fill_machine_drp();
+
     function fill_machine_drp(){
-        // console.log("function ok");
         $('.add_alert_machine_drp').empty();
         $('#add_alert_assignee').empty();
         $('.alert_file_part_div').empty();
@@ -1306,7 +1573,6 @@ function add_assignee(t) {
             type:"POST",
             dataType:"json",
             success:function(res){
-                console.log(res);
 
                 var element = $();
 
@@ -1470,9 +1736,16 @@ function add_assignee(t) {
                    
                     var elements = $();
                     var edit_elements = $();
+                    var user_color_code="";
+                    var color_arr = [];
+                    if (item.user_profile==="" || item.user_profile===null) {
+                        user_color_code="#005abc";
+                    }else{
+                        user_color_code=item.user_profile;
+                    }
                     elements = elements.add('<div class="inbox inbox_assignee" data-assignee-val="'+item.user_id+'" style="display: flex;">'
                         +'<div style="float: left;width: 20%;" class="center-align circle-div-root">'
-                            +'<div class="circle-div" style="background:#7f7f7f;color:white;">'
+                            +'<div class="circle-div" style="background:'+user_color_code+';color:white;">'
                                 +'<p class="paddingm">'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p>'
                             +'</div>'
                         +'</div>'
@@ -1485,7 +1758,7 @@ function add_assignee(t) {
 
                     edit_elements = edit_elements.add('<div class="inbox inbox_edit_assignee" data-assignee-val="'+item.user_id+'" style="display: flex;">'
                         +'<div style="float: left;width: 20%;" class="center-align circle-div-root">'
-                            +'<div class="circle-div" style="background:#7f7f7f;color:white;">'
+                            +'<div class="circle-div" style="background:'+user_color_code+';color:white;">'
                                 +'<p class="paddingm">'+item.first_name.trim().slice(0,1).toUpperCase()+''+item.last_name.trim().slice(0,1).toUpperCase()+'</p>'
                             +'</div>'
                         +'</div>'
@@ -1495,13 +1768,13 @@ function add_assignee(t) {
                         +'<input type="radio" class="assignee_add radio-visible" name="assignee_edit_val" value="'+item['user_id']+'">'
                     +'</div>');
 
+                    color_arr['assignee_id'] = item['user_id'];
+                    color_arr['assignee_color'] = user_color_code;
+
                     $('.add_record_assignee').append(elements);
                     $('.edit_record_assignee').append(edit_elements);
 
-
-                    // console.log(item);
                     ele_assignee = ele_assignee.add('<option value="'+item.user_id+'">'+item.first_name+' '+item.last_name+'</option>');
-                    // console.log(ele_assignee);
 
                    
 
@@ -1510,11 +1783,14 @@ function add_assignee(t) {
 
                     
                     $('#add_alert_assignee').append(ele_assignee);
+
+                  
                    
                 });
 
                 // last updated by filter array
                 res['last_updated_by_arr'].forEach(function(item) {
+                    var color_arr = [];
                     filter_drp_assignee = filter_drp_assignee.add('<div class="add_alert_box_flex filter_drp_last_updated_click" style="position: relative;">'
                     +'<div class="add_alert_checkbox_div" style="z-index:1;position: absolute;">'
                     +'<input type="checkbox" id="one" class="filter_drp_last_updated_checkbox" value="'+item.user_id+'" style="margin-right:100px;margin-top:12px"/>'
@@ -1523,13 +1799,15 @@ function add_assignee(t) {
                     +'<p class="font_multi_drp" style="margin-left:25px;margin-top:11px;">'+item.first_name+' '+item.last_name+'</p>'
                     +'</div>'
                     +'</div>');
+                    color_arr['assignee_id'] = item.user_id;
+                    color_arr['assignee_color'] = item.user_profile;
+                    assignee_color.push(color_arr);
 
                     $('.filter_alert_assignee_div').append(filter_drp_assignee);
                 });
 
                 $( ".option1" ).each(function( index ) {
                         var str = $( this ).text();
-                // console.log($( this ).text() );
                     var matches = str.match(/\b(\w)/g); // ['J','S','O','N']
                     var acronym = matches.join(''); // JSON
                     $('.option1').eq(index).prepend("<div class='circle-div1' style='background:#7f7f7f;color:white;  width:24px;'><p class='paddingm'>"+acronym+"</p></div>");
@@ -1548,7 +1826,7 @@ function add_assignee(t) {
                 retrive_alert_data(start_index,end_index);
             },
             error:function(er){
-                console.log("Machine Dropdown error");
+                // console.log("Machine Dropdown error");
             }
         });
     }
@@ -1560,7 +1838,7 @@ function add_assignee(t) {
         jQuery('.add_alert_machine1').each(function(index){
             machine_gparr[index].checked=true;
         });
-        $('#add_alert_machine_txt').text('All Machines');
+        $('.add_alert_machine_txt').text('All Machines');
     }
 
 
@@ -1570,107 +1848,23 @@ function add_assignee(t) {
         jQuery('.add_alert_part1').each(function(index){
             part_arr[index].checked=true;
         });
-        $('#add_alert_part_txt').text('All Parts');
+        $('.add_alert_part_txt').text('All Parts');
     }
 
 
     // onclick flex using multi select dropdown
     $(document).on('click','.add_alert_machine_click',function(event){
         event.preventDefault();
-        var count_machine_gp1  = $('.add_alert_machine_click');
-        var index_machine_gp1 = count_machine_gp1.index($(this));
-        var check_if1 = $('.add_alert_machine1');
-        if (index_machine_gp1 === 0) {
-            if (check_if1[0].checked==false) {
-                reset_add_alert_machine();
-
-            }else{
-                $('.add_alert_machine1').removeAttr('checked');
-            }
-        }else{
-            if (check_if1[index_machine_gp1].checked==false) {
-                check_if1[index_machine_gp1].checked=true;
-                $('.add_alert_machine1:eq('+index_machine_gp1+')').attr('checked','checked');
-            }else{
-                $('.add_alert_machine1:eq('+index_machine_gp1+')').removeAttr('checked');
-                check_if1[0].checked=false;
-            }
-        }
-
-        var machine_gp_select_count1 = 0;
-        jQuery('.add_alert_machine1').each(function(index){
-        if (check_if1[index].checked===true) {
-            machine_gp_select_count1 = parseInt(machine_gp_select_count1)+1;
-        }
-        });
-        var machine_gp_len1 = $('.add_alert_machine1').length;
-        machine_gp_len1 = parseInt(machine_gp_len1)-1;
-        if (parseInt(machine_gp_select_count1)>=parseInt(machine_gp_len1)) {
-            if(check_if1[0].checked===true){
-                check_if1[0].checked=true;
-                $('#add_alert_machine_txt').text(parseInt(machine_gp_select_count1)-1+' Selected');
-            }else{
-                // check_if[0].checked=true;
-                reset_add_alert_machine();
-                $('#add_alert_machine_txt').text('All');
-            }
-        }else if(((parseInt(machine_gp_select_count1)<parseInt(machine_gp_len1))) && (parseInt(machine_gp_select_count1)>0)){
-            $('#add_alert_machine_txt').text(parseInt(machine_gp_select_count1)+' Selected');
-
-            // check_if[0].checked=false;
-        }else {
-            $('#add_alert_machine_txt').text('No Machines');
-        }
+        onclick_common_div_fun('add_alert_machine_click','add_alert_machine1','add_alert_machine_txt','Machines','add_alert_drp_machine_call',this)
+       
     });
     
     
     // onclick flex using multi select dropdown part
     $(document).on('click','.add_alert_part_click',function(event){
         event.preventDefault();
-        var count_machine_gp1  = $('.add_alert_part_click');
-        var index_machine_gp1 = count_machine_gp1.index($(this));
-        var check_if1 = $('.add_alert_part1');
-        if (index_machine_gp1 === 0) {
-            if (check_if1[0].checked==false) {
-                reset_add_alert_part();
-
-            }else{
-                $('.add_alert_part1').removeAttr('checked');
-            }
-        }else{
-            if (check_if1[index_machine_gp1].checked==false) {
-                check_if1[index_machine_gp1].checked=true;
-                $('.add_alert_part1:eq('+index_machine_gp1+')').attr('checked','checked');
-            }else{
-                $('.add_alert_part1:eq('+index_machine_gp1+')').removeAttr('checked');
-                check_if1[0].checked=false;
-            }
-        }
-
-        var machine_gp_select_count1 = 0;
-        jQuery('.add_alert_part1').each(function(index){
-        if (check_if1[index].checked===true) {
-            machine_gp_select_count1 = parseInt(machine_gp_select_count1)+1;
-        }
-        });
-        var machine_gp_len1 = $('.add_alert_part1').length;
-        machine_gp_len1 = parseInt(machine_gp_len1)-1;
-        if (parseInt(machine_gp_select_count1)>=parseInt(machine_gp_len1)) {
-            if(check_if1[0].checked===true){
-                check_if1[0].checked=true;
-                $('#add_alert_part_txt').text(parseInt(machine_gp_select_count1)-1+' Selected');
-            }else{
-                // check_if[0].checked=true;
-                reset_add_alert_machine();
-                $('#add_alert_part_txt').text('All');
-            }
-        }else if(((parseInt(machine_gp_select_count1)<parseInt(machine_gp_len1))) && (parseInt(machine_gp_select_count1)>0)){
-            $('#add_alert_part_txt').text(parseInt(machine_gp_select_count1)+' Selected');
-
-            // check_if[0].checked=false;
-        }else {
-            $('#add_alert_part_txt').text('No Parts');
-        }
+        onclick_common_div_fun('add_alert_part_click','add_alert_part1','add_alert_part_txt','Parts','add_alert_drp_part_call',this)
+       
     });
 
 
@@ -1679,53 +1873,85 @@ function add_assignee(t) {
 
         // machine multi select dropdown add alert
         var machine_reason = $('.add_alert_machine_drp');
-        if (!machine_reason.is(event.target) && machine_reason.has(event.target).length==0) {
-            machine_reason.hide();
+        var add_alert_tmp_drp_machine = $('.add_alert_drp_machine');
+        if (!machine_reason.is(event.target) && machine_reason.has(event.target).length==0 && !add_alert_tmp_drp_machine.is(event.target) && add_alert_tmp_drp_machine.has(event.target).length==0) {
+            if (drp_obj['add_alert_drp_machine']==true) {
+                drp_obj['add_alert_drp_machine']=false;
+                machine_reason.hide();
+            }
         }
 
 
         // part multi select dropdown add alert
         var part_add_alert = $('.add_alert_part_drp');
-        if (!part_add_alert.is(event.target) && part_add_alert.has(event.target).length==0) {
-            part_add_alert.hide();
+        var add_alert_tmp_drp_part=$('.add_alert_drp_part');
+        if (!part_add_alert.is(event.target) && part_add_alert.has(event.target).length==0 && !add_alert_tmp_drp_part.is(event.target) && add_alert_tmp_drp_part.has(event.target).length==0) {
+            if (drp_obj['add_alert_drp_part']==true) {
+                drp_obj['add_alert_drp_part']=false;
+                part_add_alert.hide();
+            }
         }
 
         // machine multi select dropdown edit alert
         var machine_reason_edit = $('.edit_alert_machine_drp');
-        if (!machine_reason_edit.is(event.target) && machine_reason_edit.has(event.target).length==0) {
-            machine_reason_edit.hide();
+        var edit_alert_tmp_drp = $('.edit_alert_drp_machine');
+        if (!machine_reason_edit.is(event.target) && machine_reason_edit.has(event.target).length==0 && !edit_alert_tmp_drp.is(event.target) && edit_alert_tmp_drp.has(event.target).length==0 ) {
+            if (drp_obj['edit_alert_drp_machine']==true) {
+                drp_obj['edit_alert_drp_machine']=false;
+                machine_reason_edit.hide();
+            }
         }
 
         // part multi select dropdown edit alert
         var part_reason_edit = $('.edit_alert_part_drp');
-        if (!part_reason_edit.is(event.target) && part_reason_edit.has(event.target).length==0) {
-            part_reason_edit.hide();
+        var edit_alert_tmp_part = $('.edit_alert_drp_part');
+        if (!part_reason_edit.is(event.target) && part_reason_edit.has(event.target).length==0 && !edit_alert_tmp_part.is(event.target) && edit_alert_tmp_part.has(event.target).length==0) {
+            if (drp_obj['edit_alert_drp_part']==true) {
+                drp_obj['edit_alert_drp_part']=false;
+                part_reason_edit.hide();
+            }
         }
 
 
         // table filter dropdown closing
         var machine_filter = $('.alert_filter_machine_div');
-        if (!machine_filter.is(event.target) && machine_filter.has(event.target).length==0) {
-            machine_filter.hide();
+        var machine_drp_tmp = $('.table_filter_machine');
+        if (!machine_filter.is(event.target) && machine_filter.has(event.target).length==0 && !machine_drp_tmp.is(event.target) && machine_drp_tmp.has(event.target).length==0) {
+            if (drp_obj['table_filter_machine']==true) {
+                drp_obj['table_filter_machine']=false;
+                machine_filter.hide();
+            }
         }
 
 
         // part filter
         var part_filter = $('.alert_file_part_div');
-        if (!part_filter.is(event.target) && part_filter.has(event.target).length==0) {
-            part_filter.hide();
+        var part_filter_div = $('.table_filter_part');
+        if (!part_filter.is(event.target) && part_filter.has(event.target).length==0 && !part_filter_div.is(event.target) && part_filter_div.has(event.target).length==0) {
+            if (drp_obj['table_filter_part']==true) {
+                drp_obj['table_filter_part']=false;
+                part_filter.hide();
+            }
         }
 
         // work order type
         var work_order_type = $('.alert_filter_work_order_dive');
-        if (!work_order_type.is(event.target) && work_order_type.has(event.target).length==0) {
-            work_order_type.hide();
+        var notify_as_tmp = $('.table_fitler_notify_as');
+        if (!work_order_type.is(event.target) && work_order_type.has(event.target).length==0 && !notify_as_tmp.is(event.target) && notify_as_tmp.has(event.target).length==0) {
+            if (drp_obj['table_fitler_notify_as']==true) {
+                drp_obj['table_fitler_notify_as']=false;
+                work_order_type.hide();
+           }
         }
 
         // last_updated_by dropdown
         var last_updated_by = $('.filter_alert_assignee_div');
-        if (!last_updated_by.is(event.target) && last_updated_by.has(event.target).length==0) {
-            last_updated_by.hide();
+        var table_filter_last_updated_bt = $('.table_filter_lastupdated_by');
+        if (!last_updated_by.is(event.target) && last_updated_by.has(event.target).length==0 && !table_filter_last_updated_bt.is(event.target) && table_filter_last_updated_bt.has(event.target).length==0) {
+            if (drp_obj['table_filter_lastupdated_by']==true) {
+                drp_obj['table_filter_lastupdated_by']=false;
+                last_updated_by.hide();
+            }
         }
 
         // assigne
@@ -1737,11 +1963,20 @@ function add_assignee(t) {
         }
 
         // priority dropdown
-        var add_alert_priority = $('.selectDropdown3');
-        if (!add_alert_priority.is(event.target) && add_alert_priority.has(event.target).length==0) {
-            $('.selectDropdown3').removeClass('new_4');
-            $('.email_che').removeClass('checked');   
+        // add alert priority dropdown 
+        var add_alert_priority_drp = $('.add_priority_drp_option');
+        if (!add_alert_priority_drp.is(event.target) && add_alert_priority_drp.has(event.target).length==0) {
+            $('.add_priority_drp_option').removeClass('d-inline');
+            $('.add_priority_drp_option').addClass('d-none');
         }
+
+        // edit alert priority dropdown
+        var edit_alert_priority_drp1 = $('.edit_priority_drp_option');
+        if (!edit_alert_priority_drp1.is(event.target) && edit_alert_priority_drp1.has(event.target).length==0) {
+            $('.edit_priority_drp_option').removeClass('d-inline');
+            $('.edit_priority_drp_option').addClass('d-none');
+        }
+
 
 
     });
@@ -1776,7 +2011,6 @@ function add_assignee(t) {
         //Set the button value to the first el of the array
         var img_drp = $('#low_default').attr("data-thumbnail");
         $('.btn-select').html('<li style="width:80%;"><img src="'+img_drp+'" alt="" value="low"> <span style="font-size:14px;" class="priority_txt">LOW</span></li><div style="display:flex;flex-direction:row;justify-content:center;align-items:center;width:20%;"><i class="fa-solid fa-angle-down"></li></div>');
-        // console.log(langArray[0]);
         $('.btn-select').attr('value', 'en');
 
         //change button stuff on click
@@ -1788,8 +2022,6 @@ function add_assignee(t) {
             $('.btn-select').html(item);
             $('.btn-select').attr('value', value);
             $(".b").toggle();
-            //   alert('ji');
-            //console.log(value);
         });
 
         $('#a_edit li').click(function(){
@@ -1800,8 +2032,6 @@ function add_assignee(t) {
             $('.btn-select_edit').html(item1);
             $('.btn-select_edit').attr('value', value1);
             $(".b_edit").toggle();
-            //   alert('ji');
-            //console.log(value);
         });
 
 
@@ -1818,14 +2048,10 @@ function add_assignee(t) {
         if (sessionLang){
             //find an item with value of sessionLang
             var langIndex = langArray.indexOf(sessionLang);
-            // console.log(langArray[langIndex]);
             $('.btn-select').html(langArray[langIndex]);
             $('.btn-select').attr('value', sessionLang);
         } else {
             var langIndex = langArray.indexOf('ch');
-            // console.log("dropdown index");
-            // console.log(langIndex);
-            // console.log(langArray[langIndex]);
             $('.btn-select').html(langArray[langIndex]);
         }
 
@@ -1875,7 +2101,6 @@ function add_assignee(t) {
         var checkbox_email = document.querySelector('#email_check_toggle');
         var a = inputAlertName(alert_name);
         var b = inputAlertRateHour(past_hour);
-        // console.log(value_val);
         var c = inputAlertValue(value_val);
         var d = inputAlertmetrics(metrics);
         var e = inputAlertrelation(relation);
@@ -1897,11 +2122,6 @@ function add_assignee(t) {
                 
                 notify_as = "all";
             
-                // $('.label_input_tags_txt').each(function(){
-                //     if ($(this).text()) {
-                //         label_txt_arr.push($(this).text());
-                //     }
-                // });
                 var lable = $('.lable-div-add').children('.lable-bg').children('.lable_items');
                 $.each(lable, function(key,valueObj){
                     lable_list.push(valueObj.getAttribute('lable_list_id'));
@@ -1928,11 +2148,8 @@ function add_assignee(t) {
                 var add_alert_notes = $('#add_alert_mail_notes').val();
                 // var priority = $('.btn-select .priority_txt').text().toLowerCase();
 
-                var priority = $('.selectBtn3').attr('data-val');
-                // var n = m.split(/\s(.+)/)[1]
-                // var priority = n.split(/\s(.+)/)[1];
-                // console.log(m);
-                // console.log("priority text");
+                // getting priority value for add alert insertion records
+                var priority = $('#priority_selected_id').attr('priority-data-val');
 
                 
             }
@@ -1950,17 +2167,13 @@ function add_assignee(t) {
                     lable_list.push(valueObj.getAttribute('lable_list_id'));
                 });
                 // var priority = $('.btn-select .priority_txt').text().toLowerCase();
-                var priority = $('.selectBtn3').attr('data-val');
-                // var n = m.split(/\s(.+)/)[1];
-                // var priority = n.split(/\s(.+)/)[1];
-                // console.log(m);
-                // console.log("priority");
+                 // getting priority value for add alert insertion records
+                var priority = $('#priority_selected_id').attr('priority-data-val');
 
 
                 var work_type = $('#add_alert_work_type').val();
                 var work_title = $('#add_alert_work_title').val();
                 var assignee = $('#assignee_val').attr('data-assignee-val');
-                // console.log(assignee);
                 var deu_days = $('#add_alert_deu_days').val();
                 to_email_arr.push("empty");
                 cc_email_arr.push("empty");
@@ -2011,20 +2224,13 @@ function add_assignee(t) {
                 var add_alert_notes = null;
 
             }
-            console.log(notify_as);
-            console.log(priority);
-            console.log("assignee");
-            console.log(assignee);
 
             // work
             var f = inputAlertworktype(work_type);
             var g = inputAlertworktitle(work_title);
             var h = inputAlertdue_days(deu_days);
-            console.log("add alert submit");
-            console.log(deu_days);
             var add_label = $('.lable-div-add .lable-bg').length;
             // var la = inputlabel(add_label);
-            console.log(add_label+"...label length...");
 
             // email
             var i = inputAlert_mail_sub(add_alert_subject);
@@ -2037,42 +2243,38 @@ function add_assignee(t) {
             var pc = inputAlertcc(cc_tmp_email);
             var note_error = 0; 
             if (notify_as==="all") { 
-                if (f!="" || g!="" || h!="" || i!="" || j!="" || nt!="" || pc!="") {
+                if (f!="" || g!="" || h!="" || i!="" || j!="" || nt!="") {
                     $('#inputAlertworktypeErr').html(f);
                     $('#inputAlertworktitleErr').html(g);
                     $('#inputAlertdeudaysErr').html(h);
                     $('#input_email_sub_Err').html(i);
                     $('#input_email_note_Err').html(j);
                     // $('#label_action_Err').html(ml);
-                    $('#input_check_cc_Err').html(pc);
+                    // $('#input_check_cc_Err').html(pc);
                     $('#input_check_to_Err').html(nt);
                     // $('#label_action_Err').html(la);
 
                 }else{
-                    console.log("email and work");
                     note_error = 1;
                 }
             }
             else if(notify_as==="email"){
-                if (i!="" || j!="" || nt!="" || pc!="") {
+                if (i!="" || j!="" || nt!="" ) {
                     $('#input_email_sub_Err').html(i);
                     $('#input_email_note_Err').html(j);
-                    $('#input_check_cc_Err').html(pc);
+                    // $('#input_check_cc_Err').html(pc);
                     $('#input_check_to_Err').html(nt);
                 }else{
-                    console.log("email");
                     note_error = 1;
                 }
             }
             else if(notify_as==="work"){
-                console.log(h);
                 if (f!="" || g!="" || h!="") {
                     $('#inputAlertworktypeErr').html(f);
                     $('#inputAlertworktitleErr').html(g);
                     $('#inputAlertdeudaysErr').html(h);
                     // $('#label_action_Err').html(la);
                 }else{
-                    console.log("email");
                     note_error = 1;
                 }
             }
@@ -2081,14 +2283,14 @@ function add_assignee(t) {
             if (parseInt(lable_list.length)<=0) {
                 lable_list.push("empty");
             }
+
+            // after no cc email input fill submit empty
+            if (parseInt(cc_email_arr.length)<=0) {
+                cc_email_arr.push("empty");
+            }
             
-            console.log("priority");
-            console.log(priority);
-            console.log(note_error);
-            console.log(notify_as); 
-            console.log(lable_list+"...list name ")
+        
             if (parseInt(note_error)>=1) {
-                console.log("ok");
                 $.ajax({
                         url:"<?php echo base_url('Alert_Settings_Controller/add_alert'); ?>",
                         method:"POST",
@@ -2114,8 +2316,6 @@ function add_assignee(t) {
                         },
                         dataType:"json",
                         success:function(res){
-                            console.log("alert settings success message");
-                            console.log(res);
                             if (res) {
                                 // alert('Alert Insertion SuccessFully');
                                 var start_index = 0;
@@ -2124,14 +2324,11 @@ function add_assignee(t) {
                                 retrive_alert_data(start_index,end_index);
                                 $('#addAlert_modal').modal('hide');
                                 $("#overlay").fadeOut(300);
-                                console.log(res);
                             }
                         
                             
                         },
                         error:function(er){
-                            console.log("Alert Settings Error message");
-                            console.log(er);
                         }
                 });
             }      
@@ -2145,9 +2342,6 @@ function add_assignee(t) {
     });
 
 
-    function alert_ajax_func(){
-        console.log("ajax calling");
-    }
 
     // retrive function records display function
     function retrive_alert_data(start_index,end_index){
@@ -2171,10 +2365,10 @@ function add_assignee(t) {
         });
 
         // work order array
-        var work_order_arr = [];
+        var notify_arr = [];
         $('.filter_alert_work_checkbox').each(function(){
             if ($(this).is(':checked')) {
-                work_order_arr.push($(this).val());
+                notify_arr.push($(this).val());
             }
         });
 
@@ -2186,12 +2380,6 @@ function add_assignee(t) {
             }
         });
 
-        console.log("filter arrays");
-        console.log(machine_arr);
-        console.log(part_arr);
-        console.log(work_order_arr);
-        console.log(last_updated_arr);
-
         $.ajax({
             url:"<?php echo base_url('Alert_Settings_Controller/retrive_data'); ?>",
             method:"POST",
@@ -2199,19 +2387,15 @@ function add_assignee(t) {
             data:{
                 machine_arr:machine_arr,
                 part_arr:part_arr,
-                work_order_arr:work_order_arr,
+                notify_arr:notify_arr,
                 last_updated_arr:last_updated_arr,
             },
             success:function(res){
-                console.log("Alert Data retrive");
-                console.log(res);
-                // console.log(res.length);
                 var total_page = parseInt(res.length)/50;
                 total_page = Math.ceil(total_page);
                 $('#pagination_val').html(total_page);
                 if (parseInt(res.length)>0) {
                     res.forEach(function(item,key) {
-                        console.log("alert data keys");
                         if ((parseInt(key)<parseInt(end_index)) && (parseInt(key)>=parseInt(start_index))) {  
                             var element = $();
                             var mail_img = " ";
@@ -2230,6 +2414,25 @@ function add_assignee(t) {
                                 mail_img = "none";
                                 work_img = "none";
                             }
+
+                            var user_color_find = "";
+                            assignee_color.forEach(element => {
+                                
+                                if (element.assignee_id===item.last_updated_by) {
+                                    user_color_find = element.assignee_color;
+                                }
+                            });
+
+                            var tmp_profile_color = "";
+                            if (user_color_find==="" || user_color_find===null) {
+                                tmp_profile_color = "#005abc";
+                            }else{
+                                tmp_profile_color=user_color_find;
+                            }
+
+
+                            var get_materics_value = get_metrics_limit_val(item.metrics);
+                            var materics_value_user_format = get_materics_userformat(item.metrics);
                             var chnage_letter_sm_up = item.user_data.fl_split;
                             element = element.add('<div id="settings_div">'
                                 +'<div class="row paddingm">'
@@ -2246,12 +2449,12 @@ function add_assignee(t) {
                                 +'<p>'+item.part_count+' Parts</p>'
                                 +'</div>'
                                 +' <div class="col-sm-1 col marleft" style="width:22%;">'
-                                +'<p>'+item.metrics+' '+item.relation+' '+item.value_val+' In Past '+item.past_hour+' Hours</p>'
+                                +'<p>'+materics_value_user_format+' '+item.relation+' '+item.value_val+' '+get_materics_value+' In Past '+item.past_hour+' Hours</p>'
                                 +'</div>'
                                 +' <div class="col-sm-1 col marleft img_div_out" style="">'
                                 +'<img src="<?php echo base_url('assets/img/mail_demo.png'); ?>" alt="" class="img_div_css" style="display:'+mail_img+'"> <img src="<?php echo base_url('assets/img/issue.png'); ?>" alt="" class="img_div_Css1" style="display:'+work_img+'"> </div>'
                                 +' <div class="col-sm-2 col marleft" style="">'
-                                +'<div class="circle_div_out" style="">'+chnage_letter_sm_up.toUpperCase()+'</div><span class="small_txt_out" style="">'+item.user_data.full_name+'</span>'
+                                +'<div class="circle_div_out" style="background:'+tmp_profile_color+';">'+chnage_letter_sm_up.toUpperCase()+'</div><span class="small_txt_out" style="">'+item.user_data.full_name+'</span>'
                                 +'</div>'
                                 +'<div class="col-sm-1 col marleft img_action_out" style="width:9%;justify-content:center;">'
                                 +'<div class="action_hover"> <img src="<?php echo base_url('assets/img/pencil.png'); ?>" alt="" class="img_action_icon edit_click" style="" data_id="'+item.alert_id+'" data_notify="'+item.notify_as+'"></div>'
@@ -2269,8 +2472,7 @@ function add_assignee(t) {
 
             },
             error:function(er){
-                console.log("alert data retrvie error");
-                console.log(er);
+              
             }
         });
     }
@@ -2281,11 +2483,12 @@ function add_assignee(t) {
         var start_index = 0;
         var end_index = 50;
         $('.pagination_onchange').val('1');
-        retrive_alert_data(start_index,end_index);
+        
         reset_filter_last_updated_by();
         reset_work_order_drp();
         reset_filter_machine_alert();
         reset_filter_part();
+        retrive_alert_data(start_index,end_index);
     }
 
     // apply filter button onclick function
@@ -2336,8 +2539,6 @@ function add_assignee(t) {
         // alert(find_tmp_index);
         var get_alert_id = $('.edit_click:eq('+find_tmp_index+')').attr('data_id');
         var get_notify = $('.edit_click:eq('+find_tmp_index+')').attr('data_notify');
-        console.log(get_alert_id);
-        console.log("alert id");
         // alert(get_alert_id);
         reset_all_input("edit");
         $.ajax({
@@ -2349,8 +2550,6 @@ function add_assignee(t) {
                 get_notify:get_notify,
             },
             success:function(res){
-                console.log("Alert settings");
-                console.log(res);
                 // alert(res);
                
                 $('#title_alert_id').text(res[0]['alert_id']);
@@ -2369,7 +2568,6 @@ function add_assignee(t) {
                 $('#edit_metrics_val_limit_txt').text(metrics_val_limit);
                 
                 if (res[0]['notify_as']==="all") {
-                    
                     checkbox_work.checked=true;
                     checkbox_email.checked=true;
                     $('#edit_alert_work_type').val(res[0]['work_type']);
@@ -2377,11 +2575,9 @@ function add_assignee(t) {
                     $('.edit_toggle_work_div').css('display','inline');
                     $('.edit_email_div_visibility').css('display','inline');
                     // var label_arr = res[0]['label_txt_arr'].split(',');
-                    // console.log(label_arr);
                     // label_get_arr(label_arr);
                     $(".lable-div-edit").empty();
                     const value_lable = res[0]['lable_id'].split(',');
-                    // console.log(value_lable);
                     value_lable.forEach(function(lable){
                         lable_list_globle.forEach(function(lable_item){
                             var itemsContainerlable = $();
@@ -2403,36 +2599,59 @@ function add_assignee(t) {
                     $('#edit_alert_deu_days').val(res[0]['deu_days']);
                     var to_email_arr = res[0]['to_email_arr'].split(',');
                     var cc_email_arr = res[0]['cc_email_arr'].split(',');
-                    console.log(to_email_arr);
-                    console.log(cc_email_arr);
                     to_email_get_arr(to_email_arr);
-                    cc_email_get_arr(cc_email_arr);
+                    if (parseInt(cc_email_arr.length)<=1) {
+                        if (cc_email_arr[0]=="empty") {
+                            document.querySelector('.edit_parent_div_input_check_cc').querySelectorAll("li").forEach(li => li.remove());
+                        }else{
+                            cc_email_get_arr(cc_email_arr);
+                        }
+                    }else{
+                        cc_email_get_arr(cc_email_arr);
+                    }
+                    
                     $('#edit_alert_mail_subject').val(res[0]['add_alert_subject']);
                     $('#edit_alert_mail_notes').val(res[0]['alert_notes']);
 
                     // assignee
                     if (res[0]['assignee']==="Unassigned") {
-                        $('#edit_assignee_val').html('<div style="float: left;width: 100%;" class="center-align">'
-                        +'<div class="circle-div-select" style="background:#7f7f7f;color:white;">'
+                        $('#edit_assignee_val').html('<div style="float: left;width: 100%;" class="d-flex">'
+                        +'<div class="circle-div-select" style="background:#005abc;color:white;margin-right:0.5rem;">'
                             +'<p class="paddingm">UA</p>'
                         +'</div>'
-                        +'<span style="color: #7f7f7f">Unassigned</span>'
+                        +'<span style="color: #7f7f7f;margin-left:0.3rem;" class="text_ellipse">Unassigned</span>'
                         +'</div>');
                         
                         $('#edit_assignee_val').attr('data-assignee-val','Unassigned');
                     }else{
-                        $('#edit_assignee_val').html('<div style="float: left;width: 100%;" class="center-align">'
-                        +'<div class="circle-div-select" style="background:#7f7f7f;color:white;">'
-                            +'<p class="paddingm">'+res[0]['user_name']['fl_split']+'</p>'
-                        +'</div>'
-                        +'<span style="color: #7f7f7f">'+res[0]['user_name']['full_name']+'</span>'
+
+                        var user_color_find = "";
+                        assignee_color.forEach(element => {
+                            
+                            if (element.assignee_id===res[0]['assignee']) {
+                                user_color_find = element.assignee_color;
+                            }
+                        });
+                        var tmp_profile_color = "";
+                        if (user_color_find==="" || user_color_find===null) {
+                            tmp_profile_color="#005abc";
+                        }else{
+                            tmp_profile_color=user_color_find;
+                        }
+                        $('#edit_assignee_val').html('<div style="float: left;width: 100%;" class="d-flex">'
+                                +'<div class="circle-div-select" style="background:'+tmp_profile_color+';color:white;">'
+                                    +'<p class="paddingm">'+res[0]['user_name']['fl_split']+'</p>'
+                                +'</div>'
+                                +'<span style="color: #7f7f7f;margin-left:0.3rem;" class="text_ellipse">'+res[0]['user_name']['full_name']+'</span>'
                         +'</div>');
                         
                         $('#edit_assignee_val').attr('data-assignee-val',res[0]['assignee']);
                     }
                     
                 }
+
                 else if(res[0]['notify_as']==="work"){
+                    
                     checkbox_work.checked=true;
                     checkbox_email.checked=false;
                     $('#edit_alert_work_type').val(res[0]['work_type']);
@@ -2446,7 +2665,6 @@ function add_assignee(t) {
 
                     $(".lable-div-edit").empty();
                     const value_lable = res[0]['lable_id'].split(',');
-                    // console.log(value_lable);
                     value_lable.forEach(function(lable){
                         lable_list_globle.forEach(function(lable_item){
                             var itemsContainerlable = $();
@@ -2467,20 +2685,34 @@ function add_assignee(t) {
 
                     // assginee
                     if (res[0]['assignee']==="Unassigned") {
-                        $('#edit_assignee_val').html('<div style="float: left;width: 100%;" class="center-align">'
-                        +'<div class="circle-div-select" style="background:#7f7f7f;color:white;">'
+                        $('#edit_assignee_val').html('<div style="float: left;width: 100%;" class="d-flex">'
+                        +'<div class="circle-div-select" style="background:#005abc;color:white;">'
                             +'<p class="paddingm">UA</p>'
                         +'</div>'
-                        +'<span style="color: #7f7f7f">Unassigned</span>'
+                        +'<span style="color: #7f7f7f;margin-left:0.3rem;" class="text_ellipse">Unassigned</span>'
                         +'</div>');
                         
                         $('#edit_assignee_val').attr('data-assignee-val','Unassigned');
                     }else{
-                        $('#edit_assignee_val').html('<div style="float: left;width: 100%;" class="center-align">'
-                        +'<div class="circle-div-select" style="background:#7f7f7f;color:white;">'
+
+                        var user_color_find = "";
+                        assignee_color.forEach(element => {
+                            
+                            if (element.assignee_id===res[0]['assignee']) {
+                                user_color_find = element.assignee_color;
+                            }
+                        });
+                        var tmp_profile_color = "";
+                        if (user_color_find==="" || user_color_find===null) {
+                            tmp_profile_color="#005abc";
+                        }else{
+                            tmp_profile_color=user_color_find;
+                        }
+                        $('#edit_assignee_val').html('<div style="float: left;width: 100%;" class="d-flex">'
+                        +'<div class="circle-div-select" style="background:'+tmp_profile_color+';color:white;">'
                             +'<p class="paddingm">'+res[0]['user_name']['fl_split']+'</p>'
                         +'</div>'
-                        +'<span style="color: #7f7f7f">'+res[0]['user_name']['full_name']+'</span>'
+                        +'<span style="color: #7f7f7f;margin-left:0.3rem;" class="text_ellipse">'+res[0]['user_name']['full_name']+'</span>'
                         +'</div>');
                         
                         $('#edit_assignee_val').attr('data-assignee-val',res[0]['assignee']);
@@ -2491,14 +2723,21 @@ function add_assignee(t) {
                     checkbox_work.checked=false;
                     $('.edit_toggle_work_div').css('display','none');
                     $('.edit_email_div_visibility').css('display','inline');
-                    console.log(res[0]['to_email_arr']);
-                    console.log(res[0]['cc_email_arr']);
                     $('#edit_alert_mail_subject').val(res[0]['add_alert_subject']);
                     $('#edit_alert_mail_notes').val(res[0]['alert_notes']);
                     var to_email_arr = res[0]['to_email_arr'].split(',');
                     var cc_email_arr = res[0]['cc_email_arr'].split(',');
                     to_email_get_arr(to_email_arr);
-                       cc_email_get_arr(cc_email_arr);
+                   
+                    if (parseInt(cc_email_arr.length)<=1) {
+                        if (cc_email_arr[0]=="empty") {
+                            document.querySelector('.edit_parent_div_input_check_cc').querySelectorAll("li").forEach(li => li.remove());
+                        }else{
+                            cc_email_get_arr(cc_email_arr);
+                        }
+                    }else{
+                        cc_email_get_arr(cc_email_arr);
+                    }
                 }
                 else{
                     checkbox_work.checked=false;
@@ -2507,6 +2746,9 @@ function add_assignee(t) {
                     $('.edit_email_div_visibility').css('display','none');
                 }
                
+                var edit_priority_name="";
+                var edit_priority_id=0;
+                $('#priority_selected_edit_id').empty();
                 if ((res[0]['priority']!=null) && (res[0]['priority']!="")) {
                     var img_drp = "";
                     var color_tmp = "";
@@ -2520,21 +2762,38 @@ function add_assignee(t) {
                         img_drp = "fa-angle-double-up";
                         color_tmp="#E4021B";
                     }
-                    $('.select_edit_priority_btn').html('<div class="select_edit_priority_option" data-type="secondOption" onclick="icon_drop_edit_priority(this)"><i class="fas '+img_drp+'" style="font: size 18px;; width:20px; margin-top: 5px; color:'+color_tmp+';"></i>&nbsp;'+res[0]['priority']+'</div>');
-                    // console.log(langArray[0]);
-                    $('.select_edit_priority_btn').attr('data-val', res[0]['priority_id']);
+
+
+                    // // edit alert dropdown this value is temporary hide
+                    // $('.select_edit_priority_btn').html('<div class="select_edit_priority_option" data-type="secondOption" onclick="icon_drop_edit_priority(this)"><i class="fas '+img_drp+'" style="font: size 18px;; width:20px; margin-top: 5px; color:'+color_tmp+';"></i>&nbsp;'+res[0]['priority']+'</div>');
+                    // $('.select_edit_priority_btn').attr('data-val', res[0]['priority_id']);
+
+                    edit_priority_name = res[0]['priority'];
+                    edit_priority_id = res[0]['priority_id'];
+                   
                 }else{
-                    $('.select_edit_priority_btn').html('<div class="select_edit_priority_option" data-type="secondOption" onclick="icon_drop_edit_priority(this)"><i class="fas fa-angle-double-down" style="font: size 18px;; width:20px; margin-top: 5px; color:#2196F3;"></i>&nbsp;Low</div>');
-                    $('.select_edit_priority_btn').attr('data-val', '0');
+                    edit_priority_name = "Low";
+                    edit_priority_id = 3;
+                        // // edit alert dropdown this value is temporary hide
+                        // $('.select_edit_priority_btn').html('<div class="select_edit_priority_option" data-type="secondOption" onclick="icon_drop_edit_priority(this)"><i class="fas fa-angle-double-down" style="font: size 18px;; width:20px; margin-top: 5px; color:#2196F3;"></i>&nbsp;Low</div>');
+                        // $('.select_edit_priority_btn').attr('data-val', '3');
                 }
 
-                $('.edit_alert_btn_submit').attr('alert_data_id',res[0]['alert_id']);
+                $('#priority_selected_edit_id').append('<div class="row_flex_img" priority-data-val-edit="'+edit_priority_id+'">'
+                    +'<i class="fa '+img_drp+' img_alignment" style="color:'+color_tmp+';"></i>'
+                    +'</div>'
+                    +'<div class="row_flex_txt d-flex flex-row justify-content-between">'
+                        +'<span>'+edit_priority_name+'</span>'
+                        +'<i class="fa fa-angle-down img_alignment" style="color: #8d8686;padding-right: 0.4rem;"></i>'
+                +'</div>');
+                $('#priority_selected_edit_id').attr('priority-data-val-edit',edit_priority_id);
 
+
+
+                $('.edit_alert_btn_submit').attr('alert_data_id',res[0]['alert_id']);               
                 $('#edit_alert').modal('show');
             },
             error:function(er){
-                console.log("Alert Settings Particular record get error");
-                console.log(res);
             }
         });
 
@@ -2575,13 +2834,11 @@ function add_assignee(t) {
         var checkbox_email = document.querySelector('#edit_email_check_toggle');
         var a = inputAlertName(alert_title);
         var b = inputAlertRateHour(alert_past_hour);
-        // console.log(alert_value);
         var c = inputAlertValue(alert_value);
         var d = inputAlertmetrics(alert_metrics);
         var e = inputAlertrelation(alert_relation);
 
         if (a!="" || b!="" || c!="" || d!="" || e!="") {
-            // console.log('for all check');
             $('#inputedit_alertNameErr').html(a);
             $('#inputAlertEditmetricserr').html(d);
             $('#inputeditAlertrelationerr').html(e);
@@ -2625,8 +2882,8 @@ function add_assignee(t) {
                 var add_alert_subject = $('#edit_alert_mail_subject').val();
                 var add_alert_notes = $('#edit_alert_mail_notes').val();
 
-                // var priority = $('.btn-select_edit .priority_txt_edit').text().toLowerCase();
-                var priority = $('.select_edit_priority_btn').attr('data-val');
+                // edit alert submission value div
+                var priority = $('#priority_selected_edit_id').attr('priority-data-val-edit');
 
                 
             }
@@ -2643,8 +2900,10 @@ function add_assignee(t) {
                 $.each(lable, function(key,valueObj){
                     lable_list.push(valueObj.getAttribute('lable_list_id'));
                 });
-                // var priority = $('.btn-select_edit .priority_txt_edit').text().toLowerCase();
-                var priority = $('.select_edit_priority_btn').attr('data-val');
+
+                // edit alert submission value div
+                var priority = $('#priority_selected_edit_id').attr('priority-data-val-edit');
+
                 var work_type = $('#edit_alert_work_type').val();
                 var work_title = $('#edit_alert_work_title').val();
                 // var assignee = $('#edit_alert_assignee').val();
@@ -2710,27 +2969,24 @@ function add_assignee(t) {
             // var m = inputAlertlabel(work_label);
             // var lae = inputlabel(add_label);
 
-
-            console.log(deu_days);
-
             // email
             var input_check_to = $('.edit_parent_div_input_check li').length;
             var input_check_cc = $('.edit_parent_div_input_check_cc li').length;
             var i = inputAlert_mail_sub(add_alert_subject);
             var j = inputAlert_email_note(add_alert_notes);
             var k = inputAlertto(input_check_to);
-            var l = inputAlertcc(input_check_cc);
+            // var l = inputAlertcc(input_check_cc);
 
             var note_error = 0; 
             if (notify_as==="all") { 
-                if (f!="" || g!="" || h!="" || i!="" || j!="" || k!="" || l!="") {
+                if (f!="" || g!="" || h!="" || i!="" || j!="" || k!="") {
                     $('#inputAlert_edit_worktypeErr').html(f);
                     $('#inputAlert_edit_worktitleErr').html(g);
                     $('#inputAlert_edit_deudaysErr').html(h);
                     $('#input_email_edit_sub_Err').html(i);
                     $('#input_email_edit_note_Err').html(j);
                     $('#input_check_to_edit_Err').html(k);
-                    $('#input_check_cc_edit_Err').html(l);
+                    // $('#input_check_cc_edit_Err').html(l);
                     // $('#label_edit_Err').html(lae);
                 }else{
                   
@@ -2738,46 +2994,40 @@ function add_assignee(t) {
                 }
             }
             else if(notify_as==="email"){
-                console.log('only for email');
-                if (i!="" || j!="" || k!="" || l!="") {
+                if (i!="" || j!="" || k!="" ) {
                     $('#input_email_edit_sub_Err').html(i);
                     $('#input_email_edit_note_Err').html(j);
                     $('#input_check_to_edit_Err').html(k);
-                    $('#input_check_cc_edit_Err').html(l);
+                    // $('#input_check_cc_edit_Err').html(l);
                 }else{
-                    console.log("email");
                     note_error = 1;
                 }
             }
             else if(notify_as==="work"){
-                console.log(h);
                 if (f!="" || g!="" || h!="") {
-                    console.log('only for work');
                     $('#inputAlert_edit_worktypeErr').html(f);
                     $('#inputAlert_edit_worktitleErr').html(g);
                     $('#inputAlert_edit_deudaysErr').html(h);
                     // $('#label_edit_Err').html(lae);
 
                 }else{
-                    console.log("email");
                     note_error = 1;
                 }
             }
 
-            console.log("edit alert modal notify as status");
-            console.log(notify_as);
-            console.log(note_error);
-            console.log("priority");
-            console.log(priority);
-            console.log(assignee);
+            // if edit time lable is empty is submission is allowed
             if (parseInt(lable_list.length)<=0) {
                 lable_list.push("empty");
             }
-            // console.log(lable_list+"...edit");
+
+            // after no cc email input fill submit empty
+            if (parseInt(cc_email_arr.length)<=0) {
+                cc_email_arr.push("empty");
+            }
+            
             // alert('ji');
            
             if (parseInt(note_error)>=1) {
-                console.log("ok");
                 $.ajax({
                     url:"<?php  echo base_url('Alert_Settings_Controller/edit_alert_submission'); ?>",
                     method:"POST",
@@ -2804,7 +3054,6 @@ function add_assignee(t) {
                         priority:priority,
                     },
                     success:function(datasss){
-                        console.log("Edit alert Settings module success ");
                         // console.log(datasss);
                         if (datasss == true) {
                             // alert('Updation SuccessFully');
@@ -2818,8 +3067,6 @@ function add_assignee(t) {
                         }
                     },
                     error:function(er){
-                        console.log("Edit alert Settings submission error");
-                        console.log(er);
                     }
                 });
             }
@@ -2855,8 +3102,6 @@ function add_assignee(t) {
                 get_id:get_id,
             },
             success:function(res){
-                console.log("Delete click function final result");
-                console.log(res);
                 if (res) {
                     // alert('Deletion Successfully');
                     var start_index = 0;
@@ -2869,132 +3114,40 @@ function add_assignee(t) {
 
             },
             error:function(er){
-                console.log("Alert Settings Delete Operation Error");
-                console.log(er);
             }
         
         })
     });
 
-
-// priority dropdown
-// for select2 priority dropdown
-var  clicks_count = 0;
-$(".selectBtn3").click(function(){
-    // console.log('selectbtn3');
-    // var class_Arr = $('.selectDropdown3').attr('class');
-    clicks_count = clicks_count+1;
-    // console.log(clicks_count);
-    if (parseInt(clicks_count)%2==0) {
-        $('.selectDropdown3').removeClass('new_4');
-        $('.email_che').removeClass('checked');
-        $('.parent_div_input_check').css('position','relative');
-        $('.to_email_label').css('display','inline');
-    }else{
-        $('.selectDropdown3').toggleClass('new_4');
-        $('.email_che').toggleClass('checked');
-        $('.parent_div_input_check').css('position','inherit');
-        $('.to_email_label').css('display','none');
-    }
-   
-});
-
-
-// edit priority dropdown
-$(".select_edit_priority_btn").click(function(){
-    // console.log('selectbtn3');
-    var class_arr = $('.email_checkeck_edit').attr('class');
-    console.log("class array");
-    console.log(class_arr);
-    var get_arr = class_arr.split(" ");
-    if (parseInt(get_arr.length)>2) {
-        // $('.select_edit_drp_priority').removeClass('select_new_edit_priority');
-        // $('.email_checkeck_edit').removeClass('checked');
-        $('.edit_email_label').css('display','inline');
-        $('.edit_parent_div_input_check').css('position','relative');
-    }else{
-      
-        $('.edit_email_label').css('display','none');
-        $('.edit_parent_div_input_check').css('position','inherit');
-    }
-    $('.select_edit_drp_priority').toggleClass('select_new_edit_priority');
-    $('.email_checkeck_edit').toggleClass('checked');
-  
-    // $('.edit_email_label').css('display','none');
-    // $('.edit_parent_div_input_check').css('position','inherit');
-
-});
-
-
-
-
-// priority dropdown
-function icon_drop(elem){
-    // console.log('icons');
-    // console.log(elem);
-    var das = $(elem).html();
-    $(".selectBtn3").html(das);
-    var tmp_arr = das.split('&nbsp;')
-    // console.log(tmp_arr[1]);
-    if (tmp_arr[1]==="Low") {
-        $('.selectBtn3').attr('data-val','1');
-    }
-    else if(tmp_arr[1]==="Medium"){
-        $('.selectBtn3').attr('data-val','2');
-    }
-    else if(tmp_arr[1]==="High"){
-        $('.selectBtn3').attr('data-val','3');
-    }
-    $('.selectDropdown3').toggleClass('new_4');
-    $('.email_che').toggleClass('checked');
-    $('.parent_div_input_check').css('position','relative');
-    $('.to_email_label').css('display','inline');
-}
-
-// edit priority dropdown
-function icon_drop_edit_priority(elem){
-    // console.log('icons');
-    // console.log(elem);
-    var das = $(elem).html();
-    $(".select_edit_priority_btn").html(das);
-    var tmp_arr = das.split('&nbsp;')
-    // console.log(tmp_arr[1]);
-    if (tmp_arr[1]==="Low") {
-        $('.select_edit_priority_btn').attr('data-val','3');
-    }
-    else if(tmp_arr[1]==="Medium"){
-        $('.select_edit_priority_btn').attr('data-val','2');
-    }
-    else if(tmp_arr[1]==="High"){
-        $('.select_edit_priority_btn').attr('data-val','1');
-    }
-    $('.select_edit_drp_priority').toggleClass('select_new_edit_priority');
-    $('.email_checkeck_edit').toggleClass('checked');
-    $('.edit_email_label').css('display','inline');
-    $('.edit_parent_div_input_check').css('position','relative');
-
-}
-
 // onclick assignee
 
 $(document).on('click','.inbox_assignee',function(event){
     var index = $('.inbox_assignee').index(this);
-    // console.log("check box index");
-    // console.log(index);
     $('.inbox_assignee').children("input[name=assignee_val]").attr('checked', false);
     $('.inbox_assignee:eq('+index+')').children("input[name=assignee_val]").attr('checked', true);
 
     var tmpassignee_id = $('.inbox_assignee:eq('+index+')').attr('data-assignee-val');
+    var user_color_find="";
+    assignee_color.forEach(element => {
+        if (element.assignee_id===tmpassignee_id) {
+            user_color_find = element.assignee_color;
+        }
+    });
+    var final_color = "";
+    if (user_color_find==="" || user_color_find===null) {
+        final_color ="#005abc";
+    }else{
+        final_color=user_color_find;
+    }
     // $('#assignee_val').empty();
-    $('#assignee_val').html('<div style="float: left;width: 100%;" class="center-align">'
-        +'<div class="circle-div-select" style="background:#7f7f7f;color:white;">'
+    $('#assignee_val').html('<div style="float: left;width: 100%;" class="d-flex">'
+        +'<div class="circle-div-select" style="background:'+final_color+';color:white;">'
             +'<p class="paddingm">'+$('.inbox_assignee:eq('+index+')').children('.circle-div-root').children('.circle-div').children('p').text()+'</p>'
         +'</div>'
-        +'<span style="color: #7f7f7f">'+$('.inbox_assignee:eq('+index+')').children('.assignee_name_class').children('p').text()+'</span>'
-        +'</div>');
-        // console.log("assignee");
-        // console.log(tmpassignee_id);
+        +'<span style="color: #7f7f7f;margin-left:0.3rem;" class="text_ellipse">'+$('.inbox_assignee:eq('+index+')').children('.assignee_name_class').children('p').text()+'</span>'
+    +'</div>');
     $('#assignee_val').attr('data-assignee-val',tmpassignee_id);
+    
 });
 
 
@@ -3002,19 +3155,29 @@ $(document).on('click','.inbox_assignee',function(event){
 
 $(document).on('click','.inbox_edit_assignee',function(event){
     var index = $('.inbox_edit_assignee').index(this);
-    // console.log("check box index");
-    // console.log(index);
     $('.inbox_edit_assignee').children("input[name=assignee_val]").attr('checked', false);
     $('.inbox_edit_assignee:eq('+index+')').children("input[name=assignee_val]").attr('checked', true);
 
     var tmpassignee_id = $('.inbox_edit_assignee:eq('+index+')').attr('data-assignee-val');
+    var user_color_find="";
+    assignee_color.forEach(element => {
+        if (element.assignee_id===tmpassignee_id) {
+            user_color_find = element.assignee_color;
+        }
+    });
+    var final_color = "";
+    if (user_color_find==="" || user_color_find===null) {
+        final_color ="#005abc";
+    }else{
+        final_color=user_color_find;
+    }
     $('#edit_assignee_val').empty();
-    $('#edit_assignee_val').html('<div style="float: left;width: 100%;" class="center-align">'
-        +'<div class="circle-div-select" style="background:#7f7f7f;color:white;">'
+    $('#edit_assignee_val').html('<div style="float: left;width: 100%;" class="d-flex">'
+        +'<div class="circle-div-select" style="background:'+final_color+';color:white;">'
             +'<p class="paddingm">'+$('.inbox_edit_assignee:eq('+index+')').children('.circle-div-root').children('.circle-div').children('p').text()+'</p>'
         +'</div>'
-        +'<span style="color: #7f7f7f">'+$('.inbox_edit_assignee:eq('+index+')').children('.assignee_name_class').children('p').text()+'</span>'
-        +'</div>');
+        +'<span style="color: #7f7f7f;margin-left:0.3rem;" class="text_ellipse">'+$('.inbox_edit_assignee:eq('+index+')').children('.assignee_name_class').children('p').text()+'</span>'
+    +'</div>');
         
     $('#edit_assignee_val').attr('data-assignee-val',tmpassignee_id);
 });
@@ -3098,7 +3261,6 @@ function callALL(){
     getLableList();
 }
 function getLableID(item,value){
-    console.log('id'+value);
     $.ajax({
         url:"<?php echo base_url('Alert_Settings_Controller/getLableID') ?>",
         method:"POST",
@@ -3119,7 +3281,6 @@ function getLableID(item,value){
     });
 }
 function getLableList(){
-    console.log('Value');
     $.ajax({
         url:"<?php echo base_url('Alert_Settings_Controller/getLable') ?>",
         method:"POST",
@@ -3260,8 +3421,16 @@ function reset_all_input(data_txt){
         $('#email_check_toggle').prop('checked',false);
         $('#add_alert_work_type').val('');
         $('#add_alert_work_title').val('');
-        $('.selectBtn3').html('<div class="selectBtn3 priority_get_data_add" data-type="firstOption"> <i class="fas fa-angle-double-down" style="font: size 18px; width:18px; color: #2196F3; margin-top: 5px;"></i>&nbsp;Low</div>');
-        $('.selectBtn3').attr('data-val', '0');
+        $('#priority_selected_id').empty();
+        $('#priority_selected_id').append('<div class="row_flex_img" priority-data-val="3">'
+                    +'<i class="fa fa-angle-double-down img_alignment" style="color:#2196F3;"></i>'
+                    +'</div>'
+                    +'<div class="row_flex_txt d-flex flex-row justify-content-between">'
+                        +'<span>Low</span>'
+                        +'<i class="fa fa-angle-down img_alignment" style="color: #8d8686;padding-right: 0.4rem;"></i>'
+                +'</div>');
+        $('#priority_selected_id').attr('priority-data-val',3);
+       
         $('.lable-div-add').empty();
         $('#add_alert_deu_days').val('');
         $('#assignee_val').text('Unassigned');
@@ -3299,9 +3468,19 @@ function reset_all_input(data_txt){
         $('#edit_email_check_toggle').prop('checked',false);
         $('#edit_alert_work_type').val('');
         $('#edit_alert_work_title').val('');
-        // $('.select_edit_priority_btn ').val('');
-        $('.select_edit_priority_btn').html('<div class="select_edit_priority_option" data-type="secondOption" onclick="icon_drop_edit_priority(this)"><i class="fas fa-angle-double-down" style="font: size 18px;; width:20px; margin-top: 5px; color:#2196F3;"></i>&nbsp;Low</div>');
-        $('.select_edit_priority_btn').attr('data-val', '0');
+
+      
+        $('#priority_selected_edit_id').empty();
+        $('#priority_selected_edit_id').append('<div class="row_flex_img" priority-data-val-edit="3">'
+                +'<i class="fa fa-angle-double-down  img_alignment" style="color:#2196F3;"></i>'
+            +'</div>'
+            +'<div class="row_flex_txt d-flex flex-row justify-content-between">'
+                +'<span>Low</span>'
+                +'<i class="fa fa-angle-down img_alignment" style="color: #8d8686;padding-right: 0.4rem;"></i>'
+            +'</div>');
+        $('#priority_selected_edit_id').attr('priority-data-val-edit',3);
+
+       
         $('.lable-div-edit').empty();
         $('#edit_assignee_val').text('Unassigned');
         $('#edit_alert_deu_days').val('');
@@ -3324,12 +3503,7 @@ function reset_all_input(data_txt){
         $('#input_check_cc_edit_Err').text('');
         $('#input_email_edit_sub_Err').text('');
         $('#input_email_edit_note_Err').text('');
-
-
     }
-
-
-
 }
 
 </script>

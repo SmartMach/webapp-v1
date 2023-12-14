@@ -526,7 +526,7 @@
                     <?php if ($this->data['access'][0]['work_order_management']  >=1) {?>
                     <li class="side-menu-li po_relative display_f justify_c align_c mr_right_side_nav">
                         <a href="<?php echo base_url('Home/load_option/Work_Order_Management'); ?>" class="po_relative side-menu-element none_dec display_b">
-                            <img src="<?php echo base_url()?>/assets/icons/nav_icon_issue.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-alert nav-icon nav-icon-hover" dvalue="Work">
+                            <img src="<?php echo base_url()?>/assets/icons/nav_icon_issue.png?version=<?php echo rand() ; ?>" class="icons-side-nav fa-work nav-icon nav-icon-hover" dvalue="Work">
                         </a>
                         <ul class="side-nav-hover-content po_absolute paddingm">
                             <nav class="hover_elem_height display_f align_c">
@@ -627,7 +627,6 @@
             else{
                 listIcons[i].style = "background-color:#005abc;color:white;font-size:29px;padding:9px;";
             }
-
             listIcons[i].setAttribute('src', '<?php echo base_url()?>/assets/icons/'+img_side_name+'.png?version=<?php echo rand() ; ?>');
         }
       }
@@ -657,6 +656,7 @@
 
             listSubMenu[i].style = "color:#005abc;font-weight:bold";
             subicon[i].style = "color:#005abc;font-weight:bold;padding-left:0px;fonst-size:1rem;";
+          
             subicon[i].setAttribute('src', '<?php echo base_url()?>/assets/icons/'+img_name+'.png?version=<?php echo rand() ; ?>');
             if (y == "Users") {
                 $('.site_based_header_visibility').css("display","none");   
@@ -696,13 +696,10 @@ var site_id = "<?php echo($this->data['user_details'][0]['site_id']); ?>";
                         UserRoleRef:UserRoleRef,
                     },
                     success:function(res_Site){
-                        console.log('sites'+res_Site);
                         <?php 
                             $session = \Config\Services::session();
                         ?>
                         var active_Site = "<?php echo $session->get('active_site'); ?>";
-                        // if (active_Site == " ") {
-                        //     console.log(res_Site[0].site_id);
                             
                             var elements = $('');
 
@@ -718,7 +715,6 @@ var site_id = "<?php echo($this->data['user_details'][0]['site_id']); ?>";
                                     $('#site_id').append(elements);
                                     site_load_fun();
                                 }else if(active_Site.length > 0){
-                                    console.log("ok its selected");
                                     if (item.site_id.localeCompare(active_Site) == 0) {
                                         //  elements = elements.add('<option value="'+item.site_id+'" selected="true" disabled="true">'+item.site_name+'-'+item.site_id+'</option>');
                                     }else{
@@ -733,7 +729,6 @@ var site_id = "<?php echo($this->data['user_details'][0]['site_id']); ?>";
                         // }else{
                         //     var elements = $('');
                         //     res_Site.forEach(function(item){
-                        //         console.log(active_Site);
                         //         if (item.site_id.localeCompare(active_Site) == 0) {
                         //             elements = elements.add('<option value="'+item.site_id+'" selected="true" disabled="true">'+item.site_name+' -'+item.site_id+'</option>');
  
@@ -770,7 +765,6 @@ var site_id = "<?php echo($this->data['user_details'][0]['site_id']); ?>";
                     //location.reload();
                 },
                 error:function(err){
-                    console.log(err);
                 }
             }); 
             var elements = $('<option value="'+site_id+'" selected="true" disbled="true">'+site_id+'</option>');
@@ -788,8 +782,6 @@ var site_id = "<?php echo($this->data['user_details'][0]['site_id']); ?>";
     //     var site_id_arr = $('#site_id').val();
     //     var site_id = site_id_arr.split("-");
     //    //alert(site_id);
-    //    console.log("site arrya");
-    //    console.log(site_id_arr);
     //     $.ajax({
     //         url:"<?php echo base_url('Home/session_get_fun');  ?>",
     //         type:"POST",
@@ -804,7 +796,6 @@ var site_id = "<?php echo($this->data['user_details'][0]['site_id']); ?>";
     //             location.reload();
     //         },
     //         error:function(err){
-    //             console.log(err);
     //         }
     //     }); 
        
@@ -814,8 +805,6 @@ var site_id = "<?php echo($this->data['user_details'][0]['site_id']); ?>";
     function site_load_fun(){
         var site_id_arr = $('#site_id').val();
         var site_id = site_id_arr.split("-");
-        console.log("site arrya");
-        console.log(site_id_arr);
         $.ajax({
             url:"<?php echo base_url('Home/session_get_fun');  ?>",
             type:"POST",
@@ -830,7 +819,6 @@ var site_id = "<?php echo($this->data['user_details'][0]['site_id']); ?>";
                 location.reload();
             },
             error:function(err){
-                console.log(err);
             }
         }); 
        
@@ -848,6 +836,7 @@ $(document).ready(function(){
     var lname = "<?php echo $this->data['user_details'][0]['last_name'] ?>";
     var role = "<?php echo $this->data['user_details'][0]['role'] ?>";
 
+    var user_profile_color_code = "<?php echo $this->data['user_details'][0]['user_profile'] ?>";
 
     var first_letter = fname.charAt(0).toUpperCase();
     var last_letter = lname.charAt(0).toUpperCase();
@@ -855,15 +844,20 @@ $(document).ready(function(){
     $('#short_name').html(first_letter+''+last_letter);
     var char_leng = fname+' '+lname;
     var len_char = char_leng.length;
-    console.log("text length:\t"+len_char);
     // $('.tooltiptext').css("max-width",len_char+"rem");
     $('#full_name').html(char_leng);
     $('#full_name').css("text-overflow","ellipsis");
     $('#role_display').html(role);
 
     // info circle random colors circle colors alignment
-    var info_color = ["#005bbc","#ff3399","#70ad47","#7c68ee","#d60700","#827718","#bd02d6","#fcba03","#fc6f03","#6bfc03"];
-    var random_info_color = info_color[Math.floor(Math.random()*info_color.length)];
+    var info_color = ["#005ABC"];
+    var random_info_color = "";
+    if (user_profile_color_code==="" || user_profile_color_code===null) {
+        random_info_color = info_color[0];
+    }else{
+        random_info_color = user_profile_color_code;
+    }
+    // var random_info_color = info_color[Math.floor(Math.random()*info_color.length)];
     $('#info_circle_color').css("background-color",random_info_color);
     $('.circle_div').css("background-color",random_info_color);
     $('#get_text_info').html(first_letter+''+last_letter);

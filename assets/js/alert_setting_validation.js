@@ -341,8 +341,17 @@ $('#work_check_toggle').on('change',function(){
 	$('#inputlabelErr').html('');
 	$('#inputAlertdeudaysErr').html('');
    $("#input_toggle_Err").html(x);
-   $(".selectBtn3").html('<div class="option3" data-type="firstOption" onclick="icon_drop(this)" ><i class="fas fa-angle-double-down" style="font: size 18px; width:18px; color: #2196F3; margin-top: 5px;"></i>&nbsp;Low</div>');
-
+   $('#priority_selected_id').empty();
+   $('#priority_selected_id').append('<div class="row_flex_img" priority-data-val="3">'
+			   +'<i class="fa fa-angle-double-down img_alignment" style="color:#2196F3;"></i>'
+			   +'</div>'
+			   +'<div class="row_flex_txt d-flex flex-row justify-content-between">'
+				   +'<span>Low</span>'
+				   +'<i class="fa fa-angle-down img_alignment" style="color: #8d8686;padding-right: 0.4rem;"></i>'
+		   +'</div>');
+   $('#priority_selected_id').attr('priority-data-val',3);
+  
+   $('.lable-div-add').empty();
 
 });
 
@@ -355,7 +364,7 @@ $('#email_check_toggle').on('change',function(){
 	$('#add_alert_mail_subject').val('');
 	$('#add_alert_mail_notes').val('');	
 	$('#input_check_to_Err').html('');
-	$('#input_check_cc_Err').html('');
+	// $('#input_check_cc_Err').html('');
 	$('#input_email_sub_Err').html('');
 	$('#input_email_note_Err').html('');
    $("#input_toggle_Err").html(x);
@@ -425,11 +434,12 @@ $("#input_check_to").on('blur',function(){
 	$("#input_check_to_Err").html(x);
 });
 
-$("#input_check_cc").on('blur',function(){
-	var length_cc = $('.parent_div_input_check_cc li').length;
-	var x = inputAlertcc(length_cc);
-	$("#input_check_cc_Err").html(x);
-});
+// its temporary hide for madhan sir instruction
+// $("#input_check_cc").on('blur',function(){
+// 	var length_cc = $('.parent_div_input_check_cc li').length;
+// 	var x = inputAlertcc(length_cc);
+// 	$("#input_check_cc_Err").html(x);
+// });
 
 $("#add_alert_mail_subject").on('blur',function(){
 	var x = inputAlert_mail_sub($("#add_alert_mail_subject").val());
@@ -546,7 +556,7 @@ $('#edit_alert_past_hour').on('blur',function(){
 $('#work_edit_check_toggle').on('change',function(){
     // var x =input_work_edit_check($("#work_edit_check_toggle").val());
 	var x =input_work_edit_check($("#work_edit_check_toggle").val());
-	$('#edit_alert_work_type').val('');
+	$('#edit_alert_work_type').val(' ');
 	$('#edit_alert_work_title').val('');
 	$('#edit_input_check_label').val('');
 	$('.label_input_tags_txt_edit').remove();
@@ -557,6 +567,19 @@ $('#work_edit_check_toggle').on('change',function(){
 	$('#inputlabel_edit_Err').html('');
 	$('#inputAlert_edit_deudaysErr').html('');
    	$("#input_edit_toggle_Err").html(x);
+	// priority dropdown
+	$('.lable-div-edit').empty();
+	$('#edit_assignee_val').text('Unassigned');
+	$('#priority_selected_edit_id').empty();
+    $('#priority_selected_edit_id').append('<div class="row_flex_img" priority-data-val-edit="3">'
+                +'<i class="fa fa-angle-double-down  img_alignment" style="color:#2196F3;"></i>'
+            +'</div>'
+            +'<div class="row_flex_txt d-flex flex-row justify-content-between">'
+                +'<span>Low</span>'
+                +'<i class="fa fa-angle-down img_alignment" style="color: #8d8686;padding-right: 0.4rem;"></i>'
+            +'</div>');
+    $('#priority_selected_edit_id').attr('priority-data-val-edit',3);
+
 	
 //    $("#input_edit_toggle_Err").html(x);
 });
@@ -573,7 +596,7 @@ $('#edit_email_check_toggle').on('change',function(){
 	$('#input_email_edit_sub_Err').html('');
 	$('#input_email_edit_note_Err').html('');
 	$('#input_check_to_edit_Err').html('');
-	$('#input_check_cc_edit_Err').html('');
+	// $('#input_check_cc_edit_Err').html('');
    $("#input_edit_toggle_Err").html(x);
 
 //     var x =input_work_edit_check($("#edit_email_check_toggle").val());
@@ -599,12 +622,14 @@ $(".input_check_to_edit").on('blur',function(){
 	$("#input_check_to_edit_Err").html(x);
 });
 
-$(".input_check_cc_edit").on('blur',function(){
-	// console.log('edit_to');
-	var length_cc = $('.edit_parent_div_input_check_cc li').length;
-	var x = inputAlertcc(length_cc);
-	$("#input_check_cc_edit_Err").html(x);
-});
+// this cc email function is temporary hide as per the madhan sir instruction
+
+// $(".input_check_cc_edit").on('blur',function(){
+// 	// console.log('edit_to');
+// 	var length_cc = $('.edit_parent_div_input_check_cc li').length;
+// 	var x = inputAlertcc(length_cc);
+// 	$("#input_check_cc_edit_Err").html(x);
+// });
 
 $("#edit_alert_mail_subject").on('blur',function(){
 	var x = inputAlert_mail_sub($("#edit_alert_mail_subject").val());

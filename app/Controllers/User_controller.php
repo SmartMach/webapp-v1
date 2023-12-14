@@ -208,6 +208,7 @@ class User_controller extends BaseController
                 $user['site_id'] = $this->request->getVar('User_Site_Name');
                 $user['status'] = "1";
                 $user['last_updated_by'] = $this->request->getVar('User_Ref');
+                $user['user_profile'] = $this->request->getVar('user_color_code');
                 
                 $user_credintials['user_id'] = $user['user_id'];
                 $user_credintials['created_by'] = $this->request->getVar('User_Ref');
@@ -276,7 +277,8 @@ class User_controller extends BaseController
                     $user['site_id'] = $site_base['site_id'];
                     $user['status'] = "1";
                     $user['last_updated_by'] = $this->request->getVar('User_Ref');
-                
+                    $user['user_profile'] = $this->request->getVar('user_color_code');
+                    
                     $user_credintials['user_id'] = $user['user_id'];
                     $user_credintials['created_by'] = $this->request->getVar('User_Ref');
                     $user_credintials['created_on'] = date('Y-m-d');
@@ -337,10 +339,12 @@ class User_controller extends BaseController
                 $op_data['department'] = $this->request->getVar('User_Department');
                 $op_data['role'] = $this->request->getVar('Role');
                 $op_data['site_id'] = $this->request->getVar('User_Site_ID');
+
                // $op_data['Password'] = $this->request->getVar('User_Phone');
                 //$update['IsPasswordChecked'] = "0";
                 $op_data['status'] = "1";
                 $op_data['last_updated_by'] = $this->request->getVar('user_id');
+                $op_data['user_profile'] = $this->request->getVar('user_color_code');
 
                 $op_credintials['user_id'] = $op_data['user_id'];
                 $op_credintials['created_by'] = $this->request->getVar('user_id');

@@ -20,7 +20,6 @@ class Current_Shift_Performance_Model extends Model{
                     'hostname' => 'localhost',
                     'username' => 'root',
                     'password' => 'quantanics123',
-                    //'database' => 'S1001',
                     'database' => ''.$db_name.'',
                     'DBDriver' => 'MySQLi',
                     'DBPrefix' => '',

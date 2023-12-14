@@ -357,6 +357,7 @@ input[type=number] {
   .filter_selectBox select {
     width: 100%;
     font-weight: bold;
+    background-color:white;
   }
 
   
@@ -366,6 +367,7 @@ input[type=number] {
     right: 0;
     top: 0;
     bottom: 0;
+   
   }
 
   
@@ -440,6 +442,7 @@ input[type=number] {
   .filter_selectBox_reason select{
     width: 100%;
     font-weight: bold;
+    background:white;
   }
   .filter_overSelect_reason{
     position: absolute;
@@ -594,7 +597,7 @@ input[type=number] {
               <div class="input-box">
                   <select class="form-select font_weight select_input_width input_padd" name="" id="Production_MachineName" style="width: 10rem;padding-right:1.8rem;">
                   </select>
-                  <label for="inputSiteNameAdd" class="input-padding ">Machine Name</label>
+                  <label for="inputSiteNameAdd" class="input-padding ">Machines</label>
               </div>
             </div>
             <div class="box display_f align_c" style="margin-right: 0.5rem;">
@@ -607,7 +610,7 @@ input[type=number] {
               <div class="input-box">
                   <select class="form-select select_input_width input_padd font_weight" name="" id="RejectShift" style="width: 10rem;">
                   </select>
-                  <label for="inputSiteNameAdd" class="input-padding ">Shift</label>
+                  <label for="inputSiteNameAdd" class="input-padding ">Shifts</label>
               </div>
             </div>
                  
@@ -649,7 +652,7 @@ input[type=number] {
                 </div>
               </div> -->
               <div class="box rightmar" style="margin-right: 0.5rem;">
-                <label class="multi_select_label" style="">Reason</label>
+                <label class="multi_select_label" style="">Reasons</label>
                 <div class="filter_selectBox_reason" onclick="reason_multi_drp()">
                   <select  class="multi_select_drp" style="">
                     <option style="text-align:center;" id="text_reason">All Reasons</option>
@@ -680,7 +683,7 @@ input[type=number] {
                 </div>
               </div> -->
               <div class="box rightmar" style="margin-right: 0.5rem;" >
-                <label class="multi_select_label" style="">Category</label>
+                <label class="multi_select_label" style="">Categories</label>
                 <div class="filter_selectBox" onclick="category_drp()">
                   <select  class="multi_select_drp" style="" >
                     <option id="text_category_drp" style="text-align:center;">All Categories</option>
@@ -1189,7 +1192,6 @@ function category_drp() {
 var checkboxes = document.getElementsByClassName("filter_checkboxes");
 if (!filter_expanded) {
     // checkboxes.style.display = "block";
-    console.log("just click");
     $('.filter_checkboxes').css("display","block");
     filter_expanded = true;
 } else  {
@@ -1202,8 +1204,6 @@ if (!filter_expanded) {
     }else{
       category_drp = category_arr_drp_tmp[0];
     }
-    // console.log("after select category dropdwon");
-    console.log("category_drp");
     downtime_reason_filter(category_drp);
     $('#text_reason').text('All Reasons');
     $('.filter_checkboxes').css("display","none");
@@ -1219,7 +1219,6 @@ function reason_multi_drp(){
   if (!reason_expand) {
       // checkboxes.style.display = "block";
     
-      // console.log(category_drp);
       $('.filter_checkboxes_reason').css("display","block");
       reason_expand = true;
   } else {
@@ -1237,8 +1236,6 @@ $(document).on('change','#start_time_till',function(event){
   if (start_time_til != null || start_time_til !="") {
     var start_time_start = $('#start_time_from').val();
     if ((start_time_start !=null) && (start_time_start!="") ){
-      // console.log(start_time_start);
-      // console.log(start_time_til); 
       $('#apply_filter_btn').css("color","white");
       $('#apply_filter_btn').css("background-color","#005abc");
       $('#apply_filter_btn').css("opacity","1");
@@ -1254,8 +1251,6 @@ $(document).on('change','#start_time_from',function(event){
   if (start_time_from !=null || start_time_from !="") {
     var start_time_till = $('#start_time_till').val();
     if ((start_time_till !=null) && (start_time_till !="")) {
-      // console.log(start_time_from);
-      // console.log(start_time_till);
       $('#apply_filter_btn').css("color","white");
       $('#apply_filter_btn').css("background-color","#005abc");
       $('#apply_filter_btn').css("opacity","1");
@@ -1270,8 +1265,6 @@ $(document).on('click','.reset_img',function(event){
   $('.split_input').empty();
   var stime = $('#shift_start_time_label').text();
   var etime = $('#shift_end_time_label').text();
-  // console.log("end time start time");
-  // console.log(stime);
   $('#start_time_from').val(stime);
   $('#start_time_till').val(etime);
   // $('#bulg_drp_category').val('');
@@ -1294,13 +1287,10 @@ function downtime_reason_filter(category_temp){
       method:"POST",
       dataType:"json",
       success:function(res){
-        // console.log("reason dropdwon");
-        // console.log(res);
 
         var element = $();
         $('.filter_checkboxes_reason').append('<div class="filter_check_reason" style=""><div class="reason_drp_check" style=""><input type="checkbox" id="one" class="reason_drp_checkbox" value="all_reason"/></div><div class="reason_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
         res.forEach(function(item){
-          // console.log(item.downtime_reason_id);
           if (item.downtime_reason==="Tool Changeover") {
             
           }else{
@@ -1314,14 +1304,11 @@ function downtime_reason_filter(category_temp){
         reset_downtime_reasons();
       },
       error:function(err){
-        console.log(err);
       },
     });
   }
   else if(category_temp!=null){
     // selected_cate_reasons(cate_arr[0]);
-    // console.log("ok");
-    // console.log(category_temp);
     category_based_reson(category_temp);
   }
 
@@ -1343,23 +1330,6 @@ function getcategory_arr(){
 
 }
 
-// after change category update the downtime reason dropdwon
-/* this function not now
-function after_cate(){
-  alert('ji');
-  var category_drp = "";
-  var category_arr_drp_tmp = getcategory_arr();
-  var cate_leng = category_arr_drp_tmp.length;
-  if (parseInt(cate_leng)>2) {
-    category_drp = null;
-  }else{
-    category_drp = category_arr_drp_tmp[0];
-  }
-  console.log("after select category dropdwon");
-  console.log(category_drp);
-  downtime_reason_filter(category_drp);
-}
-*/
 
 // get filter reason array
 function getreason_arr(){
@@ -1389,8 +1359,6 @@ function filter_btn_call(){
         category_drp = category_arr[0];
       }
 
-      // console.log(category_arr);
-      // console.log(category_drp);
       // var reason_drp = $('#bulgedit_downtime_reason_drp').val();
       // reason dropdown
       var reason_drp = "";
@@ -1401,16 +1369,12 @@ function filter_btn_call(){
       }else if(parseInt(reason_arr.length)>0) {
         reason_drp = reason_arr
       }
-      // console.log(category_drp);
-      // console.log("Reason Array");
-      // console.log(reason_drp);
       var machine_id = $('#Production_MachineName').val();
       var sdate = $('#Production_shift_date').val();
       var sid = $('#RejectShift').val();
       var shift_id = sid.split('0');
       const tmp_sdate = sdate.split("-");
       var sdate_tmp = tmp_sdate[0]+'-'+tmp_sdate[1]+'-'+tmp_sdate[2];
-      console.log(tmp_sdate);
       // alert(shift_id);
       // alert(reason_drp);
       // alert(start_time_from);
@@ -1430,13 +1394,9 @@ function filter_btn_call(){
           sid:shift_id[0],
         },
         success:function(res){
-          console.log("apply filter");
-          console.log(res);
           if (parseInt(res.length)>0) {
             var z=0;
             res.forEach(function(item){
-              // console.log(item.start_time);
-
 
               data_time.push(item.start_time);
               data_time.push(item.end_time);
@@ -1462,14 +1422,12 @@ function filter_btn_call(){
             
             });
           }else{
-            // console.log("No Records Found!!!");
             $('.split_input').html('<p class="no_record">No Records Found!!</p>');
           }
          
           $("#overlay").fadeOut(300);
         },
         error:function(err){
-          console.log(er);
           // alert('Sorry Try Again');
           $("#overlay").fadeOut(300);
         }
@@ -1481,7 +1439,6 @@ function filter_btn_call(){
 // apply filter submission button
 $(document).on('click','#apply_filter_btn',function(event){
     event.preventDefault();
-    console.log("filter button");
     $("#overlay").fadeIn(300);
    
     // $('.ndelete').css('display','none');
@@ -1503,13 +1460,11 @@ $(document).on('change','.select_item',function(event){
     
   
     for(var i=0;i<parseInt(count_len);i++){
-      // console.log(checkbox[i].checked);
       if (checkbox[i].checked === true) {
         count = parseInt(count)+1;
       }
     }
     if (parseInt(count)>0) {
-      // console.log("one then more checkbxes selected"+count);
       bulg_edit_dropdown();
       $('.filter').css("display","none");
       $('.bulg_edit_ui').css("display","inline");
@@ -1542,7 +1497,6 @@ $(document).on('change','.select_item',function(event){
       }
 
     }else{
-      // console.log("no checkboxes selected"+count);
       $('.filter').css("display","inline");
       $('#bulg_edit_drp').val('');
       $('#bulg_edit_category_drp').val('');
@@ -1652,11 +1606,6 @@ $(document).on('click','.bulg_edit_submit',function(event){
       }
 
       // display selected records
-      // console.log("after click bulg edit submission");
-      // console.log(start_time_arr);
-      // console.log(end_time_arr);
-      // console.log(machine_event_id_arr);
-      // console.log(split_id_arr);
 
       var tmp_sid = sid[0];
       var sdate_tmp = sdate[0]+'-'+sdate[1]+'-'+sdate[2];
@@ -1678,7 +1627,6 @@ $(document).on('click','.bulg_edit_submit',function(event){
 
         },
         success:function(res){
-          // console.log(res);
           if (res == true) {
             // $('#bulg_edit_category_drp').val('');
             // $('#bulg_edit_drp').val('');
@@ -1707,7 +1655,6 @@ $(document).on('click','.bulg_edit_submit',function(event){
           $("#overlay").fadeOut(300);
         },
         error:function(err){
-          console.log(err);
           // alert("Sorry Try Again");
           $("#overlay").fadeOut(300);
         },
@@ -1785,7 +1732,6 @@ function getpartnames_graph(tmp_part_id_arr){
   
       for(let j=0;j<parseInt(down_part.length)/2;j++){
         if (part_id_a[i] === down_part[2*j]) {
-          // console.log("matched part_id:\t"+part_id_a[i]+down_part[2*j])
             partname_arr.push(" "+down_part[(2*j)+1]);
         }
       }
@@ -1799,7 +1745,6 @@ function getpartnames_graph(tmp_part_id_arr){
   
         for(let j=0;j<parseInt(down_part.length)/2;j++){
           if (part_id_a[i] === down_part[2*j]) {
-            // console.log("matched part_id:\t"+part_id_a[i]+down_part[2*j])
               partname_arr.push(" "+down_part[(2*j)+1]);
           }
         }
@@ -1808,8 +1753,6 @@ function getpartnames_graph(tmp_part_id_arr){
     }
   }
   
-
-  // console.log(partname_arr);
   return partname_arr.toString();
 }
 
@@ -2261,7 +2204,6 @@ $(document).on("click", ".deleteRec", function(){
       var id = 0;
       $('.DownReason:eq('+index_value+')').empty();
       target_input_function_handle("remove",0);
-      // console.log(down_reason_collection);
       down_reason_collection.forEach(function(item){
         if (val == item[1]) {
           id = item[0]; 
@@ -2345,9 +2287,6 @@ $(document).on("click", ".deleteRec", function(){
       var elements = $();
       $('.checkboxes:eq('+index_value+')').empty();
       part_collection.forEach(function(item){
-        // console.log("indexing part :\t"+index);
-        // console.log("parts collection");
-        // console.log(part_collection);
         if (index == item[2]) {
           elements = elements.add('<div class="option_multi"><div class="multi-check "><input type="checkbox" id="one" value="'+item[0]+'" name="multi_part[]" class="checkboxIn" checked="true"></div><div class="multi-lable check_dis "><span>'+item[1]+'-'+item[0]+'</span></div></div>');
 
@@ -2384,10 +2323,6 @@ $(document).on("click", ".deleteRec", function(){
       $('.display_parts:eq('+index+')').html(part_arr.length+' Selected');
       
       $('.PartNameValue:eq('+index+')').text(part_arr.toString());
-
-      // console.log(part_arr);
-     
-
         
       // for (var i = 0; i < (down_part.length)/2; i++) {
       //   var x = document.getElementsByClassName('checkboxes')[m].getAttribute("pval");
@@ -2456,8 +2391,7 @@ $(document).on("click", ".deleteRec", function(){
     }
     else{
       var notes_mapped = "notes.png";
-    }
-    console.log("downtime function opened");    
+    }   
     // var last_updated_name = getlast_updated_name(last_updated_by);
    var cal_count = 1;
     $( ".split_input" ).append('<div id="settings_div" class="rowData">'
@@ -2788,9 +2722,6 @@ function getDownTimeGraph(){
                       click:function(event, chartContext, config){
                         target_input_function_handle("remove",0);
                         var l_l = config.globals.series.length;
-                        console.log("downtime click1");
-                        console.log(config.seriesIndex);
-                        console.log(l_l);
 
                         var production_shift_date = $('#Production_shift_date').val();
                         var formattedDate = new Date(production_shift_date);
@@ -2806,7 +2737,6 @@ function getDownTimeGraph(){
                           $('.split_input').empty();
                         }
                         else{
-                          console.log("downtime clicke 2");
                           if (config.seriesIndex >= 0) {
                             $('.split_input').empty();
                             //function for find the split records
@@ -2822,7 +2752,6 @@ function getDownTimeGraph(){
                             // DownTool(); 
                             // DownPart();
                                     
-                            //console.log(config);
                             var inval = config.seriesIndex;
                             var svalue = config.config.series[inval].data[config.dataPointIndex];
                             var sname = config.config.series[inval].name;
@@ -2835,8 +2764,6 @@ function getDownTimeGraph(){
                             var durationVal = config.config.series[inval].duration;
                             overall_duration_value = svalue;
 
-                            console.log(machineEventRef);
-
                             if ((parseInt(durationVal) >= 0) && (parseInt(access_control)>1) ) {
                               $.ajax({
                                 url: "<?php echo base_url('PDM_controller/findSplit'); ?>",
@@ -2846,7 +2773,6 @@ function getDownTimeGraph(){
                                   ref:machineEventRef, 
                                 },
                                 success:function(res){
-                                  console.log("downtime click2 inner ajax");
 
                                   data_time=[];
                                   data_array=[];
@@ -2888,12 +2814,10 @@ function getDownTimeGraph(){
                                         partid = item.part_id;
                                         toolid = item.tool_id;
                                         downtime_reason_id = item.downtime_reason_id;
-                                        // console.log("tool id:\t"+toolid);
                                         //var last_updated_by = res[]
                                       
                                         // alert(downtime_reason_id);
                                         drawGraph(item.start_time,item.split_duration,item.end_time,item.machine_event_id,item.notes,reason,partid,toolid,item.split_id,item.last_updated_by,item.last_updated_on);
-                                        console.log("downtime graph clicking 11...");
                                         $(".delete-split:eq(0)").css("display","none");
                                         $(".circleMatch:eq(0)").css("display","block");
                                       
@@ -2959,8 +2883,7 @@ function getDownTimeGraph(){
                       var start_time = w.globals.initialSeries[seriesIndex].start;
                       var end_time = w.globals.initialSeries[seriesIndex].end;
                       var part_id = w.globals.initialSeries[seriesIndex].part_id;
-                      // console.log("part id");
-                      // console.log(part_id);
+
                       var machine_Name_Tooltip = w.globals.initialSeries[seriesIndex].machine_Name;
                       var part_name_tooltip = w.globals.initialSeries[seriesIndex].part_Name;
                       // alert(part_id);
@@ -3091,7 +3014,6 @@ function getDownTimeGraph(){
     var tempSplit = 0;
     var calendar_date="";
     var calendar_date_array = [];
-    // console.log(svalue);
     if (svalue === "") {
       alert('please select the value');
     }
@@ -3171,7 +3093,7 @@ function getDownTimeGraph(){
       tempSplit =1;
     }
     }
-    // console.log(calendar_date_array);
+    
   if (tempSplit != 1) {
     //Alternate calculation for splitDataPass........
     var splitDataPass = [];
@@ -3376,8 +3298,7 @@ $(document).on('click','.doneEdit',function(){
       var reason = document.getElementsByClassName('DownReasonValue')[index].value;
       var toolname = document.getElementsByClassName('DownTool')[index].value;
       var target = document.getElementsByClassName('target_input_cl')[index].value;
-      console.log(target);
-      console.log("top target input");
+
       // var partname = document.getElementsByClassName('DownPart')[index].value;
 
       // one tool multi part
@@ -3396,15 +3317,6 @@ $(document).on('click','.doneEdit',function(){
     }
     dataArray.push(category,reason,toolname,part_arr,machineEventRef,splitRef,machineID_ref,shift_date_ref,shift_Ref);
 
-    // console.log("data Array");
-    // console.log(dataArray);
-    // console.log(machineEventRef);
-    // console.log(splitRef);
-    // console.log(data_time);
-    // console.log(data_array);
-    // console.log(split_ref);
-    // console.log(calendar_array);
-
     // Ajax function for update particular splitted value in database
     
     $.ajax({
@@ -3422,8 +3334,6 @@ $(document).on('click','.doneEdit',function(){
           target:target,
       },
       success:function(res_Site){
-        console.log(res_Site);
-        console.log("done for tool changeover result");
         if (res_Site) {
           alert("Updated Successfully!!");
         } 
@@ -3657,7 +3567,6 @@ $(document).on('click','.doneEdit',function(){
 
                       c_date = s_date;
                     }
-                    // console.log(calendar_array);
                   //Calculation for start and end time to change
                   //calcDataTiming();
                 }else{
@@ -3820,7 +3729,6 @@ function addDownPart(part,part_id){
     $('.DownCategoryValue:eq('+ref+')').append(elementsCategory);
     $('.ReasonCategory:eq('+ref+')').text(cat);
     $('.ReasonName:eq('+ref+')').text(reason);
-    // console.log(ref+" "+reason+" "+id+" "+cat);
   }
 
   function DownToolUpdate(ref,tool){
@@ -4056,7 +3964,6 @@ $(document).on('click','.edit_visible',function(){
         var invalue = index_arr[parseInt(acount-2)];
         invalue = Math.abs(invalue);
         true_value(invalue,edit_input);
-        // console.log('array value:'+index_arr+"arrayindex:"+invalue);
     }
   //$('.edit_input')[index_value].css("display","inline");
  }
@@ -4153,7 +4060,6 @@ function true_value(index_value,einput){
           $('.edit_input4:eq('+index_value+')').css("display","inline");
           $('.edit_display3:eq('+index_value+')').css("display","none");
           $('.edit_display4:eq('+index_value+')').css("display","none");
-          console.log("already tool changeover");
           target_input_function_handle("edit",index_value);
 
           // document.getElementsByClassName('edit_input3')[index_value].style.display="inline";
@@ -4195,7 +4101,6 @@ $(document).on('click','.info_click',function(){
     data:{last_updated_id:last_updated_id},
     dataType:"json",
     success:function(res){
-      //console.log(res);
       if (res) {
         $('.info_last_data').html(res[0]['first_name']+" "+res[0]['last_name']);
         $('.info_last_data').css("font-weight","bold");
@@ -4288,8 +4193,6 @@ $(document).mouseup(function(e){
   // multipart dropdwon outside click closed the menu
   var container = $('.checkboxes');
   // alert("container"+container);
-  // console.log("mouse up");
-  // console.log(!container.is(e.target));
   if (!container.is(e.target) && container.has(e.target).length === 0) 
   {
       container.hide();
@@ -4319,7 +4222,6 @@ $(document).mouseup(function(e){
     //     downtime_reason_filter(demo);
     //   }else{
     //     var category_drp_val = getcategory_arr();
-    //     // console.log("single value for category");
     //     downtime_reason_filter(category_drp_val[0]);
     //   }
     // }
@@ -4376,15 +4278,11 @@ $(document).mouseup(function(e){
 
 // bulk edit function category based downtime reasons function 
 function category_based_reson(temp_category){
-  // console.log(temp_category);
-  // console.log(down_reason_collection);
   $('.filter_checkboxes_reason').empty();
   var elements = $();
   $('.filter_checkboxes_reason').append('<div class="filter_check_reason" style=""><div class="reason_drp_check" style=""><input type="checkbox" id="one" class="reason_drp_checkbox" value="all_reason"/></div><div class="reason_drp_text" style=""><p class="font_multi_drp" >All Reasons</p></div></idv>');
   down_reason_collection.forEach(function(item){
     if (temp_category == item[1]) {
-      // console.log(item[1]);
-      // console.log(item[2]);
       if (item[2] === "Tool Changeover") {
         
       }else{
@@ -4408,13 +4306,10 @@ function bulg_edit_dropdown(category){
     $('.bulg_edit_drp').append('<option selected="true" value="empty" disabled>Select</option>');
     down_reason_collection.forEach(function(item){
       if (category == item[1]) {
-        // console.log(item[1]);
-        // console.log(item[2]);
         if (item[2] === "Tool Changeover") {
           
         }else{
           element = element.add('<option value="'+item[0]+'">'+item[2]+'</option>');
-          // console.log(item);
           $('.bulg_edit_drp').append(element);
         }
       }
@@ -4427,11 +4322,9 @@ function bulg_edit_dropdown(category){
     method:"POST",
     dataType:"json",
     success:function(res){
-      // console.log(res);
       var element = $();
       $('.bulg_edit_drp').append('<option selected="true" value="empty" disabled>Select</option>');
       res.forEach(function(item){
-        // console.log(item.downtime_reason_id);
         if (item.downtime_reason==="Tool Changeover") {
           
         }else{
@@ -4442,7 +4335,6 @@ function bulg_edit_dropdown(category){
       });
     },
     error:function(err){
-      console.log(err);
     },
   });
   */
@@ -4462,7 +4354,6 @@ function check_info(ele){
     data:{last_updated_id:last_updated_id},
     dataType:"json",
     success:function(res){
-      //console.log(res);
       if (parseInt(res.length)>0) {
         $('.info_last_data:eq('+index_val+')').html(res[0]['first_name']+" "+res[0]['last_name']);
         $('.info_last_data').css("font-weight","bold");
@@ -4477,7 +4368,6 @@ function check_info(ele){
  
   $('.edit-Subsplit').css("display","none"); 
     if ($('.node_edit:eq('+index_val+')').css('display') == 'inline') {
-      // console.log('ite ok');
       $('.edit-Subsplit:eq('+index_val+')').css("display","none");
     }else{
       $('.edit-Subsplit:eq('+index_val+')').css("display","block");
@@ -4512,8 +4402,6 @@ function notes_submit(){
   var tmpshiftdate = tmpsdate[0]+'-'+tmpsdate[1]+'-'+tmpsdate[2];
   // alert(notes_val);
   // alert(tmpshiftdate);
-  // console.log(notes_val);
-  // console.log()
   $.ajax({
     url:"<?php echo base_url(); ?>/PDM_controller/notes_submit",
     dataType:"json",
@@ -4530,7 +4418,6 @@ function notes_submit(){
     },
     success:function(res){
       // alert(res);
-      // console.log(res);
       // if (res == true) {
       // alert('Notes Added Successfully');
       // }
@@ -4552,7 +4439,6 @@ function notes_submit(){
           getDownTimeGraph();
           getTotalCount();
       }
-      console.log(de+"display check after notes submission");
     
       
       $('.note_edit:eq('+inval+')').css('display','none');
@@ -4639,13 +4525,9 @@ function target_value_ajax(index_value){
     },
     DataType:"json",
     success:function(res_data){
-      console.log("ajax success target value geeting");
-      console.log(res_data);
       $('.target_input_cl:eq('+index_value+')').val(res_data);
     },
     error:function(er){
-      console.log("Sorry Try Again... in target input value get error for editing purpose");
-      console.log(er);
     }
   });
 

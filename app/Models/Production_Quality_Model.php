@@ -20,7 +20,6 @@ class Production_Quality_Model extends Model{
                     'hostname' => 'localhost',
                     'username' => 'root',
                     'password' => 'quantanics123',
-                    // 'database' => 's1002',
                     'database' => ''.$db_name.'',
                     'DBDriver' => 'MySQLi',
                     'DBPrefix' => '',

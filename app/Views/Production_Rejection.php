@@ -105,7 +105,7 @@ a{
                         <div class="input-box">
                             <select class="form-select font_weight select_input_width input_padd" name="" id="RejectPartName" style="width: 10rem;padding-right:1.8rem;">
                             </select>
-                            <label for="inputSiteNameAdd" class="input-padding ">Part Name</label>
+                            <label for="inputSiteNameAdd" class="input-padding ">Parts</label>
                         </div>
                     </div>
                     <div class="box rightmar" style="margin-right: 0.5rem;">
@@ -119,7 +119,7 @@ a{
                         <div class="input-box">
                             <select class="form-select select_input_width input_padd font_weight" name="" id="RejectShift" style="width: 10rem;">
                             </select>
-                            <label for="inputSiteNameAdd" class="input-padding ">Shift</label>
+                            <label for="inputSiteNameAdd" class="input-padding ">Shifts</label>
                         </div>
                     </div> 
               </div>
@@ -310,7 +310,7 @@ function selection_data(){
             async: false,
         },
         success:function(res){
-
+            
             var elements = $();
             var count =0;
             var startTime = "";
@@ -777,16 +777,12 @@ $(document).ready(function(){
             }
         }
         var max_reject_count = $('#MaxReject').text();
-        console.log(totalrj_count);
-        console.log(max_reject_count);
         
         if (parseInt(totalrj_count)>parseInt(max_reject_count)) {
             $('.EditReject_submit').attr("disabled",true);
-            // console.log("total rejection is greater");
         }else{
             $('.reject_count_err').html(" ");
             $('.EditReject_submit').removeAttr("disabled");
-            // console.log("total rejection is lesser");
         }
 
        
@@ -849,7 +845,6 @@ $(document).ready(function(){
                         document.getElementsByClassName('reject_count_err')[k].textContent = "*Total reject counts shouldn't be greater than Max rejects"; 
 
                     }
-                    console.log(parseInt(tmpcount));
                 }
                 $('.EditReject_submit').attr("disabled",true);
             }   
@@ -879,7 +874,6 @@ $(document).ready(function(){
         event.preventDefault();
         $("#overlay").fadeIn(300);
         var condition = $('.EditReject_submit').attr("disabled");
-        console.log(condition);
         if (condition != "disabled" ) {
         
             var reason = $('.RejectReason').length;

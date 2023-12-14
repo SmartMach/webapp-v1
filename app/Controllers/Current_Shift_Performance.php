@@ -74,7 +74,7 @@ class Current_Shift_Performance extends BaseController{
     		$shift_id = $this->request->getVar('shift_id');
             // $filter = $this->request->getVar('filter');
 
-    		// $shift_date = "2023-09-21";
+    		// $shift_date = "2023-10-06";
     		// $shift_id = "A";
             // $filter = 2;
 
@@ -95,9 +95,7 @@ class Current_Shift_Performance extends BaseController{
 
             $production_target_all = $this->datas->getProductionTarget($shift_date);
 
-            // echo "<pre>";
-            // print_r($production_target_all);
-
+          
     		// Shift Detailes,.......
     		$shift_detailes =  $this->datas->getShiftLive_oui($shift_date,$shift_id);
             // echo "shift date:\t".$shift_detailes[0]['shift_date'];
@@ -232,8 +230,9 @@ class Current_Shift_Performance extends BaseController{
                                 $p['end_time'] = $ex;
                                 array_push($t, $p);
                             }
-	        			}
 	        		}
+                  
+	        	}
 
 	        	$temp = array('machine' => $m['machine_id'],'production' => $t,"targets"=>$target,"target_per" => $tar_per);
 	        	array_push($machineWise, $temp);
@@ -244,6 +243,7 @@ class Current_Shift_Performance extends BaseController{
 	        }
 
 	        
+          
 	        // OEE Calculation......
 	        $output = $this->datas->getDataRaw($shift_date,$shift_id);
 	        // Data from PDM Events table for find the All Time Duration...........
@@ -266,6 +266,9 @@ class Current_Shift_Performance extends BaseController{
             // Get the Inactive(Current) Data.............
             $getInactiveMachine = $this->datas->getInactiveMachineData();
             $machineWiseProduction=[];
+            // echo "<pre>";
+            // print_r($production_t);
+            // echo "</pre>";
             foreach ($production_target_all as $key => $v) {
                 $production_t_tmp=0;
                 foreach ($production_t as $k => $p) {
@@ -286,7 +289,9 @@ class Current_Shift_Performance extends BaseController{
                                 $tm = 1;
                             }
                         }
-                        $production_t_tmp= (int)$production_t_tmp + (int)$p['production']  + (int)($p['corrections']);
+                        if ($tm==0) {
+                            $production_t_tmp= (int)$production_t_tmp + (int)$p['production']  + (int)($p['corrections']);
+                        }
                     }
                 }
                 $t_m =  array('machine_id' => $v->machine_id, 'total_part_produced' => $production_t_tmp);
@@ -880,7 +885,7 @@ class Current_Shift_Performance extends BaseController{
             $UnplannedDown = floatval($UnplannedDown) + floatval($UnplannedDownSec/60);
 
             $tempCalc = $MachineOFFDown + $UnplannedDown + $PlannedDown;
-            if ((int)$tempCalc>=0) {
+            if ((float)$tempCalc>=0) {
                $tmpDown = array("Machine_ID"=>$MachineId,"Planned"=>$PlannedDown,"Unplanned"=>$UnplannedDown,"Machine_OFF"=>$MachineOFFDown,"All"=>$tempCalc,"Part_Wise"=>$PartWiseDowntime);
                 array_push($DowntimeTimeData, $tmpDown);
             }

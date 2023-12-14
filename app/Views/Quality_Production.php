@@ -63,6 +63,11 @@
     display:none;
    }
 
+   .valueMarLeftQP{
+    padding-left: 1rem;
+    padding-right: 1rem;
+   }
+
 </style>
 <script type="text/javascript">
   var checkPastTime = function(inputDateTime) {
@@ -178,21 +183,21 @@
           <div class="graph-div-header" style="margin-left:1rem;">
             <p class="paddingm fontBold financial_font" style="margin-left:0;">Cost of Poor Quality (COPQ) by Reason</p>
           </div>
-          <div class="valueMarLeft" style="margin-left:1rem;">
+          <div class="valueMarLeftQP">
             <div style="float: left;width: 20%;">
               <p class="paddingm headTitle total-margin" style="margin-left:0rem;">TOTAL</p>
               <p class="paddingm valueGraph" ><i class="fa fa-inr inr_font" aria-hidden="true" style="font-size:1rem;"></i><span class="paddingm COPQP" style="font-size:1rem;"></span></p>
             </div>
             <div style="float: left;width:80%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
-              <div class="box rightmar" style="margin-right: 0.5rem;">
+              <div class="box">
                 <div class="input-box indexing Reasons_COPQP">
 
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Reason</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_reason_copq()">
+                    <span class="multi_select_label" style="">Reasons</span>
+                    <div class="filter_selectBox copq_reason" onclick="multiple_drp_hide_seek('filter_reason_copq','copq_reason')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
-                          <p class="paddingm" id="reason_text_copqp">All Reasons</p>
+                          <p class="paddingm" id="reason_text_copq">All Reasons</p>
                         </div>
                         <div class="dropdown-div" style=" width: 20% !important">
                           <i class="fa fa-angle-down icon-style"></i>
@@ -208,8 +213,8 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing Reasons_COPQP">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Machine</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_machine_copq()">
+                    <span class="multi_select_label" style="">Machines</span>
+                    <div class="filter_selectBox copq_machine" onclick="multiple_drp_hide_seek('filter_machine_copq','copq_machine')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="machine_text_copq">All Machines</p>
@@ -228,8 +233,8 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing Reasons_COPQP">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Part</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_copq()">
+                    <span class="multi_select_label" style="">Parts</span>
+                    <div class="filter_selectBox copq_part" onclick="multiple_drp_hide_seek('filter_part_copq','copq_part')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="part_text_copq">All Parts</p>
@@ -256,17 +261,17 @@
           <div class="graph-div-header" style="margin-left:1rem;">
             <p class="paddingm fontBold financial_font" style="margin-left:0;">Quality Rejection by Reason</p>
           </div> 
-          <div class="valueMarLeft" style="margin-left:1rem;">
+          <div class="valueMarLeftQP">
             <div style="float: left;width: 17%">
               <p class="paddingm headTitle total-margin" style="margin-left:0rem;">TOTAL</p>
               <p class="paddingm valueGraph" ><span class="paddingm  CRBR" style="font-size:1rem;"></span></p>
             </div>
             <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
-              <div class="box rightmar" style="margin-right: 0.5rem;">
+              <div class="box">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Reason</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_reason_crpr()">
+                    <span class="multi_select_label" style="">Reasons</span>
+                    <div class="filter_selectBox qrr_reason" onclick="multiple_drp_hide_seek('filter_reason_crpr','qrr_reason')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="reason_text_crpr">All Reasons</p>
@@ -285,8 +290,8 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Machine</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_machine_crpr()">
+                    <span class="multi_select_label" style="">Machines</span>
+                    <div class="filter_selectBox qrr_machine" onclick="multiple_drp_hide_seek('filter_machine_crpr','qrr_machine')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="machine_text_crpr">All Machines</p>
@@ -305,8 +310,8 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Part</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_crpr()">
+                    <span class="multi_select_label" style="">Parts</span>
+                    <div class="filter_selectBox qrr_part" onclick="multiple_drp_hide_seek('filter_part_crpr','qrr_part')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="part_text_crpr">All Parts</p>
@@ -335,17 +340,17 @@
           <div class="graph-div-header" style="margin-left:1rem;">
             <p class="paddingm fontBold financial_font" style="margin-left:0rem;">Cost of Poor Quality (COPQ) by Machines</p>
           </div>
-          <div class="valueMarLeft" style="margin-left:1rem;">
+          <div class="valueMarLeftQP">
             <div style="float: left;width: 17%;">
               <p class="paddingm headTitle total-margin" style="margin-left:0;">TOTAL</p>
               <p class="paddingm valueGraph" ><i class="fa fa-inr inr_font" aria-hidden="true" style="font-size:1rem;"></i><span class="paddingm COPQM" style="font-size:1rem;"></span></p>
             </div>
             <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
-              <div class="box rightmar" style="margin-right: 0.5rem;">
+              <div class="box">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Reason</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_reason_copqm()">
+                    <span class="multi_select_label" style="">Reasons</span>
+                    <div class="filter_selectBox copqm_reason" onclick="multiple_drp_hide_seek('filter_reason_copqm','copqm_reason')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="reason_text_copqm">All Reasons</p>
@@ -364,8 +369,8 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Machine</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_machine_copqm()">
+                    <span class="multi_select_label" style="">Machines</span>
+                    <div class="filter_selectBox copqm_machine" onclick="multiple_drp_hide_seek('filter_machine_copqm','copqm_machine')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="machine_text_copqm">All Machines</p>
@@ -384,8 +389,8 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Part</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_copqm()">
+                    <span class="multi_select_label" style="">Parts</span>
+                    <div class="filter_selectBox copqm_part" onclick="multiple_drp_hide_seek('filter_part_copqm','copqm_part')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="part_text_copqm">All Parts</p>
@@ -412,17 +417,17 @@
           <div class="graph-div-header" style="margin-left:1rem;">
             <p class="paddingm fontBold financial_font" style="margin-left:0rem;">Quality Rejection by Machines with Reasons</p>
           </div>
-          <div class="valueMarLeft" style="margin-left:1rem;">
+          <div class="valueMarLeftQP">
             <div style="float: left;width: 17%;">
               <p class="paddingm headTitle total-margin" style="margin-left:0;">TOTAL</p>
               <p class="paddingm valueGraph" ><span class="paddingm  CRBMR" style="font-size:1rem;"></span></p>
             </div>
             <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
-              <div class="box rightmar" style="margin-right: 0.5rem;">
+              <div class="box">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Reason</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_reason_qrmr()">
+                    <span class="multi_select_label" style="">Reasons</span>
+                    <div class="filter_selectBox qrmr_reason" onclick="multiple_drp_hide_seek('filter_reason_qrmr','qrmr_reason')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="reason_text_qrmr">All Reasons</p>
@@ -441,8 +446,8 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Machine</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_machine_qrmr()">
+                    <span class="multi_select_label" style="">Machines</span>
+                    <div class="filter_selectBox qrmr_machine" onclick="multiple_drp_hide_seek('filter_machine_qrmr','qrmr_machine')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="machine_text_qrmr">All Machines</p>
@@ -461,8 +466,8 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Part</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_qrmr()">
+                    <span class="multi_select_label" style="">Parts</span>
+                    <div class="filter_selectBox qrmr_part" onclick="multiple_drp_hide_seek('filter_part_qrmr','qrmr_part')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="part_text_qrmr">All Parts</p>
@@ -494,17 +499,17 @@
           <div class="graph-div-header" style="margin-left:1rem;">
             <p class="paddingm fontBold financial_font" style="margin-left:0rem;">Cost of Poor Quality (COPQ) by Parts</p>
           </div>
-          <div class="valueMarLeft" style="margin-left:1rem;">
+          <div class="valueMarLeftQP">
             <div style="float: left;width: 17%;">
               <p class="paddingm headTitle total-margin" style="margin:0;">TOTAL</p>
               <p class="paddingm valueGraph" ><i class="fa fa-inr inr_font" aria-hidden="true" style="font-size:1rem;"></i><span class="paddingm CQRP" style="font-size:1rem;"></span></p>
             </div>
             <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
-              <div class="box rightmar" style="margin-right: 0.5rem;">
+              <div class="box">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Reason</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_reason_copqp()">
+                    <span class="multi_select_label" style="">Reasons</span>
+                    <div class="filter_selectBox copqp_reason" onclick="multiple_drp_hide_seek('filter_reason_copqp','copqp_reason')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="reason_text_copqp">All Reasons</p>
@@ -523,8 +528,8 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Machine</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_machine_copqp()">
+                    <span class="multi_select_label" style="">Machines</span>
+                    <div class="filter_selectBox copqp_machine" onclick="multiple_drp_hide_seek('filter_machine_copqp','copqp_machine')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="machine_text_copqp">All Machines</p>
@@ -543,8 +548,8 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Part</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_copqp()">
+                    <span class="multi_select_label" style="">Parts</span>
+                    <div class="filter_selectBox copqp_part" onclick="multiple_drp_hide_seek('filter_part_copqp','copqp_part')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="part_text_copqp">All Parts</p>
@@ -571,17 +576,17 @@
           <div class="graph-div-header" style="margin-left:1rem;">
             <p class="paddingm fontBold financial_font" style="margin-left:0rem;">Quality Rejection by Parts with Reasons</p>
           </div>
-          <div class="valueMarLeft" style="margin-left:1rem;">
+          <div class="valueMarLeftQP">
             <div style="float: left;width: 17%;">
               <p class="paddingm headTitle total-margin" style="margin-left:0;">TOTAL</p>
               <p class="paddingm valueGraph" ><span class="paddingm  CQRPR" style="font-size:1rem;"></span></p>
             </div>
             <div style="float: left;width:83%;display:flex;flex-direction:row-reverse;justify-content:end;" class="filter_div">
-              <div class="box rightmar" style="margin-right: 0.5rem;">
+              <div class="box">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Reason</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_reason_qrpr()">
+                    <span class="multi_select_label" style="">Reasons</span>
+                    <div class="filter_selectBox qrpr_reason" onclick="multiple_drp_hide_seek('filter_reason_qrpr','qrpr_reason')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="reason_text_qrpr">All Reasons</p>
@@ -600,8 +605,8 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Machine</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_machine_qrpr()">
+                    <span class="multi_select_label" style="">Machines</span>
+                    <div class="filter_selectBox qrpr_machine" onclick="multiple_drp_hide_seek('filter_machine_qrpr','qrpr_machine')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="machine_text_qrpr">All Machines</p>
@@ -620,8 +625,8 @@
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box indexing">
                   <div class="filter_multiselect filter_option" style="width:9rem;">
-                    <span class="multi_select_label" style="">Part</span>
-                    <div class="filter_selectBox" onclick="multiple_drp_qrpr()">
+                    <span class="multi_select_label" style="">Parts</span>
+                    <div class="filter_selectBox qrpr_part" onclick="multiple_drp_hide_seek('filter_part_qrpr','qrpr_part')">
                       <div class="inbox-span fontStyle search_style dropdown-arrow">
                         <div style="width: 80% !important">
                           <p class="paddingm" id="part_text_qrpr">All Parts</p>
@@ -663,7 +668,7 @@
           <div class="box rightmar" style="margin-right: 0.5rem;">
             <div class="input-box">
               <div class="filter_multiselect">
-                <div class="filter_selectBox" onclick="multiple_drp()">
+                <div class="filter_selectBox qp_part" onclick="multiple_drp_hide_seek('filter_part','production_quality_part')">
                   <div class="inbox-span fontStyle search_style dropdown-arrow">
                     <div style="width: 80% !important;">
                       <p class="paddingm" id="part_text">All Parts</p>
@@ -676,14 +681,14 @@
                 <div class="filter_checkboxes filter_part">
                 </div>
               </div>
-              <label for="partNameFilter" class="input-padding">Part Name</label>
+              <label for="partNameFilter" class="input-padding">Parts</label>
             </div>
           </div>
 
           <div class="box rightmar" style="margin-right: 0.5rem;">
             <div class="input-box">
               <div class="filter_multiselect">
-                <div class="filter_selectBox" onclick="multiple_drp_machine()">
+                <div class="filter_selectBox qp_machine" onclick="multiple_drp_hide_seek('filter_machine','production_quality_machine')">
                   <div class="inbox-span fontStyle search_style dropdown-arrow">
                     <div style="width: 80% !important;">
                       <p class="paddingm" id="machine_text">All Machines</p>
@@ -696,14 +701,14 @@
                 <div class="filter_checkboxes filter_machine">
                 </div>
               </div>
-              <label for="machineNameFilter" class="input-padding ">Machine Name</label>
+              <label for="machineNameFilter" class="input-padding ">Machines</label>
             </div>
           </div> 
           
           <div class="box rightmar" style="margin-right: 0.5rem;">
             <div class="input-box">
               <div class="filter_multiselect">
-                <div class="filter_selectBox" onclick="multiple_drp_reason()">
+                <div class="filter_selectBox qp_reason" onclick="multiple_drp_hide_seek('filter_reason','production_quality_reason')">
                   <div class="inbox-span fontStyle search_style dropdown-arrow">
                     <div style="width: 80% !important;">
                       <p class="paddingm" id="reason_text">All Reasons</p>
@@ -716,14 +721,14 @@
                 <div class="filter_checkboxes filter_reason">
                 </div>
               </div>
-              <label for="reasonNameFilter" class="input-padding ">Reason</label>
+              <label for="reasonNameFilter" class="input-padding ">Reasons</label>
             </div>
           </div> 
 
           <div class="box rightmar" style="margin-right: 0.5rem;">
             <div class="input-box">
               <div class="filter_multiselect">
-                <div class="filter_selectBox" onclick="multiple_drp_user()">
+                <div class="filter_selectBox qp_created" onclick="multiple_drp_hide_seek('filter_user','production_quality_created')">
                   <div class="inbox-span fontStyle search_style dropdown-arrow">
                     <div style="width: 80% !important;">
                       <p class="paddingm" id="user_text">All Users</p>
@@ -740,9 +745,9 @@
             </div>
           </div> 
 
-          <!-- <div class="box rightmar" style="margin-right: 0.5rem;">
-          <button class="btn fo bn filterbtnstyle settings_nav_anchor float-end" style="margin-right:0.5rem;border-radius:0.25rem;margin-left: 0;margin-top: 0;margin-bottom: 0;" id="add_machine_button" onclick="getFilterval()">Apply Filter</button>
-          <!-- </div> -->
+          <div class="box rightmar" style="margin-right: 0.5rem;">
+            <button class="btn fo bn filterbtnstyle settings_nav_anchor float-end" style="margin-right:0.5rem;border-radius:0.25rem;margin-left: 0;margin-top: 0;margin-bottom: 0;" id="add_machine_button" onclick="getFilterval()">Apply Filter</button>
+          </div>
           <div class="box rightmar" style="margin-right: 0.5rem;display: flex;justify-content: center;">
             <img src="<?php echo base_url('assets/img/filter_reset.png'); ?>" class="undo" style="font-size:20px;color: #b5b8bc;cursor: pointer;width:1.3rem;height:1.3rem;">
           </div>
@@ -912,7 +917,7 @@
     maxDate: new Date()
   });
 
-    var now = new Date();
+  var now = new Date();
 
   var fdate = now.getFullYear()+"-"+("0" + (parseInt(now.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + now.getDate()).slice(-2)+" "+("0" + (now.getHours()-1)).slice(-2)+":00";
 
@@ -980,10 +985,38 @@
       t = $('.toDate').val();
     }
 
-    console.log("from date and to date");
-    console.log(t);
-    console.log(f);
     await getfilterdata();
+
+    reset_part();
+    reset_machine();
+    reset_reason();
+    reset_created();
+
+    reset_part_copq();
+    reset_machine_copq();
+    reset_reason_copq();
+
+    reset_part_crpr();
+    reset_machine_crpr();
+    reset_reason_crpr();
+
+    reset_part_copqm();
+    reset_machine_copqm();
+    reset_reason_copqm();
+
+    reset_part_qrmr();
+    reset_machine_qrmr();
+    reset_reason_qrmr();
+
+    reset_part_copqp();
+    reset_machine_copqp();
+    reset_reason_copqp();
+
+    reset_part_qrpr();
+    reset_machine_qrpr();
+    reset_reason_qrpr();
+
+
     await copqp();
     await qrbr();
     await copqm();
@@ -995,1269 +1028,292 @@
   }
   
 
-function multiple_drp() {
+const hide_seek_obj = {
+  // Cost of Poor Quality (COPQ) by Reason graph
+  copq_part: false,
+  copq_machine: false,
+  copq_reason: false,
+
+  // Quality Rejection by Reason graph
+  qrr_part: false,
+  qrr_machine: false,
+  qrr_reason: false,
+
+  // Cost of Poor Quality (COPQ) by Machines graph
+  copqm_part: false,
+  copqm_machine: false,
+  copqm_reason: false,
+
+  // Cost of Poor Quality (COPQ) by Parts
+  copqp_part: false,
+  copqp_machine: false,
+  copqp_reason: false,
+
+  // Quality Rejection by Machines with Reasons
+  qrmr_part: false,
+  qrmr_machine: false,
+  qrmr_reason: false,
+
+  // Quality Rejection by Parts with Reasons
+  qrpr_part: false,
+  qrpr_machine: false,
+  qrpr_reason: false,
+
+  // Quality Production - Table view
+  production_quality_part: false,
+  production_quality_machine: false,
+  production_quality_reason: false,
+  production_quality_created: false,
+};
+
+
+function multiple_drp_hide_seek(classRef,keyRef){
   $('.filter_checkboxes').css("display","none");
-  if ($('.filter_part').css("display") == "none") {
-      $('.filter_part').css("display","block");
-  } else {
-      $('.filter_part').css("display","none");
-  }
-}
-
-
-function multiple_drp_machine() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_machine').css("display") == "none") {
-      $('.filter_machine').css("display","block");
-  } else {
-      $('.filter_machine').css("display","none");
-  }
-}
-
-function multiple_drp_reason() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_reason').css("display") == "none") {
-      $('.filter_reason').css("display","block");
-  } else {
-      $('.filter_reason').css("display","none");
-  }
-}
-
-function multiple_drp_user() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_user').css("display") == "none") {
-      $('.filter_user').css("display","block");
-  } else {
-      $('.filter_user').css("display","none");
-  }
-}
-
-function multiple_drp_reason_copq() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_reason_copq').css("display") == "none") {
-      $('.filter_reason_copq').css("display","block");
-  } else {
-      $('.filter_reason_copq').css("display","none");
-  }
-}
-
-function multiple_drp_machine_copq() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_machine_copq').css("display") == "none") {
-      $('.filter_machine_copq').css("display","block");
-  } else {
-      $('.filter_machine_copq').css("display","none");
-  }
-}
-
-function multiple_drp_copq() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_part_copq').css("display") == "none") {
-      $('.filter_part_copq').css("display","block");
-  } else {
-      $('.filter_part_copq').css("display","none");
-  }
-}
-
-
-function multiple_drp_reason_crpr() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_reason_crpr').css("display") == "none") {
-      $('.filter_reason_crpr').css("display","block");
-  } else {
-      $('.filter_reason_crpr').css("display","none");
-  }
-}
-
-function multiple_drp_machine_crpr() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_machine_crpr').css("display") == "none") {
-      $('.filter_machine_crpr').css("display","block");
-  } else {
-      $('.filter_machine_crpr').css("display","none");
-  }
-}
-
-function multiple_drp_crpr() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_part_crpr').css("display") == "none") {
-      $('.filter_part_crpr').css("display","block");
-  } else {
-      $('.filter_part_crpr').css("display","none");
-  }
-}
-
-function multiple_drp_reason_copqm() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_reason_copqm').css("display") == "none") {
-      $('.filter_reason_copqm').css("display","block");
-  } else {
-      $('.filter_reason_copqm').css("display","none");
-  }
-}
-
-function multiple_drp_machine_copqm() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_machine_copqm').css("display") == "none") {
-      $('.filter_machine_copqm').css("display","block");
-  } else {
-      $('.filter_machine_copqm').css("display","none");
-  }
-}
-
-function multiple_drp_copqm() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_part_copqm').css("display") == "none") {
-      $('.filter_part_copqm').css("display","block");
-  } else {
-      $('.filter_part_copqm').css("display","none");
-  }
-}
-
-function multiple_drp_reason_copqp() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_reason_copqp').css("display") == "none") {
-      $('.filter_reason_copqp').css("display","block");
-  } else {
-      $('.filter_reason_copqp').css("display","none");
-  }
-}
-
-function multiple_drp_machine_copqp() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_machine_copqp').css("display") == "none") {
-      $('.filter_machine_copqp').css("display","block");
-  } else {
-      $('.filter_machine_copqp').css("display","none");
-  }
-}
-
-function multiple_drp_copqp() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_part_copqp').css("display") == "none") {
-      $('.filter_part_copqp').css("display","block");
-  } else {
-      $('.filter_part_copqp').css("display","none");
-  }
-}
-
-function multiple_drp_reason_qrmr() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_reason_qrmr').css("display") == "none") {
-      $('.filter_reason_qrmr').css("display","block");
-  } else {
-      $('.filter_reason_qrmr').css("display","none");
-  }
-}
-
-function multiple_drp_machine_qrmr() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_machine_qrmr').css("display") == "none") {
-      $('.filter_machine_qrmr').css("display","block");
-  } else {
-      $('.filter_machine_qrmr').css("display","none");
-  }
-}
-
-function multiple_drp_qrmr() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_part_qrmr').css("display") == "none") {
-      $('.filter_part_qrmr').css("display","block");
-  } else {
-      $('.filter_part_qrmr').css("display","none");
-  }
-}
-
-
-function multiple_drp_reason_qrpr() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_reason_qrpr').css("display") == "none") {
-      $('.filter_reason_qrpr').css("display","block");
-  } else {
-      $('.filter_reason_qrpr').css("display","none");
-  }
-}
-
-function multiple_drp_machine_qrpr() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_machine_qrpr').css("display") == "none") {
-      $('.filter_machine_qrpr').css("display","block");
-  } else {
-      $('.filter_machine_qrpr').css("display","none");
-  }
-}
-
-function multiple_drp_qrpr() {
-  $('.filter_checkboxes').css("display","none");
-  if ($('.filter_part_qrpr').css("display") == "none") {
-      $('.filter_part_qrpr').css("display","block");
-  } else {
-      $('.filter_part_qrpr').css("display","none");
-  }
-}
-
-
-
-$(document).on('click','.inbox_part',function(event){
-  var index = $('.inbox_part').index(this);
-  if(index==0 && $( ".filter_part_val:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_part_val").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_part_val:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_part_val").prop( "checked", true );
+  if (!hide_seek_obj[keyRef]) {
+    $('.'+classRef+'').css("display","block");
+    hide_seek_obj[keyRef] = true;
   }
   else{
-    if ($( ".filter_part_val:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_part_val:eq('"+index+"')").prop( "checked", false );
+    $('.'+classRef+'').css("display","none");
+    hide_seek_obj[keyRef] = false;
+  }
+}
+
+
+// Standard Code for Drop-down funciton Start...................................
+
+function multiple_drp_fun(classRef,eleRef,labRef,dropRef,thisRef) {
+    var index = $('.'+classRef+'').index(thisRef);
+
+    if(index==0 && $( '.'+eleRef+':eq('+index+')').prop( "checked")==true){
+      $( '.'+eleRef+'').prop( "checked", false );
+    }
+    else if(index==0 && $('.'+eleRef+':eq('+index+')').prop( "checked")==false){
+      $( '.'+eleRef+'').prop( "checked", true );
     }
     else{
-      $( ".filter_part_val:eq('"+index+"')").prop( "checked", true );
+      if ($( '.'+eleRef+':eq('+index+')').prop( "checked")==true) {
+        $( '.'+eleRef+':eq('+index+')').prop( "checked", false );
+      }
+      else{
+        $( '.'+eleRef+':eq('+index+')').prop( "checked", true );
+      }
     }
-  }
-  var l1 = $('.filter_part_val').length;
-  var l2 = $('.filter_part_val:checked').length;
-  if (l2 < l1) {
-    $( ".filter_part_val:eq(0)").prop( "checked", false );
-  }
 
-  // part count
-  var part_count = 0;
-  var check_if = $('.filter_part_val');
-  jQuery('.filter_part_val').each(function(index){
-    if (check_if[index].checked===true) {
-      part_count = parseInt(part_count)+1;
+    var l1 = $('.'+eleRef+'').length;
+    var l2 = $('.'+eleRef+':checked').length;
+    
+
+    if ( (((l2)+1) == l1) && !($('.'+eleRef+'')[0].checked)) {
+      $( '.'+eleRef+':eq(0)').prop( "checked", true);
     }
-  });
-
-  var part_len = $('.filter_part_val').length;
-  part_len = parseInt(part_len)-1;
-  if (parseInt(part_count)>=parseInt(part_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#part_text').text(parseInt(part_count)-1+' Selected');
-      }else{
-      // check_if[0].checked=true;
-      reset_part();
-      $('#part_text').text('All');
+    else if (l2 < l1) {
+      $( '.'+eleRef+':eq(0)').prop( "checked", false );
     }
-  }else if(((parseInt(part_count)<parseInt(part_len))) && (parseInt(part_count)>0)){
-    $('#part_text').text(parseInt(part_count)+' Selected');
-    // check_if[0].checked=false;
-  }else {
-    $('#part_text').text('No Part');
-  }
 
-});
+    // part count
+    var element_count = 0;
+    var check_if = $('.'+eleRef+'');
+    jQuery('.'+eleRef+'').each(function(index){
+      if (check_if[index].checked===true) {
+        element_count = parseInt(element_count)+1;
+      }
+    });
 
+    var element_len = $('.'+eleRef+'').length;
 
-$(document).on('click','.inbox_part_copq',function(event){
-  var index = $('.inbox_part_copq').index(this);
-  if(index==0 && $( ".filter_part_val_copq:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_part_val_copq").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_part_val_copq:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_part_val_copq").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_part_val_copq:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_part_val_copq:eq('"+index+"')").prop( "checked", false );
+    element_len = parseInt(element_len);
+    if (check_if[0].checked) {
+      $('#'+labRef+'').text('All '+dropRef+'');
+    }
+    else if (!check_if[0].checked && element_len==(element_count+1)) {
+      $('#'+labRef+'').text('All '+dropRef+'');
+    }
+    else if (!check_if[0].checked && element_count>=1) {
+      $('#'+labRef+'').text(parseInt(element_count)+' Selected');
     }
     else{
-      $( ".filter_part_val_copq:eq('"+index+"')").prop( "checked", true );
+      $('#'+labRef+'').text('No '+dropRef+'');
     }
-  }
-  var l1 = $('.filter_part_val_copq').length;
-  var l2 = $('.filter_part_val_copq:checked').length;
-  if (l2 < l1) {
-    $( ".filter_part_val_copq:eq(0)").prop( "checked", false );
-  }
-
-  // part count
-  var part_count = 0;
-  var check_if = $('.filter_part_val_copq');
-  jQuery('.filter_part_val_copq').each(function(index){
-    if (check_if[index].checked===true) {
-      part_count = parseInt(part_count)+1;
-    }
-  });
-
-  var part_len = $('.filter_part_val_copq').length;
-  part_len = parseInt(part_len)-1;
-  if (parseInt(part_count)>=parseInt(part_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#part_text_copq').text(parseInt(part_count)-1+' Selected');
-      }else{
-      // check_if[0].checked=true;
-      reset_part();
-      $('#part_text_copq').text('All');
-    }
-  }else if(((parseInt(part_count)<parseInt(part_len))) && (parseInt(part_count)>0)){
-    $('#part_text_copq').text(parseInt(part_count)+' Selected');
-    // check_if[0].checked=false;
-  }else {
-    $('#part_text_copq').text('No Part');
-  }
-
-});
-
-
-
-$(document).on('click','.inbox_machine',function(event){
-  var index = $('.inbox_machine').index(this);
-  if(index==0 && $( ".filter_machine_val:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_machine_val").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_machine_val:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_machine_val").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_machine_val:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_machine_val:eq('"+index+"')").prop( "checked", false );
-    }
-    else{
-      $( ".filter_machine_val:eq('"+index+"')").prop( "checked", true );
-    }
-  }
-  var l1 = $('.filter_machine_val').length;
-  var l2 = $('.filter_machine_val:checked').length;
-  if (l2 < l1) {
-    $( ".filter_machine_val:eq(0)").prop( "checked", false );
-  }
-
-
-  
-  // machine count
-  var machine_count = 0;
-  var check_if = $('.filter_machine_val');
-  jQuery('.filter_machine_val').each(function(index){
-    if (check_if[index].checked===true) {
-      machine_count = parseInt(machine_count)+1;
-    }
-  });
-
-  var machine_len = $('.filter_machine_val').length;
-  machine_len = parseInt(machine_len)-1;
-  if (parseInt(machine_count)>=parseInt(machine_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#machine_text').text(parseInt(machine_count)-1+' Selected');
-      }else{
-      // check_if[0].checked=true;
-      reset_machine();
-      $('#machine_text').text('All');
-    }
-  }else if(((parseInt(machine_count)<parseInt(machine_len))) && (parseInt(machine_count)>0)){
-    $('#machine_text').text(parseInt(machine_count)+' Selected');
-    // check_if[0].checked=false;
-  }else {
-    $('#machine_text').text('No Machine');
-  }
-
-});
-
-
-$(document).on('click','.inbox_machine_copq',function(event){
-  var index = $('.inbox_machine_copq').index(this);
-  if(index==0 && $( ".filter_machine_val_copq:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_machine_val_copq").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_machine_val_copq:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_machine_val_copq").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_machine_val_copq:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_machine_val_copq:eq('"+index+"')").prop( "checked", false );
-    }
-    else{
-      $( ".filter_machine_val_copq:eq('"+index+"')").prop( "checked", true );
-    }
-  }
-  var l1 = $('.filter_machine_val_copq').length;
-  var l2 = $('.filter_machine_val_copq:checked').length;
-  if (l2 < l1) {
-    $( ".filter_machine_val_copq:eq(0)").prop( "checked", false );
-  }
-
-  var machine_count = 0;
-  var check_if = $('.filter_machine_val_copq');
-  jQuery('.filter_machine_val_copq').each(function(index){
-    if (check_if[index].checked===true) {
-      machine_count = parseInt(machine_count)+1;
-    }
-  });
-
-  var machine_len = $('.filter_machine_val_copq').length;
-  machine_len = parseInt(machine_len)-1;
-  if (parseInt(machine_count)>=parseInt(machine_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#machine_text_copq').text(parseInt(machine_count)-1+' Selected');
-      }else{
-      reset_machine();
-      $('#machine_text_copq').text('All');
-    }
-  }else if(((parseInt(machine_count)<parseInt(machine_len))) && (parseInt(machine_count)>0)){
-    $('#machine_text_copq').text(parseInt(machine_count)+' Selected');
-  }else {
-    $('#machine_text_copq').text('No Machine');
-  }
-
-});
+}
 
 $(document).on('click','.inbox_reason',function(event){
-  var index = $('.inbox_reason').index(this);
-  if(index==0 && $( ".filter_reason_val:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_reason_val").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_reason_val:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_reason_val").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_reason_val:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_reason_val:eq('"+index+"')").prop( "checked", false );
-    }
-    else{
-      $( ".filter_reason_val:eq('"+index+"')").prop( "checked", true );
-    }
-  }
-  var l1 = $('.filter_reason_val').length;
-  var l2 = $('.filter_reason_val:checked').length;
-  if (l2 < l1) {
-    $( ".filter_reason_val:eq(0)").prop( "checked", false );
-  }
-
-  
-  
-  // Reason  count
-  var reason_count = 0;
-  var check_if = $('.filter_reason_val');
-  jQuery('.filter_reason_val').each(function(index){
-    if (check_if[index].checked===true) {
-      reason_count = parseInt(reason_count)+1;
-    }
-  });
-
-  var reason_len = $('.filter_reason_val').length;
-  reason_len = parseInt(reason_len)-1;
-  if (parseInt(reason_count)>=parseInt(reason_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#reason_text').text(parseInt(reason_count)-1+' Selected');
-      }else{
-      // check_if[0].checked=true;
-      reset_reason();
-      $('#reason_text').text('All');
-    }
-  }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
-    $('#reason_text').text(parseInt(reason_count)+' Selected');
-    // check_if[0].checked=false;
-  }else {
-    $('#reason_text').text('No Reason');
-  }
+    multiple_drp_fun("inbox_reason","filter_reason_val","reason_text","Reasons",this);
 });
 
-
-$(document).on('click','.inbox_reason_copq',function(event){
-  var index = $('.inbox_reason_copq').index(this);
-  if(index==0 && $( ".filter_reason_val_copq:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_reason_val_copq").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_reason_val_copq:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_reason_val_copq").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_reason_val_copq:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_reason_val_copq:eq('"+index+"')").prop( "checked", false );
-    }
-    else{
-      $( ".filter_reason_val_copq:eq('"+index+"')").prop( "checked", true );
-    }
-  }
-  var l1 = $('.filter_reason_val_copq').length;
-  var l2 = $('.filter_reason_val_copq:checked').length;
-  if (l2 < l1) {
-    $( ".filter_reason_val_copq:eq(0)").prop( "checked", false );
-  }
-
-  
-  
-  // Reason  count
-  var reason_count = 0;
-  var check_if = $('.filter_reason_val_copq');
-  jQuery('.filter_reason_val_copq').each(function(index){
-    if (check_if[index].checked===true) {
-      reason_count = parseInt(reason_count)+1;
-    }
-  });
-
-  var reason_len = $('.filter_reason_val_copq').length;
-  reason_len = parseInt(reason_len)-1;
-  if (parseInt(reason_count)>=parseInt(reason_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#reason_text_copqp').text(parseInt(reason_count)-1+' Selected');
-      }else{
-      // check_if[0].checked=true;
-      reset_reason();
-      $('#reason_text_copqp').text('All');
-    }
-  }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
-    $('#reason_text_copqp').text(parseInt(reason_count)+' Selected');
-    // check_if[0].checked=false;
-  }else {
-    $('#reason_text_copqp').text('No Reason');
-  }
+$(document).on('click','.filter_reason_val',function(event){
+    multiple_drp_fun("filter_reason_val","filter_reason_val","reason_text","Reasons",this);
 });
 
-
-
-$(document).on('click','.inbox_reason_crpr',function(event){
-  var index = $('.inbox_reason_crpr').index(this);
-  if(index==0 && $( ".filter_reason_val_crpr:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_reason_val_crpr").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_reason_val_crpr:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_reason_val_crpr").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_reason_val_crpr:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_reason_val_crpr:eq('"+index+"')").prop( "checked", false );
-    }
-    else{
-      $( ".filter_reason_val_crpr:eq('"+index+"')").prop( "checked", true );
-    }
-  }
-  var l1 = $('.filter_reason_val_crpr').length;
-  var l2 = $('.filter_reason_val_crpr:checked').length;
-  if (l2 < l1) {
-    $( ".filter_reason_val_crpr:eq(0)").prop( "checked", false );
-  }
-
-  
-  
-  // Reason  count
-  var reason_count = 0;
-  var check_if = $('.filter_reason_val_crpr');
-  jQuery('.filter_reason_val_crpr').each(function(index){
-    if (check_if[index].checked===true) {
-      reason_count = parseInt(reason_count)+1;
-    }
-  });
-
-  var reason_len = $('.filter_reason_val_crpr').length;
-  reason_len = parseInt(reason_len)-1;
-  if (parseInt(reason_count)>=parseInt(reason_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#reason_text_crpr').text(parseInt(reason_count)-1+' Selected');
-      }else{
-      // check_if[0].checked=true;
-      reset_reason();
-      $('#reason_text_crpr').text('All');
-    }
-  }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
-    $('#reason_text_crpr').text(parseInt(reason_count)+' Selected');
-    // check_if[0].checked=false;
-  }else {
-    $('#reason_text_crpr').text('No Reason');
-  }
+$(document).on('click','.inbox_part',function(event){
+    multiple_drp_fun("inbox_part","filter_part_val","part_text","Parts",this);
 });
 
-$(document).on('click','.inbox_part_crpr',function(event){
-  var index = $('.inbox_part_crpr').index(this);
-  if(index==0 && $( ".filter_part_val_crpr:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_part_val_crpr").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_part_val_crpr:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_part_val_crpr").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_part_val_crpr:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_part_val_crpr:eq('"+index+"')").prop( "checked", false );
-    }
-    else{
-      $( ".filter_part_val_crpr:eq('"+index+"')").prop( "checked", true );
-    }
-  }
-  var l1 = $('.filter_part_val_crpr').length;
-  var l2 = $('.filter_part_val_crpr:checked').length;
-  if (l2 < l1) {
-    $( ".filter_part_val_crpr:eq(0)").prop( "checked", false );
-  }
-
-  // part count
-  var part_count = 0;
-  var check_if = $('.filter_part_val_crpr');
-  jQuery('.filter_part_val_crpr').each(function(index){
-    if (check_if[index].checked===true) {
-      part_count = parseInt(part_count)+1;
-    }
-  });
-
-  var part_len = $('.filter_part_val_crpr').length;
-  part_len = parseInt(part_len)-1;
-  if (parseInt(part_count)>=parseInt(part_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#part_text_crpr').text(parseInt(part_count)-1+' Selected');
-      }else{
-      // check_if[0].checked=true;
-      reset_part();
-      $('#part_text_crpr').text('All');
-    }
-  }else if(((parseInt(part_count)<parseInt(part_len))) && (parseInt(part_count)>0)){
-    $('#part_text_crpr').text(parseInt(part_count)+' Selected');
-    // check_if[0].checked=false;
-  }else {
-    $('#part_text_crpr').text('No Part');
-  }
-
+$(document).on('click','.filter_part_val',function(event){
+    multiple_drp_fun("filter_part_val","filter_part_val","part_text","Parts",this);
 });
 
-$(document).on('click','.inbox_machine_crpr',function(event){
-  var index = $('.inbox_machine_crpr').index(this);
-  if(index==0 && $( ".filter_machine_val_crpr:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_machine_val_crpr").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_machine_val_crpr:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_machine_val_crpr").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_machine_val_crpr:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_machine_val_crpr:eq('"+index+"')").prop( "checked", false );
-    }
-    else{
-      $( ".filter_machine_val_crpr:eq('"+index+"')").prop( "checked", true );
-    }
-  }
-  var l1 = $('.filter_machine_val_crpr').length;
-  var l2 = $('.filter_machine_val_crpr:checked').length;
-  if (l2 < l1) {
-    $( ".filter_machine_val_crpr:eq(0)").prop( "checked", false );
-  }
-
-  var machine_count = 0;
-  var check_if = $('.filter_machine_val_crpr');
-  jQuery('.filter_machine_val_crpr').each(function(index){
-    if (check_if[index].checked===true) {
-      machine_count = parseInt(machine_count)+1;
-    }
-  });
-
-  var machine_len = $('.filter_machine_val_crpr').length;
-  machine_len = parseInt(machine_len)-1;
-  if (parseInt(machine_count)>=parseInt(machine_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#machine_text_crpr').text(parseInt(machine_count)-1+' Selected');
-      }else{
-      reset_machine();
-      $('#machine_text_crpr').text('All');
-    }
-  }else if(((parseInt(machine_count)<parseInt(machine_len))) && (parseInt(machine_count)>0)){
-    $('#machine_text_crpr').text(parseInt(machine_count)+' Selected');
-  }else {
-    $('#machine_text_crpr').text('No Machine');
-  }
-
+$(document).on('click','.inbox_machine',function(event){
+    multiple_drp_fun("inbox_machine","filter_machine_val","machine_text","Machines",this);
 });
 
+$(document).on('click','.filter_machine_val',function(event){
+    multiple_drp_fun("filter_machine_val","filter_machine_val","machine_text","Machines",this);
+});
 
-$(document).on('click','.inbox_reason_copqm',function(event){
-  var index = $('.inbox_reason_copqm').index(this);
-  if(index==0 && $( ".filter_reason_val_copqm:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_reason_val_copqm").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_reason_val_copqm:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_reason_val_copqm").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_reason_val_copqm:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_reason_val_copqm:eq('"+index+"')").prop( "checked", false );
-    }
-    else{
-      $( ".filter_reason_val_copqm:eq('"+index+"')").prop( "checked", true );
-    }
-  }
-  var l1 = $('.filter_reason_val_copqm').length;
-  var l2 = $('.filter_reason_val_copqm:checked').length;
-  if (l2 < l1) {
-    $( ".filter_reason_val_copqm:eq(0)").prop( "checked", false );
-  }
+// -----------
 
-  
-  // Reason  count
-  var reason_count = 0;
-  var check_if = $('.filter_reason_val_copqm');
-  jQuery('.filter_reason_val_copqm').each(function(index){
-    if (check_if[index].checked===true) {
-      reason_count = parseInt(reason_count)+1;
-    }
-  });
+$(document).on('click','.inbox_reason_copq',function(event){     
+    multiple_drp_fun("inbox_reason_copq","filter_reason_val_copq","reason_text_copq","Reasons",this);
+});
 
-  var reason_len = $('.filter_reason_val_copqm').length;
-  reason_len = parseInt(reason_len)-1;
-  if (parseInt(reason_count)>=parseInt(reason_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#reason_text_copqm').text(parseInt(reason_count)-1+' Selected');
-      }else{
-      // check_if[0].checked=true;
-      reset_reason();
-      $('#reason_text_copqm').text('All');
-    }
-  }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
-    $('#reason_text_copqm').text(parseInt(reason_count)+' Selected');
-    // check_if[0].checked=false;
-  }else {
-    $('#reason_text_copqm').text('No Reason');
-  }
+$(document).on('click','.filter_reason_val_copq',function(event){
+    multiple_drp_fun("filter_reason_val_copq","filter_reason_val_copq","reason_text_copq","Reasons",this);
+});
+$(document).on('click','.inbox_part_copq',function(event){
+    multiple_drp_fun("inbox_part_copq","filter_part_val_copq","part_text_copq","Parts",this);
+});
+
+$(document).on('click','.filter_part_val_copq',function(event){
+    multiple_drp_fun("filter_part_val_copq","filter_part_val_copq","part_text_copq","Parts",this);
+});
+$(document).on('click','.inbox_machine_copq',function(event){
+    multiple_drp_fun("inbox_machine_copq","filter_machine_val_copq","machine_text_copq","Machines",this);
+});
+
+$(document).on('click','.filter_machine_val_copq',function(event){
+  multiple_drp_fun("filter_machine_val_copq","filter_machine_val_copq","machine_text_copq","Machines",this);
+});
+
+// -----------
+
+$(document).on('click','.inbox_reason_crpr',function(event){     
+    multiple_drp_fun("inbox_reason_crpr","filter_reason_val_crpr","reason_text_crpr","Reasons",this);
+});
+
+$(document).on('click','.filter_reason_val_crpr',function(event){
+    multiple_drp_fun("filter_reason_val_crpr","filter_reason_val_crpr","reason_text_crpr","Reasons",this);
+});
+
+$(document).on('click','.inbox_part_crpr',function(event){     
+    multiple_drp_fun("inbox_part_crpr","filter_part_val_crpr","part_text_crpr","Parts",this);
+});
+
+$(document).on('click','.filter_part_val_crpr',function(event){
+    multiple_drp_fun("filter_part_val_crpr","filter_part_val_crpr","part_text_crpr","Parts",this);
+});
+
+$(document).on('click','.inbox_machine_crpr',function(event){ 
+    multiple_drp_fun("inbox_machine_crpr","filter_machine_val_crpr","machine_text_crpr","Machines",this);
+});
+
+$(document).on('click','.filter_machine_val_crpr',function(event){
+  multiple_drp_fun("filter_machine_val_crpr","filter_machine_val_crpr","machine_text_crpr","Machines",this);
+});
+
+// -----------
+$(document).on('click','.inbox_reason_copqm',function(event){     
+  multiple_drp_fun("inbox_reason_copqm","filter_reason_val_copqm","reason_text_copqm","Reasons",this);
+});
+
+$(document).on('click','.filter_reason_val_copqm',function(event){
+  multiple_drp_fun("filter_reason_val_copqm","filter_reason_val_copqm","reason_text_copqm","Reasons",this);
 });
 
 $(document).on('click','.inbox_part_copqm',function(event){
-  var index = $('.inbox_part_copqm').index(this);
-  if(index==0 && $( ".filter_part_val_copqm:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_part_val_copqm").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_part_val_copqm:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_part_val_copqm").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_part_val_copqm:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_part_val_copqm:eq('"+index+"')").prop( "checked", false );
-    }
-    else{
-      $( ".filter_part_val_copqm:eq('"+index+"')").prop( "checked", true );
-    }
-  }
-  var l1 = $('.filter_part_val_copqm').length;
-  var l2 = $('.filter_part_val_copqm:checked').length;
-  if (l2 < l1) {
-    $( ".filter_part_val_copqm:eq(0)").prop( "checked", false );
-  }
+  multiple_drp_fun("inbox_part_copqm","filter_part_val_copqm","part_text_copqm","Parts",this);
+});
 
-  // part count
-  var part_count = 0;
-  var check_if = $('.filter_part_val_copqm');
-  jQuery('.filter_part_val_copqm').each(function(index){
-    if (check_if[index].checked===true) {
-      part_count = parseInt(part_count)+1;
-    }
-  });
-
-  var part_len = $('.filter_part_val_copqm').length;
-  part_len = parseInt(part_len)-1;
-  if (parseInt(part_count)>=parseInt(part_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#part_text_copqm').text(parseInt(part_count)-1+' Selected');
-      }else{
-      // check_if[0].checked=true;
-      reset_part();
-      $('#part_text_copqm').text('All');
-    }
-  }else if(((parseInt(part_count)<parseInt(part_len))) && (parseInt(part_count)>0)){
-    $('#part_text_copqm').text(parseInt(part_count)+' Selected');
-    // check_if[0].checked=false;
-  }else {
-    $('#part_text_copqm').text('No Part');
-  }
+$(document).on('click','.filter_part_val_copqm',function(event){
+  multiple_drp_fun("filter_part_val_copqm","filter_part_val_copqm","part_text_copqm","Parts",this);
 });
 
 $(document).on('click','.inbox_machine_copqm',function(event){
-  var index = $('.inbox_machine_copqm').index(this);
-  if(index==0 && $( ".filter_machine_val_copqm:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_machine_val_copqm").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_machine_val_copqm:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_machine_val_copqm").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_machine_val_copqm:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_machine_val_copqm:eq('"+index+"')").prop( "checked", false );
-    }
-    else{
-      $( ".filter_machine_val_copqm:eq('"+index+"')").prop( "checked", true );
-    }
-  }
-  var l1 = $('.filter_machine_val_copqm').length;
-  var l2 = $('.filter_machine_val_copqm:checked').length;
-  if (l2 < l1) {
-    $( ".filter_machine_val_copqm:eq(0)").prop( "checked", false );
-  }
-
-  var machine_count = 0;
-  var check_if = $('.filter_machine_val_copqm');
-  jQuery('.filter_machine_val_copqm').each(function(index){
-    if (check_if[index].checked===true) {
-      machine_count = parseInt(machine_count)+1;
-    }
-  });
-
-  var machine_len = $('.filter_machine_val_copqm').length;
-  machine_len = parseInt(machine_len)-1;
-  if (parseInt(machine_count)>=parseInt(machine_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#machine_text_copqm').text(parseInt(machine_count)-1+' Selected');
-      }else{
-      reset_machine();
-      $('#machine_text_copqm').text('All');
-    }
-  }else if(((parseInt(machine_count)<parseInt(machine_len))) && (parseInt(machine_count)>0)){
-    $('#machine_text_copqm').text(parseInt(machine_count)+' Selected');
-  }else {
-    $('#machine_text_copqm').text('No Machine');
-  }
-
+  multiple_drp_fun("inbox_machine_copqm","filter_machine_val_copqm","machine_text_copqm","Machines",this);
 });
 
+$(document).on('click','.filter_machine_val_copqm',function(event){
+  multiple_drp_fun("filter_machine_val_copqm","filter_machine_val_copqm","machine_text_copqm","Machines",this);
+});
 
-
+// -----------
 $(document).on('click','.inbox_reason_copqp',function(event){
-  var index = $('.inbox_reason_copqp').index(this);
-  if(index==0 && $( ".filter_reason_val_copqp:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_reason_val_copqp").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_reason_val_copqp:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_reason_val_copqp").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_reason_val_copqp:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_reason_val_copqp:eq('"+index+"')").prop( "checked", false );
-    }
-    else{
-      $( ".filter_reason_val_copqp:eq('"+index+"')").prop( "checked", true );
-    }
-  }
-  var l1 = $('.filter_reason_val_copqp').length;
-  var l2 = $('.filter_reason_val_copqp:checked').length;
-  if (l2 < l1) {
-    $( ".filter_reason_val_copqp:eq(0)").prop( "checked", false );
-  }
+  multiple_drp_fun("inbox_reason_copqp","filter_reason_val_copqp","reason_text_copqp","Reasons",this);
+});
 
-  
-  // Reason  count
-  var reason_count = 0;
-  var check_if = $('.filter_reason_val_copqp');
-  jQuery('.filter_reason_val_copqp').each(function(index){
-    if (check_if[index].checked===true) {
-      reason_count = parseInt(reason_count)+1;
-    }
-  });
-
-  var reason_len = $('.filter_reason_val_copqp').length;
-  reason_len = parseInt(reason_len)-1;
-  if (parseInt(reason_count)>=parseInt(reason_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#reason_text_copqp').text(parseInt(reason_count)-1+' Selected');
-      }else{
-      // check_if[0].checked=true;
-      reset_reason();
-      $('#reason_text_copqp').text('All');
-    }
-  }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
-    $('#reason_text_copqp').text(parseInt(reason_count)+' Selected');
-    // check_if[0].checked=false;
-  }else {
-    $('#reason_text_copqp').text('No Reason');
-  }
+$(document).on('click','.filter_reason_val_copqp',function(event){
+  multiple_drp_fun("filter_reason_val_copqp","filter_reason_val_copqp","reason_text_copqp","Reasons",this);
 });
 
 $(document).on('click','.inbox_part_copqp',function(event){
-  var index = $('.inbox_part_copqp').index(this);
-  if(index==0 && $( ".filter_part_val_copqp:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_part_val_copqp").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_part_val_copqp:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_part_val_copqp").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_part_val_copqp:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_part_val_copqp:eq('"+index+"')").prop( "checked", false );
-    }
-    else{
-      $( ".filter_part_val_copqp:eq('"+index+"')").prop( "checked", true );
-    }
-  }
-  var l1 = $('.filter_part_val_copqp').length;
-  var l2 = $('.filter_part_val_copqp:checked').length;
-  if (l2 < l1) {
-    $( ".filter_part_val_copqp:eq(0)").prop( "checked", false );
-  }
+  multiple_drp_fun("inbox_part_copqp","filter_part_val_copqp","part_text_copqp","Parts",this);
+});
 
-  // part count
-  var part_count = 0;
-  var check_if = $('.filter_part_val_copqp');
-  jQuery('.filter_part_val_copqp').each(function(index){
-    if (check_if[index].checked===true) {
-      part_count = parseInt(part_count)+1;
-    }
-  });
-
-  var part_len = $('.filter_part_val_copqp').length;
-  part_len = parseInt(part_len)-1;
-  if (parseInt(part_count)>=parseInt(part_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#part_text_copqp').text(parseInt(part_count)-1+' Selected');
-      }else{
-      // check_if[0].checked=true;
-      reset_part();
-      $('#part_text_copqp').text('All');
-    }
-  }else if(((parseInt(part_count)<parseInt(part_len))) && (parseInt(part_count)>0)){
-    $('#part_text_copqp').text(parseInt(part_count)+' Selected');
-    // check_if[0].checked=false;
-  }else {
-    $('#part_text_copqp').text('No Part');
-  }
+$(document).on('click','.filter_part_val_copqp',function(event){
+  multiple_drp_fun("filter_part_val_copqp","filter_part_val_copqp","part_text_copqp","Parts",this);
 });
 
 $(document).on('click','.inbox_machine_copqp',function(event){
-  var index = $('.inbox_machine_copqp').index(this);
-  if(index==0 && $( ".filter_machine_val_copqp:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_machine_val_copqp").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_machine_val_copqp:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_machine_val_copqp").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_machine_val_copqp:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_machine_val_copqp:eq('"+index+"')").prop( "checked", false );
-    }
-    else{
-      $( ".filter_machine_val_copqp:eq('"+index+"')").prop( "checked", true );
-    }
-  }
-  var l1 = $('.filter_machine_val_copqp').length;
-  var l2 = $('.filter_machine_val_copqp:checked').length;
-  if (l2 < l1) {
-    $( ".filter_machine_val_copqp:eq(0)").prop( "checked", false );
-  }
-
-  var machine_count = 0;
-  var check_if = $('.filter_machine_val_copqp');
-  jQuery('.filter_machine_val_copqp').each(function(index){
-    if (check_if[index].checked===true) {
-      machine_count = parseInt(machine_count)+1;
-    }
-  });
-
-  var machine_len = $('.filter_machine_val_copqp').length;
-  machine_len = parseInt(machine_len)-1;
-  if (parseInt(machine_count)>=parseInt(machine_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#machine_text_copqp').text(parseInt(machine_count)-1+' Selected');
-      }else{
-      reset_machine();
-      $('#machine_text_copqp').text('All');
-    }
-  }else if(((parseInt(machine_count)<parseInt(machine_len))) && (parseInt(machine_count)>0)){
-    $('#machine_text_copqp').text(parseInt(machine_count)+' Selected');
-  }else {
-    $('#machine_text_copqp').text('No Machine');
-  }
+  multiple_drp_fun("inbox_machine_copqp","filter_machine_val_copqp","machine_text_copqp","Machines",this);
 });
 
+$(document).on('click','.filter_machine_val_copqp',function(event){
+  multiple_drp_fun("filter_machine_val_copqp","filter_machine_val_copqp","machine_text_copqp","Machines",this);
+});
+// -----------
+
 $(document).on('click','.inbox_reason_qrmr',function(event){
-  var index = $('.inbox_reason_qrmr').index(this);
-  if(index==0 && $( ".filter_reason_val_qrmr:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_reason_val_qrmr").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_reason_val_qrmr:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_reason_val_qrmr").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_reason_val_qrmr:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_reason_val_qrmr:eq('"+index+"')").prop( "checked", false );
-    }
-    else{
-      $( ".filter_reason_val_qrmr:eq('"+index+"')").prop( "checked", true );
-    }
-  }
-  var l1 = $('.filter_reason_val_qrmr').length;
-  var l2 = $('.filter_reason_val_qrmr:checked').length;
-  if (l2 < l1) {
-    $( ".filter_reason_val_qrmr:eq(0)").prop( "checked", false );
-  }
+  multiple_drp_fun("inbox_reason_qrmr","filter_reason_val_qrmr","reason_text_qrmr","Reasons",this);
+});
 
-  
-  // Reason  count
-  var reason_count = 0;
-  var check_if = $('.filter_reason_val_qrmr');
-  jQuery('.filter_reason_val_qrmr').each(function(index){
-    if (check_if[index].checked===true) {
-      reason_count = parseInt(reason_count)+1;
-    }
-  });
-
-  var reason_len = $('.filter_reason_val_qrmr').length;
-  reason_len = parseInt(reason_len)-1;
-  if (parseInt(reason_count)>=parseInt(reason_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#reason_text_qrmr').text(parseInt(reason_count)-1+' Selected');
-      }else{
-      // check_if[0].checked=true;
-      reset_reason();
-      $('#reason_text_qrmr').text('All');
-    }
-  }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
-    $('#reason_text_qrmr').text(parseInt(reason_count)+' Selected');
-    // check_if[0].checked=false;
-  }else {
-    $('#reason_text_qrmr').text('No Reason');
-  }
+$(document).on('click','.filter_reason_val_qrmr',function(event){
+  multiple_drp_fun("filter_reason_val_qrmr","filter_reason_val_qrmr","reason_text_qrmr","Reasons",this);
 });
 
 $(document).on('click','.inbox_part_qrmr',function(event){
-  var index = $('.inbox_part_qrmr').index(this);
-  if(index==0 && $( ".filter_part_val_qrmr:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_part_val_qrmr").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_part_val_qrmr:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_part_val_qrmr").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_part_val_qrmr:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_part_val_qrmr:eq('"+index+"')").prop( "checked", false );
-    }
-    else{
-      $( ".filter_part_val_qrmr:eq('"+index+"')").prop( "checked", true );
-    }
-  }
-  var l1 = $('.filter_part_val_qrmr').length;
-  var l2 = $('.filter_part_val_qrmr:checked').length;
-  if (l2 < l1) {
-    $( ".filter_part_val_qrmr:eq(0)").prop( "checked", false );
-  }
+  multiple_drp_fun("inbox_part_qrmr","filter_part_val_qrmr","part_text_qrmr","Parts",this);
+});
 
-  // part count
-  var part_count = 0;
-  var check_if = $('.filter_part_val_qrmr');
-  jQuery('.filter_part_val_qrmr').each(function(index){
-    if (check_if[index].checked===true) {
-      part_count = parseInt(part_count)+1;
-    }
-  });
 
-  var part_len = $('.filter_part_val_qrmr').length;
-  part_len = parseInt(part_len)-1;
-  if (parseInt(part_count)>=parseInt(part_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#part_text_qrmr').text(parseInt(part_count)-1+' Selected');
-      }else{
-      // check_if[0].checked=true;
-      reset_part();
-      $('#part_text_qrmr').text('All');
-    }
-  }else if(((parseInt(part_count)<parseInt(part_len))) && (parseInt(part_count)>0)){
-    $('#part_text_qrmr').text(parseInt(part_count)+' Selected');
-    // check_if[0].checked=false;
-  }else {
-    $('#part_text_qrmr').text('No Part');
-  }
+$(document).on('click','.filter_part_val_qrmr',function(event){
+  multiple_drp_fun("filter_part_val_qrmr","filter_part_val_qrmr","part_text_qrmr","Parts",this);
 });
 
 $(document).on('click','.inbox_machine_qrmr',function(event){
-  var index = $('.inbox_machine_qrmr').index(this);
-  if(index==0 && $( ".filter_machine_val_qrmr:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_machine_val_qrmr").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_machine_val_qrmr:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_machine_val_qrmr").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_machine_val_qrmr:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_machine_val_qrmr:eq('"+index+"')").prop( "checked", false );
-    }
-    else{
-      $( ".filter_machine_val_qrmr:eq('"+index+"')").prop( "checked", true );
-    }
-  }
-  var l1 = $('.filter_machine_val_qrmr').length;
-  var l2 = $('.filter_machine_val_qrmr:checked').length;
-  if (l2 < l1) {
-    $( ".filter_machine_val_qrmr:eq(0)").prop( "checked", false );
-  }
-
-  var machine_count = 0;
-  var check_if = $('.filter_machine_val_qrmr');
-  jQuery('.filter_machine_val_qrmr').each(function(index){
-    if (check_if[index].checked===true) {
-      machine_count = parseInt(machine_count)+1;
-    }
-  });
-
-  var machine_len = $('.filter_machine_val_qrmr').length;
-  machine_len = parseInt(machine_len)-1;
-  if (parseInt(machine_count)>=parseInt(machine_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#machine_text_qrmr').text(parseInt(machine_count)-1+' Selected');
-      }else{
-      reset_machine();
-      $('#machine_text_qrmr').text('All');
-    }
-  }else if(((parseInt(machine_count)<parseInt(machine_len))) && (parseInt(machine_count)>0)){
-    $('#machine_text_qrmr').text(parseInt(machine_count)+' Selected');
-  }else {
-    $('#machine_text_qrmr').text('No Machine');
-  }
+  multiple_drp_fun("inbox_machine_qrmr","filter_machine_val_qrmr","machine_text_qrmr","Machines",this);
 });
 
+$(document).on('click','.filter_machine_val_qrmr',function(event){
+  multiple_drp_fun("filter_machine_val_qrmr","filter_machine_val_qrmr","machine_text_qrmr","Machines",this);
+});
+// -----------
+
 $(document).on('click','.inbox_reason_qrpr',function(event){
-  var index = $('.inbox_reason_qrpr').index(this);
-  if(index==0 && $( ".filter_reason_val_qrpr:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_reason_val_qrpr").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_reason_val_qrpr:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_reason_val_qrpr").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_reason_val_qrpr:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_reason_val_qrpr:eq('"+index+"')").prop( "checked", false );
-    }
-    else{
-      $( ".filter_reason_val_qrpr:eq('"+index+"')").prop( "checked", true );
-    }
-  }
-  var l1 = $('.filter_reason_val_qrpr').length;
-  var l2 = $('.filter_reason_val_qrpr:checked').length;
-  if (l2 < l1) {
-    $( ".filter_reason_val_qrpr:eq(0)").prop( "checked", false );
-  }
+  multiple_drp_fun("inbox_reason_qrpr","filter_reason_val_qrpr","reason_text_qrpr","Reasons",this);
+});
 
-  
-  // Reason  count
-  var reason_count = 0;
-  var check_if = $('.filter_reason_val_qrpr');
-  jQuery('.filter_reason_val_qrpr').each(function(index){
-    if (check_if[index].checked===true) {
-      reason_count = parseInt(reason_count)+1;
-    }
-  });
-
-  var reason_len = $('.filter_reason_val_qrpr').length;
-  reason_len = parseInt(reason_len)-1;
-  if (parseInt(reason_count)>=parseInt(reason_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#reason_text_qrpr').text(parseInt(reason_count)-1+' Selected');
-      }else{
-      // check_if[0].checked=true;
-      reset_reason();
-      $('#reason_text_qrpr').text('All');
-    }
-  }else if(((parseInt(reason_count)<parseInt(reason_len))) && (parseInt(reason_count)>0)){
-    $('#reason_text_qrpr').text(parseInt(reason_count)+' Selected');
-    // check_if[0].checked=false;
-  }else {
-    $('#reason_text_qrpr').text('No Reason');
-  }
+$(document).on('click','.filter_reason_val_qrpr',function(event){
+  multiple_drp_fun("filter_reason_val_qrpr","filter_reason_val_qrpr","reason_text_qrpr","Reasons",this);
 });
 
 $(document).on('click','.inbox_part_qrpr',function(event){
-  var index = $('.inbox_part_qrpr').index(this);
-  if(index==0 && $( ".filter_part_val_qrpr:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_part_val_qrpr").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_part_val_qrpr:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_part_val_qrpr").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_part_val_qrpr:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_part_val_qrpr:eq('"+index+"')").prop( "checked", false );
-    }
-    else{
-      $( ".filter_part_val_qrpr:eq('"+index+"')").prop( "checked", true );
-    }
-  }
-  var l1 = $('.filter_part_val_qrpr').length;
-  var l2 = $('.filter_part_val_qrpr:checked').length;
-  if (l2 < l1) {
-    $( ".filter_part_val_qrpr:eq(0)").prop( "checked", false );
-  }
+  multiple_drp_fun("inbox_part_qrpr","filter_part_val_qrpr","part_text_qrpr","Parts",this);
+});
 
-  // part count
-  var part_count = 0;
-  var check_if = $('.filter_part_val_qrpr');
-  jQuery('.filter_part_val_qrpr').each(function(index){
-    if (check_if[index].checked===true) {
-      part_count = parseInt(part_count)+1;
-    }
-  });
-
-  var part_len = $('.filter_part_val_qrpr').length;
-  part_len = parseInt(part_len)-1;
-  if (parseInt(part_count)>=parseInt(part_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#part_text_qrpr').text(parseInt(part_count)-1+' Selected');
-      }else{
-      // check_if[0].checked=true;
-      reset_part();
-      $('#part_text_qrpr').text('All');
-    }
-  }else if(((parseInt(part_count)<parseInt(part_len))) && (parseInt(part_count)>0)){
-    $('#part_text_qrpr').text(parseInt(part_count)+' Selected');
-    // check_if[0].checked=false;
-  }else {
-    $('#part_text_qrpr').text('No Part');
-  }
+$(document).on('click','.filter_part_val_qrpr',function(event){
+  multiple_drp_fun("filter_part_val_qrpr","filter_part_val_qrpr","part_text_qrpr","Parts",this);
 });
 
 $(document).on('click','.inbox_machine_qrpr',function(event){
-  var index = $('.inbox_machine_qrpr').index(this);
-  if(index==0 && $( ".filter_machine_val_qrpr:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_machine_val_qrpr").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_machine_val_qrpr:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_machine_val_qrpr").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_machine_val_qrpr:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_machine_val_qrpr:eq('"+index+"')").prop( "checked", false );
-    }
-    else{
-      $( ".filter_machine_val_qrpr:eq('"+index+"')").prop( "checked", true );
-    }
-  }
-  var l1 = $('.filter_machine_val_qrpr').length;
-  var l2 = $('.filter_machine_val_qrpr:checked').length;
-  if (l2 < l1) {
-    $( ".filter_machine_val_qrpr:eq(0)").prop( "checked", false );
-  }
-
-  var machine_count = 0;
-  var check_if = $('.filter_machine_val_qrpr');
-  jQuery('.filter_machine_val_qrpr').each(function(index){
-    if (check_if[index].checked===true) {
-      machine_count = parseInt(machine_count)+1;
-    }
-  });
-
-  var machine_len = $('.filter_machine_val_qrpr').length;
-  machine_len = parseInt(machine_len)-1;
-  if (parseInt(machine_count)>=parseInt(machine_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#machine_text_qrpr').text(parseInt(machine_count)-1+' Selected');
-      }else{
-      reset_machine();
-      $('#machine_text_qrpr').text('All');
-    }
-  }else if(((parseInt(machine_count)<parseInt(machine_len))) && (parseInt(machine_count)>0)){
-    $('#machine_text_qrpr').text(parseInt(machine_count)+' Selected');
-  }else {
-    $('#machine_text_qrpr').text('No Machine');
-  }
+  multiple_drp_fun("inbox_machine_qrpr","filter_machine_val_qrpr","machine_text_qrpr","Machines",this);
 });
+
+$(document).on('click','.filter_machine_val_qrpr',function(event){
+  multiple_drp_fun("filter_machine_val_qrpr","filter_machine_val_qrpr","machine_text_qrpr","Machines",this);
+});
+// -----------
+// Standard Code for Drop-down funciton completed...................................
+
 
 $(document).on('click','.copq_filter',function(event){
   copqp();
@@ -2281,56 +1337,68 @@ $(document).on('click','.cpqp_filter',function(event){
 
 
 
-$(document).on('click','.inbox_user',function(event){
-  var index = $('.inbox_user').index(this);
-  if(index==0 && $( ".filter_user_val:eq('"+index+"')").prop( "checked")==true){
-    $( ".filter_user_val").prop( "checked", false );
-  }
-  else if(index==0 && $( ".filter_user_val:eq('"+index+"')").prop( "checked")==false){
-    $( ".filter_user_val").prop( "checked", true );
-  }
-  else{
-    if ($( ".filter_user_val:eq('"+index+"')").prop( "checked")==true) {
-      $( ".filter_user_val:eq('"+index+"')").prop( "checked", false );
+function inbox_user(classRef,thisRef) {
+    var index = $('.'+classRef+'').index(thisRef);
+
+    if(index==0 && $( ".filter_user_val:eq('"+index+"')").prop( "checked")==true){
+      $( ".filter_user_val").prop( "checked", false );
+    }
+    else if(index==0 && $( ".filter_user_val:eq('"+index+"')").prop( "checked")==false){
+      $( ".filter_user_val").prop( "checked", true );
     }
     else{
-      $( ".filter_user_val:eq('"+index+"')").prop( "checked", true );
+      if ($( ".filter_user_val:eq('"+index+"')").prop( "checked")==true) {
+        $( ".filter_user_val:eq('"+index+"')").prop( "checked", false );
+      }
+      else{
+        $( ".filter_user_val:eq('"+index+"')").prop( "checked", true );
+      }
     }
-  }
-  var l1 = $('.filter_user_val').length;
-  var l2 = $('.filter_user_val:checked').length;
-  if (l2 < l1) {
-    $( ".filter_user_val:eq(0)").prop( "checked", false );
-  }
 
-  
-  
-  // user  count
-  var user_count = 0;
-  var check_if = $('.filter_user_val');
-  jQuery('.filter_user_val').each(function(index){
-    if (check_if[index].checked===true) {
-      user_count = parseInt(user_count)+1;
-    }
-  });
+    var l1 = $('.filter_user_val').length;
+    var l2 = $('.filter_user_val:checked').length;
+    
 
-  var user_len = $('.filter_user_val').length;
-  user_len = parseInt(user_len)-1;
-  if (parseInt(user_count)>=parseInt(user_len)) {
-      if(check_if[0].checked===true){
-        check_if[0].checked=true;
-        $('#user_text').text(parseInt(user_count)-1+' Selected');
-      }else{
-      // check_if[0].checked=true;
-      reset_created();
-      $('#user_text').text('All');
+    if ( (((l2)+1) == l1) && !($('.filter_user_val')[0].checked)) {
+      $( ".filter_user_val:eq(0)").prop( "checked", true);
     }
-  }else if(((parseInt(user_count)<parseInt(user_len))) && (parseInt(user_count)>0)){
-    $('#user_text').text(parseInt(user_count)+' Selected');
-    // check_if[0].checked=false;
-  }else {
-    $('#user_text').text('No users');
-  }
+    else if (l2 < l1) {
+      $( ".filter_user_val:eq(0)").prop( "checked", false );
+    }
+
+    // user count
+    var user_count = 0;
+    var check_if = $('.filter_user_val');
+    jQuery('.filter_user_val').each(function(index){
+      if (check_if[index].checked===true) {
+        user_count = parseInt(user_count)+1;
+      }
+    });
+
+    var user_len = $('.filter_user_val').length;
+
+    user_len = parseInt(user_len);
+    if (check_if[0].checked) {
+      $('#user_text').text('All Users');
+    }
+    else if (!check_if[0].checked && user_len==(user_count+1)) {
+      $('#user_text').text('All Users');
+    }
+    else if (!check_if[0].checked && user_count>=1) {
+      $('#user_text').text(parseInt(user_count)+' Selected');
+    }
+    else{
+      $('#user_text').text('No Users');
+    }
+}
+
+
+$(document).on('click','.inbox_user',function(event){     
+    inbox_user("inbox_user",this);
+});
+
+$(document).on('click','.filter_user_val',function(event){
+    inbox_user("filter_user_val",this);
 });
 
 
@@ -2784,10 +1852,6 @@ function copqp() {
     f = f.replace(" ","T");
     t = t.replace(" ","T");
 
-    console.log("machine part reason");
-    console.log(machine);
-    console.log(part);
-    console.log(reason);
     $.ajax({
       url: "<?php echo base_url('Production_Quality/qualityOpportunity'); ?>",
       type: "POST",
@@ -2800,8 +1864,6 @@ function copqp() {
         reason:reason
       },
       success:function(res){
-        console.log("first graph");
-        console.log(res);
         resolve(res);
         // $('#qualityOpportunity').remove();
         // $('.child_graph_quality_opportunity').append('<canvas id="qualityOpportunity"><canvas>');
@@ -2972,7 +2034,6 @@ function copqp() {
           },
       error:function(er){
         // alert("Sorry!Try Agian!!!!");
-        console.log("first graph error");
         reject(er);
       }
     }); 
@@ -4169,10 +3230,6 @@ function qrbr() {
     });
     }
 
-    // console.log("second graph ");
-    // console.log(reason.length);
-    // console.log(machine.length);
-    // console.log(part.length);
     if(reason.length ==0 || machine.length ==0 || part.length ==0){
       resolve("One Reason Empty");
       return;  
@@ -4527,8 +3584,6 @@ $(document).on('click','#table-cont',function(event){
       dataType: "json",
       success:function(res){
 
-        console.log("dropdown value");
-        console.log(res);
         resolve(res);
         // Part Filter
         var elements = $();
@@ -5017,6 +4072,7 @@ function getTableData(part,machine,reason,user){
         if(filter_array.length<=0){
           $("#pagination_val").val(1);
           $('#total_pagination').text('1');
+          $('.contentQualityFilter').empty();
           $('.contentQualityFilter').append('<div style="margin-top:1rem;display:flex;flex-direction:row;justify-content:center;align-items:center;height:1.4rem;color:#a6a6a6;font-weight:500;">No Records Found...</div>');
         }else{
           $("#pagination_val").val(1);
@@ -5083,141 +4139,232 @@ $(document).mouseup(function(event){
 
   // part dropdown outside click
   var part_check = $('.filter_part');
-  if (!part_check.is(event.target) && part_check.has(event.target).length==0) {
-    part_check.hide();
-    
-  }
-
-  // part dropdown outside click
-  var part_check_copq = $('.filter_part_copq');
-  if (!part_check_copq.is(event.target) && part_check_copq.has(event.target).length==0) {
-    part_check_copq.hide();
+  var qp_part_c = $('.qp_part');
+  if (!part_check.is(event.target) && part_check.has(event.target).length==0 && !qp_part_c.is(event.target) && qp_part_c.has(event.target).length==0) { 
+    if(hide_seek_obj['production_quality_part']==true){
+      part_check.hide();
+      hide_seek_obj['production_quality_part']=false;
+    }
   }
 
   // machine dropdown outside click
   var machine_check = $('.filter_machine');
-  if (!machine_check.is(event.target) && machine_check.has(event.target).length==0) {
-    machine_check.hide();
-  }
-  // machine dropdown outside click
-  var machine_check_copq = $('.filter_machine_copq');
-  if (!machine_check_copq.is(event.target) && machine_check_copq.has(event.target).length==0) {
-    machine_check_copq.hide();
+  var qp_machine_c = $('.qp_machine');
+  if (!machine_check.is(event.target) && machine_check.has(event.target).length==0 && !qp_machine_c.is(event.target) && qp_machine_c.has(event.target).length==0) {
+    if(hide_seek_obj['production_quality_machine']==true){
+      machine_check.hide();
+      hide_seek_obj['production_quality_machine']=false;
+    }
   }
 
   // reason dropdown outside click
   var reason_check = $('.filter_reason');
-  if (!reason_check.is(event.target) && reason_check.has(event.target).length==0) {
-    reason_check.hide();
+  var qp_reason_c = $('.qp_reason');
+  if (!reason_check.is(event.target) && reason_check.has(event.target).length==0 && !qp_reason_c.is(event.target) && qp_reason_c.has(event.target).length==0) {
+    if(hide_seek_obj['production_quality_reason']==true){
+      reason_check.hide();
+      hide_seek_obj['production_quality_reason']=false;
+    }
   }
-
-  // reason dropdown outside click
-  var reason_check_copq = $('.filter_reason_copq');
-  if (!reason_check_copq.is(event.target) && reason_check_copq.has(event.target).length==0) {
-    reason_check_copq.hide();
-  }
-  
 
   // created by dropdown outside click
   var created_check = $('.filter_user');
-  if (!created_check.is(event.target) && created_check.has(event.target).length==0) {
-    created_check.hide();
+  var qp_created_c = $('.qp_created');
+  if (!created_check.is(event.target) && created_check.has(event.target).length==0 && !qp_created_c.is(event.target) && qp_created_c.has(event.target).length==0) {
+    if(hide_seek_obj['production_quality_created']==true){
+      created_check.hide();
+      hide_seek_obj['production_quality_created']=false;
+    }
   }
 
+
+
+  // part dropdown outside click
+  var part_check_copq = $('.filter_part_copq');
+  var copq_part_c = $('.copq_part');
+  if (!part_check_copq.is(event.target) && part_check_copq.has(event.target).length==0 && !copq_part_c.is(event.target) && copq_part_c.has(event.target).length==0) {
+    if(hide_seek_obj['copq_part']==true){
+      part_check_copq.hide();
+      hide_seek_obj['copq_part']=false;
+    }
+  }
+
+  
+  // machine dropdown outside click
+  var machine_check_copq = $('.filter_machine_copq');
+  var copq_machine_c = $('.copq_machine');
+  if (!machine_check_copq.is(event.target) && machine_check_copq.has(event.target).length==0 && !copq_machine_c.is(event.target) && copq_machine_c.has(event.target).length==0) {
+    if(hide_seek_obj['copq_machine']==true){
+      machine_check_copq.hide();
+      hide_seek_obj['copq_machine']=false;
+    }
+  }
+
+  
+
+  // reason dropdown outside click
+  var reason_check_copq = $('.filter_reason_copq');
+  var copq_reason_c = $('.copq_reason');
+  if (!reason_check_copq.is(event.target) && reason_check_copq.has(event.target).length==0 && !copq_reason_c.is(event.target) && copq_reason_c.has(event.target).length==0) {
+    if(hide_seek_obj['copq_reason']==true){
+      reason_check_copq.hide();
+      hide_seek_obj['copq_reason']=false;
+    }
+  }
 
 
     // part dropdown outside click
   var part_check_crpr = $('.filter_part_crpr');
-  if (!part_check_crpr.is(event.target) && part_check_crpr.has(event.target).length==0) {
-    part_check_crpr.hide();
+  var qrr_part_c = $('.qrr_part');
+  if (!part_check_crpr.is(event.target) && part_check_crpr.has(event.target).length==0 && !qrr_part_c.is(event.target) && qrr_part_c.has(event.target).length==0) {
+    if(hide_seek_obj['qrr_part']==true){
+      part_check_crpr.hide();
+      hide_seek_obj['qrr_part']=false;
+    }
   }
 
   // machine dropdown outside click
   var machine_check_crpr = $('.filter_machine_crpr');
-  if (!machine_check_crpr.is(event.target) && machine_check_crpr.has(event.target).length==0) {
-    machine_check_crpr.hide();
+  var qrr_machine_c = $('.qrr_machine');
+  if (!machine_check_crpr.is(event.target) && machine_check_crpr.has(event.target).length==0 && !qrr_machine_c.is(event.target) && qrr_machine_c.has(event.target).length==0) {
+    if(hide_seek_obj['qrr_machine']==true){
+      machine_check_crpr.hide();
+      hide_seek_obj['qrr_machine']=false;
+    }
   }
 
     // reason dropdown outside click
   var reason_check_crpr = $('.filter_reason_crpr');
-  if (!reason_check_crpr.is(event.target) && reason_check_crpr.has(event.target).length==0) {
-    reason_check_crpr.hide();
+  var qrr_reason_c = $('.qrr_reason');
+  if (!reason_check_crpr.is(event.target) && reason_check_crpr.has(event.target).length==0 && !qrr_reason_c.is(event.target) && qrr_reason_c.has(event.target).length==0) {
+    if(hide_seek_obj['qrr_reason']==true){
+      reason_check_crpr.hide();
+      hide_seek_obj['qrr_reason']=false;
+    }
   }
 
 
    // part dropdown outside click
   var part_check_copqm = $('.filter_part_copqm');
-  if (!part_check_copqm.is(event.target) && part_check_copqm.has(event.target).length==0) {
-    part_check_copqm.hide();
+  var copqm_part_c = $('.copqm_part');
+  if (!part_check_copqm.is(event.target) && part_check_copqm.has(event.target).length==0 && !copqm_part_c.is(event.target) && copqm_part_c.has(event.target).length==0) {
+    if(hide_seek_obj['copqm_part']==true){
+      part_check_copqm.hide();
+      hide_seek_obj['copqm_part']=false;
+    }
   }
 
   // machine dropdown outside click
   var machine_check_copqm = $('.filter_machine_copqm');
-  if (!machine_check_copqm.is(event.target) && machine_check_copqm.has(event.target).length==0) {
-    machine_check_copqm.hide();
+  var copqm_machine_c = $('.copqm_machine');
+  if (!machine_check_copqm.is(event.target) && machine_check_copqm.has(event.target).length==0 && !copqm_machine_c.is(event.target) && copqm_machine_c.has(event.target).length==0) {
+    if(hide_seek_obj['copqm_machine']==true){
+      machine_check_copqm.hide();
+      hide_seek_obj['copqm_machine']=false;
+    }
   }
 
     // reason dropdown outside click
   var reason_check_copqm = $('.filter_reason_copqm');
-  if (!reason_check_copqm.is(event.target) && reason_check_copqm.has(event.target).length==0) {
-    reason_check_copqm.hide();
+  var copqm_reason_c = $('.copqm_reason');
+  if (!reason_check_copqm.is(event.target) && reason_check_copqm.has(event.target).length==0 && !copqm_reason_c.is(event.target) && copqm_reason_c.has(event.target).length==0) {
+    if(hide_seek_obj['copqm_reason']==true){
+      reason_check_copqm.hide();
+      hide_seek_obj['copqm_reason']=false;
+    }
+  }
+
+
+    // part dropdown outside click
+  var part_check_qrmr = $('.filter_part_qrmr');
+  var qrmr_part_c = $('.qrmr_part');
+  if (!part_check_qrmr.is(event.target) && part_check_qrmr.has(event.target).length==0 && !qrmr_part_c.is(event.target) && qrmr_part_c.has(event.target).length==0) {
+    if(hide_seek_obj['qrmr_part']==true){
+      part_check_qrmr.hide();
+      hide_seek_obj['qrmr_part']=false;
+    }
+  }
+
+  // machine dropdown outside click
+  var machine_check_qrmr = $('.filter_machine_qrmr');
+  var qrmr_machine_c = $('.qrmr_machine');
+  if (!machine_check_qrmr.is(event.target) && machine_check_qrmr.has(event.target).length==0 && !qrmr_machine_c.is(event.target) && qrmr_machine_c.has(event.target).length==0) {
+    if(hide_seek_obj['qrmr_machine']==true){
+      machine_check_qrmr.hide();
+      hide_seek_obj['qrmr_machine']=false;
+    }
+  }
+
+    // reason dropdown outside click
+  var reason_check_qrmr = $('.filter_reason_qrmr');
+  var qrmr_reason_c = $('.qrmr_reason');
+  if (!reason_check_qrmr.is(event.target) && reason_check_qrmr.has(event.target).length==0 && !qrmr_reason_c.is(event.target) && qrmr_reason_c.has(event.target).length==0) {
+    if(hide_seek_obj['qrmr_reason']==true){
+      reason_check_qrmr.hide();
+      hide_seek_obj['qrmr_reason']=false;
+    }
   }
 
 
 
    // part dropdown outside click
   var part_check_copqp = $('.filter_part_copqp');
-  if (!part_check_copqp.is(event.target) && part_check_copqp.has(event.target).length==0) {
-    part_check_copqp.hide();
+  var copqp_part_c = $('.copqp_part');
+  if (!part_check_copqp.is(event.target) && part_check_copqp.has(event.target).length==0 && !copqp_part_c.is(event.target) && copqp_part_c.has(event.target).length==0) {
+    if(hide_seek_obj['copqp_part']==true){
+      part_check_copqp.hide();
+      hide_seek_obj['copqp_part']=false;
+    }
   }
 
   // machine dropdown outside click
   var machine_check_copqp = $('.filter_machine_copqp');
-  if (!machine_check_copqp.is(event.target) && machine_check_copqp.has(event.target).length==0) {
-    machine_check_copqp.hide();
+  var copqp_machine_c = $('.copqp_machine');
+  if (!machine_check_copqp.is(event.target) && machine_check_copqp.has(event.target).length==0 && !copqp_machine_c.is(event.target) && copqp_machine_c.has(event.target).length==0) {
+    if(hide_seek_obj['copqp_machine']==true){
+      machine_check_copqp.hide();
+      hide_seek_obj['copqp_machine']=false;
+    }
   }
 
     // reason dropdown outside click
   var reason_check_copqp = $('.filter_reason_copqp');
-  if (!reason_check_copqp.is(event.target) && reason_check_copqp.has(event.target).length==0) {
-    reason_check_copqp.hide();
+  var copqp_reason_c = $('.copqp_reason');
+  if (!reason_check_copqp.is(event.target) && reason_check_copqp.has(event.target).length==0 && !copqp_reason_c.is(event.target) && copqp_reason_c.has(event.target).length==0) {
+    if(hide_seek_obj['copqp_reason']==true){
+      reason_check_copqp.hide();
+      hide_seek_obj['copqp_reason']=false;
+    }
   }
 
-     // part dropdown outside click
+  // part dropdown outside click
   var part_check_qrpr = $('.filter_part_qrpr');
-  if (!part_check_qrpr.is(event.target) && part_check_qrpr.has(event.target).length==0) {
-    part_check_qrpr.hide();
+  var qrpr_part_c = $('.qrpr_part');
+  if (!part_check_qrpr.is(event.target) && part_check_qrpr.has(event.target).length==0 && !qrpr_part_c.is(event.target) && qrpr_part_c.has(event.target).length==0) {
+    if(hide_seek_obj['qrpr_part']==true){
+      part_check_qrpr.hide();
+      hide_seek_obj['qrpr_part']=false;
+    }
   }
 
   // machine dropdown outside click
   var machine_check_qrpr = $('.filter_machine_qrpr');
-  if (!machine_check_qrpr.is(event.target) && machine_check_qrpr.has(event.target).length==0) {
-    machine_check_qrpr.hide();
+  var qrpr_machine_c = $('.qrpr_machine');
+  if (!machine_check_qrpr.is(event.target) && machine_check_qrpr.has(event.target).length==0 && !qrpr_machine_c.is(event.target) && qrpr_machine_c.has(event.target).length==0) {
+    if(hide_seek_obj['qrpr_machine']==true){
+      machine_check_qrpr.hide();
+      hide_seek_obj['qrpr_machine']=false;
+    }
   }
 
     // reason dropdown outside click
   var reason_check_qrpr = $('.filter_reason_qrpr');
-  if (!reason_check_qrpr.is(event.target) && reason_check_qrpr.has(event.target).length==0) {
-    reason_check_qrpr.hide();
-  }
-
-
-  // part dropdown outside click
-  var part_check_qrmr = $('.filter_part_qrmr');
-  if (!part_check_qrmr.is(event.target) && part_check_qrmr.has(event.target).length==0) {
-    part_check_qrmr.hide();
-  }
-
-  // machine dropdown outside click
-  var machine_check_qrmr = $('.filter_machine_qrmr');
-  if (!machine_check_qrmr.is(event.target) && machine_check_qrmr.has(event.target).length==0) {
-    machine_check_qrmr.hide();
-  }
-
-    // reason dropdown outside click
-  var reason_check_qrmr = $('.filter_reason_qrmr');
-  if (!reason_check_qrmr.is(event.target) && reason_check_qrmr.has(event.target).length==0) {
-    reason_check_qrmr.hide();
+  var qrpr_reason_c = $('.qrpr_reason');
+  if (!reason_check_qrpr.is(event.target) && reason_check_qrpr.has(event.target).length==0 && !qrpr_reason_c.is(event.target) && qrpr_reason_c.has(event.target).length==0) {
+    if(hide_seek_obj['qrpr_reason']==true){
+      reason_check_qrpr.hide();
+      hide_seek_obj['qrpr_reason']=false;
+    }
   }
 
 });
@@ -5249,7 +4396,7 @@ function reset_machine(){
   jQuery('.filter_machine_val').each(function(index){
     machine_arr[index].checked=true;
   });
-  $('#filter_machine_val').text('All Machine');
+  $('#machine_text').text('All Machine');
 }
 
 // reset reason
@@ -5258,7 +4405,7 @@ function reset_reason(){
   jQuery('.filter_reason_val').each(function(index){
     reason_arr[index].checked=true;
   });
-  $('#reason_text').text('All Machine');
+  $('#reason_text').text('All Reasons');
 }
 
 // reset created by
@@ -5267,8 +4414,178 @@ function reset_created(){
   jQuery('.filter_user_val').each(function(index){
     created_arr[index].checked=true;
   });
-  $('#user_text').text('All Machine');
+  $('#user_text').text('All Users');
 }
+
+// Reset graph filter
+// copq graph dropdowns
+// machine
+function reset_machine_copq(){
+  var machine_arr = $('.filter_machine_val_copq');
+  jQuery('.filter_machine_val_copq').each(function(index){
+    machine_arr[index].checked=true;
+  });
+  $('#machine_text_copq').text('All Machines');
+}
+
+// part
+function reset_part_copq(){
+  var part_arr = $('.filter_part_val_copq');
+  jQuery('.filter_part_val_copq').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#part_text_copq').text('All Parts');
+}
+
+// reason 
+function reset_reason_copq(){
+  var part_arr = $('.filter_reason_val_copq');
+  jQuery('.filter_reason_val_copq').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#reason_text_copq').text('All Reasons');
+}
+
+// crpr
+// part
+function reset_part_crpr(){
+  var part_arr = $('.filter_part_val_crpr');
+  jQuery('.filter_part_val_crpr').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#part_text_crpr').text('All Parts');
+}
+
+// machine
+function reset_machine_crpr(){
+  var machine_arr = $('.filter_machine_val_crpr');
+  jQuery('.filter_machine_val_crpr').each(function(index){
+    machine_arr[index].checked=true;
+  });
+  $('#machine_text_crpr').text('All Machines');
+}
+
+// Reasons
+function reset_reason_crpr(){
+  var reason_arr = $('.filter_reason_val_crpr');
+  jQuery('.filter_reason_val_crpr').each(function(index){
+    reason_arr[index].checked=true;
+  });
+  $('#reason_text_crpr').text('All Reasons');
+}
+
+// copqm
+// parts
+function reset_part_copqm(){
+  var part_arr = $('.filter_part_val_copqm');
+  jQuery('.filter_part_val_copqm').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#part_text_copqm').text('All Parts');
+}
+
+// machine
+function reset_machine_copqm(){
+  var machine_arr = $('.filter_machine_val_copqm');
+  jQuery('.filter_machine_val_copqm').each(function(index){
+    machine_arr[index].checked=true;
+  });
+  $('#machine_text_copqm').text('All Machines');
+}
+
+// reason
+function reset_reason_copqm(){
+  var reason_arr = $('.filter_reason_val_copqm');
+  jQuery('.filter_reason_val_copqm').each(function(index){
+    reason_arr[index].checked=true;
+  });
+  $('#reason_text_copqm').text('All Reasons');
+}
+
+// qrmr 
+
+// part
+function reset_part_qrmr(){
+  var part_arr = $('.filter_part_val_qrmr');
+  jQuery('.filter_part_val_qrmr').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#part_text_qrmr').text('All Parts')
+}
+// machine
+function reset_machine_qrmr(){
+  var machine_arr = $('.filter_machine_val_qrmr');
+  jQuery('.filter_machine_val_qrmr').each(function(index){
+    machine_arr[index].checked=true;
+  });
+  $('#machine_text_qrmr').text('All Machines')
+}
+
+// reason
+function reset_reason_qrmr(){
+  var reason_arr = $('.filter_reason_val_qrmr');
+  jQuery('.filter_reason_val_qrmr').each(function(index){
+    reason_arr[index].checked=true;
+  });
+  $('#reason_text_qrmr').text('All Reasons');
+}
+
+// copqp
+// part
+function reset_part_copqp(){
+  var part_arr = $('.filter_part_val_copqp');
+  jQuery('.filter_part_val_copqp').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#part_text_copqp').text('All Parts');
+}
+
+// machine 
+function reset_machine_copqp(){
+  var machine_arr = $('.filter_machine_val_copqp');
+  jQuery('.filter_machine_val_copqp').each(function(index){
+    machine_arr[index].checked=true;
+  });
+  $('#machine_text_copqp').text('All Machines')
+}
+
+// reason
+function reset_reason_copqp(){
+  var reason_arr = $('.filter_reason_val_copqp');
+  jQuery('.filter_reason_val_copqp').each(function(index){
+    reason_arr[index].checked=true;
+  });
+  $('#reason_text_copqp').text('All Reasons');
+}
+
+// qrpr
+// part
+function reset_part_qrpr(){
+  var part_arr = $('.filter_part_val_qrpr');
+  jQuery('.filter_part_val_qrpr').each(function(index){
+    part_arr[index].checked=true;
+  });
+  $('#part_text_qrpr').text('All Parts');
+}
+
+// machine
+function reset_machine_qrpr(){
+  var machine_arr = $('.filter_machine_val_qrpr');
+  jQuery('.filter_machine_val_qrpr').each(function(index){
+    machine_arr[index].checked=true;
+  });
+  $('#machine_text_qrpr').text('All Machines');
+}
+
+// reason
+function reset_reason_qrpr(){
+  var reason_arr = $('.filter_reason_val_qrpr');
+  jQuery('.filter_reason_val_qrpr').each(function(index){
+    reason_arr[index].checked=true;
+  });
+  $('#reason_text_qrpr').text('All Reasons');
+}
+
 
 
 // Graph Filters......

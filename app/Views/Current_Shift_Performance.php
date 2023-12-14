@@ -282,7 +282,13 @@
 
 <script type="text/javascript">
 
-$("#overlay").fadeIn(300);
+
+$(document).ready(function(){
+    // alert('hi');
+    $("#overlay").fadeIn(300);
+    base_func();
+});
+
 
 let slideIndex = 0;
 let slideIndexLimit = 10;
@@ -327,33 +333,59 @@ $('.visibility_div').css('display', 'inline');
 var j_global = "";
 var mx_global="";
 
+async function base_func(){
+    const result = await getMachineDataLive();
+    await  getTileupdate(result);
+    await getLiveMode(result[0]['shift_date'], result[0]['shift_id']);
 
-getMachineDataLive();
+    // await live_graph(result[0]['shift_date'], result[0]['shift_id']);
+    // await live_target(result[0]['shift_date']);
+    await live_MC1001(result[0]['shift_date'], result[0]['shift_id']);
+    // await live_target();
+    await live_target_update(result[0]['shift_date']);
+
+    $("#overlay").fadeOut(300);
+
+}
+// getMachineDataLive();
  
-mx_global = setInterval(function() {
-    getMachineDataLiveUpdate();
-}, 1000);
+// mx_global = setInterval(function() {
+//     getMachineDataLiveUpdate();
+// }, 1000);
+
+async function previous_shift(){
+    const get_previous_shift_record = await get_previous_shift_value();
+    await  getTileupdate(get_previous_shift_record);
+    await getLiveMode(get_previous_shift_record[0]['shift_date'], get_previous_shift_record[0]['shift_id']);
+    await live_MC1001(get_previous_shift_record[0]['shift_date'], get_previous_shift_record[0]['shift_id']);
+    await live_target_update(get_previous_shift_record[0]['shift_date']);
+    $("#overlay").fadeOut(300);
+}
+
+function get_previous_shift_value(){
+    return new Promise(function(resolve,reject){
+        $.ajax({
+            url: "<?php echo base_url('Current_Shift_Performance/getPreviousShiftLive'); ?>",
+            type: "POST",
+            dataType: "json",
+            cache: false,
+            // async: false,
+            success: function(res) {
+               resolve(res);
+            },
+            error: function(res) {
+                // Error Occured!
+                reject(res);
+            }
+        });
+    });
+}
 
 $(document).on('click','.Previous_Shift_Live',function(event){
+    $("#overlay").fadeIn(300);
     myChartList =[];
     $(".Previous_Shift_Live").attr("status",1);
-    $.ajax({
-        url: "<?php echo base_url('Current_Shift_Performance/getPreviousShiftLive'); ?>",
-        type: "POST",
-        dataType: "json",
-        cache: false,
-        async: false,
-        success: function(res) {
-            // clearInterval(mx_global);
-            clearInterval(i_global);
-            clearInterval(j_global);
-            getTileupdate(res);
-        },
-        error: function(res) {
-            // Error Occured!
-        }
-    });
-    
+    previous_shift();
 });
 
 
@@ -384,614 +416,595 @@ function getMachineDataLiveUpdate(){
     });
 }
 function getTileupdate(res){
-    var date = new Date(res[0]['shift_date']);
-    date = date.getDate() + " " + date.toLocaleString([], {
-        month: 'short'
-    }) + " " + date.getFullYear();
+    return new Promise(function(resolve,reject){
+        var date = new Date(res[0]['shift_date']);
+        date = date.getDate() + " " + date.toLocaleString([], {
+            month: 'short'
+        }) + " " + date.getFullYear();
 
-    $("#shift_date").html(date);
-    $('#shift_date').attr('sdate_format', res[0]['shift_date']);
-    $("#shift_id").html("Shift " + res[0]['shift_id']);
-    var s_time = res[0]['start_time'].split(":");
-    var e_time = res[0]['end_time'].split(":");
-    $("#start_time").html(s_time[0] + ":" + s_time[1]);
-    $("#end_time").html(e_time[0] + ":" + e_time[1]);
+        $("#shift_date").html(date);
+        $('#shift_date').attr('sdate_format', res[0]['shift_date']);
+        $("#shift_id").html("Shift " + res[0]['shift_id']);
+        var s_time = res[0]['start_time'].split(":");
+        var e_time = res[0]['end_time'].split(":");
+        $("#start_time").html(s_time[0] + ":" + s_time[1]);
+        $("#end_time").html(e_time[0] + ":" + e_time[1]);
 
-    $("#s_time_val").val(s_time[0] + ":" + s_time[1] + ":" + s_time[2]);
-    $("#e_time_val").val(e_time[0] + ":" + e_time[1] + ":" + s_time[2]);
+        $("#s_time_val").val(s_time[0] + ":" + s_time[1] + ":" + s_time[2]);
+        $("#e_time_val").val(e_time[0] + ":" + e_time[1] + ":" + s_time[2]);
 
-    $("#s_date_ref").val(res[0]['shift_date']);
-    $("#s_id_ref").val(res[0]['shift_id']);
+        $("#s_date_ref").val(res[0]['shift_date']);
+        $("#s_id_ref").val(res[0]['shift_id']);
 
-    getLiveMode(res[0]['shift_date'], res[0]['shift_id']);
+        // getLiveMode(res[0]['shift_date'], res[0]['shift_id']);
 
-    var target_graph_date_time_val = date+","+e_time[0] + ":" + e_time[1] + ":" + s_time[2];
-    $('#shift_date_oui_graph').text(target_graph_date_time_val);
-}
-function getMachineDataLive(res) {
-    $.ajax({
-        url: "<?php echo base_url('Current_Shift_Performance/getLive'); ?>",
-        type: "POST",
-        dataType: "json",
-        cache: false,
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function(res) {
-            getTileupdate(res);
-        },
-        error: function(res) {
-            // Error Occured!
-        }
+        var target_graph_date_time_val = date+","+e_time[0] + ":" + e_time[1] + ":" + s_time[2];
+        $('#shift_date_oui_graph').text(target_graph_date_time_val);
+        resolve("success getTileupdate function");
     });
+   
+}
+function getMachineDataLive() {
+    return new Promise(function(resolve,reject){
+        $.ajax({
+            url: "<?php echo base_url('Current_Shift_Performance/getLive'); ?>",
+            type: "POST",
+            dataType: "json",
+            cache: false,
+            // async: false,
+            contentType: "application/json; charset=utf-8",
+            success: function(res) {
+                resolve(res);
+                // getTileupdate(res);
+            },
+            error: function(res) {
+                // Error Occured!
+                reject(res);
+            }
+        });
+    });
+   
 }
 
 function getLiveMode(shift_date, shift_id) {
     // var x = $('#Filter-values').val();
-    $.ajax({
-        url: "<?php echo base_url('Current_Shift_Performance/getLiveMode'); ?>",
-        type: "POST",
-        dataType: "json",
-        cache: false,
-        async: false,
-        data: {
-            shift_date: shift_date,
-            shift_id: shift_id,
-            // filter:x,
-        },
-        success: function(res) {
-            console.log("current shift performance live mode value");
-            console.log(res);
-            $('.grid-container-cont').empty();
-            res['latest_event'].forEach(function(machine) {
-                var machine_name = "";
-                var production_total = 0;
-                res['machine_name'].forEach(function(m) {
-                    if (m['machine_id'] == machine[0]['machine_id']) {
-                        machine_name = m['machine_name'];
-                    }
-                });
+    return new Promise(function(resolve,reject){
+        $.ajax({
+            url: "<?php echo base_url('Current_Shift_Performance/getLiveMode'); ?>",
+            type: "POST",
+            dataType: "json",
+            cache: false,
+            // async: false,
+            data: {
+                shift_date: shift_date,
+                shift_id: shift_id,
+                // filter:x,
+            },
+            success: function(res) {
+                $('.grid-container-cont').empty();
+                res['latest_event'].forEach(function(machine) {
+                    var machine_name = "";
+                    var production_total = 0;
+                    res['machine_name'].forEach(function(m) {
+                        if (m['machine_id'] == machine[0]['machine_id']) {
+                            machine_name = m['machine_name'];
+                        }
+                    });
 
-                res['production_total'].forEach(function(m) {
-                    if (m['machine_id'] == machine[0]['machine_id']) {
-                        production_total = m['total'];
-                    }
-                });
+                    res['production_total'].forEach(function(m) {
+                        if (m['machine_id'] == machine[0]['machine_id']) {
+                            production_total = m['total'];
+                        }
+                    });
 
-                var elements = $();
-                // title="' + machine_name + '"
-                elements = elements.add('<div class="grid-item-cont">' +
-                    '<div class="item-header" id="item-header-' + machine[0]['machine_id'] +
-                    '" style="cursor:pointer;">' +
-                    '<div>' +
-                    '<p class="paddingm pad-top cen-align fnt-color machine_name_ref" tid_data="'+machine[0]['tool_id']+'" mid_data="' +
-                    machine[0]['machine_id'] + '"  id="Machine_name_' + machine[0][
-                    'machine_id'] + '" title="' + machine_name + '">' + machine_name + '</p>' +
-                    '<p class="paddingm cen-align fnt-color current_event" event="" duration="" id="latest_status_' +
-                    machine[0]['machine_id'] + '"></p>' +
-                    '</div>' +
-                    '</div>' +
-                    '<div class="item-circle">' +
-                    '<div class="inner-circle">' +
-                    '<div class="inner-val">' +
-                    '<p class="paddingm production_completion production_completion_ref"><span id="production_per' +
-                    machine[0]['machine_id'] + '"></span></p>' +
-                    '<p class="paddingm production_completion partname_ref" id="partname_' +
-                    machine[0]['machine_id'] + '" title="">Part Name</p>' +
-                    '</div>' +
-                    '</div>' +
-                    '<svg version="1.1" class="svg">' +
-                    '<defs>' +
-                    '<linearGradient id="GradientColor_' + machine[0]['machine_id'] + '">' +
-                    '<stop id="circle_graph_colors_' + machine[0]['machine_id'] +
-                    '" stop-color="#d10527" />' +
-                    '</linearGradient>' +
-                    '</defs>' +
-                    '<circle class="circle" id="' + machine[0]['machine_id'] +
-                    '" cx="120" cy="120" r="47" stroke-linecap="round"/>'+
-                    '<div class="part_completion hover_area">'+
+                    var elements = $();
+                    // title="' + machine_name + '"
+                    elements = elements.add('<div class="grid-item-cont">' +
+                        '<div class="item-header" id="item-header-' + machine[0]['machine_id'] +
+                        '" style="cursor:pointer;">' +
+                        '<div>' +
+                        '<p class="paddingm pad-top cen-align fnt-color machine_name_ref" tid_data="'+machine[0]['tool_id']+'" mid_data="' +
+                        machine[0]['machine_id'] + '"  id="Machine_name_' + machine[0][
+                        'machine_id'] + '" title="' + machine_name + '">' + machine_name + '</p>' +
+                        '<p class="paddingm cen-align fnt-color current_event" event="" duration="" id="latest_status_' +
+                        machine[0]['machine_id'] + '"></p>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="item-circle">' +
+                        '<div class="inner-circle">' +
+                        '<div class="inner-val">' +
+                        '<p class="paddingm production_completion production_completion_ref"><span id="production_per' +
+                        machine[0]['machine_id'] + '"></span></p>' +
+                        '<p class="paddingm production_completion partname_ref" id="partname_' +
+                        machine[0]['machine_id'] + '" title="">Part Name</p>' +
+                        '</div>' +
+                        '</div>' +
+                        '<svg version="1.1" class="svg">' +
+                        '<defs>' +
+                        '<linearGradient id="GradientColor_' + machine[0]['machine_id'] + '">' +
+                        '<stop id="circle_graph_colors_' + machine[0]['machine_id'] +
+                        '" stop-color="#d10527" />' +
+                        '</linearGradient>' +
+                        '</defs>' +
+                        '<circle class="circle" id="' + machine[0]['machine_id'] +
+                        '" cx="120" cy="120" r="47" stroke-linecap="round"/>'+
+                        '<div class="part_completion hover_area">'+
+                            '<div style="display: flex;">' +
+                                '<div class="hover_header_area paddingm fnt_fam hover_header_light">Part Name</div>' +
+                                '<div class="hover_header_val_area"><p class="paddingm fnt_fam hover_val" id="part_name_hover_' +machine[0]['machine_id'] + '"></p></div>' +
+                            '</div>' +
+                            '<div style="display: flex;">' +
+                                '<div class="hover_header_area paddingm fnt_fam hover_header_light">Tool Name</div>' +
+                                '<div class="hover_header_val_area" ><p class="paddingm fnt_fam hover_val" id="tool_name_hover_' +machine[0]['machine_id'] + '"></p></div>' +
+                            '</div>' +
+                            '<div style="display: flex;">' +
+                                '<div class="hover_header_area paddingm fnt_fam hover_header_light">Part Completion</div>' +
+                                '<div class="hover_header_val_area" ><p class="paddingm fnt_fam hover_val" id="part_completion_hover_' +machine[0]['machine_id'] + '"></p></div>' +
+                            '</div>' +
+                        '</div>' +
+                        '</svg>' +
+                        '</div>' +
+                        '<div class="item-oee hoverCardOEECurrent" style="margin: 0.5rem;">' +
+                        '<div style="width: 19%;display: flex;justify-content: flex-end;"><p class="paddingm oee-lable">OEE</p></div>' +
+                        '<div class="FLayer">' +
+                        '<div class="BLayer" id="Target_' + machine[0]['machine_id'] + '"></div>' +
+                        '<div class="SLayer" id="SLayer_' + machine[0]['machine_id'] + '"></div>' +
+                        '<div  class="TLayer TTotal" id="TTotal_' + machine[0]['machine_id'] +
+                        '">' +
+                        '<p class="values_oee paddingm val" id="SLayer_val_Color_' + machine[0][
+                            'machine_id'
+                        ] + '"><span id="SLayer_val_' + machine[0]['machine_id'] +
+                        '"></span>%</p>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>'
+
+                        +
+                        '<div class="hover_area hoverOverallOEE_Current hoverOverall_current">' +
                         '<div style="display: flex;">' +
-                            '<div class="hover_header_area paddingm fnt_fam hover_header_light">Part Name</div>' +
-                            '<div class="hover_header_val_area"><p class="paddingm fnt_fam hover_val" id="part_name_hover_' +machine[0]['machine_id'] + '"></p></div>' +
+                            '<div class="hover_header_area paddingm fnt_fam hover_header_light">OEE%</div>' +
+                            '<div class="hover_header_val_area" ><p class="paddingm fnt_fam hover_val teepVal" id="OEE_' +machine[0]['machine_id'] + '">0%</p></div>' +
                         '</div>' +
                         '<div style="display: flex;">' +
-                            '<div class="hover_header_area paddingm fnt_fam hover_header_light">Tool Name</div>' +
-                            '<div class="hover_header_val_area" ><p class="paddingm fnt_fam hover_val" id="tool_name_hover_' +machine[0]['machine_id'] + '"></p></div>' +
+                            '<div class="hover_header_area paddingm fnt_fam hover_header_light">Target</div>' +
+                            '<div class="hover_header_val_area"><p class="paddingm fnt_fam hover_val teepTarget" id="OEETarget_' +machine[0]['machine_id'] + '">0%</p></div>' +
+                        '</div>' +
+                        '<div style="display: flex;" class="margin-top">' +
+                            '<div class="hover_header_area paddingm fnt_fam hover_header_light">Availability%</div>' +
+                            '<div class="hover_header_val_area"><p class="paddingm fnt_fam hover_val teepTarget" id="OEEAvail_' +machine[0]['machine_id'] + '">0%</p></div>' +
                         '</div>' +
                         '<div style="display: flex;">' +
-                            '<div class="hover_header_area paddingm fnt_fam hover_header_light">Part Completion</div>' +
-                            '<div class="hover_header_val_area" ><p class="paddingm fnt_fam hover_val" id="part_completion_hover_' +machine[0]['machine_id'] + '"></p></div>' +
+                            '<div class="hover_header_area paddingm fnt_fam hover_header_light">Performance%</div>' +
+                            '<div class="hover_header_val_area"><p class="paddingm fnt_fam hover_val teepTarget" id="OEEPerf_' +machine[0]['machine_id'] + '">0%</p></div>' +
                         '</div>' +
-                    '</div>' +
-                    '</svg>' +
-                    '</div>' +
-                    '<div class="item-oee hoverCardOEECurrent" style="margin: 0.5rem;">' +
-                    '<div style="width: 19%;display: flex;justify-content: flex-end;"><p class="paddingm oee-lable">OEE</p></div>' +
-                    '<div class="FLayer">' +
-                    '<div class="BLayer" id="Target_' + machine[0]['machine_id'] + '"></div>' +
-                    '<div class="SLayer" id="SLayer_' + machine[0]['machine_id'] + '"></div>' +
-                    '<div  class="TLayer TTotal" id="TTotal_' + machine[0]['machine_id'] +
-                    '">' +
-                    '<p class="values_oee paddingm val" id="SLayer_val_Color_' + machine[0][
-                        'machine_id'
-                    ] + '"><span id="SLayer_val_' + machine[0]['machine_id'] +
-                    '"></span>%</p>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>'
-
-                    +
-                    '<div class="hover_area hoverOverallOEE_Current hoverOverall_current">' +
-                    '<div style="display: flex;">' +
-                        '<div class="hover_header_area paddingm fnt_fam hover_header_light">OEE%</div>' +
-                        '<div class="hover_header_val_area" ><p class="paddingm fnt_fam hover_val teepVal" id="OEE_' +machine[0]['machine_id'] + '">0%</p></div>' +
-                    '</div>' +
-                    '<div style="display: flex;">' +
-                        '<div class="hover_header_area paddingm fnt_fam hover_header_light">Target</div>' +
-                        '<div class="hover_header_val_area"><p class="paddingm fnt_fam hover_val teepTarget" id="OEETarget_' +machine[0]['machine_id'] + '">0%</p></div>' +
-                    '</div>' +
-                    '<div style="display: flex;" class="margin-top">' +
-                        '<div class="hover_header_area paddingm fnt_fam hover_header_light">Availability%</div>' +
-                        '<div class="hover_header_val_area"><p class="paddingm fnt_fam hover_val teepTarget" id="OEEAvail_' +machine[0]['machine_id'] + '">0%</p></div>' +
-                    '</div>' +
-                    '<div style="display: flex;">' +
-                        '<div class="hover_header_area paddingm fnt_fam hover_header_light">Performance%</div>' +
-                        '<div class="hover_header_val_area"><p class="paddingm fnt_fam hover_val teepTarget" id="OEEPerf_' +machine[0]['machine_id'] + '">0%</p></div>' +
-                    '</div>' +
-                    '<div style="display: flex;">' +
-                        '<div class="hover_header_area paddingm fnt_fam hover_header_light">Quality%</div>' +
-                        '<div class="hover_header_val_area"><p class="paddingm fnt_fam hover_val teepTarget" id="OEEQuali_' +machine[0]['machine_id'] + '">0%</p></div>' +
-                    '</div>' +
-                    '</div>'
+                        '<div style="display: flex;">' +
+                            '<div class="hover_header_area paddingm fnt_fam hover_header_light">Quality%</div>' +
+                            '<div class="hover_header_val_area"><p class="paddingm fnt_fam hover_val teepTarget" id="OEEQuali_' +machine[0]['machine_id'] + '">0%</p></div>' +
+                        '</div>' +
+                        '</div>'
 
 
-                    +
-                    '<div class="item-production">' +
-                    '<div class="item-production-s" id="item_production_s_' + machine[0][
-                        'machine_id'
-                    ] + '"></div>' +
-                    '<div class="graph-content-div">' +
-                    '<canvas id="production-graph-' + machine[0]['machine_id'] +
-                    '" style=""></canvas>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>');
-                $('.grid-container-cont').append(elements);
+                        +
+                        '<div class="item-production">' +
+                        '<div class="item-production-s" id="item_production_s_' + machine[0][
+                            'machine_id'
+                        ] + '"></div>' +
+                        '<div class="graph-content-div">' +
+                        '<canvas id="production-graph-' + machine[0]['machine_id'] +
+                        '" style=""></canvas>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>');
+                    $('.grid-container-cont').append(elements);
 
-                // OEE Target....
-                $('#Target_' + machine[0]['machine_id'] + '').css("width", parseInt(res['targets'][
-                    0].oee) + "%");
+                    // OEE Target....
+                    $('#Target_' + machine[0]['machine_id'] + '').css("width", parseInt(res['targets'][
+                        0].oee) + "%");
 
-                // OEE Percentage......
-                $('#SLayer_' + machine[0]['machine_id'] + '').css("width", parseInt(res['oee'][0]
-                    .OEE) + "%");
+                    // OEE Percentage......
+                    $('#SLayer_' + machine[0]['machine_id'] + '').css("width", parseInt(res['oee'][0]
+                        .OEE) + "%");
 
-                $('#SLayer_val_' + machine[0]['machine_id'] + '').html(parseInt(0));
+                    $('#SLayer_val_' + machine[0]['machine_id'] + '').html(parseInt(0));
 
-                // Latest Status........
-                $('#latest_status_' + machine[0]['machine_id'] + '').html(res['latest_event'][0][0]
-                    .duration + "m " + res['latest_event'][0][0].event);
+                    // Latest Status........
+                    $('#latest_status_' + machine[0]['machine_id'] + '').html(res['latest_event'][0][0]
+                        .duration + "m " + res['latest_event'][0][0].event);
 
-                
-                // Production Percentage.......
-                var target_production = 0;
-                res['production_target'].forEach(function(pp){
-                    if (machine[0]['machine_id'] == pp['machine_id']) {
-                        target_production = pp['target'];
-                    }
-                });
-                // temporary hide for this function for madhan sir instruction follow toolchangeover to target prodcution percentage
-                var shift_production=0;
-                res['shift_production_target'].forEach(function(i){
-                    if (i['machine_id'] == machine[0]['machine_id']) {
-                        target_production = i['shift_production_target'];
-                        shift_production = i['shift_production'];
-                    }
-                });
+                    
+                    // Production Percentage.......
+                    var target_production = 0;
+                    res['production_target'].forEach(function(pp){
+                        if (machine[0]['machine_id'] == pp['machine_id']) {
+                            target_production = pp['target'];
+                        }
+                    });
+                    // temporary hide for this function for madhan sir instruction follow toolchangeover to target prodcution percentage
+                    var shift_production=0;
+                    res['shift_production_target'].forEach(function(i){
+                        if (i['machine_id'] == machine[0]['machine_id']) {
+                            target_production = i['shift_production_target'];
+                            shift_production = i['shift_production'];
+                        }
+                    });
 
-                // its working on strategy
-                // after toolchangeover to total parts production
-                // var total_part_production_after_tool_changeover = 0;
-                // res['target_production'].forEach(function(i){
-                //     if (i['machine_id'] == machine[0]['machine_id']) {
-                //         total_part_production_after_tool_changeover = i['total_part_produced'];    
-                //     }
-                // });
-                // console.log("total production:\t"+total_part_production_after_tool_changeover);
+                    var production_percent = parseInt((shift_production / target_production) * 100);
+                    var production_percent_val = 470 - (4.7 * production_percent);
+                    const MyFSC_container = document.getElementsByClassName("circle");
+                    MyFSC_container[0].style.setProperty("--foo", production_percent_val);
 
-                // // toolchangeover target finding
-                // var find_toolchangeover_target = 0;
-                // res['production_target'].forEach(function(i){
-                //     if (i['machine_id'] == machine[0]['machine_id'] ) {
-                //         find_toolchangeover_target = i['target'];
-                //     }
-                // });
-                // console.log("find the toolchangeover target:\t"+find_toolchangeover_target);
+                    // Production Percentage......
+                    $('#production_per' + machine[0]['machine_id'] + '').html(production_percent);
 
 
-                // var tmp_production_percent = parseInt((total_part_production_after_tool_changeover / find_toolchangeover_target) * 100);
-                // var production_percent = 0;
-                // if (parseInt(tmp_production_percent)>100) {
-                //     production_percent = 100;
-                // }else{
-                //     production_percent = parseInt(tmp_production_percent);
-                // }
-                // console.log("production percentage:\t"+production_percent);
-                var production_percent = parseInt((shift_production / target_production) * 100);
-                var production_percent_val = 470 - (4.7 * production_percent);
-                const MyFSC_container = document.getElementsByClassName("circle");
-                MyFSC_container[0].style.setProperty("--foo", production_percent_val);
+                    // Graph Portion
+                    var hourly = [];
+                    var hourList = [];
+                    var production_target = [];
+                    var part_name_list = [];
+                    var rejections_list = [];
+                    res['data'].forEach(function(items) {
+                        if (items['machine'] == machine[0]['machine_id']) {
+                            items['production'].forEach(function(i) {
+                                hourly.push(i['production']);
+                                hourList.push(i['start_time'] + " to " + i['end_time']);
+                                part_name_list.push(i['part_name']);
+                                rejections_list.push(i['rejections']);
+                            });
+                            items['targets'].forEach(function(i) {
+                                production_target.push(i);
+                            });
+                        }
+                    });
 
-                // Production Percentage......
-                $('#production_per' + machine[0]['machine_id'] + '').html(production_percent);
+                    ChartDataLabels.defaults.color = "#ffffff";
+                    // ChartDataLabels.defaults.font.size=8;
+                    ChartDataLabels.defaults.font.family = "Roboto, sans-serif";
 
-
-                // Graph Portion
-                var hourly = [];
-                var hourList = [];
-                var production_target = [];
-                var part_name_list = [];
-                var rejections_list = [];
-                res['data'].forEach(function(items) {
-                    if (items['machine'] == machine[0]['machine_id']) {
-                        items['production'].forEach(function(i) {
-                            hourly.push(i['production']);
-                            hourList.push(i['start_time'] + " to " + i['end_time']);
-                            part_name_list.push(i['part_name']);
-                            rejections_list.push(i['rejections']);
-                        });
-                        items['targets'].forEach(function(i) {
-                            production_target.push(i);
-                        });
-                    }
-                });
-
-                ChartDataLabels.defaults.color = "#ffffff";
-                // ChartDataLabels.defaults.font.size=8;
-                ChartDataLabels.defaults.font.family = "Roboto, sans-serif";
-
-                var ctx = document.getElementById('production-graph-' + machine[0]['machine_id'] +
-                    '').getContext('2d');
-                myChartList[myChartList.length] = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: hourList,
-                        datasets: [{
-                                label: "Total Parts",
-                                type: "bar",
-                                backgroundColor: "white",
-                                borderColor: "rgba(0, 0, 0, 0)",
-                                borderWidth: 1,
-                                fill: true,
-                                data: hourly,
-                                part_name: part_name_list,
-                                rejections: rejections_list,
-                                categoryPercentage: 1.0,
-                                barPercentage: 1.0,
-                            },
-                            {
-                                label: "Production Target",
-                                type: "line",
-                                backgroundColor: "#7f7f7f",
-                                borderColor: "#00000",
-                                borderWidth: 1,
-                                fill: false,
-                                data: production_target,
-                                part_name: part_name_list,
-                                pointRadius: 0,
-                                stepped: 'before',
-                            },
-                        ],
-                    },
-                    options: {
-                        scalebeginAtZero: false,
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            y: {
-                                display: false,
-                                beginAtZero: true,
-                                stacked: false,
-                            },
-                            x: {
-                                display: false,
-                                grid: {
-                                    display: false
+                    var ctx = document.getElementById('production-graph-' + machine[0]['machine_id'] +
+                        '').getContext('2d');
+                    myChartList[myChartList.length] = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: hourList,
+                            datasets: [{
+                                    label: "Total Parts",
+                                    type: "bar",
+                                    backgroundColor: "white",
+                                    borderColor: "rgba(0, 0, 0, 0)",
+                                    borderWidth: 1,
+                                    fill: true,
+                                    data: hourly,
+                                    part_name: part_name_list,
+                                    rejections: rejections_list,
+                                    categoryPercentage: 1.0,
+                                    barPercentage: 1.0,
                                 },
-                                stacked: true,
-                            },
+                                {
+                                    label: "Production Target",
+                                    type: "line",
+                                    backgroundColor: "#7f7f7f",
+                                    borderColor: "#00000",
+                                    borderWidth: 1,
+                                    fill: false,
+                                    data: production_target,
+                                    part_name: part_name_list,
+                                    pointRadius: 0,
+                                    stepped: 'before',
+                                },
+                            ],
                         },
-                        plugins: {
-                            datalabels: {
-                                anchor: "end",
-                                align: "end",
-                                offset: -16,
-                                color: "white",
-                                font: {
-                                    size: 8,
+                        options: {
+                            scalebeginAtZero: false,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    display: false,
+                                    beginAtZero: true,
+                                    stacked: false,
                                 },
-                                formatter: (value, context) => context.datasetIndex === 0 ?
-                                    value : '',
-
+                                x: {
+                                    display: false,
+                                    grid: {
+                                        display: false
+                                    },
+                                    stacked: true,
+                                },
                             },
-                            legend: {
-                                display: false,
-                                labels: {
-                                    // This more specific font property overrides the global property
+                            plugins: {
+                                datalabels: {
+                                    anchor: "end",
+                                    align: "end",
+                                    offset: -16,
+                                    color: "white",
                                     font: {
-                                        size: 9
+                                        size: 8,
+                                    },
+                                    formatter: (value, context) => context.datasetIndex === 0 ?
+                                        value : '',
+
+                                },
+                                legend: {
+                                    display: false,
+                                    labels: {
+                                        // This more specific font property overrides the global property
+                                        font: {
+                                            size: 9
+                                        }
                                     }
-                                }
+                                },
+                                tooltip: {
+                                    enabled: false,
+                                    external: productionTooltip,
+                                },
                             },
-                            tooltip: {
-                                enabled: false,
-                                external: productionTooltip,
-                            },
+
                         },
+                        plugins: [ChartDataLabels],
+                    });
 
-                    },
-                    plugins: [ChartDataLabels],
                 });
 
-            });
 
+                // carousel
+                
+                $('.carousel_content_item').empty();
+                var total_count = res['latest_event'].length;
+                var tmp_count = total_count / 10;
+                var loop_end = Math.ceil(tmp_count);
 
-            // carousel
-            
-            $('.carousel_content_item').empty();
-            var total_count = res['latest_event'].length;
-            var tmp_count = total_count / 10;
-            var loop_end = Math.ceil(tmp_count);
+                for (var i = 0; i < loop_end; i++) {
 
-            for (var i = 0; i < loop_end; i++) {
-
-                var carousel_ele = $();
-                var start_index = i * 10;
-                var end_index = (i + 1) * 10;
-                var carousel_index = i + 1;
-                if (i === 0) {
-                    $('.carousel_content_item').append(
-                        '<div class="carousel-item active  carousel_slide_number' + carousel_index +
-                        '" style="background-color:white;height:100%;padding:1rem;display:flex;flex-direction:row;"></div>'
-                        );
-                } else if (i > 0) {
-                    $('.carousel_content_item').append('<div class="carousel-item carousel_slide_number' +
-                        carousel_index +
-                        '"  style="background-color:white;width:100%;padding:1rem;display:flex;flex-direction:row;"></div>'
-                        );
-                }
-                res['latest_event'].forEach(function(machine, index) {
-                    if (index >= start_index && index < end_index) {
-
-                        var machine_name = "";
-                        var production_total = 0;
-                        res['machine_name'].forEach(function(m) {
-                            if (m['machine_id'] == machine[0]['machine_id']) {
-                                machine_name = m['machine_name'];
-                            }
-                        });
-
-                        res['production_total'].forEach(function(m) {
-                            if (m['machine_id'] == machine[0]['machine_id']) {
-                                production_total = m['total'];
-                            }
-                        });
-
-                        var elements = $();
-                        elements = elements.add('<div class="grid-item-cont">' +
-                            '<div class="item-header" id="item-header1-' + machine[0][
-                                'machine_id'
-                            ] + '">' +
-                            '<div>' +
-                            '<p class="paddingm pad-top cen-align fnt-color machine_name_ref" tid_data="'+machine[0]['tool_id']+'" mid_data="' +
-                            machine[0]['machine_id'] + '"  id="Machine_name1_' + machine[0][
-                                'machine_id'
-                            ] + '" title="' + machine_name + '">' + machine_name + '</p>' +
-                            '<p class="paddingm cen-align fnt-color current_event" event="" duration="" id="latest_status_' +
-                            machine[0]['machine_id'] + '"></p>' +
-                            '</div>' +
-                            '</div>' +
-                            '<div class="item-circle">' +
-                            '<div class="inner-circle">' +
-                            '<div class="inner-val">' +
-                            '<p class="paddingm production_completion production_completion_ref"><span id="production_per1' +
-                            machine[0]['machine_id'] + '"></span>%</p>' +
-                            '<p class="paddingm production_completion partname_ref" id="partname1_' +
-                            machine[0]['machine_id'] + '" title="">Part Name</p>' +
-                            '</div>' +
-                            '</div>' +
-                            '<svg version="1.1" class="svg">' +
-                            '<defs>' +
-                            '<linearGradient id="GradientColor_1' + machine[0]['machine_id'] +
-                            '">' +
-                            '<stop id="circle_graph_colors_1' + machine[0]['machine_id'] +
-                            '" stop-color="#d10527" />' +
-                            '</linearGradient>' +
-                            '</defs>' +
-                            '<circle class="circle" id="' + machine[0]['machine_id'] +
-                            '1" cx="120" cy="120" r="47" stroke-linecap="round"/>'
-                            // +'<div class="part_completion">'
-                            //   +'<p class="paddingm">Part Completion</p>'
-                            // +'</div>'
-                            +
-                            '<div class="part_completion hoverOverallOEE_Current hoverOverall_current">' +
-                            '<div style="display: flex;">' +
-                            '<div style="width: 70%" id="title_overall">Part Name</div>' +
-                            '<div style="width: 30%" class="val_color" ><p class="paddingm cen-align" id="part_name_hover_' +
-                            machine[0]['machine_id'] + '"></p></div>' +
-                            '</div>' +
-                            '<div style="display: flex;">' +
-                            '<div style="width: 70%" id="title_overall">Tool Name</div>' +
-                            '<div style="width: 30%" class="val_color" ><p class="paddingm cen-align" id="tool_name_hover_' +
-                            machine[0]['machine_id'] + '"></p></div>' +
-                            '</div>' +
-                            '<div style="display: flex;">' +
-                            '<div style="width: 70%" id="title_overall">Part Completion</div>' +
-                            '<div style="width: 30%" class="val_color" ><p class="paddingm" id="part_completion_hover_' +
-                            machine[0]['machine_id'] + '"></p></div>' +
-                            '</div>' +
-                            '</div>' +
-                            '</svg>' +
-                            '</div>' +
-                            '<div class="item-oee hoverCardOEECurrent" style="margin: 0.5rem;">' +
-                            '<div style="width: 19%;display: flex;justify-content: flex-end;"><p class="paddingm oee-lable">OEE</p></div>' +
-                            '<div class="FLayer">' +
-                            '<div class="BLayer" id="Target1_' + machine[0]['machine_id'] +
-                            '"></div>' +
-                            '<div class="SLayer" id="SLayer1_' + machine[0]['machine_id'] +
-                            '"></div>' +
-                            '<div  class="TLayer TTotal" id="TTotal1_' + machine[0][
-                                'machine_id'] + '">' +
-                            '<p class="values_oee paddingm val" id="SLayer_val_Color1_' +
-                            machine[0]['machine_id'] + '"><span id="SLayer_val_' + machine[0][
-                                'machine_id'
-                            ] + '"></span>%</p>' +
-                            '</div>' +
-                            '</div>' +
-                            '</div>'
-
-                            +
-                            '<div class="hoverOverallOEE_Current hoverOverall_current">' +
-                            '<div style="display: flex;">' +
-                            '<div style="width: 70%" id="title_overall">OEE%</div>' +
-                            '<div style="width: 30%" class="val_color" ><p class="paddingm teepVal" style="width:max-content;" id="OEE_' +
-                            machine[0]['machine_id'] + '">0%</p></div>' +
-                            '</div>' +
-                            '<div style="display: flex;">' +
-                            '<div style="width: 70%">Target</div>' +
-                            '<div style="width: 30%"><p class="paddingm teepTarget" id="OEETarget1_' +
-                            machine[0]['machine_id'] + '">0%</p></div>' +
-                            '</div>' +
-                            '<div style="display: flex;" class="margin-top">' +
-                            '<div style="width: 70%">Availability%</div>' +
-                            '<div style="width: 30%"><p class="paddingm teepTarget" id="OEEAvail1_' +
-                            machine[0]['machine_id'] + '">0%</p></div>' +
-                            '</div>' +
-                            '<div style="display: flex;">' +
-                            '<div style="width: 70%">Performance%</div>' +
-                            '<div style="width: 30%"><p class="paddingm teepTarget" id="OEEPerf1_' +
-                            machine[0]['machine_id'] + '">0%</p></div>' +
-                            '</div>' +
-                            '<div style="display: flex;">' +
-                            '<div style="width: 70%">Quality%</div>' +
-                            '<div style="width: 30%"><p class="paddingm teepTarget" id="OEEQuali1_' +
-                            machine[0]['machine_id'] + '">0%</p></div>' +
-                            '</div>' +
-                            '</div>'
-
-
-                            +
-                            '<div class="item-production">' +
-                            '<div class="item-production-s" id="item_production_s1_' + machine[
-                                0]['machine_id'] + '"></div>' +
-                            '<div class="graph-content-div">' +
-                            '<canvas id="production-graph1123-' + machine[0]['machine_id'] +
-                            '" style=""></canvas>' +
-                            '</div>' +
-                            '</div>' +
-                            '</div>');
-                        $('.carousel_slide_number' + carousel_index).append(elements);
-
-                        // OEE Target....
-                        $('#Target1_' + machine[0]['machine_id'] + '').css("width", parseInt(res[
-                            'targets'][0].oee) + "%");
-
-                        // OEE Percentage......
-                        $('#SLayer1_' + machine[0]['machine_id'] + '').css("width", parseInt(res[
-                            'oee'][0].OEE) + "%");
-
-                        $('#SLayer_val1_' + machine[0]['machine_id'] + '').html(parseInt(0));
-
-                        // Latest Status........
-                        $('#latest_status1_' + machine[0]['machine_id'] + '').html(res[
-                            'latest_event'][0][0].duration + "m " + res['latest_event'][0][
-                            0].event);
-
-                        var target_production = 0;  
-                        var shift_production=0;
-                        res['shift_production_target'].forEach(function(i){
-                            if (i['machine_id'] == machine[0]['machine_id']) {
-                                target_production = i['shift_production_target'];
-                                shift_production = i['shift_production'];
-                            }
-                        });
-
-                        // Production Percentage.......
-                        var production_percent = parseInt((shift_production / target_production) *
-                            100);
-                        // var total_part_production_after_tool_changeover = 0;
-                        // res['target_production'].forEach(function(i){
-                        //     if (i['machine_id'] == machine[0]['machine_id']) {
-                        //         total_part_production_after_tool_changeover = i['total_part_produced'];    
-                        //     }
-                        // });
-                        // console.log("total production:\t"+total_part_production_after_tool_changeover);
-
-                        // // toolchangeover target finding
-                        // var find_toolchangeover_target = 0;
-                        // res['production_target'].forEach(function(i){
-                        //     if (i['machine_id'] == machine[0]['machine_id'] ) {
-                        //         find_toolchangeover_target = i['target'];
-                        //     }
-                        // });
-                        // console.log("find the toolchangeover target:\t"+find_toolchangeover_target);
-
-
-                        // var tmp_production_percent = parseInt((total_part_production_after_tool_changeover / find_toolchangeover_target) * 100);
-                        // var production_percent = 0;
-                        // if (parseInt(tmp_production_percent)>100) {
-                        //     production_percent = 100;
-                        // }else{
-                        //     production_percent = parseInt(tmp_production_percent);
-                        // }
-                        // console.log("production percentage:\t"+production_percent);
-                        var production_percent_val = 470 - (4.7 * production_percent);
-                        const MyFSC_container = document.getElementsByClassName("circle");
-                        MyFSC_container[0].style.setProperty("--foo", production_percent_val);
-
-                        // Production Percentage......
-                        $('#production_per1' + machine[0]['machine_id'] + '').html(
-                            production_percent);
-
-
-                        // Graph Portion
-                        var hourly = [];
-                        var hourList = [];
-                        var production_target = [];
-                        var part_name_list = [];
-                        var rejections_list = [];
-                        res['data'].forEach(function(items) {
-                            if (items['machine'] == machine[0]['machine_id']) {
-                                items['production'].forEach(function(i) {
-                                    hourly.push(i['production']);
-                                    hourList.push(i['start_time'] + " to " + i[
-                                        'end_time']);
-                                    part_name_list.push(i['part_name']);
-                                    rejections_list.push(i['rejections']);
-                                });
-                                items['targets'].forEach(function(i) {
-                                    production_target.push(i);
-                                });
-                            }
-                        });
-
-                        ChartDataLabels.defaults.color = "#ffffff";
-                        // ChartDataLabels.defaults.font.size=8;
-                        ChartDataLabels.defaults.font.family = "Roboto, sans-serif";
-
+                    var carousel_ele = $();
+                    var start_index = i * 10;
+                    var end_index = (i + 1) * 10;
+                    var carousel_index = i + 1;
+                    if (i === 0) {
+                        $('.carousel_content_item').append(
+                            '<div class="carousel-item active  carousel_slide_number' + carousel_index +
+                            '" style="background-color:white;height:100%;padding:1rem;display:flex;flex-direction:row;"></div>'
+                            );
+                    } else if (i > 0) {
+                        $('.carousel_content_item').append('<div class="carousel-item carousel_slide_number' +
+                            carousel_index +
+                            '"  style="background-color:white;width:100%;padding:1rem;display:flex;flex-direction:row;"></div>'
+                            );
                     }
+                    res['latest_event'].forEach(function(machine, index) {
+                        if (index >= start_index && index < end_index) {
 
-                });
-                // carousel_ele = carousel_ele.add('</div>');
-                // $('.carousel_content_item').append(carousel_ele);
+                            var machine_name = "";
+                            var production_total = 0;
+                            res['machine_name'].forEach(function(m) {
+                                if (m['machine_id'] == machine[0]['machine_id']) {
+                                    machine_name = m['machine_name'];
+                                }
+                            });
+
+                            res['production_total'].forEach(function(m) {
+                                if (m['machine_id'] == machine[0]['machine_id']) {
+                                    production_total = m['total'];
+                                }
+                            });
+
+                            var elements = $();
+                            elements = elements.add('<div class="grid-item-cont">' +
+                                '<div class="item-header" id="item-header1-' + machine[0][
+                                    'machine_id'
+                                ] + '">' +
+                                '<div>' +
+                                '<p class="paddingm pad-top cen-align fnt-color machine_name_ref" tid_data="'+machine[0]['tool_id']+'" mid_data="' +
+                                machine[0]['machine_id'] + '"  id="Machine_name1_' + machine[0][
+                                    'machine_id'
+                                ] + '" title="' + machine_name + '">' + machine_name + '</p>' +
+                                '<p class="paddingm cen-align fnt-color current_event" event="" duration="" id="latest_status_' +
+                                machine[0]['machine_id'] + '"></p>' +
+                                '</div>' +
+                                '</div>' +
+                                '<div class="item-circle">' +
+                                '<div class="inner-circle">' +
+                                '<div class="inner-val">' +
+                                '<p class="paddingm production_completion production_completion_ref"><span id="production_per1' +
+                                machine[0]['machine_id'] + '"></span>%</p>' +
+                                '<p class="paddingm production_completion partname_ref" id="partname1_' +
+                                machine[0]['machine_id'] + '" title="">Part Name</p>' +
+                                '</div>' +
+                                '</div>' +
+                                '<svg version="1.1" class="svg">' +
+                                '<defs>' +
+                                '<linearGradient id="GradientColor_1' + machine[0]['machine_id'] +
+                                '">' +
+                                '<stop id="circle_graph_colors_1' + machine[0]['machine_id'] +
+                                '" stop-color="#d10527" />' +
+                                '</linearGradient>' +
+                                '</defs>' +
+                                '<circle class="circle" id="' + machine[0]['machine_id'] +
+                                '1" cx="120" cy="120" r="47" stroke-linecap="round"/>'
+                                // +'<div class="part_completion">'
+                                //   +'<p class="paddingm">Part Completion</p>'
+                                // +'</div>'
+                                +
+                                '<div class="part_completion hoverOverallOEE_Current hoverOverall_current">' +
+                                '<div style="display: flex;">' +
+                                '<div style="width: 70%" id="title_overall">Part Name</div>' +
+                                '<div style="width: 30%" class="val_color" ><p class="paddingm cen-align" id="part_name_hover_' +
+                                machine[0]['machine_id'] + '"></p></div>' +
+                                '</div>' +
+                                '<div style="display: flex;">' +
+                                '<div style="width: 70%" id="title_overall">Tool Name</div>' +
+                                '<div style="width: 30%" class="val_color" ><p class="paddingm cen-align" id="tool_name_hover_' +
+                                machine[0]['machine_id'] + '"></p></div>' +
+                                '</div>' +
+                                '<div style="display: flex;">' +
+                                '<div style="width: 70%" id="title_overall">Part Completion</div>' +
+                                '<div style="width: 30%" class="val_color" ><p class="paddingm" id="part_completion_hover_' +
+                                machine[0]['machine_id'] + '"></p></div>' +
+                                '</div>' +
+                                '</div>' +
+                                '</svg>' +
+                                '</div>' +
+                                '<div class="item-oee hoverCardOEECurrent" style="margin: 0.5rem;">' +
+                                '<div style="width: 19%;display: flex;justify-content: flex-end;"><p class="paddingm oee-lable">OEE</p></div>' +
+                                '<div class="FLayer">' +
+                                '<div class="BLayer" id="Target1_' + machine[0]['machine_id'] +
+                                '"></div>' +
+                                '<div class="SLayer" id="SLayer1_' + machine[0]['machine_id'] +
+                                '"></div>' +
+                                '<div  class="TLayer TTotal" id="TTotal1_' + machine[0][
+                                    'machine_id'] + '">' +
+                                '<p class="values_oee paddingm val" id="SLayer_val_Color1_' +
+                                machine[0]['machine_id'] + '"><span id="SLayer_val_' + machine[0][
+                                    'machine_id'
+                                ] + '"></span>%</p>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>'
+
+                                +
+                                '<div class="hoverOverallOEE_Current hoverOverall_current">' +
+                                '<div style="display: flex;">' +
+                                '<div style="width: 70%" id="title_overall">OEE%</div>' +
+                                '<div style="width: 30%" class="val_color" ><p class="paddingm teepVal" style="width:max-content;" id="OEE_' +
+                                machine[0]['machine_id'] + '">0%</p></div>' +
+                                '</div>' +
+                                '<div style="display: flex;">' +
+                                '<div style="width: 70%">Target</div>' +
+                                '<div style="width: 30%"><p class="paddingm teepTarget" id="OEETarget1_' +
+                                machine[0]['machine_id'] + '">0%</p></div>' +
+                                '</div>' +
+                                '<div style="display: flex;" class="margin-top">' +
+                                '<div style="width: 70%">Availability%</div>' +
+                                '<div style="width: 30%"><p class="paddingm teepTarget" id="OEEAvail1_' +
+                                machine[0]['machine_id'] + '">0%</p></div>' +
+                                '</div>' +
+                                '<div style="display: flex;">' +
+                                '<div style="width: 70%">Performance%</div>' +
+                                '<div style="width: 30%"><p class="paddingm teepTarget" id="OEEPerf1_' +
+                                machine[0]['machine_id'] + '">0%</p></div>' +
+                                '</div>' +
+                                '<div style="display: flex;">' +
+                                '<div style="width: 70%">Quality%</div>' +
+                                '<div style="width: 30%"><p class="paddingm teepTarget" id="OEEQuali1_' +
+                                machine[0]['machine_id'] + '">0%</p></div>' +
+                                '</div>' +
+                                '</div>'
+
+
+                                +
+                                '<div class="item-production">' +
+                                '<div class="item-production-s" id="item_production_s1_' + machine[
+                                    0]['machine_id'] + '"></div>' +
+                                '<div class="graph-content-div">' +
+                                '<canvas id="production-graph1123-' + machine[0]['machine_id'] +
+                                '" style=""></canvas>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>');
+                            $('.carousel_slide_number' + carousel_index).append(elements);
+
+                            // OEE Target....
+                            $('#Target1_' + machine[0]['machine_id'] + '').css("width", parseInt(res[
+                                'targets'][0].oee) + "%");
+
+                            // OEE Percentage......
+                            $('#SLayer1_' + machine[0]['machine_id'] + '').css("width", parseInt(res[
+                                'oee'][0].OEE) + "%");
+
+                            $('#SLayer_val1_' + machine[0]['machine_id'] + '').html(parseInt(0));
+
+                            // Latest Status........
+                            $('#latest_status1_' + machine[0]['machine_id'] + '').html(res[
+                                'latest_event'][0][0].duration + "m " + res['latest_event'][0][
+                                0].event);
+
+                            var target_production = 0;  
+                            var shift_production=0;
+                            res['shift_production_target'].forEach(function(i){
+                                if (i['machine_id'] == machine[0]['machine_id']) {
+                                    target_production = i['shift_production_target'];
+                                    shift_production = i['shift_production'];
+                                }
+                            });
+
+                            // Production Percentage.......
+                            var production_percent = parseInt((shift_production / target_production) *
+                                100);
+                            // var total_part_production_after_tool_changeover = 0;
+                            // res['target_production'].forEach(function(i){
+                            //     if (i['machine_id'] == machine[0]['machine_id']) {
+                            //         total_part_production_after_tool_changeover = i['total_part_produced'];    
+                            //     }
+                            // });
+
+                            // // toolchangeover target finding
+                            // var find_toolchangeover_target = 0;
+                            // res['production_target'].forEach(function(i){
+                            //     if (i['machine_id'] == machine[0]['machine_id'] ) {
+                            //         find_toolchangeover_target = i['target'];
+                            //     }
+                            // });
+
+
+                            // var tmp_production_percent = parseInt((total_part_production_after_tool_changeover / find_toolchangeover_target) * 100);
+                            // var production_percent = 0;
+                            // if (parseInt(tmp_production_percent)>100) {
+                            //     production_percent = 100;
+                            // }else{
+                            //     production_percent = parseInt(tmp_production_percent);
+                            // }
+                            var production_percent_val = 470 - (4.7 * production_percent);
+                            const MyFSC_container = document.getElementsByClassName("circle");
+                            MyFSC_container[0].style.setProperty("--foo", production_percent_val);
+
+                            // Production Percentage......
+                            $('#production_per1' + machine[0]['machine_id'] + '').html(
+                                production_percent);
+
+
+                            // Graph Portion
+                            var hourly = [];
+                            var hourList = [];
+                            var production_target = [];
+                            var part_name_list = [];
+                            var rejections_list = [];
+                            res['data'].forEach(function(items) {
+                                if (items['machine'] == machine[0]['machine_id']) {
+                                    items['production'].forEach(function(i) {
+                                        hourly.push(i['production']);
+                                        hourList.push(i['start_time'] + " to " + i[
+                                            'end_time']);
+                                        part_name_list.push(i['part_name']);
+                                        rejections_list.push(i['rejections']);
+                                    });
+                                    items['targets'].forEach(function(i) {
+                                        production_target.push(i);
+                                    });
+                                }
+                            });
+
+                            ChartDataLabels.defaults.color = "#ffffff";
+                            // ChartDataLabels.defaults.font.size=8;
+                            ChartDataLabels.defaults.font.family = "Roboto, sans-serif";
+
+                        }
+
+                    });
+                    // carousel_ele = carousel_ele.add('</div>');
+                    // $('.carousel_content_item').append(carousel_ele);
+                }
+
+                // live_graph(shift_date,shift_id);
+                // live_target(shift_date);
+                resolve('success git LIve mode function');
+            },
+            error: function(res) {
+                // Error Occured!
+                reject(res);
             }
-
-            live_graph(shift_date,shift_id);
-            live_target(shift_date);
-        },
-        error: function(res) {
-            // Error Occured!
-        }
+        });
     });
+   
 }
 
 $(".circle").mouseover(function() {
@@ -1015,49 +1028,54 @@ $(document).on("mousemove", ".circle", function(e) {
 });
 
 function live_target_update(shift_date) {
-    // $('#item_production_s_'+machine[0]['machine_id']+'').css("background-color",state_color_rgb);
-    var s_time = $("#s_time_val").val();
-    var e_time = $("#e_time_val").val();
+    return new Promise(function(resolve,reject){
+         // $('#item_production_s_'+machine[0]['machine_id']+'').css("background-color",state_color_rgb);
+        var s_time = $("#s_time_val").val();
+        var e_time = $("#e_time_val").val();
 
-    var st_time = new Date(shift_date + " " + s_time);
-    var et_time = new Date(shift_date + " " + e_time);
+        var st_time = new Date(shift_date + " " + s_time);
+        var et_time = new Date(shift_date + " " + e_time);
 
-    s_time = new Date(shift_date + " " + s_time);
-    e_time = new Date(shift_date + " " + e_time);
-    var temp = new Date(shift_date + " " + s_time);
-
-    while (true) {
-        st_time = new Date(st_time.setTime(st_time.getTime() + (60 * 1000)));
-        if (st_time.getHours() == et_time.getHours() && st_time.getMinutes() == et_time.getMinutes()) {
-            break;
-        }
-    }
-
-    var difference = (new Date(st_time).getTime() - new Date(s_time).getTime()) / 1000;
-
-    var st1_time = s_time;
-    var et1_time = new Date();
-
-    if (st_time >= et1_time) {
+        s_time = new Date(shift_date + " " + s_time);
+        e_time = new Date(shift_date + " " + e_time);
+        var temp = new Date(shift_date + " " + s_time);
 
         while (true) {
-            st1_time = new Date(st1_time.setTime(st1_time.getTime() + (1000)));
-            if (st1_time.getHours() == et1_time.getHours() && st1_time.getMinutes() == et1_time.getMinutes() && st1_time
-                .getSeconds() == et1_time.getSeconds()) {
+            st_time = new Date(st_time.setTime(st_time.getTime() + (60 * 1000)));
+            if (st_time.getHours() == et_time.getHours() && st_time.getMinutes() == et_time.getMinutes()) {
                 break;
             }
         }
 
-        var temp_time = new Date(shift_date + " " + ($("#s_time_val").val()));
-        
+        var difference = (new Date(st_time).getTime() - new Date(s_time).getTime()) / 1000;
 
-        var difference_current = (new Date(st1_time).getTime() - new Date(temp_time).getTime()) / 1000;
+        var st1_time = s_time;
+        var et1_time = new Date();
 
-        var w = parseFloat((difference_current / difference) * 100).toFixed(2);
-        $('.item-production-s').css("width", String(w) + "%");
-    }else{
-        $('.item-production-s').css("width", "100%");
-    }
+        if (st_time >= et1_time) {
+
+            while (true) {
+                st1_time = new Date(st1_time.setTime(st1_time.getTime() + (1000)));
+                if (st1_time.getHours() == et1_time.getHours() && st1_time.getMinutes() == et1_time.getMinutes() && st1_time
+                    .getSeconds() == et1_time.getSeconds()) {
+                    break;
+                }
+            }
+
+            var temp_time = new Date(shift_date + " " + ($("#s_time_val").val()));
+            
+
+            var difference_current = (new Date(st1_time).getTime() - new Date(temp_time).getTime()) / 1000;
+
+            var w = parseFloat((difference_current / difference) * 100).toFixed(2);
+            $('.item-production-s').css("width", String(w) + "%");
+        }else{
+            $('.item-production-s').css("width", "100%");
+        }
+
+        resolve("live target update function is success");
+    });
+   
 
 }
 
@@ -1305,313 +1323,315 @@ $('#Filter-values').on('change', function(event) {
 
 function live_MC1001(shift_date, shift_id) {
     // var x = $('#Filter-values').val();
-    $.ajax({
-        url: "<?php echo base_url('Current_Shift_Performance/getLiveMode'); ?>",
-        type: "POST",
-        dataType: "json",
-        cache: false,
-        async: false,
-        data: {
-            shift_date: shift_date,
-            shift_id: shift_id,
-            // filter:x,
-        },
-        success: function(res) {
-            var n = 0;
-            res['latest_event'].forEach(function(machine) {
+    return new Promise(function(resolve,reject){
+        $.ajax({
+            url: "<?php echo base_url('Current_Shift_Performance/getLiveMode'); ?>",
+            type: "POST",
+            dataType: "json",
+            cache: false,
+            // async: false,
+            data: {
+                shift_date: shift_date,
+                shift_id: shift_id,
+                // filter:x,
+            },
+            success: function(res) {
+                var n = 0;
+                res['latest_event'].forEach(function(machine) {
 
-                var machine_name = "";
-                var production_total = 0;
-                var color = "";
-                var event = "";
-                var duration = 0;
-                var partList = "";
-                var val_color = "";
-                var tool_name = "";
-                res['machine_name'].forEach(function(m) {
-                    if (m['machine_id'] == machine[0]['machine_id']) {
-                        machine_name = m['machine_name'];
-                        event = machine[0]['event'];
-                        duration = machine[0]['duration'];
-                        partList = machine[0]['part_id'];
-                        tool_name = machine[0]['tool_name']
-                    }
-                });
-
-                var partListArr = partList.split(",");
-                var partname = "";
-                partListArr.forEach(function(p) {
-                    res['part_list'].forEach(function(pl) {
-                        if (p == pl['part_id']) {
-                            if (partListArr.length > 1) {
-                                partname = partname + pl['part_name'] + ",";
-                            } else {
-                                partname = pl['part_name'];
-                            }
+                    var machine_name = "";
+                    var production_total = 0;
+                    var color = "";
+                    var event = "";
+                    var duration = 0;
+                    var partList = "";
+                    var val_color = "";
+                    var tool_name = "";
+                    res['machine_name'].forEach(function(m) {
+                        if (m['machine_id'] == machine[0]['machine_id']) {
+                            machine_name = m['machine_name'];
+                            event = machine[0]['event'];
+                            duration = machine[0]['duration'];
+                            partList = machine[0]['part_id'];
+                            tool_name = machine[0]['tool_name']
                         }
                     });
-                });
 
-                if (partListArr.length > 1) {
-                    partname = partname.substring(0, partname.length - 1);
-                }
-
-                // Update Part Name 
-                $('#partname_' + machine[0]['machine_id'] + '').html(partname);
-                $('#partname_' + machine[0]['machine_id'] + '').attr("title", partname);
-
-                $('#part_name_hover_' + machine[0]['machine_id'] + '').html(partname);
-
-                // Update Tool Name
-                $('#tool_name_hover_' + machine[0]['machine_id'] + '').html(tool_name);
-
-
-                // Update Machine Name
-                $('#Machine_name_' + machine[0]['machine_id'] + '').html(machine_name);
-                var time = duration.split(".");
-                // Update Machine Current Status
-                if (time.length > 1) {
-                    var h = parseInt(time[0] / 60);
-                    var m = time[0] % 60;
-                    if (h > 0) {
-                        $('#latest_status_' + machine[0]['machine_id'] + '').html(h + "h " + m +
-                            "m " + time[1] + "s " + event);
-                    } else {
-                        $('#latest_status_' + machine[0]['machine_id'] + '').html(time[0] + "m " +
-                            time[1] + "s " + event);
-                    }
-                    $('#latest_status_' + machine[0]['machine_id'] + '').attr("duration", (parseInt(
-                        time[0] * 60) + parseInt(time[1])));
-                } else {
-                    var h = parseInt(time[0] / 60);
-                    var m = time[0] % 60;
-                    if (h > 0) {
-                        $('#latest_status_' + machine[0]['machine_id'] + '').html(h + "h " + m +
-                            "m "  + event);
-                    } else {
-                        $('#latest_status_' + machine[0]['machine_id'] + '').html(time[0] + "m " +
-                            event);
-                    }
-                    $('#latest_status_' + machine[0]['machine_id'] + '').attr("duration", (parseInt(
-                        time[0] * 60)));
-                }
-                $('#latest_status_' + machine[0]['machine_id'] + '').attr("event", event);
-
-                res['production_total'].forEach(function(m) {
-                    if (m['machine_id'] == machine[0]['machine_id']) {
-                        production_total = m['total'];
-                    }
-                });
-
-                res['oee'].forEach(function(m) {
-                    if (m['Machine_Id'] == machine[0]['machine_id']) {
-                        // Current OEE Status Update.....
-                        if (res['targets'][0].yellow > m['OEE']) {
-                            color = "#dc062a";
-                            val_color = "white";
-                        } else if (res['targets'][0].green > m['OEE']) {
-                            color = "#ffbf00";
-                            val_color = "black";
-                        } else {
-                            color = "#00b04f";
-                            val_color = "white";
-                        }
-
-                        // Update OEE Background
-                        $('#SLayer_' + machine[0]['machine_id'] + '').css(
-                            "background-color", color);
-
-                        // Update OEE
-                        $('#SLayer_' + machine[0]['machine_id'] + '').css("width", m[
-                            'OEE'] + "%");
-                        $('#SLayer_val_' + machine[0]['machine_id'] + '').html(parseInt(m[
-                            'OEE']));
-                        $('#SLayer_val_Color_' + machine[0]['machine_id'] + '').css("color",
-                            val_color);
-
-
-                        // Update OEE Availability
-                        $('#OEEAvail_' + machine[0]['machine_id'] + '').html(parseInt(m[
-                            'Availability']) + "%");
-                        // Update OEE Performance
-                        $('#OEEPerf_' + machine[0]['machine_id'] + '').html(parseInt(m[
-                            'Performance']) + "%");
-
-                        // Update OEE Quality
-                        $('#OEEQuali_' + machine[0]['machine_id'] + '').html(parseInt(m[
-                            'Quality']) + "%");
-
-
-                        $('#OEE_' + machine[0]['machine_id'] + '').html(parseInt(m['OEE']) + "%");
-                    }
-                });
-
-                // Current Status Update.
-                var state_color = "";
-                var state_color_rgb = "";
-                var state_bar_color = "";
-                if (event == "Active") {
-                    state_color = "#00b04f";
-                    state_color_rgb = "rgba(0,122,55,0.1)";
-                    state_bar_color = "#007a37";
-                } else if (event == "Inactive") {
-                    state_color = "#d10527";
-                    state_color_rgb = "rgba(209,5,39,0.1)";
-                    state_bar_color = "#a4041f";
-                } else if (event == "Machine OFF") {
-                    state_color = "#7f7f7f";
-                    state_color_rgb = "rgba(127,127,127,0.1)";
-                    state_bar_color = "#404040";
-                } else {
-                    state_color = "#ffc50d";
-                    state_color_rgb = "rgba(255,197,13,0.1)";
-                    state_bar_color = "#ffc50d";
-                }
-
-                // Update Header
-                $('#item-header-' + machine[0]['machine_id'] + '').css("background-color",
-                    state_color);
-
-                // Update Production Target
-                $('#item_production_s_' + machine[0]['machine_id'] + '').css("background-color",
-                    state_color_rgb);
-
-                // Update OEE Target
-                $('#Target_' + machine[0]['machine_id'] + '').css("width", res['targets'][0].oee +
-                    "%");
-                $('#OEETarget_' + machine[0]['machine_id'] + '').html(parseInt(res['targets'][0].oee) + "%");
-
-                // Update Production Percentage
-                // var target_production = 0;  
-                // var production_total=0;
-                // res['shift_production_target'].forEach(function(i){
-                //     if (i['machine_id'] == machine[0]['machine_id']) {
-                //         target_production = i['shift_production_target'];
-                //         production_total = i['shift_production'];
-                //     }
-                // });
-
-                var tool_changeover_target = 0;
-                res['production_target'].forEach(function(item){
-                    if (item['machine_id'] == machine[0]['machine_id']) {
-                        tool_changeover_target = item['target'];
-                    }
-                });
-
-                var after_tool_changeover_total_production = 0;
-                res['target_production'].forEach(function(i){
-                    if (i['machine_id'] == machine[0]['machine_id']) {
-                        after_tool_changeover_total_production = i['total_part_produced'];
-                    }
-                });
-
-                var tmp_production_percent = parseInt((after_tool_changeover_total_production / tool_changeover_target) * 100);
-                var production_percent = 0;
-                if (parseInt(tmp_production_percent)>100) {
-                    production_percent = 100;
-                }else{
-                    production_percent = tmp_production_percent;
-                }
-                console.log("current shift performance production target selection");
-                console.log(production_percent);
-                res['production_target'].forEach(function(tmid){
-                    if (tmid['machine_id']==machine[0]['machine_id']) {
-                        if (parseInt(tmid['target'])>0) {
-                            if (parseInt(tmp_production_percent)>1000) {
-                                $('#production_per' + machine[0]['machine_id'] + '').html("NA");
-                                $('#part_completion_hover_' + machine[0]['machine_id'] + '').html("NA");
-                            }else{
-                                $('#production_per' + machine[0]['machine_id'] + '').html(tmp_production_percent+"%");
-                                $('#part_completion_hover_' + machine[0]['machine_id'] + '').html(tmp_production_percent + "%");
+                    var partListArr = partList.split(",");
+                    var partname = "";
+                    partListArr.forEach(function(p) {
+                        res['part_list'].forEach(function(pl) {
+                            if (p == pl['part_id']) {
+                                if (partListArr.length > 1) {
+                                    partname = partname + pl['part_name'] + ",";
+                                } else {
+                                    partname = pl['part_name'];
+                                }
                             }
-                           
-                        }else{
-                            $('#production_per' + machine[0]['machine_id'] + '').html('NA');
-                            $('#part_completion_hover_' + machine[0]['machine_id'] + '').html("NA");
+                        });
+                    });
+
+                    if (partListArr.length > 1) {
+                        partname = partname.substring(0, partname.length - 1);
+                    }
+
+                    // Update Part Name 
+                    $('#partname_' + machine[0]['machine_id'] + '').html(partname);
+                    $('#partname_' + machine[0]['machine_id'] + '').attr("title", partname);
+
+                    $('#part_name_hover_' + machine[0]['machine_id'] + '').html(partname);
+
+                    // Update Tool Name
+                    $('#tool_name_hover_' + machine[0]['machine_id'] + '').html(tool_name);
+
+
+                    // Update Machine Name
+                    $('#Machine_name_' + machine[0]['machine_id'] + '').html(machine_name);
+                    var time = duration.split(".");
+                    // Update Machine Current Status
+                    if (time.length > 1) {
+                        var h = parseInt(time[0] / 60);
+                        var m = time[0] % 60;
+                        if (h > 0) {
+                            $('#latest_status_' + machine[0]['machine_id'] + '').html(h + "h " + m +
+                                "m " + time[1] + "s " + event);
+                        } else {
+                            $('#latest_status_' + machine[0]['machine_id'] + '').html(time[0] + "m " +
+                                time[1] + "s " + event);
+                        }
+                        $('#latest_status_' + machine[0]['machine_id'] + '').attr("duration", (parseInt(
+                            time[0] * 60) + parseInt(time[1])));
+                    } else {
+                        var h = parseInt(time[0] / 60);
+                        var m = time[0] % 60;
+                        if (h > 0) {
+                            $('#latest_status_' + machine[0]['machine_id'] + '').html(h + "h " + m +
+                                "m "  + event);
+                        } else {
+                            $('#latest_status_' + machine[0]['machine_id'] + '').html(time[0] + "m " +
+                                event);
+                        }
+                        $('#latest_status_' + machine[0]['machine_id'] + '').attr("duration", (parseInt(
+                            time[0] * 60)));
+                    }
+                    $('#latest_status_' + machine[0]['machine_id'] + '').attr("event", event);
+
+                    res['production_total'].forEach(function(m) {
+                        if (m['machine_id'] == machine[0]['machine_id']) {
+                            production_total = m['total'];
+                        }
+                    });
+
+                    res['oee'].forEach(function(m) {
+                        if (m['Machine_Id'] == machine[0]['machine_id']) {
+                            // Current OEE Status Update.....
+                            if (res['targets'][0].yellow > m['OEE']) {
+                                color = "#dc062a";
+                                val_color = "white";
+                            } else if (res['targets'][0].green > m['OEE']) {
+                                color = "#ffbf00";
+                                val_color = "black";
+                            } else {
+                                color = "#00b04f";
+                                val_color = "white";
+                            }
+
+                            // Update OEE Background
+                            $('#SLayer_' + machine[0]['machine_id'] + '').css(
+                                "background-color", color);
+
+                            // Update OEE
+                            $('#SLayer_' + machine[0]['machine_id'] + '').css("width", m[
+                                'OEE'] + "%");
+                            $('#SLayer_val_' + machine[0]['machine_id'] + '').html(parseInt(m[
+                                'OEE']));
+                            $('#SLayer_val_Color_' + machine[0]['machine_id'] + '').css("color",
+                                val_color);
+
+
+                            // Update OEE Availability
+                            $('#OEEAvail_' + machine[0]['machine_id'] + '').html(parseInt(m[
+                                'Availability']) + "%");
+                            // Update OEE Performance
+                            $('#OEEPerf_' + machine[0]['machine_id'] + '').html(parseInt(m[
+                                'Performance']) + "%");
+
+                            // Update OEE Quality
+                            $('#OEEQuali_' + machine[0]['machine_id'] + '').html(parseInt(m[
+                                'Quality']) + "%");
+
+
+                            $('#OEE_' + machine[0]['machine_id'] + '').html(parseInt(m['OEE']) + "%");
+                        }
+                    });
+
+                    // Current Status Update.
+                    var state_color = "";
+                    var state_color_rgb = "";
+                    var state_bar_color = "";
+                    if (event == "Active") {
+                        state_color = "#00b04f";
+                        state_color_rgb = "rgba(0,122,55,0.1)";
+                        state_bar_color = "#007a37";
+                    } else if (event == "Inactive") {
+                        state_color = "#d10527";
+                        state_color_rgb = "rgba(209,5,39,0.1)";
+                        state_bar_color = "#a4041f";
+                    } else if (event == "Machine OFF") {
+                        state_color = "#7f7f7f";
+                        state_color_rgb = "rgba(127,127,127,0.1)";
+                        state_bar_color = "#404040";
+                    } else {
+                        state_color = "#ffc50d";
+                        state_color_rgb = "rgba(255,197,13,0.1)";
+                        state_bar_color = "#ffc50d";
+                    }
+
+                    // Update Header
+                    $('#item-header-' + machine[0]['machine_id'] + '').css("background-color",
+                        state_color);
+
+                    // Update Production Target
+                    $('#item_production_s_' + machine[0]['machine_id'] + '').css("background-color",
+                        state_color_rgb);
+
+                    // Update OEE Target
+                    $('#Target_' + machine[0]['machine_id'] + '').css("width", res['targets'][0].oee +
+                        "%");
+                    $('#OEETarget_' + machine[0]['machine_id'] + '').html(parseInt(res['targets'][0].oee) + "%");
+
+                    // Update Production Percentage
+                    // var target_production = 0;  
+                    // var production_total=0;
+                    // res['shift_production_target'].forEach(function(i){
+                    //     if (i['machine_id'] == machine[0]['machine_id']) {
+                    //         target_production = i['shift_production_target'];
+                    //         production_total = i['shift_production'];
+                    //     }
+                    // });
+
+                    var tool_changeover_target = 0;
+                    res['production_target'].forEach(function(item){
+                        if (item['machine_id'] == machine[0]['machine_id']) {
+                            tool_changeover_target = item['target'];
+                        }
+                    });
+
+                    var after_tool_changeover_total_production = 0;
+                    res['target_production'].forEach(function(i){
+                        if (i['machine_id'] == machine[0]['machine_id']) {
+                            after_tool_changeover_total_production = i['total_part_produced'];
+                        }
+                    });
+
+                    var tmp_production_percent = parseInt((after_tool_changeover_total_production / tool_changeover_target) * 100);
+                    var production_percent = 0;
+                    if (parseInt(tmp_production_percent)>100) {
+                        production_percent = 100;
+                    }else{
+                        production_percent = tmp_production_percent;
+                    }
+                    res['production_target'].forEach(function(tmid){
+                        if (tmid['machine_id']==machine[0]['machine_id']) {
+                            if (parseInt(tmid['target'])>0) {
+                                if (parseInt(tmp_production_percent)>1000) {
+                                    $('#production_per' + machine[0]['machine_id'] + '').html("NA");
+                                    $('#part_completion_hover_' + machine[0]['machine_id'] + '').html("NA");
+                                }else{
+                                    $('#production_per' + machine[0]['machine_id'] + '').html(tmp_production_percent+"%");
+                                    $('#part_completion_hover_' + machine[0]['machine_id'] + '').html(tmp_production_percent + "%");
+                                }
+                            
+                            }else{
+                                $('#production_per' + machine[0]['machine_id'] + '').html('NA');
+                                $('#part_completion_hover_' + machine[0]['machine_id'] + '').html("NA");
+                            }
+                        }
+                    }); 
+                
+
+                    // Graph Portion
+                    var hourly = [];
+                    var hourList = [];
+                    var production_target = [];
+                    var total_target = 0;
+                    var production_tar_per = 0;
+                    res['data'].forEach(function(items) {
+                        if (items['machine'] == machine[0]['machine_id']) {
+                            items['production'].forEach(function(i) {
+                                hourly.push(i['production']);
+                                hourList.push(i['start_time'] + " to " + i['end_time']);
+                            });
+                            items['targets'].forEach(function(i) {
+                                production_target.push(i);
+                                total_target = total_target + i;
+                            });
+                            items['target_per'].forEach(function(i) {
+                                production_tar_per = production_tar_per + i;
+                            });
+                        }
+                    });
+
+                    var myChart = myChartList[n];
+
+                    // Update Production
+                    var dataset = myChart.data.datasets[0];
+                    var label = myChart.data;
+                    var len = hourly.length;
+                    var dataset_target = myChart.data.datasets[1];
+                    dataset.data = [];
+                    label.labels = [];
+                    dataset_target.data = [];
+                    for (var i = 0; i < len; i++) {
+                        dataset.data[i] = hourly[i];
+                        label.labels[i] = hourList[i];
+                        dataset_target.data[i] = production_target[i];
+                    }
+
+                    // Update Production color
+                    myChart.data.datasets[0].backgroundColor = state_bar_color;
+                    myChart.data.datasets[0].borderColor = "rgba(0, 0, 0, 0)";
+                    myChart.update();
+
+                    // Update Prodcution Percentage value
+                    var production_percent_val = 470 - (2.87 * production_percent);
+                    var iterate = document.getElementsByClassName("circle");
+                    var refcolor = 'url(' + '#GradientColor_' + machine[0]['machine_id'] + ')';
+
+                    // 230
+                    for (val of iterate) {
+                        // mahince_id ===machine_id
+                        if (val.getAttribute("id") == machine[0]['machine_id']) {
+                            // 471 to 300
+                            val.style.setProperty("--foo", production_percent_val);
+                            val.style.setProperty("--ref_graph", refcolor);
                         }
                     }
-                }); 
-               
 
-                // Graph Portion
-                var hourly = [];
-                var hourList = [];
-                var production_target = [];
-                var total_target = 0;
-                var production_tar_per = 0;
-                res['data'].forEach(function(items) {
-                    if (items['machine'] == machine[0]['machine_id']) {
-                        items['production'].forEach(function(i) {
-                            hourly.push(i['production']);
-                            hourList.push(i['start_time'] + " to " + i['end_time']);
-                        });
-                        items['targets'].forEach(function(i) {
-                            production_target.push(i);
-                            total_target = total_target + i;
-                        });
-                        items['target_per'].forEach(function(i) {
-                            production_tar_per = production_tar_per + i;
-                        });
+                    var color_code = "";
+                    if (production_percent > 75) {
+                        color_code = "#c2fb05";
+                    } else if (production_percent > 50) {
+                        color_code = "#fae910";
+                    } else if (production_percent > 25) {
+                        color_code = "#c55911";
+                    } else {
+                        color_code = "#d10527";
                     }
+
+                    document.getElementById('circle_graph_colors_' + machine[0]['machine_id'])
+                        .attributes['stop-color'].value = color_code;
+                    n = n + 1;
                 });
-
-                var myChart = myChartList[n];
-
-                // Update Production
-                var dataset = myChart.data.datasets[0];
-                var label = myChart.data;
-                var len = hourly.length;
-                var dataset_target = myChart.data.datasets[1];
-                dataset.data = [];
-                label.labels = [];
-                dataset_target.data = [];
-                for (var i = 0; i < len; i++) {
-                    dataset.data[i] = hourly[i];
-                    label.labels[i] = hourList[i];
-                    dataset_target.data[i] = production_target[i];
-                }
-
-                // Update Production color
-                myChart.data.datasets[0].backgroundColor = state_bar_color;
-                myChart.data.datasets[0].borderColor = "rgba(0, 0, 0, 0)";
-                myChart.update();
-
-                // Update Prodcution Percentage value
-                var production_percent_val = 470 - (2.87 * production_percent);
-                var iterate = document.getElementsByClassName("circle");
-                var refcolor = 'url(' + '#GradientColor_' + machine[0]['machine_id'] + ')';
-
-                // 230
-                for (val of iterate) {
-                    // mahince_id ===machine_id
-                    if (val.getAttribute("id") == machine[0]['machine_id']) {
-                        // 471 to 300
-                        val.style.setProperty("--foo", production_percent_val);
-                        val.style.setProperty("--ref_graph", refcolor);
-                    }
-                }
-
-                var color_code = "";
-                if (production_percent > 75) {
-                    color_code = "#c2fb05";
-                } else if (production_percent > 50) {
-                    color_code = "#fae910";
-                } else if (production_percent > 25) {
-                    color_code = "#c55911";
-                } else {
-                    color_code = "#d10527";
-                }
-
-                document.getElementById('circle_graph_colors_' + machine[0]['machine_id'])
-                    .attributes['stop-color'].value = color_code;
-                n = n + 1;
-            });
-            $("#overlay").fadeOut(300);
-        },
-        error: function(res) {
-
-        }
+                // $("#overlay").fadeOut(300);
+                resolve(res);
+            },
+            error: function(res) {
+                reject(res);
+            }
+        });
     });
+   
 }
 
 
@@ -1620,6 +1640,8 @@ function live_MC1001(shift_date, shift_id) {
 $(document).on('click', '.grid-item-cont', function(event) {
     event.preventDefault();
     $("#overlay").fadeIn(300);
+    clearInterval(i_global);
+            clearInterval(j_global);
     // alert('hi');
     var find_index = $('.grid-item-cont');
     var index_val = find_index.index($(this));
@@ -1637,6 +1659,7 @@ $(document).on('click', '.grid-item-cont', function(event) {
         var tmp_mid = $('.machine_name_ref:eq(' + index_val + ')').attr('mid_data');
         var tid_data = $('.machine_name_ref:eq('+index_val+')').attr('tid_data');
         var shift_date = $('#shift_date').attr("sdate_format");
+        // var shift_date="2023-09-26";
         var shift_id = $('#shift_id').text();
         var event_status = $('.current_event:eq(' + index_val + ')').attr('event');
         var machine_name = $('.machine_name_ref:eq(' + index_val + ')').text();
@@ -1693,10 +1716,6 @@ $(document).on('click', '.grid-item-cont', function(event) {
         $('.bg_light').css('background-color', background_light_color);
         $('.outer').css('border-color', border_color);
         $('.second_header').css('background-color',sub_header);
-        
-        // console.log("shift date :\t"+shift_date);
-        // console.log("machine id :\t"+tmp_mid);
-        // console.log("shift id :\t",tmp[1]);
 
         await getProductionGraph(tmp_mid,shift_date,tmp[1],background_title_color,border_color);
         await getDownTimeGraph(tmp_mid,shift_date,tmp[1]);
@@ -1706,7 +1725,7 @@ $(document).on('click', '.grid-item-cont', function(event) {
         await getLiveProduction(tmp_mid,shift_date,tmp[1]);
         await getPartCycleTime(tmp_mid);
         await getRejectCounts(tmp_mid,shift_date,tmp[1]);
-        target_oui_graph(tmp_mid,tid_data,shift_date,tmp[1]);
+        await target_oui_graph(tmp_mid,tid_data,shift_date,tmp[1]);
         $('.graph-content').css('display', 'none');
         $('.oui_screen_view').css('display', 'block');
         $('.oui_arrow_div').css('display', 'inline');
@@ -1715,49 +1734,10 @@ $(document).on('click', '.grid-item-cont', function(event) {
 
         $('.current_shift_color_change').removeClass('col-white');
         $('.current_shift_color_change').addClass(background_col_var);
-
+       
         $("#overlay").fadeOut(300);
     }
     
-
-   
-//     var tmp_mid = $('.machine_name_ref:eq(' + index_val + ')').attr('mid_data');
-//     var tid_data = $('.machine_name_ref:eq('+index_val+')').attr('tid_data');
-//     var shift_date = $('#shift_date').attr("sdate_format");
-//     var shift_id = $('#shift_id').text();
-//     var event_status = $('.current_event:eq(' + index_val + ')').attr('event');
-//     var machine_name = $('.machine_name_ref:eq(' + index_val + ')').text();
-//     // alert(shift_id.split(" "));
-//     const tmp = shift_id.split(" ");
-
-
-//     const shift_arr = [];
-//     shift_arr.push(tmp[1]);
-//     await getDownTimeGraph(tmp_mid, shift_date, shift_arr);
-//     await target_oui_graph(tmp_mid,tid_data,shift_date);
-//     await part_by_hour(tmp_mid, shift_date, tmp[1], bar_color);
-//     await div_records(tmp_mid, shift_date, tmp[1], bar_color, card_body);
-//     await circle_data_oui(tmp_mid,shift_date,tmp[1]);
-//     $('.target_graph_child_div').css('background-color',circle_target_color);
-//     $('#oui_circle_graph_color').attr('stop-color',circle_target_color);
-//     
-//     //alert(backgroundcolor);
-//     $('.cycle_time_val_div').css('background-color',backgroundcolor);
-//     $('.oui_header_div').css('background-color', backgroundcolor);
-//     $('.label_header').css('background-color', backgroundcolor);
-//     $('.oui_sub_header').css('background-color', card_body);
-//     $('.target_graph_parent_div').css('background-color', bar_color);
-//     $('.line_color_border').css('border', '1px solid ' + line);
-//     $('.label_text_color').css('color', label_text);
-//     $('#machine_status').text(event_status);
-//     $('#machine_name_text').text(machine_name);
-
-//     $('.downtime_second_val').css('display', downtime_display_property);
-//     $('.oui_arrow_div').css('display', 'inline');
-//     $('.visibility_div').css('display', 'none');
-//     $('#full_screen_btn_visibility').css('visibility','hidden');
-//     $("#overlay").fadeOut(300);
-// }
 
 
 
@@ -1902,9 +1882,7 @@ var part_name_tooltip = new Array();
 
     // Production Graph
     function getProductionGraph(machine_id,shift_date,shift,backgroundcolor,border_color){
-        console.log("machine id:\t"+machine_id);
-        console.log("shift date:\t"+shift_date);
-        console.log("shift id :\t"+shift);
+
         return new Promise(function(resolve,reject){
             $('#production-graph').remove();
             $('.production-graph-prod').append('<canvas id="production-graph"><canvas>');
@@ -1912,15 +1890,13 @@ var part_name_tooltip = new Array();
                 url: "<?php echo base_url('Current_Shift_Performance/getLiveMode');?>",
                 type: "POST",
                 dataType: "json",
-                async:false,
+                // async:false,
                 data:{
                     shift_date: shift_date,
                     shift_id: shift,
                     filter:2,
                 },
                 success: function(res){
-                    console.log("production graph ");
-                    console.log(res);
                     resolve(res);
                     var hours_list=[];
                     var production_count = [];
@@ -2060,7 +2036,6 @@ var part_name_tooltip = new Array();
                 },
                 error: function(err){
                     // error......
-                    console.log("production graph error");
                     reject(err);
                 }
             });
@@ -2432,7 +2407,6 @@ var part_name_tooltip = new Array();
                 },
                 error:function(er){
                     reject(er);
-                    console.log("downtime graph error");
                 }
             });
         
@@ -2491,7 +2465,6 @@ var part_name_tooltip = new Array();
                 error: function(err) {
                     // 
                     reject(err);
-                    console.log("get live oee erorr");
                 }
             });
         });
@@ -2505,15 +2478,13 @@ var part_name_tooltip = new Array();
                 url: "<?php echo base_url('Operator/getLiveDowntime'); ?>",
                 type: "POST",
                 dataType: "json",
-                async: false,
+                // async: false,
                 data:{
                     machine_ref : machine_id,
                     shift_ref : shift,
                     shift_date_ref : shift_date
                 },
                 success: function(res) {
-                    console.log("total downtime duration is :\t");
-                    console.log(res);
                     resolve(res);
                     if (res['h'] > 0) {
                         $('#downtime_duration').text(res['h']+"h"+" "+res['m']+"m");
@@ -2523,7 +2494,6 @@ var part_name_tooltip = new Array();
                 },
                 error: function(res) {
                     // Error Occured!
-                    console.log("downtime duration error");
                     reject(res);
                 }
             });
@@ -2537,15 +2507,13 @@ var part_name_tooltip = new Array();
                 url: "<?php echo base_url('Operator/getLiveProduction'); ?>",
                 type: "POST",
                 dataType: "json",
-                async: false,
+                // async: false,
                 data:{
                     machine_id_ref : machine_id,
                     shift_id_ref : shift,
                     shift_date_ref : shift_date, 
                 },
                 success: function(res) {
-                    console.log("prodcution duration and minutes");
-                    console.log(res);
                     resolve(res);
                     if (parseInt(res['duration_min'])>0) {
                         $('#remaining_time_duration').text(res['duration_min']+" "+"min");
@@ -2565,7 +2533,6 @@ var part_name_tooltip = new Array();
                 },
                 error: function(res) {
                     // Error Occured!
-                    console.log("get live production error");
                     reject(res);
                 }
             });
@@ -2579,22 +2546,31 @@ var part_name_tooltip = new Array();
                 url: "<?php echo base_url('Operator/getPartCycleTime'); ?>",
                 type: "POST",
                 dataType: "json",
-                async: false,
+                // async: false,
                 data:{
                     machine_ref : machine_id,
                 },
                 success: function(res) {
                     resolve(res);
-                    $('#part_cycle_time').text(res[0]['NICT']+"s");
-                    $('#part_name_oui').text(res[0]['part_name']);
-                    $('#part_name_oui').attr("part_id",""+res[0]['part_id']+"");
+                    const part_name_arr = [];
+                    const part_id_arr = [];
+                    res.forEach(element => {
+                        part_name_arr.push(element.part_name);
+                        part_id_arr.push(element.part_id);
+                    });
 
-                    $('#part_name_oui_p').text(res[0]['part_name']);
+                    var tmp_part_name = part_name_arr.join();
+                    var tmp_part_id = part_id_arr.join();
+                    $('#part_cycle_time').text(res[0]['NICT']+"s");
+                    $('#part_name_oui').text(tmp_part_name);
+                    $('#part_name_oui').attr("part_id",tmp_part_id);
+
+                    $('#part_name_oui_p').text(tmp_part_name);
+                    $('#part_name_oui_p').attr('title',tmp_part_name);
 
                 },
                 error: function(res) {
                     // Error Occured!
-                    console.log("get partcycle time ajax error");
                     reject(res);
                 }
             });
@@ -2608,7 +2584,7 @@ var part_name_tooltip = new Array();
                 url: "<?php echo base_url('Operator/getLiveRejectCount'); ?>",
                 type: "POST",
                 dataType: "json",
-                async: false,
+                // async: false,
                 data:{
                     machine_ref : machine_id,
                     shift_ref : shift,
@@ -2624,7 +2600,6 @@ var part_name_tooltip = new Array();
                     
                 },
                 error: function(res) {
-                    console.log('get rejection count ajax error');
                     reject(res);
                     // Error Occured!
                 }
@@ -2635,8 +2610,6 @@ var part_name_tooltip = new Array();
 
     function target_oui_graph(mid,tid,sdate,shift_id){
         return new Promise(function(resolve,reject){
-            console.log("shift date:\t"+sdate);
-            console.log("shift id :\t"+shift_id);
 
             $.ajax({
                 url:"<?php echo base_url('Current_Shift_Performance/getLiveMode'); ?>",
@@ -2650,8 +2623,6 @@ var part_name_tooltip = new Array();
                 },
                 dataType:"JSON",
                 success:function(res){
-                    console.log("oui tool changeover target graph");
-                    console.log(res);
                     resolve(res);
                     var target = 0;
 
@@ -2661,7 +2632,6 @@ var part_name_tooltip = new Array();
                         }
                     });
 
-                    // console.log("target:/t"+target);
                     var total_produced=0;
                     res['target_production'].forEach(function(i){
                         if (i['machine_id'] == mid) {
@@ -2676,11 +2646,6 @@ var part_name_tooltip = new Array();
                         target_percentage = 100;
                     }
                     
-                    // console.log("total production:\t"+total_produced);
-                    // console.log("production target percentage");
-                    // console.log(target_percentage);
-                    // console.log("target tool changeover"+target);
-                    // console.log("target production count :\t"+total_produced);
                     if (target_percentage > 100) {
                         
                         $('.target_inline').css('height','100%');
@@ -2712,7 +2677,6 @@ var part_name_tooltip = new Array();
                         }
                     });
 
-                    // console.log("target percentage:\t"+target_percentage);
                     // var production_percent = (shift_production/shift_target)*100;
                     var production_percent = 0;
                     if (parseInt(target_percentage)>100) {
@@ -2720,9 +2684,7 @@ var part_name_tooltip = new Array();
                     }else{
                         production_percent = target_percentage;
                     }
-                    console.log(target_percentage+"percentage");
                     var production_percent_val = 470 - (4.7 * production_percent);
-                    // console.log(production_percent_val);
                     const circle_container = document.getElementsByClassName("circle_oui");
                     circle_container[0].style.setProperty("--foo_oui", production_percent_val);
                     if (parseInt(target)>0) {
@@ -2753,7 +2715,6 @@ var part_name_tooltip = new Array();
                 },
                 error:function(er){
                     // reject(er);
-                    console.log("target oui ajax error");
                     reject(er);
                 }
             });

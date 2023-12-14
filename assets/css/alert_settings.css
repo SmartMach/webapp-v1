@@ -24,7 +24,7 @@
     color: white;
     /* width:6rem;
     text-align:center; */
-    margin-top: 0.5rem;
+    margin-top: 0.2rem;
     margin-right: 0.6rem;
     height: 2.2rem;
     cursor: pointer;
@@ -104,18 +104,14 @@
     min-width:8.7rem;
     min-height:max-content;
     max-height:10rem; 
-    /* overflow:hidden;
-    overflow-y:scroll;
-    overflow-x:hidden; */
+   
     }
     .filter_checkboxes_categorygp label{
     display:block;
     }
     .filter_checkboxes_categorygp div:hover{
     background-color: #E7F2FF;
-    /* padding:0; */
     cursor:context-menu;
-    /* width:100%; */
     }
 
     .pagination_div{
@@ -145,7 +141,7 @@
         height:1.7rem;
         width:1.7rem;
         border-radius:50%;
-        background-color:red;
+        /* background-color:red; */
         margin-left:0.8rem;
         margin-right:0.3rem;
         color:white;
@@ -178,7 +174,7 @@
     .img_action_icon{
         height:1.2rem;
         width:1.2rem;
-        /* margin-right: 0.5rem;; */
+      
     }
     .img_action_out{
         display:flex;
@@ -188,8 +184,7 @@
     }
 
     .action_hover:hover{
-        /* height:1.8rem;
-        width:1.8rem; */
+       
         background-color: #ced4da;
        
     }
@@ -296,6 +291,7 @@
     border:1px solid #ced4da;
     border-radius:0.25rem; 
     padding-left: 0.3rem;
+    background-color: white;
       }
 
       .filter_checkbox_option_div{
@@ -456,21 +452,6 @@
 
           }
 
-          /* priority dropdwon css  */
-          
-          .lang-select{
-            position: sticky;
-            /* margin-left: 50px; */
-          }
-
-          .priority_label_txt{
-            position:absolute;
-            margin-left:1rem;
-            margin-top:-0.5rem;
-            font-size:12px;
-            background-color:white;
-            color:#8c8c8c;
-          }
 
 
           /* custom dropdown edit */
@@ -560,19 +541,11 @@
 
           }
           
-          .lang-select_edit{
-            position: sticky;
-            /* margin-left: 50px; */
-          }
+          /* edit priority dropdown is temporary hide  start */
 
-          .priority_label_txt_edit{
-            position:absolute;
-            margin-left:1rem;
-            margin-top:-0.5rem;
-            font-size:12px;
-            background-color:white;
-            color:#8c8c8c;
-          }
+       
+
+          /* edit priority dropdown is temporary hide end */
 
 
           /* input box tags css design */
@@ -985,6 +958,7 @@
   position: absolute;
   z-index: 1003;
   max-width: 12rem;
+  min-width: 9.8rem;
   border-radius: 5px;
 }
 
@@ -1001,231 +975,23 @@
 }
 
 .circle-div-select{
-	height: 1.2rem;
-	width: 1.2rem;
+	height: 1.3rem;
+	width: 1.3rem;
 	border-radius: 50%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 9px;
+	font-size: 10px;
 }
 .circle-div-select p{
 	/* margin-top: 0.2rem; */
 }
 
 
-/* priority dropdown */
-
-/* add alert priority dropdown */
-.select3 {
-  /* margin-top: 10px; */
-  margin: auto;
-  width: 100%;
-  max-width: 350px;
-  height: 2.5rem;
-  border-radius: 5px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: center;
-  padding-left: 2px;
-}
-.select3:hover {
-  background-color: #F4F3F3;
-  border: 1px solid transparent;
-  box-shadow: inset 0 0px 0px 1px #ccc;
-}
-.selectBtn3 br{
-  display: none;
-}
-.select3 .selectBtn3 {
-background: var(--bg1);
-/* padding: 10px; */
-box-sizing: border-box;
-border-radius: 3px;
-width: 100%;
-cursor: pointer;
-position: relative;
--webkit-user-select: none;
-   -moz-user-select: none;
-    -ms-user-select: none;
-        user-select: none;
-/* background: #fff; */
-}
-.select3 .selectBtn3:after {
-content: "";
-position: absolute;
-top: 45%;
-right: 15px;
-width: 6px;
-height: 6px;
--webkit-transform: translateY(-50%) rotate(45deg);
-        transform: translateY(-50%) rotate(45deg);
-border-right: 2px solid #666;
-border-bottom: 2px solid #666;
-transition: 0.2s ease;
-}
-.select3 .selectDropdown3 {
-position: absolute;
-top: 100%;
-/* width: 100%; */
-border-radius: 0 0 3px 3px;
-overflow: hidden;
-background: var(--bg1);
-border-top: 1px solid #eee;
-z-index: 1;
-background: #fff;
--webkit-transform: scale(1, 0);
-        transform: scale(1, 0);
--webkit-transform-origin: top center;
-        transform-origin: top center;
-visibility: hidden;
-transition: 0.2s ease;
-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-}
-.select3 .selectDropdown3 .option3 {
-padding: 10px;
-box-sizing: border-box;
-cursor: pointer;
-float: left;
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  height: 45px;
-}
-.select3 .selectDropdown3 .option3 .letter3 {
-  margin-top: 0px;
-  margin-left: 10px;
-}
-.select3 .selectDropdown3 .option3:hover {
-background: #f8f8f8;
-}
-.select3 .selectDropdown3.new_4 {
-visibility: visible;
--webkit-transform: scale(1, 1);
-        transform: scale(1, 1);
-}
-.selectDropdown3.new_4{
-  display:block
-}
-.selectDropdown3{
-  display: none;
-}
-.select3 .selectBtn3 .letter3{
-  margin-top: 0px;
-  margin-left: 10px;
-}
-.selectBtn3 i{
-  width: 20px;
-}
-
 
 /* edit priority dropdown */
-.select_edit_priority {
-  /* margin-top: 10px; */
-  margin: auto;
-  width: 100%;
-  max-width: 350px;
-  height: 2.5rem;
-  border-radius: 5px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: center;
-  padding-left: 2px;
-}
-.select_edit_priority:hover {
-  background-color: #F4F3F3;
-  border: 1px solid transparent;
-  box-shadow: inset 0 0px 0px 1px #ccc;
-}
-.select_edit_priority_btn br{
-  display: none;
-}
-.select_edit_priority .select_edit_priority_btn {
-background: var(--bg1);
-padding: 10px;
-box-sizing: border-box;
-border-radius: 3px;
-width: 100%;
-cursor: pointer;
-position: relative;
--webkit-user-select: none;
-   -moz-user-select: none;
-    -ms-user-select: none;
-        user-select: none;
-/* background: #fff; */
-}
-.select_edit_priority .select_edit_priority_btn:after {
-content: "";
-position: absolute;
-top: 45%;
-right: 15px;
-width: 6px;
-height: 6px;
--webkit-transform: translateY(-50%) rotate(45deg);
-        transform: translateY(-50%) rotate(45deg);
-border-right: 2px solid #666;
-border-bottom: 2px solid #666;
-transition: 0.2s ease;
-}
-.select_edit_priority .select_edit_drp_priority {
-position: absolute;
-top: 100%;
-/* width: 100%; */
-border-radius: 0 0 3px 3px;
-overflow: hidden;
-background: var(--bg1);
-border-top: 1px solid #eee;
-z-index: 1;
-background: #fff;
--webkit-transform: scale(1, 0);
-        transform: scale(1, 0);
--webkit-transform-origin: top center;
-        transform-origin: top center;
-visibility: hidden;
-transition: 0.2s ease;
-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-}
-.select_edit_priority .select_edit_drp_priority .select_edit_priority_option {
-padding: 10px;
-box-sizing: border-box;
-cursor: pointer;
-float: left;
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  height: 45px;
-}
-.select_edit_priority .select_edit_drp_priority .select_edit_priority_option .select_edit_priority_letter {
-  margin-top: 0px;
-  margin-left: 10px;
-}
-.select_edit_priority .select_edit_drp_priority .select_edit_priority_option:hover {
-background: #f8f8f8;
-}
-.select_edit_priority .select_edit_drp_priority.select_new_edit_priority {
-visibility: visible;
--webkit-transform: scale(1, 1);
-        transform: scale(1, 1);
-}
-.select_edit_drp_priority.select_new_edit_priority{
-  display:block
-}
-.select_edit_drp_priority{
-  display: none;
-}
-.select_edit_priority .select_edit_priority_btn .select_edit_priority_letter{
-  margin-top: 0px;
-  margin-left: 10px;
-}
-.select_edit_priority_btn i{
-  width: 20px;
-}
+
+/* edit priority dropdown css is temporary hide start */
 
 .email_checkeck_edit.checked{
   z-index: -1;
@@ -1236,4 +1002,17 @@ visibility: visible;
   font-size: 1rem;
   font-family: 'Roboto' sans-serif;
   font-style: normal;
+}
+
+
+/* text ellipse */
+/* creation date time 20223-10-19 15:07 */
+.text_ellipse{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.select_pointer{
+  cursor: pointer;
 }

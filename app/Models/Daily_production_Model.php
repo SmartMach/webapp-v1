@@ -21,7 +21,6 @@ class Daily_production_Model extends Model{
             'username' => 'root',
             'password' => 'quantanics123',
             'database' => ''.$db_name.'',
-            // 'database' => 'S1001',
             'DBDriver' => 'MySQLi',
             'DBPrefix' => '',
             'pConnect' => false,

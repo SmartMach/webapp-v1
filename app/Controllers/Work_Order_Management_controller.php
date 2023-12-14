@@ -210,15 +210,20 @@ class Work_Order_Management_controller extends BaseController{
 
             $res = $this->datas->get_work_order_data();
 
+
             $final_list = [];
             foreach ($res as $value) {
                 if (in_array($value['priority_id'], $priority)) {
                     if (in_array($value['status_id'], $status)) {
                         if (in_array($value['assignee'], $assignee)) {
-                            $temp = explode(",", $value['lable_id']);
-                            $common_elements = array_intersect($temp, $lables);
-                            if (!empty($common_elements)) {
+                            if (in_array("Blank",$lables)) {
                                 array_push($final_list, $value);
+                            }else{
+                                $temp = explode(",", $value['lable_id']);
+                                $common_elements = array_intersect($temp, $lables);
+                                if (!empty($common_elements)) {
+                                    array_push($final_list, $value);
+                                }
                             }
                         }
                     }
@@ -229,19 +234,19 @@ class Work_Order_Management_controller extends BaseController{
             if ($filter == false || $filter == "false") {
                 foreach ($res as $value) {
                     $temp=0;
-                    if (($value['assignee']=="" || !$value['assignee'] || $value['assignee']==null || $value['assignee']=="undefined") and $temp==0) {
+                    if (($value['assignee']=="" || !$value['assignee'] || $value['assignee']==null || $value['assignee']=="undefined" || $value['assignee']=="Unassigned") and $temp==0 and !in_array($value,$final_list)) {
                         array_push($final_list, $value);
                         $temp=1;
                     }
-                    if (($value['priority_id']=="" || !$value['priority_id'] || $value['priority_id']==null || $value['priority_id']=="undefined") and $temp==0) {
+                    if (($value['priority_id']=="" || !$value['priority_id'] || $value['priority_id']==null || $value['priority_id']=="undefined" || $value['priority_id']=="Unassigned") and $temp==0 and !in_array($value,$final_list)) {
                         array_push($final_list, $value);
                         $temp=1;
                     }
-                    if (($value['lable_id']=="" || !$value['lable_id'] || $value['lable_id']==null || $value['lable_id']=="undefined") and $temp==0) {
+                    if (($value['lable_id']=="" || !$value['lable_id'] || $value['lable_id']==null || $value['lable_id']=="undefined" || $value['lable_id']=="Unassigned") and $temp==0 and !in_array($value,$final_list)) {
                         array_push($final_list, $value);
                         $temp=1;
                     }
-                    if (($value['status_id']=="" || !$value['status_id'] || $value['status_id']==null || $value['status_id']=="undefined") and $temp==0) {
+                    if (($value['status_id']=="" || !$value['status_id'] || $value['status_id']==null || $value['status_id']=="undefined" || $value['status_id']=="Unassigned") and $temp==0 and !in_array($value,$final_list)) {
                         array_push($final_list, $value);
                         $temp=1;
                     }

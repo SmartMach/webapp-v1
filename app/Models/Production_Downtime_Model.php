@@ -18,8 +18,7 @@ class Production_Downtime_Model extends Model{
                     'DSN'      => '',
                     'hostname' => 'localhost',
                     'username' => 'root',
-                    'password' => 'quantanics123',                    
-                    // 'database' => 's1002',
+                    'password' => 'quantanics123',
                     'database' => ''.$db_name.'',
                     'DBDriver' => 'MySQLi',
                     'DBPrefix' => '',
@@ -280,9 +279,16 @@ class Production_Downtime_Model extends Model{
         // $db = \Config\Database::connect($this->site_creation);
         $db = \Config\Database::connect($this->site_connection);
         $query = $db->table('settings_downtime_reasons');
-        // $query->select('DISTINCT(downtime_reason),downtime_reason_id');
         $query->select('DISTINCT(downtime_reason),downtime_reason_id');
         $query->orderBy('downtime_reason','ASC');
+        $res = $query->get()->getResultArray();
+        return $res;    
+    }
+    public function downtime_category_filter_con(){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('settings_downtime_reasons');
+        $query->select('DISTINCT(downtime_category)');
+        $query->orderBy('downtime_category','ASC');
         $res = $query->get()->getResultArray();
         return $res;    
     }

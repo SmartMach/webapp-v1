@@ -299,7 +299,6 @@ $('#changed_date').datetimepicker({
         format:'Y-m-d',
         onChangeDateTime:function(dp,$input){
             // alert($input.val());
-            console.log("selected date:\t"+$input.val());
             $('#changed_date').val($input.val());
             // location.reload();
            
@@ -312,11 +311,9 @@ $('#changed_date').datetimepicker({
     // document ready function its get color change for tpp record font color
     $(document).ready(function(){
         const current_date = getcurrent_date();
-        console.log("current date"+current_date);
         $('#changed_date').val(current_date);
         $("#overlay").fadeIn(300);
         load_allfiles();
-        console.log("after function calling");
         color_change_value();
     });
     
@@ -332,8 +329,6 @@ $('#changed_date').datetimepicker({
                     date:date,
                 },
                 success:function(res){
-                    console.log("Ajax Succeed");
-                    console.log(res);
                       $('.contentProduction').empty();
                     if (jQuery.isEmptyObject(res['Part_details'])){
                         $('.contentProduction').html('<p class="no_record_css">No Records...</p>');
@@ -342,9 +337,6 @@ $('#changed_date').datetimepicker({
                     var id = 1;
                     $.each(res['Part_details'],function(k,v){
                         var elements = $();
-                        // console.log(v);
-                        console.log("machine_id");
-                        console.log(k);
 
                         elements = elements.add('<div class="" style="display:flex;flex-wrap:wrap;flex-direction:row;">'
                             +'<div class=" col paddingm" style="padding-right:2px; width:10%;">'
@@ -371,11 +363,6 @@ $('#changed_date').datetimepicker({
                         $.each(res['Part_details'][k],function(k1,v1){
                           var ele = $();
                           var downtime_ele = $();
-                          //console.log("shift");
-                          //console.log(k1);
-                          //console.log("")
-                          //console.log(v1);
-                         
 
                           var height_shift = Object.keys(res['Part_details'][k][k1]).length;
                           var height = Object.keys(res['part_count_machine_wise'][k]).length;
@@ -395,7 +382,6 @@ $('#changed_date').datetimepicker({
                           var c_date = new Date(y+"-"+(m > 9 ? m: "0" + m)+"-"+(d > 9 ? d: "0" + d)+" "+res['shift_wise_time'][k1]);
                           // var c_date = new Date("2022-12-17"+" "+"21:00:00");
                           // var current_date =new Date("2022-12-17 "+tmp_arr[t]);
-                          // console.log(c_date+"\tshift date:\t");
                           if ( new Date() > c_date) {
                             
                             // ele = ele.add('<div class="machine_header_production_status machine_align '+k+'_'+k1+'" style="height:'+shift_percentage+'%;">'
@@ -430,9 +416,6 @@ $('#changed_date').datetimepicker({
                           }
                          
 
-                          
-                        
-                          // console.log("shift height:\t"+shift_percentage);
                           $('.'+k).append(ele);
                           $('.downtime_graph_'+k).append(downtime_ele);
 
@@ -442,8 +425,6 @@ $('#changed_date').datetimepicker({
                           const downtime_reason_val = [];
                           var tmp_downtime_random_count = 1;
                           var dtid = 1;
-                          // console.log("Downtime reason");
-                          // console.log(res['Downtime_reasons_val'][k][k1]);
                           $.each(res['Downtime_reasons_val'][k][k1],function(rname,rval){
                             var dr = $();
                             var tmpreason_id = rname.toString().split("r");
@@ -466,16 +447,12 @@ $('#changed_date').datetimepicker({
                           var graph_len = downtime_reason_label.length;
                           if (parseInt(graph_len)>0) {
                             var downtime_graph_leng = $('.downtime_val_'+k+'_'+k1).length;
-                            // console.log("downtime graph :\t"+k);
-                            // console.log("downtime graph length:\t"+downtime_graph_leng);
                             for(var i=0;i<parseInt(downtime_graph_leng);i++){
                              
                               var tmp_dreason_val = $('.downtime_val_'+k+'_'+k1+':eq('+i+')').attr("data_duration");
                               var downtime_total_reason = $('.downtime_val_'+k+'_'+k1+':eq(0)').attr("data_duration");
-                              // console.log("tmp reason val:\t"+tmp_dreason_val);
                               var percentage_background  = parseInt(tmp_dreason_val)/parseInt(downtime_total_reason)*100;
                               // var color_deg = parseInt(percentage_background)/100*360;
-                              // console.log("machine:\t"+k+"percentage"+percentage_background);
                               var tmp = parseInt(i) +1;
                               var remaining_percent = 100 - parseInt(percentage_background);
                               $('#background_drval_'+k+'_'+k1+'_'+tmp).css("background","linear-gradient(to right,  #B4D7FF "+parseInt(percentage_background)+"% , white "+parseInt(percentage_background)+"%, white 100%)");
@@ -490,12 +467,8 @@ $('#changed_date').datetimepicker({
 
                           // part wise record alignment
                           $.each(res['Part_details'][k][k1],function(k2,v2){
-                            console.log(v2);
-                            console.log(k2);
 
                             var part_count_pershift = Object.keys(res['Part_details'][k][k1]).length;
-                            console.log("part count pershift:\t"+k2);
-                            // console.log(typeof res['Part_production_details'][k][k1][k2][0]);
                             var el = $();
                             var part_name = res['part_names'][k2][0];
                             var tool_name = res['part_names'][k2][1];
@@ -514,10 +487,6 @@ $('#changed_date').datetimepicker({
                             const to_time_arr = v2[4][1].toString().split(":");
                             var from_time = from_time_arr[0]+':'+from_time_arr[1];
                             var to_time = to_time_arr[0]+":"+to_time_arr[1];
-                            // console.log("from time"+from_time);
-                            // console.log("to time"+to_time);
-
-
 
                             // rejection count condition
                             if (trejection === null) {
@@ -526,11 +495,9 @@ $('#changed_date').datetimepicker({
                               rejection = parseInt(trejection);
                             }
                             var part_count_find = 0;
-                            console.log(part_count_pershift);
                             if (parseInt(part_count_pershift)>1) {
                               // multiple parts pershift
                               part_count_find = parseInt(part_count_find) +1;
-                             console.log("multiple parts");
                               el = el.add('<div class="row_'+k+'_'+k1+'" style="display:grid;gap:3px;"><div class="machine_header_production_status" style="width:100%;gird-column:1;display:flex;min-height:7rem;">'
                                 +'<div class="mar_right" style="width:12%;margin-block:auto;display:flex;flex-direction:column;padding:0.3rem;">'
                                   +'<p id="partname_pds" title="'+part_name+'" style="margin-bottom:0;">'+part_name +'</p>'
@@ -565,7 +532,6 @@ $('#changed_date').datetimepicker({
                              
                               
                             }else{
-                              console.log("single parts");
                               // single parts per shift
                               el = el.add('<div class="machine_header_production_status row_'+k+'_'+k1+'" style="width:100%;display:flex;min-height:7rem;">'
                               +'<div class="mar_right" style="width:11.89%;margin-block:auto;display:flex;flex-direction:column;padding:0.3rem;">'
@@ -612,23 +578,17 @@ $('#changed_date').datetimepicker({
                               var tid = 0;
                               const dummy_arr = res['Quality_reject_reason'][k][k1][k2];
                               
-                              // console.log("dummy array");
                               // dummy_arr.sort(function(a,b) {
                               //     return a.val - b.val;
                               // });
                               // const arr_demo = descending_func(dummy_arr);
-                              // console.log(dummy_arr);
                               $.each(res['Quality_reject_reason'][k][k1][k2],function(reason,rval){
                               
                                 var qr = $();
                                   var tmp_reason_id = reason.toString().split("r");
-                                  // console.log("quality reasons");
-                                  //   console.log(tmp_reason_id);
                                   // reasons_label.push(res['quality_reasons'][tmp_reason_id]);
                                   if (parseInt(rval)>0) {
                                     tid = parseInt(tid) + 1;
-                                    // console.log("quality reasons");
-                                    // console.log(tmp_reason_id);
                                     quality_reason_total_val  = parseInt(quality_reason_total_val) + parseInt(rval);
                                     reasons_value.push(rval);
                                     reasons_label.push('R'+random_count);
@@ -649,13 +609,10 @@ $('#changed_date').datetimepicker({
                               }else{
                                  // each rejection value width
                                 var rejection_leng = $('.'+k+'_'+k2).length;
-                                console.log("total length:\t"+rejection_leng);
                                 for(var i=0;i<parseInt(rejection_leng);i++){
-                                  //console.log("total quality:\t"+quality_reason_total_val);
                                   
 
                                   var tmp_reason_val = $('.'+k+'_'+k2+':eq('+i+')').text();
-                                  //console.log("tmp reason val:\t"+tmp_reason_val);
                                   var percentage_background  = parseInt(tmp_reason_val)/parseInt(quality_reason_total_val)*100;
                                   var color_deg = parseInt(percentage_background)/100*360;
                                   var tmp = parseInt(i) +1;
@@ -663,7 +620,6 @@ $('#changed_date').datetimepicker({
                                     if (parseInt(rejection_leng)=== 1) {
                                       // percentage_background = 99;
                                       $('#background_rval_'+k+'_'+k1+'_'+k2+'_'+tmp).css("background","#B4D7FF");
-                                      console.log("single reason:\t"+rejection_leng);
                                     }else{
                                       $('#background_rval_'+k+'_'+k1+'_'+k2+'_'+tmp).css("background","linear-gradient(to right,  #B4D7FF "+parseInt(percentage_background)+"% , white "+parseInt(percentage_background)+"%, white 100%)");
                                     }
@@ -679,13 +635,11 @@ $('#changed_date').datetimepicker({
                             
                               // shift id fixed height code
                               var shift_leng = $('.row_'+k+'_'+k1).length;
-                              // console.log("shift height:"+shift_leng);
                               var shift_height = 0;
                               for(var j=0;j<parseInt(shift_leng);j++){
                                 var sheight = $('.row_'+k+'_'+k1+':eq('+j+')').height();
                                 shift_height = parseInt(shift_height) + parseInt(sheight);
                               }
-                              // console.log("for loop end:\t"+shift_height);
                               var tmp_count = Object.keys(res['Part_details'][k][k1]).length;
                               var correct_height = 0;
                               if (parseInt(tmp_count)==1) {
@@ -706,7 +660,6 @@ $('#changed_date').datetimepicker({
                               
                               // var machine_height = $('.'+k).height();
                               // machine_height = parseInt(machine_height);
-                              // console.log("Machine Height"+machine_height);
                               $('.'+k+'_'+k1).css("height",correct_height+"px");
                               $('.downtime_'+k+'_'+k1).css("height",correct_height+"px");
                               // $('#height_'+k).css("height",machine_height+"px");
@@ -728,15 +681,12 @@ $('#changed_date').datetimepicker({
 
                     $('.contentProduction').html("<p>No Records Some Error In Data Passing!</p>");
                     $("#overlay").fadeOut(300);
-                    console.log("Record Issue in controller or Model site Because the status code is 500");
                   },
                   404:function(){
                     $('.contentProduction').html("<p>Data Getting File Not Found!</p>");
-                    console.log("Data Passing Issue in Controller [ or ] Controller Function[ example names] ");
                   }
                 },
                 error:function(err){
-                    // console.log("error"+err);
                     $("#overlay").fadeOut(300);
                 }
             });
@@ -862,7 +812,6 @@ $('#changed_date').datetimepicker({
     // value color change
   function color_change_value(){
     var target_len =  $('.target_pds').length;
-    // console.log("product value color change"+target_len);
     for(var i=0;i<parseInt(target_len);i++){
       const tval = $('.target_pds:eq('+i+')').text();
       const tpval = $('.tpp_pds:eq('+i+')').text();
@@ -875,8 +824,7 @@ $('#changed_date').datetimepicker({
       else if(parseInt(tpval) < parseInt(tval)){
         $('.tpp_pds:eq('+i+')').css("color","#C00000");
       }
-          
-      // console.log("target value:\t"+i+"value:\t"+tval);
+        
     }
 
   }

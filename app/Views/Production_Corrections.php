@@ -110,7 +110,7 @@ a{
                         <div class="input-box" style="margin-right: 0.5rem;">
                             <select class="form-select font_weight select_input_width input_padd" name="" id="correctionPart" style="width: 10rem;padding-right:1.8rem;">
                             </select>
-                            <label for="inputSiteNameAdd" class="input-padding font_weight">Part Name</label>
+                            <label for="inputSiteNameAdd" class="input-padding font_weight">Parts</label>
                         </div>
                     </div>
                     <div class="box">
@@ -124,7 +124,7 @@ a{
                         <div class="input-box" style="margin-right: 0.5rem;">
                             <select class="form-select font_weight select_input_width input_padd" name="" id="shiftName" style="width: 10rem;">
                             </select>
-                            <label for="inputSiteNameAdd" class="input-padding ">Shift</label>
+                            <label for="inputSiteNameAdd" class="input-padding ">Shifts</label>
                         </div>
                     </div> 
               </div>
@@ -300,7 +300,6 @@ function  gedt_correction_data(){
             var i=0;
             $('.contentCorrection').empty();
             res.forEach(function(item){
-              //  console.log(item);
                 if (item.corrections != null) {
                     count = parseInt(count)+parseInt(item.corrections);
                 }
@@ -579,7 +578,6 @@ function datePick(date_shift){
                 machine_id:machine_id,
             },
             success:function(res){
-               // console.log(res);
                 var datetime = getdate_time(res['correction'][0].last_updated_on);
                 $('#QPID').html(res['part_name']);
                 $('#QPID').attr("part_data",res['correction'][0].part_id);
