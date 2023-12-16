@@ -1,103 +1,12 @@
-<style type="text/css">
-    /*CSS for Calender dropdown*/
-/*.ui-datepicker {
-    text-align: center;
-    z-index: 1000;
-}*/
-
-.ui-datepicker-trigger {
-    margin: 0 0 0 5px;
-    vertical-align: text-top;
-}
-
-.ui-datepicker {
-    font-family: Open Sans, Arial, sans-serif;
-    margin-top: 2px;
-    background-color: white;
-  border-radius: 6px 6px 6px 6px;
-  padding: 3px;
-  width: 256px;
-  /* border: 1px solid #dddddd; */
-  text-align: center;
-  z-index: 100 !important;
-
-}
-
-.openemr-calendar .ui-datepicker {
-    width: 191px;
-}
-
-.ui-datepicker table {
-    width: 15rem;
-    margin-left: 8px;
-    z-index: 1000;
-}
-
-.ui-datepicker table thead{
-    font-size: 13;
-}
-.ui-datepicker table td{
-    color: #cacccf;
-    background: #f6f6f6;
-    border:1px solid #c5c5c5;
-}
-
-.ui-datepicker table td:hover{
-    color: white;
-    background: #c6c6c6;
-    border:1px solid #c5c5c5;
-}
-
-.ui-datepicker table tr{
-  text-align: center;
-}
-
-.ui-datepicker-prev{
-  float: left;
-  cursor: pointer;
-  text-decoration: none;
-}
-.ui-datepicker-next{
-  float: right;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.ui-datepicker-month{
-  margin-left:0.5rem;
-  padding: 0.1rem;
-}
-.ui-datepicker-year{
-  margin-left:0.5rem;
-  padding: 0.1rem;
-}
-.ui-datepicker-header{
-  background-color: #e9e9e9;
-  padding: 0.6rem;
-  border-radius: 0.2rem;
-}
-
-.ui-state-default{
-  text-decoration: none;
-  font-size: 12px;
-}
-a{
-  color: black; 
-}
-
-#shiftDate:onclick{
-    
-}
-
-</style>
 
 <div class="mr_left_content_sec">
+
         <nav class="sec_nav display_f align_c justify_c sec_nav_c navbar-expand-lg">
           <div class="container-fluid paddingm display_f justify_sb align_c">
             <p class="float-start fnt_fam mdl_header">Corrections</p>
               <div class="d-flex">
-                    <p class="float-end stcode" style="color: #005CBC;">
-                        <span  id="corrects"></span><span style="font-size: 1rem;">Correction Counts</span>
+                    <p class="float-end fnt_fam style_label fnt_inactive">
+                        <span  id="corrects"></span>Correction Counts 
                     </p>
               </div>
           </div>
@@ -107,24 +16,24 @@ a{
              <p class="float-start"></p>
               <div class="d-flex innerNav">
                     <div class="box">
-                        <div class="input-box" style="margin-right: 0.5rem;">
+                        <div class="input-box" style="margin-right: var(--margin_right)">
                             <select class="form-select font_weight select_input_width input_padd" name="" id="correctionPart" style="width: 10rem;padding-right:1.8rem;">
                             </select>
-                            <label for="inputSiteNameAdd" class="input-padding font_weight">Parts</label>
+                            <label for="inputSiteNameAdd" class="input_lable fnt_fam">Parts</label>
                         </div>
                     </div>
                     <div class="box">
-                        <div class="input-box" style="margin-right: 0.5rem;">
+                        <div class="input-box" style="margin-right: var(--margin_right)">
                             <input type="datepicker" class="form-control select_input_width input_padd font_weight datepicker" name="" id="shiftDate" style="width: 10rem;" placeholder="dd-mm-yyyy" autocomplete="off">
                             
-                            <label for="inputSiteNameAdd" class="input-padding ">Shift Date</label>
+                            <label for="inputSiteNameAdd" class="input_lable fnt_fam ">Shift Date</label>
                         </div>
                     </div>
                     <div class="box">
-                        <div class="input-box" style="margin-right: 0.5rem;">
+                        <div class="input-box" style="margin-right: var(--margin_right)">
                             <select class="form-select font_weight select_input_width input_padd" name="" id="shiftName" style="width: 10rem;">
                             </select>
-                            <label for="inputSiteNameAdd" class="input-padding ">Shifts</label>
+                            <label for="inputSiteNameAdd" class="input_lable fnt_fam">Shifts</label>
                         </div>
                     </div> 
               </div>
@@ -156,7 +65,7 @@ a{
                         </div>
                     </div>
                 </div>
-                <div class="contentCorrection paddingm ">
+                <div class="contentCorrection paddingm tableDataContainer">
                    
                 </div>
         </div>
@@ -165,86 +74,80 @@ a{
 <div class="modal fade" id="EditCorrectModal" tabindex="-1" aria-labelledby="EditCorrectModal1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered rounded">
     <div class="container modal-content bodercss">
+            <div class="modal-header border_no">
+                <p class="modal-title header_popup fnt_fam" id="EditCorrectModal1" style="">EDIT CORRECTION DATA</p>
+            </div>
             <form method="" class="addMachineForm" action="" >
                 <div class="modal-body">
-                    <h5 class="modal-title settings-machineAdd-model mt-2 p-1"  id="EditCorrectModal1" style="margin-bottom: 0;margin-left: 0.7rem;">EDIT CORRECTION DATA</h5>
-                    <div class="flex-container">
-                        <div style="width:50%;" class="flex-container">
-                            <div style="width: 50%;" class="carddiv">
-                                <label class="headTitle">Part Name</label>
-                                <p id="QPID" class="font_weight_modal"></p>
-                            </div>
-                            <div style="width: 50%;" class="carddiv">
-                                <label class="headTitle">Machine Name</label>
-                                <p id="QMName" class="font_weight_modal"></p>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <label for="" class="col-form-label headTitle fnt_fam">Part Name</label>
+                            <p><span id="QPID" class="font_weight_modal"></span></p>
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="" class="col-form-label headTitle fnt_fam">Machine Name</label>
+                            <p><span id="QMName" class="font_weight_modal"></span></p>
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="" class="col-form-label headTitle fnt_fam">Shift Date</label>
+                            <p><span id="QShiftDate" class="font_weight_modal"></span></p>
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="" class="col-form-label headTitle fnt_fam">Shift</label>
+                            <p><span id="QShift" class="font_weight_modal"></span></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <label for="" class="col-form-label headTitle fnt_fam">Last Updated By</label>
+                            <p><span id="QLUDate" class="font_weight_modal"></span></p>
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="" class="col-form-label headTitle fnt_fam">Last Updated On</label>
+                            <p><span id="QLUOn" class="font_weight_modal"></span></p>
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="" class="col-form-label headTitle fnt_fam">From Time</label>
+                            <p><span id="QFromTime" class="font_weight_modal"></span></p>
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="" class="col-form-label headTitle fnt_fam">To Time</label>
+                            <p><span id="QToTime" class="font_weight_modal"></span></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <label for="" class="col-form-label headTitle fnt_fam">Min Counts</label>
+                            <p><span id="MinCounts" class="font_weight_modal"></span></p>
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="" class="col-form-label headTitle fnt_fam">Total Correction Counts</label>
+                            <p><span id="TotalCorrection" class="font_weight_modal"></span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                         <div class="col-lg-6 box">
+                            <div class="input-box fieldStyle">
+                                <input type="text" class="form-control input font_weight_modal" id="CorrectionCount" name="" required=""  value="">
+                                <label class="input_lable fnt_fam">Correction Count <span class="paddingm validate fnt_fam">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam correction_count_err" id=""></span>
                             </div>
                         </div>
-                        <div style="width: 50%;" class="flex-container">
-                            <div style="width: 50%;" class="carddiv">
-                                <label class="headTitle">Shift Date</label>
-                                <p id="QShiftDate" class="font_weight_modal"></p>
+                        
+                        <div class="col-lg-6 box">
+                            <div class="input-box fieldStyle">
+                                <input type="text" class="form-control input font_weight_modal" id="Notes" name="" required=""  value="">
+                                <label class="input_lable fnt_fam">Notes <span class="paddingm validate fnt_fam">*</span></label>
+                                <span class="paddingm float-start validate fnt_fam correction_reason_err" id=""></span>
                             </div>
-                            <div style="width: 50%;" class="carddiv">
-                                <label class="headTitle">Shift</label>
-                                <p id="QShift" class="font_weight_modal"></p>
-                            </div>
-                        </div>     
-                    </div>
-                    <div class="flex-container">
-                        <!-- temporary hide for this code -->
-                        <div style="width:50%;" class="flex-container">
-                            <div style="width: 50%;" class="carddiv">
-                                <label class="headTitle">Last Updated By</label>
-                                <p id="QLUDate" class="font_weight_modal"></p>
-                            </div>
-                            <div style="width: 50%;" class="carddiv">
-                                <label class="headTitle">Last Updated On</label>
-                                <p id="QLUOn" class="font_weight_modal"></p>
-                            </div>
-                        </div>
-                        <div style="width: 50%;" class="flex-container">
-                            <div style="width: 50%;" class="carddiv">
-                                <label class="headTitle">From Time</label>
-                                <p id="QFromTime" class="font_weight_modal"></p>
-                            </div>
-                            <div style="width: 50%;" class="carddiv">
-                                <label class="headTitle">To Time</label>
-                                <p id="QToTime" class="font_weight_modal"></p>
-                            </div>
-                        </div>     
-                    </div>
-                    <div class="flex-container">
-                        <div style="width:50%;" class="flex-container ">
-                            <div style="width: 50%;" class="carddiv ">
-                                <label class="headTitle">Min Counts</label>
-                                <p id="MinCounts" class="font_weight_modal"></p>
-                            </div>
-                            <div style="width: 50%;" class="carddiv">
-                                <label class="headTitle">Total Correction Counts</label>
-                                <p id="TotalCorrection" class="font_weight_modal"></p>
-                            </div>
-                        </div>   
-                    </div>
-                    <div class="flex-container">
-                        <div style="width:50%;" class="flex-container divbox fieldStyle">
-                            <div style="width: 100%;" class="carddiv divinput-box">
-                                <input type="text" name="" id="CorrectionCount" class="font_weight_modal">
-                                <label class="input-padding">Correction Count <span class="paddingm validate">*</span></label>
-                                <span class="correction_count_err validate"></span>
-                            </div>
-                        </div>
-                        <div style="width: 50%;" class="flex-container divbox fieldStyle">
-                            <div style="width: 100%;" class="carddiv divinput-box">
-                                <input type="text" name="" id="Notes" class="font_weight_modal">
-                                <label class="input-padding">Notes <span class="paddingm validate">*</span></label>
-                                <span class="correction_reason_err validate"></span>
-                            </div>
-                        </div>     
-                    </div>                    
+                        </div> 
+                    </div>                   
                 </div>
-                <div class="modal-footer" style="border:none;">
-                    <a class="EditCorrection btn fo bn saveBtnStyle" name="" value="SAVE">Save</a>
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close" >Cancel</a>   
+                <div class="modal-footer border_no">
+                    <a class="EditCorrection btn fnt_fam btn_fnt_size btn_padd btn_save" name="" id="edit_machine_data" value="SAVE">Save</a>
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
                 </div>
             </form>
     </div>
@@ -272,9 +175,7 @@ a{
  var control = <?php echo($this->data['access'][0]['production_data_management']); ?>;
        var control_display = " ";
        if (control < 2) {
-            control_display = "none";
-       }else{
-        control_display = "inline";
+            control_display = "display:none";
        }
 // get correction data function
 function  gedt_correction_data(){
@@ -308,67 +209,67 @@ function  gedt_correction_data(){
                 var notes = (item.correction_notes != null ? item.correction_notes:"");
 
                 if(parseInt(item.corrections) < 0){
-                    elements = elements.add('<div id="settings_div">'
+                    elements = elements.add('<div class="table_data">'
                         +'<div class="row paddingm">'
-                        +'<div class="col-sm-1 col marleft">'
-                        +'<p id="fdate" >'+item.start_time+'</p>'
+                        +'<div class="col-sm-1 col marleft table_data_section display_f align_c">'
+                        +'<p id="fdate" class="table_data_element fnt_fam">'+item.start_time+'</p>'
                         +'</div>'
-                        +'<div class="col-sm-1 col marleft" >'
-                        +'<p id="tdate">'+item.end_time+'</p>'
+                        +'<div class="col-sm-1 col marleft table_data_section display_f align_c" >'
+                        +'<p id="tdate" class="table_data_element fnt_fam">'+item.end_time+'</p>'
                         +'</div>'
-                        +'<div class="col-sm-2 col marleft" >'
-                        +'<p id="pname">'+item.part_name+'</p>'
+                        +'<div class="col-sm-2 col marleft table_data_section display_f align_c" >'
+                        +'<p id="pname" class="table_data_element fnt_fam">'+item.part_name+'</p>'
                         +'</div>'
-                        +'<div class="col-sm-2 col marleft" ">'
-                        +'<p id="mreject" style="">'+correction_min_count+'</p>'
+                        +'<div class="col-sm-2 col marleft table_data_section display_f align_c">'
+                        +'<p id="mreject" class="table_data_element fnt_fam">'+correction_min_count+'</p>'
                         +'</div>'
-                        +'<div class="col-sm-2 col marleft">'
-                        +'<p id="rcount" style="color: #e2062c; font-weight:bold;">'+correction_count+'</p>'
+                        +'<div class="col-sm-2 col marleft table_data_section display_f align_c">'
+                        +'<p id="rcount" class="table_data_element fnt_fam fnt_bold" style="color: #e2062c;">'+correction_count+'</p>'
                         +'</div>'
-                        +'<div class="col-sm-3 col marleft">'
-                        +'<p>'+notes+'</p>'
+                        +'<div class="col-sm-3 col marleft table_data_section display_f align_c">'
+                        +'<p class="table_data_element fnt_fam">'+notes+'</p>'
                         +'</div>'
-                        +'<div class="col-sm-1 col d-flex justify-content-center fasdiv">'
-                        +'<ul class="edit-menu">'
-                        +'<li class="d-flex justify-content-center">'
-                        +'<a href="#">'
-                        +'<img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="editCorrects  pen-product" style="font-size: 20px;color: #d9d9d9;height:1.4rem;width:1.4rem;display:'+control_display+'" alt="Edit" rvalue="'+item.machine_id+'" pIdValue="'+item.part_id+'" fdate="'+item.start_time+'" >'
-                        +'</a>'
-                        +'</li>'
-                        +'</ul>'
+                        +'<div class="col-sm-1 col d-flex justify_c">'
+                            +'<ul class="edit-menu d-flex justify_c align_c paddingm">'
+                                +'<li class="d-flex justify_c">'
+                                    +'<a href="#">'
+                                        +'<img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="editCorrects icons-smart display_f justify_c align_c" style="'+control_display+'" alt="Edit" rvalue="'+item.machine_id+'" pIdValue="'+item.part_id+'" fdate="'+item.start_time+'" >'
+                                    +'</a>'
+                                +'</li>'
+                            +'</ul>'               
                         +'</div>'
                         +'</div>'
                         +'</div>');
                 }
                 else if (item.corrections>=0) {
-                    elements = elements.add('<div id="settings_div">'
+                    elements = elements.add('<div class="table_data">'
                     +'<div class="row paddingm">'
-                    +'<div class="col-sm-1 col marleft">'
-                    +'<p id="fdate">'+item.start_time+'</p>'   
+                    +'<div class="col-sm-1 col marleft table_data_section display_f align_c">'
+                    +'<p id="fdate" class="table_data_element fnt_fam">'+item.start_time+'</p>'   
                     +'</div>'
-                    +'<div class="col-sm-1 col marleft" >'
-                    +'<p id="tdate">'+item.end_time+'</p>'
+                    +'<div class="col-sm-1 col marleft table_data_section display_f align_c" >'
+                    +'<p id="tdate" class="table_data_element fnt_fam">'+item.end_time+'</p>'
                     +'</div>'
-                    +'<div class="col-sm-2 col marleft" >'
-                    +'<p id="pname">'+item.part_name+'</p>'
+                    +'<div class="col-sm-2 col marleft table_data_section display_f align_c" >'
+                    +'<p id="pname" class="table_data_element fnt_fam">'+item.part_name+'</p>'
                     +'</div>'
-                    +'<div class="col-sm-2 col marleft" >'
-                    +'<p id="mreject" style="">'+correction_min_count+'</p>'
+                    +'<div class="col-sm-2 col marleft table_data_section display_f align_c" >'
+                    +'<p id="mreject" class="table_data_element fnt_fam">'+correction_min_count+'</p>'
                     +'</div>'
-                    +'<div class="col-sm-2 col marleft">'
-                    +'<p id="rcount" style="color: #004795;font-weight:bold;">'+correction_count+'</p>'
+                    +'<div class="col-sm-2 col marleft table_data_section display_f align_c">'
+                    +'<p id="rcount" class="table_data_element fnt_fam fnt_bold" style="color: #004795;">'+correction_count+'</p>'
                     +'</div>'
-                    +'<div class="col-sm-3 col marleft">'
-                    +'<p>'+notes+'</p>'
+                    +'<div class="col-sm-3 col marleft table_data_section display_f align_c">'
+                    +'<p class="table_data_element fnt_fam">'+notes+'</p>'
                     +'</div>'
-                    +'<div class="col-sm-1 col d-flex justify-content-center fasdiv">'
-                    +'<ul class="edit-menu">'
-                    +'<li class="d-flex justify-content-center">'
-                    +'<a href="#">'
-                    +'<img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="editCorrects  pen-product" style="font-size: 20px;color: #d9d9d9;height:1.2rem;width:1.2rem;display:'+control_display+'" alt="Edit" rvalue="'+item.machine_id+'" pIdValue="'+item.part_id+'" fdate="'+item.start_time+'" >'
-                    +'</a>'
-                    +'</li>'
-                    +'</ul>'               
+                    +'<div class="col-sm-1 col d-flex justify_c">'
+                        +'<ul class="edit-menu d-flex justify_c align_c paddingm">'
+                            +'<li class="d-flex justify_c">'
+                                +'<a href="#">'
+                                    +'<img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="editCorrects icons-smart display_f justify_c align_c" style="'+control_display+'" alt="Edit" rvalue="'+item.machine_id+'" pIdValue="'+item.part_id+'" fdate="'+item.start_time+'" >'
+                                +'</a>'
+                            +'</li>'
+                        +'</ul>'               
                     +'</div>'
                     +'</div>'
                     +'</div>');

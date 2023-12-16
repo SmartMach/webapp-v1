@@ -83,12 +83,6 @@ hr{
 thead tr th{
     color: #595959;
 }
-.settings-machineAdd-model{
-        font-family: 'Roboto', sans-serif;
-        font-size:15px;
-        font-weight: medium;  
-        color:#b5b8bc;
-}
 
 .input-box { 
   position: relative; 

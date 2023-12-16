@@ -597,20 +597,20 @@ input[type=number] {
               <div class="input-box">
                   <select class="form-select font_weight select_input_width input_padd" name="" id="Production_MachineName" style="width: 10rem;padding-right:1.8rem;">
                   </select>
-                  <label for="inputSiteNameAdd" class="input-padding ">Machines</label>
+                  <label for="inputSiteNameAdd" class="input_lable fnt_fam">Machines</label>
               </div>
             </div>
             <div class="box display_f align_c" style="margin-right: 0.5rem;">
               <div class="input-box">
                   <input type="datepicker" class="form-control select_input_width input_padd font_weight datepicker" id="Production_shift_date" style="width: 10rem;" placeholder="dd-mm-yyyy" autocomplete="off">
-                  <label for="inputSiteNameAdd" class="input-padding ">Shift Date</label>
+                  <label for="inputSiteNameAdd" class="input_lable fnt_fam">Shift Date</label>
               </div>
             </div>
             <div class="box display_f align_c" style="margin-right: 0.5rem;">
               <div class="input-box">
                   <select class="form-select select_input_width input_padd font_weight" name="" id="RejectShift" style="width: 10rem;">
                   </select>
-                  <label for="inputSiteNameAdd" class="input-padding ">Shifts</label>
+                  <label for="inputSiteNameAdd" class="input_lable fnt_fam">Shifts</label>
               </div>
             </div>
                  
@@ -726,14 +726,14 @@ input[type=number] {
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box">
                   <input type="time" class="form-control start_time_till" id="start_time_till" step="1" placeholder="Select" required>
-                  <label for="inputSiteNameAdd" class="input-padding ">Start Time Till</label>
+                  <label for="inputSiteNameAdd" class="input_lable fnt_fam">Start Time Till</label>
                 </div>
               </div>
                
               <div class="box rightmar" style="margin-right: 0.5rem;">
                 <div class="input-box">
                   <input type="time" class="form-control start_time_from" id="start_time_from" step="1" placeholder="Select" required>
-                  <label for="inputSiteNameAdd" class="input-padding ">Start Time From</label>
+                  <label for="inputSiteNameAdd" class="input_lable fnt_fam">Start Time From</label>
                 </div>        
               </div>
             </div>
@@ -753,7 +753,7 @@ input[type=number] {
                     <option value="Planned">Planned</option>
                     <option value="Unplanned">UnPlanned</option>
                   </select>
-                  <label for="inputSiteNameAdd" class="input-padding ">Category</label>
+                  <label for="inputSiteNameAdd" class="input_lable fnt_fam">Category</label>
                 </div>
               </div>
               <!-- category dropdown -->
@@ -763,7 +763,7 @@ input[type=number] {
                   <select class="form-select font_weight bulg_edit_drp" name="bulg_edit_drp" id="bulg_edit_drp" style="width: 10rem;" disabled="true">
                     <!-- <option value="" class="hide_text" selected disabled id="select_color">Select</option> -->
                   </select>
-                  <label for="inputSiteNameAdd" class="input-padding ">Reason</label>
+                  <label for="inputSiteNameAdd" class="input_lable fnt_fam">Reason</label>
                 </div>
               </div>
               <!-- reason dropwon -->
@@ -792,44 +792,44 @@ input[type=number] {
 
         <!-- filter option code end -->
           <!--  -->
-          <div class="tableContent downtimeHeader" style="display: none;top:20rem">
-            <div class="settings_machine_header sticky-top" style="position:fixed;left:4.5rem;right:0;top:23rem;margin-left: 0.5rem;margin-right: 0.5rem;background-color: white;z-index:100;">
+          <div class="tableContent downtimeHeader data_section" style="display: none;top:20rem">
+            <div class="table_header data_section po_fixed" style="left:4.5rem;right:0;top:23rem !important;">
               <div class="row paddingm">
-                  <div class="col-sm-1 p3 paddingm" style="width:3%;">
+                  <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c" style="width:3%;">
                       <input type="checkbox" class="select_item" id="select_all_checkbox" style="height:1rem;width:1rem;margin:auto;">
                   </div>
-                  <div class="col-sm-1 p3 paddingm" style="display:flex;flex-direction:row;">
-                    <p class="basic_header">START TIME</p>
+                  <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                    <p class="h_mar_l paddingm">START TIME</p>
                   </div>
-                  <div class="col-sm-1 p3 paddingm" style="word-wrap: break-word;flex-wrap: wrap;">
-                    <p class=" basic_header">DURATION
+                  <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                    <p class=" h_mar_l paddingm">DURATION
                       <br>
                       (min)
                     </p>
                   </div>
-                  <div class="col-sm-1 p3 paddingm">
-                    <p class="basic_header">END TIME</p>
+                  <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                    <p class="h_mar_l paddingm">END TIME</p>
                   </div>
-                  <div class="col-sm-1 p3 paddingm">
-                    <p class="basic_header">CATEGORY</p>
+                  <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
+                    <p class="h_mar_l paddingm">CATEGORY</p>
                   </div>
-                  <div class="col-sm-2 p3 paddingm reason_header" style="width:15%;">
-                    <p class="basic_header">REASON</p>
+                  <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c reason_header" style="width:15%;">
+                    <p class="h_mar_l paddingm">REASON</p>
                   </div>
                   <!-- target header -->
-                  <div class="col-sm-2 p3 paddingm target_header" style="width:10%;display:none;">
-                    <p class="basic_header" style="margin:auto;margin-block-start:revert;margin-top:1rem;">Target</p>
+                  <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c target_header" style="width:10%;display:none;">
+                    <p class="h_mar_l paddingm" style="margin:auto;margin-block-start:revert;margin-top:1rem;">Target</p>
                   </div>
                   <!-- target header end -->
 
-                  <div class="col-sm-2 p3 paddingm tool_name_header" style="width:15%;">
-                    <p class="basic_header">TOOL NAME</p>
+                  <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c tool_name_header" style="width:15%;">
+                    <p class="h_mar_l paddingm">TOOL NAME</p>
                   </div>
-                  <div class="col-sm-2 p3 paddingm part_name_header" style="width:15%;">
-                    <p class="basic_header">PART NAME</p>
+                  <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c part_name_header" style="width:15%;">
+                    <p class="h_mar_l paddingm">PART NAME</p>
                   </div>
-                  <div class="col-sm-2 p3 paddingm" style="justify-content: center;width:15%;">
-                    <p class="basic_header">ACTION</p>
+                  <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c" style="width:15%;">
+                    <p class="h_mar_l paddingm">ACTION</p>
                   </div>
               </div>
             </div>
@@ -853,18 +853,18 @@ input[type=number] {
 
 <div class="modal fade" id="DeleteSPlit" tabindex="-1" aria-labelledby="DeleteSPlit1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered rounded">
-    <div class="modal-content bodercss">
-            <div class="modal-header" style="border:none; ">
-                <h5 class="modal-title settings-machineAdd-model" id="DeleteSPlit1" style="">CONFIRMATION MESSAGE</h5>
+    <div class="modal-content container bodercss">
+            <div class="modal-header border_no">
+                <p class="modal-title header_popup fnt_fam" id="DeleteSPlit1" style="">CONFIRMATION MESSAGE</p>
             </div>
                 <div class="modal-body">
-                    <label style="color: black;">Are you sure you want to delete this machine record?</label>
-                    <p class="settings-machineAdd-model">Downtime duration will merge with it`s parent record</p>
+                    <label  class="conf_message">Are you sure you want to delete this machine record?</label>
+                    <p class="settings-machineAdd-model fnt_fam">Downtime duration will merge with it`s parent record</p>
                     
                 </div>
-                <div class="modal-footer" style="border:none;">
-                    <a class="btn fo bn deleteRec saveBtnStyle" name="" value="SAVE" >Save</a>
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close" >Cancel</a>   
+                <div class="modal-footer border_no">
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_save deleteRec" name="Edit_Machine" value="SAVE" >Save</a>
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a> 
                 </div>
     </div>
   </div>
@@ -2394,50 +2394,41 @@ $(document).on("click", ".deleteRec", function(){
     }   
     // var last_updated_name = getlast_updated_name(last_updated_by);
    var cal_count = 1;
-    $( ".split_input" ).append('<div id="settings_div" class="rowData">'
+    $( ".split_input" ).append('<div class="rowData table_data">'
             +'<div class="row paddingm">'
                 +'<div class="" style="width:3%;display:flex;padding:0;"><input type="checkbox" style="height:1rem;width:1rem;margin:auto;" class="select_item"></div>'
-                +'<div class="col-sm-1 col marleft" style="width:8.6%;"><p class="startTime">'+start+'</p></div>'
-                +'<div class="col-sm-1 col marleft" style="width:8%;">'
+                +'<div class="col-sm-1 col marleft table_data_section display_f align_c" style="width:8.6%;"><p class="startTime table_data_element fnt_fam">'+start+'</p></div>'
+                +'<div class="col-sm-1 col marleft table_data_section display_f align_c" style="width:8%;">'
                     +'<input type="number" value="'+val_second+'" class="form-control inEdit form-control-md sval edit_input" id="val_g" required="true" name="val_g[]">'
-                    +'<p class="paraEdit ReasonDuration edit_display" id="ReasonDuration">'+svalue+'</p>'
+                    +'<p class="paraEdit ReasonDuration edit_display table_data_element fnt_fam" id="ReasonDuration">'+svalue+'</p>'
                 +'</div>'        
-                +'<div class="col-sm-1 col marleft" style="width:8.5%;">'
-                    +'<p class="endTime">'+end+'</p>'
+                +'<div class="col-sm-1 col marleft table_data_section display_f align_c" style="width:8.5%;">'
+                    +'<p class="endTime table_data_element fnt_fam">'+end+'</p>'
                 +'</div>'
-                +'<div class="col-sm-1 col marleft" style="width:8.4%;">'
+                +'<div class="col-sm-1 col marleft table_data_section display_f align_c" style="width:8.4%;">'
                     +'<select class="form-select inEdit marginlr DownCategoryValue edit_input1 font-size">'
-                      // +'<option value="planned">Planned</option>'
-                      // +'<option value="unplanned" selected>Unplanned</option>'
+                      
                     +'</select>'
-                    +'<p class="paraEdit ReasonCategory edit_display1" id="ReasonCategory">Unplanned</p>'
+                    +'<p class="paraEdit ReasonCategory edit_display1 table_data_element fnt_fam" id="ReasonCategory">Unplanned</p>'
                 +'</div>'
-                +'<div class="col-sm-2 col marleft DownReasonDiv" style="width:15%;">'
+                +'<div class="col-sm-2 col marleft table_data_section display_f align_c DownReasonDiv" style="width:15%;">'
                   +'<select class="form-select inEdit marginlr DownReason DownReasonValue edit_input2 font-size">'
-                      // +'<option>Tool Changeover</option>'
-                      // +'<option>Break Down</option>'
                   +'</select>'
-                  +'<p class="paraEdit ReasonName edit_display2" id="ReasonName">'+reason+'</p>'
+                  +'<p class="paraEdit ReasonName edit_display2 table_data_element fnt_fam" id="ReasonName">'+reason+'</p>'
                 +'</div>'
                 // Target value input
-                +'<div class="col-sm-2 col marleft Downtime_target" style="width:10%;display:none;padding:0.3rem;">'
+                +'<div class="col-sm-2 col marleft table_data_section display_f align_c Downtime_target" style="width:10%;display:none;padding:0.3rem;">'
                   +'<div style="display:flex;flex-direction:row;align-items:center;justify-content:center;height:100%;">'
                     +'<input type="text" class="form-control target_input_cl" id="target_input" style="width:100%;height:2rem;" value="0">'
                   +'</div>'
                 +'</div>'
-                +'<div class="col-sm-2 col marleft downtime_tool_name_div" style="width:14.8%;">'
+                +'<div class="col-sm-2 col marleft table_data_section display_f align_c downtime_tool_name_div" style="width:14.8%;">'
                   +'<select class="form-select inEditValue marginlr DownTool edit_input3 font-size">'
-                      // +'<option>Tool Name1</option>'
-                      // +'<option>Tool Name2</option>'
+                      
                   +'</select>'
-                  +'<p class="paraEditValue  edit_display3 ToolName">'+toolName+'</p>'
+                  +'<p class="paraEditValue  edit_display3 ToolName table_data_element fnt_fam">'+toolName+'</p>'
                 +'</div>'
-                +'<div class="col-sm-2 col marleft downtime_part_name_div" style="width:14.9%;">'
-
-                  // +'<select class="form-select inEditValue marginlr DownPart edit_input4 font-size">'
-                  //     // +'<option>Part Name1</option>'
-                  //     // +'<option>Part Name2</option>'
-                  // +'</select>'
+                +'<div class="col-sm-2 col marleft table_data_section display_f align_c downtime_part_name_div" style="width:14.9%;">'
                   
                   +'<div class="cust-drop edit_input4 marginlr inEditValue" >'
                     +'<div class="selectOpp" onclick="showCheckboxes(this)" id="">'
@@ -2447,30 +2438,13 @@ $(document).on("click", ".deleteRec", function(){
                       +'<div class="overSelect"></div>'
                     +'</div>'
                     +'<div class="checkboxes">'
-                      //Options 1
-                      // +'<div class="option">'
-                      //   +'<div class="multi-check">'
-                      //     +'<input type="checkbox" id="one" value="First" name="val" class="ch   eckboxIn" />'
-                      //   +'</div>'
-                      //   +'<div class="multi-lable">'
-                      //     +'<span>First</span>'
-                      //   +'</div>'
-                      // +'</div>'
-                      // // Option 2
-                      // +'<div class="option">'
-                      //   +'<div class="multi-check">'
-                      //     +'<input type="checkbox" id="one" value="First" name="val" class="checkboxIn" />'
-                      //   +'</div>'
-                      //   +'<div class="multi-lable">'
-                      //     +'<span>Second</span>'
-                      //   +'</div>'
-                      // +'</div>'
+
                     +'</div>'
                   +'</div>' 
                   
-                  +'<p class="paraEditValue  PartNameValue edit_display4" title="'+partName+'" id_check="'+part+'">'+partName+'</p>'
+                  +'<p class="paraEditValue  PartNameValue edit_display4 table_data_element fnt_fam" title="'+partName+'" id_check="'+part+'">'+partName+'</p>'
                 +'</div>'
-                +'<div class="col-sm-2 col marleft ICONDiv action_div" style="width:18.6%;">'
+                +'<div class="col-sm-2 col marleft table_data_section display_f align_c ICONDiv action_div" style="width:18.6%;">'
                     +'<span class="doth optionLeft splitclick center-align clickdb dataUpdateVal nsplit filter_css" dvalue="'+end+'"  svalue="'+svalue+'" evalue="'+end+'" refVal="'+machineEventRef+'" splitRef="'+splitId+'" reason="'+reason+'" tool="'+tool+'" part="'+part+'"><img src="<?php echo base_url('assets/img/split.png'); ?>" class="icon_img_wh  ICON"></span>'
                     +'<span class="doth addNotes edit_visible npencil"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="icon_img_wh ICON "></span>'
                     // +'<span class="optionLeft doth addNotesReason dedit" value=""><img src="<?php echo base_url('assets/img/notes.png'); ?>" class="icon_img_wh ICON"></span>'

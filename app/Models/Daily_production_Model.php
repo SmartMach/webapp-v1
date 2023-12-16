@@ -19,7 +19,7 @@ class Daily_production_Model extends Model{
             'DSN'      => '',
             'hostname' => 'localhost',
             'username' => 'root',
-            'password' => 'quantanics123',
+            'password' => '',
             'database' => ''.$db_name.'',
             'DBDriver' => 'MySQLi',
             'DBPrefix' => '',

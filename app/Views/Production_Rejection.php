@@ -1,97 +1,11 @@
-<style type="text/css">
-    /*CSS for Calender dropdown*/
-/*.ui-datepicker {
-    text-align: center;
-    z-index: 1000;
-}*/
 
-.ui-datepicker-trigger {
-    margin: 0 0 0 5px;
-    vertical-align: text-top;
-}
-
-.ui-datepicker {
-    font-family: Open Sans, Arial, sans-serif;
-    margin-top: 2px;
-    background-color: white;
-    border-radius: 6px 6px 6px 6px;
-    padding: 3px;
-    width: 256px;
-    /* border: 1px solid #dddddd; */
-    text-align: center;
-    z-index: 100 !important;
-}
-
-.openemr-calendar .ui-datepicker {
-    width: 191px;
-}
-
-.ui-datepicker table {
-    width: 15rem;
-    margin-left: 8px;
-    z-index: 1000;
-}
-
-.ui-datepicker table thead{
-    font-size: 13;
-}
-.ui-datepicker table td{
-    color: #cacccf;
-    background: #f6f6f6;
-    border:1px solid #c5c5c5;
-}
-
-.ui-datepicker table td:hover{
-    color: white;
-    background: #c6c6c6;
-    border:1px solid #c5c5c5;
-}
-
-.ui-datepicker table tr{
-  text-align: center;
-}
-
-.ui-datepicker-prev{
-  float: left;
-  cursor: pointer;
-  text-decoration: none;
-}
-.ui-datepicker-next{
-  float: right;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.ui-datepicker-month{
-  margin-left:0.5rem;
-  padding: 0.1rem;
-}
-.ui-datepicker-year{
-  margin-left:0.5rem;
-  padding: 0.1rem;
-}
-.ui-datepicker-header{
-  background-color: #e9e9e9;
-  padding: 0.6rem;
-  border-radius: 0.2rem;
-}
-
-.ui-state-default{
-  text-decoration: none;
-  font-size: 12px;
-}
-a{
-  color: black; 
-}
-
-</style>
 <div class="mr_left_content_sec">
         <nav class="sec_nav display_f align_c justify_c sec_nav_c navbar-expand-lg">
           <div class="container-fluid paddingm display_f justify_sb align_c">
             <p class="float-start fnt_fam mdl_header">Quality Rejects</p>
               <div class="d-flex">
-                    <p class="float-end stcode" style="color: #C00000;">
-                        <span  id="rejects"></span><span style="font-size:1rem;">Rejects</span>
+                    <p class="float-end fnt_fam style_label fnt_inactive">
+                        <span  id="rejects"></span>Rejects 
                     </p>
               </div>
           </div>
@@ -101,25 +15,25 @@ a{
           <div class="container-fluid paddingm display_f justify_sb align_c ">
             <p class="float-start"></p>
               <div class="d-flex innerNav">
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
+                    <div class="box rightmar" style="margin-right: var(--margin_right);">
                         <div class="input-box">
                             <select class="form-select font_weight select_input_width input_padd" name="" id="RejectPartName" style="width: 10rem;padding-right:1.8rem;">
                             </select>
-                            <label for="inputSiteNameAdd" class="input-padding ">Parts</label>
+                            <label for="inputSiteNameAdd" class="input_lable fnt_fam">Parts</label>
                         </div>
                     </div>
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
+                    <div class="box rightmar" style="margin-right: var(--margin_right)">
                         <div class="input-box">
                             <input type="datepicker" class="form-control select_input_width input_padd font_weight datepicker" name="" id="RejectShiftDate" style="width: 10rem;" placeholder="dd-mm-yyyy" autocomplete="off">
                           
-                            <label for="inputSiteNameAdd" class="input-padding font_weight">Shift Date</label>
+                            <label for="inputSiteNameAdd" class="input_lable fnt_fam">Shift Date</label>
                         </div>
                     </div>
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
+                    <div class="box rightmar" style="margin-right: var(--margin_right)">
                         <div class="input-box">
                             <select class="form-select select_input_width input_padd font_weight" name="" id="RejectShift" style="width: 10rem;">
                             </select>
-                            <label for="inputSiteNameAdd" class="input-padding ">Shifts</label>
+                            <label for="inputSiteNameAdd" class="input_lable fnt_fam">Shifts</label>
                         </div>
                     </div> 
               </div>
@@ -154,85 +68,95 @@ a{
                         </div>
                     </div>
                 </div>
-                <div class="contentMachine paddingm " style="margin-top:0.9rem;">
+                <div class="contentRejection paddingm tableDataContainer">
                 </div>
         </div>
 </div>
 <div class="modal fade" id="EditQualityModal"  tabindex="-1" aria-labelledby="EditQualityModal1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered rounded">
     <div class="container modal-content bodercss">
+            <div class="modal-header border_no">
+                <p class="modal-title header_popup fnt_fam" id="EditQualityModal1" style="">EDIT QUALITY REJECTS</p>
+            </div>
             <form >
-                <div class="modal-body paddingm">   
-                <h5 class="modal-title settings-machineAdd-model mt-2 p-4" id="EditQualityModal1" style="">EDIT QUALITY REJECTS</h5>        
-                    <div class="flex-container">
-                        <div style="width:50%;" class="flex-container">
-                            <div style="width: 50%;" class="carddiv">
-                                <label class="headTitle ">Part Name</label>
-                                <p id="PID" class="font_weight_modal"></p>
-                            </div>
-                            <div style="width: 50%;" class="carddiv">
-                                <label class="headTitle">Machine Name</label>
-                                <p id="MName" class="font_weight_modal"></p>
+                <div class="modal-body">   
+                <!-- <h5 class="modal-title settings-machineAdd-model mt-2 p-4" id="EditQualityModal1" style="">EDIT QUALITY REJECTS</h5>         -->
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <label for="" class="col-form-label headTitle fnt_fam">Part Name</label>
+                            <p><span id="PID" class="font_weight_modal"></span></p>
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="" class="col-form-label headTitle fnt_fam">Machine Name</label>
+                            <p><span id="MName" class="font_weight_modal"></span></p>
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="" class="col-form-label headTitle fnt_fam">Shift Date</label>
+                            <p><span id="ShiftDate" class="font_weight_modal"></span></p>
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="" class="col-form-label headTitle fnt_fam">Shift</label>
+                            <p><span id="Shift" class="font_weight_modal"></span></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <label for="" class="col-form-label headTitle fnt_fam">Last Updated By</label>
+                            <p><span id="LUOn" class="font_weight_modal"></span></p>
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="" class="col-form-label headTitle fnt_fam">Last Updated On</label>
+                            <p><span id="LUDate" class="font_weight_modal"></span></p>
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="" class="col-form-label headTitle fnt_fam">From Time</label>
+                            <p><span id="FromTime" class="font_weight_modal"></span></p>
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="" class="col-form-label headTitle fnt_fam">To Time</label>
+                            <p><span id="ToTime" class="font_weight_modal"></span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <label for="" class="col-form-label headTitle fnt_fam">Max Rejects</label>
+                            <p><span id="MaxReject" class="font_weight_modal"></span></p>
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="" class="col-form-label headTitle fnt_fam">Total Rejects</label>
+                            <p><span id="TotalRejets" class="font_weight_modal"></span></p>
+                        </div>
+                        <div class="col-lg-6 box">
+                            <div class="input-box fieldStyle">
+                                <input type="text" class="form-control font_weight_modal" id="Notes" name=""  value="" >
+                                <label class="input_lable fnt_fam">Notes</label>
                             </div>
                         </div>
-                        <div style="width: 50%;" class="flex-container">
-                            <div style="width: 50%;" class="carddiv">
-                                <label class="headTitle">Shift Date</label>
-                                <p id="ShiftDate" class="font_weight_modal"></p>
-                            </div>
-                            <div style="width: 50%;" class="carddiv">
-                                <label class="headTitle">Shift</label>
-                                <p id="Shift" class="font_weight_modal"></p>
-                            </div>
-                        </div>     
                     </div>
-                    <div class="flex-container">
-                        <div style="width:50%;" class="flex-container">
-                            <div style="width: 50%;" class="carddiv">
-                                <label class="headTitle">Last Updated By</label>
-                                <p id="LUOn" class="font_weight_modal"></p>
-                            </div>
-                       <!--  -->
-                            <div style="width: 50%;" class="carddiv">
-                                <label class="headTitle">Last Updated On</label>
-                                <p id="LUDate" class="font_weight_modal"></p>
-                            </div>
-                           
-                        </div>
-                        <div style="width: 50%;" class="flex-container">
-                            <div style="width: 50%;" class="carddiv">
-                                <label class="headTitle">From Time</label>
-                                <p id="FromTime" class="font_weight_modal"></p>
-                            </div>
-                            <div style="width: 50%;" class="carddiv">
-                                <label class="headTitle">To Time</label>
-                                <p id="ToTime" class="font_weight_modal"></p>
-                            </div>
-                        </div>     
-                    </div>
-                    <div class="flex-container">
-                        <div style="width:50%;" class="flex-container ">
-                            <div style="width: 50%;" class="carddiv ">
-                                <label class="headTitle">Max Rejects</label>
-                                <p id="MaxReject" class="font_weight_modal"></p>
-                            </div>
-                            <div style="width: 50%;" class="carddiv">
-                                <label class="headTitle">Total Rejects</label>
-                                <p id="TotalRejets" class="font_weight_modal"></p>
+                    <div class="row">
+                        <div class="col-lg-6 box">
+                            <div class="input-box fieldStyle">
+                                <input type="text" class="form-control font_weight_modal RejectCount" id="RejectCount" name="reject_count[]"  value="" >
+                                <label class="input_lable fnt_fam">Reject Count <span class="paddingm validate">*</span></label>
                             </div>
                         </div>
-                        <div style="width: 50%;" class="flex-container divbox">
-                            <div style="width: 100%;" class="carddiv divinput-box">
-                                <input type="text" name="" id="Notes" class="font_weight_modal">
-                                <label class="input-padding">Notes</label>
+                        <div class="col-lg-5 box">
+                            <div class="input-box fieldStyle">
+                                <select class="form-select font_weight_modal RejectReason inputDepartmentAdd" name="reject_reason[]" id="RejectReason1">
+                                </select>
+                                <label for="inputToolNameEdit" class="input_lable fnt_fam">Reject Reason <span class="paddingm validate">*</span></label>
                             </div>
-                        </div>     
+                        </div>
+                        <div class="col-lg-1 box">
+                            <div class="display_f justify_c align_c"><img src="<?php echo base_url('assets/img/plus-icon.png'); ?>" style="width:2.8rem;height: 2.8rem;" class="appendform" id=""></div>
+                        </div>
                     </div>
-                    <div class="flex-container" style="height:max-content;">
+                    <!-- <div class="flex-container" style="height:max-content;">
                         <div style="width:55%; height:max-content;" class="flex-container divbox fieldStyle">
                             <div style="width: 100%;height:max-content;" class="carddiv divinput-box ">
                                 <input type="text" name="reject_count[]" id="RejectCount" class="RejectCount font_weight_modal">
-                                <label class="input-padding">Reject Count <span class="paddingm validate">*</span></label>
+                                <label class="input_lable fnt_fam">Reject Count <span class="paddingm validate">*</span></label>
                                 <span class="reject_count_err validate"></span>
                             </div>
                         </div>
@@ -242,22 +166,20 @@ a{
                                         <select class="inputDepartmentAdd form-select RejectReason font_weight_modal" name="reject_reason[]" id="RejectReason1" >
                                            
                                         </select>
-                                        <label for="input" class="input-padding">Reject Reason <span class="paddingm validate">*</span></label>
+                                        <label for="input" class="input_lable fnt_fam">Reject Reason <span class="paddingm validate">*</span></label>
                                         <span class="reject_reason_err validate"></span>
                                     </div>
                             </div>
                         </div>    
                         <div style="width:10%;float:right;" class=" paddingm flex-container divbox">
-                            <div style="width:100%;float:right;justify-content:center;text-align:center;margin:auto;"><img src="<?php echo base_url('assets/img/plus-icon.png'); ?>" style="width:2.8rem;height: 2.8rem;" class="appendform" id=""></div>
+                            <div style="width:100%;float:right;justify-content:center;text-align:center;margin:auto;"><img src="<?php //echo base_url('assets/img/plus-icon.png'); ?>" style="width:2.8rem;height: 2.8rem;" class="appendform" id=""></div>
                         </div> 
-                    <!-- </div> -->
-                    </div>
+                    </div> -->
                     <div class="append_reject"></div>
-                    <!-- strategy work end -->
                 </div>
-                <div class="modal-footer" style="border:none;">
-                    <a class="EditReject_submit btn fo bn saveBtnStyle" name="" value="SAVE" style="">Save</a>
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close" >Cancel</a>   
+                <div class="modal-footer border_no">  
+                    <a class="EditReject_submit btn fnt_fam btn_fnt_size btn_padd btn_save" name="" id="" value="SAVE">Save</a>
+                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
                 </div>
             </form>
     </div>
@@ -286,9 +208,7 @@ a{
 var control = <?php echo $this->data['access'][0]['production_data_management']; ?>;
 var display_var = " ";
 if (control < 2) {
-    display_var = "none";
-}else{
-    display_var = "inline";
+    display_var = "display:none";
 }
 // Data Retrive for show in dashboard.......
 function selection_data(){
@@ -315,7 +235,7 @@ function selection_data(){
             var count =0;
             var startTime = "";
             var i=0;
-            $('.contentMachine').empty();
+            $('.contentRejection').empty();
             res.forEach(function(item){
                 var max_reject =  (item.rejection_max_counts != null ? item.rejection_max_counts:"");
                 var reject_count =  (item.rejections != null ? item.rejections:"");
@@ -332,41 +252,41 @@ function selection_data(){
                 if (item.rejections != null) {
                     count = parseInt(count)+parseInt(item.rejections);
                 }
-                elements = elements.add('<div id="settings_div">'
+                elements = elements.add('<div class="table_data">'
                     +'<div class="row paddingm">'
-                        +'<div class="col-sm-1 col marleft">'
-                            +'<p id="fdate">'+item.start_time+'</p>'   
+                        +'<div class="col-sm-1 col marleft table_data_section display_f align_c">'
+                            +'<p class="table_data_element fnt_fam" id="fdate">'+item.start_time+'</p>'   
                         +'</div>'
-                        +'<div class="col-sm-1 col marleft" >'
-                            +'<p id="tdate">'+item.end_time+'</p>'
+                        +'<div class="col-sm-1 col marleft table_data_section display_f align_c" >'
+                            +'<p class="table_data_element fnt_fam" id="tdate">'+item.end_time+'</p>'
                         +'</div>'
-                        +'<div class="col-sm-2 col marleft" >'
-                            +'<p id="pname">'+item.part_name+'</p>'
+                        +'<div class="col-sm-2 col marleft table_data_section display_f align_c" >'
+                            +'<p class="table_data_element fnt_fam" id="pname">'+item.part_name+'</p>'
                         +'</div>'
-                        +'<div class="col-sm-2 col marright" >'
-                            +'<p id="mreject">'+max_reject+'</p>'
+                        +'<div class="col-sm-2 col marright table_data_section justify_e display_f align_c" >'
+                            +'<p class="table_data_element h_mar_r fnt_fam fnt_bold" id="mreject">'+max_reject+'</p>'
                         +'</div>'
-                        +'<div class="col-sm-2 col marright">'
-                            +'<p id="rcount" style="color: #e2062c;">'+reject_count+'</p>'
+                        +'<div class="col-sm-2 col marright table_data_section justify_e display_f align_c">'
+                            +'<p class="table_data_element h_mar_r fnt_fam fnt_bold" id="rcount" style="color: #e2062c;">'+reject_count+'</p>'
                         +'</div>'
-                        +'<div class="col-sm-1 col marleft">'
-                            +'<p id="display_reject_reason'+i+'"></p>'
+                        +'<div class="col-sm-1 col marleft table_data_section display_f align_c">'
+                            +'<p class="table_data_element fnt_fam" id="display_reject_reason'+i+'"></p>'
                         +'</div>'
-                        +'<div class="col-sm-2 col marleft">'
-                            +'<p>'+notes+'</p>'
+                        +'<div class="col-sm-2 col marleft table_data_section display_f align_c">'
+                            +'<p class="table_data_element fnt_fam">'+notes+'</p>'
                         +'</div>'
-                        +'<div class="col-sm-1 col d-flex justify-content-center fasdiv">'
-                            +'<ul class="edit-menu">'
-                                +'<li class="d-flex justify-content-center " >'
+                        +'<div class="col-sm-1 col d-flex justify_c">'
+                            +'<ul class="edit-menu d-flex justify_c align_c paddingm">'
+                                +'<li class="d-flex justify_c" >'
                                     +'<a href="#">'
-                                        +'<img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="editRejects  pen-product" style="color: #d9d9d9;height:1.2rem;width:1.2rem;display:'+display_var+';" alt="Edit" rvalue="'+item.machine_id+'" pIdValue="'+item.part_id+'" ftime="'+item.start_time+'" id="dsedit">'
+                                        +'<img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="editRejects icons-smart display_f justify_c align_c" style="'+display_var+'" alt="Edit" rvalue="'+item.machine_id+'" pIdValue="'+item.part_id+'" ftime="'+item.start_time+'" id="dsedit">'
                                     +'</a>'
                                 +'</li>'
                             +'</ul>'               
                         +'</div>'
                     +'</div>'
                 +'</div>');
-                $('.contentMachine').append(elements);
+                $('.contentRejection').append(elements);
                 var index_id = "display_reject_reason"+i;
                 get_display_reason(index_id,splitstring);
                 i++;
@@ -489,7 +409,7 @@ $(document).ready(function(){
         $('.fixtabletitle').css("z-index","1");
         $('#RejectShiftDate').val("");
         $("#RejectShiftDate").removeAttr("readonly");
-        $('.contentMachine').empty();
+        $('.contentRejection').empty();
         $('#RejectShift').prop('selectedIndex',0);
         $('#RejectShift').attr("disabled",true);
     });
@@ -507,7 +427,7 @@ $(document).ready(function(){
         var part_name = $('#RejectPartName').val();
         var sdate = $('#RejectShiftDate').val();
         $('#RejectShift').empty();
-        $('.contentMachine').empty();
+        $('.contentRejection').empty();
         $('#RejectShift').prop('selectedIndex',0);
         const date_arr = sdate.split('/');
         var shift_date = date_arr[2]+'-'+date_arr[0]+'-'+date_arr[1];
@@ -649,26 +569,22 @@ $(document).ready(function(){
                         id_demo = "drp"+j;
                         drp_function(id_demo,rrstr[i]); 
                         // append form
-                        $('.append_reject').append('<div class="flex-container remobj" style="height:max-content;">'
-                            +'<div style="width:55%;height:max-content;" class="flex-container divbox fieldStyle" >'
-                                +'<div style="width: 100%;height:max-content;" class="carddiv divinput-box">'
-                                    +'<input type="text" name="reject_count[]" class="RejectCount font_weight" value='+rrint[i]+' id="RejectCount" >'
-                                    +'<label class="input-padding">Reject Count <span class="paddingm validate">*</span></label>'
-                                    +'  <span class="reject_count_err validate"></span>'
+                        $('.append_reject').append('<div class="row remobj">'
+                            +'<div class="col-lg-6 box">'
+                                +'<div class="input-box fieldStyle">'
+                                    +'<input type="text" class="form-control font_weight_modal RejectCount" id="RejectCount" name="reject_count[]"  value="'+rrint[i]+'" >'
+                                    +'<label class="input_lable fnt_fam">Reject Count <span class="paddingm validate">*</span></label>'
                                 +'</div>'
                             +'</div>'
-                            +'<div style="width: 45%;" class="flex-container divbox_reject fieldStyle">'
-                                +' <div style="width: 100%;" class="carddiv divinput_box_reject">'
-                                    +'<div class="input-box fieldStyle" style="height:max-content;">'
-                                        +'<select class="inputDepartmentAdd form-select RejectReason font_weight" name="reject_reason[]"  id='+id_demo+'>'
-                                        +'</select>'
-                                        +' <label for="input" class="input-padding">Reject Reason <span class="paddingm validate">*</span></label>'
-                                        +' <span class="reject_reason_err validate"></span>'
-                                    +'</div>'
+                            +'<div class="col-lg-5 box">'
+                                +'<div class="input-box fieldStyle">'
+                                    +'<select class="form-select font_weight_modal RejectReason inputDepartmentAdd" name="reject_reason[]" id='+id_demo+'>'
+                                    +'</select>'
+                                    +'<label for="inputToolNameEdit" class="input_lable fnt_fam">Reject Reason <span class="paddingm validate">*</span></label>'
                                 +'</div>'
                             +'</div>'
-                            +'<div class="" style="width:10%;justify-content:center;text-align:center;align-item:center;margin:auto;height:max-content;">'
-                                    +'<img src="<?php echo base_url('assets/img/delete.png'); ?>" class=" removeappendform" style="width:1.4rem;height:1.2rem;">'
+                            +'<div class="col-lg-1 box">'
+                                +'<div class="display_f justify_c align_c"><img src="<?php echo base_url('assets/img/delete.png'); ?>" style="width:1.4rem;height: 1.2rem;margin-top:0.5rem" class="removeappendform" id=""></div>'
                             +'</div>'
                         +'</div>'); 
                     }
@@ -723,26 +639,44 @@ $(document).ready(function(){
         }
         var reason = "empty";
        
-        $('.append_reject').append('<div class="flex-container remobj" style="height:max-content;">'
-            +'<div style="width:55%;" class="flex-container divbox fieldStyle" >'
-                +'<div style="width: 100%;height:max-content;" class="carddiv divinput-box">'
-                    +'<input type="text" name="reject_count[]" class="RejectCount font_weight" id="RejectCount">'
-                    +'<label class="input-padding">Reject Count <span class="paddingm validate">*</span></label>'
-                    +'  <span class="reject_count_err validate"></span>'
+        // $('.append_reject').append('<div class="flex-container remobj" style="height:max-content;">'
+        //     +'<div style="width:55%;" class="flex-container divbox fieldStyle" >'
+        //         +'<div style="width: 100%;height:max-content;" class="carddiv divinput-box">'
+        //             +'<input type="text" name="reject_count[]" class="RejectCount font_weight" id="RejectCount">'
+        //             +'<label class="input-padding">Reject Count <span class="paddingm validate">*</span></label>'
+        //             +'  <span class="reject_count_err validate"></span>'
+        //         +'</div>'
+        //     +'</div>'
+        //     +'<div style="width: 45%;" class="flex-container divbox_reject fieldStyle">'
+        //         +' <div style="width: 100%;" class="carddiv divinput_box_reject">'
+        //             +'<div class="input-box fieldStyle" style="height:max-content;">'
+        //                 +'<select class="inputDepartmentAdd form-select RejectReason font_weight" name="reject_reason[]" id='+id_original+'>'
+        //                 +'</select>'
+        //                 +' <label for="input" class="input-padding">Reject Reason <span class="paddingm validate">*</span></label>'
+        //                 +' <span class="reject_reason_err validate"></span>'
+        //             +'</div>'
+        //         +'</div>'
+        //     +'</div>'
+        //     +'<div class="" style="width:10%;justify-content:center;text-align:center;align-item:center;margin:auto;height:max-content;">'
+        //         +'<img src="<?php echo base_url('assets/img/delete.png'); ?>" class=" removeappendform" style="width:1.4rem;height:1.2rem;">'
+        //     +'</div>'
+        // +'</div>');
+        $('.append_reject').append('<div class="row remobj">'
+            +'<div class="col-lg-6 box">'
+                +'<div class="input-box fieldStyle">'
+                    +'<input type="text" class="form-control font_weight_modal RejectCount" id="RejectCount" name="reject_count[]"  value="" >'
+                    +'<label class="input_lable fnt_fam">Reject Count <span class="paddingm validate">*</span></label>'
                 +'</div>'
             +'</div>'
-            +'<div style="width: 45%;" class="flex-container divbox_reject fieldStyle">'
-                +' <div style="width: 100%;" class="carddiv divinput_box_reject">'
-                    +'<div class="input-box fieldStyle" style="height:max-content;">'
-                        +'<select class="inputDepartmentAdd form-select RejectReason font_weight" name="reject_reason[]" id='+id_original+'>'
-                        +'</select>'
-                        +' <label for="input" class="input-padding">Reject Reason <span class="paddingm validate">*</span></label>'
-                        +' <span class="reject_reason_err validate"></span>'
-                    +'</div>'
+            +'<div class="col-lg-5 box">'
+                +'<div class="input-box fieldStyle">'
+                    +'<select class="form-select font_weight_modal RejectReason inputDepartmentAdd" name="reject_reason[]" id='+id_original+'>'
+                    +'</select>'
+                    +'<label for="inputToolNameEdit" class="input_lable fnt_fam">Reject Reason <span class="paddingm validate">*</span></label>'
                 +'</div>'
             +'</div>'
-            +'<div class="" style="width:10%;justify-content:center;text-align:center;align-item:center;margin:auto;height:max-content;">'
-                +'<img src="<?php echo base_url('assets/img/delete.png'); ?>" class=" removeappendform" style="width:1.4rem;height:1.2rem;">'
+            +'<div class="col-lg-1 box">'
+                +'<div class="display_f justify_c align_c"><img src="<?php echo base_url('assets/img/delete.png'); ?>" style="width:1.4rem;height: 1.2rem;margin-top:0.5rem;" class="removeappendform" id=""></div>'
             +'</div>'
         +'</div>');
 

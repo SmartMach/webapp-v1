@@ -487,7 +487,7 @@ label{
   z-index: 9; 
 }
 .clip{
-    color:#b5b8bc;
+    color: var(--font_color_header_pop_up);
     font-size: 1rem !important;
 }
 /*GLOBAL CLASS FOR INPUT FIELDS END*/
@@ -572,6 +572,11 @@ label{
     font-size: 0.8rem;
     color: #979a9a;
     opacity: 50%;
+}
+.settings-machineAdd-model{
+    font-size:15px;
+    font-weight: medium;  
+    color: var(--font_color_header_pop_up);
 }
 
 /* no records found css design */

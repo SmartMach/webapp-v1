@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/standard/template.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/standard/template_oui.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/standard/layout.css?version=<?php echo rand() ; ?>">
+    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/standard/datepicker_ui.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/general_settings.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/user_management.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/pre_loader.css">
@@ -24,6 +25,7 @@
 
     
     <!--Link For CSS-->
+    
     <!-- <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/config.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/css_general.css?version=<?php echo rand() ; ?>">
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/production.css?version=<?php echo rand() ; ?>">
@@ -33,8 +35,9 @@
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/model_sub_test.css?version=<?php echo rand() ; ?>">
 
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/main.css?version=<?php echo rand() ; ?>">
-    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/graph.css">-->
-
+    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/graph.css">
+ -->
+ 
     <!-- temporary for strategy wait for part settings input alignment changes -->
     <!-- <link rel="stylesheet" href="<?php //echo base_url()?>/assets/css/css_demo1.css?version=<?php //echo rand(); ?>"> -->
 
