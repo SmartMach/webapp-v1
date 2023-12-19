@@ -343,13 +343,13 @@ class Production_Downtime_controller extends BaseController{
             $from_date = $this->request->getVar('from');
             $to_date = $this->request->getVar('to');
 
-            // $from_date = "2023-06-01T09:00:00";
-            // $to_date = "2023-06-11T09:00:00";
-            // $machine_arr = array("all","MC1001","MC1002","MC1003","MC1004","MC1005");
-            // $part_arr  = array("all","PT1001", "PT1002", "PT1003","PT1004","PT1005","PT1006","PT1007","PT1008", "PT1009","PT1010","PT1011","PT1012", "PT1013", "PT1014", "PT1015", "PT1016", "PT1017", "PT1018", "PT1019", "PT1020", "PT1021","PT1022","PT1023");
-            // $category_arr = array("all","Planned","Unplanned");
-            // $reason_arr = array('all_reason', '13', '20', '32', '17', '7', '9', '33', '35', '10', '23', '1', '5', '26', '22', '18', '29', '11', '25', '28', '30', '21', '8', '24', '19', '6', '36', '27', '37', '38', '14', '16', '31', '12', '15', '34', '2', '3', '0');
-            // $created_by_arr = array("all","UM1001", "UM1002", "UM1003", "UM1004", "UM1005","UM1006", "UM1007","UM1008", "UO1001", "UO1002","UO1003");
+            // $from_date = "2023-12-13T16:00:00";
+            // $to_date = "2023-12-19T15:00:00";
+            // $machine_arr = array('MC1001', 'MC1002', 'MC1003', 'MC1004', 'MC1005', 'MC1006');
+            // $part_arr  = array('PT1001', 'PT1002', 'PT1003', 'PT1004', 'PT1005', 'PT1006', 'PT1007', 'PT1008', 'PT1009', 'PT1010', 'PT1011', 'PT1012', 'PT1013', 'PT1014', 'PT1015', 'PT1016', 'PT1017', 'PT1018', 'PT1019', 'PT1020', 'PT1021', 'PT1022', 'PT1023', 'PT1024', 'PT1025', 'PT1026', 'PT1027', 'PT1028', 'PT1029', 'PT1030', 'PT1031', 'PT1032', 'PT1033', 'PT1034', 'PT1035', 'PT1036', 'PT1037', 'PT1038', 'PT1039', 'PT1040', 'PT1041', 'PT1042', 'PT1043');
+            // $category_arr = array('Planned', 'Unplanned');
+            // $reason_arr = array('13', '20', '32', '17', '7', '9', '33', '35', '41', '10', '23', '1', '5', '26', '22', '18', '29', '11', '25', '28', '30', '21', '40', '8', '38', '37', '24', '19', '6', '36', '27', '14', '16', '31', '12', '39', '15', '34', '3', '2', '0');
+            // $created_by_arr = array('UM1001', 'UM1002', 'UM1003', 'UM1004', 'UM1005', 'UM1016');
 
 
             $fdate = explode("T",$from_date);
@@ -359,6 +359,8 @@ class Production_Downtime_controller extends BaseController{
             $result = $this->data->single_arr_filter($fdate[0],$tdate[0]);
             $final_res1 = $this->getdata_time_filter($from_date,$to_date,$result);
 
+            // echo "<pre>";
+            // print_r($result);
             $final_res = [];
             foreach ($final_res1 as $key => $value) {
                 if (in_array($value['downtime_category'],$category_arr)) {
@@ -391,7 +393,8 @@ class Production_Downtime_controller extends BaseController{
             $execution_time_logger_tb = ($end_time_logger_tb - $start_time_logger_tb);
             log_message("info","production downtime table records function execution duration is :\t".$execution_time_logger_tb);
 
-
+            // echo "<pre>";
+            // print_r($final1);
             echo  json_encode($final1);
             
             // $res = $this->data->filter_records($temp);

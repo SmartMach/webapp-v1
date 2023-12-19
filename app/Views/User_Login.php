@@ -78,56 +78,56 @@
 <body>
 
     <?php $validation =  \Config\Services::validation(); ?>
-    <div class="container main-container">
-  
-        <div class="img-div">
-            <img id="login-mach" src="<?php echo base_url()?>/assets/img/logo.png?version=<?php echo rand() ; ?>" alt="SmartMach Logo">
-        </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-md-3"></div>
+            <div class="col-lg-4 col-md-6 col-sm-12">                
+                <div class="img-div">
+                    <img id="login-mach" src="<?php echo base_url()?>/assets/img/logo.png?version=<?php echo rand() ; ?>" alt="SmartMach Logo">
+                </div>
 
-        <br>
-        <div id="alert_check" class="d-none">
-        <div class="alert alert-danger" id="alert_change" role="alter">
-            <p id="alert_msg" class="text-center"></p>
-        </div>
-        </div>
-        
-        <br>
-        <div class="innner-div">
-            <div class="card main-card">
-                <h2 class="fieldsetName">Sign in</h2>
-                <form method="post" id="login_form_submit" action="<?= base_url('Login/verifyUser/')?>" >
-                    <div class="box">
-                    <div class="input-box fieldStyle">
-                        <input type="email" class="form-control input" id="username" name="username" autocomplete="off" oninput="this.value=this.value.trim();" >
-                        <label for="input" class="input-padding">User ID <span class="required_design">*</span>     </label>
-                        <span class="text-danger user_validate" style="letter-spacing:0.8px;font-size:15px;" id="user_mail_err"><?= $validation->getError('username'); ?></span>
-                        
+                <br>
+                <div id="alert_check" class="d-none">
+                    <div class="alert alert-danger" id="alert_change" role="alter">
+                        <p id="alert_msg" class="text-center"></p>
                     </div>
+                </div>
+  
+                <br>
+                <div class="innner-div">
+                    <div class="card main-card">
+                        <h2 class="fieldsetName">Sign in</h2>
+                        <form method="post" id="login_form_submit" action="<?= base_url('Login/verifyUser/')?>" >
+                            <div class="box">
+                                <div class="input-box fieldStyle">
+                                    <input type="email" class="form-control input" id="username" name="username" autocomplete="off" oninput="this.value=this.value.trim();" >
+                                    <label for="input" class="input-padding">User ID <span class="required_design">*</span>     </label>
+                                    <span class="text-danger user_validate" style="letter-spacing:0.8px;font-size:15px;" id="user_mail_err"><?= $validation->getError('username'); ?></span>
+                                    
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="input-box fieldStyle">
+                                    <input type="password" class="form-control input" id="userpassword" name="userpassword" oninput="this.value=this.value.trim();" autocomplete="off" style="padding-right:2rem;">
+                                    <label for="input" class="input-padding">Password <span class="required_design">*</span></label>
+                                    <span class="unit"><i id="eye-pass" class="fa fa-eye-slash clip showpass" style="font-size: 20px;" aria-hidden="true"></i></span>
+                                    <span class="text-danger" style="letter-spacing:0.8px;font-size:15px;" id="pass_err"><?= $validation->getError('userpassword'); ?></span>
+                                </div>
+                            </div>
+                            <div class="" style="display:flex;padding:1rem;padding-left:1.5rem;font-family:'Roboto', sans-serif';">
+                            </div>
+                            <input type="submit" name="Login_Verify" class="btn fnt_fam btn_fnt_size btn_padd btn_save mr_login submit float-end" value="Login" id="login_submit">  
+                        </form>
                     </div>
-                    <div class="box">
-                        <div class="input-box fieldStyle">
-                            <input type="password" class="form-control input" id="userpassword" name="userpassword" oninput="this.value=this.value.trim();" autocomplete="off" style="padding-right:2rem;">
-                            <label for="input" class="input-padding">Password <span class="required_design">*</span></label>
-                            <span class="unit"><i id="eye-pass" class="fa fa-eye-slash clip showpass" style="font-size: 20px;" aria-hidden="true"></i></span>
-                            <span class="text-danger" style="letter-spacing:0.8px;font-size:15px;" id="pass_err"><?= $validation->getError('userpassword'); ?></span>
-                        </div>
-                    </div>
-                    <div class="" style="display:flex;padding:1rem;padding-left:1.5rem;font-family:'Roboto', sans-serif';">
-                        <!-- <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Remember me
-                            </label>
-                        </div> -->
-                    </div>
-                    <input type="submit" name="Login_Verify" class="btn fnt_fam btn_fnt_size btn_padd btn_save mr_login submit float-end" value="Login" id="login_submit">  
-                </form>
+                </div>
+                <div class="" style="display:flex;flex-wrap;flex-direction:row-reverse; color:blue;font-weight:450;padding-right:2.5rem;padding-top:1.2rem; " >
+                    <a href="javascript:void(0)" style="font-family:'Roboto', sans-serif;text-decoration: none;color:#659FFF;" class="click_forgot" id="forgot_link_disabled">Forgot Password?</a>
+                </div>
             </div>
-        </div>
-        <div class="" style="display:flex;flex-wrap;flex-direction:row-reverse; color:blue;font-weight:450;padding-right:2.5rem;padding-top:1.2rem; " >
-            <a href="javascript:void(0)" style="font-family:'Roboto', sans-serif;text-decoration: none;color:#659FFF;" class="click_forgot" id="forgot_link_disabled">Forgot Password?</a>
+            <div class="col-lg-4 col-md-3 "></div>
         </div>
     </div>
+    
 </body>
 </html>
 

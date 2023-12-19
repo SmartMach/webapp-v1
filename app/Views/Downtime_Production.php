@@ -1602,11 +1602,13 @@ function filter_after_filter(end_index,start_index){
         });
     }
 
+   
     // from date and to date
     f = $('.fromDate').val();
     t = $('.toDate').val();
     from = f.replace(" ","T");
     to = t.replace(" ","T");
+   
     $.ajax({
         url:"<?php echo base_url('Production_Downtime_controller/filter_records'); ?>",
         method:"POST",
@@ -1621,6 +1623,7 @@ function filter_after_filter(end_index,start_index){
             to:to,   
         },
         success:function(res){
+           
             $('.production_downtime_content').empty();
             // $('.scroll_rows').empty();
             var from_len = 0;
@@ -1855,10 +1858,8 @@ function getfilter_oppcost_reason(){
     f = f.replace(" ","T");
     t = t.replace(" ","T");
 
-    console.log("Before ajax drop down values:\t");
-    console.log(graph_reason_arr);
-    console.log(graph_machine_arr);
-    console.log(graph_category_arr);
+   
+    
 
 
     $.ajax({
@@ -1874,8 +1875,7 @@ function getfilter_oppcost_reason(){
         },
         success:function(res){
             resolve(res);
-            console.log("prodcution downtime reasons oppcost by reason");
-            console.log(res);
+          
             $('#reason_wise_oppcost_total').text(parseInt(res['grandTotal']).toLocaleString("en-IN"));
             // total hour and minute
             var thour = parseInt(res['total_duration'])/60;
@@ -2352,8 +2352,7 @@ function getfilter_machine_oppcost(){
             category_arr:graph_category_arr
         },
         success:function(res){
-            // console.log("machine wise oppcost");
-            // console.log(res);
+          
             resolve(res);
             $('#machine_wise_oppcost_total').text(parseInt(res['grant_total']).toLocaleString("en-IN"));
             var machine_label = [];
@@ -2835,8 +2834,7 @@ function getall_filter_arr(){
         method:"POST",
         dataType:"json",
         success:function(res){
-            console.log("all graph drp values ajax success");
-            console.log(res);
+          
             resolve(res);
 
             // Machine
@@ -3163,7 +3161,8 @@ async function graph_loader(){
     await getfilter_duration_reason();
     await getfilter_machine_oppcost();
     await getfilter_machine_reason_duration();
-    console.log("first loader function");
+    // console.log("first loader function");
+    $('#pagination_val').val('1');
     filter_after_filter(50,0);
 
 }

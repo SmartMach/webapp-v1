@@ -103,7 +103,7 @@ label{
 .fixsubnav{
   top: 3.98rem;
   /*overflow:hidden;*/
-  z-index: 1010;
+  z-index: 100;
   white-space: nowrap;
   background: #fff;
 }
