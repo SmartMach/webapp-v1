@@ -36,10 +36,7 @@ function EOTEEP(){
 			$(".Update_GFM").attr("disabled", true);
 			return positive;
 		}
-		// else if (val == 0){
-		// 	$(".Update_GFM").attr("disabled", true);
-		// 	return greaterZero;
-		// }
+		
 		else{
 			$(".Update_GFM").attr("disabled", true);
 			return numerical;
@@ -79,10 +76,7 @@ function EOOOE(){
 			$(".Update_GFM").attr("disabled", true);
 			return positive;
 		}
-		// else if (val == 0){
-		// 	$(".Update_GFM").attr("disabled", true);
-		// 	return greaterZero;
-		// }
+		
 		else{
 			$(".Update_GFM").attr("disabled", true);
 			return numerical;
@@ -122,10 +116,7 @@ function EOOEE(){
 			$(".Update_GFM").attr("disabled", true);
 			return positive;
 		}
-		// else if (val == 0){
-		// 	$(".Update_GFM").attr("disabled", true);
-		// 	return greaterZero;
-		// }
+		
 		else{
 			$(".Update_GFM").attr("disabled", true);
 			return numerical;
@@ -612,3 +603,154 @@ function addTargetCurrentShift(){
 		}
 	}
 }
+
+
+// button interface onclick  its show modal
+$(document).on('click','#add_btn_interface',function(event){
+	event.preventDefault();
+	$('.downtime_drps_btnui').addClass('d-none');
+	$('.quality_drp_btnui').addClass('d-none');
+	open_button_interface_modal("btn_ui_aquality_rdrp",null,"btn_ui_atool_ndrp",null,"Button_interface_add");
+
+	
+});
+
+// edit button interface button click 
+$(document).on('click','.btn_ui_edit_click',function(event){
+	event.preventDefault();
+
+	var find_btnui_index = $('.btn_ui_edit_click').index(this);
+	var tool_id = $('.tool_id_get:eq('+find_btnui_index+')').attr('tool-id');
+	var reason_id = $('.get_reason_id:eq('+find_btnui_index+')').attr('reason-id');
+	var reason_type = $('.get_reason_id:eq('+find_btnui_index+')').attr('reason-type');
+	$('#btn_ui_aquality_erdrp').val('');
+	$('#btn_ui_adowntime_ecdrp').val('');
+	$('#btn_ui_adowntime_erdrp').val('');
+	// const data_arr = [reason_id,tool_id,reason_type.split("_")];	
+	const rarr = reason_type.split("_");
+	$('#btn_ui_check_edq').val(rarr[0]);
+	var rid = "";
+	if (rarr[0]==="downtime") {
+		rid = null;
+		$('#btn_ui_adowntime_ecdrp').val(rarr[1]);
+		split_downtime_drp(rarr[1],"btn_ui_adowntime_erdrp",reason_id);
+		$('.downtime_drps_btnui_edit').removeClass('d-none');
+		$('.downtime_drps_btnui_edit').addClass('d-inline');
+		$('.quality_drp_btnui_edit').addClass('d-none');
+		// $('#btn_ui_adowntime_erdrp').val(reason_id);
+	}else if(rarr[0]==="quality"){
+		rid = reason_id;
+		$('.quality_drp_btnui_edit').removeClass('d-none');
+		$('.quality_drp_btnui_edit').addClass('d-inline');
+		$('.downtime_drps_btnui_edit').addClass('d-none');
+		// $('#btn_ui_aquality_erdrp').val(reason_id);
+	}
+	open_button_interface_modal("btn_ui_aquality_erdrp",reason_id,"btn_ui_atool_endrp",tool_id,null);
+
+	// $('#btn_ui_atool_endrp').val(tool_id);
+	console.log('after');
+	
+	$('#Button_interface_edit').modal('show');
+	
+});
+
+
+// its filling tool dropdown and qualilty dropdownn and value selection also this function
+async function open_button_interface_modal(qref_id=null,ridval,tref_id=null,tidval,modal_ref_id=null){
+
+		const tool_res = await get_tool_data_arr();
+		const quality_res = await getquality_data_arr();
+		// downtime drp
+		if (qref_id!=null) {
+			$('#'+qref_id).empty();
+			var qele = $();
+			qele = qele.add('<option value="select" disabled>Select Reasons</option>')
+			quality_res.forEach(function(item){
+				qele = qele.add('<option value="'+item['quality_reason_id']+'" >'+item['quality_reason_id']+'-'+item['quality_reason_name']+'</option>');
+			});
+			$('#'+qref_id).append(qele);
+
+			var selected_val_q = "";
+			if (ridval===null) {
+				selected_val_q = "select";
+				// $('#'+qref_id).val(ridval);
+			}else{
+				selected_val_q = ridval
+				
+			}
+			$('#'+qref_id).val(selected_val_q);
+		}
+
+		if (tref_id!=null) {
+			$('#'+tref_id).empty();
+			var tele = $();
+			tele = tele.add('<option value="select" selected >Select ToolName</option>')
+			tool_res.forEach(function(item){
+				tele = tele.add('<option value="'+item['tool_id']+'" >'+item['tool_id']+'-'+item['tool_name']+'</option>');
+			});
+			$('#'+tref_id).append(tele);
+			console.log('hi');
+
+			var selected_val_t = "";
+			if (tidval===null) {
+				selected_val_t = "select";
+				// $('#'+qref_id).val(ridval);
+			}else{
+				selected_val_t = tidval
+				
+			}
+			$('#'+tref_id).val(selected_val_t);
+		}
+	if (modal_ref_id!=null) {
+		$('#'+modal_ref_id).modal('show');
+	}
+}
+
+// primary configurations
+$(document).on('change','#btn_ui_check_dq',function(){
+	var primary_configuration_Drp = $('#btn_ui_check_dq').val();
+	// alert(primary_configuration_Drp);
+	$('#btn_ui_aquality_rdrp').val('');
+	$('#btn_ui_adowntime_cdrp').val('');
+	$('#btn_ui_adowntime_rdrp').val('');
+	if (primary_configuration_Drp==="downtime") {
+		$('.downtime_drps_btnui').removeClass('d-none');
+		$('.downtime_drps_btnui').addClass('d-inline');
+		$('.quality_drp_btnui').addClass('d-none');
+	}
+	else if(primary_configuration_Drp==="quality"){
+		$('.quality_drp_btnui').removeClass('d-none');
+		$('.quality_drp_btnui').addClass('d-inline');
+		$('.downtime_drps_btnui').addClass('d-none');
+	}
+});
+
+// downtime split category wise
+async function split_downtime_drp(category,dref_id,didval){
+	const dres = await getdowntime_data_arr();
+	var dele = $();
+	$('#'+dref_id).attr('disabled',false);
+	$('#'+dref_id).empty();
+	dele = dele.add('<option value="select"  disabled>Select Reason</option>')
+	dres.forEach(function(item){
+		if (category===item['downtime_category']) {
+			dele = dele.add('<option value="'+item['downtime_reason_id']+'">'+item['downtime_reason_id']+'-'+item['downtime_reason']+'</option>');
+		}
+	});
+
+	$('#'+dref_id).append(dele);
+	var select_dval = "";
+	if (didval===null) {
+		select_dval = "select";
+	}else{
+		select_dval = didval;
+	}
+	$('#'+dref_id).val(didval);
+}
+
+// primary configuration downtime category onchange
+$(document).on('change','#btn_ui_adowntime_cdrp',function(){
+	var dcategory = $('#btn_ui_adowntime_cdrp').val();
+	split_downtime_drp(dcategory,"btn_ui_aquality_rdrp",null);
+
+});

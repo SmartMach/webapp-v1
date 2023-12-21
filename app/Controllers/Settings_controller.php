@@ -889,5 +889,14 @@ class Settings_controller extends BaseController{
             }
         }
     }
+
+
+    // button interface general settings module
+    public function get_tool_data(){
+        if ($this->request->isAJAX()) {
+            $output = $this->datas->get_allToolData();
+            echo json_encode($output);
+        }
+    }
 }
  ?>

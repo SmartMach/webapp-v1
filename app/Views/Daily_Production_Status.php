@@ -247,10 +247,10 @@
                 </div>
             </div>
 
-        <div class="contentProduction contentContainer paddingm " style="margin-top:0;display:flex;flex-direction:column;">
+          <div class="contentProduction contentContainer paddingm " style="margin-top:0;display:flex;flex-direction:column;">
 
+          </div>
         </div>
-</div>
 
 
 <!-- preloader -->
@@ -329,7 +329,8 @@ $('#changed_date').datetimepicker({
                     date:date,
                 },
                 success:function(res){
-                      $('.contentProduction').empty();
+                  console.log(res);
+                    $('.contentProduction').empty();
                     if (jQuery.isEmptyObject(res['Part_details'])){
                         $('.contentProduction').html('<p class="no_record_css">No Records...</p>');
                     }

@@ -948,5 +948,15 @@ public function updateReasons($Data,$Record_No)
         $query = $builder->get()->getResultArray();
         return $query;
     }
+
+    // button user interface getting tool data
+    public function get_allToolData(){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('settings_tool_table');
+        $query->select('*');
+        // $query->where()
+        $res = $query->get()->getResultArray();
+        return $res;
+    }
 }
 ?>
