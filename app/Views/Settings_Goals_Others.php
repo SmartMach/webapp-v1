@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/styles_production_quality.css?version=<?php echo rand() ; ?>">
 <style type="text/css">
     .hrColor{
         color:#848484;
@@ -183,8 +183,8 @@
 }
 
 .btn_interface_img_hover{
-    height:2rem;
-    width:2rem;
+    height:1.7rem;
+    width:1.7rem;
     border-radius:50%;
     display:flex;
     justify-content:center;
@@ -192,6 +192,19 @@
 }
 .btn_interface_img_hover:hover{
     background:#ced4da;
+}
+.sh_button_interface_tb{
+    border:1px solid #e6e6e6;
+    border-radius:10px;
+    background:#f7f7f7;
+    box-shadow:3px 3px 4px 0px #e6e6e6;
+}
+
+/* prevent select text */
+.prevent_select_text{
+    -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 </style>
@@ -406,12 +419,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div><!----current shift performance ending------>
+                    </div>
+                    <!----current shift performance ending------>
                     
                     <!-- Button Interface start -->
                     <div class="card genmtop bordercss">
                         <p class="fieldTitle input-padding">BUTTON INTERFACE</p>
-                        <!-- table content  body -->
+                        <!-- start table content  body -->
                         <div class="container genmtop " style="margin-bottom:20px;margin-top:20px;">
                             <div class="d-flex flex-row justify-content-end align-items-center">
                                 <div class="paddingm dividercss" style="width:5%;">
@@ -422,71 +436,108 @@
                             <div class="data_section mt-3">
                                 <div class="table_header table_header_p" style="position:relative !important;top:0rem !important;">
                                     <div class="row paddingm">
-                                        <div class="col-sm-3 p3 paddingm table_header_sec d-flex justify-content-start align-items-center text-center">
+                                        <div class="col-sm-2"></div>
+                                        <div class="col-sm-2 p3 paddingm table_header_sec d-flex justify-content-start align-items-center text-center">
                                             <p class="h_mar_l paddingm">BUTTON#</p>
                                         </div>
-                                        <div class="col-sm-4 p3 paddingm table_header_sec d-flex justify-content-start align-items-center text-center">
-                                            <p class="h_mar_l paddingm">PRIMARY CONFIGURATION</p>
-                                        </div>
-                                        <div class="col-sm-4 p3 paddingm table_header_sec d-flex justify-content-start align-items-center text-center">
-                                            <p class="h_mar_l paddingm">SECONDARY CONFIGURATION</p>
+                                        <div class="col-sm-8 p3 paddingm table_header_sec d-flex justify-content-start align-items-center text-center">
+                                            <p class="h_mar_l paddingm">CONFIGURATION</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="contentButton tableDataContainer paddingm">
-                                   
-                                    <div class="table_data">
-                                        <div class="row paddingm">
-                                            <div class="col-sm-3 col marleft table_data_section d-flex align-items-center" style="padding-left:1rem;">
-                                                <p class="table_data_element fnt_fam">1</p>
-                                            </div>
-                                            <div class="col-sm-4 marleft table_data_section d-flex align-items-center" style="padding-left:1rem;">
-                                                <div style="width:13%;">
-                                                    <div class="dotUser paddingm" style="background:#EE100B;color:white;">D</div>
-                                                </div>
-                                                <div style="width:70%;">
-                                                    <p class="table_data_element fnt_fam paddingm get_reason_id" reason-type="downtime_Unplanned" reason-id="7"   title="Unplanned|Machine OFF">Unplanned | no plan</p>
+                                <!-- table content -->
+                                <div class="content_button_ui_configuration tableDataContainer paddingm">
+                                    <!-- row1 -->
+                                    <!-- <div class="d-flex flex-column justify-content-center align-items-center w-100 mb-2">
+                                        <div class="d-flex justify-content-between align-items-center p-2 w-100 sh_button_interface_tb" style="">
+                                            <div class="d-flex flex-row align-items-center" style="font-size:1rem;">
+                                                <span>11 MACHINES</span>
+                                                <div class="btn_interface_img_hover">
+                                                    <img src="<?= base_url() ?>/assets/img/info.png" class="img_font_wh float-end " style="margin-left:0rem;" alt="">
                                                 </div>
                                             </div>
-                                            <div class="col-sm-4 col marleft table_data_section d-flex align-items-center" style="padding-left:1rem;">
-                                                <p class="table_data_element fnt_fam tool_id_get" tool-id="TL1002">TL1001 - ToolName1</p>
-                                            </div>
-                                            <div class="col-sm-1 col marleft table_data_section d-flex align-items-center">
+                                            <div class="d-flex justify-content-center align-items-center " style="width:5rem;">
                                                 <div class="btn_interface_img_hover">
                                                     <img src="<?= base_url() ?>/assets/img/pencil.png" class="img_font_wh float-end btn_ui_edit_click" style="margin-left:0rem;" alt="">
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="table_data">
-                                        <div class="row paddingm">
-                                            <div class="col-sm-3 col marleft table_data_section d-flex align-items-center" style="padding-left:1rem;">
-                                                <p class="table_data_element fnt_fam">2</p>
-                                            </div>
-                                            <div class="col-sm-4 marleft table_data_section d-flex align-items-center" style="padding-left:1rem;">
-                                                <div style="width:13%;">
-                                                    <div class="dotUser paddingm" style="background:#438CF2;color:white;">Q</div>
-                                                </div>
-                                                <div style="width:70%;">
-                                                    <p class="table_data_element fnt_fam paddingm get_reason_id" reason-type="quality" reason-id="3" title="Flash">Shrinkage</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4 col marleft table_data_section d-flex align-items-center" style="padding-left:1rem;">
-                                                <p class="table_data_element fnt_fam tool_id_get"  tool-id="TL1002">TL1002 - ToolName2</p>
-                                            </div>
-                                            <div class="col-sm-1 col marleft table_data_section d-flex align-items-center">
                                                 <div class="btn_interface_img_hover">
-                                                    <img src="<?= base_url() ?>/assets/img/pencil.png" class="img_font_wh float-end btn_ui_edit_click " style="margin-left:0rem;" alt="">
+                                                    <img src="<?= base_url() ?>/assets/img/delete.png" class="img_font_wh float-end btn_ui_del_click" style="margin-left:0rem;" alt="">
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        <div class="table_data w-100">
+                                            <div class="row paddingm">
+                                                <div class="col-sm-2"></div>
+                                                <div class="col-sm-2 col marleft table_data_section d-flex align-items-center" style="padding-left:1rem;">
+                                                    <p class="table_data_element fnt_fam">1</p>
+                                                </div>
+                                                <div class="col-sm-8 marleft table_data_section d-flex align-items-center" style="padding-left:1rem;">
+                                                    <div style="max-width:13%;min-width:6%;">
+                                                        <div class="dotUser paddingm" style="background:#EE100B;color:white;">D</div>
+                                                    </div>
+                                                    <div style="width:70%;">
+                                                        <p class="table_data_element fnt_fam paddingm get_reason_id" reason-type="downtime_Unplanned" reason-id="7"   title="Unplanned|Machine OFF">Unplanned | no plan | TL1001 - Tool Name1</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="table_data w-100">
+                                            <div class="row paddingm">
+                                                <div class="col-sm-2"></div>
+                                                <div class="col-sm-2 col marleft table_data_section d-flex align-items-center" style="padding-left:1rem;">
+                                                    <p class="table_data_element fnt_fam">2</p>
+                                                </div>
+                                                <div class="col-sm-8 marleft table_data_section d-flex align-items-center" style="padding-left:1rem;">
+                                                    <div style="max-width:13%;min-width:6%;">
+                                                        <div class="dotUser paddingm" style="background:#438CF2;color:white;">Q</div>
+                                                    </div>
+                                                    <div style="width:70%;">
+                                                        <p class="table_data_element fnt_fam paddingm get_reason_id" reason-type="quality" reason-id="3" title="Flash">Shrinkage</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>   
+                                    </div> -->
 
+                                    <!-- row 2 -->
+                                    <!-- <div class="d-flex flex-column justify-content-center align-items-center w-100 mb-2">
+                                        <div class="d-flex justify-content-between align-items-center p-2 w-100 sh_button_interface_tb" style="">
+                                            <div class="d-flex flex-row align-items-center" style="font-size:1rem;">
+                                                <span>2 MACHINES</span>
+                                                <div class="btn_interface_img_hover">
+                                                    <img src="<?= base_url() ?>/assets/img/info.png" class="img_font_wh float-end " style="margin-left:0rem;" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-center align-items-center " style="width:5rem;">
+                                                <div class="btn_interface_img_hover">
+                                                    <img src="<?= base_url() ?>/assets/img/pencil.png" class="img_font_wh float-end btn_ui_edit_click" style="margin-left:0rem;" alt="">
+                                                </div>
+                                                <div class="btn_interface_img_hover">
+                                                    <img src="<?= base_url() ?>/assets/img/delete.png" class="img_font_wh float-end btn_ui_del_click" style="margin-left:0rem;" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="table_data w-100">
+                                            <div class="row paddingm">
+                                                <div class="col-sm-2"></div>
+                                                <div class="col-sm-2 col marleft table_data_section d-flex align-items-center" style="padding-left:1rem;">
+                                                    <p class="table_data_element fnt_fam">1</p>
+                                                </div>
+                                                <div class="col-sm-8 marleft table_data_section d-flex align-items-center" style="padding-left:1rem;">
+                                                    <div style="max-width:13%;min-width:6%;">
+                                                        <div class="dotUser paddingm" style="background:#EE100B;color:white;">D</div>
+                                                    </div>
+                                                    <div style="width:70%;">
+                                                        <p class="table_data_element fnt_fam paddingm get_reason_id" reason-type="downtime_Unplanned" reason-id="7"   title="Unplanned|Machine OFF">Planned | Machine OFF | TL1001 - Tool Name1</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
-                        <!-- table content body -->
+                        <!-- table content body end -->
                     </div>
                     <!-- Button Interface End -->
 
@@ -549,65 +600,97 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="box float-start col-lg-6">
-                        <div class="input-box fieldStyle">
-                            <select name="" class="form-select font_weight" id="btn_ui_check_dq">
-                                <option value="" selected disabled>Select Category</option>
-                                <option value="downtime">Downtime</option>
-                                <option value="quality">Quality</option>
-                            </select>
-                            <label for="" class="input-padding">Primary Configuration Category <span class="paddingm validate">*</span></label>
-                            <span   class="paddingm float-start validate" id="err_pcategory_err"></span>
+                    <div class="box col-lg-6 " style="padding:0;">
+                        <div class="input-box indexing Reasons_COPQP">
+                            <div class="filter_multiselect filter_option prevent_select_text" style="width:58%;height:2.4rem !important;">
+                                <span class="multi_select_label prevent_select_text"  style="">Machines</span>
+                                <div class="filter_selectBox btn_conf_amachine" onclick="multiselect_checkbox('btn_conf_am_content','btn_conf_amachine')">
+                                    <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                        <div style="width: 80% !important">
+                                            <p class="paddingm prevent_select_text" id="btn_ui_addmachine_txt">All Machines</p>
+                                        </div>
+                                        <div class="dropdown-div" style=" width: 20% !important">
+                                            <i class="fa fa-angle-down icon-style"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="filter_checkboxes btn_conf_am_content">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class=" box float-start col-lg-6">
-                        <div class="input-box fieldStyle">
-                            <select name="" class="form-select font_weight" id="btn_ui_atool_ndrp">
-                                <!-- <option value="select" selected disabled>Select Tool</option> -->
-                            </select>
-                            <label for="" class="input-padding">Tool Name</label>
-                            <span   class="paddingm float-start validate" id="err_tool_name"></span>
-                        </div>
-                    </div>   
                 </div>
-                <div class="row d-flex flex-column downtime_drps_btnui ">
-                    <div class=" box float-start col-lg-6 ">
+                <div class="row mt-4">
+                    <div class="float-start col-lg-3 box" style="width:30%;padding:0;padding-right:10px;">
                         <div class="input-box fieldStyle">
-                            <select name="" class="form-select font_weight" id="btn_ui_adowntime_cdrp">
-                                <option value="" selected disabled>Select Category</option>
-                                <option value="Planned">Planned</option>
-                                <option value="Unplanned">Unplanned</option>
-                            </select>
-                            <label for="" class="input-padding">Downtime Category <span class="paddingm validate">*</span></label>
-                            <span   class="paddingm float-start validate" id="err_dcategory"></span>
+                            <input type="text" class="form-control font_weight btn_ui_add_btnnum" id="btn_num" value="" required="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            <label class="input-padding">Button Number<span class="paddingm validate">*</span></label>
+                            <span class="paddingm float-start validate" id="EOTEEPErr"></span>
                         </div>
-                    </div> 
+                    </div>
+                    <div class="box float-start col-lg-3" style="width:30%;padding:0;padding-right:10px;">
+                        <div class="input-box fieldStyle">
+                            <select name="" class="form-select font_weight config_category_drp" id="btn_ui_check_dq">
+                                <option value="select" selected disabled>Select Category</option>
+                                <option value="Downtime">Downtime</option>
+                                <option value="Quality">Quality</option>
+                            </select>
+                            <label for="" class="input-padding">Configuration Category <span class="paddingm validate">*</span></label>
+                            <span class="paddingm float-start validate" id="primary_category_err_add_btn_ui"></span>
+                        </div>
+                    </div>
+                    <div class=" box float-start col-lg-3" style="width:30%;padding:0;padding-right:10px;">
+                        <div class="d-flex flex-column downtime_drps_btnui">
+                            <div class=" box float-start">
+                                <div class="input-box fieldStyle">
+                                    <select name="" class="form-select font_weight btn_ui_add_downtime_cdrp" id="btn_ui_adowntime_cdrp">
+                                        <option value="select" selected disabled>Select Category</option>
+                                        <option value="Planned">Planned</option>
+                                        <option value="Unplanned">Unplanned</option>
+                                    </select>
+                                    <label for="" class="input-padding">Downtime Category <span class="paddingm validate">*</span></label>
+                                    <span   class="paddingm float-start validate" id="err_dcategory"></span>
+                                </div>
+                            </div> 
 
-                    <div class=" box float-start col-lg-6">
-                        <div class="input-box fieldStyle">
-                            <select name="" class="form-select font_weight" id="btn_ui_adowntime_rdrp" disabled>
-                                <!-- <option value="select" selected disabled>Select Reasons</option> -->
-                            </select>
-                            <label for="" class="input-padding">Downtime Reasons <span class="paddingm validate">*</span></label>
-                            <span   class="paddingm float-start validate" id="err_dcategory"></span>
+                            <div class=" box float-start">
+                                <div class="input-box fieldStyle">
+                                    <select name="" class="form-select font_weight btn_ui_add_downtime_rdrp" id="btn_ui_adowntime_rdrp" disabled>
+                                    </select>
+                                    <label for="" class="input-padding">Downtime Reasons <span class="paddingm validate">*</span></label>
+                                    <span   class="paddingm float-start validate" id="err_dcategory"></span>
+                                </div>
+                            </div> 
+                            <div class="box float start tool_hide_visible_property d-none">
+                                <div class="input-box fieldStyle">
+                                    <select name="" class="form-select font_weight btn_ui_add_tool_drp" id="btn_ui_atool_ndrp" >
+                                    </select>
+                                    <label for="" class="input-padding">Tool Name</label>
+                                    <span   class="paddingm float-start validate" id="err_tool_name"></span>
+                                </div>
+                            </div>
                         </div>
+                        <div class="d-flex flex-column quality_drp_btnui ">
+                            <div class=" box float-start">
+                                <div class="input-box fieldStyle">
+                                    <select name="" class="form-select font_weight btn_ui_add_quality_drp" id="btn_ui_aquality_rdrp">
+                                    </select>
+                                    <label for="" class="input-padding">Quality Reasons <span class="paddingm validate">*</span></label>
+                                    <span class="paddingm float-start validate" id="err_tool_name"></span>
+                                </div>
+                            </div> 
+                        </div> 
                     </div> 
+                    <div class="col-lg-1 d-flex flex-row justify-content-center align-items-center " style="cursor:pointer;">
+                        <img src="<?php echo  base_url() ?>/assets/img/plus-icon.png?version=<?php  echo rand() ?>" alt="" class="add_button_reasons" style="width:4rem;height:3rem;">
+                    </div>  
                 </div>
-                <div class="row d-flex flex-column quality_drp_btnui ">
-                    <div class=" box float-start col-lg-6">
-                        <div class="input-box fieldStyle">
-                            <select name="" class="form-select font_weight" id="btn_ui_aquality_rdrp">
-                                <!-- <option value="select" selected disabled>Select Reasons</option> -->
-                            </select>
-                            <label for="" class="input-padding">Quality Reasons <span class="paddingm validate">*</span></label>
-                            <span class="paddingm float-start validate" id="err_tool_name"></span>
-                        </div>
-                    </div> 
-                </div>
-    
+                
+                <div class="dynamic_btn_reasons_content"></div>
+              
             </div>
             <div class="modal-footer" style="border:none;">
-                <input type="submit" class="btn fo bn add_btn_ui saveBtnStyle" name="add_btn_ui" value="Save">
+                <input type="submit" class="btn fo bn add_btn_ui_submission saveBtnStyle" name="add_btn_ui" value="Save">
                 <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
             </div>
         </div>
@@ -627,7 +710,7 @@
                     <div class="box float-start col-lg-6">
                         <div class="input-box fieldStyle">
                             <select name="" class="form-select font_weight" id="btn_ui_check_edq">
-                                <option value="" selected disabled>Select Category</option>
+                                <option value="select" selected disabled>Select Category</option>
                                 <option value="downtime">Downtime</option>
                                 <option value="quality">Quality</option>
                             </select>
@@ -648,8 +731,8 @@
                 <div class="row d-flex flex-column downtime_drps_btnui_edit ">
                     <div class=" box float-start col-lg-6 ">
                         <div class="input-box fieldStyle">
-                            <select name="" class="form-select font_weight" id="btn_ui_adowntime_ecdrp">
-                                <option value="" selected disabled>Select Category</option>
+                            <select name="" class="form-select font_weight" id="btn_ui_edowntime_ecdrp">
+                                <option value="select" selected disabled>Select Category</option>
                                 <option value="Planned">Planned</option>
                                 <option value="Unplanned">Unplanned</option>
                             </select>
@@ -660,7 +743,7 @@
 
                     <div class=" box float-start col-lg-6">
                         <div class="input-box fieldStyle">
-                            <select name="" class="form-select font_weight" id="btn_ui_adowntime_erdrp" disabled>
+                            <select name="" class="form-select font_weight" id="btn_ui_edowntime_erdrp" disabled>
                                 <!-- <option value="select" selected disabled>Select Reasons</option> -->
                             </select>
                             <label for="" class="input-padding">Downtime Reasons <span class="paddingm validate">*</span></label>
@@ -671,7 +754,7 @@
                 <div class="row d-flex flex-column quality_drp_btnui_edit ">
                     <div class=" box float-start col-lg-6">
                         <div class="input-box fieldStyle">
-                            <select name="" class="form-select font_weight" id="btn_ui_aquality_erdrp">
+                            <select name="" class="form-select font_weight" id="btn_ui_equality_erdrp">
                                 <!-- <option value="select" selected disabled>Select Reasons</option> -->
                             </select>
                             <label for="" class="input-padding">Quality Reasons <span class="paddingm validate">*</span></label>
@@ -1313,6 +1396,151 @@
 //     // stepMinute: 0
 // });
 // });
+
+
+
+// add button reasons 
+$(document).on('click','.add_button_reasons',function(){
+
+    $('.dynamic_btn_reasons_content').append('<div class="row mt-4 appended_reason_div">'
+        +'<div class="float-start col-lg-3 box" style="width:30%;padding:0;padding-right:10px;">'
+            +'<div class="input-box fieldStyle">'
+                +'<input type="text" class="form-control font_weight btn_ui_add_btnnum" id="btn_num" value="" required="">'
+                +'<label class="input-padding">Button Number<span class="paddingm validate">*</span></label>'
+                +'<span class="paddingm float-start validate" id="EOTEEPErr"></span>'
+            +'</div>'
+        +'</div>'
+        +'<div class="box float-start col-lg-3" style="width:30%;padding:0;padding-right:10px;">'
+            +'<div class="input-box fieldStyle">'
+                +'<select name="" class="form-select font_weight config_category_drp" id="btn_ui_check_dq">'
+                    +'<option value="select" selected disabled>Select Category</option>'
+                    +'<option value="Downtime">Downtime</option>'
+                    +'<option value="Quality">Quality</option>'
+                +'</select>'
+                +'<label for="" class="input-padding">Configuration Category <span class="paddingm validate">*</span></label>'
+                +'<span class="paddingm float-start validate" id="primary_category_err_add_btn_ui"></span>'
+            +'</div>'
+        +'</div>'
+        +'<div class=" box float-start col-lg-3" style="width:30%;padding:0;padding-right:10px;">'
+            +'<div class="d-flex flex-column downtime_drps_btnui">'
+                +'<div class=" box float-start">'
+                    +'<div class="input-box fieldStyle">'
+                        +'<select name="" class="form-select font_weight btn_ui_add_downtime_cdrp" id="btn_ui_adowntime_cdrp">'
+                            +'<option value="select" selected disabled>Select Category</option>'
+                            +'<option value="Planned">Planned</option>'
+                            +'<option value="Unplanned">Unplanned</option>'
+                        +'</select>'
+                        +'<label for="" class="input-padding">Downtime Category <span class="paddingm validate">*</span></label>'
+                        +'<span   class="paddingm float-start validate" id="err_dcategory"></span>'
+                    +'</div>'
+                +'</div> '
+
+                +'<div class=" box float-start">'
+                    +'<div class="input-box fieldStyle">'
+                        +'<select name="" class="form-select font_weight btn_ui_add_downtime_rdrp" id="btn_ui_adowntime_rdrp" disabled>'
+                        +'</select>'
+                        +'<label for="" class="input-padding">Downtime Reasons <span class="paddingm validate">*</span></label>'
+                        +'<span   class="paddingm float-start validate" id="err_dcategory"></span>'
+                    +'</div>'
+                +'</div>'
+                +'<div class="box float start tool_hide_visible_property d-none">'
+                    +'<div class="input-box fieldStyle">'
+                        +'<select name="" class="form-select font_weight btn_ui_add_tool_drp" id="btn_ui_atool_ndrp" >'
+                        +'</select>'
+                        +'<label for="" class="input-padding">Tool Name</label>'
+                        +'<span   class="paddingm float-start validate" id="err_tool_name"></span>'
+                    +'</div>'
+                +'</div>'
+            +'</div>'
+            +'<div class="d-flex flex-column quality_drp_btnui ">'
+                +'<div class=" box float-start">'
+                    +'<div class="input-box fieldStyle">'
+                        +'<select name="" class="form-select font_weight btn_ui_add_quality_drp" id="btn_ui_aquality_rdrp">'
+                        +'</select>'
+                        +'<label for="" class="input-padding">Quality Reasons <span class="paddingm validate">*</span></label>'
+                        +'<span class="paddingm float-start validate" id="err_tool_name"></span>'
+                    +'</div>'
+                +'</div>' 
+            +'</div>' 
+        +'</div>' 
+        +'<div class="col-lg-1 d-flex flex-row justify-content-center align-items-center " style="cursor:pointer;">'
+            +'<img src="<?php echo  base_url() ?>/assets/img/delete.png?version=<?php  echo rand() ?>" alt="" class="del_button_reasons" style="width:1.3rem;height:1.3rem;">'
+        +'</div>' 
+    +'</div>');
+    var classindex = $('.appended_reason_div').length;
+    // alert(classindex);
+    open_button_interface_modal("btn_ui_add_quality_drp",null,"btn_ui_add_tool_drp",null,"Button_interface_add",classindex,"btn_ui_add_downtime_rdrp",null,null);
+    $('.downtime_drps_btnui:eq('+classindex+')').addClass('d-none');
+	$('.quality_drp_btnui:eq('+classindex+')').addClass('d-none');
+});
+
+// multiple inputs value getting function its just pass class name is possible to get values in array
+function find_class_val_arr(classref){
+    const myarr = [];
+    const checkref = $('.'+classref);
+    jQuery('.'+classref+'').each(function(index){
+      myarr.push(this.value);
+    });
+    return myarr;
+}
+
+function find_checkbox_val_arr(checkboxname){
+    const machine_arr = [];
+    $('.'+checkboxname).each(function(index){
+        if ($('.'+checkboxname+':eq('+index+')').prop('checked')===true) {
+            machine_arr.push($(this).val());
+        }
+    });
+
+    return machine_arr;
+}
+
+// add button user itnerface function
+$(document).on('click','.add_btn_ui_submission',function(){
+    console.log("add button user interface modal submission click");
+    
+    const get_config_arr = find_class_val_arr('config_category_drp');
+    const get_downtime_arr = find_class_val_arr('btn_ui_add_downtime_rdrp');
+    const get_quality_arr = find_class_val_arr('btn_ui_add_quality_drp');
+    const get_tool_arr = find_class_val_arr('btn_ui_add_tool_drp');
+    const get_button_arr = find_class_val_arr('btn_ui_add_btnnum');
+    // const get_machine_arr = find_checkbox_val_arr('input[name="btn_ui_add_machine_val"]:checked');
+    const get_machine_arr = find_checkbox_val_arr('filter_admachine_val')
+    // console.log("config dropdown value array");
+    // console.log(get_config_arr);
+    // console.log(get_downtime_arr);
+    // console.log(get_quality_arr);
+    // console.log(get_tool_arr);
+    // console.log(get_button_arr);
+    // console.log(get_machine_arr);
+
+    $.ajax({
+        url:"<?php echo base_url('Settings_controller/add_btn_ui_insert'); ?>",
+        method:"POST",
+        dataType:"JSON",
+        cache: false, 
+        data:{
+            config_drp_arr:get_config_arr,
+            downtime_drp_arr:get_downtime_arr,
+            tool_drp_arr:get_tool_arr,
+            quality_drp_arr:get_quality_arr,
+            button_drp_arr:get_button_arr,
+            machine_drp_arr:get_machine_arr,
+        },
+        success:function(res){
+            console.log(typeof(res));
+            if (res===true) {
+                $('#Button_interface_add').modal('hide');
+            }
+        },
+        error:function(er){
+            console.log("Add Button User interface modal insertion ajax error");
+        }
+    });
+
+
+   
+});
 
     var shift_management_data = new Array();
     // Work Shift Management Model Show ..........
@@ -2027,62 +2255,112 @@ function get_shift_data(){
     }
 
     // Retrive Downtime Reason Records................
-    async function get_downtime_data(){
-        const res = await getdowntime_data_arr();
-        $('#DTReasonContent').empty();
-        var elements = $();
-        res.forEach(function(item){
-            var file_name = item.uploaded_file_location+item.uploaded_file_name+'.'+item.original_file_extension;
-            if (imgError(file_name) == true) {
-                // if image is found in the location execute the block
-                if (item.downtime_category == "Planned") {
-                    elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
-                        +'<div class="dot col float-start" style="overflow:hidden"><img src="'+item.uploaded_file_location+item.uploaded_file_name+'.'+item.original_file_extension+'" alt="" width="100%" height="100%"></div>'
-                        +'<div class="col.float-start down d-flex fontheight fontbox"><p  title="'+item.downtime_reason+'" class="three_dots_css font_weight " >'+item.downtime_reason+'</p></div>'
-                        +'<div class="dotHover dclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh  reason-pen" style="color:grey; "></i></div>'
-                        +'<div class="dotHover1 drclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/delete.png'); ?>" class="img_font_wh reason-pen" ></i></div>'
-                    +'</div>');
-                } 
-                else{
-                    elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
-                        +'<div class="dot col float-start" style="overflow:hidden"><img src="'+item.uploaded_file_location+item.uploaded_file_name+'.'+item.original_file_extension+'" alt="" width="100%" height="100%"></div>'
-                        +'<div class="col.float-start down d-flex fontheight fontbox"><p class="three_dots_css font_weight " title="'+item.downtime_reason+'">'+item.downtime_reason+'</p></div>'
-                        +'<div class="dotHover dclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh reason-pen" style="color:grey;"></div>'
-                        +'<div class="dotHover1 drclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="img_font_wh reason-pen"></i></div>'
-                    +'</div>');
-                }    
-            }else{
-                // if image not found the location execute the block
-                if (item.downtime_category == "Planned") {
-                    elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
-                        +'<div class="dot col float-start" style="overflow:hidden"><div class="no_img_circle" width="100%" height="100%"></div></div>'
-                        +'<div class="col.float-start down d-flex fontheight fontbox"><p class="three_dots_css font_weight" title="'+item.downtime_reason+'">'+item.downtime_reason+'</p></div>'
-                        +'<div class="dotHover dclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh  reason-pen" style="color:grey; "></i></div>'
-                        +'<div class="dotHover1 drclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/delete.png'); ?>" class="img_font_wh reason-pen" ></i></div>'
-                    +'</div>');
-                } 
-                else{
-                    elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
-                        +'<div class="dot col float-start" style="overflow:hidden"><div class="no_img_circle" width="100%" height="100%"></div></div>'
-                        +'<div class="col.float-start down d-flex fontheight fontbox"><p class=" font_weight three_dots_css" title="'+item.downtime_reason+'">'+item.downtime_reason+'</p></div>'
-                        +'<div class="dotHover dclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh reason-pen" style="color:grey;"></div>'
-                        +'<div class="dotHover1 drclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="img_font_wh reason-pen"></i></div>'
-                    +'</div>');
-                }   
+    function get_downtime_data(){
+        $.ajax({
+            url: "<?php echo base_url('Settings_controller/getDowntimeRData'); ?>",
+            type: "POST",
+            dataType: "json",
+            cache: false,
+            success:function(res){
+                $('#DTReasonContent').empty();
+                var elements = $();
+                res.forEach(function(item){
+                    var file_name = item.uploaded_file_location+item.uploaded_file_name+'.'+item.original_file_extension;
+                    if (imgError(file_name) == true) {
+                        // if image is found in the location execute the block
+                        if (item.downtime_category == "Planned") {
+                            elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
+                                +'<div class="dot col float-start" style="overflow:hidden"><img src="'+item.uploaded_file_location+item.uploaded_file_name+'.'+item.original_file_extension+'" alt="" width="100%" height="100%"></div>'
+                                +'<div class="col.float-start down d-flex fontheight fontbox"><p  title="'+item.downtime_reason+'" class="three_dots_css font_weight " >'+item.downtime_reason+'</p></div>'
+                                +'<div class="dotHover dclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh  reason-pen" style="color:grey; "></i></div>'
+                                +'<div class="dotHover1 drclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/delete.png'); ?>" class="img_font_wh reason-pen" ></i></div>'
+                            +'</div>');
+                        } 
+                        else{
+                            elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
+                                +'<div class="dot col float-start" style="overflow:hidden"><img src="'+item.uploaded_file_location+item.uploaded_file_name+'.'+item.original_file_extension+'" alt="" width="100%" height="100%"></div>'
+                                +'<div class="col.float-start down d-flex fontheight fontbox"><p class="three_dots_css font_weight " title="'+item.downtime_reason+'">'+item.downtime_reason+'</p></div>'
+                                +'<div class="dotHover dclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh reason-pen" style="color:grey;"></div>'
+                                +'<div class="dotHover1 drclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="img_font_wh reason-pen"></i></div>'
+                            +'</div>');
+                        }    
+                    }else{
+                        // if image not found the location execute the block
+                        if (item.downtime_category == "Planned") {
+                            elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
+                                +'<div class="dot col float-start" style="overflow:hidden"><div class="no_img_circle" width="100%" height="100%"></div></div>'
+                                +'<div class="col.float-start down d-flex fontheight fontbox"><p class="three_dots_css font_weight" title="'+item.downtime_reason+'">'+item.downtime_reason+'</p></div>'
+                                +'<div class="dotHover dclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh  reason-pen" style="color:grey; "></i></div>'
+                                +'<div class="dotHover1 drclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/delete.png'); ?>" class="img_font_wh reason-pen" ></i></div>'
+                            +'</div>');
+                        } 
+                        else{
+                            elements = elements.add('<div class="col-lg-3 reason-box" style="position:relative;">'
+                                +'<div class="dot col float-start" style="overflow:hidden"><div class="no_img_circle" width="100%" height="100%"></div></div>'
+                                +'<div class="col.float-start down d-flex fontheight fontbox"><p class=" font_weight three_dots_css" title="'+item.downtime_reason+'">'+item.downtime_reason+'</p></div>'
+                                +'<div class="dotHover dclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="img_font_wh reason-pen" style="color:grey;"></div>'
+                                +'<div class="dotHover1 drclick" rvalue="'+item.image_id+'" style="display:'+control_edit_display_dreason+'"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="img_font_wh reason-pen"></i></div>'
+                            +'</div>');
+                        }   
+                    }
+                    $('#DTReasonContent').append(elements);
+                });
+            },
+            statusCode: {  
+                500: function(){
+                    // console.log("Record Issue 500 in based on images");
+                },
+                404:function(){      
+                    // console.log("Data Passing Issue 404  image found the particular location ");
+                }
+            },
+            error:function(res){
+                reject('downtime data ajax error');
+                // alert("Sorry!Try Agian!!");
             }
-            $('#DTReasonContent').append(elements);
+        });
+    }
+
+
+    // get machine data in ajax
+    function getmachine_data_arr(){
+        return new Promise(function(resolve,reject){
+            $.ajax({
+                url: "<?php echo base_url('Settings_controller/get_machine_data'); ?>",
+                type: "POST",
+                dataType: "json",
+                cache: false,
+                success:function(res){                    
+                    resolve(res);
+                },
+                statusCode: {
+                
+                    500: function(){
+                        // console.log("Record Issue 500 in based on images");
+                    },
+                    404:function(){
+                        
+                        // console.log("Data Passing Issue 404  image found the particular location ");
+                    }
+                },
+                error:function(res){
+                    reject('machine data ajax error');
+                    // alert("Sorry!Try Agian!!");
+                }
+            });
         });
     }
 
     // get downtime data in ajax
     function getdowntime_data_arr(){
+        
         return new Promise(function(resolve,reject){
             $.ajax({
-                url: "<?php echo base_url('Settings_controller/getDowntimeRData'); ?>",
+                url: "<?php echo base_url('Settings_controller/get_default_downtime_reason'); ?>",
                 type: "POST",
                 dataType: "json",
                 cache: false,
-                success:function(res){
+                success:function(res){                    
                     resolve(res);
                 },
                 statusCode: {
@@ -2448,7 +2726,151 @@ $(document).ready(function(){
 
     // Retrive Quality Reason Data .............
     get_quality_reasons();   
+
+
+    // button configuration system loading value
+    get_button_configuration_data();
 });
+
+
+// get data in button configuration future
+async function get_button_configuration_data(){
+    const tool_res = await get_tool_data_arr();
+	const quality_res = await getquality_data_arr();
+	const getmachine_res = await getmachine_data_arr();
+    const dres = await getdowntime_data_arr();
+    $.ajax({
+        url:"<?php echo base_url('Settings_controller/get_button_configuration_data'); ?>",
+        method:"POST",
+        dataType:"JSON",
+        success:function(res){
+            console.log("button configuration ajax successed");
+            console.log(res);
+            $('.content_button_ui_configuration').empty();
+            var ele_data = $();
+            res.forEach(function(element){
+                
+                ele_data = ele_data.add('<div class="d-flex flex-column justify-content-center align-items-center w-100 mb-2">'
+                    +'<div class="d-flex justify-content-between align-items-center p-2 w-100 sh_button_interface_tb" style="">'
+                        +'<div class="d-flex flex-row align-items-center" style="font-size:1rem;">'
+                            +'<span>'+element['machine_id_group'].split(',').length+' MACHINES</span>'
+                            +'<div class="btn_interface_img_hover">'
+                                +'<img src="<?= base_url() ?>/assets/img/info.png" class="img_font_wh float-end " style="margin-left:0rem;" alt="">'
+                            +'</div>'
+                        +'</div>'
+                        +'<div class="d-flex justify-content-center align-items-center " style="width:5rem;">'
+                            +'<div class="btn_interface_img_hover">'
+                                +'<img src="<?= base_url() ?>/assets/img/pencil.png" class="img_font_wh float-end btn_ui_edit_click" style="margin-left:0rem;" alt="">'
+                            +'</div>'
+                            +'<div class="btn_interface_img_hover">'
+                                +'<img src="<?= base_url() ?>/assets/img/delete.png" class="img_font_wh float-end btn_ui_del_click" style="margin-left:0rem;" alt="">'
+                            +'</div>'
+                        +'</div>'
+                    +'</div>'
+                    +'<div class="table_data w-100 btn_ui_reason_data_'+element['set_id']+'">'
+                    +'</div>'
+                +'</div>');
+                $('.content_button_ui_configuration').append(ele_data);
+                const temp_machine_arr = element['machine_id_group'].split(',');
+                const temp_reason_arr = element['reason_id_group'].split(',');
+                const tool_arr = element['tool_id_group'].split(',');
+                const category_arr = element['category_group'].split(',');
+                const button_arr = element['button_value_group'].split(',');
+                var sub_ele = $();
+                $('.btn_ui_reason_data_'+element['set_id']).empty();
+                console.log(tool_arr);
+                temp_reason_arr.forEach(function(ele,index) {
+                    var category = category_arr[index];
+                    // console.log("value:\t"+ele+"\n index:\t"+index);
+                    // console.log(typeof(ele));
+                    // console.log("category:\t"+category);
+                   
+                    if (category ==="Downtime") {
+
+                        var downtime_name = "";
+                        var downtime_category = "";
+                        var tool_name = "";
+                        var tool_id = "";
+                        dres.forEach(function(ele1,index_ele){
+                            var tmp_tool_name = "";
+                            if (ele === ele1['downtime_reason_id']) {
+                                if (ele==='2' || ele==='3') {
+                                    tool_id = tool_arr[index];
+                                   
+                                    tool_res.forEach(function(ele2){
+                                        if (ele2['tool_id']===tool_arr[index]) {
+                                            tmp_tool_name = ele2['tool_name']; 
+                                        }
+                                    });  
+                                    tool_name = tmp_tool_name;
+                                }
+                                
+                                downtime_name = ele1['downtime_reason'];
+                                downtime_category = ele1['downtime_category'];
+                            }
+                        });
+
+                        var tmp_dmt = "";
+                        if(tool_id!="" && tool_id!='&'){
+                            tmp_dmt = downtime_category+" | "+downtime_name+" | "+tool_id+" - "+tool_name;
+                        } else{
+                            tmp_dmt = downtime_category+" | "+downtime_name;
+                        }
+                        
+                        sub_ele = sub_ele.add('<div class="row paddingm">'
+                            +'<div class="col-sm-2"></div>'
+                            +'<div class="col-sm-2 col marleft table_data_section d-flex align-items-center" style="padding-left:1rem;">'
+                                +'<p class="table_data_element fnt_fam">'+ele+'</p>'
+                            +'</div>'
+                            +'<div class="col-sm-8 marleft table_data_section d-flex align-items-center" style="padding-left:1rem;">'
+                                +'<div style="max-width:13%;min-width:6%;">'
+                                    +'<div class="dotUser paddingm" style="background:#EE100B;color:white;">'+category.substring(0,1)+'</div>'
+                                +'</div>'
+                                +'<div style="width:70%;">'
+                                    +'<p class="table_data_element fnt_fam paddingm get_reason_id" reason-type="'+category+'" reason-id="'+ele+'"   title="'+tmp_dmt+'">'+tmp_dmt+'</p>'
+                                +'</div>'
+                            +'</div>'
+                        +'</div>');
+                       
+                    }else{
+                        var quality_name = "";
+                        quality_res.forEach(function(ele3,index3) {
+                           if (ele===ele3['quality_reason_id']) {
+                            quality_name = ele3['quality_reason_name'];
+                           } 
+                        });
+                        // console.log("quality reason name\t"quality_name);
+                        sub_ele = sub_ele.add('<div class="row paddingm">'
+                            +'<div class="col-sm-2"></div>'
+                            +'<div class="col-sm-2 col marleft table_data_section d-flex align-items-center" style="padding-left:1rem;">'
+                                +'<p class="table_data_element fnt_fam">'+ele+'</p>'
+                            +'</div>'
+                            +'<div class="col-sm-8 marleft table_data_section d-flex align-items-center" style="padding-left:1rem;">'
+                                +'<div style="max-width:13%;min-width:6%;">'
+                                    +'<div class="dotUser paddingm" style="background:#438CF2;color:white;">'+category.substring(0,1)+'</div>'
+                                +'</div>'
+                                +'<div style="width:70%;">'
+                                    +'<p class="table_data_element fnt_fam paddingm get_reason_id" reason-type="'+category+'" reason-id="'+ele+'"   title="'+quality_name+'">'+quality_name+'</p>'
+                                +'</div>'
+                            +'</div>'
+                        +'</div>');
+                    }
+
+                  
+                    $('.btn_ui_reason_data_'+element['set_id']).append(sub_ele);
+                   
+                });
+                
+               console.log(element['machine_id_group']);
+               console.log(element['machine_id_group'].split(",").length);
+               
+            });
+        },
+        error:function(er){
+            console.log("button configuration ajax error ");
+        }
+    });
+}
 
 $(document).on('blur','#green',function(){
      var num = /^([0-9][0-9]*)?$/;

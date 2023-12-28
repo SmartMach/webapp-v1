@@ -17,6 +17,7 @@ class Settings_Model extends Model{
                     'username' => 'root',
                     'password' => 'quantanics123',
                     'database' => ''.$db_name.'',
+                    // 'database' => 'S1002',
                     'DBDriver' => 'MySQLi',
                     'DBPrefix' => '',
                     'pConnect' => false,
@@ -956,6 +957,40 @@ public function updateReasons($Data,$Record_No)
         $query->select('*');
         // $query->where()
         $res = $query->get()->getResultArray();
+        return $res;
+    }
+
+
+    // insert data in button configuration user interface
+    public function insert_btn_ui($mydata){
+        $db = \Config\Database::connect($this->site_connection);
+        $builder = $db->table('settings_button_configuration');
+        if ($builder->insert($mydata)) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    // this function get the count for set id generation purpose
+    public function get_set_id_count(){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('settings_button_configuration');
+        $query->select('count(r_no)');
+        $res = $query->get()->getResultArray();
+
+        return $res[0]['count(r_no)'];
+    }
+
+
+
+    // button configuration
+    public function get_button_configurationdata(){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('settings_button_configuration');
+        $query->select('*');
+        $res = $query->get()->getResultArray();
+
         return $res;
     }
 }

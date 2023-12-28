@@ -270,7 +270,7 @@ class Settings_controller extends BaseController{
     }
 
     // edit part settings function
-        public function add_tool_edit_part(){
+    public function add_tool_edit_part(){
         if ($this->request->isAJAX()) {
            $update['part_id'] = $this->request->getVar('Part_Id');
            $update['part_name']= $this->request->getVar('EditPartName');  
@@ -351,7 +351,7 @@ class Settings_controller extends BaseController{
 
 
     // update shift function general settings
-     public function updateShift(){
+    public function updateShift(){
         // if($this->request->isAJAX()){
 
             $shift_start = $this->request->getVar('startingTime');
@@ -479,7 +479,7 @@ class Settings_controller extends BaseController{
 
 
     // update shift data display function
-     public function getShiftData(){
+    public function getShiftData(){
         if($this->request->isAJAX()){
             $output = $this->datas->getShift();
             echo json_encode($output);
@@ -487,7 +487,7 @@ class Settings_controller extends BaseController{
     }
 
     // edit finanical metrics data
-     public function editGFMData(){
+    public function editGFMData(){
         if($this->request->isAJAX()){
             $update['overall_teep']= $this->request->getVar('EOTEEP');
             $update['overall_ooe']= $this->request->getVar('EOOOE');
@@ -503,7 +503,7 @@ class Settings_controller extends BaseController{
     }
 
     // edit downtime threshold
-     public function editDTData(){
+    public function editDTData(){
         if($this->request->isAJAX()){
             $update['downtime_threshold']= $this->request->getVar('DT');
             $update['last_updated_by']= $this->session->get('user_name');
@@ -521,7 +521,7 @@ class Settings_controller extends BaseController{
     }
 
 // retrive downtime reasons function
-     public function getDowntimeRData(){
+    public function getDowntimeRData(){
         if($this->request->isAJAX()){
             $output = $this->datas->getDowntimeRData();
             echo json_encode($output);
@@ -529,7 +529,7 @@ class Settings_controller extends BaseController{
     }
 
     // get quality reasons retrive function
-     public function getQualityData(){
+    public function getQualityData(){
         if($this->request->isAJAX()){
             $output = $this->datas->getQualityData();
             echo json_encode($output);
@@ -537,7 +537,7 @@ class Settings_controller extends BaseController{
     }
 
     // delete downtime reaosns
-     public function deleteDownReason(){
+    public function deleteDownReason(){
         if($this->request->isAJAX()){
             $output = $this->datas->deleteDownReason($this->request->getVar('Record_No'));
             echo json_encode($output);
@@ -554,14 +554,14 @@ class Settings_controller extends BaseController{
     }
 
     // edit downtime reasons for particular record view
-     public function getDownReason(){
+    public function getDownReason(){
         if($this->request->isAJAX()){
             $output = $this->datas->getDownReason($this->request->getVar('Record_No'));
             echo json_encode($output);
         }
     }
     // get quality reasons for update
-     public function getQualiyReason(){
+    public function getQualiyReason(){
         if($this->request->isAJAX()){
             $output = $this->datas->getQualiyReason($this->request->getVar('Record_No'));
             echo json_encode($output);
@@ -593,7 +593,7 @@ class Settings_controller extends BaseController{
     }
 
     // get downtime reasons
-     public function downtime_reason_retrive(){      
+    public function downtime_reason_retrive(){      
         if ($this->request->isAJAX()) {
             $output =  $this->datas->downtime_reason_retrive();
             echo json_encode($output);
@@ -602,7 +602,7 @@ class Settings_controller extends BaseController{
     }
 
     // id generation for downtime reasons
-     public function DownImgRecordCount(){
+    public function DownImgRecordCount(){
         $rec = $this->datas->getDowntimeImgId();
         if (!empty($rec)) {
             $newId = sizeof($rec)+1+1000;
@@ -898,5 +898,89 @@ class Settings_controller extends BaseController{
             echo json_encode($output);
         }
     }
+
+
+    // button configuration get all default downtime reasons
+    public function get_default_downtime_reason(){
+        if ($this->request->isAJAX()) {
+            $res = $this->datas->downtime_reason_retrive();
+            $result = array();
+            foreach ($res as $key => $value) {
+                if ($value['downtime_reason']==="Unnamed") {
+                    unset($res[$key]);
+                }else{
+                    array_push($result,$res[$key]);
+                }
+            }
+            // array_push($res,$result);
+            echo  json_encode($result);
+        }
+    }
+
+
+    // add  button interface 
+    public function add_btn_ui_insert(){
+        if ($this->request->isAJAX()) {
+            // echo json_encode('hi');
+            $config_arr = $this->request->getvar('config_drp_arr');
+            $machine_arr = $this->request->getvar('machine_drp_arr');
+            $downtime_arr = $this->request->getvar('downtime_drp_arr');
+            $quality_arr = $this->request->getvar('quality_drp_arr');
+            $button_arr = $this->request->getvar('button_drp_arr');
+            $tool_arr = $this->request->getvar('tool_drp_arr');
+
+            $reason_arr = [];
+            foreach ($downtime_arr as $key => $value) {
+                if ($value==="select") {
+                    array_push($reason_arr,$quality_arr[$key]);
+                }else{
+                    array_push($reason_arr,$value);
+                }
+            }
+
+            $machine_id = implode(',',$machine_arr);
+            $category_group = implode(',',$config_arr);
+            $button_value_group = implode(',',$button_arr);
+            $reason_id_group = implode(',',$reason_arr);
+            $tool_id_group = implode(',',$tool_arr);
+            $last_updated_by = $this->session->get('user_name');
+
+
+            $mydata['machine_id_group'] = $machine_id;
+            // $mydata['downtime_arr'] = $downtime_arr;
+            // $mydata['quality_arr'] = $quality_arr;
+            $mydata['tool_id_group'] = str_replace('select','&',$tool_id_group);
+            $mydata['button_value_group'] = $button_value_group;
+            $mydata['category_group'] = $category_group;
+            $mydata['reason_id_group'] = $reason_id_group;
+            $mydata['last_updated_by'] = $last_updated_by;
+            $mydata['set_id'] = $this->generate_set_id();
+            $mydata['status'] = 1;
+
+            $res = $this->datas->insert_btn_ui($mydata);
+            echo json_encode($res);
+        }
+
+
+       
+    }
+
+    // this function generate set id 
+    public function generate_set_id(){
+        $count = $this->datas->get_set_id_count();
+        $count = $count+1001;
+        $set_id = "ST".$count;
+        return $set_id;
+    }
+
+    // thi function is button configuration getting data
+    public function get_button_configuration_data(){
+        if ($this->request->isAJAX()) {
+            $res = $this->datas->get_button_configurationdata();
+            echo json_encode($res);
+        }
+        
+    }
+
 }
  ?>
