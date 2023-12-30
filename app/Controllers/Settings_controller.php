@@ -982,5 +982,65 @@ class Settings_controller extends BaseController{
         
     }
 
+    // this function before update get data
+    public function find_single_set_data(){
+        if ($this->request->isAJAX()) {
+            $set_id = $this->request->getvar('set_id');
+            $result = $this->datas->get_single_data_btnui($set_id);
+            echo json_encode($result);
+        }
+    }
+
+    // update submission function in button configuration requirement
+    public function edit_btn_ui_insert(){
+        if ($this->request->isAJAX()) {
+            $config_arr = $this->request->getvar('config_drp_arr');
+            $machine_arr = $this->request->getvar('machine_drp_arr');
+            $downtime_arr = $this->request->getvar('downtime_drp_arr');
+            $quality_arr = $this->request->getvar('quality_drp_arr');
+            $button_arr = $this->request->getvar('button_drp_arr');
+            $tool_arr = $this->request->getvar('tool_drp_arr');
+            $set_id = $this->request->getvar('set_id');
+
+            $reason_arr = [];
+            foreach ($downtime_arr as $key => $value) {
+                if ($value==="select") {
+                    array_push($reason_arr,$quality_arr[$key]);
+                }else{
+                    array_push($reason_arr,$value);
+                }
+            }
+
+            $machine_id = implode(',',$machine_arr);
+            $category_group = implode(',',$config_arr);
+            $button_value_group = implode(',',$button_arr);
+            $reason_id_group = implode(',',$reason_arr);
+            $tool_id_group = implode(',',$tool_arr);
+            $last_updated_by = $this->session->get('user_name');
+
+            $edit_data['category_group'] = $category_group;
+            $edit_data['machine_id_group'] = $machine_id;
+            $edit_data['button_value_group'] = $button_value_group;
+            $edit_data['tool_id_group'] = str_replace('select','&',$tool_id_group);;
+            $edit_data['status'] = 1;
+            $edit_data['reason_id_group'] = $reason_id_group;
+            $edit_data['last_updated_by'] = $last_updated_by;
+            $edit_data['set_id'] = $set_id;
+
+            $update_res = $this->datas->update_btn($edit_data);
+            echo json_encode($update_res);
+        }   
+    }
+
+
+    // delete submission in button configuration requirement 
+    public function delete_btn_ui(){
+        if ($this->request->isAJAX()) {
+            $set_id = $this->request->getvar('set_id');
+            $del_res = $this->datas->soft_delete_btn_ui($set_id);
+            echo json_encode($del_res);
+        }
+    }
+
 }
  ?>

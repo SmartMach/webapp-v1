@@ -615,45 +615,17 @@ $(document).on('click','#add_btn_interface',function(event){
 });
 
 // edit button interface button click 
-/* temporary hide for this function
+
 $(document).on('click','.btn_ui_edit_click',function(event){
 	event.preventDefault();
+	
 
 	var find_btnui_index = $('.btn_ui_edit_click').index(this);
-	var tool_id = $('.tool_id_get:eq('+find_btnui_index+')').attr('tool-id');
-	var reason_id = $('.get_reason_id:eq('+find_btnui_index+')').attr('reason-id');
-	var reason_type = $('.get_reason_id:eq('+find_btnui_index+')').attr('reason-type');
-	$('#btn_ui_equality_erdrp').val('');
-	$('#btn_ui_edowntime_ecdrp').val('');
-	$('#btn_ui_edowntime_erdrp').val('');
-	// const data_arr = [reason_id,tool_id,reason_type.split("_")];	
-	const rarr = reason_type.split("_");
-	$('#btn_ui_check_edq').val(rarr[0]);
-	var rid = "";
-	if (rarr[0]==="downtime") {
-		rid = null;
-		$('#btn_ui_edowntime_ecdrp').val(rarr[1]);
-		split_downtime_drp(rarr[1],"btn_ui_edowntime_erdrp",reason_id);
-		$('.downtime_drps_btnui_edit').removeClass('d-none');
-		$('.downtime_drps_btnui_edit').addClass('d-inline');
-		$('.quality_drp_btnui_edit').addClass('d-none');
-		// $('#btn_ui_edowntime_erdrp').val(reason_id);
-	}else if(rarr[0]==="quality"){
-		rid = reason_id;
-		$('.quality_drp_btnui_edit').removeClass('d-none');
-		$('.quality_drp_btnui_edit').addClass('d-inline');
-		$('.downtime_drps_btnui_edit').addClass('d-none');
-		// $('#btn_ui_equality_erdrp').val(reason_id);
-	}
-	open_button_interface_modal("btn_ui_equality_erdrp",reason_id,"btn_ui_atool_endrp",tool_id,null);
-
-	// $('#btn_ui_atool_endrp').val(tool_id);
-	console.log('after');
 	
-	$('#Button_interface_edit').modal('show');
+	open_edit_interface_modal(find_btnui_index);
+	
 	
 });
-*/
 
 // its filling tool dropdown and qualilty dropdownn and value selection also this function
 async function open_button_interface_modal(qref_id=null,ridval,tref_id=null,tidval,modal_ref_id=null,index_val,ddrp,ddval,machine_ref){
@@ -741,6 +713,86 @@ async function open_button_interface_modal(qref_id=null,ridval,tref_id=null,tidv
 	}
 }
 
+async function open_edit_interface_modal(find_btnui_index){
+	var find_set_id = $('.btn_ui_edit_click:eq('+find_btnui_index+')').attr('data_set_id');
+	var btnui_data = await getupdated_single_data(find_set_id);
+	var machine_arr = await getmachine_data_arr();
+	
+	
+	// machine dropdown function
+	var machine_id_group = btnui_data[0]['machine_id_group'];
+	select_machine_arr = machine_id_group.split(",");
+	$('.btn_conf_em_content').empty();
+	var check_out = "";
+	if (parseInt(select_machine_arr.length)>=parseInt(machine_arr.length)) {
+		check_out = "checked";
+	}
+	$('.btn_conf_em_content').append('<div class="inbox inbox_machine_ebtnui btnui_machine_filter" style="display: flex;">'
+		+'<div style="float: left;width: 20%;" class="center-align">'
+		+'<input class="checkbox_machine filter_edmachine_val" name="btn_ui_edit_machine_val" value="all" type="checkbox" '+check_out+'/>'
+		+'</div>'
+		+'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+			+'<p class="inbox-span paddingm">All</p>'
+		+'</div>'
+	+'</div>');
+	machine_arr.forEach(function(item){
+		var tmp_check = "";
+		select_machine_arr.forEach(function(ele){
+			if (item.machine_id===ele) {
+				tmp_check = "checked";
+			}
+		});
+		$('.btn_conf_em_content').append('<div class="inbox inbox_machine_ebtnui btnui_machine_filter" style="display: flex;">'
+			+'<div style="float: left;width: 20%;" class="center-align">'
+			+'<input class="checkbox_machine filter_edmachine_val" name="btn_ui_edit_machine_val" value="'+item.machine_id+'" type="checkbox" '+tmp_check+'/>'
+			+'</div>'
+			+'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
+				+'<p class="inbox-span paddingm">'+item.machine_id+"-"+item.machine_name+'</p>'
+			+'</div>'
+		+'</div>');
+	}); 
+	
+	const category_arr = btnui_data[0]['category_group'].split(",");
+	const reason_arr  = btnui_data[0]['reason_id_group'].split(',');
+	const tool_arr = btnui_data[0]['tool_id_group'].split(',');
+	const btn_arr = btnui_data[0]['button_value_group'].split(',');
+	$('.dynamic_btn_reasons_editcontent').empty();
+	category_arr.forEach(function(rele,index){
+		
+		
+		if (rele==="Downtime") {
+			
+			if (reason_arr[index]==="2" || reason_arr[index]==="3") {
+				edit_multiple_divs(null,tool_arr[index],reason_arr[index],index);
+				$('.tool_hide_visible_property_edit').removeClass('d-none');
+				$('.tool_hide_visible_property_edit').addClass('d-inline');
+			}else{
+				edit_multiple_divs(null,null,reason_arr[index],index);
+			}
+			var tmp_category = $('.get_reason_id_'+btnui_data[0]['set_id']+':eq('+index+')').attr('downtime_category');
+			console.log("downtime category:\t"+tmp_category+"\t index value:\t"+index);
+			$('.btn_ui_edit_downtime_cdrp:eq('+index+')').val(tmp_category);
+			$('.btn_ui_edit_downtime_rdrp:eq('+index+')').empty();
+			split_downtime_drp(tmp_category,"btn_ui_edit_downtime_rdrp",reason_arr[index],index);
+			console.log("reason id:\t"+reason_arr[index]);
+			$('.downtime_drps_btnui_edit:eq('+index+')').removeClass('d-none');
+			$('.downtime_drps_btnui_edit:eq('+index+')').addClass('d-inline');
+			
+		}else if(rele==="Quality"){
+			edit_multiple_divs(reason_arr[index],null,null,index);
+			$('.quality_drp_btnui_edit:eq('+index+')').removeClass('d-none');
+			$('.quality_drp_btnui_edit:eq('+index+')').addClass('d-inline');
+
+		}
+
+		$('.btn_ui_edit_btnnum:eq('+index+')').val(btn_arr[index]);
+		$('.editconfig_category_drp:eq('+index+')').val(rele);
+	});
+	
+	$('#Button_interface_edit').attr('set_data',btnui_data[0]['set_id']);
+	$('#Button_interface_edit').modal('show');
+}
+
 // primary configurations
 // add modal
 $(document).on('change','.config_category_drp',function(){
@@ -774,24 +826,32 @@ $(document).on('change','.config_category_drp',function(){
 });
 
 // edit modal
-$(document).on('change','#btn_ui_check_edq',function(){
-	var edit_primary_configuration = $('#btn_ui_check_edq').val();
+$(document).on('change','.editconfig_category_drp',function(){
+	var config_category_drp = $('.editconfig_category_drp');
+	var find_index_category = config_category_drp.index(this);
+	var edit_primary_configuration = $('.editconfig_category_drp:eq('+find_index_category+')').val();
 	console.log("edit onchange");
 	console.log(edit_primary_configuration);
-	$('#btn_ui_edowntime_ecdrp').val('select');
-	$('#btn_ui_edowntime_erdrp').val('select');
-	$('#btn_ui_equality_erdrp').val('select');
-	if (edit_primary_configuration==="downtime") {
-		$('.quality_drp_btnui_edit').addClass('d-none');
-		$('.downtime_drps_btnui_edit').removeClass('d-none');
-		$('.downtime_drps_btnui_edit').addClass('d-inline');
-		$('#btn_ui_edowntime_erdrp').attr('disabled',true);
+	//alert(primary_configuration_Drp);
+	$('.btn_ui_edit_quality_drp:eq('+find_index_category+')').val('select');
+	$('.btn_ui_edit_downtime_cdrp:eq('+find_index_category+')').val('select');
+	$('.btn_ui_add_downtime_rdrp:eq('+find_index_category+')').val('select');
+	$('.btn_ui_add_downtime_rdrp:eq('+find_index_category+')').attr('disabled',true);
+	$('.tool_hide_visible_property:eq('+find_index_category+')').removeClass('d-inline');
+	$('.tool_hide_visible_property_edit:eq('+find_index_category+')').addClass('d-none');
+	if (edit_primary_configuration==="Downtime") {
+		$('.downtime_drps_btnui_edit:eq('+find_index_category+')').removeClass('d-none');
+		$('.downtime_drps_btnui_edit:eq('+find_index_category+')').addClass('d-inline');
+		$('.quality_drp_btnui_edit:eq('+find_index_category+')').addClass('d-none');
 	}
-	else if (edit_primary_configuration==="quality") {
-		$('.downtime_drps_btnui_edit').addClass('d-none');
-		$('.quality_drp_btnui_edit').removeClass('d-none');
-		$('.quality_drp_btnui_edit').addClass('d-inline');
+	else if(edit_primary_configuration==="Quality"){
+		$('.quality_drp_btnui_edit:eq('+find_index_category+')').removeClass('d-none');
+		$('.quality_drp_btnui_edit:eq('+find_index_category+')').addClass('d-inline');
+		$('.downtime_drps_btnui_edit:eq('+find_index_category+')').addClass('d-none');
+	}else if(edit_primary_configuration==="select"){
+		// $('#primary_category_err_add_btn_ui').text(required);
 	}
+	
 });
 
 // downtime split category wise
@@ -868,6 +928,7 @@ function drp_btn_ui_validate(drp_ref_id,btn_ref_id){
 
 const hide_seek_obj = {
 	btn_conf_amachine:false,
+	btn_conf_emachine:false,
 };
 
 // button configuration machine checkbox click common function
@@ -885,7 +946,7 @@ function multiselect_checkbox(classRef,keyRef){
 
 // on mouse up fucntion 
 $(document).mouseup(function(event){
-	 // reason dropdown outside click
+	 // machine dropdown outside click
 	 var machine_add_check = $('.btn_conf_am_content');
 	 var machine_drp_list = $('.btn_conf_amachine');
 	 if (!machine_add_check.is(event.target) && machine_add_check.has(event.target).length==0 && !machine_drp_list.is(event.target) && machine_drp_list.has(event.target).length==0) {
@@ -894,6 +955,19 @@ $(document).mouseup(function(event){
 			hide_seek_obj['btn_conf_amachine']=false;
 		}
 	}
+
+
+	// machine dropdown outside click
+	var machine_add_check = $('.btn_conf_em_content');
+	var machine_drp_list = $('.btn_conf_emachine');
+	if (!machine_add_check.is(event.target) && machine_add_check.has(event.target).length==0 && !machine_drp_list.is(event.target) && machine_drp_list.has(event.target).length==0) {
+	   if(hide_seek_obj['btn_conf_emachine']==true){
+		   machine_add_check.hide();
+		   hide_seek_obj['btn_conf_emachine']=false;
+	   	}
+   	}
+
+
    
 });
 
@@ -907,6 +981,16 @@ $(document).on('click','.inbox_machine_abtnui',function(event){
 // add button user interface modal machine drp  div onclick
 $(document).on('click','.filter_admachine_val',function(event){
 	multiple_drp_fun('filter_admachine_val','filter_admachine_val','btn_ui_addmachine_txt','Machines',this);
+});
+
+// edit button user interface machine drp div onclick
+$(document).on('click','.inbox_machine_ebtnui',function(event){
+	multiple_drp_fun('inbox_machine_ebtnui','filter_edmachine_val','btn_ui_editmachine_txt','Machines',this);
+});
+
+// edit button user interface machine drp div onclick
+$(document).on('click','.filter_edmachine_val',function(event){
+	multiple_drp_fun('filter_edmachine_val','filter_edmachine_val','btn_ui_editmachine_txt','Machines',this);
 });
 
 
@@ -974,4 +1058,23 @@ $(document).on('click','.del_button_reasons',function(){
 	// alert('hi');
 	$(this).closest('.appended_reason_div').remove(); 
 });
+
+// edit modal click delete button
+$(document).on('click','.edit_del_button_reasons',function(){
+	$(this).closest('.edit_appended_reason_div').remove();
+});
+
+
+// softdelete modal open function
+$(document).on('click','.btn_ui_del_click',function(){
+	var delindex = $('.btn_ui_del_click');
+	var get_del_index = delindex.index(this);
+	var set_id = $('.btn_ui_del_click:eq('+get_del_index+')').attr('data_set_id');
+
+	$('#del_button_configuration').attr('set_id',set_id);
+	$('#del_button_configuration').modal('show');
+
+});
+
+
 

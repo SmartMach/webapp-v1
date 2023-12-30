@@ -989,9 +989,75 @@ public function updateReasons($Data,$Record_No)
         $db = \Config\Database::connect($this->site_connection);
         $query = $db->table('settings_button_configuration');
         $query->select('*');
+        $query->where('status',1);
         $res = $query->get()->getResultArray();
 
         return $res;
+    }
+
+    // button configuration gettings data
+    public function get_single_data_btnui($set_id){
+        $db = \Config\Database::connect($this->site_connection);
+        $query = $db->table('settings_button_configuration');
+        $query->select('*');
+        $query->where('set_id',$set_id);
+        $res = $query->get()->getResultArray();
+        return $res;
+    }
+
+
+    // button configuration updation data
+    public function update_btn($edit_data){
+        $db = \Config\Database::connect($this->site_connection);
+        $build = $db->table('settings_button_configuration');
+        if (!empty($edit_data['machine_id_group'])) {
+            $build->set('machine_id_group', $edit_data['machine_id_group']);
+        }
+
+        if (!empty($edit_data['button_value_group'])) {
+            $build->set('button_value_group', $edit_data['button_value_group']);
+        }
+        if (!empty($edit_data['category_group'])) {
+            $build->set('category_group', $edit_data['category_group']);
+        }
+        if (!empty($edit_data['reason_id_group'])) {
+            $build->set('reason_id_group', $edit_data['reason_id_group']);
+        }
+        if (!empty($edit_data['tool_id_group'])) {
+            $build->set('tool_id_group', $edit_data['tool_id_group']);
+        }
+
+        if (!empty($edit_data['last_updated_by'])) {
+            $build->set('last_updated_by',$edit_data['last_updated_by']);
+        }
+
+        if (!empty($edit_data['status'])) {
+            $build->set('status',$edit_data['status']);
+        }
+
+        $build->where('set_id', $edit_data['set_id']);
+        if ($build->update()) {
+            return true;
+        }else{
+            return false;
+        }
+
+
+    }
+
+
+    public function soft_delete_btn_ui($set_id){
+        $db = \Config\Database::connect($this->site_connection);
+        $build = $db->table('settings_button_configuration');
+        $build->set('status',0);
+        $build->where('set_id', $set_id);
+
+        if ($build->update()) {
+            return true;
+        }else{
+            return false;
+        }
+
     }
 }
 ?>

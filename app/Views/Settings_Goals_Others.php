@@ -706,63 +706,32 @@
                 <h5 class="modal-title general_header_model" id="Button_interface_add" style="">EDIT BUTTON INTERFACE</h5>
             </div>
             <div class="modal-body">
+                   <!-- machine drp -->
                 <div class="row">
-                    <div class="box float-start col-lg-6">
-                        <div class="input-box fieldStyle">
-                            <select name="" class="form-select font_weight" id="btn_ui_check_edq">
-                                <option value="select" selected disabled>Select Category</option>
-                                <option value="downtime">Downtime</option>
-                                <option value="quality">Quality</option>
-                            </select>
-                            <label for="" class="input-padding">Primary Configuration Category <span class="paddingm validate">*</span></label>
-                            <span   class="paddingm float-start validate" id="err_pcategory_err"></span>
+                    <div class="box col-lg-6 " style="padding:0;">
+                        <div class="input-box indexing Reasons_COPQP">
+                            <div class="filter_multiselect filter_option prevent_select_text" style="width:58%;height:2.4rem !important;">
+                                <span class="multi_select_label prevent_select_text"  style="">Machines</span>
+                                <div class="filter_selectBox btn_conf_emachine" onclick="multiselect_checkbox('btn_conf_em_content','btn_conf_emachine')">
+                                    <div class="inbox-span fontStyle search_style dropdown-arrow">
+                                        <div style="width: 80% !important">
+                                            <p class="paddingm prevent_select_text" id="btn_ui_editmachine_txt">All Machines</p>
+                                        </div>
+                                        <div class="dropdown-div" style=" width: 20% !important">
+                                            <i class="fa fa-angle-down icon-style"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="filter_checkboxes btn_conf_em_content">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class=" box float-start col-lg-6">
-                        <div class="input-box fieldStyle">
-                            <select name="" class="form-select font_weight" id="btn_ui_atool_endrp">
-                                <!-- <option value="select" selected disabled>Select Tool</option> -->
-                            </select>
-                            <label for="" class="input-padding">Tool Name</label>
-                            <span   class="paddingm float-start validate" id="err_tool_name"></span>
-                        </div>
-                    </div>   
                 </div>
-                <div class="row d-flex flex-column downtime_drps_btnui_edit ">
-                    <div class=" box float-start col-lg-6 ">
-                        <div class="input-box fieldStyle">
-                            <select name="" class="form-select font_weight" id="btn_ui_edowntime_ecdrp">
-                                <option value="select" selected disabled>Select Category</option>
-                                <option value="Planned">Planned</option>
-                                <option value="Unplanned">Unplanned</option>
-                            </select>
-                            <label for="" class="input-padding">Downtime Category <span class="paddingm validate">*</span></label>
-                            <span   class="paddingm float-start validate" id="err_dcategory"></span>
-                        </div>
-                    </div> 
 
-                    <div class=" box float-start col-lg-6">
-                        <div class="input-box fieldStyle">
-                            <select name="" class="form-select font_weight" id="btn_ui_edowntime_erdrp" disabled>
-                                <!-- <option value="select" selected disabled>Select Reasons</option> -->
-                            </select>
-                            <label for="" class="input-padding">Downtime Reasons <span class="paddingm validate">*</span></label>
-                            <span   class="paddingm float-start validate" id="err_dcategory"></span>
-                        </div>
-                    </div> 
+                <div class="dynamic_btn_reasons_editcontent">
+
                 </div>
-                <div class="row d-flex flex-column quality_drp_btnui_edit ">
-                    <div class=" box float-start col-lg-6">
-                        <div class="input-box fieldStyle">
-                            <select name="" class="form-select font_weight" id="btn_ui_equality_erdrp">
-                                <!-- <option value="select" selected disabled>Select Reasons</option> -->
-                            </select>
-                            <label for="" class="input-padding">Quality Reasons <span class="paddingm validate">*</span></label>
-                            <span class="paddingm float-start validate" id="err_tool_name"></span>
-                        </div>
-                    </div> 
-                </div>
-    
             </div>
             <div class="modal-footer" style="border:none;">
                 <input type="submit" class="btn fo bn update_btn_ui saveBtnStyle" name="update_btn_ui" value="Save">
@@ -1277,6 +1246,26 @@
   </div>
 </div>
 
+
+<!-- delete button configuration modal -->
+<div class="modal fade" id="del_button_configuration" tabindex="-1" aria-labelledby="DeactiveReasonModal1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered rounded">
+    <div class="container modal-content bodercss">
+            <div class="modal-header" style="border:none; ">
+                <h5 class="modal-title settings-machineAdd-model" id="DeactiveReasonModal1" style="">BUTTON CONFIGURATION</h5>
+            </div>
+                <div class="modal-body">
+                    <label style="color: black;">Are you sure you want to delete this reason record?</label>
+                    
+                </div>
+                <div class="modal-footer" style="border:none;">
+                    <a class="btn fo bn del_btn_ui saveBtnStyle" name="delete_button_ui" value="Save">Save</a>
+                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                </div>
+    </div>
+  </div>
+</div>
+
 <!-- strategy model for current_shift_performance -->
 <div class="modal fade" id="current_shit_performance" tabindex="-1" aria-labelledby="current_shit_performance" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered rounded">
@@ -1495,7 +1484,7 @@ function find_checkbox_val_arr(checkboxname){
     return machine_arr;
 }
 
-// add button user itnerface function
+// add button user itnerface function add ajax function
 $(document).on('click','.add_btn_ui_submission',function(){
     console.log("add button user interface modal submission click");
     
@@ -1530,7 +1519,57 @@ $(document).on('click','.add_btn_ui_submission',function(){
         success:function(res){
             console.log(typeof(res));
             if (res===true) {
+                get_button_configuration_data();
                 $('#Button_interface_add').modal('hide');
+              
+            }
+        },
+        error:function(er){
+            console.log("Add Button User interface modal insertion ajax error");
+        }
+    });
+
+});
+
+
+// add button user interface updation ajax function
+$(document).on('click','.update_btn_ui',function(){
+    // alert("update submission function");
+    console.log("update submission function");
+    const edit_config_arr = find_class_val_arr('editconfig_category_drp');
+    const edit_btn_arr = find_class_val_arr('btn_ui_edit_btnnum');
+    const edit_machine_arr = find_class_val_arr('filter_edmachine_val');
+    const edit_downtime_rarr = find_class_val_arr('btn_ui_edit_downtime_rdrp');
+    const edit_quality_rarr = find_class_val_arr('btn_ui_edit_quality_drp');
+    const edit_tool_rarr = find_class_val_arr('btn_ui_edit_tool_drp');
+    var set_id = $('#Button_interface_edit').attr('set_data');
+    // console.log("edit submission updation values");
+    // console.log(edit_config_arr);
+    // console.log(edit_btn_arr);
+    // console.log(edit_machine_arr);
+    // console.log(edit_downtime_rarr);
+    // console.log(edit_quality_rarr);
+    // console.log(edit_tool_rarr);
+    $.ajax({
+        url:"<?php echo base_url('Settings_controller/edit_btn_ui_insert'); ?>",
+        method:"POST",
+        dataType:"JSON",
+        cache: false, 
+        data:{
+            set_id:set_id,
+            config_drp_arr:edit_config_arr,
+            downtime_drp_arr:edit_downtime_rarr,
+            tool_drp_arr:edit_tool_rarr,
+            quality_drp_arr:edit_quality_rarr,
+            button_drp_arr:edit_btn_arr,
+            machine_drp_arr:edit_machine_arr,
+        },
+        success:function(res){
+            console.log(res);
+            if (res===true) {
+                get_button_configuration_data();
+                $('#Button_interface_edit').modal('hide');
+              
             }
         },
         error:function(er){
@@ -1539,7 +1578,35 @@ $(document).on('click','.add_btn_ui_submission',function(){
     });
 
 
-   
+});
+
+
+// delete button user interface deletion ajax function
+$(document).on('click','.del_btn_ui',function(){
+    var set_id = $('#del_button_configuration').attr('set_id');
+    console.log(set_id);
+    $.ajax({
+        url:"<?php echo base_url('Settings_controller/delete_btn_ui'); ?>",
+        method:"POST",
+        dataType:"JSON",
+        cache: false, 
+        data:{
+            set_id:set_id,
+        },
+        success:function(res){
+            console.log(res);
+            console.log("button configuration delete operation");
+            if (res===true) {
+                get_button_configuration_data();
+                $('#del_button_configuration').modal('hide');
+              
+            }
+        },
+        error:function(er){
+            console.log("delete Button User interface modal soft delete ajax error");
+        }
+    });
+
 });
 
     var shift_management_data = new Array();
@@ -2760,10 +2827,10 @@ async function get_button_configuration_data(){
                         +'</div>'
                         +'<div class="d-flex justify-content-center align-items-center " style="width:5rem;">'
                             +'<div class="btn_interface_img_hover">'
-                                +'<img src="<?= base_url() ?>/assets/img/pencil.png" class="img_font_wh float-end btn_ui_edit_click" style="margin-left:0rem;" alt="">'
+                                +'<img src="<?= base_url() ?>/assets/img/pencil.png" class="img_font_wh float-end btn_ui_edit_click" data_set_id="'+element['set_id']+'" style="margin-left:0rem;" alt="">'
                             +'</div>'
                             +'<div class="btn_interface_img_hover">'
-                                +'<img src="<?= base_url() ?>/assets/img/delete.png" class="img_font_wh float-end btn_ui_del_click" style="margin-left:0rem;" alt="">'
+                                +'<img src="<?= base_url() ?>/assets/img/delete.png" class="img_font_wh float-end btn_ui_del_click"  data_set_id="'+element['set_id']+'" style="margin-left:0rem;" alt="">'
                             +'</div>'
                         +'</div>'
                     +'</div>'
@@ -2778,7 +2845,8 @@ async function get_button_configuration_data(){
                 const button_arr = element['button_value_group'].split(',');
                 var sub_ele = $();
                 $('.btn_ui_reason_data_'+element['set_id']).empty();
-                console.log(tool_arr);
+                console.log("button group:\t"+element['set_id']);
+                console.log(button_arr);
                 temp_reason_arr.forEach(function(ele,index) {
                     var category = category_arr[index];
                     // console.log("value:\t"+ele+"\n index:\t"+index);
@@ -2820,14 +2888,14 @@ async function get_button_configuration_data(){
                         sub_ele = sub_ele.add('<div class="row paddingm">'
                             +'<div class="col-sm-2"></div>'
                             +'<div class="col-sm-2 col marleft table_data_section d-flex align-items-center" style="padding-left:1rem;">'
-                                +'<p class="table_data_element fnt_fam">'+ele+'</p>'
+                                +'<p class="table_data_element fnt_fam">'+button_arr[index]+'</p>'
                             +'</div>'
                             +'<div class="col-sm-8 marleft table_data_section d-flex align-items-center" style="padding-left:1rem;">'
                                 +'<div style="max-width:13%;min-width:6%;">'
                                     +'<div class="dotUser paddingm" style="background:#EE100B;color:white;">'+category.substring(0,1)+'</div>'
                                 +'</div>'
                                 +'<div style="width:70%;">'
-                                    +'<p class="table_data_element fnt_fam paddingm get_reason_id" reason-type="'+category+'" reason-id="'+ele+'"   title="'+tmp_dmt+'">'+tmp_dmt+'</p>'
+                                    +'<p class="table_data_element fnt_fam paddingm get_reason_id_'+element['set_id']+'" downtime_category="'+downtime_category+'" reason-type="'+category+'" reason-id="'+ele+'"   title="'+tmp_dmt+'">'+tmp_dmt+'</p>'
                                 +'</div>'
                             +'</div>'
                         +'</div>');
@@ -2843,14 +2911,14 @@ async function get_button_configuration_data(){
                         sub_ele = sub_ele.add('<div class="row paddingm">'
                             +'<div class="col-sm-2"></div>'
                             +'<div class="col-sm-2 col marleft table_data_section d-flex align-items-center" style="padding-left:1rem;">'
-                                +'<p class="table_data_element fnt_fam">'+ele+'</p>'
+                                +'<p class="table_data_element fnt_fam">'+button_arr[index]+'</p>'
                             +'</div>'
                             +'<div class="col-sm-8 marleft table_data_section d-flex align-items-center" style="padding-left:1rem;">'
                                 +'<div style="max-width:13%;min-width:6%;">'
                                     +'<div class="dotUser paddingm" style="background:#438CF2;color:white;">'+category.substring(0,1)+'</div>'
                                 +'</div>'
                                 +'<div style="width:70%;">'
-                                    +'<p class="table_data_element fnt_fam paddingm get_reason_id" reason-type="'+category+'" reason-id="'+ele+'"   title="'+quality_name+'">'+quality_name+'</p>'
+                                    +'<p class="table_data_element fnt_fam paddingm get_reason_id_'+element['set_id']+'" reason-type="'+category+'" reason-id="'+ele+'"   title="'+quality_name+'">'+quality_name+'</p>'
                                 +'</div>'
                             +'</div>'
                         +'</div>');
@@ -2869,6 +2937,31 @@ async function get_button_configuration_data(){
         error:function(er){
             console.log("button configuration ajax error ");
         }
+    });
+}
+
+
+// get updated single data
+function getupdated_single_data(set_id){
+    return new Promise(function(resolve,reject){
+        $.ajax({
+            url:"<?php echo base_url('Settings_controller/find_single_set_data'); ?>",
+            method:"POST",
+            dataType:"JSON",
+            data:{
+                set_id:set_id,
+            },
+            success:function(res){
+                console.log("ajax successed single update function");
+                console.log(res);
+                resolve(res);
+            },
+            error:function(er){
+                console.log("ajax error");
+                reject(er);
+                console.log(er);
+            },
+        });
     });
 }
 
@@ -3072,66 +3165,158 @@ function open_tooltip(){
 }
 
 $(document).on('click','.incre_div',function(event){
-            event.preventDefault();
-            var find_index_incre = $('.incre_div').index(this);
-            // hour increment condition
-            if (find_index_incre == "0") {
-                var get_val = $('#get_hour_val').text();
-                if (parseInt(get_val) == 23) {
-                    get_val = 0;
-                }
-                else{
-                    get_val = parseInt(get_val) + 1;
-                }
-                get_val_h  = parseInt(get_val) <= 9? "0"+get_val:get_val;
-                $('#get_hour_val').html(get_val_h);
-                // minute increment condition
-            }else if(find_index_incre == "1"){
-                var get_minute_val = $('#get_minute_val').text();
-                if (parseInt(get_minute_val) == 30) {
-                    get_minute_val = 0;
-                }else{
-                    get_minute_val = 30;
-                }
-                get_minute_val = parseInt(get_minute_val) <=9? "0"+get_minute_val:get_minute_val;
-                $('#get_minute_val').html(get_minute_val);
+    event.preventDefault();
+    var find_index_incre = $('.incre_div').index(this);
+    // hour increment condition
+    if (find_index_incre == "0") {
+        var get_val = $('#get_hour_val').text();
+        if (parseInt(get_val) == 23) {
+            get_val = 0;
+        }
+        else{
+            get_val = parseInt(get_val) + 1;
+        }
+        get_val_h  = parseInt(get_val) <= 9? "0"+get_val:get_val;
+        $('#get_hour_val').html(get_val_h);
+        // minute increment condition
+        }else if(find_index_incre == "1"){
+            var get_minute_val = $('#get_minute_val').text();
+            if (parseInt(get_minute_val) == 30) {
+                get_minute_val = 0;
+            }else{
+                get_minute_val = 30;
             }
+            get_minute_val = parseInt(get_minute_val) <=9? "0"+get_minute_val:get_minute_val;
+            $('#get_minute_val').html(get_minute_val);
+        }
 
-        });
+});
 
-        $(document).on('click','.decre_div',function(event){
-            event.preventDefault();
-            var find_index_decre = $('.decre_div').index(this); 
-            // decrement function condition for hour and minute
-            if (parseInt(find_index_decre) == 0) {
-                var get_hour_val = $('#get_hour_val').text();
-                if (parseInt(get_hour_val) == 0) {
-                    get_hour_val = 23;
-                }else{
-                    get_hour_val = parseInt(get_hour_val) -1;
-                }
-                get_hour_val = parseInt(get_hour_val) <= 9? "0"+get_hour_val:get_hour_val;
-                    
-                $('#get_hour_val').html(get_hour_val);
-            }
-            else if(parseInt(find_index_decre) == 1){
-                var get_minute_val = $('#get_minute_val').text();
-                if (parseInt(get_minute_val) == 30) {
-                    get_minute_val = 0;
-                }else{
-                    get_minute_val = 30;
-                }
-                get_minute_val = parseInt(get_minute_val) <=9? "0"+get_minute_val:get_minute_val;
-                $('#get_minute_val').html(get_minute_val);
-            }
-        });
+$(document).on('click','.decre_div',function(event){
+    event.preventDefault();
+    var find_index_decre = $('.decre_div').index(this); 
+    // decrement function condition for hour and minute
+    if (parseInt(find_index_decre) == 0) {
+        var get_hour_val = $('#get_hour_val').text();
+        if (parseInt(get_hour_val) == 0) {
+            get_hour_val = 23;
+        }else{
+            get_hour_val = parseInt(get_hour_val) -1;
+        }
+        get_hour_val = parseInt(get_hour_val) <= 9? "0"+get_hour_val:get_hour_val;          
+        $('#get_hour_val').html(get_hour_val);
+    }
+    else if(parseInt(find_index_decre) == 1){
+        var get_minute_val = $('#get_minute_val').text();
+        if (parseInt(get_minute_val) == 30) {
+            get_minute_val = 0;
+        }else{
+            get_minute_val = 30;
+        }
+        get_minute_val = parseInt(get_minute_val) <=9? "0"+get_minute_val:get_minute_val;
+        $('#get_minute_val').html(get_minute_val);
+    }
+});
 
-    $('.click_tooltip').mouseleave(function(event){
-        event.preventDefault();
-        $('.click_tooltip').css("visibility","hidden");
-        var hour  = $('#get_hour_val').text();
-        var minute = $('#get_minute_val').text();
-        var all_val = hour+":"+minute;
-        $('#set_hour_minute').val(all_val);
+$('.click_tooltip').mouseleave(function(event){
+    event.preventDefault();
+    $('.click_tooltip').css("visibility","hidden");
+    var hour  = $('#get_hour_val').text();
+    var minute = $('#get_minute_val').text();
+    var all_val = hour+":"+minute;
+    $('#set_hour_minute').val(all_val);
+});
+
+
+
+// edit time add multiple machines
+function edit_multiple_divs(qval,tval,drval,indexval){
+
+    var last_icon = "";
+    var icon_click_class = "";
+    if (indexval===0) {
+        last_icon = "plus-icon.png";
+        icon_click_class = "edit_add_button_reasons";
+    }else{
+        last_icon = "delete.png";
+        icon_click_class = "edit_del_button_reasons";
+    }
+    return new Promise(function(resolve,reject){
+        $('.dynamic_btn_reasons_editcontent').append('<div class="row mt-4 edit_appended_reason_div">'
+            +'<div class="float-start col-lg-3 box" style="width:30%;padding:0;padding-right:10px;">'
+                +'<div class="input-box fieldStyle">'
+                    +'<input type="text" class="form-control font_weight btn_ui_edit_btnnum" id="btn_num" value="" required="">'
+                    +'<label class="input-padding">Button Number<span class="paddingm validate">*</span></label>'
+                    +'<span class="paddingm float-start validate" id="EOTEEPErr"></span>'
+                +'</div>'
+            +'</div>'
+            +'<div class="box float-start col-lg-3" style="width:30%;padding:0;padding-right:10px;">'
+                +'<div class="input-box fieldStyle">'
+                    +'<select name="" class="form-select font_weight editconfig_category_drp" id="btn_ui_check_dq">'
+                        +'<option value="select" selected disabled>Select Category</option>'
+                        +'<option value="Downtime">Downtime</option>'
+                        +'<option value="Quality">Quality</option>'
+                    +'</select>'
+                    +'<label for="" class="input-padding">Configuration Category <span class="paddingm validate">*</span></label>'
+                    +'<span class="paddingm float-start validate" id="primary_category_err_edit_btn_ui"></span>'
+                +'</div>'
+            +'</div>'
+            +'<div class=" box float-start col-lg-3" style="width:30%;padding:0;padding-right:10px;">'
+                +'<div class="d-flex flex-column downtime_drps_btnui_edit">'
+                    +'<div class=" box float-start">'
+                        +'<div class="input-box fieldStyle">'
+                            +'<select name="" class="form-select font_weight btn_ui_edit_downtime_cdrp" id="btn_ui_edowntime_cdrp">'
+                                +'<option value="select" selected disabled>Select Category</option>'
+                                +'<option value="Planned">Planned</option>'
+                                +'<option value="Unplanned">Unplanned</option>'
+                            +'</select>'
+                            +'<label for="" class="input-padding">Downtime Category <span class="paddingm validate">*</span></label>'
+                            +'<span   class="paddingm float-start validate" id="err_dcategory"></span>'
+                        +'</div>'
+                    +'</div> '
+
+                    +'<div class=" box float-start">'
+                        +'<div class="input-box fieldStyle">'
+                            +'<select name="" class="form-select font_weight btn_ui_edit_downtime_rdrp" id="btn_ui_edowntime_rdrp" disabled>'
+                            +'</select>'
+                            +'<label for="" class="input-padding">Downtime Reasons <span class="paddingm validate">*</span></label>'
+                            +'<span   class="paddingm float-start validate" id="err_dcategory"></span>'
+                        +'</div>'
+                    +'</div>'
+                    +'<div class="box float start tool_hide_visible_property_edit d-none">'
+                        +'<div class="input-box fieldStyle">'
+                            +'<select name="" class="form-select font_weight btn_ui_edit_tool_drp" id="btn_ui_etool_ndrp" >'
+                            +'</select>'
+                            +'<label for="" class="input-padding">Tool Name</label>'
+                            +'<span   class="paddingm float-start validate" id="err_tool_name"></span>'
+                        +'</div>'
+                    +'</div>'
+                +'</div>'
+                +'<div class="d-flex flex-column quality_drp_btnui_edit ">'
+                    +'<div class=" box float-start">'
+                        +'<div class="input-box fieldStyle">'
+                            +'<select name="" class="form-select font_weight btn_ui_edit_quality_drp" id="btn_ui_equality_rdrp">'
+                            +'</select>'
+                            +'<label for="" class="input-padding">Quality Reasons <span class="paddingm validate">*</span></label>'
+                            +'<span class="paddingm float-start validate" id="err_tool_name"></span>'
+                        +'</div>'
+                    +'</div>' 
+                +'</div>' 
+            +'</div>' 
+            +'<div class="col-lg-1 d-flex flex-row justify-content-center align-items-center " style="cursor:pointer;">'
+                +'<img src="<?php echo  base_url() ?>/assets/img/'+last_icon+'?version=<?php  echo rand() ?>" alt="" class="'+icon_click_class+'" style="width:1.3rem;height:1.3rem;">'
+            +'</div>' 
+        +'</div>');
+        var classindex = parseInt($('.edit_appended_reason_div').length)-1;
+        // alert(classindex);
+
+        open_button_interface_modal("btn_ui_edit_quality_drp",qval,"btn_ui_edit_tool_drp",tval,null,classindex,"btn_ui_edit_downtime_rdrp",drval,null);
+        console.log("first");
+        $('.downtime_drps_btnui_edit:eq('+classindex+')').addClass('d-none');
+        $('.quality_drp_btnui_edit:eq('+classindex+')').addClass('d-none');
+        resolve("true");
     });
+	
+}
+
 </script>
