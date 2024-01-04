@@ -1249,15 +1249,14 @@
 
 <!-- delete button configuration modal -->
 <div class="modal fade" id="del_button_configuration" tabindex="-1" aria-labelledby="DeactiveReasonModal1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered rounded">
-    <div class="container modal-content bodercss">
+    <div class="modal-dialog modal-dialog-centered rounded">
+        <div class="container modal-content bodercss">
             <div class="modal-header" style="border:none; ">
                 <h5 class="modal-title settings-machineAdd-model" id="DeactiveReasonModal1" style="">BUTTON CONFIGURATION</h5>
             </div>
-                <div class="modal-body">
-                    <label style="color: black;">Are you sure you want to delete this reason record?</label>
-                    
-                </div>
+            <div class="modal-body">
+                <label style="color: black;">Are you sure you want to delete this reason record?</label>            
+            </div>
                 <div class="modal-footer" style="border:none;">
                     <a class="btn fo bn del_btn_ui saveBtnStyle" name="delete_button_ui" value="Save">Save</a>
                     <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
@@ -1494,7 +1493,14 @@ $(document).on('click','.add_btn_ui_submission',function(){
     const get_tool_arr = find_class_val_arr('btn_ui_add_tool_drp');
     const get_button_arr = find_class_val_arr('btn_ui_add_btnnum');
     // const get_machine_arr = find_checkbox_val_arr('input[name="btn_ui_add_machine_val"]:checked');
-    const get_machine_arr = find_checkbox_val_arr('filter_admachine_val')
+    const get_machine_arrtmp = find_checkbox_val_arr('filter_admachine_val');
+    const get_machine_arr = new Array();
+    get_machine_arrtmp.forEach(function(item,index){
+        if (item!="all") {
+            get_machine_arr.push(item);
+        }
+    });
+    console.log(get_machine_arr);
     // console.log("config dropdown value array");
     // console.log(get_config_arr);
     // console.log(get_downtime_arr);
@@ -2816,14 +2822,31 @@ async function get_button_configuration_data(){
             $('.content_button_ui_configuration').empty();
             var ele_data = $();
             res.forEach(function(element){
-                
+                const tmp_mnarr = new Array();
+                const midarr = element['machine_id_group'].split(',');
+                midarr.forEach(function(mele,mindex){
+                    getmachine_res.forEach(function(mmele,mmindex){
+                        if (mmele['machine_id']===mele) {
+                            tmp_mnarr.push(mmele['machine_name']);
+                        }
+                    });
+                });
+              
                 ele_data = ele_data.add('<div class="d-flex flex-column justify-content-center align-items-center w-100 mb-2">'
                     +'<div class="d-flex justify-content-between align-items-center p-2 w-100 sh_button_interface_tb" style="">'
                         +'<div class="d-flex flex-row align-items-center" style="font-size:1rem;">'
                             +'<span>'+element['machine_id_group'].split(',').length+' MACHINES</span>'
-                            +'<div class="btn_interface_img_hover">'
-                                +'<img src="<?= base_url() ?>/assets/img/info.png" class="img_font_wh float-end " style="margin-left:0rem;" alt="">'
+                            +'<div class="btn_interface_img_hover" style="position:relative;">'
+                                +'<img src="<?= base_url() ?>/assets/img/info.png" class="img_font_wh float-end imghover_mdetails" style="margin-left:0rem;" alt="">'
+                              
                             +'</div>'
+                            +'<div style="position:absolute;margin-top:9rem;margin-left:7.6rem;border-radius:0.25rem;background-color:white;height:max-content;width:max-content;" class="class_check  p-2 d-none">'
+                                    +'<p style="font-size:0.9rem;font-weight:550;">'+element['machine_id_group'].split(',').length+' MACHINES</p>'
+                                    +'<div class="d-flex flex-column justify-content-center align-items-center machine_hover_content_'+element['set_id']+'">'
+                                    
+                                    +'</div>'
+                                
+                                +'</div>'
                         +'</div>'
                         +'<div class="d-flex justify-content-center align-items-center " style="width:5rem;">'
                             +'<div class="btn_interface_img_hover">'
@@ -2838,6 +2861,19 @@ async function get_button_configuration_data(){
                     +'</div>'
                 +'</div>');
                 $('.content_button_ui_configuration').append(ele_data);
+
+                var hover_ele = $();
+                midarr.forEach(function(pele,pindex){
+                    if (pele === "all") {
+                        
+                    }else{
+                        hover_ele = hover_ele.add('<span style="color:#979a9a;font-size:0.9rem;font-weight:500;">'+pele+' '+tmp_mnarr[pindex]+'</span>');
+                    }
+
+                });
+                console.log("machine name");
+                console.log(tmp_mnarr);
+                $('.machine_hover_content_'+element['set_id']).append(hover_ele);
                 const temp_machine_arr = element['machine_id_group'].split(',');
                 const temp_reason_arr = element['reason_id_group'].split(',');
                 const tool_arr = element['tool_id_group'].split(',');
@@ -3318,5 +3354,19 @@ function edit_multiple_divs(qval,tval,drval,indexval){
     });
 	
 }
+
+// machine details hovering function
+$(document).on('click','.imghover_mdetails',function(event){
+    var getclass = $('.imghover_mdetails');
+    var find_index = getclass.index(this);
+   if ($('.class_check:eq('+find_index+')').hasClass('d-none')===true) {
+    $('.class_check:eq('+find_index+')').removeClass('d-none');
+    $('.class_check:eq('+find_index+')').addClass('d-inline');
+   }else{
+    
+    $('.class_check:eq('+find_index+')').removeClass('d-inline');
+    $('.class_check:eq('+find_index+')').addClass('d-none');
+   }
+});
 
 </script>
