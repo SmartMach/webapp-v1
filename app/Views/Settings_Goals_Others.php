@@ -1376,20 +1376,8 @@
 <script src="<?php echo base_url(); ?>/assets/js/Settings_Goals_Others_Validation.js?version=<?php echo rand() ; ?>"></script>
 <script type="text/javascript">
 
-// date time picker for hour and minutes only
-// $(function () {
-// $('#cusotme_date_picker').datetimepicker({
-//     format: 'HH:mm',
-//     stepping: 30
-//     // stepMinute: 0
-// });
-// });
-
-
-
 // add button reasons 
 $(document).on('click','.add_button_reasons',function(){
-
     $('.dynamic_btn_reasons_content').append('<div class="row mt-4 appended_reason_div">'
         +'<div class="float-start col-lg-3 box" style="width:30%;padding:0;padding-right:10px;">'
             +'<div class="input-box fieldStyle">'
@@ -1462,6 +1450,81 @@ $(document).on('click','.add_button_reasons',function(){
 	$('.quality_drp_btnui:eq('+classindex+')').addClass('d-none');
 });
 
+
+// edit button reasons click add buttons
+$(document).on('click','.edit_add_button_reasons',function(){
+    $('.dynamic_btn_reasons_editcontent').append('<div class="row mt-4 edit_appended_reason_div">'
+        +'<div class="float-start col-lg-3 box" style="width:30%;padding:0;padding-right:10px;">'
+            +'<div class="input-box fieldStyle">'
+                +'<input type="text" class="form-control font_weight btn_ui_edit_btnnum" id="btn_num" value="" required="">'
+                +'<label class="input-padding">Button Number<span class="paddingm validate">*</span></label>'
+                +'<span class="paddingm float-start validate edit_btn_ui_err" id=""></span>'
+            +'</div>'
+        +'</div>'
+        +'<div class="box float-start col-lg-3" style="width:30%;padding:0;padding-right:10px;">'
+            +'<div class="input-box fieldStyle">'
+                +'<select name="" class="form-select font_weight editconfig_category_drp" id="btn_ui_check_dq">'
+                    +'<option value="select" selected disabled>Select Category</option>'
+                    +'<option value="Downtime">Downtime</option>'
+                    +'<option value="Quality">Quality</option>'
+                +'</select>'
+                +'<label for="" class="input-padding">Configuration Category <span class="paddingm validate">*</span></label>'
+                +'<span class="paddingm float-start validate edit_config_err" id="primary_category_err_edit_btn_ui"></span>'
+            +'</div>'
+        +'</div>'
+        +'<div class=" box float-start col-lg-3" style="width:30%;padding:0;padding-right:10px;">'
+            +'<div class="d-flex flex-column downtime_drps_btnui_edit">'
+                +'<div class=" box float-start">'
+                    +'<div class="input-box fieldStyle">'
+                        +'<select name="" class="form-select font_weight btn_ui_edit_downtime_cdrp" id="btn_ui_edowntime_cdrp">'
+                            +'<option value="select" selected disabled>Select Category</option>'
+                            +'<option value="Planned">Planned</option>'
+                            +'<option value="Unplanned">Unplanned</option>'
+                        +'</select>'
+                        +'<label for="" class="input-padding">Downtime Category <span class="paddingm validate">*</span></label>'
+                        +'<span   class="paddingm float-start validate edit_dcerr" id="err_dcategory"></span>'
+                    +'</div>'
+                +'</div> '
+                +'<div class=" box float-start">'
+                    +'<div class="input-box fieldStyle">'
+                        +'<select name="" class="form-select font_weight btn_ui_edit_downtime_rdrp" id="btn_ui_edowntime_rdrp" disabled>'
+                        +'</select>'
+                        +'<label for="" class="input-padding">Downtime Reasons <span class="paddingm validate">*</span></label>'
+                        +'<span   class="paddingm float-start validate edit_drerr" id="err_dcategory"></span>'
+                    +'</div>'
+                +'</div>'
+                +'<div class="box float start tool_hide_visible_property_edit d-none">'
+                    +'<div class="input-box fieldStyle">'
+                        +'<select name="" class="form-select font_weight btn_ui_edit_tool_drp" id="btn_ui_etool_ndrp" >'
+                        +'</select>'
+                        +'<label for="" class="input-padding">Tool Name</label>'
+                        +'<span   class="paddingm float-start validate edit_terr" id="err_tool_name"></span>'
+                    +'</div>'
+                +'</div>'
+            +'</div>'
+            +'<div class="d-flex flex-column quality_drp_btnui_edit ">'
+                +'<div class=" box float-start">'
+                    +'<div class="input-box fieldStyle">'
+                        +'<select name="" class="form-select font_weight btn_ui_edit_quality_drp" id="btn_ui_equality_rdrp">'
+                        +'</select>'
+                        +'<label for="" class="input-padding">Quality Reasons <span class="paddingm validate">*</span></label>'
+                        +'<span class="paddingm float-start validate edit_qerr" id="err_tool_name"></span>'
+                    +'</div>'
+                +'</div>' 
+            +'</div>' 
+        +'</div>' 
+        +'<div class="col-lg-1 d-flex flex-row justify-content-center align-items-center " style="cursor:pointer;">'
+            +'<img src="<?php echo  base_url() ?>/assets/img/delete.png?version=<?php  echo rand() ?>" alt="" class="edit_del_button_reasons" style="width:1.3rem;height:1.3rem;">'
+        +'</div>' 
+    +'</div>');
+    var classrefindex = $('.edit_appended_reason_div').length;
+    classrefindex = parseInt(classrefindex)-1;
+    open_button_interface_modal('btn_ui_edit_quality_drp',null,'btn_ui_edit_tool_drp',null,'Button_interface_edit',classrefindex,'btn_ui_edit_downtime_rdrp',null,null);
+    $('.downtime_drps_btnui_edit:eq('+classrefindex+')').addClass('d-none');
+    $('.quality_drp_btnui_edit:eq('+classrefindex+')').addClass('d-none');
+
+});
+
 // multiple inputs value getting function its just pass class name is possible to get values in array
 function find_class_val_arr(classref){
     const myarr = [];
@@ -1479,7 +1542,6 @@ function find_checkbox_val_arr(checkboxname){
             machine_arr.push($(this).val());
         }
     });
-
     return machine_arr;
 }
 
@@ -1503,54 +1565,54 @@ function add_btn_validation(classref,errref){
 }
 
 // add button configuration config dropdown 
-function add_btn_config_drp_validation(classref,errref){
+function add_btn_config_drp_validation(configclassref,configerrref,qclassref,qerr,downccref,downcerr,downrcref,downrerr,tclassref,terr){
     var final_res_vali = 0;
-    jQuery('.'+classref).each(function(index){
+    jQuery('.'+configclassref).each(function(index){
         if (this.value==="select") {
-            $('.'+errref+':eq('+index+')').text('Required***');
+            $('.'+configerrref+':eq('+index+')').text('Required***');
             final_res_vali = parseInt(final_res_vali)+1;
         }else{
             var config_val = this.value;
             console.log("config drp value:\t"+config_val);
             if (config_val==="Quality") {
-                var qval = $('.btn_ui_add_quality_drp:eq('+index+')').val();
+                var qval = $('.'+qclassref+':eq('+index+')').val();
                
                 if(qval==="select" || qval==="" || qval===undefined || qval===null){
-                    $('.add_btn_qerr:eq('+index+')').text('Required***');
+                    $('.'+qerr+':eq('+index+')').text('Required***');
                     final_res_vali = parseInt(final_res_vali)+1;
                 }else{
-                    $('.add_btn_qerr:eq('+index+')').text('');
+                    $('.'+qerr+':eq('+index+')').text('');
 
                 }
             }
             else if(config_val==="Downtime"){
-                var dcval = $('.btn_ui_add_downtime_cdrp:eq('+index+')').val();
+                var dcval = $('.'+downccref+':eq('+index+')').val();
                 console.log("downtime category reason ");
                 console.log(dcval);
                 if(dcval==="select" || dcval==="" || dcval===undefined || dcval===null){
-                    $('.drp_cerr:eq('+index+')').text('Required***');
+                    $('.'+downcerr+':eq('+index+')').text('Required***');
                     final_res_vali = parseInt(final_res_vali)+1;
                 }else{
-                    $('.drp_cerr:eq('+index+')').text('');
-                    var drval = $('.btn_ui_add_downtime_rdrp:eq('+index+')').val();
+                    $('.'+downcerr+':eq('+index+')').text('');
+                    var drval = $('.'+downrcref+':eq('+index+')').val();
                     if (drval==="select" || drval==="" || drval===undefined || drval===null) {
-                        $('.drp_rerr:eq('+index+')').text('Required***');
+                        $('.'+downrerr+':eq('+index+')').text('Required***');
                         final_res_vali = parseInt(final_res_vali)+1;
                     }else{
-                        $('.drp_rerr:eq('+index+')').text('');
+                        $('.'+downrerr+':eq('+index+')').text('');
                         if (drval==="2"||drval==="3") {
-                            var tval = $('.btn_ui_add_tool_drp:eq('+index+')').val();
+                            var tval = $('.'+tclassref+':eq('+index+')').val();
                             if (tval==="select" || tval==="" || tval===undefined || tval===null) {
-                                $('.tval_err:eq('+index+')').text('Required***');
+                                $('.'+terr+':eq('+index+')').text('Required***');
                                 final_res_vali = parseInt(final_res_vali)+1;
                             }else{
-                                $('.tval_err:eq('+index+')').text('');
+                                $('.'+terr+':eq('+index+')').text('');
                             }
                         }
                     }
                 }
             }
-            $('.'+errref+':eq('+index+')').text('');
+            $('.'+configerrref+':eq('+index+')').text('');
         }
     });
 
@@ -1645,7 +1707,7 @@ $(document).on('blur','.btn_ui_add_tool_drp',function(){
 $(document).on('click','.add_btn_ui_submission',function(){
     console.log("add button user interface modal submission click");
     var result_btn = add_btn_validation('btn_ui_add_btnnum','add_btn_ui_err');
-    var result_config_drp = add_btn_config_drp_validation('config_category_drp','config_btn_validation');
+    var result_config_drp = add_btn_config_drp_validation('config_category_drp','config_btn_validation','btn_ui_add_quality_drp','add_btn_qerr','btn_ui_add_downtime_cdrp','drp_cerr','btn_ui_add_downtime_rdrp','drp_rerr','btn_ui_add_tool_drp','tval_err');
     console.log("final button result:\t"+result_btn);
     console.log("final config dropdown value:\t"+result_config_drp);
    
@@ -1678,6 +1740,7 @@ $(document).on('click','.add_btn_ui_submission',function(){
             },
             success:function(res){
                 console.log(typeof(res));
+                console.log(res);
                 if (res===true) {
                     get_button_configuration_data();
                     $('#Button_interface_add').modal('hide');
@@ -1697,48 +1760,48 @@ $(document).on('click','.add_btn_ui_submission',function(){
 // add button user interface updation ajax function
 $(document).on('click','.update_btn_ui',function(){
     // alert("update submission function");
-    console.log("update submission function");
-    const edit_config_arr = find_class_val_arr('editconfig_category_drp');
-    const edit_btn_arr = find_class_val_arr('btn_ui_edit_btnnum');
-    const edit_machine_arr = find_class_val_arr('filter_edmachine_val');
-    const edit_downtime_rarr = find_class_val_arr('btn_ui_edit_downtime_rdrp');
-    const edit_quality_rarr = find_class_val_arr('btn_ui_edit_quality_drp');
-    const edit_tool_rarr = find_class_val_arr('btn_ui_edit_tool_drp');
-    var set_id = $('#Button_interface_edit').attr('set_data');
-    // console.log("edit submission updation values");
-    // console.log(edit_config_arr);
-    // console.log(edit_btn_arr);
-    // console.log(edit_machine_arr);
-    // console.log(edit_downtime_rarr);
-    // console.log(edit_quality_rarr);
-    // console.log(edit_tool_rarr);
-    $.ajax({
-        url:"<?php echo base_url('Settings_controller/edit_btn_ui_insert'); ?>",
-        method:"POST",
-        dataType:"JSON",
-        cache: false, 
-        data:{
-            set_id:set_id,
-            config_drp_arr:edit_config_arr,
-            downtime_drp_arr:edit_downtime_rarr,
-            tool_drp_arr:edit_tool_rarr,
-            quality_drp_arr:edit_quality_rarr,
-            button_drp_arr:edit_btn_arr,
-            machine_drp_arr:edit_machine_arr,
-        },
-        success:function(res){
-            console.log(res);
-            if (res===true) {
-                get_button_configuration_data();
-                $('#Button_interface_edit').modal('hide');
-              
-            }
-        },
-        error:function(er){
-            console.log("Add Button User interface modal insertion ajax error");
-        }
-    });
+    var resbtnid = add_btn_validation('btn_ui_edit_btnnum','edit_btn_ui_err');
+    var resdrpval = add_btn_config_drp_validation('editconfig_category_drp','edit_config_err','btn_ui_edit_quality_drp','edit_qerr','btn_ui_edit_downtime_cdrp','edit_dcerr','btn_ui_edit_downtime_rdrp','edit_drerr','btn_ui_edit_tool_drp','edit_terr');
+    console.log("resbtn id final result is:\t"+resbtnid);
+    console.log("result other btns final result :\t"+resdrpval);
 
+    if (resbtnid===true && resdrpval===true) {
+        console.log("update submission function");
+        const edit_config_arr = find_class_val_arr('editconfig_category_drp');
+        const edit_btn_arr = find_class_val_arr('btn_ui_edit_btnnum');
+        const edit_machine_arr = find_class_val_arr('filter_edmachine_val');
+        const edit_downtime_rarr = find_class_val_arr('btn_ui_edit_downtime_rdrp');
+        const edit_quality_rarr = find_class_val_arr('btn_ui_edit_quality_drp');
+        const edit_tool_rarr = find_class_val_arr('btn_ui_edit_tool_drp');
+        var set_id = $('#Button_interface_edit').attr('set_data');
+    
+        $.ajax({
+            url:"<?php echo base_url('Settings_controller/edit_btn_ui_insert'); ?>",
+            method:"POST",
+            dataType:"JSON",
+            cache: false, 
+            data:{
+                set_id:set_id,
+                config_drp_arr:edit_config_arr,
+                downtime_drp_arr:edit_downtime_rarr,
+                tool_drp_arr:edit_tool_rarr,
+                quality_drp_arr:edit_quality_rarr,
+                button_drp_arr:edit_btn_arr,
+                machine_drp_arr:edit_machine_arr,
+            },
+            success:function(res){
+                console.log(res);
+                if (res===true) {
+                    get_button_configuration_data();
+                    $('#Button_interface_edit').modal('hide');
+                
+                }
+            },
+            error:function(er){
+                console.log("Add Button User interface modal insertion ajax error");
+            }
+        });
+    }
 
 });
 
@@ -2997,10 +3060,10 @@ async function get_button_configuration_data(){
                               
                             +'</div>'
                             +'<div style="position:absolute;margin-top:9rem;margin-left:7.6rem;border-radius:0.25rem;background-color:white;height:max-content;width:max-content;" class="class_check  p-2 d-none">'
-                                    +'<p style="font-size:0.9rem;font-weight:550;">'+element['machine_id_group'].split(',').length+' MACHINES</p>'
-                                    +'<div class="d-flex flex-column justify-content-center align-items-center machine_hover_content_'+element['set_id']+'">'
+                                +'<p style="font-size:0.9rem;font-weight:550;">'+element['machine_id_group'].split(',').length+' MACHINES</p>'
+                                +'<div class="d-flex flex-column justify-content-center align-items-center machine_hover_content_'+element['set_id']+'">'
                                     
-                                    +'</div>'
+                                +'</div>'
                                 
                                 +'</div>'
                         +'</div>'
@@ -3442,7 +3505,7 @@ function edit_multiple_divs(qval,tval,drval,indexval){
                 +'<div class="input-box fieldStyle">'
                     +'<input type="text" class="form-control font_weight btn_ui_edit_btnnum" id="btn_num" value="" required="">'
                     +'<label class="input-padding">Button Number<span class="paddingm validate">*</span></label>'
-                    +'<span class="paddingm float-start validate " id=""></span>'
+                    +'<span class="paddingm float-start validate edit_btn_ui_err" id=""></span>'
                 +'</div>'
             +'</div>'
             +'<div class="box float-start col-lg-3" style="width:30%;padding:0;padding-right:10px;">'
@@ -3453,7 +3516,7 @@ function edit_multiple_divs(qval,tval,drval,indexval){
                         +'<option value="Quality">Quality</option>'
                     +'</select>'
                     +'<label for="" class="input-padding">Configuration Category <span class="paddingm validate">*</span></label>'
-                    +'<span class="paddingm float-start validate" id="primary_category_err_edit_btn_ui"></span>'
+                    +'<span class="paddingm float-start validate edit_config_err" id="primary_category_err_edit_btn_ui"></span>'
                 +'</div>'
             +'</div>'
             +'<div class=" box float-start col-lg-3" style="width:30%;padding:0;padding-right:10px;">'
@@ -3466,7 +3529,7 @@ function edit_multiple_divs(qval,tval,drval,indexval){
                                 +'<option value="Unplanned">Unplanned</option>'
                             +'</select>'
                             +'<label for="" class="input-padding">Downtime Category <span class="paddingm validate">*</span></label>'
-                            +'<span   class="paddingm float-start validate" id="err_dcategory"></span>'
+                            +'<span   class="paddingm float-start validate edit_dcerr" id="err_dcategory"></span>'
                         +'</div>'
                     +'</div> '
 
@@ -3475,7 +3538,7 @@ function edit_multiple_divs(qval,tval,drval,indexval){
                             +'<select name="" class="form-select font_weight btn_ui_edit_downtime_rdrp" id="btn_ui_edowntime_rdrp" disabled>'
                             +'</select>'
                             +'<label for="" class="input-padding">Downtime Reasons <span class="paddingm validate">*</span></label>'
-                            +'<span   class="paddingm float-start validate" id="err_dcategory"></span>'
+                            +'<span   class="paddingm float-start validate edit_drerr" id="err_dcategory"></span>'
                         +'</div>'
                     +'</div>'
                     +'<div class="box float start tool_hide_visible_property_edit d-none">'
@@ -3483,7 +3546,7 @@ function edit_multiple_divs(qval,tval,drval,indexval){
                             +'<select name="" class="form-select font_weight btn_ui_edit_tool_drp" id="btn_ui_etool_ndrp" >'
                             +'</select>'
                             +'<label for="" class="input-padding">Tool Name</label>'
-                            +'<span   class="paddingm float-start validate" id="err_tool_name"></span>'
+                            +'<span   class="paddingm float-start validate edit_terr" id="err_tool_name"></span>'
                         +'</div>'
                     +'</div>'
                 +'</div>'
@@ -3493,7 +3556,7 @@ function edit_multiple_divs(qval,tval,drval,indexval){
                             +'<select name="" class="form-select font_weight btn_ui_edit_quality_drp" id="btn_ui_equality_rdrp">'
                             +'</select>'
                             +'<label for="" class="input-padding">Quality Reasons <span class="paddingm validate">*</span></label>'
-                            +'<span class="paddingm float-start validate" id="err_tool_name"></span>'
+                            +'<span class="paddingm float-start validate edit_qerr" id="err_tool_name"></span>'
                         +'</div>'
                     +'</div>' 
                 +'</div>' 
