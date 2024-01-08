@@ -625,7 +625,7 @@
                         <div class="input-box fieldStyle">
                             <input type="text" class="form-control font_weight btn_ui_add_btnnum" id="btn_num" value="" required="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                             <label class="input-padding">Button Number<span class="paddingm validate">*</span></label>
-                            <span class="paddingm float-start validate" id="EOTEEPErr"></span>
+                            <span class="paddingm float-start validate add_btn_ui_err" ></span>
                         </div>
                     </div>
                     <div class="box float-start col-lg-3" style="width:30%;padding:0;padding-right:10px;">
@@ -636,7 +636,7 @@
                                 <option value="Quality">Quality</option>
                             </select>
                             <label for="" class="input-padding">Configuration Category <span class="paddingm validate">*</span></label>
-                            <span class="paddingm float-start validate" id="primary_category_err_add_btn_ui"></span>
+                            <span class="paddingm float-start validate config_btn_validation " id="primary_category_err_add_btn_ui"></span>
                         </div>
                     </div>
                     <div class=" box float-start col-lg-3" style="width:30%;padding:0;padding-right:10px;">
@@ -649,7 +649,7 @@
                                         <option value="Unplanned">Unplanned</option>
                                     </select>
                                     <label for="" class="input-padding">Downtime Category <span class="paddingm validate">*</span></label>
-                                    <span   class="paddingm float-start validate" id="err_dcategory"></span>
+                                    <span   class="paddingm float-start validate drp_cerr" id=""></span>
                                 </div>
                             </div> 
 
@@ -658,7 +658,7 @@
                                     <select name="" class="form-select font_weight btn_ui_add_downtime_rdrp" id="btn_ui_adowntime_rdrp" disabled>
                                     </select>
                                     <label for="" class="input-padding">Downtime Reasons <span class="paddingm validate">*</span></label>
-                                    <span   class="paddingm float-start validate" id="err_dcategory"></span>
+                                    <span   class="paddingm float-start validate drp_rerr" id=""></span>
                                 </div>
                             </div> 
                             <div class="box float start tool_hide_visible_property d-none">
@@ -666,7 +666,7 @@
                                     <select name="" class="form-select font_weight btn_ui_add_tool_drp" id="btn_ui_atool_ndrp" >
                                     </select>
                                     <label for="" class="input-padding">Tool Name</label>
-                                    <span   class="paddingm float-start validate" id="err_tool_name"></span>
+                                    <span   class="paddingm float-start validate tval_err" id="err_tool_name"></span>
                                 </div>
                             </div>
                         </div>
@@ -676,7 +676,7 @@
                                     <select name="" class="form-select font_weight btn_ui_add_quality_drp" id="btn_ui_aquality_rdrp">
                                     </select>
                                     <label for="" class="input-padding">Quality Reasons <span class="paddingm validate">*</span></label>
-                                    <span class="paddingm float-start validate" id="err_tool_name"></span>
+                                    <span class="paddingm float-start validate add_btn_qerr" id=""></span>
                                 </div>
                             </div> 
                         </div> 
@@ -1395,7 +1395,7 @@ $(document).on('click','.add_button_reasons',function(){
             +'<div class="input-box fieldStyle">'
                 +'<input type="text" class="form-control font_weight btn_ui_add_btnnum" id="btn_num" value="" required="">'
                 +'<label class="input-padding">Button Number<span class="paddingm validate">*</span></label>'
-                +'<span class="paddingm float-start validate" id="EOTEEPErr"></span>'
+                +'<span class="paddingm float-start validate add_btn_ui_err" id=""></span>'
             +'</div>'
         +'</div>'
         +'<div class="box float-start col-lg-3" style="width:30%;padding:0;padding-right:10px;">'
@@ -1406,7 +1406,7 @@ $(document).on('click','.add_button_reasons',function(){
                     +'<option value="Quality">Quality</option>'
                 +'</select>'
                 +'<label for="" class="input-padding">Configuration Category <span class="paddingm validate">*</span></label>'
-                +'<span class="paddingm float-start validate" id="primary_category_err_add_btn_ui"></span>'
+                +'<span class="paddingm float-start validate config_btn_validation" id="primary_category_err_add_btn_ui"></span>'
             +'</div>'
         +'</div>'
         +'<div class=" box float-start col-lg-3" style="width:30%;padding:0;padding-right:10px;">'
@@ -1419,7 +1419,7 @@ $(document).on('click','.add_button_reasons',function(){
                             +'<option value="Unplanned">Unplanned</option>'
                         +'</select>'
                         +'<label for="" class="input-padding">Downtime Category <span class="paddingm validate">*</span></label>'
-                        +'<span   class="paddingm float-start validate" id="err_dcategory"></span>'
+                        +'<span   class="paddingm float-start validate drp_cerr" id="err_dcategory"></span>'
                     +'</div>'
                 +'</div> '
 
@@ -1428,7 +1428,7 @@ $(document).on('click','.add_button_reasons',function(){
                         +'<select name="" class="form-select font_weight btn_ui_add_downtime_rdrp" id="btn_ui_adowntime_rdrp" disabled>'
                         +'</select>'
                         +'<label for="" class="input-padding">Downtime Reasons <span class="paddingm validate">*</span></label>'
-                        +'<span   class="paddingm float-start validate" id="err_dcategory"></span>'
+                        +'<span   class="paddingm float-start validate drp_rerr" id=""></span>'
                     +'</div>'
                 +'</div>'
                 +'<div class="box float start tool_hide_visible_property d-none">'
@@ -1436,7 +1436,7 @@ $(document).on('click','.add_button_reasons',function(){
                         +'<select name="" class="form-select font_weight btn_ui_add_tool_drp" id="btn_ui_atool_ndrp" >'
                         +'</select>'
                         +'<label for="" class="input-padding">Tool Name</label>'
-                        +'<span   class="paddingm float-start validate" id="err_tool_name"></span>'
+                        +'<span   class="paddingm float-start validate tval_err" id="err_tool_name"></span>'
                     +'</div>'
                 +'</div>'
             +'</div>'
@@ -1446,7 +1446,7 @@ $(document).on('click','.add_button_reasons',function(){
                         +'<select name="" class="form-select font_weight btn_ui_add_quality_drp" id="btn_ui_aquality_rdrp">'
                         +'</select>'
                         +'<label for="" class="input-padding">Quality Reasons <span class="paddingm validate">*</span></label>'
-                        +'<span class="paddingm float-start validate" id="err_tool_name"></span>'
+                        +'<span class="paddingm float-start validate add_btn_qerr" id="err_tool_name"></span>'
                     +'</div>'
                 +'</div>' 
             +'</div>' 
@@ -1483,58 +1483,214 @@ function find_checkbox_val_arr(checkboxname){
     return machine_arr;
 }
 
+// add button configuration input validation
+function add_btn_validation(classref,errref){
+    var final_res = 0;
+    jQuery('.'+classref).each(function(index){
+        if (this.value==="") {
+            $('.'+errref+':eq('+index+')').text('Required***');
+            final_res = parseInt(final_res)+1;
+        }else{
+            $('.'+errref+':eq('+index+')').text('');
+        }
+    });
+
+    if (parseInt(final_res)>0) {
+        return false;
+    }else if(parseInt(final_res)===0){
+        return true;
+    }
+}
+
+// add button configuration config dropdown 
+function add_btn_config_drp_validation(classref,errref){
+    var final_res_vali = 0;
+    jQuery('.'+classref).each(function(index){
+        if (this.value==="select") {
+            $('.'+errref+':eq('+index+')').text('Required***');
+            final_res_vali = parseInt(final_res_vali)+1;
+        }else{
+            var config_val = this.value;
+            console.log("config drp value:\t"+config_val);
+            if (config_val==="Quality") {
+                var qval = $('.btn_ui_add_quality_drp:eq('+index+')').val();
+               
+                if(qval==="select" || qval==="" || qval===undefined || qval===null){
+                    $('.add_btn_qerr:eq('+index+')').text('Required***');
+                    final_res_vali = parseInt(final_res_vali)+1;
+                }else{
+                    $('.add_btn_qerr:eq('+index+')').text('');
+
+                }
+            }
+            else if(config_val==="Downtime"){
+                var dcval = $('.btn_ui_add_downtime_cdrp:eq('+index+')').val();
+                console.log("downtime category reason ");
+                console.log(dcval);
+                if(dcval==="select" || dcval==="" || dcval===undefined || dcval===null){
+                    $('.drp_cerr:eq('+index+')').text('Required***');
+                    final_res_vali = parseInt(final_res_vali)+1;
+                }else{
+                    $('.drp_cerr:eq('+index+')').text('');
+                    var drval = $('.btn_ui_add_downtime_rdrp:eq('+index+')').val();
+                    if (drval==="select" || drval==="" || drval===undefined || drval===null) {
+                        $('.drp_rerr:eq('+index+')').text('Required***');
+                        final_res_vali = parseInt(final_res_vali)+1;
+                    }else{
+                        $('.drp_rerr:eq('+index+')').text('');
+                        if (drval==="2"||drval==="3") {
+                            var tval = $('.btn_ui_add_tool_drp:eq('+index+')').val();
+                            if (tval==="select" || tval==="" || tval===undefined || tval===null) {
+                                $('.tval_err:eq('+index+')').text('Required***');
+                                final_res_vali = parseInt(final_res_vali)+1;
+                            }else{
+                                $('.tval_err:eq('+index+')').text('');
+                            }
+                        }
+                    }
+                }
+            }
+            $('.'+errref+':eq('+index+')').text('');
+        }
+    });
+
+    if (parseInt(final_res_vali)>0) {
+        return false;
+    }else if(parseInt(final_res_vali)===0){
+        return true;
+    }
+}
+
+// onblur button id function validation 
+$(document).on('blur','.btn_ui_add_btnnum',function(){
+    var classref = $('.btn_ui_add_btnnum');
+    var findclassrefindex = classref.index(this);
+    console.log("btn add conf index :\t"+findclassrefindex);
+    var value = $('.btn_ui_add_btnnum:eq('+findclassrefindex+')').val();
+    if (value==="") {
+        $('.add_btn_ui_err:eq('+findclassrefindex+')').text('Required ***');        
+    }else{
+        var numbers = /^[0-9]+$/;
+        if (numbers.test(value)) {
+            $('.add_btn_ui_err:eq('+findclassrefindex+')').text('');
+        }else{
+            $('.add_btn_ui_err:eq('+findclassrefindex+')').text('Invalid Data***');
+        }
+    }
+});
+
+// onblur function config dropdown
+$(document).on('blur','.config_category_drp',function(){
+    var config_classref = $('.config_category_drp');
+    var find_config_classref = config_classref.index(this);
+    var value_ref = $('.config_category_drp:eq('+find_config_classref+')').val();
+    console.log("config dropdown classref index:\t"+find_config_classref);
+    if (value_ref==="select") {
+        $('.config_btn_validation:eq('+find_config_classref+')').text('Required***');
+    }else{
+        $('.config_btn_validation:eq('+find_config_classref+')').text('');
+    }
+});
+
+// onblur function quality dropdwon
+$(document).on('blur','.btn_ui_add_quality_drp',function(){
+    var config_classref = $('.btn_ui_add_quality_drp');
+    var find_config_classref = config_classref.index(this);
+    var value_ref = $('.btn_ui_add_quality_drp:eq('+find_config_classref+')').val();
+    if (value_ref==="select") {
+        $('.add_btn_qerr:eq('+find_config_classref+')').text('Required***');
+    }else{
+        $('.add_btn_qerr:eq('+find_config_classref+')').text('');
+    }
+});
+
+// onblur function downtime category dropdown
+$(document).on('blur','.btn_ui_add_downtime_cdrp',function(){
+    var config_classref = $('.btn_ui_add_downtime_cdrp');
+    var find_config_classref = config_classref.index(this);
+    var value_ref = $('.btn_ui_add_downtime_cdrp:eq('+find_config_classref+')').val();
+    if (value_ref==="select") {
+        $('.drp_cerr:eq('+find_config_classref+')').text('Required***');
+    }else{
+        $('.drp_cerr:eq('+find_config_classref+')').text('');
+    }
+});
+
+// onblur function downtime reasons dropdown
+$(document).on('blur','.btn_ui_add_downtime_rdrp',function(){
+    var config_class_ref = $('.btn_ui_add_downtime_rdrp');
+    var find_class_index = config_class_ref.index(this);
+    var value_ref = $('.btn_ui_add_downtime_rdrp:eq('+find_class_index+')').val();
+    if (value_ref==="select") {
+        $('.drp_rerr:eq('+find_class_index+')').text('Required***');
+    }else{
+        $('.drp_rerr:eq('+find_class_index+')').text('');
+    }
+});
+
+
+// onblur function downtime tool dropdown
+$(document).on('blur','.btn_ui_add_tool_drp',function(){
+    var config_class_ref = $('.btn_ui_add_tool_drp');
+    var find_class_index = config_class_ref.index(this);
+    var value_ref = $('.btn_ui_add_tool_drp:eq('+find_class_index+')').val();
+    if (value_ref==="select") {
+        $('.tval_err:eq('+find_class_index+')').text('Required***');
+    }else{
+        $('.tval_err:eq('+find_class_index+')').text('');
+    }
+});
+
 // add button user itnerface function add ajax function
 $(document).on('click','.add_btn_ui_submission',function(){
     console.log("add button user interface modal submission click");
-    
-    const get_config_arr = find_class_val_arr('config_category_drp');
-    const get_downtime_arr = find_class_val_arr('btn_ui_add_downtime_rdrp');
-    const get_quality_arr = find_class_val_arr('btn_ui_add_quality_drp');
-    const get_tool_arr = find_class_val_arr('btn_ui_add_tool_drp');
-    const get_button_arr = find_class_val_arr('btn_ui_add_btnnum');
-    // const get_machine_arr = find_checkbox_val_arr('input[name="btn_ui_add_machine_val"]:checked');
-    const get_machine_arrtmp = find_checkbox_val_arr('filter_admachine_val');
-    const get_machine_arr = new Array();
-    get_machine_arrtmp.forEach(function(item,index){
-        if (item!="all") {
-            get_machine_arr.push(item);
-        }
-    });
-    console.log(get_machine_arr);
-    // console.log("config dropdown value array");
-    // console.log(get_config_arr);
-    // console.log(get_downtime_arr);
-    // console.log(get_quality_arr);
-    // console.log(get_tool_arr);
-    // console.log(get_button_arr);
-    // console.log(get_machine_arr);
-
-    $.ajax({
-        url:"<?php echo base_url('Settings_controller/add_btn_ui_insert'); ?>",
-        method:"POST",
-        dataType:"JSON",
-        cache: false, 
-        data:{
-            config_drp_arr:get_config_arr,
-            downtime_drp_arr:get_downtime_arr,
-            tool_drp_arr:get_tool_arr,
-            quality_drp_arr:get_quality_arr,
-            button_drp_arr:get_button_arr,
-            machine_drp_arr:get_machine_arr,
-        },
-        success:function(res){
-            console.log(typeof(res));
-            if (res===true) {
-                get_button_configuration_data();
-                $('#Button_interface_add').modal('hide');
-              
+    var result_btn = add_btn_validation('btn_ui_add_btnnum','add_btn_ui_err');
+    var result_config_drp = add_btn_config_drp_validation('config_category_drp','config_btn_validation');
+    console.log("final button result:\t"+result_btn);
+    console.log("final config dropdown value:\t"+result_config_drp);
+   
+    if (result_btn===true && result_config_drp===true ) {
+        const get_config_arr = find_class_val_arr('config_category_drp');
+        const get_downtime_arr = find_class_val_arr('btn_ui_add_downtime_rdrp');
+        const get_quality_arr = find_class_val_arr('btn_ui_add_quality_drp');
+        const get_tool_arr = find_class_val_arr('btn_ui_add_tool_drp');
+        const get_button_arr = find_class_val_arr('btn_ui_add_btnnum');
+        const get_machine_arrtmp = find_checkbox_val_arr('filter_admachine_val');
+        const get_machine_arr = new Array();
+        get_machine_arrtmp.forEach(function(item,index){
+            if (item!="all") {
+                get_machine_arr.push(item);
             }
-        },
-        error:function(er){
-            console.log("Add Button User interface modal insertion ajax error");
-        }
-    });
+        });
+        console.log(get_machine_arr);
+        $.ajax({
+            url:"<?php echo base_url('Settings_controller/add_btn_ui_insert'); ?>",
+            method:"POST",
+            dataType:"JSON",
+            cache: false, 
+            data:{
+                config_drp_arr:get_config_arr,
+                downtime_drp_arr:get_downtime_arr,
+                tool_drp_arr:get_tool_arr,
+                quality_drp_arr:get_quality_arr,
+                button_drp_arr:get_button_arr,
+                machine_drp_arr:get_machine_arr,
+            },
+            success:function(res){
+                console.log(typeof(res));
+                if (res===true) {
+                    get_button_configuration_data();
+                    $('#Button_interface_add').modal('hide');
+                
+                }
+            },
+            error:function(er){
+                console.log("Add Button User interface modal insertion ajax error");
+            }
+        });
 
+    }
+   
 });
 
 
@@ -2867,7 +3023,7 @@ async function get_button_configuration_data(){
                     if (pele === "all") {
                         
                     }else{
-                        hover_ele = hover_ele.add('<span style="color:#979a9a;font-size:0.9rem;font-weight:500;">'+pele+' '+tmp_mnarr[pindex]+'</span>');
+                        hover_ele = hover_ele.add('<span style="color:#979a9a;font-size:0.9rem;font-weight:500;">'+pele+'&nbsp;&nbsp;&nbsp;'+tmp_mnarr[pindex]+'</span>');
                     }
 
                 });
@@ -3270,12 +3426,15 @@ function edit_multiple_divs(qval,tval,drval,indexval){
 
     var last_icon = "";
     var icon_click_class = "";
+    var height_width = 0;
     if (indexval===0) {
         last_icon = "plus-icon.png";
         icon_click_class = "edit_add_button_reasons";
+        height_width = 2.3;
     }else{
         last_icon = "delete.png";
         icon_click_class = "edit_del_button_reasons";
+        height_width = 1.3;
     }
     return new Promise(function(resolve,reject){
         $('.dynamic_btn_reasons_editcontent').append('<div class="row mt-4 edit_appended_reason_div">'
@@ -3283,7 +3442,7 @@ function edit_multiple_divs(qval,tval,drval,indexval){
                 +'<div class="input-box fieldStyle">'
                     +'<input type="text" class="form-control font_weight btn_ui_edit_btnnum" id="btn_num" value="" required="">'
                     +'<label class="input-padding">Button Number<span class="paddingm validate">*</span></label>'
-                    +'<span class="paddingm float-start validate" id="EOTEEPErr"></span>'
+                    +'<span class="paddingm float-start validate " id=""></span>'
                 +'</div>'
             +'</div>'
             +'<div class="box float-start col-lg-3" style="width:30%;padding:0;padding-right:10px;">'
@@ -3340,7 +3499,7 @@ function edit_multiple_divs(qval,tval,drval,indexval){
                 +'</div>' 
             +'</div>' 
             +'<div class="col-lg-1 d-flex flex-row justify-content-center align-items-center " style="cursor:pointer;">'
-                +'<img src="<?php echo  base_url() ?>/assets/img/'+last_icon+'?version=<?php  echo rand() ?>" alt="" class="'+icon_click_class+'" style="width:1.3rem;height:1.3rem;">'
+                +'<img src="<?php echo  base_url() ?>/assets/img/'+last_icon+'?version=<?php  echo rand() ?>" alt="" class="'+icon_click_class+'" style="width:'+height_width+'rem;height:'+height_width+'rem;">'
             +'</div>' 
         +'</div>');
         var classindex = parseInt($('.edit_appended_reason_div').length)-1;
@@ -3368,5 +3527,6 @@ $(document).on('click','.imghover_mdetails',function(event){
     $('.class_check:eq('+find_index+')').addClass('d-none');
    }
 });
+
 
 </script>

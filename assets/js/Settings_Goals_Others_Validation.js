@@ -890,6 +890,15 @@ $(document).on('change','.btn_ui_add_downtime_cdrp',function(){
 	split_downtime_drp(dcategory,"btn_ui_add_downtime_rdrp",null,find_dc_drp);
 });
 
+// edit modal 
+// category onchange release downtime reasons
+$(document).on('blur','.btn_ui_edit_downtime_cdrp',function(){
+	var getrefindex = $('.btn_ui_edit_downtime_cdrp');
+	var find_index_num = getrefindex.index(this);
+	var edit_cval = $('.btn_ui_edit_downtime_cdrp:eq('+find_index_num+')').val();
+	split_downtime_drp(edit_cval,"btn_ui_edit_downtime_rdrp",null,find_index_num);
+});
+
 // add modal 
 // reason onchange release tool dropdown
 $(document).on('change','.btn_ui_add_downtime_rdrp',function(){
@@ -908,9 +917,21 @@ $(document).on('change','.btn_ui_add_downtime_rdrp',function(){
 });
 
 // edit modal
-$(document).on('change','#btn_ui_edowntime_ecdrp',function(){
-	var edit_category = $('#btn_ui_edowntime_ecdrp').val();
-	split_downtime_drp(edit_category,"btn_ui_edowntime_erdrp","null");
+// reason onchange relese tool dropdown
+$(document).on('change','.btn_ui_edit_downtime_rdrp',function(){
+	var getindexr = $('.btn_ui_edit_downtime_rdrp');
+	var find_dr_drp = getindexr.index(this);
+	var get_reason_id = $('.btn_ui_edit_downtime_rdrp:eq('+find_dr_drp+')').val();
+	$('.btn_ui_edit_tool_drp:eq('+find_dr_drp+')').val('select');
+	if (get_reason_id==="2" || get_reason_id==="3") {
+		$('.tool_hide_visible_property_edit:eq('+find_dr_drp+')').removeClass('d-none');
+		$('.tool_hide_visible_property_edit:eq('+find_dr_drp+')').addClass('d-inline');
+
+	}else{
+		$('.tool_hide_visible_property_edit:eq('+find_dr_drp+')').removeClass('d-inline');
+		$('.tool_hide_visible_property_edit:eq('+find_dr_drp+')').addClass('d-none');
+
+	}
 });
 
 // common dropdown validation function
