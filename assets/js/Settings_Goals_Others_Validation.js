@@ -611,6 +611,8 @@ $(document).on('click','#add_btn_interface',function(event){
 	$('.downtime_drps_btnui').addClass('d-none');
 	$('.quality_drp_btnui').addClass('d-none');
 	$('#btn_ui_check_dq').val('select');
+	$('.dynamic_btn_reasons_content').empty();
+	$('.btn_ui_add_btnnum').val('');
 	open_button_interface_modal("btn_ui_add_quality_drp",null,"btn_ui_add_tool_drp",null,"Button_interface_add",0,"btn_ui_add_downtime_rdrp",null,"btn_conf_am_content");
 });
 
