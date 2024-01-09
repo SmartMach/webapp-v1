@@ -1769,12 +1769,19 @@ $(document).on('click','.update_btn_ui',function(){
         console.log("update submission function");
         const edit_config_arr = find_class_val_arr('editconfig_category_drp');
         const edit_btn_arr = find_class_val_arr('btn_ui_edit_btnnum');
-        const edit_machine_arr = find_class_val_arr('filter_edmachine_val');
+        const edit_machine_arrtmp = find_checkbox_val_arr('filter_edmachine_val');
         const edit_downtime_rarr = find_class_val_arr('btn_ui_edit_downtime_rdrp');
         const edit_quality_rarr = find_class_val_arr('btn_ui_edit_quality_drp');
         const edit_tool_rarr = find_class_val_arr('btn_ui_edit_tool_drp');
         var set_id = $('#Button_interface_edit').attr('set_data');
-    
+        const edit_machine_arr = new Array();
+        edit_machine_arrtmp.forEach(function(item,index){
+            if (item!="all") {
+                edit_machine_arr.push(item);
+            }
+        });
+        console.log(edit_machine_arr);
+        
         $.ajax({
             url:"<?php echo base_url('Settings_controller/edit_btn_ui_insert'); ?>",
             method:"POST",
@@ -1801,6 +1808,7 @@ $(document).on('click','.update_btn_ui',function(){
                 console.log("Add Button User interface modal insertion ajax error");
             }
         });
+        
     }
 
 });
