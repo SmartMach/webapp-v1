@@ -328,6 +328,28 @@ class PDM_controller extends BaseController{
         
     }
 
+    // For Python API
+    public function updateDownGraph_api(){
+        // Receive Data from Python API - Schedular
+        $inputData = json_decode($this->request->getBody(), true);
+
+        $dataVal= $inputData["Data"];
+        $machineRef= $inputData["MachineRef"];
+        $splitRef= $inputData["SplitRef"];
+        $timeArray= $inputData["TimeArray"];
+        $durationArray= $inputData["DurationArray"];
+        $last_updated_by = "Admin";
+        $split_array = $inputData['split_arr'];
+        $date_array = $inputData['date_array'];
+        $target = $inputData['target'];
+
+        $database = $inputData['Database'];
+           
+        $res = $this->data->updateDownGraph($dataVal,$machineRef,$splitRef,$timeArray,$durationArray,$last_updated_by,$split_array,$date_array,$target,$database);
+
+        return $this->response->setStatusCode(200)->setJSON(['message' => $res]);
+    }
+
     // downtime graph updation
     public function updateDownGraph(){
         if ($this->request->isAJAX()) {

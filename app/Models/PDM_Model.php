@@ -307,7 +307,11 @@ class PDM_Model extends Model{
         return $res[0]['tool_changeover_id'];
     }
 
-    public function updateDownGraph($data,$machineRef,$splitRef,$timeArray,$durationArray,$last_updated_by,$split_array,$date_array,$target){
+    public function updateDownGraph($data,$machineRef,$splitRef,$timeArray,$durationArray,$last_updated_by,$split_array,$date_array,$target,$database=false){
+
+        if ($database != false) {
+            $this->site_creation['database'] = $database;
+        }
 
         $db = \Config\Database::connect($this->site_creation);
         $builder = $db->table('pdm_downtime_reason_mapping');
