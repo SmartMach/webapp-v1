@@ -5,7 +5,118 @@
     .left-align{
         padding-left:1.4rem;
     }
+
     
+
+    /* table header css alignment mobile responsive work starting */
+    .txt_header_align{
+        white-space: break-spaces;
+        overflow:hidden;
+
+    }
+    .res_h{
+        display:inline;
+    }
+    .res_d{
+        display:flex;
+        flex-direction:row;
+
+
+    }
+    .res_baswidth{
+        width:83.5%;
+        display:flex;
+        flex-direction:row;
+        padding:0;
+        margin:0;
+    }
+    .res_basewidth1{
+        width:16.5%;
+        display:flex;
+        flex-direction:row;
+        padding:0;
+        margin:0;
+    }
+
+    .resfw{
+        padding-left:1rem;
+    }
+    .pd_1{
+        padding-left:0.7rem;
+    }
+    .tb_res_header{
+        color:#979a9a;
+        font-size:0.8rem;
+        margin:0;
+        padding:0;
+        display:none;
+    }
+        
+
+    /* media query  */
+    @media only screen and (max-width:1000px){
+        .h_mar_l{
+            margin-left:0rem;
+        }
+    }
+
+    /* mobile screen for machine settings  */
+    /* this media query is comfortale for 576 to 768 px this media query working */
+    @media only screen and (max-width:768px){
+        .res_h{
+            display:none;
+        }
+        .mr_left_content_sec{
+            margin-left:0rem !important;
+            top:0rem !important;
+            position:inherit !important;
+        }
+
+        .res_d{
+            flex-direction:column-reverse;
+            padding:1rem;
+
+        }
+        .res_baswidth{
+            display:flex;
+            width:100%;
+            flex-direction:row;
+            align-items:center;
+            justify-content:space-around;
+            flex-wrap:wrap;
+        }
+        .res_basewidth1{
+            display:flex;
+            width:100%;
+            flex-direction:row;
+            align-items:center;
+            justify-content:space-between;
+        }
+       
+        .justify_content_end_res{
+            justify-content:end !important;
+        }
+        .resfw{
+           padding-left:0rem;
+        }
+        .res_width{
+            width:33% !important;
+            justify-content:space-evenly;
+            flex-direction:column;
+            align-items:start !important;
+            padding-left:0rem;
+
+        }
+        .tb_res_header{
+            display:inline;
+        }
+       
+        
+    }
+
+   
+
+    /* table header mobile responsive header css end */
 </style>
 <?php 
 $session = \Config\Services::session();
@@ -51,36 +162,146 @@ $session = \Config\Services::session();
             </div>
         </nav>
         <div class="data_section">
-            <div class="table_header table_header_p">
-                <div class="row paddingm">
-                    <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
-                      <p class="h_mar_l paddingm">MACHINE ID</p>
-                    </div>
-                    <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
-                      <p class="h_mar_l paddingm">MACHINE NAME</p>
-                    </div>
-                    <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_e align_c text_align_c">
-                      <p class="paddingm h_mar_r">MACHINE RATE HOUR</p>
-                    </div>
-                    <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_e align_c text_align_c">
-                      <p class="paddingm h_mar_r">MACHINE OFF RATE HOUR</p>
-                    </div>
-                    <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
-                      <p class="h_mar_l paddingm">TONNAGE</p>
-                    </div>
-                    <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
-                      <p class="h_mar_l paddingm">MACHINE BRAND</p>
-                    </div>
-                    <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
-                      <p class="h_mar_l paddingm">STATUS</p>
-                    </div>
-                    <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_c align_c text_align_c">
-                      <p class="paddingm">ACTION</p>
+            <div class="res_h">
+                <div class="table_header table_header_p ">
+                    <div class="row paddingm">
+                        <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c txt_header_align">
+                        <p class="h_mar_l paddingm">MACHINE ID</p>
+                        </div>
+                        <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c txt_header_align">
+                        <p class="h_mar_l paddingm">MACHINE NAME</p>
+                        </div>
+                        <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_e align_c text_align_c txt_header_align">
+                        <p class="paddingm h_mar_r">MACHINE RATE HOUR</p>
+                        </div>
+                        <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_e align_c text_align_c txt_header_align">
+                        <p class="paddingm h_mar_r">MACHINE OFF RATE HOUR</p>
+                        </div>
+                        <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c txt_header_align">
+                        <p class="h_mar_l paddingm">TONNAGE</p>
+                        </div>
+                        <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c txt_header_align">
+                        <p class="h_mar_l paddingm">MACHINE BRAND</p>
+                        </div>
+                        <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c txt_header_align">
+                        <p class="h_mar_l paddingm">STATUS</p>
+                        </div>
+                        <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_c align_c text_align_c txt_header_align">
+                        <p class="paddingm">ACTION</p>
+                        </div>
                     </div>
                 </div>
             </div>
-
+            
             <div class="contentMachine tableDataContainer paddingm ">
+                <!-- <div class="table_data">
+                    <div class="row paddingm res_d ">
+                        <div class="res_baswidth">
+                            <div class="col-1 col marleft table_data_section display_f align_c res_width pd_1" style="width:10%;">
+                                <p class="tb_res_header fnt_fam " >Machine ID</p>
+                                <p class="table_data_element fnt_fam ">MC1001</p>
+                            </div>
+                            <div class="col-2 col marleft table_data_section display_f align_c res_width pd_1" style="width:20%">
+                                    <p class="tb_res_header fnt_fam" >Machine Name</p>
+                                    <p class="table_data_element fnt_fam " title='+item.machine_name+'>IMO1</p>
+                            </div>       
+                            <div class="col-2 col paddingm marright table_data_section display_f justify_e align_c res_width" style="width:20%;">
+                                <p class="tb_res_header fnt_fam" >Machine Rate Hour</p>
+                                <p class="paddingm h_mar_r table_data_element fnt_fam">
+                                    <i class="fa fa-inr mar_right_logo" style="font-size:0.70rem;"></i>435.00
+                                </p>
+                            </div>
+                            <div class="col-2 col paddingm table_data_section display_f justify_e align_c res_width" style="width:20%;">
+                                <p class="tb_res_header fnt_fam" >Machine Off Rate Hour</p>
+                                <p class="paddingm h_mar_r table_data_element fnt_fam">
+                                    <i class="fa fa-inr mar_right_logo " style="font-size:0.70rem;"></i>435.00
+                                </p>
+                            </div>
+                            <div class="col-1 col marleft table_data_section display_f align_c res_width pd_1" style="width:10%;">
+                                <p class="tb_res_header fnt_fam" >Tonnage</p>
+                                <p class="table_data_element fnt_fam ">350T</p>
+                            </div>
+                            <div class="col-2 col marleft table_data_section display_f align_c res_width pd_1" style="width:20%;">
+                                <p class="tb_res_header fnt_fam" >Machine Brand</p>
+                                <p class="table_data_element fnt_fam ">Milacron</p>
+                            </div>
+                        </div>
+                        <div class="res_basewidth1">
+                            <div class="col-1 col marleft settings_active marleft table_data_section display_f align_c fnt_active resfw" style="width:50%;">
+                                <p class="table_data_element fnt_fam fnt_active"><i class="fa fa-circle active_dot "></i>Active</p>
+                            </div>
+                            <div class="col-1 col d-flex justify-content-center fasdiv resfw justify_content_end_res" style="width:50%;">
+                                <ul class="edit-menu" style="z-index:10;">
+                                    <li class="d-flex justify-content-center">
+                                        <a href="javascript:function(){return false;}">
+                                            <i class="edit fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>
+                                        </a>
+                                        <ul class="edit-subMenu" style="z-index:10;">
+                                            <li class="edit-opt info-machine1" lvalue="'+item.machine_id+'" style="display:'+info_machine+';"><a href="#"><img src="<?php echo base_url('assets/img/info.png') ?>" class="icons_style" style="margin-left:5px;">INFO</a></li>
+                                            <li class="edit-opt edit-machine hover_work" lvalue="'+item.machine_id+'" style="display:'+edit_machine+';"><a href="#" style=""><img src="<?php echo base_url('assets/img/pencil.png') ?>" class="icons_style" style="margin-left:10px;">EDIT</a></li>
+                                            <li class="edit-opt deactivate-machine" lvalue="'+item.machine_id+'" svalue="'+item.status+'" style="display:'+deactivate_machine+';"><a href="#" style="border-bottom:none;"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="icons_style" style="margin-left:10px;">DEACTIVATE</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>              
+                            </div>  
+                        </div>
+                                              
+                    </div>
+                </div>
+                <div class="table_data">
+                    <div class="row paddingm res_d ">
+                        <div class="res_baswidth">
+                            <div class="col-1 col marleft table_data_section display_f align_c res_width pd_1" style="width:10%;">
+                                <p class="tb_res_header fnt_fam " >Machine ID</p>
+                                <p class="table_data_element fnt_fam ">MC1001</p>
+                            </div>
+                            <div class="col-2 col marleft table_data_section display_f align_c res_width pd_1" style="width:20%">
+                                    <p class="tb_res_header fnt_fam" >Machine Name</p>
+                                    <p class="table_data_element fnt_fam " title='+item.machine_name+'>IMO1</p>
+                            </div>       
+                            <div class="col-2 col paddingm marright table_data_section display_f justify_e align_c res_width" style="width:20%;">
+                                <p class="tb_res_header fnt_fam" >Machine Rate Hour</p>
+                                <p class="paddingm h_mar_r table_data_element fnt_fam">
+                                    <i class="fa fa-inr mar_right_logo" style="font-size:0.70rem;"></i>435.00
+                                </p>
+                            </div>
+                            <div class="col-2 col paddingm table_data_section display_f justify_e align_c res_width" style="width:20%;">
+                                <p class="tb_res_header fnt_fam" >Machine Off Rate Hour</p>
+                                <p class="paddingm h_mar_r table_data_element fnt_fam">
+                                    <i class="fa fa-inr mar_right_logo " style="font-size:0.70rem;"></i>435.00
+                                </p>
+                            </div>
+                            <div class="col-1 col marleft table_data_section display_f align_c res_width pd_1" style="width:10%;">
+                                <p class="tb_res_header fnt_fam" >Tonnage</p>
+                                <p class="table_data_element fnt_fam ">350T</p>
+                            </div>
+                            <div class="col-2 col marleft table_data_section display_f align_c res_width pd_1" style="width:20%;">
+                                <p class="tb_res_header fnt_fam" >Machine Brand</p>
+                                <p class="table_data_element fnt_fam ">Milacron</p>
+                            </div>
+                        </div>
+                        <div class="res_basewidth1">
+                            <div class="col-1 col marleft settings_active marleft table_data_section display_f align_c fnt_active resfw" style="width:50%;">
+                                <p class="table_data_element fnt_fam fnt_active"><i class="fa fa-circle active_dot "></i>Active</p>
+                            </div>
+                            <div class="col-1 col d-flex justify-content-center fasdiv resfw justify_content_end_res" style="width:50%;">
+                                <ul class="edit-menu" style="z-index:10;">
+                                    <li class="d-flex justify-content-center">
+                                        <a href="javascript:function(){return false;}">
+                                            <i class="edit fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>
+                                        </a>
+                                        <ul class="edit-subMenu" style="z-index:10;">
+                                            <li class="edit-opt info-machine1" lvalue="'+item.machine_id+'" style="display:'+info_machine+';"><a href="#"><img src="<?php echo base_url('assets/img/info.png') ?>" class="icons_style" style="margin-left:5px;">INFO</a></li>
+                                            <li class="edit-opt edit-machine hover_work" lvalue="'+item.machine_id+'" style="display:'+edit_machine+';"><a href="#" style=""><img src="<?php echo base_url('assets/img/pencil.png') ?>" class="icons_style" style="margin-left:10px;">EDIT</a></li>
+                                            <li class="edit-opt deactivate-machine" lvalue="'+item.machine_id+'" svalue="'+item.status+'" style="display:'+deactivate_machine+';"><a href="#" style="border-bottom:none;"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="icons_style" style="margin-left:10px;">DEACTIVATE</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>              
+                            </div>  
+                        </div>
+                                              
+                    </div>
+                </div> -->
             </div>
         </div>
 </div>
@@ -1115,10 +1336,12 @@ function get_machine_data(){
         async:false,
         cache: false,
         success:function(res){
+           
             $('.contentMachine').empty();
             if (jQuery.isEmptyObject(res)){
                 $('.contentMachine').html('<p class="no_record_css">No Records...</p>');
             }
+            
             res.forEach(function(item){
                 var machine_rate_per_hour = item.rate_per_hour;
                 var machine_off_rate_per_hour = item.machine_offrate_per_hour;
@@ -1138,69 +1361,118 @@ function get_machine_data(){
                 var elements = $();
                 if (item.status == 1) {
                     elements = elements.add('<div class="table_data">'
-                        +'<div class="row paddingm">'
-                            +'<div class="col-sm-1 col marleft table_data_section display_f align_c" ><p class="table_data_element fnt_fam">'+item.machine_id+'</p></div>'
-                            +'<div class="col-sm-2 col marleft table_data_section display_f align_c" ><p class="table_data_element fnt_fam" title='+item.machine_name+'>'+item.machine_name+'</p></div>'         
-                            +'<div class="col-sm-2 col paddingm marright table_data_section display_f justify_e align_c" >'
-                                +'<p class="paddingm h_mar_r table_data_element fnt_fam"><i class="fa fa-inr mar_right_logo" style="font-size:0.70rem;"></i>'+machine_rph+'</p>'
+                    +'<div class="row paddingm res_d ">'
+                        +'<div class="res_baswidth">'
+                            +'<div class="col-1 col marleft table_data_section display_f align_c res_width pd_1" style="width:10%;">'
+                                +'<p class="tb_res_header fnt_fam " >Machine ID</p>'
+                                +'<p class="table_data_element fnt_fam ">'+item.machine_id+'</p>'
                             +'</div>'
-                            +'<div class="col-sm-2 col paddingm table_data_section display_f justify_e align_c" >'
-                                +'<p class="paddingm h_mar_r table_data_element fnt_fam"><i class="fa fa-inr mar_right_logo" style="font-size:0.70rem;"></i>'+machine_orh+'</p>'
+                            +'<div class="col-2 col marleft table_data_section display_f align_c res_width pd_1" style="width:20%">'
+                                +'<p class="tb_res_header fnt_fam" >Machine Name</p>'
+                                +'<p class="table_data_element fnt_fam " title='+item.machine_name+'>'+item.machine_name+'</p>'
+                            +'</div>'      
+                            +'<div class="col-2 col paddingm marright table_data_section display_f justify_e align_c res_width" style="width:20%;">'
+                                +'<p class="tb_res_header fnt_fam" >Machine Rate Hour</p>'
+                                +'<p class="paddingm h_mar_r table_data_element fnt_fam">'
+                                    +'<i class="fa fa-inr mar_right_logo" style="font-size:0.70rem;"></i>'
+                                +machine_rph+'</p>'
                             +'</div>'
-                            +'<div class="col-sm-1 col marleft table_data_section display_f align_c" ><p class="table_data_element fnt_fam">'+item.tonnage+'T</p></div>'
-                            +'<div class="col-sm-2 col marleft table_data_section display_f align_c" ><p class="table_data_element fnt_fam">'+item.machine_brand+'</p></div>'
-                            +'<div class="col-sm-1 col marleft settings_active marleft table_data_section display_f align_c fnt_active" ><p class="table_data_element fnt_fam fnt_active"><i class="fa fa-circle active_dot"></i>Active</p></div>'
-                                +'<div class="col-sm-1 col d-flex justify-content-center fasdiv">'
-                                    +'<ul class="edit-menu" style="z-index:10;">'
-                                        +'<li class="d-flex justify-content-center">'
-                                            +'<a href="javascript:function(){return false;}">'
-                                                +'<i class="edit fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
-                                            +'</a>'
-                                            +'<ul class="edit-subMenu" style="z-index:10;">'
-                                                +'<li class="edit-opt info-machine1" lvalue="'+item.machine_id+'" style="display:'+info_machine+';"><a href="#"><img src="<?php echo base_url('assets/img/info.png') ?>" class="icons_style" style="margin-left:5px;">INFO</a></li>'
-                                                +'<li class="edit-opt edit-machine hover_work" lvalue="'+item.machine_id+'" style="display:'+edit_machine+';"><a href="#" style=""><img src="<?php echo base_url('assets/img/pencil.png') ?>" class="icons_style" style="margin-left:10px;">EDIT</a></li>'
-                                                +'<li class="edit-opt deactivate-machine" lvalue="'+item.machine_id+'" svalue="'+item.status+'" style="display:'+deactivate_machine+';"><a href="#" style="border-bottom:none;"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="icons_style" style="margin-left:10px;">DEACTIVATE</a></li>'
-                                            +'</ul>'
-                                        +'</li>'
-                                    +'</ul>'                
-                                +'</div>'                           
+                            +'<div class="col-2 col paddingm table_data_section display_f justify_e align_c res_width" style="width:20%;">'
+                                +'<p class="tb_res_header fnt_fam" >Machine Off Rate Hour</p>'
+                                +'<p class="paddingm h_mar_r table_data_element fnt_fam">'
+                                    +'<i class="fa fa-inr mar_right_logo " style="font-size:0.70rem;"></i>'
+                                +machine_orh+'</p>'
                             +'</div>'
-                        +'</div>');
-                        $('.contentMachine').append(elements);
-                }
-                else{
-                        var machine_off_reate_hour = item.machine_offrate_per_hour;
-                        elements = elements.add('<div class="table_data">'
-                            +'<div class="row paddingm">'
-                            +'<div class="col-sm-1 col marleft table_data_section display_f align_c"><p class="table_data_element fnt_fam">'+item.machine_id+'</p></div>'
-                            +'<div class="col-sm-2 col marleft table_data_section display_f align_c" ><p class="table_data_element fnt_fam" title='+item.machine_name+'>'+item.machine_name+'</p></div>'        
-                            +'<div class="col-sm-2 col paddingm marright table_data_section display_f justify_e align_c" >'
-                                +'<p class="paddingm h_mar_r table_data_element fnt_fam"><i class="fa fa-inr mar_right_logo" style="font-size:0.70rem;"></i>'+machine_rph+'</p>'
-                            +'</div>' 
-                            +'<div class="col-sm-2 col paddingm marright table_data_section display_f justify_e align_c" >'
-                                +'<p class="paddingm h_mar_r table_data_element fnt_fam"><i class="fa fa-inr mar_right_logo" style="font-size:0.70rem;"></i>'+machine_orh+'</p>'
+                            +'<div class="col-1 col marleft table_data_section display_f align_c res_width pd_1" style="width:10%;">'
+                                +'<p class="tb_res_header fnt_fam" >Tonnage</p>'
+                                +'<p class="table_data_element fnt_fam ">'+item.tonnage+'T</p>'
                             +'</div>'
-                            +'<div class="col-sm-1 col marleft table_data_section display_f align_c" ><p class="table_data_element fnt_fam">'+item.tonnage+'T</p></div>'
-                            +'<div class="col-sm-2 col marleft table_data_section display_f align_c" ><p class="table_data_element fnt_fam">'+item.machine_brand+'</p></div>'
-                            +'<div class="col-sm-1 col marleft settings_active table_data_section display_f align_c fnt_inactive"><p class="table_data_element fnt_fam fnt_inactive"><i class="fa fa-circle active_dot"></i>Inactive</p></div>'
-                            +'<div class="col-sm-1 col d-flex justify-content-center fasdiv">'
-                                +'<ul class="edit-menu">'
+                            +'<div class="col-2 col marleft table_data_section display_f align_c res_width pd_1" style="width:20%;">'
+                                +'<p class="tb_res_header fnt_fam" >Machine Brand</p>'
+                                +'<p class="table_data_element fnt_fam ">'+item.machine_brand+'</p>'
+                            +'</div>'
+                        +'</div>'
+                        +'<div class="res_basewidth1">'
+                            +'<div class="col-1 col marleft settings_active marleft table_data_section display_f align_c fnt_active resfw" style="width:50%;">'
+                                +'<p class="table_data_element fnt_fam fnt_active"><i class="fa fa-circle active_dot "></i>Active</p>'
+                            +'</div>'
+                            +'<div class="col-1 col d-flex justify-content-center fasdiv resfw justify_content_end_res" style="width:50%;">'
+                                +'<ul class="edit-menu" style="z-index:10;">'
                                     +'<li class="d-flex justify-content-center">'
                                         +'<a href="javascript:function(){return false;}">'
                                             +'<i class="edit fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
                                         +'</a>'
                                         +'<ul class="edit-subMenu" style="z-index:10;">'
-                                            +'<li class="edit-opt info-machine" lvalue="'+item.machine_id+'"><a href="#"><img src="<?php echo base_url('assets/img/info.png'); ?>" class="icons_style" style="margin-left:5px;">INFO</a></li>'
-                                            +'<li class="edit-opt activate-machine" lvalue="'+item.machine_id+'" svalue="'+item.status+'" style="display:'+activate_machine+';"><a href="#" style="border-bottom:none;"><img src="<?php echo base_url('assets/img/activate.png'); ?>" class="icons_style" style="margin-left:5px;font-size:15px;">ACTIVATE</a></li>'
+                                            +'<li class="edit-opt info-machine1" lvalue="'+item.machine_id+'" style="display:'+info_machine+';"><a href="#"><img src="<?php echo base_url('assets/img/info.png') ?>" class="icons_style" style="margin-left:5px;">INFO</a></li>'
+                                            +'<li class="edit-opt edit-machine hover_work" lvalue="'+item.machine_id+'" style="display:'+edit_machine+';"><a href="#" style=""><img src="<?php echo base_url('assets/img/pencil.png') ?>" class="icons_style" style="margin-left:10px;">EDIT</a></li>'
+                                            +'<li class="edit-opt deactivate-machine" lvalue="'+item.machine_id+'" svalue="'+item.status+'" style="display:'+deactivate_machine+';"><a href="#" style="border-bottom:none;"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="icons_style" style="margin-left:10px;">DEACTIVATE</a></li>'
                                         +'</ul>'
                                     +'</li>'
-                                +'</ul>'                
-                            +'</div>'                
+                                +'</ul>'             
+                            +'</div>' 
+                        +'</div>'                        
+                    +'</div>'
+                    +'</div>');
+                    $('.contentMachine').append(elements);
+                }
+                else{
+                    var machine_off_reate_hour = item.machine_offrate_per_hour;
+                    elements = elements.add('<div class="table_data">'
+                        +'<div class="row paddingm res_d">'
+                            +'<div class="res_baswidth">'
+                                +'<div class="col-1 col marleft table_data_section display_f align_c res_width pd_1" style="width:10%;">'
+                                    +'<p class="tb_res_header fnt_fam " >Machine ID</p>'
+                                    +'<p class="table_data_element fnt_fam ">'+item.machine_id+'</p>'
+                                +'</div>'
+                                +'<div class="col-2 col marleft table_data_section display_f align_c res_width pd_1" style="width:20%">'
+                                    +'<p class="tb_res_header fnt_fam" >Machine Name</p>'
+                                    +'<p class="table_data_element fnt_fam " title='+item.machine_name+'>'+item.machine_name+'</p>'
+                                +'</div>'      
+                                +'<div class="col-2 col paddingm marright table_data_section display_f justify_e align_c res_width" style="width:20%;">'
+                                    +'<p class="tb_res_header fnt_fam" >Machine Rate Hour</p>'
+                                    +'<p class="paddingm h_mar_r table_data_element fnt_fam">'
+                                        +'<i class="fa fa-inr mar_right_logo" style="font-size:0.70rem;"></i>'
+                                    +machine_rph+'</p>'
+                                +'</div>'
+                                +'<div class="col-2 col paddingm table_data_section display_f justify_e align_c res_width" style="width:20%;">'
+                                    +'<p class="tb_res_header fnt_fam" >Machine Off Rate Hour</p>'
+                                    +'<p class="paddingm h_mar_r table_data_element fnt_fam">'
+                                        +'<i class="fa fa-inr mar_right_logo " style="font-size:0.70rem;"></i>'
+                                    +machine_orh+'</p>'
+                                +'</div>'
+                                +'<div class="col-1 col marleft table_data_section display_f align_c res_width pd_1" style="width:10%;">'
+                                    +'<p class="tb_res_header fnt_fam" >Tonnage</p>+'
+                                    +'<p class="table_data_element fnt_fam ">'+item.tonnage+'T</p>'
+                                +'</div>'
+                                +'<div class="col-2 col marleft table_data_section display_f align_c res_width pd_1" style="width:20%;">'
+                                    +'<p class="tb_res_header fnt_fam" >Machine Brand</p>'
+                                    +'<p class="table_data_element fnt_fam ">'+item.machine_brand+'</p>'
+                                +'</div>'
                             +'</div>'
-                            +'</div>');
-                            $('.contentMachine').append(elements);
-                        }
+                            +'<div class="res_basewidth1">'
+                                +'<div class="col-1 col marleft settings_active table_data_section display_f align_c fnt_inactive resfw" style="width:50%;">'
+                                    +'<p class="table_data_element fnt_fam fnt_inactive"><i class="fa fa-circle active_dot"></i>Inactive</p>'
+                                +'</div>'
+                                +'<div class="col-1 col d-flex justify-content-center fasdiv resfw justify_content_end_res" style="width:50%;">'
+                                    +'<ul class="edit-menu">'
+                                        +'<li class="d-flex justify-content-center">'
+                                            +'<a href="javascript:function(){return false;}">'
+                                                +'<i class="edit fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>'
+                                            +'</a>'
+                                            +'<ul class="edit-subMenu" style="z-index:10;">'
+                                                +'<li class="edit-opt info-machine" lvalue="'+item.machine_id+'"><a href="#"><img src="<?php echo base_url('assets/img/info.png'); ?>" class="icons_style" style="margin-left:5px;">INFO</a></li>'
+                                                +'<li class="edit-opt activate-machine" lvalue="'+item.machine_id+'" svalue="'+item.status+'" style="display:'+activate_machine+';"><a href="#" style="border-bottom:none;"><img src="<?php echo base_url('assets/img/activate.png'); ?>" class="icons_style" style="margin-left:5px;font-size:15px;">ACTIVATE</a></li>'
+                                            +'</ul>'
+                                        +'</li>'
+                                    +'</ul>'                
+                                +'</div>'
+                            +'<div>'               
+                        +'</div>'
+                        +'</div>');
+                        $('.contentMachine').append(elements);
+                    }
             });
+         
         },
         error:function(err){
             // alert(err);
