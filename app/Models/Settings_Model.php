@@ -51,6 +51,7 @@ class Settings_Model extends Model{
         $iot = array(
             'machine_id' => $machineData['machine_id'], 
             'iot_gateway_topic' => $topic,
+            'iot_machine_reference' => $machineData['machine_serial_number'],
             'site_id' => $machine_iot['site_name'],
             'location_id' => $machine_iot['location'],
             'last_updated_by' => $machineData['last_updated_by']

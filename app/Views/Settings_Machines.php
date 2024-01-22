@@ -192,135 +192,27 @@ $session = \Config\Services::session();
                     </div>
                 </div>
             </div>
-            
-            <div class="contentMachine tableDataContainer paddingm ">
-                <!-- <div class="table_data">
-                    <div class="row paddingm res_d ">
-                        <div class="res_baswidth">
-                            <div class="col-1 col marleft table_data_section display_f align_c res_width pd_1" style="width:10%;">
-                                <p class="tb_res_header fnt_fam " >Machine ID</p>
-                                <p class="table_data_element fnt_fam ">MC1001</p>
-                            </div>
-                            <div class="col-2 col marleft table_data_section display_f align_c res_width pd_1" style="width:20%">
-                                    <p class="tb_res_header fnt_fam" >Machine Name</p>
-                                    <p class="table_data_element fnt_fam " title='+item.machine_name+'>IMO1</p>
-                            </div>       
-                            <div class="col-2 col paddingm marright table_data_section display_f justify_e align_c res_width" style="width:20%;">
-                                <p class="tb_res_header fnt_fam" >Machine Rate Hour</p>
-                                <p class="paddingm h_mar_r table_data_element fnt_fam">
-                                    <i class="fa fa-inr mar_right_logo" style="font-size:0.70rem;"></i>435.00
-                                </p>
-                            </div>
-                            <div class="col-2 col paddingm table_data_section display_f justify_e align_c res_width" style="width:20%;">
-                                <p class="tb_res_header fnt_fam" >Machine Off Rate Hour</p>
-                                <p class="paddingm h_mar_r table_data_element fnt_fam">
-                                    <i class="fa fa-inr mar_right_logo " style="font-size:0.70rem;"></i>435.00
-                                </p>
-                            </div>
-                            <div class="col-1 col marleft table_data_section display_f align_c res_width pd_1" style="width:10%;">
-                                <p class="tb_res_header fnt_fam" >Tonnage</p>
-                                <p class="table_data_element fnt_fam ">350T</p>
-                            </div>
-                            <div class="col-2 col marleft table_data_section display_f align_c res_width pd_1" style="width:20%;">
-                                <p class="tb_res_header fnt_fam" >Machine Brand</p>
-                                <p class="table_data_element fnt_fam ">Milacron</p>
-                            </div>
-                        </div>
-                        <div class="res_basewidth1">
-                            <div class="col-1 col marleft settings_active marleft table_data_section display_f align_c fnt_active resfw" style="width:50%;">
-                                <p class="table_data_element fnt_fam fnt_active"><i class="fa fa-circle active_dot "></i>Active</p>
-                            </div>
-                            <div class="col-1 col d-flex justify-content-center fasdiv resfw justify_content_end_res" style="width:50%;">
-                                <ul class="edit-menu" style="z-index:10;">
-                                    <li class="d-flex justify-content-center">
-                                        <a href="javascript:function(){return false;}">
-                                            <i class="edit fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>
-                                        </a>
-                                        <ul class="edit-subMenu" style="z-index:10;">
-                                            <li class="edit-opt info-machine1" lvalue="'+item.machine_id+'" style="display:'+info_machine+';"><a href="#"><img src="<?php echo base_url('assets/img/info.png') ?>" class="icons_style" style="margin-left:5px;">INFO</a></li>
-                                            <li class="edit-opt edit-machine hover_work" lvalue="'+item.machine_id+'" style="display:'+edit_machine+';"><a href="#" style=""><img src="<?php echo base_url('assets/img/pencil.png') ?>" class="icons_style" style="margin-left:10px;">EDIT</a></li>
-                                            <li class="edit-opt deactivate-machine" lvalue="'+item.machine_id+'" svalue="'+item.status+'" style="display:'+deactivate_machine+';"><a href="#" style="border-bottom:none;"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="icons_style" style="margin-left:10px;">DEACTIVATE</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>              
-                            </div>  
-                        </div>
-                                              
-                    </div>
-                </div>
-                <div class="table_data">
-                    <div class="row paddingm res_d ">
-                        <div class="res_baswidth">
-                            <div class="col-1 col marleft table_data_section display_f align_c res_width pd_1" style="width:10%;">
-                                <p class="tb_res_header fnt_fam " >Machine ID</p>
-                                <p class="table_data_element fnt_fam ">MC1001</p>
-                            </div>
-                            <div class="col-2 col marleft table_data_section display_f align_c res_width pd_1" style="width:20%">
-                                    <p class="tb_res_header fnt_fam" >Machine Name</p>
-                                    <p class="table_data_element fnt_fam " title='+item.machine_name+'>IMO1</p>
-                            </div>       
-                            <div class="col-2 col paddingm marright table_data_section display_f justify_e align_c res_width" style="width:20%;">
-                                <p class="tb_res_header fnt_fam" >Machine Rate Hour</p>
-                                <p class="paddingm h_mar_r table_data_element fnt_fam">
-                                    <i class="fa fa-inr mar_right_logo" style="font-size:0.70rem;"></i>435.00
-                                </p>
-                            </div>
-                            <div class="col-2 col paddingm table_data_section display_f justify_e align_c res_width" style="width:20%;">
-                                <p class="tb_res_header fnt_fam" >Machine Off Rate Hour</p>
-                                <p class="paddingm h_mar_r table_data_element fnt_fam">
-                                    <i class="fa fa-inr mar_right_logo " style="font-size:0.70rem;"></i>435.00
-                                </p>
-                            </div>
-                            <div class="col-1 col marleft table_data_section display_f align_c res_width pd_1" style="width:10%;">
-                                <p class="tb_res_header fnt_fam" >Tonnage</p>
-                                <p class="table_data_element fnt_fam ">350T</p>
-                            </div>
-                            <div class="col-2 col marleft table_data_section display_f align_c res_width pd_1" style="width:20%;">
-                                <p class="tb_res_header fnt_fam" >Machine Brand</p>
-                                <p class="table_data_element fnt_fam ">Milacron</p>
-                            </div>
-                        </div>
-                        <div class="res_basewidth1">
-                            <div class="col-1 col marleft settings_active marleft table_data_section display_f align_c fnt_active resfw" style="width:50%;">
-                                <p class="table_data_element fnt_fam fnt_active"><i class="fa fa-circle active_dot "></i>Active</p>
-                            </div>
-                            <div class="col-1 col d-flex justify-content-center fasdiv resfw justify_content_end_res" style="width:50%;">
-                                <ul class="edit-menu" style="z-index:10;">
-                                    <li class="d-flex justify-content-center">
-                                        <a href="javascript:function(){return false;}">
-                                            <i class="edit fa fa-ellipsis-v icon-font dot-padding" alt="Edit"></i>
-                                        </a>
-                                        <ul class="edit-subMenu" style="z-index:10;">
-                                            <li class="edit-opt info-machine1" lvalue="'+item.machine_id+'" style="display:'+info_machine+';"><a href="#"><img src="<?php echo base_url('assets/img/info.png') ?>" class="icons_style" style="margin-left:5px;">INFO</a></li>
-                                            <li class="edit-opt edit-machine hover_work" lvalue="'+item.machine_id+'" style="display:'+edit_machine+';"><a href="#" style=""><img src="<?php echo base_url('assets/img/pencil.png') ?>" class="icons_style" style="margin-left:10px;">EDIT</a></li>
-                                            <li class="edit-opt deactivate-machine" lvalue="'+item.machine_id+'" svalue="'+item.status+'" style="display:'+deactivate_machine+';"><a href="#" style="border-bottom:none;"><img src="<?php echo base_url('assets/img/delete.png') ?>" class="icons_style" style="margin-left:10px;">DEACTIVATE</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>              
-                            </div>  
-                        </div>
-                                              
-                    </div>
-                </div> -->
+            <div class="contentMachine tableDataContainer paddingm ">            
             </div>
         </div>
 </div>
 
+<!-- add machine modal -->
 <div class="modal fade" id="AddMachineModal" tabindex="-1" aria-labelledby="AddMachineModal1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered rounded ">
     <div class="container modal-content bodercss">
             <div class="modal-header" style="border:none; ">
                 <h5 class="modal-title header_popup fnt_fam" id="AddMachineModal1" style="">ADD MACHINE</h5>
             </div> 
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-6 box">
-                            <div class="input-box fieldStyle">      
-                                <input type="text" class="form-control font_weight_modal" id="inputMachineName" name="inputMachineName" >
-                                <label for="inputMachineName" class="input_lable fnt_fam">Machine Name <span class="paddingm validate fnt_fam">*</span></label>
-                                <span class="paddingm float-start validate fnt_fam" id="inputMachineNameErr"></span> 
-                                <span class="float-end charCount fnt_fam" id="inputMachineNameCunt"></span> 
-                            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-6 box">
+                        <div class="input-box fieldStyle">      
+                            <input type="text" class="form-control font_weight_modal" id="inputMachineName" name="inputMachineName" >
+                            <label for="inputMachineName" class="input_lable fnt_fam">Machine Name <span class="paddingm validate fnt_fam">*</span></label>
+                            <span class="paddingm float-start validate fnt_fam" id="inputMachineNameErr"></span> 
+                            <span class="float-end charCount fnt_fam" id="inputMachineNameCunt"></span> 
+                        </div>
                         </div>
                     </div>
                     <div class="row">                      
@@ -382,6 +274,7 @@ $session = \Config\Services::session();
   </div>
 </div>
 
+<!-- deactivate machine modal -->
 <div class="modal fade" id="DeactiveMachineModal" tabindex="-1" aria-labelledby="DeactiveMachineModal1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered rounded">
     <div class="modal-content bodercss">
@@ -399,306 +292,312 @@ $session = \Config\Services::session();
     </div>
   </div>
 </div>
+
+<!-- active machine modal -->
 <div class="modal fade" id="ActiveMachineModal" tabindex="-1" aria-labelledby="ActiveMachineModal1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered rounded">
-    <div class="modal-content bodercss">
-        <div class="modal-header" style="border:none; ">
-            <h5 class="modal-title header_popup fnt_fam" id="ActiveMachineModal1" style="">CONFIRMATION MESSAGE</h5>
-        </div>
-        <div class="modal-body">
-            <label style="color: black;font-size:0.9rem;">Are you sure you want to activate this machine record?</label>            
-        </div>
-        <div class="modal-footer" style="border:none;">
-            <a class="btn fnt_fam btn_fnt_size btn_padd btn_save Status-active" name="Edit_Machine" value="SAVE" >Save</a>
-            <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+    <div class="modal-dialog modal-dialog-centered rounded">
+        <div class="modal-content bodercss">
+            <div class="modal-header" style="border:none; ">
+                <h5 class="modal-title header_popup fnt_fam" id="ActiveMachineModal1" style="">CONFIRMATION MESSAGE</h5>
+            </div>
+            <div class="modal-body">
+                <label style="color: black;font-size:0.9rem;">Are you sure you want to activate this machine record?</label>            
+            </div>
+            <div class="modal-footer" style="border:none;">
+                <a class="btn fnt_fam btn_fnt_size btn_padd btn_save Status-active" name="Edit_Machine" value="SAVE" >Save</a>
+                <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+            </div>
         </div>
     </div>
-  </div>
 </div>
+<!-- edit machine modal -->
 <div class="modal fade" id="EditMachineModal" tabindex="-1" aria-labelledby="EditMachineModal1" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered rounded">
-    <div class="modal-content container bodercss">
-            <div class="modal-header" style="border:none; ">
-                <p class="modal-title header_popup fnt_fam" id="EditMachineModal1" style="">EDIT MACHINE DETAILS</p>
-            </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-6 col-sm-12 col-md-12">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <div class="mb-3">
-                                        <label for="" class="col-form-label headTitle fnt_fam">Machine ID</label>
-                                        <p><span id="machineid" class="font_weight_modal"></span></p>
+    <div class="modal-dialog modal-lg modal-dialog-centered rounded">
+        <div class="modal-content container bodercss">
+                <div class="modal-header" style="border:none; ">
+                    <p class="modal-title header_popup fnt_fam" id="EditMachineModal1" style="">EDIT MACHINE DETAILS</p>
+                </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-12 col-md-12">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="mb-3">
+                                            <label for="" class="col-form-label headTitle fnt_fam">Machine ID</label>
+                                            <p><span id="machineid" class="font_weight_modal"></span></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class=" float-end">
+                                            <label for="" class="col-form-label headTitle fnt_fam">Status</label>
+                                            <p><b><span id="machinestatus" class="font_weight_modal" style="font-weight:bold;opacity:1;font-size:0.9rem;"></span></b></p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
-                                    <div class=" float-end">
-                                        <label for="" class="col-form-label headTitle fnt_fam">Status</label>
-                                        <p><b><span id="machinestatus" class="font_weight_modal" style="font-weight:bold;opacity:1;font-size:0.9rem;"></span></b></p>
-                                    </div>
+                            </div>
+                            <div class="col-sm-6"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 box">
+                                <div class="input-box fieldStyle">
+                                    <input type="text" class="form-control font_weight_modal" id="editMachineName" name="" required=""  value="" >
+                                    <label class="input_lable fnt_fam">Machine Name <span class="paddingm validate fnt_fam">*</span></label>
+                                    <span class="paddingm float-start validate fnt_fam" id="editMachineNameErr"></span>
+                                    <span class="float-end charCount fnt_fam" id="editMachineNameCuntEdit"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 box">
-                            <div class="input-box fieldStyle">
-                                <input type="text" class="form-control font_weight_modal" id="editMachineName" name="" required=""  value="" >
-                                <label class="input_lable fnt_fam">Machine Name <span class="paddingm validate fnt_fam">*</span></label>
-                                <span class="paddingm float-start validate fnt_fam" id="editMachineNameErr"></span>
-                                <span class="float-end charCount fnt_fam" id="editMachineNameCuntEdit"></span>
+                        <div class="row">
+                            <div class="col-lg-3 box">
+                                <div class="input-box fieldStyle">
+                                    <input type="text" class="form-control input left-align font_weight_modal" id="editMachineRateHour" name="" required=""  value=" " oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                    <span class="unit-input"><i class="fa fa-inr clip" aria-hidden="true"></i></span>
+                                    <label class="input_lable fnt_fam">Machine Rate Hour <span class="paddingm validate fnt_fam">*</span></label>
+                                    <span class="paddingm float-start validate fnt_fam" id="editMachineRateHourErr"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 box">
+                                <div class="input-box fieldStyle">
+                                    <input type="text" class="form-control input left-align font_weight_modal" id="editMachineOffRateHour" name="" required=""  value=" " oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                    <span class="unit-input"><i class="fa fa-inr clip" aria-hidden="true"></i></span>
+                                    <label class="input_lable fnt_fam">Machine OFF Rate Hour <span class="paddingm validate fnt_fam">*</span></label>
+                                    <span class="paddingm float-start validate fnt_fam" id="editMachineOffRateHourErr"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 box">
+                                <div class="input-box fieldStyle">
+                                    <input type="text" class="form-control input paddinginright font_weight_modal" id="editTonnage" name="" required=""  value=" " oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                    <label class="input_lable fnt_fam">Tonnage <span class="paddingm validate fnt_fam">*</span></label>
+                                    <span class="paddingm float-start validate fnt_fam" id="editTonnageErr"></span>
+                                    <span class="unit clip">T</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 box">
+                                <div class="input-box fieldStyle">
+                                    <input type="text" class="form-control input font_weight_modal" id="editMachineBrand" name="" required=""  value=" ">
+                                    <label class="input_lable fnt_fam">Machine Brand <span class="paddingm validate fnt_fam">*</span></label>
+                                    <span class="paddingm float-start validate fnt_fam" id="editMachineBrandErr"></span>
+                                    <span class="float-end charCount fnt_fam" id="editMachineBrandCuntEdit"></span>
+                                </div>
+                            </div>
+                            <?php 
+                            if($this->data['user_details'][0]['role'] == "Smart Admin"){ 
+                            ?>
+                            <div class="col-lg-6 box">
+                                <div class="input-box fieldStyle">
+                                    <input type="text" class="form-control input font_weight_modal" id="editMachineSerialNumber" name="" required=""  value=" " onkeydown="key_down(event)" onpaste="check_white_space(event)">
+                                    <label class="input_lable fnt_fam">Machine Serial ID <span class="paddingm validate fnt_fam">*</span></label>
+                                    <span class="paddingm float-start validate fnt_fam" id="editMachineSerialNumber_err"></span>
+                                    <span class="float-end charCount fnt_fam" id="editMachineSerialNumberCunt"></span>
+                                </div>
+                            </div>
+                        
+                        <?php }else{ ?>
+                            <div class="col-lg-6 box">
+                                <div class="input-box fieldStyle">
+                                    <input type="text" class="form-control input font_weight_modal" id="editMachineSerialNumber" name="" required=""  value=" " readonly="true">
+                                    <label class="input_lable fnt_fam">Machine Serial ID <span class="paddingm validate fnt_fam">*</span></label>
+                                    <span class="paddingm float-start validate fnt_fam" id="editMachineSerialNumber_err"></span>
+                                    <span class="float-end charCount fnt_fam" id="editMachineSerialNumberCunt"></span>
+                                </div>
+                            </div>
+                        <?php }?>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 box">
+                                <div class="input-box fieldStyle">
+                                    <label for="" class="col-form-label headTitle fnt_fam">Last Updated By</label>
+                                    <p class="fieldStyleSub" style="position: absolute;"><span id="last_updated_by" class="font_weight_modal"></span></p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 box">
+                                <div class="input-box fieldStyle">
+                                    <label for="" class="col-form-label headTitle fnt_fam">Last Updated On</label>
+                                    <p class="fieldStyleSub" style="position: absolute;"><span id='last_updated_on' class="font_weight_modal"></span></p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-3 box">
-                            <div class="input-box fieldStyle">
-                                <input type="text" class="form-control input left-align font_weight_modal" id="editMachineRateHour" name="" required=""  value=" " oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                <span class="unit-input"><i class="fa fa-inr clip" aria-hidden="true"></i></span>
-                                <label class="input_lable fnt_fam">Machine Rate Hour <span class="paddingm validate fnt_fam">*</span></label>
-                                <span class="paddingm float-start validate fnt_fam" id="editMachineRateHourErr"></span>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 box">
-                            <div class="input-box fieldStyle">
-                                <input type="text" class="form-control input left-align font_weight_modal" id="editMachineOffRateHour" name="" required=""  value=" " oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                <span class="unit-input"><i class="fa fa-inr clip" aria-hidden="true"></i></span>
-                                <label class="input_lable fnt_fam">Machine OFF Rate Hour <span class="paddingm validate fnt_fam">*</span></label>
-                                <span class="paddingm float-start validate fnt_fam" id="editMachineOffRateHourErr"></span>
-                            </div>
-                        </div>
+                    <div class="modal-footer" style="border:none;">
+                        <a class="EditMachine btn fnt_fam btn_fnt_size btn_padd btn_save" name="EditMachine" id="edit_machine_data" value="SAVE">Save</a>
+                        <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
                     </div>
-                    <div class="row">
-                        <div class="col-lg-3 box">
-                            <div class="input-box fieldStyle">
-                                <input type="text" class="form-control input paddinginright font_weight_modal" id="editTonnage" name="" required=""  value=" " oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                                <label class="input_lable fnt_fam">Tonnage <span class="paddingm validate fnt_fam">*</span></label>
-                                <span class="paddingm float-start validate fnt_fam" id="editTonnageErr"></span>
-                                <span class="unit clip">T</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 box">
-                            <div class="input-box fieldStyle">
-                                <input type="text" class="form-control input font_weight_modal" id="editMachineBrand" name="" required=""  value=" ">
-                                <label class="input_lable fnt_fam">Machine Brand <span class="paddingm validate fnt_fam">*</span></label>
-                                <span class="paddingm float-start validate fnt_fam" id="editMachineBrandErr"></span>
-                                <span class="float-end charCount fnt_fam" id="editMachineBrandCuntEdit"></span>
-                            </div>
-                        </div>
-                        <?php 
-                         if($this->data['user_details'][0]['role'] == "Smart Admin"){ 
-                        ?>
-                         <div class="col-lg-6 box">
-                            <div class="input-box fieldStyle">
-                                <input type="text" class="form-control input font_weight_modal" id="editMachineSerialNumber" name="" required=""  value=" " onkeydown="key_down(event)" onpaste="check_white_space(event)">
-                                <label class="input_lable fnt_fam">Machine Serial ID <span class="paddingm validate fnt_fam">*</span></label>
-                                <span class="paddingm float-start validate fnt_fam" id="editMachineSerialNumber_err"></span>
-                                <span class="float-end charCount fnt_fam" id="editMachineSerialNumberCunt"></span>
-                            </div>
-                        </div>
-                       
-                    <?php }else{ ?>
-                         <div class="col-lg-6 box">
-                            <div class="input-box fieldStyle">
-                                <input type="text" class="form-control input font_weight_modal" id="editMachineSerialNumber" name="" required=""  value=" " readonly="true">
-                                <label class="input_lable fnt_fam">Machine Serial ID <span class="paddingm validate fnt_fam">*</span></label>
-                                <span class="paddingm float-start validate fnt_fam" id="editMachineSerialNumber_err"></span>
-                                <span class="float-end charCount fnt_fam" id="editMachineSerialNumberCunt"></span>
-                            </div>
-                        </div>
-                    <?php }?>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-3 box">
-                            <div class="input-box fieldStyle">
-                                <label for="" class="col-form-label headTitle fnt_fam">Last Updated By</label>
-                                <p class="fieldStyleSub" style="position: absolute;"><span id="last_updated_by" class="font_weight_modal"></span></p>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 box">
-                            <div class="input-box fieldStyle">
-                                <label for="" class="col-form-label headTitle fnt_fam">Last Updated On</label>
-                                <p class="fieldStyleSub" style="position: absolute;"><span id='last_updated_on' class="font_weight_modal"></span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer" style="border:none;">
-                    <a class="EditMachine btn fnt_fam btn_fnt_size btn_padd btn_save" name="EditMachine" id="edit_machine_data" value="SAVE">Save</a>
-                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
-                </div>
+        </div>
     </div>
-  </div>
-</div>
-<div class="modal fade" id="InfoMachineModal" tabindex="-1" aria-labelledby="InfoMachineModal1" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered rounded">
-    <div class="modal-content container bodercss">
-            <div class="modal-header" style="border:none; ">
-                <h5 class="modal-title header_popup fnt_fam" id="InfoMachineModal1" style="">INFO MACHINE</h5>
-            </div>
-                <div class="modal-body addMachineForm">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <label for="" class="col-form-label headTitle fnt_fam">Machine ID</label>
-                            <p><span id="MId" class="font_weight_modal"></span></p>
-                        </div>
-                        <div class="col-lg-4">
-                            <label for="" class="col-form-label headTitle fnt_fam">Status</label>
-                            <p><span id="MStatus" class="font_weight_modal"></span></p>
-                        </div>
-                        <div class="col-lg-4">
-                            <label for="" class="col-form-label headTitle fnt_fam">Machine Name</label>
-                            <p><span id="MName" class="font_weight_modal"></span></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <label for="" class="col-form-label headTitle fnt_fam">Machine Brand</label>
-                            <p><span id="MBrand" class="font_weight_modal"></span></p>
-                        </div>
-                        <div class="col-lg-4">
-                            <label for="" class="col-form-label headTitle fnt_fam">Machine Rate Hour</label>
-                            <p><span id="MRateHour" class="font_weight_modal"></span></p>
-                        </div>
-                        <div class="col-lg-4">
-                            <label for="" class="col-form-label headTitle fnt_fam">Machine OFF Rate Hour</label>
-                            <p><span id="MOffRate" class="font_weight_modal"></span></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <label for="" class="col-form-label headTitle fnt_fam">Tonnage</label>
-                            <p><span id="MTonnage" class="font_weight_modal"></span></p>
-                        </div>
-                        <div class="col-lg-4">
-                            <label for="" class="col-form-label headTitle fnt_fam">Machine Serial ID</label>
-                            <p><span id="MSerialNumber" class="font_weight_modal"></span></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <label for="" class="col-form-label headTitle fnt_fam">Last Updated By</label>
-                            <p><span id="last_updated_by1" class="font_weight_modal"></span></p>
-                        </div>
-                        <div class="col-lg-4">
-                            <label for="" class="col-form-label headTitle fnt_fam">Last Updated On</label>
-                            <p><span id="last_updated_on1" class="font_weight_modal"></span></p>
-                        </div>
-                    </div>                   
-                </div>
-                <div class="modal-footer" style="border:none;">
-                    <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
-                </div>
-    </div>
-  </div>
 </div>
 
-<div class="modal fade" id="FilterMachineModal" tabindex="-1" aria-labelledby="FilterMachineModal1" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered rounded">
-    <div class="container modal-content bodercss">
-            <div class="modal-header" style="border:none; ">
-                <h5 class="modal-title header_popup fnt_fam" id="FilterMachineModal1" style="">FILTER MACHINES</h5>
-            </div>
-            <!-- <form method="" class="addMachineForm" action="" > -->
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-3 box" style="padding-right:0;">
-                            <div class="input-box fieldStyle">
-                                <input type="datetime-local" class="form-control font_weight" id="filterFrom" name="filterFrom">
-                                <label for="filterFrom" class="input-padding">Registered on</label>
-                            </div>
-                        </div>
-                        <div class="col-lg-3" style="padding-left:0.5rem;">
-                            <div class=" input-box fieldStyle">
-                                <input type="datetime-local" class="form-control font_weight" id="filterTo" name="filterTo">
-                                <label for="filterTo" class="input-padding"></label>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 box">
-                            <div class="fieldStyle input-box">
-                                <select class="form-select font_weight" name="filterMachineBrand" id="filterMachineBrand"></select>
-                                <label for="filterMachineBrand" class="input-padding">Machine Brand</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 box">
-                            <div class=" fieldStyle input-box">
-                                <input type="text" class="form-control font_weight" id="filterkey" name="filterkey"> 
-                                <label for="filterkey" class="input-padding">Keyword</label> 
-                            </div>
-                        </div>
-                        <div class="box col-lg-6">
-                            <div class="fieldStyle input-box">
-                                <select class="form-select font_weight" name="filterStatus" id="filterStatus">
-                                    <option selected value="all">All</option>
-                                    <option value="1">Active</option>
-                                    <option value="0">Inactive</option>
-                                </select>
-                                <label for="filterStatus" class="input-padding">Status</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="box col-lg-6">
-                            <div class="input-box fieldStyle">
-                                <select class="form-select font_weight" name="filterSiteName" id="filterSiteName">
-                                    </select> 
-                                <label for="filterSiteName" class="input-padding">Site Name</label>
-                            </div>
-                        </div>
-                        <div class="box col-lg-6">
-                            <div class="fieldStyle input-box">
-                                <select class="form-select font_weight" name="filterLastUpdatedBy" id="filterLastUpdatedBy"></select>
-                                <label for="filterLastUpdatedBy" class="input-padding">Last Updated By</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-3 box" style="padding-right:0;">
-                            <div class="input-box fieldStyle" >
-                                <select class="form-select font_weight" name="filterMachineRateHourR" id="filterMachineRateHourR">
-                                    <option selected value="all">All Rate</option>
-                                    <option value="<"> <= </option>
-                                    <option value=">"> >= </option>
-                                    <option value="="> Equal</option>
-                                </select>
-                                <label for="filterMachineRateHourR" class="input-padding">Machine Rate Hour</label>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 box" style="padding-left:0.5rem;">
-                            <div class="fieldStyle input-box">
-                                <input type="text" class="form-control font_weight" id="filterMachineRateHourOp" name="filterMachineRateHourOp">
-                                <label for="filterMachineRateHourOp" class="input-padding"></label>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 box" style="padding-right:0;">
-                            <div class=" fieldStyle input-box">
-                                <select class="form-select font_weight" name="filterMachineOffRateR" id="filterMachineOffRateR">
-                                    <option selected value="all">All Rate</option>
-                                    <option value="<"> <= </option>
-                                    <option value=">"> >= </option>
-                                    <option value="="> Equal</option>
-                                </select>
-                                <label for="filterMachineOffRateR" class="input-padding">Machine OFF Rate Hour</label>
-                            </div>
-                        </div>
-                        <div class="col-lg-3" style="padding-left:0.5rem;">
-                            <div class="fieldStyle">
-                                <input type="text" class="form-control font_weight" id="filterMachineOffRateOp" name="filterMachineOffRateOp">
-                                <!-- <label for="filterMachineOffRateOp" class="input-padding"></label> -->
-                            </div>
-                        </div>
-                    </div>              
+<!-- info machine filter modal -->
+<div class="modal fade" id="InfoMachineModal" tabindex="-1" aria-labelledby="InfoMachineModal1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered rounded">
+        <div class="modal-content container bodercss">
+                <div class="modal-header" style="border:none; ">
+                    <h5 class="modal-title header_popup fnt_fam" id="InfoMachineModal1" style="">INFO MACHINE</h5>
                 </div>
-                <div class="modal-footer" style="border:none;">
-                    <a class="Add_Filter btn fo bn saveBtnStyle" name="" value="Apply">Apply</a>
-                    <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
-                </div>
-            <!-- </form> -->
+                    <div class="modal-body addMachineForm">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="" class="col-form-label headTitle fnt_fam">Machine ID</label>
+                                <p><span id="MId" class="font_weight_modal"></span></p>
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="" class="col-form-label headTitle fnt_fam">Status</label>
+                                <p><span id="MStatus" class="font_weight_modal"></span></p>
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="" class="col-form-label headTitle fnt_fam">Machine Name</label>
+                                <p><span id="MName" class="font_weight_modal"></span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="" class="col-form-label headTitle fnt_fam">Machine Brand</label>
+                                <p><span id="MBrand" class="font_weight_modal"></span></p>
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="" class="col-form-label headTitle fnt_fam">Machine Rate Hour</label>
+                                <p><span id="MRateHour" class="font_weight_modal"></span></p>
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="" class="col-form-label headTitle fnt_fam">Machine OFF Rate Hour</label>
+                                <p><span id="MOffRate" class="font_weight_modal"></span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="" class="col-form-label headTitle fnt_fam">Tonnage</label>
+                                <p><span id="MTonnage" class="font_weight_modal"></span></p>
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="" class="col-form-label headTitle fnt_fam">Machine Serial ID</label>
+                                <p><span id="MSerialNumber" class="font_weight_modal"></span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="" class="col-form-label headTitle fnt_fam">Last Updated By</label>
+                                <p><span id="last_updated_by1" class="font_weight_modal"></span></p>
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="" class="col-form-label headTitle fnt_fam">Last Updated On</label>
+                                <p><span id="last_updated_on1" class="font_weight_modal"></span></p>
+                            </div>
+                        </div>                   
+                    </div>
+                    <div class="modal-footer" style="border:none;">
+                        <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
+                    </div>
+        </div>
     </div>
-  </div>
+</div>
+
+<!-- machine filter modal -->
+<div class="modal fade" id="FilterMachineModal" tabindex="-1" aria-labelledby="FilterMachineModal1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered rounded">
+        <div class="container modal-content bodercss">
+                <div class="modal-header" style="border:none; ">
+                    <h5 class="modal-title header_popup fnt_fam" id="FilterMachineModal1" style="">FILTER MACHINES</h5>
+                </div>
+                <!-- <form method="" class="addMachineForm" action="" > -->
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-3 box" style="padding-right:0;">
+                                <div class="input-box fieldStyle">
+                                    <input type="datetime-local" class="form-control font_weight" id="filterFrom" name="filterFrom">
+                                    <label for="filterFrom" class="input-padding">Registered on</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-3" style="padding-left:0.5rem;">
+                                <div class=" input-box fieldStyle">
+                                    <input type="datetime-local" class="form-control font_weight" id="filterTo" name="filterTo">
+                                    <label for="filterTo" class="input-padding"></label>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 box">
+                                <div class="fieldStyle input-box">
+                                    <select class="form-select font_weight" name="filterMachineBrand" id="filterMachineBrand"></select>
+                                    <label for="filterMachineBrand" class="input-padding">Machine Brand</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 box">
+                                <div class=" fieldStyle input-box">
+                                    <input type="text" class="form-control font_weight" id="filterkey" name="filterkey"> 
+                                    <label for="filterkey" class="input-padding">Keyword</label> 
+                                </div>
+                            </div>
+                            <div class="box col-lg-6">
+                                <div class="fieldStyle input-box">
+                                    <select class="form-select font_weight" name="filterStatus" id="filterStatus">
+                                        <option selected value="all">All</option>
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactive</option>
+                                    </select>
+                                    <label for="filterStatus" class="input-padding">Status</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="box col-lg-6">
+                                <div class="input-box fieldStyle">
+                                    <select class="form-select font_weight" name="filterSiteName" id="filterSiteName">
+                                        </select> 
+                                    <label for="filterSiteName" class="input-padding">Site Name</label>
+                                </div>
+                            </div>
+                            <div class="box col-lg-6">
+                                <div class="fieldStyle input-box">
+                                    <select class="form-select font_weight" name="filterLastUpdatedBy" id="filterLastUpdatedBy"></select>
+                                    <label for="filterLastUpdatedBy" class="input-padding">Last Updated By</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 box" style="padding-right:0;">
+                                <div class="input-box fieldStyle" >
+                                    <select class="form-select font_weight" name="filterMachineRateHourR" id="filterMachineRateHourR">
+                                        <option selected value="all">All Rate</option>
+                                        <option value="<"> <= </option>
+                                        <option value=">"> >= </option>
+                                        <option value="="> Equal</option>
+                                    </select>
+                                    <label for="filterMachineRateHourR" class="input-padding">Machine Rate Hour</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 box" style="padding-left:0.5rem;">
+                                <div class="fieldStyle input-box">
+                                    <input type="text" class="form-control font_weight" id="filterMachineRateHourOp" name="filterMachineRateHourOp">
+                                    <label for="filterMachineRateHourOp" class="input-padding"></label>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 box" style="padding-right:0;">
+                                <div class=" fieldStyle input-box">
+                                    <select class="form-select font_weight" name="filterMachineOffRateR" id="filterMachineOffRateR">
+                                        <option selected value="all">All Rate</option>
+                                        <option value="<"> <= </option>
+                                        <option value=">"> >= </option>
+                                        <option value="="> Equal</option>
+                                    </select>
+                                    <label for="filterMachineOffRateR" class="input-padding">Machine OFF Rate Hour</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-3" style="padding-left:0.5rem;">
+                                <div class="fieldStyle">
+                                    <input type="text" class="form-control font_weight" id="filterMachineOffRateOp" name="filterMachineOffRateOp">
+                                    <!-- <label for="filterMachineOffRateOp" class="input-padding"></label> -->
+                                </div>
+                            </div>
+                        </div>              
+                    </div>
+                    <div class="modal-footer" style="border:none;">
+                        <a class="Add_Filter btn fo bn saveBtnStyle" name="" value="Apply">Apply</a>
+                        <a class="btn fo bn cancelBtnStyle" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+                    </div>
+                <!-- </form> -->
+        </div>
+    </div>
 </div>
 
 
