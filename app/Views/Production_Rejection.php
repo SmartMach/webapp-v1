@@ -84,6 +84,116 @@ a{
   color: black; 
 }
 
+ /* part setting mobile responsive table alignment css */
+    /* table header css alignment mobile responsive work starting */
+    .txt_header_align{
+        white-space: break-spaces;
+        overflow:hidden;
+
+    }
+    .res_h{
+        display:inline;
+    }
+    .res_d{
+        display:flex;
+        flex-direction:row;
+
+
+    }
+    .res_baswidth{
+        width:92%;
+        display:flex;
+        flex-direction:row;
+        padding:0;
+        margin:0;
+    }
+    .res_basewidth1{
+        width:8%;
+        display:flex;
+        flex-direction:row;
+        padding:0;
+        margin:0;
+    }
+
+
+    .tb_res_header{
+        color:#979a9a;
+        font-size:0.8rem;
+        margin:0;
+        padding:0;
+        display:none;
+    }
+    .justify_content_end_res{
+        justify-content:center;
+    }
+
+    /* media query  */
+    @media only screen and (max-width:1000px){
+        .h_mar_l{
+            margin-left:0rem;
+        }
+    }
+
+    /* mobile screen for machine settings  */
+    /* this media query is comfortale for 576 to 768 px this media query working */
+    @media only screen and (max-width:768px){
+        .rm_mrl{
+            margin-left:0rem !important;
+        }
+        .rm_mrr{
+            margin-right:0rem !important;
+            text-align:left !important;
+        }
+        .res_h{
+            display:none;
+        }
+        .mr_left_content_sec{
+            margin-left:0rem !important;
+            top:0rem !important;
+            position:inherit !important;
+        }
+
+        .res_d{
+            flex-direction:column-reverse;
+            padding:1rem;
+
+        }
+        .res_baswidth{
+            display:flex;
+            width:100%;
+            flex-direction:row;
+            align-items:center;
+            justify-content:space-around;
+            flex-wrap:wrap;
+        }
+        .res_basewidth1{
+            display:flex;
+            width:100%;
+            flex-direction:row;
+            align-items:center;
+            justify-content:space-between;
+        }
+       
+        .justify_content_end_res{
+            justify-content:end !important;
+            
+        }
+       
+        .res_width{
+            width:33.3% !important;
+            justify-content:space-evenly;
+            flex-direction:column;
+            align-items:start !important;
+            padding-left:0rem;
+
+        }
+        .tb_res_header{
+            display:inline;
+        }
+       
+        
+    }
+
 </style>
 <div class="mr_left_content_sec">
         <nav class="sec_nav display_f align_c justify_c sec_nav_c navbar-expand-lg">
@@ -126,35 +236,83 @@ a{
           </div>
         </nav>
             <div class="data_section">
-                <div class="table_header table_header_p">
-                    <div class="row paddingm">
-                        <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
-                          <p class="h_mar_l paddingm">FROM TIME</p>
-                        </div>
-                        <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
-                          <p class="h_mar_l paddingm">TO TIME</p>
-                        </div>
-                        <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
-                          <p class="h_mar_l paddingm">PART NAME</p>
-                        </div>
-                        <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_e align_c text_align_c ">
-                          <p class="h_mar_r paddingm">MAX REJECTS <i class="fa fa-info-circle"></i></p>
-                        </div>
-                        <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_e align_c text_align_c">
-                          <p class="h_mar_r paddingm">REJECT COUNTS</p>
-                        </div>
-                        <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
-                          <p class="h_mar_l paddingm">REASON</p>
-                        </div>
-                        <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
-                          <p class="h_mar_l paddingm">NOTES</p>
-                        </div>
-                        <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_c align_c text_align_c">
-                          <p class="paddingm">ACTION</p>
+                <div class="res_h">
+                    <div class="table_header table_header_p">
+                        <div class="row paddingm">
+                            <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c txt_header_align">
+                            <p class="h_mar_l paddingm">FROM TIME</p>
+                            </div>
+                            <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c txt_header_align">
+                            <p class="h_mar_l paddingm">TO TIME</p>
+                            </div>
+                            <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c txt_header_align">
+                            <p class="h_mar_l paddingm">PART NAME</p>
+                            </div>
+                            <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_e align_c text_align_c txt_header_align">
+                            <p class="h_mar_r paddingm">MAX REJECTS <i class="fa fa-info-circle"></i></p>
+                            </div>
+                            <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_e align_c text_align_c txt_header_align">
+                            <p class="h_mar_r paddingm">REJECT COUNTS</p>
+                            </div>
+                            <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c txt_header_align">
+                            <p class="h_mar_l paddingm">REASON</p>
+                            </div>
+                            <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c txt_header_align">
+                            <p class="h_mar_l paddingm">NOTES</p>
+                            </div>
+                            <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_c align_c text_align_c txt_header_align">
+                            <p class="paddingm">ACTION</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+                
                 <div class="contentMachine paddingm " style="margin-top:0.9rem;">
+                    <!-- <div id="settings_div">
+                        <div class="row paddingm res_d">
+                            <div class="res_baswidth">
+                                <div class="col-1 col marleft res_width " style="width:9%;">
+                                    <p class="tb_res_header fnt_fam rm_mrl" >FROM TIME</p>
+                                    <p id="fdate" class="rm_mrl">13:00:00</p>  
+                                </div>
+                                <div class="col-1 col marleft res_width" style="width:9%;">
+                                    <p class="tb_res_header fnt_fam rm_mrl" >END TIME</p>
+                                    <p id="tdate" class="rm_mrl">14:00:00</p>
+                                </div>
+                                <div class="col-2 col marleft res_width" style="width:18%;">
+                                    <p class="tb_res_header fnt_fam rm_mrl" >PART NAME</p>
+                                    <p id="pname" class="rm_mrl">KNOB-GLOVE-BOX-RHD</p>
+                                </div>
+                                <div class="col-2 col marright res_width" style="width:18.5%;">
+                                    <p class="tb_res_header fnt_fam rm_mrr" >MAXIMUM REJECT</p>
+                                    <p id="mreject" class="rm_mrr">48</p>
+                                </div>
+                                <div class="col-2 col marright res_width" style="width:18%;">
+                                    <p class="tb_res_header fnt_fam rm_mrr" >REJECTION COUNT</p>
+                                    <p id="rcount" class="rm_mrr" style="color: #e2062c;">48</p>
+                                </div>
+                                <div class="col-1 col marleft res_width" style="width:9%;">
+                                    <p class="tb_res_header fnt_fam rm_mrl" >REJECTION REASON</p>
+                                    <p id="display_reject_reason'+i+'" class="rm_mrl"></p>
+                                </div>
+                                <div class="col-2 col marleft res_width" style="width:18.3%;">
+                                    <p class="tb_res_header fnt_fam rm_mrl" >NOTES</p>
+                                    <p class="rm_mrl"></p>
+                                </div>
+                            </div>
+                            <div class="res_basewidth1">
+                                <div class="col-sm-1 col d-flex justify_content_end_res  fasdiv " style="width:100%;">
+                                    <ul class="edit-menu">
+                                        <li class="d-flex justify-content-center " >
+                                            <a href="#">
+                                                <img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="editRejects  pen-product" style="color: #d9d9d9;height:1.2rem;width:1.2rem;display:'+display_var+';" alt="Edit" rvalue="'+item.machine_id+'" pIdValue="'+item.part_id+'" ftime="'+item.start_time+'" id="dsedit">
+                                            </a>
+                                        </li>
+                                    </ul>               
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
                 </div>
         </div>
 </div>
@@ -333,36 +491,47 @@ function selection_data(){
                     count = parseInt(count)+parseInt(item.rejections);
                 }
                 elements = elements.add('<div id="settings_div">'
-                    +'<div class="row paddingm">'
-                        +'<div class="col-sm-1 col marleft">'
-                            +'<p id="fdate">'+item.start_time+'</p>'   
+                    +'<div class="row paddingm res_d">'
+                        +'<div class="res_baswidth">'
+                            +'<div class="col-1 col marleft res_width " style="width:9%;">'
+                                +'<p class="tb_res_header fnt_fam rm_mrl" >FROM TIME</p>'
+                                +'<p id="fdate" class="rm_mrl">'+item.start_time+'</p>' 
+                            +'</div>'
+                            +'<div class="col-1 col marleft res_width" style="width:9%;">'
+                                +'<p class="tb_res_header fnt_fam rm_mrl" >END TIME</p>'
+                                +'<p id="tdate" class="rm_mrl">'+item.end_time+'</p>'
+                            +'</div>'
+                            +'<div class="col-2 col marleft res_width" style="width:18%;">'
+                                +'<p class="tb_res_header fnt_fam rm_mrl" >PART NAME</p>'
+                                +'<p id="pname" class="rm_mrl">'+item.part_name+'</p>'
+                            +'</div>'
+                            +'<div class="col-2 col marright res_width" style="width:18.5%;">'
+                                +'<p class="tb_res_header fnt_fam rm_mrr" >MAXIMUM REJECT</p>'
+                                +'<p id="mreject" class="rm_mrr">'+max_reject+'</p>'
+                            +'</div>'
+                            +'<div class="col-2 col marright res_width" style="width:18%;">'
+                                +'<p class="tb_res_header fnt_fam rm_mrr" >REJECTION COUNT</p>'
+                                +'<p id="rcount" class="rm_mrr" style="color: #e2062c;">'+reject_count+'</p>'
+                            +'</div>'
+                            +'<div class="col-1 col marleft res_width" style="width:9%;">'
+                                +'<p class="tb_res_header fnt_fam rm_mrl" >REJECTION REASON</p>'
+                                +'<p id="display_reject_reason'+i+'" class="rm_mrl"></p>'
+                            +'</div>'
+                            +'<div class="col-2 col marleft res_width" style="width:18.3%;">'
+                                +'<p class="tb_res_header fnt_fam rm_mrl" >NOTES</p>'
+                                +'<p class="rm_mrl">'+notes+'</p>'
+                            +'</div>'
                         +'</div>'
-                        +'<div class="col-sm-1 col marleft" >'
-                            +'<p id="tdate">'+item.end_time+'</p>'
-                        +'</div>'
-                        +'<div class="col-sm-2 col marleft" >'
-                            +'<p id="pname">'+item.part_name+'</p>'
-                        +'</div>'
-                        +'<div class="col-sm-2 col marright" >'
-                            +'<p id="mreject">'+max_reject+'</p>'
-                        +'</div>'
-                        +'<div class="col-sm-2 col marright">'
-                            +'<p id="rcount" style="color: #e2062c;">'+reject_count+'</p>'
-                        +'</div>'
-                        +'<div class="col-sm-1 col marleft">'
-                            +'<p id="display_reject_reason'+i+'"></p>'
-                        +'</div>'
-                        +'<div class="col-sm-2 col marleft">'
-                            +'<p>'+notes+'</p>'
-                        +'</div>'
-                        +'<div class="col-sm-1 col d-flex justify-content-center fasdiv">'
-                            +'<ul class="edit-menu">'
-                                +'<li class="d-flex justify-content-center " >'
-                                    +'<a href="#">'
-                                        +'<img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="editRejects  pen-product" style="color: #d9d9d9;height:1.2rem;width:1.2rem;display:'+display_var+';" alt="Edit" rvalue="'+item.machine_id+'" pIdValue="'+item.part_id+'" ftime="'+item.start_time+'" id="dsedit">'
-                                    +'</a>'
-                                +'</li>'
-                            +'</ul>'               
+                        +'<div class="res_basewidth1">'
+                            +'<div class="col-sm-1 col d-flex justify_content_end_res  fasdiv " style="width:100%;">'
+                                +'<ul class="edit-menu">'
+                                    +'<li class="d-flex justify-content-center " >'
+                                        +'<a href="#">'
+                                            +'<img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="editRejects  pen-product" style="color: #d9d9d9;height:1.2rem;width:1.2rem;display:'+display_var+';" alt="Edit" rvalue="'+item.machine_id+'" pIdValue="'+item.part_id+'" ftime="'+item.start_time+'" id="dsedit">'
+                                        +'</a>'
+                                    +'</li>'
+                                +'</ul>'               
+                            +'</div>'
                         +'</div>'
                     +'</div>'
                 +'</div>');
@@ -372,6 +541,7 @@ function selection_data(){
                 i++;
             });
             (parseInt(count)>9)? ($('#rejects').html(count)):($('#rejects').html('0'+count));
+          
         },
         error:function(res){
             // alert("Sorry!Try Agian!!");
