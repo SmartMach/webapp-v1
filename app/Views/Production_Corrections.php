@@ -89,6 +89,116 @@ a{
     
 }
 
+
+/* production correction mobile responsive table alignment css */
+    /* table header css alignment mobile responsive work starting */
+    .txt_header_align{
+        white-space: break-spaces;
+        overflow:hidden;
+
+    }
+    .res_h{
+        display:inline;
+    }
+    .res_d{
+        display:flex;
+        flex-direction:row;
+
+
+    }
+    .res_baswidth{
+        width:92%;
+        display:flex;
+        flex-direction:row;
+        padding:0;
+        margin:0;
+    }
+    .res_basewidth1{
+        width:8%;
+        display:flex;
+        flex-direction:row;
+        padding:0;
+        margin:0;
+    }
+
+
+    .tb_res_header{
+        color:#979a9a;
+        font-size:0.8rem;
+        margin:0;
+        padding:0;
+        display:none;
+    }
+    .justify_content_end_res{
+        justify-content:center;
+    }
+
+    /* media query  */
+    @media only screen and (max-width:1000px){
+        .h_mar_l{
+            margin-left:0rem;
+        }
+    }
+
+    /* mobile screen for machine settings  */
+    /* this media query is comfortale for 576 to 768 px this media query working */
+    @media only screen and (max-width:768px){
+        .rm_mrl{
+            margin-left:0rem !important;
+        }
+        .rm_mrr{
+            margin-right:0rem !important;
+            text-align:left !important;
+        }
+        .res_h{
+            display:none;
+        }
+        .mr_left_content_sec{
+            margin-left:0rem !important;
+            top:0rem !important;
+            position:inherit !important;
+        }
+
+        .res_d{
+            flex-direction:column-reverse;
+            padding:1rem;
+
+        }
+        .res_baswidth{
+            display:flex;
+            width:100%;
+            flex-direction:row;
+            align-items:center;
+            justify-content:space-around;
+            flex-wrap:wrap;
+        }
+        .res_basewidth1{
+            display:flex;
+            width:100%;
+            flex-direction:row;
+            align-items:center;
+            justify-content:space-between;
+        }
+       
+        .justify_content_end_res{
+            justify-content:end !important;
+            
+        }
+       
+        .res_width{
+            width:33.3% !important;
+            justify-content:space-evenly;
+            flex-direction:column;
+            align-items:start !important;
+            padding-left:0rem;
+
+        }
+        .tb_res_header{
+            display:inline;
+        }
+       
+        
+    }
 </style>
 
 <div class="mr_left_content_sec">
@@ -131,33 +241,75 @@ a{
           </div>
         </nav>
             <div class="data_section">
-                <div class="table_header table_header_p">
-                    <div class="row paddingm">
-                        <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
-                          <p class="h_mar_l paddingm">FROM TIME</p>
-                        </div>
-                        <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
-                          <p class="h_mar_l paddingm">TO TIME</p>
-                        </div>
-                        <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
-                          <p class="h_mar_l paddingm">PART NAME</p>
-                        </div>
-                        <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
-                          <p class="h_mar_l paddingm">MIN COUNTS <i class="fa fa-info-circle"></i></p>
-                        </div>
-                        <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
-                          <p class="h_mar_l paddingm">CORRECTION COUNTS</p>
-                        </div>
-                        <div class="col-sm-3 p3 paddingm table_header_sec display_f justify_l align_c text_align_c">
-                          <p class="h_mar_l paddingm">NOTES</p>
-                        </div>
-                        <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_c align_c text_align_c">
-                          <p class="paddingm">ACTION</p>
+                <div class="res_h">
+                    <div class="table_header table_header_p">
+                        <div class="row paddingm">
+                            <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c txt_header_align">
+                            <p class="h_mar_l paddingm">FROM TIME</p>
+                            </div>
+                            <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_l align_c text_align_c txt_header_align">
+                            <p class="h_mar_l paddingm">TO TIME</p>
+                            </div>
+                            <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c txt_header_align">
+                            <p class="h_mar_l paddingm">PART NAME</p>
+                            </div>
+                            <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c txt_header_align">
+                            <p class="h_mar_l paddingm">MIN COUNTS <i class="fa fa-info-circle"></i></p>
+                            </div>
+                            <div class="col-sm-2 p3 paddingm table_header_sec display_f justify_l align_c text_align_c txt_header_align">
+                            <p class="h_mar_l paddingm">CORRECTION COUNTS</p>
+                            </div>
+                            <div class="col-sm-3 p3 paddingm table_header_sec display_f justify_l align_c text_align_c txt_header_align">
+                            <p class="h_mar_l paddingm">NOTES</p>
+                            </div>
+                            <div class="col-sm-1 p3 paddingm table_header_sec display_f justify_c align_c text_align_c txt_header_align">
+                            <p class="paddingm">ACTION</p>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="contentCorrection paddingm ">
-                   
+                    <!-- <div id="settings_div">
+                        <div class="row paddingm res_d">
+                            <div class="res_baswidth">
+                                <div class="col-1 col marleft res_width" style="width:9%;">
+                                    <p class="tb_res_header fnt_fam rm_mrl" >FROM TIME</p>
+                                    <p id="fdate" class="rm_mrl">08:00:00</p>   
+                                </div>
+                                <div class="col-1 col marleft res_width" style="width:9%;">
+                                    <p class="tb_res_header fnt_fam rm_mrl" >END TIME</p>
+                                    <p id="tdate" class="rm_mrl">09:00:00</p>
+                                </div>
+                                <div class="col-2 col marleft res_width" style="width:18%;">
+                                    <p class="tb_res_header fnt_fam rm_mrl" >PART NAME</p>
+                                    <p id="pname" class="rm_mrl">KNOB HOLDER LH</p>
+                                </div>
+                                <div class="col-2 col marleft res_width" style="width:18.5%;">
+                                    <p class="tb_res_header fnt_fam rm_mrl" >MIN COUNTS</p>
+                                    <p id="mreject" class="rm_mrl">23</p>
+                                </div>
+                                <div class="col-2 col marleft res_width" style="width:18%;">
+                                    <p class="tb_res_header fnt_fam rm_mrl" >CORRECTION COUNT</p>
+                                    <p id="rcount" class="rm_mrl"  style="color: #004795;font-weight:bold;">34</p>
+                                </div>
+                                <div class="col-3 col marleft res_width " style="width:27.3%;">
+                                    <p class="tb_res_header fnt_fam rm_mrl" >NOTES</p>
+                                    <p class="rm_mrl">nothing</p>
+                                </div>
+                            </div>
+                            <div class="res_basewidth1">
+                                <div class="col-1 col d-flex justify_content_end_res fasdiv" style="width:100%;">
+                                    <ul class="edit-menu">
+                                        <li class="d-flex justify-content-center">
+                                            <a href="#">
+                                                <img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="editCorrects  pen-product" style="font-size: 20px;color: #d9d9d9;height:1.2rem;width:1.2rem;display:'+control_display+'" alt="Edit" rvalue="'+item.machine_id+'" pIdValue="'+item.part_id+'" fdate="'+item.start_time+'" >
+                                            </a>
+                                        </li>
+                                    </ul>               
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
                 </div>
         </div>
 </div>
@@ -298,6 +450,7 @@ function  gedt_correction_data(){
             var count =0;
             var startTime = "";
             var i=0;
+           
             $('.contentCorrection').empty();
             res.forEach(function(item){
                 if (item.corrections != null) {
@@ -310,67 +463,87 @@ function  gedt_correction_data(){
                 if(parseInt(item.corrections) < 0){
                     elements = elements.add('<div id="settings_div">'
                         +'<div class="row paddingm">'
-                        +'<div class="col-sm-1 col marleft">'
-                        +'<p id="fdate" >'+item.start_time+'</p>'
-                        +'</div>'
-                        +'<div class="col-sm-1 col marleft" >'
-                        +'<p id="tdate">'+item.end_time+'</p>'
-                        +'</div>'
-                        +'<div class="col-sm-2 col marleft" >'
-                        +'<p id="pname">'+item.part_name+'</p>'
-                        +'</div>'
-                        +'<div class="col-sm-2 col marleft" ">'
-                        +'<p id="mreject" style="">'+correction_min_count+'</p>'
-                        +'</div>'
-                        +'<div class="col-sm-2 col marleft">'
-                        +'<p id="rcount" style="color: #e2062c; font-weight:bold;">'+correction_count+'</p>'
-                        +'</div>'
-                        +'<div class="col-sm-3 col marleft">'
-                        +'<p>'+notes+'</p>'
-                        +'</div>'
-                        +'<div class="col-sm-1 col d-flex justify-content-center fasdiv">'
-                        +'<ul class="edit-menu">'
-                        +'<li class="d-flex justify-content-center">'
-                        +'<a href="#">'
-                        +'<img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="editCorrects  pen-product" style="font-size: 20px;color: #d9d9d9;height:1.4rem;width:1.4rem;display:'+control_display+'" alt="Edit" rvalue="'+item.machine_id+'" pIdValue="'+item.part_id+'" fdate="'+item.start_time+'" >'
-                        +'</a>'
-                        +'</li>'
-                        +'</ul>'
-                        +'</div>'
+                            +'<div class="res_baswidth">'
+                                +'<div class="col-1 col marleft res_width" style="width:9%;">'
+                                    +'<p class="tb_res_header fnt_fam rm_mrl" >FROM TIME</p>'
+                                    +'<p id="fdate" class="rm_mrl">'+item.start_time+'</p>'
+                                +'</div>'
+                                +'<div class="col-1 col marleft res_width" style="width:9%;">'
+                                    +'<p class="tb_res_header fnt_fam rm_mrl" >END TIME</p>'
+                                    +'<p id="tdate" class="rm_mrl">'+item.end_time+'</p>'
+                                +'</div>'
+                                +'<div class="col-2 col marleft res_width" style="width:18%;">'
+                                    +'<p class="tb_res_header fnt_fam rm_mrl" >PART NAME</p>'
+                                    +'<p id="pname" class="rm_mrl">'+item.part_name+'</p>'
+                                +'</div>'
+                                +'<div class="col-2 col marleft res_width" style="width:18.5%;">'
+                                    +'<p class="tb_res_header fnt_fam rm_mrl" >MIN COUNTS</p>'
+                                    +'<p id="mreject" style="" class="rm_mrl">'+correction_min_count+'</p>'
+                                +'</div>'
+                                +'<div class="col-2 col marleft res_width" style="width:18%;">'
+                                    +'<p class="tb_res_header fnt_fam rm_mrl" >CORRECTION COUNT</p>'
+                                    +'<p id="rcount" style="color: #e2062c; font-weight:bold;" class="rm_mrl" >'+correction_count+'</p>'
+                                +'</div>'
+                                +'<div class="col-3 col marleft res_width" style="width:27.3%;">'
+                                    +'<p class="tb_res_header fnt_fam rm_mrl" >NOTES</p>'
+                                    +'<p class="rm_mrl">'+notes+'</p>'
+                                +'</div>'
+                            +'</div>'
+                            +'<div class="res_basewidth1">'
+                                +'<div class="col-1 col d-flex justify_content_end_res fasdiv" style="width:100%;">'
+                                    +'<ul class="edit-menu">'
+                                        +'<li class="d-flex justify-content-center">'
+                                            +'<a href="#">'
+                                                +'<img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="editCorrects  pen-product" style="font-size: 20px;color: #d9d9d9;height:1.4rem;width:1.4rem;display:'+control_display+'" alt="Edit" rvalue="'+item.machine_id+'" pIdValue="'+item.part_id+'" fdate="'+item.start_time+'" >'
+                                            +'</a>'
+                                        +'</li>'
+                                    +'</ul>'
+                                +'</div>'
+                            +'<div>'
                         +'</div>'
                         +'</div>');
                 }
                 else if (item.corrections>=0) {
                     elements = elements.add('<div id="settings_div">'
-                    +'<div class="row paddingm">'
-                    +'<div class="col-sm-1 col marleft">'
-                    +'<p id="fdate">'+item.start_time+'</p>'   
-                    +'</div>'
-                    +'<div class="col-sm-1 col marleft" >'
-                    +'<p id="tdate">'+item.end_time+'</p>'
-                    +'</div>'
-                    +'<div class="col-sm-2 col marleft" >'
-                    +'<p id="pname">'+item.part_name+'</p>'
-                    +'</div>'
-                    +'<div class="col-sm-2 col marleft" >'
-                    +'<p id="mreject" style="">'+correction_min_count+'</p>'
-                    +'</div>'
-                    +'<div class="col-sm-2 col marleft">'
-                    +'<p id="rcount" style="color: #004795;font-weight:bold;">'+correction_count+'</p>'
-                    +'</div>'
-                    +'<div class="col-sm-3 col marleft">'
-                    +'<p>'+notes+'</p>'
-                    +'</div>'
-                    +'<div class="col-sm-1 col d-flex justify-content-center fasdiv">'
-                    +'<ul class="edit-menu">'
-                    +'<li class="d-flex justify-content-center">'
-                    +'<a href="#">'
-                    +'<img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="editCorrects  pen-product" style="font-size: 20px;color: #d9d9d9;height:1.2rem;width:1.2rem;display:'+control_display+'" alt="Edit" rvalue="'+item.machine_id+'" pIdValue="'+item.part_id+'" fdate="'+item.start_time+'" >'
-                    +'</a>'
-                    +'</li>'
-                    +'</ul>'               
-                    +'</div>'
-                    +'</div>'
+                        +'<div class="row paddingm res_d">'
+                            +'<div class="res_baswidth">'
+                                +'<div class="col-1 col marleft res_width" style="width:9%;">'
+                                    +'<p class="tb_res_header fnt_fam rm_mrl" >FROM TIME</p>'
+                                    +'<p id="fdate" class="rm_mrl">'+item.start_time+'</p>'   
+                                +'</div>'
+                                +'<div class="col-1 col marleft res_width" style="width:9%;">'
+                                    +'<p class="tb_res_header fnt_fam rm_mrl" >END TIME</p>'
+                                    +'<p id="tdate" class="rm_mrl">'+item.end_time+'</p>'
+                                +'</div>'
+                                +'<div class="col-2 col marleft res_width" style="width:18%;">'
+                                    +'<p class="tb_res_header fnt_fam rm_mrl" >PART NAME</p>'
+                                    +'<p id="pname" class="rm_mrl">'+item.part_name+'</p>'
+                                +'</div>'
+                                +'<div class="col-2 col marleft res_width" style="width:18.5%;">'
+                                    +'<p class="tb_res_header fnt_fam rm_mrl" >MIN COUNTS</p>'
+                                    +'<p id="mreject" class="rm_mrl">'+correction_min_count+'</p>'
+                                +'</div>'
+                                +'<div class="col-2 col marleft res_width" style="width:18%;">'
+                                    +'<p class="tb_res_header fnt_fam rm_mrl" >CORRECTION COUNT</p>'
+                                    +'<p id="rcount" class="rm_mrl"  style="color: #004795;font-weight:bold;">'+correction_count+'</p>'
+                                +'</div>'
+                                +'<div class="col-3 col marleft res_width " style="width:27.3%;">'
+                                    +'<p class="tb_res_header fnt_fam rm_mrl" >NOTES</p>'
+                                    +'<p class="rm_mrl">'+notes+'</p>'
+                                +'</div>'
+                            +'</div>'
+                            +'<div class="res_basewidth1">'
+                                +'<div class="col-1 col d-flex justify_content_end_res fasdiv" style="width:100%;">'
+                                    +'<ul class="edit-menu">'
+                                        +'<li class="d-flex justify-content-center">'
+                                            +'<a href="#">'
+                                                +'<img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="editCorrects  pen-product" style="font-size: 20px;color: #d9d9d9;height:1.2rem;width:1.2rem;display:'+control_display+'" alt="Edit" rvalue="'+item.machine_id+'" pIdValue="'+item.part_id+'" fdate="'+item.start_time+'" >'
+                                            +'</a>'
+                                        +'</li>'
+                                    +'</ul>'               
+                                +'</div>'
+                            +'</div>'
+                        +'</div>'
                     +'</div>');
                 }       
                 $('.contentCorrection').append(elements);
