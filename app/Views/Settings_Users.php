@@ -1206,12 +1206,24 @@
 <!-- preloader end -->
 
 
+<!-- google analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VKPSE3L44B"></script>
+
 <!-- modal end for site admin forgot password  -->
 
 <script src="<?php echo base_url()?>/assets/js/settings_user_validation.js?version=<?php echo rand() ; ?>"></script>
 <script src="<?php echo base_url()?>/assets/js/custom_date_format.js?version=<?php echo rand() ; ?>"></script>
 
 <script type="text/javascript">
+
+    // google analytics code
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-VKPSE3L44B');
+
+
     var UserNameRef = "<?php echo($this->data['user_details'][0]['user_id'])?>";
     var UserRoleRef ="<?php  echo($this->data['user_details'][0]['role'])?>";
 

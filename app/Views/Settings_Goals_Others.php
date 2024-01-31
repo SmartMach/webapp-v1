@@ -1284,11 +1284,22 @@
 </div>
 <!-- preloader end -->
 
+<!-- google analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VKPSE3L44B"></script>
 
 
 <!-----add of operator user interface script function-----> 
 <script src="<?php echo base_url(); ?>/assets/js/Settings_Goals_Others_Validation.js?version=<?php echo rand() ; ?>"></script>
 <script type="text/javascript">
+
+    // google analytics code
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-VKPSE3L44B');
+
+
 
 // add button reasons 
 $(document).on('click','.add_button_reasons',function(){

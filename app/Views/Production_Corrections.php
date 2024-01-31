@@ -269,47 +269,7 @@ a{
                     </div>
                 </div>
                 <div class="contentCorrection paddingm ">
-                    <!-- <div id="settings_div">
-                        <div class="row paddingm res_d">
-                            <div class="res_baswidth">
-                                <div class="col-1 col marleft res_width" style="width:9%;">
-                                    <p class="tb_res_header fnt_fam rm_mrl" >FROM TIME</p>
-                                    <p id="fdate" class="rm_mrl">08:00:00</p>   
-                                </div>
-                                <div class="col-1 col marleft res_width" style="width:9%;">
-                                    <p class="tb_res_header fnt_fam rm_mrl" >END TIME</p>
-                                    <p id="tdate" class="rm_mrl">09:00:00</p>
-                                </div>
-                                <div class="col-2 col marleft res_width" style="width:18%;">
-                                    <p class="tb_res_header fnt_fam rm_mrl" >PART NAME</p>
-                                    <p id="pname" class="rm_mrl">KNOB HOLDER LH</p>
-                                </div>
-                                <div class="col-2 col marleft res_width" style="width:18.5%;">
-                                    <p class="tb_res_header fnt_fam rm_mrl" >MIN COUNTS</p>
-                                    <p id="mreject" class="rm_mrl">23</p>
-                                </div>
-                                <div class="col-2 col marleft res_width" style="width:18%;">
-                                    <p class="tb_res_header fnt_fam rm_mrl" >CORRECTION COUNT</p>
-                                    <p id="rcount" class="rm_mrl"  style="color: #004795;font-weight:bold;">34</p>
-                                </div>
-                                <div class="col-3 col marleft res_width " style="width:27.3%;">
-                                    <p class="tb_res_header fnt_fam rm_mrl" >NOTES</p>
-                                    <p class="rm_mrl">nothing</p>
-                                </div>
-                            </div>
-                            <div class="res_basewidth1">
-                                <div class="col-1 col d-flex justify_content_end_res fasdiv" style="width:100%;">
-                                    <ul class="edit-menu">
-                                        <li class="d-flex justify-content-center">
-                                            <a href="#">
-                                                <img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="editCorrects  pen-product" style="font-size: 20px;color: #d9d9d9;height:1.2rem;width:1.2rem;display:'+control_display+'" alt="Edit" rvalue="'+item.machine_id+'" pIdValue="'+item.part_id+'" fdate="'+item.start_time+'" >
-                                            </a>
-                                        </li>
-                                    </ul>               
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
+                   
                 </div>
         </div>
 </div>

@@ -66,7 +66,15 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?php echo base_url() ?>/assets/css/all-fontawesome.css">
     <script type="text/javascript" src="<?php echo base_url() ?>/assets/js/all-fontawesome.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VKPSE3L44B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
+        gtag('config', 'G-VKPSE3L44B');
+    </script>
     <style>
         .paddingm {
             padding: 0;
