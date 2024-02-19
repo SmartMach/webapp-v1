@@ -1345,6 +1345,13 @@ function getreason_arr(){
 
 // filter function
 function filter_btn_call(){
+
+  <?php  
+    
+    log_message("info","\n\n****************************Bulk Edit function on ui side apply filter button starting*************************");
+    $start_time_log = microtime(true);  
+    
+  ?>
   var start_time_from = $('#start_time_from').val();
     var start_time_till = $('#start_time_till').val();
     if (((start_time_from!=null) && (start_time_from!="")) && ((start_time_till!=null) && (start_time_till!=""))) {
@@ -1425,6 +1432,13 @@ function filter_btn_call(){
             $('.split_input').html('<p class="no_record">No Records Found!!</p>');
           }
          
+          <?php  
+    
+            $end_time_log = microtime(true);
+            $final_log_time = ($end_time_log - $start_time_log);
+            log_message("info","\n\n*******************Bulk edit UI end Apply filter button execution start time is:\t".$start_time_log." then the end time is:\t".$end_time_log." the final total seconds is:\t".$final_log_time." ending ****************************************\n\n\n");
+            
+          ?>
           $("#overlay").fadeOut(300);
         },
         error:function(err){
@@ -1433,6 +1447,7 @@ function filter_btn_call(){
         }
       });
 
+    
     }
 }
 
@@ -1548,6 +1563,10 @@ $(document).on('change','#bulg_edit_category_drp',function(event){
 $(document).on('click','.bulg_edit_submit',function(event){
   event.preventDefault();
  
+  <?php 
+    $start_time_log = microtime(true);
+    log_message("info","\n\n\n************The bulk edit UI feature click save button starting *******************");
+  ?>
   var bulg_reason = $('#bulg_edit_drp').val();
   var bulg_category = $('#bulg_edit_category_drp').val();
   var machine_id = $('#Production_MachineName').val();
@@ -1653,6 +1672,11 @@ $(document).on('click','.bulg_edit_submit',function(event){
             // alert("Bulk Updation SuccessFully");
           }
           $("#overlay").fadeOut(300);
+          <?php 
+            $end_time_log = microtime(true);
+            $final_log_time = $end_time_log - $start_time_log;
+            log_message("info","\n\n\n **********the bulk edit UI save button end function after working in ui side the function start time is:\t".$start_time_log." \t the end time is:\t".$end_time_log." the final total seconds is:\t".$final_log_time."************\n\n\n");
+          ?>
         },
         error:function(err){
           // alert("Sorry Try Again");

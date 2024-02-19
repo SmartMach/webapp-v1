@@ -823,4 +823,9 @@ public function logout_session(){
     
 }
 
+// public function log_check(){
+//     echo "this is log file generation demo file";
+//     log_message("info","log file successfully generated and its also show the error message");
+// }
+
 }

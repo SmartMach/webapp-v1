@@ -3176,10 +3176,14 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
     //    bulg edit filter function
     public function bulgedit_filter($mydata){
 
+        log_message("info","\n\n the model file execution is started:\n");
         $db = \Config\Database::connect($this->site_creation);
         if (($mydata['downtime_reason']!=null) && ($mydata['downtime_reason']!="")) {
             if (($mydata['category']!=null) && ($mydata['category']!="")) {
                 // DOWNTIME REASONS GET REASON ID
+                $start_time_log = microtime(true);
+
+
                 $tem_cate_ra = [];
                 foreach ($mydata['downtime_reason'] as $key_k1 => $value_k1) {
                     $build1 = $db->table('settings_downtime_reasons');
@@ -3209,9 +3213,17 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
                 }
                 $getcatera = $this->getsimple_arr_format($tem_cate_ra);
                 $getarrcatra = $this->getfilter_time_range($getcatera,$mydata);
+                
+                // log file time getting
+                $end_time_log = microtime(true);
+                $total_seconds = ($end_time_log - $start_time_log);
+                log_message("info","\n\nthe model execution first time is:\t".$start_time_log." the end time execution is:\t".$end_time_log." total seconds is:\t".$total_seconds);
+
                 return $getarrcatra;
                
             }else{
+
+                $start_time_log = microtime(true);
                 // get downtime reason id 
                 $temp2_arr = [];
                 foreach ($mydata['downtime_reason'] as $ke => $va) {
@@ -3251,12 +3263,22 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
                 $getfinal_arr = $this->getsimple_arr_format1($temp2_arr);
                 $getfilter_record = $this->getfilter_time_range($getfinal_arr,$mydata);
                 // $getfilterrecordfinal = array_values($getfilter_record);
+
+
+                // log file time getting
+                $end_time_log = microtime(true);
+                $total_seconds = ($end_time_log - $start_time_log);
+                log_message("info","\n\nthe model execution first time is:\t".$start_time_log." the end time execution is:\t".$end_time_log." total seconds is:\t".$total_seconds);
+ 
+
                 return $getfilter_record;
 
             }
             
         }elseif(($mydata['category']!=null) && ($mydata['category']!="")) {
             
+            $start_time_log = microtime(true);
+
             $build3 = $db->table('settings_downtime_reasons');
             $build3->select('*');
             $build3->where('downtime_category',$mydata['category']);
@@ -3289,9 +3311,18 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
             $getarr = $this->getsimple_arr_format($tmp_arr);
             $getarr_final = $this->getfilter_time_range($getarr,$mydata);
             // $gfa = array_values($getarr_final);
+
+            // log file time getting
+            $end_time_log = microtime(true);
+            $total_seconds = ($end_time_log - $start_time_log);
+            log_message("info","\n\nthe model execution first time is:\t".$start_time_log." the end time execution is:\t".$end_time_log." total seconds is:\t".$total_seconds);
+
             return $getarr_final;
         }else{
         
+            $start_time_log = microtime(true);
+
+
             $build = $db->table('pdm_downtime_reason_mapping');
             $build->select('*');
             // $build->where('start_time >=',$mydata['start_time']);
@@ -3340,6 +3371,13 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
                 }
             }
             */
+
+            // log file time getting
+            $end_time_log = microtime(true);
+            $total_seconds = ($end_time_log - $start_time_log);
+            log_message("info","\n\nthe model execution first time is:\t".$start_time_log." the end time execution is:\t".$end_time_log." total seconds is:\t".$total_seconds);
+
+
             return $getres_final;
 
         }
@@ -3419,6 +3457,12 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
 
     // bulg updation function
     public function bulg_updation($mydata,$start_time_arr,$end_time_arr,$split_arr,$machine_event_arr){
+
+        $start_time_log = microtime(true);
+        log_message("info","\n\n*********** the Model execute the bulk edit operation ******************");
+
+
+
         $db = \Config\Database::connect($this->site_creation);
         
         $getid = $db->table('settings_downtime_reasons');
@@ -3426,10 +3470,15 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
         // $getid->where('downtime_category',$mydata['dcategory']);
         $getid->where('downtime_reason_id',$mydata['dreason']);
         $getdata = $getid->get()->getResultArray();
+        
+        log_message("info","\n\n*********** the Model downtime reason id is:\t".$mydata['dreason']." ******************");
 
         if (count($getdata)>0) {
             foreach ($start_time_arr as $key => $value) {
                 // return $end_time_arr[$key];
+
+                log_message("info","\n\n*********** the Model start time array key  is:\t".$key." \n the  start time array value is:\t".$value." ******************");
+
                 $build = $db->table('pdm_downtime_reason_mapping');
                 $build->set('downtime_reason_id',$getdata[0]['downtime_reason_id']);
                 $build->set('last_updated_by',$mydata['last_updated_by']);
@@ -3451,6 +3500,10 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
                         $umeid = array_unique($machine_event_arr);
                         $count_meid = count($umeid)-1;
                         foreach ($umeid as $k1 => $v1) {
+                            log_message("info","\n\n*********** the Model reason mapping table after splited element updation its move on pdm event table event id is:\t".$v." ******************");
+
+          
+
                             $build1=$db->table('pdm_downtime_reason_mapping');
                             $build1->select('*');
                             $build1->where('downtime_reason_id','0');
@@ -3463,6 +3516,11 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
                                 $pdm->where('machine_event_id',$v1);
                                 if ($pdm->update()) {
                                     if ($count_meid == $k1) {
+                                        // log file work
+                                        $end_time_log = microtime(true);
+                                        $final_log_time = $end_time_log - $start_time_log;
+                                        log_message("info","\n\n***************************** the Model function execution start time is :\t".$start_time_log."\t the end time is:\t".$end_time_log." \t the final total seconds is :\t".$final_log_time."**************************");
+
                                         return true;
                                     }
                                 }else{
@@ -3476,6 +3534,11 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
                                 $pdm1->where('machine_event_id',$v1);
                                 if ($pdm1->update()) {
                                     if ($count_meid == $k1) {
+                                        // log file work
+                                        $end_time_log = microtime(true);
+                                        $final_log_time = $end_time_log - $start_time_log;
+                                        log_message("info","\n\n**************** the Model function execution start time is :\t".$start_time_log."\t the end time is:\t".$end_time_log." \t the final total seconds is :\t".$final_log_time."************************** ");
+ 
                                         return true;
                                     }
                                 }else{

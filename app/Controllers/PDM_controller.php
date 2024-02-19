@@ -434,6 +434,8 @@ class PDM_controller extends BaseController{
     // bulg edit filter option
     public function apply_filter_get_data(){
         if ($this->request->isAjax()) {
+            log_message("info","\n\n\n************************Bulk Edit controller function apply filter list unnamed records*********************************");
+            $start_time_log = microtime(true);
             $start_time = $this->request->getVar('start_time');
             $end_time = $this->request->getVar('end_time');
             $category = $this->request->getVar('category');
@@ -451,7 +453,14 @@ class PDM_controller extends BaseController{
             $myarr['shift_id'] = $sid;
 
             $result = $this->data->bulgedit_filter($myarr);
+
+
+            $end_time_log = microtime(true);
+            $final_log_time = ($end_time_log - $start_time_log);
+            log_message("info","\n\n****************************Bulk edit controller function start time is:\t".$start_time_log." and the end time is :\t".$end_time_log." execution time is:\t".$final_log_time."*********************************");
+            
             echo json_encode($result);
+
             
         }
     }
@@ -459,6 +468,9 @@ class PDM_controller extends BaseController{
     // bulg edit updation function
     public function bulg_updation(){
         if ($this->request->isAjax()) {
+            $start_time_log = microtime(true);
+            log_message("info","\n\n*********** the controller execute the bulk edit operation ******************");
+
             // array values getting
             $start_time_arr = $this->request->getVar('start_time_ar');
             $end_time_arr = $this->request->getVar('end_time_ar');
@@ -479,6 +491,13 @@ class PDM_controller extends BaseController{
             $mydata['dcategory'] = $downtime_category;
             $mydata['last_updated_by'] = $this->session->get('user_name');
             $res = $this->data->bulg_updation($mydata,$start_time_arr,$end_time_arr,$split_arr,$machine_event_arr);
+
+
+            // log file work
+            $end_time_log = microtime(true);
+            $final_log_time = $end_time_log - $start_time_log;
+            log_message("info","\n\n **********************the controller function execution start time is :\t".$start_time_log."\t the end time is:\t".$end_time_log." \t the final total seconds is :\t".$final_log_time."*************************************");
+
             echo json_encode($res);
         }
     }
