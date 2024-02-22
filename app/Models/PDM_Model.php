@@ -3457,103 +3457,44 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
 
     // bulg updation function
     public function bulg_updation($mydata,$start_time_arr,$end_time_arr,$split_arr,$machine_event_arr){
-
-        $start_time_log = microtime(true);
-        log_message("info","\n\n*********** the Model execute the bulk edit operation ******************");
-
-
-
         $db = \Config\Database::connect($this->site_creation);
-        
+
         $getid = $db->table('settings_downtime_reasons');
         $getid->select('*');
-        // $getid->where('downtime_category',$mydata['dcategory']);
+        $getid->where('downtime_category',$mydata['dcategory']);
         $getid->where('downtime_reason_id',$mydata['dreason']);
         $getdata = $getid->get()->getResultArray();
-        
-        log_message("info","\n\n*********** the Model downtime reason id is:\t".$mydata['dreason']." ******************");
 
-        if (count($getdata)>0) {
-            foreach ($start_time_arr as $key => $value) {
-                // return $end_time_arr[$key];
+        $array_condition1 = $machine_event_arr;
+        $array_condition2 = $split_arr;
+        $x = $getdata[0]['downtime_reason_id'];
+        $sql = "UPDATE `pdm_downtime_reason_mapping` AS t
+                SET `downtime_reason_id` = ''+$x+''
+                WHERE ";
 
-                log_message("info","\n\n*********** the Model start time array key  is:\t".$key." \n the  start time array value is:\t".$value." ******************");
+        // Generate placeholders for each pair of values
+        $placeholders = implode(' OR ', array_fill(0, count($array_condition1), '(t.machine_event_id = ? AND t.split_id = ?)'));
 
-                $build = $db->table('pdm_downtime_reason_mapping');
-                $build->set('downtime_reason_id',$getdata[0]['downtime_reason_id']);
-                $build->set('last_updated_by',$mydata['last_updated_by']);
-                $build->where('machine_id',$mydata['machine_id']);
-                $build->where('Shift_id',$mydata['shift_id']);
-                $build->where('shift_date',$mydata['shift_date']);
-                $build->where('start_time',$value);
-                $build->where('end_time',$end_time_arr[$key]);
-                $build->where('machine_event_id',$machine_event_arr[$key]);
-                $build->where('split_id',$split_arr[$key]);
-                if ($build->update()) {
-                    $arr_leng = count($start_time_arr)-1;
-                    if ($arr_leng == $key) {
-                        // $get_res = $this->bulg_edit_pdm_event($machine_event_arr);
-                        // if ($get_res == true) {
-                        //     return true;
-                        // }
-                        // return true;
-                        $umeid = array_unique($machine_event_arr);
-                        $count_meid = count($umeid)-1;
-                        foreach ($umeid as $k1 => $v1) {
-                            log_message("info","\n\n*********** the Model reason mapping table after splited element updation its move on pdm event table event id is:\t".$v." ******************");
+        // Append placeholders to the query
+        $sql .= $placeholders;
 
-          
-
-                            $build1=$db->table('pdm_downtime_reason_mapping');
-                            $build1->select('*');
-                            $build1->where('downtime_reason_id','0');
-                            $build1->where('machine_event_id',$v1);
-                            $res = $build1->get()->getResultArray();
-                            // reason mapped 0
-                            if (count($res)>0) {
-                                $pdm = $db->table('pdm_events');
-                                $pdm->set('reason_mapped',0);
-                                $pdm->where('machine_event_id',$v1);
-                                if ($pdm->update()) {
-                                    if ($count_meid == $k1) {
-                                        // log file work
-                                        $end_time_log = microtime(true);
-                                        $final_log_time = $end_time_log - $start_time_log;
-                                        log_message("info","\n\n***************************** the Model function execution start time is :\t".$start_time_log."\t the end time is:\t".$end_time_log." \t the final total seconds is :\t".$final_log_time."**************************");
-
-                                        return true;
-                                    }
-                                }else{
-                                    return false;
-                                }
-                            }
-                            // pdm events reason mapped 1
-                            else{
-                                $pdm1 = $db->table('pdm_events');
-                                $pdm1->set('reason_mapped',1);
-                                $pdm1->where('machine_event_id',$v1);
-                                if ($pdm1->update()) {
-                                    if ($count_meid == $k1) {
-                                        // log file work
-                                        $end_time_log = microtime(true);
-                                        $final_log_time = $end_time_log - $start_time_log;
-                                        log_message("info","\n\n**************** the Model function execution start time is :\t".$start_time_log."\t the end time is:\t".$end_time_log." \t the final total seconds is :\t".$final_log_time."************************** ");
- 
-                                        return true;
-                                    }
-                                }else{
-                                    return false;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }else{
-            return false;
+        // Combine the arrays into a single array for binding
+        $combinedArray = [];
+        foreach ($array_condition1 as $key => $value) {
+            $combinedArray[] = $value;
+            $combinedArray[] = $array_condition2[$key];
         }
 
+        $query = $db->query($sql, $combinedArray);
 
+        if (!$query) {
+            return false;
+            // $error = $db->error();
+            // die('Error: ' . $error['message']);
+        }else{
+            // echo "Successfully updated!";
+            return true;
+        }
 
     }
 
