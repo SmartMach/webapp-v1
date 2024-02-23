@@ -3489,10 +3489,39 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
 
         if (!$query) {
             return false;
-            // $error = $db->error();
-            // die('Error: ' . $error['message']);
         }else{
-            // echo "Successfully updated!";
+            $notMapped = $db->table('pdm_downtime_reason_mapping')
+                          ->select('machine_event_id')
+                          ->whereIn('machine_event_id', $machine_event_arr)
+                          ->where('downtime_reason_id', 0)
+                          ->distinct('machine_event_id')
+                          ->get()
+                          ->getResultArray();
+
+            $x_notMapped = array_column($notMapped, 'machine_event_id');
+            $x_Mapped = array_diff($machine_event_arr, $x_notMapped);
+
+            if (!empty($x_notMapped)) {
+                $build = $db->table('pdm_events');
+                $build->set('reason_mapped', 0);
+                $build->whereIn('machine_event_id', $x_notMapped);
+                if ($build->update()) {
+                    // echo "Success";
+                } else {
+                    return false;
+                }
+            }
+            if (!empty($x_Mapped)) {
+                $build = $db->table('pdm_events');
+                $build->set('reason_mapped', 1);
+                $build->whereIn('machine_event_id', $x_Mapped);
+                if ($build->update()) {
+                    // echo "Success";
+                } else {
+                    return false;
+                }
+            }
+
             return true;
         }
 
