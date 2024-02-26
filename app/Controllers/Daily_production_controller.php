@@ -176,7 +176,7 @@ class Daily_production_controller extends BaseController{
     // get machine records
     public function getMachine_data(){
         if ($this->request->isAJAX()) {
-            // $date = "2023-09-08";
+            // $date = "2024-02-12";
 
             log_message("info","\n\ndaily production status function calling log");
             log_message("info","\n\ndaily production status function calling log");
@@ -250,6 +250,7 @@ class Daily_production_controller extends BaseController{
                             $tmpReason['dr'.$r['downtime_reason_id']]= $duration*60;
                         }
                     }
+                    arsort($tmpReason);
                     $tmp[$shift]= $tmpReason;
                 }
                 $downtime_machine_reason_wise[$m['machine_id']]= $tmp;
@@ -384,172 +385,7 @@ class Daily_production_controller extends BaseController{
                 }
                 $quality_part_production_wise[$value['machine_id']] = $tmp_s;    
             }
-            /*
-            foreach ($getmachine_data as $key => $m) {
-                $tmp_machine=[];
-                foreach ($getsid as $key_shift => $s) {
-                    $tmp_part=[];
-                    $part_id="";
-                    $ppc="";
-                    $from_time="";
-                    $to_time ="";
-
-                    $notoolchangeover=0;
-                    $current_date = date('Y-m-d');
-                   
-                    for ($j=0; $j < sizeof($tool_changeover_data); $j++) { 
-                        if ($tool_changeover_data[$j]['machine_id'] == $m['machine_id'] and $tool_changeover_data[$j]['shift_date'] == $date and $tool_changeover_data[$j]['shift_id'] == $s) {
-                            // Find the Previous Toolchangeover.....
-                            $shift_end_time="";
-                            $next_start_time="";
-                            $shift_e_time="";
-                            for ($i=0; $i < sizeof($tool_changeover_data_before); $i++) { 
-                                if ($tool_changeover_data_before[$i]['machine_id'] == $m['machine_id'] and $tool_changeover_data[$j]['shift_date'] == $date and $tool_changeover_data[$j]['shift_id'] == $s) {
-                                    $tool_part = $this->datas->get_tool_changeover_part($tool_changeover_data_before[$i]['tool_changeover_id']);
-
-                                    foreach ($getshiftid['shift_duration'] as $tool) {
-                                        if (str_split($tool['shifts'])[0] == $s) {
-                                            $from_time = strtotime($date." ".$tool['start_time']);
-                                            $to_time = strtotime($date." ".$tool_changeover_data[$j]['event_start_time']);
-
-                                            $next_start_time = $tool_changeover_data[$j]['event_start_time'];
-
-                                            // Find Duration
-                                            
-                                            foreach ($tool_part as $p_c) {
-                                                $x = $this->final_duration_data($active_time_data,$m['machine_id'],$date,$s,$tool_changeover_data_before[$i]['tool_id'],$p_c['part_id'],sizeof($tool_part),$from_time,$to_time,$getpart_data);
-                                                // $x['from_time'] = $tool['start_time'];
-                                                // $x['to_time'] = $tool_changeover_data[$j]['event_start_time'];
-                                                $tmp_arr = [];
-                                                array_push($tmp_arr,$tool['start_time']);
-                                                array_push($tmp_arr,$tool_changeover_data[$j]['event_start_time']);
-                                                array_push($x,$tmp_arr);
-                                                $tmp_part[$p_c['part_id']] = $x;
-                                            }
-
-                                            $shift_end_time = strtotime($date." ".$tool['end_time']);
-                                            $shift_e_time = $tool['end_time'];
-                                        }
-                                    }
-                                    break;
-                                }
-                            }
-
-                            // $j=$j+1;
-                            // Next next toolchangeover...
-                            while ($j < sizeof($tool_changeover_data)) {
-                                $from_time=$to_time;
-                                if ($tool_changeover_data[$j]['machine_id'] == $m['machine_id'] and $tool_changeover_data[$j]['shift_date'] == $date and $tool_changeover_data[$j]['shift_id'] == $s) {
-                                    $to_time = strtotime($date." ".$tool_changeover_data[$j]['event_start_time']);
-                                    // Find Duration
-
-                                    $tool_part = $this->datas->get_tool_changeover_part($tool_changeover_data[$j]['tool_changeover_id']);
-
-                                    foreach ($tool_part as $p_c) {
-                                        $x = $this->final_duration_data($active_time_data,$m['machine_id'],$date,$s,$tool_changeover_data[$i]['tool_id'],$p_c['part_id'],sizeof($tool_part),$from_time,$to_time,$getpart_data);
-                                        // $x['from_time'] = $next_start_time;
-                                        // $x['to_time'] = $tool_changeover_data[$j]['event_start_time'];
-                                        $tmp_arr = [];
-                                        array_push($tmp_arr,$next_start_time);
-                                        array_push($tmp_arr,$tool_changeover_data[$j]['event_start_time']);
-                                        array_push($x,$tmp_arr);
-                                        $tmp_part[$p_c['part_id']] = $x;
-                                        // $tmp_part[$p_c['part_id']] = $x;
-                                    }
-                                    $next_start_time = $tool_changeover_data[$j]['event_start_time'];
-                                }
-                                # code...
-                                $j=$j+1;
-                            }
-
-                            // Last Value(Toolchangeover)....
-                            $from_time=$to_time;    
-                            $to_time = $shift_end_time;
-
-                            // Find Duration
-                            // $tool_part = $this->datas->get_tool_changeover_part($tool_changeover_data[$j]['tool_changeover_id']);
-
-                            foreach ($tool_part as $p_c) {
-                                $x = $this->final_duration_data($active_time_data,$m['machine_id'],$date,$s,$tool_changeover_data[$i]['tool_id'],$p_c['part_id'],sizeof($tool_part),$from_time,$to_time,$getpart_data);
-                                // $x['from_time'] = $next_start_time;
-                                // $x['to_time'] = $shift_e_time;
-
-                                // $tmp_part[$p_c['part_id']] = $x;
-                                $tmp_arr = [];
-                                array_push($tmp_arr,$next_start_time);
-                                array_push($tmp_arr,$shift_e_time);
-                                array_push($x,$tmp_arr);
-                                $tmp_part[$p_c['part_id']] = $x;
-                            }
-
-                            $notoolchangeover=1;
-                            break;
-                        }
-                    }
-
-                    if ($notoolchangeover==0) {
-                        // Find the Previous Toolchangeover.....
-                        for ($i=0; $i < sizeof($tool_changeover_data_before); $i++) { 
-                            if ($tool_changeover_data_before[$i]['machine_id'] == $m['machine_id']) {
-                                $tool_part = $this->datas->get_tool_changeover_part($tool_changeover_data_before[$i]['tool_changeover_id']);
-
-                                $tmp_s = "";
-                                $tmp_e = "";
-                                date_default_timezone_set('Asia/Kolkata');
-                                foreach ($getshiftid['shift_duration'] as $tool) {
-                                    if (str_split($tool['shifts'])[0] == $s) {
-                                        $from_time = strtotime($date." ".$tool['start_time']);
-                                        $tmp_s = $tool['start_time'];
-                                        if (date("Y-m-d") == $date and strtotime($date." ".$tool['end_time'])>strtotime(date('Y-m-d H:00:00', time()))) {
-                                            $to_time = strtotime(date('Y-m-d H:00:00', time()));
-                                            $tmp_e = date('H:00:00', time());
-                                        }else{
-                                            $to_time = strtotime($date." ".$tool['end_time']);
-                                            $tmp_e = $tool['end_time'];
-                                        }
-                                    }
-                                }
-                                // Find Duration
-                                foreach ($tool_part as $p_c) {
-                                    $x = $this->final_duration_data($active_time_data,$m['machine_id'],$date,$s,$tool_changeover_data_before[$i]['tool_id'],$p_c['part_id'],sizeof($tool_part),$from_time,$to_time,$getpart_data);
-                                    // $x['from_time'] = $tmp_s;
-                                    // $x['to_time'] = $tmp_e;
-
-                                    // $tmp_part[$p_c['part_id']] = $x;
-                                    $tmp_arr = [];
-                                    array_push($tmp_arr,$tmp_s);
-                                    array_push($tmp_arr,$tmp_e);
-                                    array_push($x,$tmp_arr);
-                                    $tmp_part[$p_c['part_id']] = $x;
-                                    
-                                }
-                                break;
-                            }
-                        }
-                    }
-                    if ($current_date==$date) {
-                        date_default_timezone_set('Asia/Kolkata');
-                        $shift_time = $getshiftid['shift_duration'][$key_shift]['start_time'];
-                        $current_time_stamp = date($date.' H:00:00');
-                        $shift_time_stamp = date($date." ".$shift_time);
-                        $tmp = [];
-                        array_push($tmp,$current_time_stamp);
-                        array_push($tmp,$shift_time_stamp);
-                        if ($current_time_stamp>$shift_time_stamp) {
-                            
-                            $tmp_machine[$s]=$tmp_part;
-                        }else{
-                            $tmp_machine[$s]=array();
-                        }
-                        // $tmp_machine[$s]= "ok";
-                    }else if($date<$current_date){
-                        $tmp_machine[$s]= $tmp_part;
-                    }
-                   
-                }
-                $quality_part_production_wise[$m['machine_id']]= $tmp_machine;
-            }
-            */
+           
 
             // $quality_part_production_wise['before_tool_changeover'] = $tool_changeover_data_before;
             // $quality_part_production_wise['after tool_changeover'] = $tool_changeover_data_after;
