@@ -2222,6 +2222,8 @@ $(document).on("click", ".deleteRec", function(){
             $('.edit_input4:eq('+index_value+')').css("display","inline");
             $('.edit_display3:eq('+index_value+')').css("display","none");
             $('.edit_display4:eq('+index_value+')').css("display","none");
+            // target 
+            target_input_function_handle("add",index_value);
             // document.getElementsByClassName('edit_input3')[index_value].style.display="inline";
             // document.getElementsByClassName('edit_input4')[index_value].style.display="inline";
             // document.getElementsByClassName('edit_display3')[index_value].style.display="none";
