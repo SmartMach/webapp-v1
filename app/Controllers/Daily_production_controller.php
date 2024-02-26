@@ -176,7 +176,7 @@ class Daily_production_controller extends BaseController{
     // get machine records
     public function getMachine_data(){
         if ($this->request->isAJAX()) {
-            // $date = "2023-09-08";
+            // $date = "2024-02-12";
 
             log_message("info","\n\ndaily production status function calling log");
             log_message("info","\n\ndaily production status function calling log");
@@ -250,6 +250,7 @@ class Daily_production_controller extends BaseController{
                             $tmpReason['dr'.$r['downtime_reason_id']]= $duration*60;
                         }
                     }
+                    arsort($tmpReason);
                     $tmp[$shift]= $tmpReason;
                 }
                 $downtime_machine_reason_wise[$m['machine_id']]= $tmp;
