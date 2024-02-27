@@ -160,7 +160,7 @@ $session = \Config\Services::session();
 <br>
 
 <div style="margin-left: 4.5rem;margin-top:1rem; overflow-x:hidden;overflow-y:scroll;">
-    <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav" style="position:fixed;margin-top:0;width:94.5%;">
+    <nav class="navbar navbar-expand-lg sticky-top settings_nav fixsubnav" style="position:fixed;margin-top:0;width:94.5%;z-index:98;">
         <div class="container-fluid paddingm">
             <p class="float-start" id="logo">OEE Drill Down</p>
             <div class="d-flex">
@@ -373,7 +373,7 @@ $session = \Config\Services::session();
 
                
                 <!-- Machine multi select dropdown -->
-                <!-- <div class="box" style="" >
+                <div class="box " style="" >
                     <label class="multi_select_label non_select" style="">Machines</label>
                     <div class="filter_selectBox non_select select_pointer oee_trend_drp_machine" onclick="common_drp_click('filter_checkboxes_machine','oee_trend_drp_machine')">
                         <select  class="multi_select_drp" style="" >
@@ -382,25 +382,6 @@ $session = \Config\Services::session();
                         <div class="filter_overSelect"></div>
                     </div>
                     <div class="filter_checkboxes filter_checkboxes_machine" style="" >
-                    </div>
-                </div> -->
-                <div class="box">
-                    <div class="input-box indexing Machines_dd_trend">
-                      <div class="filter_multiselect filter_option" style="width:9rem;">
-                        <span class="multi_select_label" style="">Machines</span>
-                        <div class="filter_selectBox dd_trend_machine" onclick="multiple_drp_hide_seek('filter_machine_dd_trend','dd_trend_machine')">
-                          <div class="inbox-span fontStyle search_style dropdown-arrow">
-                            <div style="width: 80% !important">
-                              <p class="paddingm" id="machine_text_dd_trend">All Machines</p>
-                            </div>
-                            <div class="dropdown-div" style=" width: 20% !important">
-                              <i class="fa fa-angle-down icon-style"></i>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="filter_checkboxes filter_machine_dd_trend">
-                        </div>
-                      </div>
                     </div>
                 </div>
 
@@ -424,44 +405,74 @@ $session = \Config\Services::session();
             <div class="graph_filter_div marginScroll" style="">
                 
                 <!-- reason multi select dropdown -->
-                <div class="box rightmar">
-                    <div class="input-box indexing DataFields_dd_moeeb">
-                      <div class="filter_multiselect filter_option" style="width:9rem;">
-                        <span class="multi_select_label" style="">Data Fields</span>
-                        <div class="filter_selectBox dd_moeeb_dataField" onclick="multiple_drp_hide_seek('filter_dataField_dd_moeeb','dd_moeeb_dataField')">
-                          <div class="inbox-span fontStyle search_style dropdown-arrow">
-                            <div style="width: 80% !important">
-                              <p class="paddingm" id="dataField_text_dd_moeeb">All Data Fields</p>
+                <div class="box rightmar" style="margin-right: 0.5rem;" >
+                    <label class="multi_select_label non_select " style="">All Data Fields</label>
+                    <div class="filter_selectBox non_select select_pointer machine_wise_oee_field_drp" onclick="common_drp_click('all_data_field_fill','machine_wise_oee_field_drp')">
+                        <select  class="multi_select_drp" style="" >
+                            <option class="text_all_data_field non_select" style="">All Data Fields</option>
+                        </select>
+                        <div class="filter_overSelect"></div>
+                    </div>
+                    <div class="filter_checkboxes all_data_field_fill" style="" >
+                        <div class="filter_check_cate all_data_field_click machine_oee_common" style="">
+                            <div class="cate_drp_check " style="">
+                                <input type="checkbox" id="one" class="all_data_field_checkbox" value="all"/>
                             </div>
-                            <div class="dropdown-div" style=" width: 20% !important">
-                              <i class="fa fa-angle-down icon-style"></i>
+                            <div class="cate_drp_text" style="">
+                                <p class="font_multi_drp" style="margin:auto;">All Data Field</p>
                             </div>
-                          </div>
                         </div>
-                        <div class="filter_checkboxes filter_dataField_dd_moeeb">
+                        <!-- oee -->
+                        <div class="filter_check_cate all_data_field_click machine_oee_common" style="">
+                            <div class="cate_drp_check" style="">
+                                <input type="checkbox" id="one" class="all_data_field_checkbox" value="oee"/>
+                            </div>
+                            <div class="cate_drp_text" style="">
+                                <p class="font_multi_drp" style="margin:auto;">OEE</p>
+                            </div>
                         </div>
-                      </div>
+                        <!-- availability -->
+                        <div class="filter_check_cate all_data_field_click machine_oee_common" style="">
+                            <div class="cate_drp_check" style="">
+                                <input type="checkbox" id="one" class="all_data_field_checkbox" value="availability"/>
+                            </div>
+                            <div class="cate_drp_text" style="">
+                                <p class="font_multi_drp" style="margin:auto;">Availability</p>
+                            </div>
+                        </div>
+                        <!-- performance -->
+                        <div class="filter_check_cate all_data_field_click machine_oee_common" style="">
+                            <div class="cate_drp_check" style="">
+                                <input type="checkbox" id="one" class="all_data_field_checkbox" value="performance"/>
+                            </div>
+                            <div class="cate_drp_text" style="">
+                                <p class="font_multi_drp" style="margin:auto;">Performance</p>
+                            </div>
+                        </div>
+                        <!-- quality -->
+                        <div class="filter_check_cate all_data_field_click machine_oee_common" style="">
+                            <div class="cate_drp_check" style="">
+                                <input type="checkbox" id="one" class="all_data_field_checkbox" value="quality"/>
+                            </div>
+                            <div class="cate_drp_text" style="">
+                                <p class="font_multi_drp" style="margin:auto;">Quality</p>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
-
+               
                 <!-- Machine multi select dropdown -->
-                <div class="box">
-                    <div class="input-box indexing Machines_dd_moeeb">
-                      <div class="filter_multiselect filter_option" style="width:9rem;">
-                        <span class="multi_select_label" style="">Machines</span>
-                        <div class="filter_selectBox dd_moeeb_machine" onclick="multiple_drp_hide_seek('filter_machine_dd_moeeb','dd_moeeb_machine')">
-                          <div class="inbox-span fontStyle search_style dropdown-arrow">
-                            <div style="width: 80% !important">
-                              <p class="paddingm" id="machine_text_dd_moeeb">All Machines</p>
-                            </div>
-                            <div class="dropdown-div" style=" width: 20% !important">
-                              <i class="fa fa-angle-down icon-style"></i>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="filter_checkboxes filter_machine_dd_moeeb">
-                        </div>
-                      </div>
+                <div class="box " style="" >
+                    <label class="multi_select_label non_select" style="">Machines</label>
+                    <div class="filter_selectBox non_select select_pointer machine_wise_oee_machine_drp" onclick="common_drp_click('filter_checkboxes_machine1','machine_wise_oee_machine_drp')">
+                        <select  class="multi_select_drp" style="" >
+                            <option class="text_machine1 non_select" style="">All Machines</option>
+                        </select>
+                        <div class="filter_overSelect"></div>
+                    </div>
+                    <div class="filter_checkboxes filter_checkboxes_machine1" style="" >
                     </div>
                 </div>
                
@@ -515,65 +526,66 @@ $session = \Config\Services::session();
                 </div>
                 <div style="" class="availability_drp_div">
                     <!-- category multi select dropdown -->
-                    <div class="box rightmar">
-                        <div class="input-box indexing Categories_dd_mawr">
-                          <div class="filter_multiselect filter_option" style="width:9rem;">
-                            <span class="multi_select_label" style="">Categories</span>
-                            <div class="filter_selectBox dd_mawr_category" onclick="multiple_drp_hide_seek('filter_category_dd_mawr','dd_mawr_category')">
-                              <div class="inbox-span fontStyle search_style dropdown-arrow">
-                                <div style="width: 80% !important">
-                                  <p class="paddingm" id="category_text_dd_mawr">All Categories</p>
+                    <div class="box rightmar" style="margin-right: 0.5rem;" >
+                        <label class="multi_select_label non_select" style="">Categories</label>
+                        <div class="filter_selectBox non_select select_pointer machine_availability_category_drp" onclick="common_drp_click('category_fill2','machine_availability_category_drp')">
+                            <select  class="multi_select_drp" style="" >
+                                <option class="text_category_drp2 non_select" style="">All Categories</option>
+                            </select>
+                            <div class="filter_overSelect"></div>
+                        </div>
+                        <div class="filter_checkboxes category_fill2 " style="" >
+                            <div class="filter_check_cate category_click2 machine_availability_common" style="">
+                                <div class="cate_drp_check" style="">
+                                    <input type="checkbox" id="one" class="category_drp_checkbox2" value="all"/>
                                 </div>
-                                <div class="dropdown-div" style=" width: 20% !important">
-                                  <i class="fa fa-angle-down icon-style"></i>
+                                <div class="cate_drp_text" style="">
+                                    <p class="font_multi_drp" style="margin:auto;">All Categories</p>
                                 </div>
-                              </div>
                             </div>
-                            <div class="filter_checkboxes filter_category_dd_mawr">
+
+                            <div class="filter_check_cate category_click2 machine_availability_common" style="">
+                                <div class="cate_drp_check" style="">
+                                    <input type="checkbox" id="one" class="category_drp_checkbox2" value="Planned"/>
+                                </div>
+                                <div class="cate_drp_text" style="">
+                                    <p class="font_multi_drp" style="margin:auto;">Planned</p>
+                                </div>
                             </div>
-                          </div>
+
+                            <div class="filter_check_cate category_click2 machine_availability_common" style="">
+                                <div class="cate_drp_check" style="">
+                                    <input type="checkbox" id="one" class="category_drp_checkbox2" value="Unplanned"/>
+                                </div>
+                                <div class="cate_drp_text" style="">
+                                    <p class="font_multi_drp" style="margin:auto;">UnPlanned</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- reason multi select dropdown -->
-                    <div class="box rightmar">
-                        <div class="input-box indexing Reasons_dd_mawr">
-                          <div class="filter_multiselect filter_option" style="width:9rem;">
-                            <span class="multi_select_label" style="">Reasons</span>
-                            <div class="filter_selectBox dd_mawr_reason" onclick="multiple_drp_hide_seek('filter_reason_dd_mawr','dd_mawr_reason')">
-                              <div class="inbox-span fontStyle search_style dropdown-arrow">
-                                <div style="width: 80% !important">
-                                  <p class="paddingm" id="reason_text_dd_mawr">All Reasons</p>
-                                </div>
-                                <div class="dropdown-div" style=" width: 20% !important">
-                                  <i class="fa fa-angle-down icon-style"></i>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="filter_checkboxes filter_reason_dd_mawr">
-                            </div>
-                          </div>
+                    <div class="box " style="margin-right:0.5rem;" >
+                        <label class="multi_select_label non_select" style="">Reasons</label>
+                        <div class="filter_selectBox non_select select_pointer machine_availability_reason_drp" onclick="common_drp_click('reason_fill2','machine_availability_reason_drp')">
+                            <select  class="multi_select_drp" style="" >
+                                <option class="text_reason2 non_select" style="">All Reasons</option>
+                            </select>
+                            <div class="filter_overSelect"></div>
                         </div>
+                        <div class="filter_checkboxes reason_fill2" style="" ></div>
                     </div>
                 
                     <!-- Machine multi select dropdown -->
-                    <div class="box">
-                        <div class="input-box indexing Machines_dd_mawr">
-                          <div class="filter_multiselect filter_option" style="width:9rem;">
-                            <span class="multi_select_label" style="">Machines</span>
-                            <div class="filter_selectBox dd_mawr_machine" onclick="multiple_drp_hide_seek('filter_machine_dd_mawr','dd_mawr_machine')">
-                              <div class="inbox-span fontStyle search_style dropdown-arrow">
-                                <div style="width: 80% !important">
-                                  <p class="paddingm" id="machine_text_dd_mawr">All Machines</p>
-                                </div>
-                                <div class="dropdown-div" style=" width: 20% !important">
-                                  <i class="fa fa-angle-down icon-style"></i>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="filter_checkboxes filter_machine_dd_mawr">
-                            </div>
-                          </div>
+                    <div class="box " style="" >
+                        <label class="multi_select_label non_select" style="">Machines</label>
+                        <div class="filter_selectBox non_select select_pointer machine_availability_machine_drp" onclick="common_drp_click('filter_checkboxes_machine2','machine_availability_machine_drp')">
+                            <select  class="multi_select_drp" style="" >
+                                <option class="text_machine2 non_select" style="">All Machines</option>
+                            </select>
+                            <div class="filter_overSelect"></div>
+                        </div>
+                        <div class="filter_checkboxes filter_checkboxes_machine2" style="" >
                         </div>
                     </div>
                 </div>
@@ -604,44 +616,29 @@ $session = \Config\Services::session();
                 </div>
                 <div style="" class="performance_drp_div">    
                     <!-- reason multi select dropdown -->
-                    <div class="box rightmar">
-                        <div class="input-box indexing Parts_dd_mpwp">
-                          <div class="filter_multiselect filter_option" style="width:9rem;">
-                            <span class="multi_select_label" style="">Parts</span>
-                            <div class="filter_selectBox dd_mpwp_part" onclick="multiple_drp_hide_seek('filter_part_dd_mpwp','dd_mpwp_part')">
-                              <div class="inbox-span fontStyle search_style dropdown-arrow">
-                                <div style="width: 80% !important">
-                                  <p class="paddingm" id="part_text_dd_mpwp">All Parts</p>
-                                </div>
-                                <div class="dropdown-div" style=" width: 20% !important">
-                                  <i class="fa fa-angle-down icon-style"></i>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="filter_checkboxes filter_part_dd_mpwp">
-                            </div>
-                          </div>
+                    <div class="box rightmar" style="margin-right: 0.5rem;" >
+                        <label class="multi_select_label non_select " style="">Parts</label>
+                        <!-- <div class="filter_selectBox  " onclick="part_drp()"> -->
+                        <div class="filter_selectBox non_select select_pointer machine_wise_performance_part_drp" onclick="common_drp_click('part_fill','machine_wise_performance_part_drp')">
+                            <select  class="multi_select_drp" style="" >
+                                <option class="text_part non_select" style="">All Parts</option>
+                            </select>
+                            <div class="filter_overSelect"></div>
                         </div>
+                        <div class="filter_checkboxes part_fill" style="" ></div>
                     </div>
                
                     <!-- Machine multi select dropdown -->
-                    <div class="box">
-                        <div class="input-box indexing Machines_dd_mpwp">
-                          <div class="filter_multiselect filter_option" style="width:9rem;">
-                            <span class="multi_select_label" style="">Machines</span>
-                            <div class="filter_selectBox dd_mpwp_machine" onclick="multiple_drp_hide_seek('filter_machine_dd_mpwp','dd_mpwp_machine')">
-                              <div class="inbox-span fontStyle search_style dropdown-arrow">
-                                <div style="width: 80% !important">
-                                  <p class="paddingm" id="machine_text_dd_mpwp">All Machines</p>
-                                </div>
-                                <div class="dropdown-div" style=" width: 20% !important">
-                                  <i class="fa fa-angle-down icon-style"></i>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="filter_checkboxes filter_machine_dd_mpwp">
-                            </div>
-                          </div>
+                    <div class="box"  >
+                        <label class="multi_select_label non_select" style="">Machines</label>
+                        <!-- <div class="filter_selectBox" onclick="machine_drp3()"> -->
+                        <div class="filter_selectBox non_select select_pointer machine_wise_performance_machine_drp" onclick="common_drp_click('filter_checkboxes_machine3','machine_wise_performance_machine_drp')">
+                            <select  class="multi_select_drp" style="" >
+                                <option class="text_machine3 non_select" style="">All Machines</option>
+                            </select>
+                            <div class="filter_overSelect"></div>
+                        </div>
+                        <div class="filter_checkboxes filter_checkboxes_machine3" style="" >
                         </div>
                     </div>
                 </div>
@@ -669,47 +666,31 @@ $session = \Config\Services::session();
                 </div>
                 <div style="" class="quality_drp_div">    
                     <!-- reason multi select dropdown -->
-                    <div class="box rightmar">
-                        <div class="input-box indexing Reasons_dd_mqwr">
-                          <div class="filter_multiselect filter_option" style="width:9rem;">
-                            <span class="multi_select_label" style="">Reasons</span>
-                            <div class="filter_selectBox dd_mqwr_reason" onclick="multiple_drp_hide_seek('filter_reason_dd_mqwr','dd_mqwr_reason')">
-                              <div class="inbox-span fontStyle search_style dropdown-arrow">
-                                <div style="width: 80% !important">
-                                  <p class="paddingm" id="reason_text_dd_mqwr">All Reasons</p>
-                                </div>
-                                <div class="dropdown-div" style=" width: 20% !important">
-                                  <i class="fa fa-angle-down icon-style"></i>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="filter_checkboxes filter_reason_dd_mqwr">
-                            </div>
-                          </div>
+                    <div class="box rightmar" style="margin-right: 0.5rem;" >
+                        <label class="multi_select_label non_select " style="">Reasons</label>
+                        <!-- <div class="filter_selectBox  " onclick="quality_reason_drp()"> -->
+                        <div class="filter_selectBox non_select select_pointer machine_wise_quality_reason_drp" onclick="common_drp_click('quality_reason_fill','machine_wise_quality_reason_drp')">
+                            <select  class="multi_select_drp" style="" >
+                                <option class="text_quality_reason non_select" style="">All Reasons</option>
+                            </select>
+                            <div class="filter_overSelect"></div>
                         </div>
+                        <div class="filter_checkboxes quality_reason_fill" style="" ></div>
                     </div>
                
                     <!-- Machine multi select dropdown -->
-                    <div class="box">
-                        <div class="input-box indexing Machines_dd_mqwr">
-                          <div class="filter_multiselect filter_option" style="width:9rem;">
-                            <span class="multi_select_label" style="">Machines</span>
-                            <div class="filter_selectBox dd_mqwr_machine" onclick="multiple_drp_hide_seek('filter_machine_dd_mqwr','dd_mqwr_machine')">
-                              <div class="inbox-span fontStyle search_style dropdown-arrow">
-                                <div style="width: 80% !important">
-                                  <p class="paddingm" id="machine_text_dd_mqwr">All Machines</p>
-                                </div>
-                                <div class="dropdown-div" style=" width: 20% !important">
-                                  <i class="fa fa-angle-down icon-style"></i>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="filter_checkboxes filter_machine_dd_mqwr">
-                            </div>
-                          </div>
+                    <div class="box " >
+                        <label class="multi_select_label non_select" style="">Machines</label>
+                        <!-- <div class="filter_selectBox" onclick="machine_drp4()"> -->
+                        <div class="filter_selectBox non_select select_pointer machine_wise_quality_machine_drp" onclick="common_drp_click('filter_checkboxes_machine4','machine_wise_quality_machine_drp')">
+                            <select  class="multi_select_drp" style="" >
+                                <option class="text_machine4 non_select" style="">All Machines</option>
+                            </select>
+                            <div class="filter_overSelect"></div>
+                        </div>
+                        <div class="filter_checkboxes filter_checkboxes_machine4" style="" >
                         </div>
                     </div>
-
                 </div>
             </div>
             
@@ -774,22 +755,6 @@ $('.fromDate').val(tdate);
 $(document).on('click','.overall_filter_btn',function(event){
     event.preventDefault();
     $('#overlay').fadeIn(400);
-
-    reset_machine_dd_trend();
-    reset_machine_dd_moeeb();
-    reset_machine_dd_mawr();
-    reset_machine_dd_mpwp();
-    reset_machine_dd_mqwr();
-
-    reset_reason_dd_mawr();
-    reset_reason_dd_mqwr();
-
-    reset_part_dd_mpwp();
-
-    reset_dataField_dd_moeeb();
-
-    reset_category_dd_mawr();
-
     all_graph_fun();
 });
 
@@ -829,10 +794,12 @@ var filter_expand_by_day = 0;
 function byday_click(){
     var checkboxes = document.getElementsByClassName("byday_fill");
   if (!filter_expand_by_day) {
+      // checkboxes.style.display = "block";
       $('.byday_fill').css("display","block");
       filter_expand_by_day = true;
   } else  {
      
+    //   $('#text_category_drp').text('All ');
       $('.byday_fill').css("display","none");
       filter_expand_by_day = false;
       
@@ -891,6 +858,86 @@ $(document).on('click','.byday_click',function(event){
         $('#text_category_drp').text('By Shift');
     }
 });
+
+// availability
+$(document).on('click','.category_click2',function(event){
+    event.preventDefault();
+    common_click_div_fun('category_click2','category_drp_checkbox2','text_category_drp2','Categories','machine_wise_availability_category_call',this);
+
+  
+});
+
+// availability graph
+$(document).on('click','.reason_click2',function(event){
+    event.preventDefault();
+    common_click_div_fun('reason_click2','reason_checkbox2','text_reason2','Reasons','machine_wise_availability_reason_call',this);
+
+    
+});
+
+// machine wise quality graph
+// reason dropdown onclick div function
+$(document).on('click','.quality_click',function(event){
+    event.preventDefault();
+    common_click_div_fun('quality_click','quality_checkbox','text_quality_reason','Reasons','machine_wise_quality_reason_call',this);
+  
+});
+
+
+$(document).on('click','.machine_click',function(event){
+    event.preventDefault();
+    common_click_div_fun('machine_click','machine_checkbox','text_machine','Machines','oee_trend_machine_call',this);
+   
+});
+
+// machine wise oee graph machine drp click function
+$(document).on('click','.machine_click1',function(event){
+    event.preventDefault();
+    common_click_div_fun('machine_click1','machine_checkbox1','text_machine1','Machines','machine_wise_oee_machine_call',this);
+   
+});
+
+// availability graph
+$(document).on('click','.machine_click2',function(event){
+    event.preventDefault();
+    common_click_div_fun('machine_click2','machine_checkbox2','text_machine2','Machines','machine_wise_availability_machine_call',this);
+
+   
+});
+
+
+$(document).on('click','.machine_click3',function(event){
+    event.preventDefault();
+    common_click_div_fun('machine_click3','machine_checkbox3','text_machine3','Machines','machine_wise_performance_machine_call',this);
+
+   
+});
+
+
+
+$(document).on('click','.part_click',function(event){
+    event.preventDefault();
+    common_click_div_fun('part_click','part_checkbox','text_part','Parts','machine_wise_performance_part_call',this);
+
+   
+});
+
+// machine wise quality graph machine dropdown onclick
+$(document).on('click','.machine_click4',function(event){
+    event.preventDefault();
+    common_click_div_fun('machine_click4','machine_checkbox4','text_machine4','Machines','machine_wise_quality_machine_call',this);
+   
+});
+
+// machine wise oee graph datafield  dropdown onclick
+$(document).on('click','.all_data_field_click',function(event){
+    event.preventDefault();
+    common_click_div_fun('all_data_field_click','all_data_field_checkbox','text_all_data_field','DataFields','machine_wise_oee_datafield_call',this);
+
+   
+});
+
+
 
 
 
@@ -980,128 +1027,142 @@ function overallTarget(f,t){
 // on mouse up function
 $(document).mouseup(function(event){
 
-    var machine_check_dd_trend = $('.filter_machine_dd_trend');
-    var dd_trend_machine_c = $('.dd_trend_machine');
-    if (!machine_check_dd_trend.is(event.target) && machine_check_dd_trend.has(event.target).length==0 && !dd_trend_machine_c.is(event.target) && dd_trend_machine_c.has(event.target).length==0) {
-        if(hide_seek_obj['dd_trend_machine']==true){
-            machine_check_dd_trend.hide();
-            hide_seek_obj['dd_trend_machine']=false;
+    // oee trend graph
+    // machine multi select dropdown
+    var machine = $('.filter_checkboxes_machine');
+    var oee_trend_machine_drp = $('.oee_trend_drp_machine');
+    if (!machine.is(event.target) && machine.has(event.target).length==0 && !oee_trend_machine_drp.is(event.target) && oee_trend_machine_drp.has(event.target).length==0) {
+        if (drp_obj['oee_trend_drp_machine']==true) {
+            drp_obj['oee_trend_drp_machine']=false;
+            machine.hide();     
         }
     }
 
-    var machine_check_dd_moeeb = $('.filter_machine_dd_moeeb');
-    var dd_moeeb_machine_c = $('.dd_moeeb_machine');
-    if (!machine_check_dd_moeeb.is(event.target) && machine_check_dd_moeeb.has(event.target).length==0 && !dd_moeeb_machine_c.is(event.target) && dd_moeeb_machine_c.has(event.target).length==0) {
-        if(hide_seek_obj['dd_moeeb_machine']==true){
-            machine_check_dd_moeeb.hide();
-            hide_seek_obj['dd_moeeb_machine']=false;
+    // machine wise OEE %
+    // all data field dropdown
+    var all_data_field = $('.all_data_field_fill');
+    var machine_wise_oee_field_drp = $('.machine_wise_oee_field_drp');
+    if (!all_data_field.is(event.target) && all_data_field.has(event.target).length==0 && !machine_wise_oee_field_drp.is(event.target) && machine_wise_oee_field_drp.has(event.target).length==0) {
+        if (drp_obj['machine_wise_oee_field_drp']==true) {
+            drp_obj['machine_wise_oee_field_drp']=false;
+            all_data_field.hide();
         }
     }
 
-    var dataField_check_dd_moeeb = $('.filter_dataField_dd_moeeb');
-    var dd_moeeb_dataField_c = $('.dd_moeeb_dataField');
-    if (!dataField_check_dd_moeeb.is(event.target) && dataField_check_dd_moeeb.has(event.target).length==0 && !dd_moeeb_dataField_c.is(event.target) && dd_moeeb_dataField_c.has(event.target).length==0) {
-        if(hide_seek_obj['dd_moeeb_dataField']==true){
-            dataField_check_dd_moeeb.hide();
-            hide_seek_obj['dd_moeeb_dataField']=false;
+    // machine dropdown
+    var machine1 = $('.filter_checkboxes_machine1');
+    var machine_wise_oee_machine_drp = $('.machine_wise_oee_machine_drp');
+    if (!machine1.is(event.target) && machine1.has(event.target).length==0 && !machine_wise_oee_machine_drp.is(event.target) && machine_wise_oee_machine_drp.has(event.target).length==0) {
+        if (drp_obj['machine_wise_oee_machine_drp']==true) {
+            drp_obj['machine_wise_oee_machine_drp']=false;
+            machine1.hide();
         }
     }
 
-    var machine_check_dd_mawr = $('.filter_machine_dd_mawr');
-    var dd_mawr_machine_c = $('.dd_mawr_machine');
-    if (!machine_check_dd_mawr.is(event.target) && machine_check_dd_mawr.has(event.target).length==0 && !dd_mawr_machine_c.is(event.target) && dd_mawr_machine_c.has(event.target).length==0) {
-        if(hide_seek_obj['dd_mawr_machine']==true){
-            machine_check_dd_mawr.hide();
-            hide_seek_obj['dd_mawr_machine']=false;
+    // machine wise availability 
+    // category dropdown
+    var category1 = $('.category_fill2');
+    var machine_wise_availability_category = $('.machine_availability_category_drp');
+    if (!category1.is(event.target) && category1.has(event.target).length==0 && !machine_wise_availability_category.is(event.target) && machine_wise_availability_category.has(event.target).length==0) {
+        if (drp_obj['machine_availability_category_drp']==true) {
+            drp_obj['machine_availability_category_drp']=false;
+            category1.hide();
+        }
+    }
+    // reason dropdown
+    var reason1 = $('.reason_fill2');
+    var machine_wise_availability_reason = $('.machine_availability_reason_drp');
+    if (!reason1.is(event.target) && reason1.has(event.target).length==0 && !machine_wise_availability_reason.is(event.target) && machine_wise_availability_reason.has(event.target).length==0) {
+        if (drp_obj['machine_availability_reason_drp']==true) {
+            drp_obj['machine_availability_reason_drp']=false;
+            reason1.hide();
         }
     }
 
-    var category_check_dd_mawr = $('.filter_category_dd_mawr');
-    var dd_mawr_category_c = $('.dd_mawr_category');
-    if (!category_check_dd_mawr.is(event.target) && category_check_dd_mawr.has(event.target).length==0 && !dd_mawr_category_c.is(event.target) && dd_mawr_category_c.has(event.target).length==0) {
-        if(hide_seek_obj['dd_mawr_category']==true){
-            category_check_dd_mawr.hide();
-            hide_seek_obj['dd_mawr_category']=false;
+    // machine 
+    var machine2 = $('.filter_checkboxes_machine2');
+    var machine_wise_availability_machine = $('.machine_availability_machine_drp');
+    if (!machine2.is(event.target) && machine2.has(event.target).length==0 && !machine_wise_availability_machine.is(event.target) && machine_wise_availability_machine.has(event.target).length==0) {
+        if (drp_obj['machine_availability_machine_drp']==true) {
+            drp_obj['machine_availability_machine_drp']=false;
+            machine2.hide();
         }
     }
 
-    var machine_check_dd_mpwp = $('.filter_machine_dd_mpwp');
-    var dd_mpwp_machine_c = $('.dd_mpwp_machine');
-    if (!machine_check_dd_mpwp.is(event.target) && machine_check_dd_mpwp.has(event.target).length==0 && !dd_mpwp_machine_c.is(event.target) && dd_mpwp_machine_c.has(event.target).length==0) {
-        if(hide_seek_obj['dd_mpwp_machine']==true){
-            machine_check_dd_mpwp.hide();
-            hide_seek_obj['dd_mpwp_machine']=false;
+    // Machine-wise Performance with Parts
+    // parts
+    var part1 = $('.part_fill');
+    var machine_wise_performance_part_tmp = $('.machine_wise_performance_part_drp');
+    if (!part1.is(event.target) && part1.has(event.target).length==0 && !machine_wise_performance_part_tmp.is(event.target) && machine_wise_performance_part_tmp.has(event.target).length==0) {
+        if (drp_obj['machine_wise_performance_part_drp']==true) {
+            drp_obj['machine_wise_performance_part_drp']=false;
+            part1.hide();
         }
     }
 
-    var part_check_dd_mpwp = $('.filter_part_dd_mpwp');
-    var dd_mpwp_part_c = $('.dd_mpwp_part');
-    if (!part_check_dd_mpwp.is(event.target) && part_check_dd_mpwp.has(event.target).length==0 && !dd_mpwp_part_c.is(event.target) && dd_mpwp_part_c.has(event.target).length==0) {
-        if(hide_seek_obj['dd_mpwp_part']==true){
-            part_check_dd_mpwp.hide();
-            hide_seek_obj['dd_mpwp_part']=false;
+    // machine
+    var machine3 = $('.filter_checkboxes_machine3');
+    var machine_wise_performance_machine_tmp = $('.machine_wise_performance_machine_drp');
+    if (!machine3.is(event.target) && machine3.has(event.target).length==0 && !machine_wise_performance_machine_tmp.is(event.target) && machine_wise_performance_machine_tmp.has(event.target).length==0) {
+        if (drp_obj['machine_wise_performance_machine_drp']==true) {
+            drp_obj['machine_wise_performance_machine_drp']=false;
+            machine3.hide();
         }
     }
 
-    var machine_check_dd_mqwr = $('.filter_machine_dd_mqwr');
-    var dd_mqwr_machine_c = $('.dd_mqwr_machine');
-    if (!machine_check_dd_mqwr.is(event.target) && machine_check_dd_mqwr.has(event.target).length==0 && !dd_mqwr_machine_c.is(event.target) && dd_mqwr_machine_c.has(event.target).length==0) {
-        if(hide_seek_obj['dd_mqwr_machine']==true){
-            machine_check_dd_mqwr.hide();
-            hide_seek_obj['dd_mqwr_machine']=false;
+    // machine quality with reasons
+    // machine
+    var machine4 = $('.filter_checkboxes_machine4');
+    var machine_wise_quality_machine_tmp = $('.machine_wise_quality_machine_drp');
+    if (!machine4.is(event.target) && machine4.has(event.target).length==0 && !machine_wise_quality_machine_tmp.is(event.target) && machine_wise_quality_machine_tmp.has(event.target).length==0) {
+        if (drp_obj['machine_wise_quality_machine_drp']==true) {
+            drp_obj['machine_wise_quality_machine_drp']=false;
+            machine4.hide();
         }
     }
 
-    var reason_check_dd_mawr = $('.filter_reason_dd_mawr');
-    var dd_mawr_reason_c = $('.dd_mawr_reason');
-    if (!reason_check_dd_mawr.is(event.target) && reason_check_dd_mawr.has(event.target).length==0 && !dd_mawr_reason_c.is(event.target) && dd_mawr_reason_c.has(event.target).length==0) {
-        if(hide_seek_obj['dd_mawr_reason']==true){
-            reason_check_dd_mawr.hide();
-            hide_seek_obj['dd_mawr_reason']=false;
+    // quality 
+    var quality = $('.quality_reason_fill');
+    var machine_wise_quality_reason_tmp = $('.machine_wise_quality_reason_drp');
+    if (!quality.is(event.target) && quality.has(event.target).length==0 && !machine_wise_quality_reason_tmp.is(event.target) && machine_wise_quality_reason_tmp.has(event.target).length==0) {
+        if (drp_obj['machine_wise_quality_reason_drp']==true) {
+            drp_obj['machine_wise_quality_reason_drp']=false;
+            quality.hide();
         }
     }
-    var reason_check_dd_mqwr = $('.filter_reason_dd_mqwr');
-    var dd_mqwr_reason_c = $('.dd_mqwr_reason');
-    if (!reason_check_dd_mqwr.is(event.target) && reason_check_dd_mqwr.has(event.target).length==0 && !dd_mqwr_reason_c.is(event.target) && dd_mqwr_reason_c.has(event.target).length==0) {
-        if(hide_seek_obj['dd_mqwr_reason']==true){
-            reason_check_dd_mqwr.hide();
-            hide_seek_obj['dd_mqwr_reason']=false;
-        }
-    }
-    
 
-    
-        
+
 
 
 });
 
 // graph onclick ajax function call
-$(document).on('click','.oee_trend_common',function(){
-   console.log("oee trend graph click function");
-   oeeTrendDay();
+$(document).on('click','.oee_trend_common',function(event){
+    event.preventDefault();
+    oeeTrendDay();
 });
 
 // graph onclick ajax function call machine wise oee
-$(document).on('click','.machine_oee_common',function(){
-  console.log("machine wise oee");
-  machineWiseOEE();
+$(document).on('click','.machine_oee_common',function(event){
+    event.preventDefault();
+    machineWiseOEE();
 });
 
 // graph onclickajax function call machine wise availability
-$(document).on('click','.machine_availability_common',function(){
-  
+$(document).on('click','.machine_availability_common',function(event){
+    event.preventDefault();
     availabilityReason_machine();
 });
 
 // graph onclick ajax function call machine wise performance 
-$(document).on('click','.machine_performance_common',function(){
-  
+$(document).on('click','.machine_performance_common',function(event){
+    event.preventDefault();
     performance_opportunity();
 });
 
 // graph onclick ajax function call machine wise quality
-$(document).on('click','.machine_quality_common',function(){
+$(document).on('click','.machine_quality_common',function(event){
+    event.preventDefault();
     quality_reason_machine();
 });
 
@@ -1109,13 +1170,32 @@ $(document).on('click','.machine_quality_common',function(){
 function oeeTrendDay() {
      // machine array
      var graph_machine_arr = [];
-    $('.checkbox_machine_dd_trend').each(function(){
+    $('.machine_checkbox').each(function(){
         if ($(this).is(':checked')) {
             graph_machine_arr.push($(this).val().trim());
         }
     });
 
- 
+    // // reason array
+    // var graph_reason_arr = [];
+    // $('.reason_checkbox').each(function(){
+    //     if ($(this).is(':checked')) {
+    //         graph_reason_arr.push($(this).val());
+    //     }
+    // });
+
+    
+    // // category
+    // var graph_category_arr = [];
+    // $('.category_drp_checkbox').each(function(){
+    //     if ($(this).is(':checked')) {
+    //         graph_category_arr.push($(this).val());
+    //     }
+    // });
+
+
+
+
   f = $('.fromDate').val();
   t = $('.toDate').val();
   f = f.replace(" ","T");
@@ -1236,7 +1316,7 @@ function oeeTrendDay() {
 }
 
 
-function oeeTrendOpp(context) {  
+  function oeeTrendOpp(context) {  
 
     // Tooltip Element
     let tooltipEl = document.getElementById('tooltip-oeetrend');
@@ -1317,14 +1397,14 @@ function oeeTrendOpp(context) {
 function machineWiseOEE() {
 
     var graph_machine_arr = [];
-    $('.filter_machine_dd_moeeb_val').each(function(){
+    $('.machine_checkbox1').each(function(){
         if ($(this).is(':checked')) {
             graph_machine_arr.push($(this).val().trim());
         }
     });
 
     var all_data_field = [];
-    $('.filter_dataField_dd_moeeb_val').each(function(){
+    $('.all_data_field_checkbox').each(function(){
         if ($(this).is(':checked')) {
             all_data_field.push($(this).val().trim());
         }
@@ -1345,8 +1425,6 @@ function machineWiseOEE() {
         // all_data_field:all_data_field,
         },
         success:function(res){
-            console.log("machine wise oee graph value");
-            console.log(res);
             $('#machine_wise_oee').remove();
             $('.child_machine_wise_oee').append('<canvas id="machine_wise_oee"></canvas>');
             $('.chartjs-hidden-iframe').remove();
@@ -1357,23 +1435,23 @@ function machineWiseOEE() {
             while(true){
                 var len= res["OEE"].length;
                 if (len < 8) {
-                    res["OEE"].push("");
-                    res.MachineName.push("");
+                res["OEE"].push("");
+                res.MachineName.push("");
                 }
                 else if(len > 8){
-                    var l = parseInt(len)%parseInt(8);
-                    var w= parseInt($('.parent_machine_wise_oee').css("width"))+parseInt(l*18*16);
-                    $('.child_machine_wise_oee').css("width",w+"px");
-                    break;
+                var l = parseInt(len)%parseInt(8);
+                var w= parseInt($('.parent_machine_wise_oee').css("width"))+parseInt(l*18*16);
+                $('.child_machine_wise_oee').css("width",w+"px");
+                break;
                 }
                 else{
-                    break;
+                break;
                 }
             }
 
             var graph_demo_arr = [];
             all_data_field.forEach(function(item){
-                if(item === "Quality"){
+                if(item === "quality"){
                     graph_demo_arr.push({
                         label: "Quality",
                         type: "line",
@@ -1391,7 +1469,7 @@ function machineWiseOEE() {
                         oeeTarget:res['OEETarget'],
                     });
                 }
-                else if(item === "Performance"){
+                else if(item === "performance"){
                     graph_demo_arr.push({
                         label: "Performance",
                         type: "line",
@@ -1412,7 +1490,7 @@ function machineWiseOEE() {
                     });
 
                 }
-                else if(item === "Availability"){
+                else if(item === "availability"){
                     graph_demo_arr.push({
                         label: "Availability",
                         type: "line",
@@ -1431,7 +1509,7 @@ function machineWiseOEE() {
                         oeeTarget:res['OEETarget'],
                     });
                 }
-                else if (item==="OEE") {
+                else if (item==="oee") {
                     graph_demo_arr.push({
                         label: "Machine OEE",
                         type: "bar",
@@ -1449,7 +1527,6 @@ function machineWiseOEE() {
                     });
                 }
             });
-            
             var ctx = document.getElementById("machine_wise_oee").getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'bar',
@@ -1493,7 +1570,6 @@ function machineWiseOEE() {
                
         },
         error:function(res){
-            console.log("machine wise oee error");
             // alert("No Data Records!");
         }
     });
@@ -1592,7 +1668,7 @@ function availabilityReason_machine() {
     
     // machine array
     var graph_category_arr = [];
-    $('.checkbox_category_dd_mawr').each(function(){
+    $('.category_drp_checkbox2').each(function(){
         if ($(this).is(':checked')) {
             graph_category_arr.push($(this).val().trim());
         }
@@ -1600,7 +1676,7 @@ function availabilityReason_machine() {
 
     // reason array
     var graph_reason_arr = [];
-    $('.checkbox_reason_dd_mawr').each(function(){
+    $('.reason_checkbox2').each(function(){
         if ($(this).is(':checked')) {
             graph_reason_arr.push($(this).val());
         }
@@ -1609,11 +1685,12 @@ function availabilityReason_machine() {
     
     // category
     var graph_machine_arr = [];
-    $('.checkbox_machine_dd_mawr').each(function(){
+    $('.machine_checkbox2').each(function(){
         if ($(this).is(':checked')) {
             graph_machine_arr.push($(this).val());
         }
     });
+
 	$.ajax({
         url: "<?php echo base_url('OEE_Drill_Down_controller/getmachine_reason_availability');?>",
         type: "POST",
@@ -1626,6 +1703,7 @@ function availabilityReason_machine() {
             category_arr:graph_category_arr,
         },
         success:function(res){
+
             $('#machine_reason_availability').remove();
             $('.child_machine_reason_availability').append('<canvas id="machine_reason_availability"></canvas>');
             $('.chartjs-hidden-iframe').remove();
@@ -1657,6 +1735,17 @@ function availabilityReason_machine() {
     
             });
 
+            // var reasonList =[];
+            
+            // res['reason'].forEach(function(reason){
+            //     reasonList.push(reason.downtime_reason);
+            // });
+
+            // var totalVal =[];
+            // res['total'].forEach(function(total){
+            //     totalVal.push(total.toFixed(2));
+            // });
+
             var totalDuration=[];
             res['totalDuration'].forEach(function(duration){
                 totalDuration.push(duration);
@@ -1681,13 +1770,13 @@ function availabilityReason_machine() {
                     machineName.push("");
                 }
                 else if(len > 8){
-                    var l = parseInt(len)%parseInt(8);
-                    var w= parseInt($('.parent_machine_reason_availability').css("width"))+parseInt(l*18*16);
-                    $('.child_machine_reason_availability').css("width",w+"px");
-                    break;
+                var l = parseInt(len)%parseInt(8);
+                var w= parseInt($('.parent_machine_reason_availability').css("width"))+parseInt(l*18*16);
+                $('.child_machine_reason_availability').css("width",w+"px");
+                break;
                 }
                 else{
-                    break;
+                break;
                 }
             }
 
@@ -1739,7 +1828,6 @@ function availabilityReason_machine() {
                 x=x+1;
                 index=index+1;
             });
-
             var avlOpp = document.getElementById("machine_reason_availability").getContext('2d');
             var avlOppChart = new Chart(avlOpp, {
                 type: 'bar',
@@ -1897,14 +1985,14 @@ function performance_opportunity(){
     $('.chartjs-hidden-iframe').remove();
 
     var graph_machine_arr = [];
-    $('.checkbox_machine_dd_mpwp').each(function(){
+    $('.machine_checkbox3').each(function(){
         if ($(this).is(':checked')) {
             graph_machine_arr.push($(this).val().trim());
         }
     });
 
     var part_arr = [];
-    $('.checkbox_part_dd_mpwp').each(function(){
+    $('.part_checkbox').each(function(){
         if ($(this).is(':checked')) {
             part_arr.push($(this).val().trim());
         }
@@ -2197,14 +2285,14 @@ function performanceOpp(context){
 function quality_reason_machine() {
 
     var graph_quality_arr = [];
-    $('.checkbox_reason_dd_mqwr').each(function(){
+    $('.quality_checkbox').each(function(){
         if ($(this).is(':checked')) {
             graph_quality_arr.push($(this).val().trim());
         }
     });
 
     var machine_arr = [];
-    $('.checkbox_machine_dd_mqwr').each(function(){
+    $('.machine_checkbox4').each(function(){
         if ($(this).is(':checked')) {
             machine_arr.push($(this).val().trim());
         }
@@ -2363,6 +2451,7 @@ function quality_reason_machine() {
         
         },
         error:function(er){
+            // alert("Sorry!Try Agian!!!!");
         }
     }); 
 }
@@ -2425,6 +2514,7 @@ function quality_reason_machine_tooltip(context){
         }else{
             //innerHtml += '<div class="grid-container">';
             var parts_arr = context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].reason_arr[context.tooltip.dataPoints[0].dataIndex]
+
             innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
             innerHtml += '<div class="grid-item title-bold"><span></span></div>';
             innerHtml += '<div class="content-text sub-title margin-top"><span>'+context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label+'</span></div>';
@@ -2469,24 +2559,6 @@ function quality_reason_machine_tooltip(context){
 // this function gets all dropdown value and graph calling function
 // function get_all_filter_drp_fill(){
     const get_all_filter_drp_fill = new Promise(function (resolve,reject){
-
-    
-        $('.filter_machine_dd_trend').empty();
-        $('.filter_machine_dd_moeeb').empty();
-        $('.filter_machine_dd_mawr').empty();
-        $('.filter_machine_mpwp').empty();
-        $('.filter_machine_dd_mqwr').empty();
-        
-        $('.filter_reason_dd_mawr').empty();
-        $('.filter_reason_dd_mqwr').empty();
-
-        $('.filter_part_mpwp').empty();
-
-        $('.filter_category_dd_mawr').empty();
-
-        $('.filter_dataField_dd_moeeb').empty();
-        
-        
         $.ajax({
             url:"<?php echo base_url('OEE_Drill_Down_controller/get_all_dilter_drp_fun'); ?>",
             method:"POST",
@@ -2495,230 +2567,198 @@ function quality_reason_machine_tooltip(context){
             success:function(res){
                 resolve(res);
 
-                $('.filter_machine_dd_moeeb').append('<div class="inbox inbox_machine_dd_moeeb machine_oee_common" style="display: flex;">'
-                  +'<div style="float: left;width: 20%;" class="center-align">'
-                    +'<input class="checkbox_machine_dd_moeeb filter_machine_dd_moeeb_val" name="machine_dd_moeeb_filter_val" value="all" type="checkbox" checked/>'
-                  +'</div>'
-                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                      +'<p class="inbox-span paddingm">All</p>'
-                  +'</div>'
+                // machine 
+                $('.filter_checkboxes_machine').empty();
+                $('.filter_checkboxes_machine1').empty();
+                $('.filter_checkboxes_machine2').empty();
+                $('.filter_checkboxes_machine3').empty();
+                $('.filter_checkboxes_machine4').empty();
+
+                $('.filter_checkboxes_machine').append('<div class="filter_check_cate machine_click oee_trend_common" style="">'
+                    +'<div class="cate_drp_check" style="">'
+                    +'<input type="checkbox" id="one" class="machine_checkbox" value="all"/>'
+                    +'</div>'
+                    +'<div class="cate_drp_text" style="">'
+                    +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+                    +'</div>'
                 +'</div>');
 
-                $('.filter_machine_dd_dataField').append('<div class="inbox inbox_machine_dd_dataField" style="display: flex;">'
-                  +'<div style="float: left;width: 20%;" class="center-align">'
-                    +'<input class="checkbox_machine_dd_dataField filter_machine_dd_dataField_val" name="machine_dd_dataField_filter_val" value="all" type="checkbox" checked/>'
-                  +'</div>'
-                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                      +'<p class="inbox-span paddingm">All</p>'
-                  +'</div>'
-                +'</div>');
-
-                
-
-                $('.filter_machine_dd_mawr').append('<div class="inbox inbox_machine_dd_mawr machine_availability_common" style="display: flex;">'
-                  +'<div style="float: left;width: 20%;" class="center-align">'
-                    +'<input class="checkbox_machine_dd_mawr filter_machine_dd_mawr_val" name="machine_dd_mawr_filter_val" value="all" type="checkbox" checked/>'
-                  +'</div>'
-                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                      +'<p class="inbox-span paddingm">All</p>'
-                  +'</div>'
-                +'</div>');
-
-                $('.filter_category_dd_mawr').append('<div class="inbox inbox_category_dd_mawr machine_availability_common" style="display: flex;">'
-                  +'<div style="float: left;width: 20%;" class="center-align">'
-                    +'<input class="checkbox_category_dd_mawr filter_category_dd_mawr_val" name="category_dd_mawr_filter_val" value="all" type="checkbox" checked/>'
-                  +'</div>'
-                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                      +'<p class="inbox-span paddingm">All</p>'
-                  +'</div>'
-                +'</div>');
-
-                $('.filter_machine_dd_mqwr').append('<div class="inbox inbox_machine_dd_mqwr machine_quality_common" style="display: flex;">'
-                  +'<div style="float: left;width: 20%;" class="center-align">'
-                    +'<input class="checkbox_machine_dd_mqwr filter_machine_dd_mqwr_val" name="machine_dd_mqwr_filter_val" value="all" type="checkbox" checked/>'
-                  +'</div>'
-                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                      +'<p class="inbox-span paddingm">All</p>'
-                  +'</div>'
-                +'</div>');
-
-                $('.filter_machine_dd_trend').append('<div class="inbox inbox_machine_dd_trend oee_trend_common" style="display: flex;">'
-                  +'<div style="float: left;width: 20%;" class="center-align">'
-                    +'<input class="checkbox_machine_dd_trend filter_machine_dd_trend_val" name="machine_dd_trend_filter_val" value="all" type="checkbox" checked/>'
-                  +'</div>'
-                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                      +'<p class="inbox-span paddingm">All</p>'
-                  +'</div>'
-                +'</div>');
-
-                $('.filter_machine_dd_mpwp').append('<div class="inbox inbox_machine_dd_mpwp machine_performance_common" style="display: flex;">'
-                  +'<div style="float: left;width: 20%;" class="center-align">'
-                    +'<input class="checkbox_machine_dd_mpwp filter_machine_dd_mpwp_val" name="machine_dd_mpwp_filter_val" value="all" type="checkbox" checked/>'
-                  +'</div>'
-                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                      +'<p class="inbox-span paddingm">All</p>'
-                  +'</div>'
-                +'</div>');
-
-                $('.filter_reason_dd_mawr').append('<div class="inbox inbox_reason_dd_mawr machine_availability_common" style="display: flex;">'
-                  +'<div style="float: left;width: 20%;" class="center-align">'
-                    +'<input class="checkbox_reason_dd_mawr filter_reason_dd_mawr_val" name="reason_dd_mawr_filter_val" value="all" type="checkbox" checked/>'
-                  +'</div>'
-                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                      +'<p class="inbox-span paddingm">All</p>'
-                  +'</div>'
-                +'</div>');
-
-                $('.filter_reason_dd_mqwr').append('<div class="inbox inbox_reason_dd_mqwr machine_quality_common" style="display: flex;">'
-                  +'<div style="float: left;width: 20%;" class="center-align">'
-                    +'<input class="checkbox_reason_dd_mqwr filter_reason_dd_mqwr_val" name="reason_dd_mqwr_filter_val" value="all" type="checkbox" checked/>'
-                  +'</div>'
-                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                      +'<p class="inbox-span paddingm">All</p>'
-                  +'</div>'
-                +'</div>');
-
-                $('.filter_part_dd_mpwp').append('<div class="inbox inbox_part_dd_mpwp machine_performance_common" style="display: flex;">'
-                  +'<div style="float: left;width: 20%;" class="center-align">'
-                    +'<input class="checkbox_part_dd_mpwp filter_part_dd_mpwp_val" name="part_dd_mpwp_filter_val" value="all" type="checkbox" checked/>'
-                  +'</div>'
-                  +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                      +'<p class="inbox-span paddingm">All</p>'
-                  +'</div>'
+                $('.filter_checkboxes_machine1').append('<div class="filter_check_cate machine_click1 machine_oee_common" style="">'
+                    +'<div class="cate_drp_check" style="">'
+                    +'<input type="checkbox" id="one" class="machine_checkbox1" value="all"/>'
+                    +'</div>'
+                    +'<div class="cate_drp_text" style="">'
+                    +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+                    +'</div>'
                 +'</div>');
 
 
-                $('.filter_dataField_dd_moeeb').append('<div class="inbox inbox_dataField_dd_moeeb machine_oee_common" style="display: flex;">'
-                      +'<div style="float: left;width: 20%;" class="center-align">'
-                        +'<input class="checkbox_dataField_dd_moeeb filter_dataField_dd_moeeb_val" name="dataField_dd_moeeb_filter_val" value="all" type="checkbox" checked/>'
-                      +'</div>'
-                      +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                          +'<p class="inbox-span paddingm">All Data Fields</p>'
-                      +'</div>'
+                $('.filter_checkboxes_machine2').append('<div class="filter_check_cate machine_click2 machine_availability_common" style="">'
+                    +'<div class="cate_drp_check" style="">'
+                    +'<input type="checkbox" id="one" class="machine_checkbox2" value="all"/>'
+                    +'</div>'
+                    +'<div class="cate_drp_text" style="">'
+                    +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+                    +'</div>'
                 +'</div>');
-                
-                
 
-                res['data_field'].forEach(function(val){
-                    $('.filter_dataField_dd_moeeb').append('<div class="inbox inbox_dataField_dd_moeeb machine_oee_common" style="display: flex;">'
-                      +'<div style="float: left;width: 20%;" class="center-align">'
-                        +'<input class="checkbox_dataField_dd_moeeb filter_dataField_dd_moeeb_val" name="dataField_dd_moeeb_filter_val" value="'+val+'" type="checkbox" checked/>'
-                      +'</div>'
-                      +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                          +'<p class="inbox-span paddingm">'+val+'</p>'
-                      +'</div>'
-                    +'</div>');
-                });
+                $('.filter_checkboxes_machine3').append('<div class="filter_check_cate machine_click3 machine_performance_common" style="">'
+                    +'<div class="cate_drp_check" style="">'
+                    +'<input type="checkbox" id="one" class="machine_checkbox3" value="all"/>'
+                    +'</div>'
+                    +'<div class="cate_drp_text" style="">'
+                    +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+                    +'</div>'
+                +'</div>');
 
-                res['machine'].forEach(function(val){
-                        $('.filter_machine_dd_trend').append('<div class="inbox inbox_machine_dd_trend oee_trend_common" style="display: flex;">'
-                          +'<div style="float: left;width: 20%;" class="center-align">'
-                            +'<input class="checkbox_machine_dd_trend filter_machine_dd_trend_val" name="machine_dd_trend_filter_val" value="'+val.machine_id+'" type="checkbox" checked/>'
-                          +'</div>'
-                          +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                              +'<p class="inbox-span paddingm">'+val.machine_id+"-"+val.machine_name+'</p>'
-                          +'</div>'
+
+                $('.filter_checkboxes_machine4').append('<div class="filter_check_cate machine_click4 machine_quality_common" style="">'
+                    +'<div class="cate_drp_check" style="">'
+                    +'<input type="checkbox" id="one" class="machine_checkbox4" value="all"/>'
+                    +'</div>'
+                    +'<div class="cate_drp_text" style="">'
+                    +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+                    +'</div>'
+                +'</div>');
+
+                    res['machine'].forEach(function(val){
+                        var elements_mdrp = $();
+                        var element_mdrp = $();
+                        var ele_mdrp = $();
+                        var eles_mdrp = $();
+                        var element1_mdrp = $();
+                    
+                        elements_mdrp = elements_mdrp.add('<div class="filter_check_cate machine_click oee_trend_common" style="">'
+                            +'<div class="cate_drp_check" style="">'
+                            +'<input type="checkbox" id="one" class="machine_checkbox" value="'+val.machine_id+'"/>'
+                            +'</div>'
+                            +'<div class="cate_drp_text" style="">'
+                            +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
+                            +'</div>'
                         +'</div>');
 
-                        $('.filter_machine_dd_moeeb').append('<div class="inbox inbox_machine_dd_moeeb machine_oee_common" style="display: flex;">'
-                          +'<div style="float: left;width: 20%;" class="center-align">'
-                            +'<input class="checkbox_machine_dd_moeeb filter_machine_dd_moeeb_val" name="machine_dd_moeeb_filter_val" value="'+val.machine_id+'" type="checkbox" checked/>'
-                          +'</div>'
-                          +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                              +'<p class="inbox-span paddingm">'+val.machine_id+"-"+val.machine_name+'</p>'
-                          +'</div>'
+
+                        element_mdrp = element_mdrp.add('<div class="filter_check_cate machine_click1 machine_oee_common" style="">'
+                            +'<div class="cate_drp_check" style="">'
+                            +'<input type="checkbox" id="one" class="machine_checkbox1" value="'+val.machine_id+'"/>'
+                            +'</div>'
+                            +'<div class="cate_drp_text" style="">'
+                            +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
+                            +'</div>'
                         +'</div>');
 
-                        $('.filter_machine_dd_mawr').append('<div class="inbox inbox_machine_dd_mawr machine_availability_common" style="display: flex;">'
-                          +'<div style="float: left;width: 20%;" class="center-align">'
-                            +'<input class="checkbox_machine_dd_mawr filter_machine_dd_mawr_val" name="machine_dd_mawr_filter_val" value="'+val.machine_id+'" type="checkbox" checked/>'
-                          +'</div>'
-                          +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                              +'<p class="inbox-span paddingm">'+val.machine_id+"-"+val.machine_name+'</p>'
-                          +'</div>'
+                        ele_mdrp = ele_mdrp.add('<div class="filter_check_cate machine_click2 machine_availability_common" style="">'
+                            +'<div class="cate_drp_check" style="">'
+                            +'<input type="checkbox" id="one" class="machine_checkbox2" value="'+val.machine_id+'"/>'
+                            +'</div>'
+                            +'<div class="cate_drp_text" style="">'
+                            +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
+                            +'</div>'
+                        +'</div>');
+                    
+
+                        eles_mdrp = eles_mdrp.add('<div class="filter_check_cate machine_click3 machine_performance_common" style="">'
+                            +'<div class="cate_drp_check" style="">'
+                            +'<input type="checkbox" id="one" class="machine_checkbox3" value="'+val.machine_id+'"/>'
+                            +'</div>'
+                            +'<div class="cate_drp_text" style="">'
+                            +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
+                            +'</div>'
                         +'</div>');
 
-                        $('.filter_machine_dd_mqwr').append('<div class="inbox inbox_machine_dd_mqwr machine_quality_common" style="display: flex;">'
-                          +'<div style="float: left;width: 20%;" class="center-align">'
-                            +'<input class="checkbox_machine_dd_mqwr filter_machine_dd_mqwr_val" name="machine_dd_mqwr_filter_val" value="'+val.machine_id+'" type="checkbox" checked/>'
-                          +'</div>'
-                          +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                              +'<p class="inbox-span paddingm">'+val.machine_id+"-"+val.machine_name+'</p>'
-                          +'</div>'
+                        element1_mdrp = element1_mdrp.add('<div class="filter_check_cate machine_click4 machine_quality_common" style="">'
+                        +'<div class="cate_drp_check" style="">'
+                        +'<input type="checkbox" id="one" class="machine_checkbox4" value="'+val.machine_id+'"/>'
+                        +'</div>'
+                        +'<div class="cate_drp_text" style="">'
+                        +'<p class="font_multi_drp" style="margin:auto;">'+val.machine_name+'</p>'
+                        +'</div>'
                         +'</div>');
 
-                        $('.filter_machine_dd_mpwp').append('<div class="inbox inbox_machine_dd_mpwp machine_performance_common" style="display: flex;">'
-                          +'<div style="float: left;width: 20%;" class="center-align">'
-                            +'<input class="checkbox_machine_dd_mpwp filter_machine_dd_mpwp_val" name="machine_dd_mpwp_filter_val" value="'+val.machine_id+'" type="checkbox" checked/>'
-                          +'</div>'
-                          +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                              +'<p class="inbox-span paddingm">'+val.machine_id+"-"+val.machine_name+'</p>'
-                          +'</div>'
-                        +'</div>');                        
+                        $('.filter_checkboxes_machine').append(elements_mdrp);
+                        $('.filter_checkboxes_machine1').append(element_mdrp);
+                        $('.filter_checkboxes_machine2').append(ele_mdrp);
+                        $('.filter_checkboxes_machine3').append(eles_mdrp);
+                        $('.filter_checkboxes_machine4').append(element1_mdrp);
 
                     });
 
-                res['downtime'].forEach(function(val){
-
-                    $('.filter_reason_dd_mawr').append('<div class="inbox inbox_reason_dd_mawr machine_availability_common" style="display: flex;">'
-                          +'<div style="float: left;width: 20%;" class="center-align">'
-                            +'<input class="checkbox_reason_dd_mawr filter_reason_dd_mawr_val" name="reason_dd_mawr_filter_val" value="'+val.downtime_reason_id+'" type="checkbox" checked/>'
-                          +'</div>'
-                          +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                              +'<p class="inbox-span paddingm">'+val.downtime_reason_id+"-"+val.downtime_reason+'</p>'
-                          +'</div>'
+                    // part
+                $('.part_fill').empty();
+                $('.part_fill').append('<div class="filter_check_cate part_click machine_performance_common" style="">'
+                    +'<div class="cate_drp_check" style="">'
+                    +'<input type="checkbox" id="one" class="part_checkbox" value="all"/>'
+                    +'</div>'
+                    +'<div class="cate_drp_text" style="">'
+                    +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+                    +'</div>'
+                    +'</div>');
+                res['part'].forEach(function(val){
+                    var elements_pdrp = $();
+                    elements_pdrp = elements_pdrp.add('<div class="filter_check_cate part_click machine_performance_common" style="">'
+                        +'<div class="cate_drp_check" style="">'
+                        +'<input type="checkbox" id="one" class="part_checkbox" value="'+val.part_id+'"/>'
+                        +'</div>'
+                        +'<div class="cate_drp_text" style="">'
+                        +'<p class="font_multi_drp" style="margin:auto;">'+val.part_name+'</p>'
+                        +'</div>'
                         +'</div>');
+
+
+
+                    $('.part_fill').append(elements_pdrp);
                 });
 
-                res['category'].forEach(function(val){
-
-                    $('.filter_category_dd_mawr').append('<div class="inbox inbox_category_dd_mawr machine_availability_common" style="display: flex;">'
-                          +'<div style="float: left;width: 20%;" class="center-align">'
-                            +'<input class="checkbox_category_dd_mawr filter_category_dd_mawr_val" name="category_dd_mawr_filter_val" value="'+val.downtime_category+'" type="checkbox" checked/>'
-                          +'</div>'
-                          +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                              +'<p class="inbox-span paddingm">'+val.downtime_category+'</p>'
-                          +'</div>'
-                        +'</div>');
-                });
+                // quality reason 
+                $('.quality_reason_fill').empty();
+                $('.quality_reason_fill').append('<div class="filter_check_cate quality_click machine_quality_common" style="">'
+                    +'<div class="cate_drp_check" style="">'
+                    +'<input type="checkbox" id="one" class="quality_checkbox" value="all"/>'
+                    +'</div>'
+                    +'<div class="cate_drp_text" style="">'
+                    +'<p class="font_multi_drp" style="margin:auto;">All</p>'
+                    +'</div>'
+                    +'</div>');
 
                 res['quality'].forEach(function(val){
                     var elements_qdrp = $();
-                    $('.filter_reason_dd_mqwr').append('<div class="inbox inbox_reason_dd_mqwr machine_quality_common" style="display: flex;">'
-                          +'<div style="float: left;width: 20%;" class="center-align">'
-                            +'<input class="checkbox_reason_dd_mqwr filter_reason_dd_mqwr_val" name="reason_dd_mqwr_filter_val" value="'+val.quality_reason_id+'" type="checkbox" checked/>'
-                          +'</div>'
-                          +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                              +'<p class="inbox-span paddingm">'+val.quality_reason_id+"-"+val.quality_reason_name+'</p>'
-                          +'</div>'
-                        +'</div>');
+                    elements_qdrp = elements_qdrp.add('<div class="filter_check_cate quality_click machine_quality_common" style="">'
+                        +'<div class="cate_drp_check" style="">'
+                        +'<input type="checkbox" id="one" class="quality_checkbox" value="'+val.quality_reason_id+'"/>'
+                        +'</div>'
+                        +'<div class="cate_drp_text" style="">'
+                        +'<p class="font_multi_drp" style="margin:auto;">'+val.quality_reason_name+'</p>'
+                        +'</div>'
+                    +'</div>');
+
+
+                    $('.quality_reason_fill').append(elements_qdrp);
                 });
 
-                res['part'].forEach(function(val){
-                    $('.filter_part_dd_mpwp').append('<div class="inbox inbox_part_dd_mpwp machine_performance_common" style="display: flex;">'
-                          +'<div style="float: left;width: 20%;" class="center-align">'
-                            +'<input class="checkbox_part_dd_mpwp filter_part_dd_mpwp_val" name="part_dd_mpwp_filter_val" value="'+val.part_id+'" type="checkbox" checked/>'
-                          +'</div>'
-                          +'<div style="float: left;width: 80%;overflow: hidden;" class="center-align_cnt">'
-                              +'<p class="inbox-span paddingm">'+val.part_id+"-"+val.part_name+'</p>'
-                          +'</div>'
-                        +'</div>'); 
+                // downtime reason
+                $('.reason_fill2').empty();
+                var element_ddrp = $();
+                var elements_ddrp = $();
+                $('.reason_fill2').append('<div class="filter_check_cate reason_click2 machine_availability_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox2" value="all_reason"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" style="">All Reasons</p></div></idv>');
+                res['downtime'].forEach(function(item){        
+                    elements_ddrp = elements_ddrp.add('<div class="filter_check_cate reason_click2 machine_availability_common" style=""><div class="cate_drp_check" style=""><input type="checkbox" id="one" class="reason_checkbox2" value="'+item.downtime_reason+'"/></div><div class="cate_drp_text" style=""><p class="font_multi_drp" >'+item.downtime_reason+'</p></div></idv>');
+                    $('.reason_fill2').append(elements_ddrp);
+                
                 });
-
 
                 // reset_reason();
-                // reset_reason2();
+                reset_reason2();
                 
-                // reset_quality_reason();
-                // reset_part();
-                // reset_machine();
-                // reset_machine1();
-                // reset_machine2();
-                // reset_machine3();
-                // reset_machine4();
-                // resetbyday_click();
-                // reset_category2();
-                // reset_all_data_field();
+                reset_quality_reason();
+                reset_part();
+                reset_machine();
+                reset_machine1();
+                reset_machine2();
+                reset_machine3();
+                reset_machine4();
+                resetbyday_click();
+                reset_category2();
+                reset_all_data_field();
 
               
                 
@@ -2745,17 +2785,17 @@ async function all_graph_fun(){
     await overallTarget(f,t);
     await oee_trend_first_load(f,t);
     await first_loader_machine_oee(f,t);
-    //await first_loader_availability(f,t);
-    availabilityReason_machine();
+    await first_loader_availability(f,t);
     await first_loader_performance(f,t);
     await first_loader_quality(f,t);
     // await first_load_quality
     // await first_machine_wise_oee
     // await first_loader_performance
     // await first_load_availability
-   
     await get_all_filter_drp_fill
     $('#overlay').fadeOut(500);
+   
+
 }
 
 // function first loader function 
@@ -3073,6 +3113,8 @@ function first_loader_availability(f,t){
                 to:t
             },
             success:function(res){
+                console.log("availability graph first load");
+                console.log(res);
                 resolve(res);
 
                 
@@ -3444,6 +3486,8 @@ function first_loader_quality(f,t){
                 to:t
             },
             success:function(res){
+                console.log("Quality graph first load");
+                console.log(res);
                 resolve(res);
                 $('#quality_reason_machine').remove();
                 $('.child_quality_reason_machine').append('<canvas id="quality_reason_machine"></canvas>');

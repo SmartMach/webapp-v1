@@ -58,15 +58,6 @@ class OEE_Drill_Down_Model extends Model{
         return $res;
     }
 
-    public function downtime_category_filter_con(){
-        $db = \Config\Database::connect($this->site_connection);
-        $query = $db->table('settings_downtime_reasons');
-        $query->select('DISTINCT(downtime_category)');
-        $query->orderBy('downtime_category','ASC');
-        $res = $query->get()->getResultArray();
-        return $res;    
-    }
-
     public function getOfflineEventId($FromDate,$FromTime,$ToDate,$ToTime)
     {
         $db = \Config\Database::connect($this->site_connection);
@@ -152,7 +143,7 @@ class OEE_Drill_Down_Model extends Model{
         $db = \Config\Database::connect($this->site_connection);
         $query = $db->table('settings_downtime_reasons');
         // $query->select('DISTINCT(downtime_reason),downtime_reason_id');
-        $query->select('DISTINCT(downtime_reason),downtime_reason_id');
+        $query->select('DISTINCT(downtime_reason)');
         $query->orderBy('downtime_reason','ASC');
         $res = $query->get()->getResultArray();
         return $res;    

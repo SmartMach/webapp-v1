@@ -207,22 +207,28 @@ function inputAlertlabel(data){
 	// }
 }
 
-function inputAlertto(data){
+function inputAlertto(data,input_val){
 	var val = data;
-	// val = val.trim();
-	// if (!val) {
-		if(parseInt(val)<=0)
-		{				
-			// console.log('for to check');
-			return required;
-		}else{
-			// console.log('cccccccccc');
+	var email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	if(parseInt(val)<=0)
+	{				
+		if (email_pattern.test(input_val)) {
 			return success;
+		}else{
+			return required;
 		}
-	// }
-	// else{
-	// 	return success;
-	// }
+	}else{
+		if (!input_val) {
+			return success;
+		}else{
+			if (email_pattern.test(input_val)) {
+				return success;
+			}else{
+				return required;
+			}
+		}
+	}
+	
 }
 
 function inputAlertcc(data){
@@ -430,7 +436,8 @@ $("#input_check_label").on('blur',function(){
 
 $("#input_check_to").on('blur',function(){
 	var add_to_leng = $('.parent_div_input_check li').length;
-	var x = inputAlertto(add_to_leng);
+	var add_to_val = $('#input_check_to').val();
+	var x = inputAlertto(add_to_leng,add_to_val);
 	$("#input_check_to_Err").html(x);
 });
 
@@ -616,9 +623,12 @@ $("#edit_alert_deu_days").on('blur',function(){
 });
 
 $(".input_check_to_edit").on('blur',function(){
-	// console.log('edit_to');
+	console.log('edit_to');
 	var length_to = $('.edit_parent_div_input_check li').length;
-	var x = inputAlertto(length_to);
+	var to_edit_val = $('.input_check_to_edit').val();
+	console.log(to_edit_val);
+	console.log(length_to);
+	var x = inputAlertto(length_to,to_edit_val);
 	$("#input_check_to_edit_Err").html(x);
 });
 

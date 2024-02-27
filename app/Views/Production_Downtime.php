@@ -1345,7 +1345,6 @@ function getreason_arr(){
 
 // filter function
 function filter_btn_call(){
-
   <?php  
     
     log_message("info","\n\n****************************Bulk Edit function on ui side apply filter button starting*************************");
@@ -1431,14 +1430,13 @@ function filter_btn_call(){
           }else{
             $('.split_input').html('<p class="no_record">No Records Found!!</p>');
           }
-         
           <?php  
     
-            $end_time_log = microtime(true);
-            $final_log_time = ($end_time_log - $start_time_log);
-            log_message("info","\n\n*******************Bulk edit UI end Apply filter button execution start time is:\t".$start_time_log." then the end time is:\t".$end_time_log." the final total seconds is:\t".$final_log_time." ending ****************************************\n\n\n");
-            
-          ?>
+    $end_time_log = microtime(true);
+    $final_log_time = ($end_time_log - $start_time_log);
+    log_message("info","\n\n*******************Bulk edit UI end Apply filter button execution start time is:\t".$start_time_log." then the end time is:\t".$end_time_log." the final total seconds is:\t".$final_log_time." ending ****************************************\n\n\n");
+    
+  ?>
           $("#overlay").fadeOut(300);
         },
         error:function(err){
@@ -1447,7 +1445,6 @@ function filter_btn_call(){
         }
       });
 
-    
     }
 }
 
@@ -1562,11 +1559,11 @@ $(document).on('change','#bulg_edit_category_drp',function(event){
 // bulg edit submission function 
 $(document).on('click','.bulg_edit_submit',function(event){
   event.preventDefault();
- 
-  <?php 
+    <?php 
     $start_time_log = microtime(true);
     log_message("info","\n\n\n************The bulk edit UI feature click save button starting *******************");
   ?>
+ 
   var bulg_reason = $('#bulg_edit_drp').val();
   var bulg_category = $('#bulg_edit_category_drp').val();
   var machine_id = $('#Production_MachineName').val();
@@ -2246,6 +2243,7 @@ $(document).on("click", ".deleteRec", function(){
             $('.edit_input4:eq('+index_value+')').css("display","inline");
             $('.edit_display3:eq('+index_value+')').css("display","none");
             $('.edit_display4:eq('+index_value+')').css("display","none");
+            // target 
             target_input_function_handle("add",index_value);
             // document.getElementsByClassName('edit_input3')[index_value].style.display="inline";
             // document.getElementsByClassName('edit_input4')[index_value].style.display="inline";

@@ -2133,6 +2133,18 @@ function add_assignee(t) {
                     }
                 });
 
+                // if to email input array is empty check the input if is it null or not check
+                if (parseInt(to_email_arr.length)<=0) {
+                    var tmp_val = $('#input_check_to').val();
+                    to_email_arr.push(tmp_val);
+
+                }else{
+                    var tmp_val = $('#input_check_to').val();
+                    to_email_arr.push(tmp_val);
+                }
+
+                //console.log("getting input value is :"+to_email_arr);
+
                 $('.cc_email_txt_arr').each(function(){
                     if ($(this).text()) {
                         cc_email_arr.push($(this).text());
@@ -2193,6 +2205,19 @@ function add_assignee(t) {
                     }
                 });
 
+                // if to email input array is empty check the input if is it null or not check
+                if (parseInt(to_email_arr.length)<=0) {
+                    var tmp_val = $('#input_check_to').val();
+                    to_email_arr.push(tmp_val);
+
+                }else{
+                    var tmp_val = $('#input_check_to').val();
+                    to_email_arr.push(tmp_val);
+                }
+
+                //console.log("getting input value is :"+to_email_arr);
+
+
                 // const cc_email_arr = [];
                 $('.cc_email_txt_arr').each(function(){
                     if ($(this).text()) {
@@ -2237,9 +2262,10 @@ function add_assignee(t) {
             var j = inputAlert_email_note(add_alert_notes);
             // var work_label_tmp = $('.parent_div_input_check_label li').length;
             var to_tmp_email = $('.parent_div_input_check li').length;
+            var to_tmp_email_val = $('#input_check_to').val();
             var cc_tmp_email = $('.parent_div_input_check_cc li').length;
             // var ml = inputAlertlabel(work_label_tmp);
-            var nt = inputAlertto(to_tmp_email);
+            var nt = inputAlertto(to_tmp_email,to_tmp_email_val);
             var pc = inputAlertcc(cc_tmp_email);
             var note_error = 0; 
             if (notify_as==="all") { 
@@ -2789,8 +2815,9 @@ function add_assignee(t) {
                 $('#priority_selected_edit_id').attr('priority-data-val-edit',edit_priority_id);
 
 
-
-                $('.edit_alert_btn_submit').attr('alert_data_id',res[0]['alert_id']);               
+                $('.input_check_to_edit').val('');
+                $('.edit_alert_btn_submit').attr('alert_data_id',res[0]['alert_id']); 
+                              
                 $('#edit_alert').modal('show');
             },
             error:function(er){
@@ -2867,6 +2894,15 @@ function add_assignee(t) {
                     }
                 });
 
+                // if to email input array is empty check the input if is it null or not check
+                if (parseInt(to_email_arr.length)<=0) {
+                    var tmp_val = $('.input_check_to_edit').val();
+                    to_email_arr.push(tmp_val);
+                }else{
+                    var tmp_val = $('.input_check_to_edit').val();
+                    to_email_arr.push(tmp_val);
+                }
+
             
                 $('.cc_email_input_tags_txt_edit').each(function(){
                     if ($(this).text()) {
@@ -2927,6 +2963,18 @@ function add_assignee(t) {
                     }
                 });
 
+                // if to email input array is empty check the input if is it null or not check
+                if (parseInt(to_email_arr.length)<=0) {
+                    var tmp_val = $('.input_check_to_edit').val();
+                    to_email_arr.push(tmp_val);
+                }else{
+                    var tmp_val = $('.input_check_to_edit').val();
+                    to_email_arr.push(tmp_val);
+                }
+
+                // console.log("to email edit input value:\t"+to_email_arr);
+
+
                 // const cc_email_arr = [];
                 $('.cc_email_input_tags_txt_edit').each(function(){
                     if ($(this).text()) {
@@ -2971,10 +3019,11 @@ function add_assignee(t) {
 
             // email
             var input_check_to = $('.edit_parent_div_input_check li').length;
+            var input_check_to_val = $('.input_check_to_edit').val();
             var input_check_cc = $('.edit_parent_div_input_check_cc li').length;
             var i = inputAlert_mail_sub(add_alert_subject);
             var j = inputAlert_email_note(add_alert_notes);
-            var k = inputAlertto(input_check_to);
+            var k = inputAlertto(input_check_to,input_check_to_val);
             // var l = inputAlertcc(input_check_cc);
 
             var note_error = 0; 
@@ -3026,7 +3075,8 @@ function add_assignee(t) {
             }
             
             // alert('ji');
-           
+        //    console.log("to email array");
+        //    console.log(to_email_arr);
             if (parseInt(note_error)>=1) {
                 $.ajax({
                     url:"<?php  echo base_url('Alert_Settings_Controller/edit_alert_submission'); ?>",
