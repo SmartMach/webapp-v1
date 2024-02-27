@@ -1610,6 +1610,7 @@ function opportunitydrilldown(){
                 fill:true,
                 data:reasonPer,
                 duration:res['Duration'],
+                value_type:res['Type'],
                 categoryPercentage:1.0,
                 barPercentage: 0.5,
             }],
@@ -1688,10 +1689,18 @@ function drillDownOpp(context) {
 
     // Set Text
     if (tooltipModel.body) {
-        
         const titleLines = tooltipModel.title || [];
         const bodyLines = tooltipModel.body.map(getBody);
         var duration = parseFloat(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].duration[context.tooltip.dataPoints[0].dataIndex]).toFixed(1);
+
+        var valueCategory =context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].value_type[context.tooltip.dataPoints[0].dataIndex];
+
+        var lableType = valueCategory == "Quality" ? "Rejections" : "Duration";
+
+        var lableName = context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label;
+
+        lableName = valueCategory == "Quality" ? "" : lableName;
+
         var days = parseInt(parseInt(duration/60)/24);
         var hours = parseInt(parseInt(duration-(days*1440))/60);
         var min = parseInt(parseInt(duration-(days*1440))%60);
@@ -1701,18 +1710,23 @@ function drillDownOpp(context) {
         innerHtml += '<div class="grid-container">';
         innerHtml += '<div class="title-bold"><span>'+context.chart.config._config.data.labels[context.tooltip.dataPoints[0].dataIndex]+'</span></div>';
         innerHtml += '<div class="grid-item title-bold"><span></span></div>';
-        innerHtml += '<div class="content-text sub-title"><span>'+context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label+'</span></div>';
+        innerHtml += '<div class="content-text sub-title"><span>'+lableName+'</span></div>';
         innerHtml += '<div class="grid-item title-bold"><span></span></div>';
 
         innerHtml += '<div class="grid-item content-text margin-top"><span>Opportunity Cost</span></div>';
         innerHtml += '<div class="cost-value title-bold-value margin-top"><span class="values-op">'+'<i class="fa fa-inr inr-class" aria-hidden="true" style="font-size:0.9rem;"></i>'+parseInt(context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].data[context.tooltip.dataPoints[0].dataIndex]).toLocaleString("en-IN")+'</span></div>';
-        innerHtml += '<div class="grid-item content-text"><span>Duration</span></div>';
 
-        if (days>0) {
-          innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+days+"d"+" "+hours+"h"+" "+min+"m"+'</span></div>';
-        }
-        else{
-          innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+hours+"h"+" "+min+"m"+'</span></div>';
+        innerHtml += '<div class="grid-item content-text"><span>'+lableType+'</span></div>';
+
+        if (valueCategory != "Quality") {
+          if (days>0) {
+            innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+days+"d"+" "+hours+"h"+" "+min+"m"+'</span></div>';
+          }
+          else{
+            innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+hours+"h"+" "+min+"m"+'</span></div>';
+          }
+        }else{
+          innerHtml += '<div class="grid-item content-text-val"><span class="values-op">'+parseInt(duration)+'</span></div>';
         }
 
         innerHtml += '</div>';

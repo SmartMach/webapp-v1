@@ -2483,6 +2483,7 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days,$noplan=false)
         $totalvalues=[];
         $totalreasons=[];
         $durationTotal=[];
+        $reasonType =[];
 
         $ref = "PerformanceOpportunity";
 
@@ -2584,19 +2585,25 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days,$noplan=false)
                     }
 
                     //For no production........
-                    $Opportunity = (floatval(($downtime-$corrected_tppNICT))/floatval(60*(int)$machineOFFRate));
+                    // $Opportunity = (floatval(($downtime-$corrected_tppNICT))/floatval(60*(int)$machineOFFRate));
 
                     $partRunningDurationAtIdeal=$corrected_tppNICT;
                     $speedLoss= $partRunningTime-$partRunningDurationAtIdeal;
+
+                    $Opportunity = (int)$speedLoss*((int)$machineOFFRate/60);
 
                     if (floatval($Opportunity)<0) {
                         $Opportunity=0;
                         $speedLoss=0;
                     }
-                    $Opportunity= array('Opportunity' => floatval(number_format($Opportunity, 2)),'SpeedLoss'=>$speedLoss);
-                    $temp = array("part_id"=>$part['part_id'],"data"=>$corrected_tppNICT,"OppCost"=>$Opportunity,"speedLoss"=>$speedLoss);
-                    array_push($tmpMachine, $temp);
-                    array_push($varData, $Opportunity);
+                    $Opportunity_arr= array('Opportunity' => $Opportunity, 2,'SpeedLoss'=>$speedLoss);
+                    array_push($varData, $Opportunity_arr);
+
+
+                    // $temp = array("part_id"=>$part['part_id'],"data"=>$corrected_tppNICT,"OppCost"=>$Opportunity,"speedLoss"=>$speedLoss);
+
+                    // array_push($tmpMachine, $temp);
+                    
                 }
                 // $x = array("machine_id"=>$machine['Machine_ID'],"machineData"=>$tmpMachine);
                 // array_push($AvailabilityOpportunity, $x);
@@ -2622,9 +2629,10 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days,$noplan=false)
             $GrandTotal=$GrandTotal+$tmpPartTotal;
             array_push($partTotal, $tmpPartTotal);
         }
-        array_push($totalvalues, (int)$GrandTotal);
+        array_push($totalvalues, (float)$GrandTotal);
         array_push($totalreasons, "Performance");
-        array_push($durationTotal, $speedTotal);
+        array_push($durationTotal, (int)$speedTotal);
+        array_push($reasonType, "Performance");
 
         //Availability.....
         //Raw data from Reason mapping Table...........
@@ -2716,6 +2724,7 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days,$noplan=false)
             array_push($totalvalues, $total);
             array_push($totalreasons, $DowntimeReason[$i]['downtime_reason']);
             array_push($durationTotal,$duration);
+            array_push($reasonType,"Downtime");
         }
 
         // Quality
@@ -2795,6 +2804,7 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days,$noplan=false)
         //Reason wise Total Cost Opportunity............
         $ReasonWiseTotal=[];
         foreach ($qualityReason as $key => $res) {
+            $Rejections =0;
             $tmpCost = 0;
             $tmpreason="";
             foreach ($QualityAvailabilityActual as $part) {
@@ -2802,25 +2812,21 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days,$noplan=false)
                     if ($value['reason_id'] == $res['quality_reason_id']) {
                         $tmpreason=$value['Reason'];
                         $tmpCost=(int)$tmpCost+(int)$value['TotalCost'];
+                        $Rejections = $Rejections + $value['TotalRejects'];
                     }
-                }
-            }
-
-            $duration =0;
-            foreach ($totalReject as $k => $val) {
-                if ($k == $key) {
-                    $duration=(int)$duration+(int)$val[$k];
                 }
             }
             array_push($ReasonWiseTotal, $tmpCost);
             array_push($totalvalues, $tmpCost);
             array_push($totalreasons, $tmpreason);
-            array_push($durationTotal, $duration);
+            array_push($durationTotal, $Rejections);
+            array_push($reasonType,"Quality");
         }  
 
         $out['Reason']=$totalreasons;
         $out['Total']=$totalvalues;
         $out['Duration'] = $durationTotal;
+        $out['Type'] = $reasonType;
         
         $res = $this->selectionSortDrillDown($out,sizeof($totalreasons));
 
@@ -2860,6 +2866,11 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days,$noplan=false)
             $temp2 = $arr['Duration'][$i];
             $arr['Duration'][$i] = $arr['Duration'][$min_idx];
             $arr['Duration'][$min_idx] = $temp2;
+
+            // Type
+            $temp3 = $arr['Type'][$i];
+            $arr['Type'][$i] = $arr['Type'][$min_idx];
+            $arr['Type'][$min_idx] = $temp3;
         }
 
         for ($i = 0; $i < $n; $i++)
@@ -2868,6 +2879,7 @@ public function oeeDataTreand($MachineWiseDataRaw,$x,$part,$days,$noplan=false)
                 unset($arr['Total'][$i]);
                 unset($arr['Reason'][$i]);
                 unset($arr['Duration'][$i]);
+                unset($arr['Type'][$i]);
             }
         }
         return $arr;
