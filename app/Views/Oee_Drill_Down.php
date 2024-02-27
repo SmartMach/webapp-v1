@@ -3113,6 +3113,8 @@ function first_loader_availability(f,t){
                 to:t
             },
             success:function(res){
+                console.log("availability graph first load");
+                console.log(res);
                 resolve(res);
 
                 
@@ -3484,6 +3486,8 @@ function first_loader_quality(f,t){
                 to:t
             },
             success:function(res){
+                console.log("Quality graph first load");
+                console.log(res);
                 resolve(res);
                 $('#quality_reason_machine').remove();
                 $('.child_quality_reason_machine').append('<canvas id="quality_reason_machine"></canvas>');
