@@ -1695,7 +1695,7 @@ function drillDownOpp(context) {
 
         var valueCategory =context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].value_type[context.tooltip.dataPoints[0].dataIndex];
 
-        var lableType = valueCategory == "Quality" ? "Rejections" : "Duration";
+        var lableType = valueCategory == "Quality" ? "# of Rejects" : "Duration";
 
         var lableName = context.chart.config._config.data.datasets[context.tooltip.dataPoints[0].datasetIndex].label;
 
