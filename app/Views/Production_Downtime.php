@@ -3336,6 +3336,8 @@ $(document).on('click','.doneEdit',function(){
           target:target,
       },
       success:function(res_Site){
+        console.log("production downtime result");
+        console.log(res_Site);
         if (res_Site) {
           alert("Updated Successfully!!");
         } 

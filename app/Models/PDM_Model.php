@@ -596,12 +596,12 @@ class PDM_Model extends Model{
         $query->select('*');
         $query->where('calendar_date <=',$data['calendar_date']);
         $query->where('machine_id',$data['machine_id']);
-        $query->where('machine_event_id <=',$machineRef);
-        $query->where('event_start_time <',$data['event_start_time']);
+        $query->where('machine_event_id !=',$machineRef);
+        // $query->where('event_start_time <',$data['event_start_time']);
         // $query->where('tool_changeover_id !=',$current_record[0]['tool_changeover_id']);
-        $query->orderby('machine_event_id','DESC');
-        $query->orderby('event_start_time','DESC');
-        $query->orderby('last_updated_on','DESC');
+        // $query->orderby('machine_event_id','DESC');
+        $query->orderby('shift_date','DESC');
+        $query->orderby('tool_changeover_id','DESC');
         $query->limit(1);
         $response = $query->get()->getResultArray();
 
@@ -621,11 +621,13 @@ class PDM_Model extends Model{
         // return;
 
         // just display conditions 
-        $tmp_check['before tool_change'] = $response;
-        $tmp_check['after_tool_change'] = $response1;
-        $tmp_check['msg'] = "tool changeover deletion for reason mapping";
-        $tmp_check['previous_tool_changeover_starttime'] = $previous_tool_start;
-        $tmp_check['previsou_tool_changeover_endtime'] = $previous_tool_end;
+        // $tmp_check['before tool_change'] = $response;
+        // $tmp_check['after_tool_change'] = $response1;
+        // $tmp_check['msg'] = "tool changeover deletion for reason mapping";
+        // $tmp_check['previous_tool_changeover_starttime'] = $previous_tool_start;
+        // $tmp_check['previsou_tool_changeover_endtime'] = $previous_tool_end;
+
+        // return $tmp_check;
 
         // return $tmp_check;
         $query_info_start = $db->table('pdm_production_info');

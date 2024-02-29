@@ -330,6 +330,7 @@ class PDM_controller extends BaseController{
 
     // downtime graph updation
     public function updateDownGraph(){
+        
         if ($this->request->isAJAX()) {
             $dataVal= $this->request->getVar("Data");
             $machineRef= $this->request->getVar("MachineRef");
@@ -341,15 +342,17 @@ class PDM_controller extends BaseController{
             $date_array = $this->request->getVar('date_array');
             $target = $this->request->getvar('target');
 
-            // $dataVal = array('Planned', '2', 'TL1024', array('PT1029'), 'ME24021', '0', 'MC1002', '2023-09-15', 'A');
-            // $machineRef = "ME24021";
-            // $splitRef = 0;
-            // $timeArray = array('06:05:57', '06:12:19');
-            // $durationArray = array('6.22');
-            // $split_array = array('0');
-            // $date_array = array('2023-09-15');
-            // $target = 9000;
+            /*
 
+            $dataVal = array('Planned', '10', 'TL1003', array('PT1003'), 'ME68623', '0', 'MC1001', '2024-02-23', 'B');
+            $machineRef = "ME68623";
+            $splitRef = 0;
+            $timeArray = array('01:01:11', '01:34:41');
+            $durationArray = array('33.3');
+            $split_array = array('0');
+            $date_array = array('2024-02-23');
+            $target = 0;
+*/
             
             // $tmp['dataVal'] = $dataVal;
             // $tmp['machineRef'] = $machineRef;
