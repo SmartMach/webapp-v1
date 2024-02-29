@@ -307,8 +307,7 @@ class PDM_Model extends Model{
         return $res[0]['tool_changeover_id'];
     }
 
-    public function updateDownGraph($data,$machineRef,$splitRef,$timeArray,$durationArray,$last_updated_by,$split_array,$date_array,$target,$database=false){
-
+    public function updateDownGraph($data,$machineRef,$splitRef,$timeArray,$durationArray,$last_updated_by,$split_array,$date_array,$target){
         if ($database != false) {
             $this->site_creation['database'] = $database;
         }
@@ -600,12 +599,12 @@ class PDM_Model extends Model{
         $query->select('*');
         $query->where('calendar_date <=',$data['calendar_date']);
         $query->where('machine_id',$data['machine_id']);
-        $query->where('machine_event_id <=',$machineRef);
-        $query->where('event_start_time <',$data['event_start_time']);
+        $query->where('machine_event_id !=',$machineRef);
+        // $query->where('event_start_time <',$data['event_start_time']);
         // $query->where('tool_changeover_id !=',$current_record[0]['tool_changeover_id']);
-        $query->orderby('machine_event_id','DESC');
-        $query->orderby('event_start_time','DESC');
-        $query->orderby('last_updated_on','DESC');
+        // $query->orderby('machine_event_id','DESC');
+        $query->orderby('shift_date','DESC');
+        $query->orderby('tool_changeover_id','DESC');
         $query->limit(1);
         $response = $query->get()->getResultArray();
 
@@ -625,11 +624,13 @@ class PDM_Model extends Model{
         // return;
 
         // just display conditions 
-        $tmp_check['before tool_change'] = $response;
-        $tmp_check['after_tool_change'] = $response1;
-        $tmp_check['msg'] = "tool changeover deletion for reason mapping";
-        $tmp_check['previous_tool_changeover_starttime'] = $previous_tool_start;
-        $tmp_check['previsou_tool_changeover_endtime'] = $previous_tool_end;
+        // $tmp_check['before tool_change'] = $response;
+        // $tmp_check['after_tool_change'] = $response1;
+        // $tmp_check['msg'] = "tool changeover deletion for reason mapping";
+        // $tmp_check['previous_tool_changeover_starttime'] = $previous_tool_start;
+        // $tmp_check['previsou_tool_changeover_endtime'] = $previous_tool_end;
+
+        // return $tmp_check;
 
         // return $tmp_check;
         $query_info_start = $db->table('pdm_production_info');
@@ -740,6 +741,7 @@ class PDM_Model extends Model{
             $mid = $data['machine_id'];
             $url = $site.".".$machinegateway;
             $url1 = $site."."."/chennai"."/".$site."/"."offline";
+            echo $url;
             $rows = $manager->executeQuery("".$url."" , $query);
             $rows1 = $manager->executeQuery("".$url1."" , $query1);
             $k = $rows->toArray();
@@ -3176,14 +3178,10 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
     //    bulg edit filter function
     public function bulgedit_filter($mydata){
 
-        log_message("info","\n\n the model file execution is started:\n");
         $db = \Config\Database::connect($this->site_creation);
         if (($mydata['downtime_reason']!=null) && ($mydata['downtime_reason']!="")) {
             if (($mydata['category']!=null) && ($mydata['category']!="")) {
                 // DOWNTIME REASONS GET REASON ID
-                $start_time_log = microtime(true);
-
-
                 $tem_cate_ra = [];
                 foreach ($mydata['downtime_reason'] as $key_k1 => $value_k1) {
                     $build1 = $db->table('settings_downtime_reasons');
@@ -3213,17 +3211,9 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
                 }
                 $getcatera = $this->getsimple_arr_format($tem_cate_ra);
                 $getarrcatra = $this->getfilter_time_range($getcatera,$mydata);
-                
-                // log file time getting
-                $end_time_log = microtime(true);
-                $total_seconds = ($end_time_log - $start_time_log);
-                log_message("info","\n\nthe model execution first time is:\t".$start_time_log." the end time execution is:\t".$end_time_log." total seconds is:\t".$total_seconds);
-
                 return $getarrcatra;
                
             }else{
-
-                $start_time_log = microtime(true);
                 // get downtime reason id 
                 $temp2_arr = [];
                 foreach ($mydata['downtime_reason'] as $ke => $va) {
@@ -3263,22 +3253,12 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
                 $getfinal_arr = $this->getsimple_arr_format1($temp2_arr);
                 $getfilter_record = $this->getfilter_time_range($getfinal_arr,$mydata);
                 // $getfilterrecordfinal = array_values($getfilter_record);
-
-
-                // log file time getting
-                $end_time_log = microtime(true);
-                $total_seconds = ($end_time_log - $start_time_log);
-                log_message("info","\n\nthe model execution first time is:\t".$start_time_log." the end time execution is:\t".$end_time_log." total seconds is:\t".$total_seconds);
- 
-
                 return $getfilter_record;
 
             }
             
         }elseif(($mydata['category']!=null) && ($mydata['category']!="")) {
             
-            $start_time_log = microtime(true);
-
             $build3 = $db->table('settings_downtime_reasons');
             $build3->select('*');
             $build3->where('downtime_category',$mydata['category']);
@@ -3311,18 +3291,9 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
             $getarr = $this->getsimple_arr_format($tmp_arr);
             $getarr_final = $this->getfilter_time_range($getarr,$mydata);
             // $gfa = array_values($getarr_final);
-
-            // log file time getting
-            $end_time_log = microtime(true);
-            $total_seconds = ($end_time_log - $start_time_log);
-            log_message("info","\n\nthe model execution first time is:\t".$start_time_log." the end time execution is:\t".$end_time_log." total seconds is:\t".$total_seconds);
-
             return $getarr_final;
         }else{
         
-            $start_time_log = microtime(true);
-
-
             $build = $db->table('pdm_downtime_reason_mapping');
             $build->select('*');
             // $build->where('start_time >=',$mydata['start_time']);
@@ -3371,13 +3342,6 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
                 }
             }
             */
-
-            // log file time getting
-            $end_time_log = microtime(true);
-            $total_seconds = ($end_time_log - $start_time_log);
-            log_message("info","\n\nthe model execution first time is:\t".$start_time_log." the end time execution is:\t".$end_time_log." total seconds is:\t".$total_seconds);
-
-
             return $getres_final;
 
         }
@@ -3489,6 +3453,8 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
 
         if (!$query) {
             return false;
+            // $error = $db->error();
+            // die('Error: ' . $error['message']);
         }else{
             $notMapped = $db->table('pdm_downtime_reason_mapping')
                           ->select('machine_event_id')
@@ -3521,10 +3487,8 @@ public function deleteSPlit($dataVal,$machineRef,$splitRef,$start,$end,$last_upd
                     return false;
                 }
             }
-
             return true;
         }
-
     }
 
     // update pdm events 

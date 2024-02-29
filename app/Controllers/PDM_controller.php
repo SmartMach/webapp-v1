@@ -328,8 +328,8 @@ class PDM_controller extends BaseController{
         
     }
 
-    // For Python API
-    public function updateDownGraph_api(){
+     // For Python API
+     public function updateDownGraph_api(){
         // Receive Data from Python API - Schedular
         $inputData = json_decode($this->request->getBody(), true);
 
@@ -350,8 +350,10 @@ class PDM_controller extends BaseController{
         return $this->response->setStatusCode(200)->setJSON(['message' => $res]);
     }
 
+
     // downtime graph updation
     public function updateDownGraph(){
+        
         if ($this->request->isAJAX()) {
             $dataVal= $this->request->getVar("Data");
             $machineRef= $this->request->getVar("MachineRef");
@@ -363,15 +365,17 @@ class PDM_controller extends BaseController{
             $date_array = $this->request->getVar('date_array');
             $target = $this->request->getvar('target');
 
-            // $dataVal = array('Planned', '2', 'TL1024', array('PT1029'), 'ME24021', '0', 'MC1002', '2023-09-15', 'A');
-            // $machineRef = "ME24021";
-            // $splitRef = 0;
-            // $timeArray = array('06:05:57', '06:12:19');
-            // $durationArray = array('6.22');
-            // $split_array = array('0');
-            // $date_array = array('2023-09-15');
-            // $target = 9000;
+            /*
 
+            $dataVal = array('Planned', '10', 'TL1003', array('PT1003'), 'ME68623', '0', 'MC1001', '2024-02-23', 'B');
+            $machineRef = "ME68623";
+            $splitRef = 0;
+            $timeArray = array('01:01:11', '01:34:41');
+            $durationArray = array('33.3');
+            $split_array = array('0');
+            $date_array = array('2024-02-23');
+            $target = 0;
+*/
             
             // $tmp['dataVal'] = $dataVal;
             // $tmp['machineRef'] = $machineRef;
@@ -455,10 +459,11 @@ class PDM_controller extends BaseController{
             $result = $this->data->bulgedit_filter($myarr);
 
 
+
             $end_time_log = microtime(true);
             $final_log_time = ($end_time_log - $start_time_log);
             log_message("info","\n\n****************************Bulk edit controller function start time is:\t".$start_time_log." and the end time is :\t".$end_time_log." execution time is:\t".$final_log_time."*********************************");
-            
+
             echo json_encode($result);
 
             
@@ -492,12 +497,11 @@ class PDM_controller extends BaseController{
             $mydata['last_updated_by'] = $this->session->get('user_name');
             $res = $this->data->bulg_updation($mydata,$start_time_arr,$end_time_arr,$split_arr,$machine_event_arr);
 
-
-            // log file work
-            $end_time_log = microtime(true);
-            $final_log_time = $end_time_log - $start_time_log;
-            log_message("info","\n\n **********************the controller function execution start time is :\t".$start_time_log."\t the end time is:\t".$end_time_log." \t the final total seconds is :\t".$final_log_time."*************************************");
-
+              // log file work
+              $end_time_log = microtime(true);
+              $final_log_time = $end_time_log - $start_time_log;
+              log_message("info","\n\n **********************the controller function execution start time is :\t".$start_time_log."\t the end time is:\t".$end_time_log." \t the final total seconds is :\t".$final_log_time."*************************************");
+  
             echo json_encode($res);
         }
     }
