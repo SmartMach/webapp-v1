@@ -667,16 +667,16 @@
                     </li>
                 <?php } ?>
 
-                <li class="side-menu-li po_relative display_f justify_c align_c mr_right_side_nav">
-                        <a href="<?php echo base_url('Home/load_option/report_module'); ?>" class="po_relative side-menu-element none_dec display_b">
-                            <img src="<?php echo base_url() ?>/assets/icons/nav_icon_issue.png?version=<?php echo rand(); ?>" class="icons-side-nav fa-work nav-icon nav-icon-hover" dvalue="Work">
-                        </a>
-                        <ul class="side-nav-hover-content po_absolute paddingm">
-                            <nav class="hover_elem_height display_f align_c">
-                                <p class="paddingm side-menu-title fnt_fam">REPORT MODULE</p>
-                            </nav>
-                        </ul>
-                    </li>
+                <!-- <li class="side-menu-li po_relative display_f justify_c align_c mr_right_side_nav">
+                    <a href="<?php echo base_url('Home/load_option/report_module'); ?>" class="po_relative side-menu-element none_dec display_b">
+                        <img src="<?php echo base_url() ?>/assets/icons/nav_icon_issue.png?version=<?php echo rand(); ?>" class="icons-side-nav fa-work nav-icon nav-icon-hover" dvalue="Work">
+                    </a>
+                    <ul class="side-nav-hover-content po_absolute paddingm">
+                        <nav class="hover_elem_height display_f align_c">
+                            <p class="paddingm side-menu-title fnt_fam">REPORT MODULE</p>
+                        </nav>
+                    </ul>
+                </li> -->
             </ul>
         </div>
         <div class="col-lg paddingm">
