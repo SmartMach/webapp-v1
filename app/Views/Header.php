@@ -504,7 +504,7 @@
     function openNav() {
         document.getElementById("mySidenav").style.width = "100px";
         // document.getElementById("mySidenav").style.marginTop = "4rem";
-        alert("hai")
+        // alert("hai")
     }
 
     function closeNav() {

@@ -228,8 +228,71 @@
         font-weight:700;
         width:max-content;
       }
-  
-      </style>
+
+
+    /* mobile responsive strategy */
+    /* navbar header global filter text is joining the from date to date filter thats the reason is should apply the below media query */
+    .over_all_graph_width{
+      width:25%;
+    }
+    .graph_width_res{width:80%}
+    .res_screen_filtericon{display:none !important;}
+
+    @media only screen and (max-width:880px){
+      .over_all_graph_width{
+        width:30%;
+      }
+      .graph_width_res{width:100%}
+    }
+    @media only screen and (max-width:810px) and (min-width:768px){
+      .res_screen_filter_input{
+        display:none !important;
+      }
+      .res_screen_filtericon{display:inline !important;}
+      .over_all_graph_width{
+        width:30%;
+      }
+    }
+    @media only screen and (max-width:768px){
+
+      .mr_left_content_sec{
+        margin-left:0rem;
+        top:0rem;
+      }
+      .res_screen_filter_input{
+        display:none !important;
+      }
+      .res_screen_filtericon{display:inline !important;}
+
+      .over_all_graph_width{
+        width:30%;
+      }
+      .OuterCard{
+        margin-left:1rem;
+        margin-right:1rem;
+        margin-top:10px;
+      }
+      .graph_width_res{width:100%}
+
+    }
+    @media only screen and (max-width:682px) {
+      .over_all_graph_width{
+        width:100%;
+      }
+      .flex-container{
+        flex-direction:column;
+      }
+      .OuterCard{
+        margin-left:1rem;
+        margin-right:1rem;
+        margin-top:10px;
+      }
+      .graph_width_res{width:100%}
+
+
+    }
+  /* mobile responsive end */
+  </style>
 
 <script type="text/javascript">
   var checkPastTime = function(inputDateTime) {
@@ -309,31 +372,36 @@
         <nav class="sec_nav display_f align_c justify_c sec_nav_c navbar-expand-lg">
           <div class="container-fluid paddingm display_f justify_sb align_c">
             <p class="float-start fnt_fam mdl_header">OEE Financial Drill Down</p>
-              <div class="d-flex">
+              <div class="d-flex res_screen_filter_input">
                     <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
                         <div class="input-box" style="width:12rem;">
-                          <input type="text" class="form-control fromDate" value="2022-08-23" step="1">
+                          <input type="text" class="form-control fromDate fdate_fx" value="2022-08-23" step="1">
                           <label for="inputSiteNameAdd" class="input-padding ">From Date</label>
                         </div>
                     </div>
                     <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
                         <div class="input-box" style="width:12rem;">
-                          <input type="text" class="form-control toDate" value="" step="1">
+                          <input type="text" class="form-control toDate tdate_fx" value="" step="1">
                           <label for="inputSiteNameAdd" class="input-padding ">To Date</label>
                         </div>
                     </div>
-
-                    <!-- overall filter btn -->
-                    <div class="box rightmar mar_r_box" >
-                        <button type="button" class="overall_filter_btn overall_filter_header_css"  >Apply Filter</button>
-                    </div>
+                  <!-- overall filter btn -->
+                  <div class="box rightmar mar_r_box" >
+                    <button type="button" class="overall_filter_btn overall_filter_header_css"  >Apply Filter</button>
+                  </div>
+              </div>
+              <div class="res_screen_filtericon">
+                <div class="d-flex p-2 justify-content-end align-items-center">
+                  <img src="<?php echo base_url('/assets/img/global_filter.png') ?>" class="global_filter_btn" style="width:1.6rem;height:1.6rem;"  >
+                 
+                </div>
               </div>
           </div>
         </nav>
 
         <div class="OuterCard bodercss">
         	<div class="flex-container">
-        		<div style="width: 25%" class="graphCard">
+        		<div style="" class="graphCard over_all_graph_width">
         			<p class="graph_lable_header fnt_fam">OVERALL TEEP%</p>
         			<div style="width: 100%;max-width: 100%;" class="graphCardFLayer hoverCardTEEP">
         				<div style="width: 0%;max-width: 100%;" class="graphCardSLayer center-align" id="ViewOverallTEEP">
@@ -366,7 +434,7 @@
                 </div> -->
               </div>
         		</div>
-        		<div style="width: 25%" class="graphCard bodercss">
+        		<div style="" class="graphCard bodercss over_all_graph_width">
         			<p class="graph_lable_header fnt_fam">OVERALL OOE%</p>
         			<div style="width: 100%;max-width: 100%;" class="graphCardFLayer hoverCardOOE">
         				<div style="width: 0%;max-width: 100%;" class="graphCardSLayer center-align" id="ViewOverallOOE">
@@ -399,7 +467,7 @@
                 </div> -->
               </div>
         		</div>
-        		<div style="width: 25%" class="graphCard bodercss">
+        		<div style="" class="graphCard bodercss over_all_graph_width">
         			<p class="graph_lable_header">OVERALL OEE%</p>
         			<div style="width: 100%;max-width: 100%;" class="graphCardFLayer hoverCardOEE">
         				<div style="width: 0%;max-width: 100%;" class="graphCardSLayer center-align" id="ViewOverallOEE">
@@ -435,7 +503,7 @@
         	</div>
         </div>
         <div class="OuterCard graphCardMain">
-          <div class="card bodercss" style="width: 80%">
+          <div class="card bodercss graph_width_res" style="">
               <nav class="navbar navbar-expand-lg">
               <div class="container-fluid paddingm">
                 <p class="float-start graph_lable_header graph_lable_header_top fnt_fam" id="">MACHINE-WISE OEE% BREAKDOWN</p>
@@ -474,7 +542,7 @@
           </div>
         </div>
         <div class="OuterCard graphCardMain">
-          <div class="card bodercss" style="width: 80%">
+          <div class="card bodercss graph_width_res" style="">
               <nav class="navbar navbar-expand-lg">
               <div class="container-fluid paddingm">
                 <p class="float-start graph_lable_header graph_lable_header_top fnt_fam" id="">AVAILABILITY OPPORTUNITY</p>
@@ -502,7 +570,7 @@
           </div>
         </div>
         <div class="OuterCard graphCardMain">
-          <div class="card bodercss" style="width: 80%"> 
+          <div class="card bodercss graph_width_res" style=""> 
               <nav class="navbar navbar-expand-lg">
               <div class="container-fluid paddingm">
                 <p class="float-start graph_lable_header graph_lable_header_top fnt_fam" id="">PERFORMANCE OPPORTUNITY</p>
@@ -531,7 +599,7 @@
           </div>
         </div>
         <div class="OuterCard graphCardMain">
-          <div class="card bodercss" style="width: 80%">
+          <div class="card bodercss graph_width_res" style="">
             <nav class="navbar navbar-expand-lg">
               <div class="container-fluid paddingm">
                 <p class="float-start graph_lable_header graph_lable_header_top fnt_fam" id="">QUALITY OPPORTUNITY</p>
@@ -560,7 +628,7 @@
           </div>
         </div>
         <div class="OuterCard graphCardMain">
-          <div class="card bodercss" style="width: 80%">
+          <div class="card bodercss graph_width_res" style="">
               <nav class="navbar navbar-expand-lg">
               <div class="container-fluid paddingm">
                 <p class="float-start graph_lable_header graph_lable_header_top fnt_fam" id="">OEE TREND</p>
@@ -581,6 +649,37 @@
             </div>
           </div>
         </div>
+</div>
+
+
+<div class="modal fade" id="filter_ftdate_responsive" tabindex="-1" aria-labelledby="filter_ftdate_responsive12" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered rounded">
+      <div class="modal-content bodercss">
+        <div class="modal-header" style="border:none; ">
+          <h5 class="modal-title header_popup fnt_fam" id="filter_ftdate_responsive12" style="">Global Filter</h5>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex justify-content-center align-items-center">
+            <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
+              <div class="input-box" style="width:12rem;">
+                <input type="text" class="form-control fromDate fdate_rs" value="2022-08-23" step="1">
+                <label for="inputSiteNameAdd" class="input-padding ">From Date</label>
+              </div>
+            </div>
+            <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
+              <div class="input-box" style="width:12rem;">
+                <input type="text" class="form-control toDate tdate_rs" value="" step="1">
+                <label for="inputSiteNameAdd" class="input-padding ">To Date</label>
+              </div>
+            </div>
+          </div>  
+        </div>
+        <div class="modal-footer" style="border:none;">
+          <a class="btn fnt_fam btn_fnt_size btn_padd btn_save overall_filter_btn_resp"  value="Apply Filter" >Apply Filter</a>
+          <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+        </div>
+      </div>
+    </div>
 </div>
 
 <!-- preloader Start-->
@@ -641,28 +740,48 @@ $(document).on('blur','.toDate',function(){
 });
 */
 
+
+
 // overall filter button onclick function
 $(document).on('click','.overall_filter_btn',function(event){
   event.preventDefault();
+  console.log("filter button working");
   $("#overlay").fadeIn(300);
-  myFun();
+  myFun('fdate_fx','tdate_fx');
 });
 
 $(document).ready(function(){
   $("#overlay").fadeIn(300);
-  myFun();
+  myFun('fdate_fx','tdate_fx');
 });
 
-async function myFun(){
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
+
+// mobile responsive global filter icon click function
+$(document).on('click','.global_filter_btn',function(){
+  $('#filter_ftdate_responsive').modal('show');
+});
+// mobile responsive modal onclick function
+$(document).on('click','.overall_filter_btn_resp',function(){
+  alert(' hi this responsive click global filter');
+  // event.preventDefault();
+  $('#filter_ftdate_responsive').modal('hide');
+  $("#overlay").fadeIn(300);
+  myFun('fdate_rs','tdate_rs');
+  
+  // $('#filter_ftdate_responsive').removeClass('show');
+
+});
+
+async function myFun(fclassname,tclassname){
+    f = $('.'+fclassname).val();
+    t = $('.'+tclassname).val();
     if ((new Date(f) >= new Date(t)) || (t=="")) {
       var x = new Date(f)
       t = x.setHours(x.getHours() + 1);
       t= new Date(t);
       var tdate = t.getFullYear()+"-"+("0" + (parseInt(t.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + t.getDate()).slice(-2)+" "+("0" + t.getHours()).slice(-2)+":00";
-      $('.toDate').val(tdate);
-      t = $('.toDate').val();
+      $('.'+tclassname).val(tdate);
+      t = $('.'+tclassname).val();
     }
 
     var f_t = new Date(f);
@@ -673,7 +792,7 @@ async function myFun(){
       var k = t_t.setHours(c_t.getHours());
       k = new Date(k);
       var tdate = k.getFullYear()+"-"+("0" + (parseInt(k.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + k.getDate()).slice(-2)+" "+("0" + k.getHours()).slice(-2)+":00";
-      $('.toDate').val(tdate);
+      $('.'+tclassname).val(tdate);
       var t_t = new Date(tdate);
     }
 
@@ -686,20 +805,21 @@ async function myFun(){
 
       var tdate = k.getFullYear()+"-"+("0" + (parseInt(y.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + y.getDate()).slice(-2)+" "+("0" + y.getHours()).slice(-2)+":00";
 
-      $('.fromDate').val(fdate);
-      $('.toDate').val(tdate);
-      f = $('.fromDate').val();
-      t = $('.toDate').val();
+      $('.'+fclassname).val(fdate);
+      $('.'+tclassname).val(tdate);
+      f = $('.'+fclassname).val();
+      t = $('.'+tclassname).val();
     }
 
    
-    await overallTarget();
-    await machineWiseOEE();
-    await availabilityReason();
-    await qualityOpportunity();
-    await performanceOpportunity();
-    await oeeTrendDay();
+    await overallTarget(fclassname,tclassname);
+    await machineWiseOEE(fclassname,tclassname);
+    await availabilityReason(fclassname,tclassname);
+    await qualityOpportunity(fclassname,tclassname);
+    await performanceOpportunity(fclassname,tclassname);
+    await oeeTrendDay(fclassname,tclassname);
   // Pre-Loader Off
+  console.log("ok loading end");
   $("#overlay").fadeOut(300);
 }
 
@@ -727,12 +847,12 @@ $.ajax({
 
 //Overall TEEP,OOE,OEE.......
 //overallTarget();
-function overallTarget(){
+function overallTarget(fclassname,tclassname){
   // Pre-Loader On
   // $("#overlay").fadeIn(300);
   return new Promise(function(resolve,reject){
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
+    f = $('.'+fclassname).val();
+    t = $('.'+tclassname).val();
     f = f.replace(" ","T");
     t = t.replace(" ","T");
     $.ajax({
@@ -776,12 +896,12 @@ function overallTarget(){
 }
 
 //Machine Wise OEE......
-function machineWiseOEE() {
+function machineWiseOEE(fclassname,tclassname) {
   // Pre-Loader On
   // $("#overlay").fadeIn(300);
   return new Promise(function(resolve,reject){
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
+    f = $('.'+fclassname).val();
+    t = $('.'+tclassname).val();
     f = f.replace(" ","T");
     t = t.replace(" ","T");
     $.ajax({
@@ -1022,13 +1142,13 @@ function machineWiseOEETooltip(context) {
 
 //Reason wise availability........
 //availabilityReason();
-function availabilityReason() {
+function availabilityReason(fclassname,tclassname) {
 
   // Pre-Loader On
   // $("#overlay").fadeIn(300);
   return new Promise(function(resolve,reject){
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
+    f = $('.'+fclassname).val();
+    t = $('.'+tclassname).val();
     f = f.replace(" ","T");
     t = t.replace(" ","T");
     $.ajax({
@@ -1265,12 +1385,12 @@ function availabilityOpp(context) {
 
 //Quality Opportunity........
 //qualityOpportunity();
-function qualityOpportunity() {
+function qualityOpportunity(fclassname,tclassname) {
   // Pre-Loader On
   // $("#overlay").fadeIn(300);
   return new Promise(function(resolve,reject){
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
+    f = $('.'+fclassname).val();
+    t = $('.'+tclassname).val();
     f = f.replace(" ","T");
     t = t.replace(" ","T");
     $.ajax({
@@ -1530,7 +1650,7 @@ function qualityOpp(context) {
 
 //Performance Opportunity........
 //performanceOpportunity();
-function performanceOpportunity() {
+function performanceOpportunity(fclassname,tclassname) {
 
   return new Promise(function(resolve,reject){
     $('#performanceOpportunity').remove();
@@ -1538,8 +1658,8 @@ function performanceOpportunity() {
     $('.chartjs-hidden-iframe').remove();
     // Pre-Loader On
     // $("#overlay").fadeIn(300);
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
+    f = $('.'+fclassname).val();
+    t = $('.'+tclassname).val();
     f = f.replace(" ","T");
     t = t.replace(" ","T");
     $.ajax({
@@ -1759,12 +1879,12 @@ function performanceOpp(context) {
 }
 
 
-function oeeTrendDay() {
+function oeeTrendDay(fclassname,tclassname) {
   // Pre-Loader On
   // $("#overlay").fadeIn(300);
   return new Promise(function(resolve,reject){
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
+    f = $('.'+fclassname).val();
+    t = $('.'+tclassname).val();
     f = f.replace(" ","T");
     t = t.replace(" ","T");
       // oee trend day
