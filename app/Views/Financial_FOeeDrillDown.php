@@ -237,6 +237,10 @@
     }
     .graph_width_res{width:80%}
     .res_screen_filtericon{display:none !important;}
+    .graph_label_custome{
+      overflow-x:scroll;
+      overflow-y:hidden;
+    }
 
     @media only screen and (max-width:880px){
       .over_all_graph_width{
@@ -525,7 +529,7 @@
               </div>
             </div> 
 
-            <div class="display_f graph_lable">
+            <div class="display_f graph_lable graph_label_custome" >
               <div class="divSpace display_f justify_c align_c">
                 <p class="paddingm display_f justify_c align_c fontStyle"><span class="recDraw lableSpace paddingm">.</span><span id="graph_machine_agenda">Machine OEE%</span></p>
               </div>
