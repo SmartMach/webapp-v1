@@ -429,13 +429,6 @@
                   <div style="width: 70%">Target</div>
                   <div style="width: 30%"><p class="paddingm teepTarget">0%</p></div>
                 </div>
-                <!-- <div style="display: flex;">
-                  <div style="width: 20%" class="center-align-div">
-                    <div class="overallDiv"></div>
-                  </div>
-                  <div style="width: 60%">100% Target</div>
-                  <div style="width: 20%"><p class="paddingm">100%</p></div>
-                </div> -->
               </div>
         		</div>
         		<div style="" class="graphCard bodercss over_all_graph_width">
@@ -462,13 +455,6 @@
                   <div style="width: 70%">Target</div>
                   <div style="width: 30%"><p class="paddingm ooeTarget">0%</p></div>
                 </div>
-                <!-- <div style="display: flex;">
-                  <div style="width: 20%" class="center-align-div">
-                    <div class="overallDiv"></div>
-                  </div>
-                  <div style="width: 60%">100% Target</div>
-                  <div style="width: 20%"><p class="paddingm">100%</p></div>
-                </div> -->
               </div>
         		</div>
         		<div style="" class="graphCard bodercss over_all_graph_width">
@@ -495,13 +481,6 @@
                   <div style="width: 70%">Target</div>
                   <div style="width: 30%"><p class="paddingm oeeTarget">0<span>%<span></div>
                 </div>
-                <!-- <div style="display: flex;">
-                  <div style="width: 20%" class="center-align-div">
-                    <div class="overallDiv"></div>
-                  </div>
-                  <div style="width: 60%">100% Target</div>
-                  <div style="width: 20%"><p class="paddingm">100%</p></div>
-                </div> -->
               </div>
         		</div>
         	</div>
@@ -512,14 +491,6 @@
               <div class="container-fluid paddingm">
                 <p class="float-start graph_lable_header graph_lable_header_top fnt_fam" id="">MACHINE-WISE OEE% BREAKDOWN</p>
                   <div class="d-flex">
-                        <!-- <div class="rightmar">
-                          <select class="form-select" name="" id="" style="width: 10rem;">
-                                </select>
-                        </div>
-                        <div class="rightmar">
-                          <select class="form-select" name="" id="" style="width: 10rem;">
-                                </select>
-                        </div> -->
                   </div>
               </div>
             </nav>
@@ -663,14 +634,14 @@
           <h5 class="modal-title header_popup fnt_fam" id="filter_ftdate_responsive12" style="">Global Filter</h5>
         </div>
         <div class="modal-body">
-          <div class="d-flex justify-content-center align-items-center">
-            <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
+          <div class="d-flex justify-content-center align-items-center row">
+            <div class="box rightmar col-sm-12 col-lg-6 col-md-6 p-2" style="margin-right: 0.5rem;width:12rem;">
               <div class="input-box" style="width:12rem;">
                 <input type="text" class="form-control fromDate fdate_rs" value="2022-08-23" step="1">
                 <label for="inputSiteNameAdd" class="input-padding ">From Date</label>
               </div>
             </div>
-            <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
+            <div class="box rightmar ol-sm-12 col-lg-6 col-md-6 p-2" style="margin-right: 0.5rem;width:12rem;">
               <div class="input-box" style="width:12rem;">
                 <input type="text" class="form-control toDate tdate_rs" value="" step="1">
                 <label for="inputSiteNameAdd" class="input-padding ">To Date</label>
