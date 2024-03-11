@@ -151,13 +151,17 @@
         .logo_with_menu {
             width: 50%;
             display: flex;
-            flex-direction: column;
+            flex-direction: row-reverse;
             /* align-items: center; */
-            justify-content: flex-start;
+            justify-content: flex-end;
         }
 
         .toggleMenu {
             display: block;
+        }
+        
+        #smartlogo{
+            width:7rem !important;
         }
 
 
@@ -169,9 +173,11 @@
     <nav class="nav_top topnav navbar-expand-lg top_nav_c display_f align_c justify_c full_screen_mode_oui_disturb">
         <div class="container-fluid display_f justify_sb align_c">
             <div class="logo_with_menu">
-                <img id="smartlogo" src="<?php echo base_url() ?>/assets/img/logo.png?version=<?php echo rand(); ?>" alt="SmartMach Logo">
-                <div class="toggleMenu">
-                    <i onclick="openNav()" class="fa-solid fa-bars" style="width:25px;height:25px;color:#a6a6a6;"></i>
+                <img id="smartlogo" src="<?php echo base_url() ?>/assets/img/logo.png?version=<?php echo rand(); ?>" alt="SmartMach Logo" style="padding-left:0.8rem;">
+                <div class="toggleMenu" style="">
+                    <div style="display:flex;flex-direction:row;align-items:center;justify-content:center;">
+                        <i onclick="openNav()" class="fa-solid fa-bars" style="width:25px;height:25px;color:#a6a6a6;"></i>                    
+                    </div>
                 </div>
             </div>
             <div style="width:50%;display:flex;flex-direction:row;align-items:center;justify-content:flex-end;">

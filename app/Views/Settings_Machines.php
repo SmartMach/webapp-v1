@@ -74,7 +74,9 @@
 
         .res_d{
             flex-direction:column-reverse;
-            padding:1rem;
+            padding-left:0.8rem;
+            padding-right:0.8rem;
+            padding-bottom:0.8rem;
 
         }
         .res_baswidth{
@@ -101,7 +103,8 @@
         }
         .res_width{
             width:33% !important;
-            justify-content:space-evenly;
+            /* justify-content:space-evenly; */
+            justify-content:flex-start;
             flex-direction:column;
             align-items:start !important;
             padding-left:0rem;
@@ -112,6 +115,15 @@
         }
        
         
+    }
+
+    /* if screen max size 465 width is achived change font height is 100% and width 100% because the records value alignment purpose 2024-03-11 */
+    @media only screen and (max-width:440px){
+        .tb_res_header{
+            width:100%;
+            height:100%;
+            display:inline;
+        }
     }
 
    

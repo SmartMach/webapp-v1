@@ -984,6 +984,7 @@ function machineWiseOEE(fclassname,tclassname) {
                         oeeTarget:res['OEETarget'],
                         categoryPercentage:category_percent,
                         barPercentage: bar_space, 
+                        barThickness:30, //bar thickness percentage fixed
                       }
                     ],
                 },
@@ -1224,6 +1225,7 @@ function availabilityReason(fclassname,tclassname) {
               data: arr,
               categoryPercentage:category_percent,
               barPercentage: bar_space,
+              barThickness:30, //bar thickness percentage fixed
             });
             x=x+1;
             index=index+1;
@@ -1495,6 +1497,8 @@ function qualityOpportunity(fclassname,tclassname) {
               partName:partNameHover,
               categoryPercentage:category_percent,
               barPercentage:bar_space,
+              barThickness:30, //bar thickness percentage fixed
+
             });
             x=x+1;
             index=index+1;
@@ -1705,6 +1709,8 @@ function performanceOpportunity(fclassname,tclassname) {
                     speedLoss:speedLoss,
                     categoryPercentage:1.0,
                     barPercentage: 0.5, 
+                    barThickness:30, //bar thickness percentage fixed
+
                   });
                   x=x+1;
                   index=index+1;
@@ -1930,13 +1936,17 @@ function oeeTrendDay(fclassname,tclassname) {
                   borderWidth:1,
                   fill:true,
                   data:oee,
-                  each:partwiseTotal
+                  each:partwiseTotal,
+                  borderWidth: 1, // Border width for bars
+                  barThickness: 30, // Fixed bar width
+                  categoryPercentage: 1 // 100% of available space used for each category (no spacing)
+
               }],
           },
 
           options: {
             responsive: true,
-            maintainAspectRatio: false,   
+            maintainAspectRatio: false, // Ensures chart responsiveness  
             scales: {
                 y: {
                     display:true,
@@ -1946,6 +1956,7 @@ function oeeTrendDay(fclassname,tclassname) {
                       callback:function(value){
                         return value+"%";
                       },
+                      beginAtZero:true,  
                     }
                     
                 },
@@ -1955,7 +1966,8 @@ function oeeTrendDay(fclassname,tclassname) {
                       display:false
                     },
                     stacked:true,
-                    barPercentage: 0.2
+                    barPercentage: 0.5, // Adjust the width of bars
+                    categoryPercentage: 0.5 // Adjust the space between bars 
                 },
             },
             plugins: {
