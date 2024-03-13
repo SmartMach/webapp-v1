@@ -626,7 +626,7 @@
         </div>
 </div>
 
-
+<!-- global filter modal mobile responsive -->
 <div class="modal fade" id="filter_ftdate_responsive" tabindex="-1" aria-labelledby="filter_ftdate_responsive12" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered rounded">
       <div class="modal-content bodercss">

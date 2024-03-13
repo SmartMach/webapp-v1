@@ -78,7 +78,21 @@
         padding:0;
         display:none;
     }
-        
+   
+    .padding_bottom_mr{
+        padding-bottom:0rem;
+    }
+    .lg_record_alignment{
+        padding-left:0.9rem;
+        display:flex;
+        align-items:center;
+    }
+    .lg_record_alignprice{
+        padding-right:1rem;
+        display:flex;
+        align-items:center;
+        justify-content:end;
+    }
 
     /* media query  */
     @media only screen and (max-width:1000px){
@@ -128,16 +142,42 @@
         }
         .res_width{
             width:33% !important;
-            justify-content:space-evenly;
+            justify-content:flex-start;
             flex-direction:column;
             align-items:start !important;
-            padding-left:0rem;
+            padding-left:0rem !important;
+
 
         }
         .tb_res_header{
             display:inline;
         }
        
+        .padding_bottom_mr{
+            padding-bottom:0.5em;
+        }
+
+
+        /* active inactive subheader css */
+        .active_res{
+            font-size:0.8rem !important;
+            height:100%;
+            padding:8px !important;
+            width:100%;
+        }
+       
+
+        .inactive_res{
+            font-size:0.8rem !important;
+            display:flex;
+            align-items:center;
+        }
+        .inactive_fnts{
+            font-size:1rem !important;
+        }
+        .mdl_header{
+            margin-left:0.4rem !important;
+        }
         
     }
 
@@ -148,11 +188,11 @@
           <div class="container-fluid paddingm display_f justify_sb align_c">
             <p class="float-start fnt_fam mdl_header">Parts Settings</p>
               <div class="d-flex">
-                    <p class="float-end fnt_fam style_label active_click fnt_active">
-                        <span  id="active"></span>Active
+                    <p class="float-end fnt_fam style_label active_click fnt_active active_res">
+                        <span  id="active" class="inactive_fnts"></span>Active
                     </p>
-                    <p class="float-end fnt_fam style_label fnt_inactive">
-                        <span  id="IActive"></span>Inactive
+                    <p class="float-end fnt_fam style_label fnt_inactive inactive_res">
+                        <span  id="IActive" class="inactive_fnts"></span>Inactive
                     </p>
               </div>
           </div>
@@ -214,32 +254,25 @@
                 <!-- <div class="table_data">
                     <div class="row paddingm res_d">
                         <div class="res_baswidth">
-                            <div class="col-1 col  marlef table_data_section display_f align_c res_width pd_1" style="width:10%;">
-                                <p class="tb_res_header fnt_fam " >PART ID</p>
-                                <p class="table_data_element fnt_fm">PT1001</p>
+                            <div class="d-flex flex-row flex-wrap justify-content-start align-items-stretch w-100 padding_bottom_mr">
+                                <div class="tb_res_header fnt-fam res_width">PART ID</div>
+                                <div class="tb_res_header fnt-fam res_width">PART Name</div>
+                                <div class="tb_res_header fnt-fam res_width">TOOL Name</div>
+
+                                <div class="table_data_element res_width lg_record_alignment" style="width:20%;"><p class="paddingm">PT1001</p></div>
+                                <div class="table_data_element res_width lg_record_alignment" style="width:40%;"><p class="paddingm">Partname 1 partname 1 partname 1</p></div>
+                                <div class="table_data_element res_width lg_record_alignment" style="width:40%;"><p class="paddingm">ToolName Toolname 1</p></div>
                             </div>
-                            <div class="col-2 col marlef table_data_section display_f align_c res_width pd_1" style="width:20%;">
-                                <p class="tb_res_header fnt_fam" >PART NAME</p>
-                                <p class="table_data_element fnt_fm" title='+item.part_name+'>Part Name 1</p>
-                            </div>      
-                            <div class="col-2 col paddingm marright marlef table_data_section justify_c display_f align_c res_width" style="width:20%;">
-                                <p class="tb_res_header fnt_fam" >TOOL NAME</p>
-                                <p class="table_data_element fnt_fm h_mar_r" title="'+item.tool_id+'">Tool Name 1</p>
-                            </div>
-                            <div class="col-2 col paddingm  marlef table_data_section display_f justify_c align_c res_width" style="width:20%;">
-                                <p class="tb_res_header fnt_fam" >NET IDEAL CYCLE TIME (NICT)</p>
-                                <p class="table_data_element fnt_fm h_mar_r">1.23</p>
-                            </div>
-                            <div class="col-2 col marleft table_data_section display_f align_c res_width pd_1" style="width:20%;">
-                                <p class="tb_res_header fnt_fam" >PART PRODUCED / CYCLE</p>
-                                <p class="table_data_element fnt_fm">2.2</p>
-                            </div>
-                            <div class="col-1 col marright table_data_section display_f align_c res_width pd_1" style="width:10%;">
-                                <p class="tb_res_header fnt_fam" >PART PRICE</p>
-                                <p class="table_data_element fnt_fm">
-                                    <i class="fa fa-inr" style="margin-right:5px;"></i>250
-                                </p>
-                            </div>
+
+                            <div class="d-flex flex-row flex-wrap align-items-stretch justify-content-start w-100 padding_bottom_mr">
+                                <div class="tb_res_header fnt-fam res_width">NET IDEAL CYCLE TIME (NICT)</div>
+                                <div class="tb_res_header fnt-fam res_width">PART PRODUCED / CYCLE</div>
+                                <div class="tb_res_header fnt-fam res_width">PART PRICE</div>
+
+                                <div class="table_data_element res_width lg_record_alignment" style="width:40%;"><p class="paddingm">20s</p></div>
+                                <div class="table_data_element res_width lg_record_alignment" style="width:40%;"><p class="paddingm">partname 1</p></div>
+                                <div class="table_data_element res_width lg_record_alignment" style="width:20%;"><p class="paddingm">20</p></div>
+                            </div>                           
                         </div>
                         <div class="res_basewidth1">
                             <div class="col col-1 marleft settings_active table_data_section display_f align_c resfw" style="width:50%;">
@@ -259,9 +292,10 @@
                                     </li>
                                 </ul>              
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </div> -->
+                
             </div>
         </div>
 </div>
@@ -413,13 +447,13 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="row">
-                                <div class="col-sm-3">
+                                <div class="col-6">
                                     <div class="mb-3">
                                         <label for="" class="col-form-label">Part ID</label>
                                         <p><span id="partid" class="font_weight_modal"></span></p>
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-6">
                                     <div class="mb-3 float-end">
                                         <label for="" class="col-form-label">Status</label>
                                         <p><span id="partstatus" style="font-weight:bold;" class="font_weight_modal"></span></p>
@@ -1513,7 +1547,7 @@ function get_part_data(){
         deactivate_machine = "block";
         info_machine = "none";
     }
-    
+   
     $('.contentTool').empty();
     $.ajax({
         url:"<?php echo base_url('Settings_controller/retrive_all_part'); ?>",
@@ -1538,32 +1572,25 @@ function get_part_data(){
                         elements = elements.add('<div class="table_data">'
                             +'<div class="row paddingm res_d">'
                                 +'<div class="res_baswidth">'
-                                    +'<div class="col-1 col  marlef table_data_section display_f align_c res_width pd_1" style="width:10%;">'
-                                        +'<p class="tb_res_header fnt_fam " >PART ID</p>'
-                                        +'<p class="table_data_element fnt_fm">'+item.part_id+'</p>'
+                                    +'<div class="d-flex flex-row flex-wrap justify-content-start align-items-stretch w-100 padding_bottom_mr">'
+                                        +'<div class="tb_res_header fnt-fam res_width">Part Id</div>'
+                                        +'<div class="tb_res_header fnt-fam res_width">Part Name</div>'
+                                        +'<div class="tb_res_header fnt-fam res_width">Tool Name</div>'
+
+                                        +'<div class="table_data_element res_width lg_record_alignment" style="width:20%;"><p class="paddingm">'+item.part_id+'</p></div>'
+                                        +'<div class="table_data_element res_width lg_record_alignment" style="width:40%;"><p class="paddingm">'+item.part_name+'</p></div>'
+                                        +'<div class="table_data_element res_width lg_record_alignment" style="width:40%;"><p class="paddingm">'+item.tool_name+'</p></div>'
                                     +'</div>'
-                                    +'<div class="col-2 col marlef table_data_section display_f align_c res_width pd_1" style="width:20%;">'
-                                        +'<p class="tb_res_header fnt_fam" >PART NAME</p>'
-                                        +'<p class="table_data_element fnt_fm" title='+item.part_name+'>'+item.part_name+'</p>'
-                                    +'</div>'     
-                                    +'<div class="col-2 col paddingm marright marlef table_data_section justify_c display_f align_c res_width" style="width:20%;">'
-                                        +'<p class="tb_res_header fnt_fam" >TOOL NAME</p>'
-                                        +'<p class="table_data_element fnt_fm h_mar_r" title="'+item.tool_id+'">'+item.tool_name+'</p>'
-                                    +'</div>'
-                                    +'<div class="col-2 col paddingm  marlef table_data_section display_f justify_c align_c res_width" style="width:20%;">'
-                                        +'<p class="tb_res_header fnt_fam" >NET IDEAL CYCLE TIME (NICT)</p>'
-                                        +'<p class="table_data_element fnt_fm h_mar_r">'+item.NICT+'</p>'
-                                    +'</div>'
-                                    +'<div class="col-2 col marleft table_data_section display_f align_c res_width pd_1" style="width:20%;">'
-                                        +'<p class="tb_res_header fnt_fam" >PART PRODUCED / CYCLE</p>'
-                                        +'<p class="table_data_element fnt_fm">'+item.part_produced_cycle+'</p>'
-                                    +'</div>'
-                                    +'<div class="col-1 col marright table_data_section display_f align_c res_width pd_1" style="width:10%;">'
-                                        +'<p class="tb_res_header fnt_fam" >PART PRICE</p>'
-                                        +'<p class="table_data_element fnt_fm">'
-                                            +'<i class="fa fa-inr" style="margin-right:5px;"></i>'
-                                        +part_p+'</p>'
-                                    +'</div>'
+
+                                    +'<div class="d-flex flex-row flex-wrap align-items-stretch justify-content-start w-100 padding_bottom_mr">'
+                                        +'<div class="tb_res_header fnt-fam res_width">Net Ideal Cycle Time (NICT)</div>'
+                                        +'<div class="tb_res_header fnt-fam res_width">Part Produced / Cycle</div>'
+                                        +'<div class="tb_res_header fnt-fam res_width">Part Price</div>'
+
+                                        +'<div class="table_data_element res_width lg_record_alignment" style="width:40%;"><p class="paddingm">'+item.NICT+'</p></div>'
+                                        +'<div class="table_data_element res_width lg_record_alignment" style="width:40%;"><p class="paddingm">'+item.part_produced_cycle+'</p></div>'
+                                        +'<div class="table_data_element res_width lg_record_alignprice" style="width:20%;"><p class="paddingm"> <i class="fa fa-inr" style="margin-right:5px;"></i>'+item.part_price+'</p></div>'
+                                    +'</div>'                           
                                 +'</div>'
                                 +'<div class="res_basewidth1">'
                                     +'<div class="col col-1 marleft settings_active table_data_section display_f align_c resfw" style="width:50%;">'
@@ -1583,7 +1610,7 @@ function get_part_data(){
                                             +'</li>'
                                         +'</ul>'              
                                     +'</div>'
-                                +'</div>' 
+                                +'</div>'
                             +'</div>'
                         +'</div>');
                         $('.contentTool').append(elements);
@@ -1593,39 +1620,30 @@ function get_part_data(){
                         elements = elements.add('<div class="table_data">'
                             +'<div class="row paddingm res_d">'
                                 +'<div class="res_baswidth">'
-                                    +'<div class="col-1 col  marlef table_data_section display_f align_c res_width pd_1" style="width:10%;">'
-                                        +'<p class="tb_res_header fnt_fam " >PART ID</p>'
-                                        +'<p class="table_data_element fnt_fm">'+item.part_id+'</p>'
+                                    +'<div class="d-flex flex-row flex-wrap justify-content-start align-items-stretch w-100 padding_bottom_mr">'
+                                        +'<div class="tb_res_header fnt-fam res_width">PART ID</div>'
+                                        +'<div class="tb_res_header fnt-fam res_width">PART Name</div>'
+                                        +'<div class="tb_res_header fnt-fam res_width">TOOL Name</div>'
+
+                                        +'<div class="table_data_element res_width lg_record_alignment" style="width:20%;"><p class="paddingm">'+item.part_id+'</p></div>'
+                                        +'<div class="table_data_element res_width lg_record_alignment" style="width:40%;"><p class="paddingm">'+item.part_name+'</p></div>'
+                                        +'<div class="table_data_element res_width lg_record_alignment" style="width:40%;"><p class="paddingm">'+item.tool_name+'</p></div>'
                                     +'</div>'
-                                    +'<div class="col-2 col marlef table_data_section display_f align_c res_width pd_1" style="width:20%;">'
-                                        +'<p class="tb_res_header fnt_fam" >PART NAME</p>'
-                                        +'<p class="table_data_element fnt_fm" title='+item.part_name+'>'+item.part_name+'</p>'
-                                    +'</div>'     
-                                    +'<div class="col-2 col paddingm marright marlef table_data_section justify_c display_f align_c res_width" style="width:20%;">'
-                                        +'<p class="tb_res_header fnt_fam" >TOOL NAME</p>'
-                                        +'<p class="table_data_element fnt_fm h_mar_r" title="'+item.tool_id+'">'+item.tool_name+'</p>'
-                                    +'</div>'
-                                    +'<div class="col-2 col paddingm  marlef table_data_section display_f justify_c align_c res_width" style="width:20%;">'
-                                        +'<p class="tb_res_header fnt_fam" >NET IDEAL CYCLE TIME (NICT)</p>'
-                                        +'<p class="table_data_element fnt_fm h_mar_r">'+item.NICT+'</p>'
-                                    +'</div>'
-                                    +'<div class="col-2 col marleft table_data_section display_f align_c res_width pd_1" style="width:20%;">'
-                                        +'<p class="tb_res_header fnt_fam" >PART PRODUCED / CYCLE</p>'
-                                        +'<p class="table_data_element fnt_fm">'+item.part_produced_cycle+'</p>'
-                                    +'</div>'
-                                    +'<div class="col-1 col marright table_data_section display_f align_c res_width pd_1" style="width:10%;">'
-                                        +'<p class="tb_res_header fnt_fam" >PART PRICE</p>'
-                                        +'<p class="table_data_element fnt_fm">'
-                                            +'<i class="fa fa-inr" style="margin-right:5px;"></i>'
-                                        +part_p+'</p>'
+                                    +'<div class="d-flex flex-row flex-wrap align-items-stretch justify-content-start w-100 padding_bottom_mr">'
+                                        +'<div class="tb_res_header fnt-fam res_width">NET IDEAL CYCLE TIME (NICT)</div>'
+                                        +'<div class="tb_res_header fnt-fam res_width">PART PRODUCED / CYCLE</div>'
+                                        +'<div class="tb_res_header fnt-fam res_width">PART PRICE</div>'
+
+                                        +'<div class="table_data_element res_width lg_record_alignment" style="width:40%;"><p class="paddingm">'+item.NICT+'</p></div>'
+                                        +'<div class="table_data_element res_width lg_record_alignment" style="width:40%;"><p class="paddingm">'+item.part_produced_cycle+'</p></div>'
+                                        +'<div class="table_data_element res_width lg_record_alignprice" style="width:20%;"><p class="paddingm"> <i class="fa fa-inr" style="margin-right:5px;"></i>'+item.part_price+'</p></div>'
                                     +'</div>'
                                 +'</div>'
-
                                 +'<div class="res_basewidth1">'
                                     +'<div class="col col-1 marlef settings_active table_data_section display_f align_c resfw" style="color:#C00000;width:50%;">'
                                         +'<p class="table_data_element fnt_fm" style="color: #C00000"><i class="fa fa-circle" style="font-size:9px;margin-right:5px;margin-top:5px;"></i>Inactive</p>'
                                     +'</div>'
-                                    +'<div class="col col-1 d-flex justify-content-center fasdiv table_data_section display_f align_c justify_content_end_res" style="width:50%;">'
+                                    +'<div class="col col-1 d-flex justify-content-center fasdiv resfw   justify_content_end_res" style="width:50%;">'
                                         +'<ul class="edit-menu">'
                                             +'<li class="d-flex justify-content-center">'
                                                 +'<a href="javascript:function(){return false;}">'
@@ -1655,7 +1673,7 @@ function get_part_data(){
             // alert("Sorry Try again!");
         }
     });
-    
+  
 }
 
 // Part Status ............

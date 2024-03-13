@@ -101,21 +101,24 @@ a{
 
     }
     .res_baswidth{
-        width:92%;
+        width:75%;
         display:flex;
         flex-direction:row;
         padding:0;
         margin:0;
     }
     .res_basewidth1{
-        width:8%;
+        width:25%;
         display:flex;
         flex-direction:row;
         padding:0;
         margin:0;
     }
 
-
+    .resfw{
+        padding-left:1rem;
+    }
+   
     .tb_res_header{
         color:#979a9a;
         font-size:0.8rem;
@@ -123,10 +126,39 @@ a{
         padding:0;
         display:none;
     }
-    .justify_content_end_res{
-        justify-content:center;
+   
+    .padding_bottom_mr{
+        padding-bottom:0rem;
+    }
+    .lg_record_alignment{
+        padding-left:0.9rem;
+        display:flex;
+        align-items:center;
+    }
+    .lg_record_alignprice{
+        padding-right:1rem;
+        display:flex;
+        align-items:center;
+        justify-content:end;
+    }
+    .textr{
+        text-align:right;
+    }
+    .count_fnts{
+        font-size:1.5rem !important;
     }
 
+    .count_dv_fnts{
+        font-size:1rem !important;
+    }
+
+    /* global filter */
+    .lg_filter_res{
+        display:inline;
+    }
+    .mb_filter_res{
+        display:none;
+    }
     /* media query  */
     @media only screen and (max-width:1000px){
         .h_mar_l{
@@ -137,13 +169,6 @@ a{
     /* mobile screen for machine settings  */
     /* this media query is comfortale for 576 to 768 px this media query working */
     @media only screen and (max-width:768px){
-        .rm_mrl{
-            margin-left:0rem !important;
-        }
-        .rm_mrr{
-            margin-right:0rem !important;
-            text-align:left !important;
-        }
         .res_h{
             display:none;
         }
@@ -176,22 +201,73 @@ a{
        
         .justify_content_end_res{
             justify-content:end !important;
-            
         }
-       
+        .resfw{
+           padding-left:0rem;
+        }
         .res_width{
-            width:33.3% !important;
-            justify-content:space-evenly;
+            width:33% !important;
+            justify-content:flex-start;
             flex-direction:column;
             align-items:start !important;
-            padding-left:0rem;
+            padding-left:0rem !important;
+
 
         }
         .tb_res_header{
             display:inline;
         }
        
-        
+        .padding_bottom_mr{
+            padding-bottom:0.5em;
+            width:100% !important;
+        }
+        .count_fnts{
+            font-size:1.2rem !important;
+        }
+        .count_dv_fnts{
+            font-size:0.9rem !important;
+            padding:8px;
+        }
+    
+        .mdl_header{
+            margin-left:0.4rem !important;
+        }
+        .notes_res{
+            display:flex !important;
+            flex-direction:column !important;
+            align-items:start !important;
+        }
+
+        .mr_0{
+            margin-left:0rem !important;
+        }
+        .align_top{
+            align-items:start !important;
+        }
+        .textr{
+            text-align:left;
+        }
+
+        /* global filter */
+        .lg_filter_res{
+            display:inline;
+        }
+        .mb_filter_res{
+            display:none;
+        }
+    }
+
+
+    /* gloabl filter css responsive  */
+    @media only screen and (max-width:520px){
+         /* global filter */
+        .lg_filter_res{
+            display:none;
+        }
+        .mb_filter_res{
+            display:inline;
+        }
     }
 
 </style>
@@ -200,41 +276,51 @@ a{
           <div class="container-fluid paddingm display_f justify_sb align_c">
             <p class="float-start fnt_fam mdl_header">Quality Rejects</p>
               <div class="d-flex">
-                    <p class="float-end stcode" style="color: #C00000;">
-                        <span  id="rejects"></span><span style="font-size:1rem;">Rejects</span>
-                    </p>
+                    <div class="float-end stcode count_dv_fnts" style="color: #C00000;">
+                        <span  id="rejects" class="count_fnts"></span><span >Rejects</span>
+                    </div>
               </div>
           </div>
         </nav>
+        
+        <nav class="inner_nav inner_nav_c display_f align_c justify_sb navbar-expand-lg ">
+            <div class="lg_filter_res" style="width:100%">
+                <div class="container-fluid paddingm display_f justify_sb align_c ">
+                    <p class="float-start"></p>
+                    <div class="d-flex innerNav">
+                        <div class="box rightmar" style="margin-right: 0.5rem;">
+                            <div class="input-box">
+                                <select class="form-select font_weight select_input_width input_padd reject_partname_Drp" name="" onchange="part_selection_fun('')" id="RejectPartName" style="width: 10rem;padding-right:1.8rem;">
+                                </select>
+                                <label for="inputSiteNameAdd" class="input-padding ">Parts</label>
+                            </div>
+                        </div>
+                        <div class="box rightmar" style="margin-right: 0.5rem;">
+                            <div class="input-box">
+                                <input type="datepicker" class="form-control select_input_width input_padd font_weight datepicker shift_datesr" name="" id="RejectShiftDate" style="width: 10rem;" placeholder="dd-mm-yyyy" autocomplete="off">
+                            
+                                <label for="inputSiteNameAdd" class="input-padding font_weight">Shift Date</label>
+                            </div>
+                        </div>
+                        <div class="box rightmar" style="margin-right: 0.5rem;">
+                            <div class="input-box">
+                                <select class="form-select select_input_width input_padd font_weight" name="" id="RejectShift" style="width: 10rem;">
+                                </select>
+                                <label for="inputSiteNameAdd" class="input-padding ">Shifts</label>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <div class="mb_filter_res" style="width:100%">
+                <div class="d-flex justify-content-end align-items-center p-2">
+                    <img src="<?php echo base_url() ?>/assets/img/global_filter.png?version=<?= rand() ?>" alt="" class="click_global_filter" style="height:1.5rem;width:1.5rem;">
+                </div>
+            </div>
+        </nav>
+        <!-- mobile filter res -->
 
-        <nav class="inner_nav inner_nav_c display_f align_c justify_sb navbar-expand-lg">
-          <div class="container-fluid paddingm display_f justify_sb align_c ">
-            <p class="float-start"></p>
-              <div class="d-flex innerNav">
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
-                        <div class="input-box">
-                            <select class="form-select font_weight select_input_width input_padd" name="" id="RejectPartName" style="width: 10rem;padding-right:1.8rem;">
-                            </select>
-                            <label for="inputSiteNameAdd" class="input-padding ">Parts</label>
-                        </div>
-                    </div>
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
-                        <div class="input-box">
-                            <input type="datepicker" class="form-control select_input_width input_padd font_weight datepicker" name="" id="RejectShiftDate" style="width: 10rem;" placeholder="dd-mm-yyyy" autocomplete="off">
-                          
-                            <label for="inputSiteNameAdd" class="input-padding font_weight">Shift Date</label>
-                        </div>
-                    </div>
-                    <div class="box rightmar" style="margin-right: 0.5rem;">
-                        <div class="input-box">
-                            <select class="form-select select_input_width input_padd font_weight" name="" id="RejectShift" style="width: 10rem;">
-                            </select>
-                            <label for="inputSiteNameAdd" class="input-padding ">Shifts</label>
-                        </div>
-                    </div> 
-              </div>
-          </div>
-        </nav>
+        
             <div class="data_section">
                 <div class="res_h">
                     <div class="table_header table_header_p">
@@ -271,37 +357,32 @@ a{
                     <!-- <div id="settings_div">
                         <div class="row paddingm res_d">
                             <div class="res_baswidth">
-                                <div class="col-1 col marleft res_width " style="width:9%;">
-                                    <p class="tb_res_header fnt_fam rm_mrl" >FROM TIME</p>
-                                    <p id="fdate" class="rm_mrl">13:00:00</p>  
+                                <div class="d-flex flex-row flex-wrap justify-content-start align-items-stretch  padding_bottom_mr " style="width:44%;">
+                                    <div class="tb_res_header fnt-fam res_width">From Time</div>
+                                    <div class="tb_res_header fnt-fam res_width">To Time</div>
+                                    <div class="tb_res_header fnt-fam res_width">Part Name</div>
+
+                                    <div class="table_data_element res_width lg_record_alignment" style="width:25%;"><p class="paddingm">MC1002</p></div>
+                                    <div class="table_data_element res_width lg_record_alignment" style="width:25%;"><p class="paddingm">Machine 1</p></div>
+                                    <div class="table_data_element res_width lg_record_alignment" style="width:50%;"><p class="paddingm">120</p></div>
                                 </div>
-                                <div class="col-1 col marleft res_width" style="width:9%;">
-                                    <p class="tb_res_header fnt_fam rm_mrl" >END TIME</p>
-                                    <p id="tdate" class="rm_mrl">14:00:00</p>
-                                </div>
-                                <div class="col-2 col marleft res_width" style="width:18%;">
-                                    <p class="tb_res_header fnt_fam rm_mrl" >PART NAME</p>
-                                    <p id="pname" class="rm_mrl">KNOB-GLOVE-BOX-RHD</p>
-                                </div>
-                                <div class="col-2 col marright res_width" style="width:18.5%;">
-                                    <p class="tb_res_header fnt_fam rm_mrr" >MAXIMUM REJECT</p>
-                                    <p id="mreject" class="rm_mrr">48</p>
-                                </div>
-                                <div class="col-2 col marright res_width" style="width:18%;">
-                                    <p class="tb_res_header fnt_fam rm_mrr" >REJECTION COUNT</p>
-                                    <p id="rcount" class="rm_mrr" style="color: #e2062c;">48</p>
-                                </div>
-                                <div class="col-1 col marleft res_width" style="width:9%;">
-                                    <p class="tb_res_header fnt_fam rm_mrl" >REJECTION REASON</p>
-                                    <p id="display_reject_reason'+i+'" class="rm_mrl"></p>
-                                </div>
-                                <div class="col-2 col marleft res_width" style="width:18.3%;">
-                                    <p class="tb_res_header fnt_fam rm_mrl" >NOTES</p>
-                                    <p class="rm_mrl"></p>
-                                </div>
+                                <div class="d-flex flex-row flex-wrap align-items-stretch justify-content-start  padding_bottom_mr" style="width:56%;">
+                                    <div class="tb_res_header fnt-fam res_width">Max Rejects</div>
+                                    <div class="tb_res_header fnt-fam res_width ">Reject Counts</div>
+                                    <div class="tb_res_header fnt-fam res_width">Reason</div>
+
+                                    <div class="table_data_element res_width lg_record_alignprice" style="width:40%;"><p class="paddingm textr">20</p></div>
+                                    <div class="table_data_element res_width lg_record_alignprice" style="width:40%;"><p class="paddingm textr">100 T</p></div>
+                                    <div class="table_data_element res_width lg_record_alignment" style="width:20%;"><p class="paddingm">Millacron</p></div>                               
+                                </div>  
                             </div>
+
                             <div class="res_basewidth1">
-                                <div class="col-sm-1 col d-flex justify_content_end_res  fasdiv " style="width:100%;">
+                                <div class="col-1 col marleft  table_data_section display_f align_c  resfw notes_res " style="width:67%;">
+                                    <div class="tb_res_header fnt-fam res_width">Notes</div>
+                                    <div class="table_data_element res_width lg_record_alignprice " style="width:100%;"><p class="paddingm mr_0">Notes text</p></div>
+                                </div>
+                                <div class="col-1 col d-flex justify-content-center fasdiv resfw justify_content_end_res align_top" style="width:33%;">
                                     <ul class="edit-menu">
                                         <li class="d-flex justify-content-center " >
                                             <a href="#">
@@ -309,7 +390,7 @@ a{
                                             </a>
                                         </li>
                                     </ul>               
-                                </div>
+                                </div> 
                             </div>
                         </div>
                     </div> -->
@@ -350,7 +431,6 @@ a{
                                 <label class="headTitle">Last Updated By</label>
                                 <p id="LUOn" class="font_weight_modal"></p>
                             </div>
-                       <!--  -->
                             <div style="width: 50%;" class="carddiv">
                                 <label class="headTitle">Last Updated On</label>
                                 <p id="LUDate" class="font_weight_modal"></p>
@@ -423,6 +503,48 @@ a{
 </div>
 
 
+<!-- global filter modal mobile responsive -->
+<div class="modal fade" id="filter_ftdate_responsive" tabindex="-1" aria-labelledby="filter_ftdate_responsive12" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered rounded">
+      <div class="modal-content bodercss">
+        <div class="modal-header" style="border:none; ">
+          <h5 class="modal-title header_popup fnt_fam" id="filter_ftdate_responsive12" style="">Global Filter</h5>
+        </div>
+        <div class="modal-body">
+            <div class="d-flex  justify-content-center align-items-center row">
+                <div class="box rightmar m-3" style="margin-right: 0.5rem;width:max-content;">
+                    <div class="input-box">
+                        <select class="form-select font_weight select_input_width input_padd reject_partname_Drp" name="" id="RejectPartNamegf" style="width: 10rem;padding-right:1.8rem;">
+                        </select>
+                        <label for="" class="input-padding ">Parts</label>
+                    </div>
+                </div>
+                <div class="box rightmar m-3" style="margin-right: 0.5rem;width:max-content;">
+                    <div class="input-box">
+                        <input type="datepicker" class="form-control select_input_width input_padd font_weight datepicker shift_datesr" name="" id="RejectShiftDate" style="width: 10rem;" placeholder="dd-mm-yyyy" autocomplete="off">                         
+                        <label for="inputSiteNameAdd" class="input-padding font_weight">Shift Date</label>
+                    </div>
+                </div>
+            </div>  
+            <div class="d-flex justify-content-center align-items-center row">
+                <div class="box rightmar m-3" style="margin-right: 0.5rem;width:max-content;">
+                    <div class="input-box">
+                        <select class="form-select select_input_width input_padd font_weight" name="" id="RejectShift" style="width: 10rem;">
+                        </select>
+                        <label for="inputSiteNameAdd" class="input-padding ">Shifts</label>
+                    </div>
+                </div> 
+            </div>
+        </div>
+        <div class="modal-footer" style="border:none;">
+          <a class="btn fnt_fam btn_fnt_size btn_padd btn_save drp_filter_btn"  value="Apply Filter" >Apply Filter</a>
+          <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+        </div>
+      </div>
+    </div>
+</div>
+
+
 
 
 <!-- preloader -->
@@ -448,7 +570,18 @@ if (control < 2) {
 }else{
     display_var = "inline";
 }
+
+
+
+// global filter onclick function
+$(document).on('click','.click_global_filter',function(event){
+    event.preventDefault();
+    $('#filter_ftdate_responsive').modal('show');
+});
+
+
 // Data Retrive for show in dashboard.......
+
 function selection_data(){
     var shift = $('#RejectShift').val();
     var s = shift.split("");
@@ -468,7 +601,7 @@ function selection_data(){
             async: false,
         },
         success:function(res){
-            
+            console.log(res);
             var elements = $();
             var count =0;
             var startTime = "";
@@ -493,37 +626,32 @@ function selection_data(){
                 elements = elements.add('<div id="settings_div">'
                     +'<div class="row paddingm res_d">'
                         +'<div class="res_baswidth">'
-                            +'<div class="col-1 col marleft res_width " style="width:9%;">'
-                                +'<p class="tb_res_header fnt_fam rm_mrl" >FROM TIME</p>'
-                                +'<p id="fdate" class="rm_mrl">'+item.start_time+'</p>' 
+                            +'<div class="d-flex flex-row flex-wrap justify-content-start align-items-stretch  padding_bottom_mr " style="width:44%;">'
+                                +'<div class="tb_res_header fnt-fam res_width">From Time</div>'
+                                +'<div class="tb_res_header fnt-fam res_width">To Time</div>'
+                                +'<div class="tb_res_header fnt-fam res_width">Part Name</div>'
+
+                                +'<div class="table_data_element res_width lg_record_alignment" style="width:25%;"><p class="paddingm">'+item.start_time+'</p></div>'
+                                +'<div class="table_data_element res_width lg_record_alignment" style="width:25%;"><p class="paddingm">'+item.end_time+'</p></div>'
+                                +'<div class="table_data_element res_width lg_record_alignment" style="width:50%;"><p class="paddingm">'+item.part_name+'</p></div>'
                             +'</div>'
-                            +'<div class="col-1 col marleft res_width" style="width:9%;">'
-                                +'<p class="tb_res_header fnt_fam rm_mrl" >END TIME</p>'
-                                +'<p id="tdate" class="rm_mrl">'+item.end_time+'</p>'
-                            +'</div>'
-                            +'<div class="col-2 col marleft res_width" style="width:18%;">'
-                                +'<p class="tb_res_header fnt_fam rm_mrl" >PART NAME</p>'
-                                +'<p id="pname" class="rm_mrl">'+item.part_name+'</p>'
-                            +'</div>'
-                            +'<div class="col-2 col marright res_width" style="width:18.5%;">'
-                                +'<p class="tb_res_header fnt_fam rm_mrr" >MAXIMUM REJECT</p>'
-                                +'<p id="mreject" class="rm_mrr">'+max_reject+'</p>'
-                            +'</div>'
-                            +'<div class="col-2 col marright res_width" style="width:18%;">'
-                                +'<p class="tb_res_header fnt_fam rm_mrr" >REJECTION COUNT</p>'
-                                +'<p id="rcount" class="rm_mrr" style="color: #e2062c;">'+reject_count+'</p>'
-                            +'</div>'
-                            +'<div class="col-1 col marleft res_width" style="width:9%;">'
-                                +'<p class="tb_res_header fnt_fam rm_mrl" >REJECTION REASON</p>'
-                                +'<p id="display_reject_reason'+i+'" class="rm_mrl"></p>'
-                            +'</div>'
-                            +'<div class="col-2 col marleft res_width" style="width:18.3%;">'
-                                +'<p class="tb_res_header fnt_fam rm_mrl" >NOTES</p>'
-                                +'<p class="rm_mrl">'+notes+'</p>'
-                            +'</div>'
+                            +'<div class="d-flex flex-row flex-wrap align-items-stretch justify-content-start  padding_bottom_mr" style="width:56%;">'
+                                +'<div class="tb_res_header fnt-fam res_width">Max Rejects</div>'
+                                +'<div class="tb_res_header fnt-fam res_width ">Reject Counts</div>'
+                                +'<div class="tb_res_header fnt-fam res_width">Reason</div>'
+
+                                +'<div class="table_data_element res_width lg_record_alignprice" style="width:40%;"><p class="paddingm textr">'+max_reject+'</p></div>'
+                                +'<div class="table_data_element res_width lg_record_alignprice" style="width:40%;"><p class="paddingm textr" style="color: #e2062c;">'+reject_count+'</p></div>'
+                                +'<div class="table_data_element res_width lg_record_alignment" style="width:20%;"><p class="paddingm" id="display_reject_reason'+i+'"></p></div>'                           
+                            +'</div>'  
                         +'</div>'
+
                         +'<div class="res_basewidth1">'
-                            +'<div class="col-sm-1 col d-flex justify_content_end_res  fasdiv " style="width:100%;">'
+                            +'<div class="col-1 col marleft  table_data_section display_f align_c  resfw notes_res " style="width:67%;">'
+                                +'<div class="tb_res_header fnt-fam res_width">Notes</div>'
+                                +'<div class="table_data_element res_width lg_record_alignprice " style="width:100%;"><p class="paddingm mr_0">'+notes+'</p></div>'
+                            +'</div>'
+                            +'<div class="col-1 col d-flex justify-content-center fasdiv resfw justify_content_end_res align_top" style="width:33%;">'
                                 +'<ul class="edit-menu">'
                                     +'<li class="d-flex justify-content-center " >'
                                         +'<a href="#">'
@@ -548,6 +676,7 @@ function selection_data(){
         }
     });
 }
+
 
 
 // date picker function 
@@ -583,6 +712,7 @@ function clear_data(){
 }
 
 $(document).ready(function(){
+    $('#RejectPartName').empty();
     var control = <?php echo $this->data['access'][0]['production_data_management']; ?>;
     var display_var = " ";
     if (control < 2) {
