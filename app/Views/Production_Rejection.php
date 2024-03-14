@@ -166,6 +166,9 @@ a{
         text-align:center;
         margin:auto;
     }
+    .default_icon{
+        padding-right:0rem;
+    }
     /* media query  */
     @media only screen and (max-width:1000px){
         .h_mar_l{
@@ -286,6 +289,10 @@ a{
             width:100% !important;
         }
         .icon_align{
+            text-align:end !important;
+            padding-right:1rem;
+        }
+        .default_icon{
             text-align:end !important;
             padding-right:1rem;
         }
@@ -1022,15 +1029,15 @@ $(document).ready(function(){
                         id_demo = "drp"+j;
                         drp_function(id_demo,rrstr[i]); 
                         // append form
-                        $('.append_reject').append('<div class="flex-container remobj" style="height:max-content;">'
-                            +'<div style="width:55%;height:max-content;" class="flex-container divbox fieldStyle" >'
+                        $('.append_reject').append('<div class="flex-container remobj rejection_flex" style="height:max-content;">'
+                            +'<div style="width:55%;height:max-content;" class="flex-container divbox fieldStyle response_width" >'
                                 +'<div style="width: 100%;height:max-content;" class="carddiv divinput-box">'
                                     +'<input type="text" name="reject_count[]" class="RejectCount font_weight" value='+rrint[i]+' id="RejectCount" >'
                                     +'<label class="input-padding">Reject Count <span class="paddingm validate">*</span></label>'
                                     +'  <span class="reject_count_err validate"></span>'
                                 +'</div>'
                             +'</div>'
-                            +'<div style="width: 45%;" class="flex-container divbox_reject fieldStyle">'
+                            +'<div style="width: 45%;" class="flex-container divbox_reject fieldStyle response_width">'
                                 +' <div style="width: 100%;" class="carddiv divinput_box_reject">'
                                     +'<div class="input-box fieldStyle" style="height:max-content;">'
                                         +'<select class="inputDepartmentAdd form-select RejectReason font_weight" name="reject_reason[]"  id='+id_demo+'>'
@@ -1040,7 +1047,7 @@ $(document).ready(function(){
                                     +'</div>'
                                 +'</div>'
                             +'</div>'
-                            +'<div class="" style="width:10%;justify-content:center;text-align:center;align-item:center;margin:auto;height:max-content;">'
+                            +'<div class="response_width default_icon" style="width:10%;justify-content:center;text-align:center;align-item:center;margin:auto;height:max-content;">'
                                     +'<img src="<?php echo base_url('assets/img/delete.png'); ?>" class=" removeappendform" style="width:1.4rem;height:1.2rem;">'
                             +'</div>'
                         +'</div>'); 

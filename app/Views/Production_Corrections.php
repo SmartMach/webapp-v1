@@ -392,8 +392,8 @@ a{
             <form method="" class="addMachineForm" action="" >
                 <div class="modal-body">
                     <h5 class="modal-title settings-machineAdd-model mt-2 p-1"  id="EditCorrectModal1" style="margin-bottom: 0;margin-left: 0.7rem;">EDIT CORRECTION DATA</h5>
-                    <div class="flex-container">
-                        <div style="width:50%;" class="flex-container">
+                    <div class="flex-container row">
+                        <div  class="flex-container col-lg-6 col-md-12 col-sm-12">
                             <div style="width: 50%;" class="carddiv">
                                 <label class="headTitle">Part Name</label>
                                 <p id="QPID" class="font_weight_modal"></p>
@@ -403,7 +403,7 @@ a{
                                 <p id="QMName" class="font_weight_modal"></p>
                             </div>
                         </div>
-                        <div style="width: 50%;" class="flex-container">
+                        <div style="" class="flex-container col-lg-6 col-md-12 col-sm-12">
                             <div style="width: 50%;" class="carddiv">
                                 <label class="headTitle">Shift Date</label>
                                 <p id="QShiftDate" class="font_weight_modal"></p>
@@ -414,9 +414,9 @@ a{
                             </div>
                         </div>     
                     </div>
-                    <div class="flex-container">
+                    <div class="flex-container row">
                         <!-- temporary hide for this code -->
-                        <div style="width:50%;" class="flex-container">
+                        <div style="" class="flex-container col-lg-6 col-md-12 col-sm-12">
                             <div style="width: 50%;" class="carddiv">
                                 <label class="headTitle">Last Updated By</label>
                                 <p id="QLUDate" class="font_weight_modal"></p>
@@ -426,7 +426,7 @@ a{
                                 <p id="QLUOn" class="font_weight_modal"></p>
                             </div>
                         </div>
-                        <div style="width: 50%;" class="flex-container">
+                        <div style="" class="flex-container col-lg-6 col-md-12 col-sm-12">
                             <div style="width: 50%;" class="carddiv">
                                 <label class="headTitle">From Time</label>
                                 <p id="QFromTime" class="font_weight_modal"></p>
@@ -437,8 +437,8 @@ a{
                             </div>
                         </div>     
                     </div>
-                    <div class="flex-container">
-                        <div style="width:50%;" class="flex-container ">
+                    <div class="flex-container row ">
+                        <div style="" class="flex-container col-lg-6 col-md-12 col-sm-12">
                             <div style="width: 50%;" class="carddiv ">
                                 <label class="headTitle">Min Counts</label>
                                 <p id="MinCounts" class="font_weight_modal"></p>
@@ -449,15 +449,15 @@ a{
                             </div>
                         </div>   
                     </div>
-                    <div class="flex-container">
-                        <div style="width:50%;" class="flex-container divbox fieldStyle">
+                    <div class="flex-container row ">
+                        <div style="" class="flex-container divbox fieldStyle col-lg-6 col-md-12 col-sm-12">
                             <div style="width: 100%;" class="carddiv divinput-box">
                                 <input type="text" name="" id="CorrectionCount" class="font_weight_modal">
                                 <label class="input-padding">Correction Count <span class="paddingm validate">*</span></label>
                                 <span class="correction_count_err validate"></span>
                             </div>
                         </div>
-                        <div style="width: 50%;" class="flex-container divbox fieldStyle">
+                        <div style="" class="flex-container divbox fieldStyle col-lg-6 col-md-12 col-sm-12">
                             <div style="width: 100%;" class="carddiv divinput-box">
                                 <input type="text" name="" id="Notes" class="font_weight_modal">
                                 <label class="input-padding">Notes <span class="paddingm validate">*</span></label>
