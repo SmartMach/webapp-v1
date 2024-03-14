@@ -121,7 +121,10 @@ a{
         margin:0;
     }
 
-
+    .resfw{
+        padding-left:1rem;
+    }
+   
     .tb_res_header{
         color:#979a9a;
         font-size:0.8rem;
@@ -129,10 +132,49 @@ a{
         padding:0;
         display:none;
     }
-    .justify_content_end_res{
-        justify-content:center;
+   
+    .padding_bottom_mr{
+        padding-bottom:0rem;
+    }
+    .lg_record_alignment{
+        padding-left:0.9rem;
+        display:flex;
+        align-items:center;
+    }
+    .lg_record_alignprice{
+        padding-right:1rem;
+        display:flex;
+        align-items:center;
+        justify-content:end;
+    }
+    .textr{
+        text-align:right;
+    }
+    .count_fnts{
+        font-size:1.5rem !important;
     }
 
+    .count_dv_fnts{
+        font-size:1rem !important;
+    }
+
+    /* global filter */
+    .lg_filter_res{
+        display:inline;
+    }
+    .mb_filter_res{
+        display:none;
+    }
+    .icon_align{
+        width:100%;
+        float:right;
+        justify-content:center;
+        text-align:center;
+        margin:auto;
+    }
+    .editicon_align{
+        justify-content:center;
+    }
     /* media query  */
     @media only screen and (max-width:1000px){
         .h_mar_l{
@@ -143,15 +185,11 @@ a{
     /* mobile screen for machine settings  */
     /* this media query is comfortale for 576 to 768 px this media query working */
     @media only screen and (max-width:768px){
-        .rm_mrl{
-            margin-left:0rem !important;
-        }
-        .rm_mrr{
-            margin-right:0rem !important;
-            text-align:left !important;
-        }
         .res_h{
             display:none;
+        }
+        .editicon_align{
+            justify-content:end;
         }
         .mr_left_content_sec{
             margin-left:0rem !important;
@@ -182,22 +220,87 @@ a{
        
         .justify_content_end_res{
             justify-content:end !important;
-            
         }
-       
+        .resfw{
+           padding-left:0rem;
+        }
         .res_width{
-            width:33.3% !important;
-            justify-content:space-evenly;
+            width:33% !important;
+            justify-content:flex-start;
             flex-direction:column;
             align-items:start !important;
-            padding-left:0rem;
+            padding-left:0rem !important;
+
 
         }
         .tb_res_header{
             display:inline;
         }
        
-        
+        .padding_bottom_mr{
+            padding-bottom:0.5em;
+            width:100% !important;
+        }
+        .count_fnts{
+            font-size:1.2rem !important;
+        }
+        .count_dv_fnts{
+            font-size:0.9rem !important;
+            padding:8px;
+        }
+    
+        .mdl_header{
+            margin-left:0.4rem !important;
+        }
+        .notes_res{
+            display:flex !important;
+            flex-direction:column !important;
+            align-items:start !important;
+        }
+
+        .mr_0{
+            margin-left:0rem !important;
+        }
+        .align_top{
+            align-items:start !important;
+        }
+        .textr{
+            text-align:left;
+        }
+
+        /* global filter */
+        .lg_filter_res{
+            display:inline;
+        }
+        .mb_filter_res{
+            display:none;
+        }
+    }
+
+
+    /* gloabl filter css responsive  */
+    @media only screen and (max-width:520px){
+         /* global filter */
+        .lg_filter_res{
+            display:none;
+        }
+        .mb_filter_res{
+            display:inline;
+        }
+        .ui-datepicker {
+            
+            z-index: 2000 !important;
+        }
+        .rejection_flex{
+            flex-direction:column-reverse !important;
+        }
+        .response_width{
+            width:100% !important;
+        }
+        .icon_align{
+            text-align:end !important;
+            padding-right:1rem;
+        }
     }
 </style>
 
@@ -206,39 +309,47 @@ a{
           <div class="container-fluid paddingm display_f justify_sb align_c">
             <p class="float-start fnt_fam mdl_header">Corrections</p>
               <div class="d-flex">
-                    <p class="float-end stcode" style="color: #005CBC;">
-                        <span  id="corrects"></span><span style="font-size: 1rem;">Correction Counts</span>
-                    </p>
+                    <div class="float-end stcode count_dv_fnts" style="color: #005CBC;">
+                        <span  id="corrects" class="count_fnts"></span><span style="font-size: 1rem;">Correction Counts</span>
+                    </div>
               </div>
           </div>
         </nav>
         <nav class="inner_nav inner_nav_c display_f align_c justify_sb navbar-expand-lg">
-            <div class="container-fluid paddingm display_f justify_sb align_c">
-             <p class="float-start"></p>
-              <div class="d-flex innerNav">
-                    <div class="box">
-                        <div class="input-box" style="margin-right: 0.5rem;">
-                            <select class="form-select font_weight select_input_width input_padd" name="" id="correctionPart" style="width: 10rem;padding-right:1.8rem;">
-                            </select>
-                            <label for="inputSiteNameAdd" class="input-padding font_weight">Parts</label>
+            <div class="lg_filter_res" style="width:100%">
+                <div class="container-fluid paddingm display_f justify_sb align_c">
+                    <p class="float-start"></p>
+                    <div class="d-flex innerNav">
+                        <div class="box">
+                            <div class="input-box" style="margin-right: 0.5rem;">
+                                <select class="form-select font_weight select_input_width input_padd" name="" id="correctionPart" style="width: 10rem;padding-right:1.8rem;">
+                                </select>
+                                <label for="inputSiteNameAdd" class="input-padding font_weight">Parts</label>
+                            </div>
                         </div>
+                        <div class="box">
+                            <div class="input-box" style="margin-right: 0.5rem;">
+                                <input type="datepicker" class="form-control select_input_width input_padd font_weight datepicker" name="" id="shiftDate" style="width: 10rem;" placeholder="dd-mm-yyyy" autocomplete="off">
+                                 
+                                <label for="inputSiteNameAdd" class="input-padding ">Shift Date</label>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="input-box" style="margin-right: 0.5rem;">
+                                <select class="form-select font_weight select_input_width input_padd" name="" id="shiftName" style="width: 10rem;">
+                                </select>
+                                <label for="inputSiteNameAdd" class="input-padding ">Shifts</label>
+                            </div>
+                        </div> 
                     </div>
-                    <div class="box">
-                        <div class="input-box" style="margin-right: 0.5rem;">
-                            <input type="datepicker" class="form-control select_input_width input_padd font_weight datepicker" name="" id="shiftDate" style="width: 10rem;" placeholder="dd-mm-yyyy" autocomplete="off">
-                            
-                            <label for="inputSiteNameAdd" class="input-padding ">Shift Date</label>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="input-box" style="margin-right: 0.5rem;">
-                            <select class="form-select font_weight select_input_width input_padd" name="" id="shiftName" style="width: 10rem;">
-                            </select>
-                            <label for="inputSiteNameAdd" class="input-padding ">Shifts</label>
-                        </div>
-                    </div> 
-              </div>
-          </div>
+                </div>
+            </div>
+            <div class="mb_filter_res" style="width:100%">
+                <div class="d-flex justify-content-end align-items-center p-2">
+                    <img src="<?php echo base_url() ?>/assets/img/global_filter.png?version=<?= rand() ?>" alt="" class="click_global_filter" style="height:1.5rem;width:1.5rem;">
+                </div>
+            </div>
+            
         </nav>
             <div class="data_section">
                 <div class="res_h">
@@ -269,6 +380,7 @@ a{
                     </div>
                 </div>
                 <div class="contentCorrection paddingm ">
+                   
                    
                 </div>
         </div>
@@ -365,6 +477,48 @@ a{
 
 
 
+
+<!-- global filter modal mobile responsive -->
+<div class="modal fade" id="filter_ftdate_responsive" tabindex="-1" aria-labelledby="filter_ftdate_responsive12" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered rounded">
+      <div class="modal-content bodercss">
+        <div class="modal-header" style="border:none; ">
+          <h5 class="modal-title header_popup fnt_fam" id="filter_ftdate_responsive12" style="">Global Filter</h5>
+        </div>
+        <div class="modal-body">
+            <div class="d-flex  justify-content-center align-items-center row">
+                <div class="box rightmar m-3" style="margin-right: 0.5rem;width:max-content;">
+                    <div class="input-box">
+                        <select class="form-select font_weight select_input_width input_padd " name="" id="correctionPartgf" style="width: 10rem;padding-right:1.8rem;">
+                        </select>
+                        <label for="" class="input-padding ">Parts</label>
+                    </div>
+                </div>
+                <div class="box rightmar m-3" style="margin-right: 0.5rem;width:max-content;">
+                    <div class="input-box">
+                        <input type="datepicker" class="form-control select_input_width input_padd font_weight datepickergf " name="" id="shiftDategf" style="width: 10rem;" placeholder="dd-mm-yyyy" autocomplete="off">                         
+                        <label for="inputSiteNameAdd" class="input-padding font_weight">Shift Date</label>
+                    </div>
+                </div>
+            </div>  
+            <div class="d-flex justify-content-center align-items-center row">
+                <div class="box rightmar m-3" style="margin-right: 0.5rem;width:max-content;">
+                    <div class="input-box">
+                        <select class="form-select select_input_width input_padd font_weight" name="" id="shiftNamegf" style="width: 10rem;">
+                        </select>
+                        <label for="inputSiteNameAdd" class="input-padding ">Shifts</label>
+                    </div>
+                </div> 
+            </div>
+        </div>
+        <div class="modal-footer" style="border:none;">
+          <a class="btn fnt_fam btn_fnt_size btn_padd btn_save drp_filter_btn"  value="Apply Filter" >Apply Filter</a>
+          <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+        </div>
+      </div>
+    </div>
+</div>
+
 <!-- preloader -->
 <!-- preloader -->
 <div id="overlay">
@@ -390,11 +544,27 @@ a{
        }
 // get correction data function
 function  gedt_correction_data(){
-    var partname = $('#correctionPart').val();
-    var shift_date = $('#shiftDate').val();
+
+    var screenWidth = window.innerWidth;
+    var pdrpclassname = "";
+    var sdateclassname = "";
+    var sidclassname = "";
+
+    if (screenWidth<=520) {
+        pdrpclassname = "correctionPartgf";
+        sdateclassname="shiftDategf";
+        sidclassname = "shiftNamegf";
+    }else if(screenWidth>520){
+        pdrpclassname = "correctionPart";
+        sdateclassname="shiftDate";
+        sidclassname = "shiftName";
+    }
+
+    var partname = $('#'+pdrpclassname).val();
+    var shift_date = $('#'+sdateclassname).val();
     const date_arr = shift_date.split('/');
     var shift_date_edit = date_arr[2]+'-'+date_arr[0]+'-'+date_arr[1];
-    var shift = $('#shiftName').val();
+    var shift = $('#'+sidclassname).val();
     var s = shift.split("");
     $.ajax({
         url: "<?php echo base_url('PDM_controller/getCorrectionData'); ?>",
@@ -422,74 +592,64 @@ function  gedt_correction_data(){
 
                 if(parseInt(item.corrections) < 0){
                     elements = elements.add('<div id="settings_div">'
-                        +'<div class="row paddingm">'
+                        +'<div class="row paddingm res_d">'
                             +'<div class="res_baswidth">'
-                                +'<div class="col-1 col marleft res_width" style="width:9%;">'
-                                    +'<p class="tb_res_header fnt_fam rm_mrl" >FROM TIME</p>'
-                                    +'<p id="fdate" class="rm_mrl">'+item.start_time+'</p>'
+                                +'<div class="d-flex flex-row flex-wrap justify-content-center align-items-stretch padding_bottom_mr" style="width:36%;">'
+                                    +'<div class="tb_res_header fnt-fam res_width">From Time</div>'
+                                    +'<div class="tb_res_header fnt-fam res_width">To Time</div>'
+                                    +'<div class="tb_res_header fnt-fam res_width">Part Name</div>'
+
+                                    +'<div class="table_data_element res_width lg_record_alignment" style="width:25%;"><p class="paddingm">'+item.start_time+'</p></div>'
+                                    +'<div class="table_data_element res_width lg_record_alignment" style="width:25%;"><p class="paddingm">'+item.end_time+'</p></div>'
+                                    +'<div class="table_data_element res_width lg_record_alignment" style="width:50%;"><p class="paddingm">'+item.part_name+'</p></div>'
+  
                                 +'</div>'
-                                +'<div class="col-1 col marleft res_width" style="width:9%;">'
-                                    +'<p class="tb_res_header fnt_fam rm_mrl" >END TIME</p>'
-                                    +'<p id="tdate" class="rm_mrl">'+item.end_time+'</p>'
-                                +'</div>'
-                                +'<div class="col-2 col marleft res_width" style="width:18%;">'
-                                    +'<p class="tb_res_header fnt_fam rm_mrl" >PART NAME</p>'
-                                    +'<p id="pname" class="rm_mrl">'+item.part_name+'</p>'
-                                +'</div>'
-                                +'<div class="col-2 col marleft res_width" style="width:18.5%;">'
-                                    +'<p class="tb_res_header fnt_fam rm_mrl" >MIN COUNTS</p>'
-                                    +'<p id="mreject" style="" class="rm_mrl">'+correction_min_count+'</p>'
-                                +'</div>'
-                                +'<div class="col-2 col marleft res_width" style="width:18%;">'
-                                    +'<p class="tb_res_header fnt_fam rm_mrl" >CORRECTION COUNT</p>'
-                                    +'<p id="rcount" style="color: #e2062c; font-weight:bold;" class="rm_mrl" >'+correction_count+'</p>'
-                                +'</div>'
-                                +'<div class="col-3 col marleft res_width" style="width:27.3%;">'
-                                    +'<p class="tb_res_header fnt_fam rm_mrl" >NOTES</p>'
-                                    +'<p class="rm_mrl">'+notes+'</p>'
+                                +'<div class="d-flex flex-row flex-wrap justify-content-center align-items-stretch padding_bottom_mr" style="width:64%;">'
+                                    +'<div class="tb_res_header fnt-fam res_width">Min Counts</div>'
+                                    +'<div class="tb_res_header fnt-fam res_width">Correction Counts</div>'
+                                    +'<div class="tb_res_header fnt-fam res_width">Notes</div>'
+
+                                    +'<div class="table_data_element res_width lg_record_alignment" style="width:29%;"><p class="paddingm">'+correction_min_count+'</p></div>'
+                                    +'<div class="table_data_element res_width lg_record_alignment" style="width:28%;"><p class="paddingm" style="color: #e2062c;font-weight:bold;">'+correction_count+'</p></div>'
+                                    +'<div class="table_data_element res_width lg_record_alignment" style="width:43%;"><p class="paddingm">'+notes+'</p></div>'
+
                                 +'</div>'
                             +'</div>'
                             +'<div class="res_basewidth1">'
-                                +'<div class="col-1 col d-flex justify_content_end_res fasdiv" style="width:100%;">'
+                                +'<div class="col-1 col d-flex justify_content_end_res fasdiv " style="width:100%;">'
                                     +'<ul class="edit-menu">'
-                                        +'<li class="d-flex justify-content-center">'
+                                        +'<li class="d-flex justify-content-center" >'
                                             +'<a href="#">'
-                                                +'<img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="editCorrects  pen-product" style="font-size: 20px;color: #d9d9d9;height:1.4rem;width:1.4rem;display:'+control_display+'" alt="Edit" rvalue="'+item.machine_id+'" pIdValue="'+item.part_id+'" fdate="'+item.start_time+'" >'
+                                                +'<img src="<?php echo base_url('assets/img/pencil.png'); ?>" class="editCorrects  pen-product" style="font-size: 20px;color: #d9d9d9;height:1.2rem;width:1.2rem;display:'+control_display+'" alt="Edit" rvalue="'+item.machine_id+'" pIdValue="'+item.part_id+'" fdate="'+item.start_time+'" >'
                                             +'</a>'
                                         +'</li>'
                                     +'</ul>'
                                 +'</div>'
                             +'<div>'
                         +'</div>'
-                        +'</div>');
+                    +'</div>');
                 }
                 else if (item.corrections>=0) {
                     elements = elements.add('<div id="settings_div">'
                         +'<div class="row paddingm res_d">'
                             +'<div class="res_baswidth">'
-                                +'<div class="col-1 col marleft res_width" style="width:9%;">'
-                                    +'<p class="tb_res_header fnt_fam rm_mrl" >FROM TIME</p>'
-                                    +'<p id="fdate" class="rm_mrl">'+item.start_time+'</p>'   
+                                +'<div class="d-flex flex-row flex-wrap justify-content-center align-items-stretch padding_bottom_mr" style="width:36%;">'
+                                    +'<div class="tb_res_header fnt-fam res_width">From Time</div>'
+                                    +'<div class="tb_res_header fnt-fam res_width">To Time</div>'
+                                    +'<div class="tb_res_header fnt-fam res_width">Part Name</div>'
+
+                                    +'<div class="table_data_element res_width lg_record_alignment" style="width:25%;"><p class="paddingm">'+item.start_time+'</p></div>'
+                                    +'<div class="table_data_element res_width lg_record_alignment" style="width:25%;"><p class="paddingm">'+item.end_time+'</p></div>'
+                                    +'<div class="table_data_element res_width lg_record_alignment" style="width:50%;"><p class="paddingm">'+item.part_name+'</p></div>'
                                 +'</div>'
-                                +'<div class="col-1 col marleft res_width" style="width:9%;">'
-                                    +'<p class="tb_res_header fnt_fam rm_mrl" >END TIME</p>'
-                                    +'<p id="tdate" class="rm_mrl">'+item.end_time+'</p>'
-                                +'</div>'
-                                +'<div class="col-2 col marleft res_width" style="width:18%;">'
-                                    +'<p class="tb_res_header fnt_fam rm_mrl" >PART NAME</p>'
-                                    +'<p id="pname" class="rm_mrl">'+item.part_name+'</p>'
-                                +'</div>'
-                                +'<div class="col-2 col marleft res_width" style="width:18.5%;">'
-                                    +'<p class="tb_res_header fnt_fam rm_mrl" >MIN COUNTS</p>'
-                                    +'<p id="mreject" class="rm_mrl">'+correction_min_count+'</p>'
-                                +'</div>'
-                                +'<div class="col-2 col marleft res_width" style="width:18%;">'
-                                    +'<p class="tb_res_header fnt_fam rm_mrl" >CORRECTION COUNT</p>'
-                                    +'<p id="rcount" class="rm_mrl"  style="color: #004795;font-weight:bold;">'+correction_count+'</p>'
-                                +'</div>'
-                                +'<div class="col-3 col marleft res_width " style="width:27.3%;">'
-                                    +'<p class="tb_res_header fnt_fam rm_mrl" >NOTES</p>'
-                                    +'<p class="rm_mrl">'+notes+'</p>'
+                                +'<div class="d-flex flex-row flex-wrap justify-content-center align-items-stretch padding_bottom_mr" style="width:64%;">'
+                                    +'<div class="tb_res_header fnt-fam res_width">Min Counts</div>'
+                                    +'<div class="tb_res_header fnt-fam res_width">Correction Counts</div>'
+                                    +'<div class="tb_res_header fnt-fam res_width">Notes</div>'
+
+                                    +'<div class="table_data_element res_width lg_record_alignment" style="width:29%;"><p class="paddingm">'+correction_min_count+'</p></div>'
+                                    +'<div class="table_data_element res_width lg_record_alignment" style="width:28%;"><p class="paddingm" style="color: #004795;font-weight:bold;">'+correction_count+'</p></div>'
+                                    +'<div class="table_data_element res_width lg_record_alignment" style="width:43%;"><p class="paddingm">'+notes+'</p></div>'
                                 +'</div>'
                             +'</div>'
                             +'<div class="res_basewidth1">'
@@ -538,16 +698,25 @@ function datePick(date_shift){
         control_display = "inline";
        }
     //    this ajax function retrive all tool changeover parts
+       $('#correctionPart').empty();
+       $('#correctionPartgf').empty();
         $.ajax({
             url: "<?php echo base_url('PDM_controller/getCorrectionPart'); ?>",
             type: "POST",
             dataType: "json",
             success:function(res){
                 var elements = $();
+                var gfelement = $();
+
                 $('#correctionPart').append('<option value="all" selected="true" disabled>Select</option>');
+                $('#correctionPartgf').append('<option value="all" selected="true" disabled>Select</option>');
+
                 res.forEach(function(item){
                     elements = elements.add('<option value="'+item.part_id+'">'+item.part_name+'-'+item.part_id+'</option>');
                     $('#correctionPart').append(elements);
+
+                    gfelement = gfelement.add('<option value="'+item.part_id+'">'+item.part_name+'-'+item.part_id+'</option>');
+                    $('#correctionPartgf').append(gfelement);
                 });
             },
             error:function(res){
@@ -559,6 +728,12 @@ function datePick(date_shift){
         $("#shiftName").attr("readonly", true);
         $("#shiftName").attr("disabled", true);
         $("#shiftDate").attr("disabled", true);
+
+        // global filter dropdowns
+        $('#shiftDategf').attr("readonly",true);
+        $('#shiftDategf').attr("disabled",true);
+        $('#shiftNamegf').attr("readonly",true);
+        $('#shiftNamegf').attr("disabled",true);
         
         // this function if you change part dropdown then retrive the shift date for the dropdown and enable the shifts
 
@@ -676,12 +851,25 @@ function datePick(date_shift){
     });
 
     $(document).on("click", ".editCorrects", function(){
+
+        var screenWidth = window.innerWidth;
+        var sdateclassname = "";
+        var sidclassname = "";
+
+        if (screenWidth<=520) {
+            sdateclassname="shiftDategf";
+            sidclassname = "shiftNamegf";
+        }else if(screenWidth>520){
+            sdateclassname="shiftDate";
+            sidclassname = "shiftName";
+        }
+
         var partid = $(this).attr("pIdValue");
         var from_time = $(this).attr("fdate");
-        var shift_date = $('#shiftDate').val();
+        var shift_date = $('#'+sdateclassname).val();
         const date_arr = shift_date.split('/');
         var shift_date_edit = date_arr[2]+'-'+date_arr[0]+'-'+date_arr[1];
-        var shift = $('#shiftName').val();
+        var shift = $('#'+sidclassname).val();
         var machine_id = $(this).attr('rvalue');
         var s = shift.split("");
 
@@ -762,6 +950,16 @@ function datePick(date_shift){
     // AFTER edit submit the corrections function
     $(document).on("click", ".EditCorrection", function(event){
         event.preventDefault();
+
+        var screenWidth = window.innerWidth;
+        var pdrpclassname = "";
+        
+        if (screenWidth<=520) {
+            pdrpclassname = "correctionPartgf";
+            
+        }else if(screenWidth>520){
+            pdrpclassname = "correctionPart";
+        }
         var x = correctionCount();
         var y = correctionNotes();
         if (x!='' || y!='') {
@@ -784,7 +982,7 @@ function datePick(date_shift){
             var correction_value = $('#CorrectionCount').val();
             var correction_count = parseInt(correction_value);
             var max_reject = parseInt(production_count) + parseInt(correction_count);
-            var partid=$('#correctionPart').val();
+            var partid=$('#'+pdrpclassname).val();
             $('.EditCorrection').removeAttr("disabled");
             $.ajax({
                 url: "<?php echo base_url('PDM_controller/updateCorrectData'); ?>",
@@ -881,4 +1079,123 @@ function correctionNotes(){
     }
     return msg;
 };
+
+
+
+// global filter functions
+
+// global filter onclick function
+$(document).on('click','.click_global_filter',function(event){
+    event.preventDefault();
+    $('#filter_ftdate_responsive').modal('show');
+});
+
+$(document).on("change", "#correctionPartgf", function(){
+
+    $('#corrects').html("");
+
+    $('#shiftDategf').prop('selectedIndex',0);
+    var part = $('#correctionPartgf').val();
+    $('.contentCorrection').empty();
+    $('#shiftDategf').val('');
+    $.ajax({
+        url:"<?php echo base_url('PDM_controller/correction_shift_date'); ?>",
+        type:"POST",
+        dataType:"json",
+        data:{
+            part_id:part,
+        },
+        success:function(data){
+            enableDays = [];
+            data.forEach(item=>{
+                enableDays.push(item.shift_date);
+            });
+
+            $(".datepickergf").datepicker({beforeShowDay: function(dt) {
+                var datestring = $.datepicker.formatDate('yy-mm-dd', dt);
+                if($.inArray(datestring, enableDays) != -1) {
+                    return [true];
+                }
+                else{
+                    // return [dt.getDay() == 1 || dt.getDay() == 2 ? false : true && vakantie.indexOf(datestring) == -1 ];
+                    // return [vakantie.indexOf(datestring) == -1 ];
+                    return [false];
+                }   
+            },
+                changeMonth: true,
+                changeYear: true,
+                maxDate: new Date()
+            });
+        }        
+    }); 
+    $('.fixtabletitle').css("z-index","1");
+    $("#shiftDategf").removeAttr("disabled");
+    $("#shiftDategf").removeAttr("readonly");
+    $('.contentMachine').empty();
+    $('#shiftNamegf').prop('selectedIndex',0);
+    $('#shiftNamegf').attr('disabled',true);
+});
+
+
+$(document).on("change", "#shiftDategf", function(){
+
+    $('#corrects').html("");
+
+    var sdate = $('#shiftDategf').val();
+    var part_name = $('#correctionPartgf').val();
+    const date_arr = sdate.split('/');
+    var shift_date = date_arr[2]+'-'+date_arr[0]+'-'+date_arr[1];
+    $('#shiftNamegf').empty();
+    $('#shiftNamegf').prop('selectedIndex',0);
+    $('.contentCorrection').empty();
+
+    $.ajax({
+        url: "<?php echo base_url('PDM_controller/getCorrectShift'); ?>",
+        type: "POST",
+        dataType: "json",
+        data:{
+            sdate:shift_date,
+        },
+        success:function(shift_res){
+            var elements = $();
+            $('#shiftNamegf').append('<option value=" " selected="true" disabled>Select</option>');
+        
+            shift_res['shift'].forEach(function(item){
+                var temp = item.shifts.split("");
+                $.ajax({
+                    url:"<?php echo base_url('PDM_controller/correction_rejection_exactshift'); ?>",
+                    method:"post",
+                    cache: false,
+                    async: false,
+                    data:{
+                        part_name:part_name,
+                        shift_date:shift_date,
+                        shift:temp[0]
+                    },
+                    dataType:"json",
+                    success:function(shift){
+                        if(shift.length > 0){
+                            elements = elements.add('<option value="'+item.shifts+'">Shift '+temp[0]+'</option>');
+                        }
+                    }
+                });
+                $('#shiftNamegf').append(elements);
+            });
+
+            $("#shiftNamegf").removeAttr("readonly");
+            $("#shiftNamegf").removeAttr("disabled");
+        },
+        error:function(res){
+            // alert("Sorry!Try Agian!!");
+        }
+    });
+});
+
+
+$(document).on('click','.drp_filter_btn',function(){
+    var screenWidth = window.innerWidth;
+    screenWidth <=520 ? (function() { gedt_correction_data(); })() : null;
+    $('#filter_ftdate_responsive').modal('hide');
+    
+});
 </script> 

@@ -159,6 +159,13 @@ a{
     .mb_filter_res{
         display:none;
     }
+    .icon_align{
+        width:100%;
+        float:right;
+        justify-content:center;
+        text-align:center;
+        margin:auto;
+    }
     /* media query  */
     @media only screen and (max-width:1000px){
         .h_mar_l{
@@ -267,6 +274,20 @@ a{
         }
         .mb_filter_res{
             display:inline;
+        }
+        .ui-datepicker {
+            
+            z-index: 2000 !important;
+        }
+        .rejection_flex{
+            flex-direction:column-reverse !important;
+        }
+        .response_width{
+            width:100% !important;
+        }
+        .icon_align{
+            text-align:end !important;
+            padding-right:1rem;
         }
     }
 
@@ -397,14 +418,16 @@ a{
                 </div>
         </div>
 </div>
+
+<!-- edit modal -->
 <div class="modal fade" id="EditQualityModal"  tabindex="-1" aria-labelledby="EditQualityModal1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered rounded">
     <div class="container modal-content bodercss">
             <form >
                 <div class="modal-body paddingm">   
                 <h5 class="modal-title settings-machineAdd-model mt-2 p-4" id="EditQualityModal1" style="">EDIT QUALITY REJECTS</h5>        
-                    <div class="flex-container">
-                        <div style="width:50%;" class="flex-container">
+                    <div class="flex-container row">
+                        <div style="" class="flex-container col-lg-6 col-md-12 col-sm-12">
                             <div style="width: 50%;" class="carddiv">
                                 <label class="headTitle ">Part Name</label>
                                 <p id="PID" class="font_weight_modal"></p>
@@ -414,7 +437,7 @@ a{
                                 <p id="MName" class="font_weight_modal"></p>
                             </div>
                         </div>
-                        <div style="width: 50%;" class="flex-container">
+                        <div style="" class="flex-container col-lg-6 col-md-12 col-sm-12">
                             <div style="width: 50%;" class="carddiv">
                                 <label class="headTitle">Shift Date</label>
                                 <p id="ShiftDate" class="font_weight_modal"></p>
@@ -425,8 +448,8 @@ a{
                             </div>
                         </div>     
                     </div>
-                    <div class="flex-container">
-                        <div style="width:50%;" class="flex-container">
+                    <div class="flex-container row">
+                        <div style="" class="flex-container col-lg-6 col-md-12 col-sm-12">
                             <div style="width: 50%;" class="carddiv">
                                 <label class="headTitle">Last Updated By</label>
                                 <p id="LUOn" class="font_weight_modal"></p>
@@ -437,7 +460,7 @@ a{
                             </div>
                            
                         </div>
-                        <div style="width: 50%;" class="flex-container">
+                        <div style="" class="flex-container col-lg-6 col-md-12 col-sm-12">
                             <div style="width: 50%;" class="carddiv">
                                 <label class="headTitle">From Time</label>
                                 <p id="FromTime" class="font_weight_modal"></p>
@@ -448,8 +471,8 @@ a{
                             </div>
                         </div>     
                     </div>
-                    <div class="flex-container">
-                        <div style="width:50%;" class="flex-container ">
+                    <div class="flex-container row">
+                        <div style="" class="flex-container col-lg-6 col-md-12 col-sm-12">
                             <div style="width: 50%;" class="carddiv ">
                                 <label class="headTitle">Max Rejects</label>
                                 <p id="MaxReject" class="font_weight_modal"></p>
@@ -459,22 +482,23 @@ a{
                                 <p id="TotalRejets" class="font_weight_modal"></p>
                             </div>
                         </div>
-                        <div style="width: 50%;" class="flex-container divbox">
+                        <div style="" class="flex-container divbox col-lg-6 col-md-12 col-sm-12">
                             <div style="width: 100%;" class="carddiv divinput-box">
                                 <input type="text" name="" id="Notes" class="font_weight_modal">
                                 <label class="input-padding">Notes</label>
                             </div>
                         </div>     
                     </div>
-                    <div class="flex-container" style="height:max-content;">
-                        <div style="width:55%; height:max-content;" class="flex-container divbox fieldStyle">
+                    <div class="flex-container rejection_flex" style="height:max-content;">
+                        
+                        <div style="width:55%; height:max-content;" class="flex-container divbox fieldStyle response_width">
                             <div style="width: 100%;height:max-content;" class="carddiv divinput-box ">
                                 <input type="text" name="reject_count[]" id="RejectCount" class="RejectCount font_weight_modal">
                                 <label class="input-padding">Reject Count <span class="paddingm validate">*</span></label>
                                 <span class="reject_count_err validate"></span>
                             </div>
                         </div>
-                        <div style="width: 45%;" class="flex-container divbox_reject fieldStyle">
+                        <div style="width: 45%;" class="flex-container divbox_reject fieldStyle response_width">
                             <div style="width: 100%;" class="carddiv divinput_box_reject">
                                     <div class="input-box fieldStyle" style="height:max-content;">
                                         <select class="inputDepartmentAdd form-select RejectReason font_weight_modal" name="reject_reason[]" id="RejectReason1" >
@@ -485,8 +509,8 @@ a{
                                     </div>
                             </div>
                         </div>    
-                        <div style="width:10%;float:right;" class=" paddingm flex-container divbox">
-                            <div style="width:100%;float:right;justify-content:center;text-align:center;margin:auto;"><img src="<?php echo base_url('assets/img/plus-icon.png'); ?>" style="width:2.8rem;height: 2.8rem;" class="appendform" id=""></div>
+                        <div style="width:10%;float:right;" class=" paddingm flex-container divbox response_width ">
+                            <div class="icon_align" style=""><img src="<?php echo base_url('assets/img/plus-icon.png'); ?>" style="width:2.8rem;height: 2.8rem;" class="appendform" id=""></div>
                         </div> 
                     <!-- </div> -->
                     </div>
@@ -521,7 +545,7 @@ a{
                 </div>
                 <div class="box rightmar m-3" style="margin-right: 0.5rem;width:max-content;">
                     <div class="input-box">
-                        <input type="datepicker" class="form-control select_input_width input_padd font_weight datepicker shift_datesr" name="" id="RejectShiftDate" style="width: 10rem;" placeholder="dd-mm-yyyy" autocomplete="off">                         
+                        <input type="datepicker" class="form-control select_input_width input_padd font_weight datepickergf shift_datesr" name="" id="RejectShiftDategf" style="width: 10rem;" placeholder="dd-mm-yyyy" autocomplete="off">                         
                         <label for="inputSiteNameAdd" class="input-padding font_weight">Shift Date</label>
                     </div>
                 </div>
@@ -529,7 +553,7 @@ a{
             <div class="d-flex justify-content-center align-items-center row">
                 <div class="box rightmar m-3" style="margin-right: 0.5rem;width:max-content;">
                     <div class="input-box">
-                        <select class="form-select select_input_width input_padd font_weight" name="" id="RejectShift" style="width: 10rem;">
+                        <select class="form-select select_input_width input_padd font_weight" name="" id="RejectShiftgf" style="width: 10rem;">
                         </select>
                         <label for="inputSiteNameAdd" class="input-padding ">Shifts</label>
                     </div>
@@ -583,12 +607,28 @@ $(document).on('click','.click_global_filter',function(event){
 // Data Retrive for show in dashboard.......
 
 function selection_data(){
-    var shift = $('#RejectShift').val();
+
+    var screenWidth = window.innerWidth;
+    var pdrpclassname = "";
+    var sdateclassname = "";
+    var sidclassname = "";
+
+    if (screenWidth<=520) {
+        pdrpclassname = "RejectPartNamegf";
+        sdateclassname="RejectShiftDategf";
+        sidclassname = "RejectShiftgf";
+    }else if(screenWidth>520){
+        pdrpclassname = "RejectPartName";
+        sdateclassname="RejectShiftDate";
+        sidclassname = "RejectShift";
+    }
+    // console.log();
+    var shift = $('#'+sidclassname).val();
     var s = shift.split("");
-    var shiftdate = $('#RejectShiftDate').val();
+    var shiftdate = $('#'+sdateclassname).val();
     const date_arr = shiftdate.split('/');
     var shift_date = date_arr[2]+'-'+date_arr[0]+'-'+date_arr[1];
-    var partname = $('#RejectPartName').val();  
+    var partname = $('#'+pdrpclassname).val();  
     $.ajax({
         url: "<?php echo base_url('PDM_controller/getRejectionData'); ?>",
         type: "POST",
@@ -713,6 +753,8 @@ function clear_data(){
 
 $(document).ready(function(){
     $('#RejectPartName').empty();
+    $('#RejectPartNamegf').empty();
+        
     var control = <?php echo $this->data['access'][0]['production_data_management']; ?>;
     var display_var = " ";
     if (control < 2) {
@@ -726,10 +768,15 @@ $(document).ready(function(){
         dataType: "json",
         success:function(res){
             var elements = $();
+            var gbelement = $();
+            $('#RejectPartNamegf').append('<option value="" selected="true" disabled>Select</option>');
             $('#RejectPartName').append('<option value="" selected="true" disabled>Select</option>');
             res.forEach(function(item){
                 elements = elements.add('<option value="'+item.part_id+'">'+item.part_name+'-'+item.part_id+'</option>');
                 $('#RejectPartName').append(elements);
+
+                gbelement = gbelement.add('<option value="'+item.part_id+'">'+item.part_name+'-'+item.part_id+'</option>');
+                $('#RejectPartNamegf').append(gbelement);
             });
         },
         error:function(res){
@@ -742,6 +789,15 @@ $(document).ready(function(){
     $("#RejectShiftDate").removeAttr("disabled");
     $("#RejectShift").attr("readonly", true);
     $("#RejectShift").attr("disabled", true);
+
+    // global filter dropdown 
+    $('#RejectShiftDategf').attr('readonly',true);
+    $('#RejectShiftDategf').attr('disabled',true);
+    $('#RejectShiftDategf').removeAttr("disabled");
+    $('#RejectShiftgf').attr("readonly",true);
+    $('#RejectShiftgf').attr("disabled",true);
+
+
     // if you cselect part name and upload data in shift date records
     $(document).on("change", "#RejectPartName", function(){
         
@@ -793,6 +849,9 @@ $(document).ready(function(){
         $('#RejectShift').prop('selectedIndex',0);
         $('#RejectShift').attr("disabled",true);
     });
+
+
+    
 
     // shift date onclick time design adding
     $(document).on('click','#RejectShiftDate',function(){
@@ -860,11 +919,25 @@ $(document).ready(function(){
 
     // edit rejects
     $(document).on("click", ".editRejects", function(event){
+        var screenWidth = window.innerWidth;
+        // var pdrpclassname = "";
+        var sdateclassname = "";
+        var sidclassname = "";
+
+        if (screenWidth<=520) {
+            // pdrpclassname = "RejectPartNamegf";
+            sdateclassname="RejectShiftDategf";
+            sidclassname = "RejectShiftgf";
+        }else if(screenWidth>520){
+            // pdrpclassname = "RejectPartName";
+            sdateclassname="RejectShiftDate";
+            sidclassname = "RejectShift";
+        }
         event.preventDefault();
         var partid = $(this).attr("pIdValue");
         var from_time = $(this).attr("ftime");
-        var shift_date = $('#RejectShiftDate').val();
-        var shift = $('#RejectShift').val();
+        var shift_date = $('#'+sdateclassname).val();
+        var shift = $('#'+sidclassname).val();
         var machine_id = $(this).attr('rvalue');
         var s = shift.split("");
         
@@ -1023,15 +1096,15 @@ $(document).ready(function(){
         }
         var reason = "empty";
        
-        $('.append_reject').append('<div class="flex-container remobj" style="height:max-content;">'
-            +'<div style="width:55%;" class="flex-container divbox fieldStyle" >'
+        $('.append_reject').append('<div class="flex-container remobj rejection_flex" style="height:max-content;">'
+            +'<div style="width:55%;" class="flex-container divbox fieldStyle response_width" >'
                 +'<div style="width: 100%;height:max-content;" class="carddiv divinput-box">'
                     +'<input type="text" name="reject_count[]" class="RejectCount font_weight" id="RejectCount">'
                     +'<label class="input-padding">Reject Count <span class="paddingm validate">*</span></label>'
                     +'  <span class="reject_count_err validate"></span>'
                 +'</div>'
             +'</div>'
-            +'<div style="width: 45%;" class="flex-container divbox_reject fieldStyle">'
+            +'<div style="width: 45%;" class="flex-container divbox_reject fieldStyle response_width">'
                 +' <div style="width: 100%;" class="carddiv divinput_box_reject">'
                     +'<div class="input-box fieldStyle" style="height:max-content;">'
                         +'<select class="inputDepartmentAdd form-select RejectReason font_weight" name="reject_reason[]" id='+id_original+'>'
@@ -1041,7 +1114,7 @@ $(document).ready(function(){
                     +'</div>'
                 +'</div>'
             +'</div>'
-            +'<div class="" style="width:10%;justify-content:center;text-align:center;align-item:center;margin:auto;height:max-content;">'
+            +'<div class="icon_align response_width" style="width:10%;justify-content:center;text-align:center;align-item:center;margin:auto;height:max-content;">'
                 +'<img src="<?php echo base_url('assets/img/delete.png'); ?>" class=" removeappendform" style="width:1.4rem;height:1.2rem;">'
             +'</div>'
         +'</div>');
@@ -1171,6 +1244,20 @@ $(document).ready(function(){
     // edit rejection count reasons submission function
     $(document).on('click','.EditReject_submit',function(event){
         // after edit modal submit the function working
+        var screenWidth = window.innerWidth;
+        // var pdrpclassname = "";
+        var sdateclassname = "";
+        var sidclassname = "";
+
+        if (screenWidth<=520) {
+            // pdrpclassname = "RejectPartNamegf";
+            sdateclassname="RejectShiftDategf";
+            sidclassname = "RejectShiftgf";
+        }else if(screenWidth>520){
+            // pdrpclassname = "RejectPartName";
+            sdateclassname="RejectShiftDate";
+            sidclassname = "RejectShift";
+        }
         event.preventDefault();
         $("#overlay").fadeIn(300);
         var condition = $('.EditReject_submit').attr("disabled");
@@ -1211,11 +1298,11 @@ $(document).ready(function(){
             if (rcount.length > 0 && flag==0) {
                 var validate_count_max = $('#MaxReject').text();
                 var start_time = $('#FromTime').text();
-                var shift = $('#RejectShift').val();
+                var shift = $('#'+sidclassname).val();
                 var s = shift.split("");
                 shift = s[0];
         
-                var shift_date = $('#RejectShiftDate').val();
+                var shift_date = $('#'+sdateclassname).val();
                 const shift_arr = shift_date.split('/');
                 var shift_date_edit = shift_arr[2]+'-'+shift_arr[0]+'-'+shift_arr[1];
                 var partid = $('#PID').attr("part_data");
@@ -1379,4 +1466,129 @@ function get_display_reason(index_id,reason_id_check){
         $('#'+index_id).html((reason_id_check.length)+" "+"Reasons");
     }
 }
+
+
+
+
+// global filter functions
+// onchange partname dropdown
+$(document).on('change','#RejectPartNamegf',function(){
+    $('#rejects').html('');
+
+    $('#RejectShiftDategf').prop('selectedIndex',0);
+    var part = $('#RejectPartNamegf').val();       
+    $('#RejectShiftDategf').val('');
+    $('#RejectShiftDategf').removeAttr('disabled',true);
+    $('#RejectShiftgf').attr("readonly",true);
+    $.ajax({
+        url:"<?php echo base_url('PDM_controller/get_reject_shift_date'); ?>",
+        type:"POST",
+        dataType:"json",
+        data:{
+            part_id:part,
+        },
+
+        success:function(data){
+            // working for onchange
+            enableDays = [];
+            data.forEach(item=>{
+                enableDays.push(item.shift_date);
+            });
+            $("#RejectShiftDategf").datepicker({beforeShowDay: function(dt) {
+                var datestring = $.datepicker.formatDate('yy-mm-dd', dt);
+                if($.inArray(datestring, enableDays) != -1) {
+                    return [true];
+                }
+                else{
+                    // return [dt.getDay() == 1 || dt.getDay() == 2 ? false : true && vakantie.indexOf(datestring) == -1 ];
+                    // return [vakantie.indexOf(datestring) == -1 ];
+                    return [false];
+                }   
+            },
+            changeMonth: true,
+            changeYear: true,
+            maxDate: new Date()
+            });
+        },
+        error:function(err){
+            // alert("Sorry Try again");
+        }
+    }); 
+    // $('.fixtabletitle').css("z-index","1");
+    $('#RejectShiftDategf').val("");
+    $("#RejectShiftDategf").removeAttr("readonly");
+    $('.contentMachine').empty();
+    $('#RejectShiftgf').prop('selectedIndex',0);
+    $('#RejectShiftgf').attr("disabled",true);
+});
+
+$(document).on("change", "#RejectShiftDategf", function(){
+        
+        $('#rejects').html('');
+
+        var part_name = $('#RejectPartNamegf').val();
+        var sdate = $('#RejectShiftDategf').val();
+        $('#RejectShiftgf').empty();
+        $('.contentMachine').empty();
+        $('#RejectShiftgf').prop('selectedIndex',0);
+        const date_arr = sdate.split('/');
+        var shift_date = date_arr[2]+'-'+date_arr[0]+'-'+date_arr[1];
+        $.ajax({
+            url: "<?php echo base_url('PDM_controller/getRejectShift'); ?>",
+            type: "POST",
+            dataType: "json",
+            data:{
+                shift_date:shift_date,
+            },
+            success:function(shift_res){
+                var elements = $();
+                $('#RejectShiftgf').append('<option value="" selected="true" disabled>Select</option>');
+                shift_res['shift'].forEach(function(item){
+                    var temp = item.shifts.split("");
+                    $.ajax({
+                        url:"<?php echo base_url('PDM_controller/correction_rejection_exactshift'); ?>",
+                        method:"post",
+                        cache: false,
+                        async: false,
+                        data:{
+                            part_name:part_name,
+                            shift_date:shift_date,
+                            shift:temp[0]
+                        },
+                        dataType:"json",
+                        success:function(shift){
+                            if(shift.length > 0){
+                                elements = elements.add('<option value="'+item.shifts+'">Shift '+temp[0]+'</option>');
+                            }
+                        }
+                    });
+                    $('#RejectShiftgf').append(elements); 
+                });
+                   
+                $("#RejectShiftgf").removeAttr("readonly");
+                $("#RejectShiftgf").removeAttr("disabled");
+            },
+            error:function(res){
+                // alert("Sorry!Try Agian!!");
+            }
+        });
+    });
+
+
+    // click apply filter button
+    $(document).on('click','.drp_filter_btn',function(){
+        var screenWidth = window.innerWidth;
+        screenWidth <=520 ? (function() { selection_data(); })() : null;
+        $('#filter_ftdate_responsive').modal('hide');
+    // if (screenWidth<520) {
+    //     // console.log("its global filter");
+    //     selection_data();
+    //     $('#filter_ftdate_responsive').modal('hide');
+    // }else if(screenWidth>520){
+    //     // console.log("not in global filter");
+    //     $('#filter_ftdate_responsive').modal('hide');
+    // }
+        
+    });
+
 </script> 
