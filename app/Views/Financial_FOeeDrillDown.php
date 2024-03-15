@@ -737,7 +737,7 @@ $(document).on('click','.global_filter_btn',function(){
 });
 // mobile responsive modal onclick function
 $(document).on('click','.overall_filter_btn_resp',function(){
-  alert(' hi this responsive click global filter');
+  // alert(' hi this responsive click global filter');
   // event.preventDefault();
   $('#filter_ftdate_responsive').modal('hide');
   $("#overlay").fadeIn(300);

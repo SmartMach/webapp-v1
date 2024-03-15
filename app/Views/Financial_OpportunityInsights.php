@@ -39,10 +39,6 @@
     width:50%;
     
 }
-.charts{
-    display:flex;
-    flex-wrap: wrap;
-}
 
 #donutchart
 {
@@ -244,6 +240,10 @@
           display: flex;
           align-items:center;
         }
+        .col_rev_flex_op{
+          display: flex;
+          align-items:center;
+        }
         .graph_text_title{
           /* text-align:center; */
           margin-bottom:0.5rem;
@@ -315,6 +315,14 @@
           margin-right:1rem;
         }
 
+        /* part graph div */
+        .part_graph_pdiv{
+          height:4rem;
+          align-items:center;
+          flex-direction:row;
+          margin-left:1.6rem;
+        }
+
         /* change pie chart height and width */
         .piechart_control{
           height: 11.6rem;
@@ -343,9 +351,193 @@
         #PartWiseInsights{
           max-height:21rem;
         }*/
-        #olichart{
+        /* #olichart{
           margin:auto;
-        }
+        } */
+
+
+
+         /* mobile responsive strategy */
+    /* navbar header global filter text is joining the from date to date filter thats the reason is should apply the below media query */
+    .over_all_graph_width{
+      width:25%;
+    }
+    .graph_width_res{width:80%}
+    .res_screen_filtericon{display:none !important;}
+    .graph_label_custome{
+      overflow-x:scroll;
+      overflow-y:hidden;
+    }
+
+    .pl_res_fgraph{
+      display:flex;
+      flex-direction:row;
+      flex-wrap:wrap; 
+    }
+    .pl_res_graphfd{
+      width:50%;
+    }
+    .pl_res_graphfd1{
+      width:50%;
+    }
+    .pl_op_gl{
+      width:50%;
+      margin-left:2rem;
+    }
+    .base_graph_olichart{
+      height:100%;
+      width:70%;
+      display:flex;
+      flex-direction:column-reverse;
+      align-items:center
+    }
+
+    .base_graph_chart{
+      height:75%;
+      width:70%;
+    }
+    @media only screen and (max-width:1000px){
+      .pl_res_fgraph{
+        flex-direction:column;
+        align-items:center;
+      }
+
+      .pl_res_graphfd{
+        width:60%;
+        margin-bottom:0.5rem;
+      }
+      .pl_res_graphfd1{
+        width:100%;
+      }
+      .base_graph_chart{
+        height:75%;
+        width:80%;
+      }
+      
+    }
+    @media only screen and (max-width:880px){
+      .over_all_graph_width{
+        width:30%;
+      }
+      .pl_res_graphfd{
+        width:60;
+        margin-bottom:0.5rem;
+      }
+      .graph_width_res{width:100%}
+
+      .base_graph_chart{
+        height:75%;
+        width:80%;
+      }
+    }
+    /* global fitler icon visibilities css */
+    @media only screen and (max-width:810px) and (min-width:768px){
+      .res_screen_filter_input{
+        display:none !important;
+      }
+      .res_screen_filtericon{display:inline !important;}
+      .over_all_graph_width{
+        width:30%;
+      }
+      .pl_res_graphfd{
+        width:60%;
+        margin-bottom:0.5rem;
+      }
+    }
+    @media only screen and (max-width:768px){
+
+      .mr_left_content_sec{
+        margin-left:0rem;
+        top:0rem;
+      }
+      .res_screen_filter_input{
+        display:none !important;
+      }
+      .res_screen_filtericon{display:inline !important;}
+
+      .over_all_graph_width{
+        width:30%;
+      }
+      .OuterCard{
+        margin-left:1rem;
+        margin-right:1rem;
+        margin-top:10px;
+      }
+      .graph_width_res{width:100%}
+
+      .pl_res_graphfd{
+        width:60%;
+        margin-bottom:0.5rem;
+      }
+      .base_graph_chart{
+        height:75%;
+        width:75%;
+      }
+
+    }
+    @media only screen and (max-width:682px) {
+      .over_all_graph_width{
+        width:100%;
+      }
+      .flex-container{
+        flex-direction:column;
+      }
+      .OuterCard{
+        margin-left:1rem;
+        margin-right:1rem;
+        margin-top:10px;
+      }
+      .graph_width_res{width:100%}
+
+      .pl_res_graphfd{
+        width:75%;
+        margin-bottom:0.5rem;
+      }
+      .pl_op_gl{
+        width:100%;
+        margin-left:1rem;
+      }
+     
+      .base_graph_chart{
+        height:90%;
+        width:85%;
+      }
+    }
+
+    @media only screen and (max-width:350px){
+      .col_rev_flex_op_div{
+        /* display:flex; */
+        flex-direction:column;
+        width:100%;
+      }
+      .pl_op_gl{
+        width:100%;
+        margin-left:1rem;
+      }
+
+      .part_graph{
+        display:flex;
+        width:100%;
+        justify-content:flex-start;
+      }
+      .part_graph_pdiv{
+        height:4rem;
+        align-items:start;
+        flex-direction:column;
+        margin-left:1.6rem;
+        margin-bottom:1rem;
+      }
+      .base_graph_chart{
+        height:100%;
+        width:100%;
+      }
+      .pl_res_graphfd{
+        width:100%;
+        margin-bottom:0.5rem;
+      }
+
+    }
+  /* mobile responsive end */
 
       </style>
 
@@ -426,258 +618,231 @@
 
 </head>
 
-<div class="mr_left_content_sec" style="top:0.2rem;">
-        <nav class="sec_nav display_f align_c justify_c sec_nav_c navbar-expand-lg">
-          <div class="container-fluid paddingm display_f justify_sb align_c">
-            <p class="float-start fnt_fam mdl_header">Opportunity Insights</p>
-              <div class="d-flex">
-                    <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
-                        <div class="input-box" style="width:12rem;">
-                          <!-- <input type="date" name="" class="form-control fromDate" id="from"> -->
-                          <input type="text" class="form-control fromDate" value="" step="1">
-                          <!-- <input type="datetime-local" class="form-control" value="2013-10-24T10:00:00" step="1"> -->
-                          <label for="inputSiteNameAdd" class="input-padding ">From Date</label>
-                        </div>
-                    </div>
-                    <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
-                        <div class="input-box" style="width:12rem;">
-                          <!-- <input type="date" name="" class="form-control toDate"> -->
-                          <input type="text" class="form-control toDate" value="" step="1">
-                          <label for="inputSiteNameAdd" class="input-padding ">To Date</label>
-                        </div>
-                    </div>
-
-                     <!-- overall filter btn -->
-                    <div class="box rightmar mar_r_box" >
-                      <button type="button" class="overall_filter_btn overall_filter_header_css"  >Apply Filter</button>
-                    </div>
-              </div>
+<div class="mr_left_content_sec">
+  <nav class="sec_nav display_f align_c justify_c sec_nav_c navbar-expand-lg">
+    <div class="container-fluid paddingm display_f justify_sb align_c">       
+      <p class="float-start fnt_fam mdl_header">Opportunity Insights</p>
+      <div class="d-flex res_screen_filter_input">
+        <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
+          <div class="input-box" style="width:12rem;">
+            <!-- <input type="date" name="" class="form-control fromDate" id="from"> -->
+            <input type="text" class="form-control fromDate" value="" step="1">
+            <!-- <input type="datetime-local" class="form-control" value="2013-10-24T10:00:00" step="1"> -->
+            <label for="inputSiteNameAdd" class="input-padding ">From Date</label>
           </div>
-        </nav> 
-             <!-- the old class is  financial_opportunity_graph_header then after change the class name is financial_font  -->
-        <div class="OuterCard graphCardMain " style="margin-top:5rem; ">
-          <div class="card bodercss " style="width: 80%">
-            <nav class="navbar navbar-expand-lg">
-              <div class="container-fluid paddingm">
-                <p class="float-start fontBold financial_font">P & L IMPROVEMENT OPPORTUNITY</p>
+        </div>
+        <div class="box rightmar" style="margin-right: 0.5rem;width:12rem;">
+          <div class="input-box" style="width:12rem;">
+            <!-- <input type="date" name="" class="form-control toDate"> -->
+            <input type="text" class="form-control toDate" value="" step="1">
+            <label for="inputSiteNameAdd" class="input-padding ">To Date</label>
+          </div>
+        </div>
+        <div class="box rightmar mar_r_box" >
+          <button type="button" class="overall_filter_btn overall_filter_header_css"  >Apply Filter</button>
+        </div>
+      </div>
+      <div class="res_screen_filtericon">
+        <div class="d-flex p-2 justify-content-end align-items-center">
+          <img src="<?php echo base_url() ?>/assets/img/global_filter.png?version=<?= rand()?>" alt="" class="global_filter_btn" style="width:1.6rem;height:1.6rem;">
+        </div>
+      </div>
+    </div>
+  </nav> 
+  
+  <!-- the old class is  financial_opportunity_graph_header then after change the class name is financial_font  -->
+  <div class="OuterCard graphCardMain">
+    <div class="card bodercss graph_width_res" >
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid paddingm">
+          <p class="float-start fontBold financial_font">P & L IMPROVEMENT OPPORTUNITY</p>
+        </div>
+      </nav> 
+      <div class="pl_res_fgraph">
+        <div  class="pl_res_graphfd d-flex flex-column justify-content-center align-items-center">
+          <div class="base_graph_chart" style="" >
+            <div id="chart"></div>
+          </div>
+          <div class="d-flex flex-row justify-content-center align-items-start mt-3">
+            <span class="label-text">OVERALL</span>
+          </div>
+          <div class="d-flex flex-row justify-cotnent-start align-items-center p-2">
+            <div style="width:50%;">
+              <div class="col_rev_flex" style=" flex-direction: row-reverse;">
+                <span class="donut_graph_text" >Operations</span><span id="donut_graph_operation"></span>
               </div>
-            </nav> 
-            <div class="charts">
-                <!-- <div id="donut-chart">
-                    <div id="donutchart" style=""></div>
-                    <div class="centerLabel">Total</div>
-                </div> -->
-                <div id="chart"></div>
-
-                <!-- <div class="piechart_control"> 
-                    <canvas id="oilChart" style="width:100%;max-width:180px;max-height:200px;"></canvas>
-                </div> -->
-
-                <div id="olichart" ></div> 
-
-                <!-- <canvas id="myChart" style="width:100%;max-width:190px;max-height:180px;"></canvas> -->
-
             </div>
-            <br>
-            <div class="d-flex graph_margin_bottom">
-              <!-- donut chart text  -->
-              <div class="label-col">
-                <div class="label-text">
-                  <p style="margin-bottom:0.1rem;">OVERALL</p>
-                  <div class="d-flex">
-                    <div style="width:50%;">
-                      <div class="col_rev_flex" style=" flex-direction: row-reverse;">
-                        <span class="donut_graph_text" >Operations</span><span id="donut_graph_operation"></span>
-                      </div>
-                    </div>
-                    <div style="width:50%;">
-                      <div class="col_rev_flex" style=" flex-direction: row-start;">
-                        <span id="donut_graph_business"></span><span class="donut_graph_text">Business</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="label-col1">
-                <p class="graph_text_title">OPERATIONS</p>
-                <!-- first row -->
-                  <div class="col_rev_flex" style="justify-content:center;margin-bottom:0.7rem;">
-                    <div style="width:20%;"></div>
-                    <div style="width:60%;">
-                      <div class="d-flex" style="">
-                        <div class="d-flex" style="display:flex;align-items:center; margin-left:2rem; margin-right:0.6rem;width:50%;">
-                          <span id="pie_chart_color1"></span><p style="margin:auto;margin-left:0rem;" class="donut_graph_text_pie">Planned Downtime</p>
-                        </div>
-                        <div class="d-flex" style="display:flex;align-items:center;width:50%;margin-left:2rem;">
-                          <span id="pie_chart_color2"></span><p style="margin:auto;margin-left:0rem;" class="donut_graph_text_pie">Performance</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div style="width:20%;"></div>
-                  </div>
-                
-                  <!-- second row  -->
-                  <div class="col_rev_flex" style="justify-content:center;">
-                    <div style="width:20%;"></div>
-                    <div style="width:60%;">
-                      <div class="d-flex">
-                        <div class="d-flex" style="display:flex;align-items:center; margin-left:2rem; margin-right:0.6rem;width:50%;">
-                          <span id="pie_chart_color3"></span><p style="margin:auto;margin-left:0rem;width:max-content;" class="donut_graph_text_pie">Unplanned Downtime</p>
-                        </div>
-                        <div class="d-flex" style="display:flex;align-items:center;width:50%;margin-left:1.5rem;">
-                          <span id="pie_chart_color4"></span><p style="margin:auto;margin-left:0rem;" class="donut_graph_text_pie">Quality</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div style="width:20%;"></div>
-                  </div>
+            <div style="width:50%;">
+              <div class="col_rev_flex" style=" flex-direction: row-start;">
+                <span id="donut_graph_business"></span><span class="donut_graph_text">Business</span>
               </div>
             </div>
           </div>
         </div>
-
-        <div class="OuterCard graphCardMain">
-          <div class="card bodercss" style="width: 80%">
-              <nav class="navbar navbar-expand-lg">
-              <div class="container-fluid paddingm">
-                <p class="float-start fontBold  financial_font">MACHINE WISE P & L IMPROVEMENT OPPORTUNITY</p>
-                  <div class="d-flex">
-                        <!-- <div class="rightmar">
-                          <select class="form-select" name="" id="" style="width: 10rem;">
-                                </select>
-                        </div>
-                        <div class="rightmar">
-                          <select class="form-select" name="" id="" style="width: 10rem;">
-                                </select>
-                        </div> -->
-                  </div>
-              </div>
-            </nav> 
-              <div class="divMarLeft">
-                <p class="paddingm headTitle">TOTAL</p>
-                <p class="paddingm valueGraph"><i style="font-size:1.3rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft" id="PLTotal"></span></p>
-              </div>
-              <div class="parent_graph_machine_wise_insights graph_margin_bottom parent_div marginScroll">
-                <div class="child_graph_machine_wise_insig child_div">
-                    <canvas id="machineWiseInsights" ></canvas>    
+        <div  class="pl_res_graphfd1 d-flex flex-column justify-content-center align-items-center">
+          <div class="base_graph_olichart"style="">
+            <div id="olichart" ></div>
+          </div> 
+          <div class="d-flex flex-row justify-content-center align-items-start mt-4">
+            <span class="graph_text_title">OPERATIONS</span>
+          </div> 
+          <div class="d-flex flex-column justify-content-start align-items-center p-2" style="width:100%;">
+            <!-- first row -->
+            <div class="col_rev_flex_op" style="justify-content:center;margin-bottom:0.7rem;width:100%;">
+              <div class="d-flex col_rev_flex_op_div" style="width:100%;">
+                <div class="d-flex pl_op_gl" style="display:flex;align-items:center;margin-right:0.6rem;">
+                  <span id="pie_chart_color1"></span><p style="margin:auto;margin-left:0rem;" class="donut_graph_text_pie">Planned Downtime</p>
+                </div>
+                <div class="d-flex pl_op_gl" style="display:flex;align-items:center;">
+                  <span id="pie_chart_color2"></span><p style="margin:auto;margin-left:0rem;" class="donut_graph_text_pie">Performance</p>
                 </div>
               </div>
-          </div>
-        </div>
-        <div class="OuterCard graphCardMain">
-          <div class="card bodercss" style="width: 80%">
-              <nav class="navbar navbar-expand-lg">
-              <div class="container-fluid paddingm">
-                <p class="float-start fontBold financial_font">OPPORTUNITY TREND</p>
-                  <div class="d-flex">
-                        <!-- <div class="rightmar">
-                          <select class="form-select" name="" id="" style="width: 10rem;">
-                                </select>
-                        </div>
-                        <div class="rightmar">
-                          <select class="form-select" name="" id="" style="width: 10rem;">
-                                </select>
-                        </div>
-                        <div class="rightmar">
-                          <select class="form-select" name="" id="" style="width: 10rem;">
-                                </select>
-                        </div> -->
-                  </div>
-              </div>
-            </nav> 
-              <div class="divMarLeft">
-                <p class="paddingm headTitle">TOTAL</p>
-                <p class="paddingm valueGraph"><i style="font-size:1.3rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft" id="GTotalTrend"></span></p>
-              </div>
-
-              <div class="parent_graph_opportunity_trend_insights graph_margin_bottom parent_div marginScroll">
-                <div class="child_graph_opportunity_trend_insights child_div">
-                  <canvas id="OpportunityTrendInsights"></canvas>    
+            </div> 
+            <!-- second row  -->
+            <div class="col_rev_flex_op" style="justify-content:center;width:100%;">
+              <div class="d-flex col_rev_flex_op_div" style="width:100%;">
+                <div class="d-flex pl_op_gl" style="display:flex;align-items:center;  margin-right:0.6rem;">
+                  <span id="pie_chart_color3"></span><p style="margin:auto;margin-left:0rem;width:max-content;" class="donut_graph_text_pie">Unplanned Downtime</p>
+                </div>
+                <div class="d-flex pl_op_gl" style="display:flex;align-items:center;">
+                  <span id="pie_chart_color4"></span><p style="margin:auto;margin-left:0rem;" class="donut_graph_text_pie">Quality</p>
                 </div>
               </div>
-          </div>
+            </div>         
+          </div>       
         </div>
-        <div class="OuterCard graphCardMain">
-          <div class="card bodercss" style="width: 80%">
-              <nav class="navbar navbar-expand-lg">
-              <div class="container-fluid paddingm">
-                <p class="float-start fontBold  financial_font">OPPORTUNITY DRILL DOWN</p>
-                  <div class="d-flex">
-                        <!-- <div class="rightmar">
-                          <select class="form-select" name="" id="" style="width: 10rem;">
-                                </select>
-                        </div>
-                        <div class="rightmar">
-                          <select class="form-select" name="" id="" style="width: 10rem;">
-                                </select>
-                        </div>
-                        <div class="rightmar">
-                          <select class="form-select" name="" id="" style="width: 10rem;">
-                                </select>
-                        </div> -->
-                  </div>
-              </div>
-            </nav> 
-              <div class="divMarLeft">
-                <p class="paddingm headTitle">TOTAL</p>
-                <p class="paddingm valueGraph"><i style="font-size:1.3rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft" id="GTotalDrillDown"></span></p>
-              </div>
+      </div>
+      <br>
+    </div>
+  </div>
 
-              <div class="parent_graph_opportunity_dirll_down parent_div marginScroll" style="margin-bottom:1rem;">
-                <div class="child_graph_opportunity_drill_down child_div">
-                  <canvas id="OpportunityDrillDownInsights" ></canvas>    
-                </div>
-              </div>
-          </div>
+
+  <div class="OuterCard graphCardMain">
+    <div class="card bodercss graph_width_res">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid paddingm">
+          <p class="float-start fontBold  financial_font">MACHINE WISE P & L IMPROVEMENT OPPORTUNITY</p>
         </div>
-        <div class="OuterCard graphCardMain">
-          <div class="card bodercss" style="width: 80%">
-              <nav class="navbar navbar-expand-lg">
-              <div class="container-fluid paddingm">
-                <p class="float-start fontBold  financial_font">PART WISE P & L ANALYSIS</p>
-                  <div class="d-flex">
-                        <!-- <div class="rightmar">
-                          <select class="form-select" name="" id="" style="width: 10rem;">
-                                </select>
-                        </div>
-                        <div class="rightmar">
-                          <select class="form-select" name="" id="" style="width: 10rem;">
-                                </select>
-                        </div>
-                        <div class="rightmar">
-                          <select class="form-select" name="" id="" style="width: 10rem;">
-                                </select>
-                        </div> -->
-                  </div>
-              </div>
-            </nav> 
-              <div class="divMarLeft">
-                <p class="paddingm headTitle financial_font">PROFIT / LOSS</p>
-                <p class="paddingm valueGraph valueGraph_Loss"><i style="font-size:1.3rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft" id="GTotalPL"></span></p>
-              </div>
-
-              <div class="parent_graph_part_wise_pl parent_div marginScroll">
-                <div class="child_graph_part_wise_pl child_div">
-                  <canvas id="PartWiseInsights"></canvas>    
-                </div>
-              </div>
-
-              <div class="d-flex" style="height:4rem;align-items:center;flex-direction:row;margin-left:1.6rem;">
-                <div class="part_graph" style=""><span id="pie_chart_color1"></span><span class="donut_graph_text">Material Cost</span></div>
-                <div class="part_graph" style=""><span id="pie_chart_color2"></span><span class="donut_graph_text">Production Cost</span></div>
-                <div class="part_graph" style=""><span id="pie_chart_color4"></span><span class="donut_graph_text">Profit / Loss</span></div>
-
-              </div>
-          </div>
+      </nav> 
+      <div class="divMarLeft">
+        <p class="paddingm headTitle">TOTAL</p>
+        <p class="paddingm valueGraph"><i style="font-size:1.3rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft" id="PLTotal"></span></p>
+      </div>
+      <div class="parent_graph_machine_wise_insights graph_margin_bottom parent_div marginScroll">
+        <div class="child_graph_machine_wise_insig child_div">
+          <canvas id="machineWiseInsights" ></canvas>    
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="OuterCard graphCardMain">
+    <div class="card bodercss graph_width_res" >
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid paddingm">
+          <p class="float-start fontBold financial_font">OPPORTUNITY TREND</p>
+        </div>
+      </nav> 
+      <div class="divMarLeft">
+        <p class="paddingm headTitle">TOTAL</p>
+        <p class="paddingm valueGraph"><i style="font-size:1.3rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft" id="GTotalTrend"></span></p>
+      </div>
+
+      <div class="parent_graph_opportunity_trend_insights graph_margin_bottom parent_div marginScroll">
+        <div class="child_graph_opportunity_trend_insights child_div">
+          <canvas id="OpportunityTrendInsights"></canvas>    
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="OuterCard graphCardMain">
+    <div class="card bodercss graph_width_res" >
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid paddingm">
+          <p class="float-start fontBold  financial_font">OPPORTUNITY DRILL DOWN</p>
+        </div>
+      </nav> 
+      <div class="divMarLeft">
+        <p class="paddingm headTitle">TOTAL</p>
+        <p class="paddingm valueGraph"><i style="font-size:1.3rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft" id="GTotalDrillDown"></span></p>
+      </div>
+
+      <div class="parent_graph_opportunity_dirll_down parent_div marginScroll" style="margin-bottom:1rem;">
+        <div class="child_graph_opportunity_drill_down child_div">
+          <canvas id="OpportunityDrillDownInsights" ></canvas>    
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="OuterCard graphCardMain">
+    <div class="card bodercss graph_width_res" >
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid paddingm">
+          <p class="float-start fontBold  financial_font">PART WISE P & L ANALYSIS</p>
+        </div>
+      </nav> 
+      <div class="divMarLeft">
+        <p class="paddingm headTitle financial_font">PROFIT / LOSS</p>
+        <p class="paddingm valueGraph valueGraph_Loss"><i style="font-size:1.3rem;" class="fa fa-inr" aria-hidden="true"></i><span class="paddingm valueMarLeft" id="GTotalPL"></span></p>
+      </div>
+
+      <div class="parent_graph_part_wise_pl parent_div marginScroll">
+        <div class="child_graph_part_wise_pl child_div">
+          <canvas id="PartWiseInsights"></canvas>    
+        </div>
+      </div>
+
+      <div class="d-flex part_graph_pdiv" style="">
+        <div class="part_graph" style=""><span id="pie_chart_color1"></span><span class="donut_graph_text">Material Cost</span></div>
+          <div class="part_graph" style=""><span id="pie_chart_color2"></span><span class="donut_graph_text">Production Cost</span></div>
+          <div class="part_graph" style=""><span id="pie_chart_color4"></span><span class="donut_graph_text">Profit / Loss</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<!-- global filter modal mobile responsive -->
+<div class="modal fade" id="filter_ftdate_responsive" tabindex="-1" aria-labelledby="filter_ftdate_responsive12" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered rounded">
+    <div class="modal-content bodercss">
+      <div class="modal-header" style="border:none; ">
+        <h5 class="modal-title header_popup fnt_fam" id="filter_ftdate_responsive12" style="">Global Filter</h5>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex justify-content-center align-items-center row">
+          <div class="box rightmar col-sm-12 col-lg-6 col-md-6 p-2" style="margin-right: 0.5rem;width:12rem;">
+            <div class="input-box" style="width:12rem;">
+              <input type="text" class="form-control fromDate fdate_rs" value="2022-08-23" step="1">
+              <label for="inputSiteNameAdd" class="input-padding ">From Date</label>
+            </div>
+          </div>
+          <div class="box rightmar ol-sm-12 col-lg-6 col-md-6 p-2" style="margin-right: 0.5rem;width:12rem;">
+            <div class="input-box" style="width:12rem;">
+              <input type="text" class="form-control toDate tdate_rs" value="" step="1">
+              <label for="inputSiteNameAdd" class="input-padding ">To Date</label>
+            </div>
+          </div>
+        </div>  
+      </div>
+      <div class="modal-footer" style="border:none;">
+        <a class="btn fnt_fam btn_fnt_size btn_padd btn_save overall_filter_btn_resp"  value="Apply Filter" >Apply Filter</a>
+        <a class="btn fnt_fam btn_fnt_size btn_padd btn_cancel" data-bs-dismiss="modal" aria-label="Close">Cancel</a>   
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- preloader Start-->
 <div id="overlay">
-      <div class="cv-spinner">
-        <span class="spinner"></span>
-        <span class="loading">Awaiting Completion...</span>
-      </div>
+  <div class="cv-spinner">
+    <span class="spinner"></span>
+    <span class="loading">Awaiting Completion...</span>
+  </div>
 </div>
 <!-- preloader end -->
 
@@ -715,7 +880,7 @@ $('.toDate').datetimepicker({
   $(document).ready(function(){
     $("#overlay").fadeIn(300);
     // setTimeout(myFun, 500);
-    myFun();
+    myFun('toDate','fromDate');
 
   });
  
@@ -736,23 +901,23 @@ $('.toDate').datetimepicker({
     event.preventDefault();
     $("#overlay").fadeIn(300);
     // setTimeout(myFun, 500);
-    myFun();
+    myFun('toDate','fromDate');
   }); 
 
 
 
 
-  async function myFun(){
-    f = $('.fromDate').val(); 
-    t = $('.toDate').val();
+  async function myFun(tclass,fclass){
+    f = $('.'+fclass).val(); 
+    t = $('.'+tclass).val();
 
     if ((new Date(f) >= new Date(t)) || (t=="")) {
       var x = new Date(f)
       t = x.setHours(x.getHours() + 1);
       t= new Date(t);
       var tdate = t.getFullYear()+"-"+("0" + (parseInt(t.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + t.getDate()).slice(-2)+" "+("0" + t.getHours()).slice(-2)+":00:00";
-      $('.toDate').val(tdate);
-      t = $('.toDate').val();
+      $('.'+tclass).val(tdate);
+      t = $('.'+tclass).val();
     }
 
     var f_t = new Date(f);
@@ -767,17 +932,17 @@ $('.toDate').datetimepicker({
 
       var tdate = k.getFullYear()+"-"+("0" + (parseInt(y.getMonth())+parseInt(1))).slice(-2)+"-"+("0" + y.getDate()).slice(-2)+" "+("0" + y.getHours()).slice(-2)+":00:00";
 
-      $('.fromDate').val(fdate);
-      $('.toDate').val(tdate);
-      f = $('.fromDate').val();
-      t = $('.toDate').val();
+      $('.'+fclass).val(fdate);
+      $('.'+tclass).val(tdate);
+      f = $('.'+fclass).val();
+      t = $('.'+tclass).val();
     }
 
-    await plopportunity();
-    await machineplopportunity();
-    await partplopportunity();
-    await opportunityTrendDay();
-    await opportunitydrilldown();
+    await plopportunity(tclass,fclass);
+    await machineplopportunity(tclass,fclass);
+    await partplopportunity(tclass,fclass);
+    await opportunityTrendDay(tclass,fclass);
+    await opportunitydrilldown(tclass,fclass);
 
     // Pre-Loader Off
     $("#overlay").fadeOut(300);
@@ -785,6 +950,7 @@ $('.toDate').datetimepicker({
 
   //overallTarget();
 function overallTarget(){
+    
     f = $('.fromDate').val();
     t = $('.toDate').val();
     
@@ -792,10 +958,10 @@ function overallTarget(){
     t = t.replace(" ","T");
 }
 
-function plopportunity(){
+function plopportunity(tclass,fclass){
   return new Promise(function(resolve,reject){
-      f = $('.fromDate').val();
-      t = $('.toDate').val();
+      f = $('.'+fclass).val();
+      t = $('.'+tclass).val();
 
       f = f.replace(" ","T");
       t = t.replace(" ","T");
@@ -1054,11 +1220,11 @@ function plopportunity(){
 }
 
 
-function machineplopportunity() {
+function machineplopportunity(tclass,fclass) {
 
   return new Promise(function(resolve,reject){
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
+    f = $('.'+fclass).val();
+    t = $('.'+tclass).val();
 
     f = f.replace(" ","T");
     t = t.replace(" ","T");
@@ -1300,11 +1466,11 @@ function machinewiseplOpp(context) {
 }
 
 
-function partplopportunity(){
+function partplopportunity(tclass,fclass){
 
   return new Promise(function(resolve,reject){
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
+    f = $('.'+fclass).val();
+    t = $('.'+tclass).val();
     
     f = f.replace(" ","T");
     t = t.replace(" ","T");
@@ -1540,11 +1706,11 @@ function partWisePL(context) {
 
 
 
-function opportunitydrilldown(){
+function opportunitydrilldown(tclass,fclass){
 
   return new Promise(function(resolve,reject){
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
+    f = $('.'+fclass).val();
+    t = $('.'+tclass).val();
     
     f = f.replace(" ","T");
     t = t.replace(" ","T");
@@ -1748,11 +1914,11 @@ function drillDownOpp(context) {
     tooltipEl.style.pointerEvents = 'none';
 }
 
-function opportunityTrendDay(){
+function opportunityTrendDay(tclass,fclass){
 
   return new Promise(function(resolve,reject){
-    f = $('.fromDate').val();
-    t = $('.toDate').val();
+    f = $('.'+fclass).val();
+    t = $('.'+tclass).val();
     
     f = f.replace(" ","T");
     t = t.replace(" ","T");
@@ -2006,6 +2172,21 @@ function plTrendOpp(context) {
     tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
     tooltipEl.style.pointerEvents = 'none';
 }
+
+
+// global filter mobile responsive
+
+// mobile responsive global filter icon click function
+$(document).on('click','.global_filter_btn',function(){
+  $('#filter_ftdate_responsive').modal('show');
+});
+
+// mobile responsive global filter button onclick function
+$(document).on('click','.overall_filter_btn_resp',function(){
+  $('#filter_ftdate_responsive').modal('hide');
+  $("#overlay").fadeIn(300);
+  myFun('tdate_rs','fdate_rs');
+});
 
 </script>
 
