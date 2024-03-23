@@ -52,3 +52,30 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+
+
+.overlay_div{ 
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height:100%;
+  background-color: #8a8781;
+  background-color: rgba(54, 52, 49,0.3);
+}
+.cv-spinner_div {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+.spinner_div {
+  width: 30px;
+  height: 30px;
+  border: 5px #ddd solid;
+  border-top: 5px #363533 solid;
+  border-radius: 50%;
+  animation: sp-anime 1s infinite linear;
+}

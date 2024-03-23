@@ -713,6 +713,15 @@
         </div>
       </div>
       <br>
+
+      <!-- preloader Start-->
+        <div class="overlay_div bodercss" id="overall_pl_loader">
+              <div class="cv-spinner_div">
+                <span class="spinner_div"></span>
+                <!-- <span class="loading">Awaiting Completion...</span> -->
+              </div>
+        </div>
+      <!-- preloader end -->
     </div>
   </div>
 
@@ -733,6 +742,14 @@
           <canvas id="machineWiseInsights" ></canvas>    
         </div>
       </div>
+      <!-- preloader Start-->
+        <div class="overlay_div bodercss" id="machine_wise_loader">
+              <div class="cv-spinner_div">
+                <span class="spinner_div"></span>
+                <!-- <span class="loading">Awaiting Completion...</span> -->
+              </div>
+        </div>
+      <!-- preloader end -->
     </div>
   </div>
 
@@ -753,6 +770,14 @@
           <canvas id="OpportunityTrendInsights"></canvas>    
         </div>
       </div>
+      <!-- preloader Start-->
+        <div class="overlay_div bodercss" id="opp_trend_loader">
+              <div class="cv-spinner_div">
+                <span class="spinner_div"></span>
+                <!-- <span class="loading">Awaiting Completion...</span> -->
+              </div>
+        </div>
+      <!-- preloader end -->
     </div>
   </div>
   
@@ -773,6 +798,14 @@
           <canvas id="OpportunityDrillDownInsights" ></canvas>    
         </div>
       </div>
+      <!-- preloader Start-->
+        <div class="overlay_div bodercss" id="opp_drilldown_loader">
+              <div class="cv-spinner_div">
+                <span class="spinner_div"></span>
+                <!-- <span class="loading">Awaiting Completion...</span> -->
+              </div>
+        </div>
+      <!-- preloader end -->
     </div>
   </div>
 
@@ -799,6 +832,15 @@
           <div class="part_graph" style=""><span id="pie_chart_color2"></span><span class="donut_graph_text">Production Cost</span></div>
           <div class="part_graph" style=""><span id="pie_chart_color4"></span><span class="donut_graph_text">Profit / Loss</span></div>
         </div>
+
+      <!-- preloader Start-->
+        <div class="overlay_div bodercss" id="part_pl_loader">
+              <div class="cv-spinner_div">
+                <span class="spinner_div"></span>
+                <!-- <span class="loading">Awaiting Completion...</span> -->
+              </div>
+        </div>
+      <!-- preloader end -->
       </div>
     </div>
   </div>
@@ -838,12 +880,12 @@
 </div>
 
 <!-- preloader Start-->
-<div id="overlay">
+<!-- <div id="overlay">
   <div class="cv-spinner">
     <span class="spinner"></span>
     <span class="loading">Awaiting Completion...</span>
   </div>
-</div>
+</div> -->
 <!-- preloader end -->
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -878,7 +920,6 @@ $('.toDate').datetimepicker({
 
   // Pre-Loader On
   $(document).ready(function(){
-    $("#overlay").fadeIn(300);
     // setTimeout(myFun, 500);
     myFun('toDate','fromDate');
 
@@ -899,7 +940,6 @@ $('.toDate').datetimepicker({
 
   $(document).on('click','.overall_filter_btn',function(event){
     event.preventDefault();
-    $("#overlay").fadeIn(300);
     // setTimeout(myFun, 500);
     myFun('toDate','fromDate');
   }); 
@@ -908,6 +948,13 @@ $('.toDate').datetimepicker({
 
 
   async function myFun(tclass,fclass){
+    
+    $("#machine_wise_loader").fadeIn(300);
+    $("#overall_pl_loader").fadeIn(300);
+    $("#part_pl_loader").fadeIn(300);
+    $("#opp_drilldown_loader").fadeIn(300);
+    $("#opp_trend_loader").fadeIn(300);
+
     f = $('.'+fclass).val(); 
     t = $('.'+tclass).val();
 
@@ -945,7 +992,6 @@ $('.toDate').datetimepicker({
     await opportunitydrilldown(tclass,fclass);
 
     // Pre-Loader Off
-    $("#overlay").fadeOut(300);
   }
 
   //overallTarget();
@@ -1209,10 +1255,13 @@ function plopportunity(tclass,fclass){
           };
           var chart = new ApexCharts(document.getElementById("olichart"), options);
           chart.render();
+
+          $("#overall_pl_loader").fadeOut(300);
         },
         error:function(res){
           reject(res);
           // alert("Sorry!Try Agian!!");
+          $("#overall_pl_loader").fadeOut(300);
         }
       });
   });
@@ -1364,10 +1413,12 @@ function machineplopportunity(tclass,fclass) {
               },
             },
           });
+          $("#machine_wise_loader").fadeOut(300);
       },
       error:function(res){
         reject(res);
           // alert("Sorry!Try Agian!!");
+        $("#machine_wise_loader").fadeOut(300);
       }
     });
   });
@@ -1626,10 +1677,12 @@ function partplopportunity(tclass,fclass){
             },
           
           });
+          $("#part_pl_loader").fadeOut(300);
       },
       error:function(res){
         reject(res);
           // alert("Sorry!Try Agian!!");
+        $("#part_pl_loader").fadeOut(300);
       }
     });
   });
@@ -1707,7 +1760,6 @@ function partWisePL(context) {
 
 
 function opportunitydrilldown(tclass,fclass){
-
   return new Promise(function(resolve,reject){
     f = $('.'+fclass).val();
     t = $('.'+tclass).val();
@@ -1809,11 +1861,12 @@ function opportunitydrilldown(tclass,fclass){
           },
         
         });
-
+        $("#opp_drilldown_loader").fadeOut(300);
       },
       error:function(res){
         reject(res);
         // alert("Sorry!Try Agian!!");
+        $("#opp_drilldown_loader").fadeOut(300);
       }
     });
   });
@@ -1915,7 +1968,6 @@ function drillDownOpp(context) {
 }
 
 function opportunityTrendDay(tclass,fclass){
-
   return new Promise(function(resolve,reject){
     f = $('.'+fclass).val();
     t = $('.'+tclass).val();
@@ -2082,10 +2134,12 @@ function opportunityTrendDay(tclass,fclass){
             },
           },
         });
+        $("#opp_trend_loader").fadeOut(300);
       },
       error:function(res){
         reject(res);
           // alert("Sorry!Try Agian!!");
+        $("#opp_trend_loader").fadeOut(300);
       }
     });
   });
@@ -2184,7 +2238,6 @@ $(document).on('click','.global_filter_btn',function(){
 // mobile responsive global filter button onclick function
 $(document).on('click','.overall_filter_btn_resp',function(){
   $('#filter_ftdate_responsive').modal('hide');
-  $("#overlay").fadeIn(300);
   myFun('tdate_rs','fdate_rs');
 });
 

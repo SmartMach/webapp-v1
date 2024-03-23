@@ -32,6 +32,7 @@
           margin-top: 10px;
           margin-right: 3rem;
           margin-left: 3rem;
+          position: relative;
         }
         .selectOpt{
           width: 10rem;
@@ -484,6 +485,14 @@
               </div>
         		</div>
         	</div>
+              <!-- preloader Start-->
+                <div class="overlay_div bodercss" id="overall_metrics_loader">
+                      <div class="cv-spinner_div">
+                        <span class="spinner_div"></span>
+                        <!-- <span class="loading">Awaiting Completion...</span> -->
+                      </div>
+                </div>
+              <!-- preloader end -->
         </div>
         <div class="OuterCard graphCardMain">
           <div class="card bodercss graph_width_res" style="">
@@ -514,7 +523,16 @@
                 <p class="paddingm display_f justify_c align_c fontStyle"><span class="circleDraw lableSpace paddingm">.</span><span id="graph_machine_agenda">Quality%</span></p>
               </div>
             </div>  
+            <!-- preloader Start-->
+                <div class="overlay_div bodercss" id="machine_wise_loader">
+                      <div class="cv-spinner_div">
+                        <span class="spinner_div"></span>
+                        <!-- <span class="loading">Awaiting Completion...</span> -->
+                      </div>
+                </div>
+              <!-- preloader end -->
           </div>
+
         </div>
         <div class="OuterCard graphCardMain">
           <div class="card bodercss graph_width_res" style="">
@@ -542,6 +560,14 @@
                   <canvas id="avalabilityOpportunity"></canvas>    
                 </div>
               </div>
+              <!-- preloader Start-->
+                <div class="overlay_div bodercss" id="availability_loader">
+                      <div class="cv-spinner_div">
+                        <span class="spinner_div"></span>
+                        <!-- <span class="loading">Awaiting Completion...</span> -->
+                      </div>
+                </div>
+              <!-- preloader end -->
           </div>
         </div>
         <div class="OuterCard graphCardMain">
@@ -571,6 +597,14 @@
                   <canvas id="performanceOpportunity"></canvas>    
               </div>
             </div>
+            <!-- preloader Start-->
+                <div class="overlay_div bodercss" id="performance_loader">
+                      <div class="cv-spinner_div">
+                        <span class="spinner_div"></span>
+                        <!-- <span class="loading">Awaiting Completion...</span> -->
+                      </div>
+                </div>
+              <!-- preloader end -->
           </div>
         </div>
         <div class="OuterCard graphCardMain">
@@ -600,6 +634,14 @@
                 <canvas id="qualityOpportunity"></canvas>    
               </div>
             </div>
+            <!-- preloader Start-->
+                <div class="overlay_div bodercss" id="quality_loader">
+                      <div class="cv-spinner_div">
+                        <span class="spinner_div"></span>
+                        <!-- <span class="loading">Awaiting Completion...</span> -->
+                      </div>
+                </div>
+              <!-- preloader end -->
           </div>
         </div>
         <div class="OuterCard graphCardMain">
@@ -622,6 +664,14 @@
                   <canvas id="OEETrend" class=""></canvas>    
               </div>
             </div>
+            <!-- preloader Start-->
+                <div class="overlay_div bodercss" id="oee_trend_loader">
+                      <div class="cv-spinner_div">
+                        <span class="spinner_div"></span>
+                        <!-- <span class="loading">Awaiting Completion...</span> -->
+                      </div>
+                </div>
+              <!-- preloader end -->
           </div>
         </div>
 </div>
@@ -658,12 +708,12 @@
 </div>
 
 <!-- preloader Start-->
-<div id="overlay">
+<!-- <div id="overlay">
       <div class="cv-spinner">
         <span class="spinner"></span>
         <span class="loading">Awaiting Completion...</span>
       </div>
-</div>
+</div> -->
 <!-- preloader end -->
 
 
@@ -748,6 +798,16 @@ $(document).on('click','.overall_filter_btn_resp',function(){
 });
 
 async function myFun(fclassname,tclassname){
+  // Loader for all the Graph...
+  // Pre-Loader On
+  $("#overall_metrics_loader").fadeIn(300);
+  $("#machine_wise_loader").fadeIn(300);
+  $("#availability_loader").fadeIn(300);
+  $("#quality_loader").fadeIn(300);
+  $("#performance_loader").fadeIn(300);
+  $("#oee_trend_loader").fadeIn(300);
+
+
     f = $('.'+fclassname).val();
     t = $('.'+tclassname).val();
     if ((new Date(f) >= new Date(t)) || (t=="")) {
@@ -793,9 +853,6 @@ async function myFun(fclassname,tclassname){
     await qualityOpportunity(fclassname,tclassname);
     await performanceOpportunity(fclassname,tclassname);
     await oeeTrendDay(fclassname,tclassname);
-  // Pre-Loader Off
-  console.log("ok loading end");
-  $("#overlay").fadeOut(300);
 }
 
 //Target Values.......
@@ -823,8 +880,7 @@ $.ajax({
 //Overall TEEP,OOE,OEE.......
 //overallTarget();
 function overallTarget(fclassname,tclassname){
-  // Pre-Loader On
-  // $("#overlay").fadeIn(300);
+  
   return new Promise(function(resolve,reject){
     f = $('.'+fclassname).val();
     t = $('.'+tclassname).val();
@@ -856,6 +912,7 @@ function overallTarget(fclassname,tclassname){
         $('.teepVal').html(res.Overall_TEEP);
 
           // Pre-Loader Off
+        $("#overall_metrics_loader").fadeOut(300);
       },
       error:function(res){
         reject(res);
@@ -864,6 +921,8 @@ function overallTarget(fclassname,tclassname){
         $('#ViewOverallOOE').css('width','0%');
 
           // Pre-Loader Off
+        $("#overall_metrics_loader").fadeOut(300);
+
       }
     });
   });
@@ -872,8 +931,6 @@ function overallTarget(fclassname,tclassname){
 
 //Machine Wise OEE......
 function machineWiseOEE(fclassname,tclassname) {
-  // Pre-Loader On
-  // $("#overlay").fadeIn(300);
   return new Promise(function(resolve,reject){
     f = $('.'+fclassname).val();
     t = $('.'+tclassname).val();
@@ -1022,10 +1079,12 @@ function machineWiseOEE(fclassname,tclassname) {
                 });  
 
           // Pre-Loader Off
+          $("#machine_wise_loader").fadeOut(300);
       },
       error:function(res){
         reject(res);
           // Pre-Loader Off
+        $("#machine_wise_loader").fadeOut(300);
           // alert("No Data Records!");
       }
     });
@@ -1119,9 +1178,6 @@ function machineWiseOEETooltip(context) {
 //Reason wise availability........
 //availabilityReason();
 function availabilityReason(fclassname,tclassname) {
-
-  // Pre-Loader On
-  // $("#overlay").fadeIn(300);
   return new Promise(function(resolve,reject){
     f = $('.'+fclassname).val();
     t = $('.'+tclassname).val();
@@ -1268,10 +1324,12 @@ function availabilityReason(fclassname,tclassname) {
         });
 
           // Pre-Loader Off
+        $("#availability_loader").fadeOut(300);
       },
       error:function(res){
         reject(res);
           // Pre-Loader Off
+        $("#availability_loader").fadeOut(300);
           // alert("Sorry!Try Agian!!!!");
       }
     }); 
@@ -1363,8 +1421,6 @@ function availabilityOpp(context) {
 //Quality Opportunity........
 //qualityOpportunity();
 function qualityOpportunity(fclassname,tclassname) {
-  // Pre-Loader On
-  // $("#overlay").fadeIn(300);
   return new Promise(function(resolve,reject){
     f = $('.'+fclassname).val();
     t = $('.'+tclassname).val();
@@ -1544,10 +1600,12 @@ function qualityOpportunity(fclassname,tclassname) {
             });
 
             // Pre-Loader Off
+            $("#quality_loader").fadeOut(300);
           },
       error:function(res){
         reject(res);
           // Pre-Loader Off
+          $("#quality_loader").fadeOut(300);
           // alert("Sorry!Try Agian!!!!");
       }
     }); 
@@ -1635,8 +1693,6 @@ function performanceOpportunity(fclassname,tclassname) {
     $('#performanceOpportunity').remove();
     $('.child_graph_performance_opportunity').append('<canvas id="performanceOpportunity"><canvas>');
     $('.chartjs-hidden-iframe').remove();
-    // Pre-Loader On
-    // $("#overlay").fadeIn(300);
     f = $('.'+fclassname).val();
     t = $('.'+tclassname).val();
     f = f.replace(" ","T");
@@ -1770,9 +1826,12 @@ function performanceOpportunity(fclassname,tclassname) {
                   },
                 },            
               });
+
+              $("#performance_loader").fadeOut(300);
       },
       error:function(res){
         reject(res);
+        $("#performance_loader").fadeOut(300);
       }
     }); 
   });
@@ -1861,8 +1920,6 @@ function performanceOpp(context) {
 
 
 function oeeTrendDay(fclassname,tclassname) {
-  // Pre-Loader On
-  // $("#overlay").fadeIn(300);
   return new Promise(function(resolve,reject){
     f = $('.'+fclassname).val();
     t = $('.'+tclassname).val();
@@ -1982,9 +2039,13 @@ function oeeTrendDay(fclassname,tclassname) {
           },
           });
 
+          $("#oee_trend_loader").fadeOut(300);
+
         },
         error:function(res){
           reject(res);
+
+          $("#oee_trend_loader").fadeOut(300);
         }
     });
   });
